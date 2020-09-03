@@ -8,7 +8,7 @@ defineConfigSchema('@openmrs/esm-drugorder-app', {});
 function Root() {
   return (
     <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
-      <Route path="/drugorder" component={() => null} />
+      <Route path="/drugorder" component={() => <p>Hello World!</p>} />
     </BrowserRouter>
   );
 }
