@@ -83,6 +83,7 @@
   },
   "dependencies": {
     "@openmrs/esm-api": "^3.0.0",
+    "@openmrs/esm-extension-manager": "^0.1.1",
     "@openmrs/esm-module-config": "^2.2.0",
     "@openmrs/esm-styleguide": "^1.3.0",
     "i18next": "^19.4.2",

@@ -9,4 +9,4 @@ const { bootstrap, mount, unmount } = singleSpaReact({
   rootComponent: Root,
 });
 
-export { bootstrap, mount, unmount };
+export default { bootstrap, mount, unmount };

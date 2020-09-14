@@ -20,7 +20,7 @@ export default function MedicationsDetailedSummary(props: MedicationsDetailedSum
   const [isLoadingPatient, patient, patientUuid, patientErr] = useCurrentPatient();
 
   const { t } = useTranslation();
-  const match = useRouteMatch();
+  const match = useRouteMatch<any>();
 
   React.useEffect(() => {
     if (patientUuid) {
@@ -131,7 +131,8 @@ export default function MedicationsDetailedSummary(props: MedicationsDetailedSum
                           />
                         </td>
                         <td style={{ textAlign: 'end' }}>
-                          <Link to={`${match.path}/${medication.uuid}`}>
+                          <Link
+                            to={`/drugorder/patient/${match.params.patientUuid}/medication-orders/${medication.uuid}`}>
                             <svg className="omrs-icon" fill="rgba(60, 60, 67, 0.3)">
                               <use xlinkHref="#omrs-icon-chevron-right" />
                             </svg>
@@ -217,7 +218,8 @@ export default function MedicationsDetailedSummary(props: MedicationsDetailedSum
                             )}
                           </td>
                           <td style={{ textAlign: 'end' }}>
-                            <Link to={`${match.path}/${medication.uuid}`}>
+                            <Link
+                              to={`/drugorder/patient/${match.params.patientUuid}/medication-orders/${medication.uuid}`}>
                               <svg className="omrs-icon" fill="rgba(60, 60, 67, 0.3)">
                                 <use xlinkHref="#omrs-icon-chevron-right" />
                               </svg>
