@@ -19,6 +19,10 @@ jest.mock('@openmrs/esm-api', () => ({
   useCurrentPatient: jest.fn(),
 }));
 
+jest.mock('@openmrs/esm-patient-chart-widgets', () => ({
+  openWorkspaceTab: jest.fn(),
+}));
+
 let wrapper;
 
 describe('<MedicationsOverview/>', () => {
@@ -34,7 +38,7 @@ describe('<MedicationsOverview/>', () => {
 
     wrapper = render(
       <BrowserRouter>
-        <MedicationsOverview basePath="/" />
+        <MedicationsOverview />
       </BrowserRouter>,
     );
 
@@ -48,14 +52,13 @@ describe('<MedicationsOverview/>', () => {
 
     wrapper = render(
       <BrowserRouter>
-        <MedicationsOverview basePath="/" />
+        <MedicationsOverview />
       </BrowserRouter>,
     );
 
     await wait(() => {
       expect(wrapper).toBeDefined();
-      expect(wrapper.getByText('Add').textContent).toBeTruthy();
-      expect(wrapper.getByText('Active Medications').textContent).toBeTruthy();
+      expect(wrapper.getByText('Active medications').textContent).toBeTruthy();
       expect(
         wrapper.getByText('This patient has no active medications recorded in the system.').textContent,
       ).toBeTruthy();
@@ -67,22 +70,19 @@ describe('<MedicationsOverview/>', () => {
 
     wrapper = render(
       <BrowserRouter>
-        <MedicationsOverview basePath="/" />
+        <MedicationsOverview />
       </BrowserRouter>,
     );
 
     await wait(() => {
       expect(wrapper).toBeDefined();
-      expect(wrapper.getAllByText('Active Medications').length).toEqual(2);
-      expect(wrapper.getByText('sulfadoxine').textContent).toBeTruthy();
-      expect(wrapper.getByText('DOSE').textContent).toBeTruthy();
-      expect(wrapper.getByText('500 mg').textContent).toBeTruthy();
-      expect(wrapper.getByText('capsule').textContent).toBeTruthy();
-      expect(wrapper.getByText('oral').textContent).toBeTruthy();
+      expect(wrapper.getByText('Active medications').textContent).toBeTruthy();
+      expect(wrapper.getByText(/sulfadoxine/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/DOSE/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/500 mg/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/capsule/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/oral/).textContent).toBeTruthy();
       expect(wrapper.getByText(/Twice daily/).textContent).toBeTruthy();
-      expect(wrapper.getByText('Revise').textContent).toBeTruthy();
-      expect(wrapper.getByText('Discontinue').textContent).toBeTruthy();
-      expect(wrapper.getByText('See all').textContent).toBeTruthy();
     });
   });
 });

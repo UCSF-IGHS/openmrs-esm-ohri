@@ -21,6 +21,10 @@ jest.mock('@openmrs/esm-api', () => ({
   useCurrentPatient: jest.fn(),
 }));
 
+jest.mock('@openmrs/esm-patient-chart-widgets', () => ({
+  openWorkspaceTab: jest.fn(),
+}));
+
 let wrapper;
 
 describe('<MedicationsDetailedSummary/>', () => {
@@ -48,7 +52,7 @@ describe('<MedicationsDetailedSummary/>', () => {
   it("should display the patient's medications correctly", async () => {
     mockFetchPatientMedications.mockReturnValue(of(mockFetchPatientMedicationsResponse));
 
-    const { getByText, getAllByText, container, debug } = render(
+    const { getByText, getAllByText, container } = render(
       <BrowserRouter>
         <MedicationsDetailedSummary />
       </BrowserRouter>,
@@ -57,42 +61,22 @@ describe('<MedicationsDetailedSummary/>', () => {
     await wait(() => {
       expect(container).toBeDefined();
       // Current medications
-      expect(getByText('Medications - current').textContent).toBeTruthy();
-      expect(getAllByText('Add').length).toEqual(2);
-      expect(getByText('Medications - past').textContent).toBeTruthy();
-      expect(wrapper.getAllByText('NAME')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('STATUS')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('START DATE')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('ACTIONS')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('sulfadoxine')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText(/oral/)[0].textContent).toBeTruthy();
+      expect(getByText('Current medications').textContent).toBeTruthy();
+      expect(getAllByText('Add').length).toBeGreaterThan(1);
+      expect(getByText('Past medications').textContent).toBeTruthy();
+      expect(getAllByText('Medication')[0].textContent).toBeTruthy();
+      expect(getAllByText('Status')[0].textContent).toBeTruthy();
+      expect(getAllByText('Start date')[0].textContent).toBeTruthy();
+      expect(getAllByText(/sulfadoxine/)[0].textContent).toBeTruthy();
+      expect(getAllByText(/oral/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/capsule/)[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('DOSE')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('500 mg')[0].textContent).toBeTruthy();
+      expect(wrapper.getAllByText(/DOSE/)[0].textContent).toBeTruthy();
+      expect(wrapper.getAllByText(/500 mg/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/Twice daily/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/3 Days/)[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('REFILLS')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('NEW')[0].textContent).toBeTruthy();
+      expect(wrapper.getAllByText(/REFILLS/)[0].textContent).toBeTruthy();
+      expect(wrapper.getAllByText(/NEW/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText('12-Feb-2020')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('Revise')[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText('Discontinue')[0].textContent).toBeTruthy();
     });
   }, 6000);
-
-  it("should not display the patient's medications when they are absent", async () => {
-    mockFetchPatientMedications.mockReturnValue(of([]));
-
-    wrapper = render(
-      <BrowserRouter>
-        <MedicationsDetailedSummary />
-      </BrowserRouter>,
-    );
-
-    await wait(() => {
-      expect(wrapper).toBeDefined();
-      expect(wrapper.getByText('Medications').textContent).toBeTruthy();
-      expect(wrapper.getByText('This patient has no medication orders in the system.').textContent).toBeTruthy();
-      expect(wrapper.getByText('Add medication order').textContent).toBeTruthy();
-    });
-  });
 });

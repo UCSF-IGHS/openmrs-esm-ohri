@@ -1,60 +1,7 @@
-:global(.omrs-breakpoint-gt-phone) .medicationSummary {
-  display: flex;
-}
-
-:global(.omrs-breakpoint-lt-tablet) .medicationSummary {
-  padding: 0.25rem 0.5rem 0 0.5rem;
-}
-
 .medicationContainer {
-  display: grid;
-  grid-gap: 25px;
+  max-width: 1024px;
 }
 
-.medicationCard {
-  margin: 0rem 1rem;
-}
-
-.medicationTable {
-  width: 100%;
-  margin-top: 1rem;
-}
-
-.medicationTable tbody th {
-  color: var(--omrs-color-ink-medium-contrast);
-  text-align: left;
-  font-weight: normal;
-}
-
-.medicationTable tbody td {
-  font-weight: 500;
-}
-
-.medicationTable thead {
-  color: var(--omrs-color-ink-medium-contrast);
-}
-
-.medicationTable tbody tr td {
-  padding-bottom: 1.25rem;
-}
-
-.medicationTable thead td {
-  margin-top: 0.625rem;
-}
-
-.medicationDetailsTable {
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.medicationDetailsTable th {
-  color: var(--omrs-color-ink-medium-contrast);
-  text-align: left;
-  font-weight: normal;
-}
-
-.medicationSummaryLine {
-  font-size: 1.188rem;
-  margin-bottom: 1rem;
+.medicationContainer > div {
+  padding-left: 0;
 }

@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import styles from './medication-order-basket.css';
-import SummaryCard from '../../ui-components/cards/summary-card.component';
-import { isEmpty, debounce } from 'lodash';
+import { debounce } from 'lodash';
 import { getDrugByName, saveNewDrugOrder, getPatientDrugOrderDetails } from './medications.resource';
 import { createErrorHandler } from '@openmrs/esm-error-handling';
 import MedicationOrder from './medication-order.component';
-import { useCurrentPatient } from '@openmrs/esm-api';
-import SummaryCardRow from '../../ui-components/cards/summary-card-row.component';
-import SummaryCardRowContent from '../../ui-components/cards/summary-card-row-content.component';
-import { getDosage, OrderMedication } from './medication-orders-utils';
-import { useHistory, match } from 'react-router-dom';
-import { DataCaptureComponentProps } from '../shared-utils';
+import { OrderMedication } from './medication-orders-utils';
+import { match } from 'react-router-dom';
+import { DataCaptureComponentProps } from '@openmrs/esm-patient-chart-widgets';
 import { useTranslation } from 'react-i18next';
 import { toOmrsDateString } from '../../utils/omrs-dates';
+import {
+  Button,
+  // @ts-ignore
+  ButtonSet,
+  OverflowMenu,
+  OverflowMenuItem,
+  Search,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'carbon-components-react';
 
-const NEW_MEDICATION_ACTION: string = 'NEW';
 const DISCONTINUE_MEDICATION_ACTION: string = 'DISCONTINUE';
 
 export default function MedicationOrderBasket(props: MedicationOrderBasketProps) {
@@ -26,8 +35,6 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
   const [showOrderMedication, setShowOrderMedication] = useState(false);
   const [enableButtons, setEnableButtons] = useState(false);
   const [editProperty, setEditProperty] = useState([]);
-  const [isLoadingPatient, patient, patientUuid, patientErr] = useCurrentPatient();
-  let history = useHistory();
   const [editOrderItem, setEditOrderItem] = React.useState<{
     orderEdit: Boolean;
     order?: OrderMedication;
@@ -37,7 +44,6 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
   const handleDrugSelected = $event => {
     setDrugName(searchTerm);
     setShowOrderMedication(true);
-    setSearchResults([]);
   };
 
   const handleChange = debounce(searchterm => {
@@ -172,84 +178,87 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
 
   return (
     <div className={styles.medicationOrderBasketContainer}>
-      <div className={`${styles.medicationHeader} ${!isEmpty(searchResults) ? styles.modal : ''}`}>
-        <div className={`${styles.medicationHeader} ${!isEmpty(searchResults) ? styles.modalContent : ''}`}>
-          <SummaryCard name="Order Medication" styles={{ width: '100%' }}>
-            <div className={styles.medicationSearchTerm}>
-              <input
-                type="text"
-                name="searchTerm"
-                id="searchTerm"
-                placeholder="medication name"
-                onChange={$event => {
-                  handleChange($event.target.value);
-                  setHasChanged(true);
-                }}
-              />
-            </div>
-          </SummaryCard>
-          <div className={`${styles.searchResults} ${isEmpty(searchResults) ? styles.hide : ''}`}>
-            <table>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Drug Name</th>
-                  <th>Strength</th>
-                  <th>Dosage form</th>
-                </tr>
-              </thead>
-              <tbody>
-                {searchResults &&
-                  searchResults.map((result, index) => {
-                    return (
-                      <tr key={result} role="button" onClick={$event => handleDrugSelected(result.uuid)}>
-                        <td>{index + 1}</td>
-                        <td>{result.name}</td>
-                        <td>{result.strength}</td>
-                        <td>{result.dosageForm.display}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div>
+        <h2>Order medication</h2>
+        <Search
+          labelText="Search for drugs"
+          placeHolderText="Search for drugs"
+          onChange={e => {
+            handleChange(e.target.value);
+            setHasChanged(true);
+          }}
+        />
       </div>
 
-      <div style={{ width: '90%' }}>
-        {orderBasket.length > 0 &&
-          orderBasket.map((order, index) => {
-            return (
-              <div className={`${styles.basketStyles} ${styles.OrderStyle}`} key={index}>
-                <SummaryCardRow>
-                  <SummaryCardRowContent justifyContent="space-between">
-                    <span>
-                      {order.action} <b>{order.drugName}</b>
-                      {' \u2014 '} {String(order.dosageForm).toLocaleLowerCase()}
-                      {' \u2014 '} {String(order.routeName).toLocaleLowerCase()}
-                      {' \u2014 '} DOSE <b>{`${getDosage(order.drugStrength, order.dose)}`} </b>
-                      <b>{String(order.frequencyName).toLocaleLowerCase()}</b>
-                    </span>
-                    <span>
-                      <button className="omrs-btn-icon-medium" onClick={$event => handleRemoveOrderItem(index)}>
-                        <svg>
-                          <use fill={'var(--omrs-color-brand-black)'} xlinkHref="#omrs-icon-close"></use>
-                        </svg>
-                      </button>
-                      <button
-                        className="omrs-btn-icon-medium"
-                        onClick={$event => handleOrderItemEdit(order, index)}
-                        disabled={order.action === DISCONTINUE_MEDICATION_ACTION ? true : false}>
-                        <svg>
-                          <use fill={'var(--omrs-color-brand-black)'} xlinkHref="#omrs-icon-menu"></use>
-                        </svg>
-                      </button>
-                    </span>
-                  </SummaryCardRowContent>
-                </SummaryCardRow>
-              </div>
-            );
-          })}
+      <div>
+        {searchResults?.length > 0 ? (
+          <>
+            <h4>Results for "{searchTerm}"</h4>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableHeader>Number</TableHeader>
+                  <TableHeader>Drug name</TableHeader>
+                  <TableHeader>Strength</TableHeader>
+                  <TableHeader>Dosage form</TableHeader>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {searchResults.map((result, index) => (
+                  <TableRow key={result.uuid} onClick={() => handleDrugSelected(result.uuid)}>
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>{result.name}</TableCell>
+                    <TableCell>{result.strength}</TableCell>
+                    <TableCell>{result.dosageForm.display}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </>
+        ) : (
+          <p>You can add items to your basket by searching for them in the search field above.</p>
+        )}
+      </div>
+
+      <div>
+        <h4>Order basket</h4>
+        {orderBasket?.length > 0 ? (
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeader>Number</TableHeader>
+                <TableHeader>Drug name</TableHeader>
+                <TableHeader>Strength</TableHeader>
+                <TableHeader>Dosage form</TableHeader>
+                <TableHeader>Frequency</TableHeader>
+                <TableHeader>Actions</TableHeader>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {orderBasket.map((order, index) => (
+                <TableRow key={order.drugUuid}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{order.drugName}</TableCell>
+                  <TableCell>{order.drugStrength}</TableCell>
+                  <TableCell>{order.dosageForm}</TableCell>
+                  <TableCell>{order.frequencyName}</TableCell>
+                  <TableCell>
+                    <OverflowMenu>
+                      <OverflowMenuItem itemText="Edit" onClick={() => handleOrderItemEdit(order, index)} />
+                      <OverflowMenuItem
+                        itemText="Remove"
+                        isDelete={true}
+                        onClick={() => handleRemoveOrderItem(index)}
+                      />
+                    </OverflowMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <p>Your basket is currently empty.</p>
+        )}
       </div>
 
       {showOrderMedication && (
@@ -268,17 +277,15 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
         </div>
       )}
 
-      <div className={styles.medicationOrderFooter}>
-        <button className="omrs-btn omrs-outlined-neutral" style={{ width: '50%' }} onClick={closeForm}>
-          {t('close', 'Close')}
-        </button>
-        <button
-          className={`${enableButtons ? 'omrs-btn omrs-filled-action' : 'omrs-btn omrs-outlined-neutral'}`}
-          style={{ width: '50%' }}
-          disabled={!enableButtons}
-          onClick={handleSaveOrders}>
-          {t('sign', 'Sign')}
-        </button>
+      <div>
+        <ButtonSet>
+          <Button kind="secondary" onClick={closeForm}>
+            {t('close', 'Close')}
+          </Button>
+          <Button kind="primary" disabled={!enableButtons} onClick={handleSaveOrders}>
+            {t('sign', 'Sign')}
+          </Button>
+        </ButtonSet>
       </div>
     </div>
   );

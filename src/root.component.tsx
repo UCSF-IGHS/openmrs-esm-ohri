@@ -1,30 +1,34 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { defineConfigSchema } from '@openmrs/esm-module-config';
 import openmrsRootDecorator from '@openmrs/react-root-decorator';
-import Medications from './widgets/medications/medications.component';
-import WorkspaceWrapper from './workspace/workspace-wrapper.component';
+import './root.css';
+import MedicationsOverview from './widgets/medications/medications-overview.component';
+import MedicationsDetailedSummary from './widgets/medications/medications-detailed-summary.component';
+import MedicationRecord from './widgets/medications/medication-record.component';
 
 defineConfigSchema('@openmrs/esm-drugorder-app', {});
 
 function Root() {
   return (
-    <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
-      <Route
-        path="/drugorder"
-        component={() => (
-          // Note: The divs here are just temporary and only serve one purpose:
-          // Make the workspace tab(s) fade in and out correctly.
-          // TODO: Remove when migrating the extension slot into the patient-chart.
-          <div style={{ display: 'flex' }}>
-            <div style={{ flexGrow: 1 }}>
-              <Medications />
-            </div>
-            <WorkspaceWrapper />
-          </div>
-        )}
-      />
-    </BrowserRouter>
+    <div className="resetPatientChartWidgetContainer">
+      <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
+        <Switch>
+          <Route exact path="/patient/:patientUuid/chart/orders/overview">
+            <MedicationsOverview />
+          </Route>
+          <Route exact path="/patient/:patientUuid/chart/orders/medication-orders">
+            <MedicationsDetailedSummary />
+          </Route>
+          <Route exact path="/patient/:patientUuid/chart/orders/medication-orders/:medicationUuid">
+            <MedicationRecord />
+          </Route>
+          <Route path="/">
+            <MedicationsOverview />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 

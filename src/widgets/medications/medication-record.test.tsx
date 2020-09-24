@@ -65,19 +65,18 @@ describe('<MedicationRecord />', () => {
     await wait(() => {
       expect(wrapper).toBeDefined();
       expect(wrapper.getByText('Medication').textContent).toBeTruthy();
-      expect(wrapper.getByText('Edit').textContent).toBeTruthy();
-      expect(wrapper.getAllByText('sulfadoxine').length).toBe(2);
-      expect(wrapper.getByText('capsule').textContent).toBeTruthy();
-      expect(wrapper.getByText('oral').textContent).toBeTruthy();
-      expect(wrapper.getByText('DOSE').textContent).toBeTruthy();
-      expect(wrapper.getByText('1000 mg').textContent).toBeTruthy();
-      expect(wrapper.getByText('Once daily').textContent).toBeTruthy();
+      expect(wrapper.getByText(/sulfadoxine/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/capsule/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/oral/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/DOSE/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/1000 mg/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/Once daily/).textContent).toBeTruthy();
       expect(wrapper.getByText('Start date').textContent).toBeTruthy();
       expect(wrapper.getByText('Substitutions permitted').textContent).toBeTruthy();
       expect(wrapper.getByText('Wednesday 19-Feb-2020').textContent).toBeTruthy();
       expect(wrapper.getByText('End date').textContent).toBeTruthy();
       expect(wrapper.getByText('Dosing instructions').textContent).toBeTruthy();
-      expect(wrapper.getByText('none').textContent).toBeTruthy();
+      expect(wrapper.getByText('None').textContent).toBeTruthy();
       expect(wrapper.getByText('Duration').textContent).toBeTruthy();
       expect(wrapper.getByText('5 Days').textContent).toBeTruthy();
       expect(wrapper.getByText('Total number of refills').textContent).toBeTruthy();

@@ -1,0 +1,7 @@
+/* Temporary solution until Carbon is integrated into the reference app. */
+@import "https://unpkg.com/carbon-components/css/carbon-components.css";
+
+:global .resetPatientChartWidgetContainer {
+  /* The patient chart's .widgetContainer centers text. We don't want that with Carbon. */
+  text-align: initial;
+}
