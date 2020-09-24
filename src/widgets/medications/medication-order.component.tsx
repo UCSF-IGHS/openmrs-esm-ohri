@@ -61,6 +61,31 @@ export default function MedicationOrder(props: MedicationOrderProps) {
   const [concept, setConcept] = useState<string>(null);
   const { t } = useTranslation();
 
+  const setStartEndDateRange = (start?: Date, end?: Date) => {
+    if (!start && !end) {
+      // One date is required for calculating the other one.
+      return;
+    }
+
+    const selectedDuration = durationUnitsArray.find(x => x.uuid === durationUnit);
+    const dayJsDuration = selectedDuration
+      ? selectedDuration.display.substring(0, selectedDuration.display.lastIndexOf('s')).toLowerCase()
+      : 'day';
+
+    if (!end) {
+      end = dayjs(start)
+        .add(duration, dayJsDuration)
+        .toDate();
+    } else {
+      start = dayjs(end)
+        .subtract(duration, dayJsDuration)
+        .toDate();
+    }
+
+    setStartDate(start);
+    setEndDate(end);
+  };
+
   useEffect(() => {
     const abortcontroller = new AbortController();
     if (patientUuid) {
@@ -86,28 +111,8 @@ export default function MedicationOrder(props: MedicationOrderProps) {
   }, [props.drugName, patientUuid]);
 
   useEffect(() => {
-    if (startDate && durationUnitsArray) {
-      let durationPeriod = durationUnitsArray.filter(duration => {
-        return duration.uuid === durationUnit;
-      });
-      if (durationPeriod.length > 0) {
-        let durationName: any = durationPeriod[0].display.substring(0, durationPeriod[0].display.lastIndexOf('s'));
-        setEndDate(
-          new Date(
-            dayjs(startDate)
-              .add(duration, durationName)
-              .toDate(),
-          ),
-        );
-      } else {
-        setEndDate(
-          dayjs(startDate)
-            .add(duration, 'day')
-            .toDate(),
-        );
-      }
-    }
-  }, [startDate, durationUnit, durationUnitsArray, duration]);
+    setStartEndDateRange(startDate);
+  }, [durationUnit, durationUnitsArray, duration]);
 
   useEffect(() => {
     let defaults: any;
@@ -130,7 +135,6 @@ export default function MedicationOrder(props: MedicationOrderProps) {
     if (props.editProperty.length > 0) {
       getPatientDrugOrderDetails(ac, props.editProperty[0].OrderUuid).then(({ data }) => {
         setEncounterUuid(data.encounter.uuid);
-        setStartDate(dayjs(data.dateActivated).toDate());
         setDosingInstructions(data.dosingInstructions);
         setDoseUnits(data.doseUnits.uuid);
         setDosageForm(data.doseUnits.display);
@@ -142,6 +146,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
         setFrequencyUuid(data.frequency.concept.uuid);
         setAction('REVISE');
         setNumRefills(data.numRefills);
+        setStartEndDateRange(dayjs(data.dateActivated).toDate());
         data.previousOrder === null ? setPreviousOrder(data.uuid) : setPreviousOrder(data.previousOrder.uuid);
       });
       return () => ac.abort();
@@ -149,7 +154,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
   }, [props.editProperty]);
 
   useEffect(() => {
-    if (frequencyUuid && commonMedications.length > 0 && props.editProperty.length === 0) {
+    if (frequencyUuid && commonMedications.length > 0) {
       setFrequencyName(commonMedications[0].commonFrequencies.find(el => el.conceptUuid === frequencyUuid).name);
     }
   }, [commonMedications, frequencyUuid, props.editProperty.length]);
@@ -158,7 +163,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
     if (props.orderEdit.orderEdit) {
       const order = props.orderEdit.order;
       setEncounterUuid(order.encounterUuid);
-      setStartDate(order.dateActivated);
+      setStartEndDateRange(order.dateActivated);
       setDosingInstructions(order.dosingInstructions);
       setDoseUnits(order.doseUnitsConcept);
       setDosageForm(order.dosageForm);
@@ -303,9 +308,11 @@ export default function MedicationOrder(props: MedicationOrderProps) {
               <DatePicker
                 datePickerType="range"
                 value={[startDate, endDate]}
-                onChange={([startDate, endDate]) => {
-                  setStartDate(startDate);
-                  setEndDate(endDate);
+                onChange={([newStartDate, newEndDate]) => {
+                  setStartEndDateRange(
+                    startDate === newStartDate ? undefined : newStartDate,
+                    endDate === newEndDate ? undefined : newEndDate,
+                  );
                 }}>
                 <DatePickerInput labelText={t('startDate', 'Start date')} id="startDate" required />
                 <DatePickerInput labelText={t('endDate', 'End date')} id="endDate" required />
@@ -315,6 +322,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
               <div style={{ display: 'flex' }}>
                 <NumberInput
                   id="duration"
+                  min={0}
                   value={duration}
                   onChange={e => {
                     // @ts-ignore
@@ -330,13 +338,14 @@ export default function MedicationOrder(props: MedicationOrderProps) {
                   }}
                   itemToString={item => (item ? item.text : '')}
                   items={durationUnitsArray.map(unit => ({ id: unit.uuid, text: unit.display }))}
-                  onChange={e => setDurationUnit(e.selectedItem.id)}
+                  onChange={e => setDurationUnit(e?.selectedItem?.id ?? durationUnit)}
                 />
               </div>
             </FormGroup>
             <FormGroup legendText={t('refills', 'Refills')}>
               <NumberInput
                 id="refills"
+                min={0}
                 value={duration}
                 onChange={e => {
                   // @ts-ignore
@@ -358,7 +367,9 @@ export default function MedicationOrder(props: MedicationOrderProps) {
         <Row>
           <Column sm={{ span: 4 }}>
             <ButtonSet>
-              <Button kind="secondary">{t('cancel', 'Cancel')}</Button>
+              <Button kind="secondary" onClick={() => props.hideModal()}>
+                {t('cancel', 'Cancel')}
+              </Button>
               <Button kind="primary" type="submit">
                 {t('save', 'Save')}
               </Button>

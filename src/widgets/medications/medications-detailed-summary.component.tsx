@@ -123,7 +123,7 @@ export default function MedicationsDetailedSummary() {
         <p>{t('noCurrentMedicationsDocumented', 'No current medications are documented.')}</p>
       )}
 
-      <h2>{t('medicationsPast', 'Medications - past')}</h2>
+      <h2 style={{ marginTop: '2rem' }}>{t('medicationsPast', 'Medications - past')}</h2>
       <TableContainer>
         <TableToolbar>
           <TableToolbarContent>
