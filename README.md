@@ -95,4 +95,4 @@ This module is designed to be driven by configuration files. These files define 
 
 ## License
 
-The project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details.
+The project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details. 
