@@ -7,11 +7,13 @@ import { getMedicationByUuid } from './medications.resource';
 import { formatDuration, getDosage } from './medication-orders-utils';
 import styles from './medication-record.css';
 import { Column, FormGroup, Grid, Row } from 'carbon-components-react';
+import { useTranslation } from 'react-i18next';
 
-export default function MedicationRecord(props: MedicationRecordProps) {
+export default function MedicationRecord() {
   const [patientMedication, setPatientMedication] = React.useState(null);
-  const [isLoadingPatient, patient, patientUuid] = useCurrentPatient();
+  const [isLoadingPatient, patient] = useCurrentPatient();
   const match = useRouteMatch();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (!isLoadingPatient && patient) {
@@ -28,13 +30,13 @@ export default function MedicationRecord(props: MedicationRecordProps) {
     <div className={styles.medicationContainer}>
       {!!(patientMedication && Object.entries(patientMedication)) && (
         <>
-          <h2>Medication details</h2>
+          <h2>{t('details', 'Details')}</h2>
           <Grid>
             <Row>
               <Column sm={{ span: 4 }}>
-                <FormGroup legendText="Medication">
+                <FormGroup legendText={t('medication', 'Medication')}>
                   {patientMedication?.drug?.display} &mdash; {(patientMedication?.doseUnits?.display).toLowerCase()}{' '}
-                  &mdash; {(patientMedication?.route?.display).toLowerCase()}&mdash; DOSE{' '}
+                  &mdash; {(patientMedication?.route?.display).toLowerCase()}&mdash; {t('dose', 'Dose')}{' '}
                   {getDosage(patientMedication?.drug?.strength, patientMedication?.dose).toLowerCase()} &mdash;
                   {patientMedication?.frequency?.display}
                 </FormGroup>
@@ -42,46 +44,50 @@ export default function MedicationRecord(props: MedicationRecordProps) {
             </Row>
             <Row>
               <Column>
-                <FormGroup legendText="Start date">
+                <FormGroup legendText={t('startDate', 'Start date')}>
                   {patientMedication.dateActivated
                     ? dayjs(patientMedication?.dateActivated).format('dddd DD-MMM-YYYY')
                     : '—'}
                 </FormGroup>
               </Column>
               <Column>
-                <FormGroup legendText="End date">
+                <FormGroup legendText={t('endDate', 'End date')}>
                   {patientMedication?.dateStopped
                     ? dayjs(patientMedication?.dateStopped).format('dddd DD-MMM-YYYY')
                     : '—'}
                 </FormGroup>
               </Column>
               <Column>
-                <FormGroup legendText="Duration">{formatDuration(patientMedication)}</FormGroup>
+                <FormGroup legendText={t('duration', 'Duration')}>{formatDuration(patientMedication)}</FormGroup>
               </Column>
               <Column>
-                <FormGroup legendText="Total number of refills">{patientMedication?.numRefills}</FormGroup>
+                <FormGroup legendText={t('totalRefills', 'Total number of refills')}>
+                  {patientMedication?.numRefills}
+                </FormGroup>
               </Column>
             </Row>
             <Row>
               <Column>
-                <FormGroup legendText="Last updated">
+                <FormGroup legendText={t('lastUpdated', 'Last updated')}>
                   {dayjs(patientMedication?.dateActivated).format('DD-MMM-YYYY')}
                 </FormGroup>
               </Column>
               <Column>
-                <FormGroup legendText="Last updated by">{patientMedication?.orderer?.person?.display}</FormGroup>
+                <FormGroup legendText={t('lastUpdatedBy', 'Last updated by')}>
+                  {patientMedication?.orderer?.person?.display}
+                </FormGroup>
               </Column>
               <Column>
-                <FormGroup legendText="Last updated location">Location Test</FormGroup>
+                <FormGroup legendText={t('lastUpdatedLocation', 'Last updated location')}>Location Test</FormGroup>
               </Column>
               <Column>
-                <FormGroup legendText="Substitutions permitted">—</FormGroup>
+                <FormGroup legendText={t('substitutionsPermitted', 'Substitutions permitted')}>—</FormGroup>
               </Column>
             </Row>
             <Row>
               <Column sm={{ span: 4 }}>
-                <FormGroup legendText="Dosing instructions">
-                  {patientMedication?.dosingInstructions ? patientMedication.dosingInstructions : 'None'}
+                <FormGroup legendText={t('dosingInstructions', 'Dosing instructions')}>
+                  {patientMedication?.dosingInstructions ? patientMedication.dosingInstructions : t('none', 'None')}
                 </FormGroup>
               </Column>
             </Row>
@@ -91,5 +97,3 @@ export default function MedicationRecord(props: MedicationRecordProps) {
     </div>
   );
 }
-
-type MedicationRecordProps = {};

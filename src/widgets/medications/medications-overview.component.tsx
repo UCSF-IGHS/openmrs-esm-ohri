@@ -13,10 +13,12 @@ import {
   TableHead,
   TableRow,
 } from 'carbon-components-react';
+import { useTranslation } from 'react-i18next';
 
 export default function MedicationsOverview() {
   const [patientMedications, setPatientMedications] = React.useState(null);
   const [, , patientUuid] = useCurrentPatient();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (patientUuid) {
@@ -29,13 +31,13 @@ export default function MedicationsOverview() {
 
   return (
     <>
-      <h2>Active medications</h2>
+      <h2>{t('activeMedications', 'Active Medications')}</h2>
       {patientMedications?.length > 0 ? (
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Medication</TableCell>
-              <TableCell>Actions</TableCell>
+              <TableCell>{t('medication', 'Medication')}</TableCell>
+              <TableCell>{t('actions', 'Actions')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -43,19 +45,18 @@ export default function MedicationsOverview() {
               <TableRow key={index}>
                 <TableCell>
                   {medication?.drug?.name} &mdash;
-                  <span style={{ color: 'var(--omrs-color-ink-medium-contrast)' }}> DOSE</span> &mdash;{' '}
-                  {getDosage(medication?.drug?.strength, medication?.dose).toLowerCase()} &mdash;{' '}
-                  {medication?.doseUnits?.display.toLowerCase()} &mdash; {medication?.route?.display.toLowerCase()}{' '}
-                  &mdash; {medication?.frequency?.display}
+                  {t('dose', 'Dose')} &mdash; {getDosage(medication?.drug?.strength, medication?.dose).toLowerCase()}{' '}
+                  &mdash; {medication?.doseUnits?.display.toLowerCase()} &mdash;{' '}
+                  {medication?.route?.display.toLowerCase()} &mdash; {medication?.frequency?.display}
                 </TableCell>
                 <TableCell>
                   <OverflowMenu>
                     <OverflowMenuItem
-                      itemText="Revise"
+                      itemText={t('revise', 'Revise')}
                       onClick={() => openMedicationWorkspaceTab(medication?.uuid, medication?.drug?.name, 'REVISE')}
                     />
                     <OverflowMenuItem
-                      itemText="Discontinue"
+                      itemText={t('discontinue', 'Discontinue')}
                       isDelete
                       onClick={() =>
                         openMedicationWorkspaceTab(medication?.uuid, medication?.drug?.name, 'DISCONTINUE')
@@ -68,7 +69,7 @@ export default function MedicationsOverview() {
           </TableBody>
         </Table>
       ) : (
-        <p>This patient has no active medications recorded in the system.</p>
+        <p>{t('noCurrentMedicationsDocumented', 'No current medications are documented.')}</p>
       )}
     </>
   );

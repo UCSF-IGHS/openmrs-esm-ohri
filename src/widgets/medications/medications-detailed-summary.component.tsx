@@ -24,6 +24,7 @@ import {
 } from 'carbon-components-react';
 import { Add16 } from '@carbon/icons-react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function MedicationsDetailedSummary() {
   const [currentMedications, setCurrentMedications] = React.useState(null);
@@ -31,6 +32,7 @@ export default function MedicationsDetailedSummary() {
   const [, , patientUuid] = useCurrentPatient();
   const history = useHistory();
   const match = useRouteMatch<any>();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (patientUuid) {
@@ -54,24 +56,26 @@ export default function MedicationsDetailedSummary() {
 
   return (
     <>
-      <h2>Current medications</h2>
+      <h2>{t('medicationsCurrent', 'Medications - current')}</h2>
       <TableContainer>
         <TableToolbar>
           <TableToolbarContent>
             <Button
               renderIcon={() => <Add16 />}
-              onClick={() => openWorkspaceTab(MedicationOrderBasket, 'Medication Order', { action: 'NEW' })}>
-              Add
+              onClick={() =>
+                openWorkspaceTab(MedicationOrderBasket, t('medicationOrder', 'Medication Order'), { action: 'NEW' })
+              }>
+              {t('add', 'Add')}
             </Button>
           </TableToolbarContent>
         </TableToolbar>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Medication</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Start date</TableCell>
-              <TableCell>Actions</TableCell>
+              <TableCell>{t('name', 'Name')}</TableCell>
+              <TableCell>{t('status', 'Status')}</TableCell>
+              <TableCell>{t('startDate', 'Start date')}</TableCell>
+              <TableCell>{t('actions', 'Actions')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -79,20 +83,18 @@ export default function MedicationsDetailedSummary() {
               currentMedications.map((medication, index) => (
                 <TableRow key={index}>
                   <TableCell>
-                    {medication?.drug?.name} &mdash;
-                    <span style={{ color: 'var(--omrs-color-ink-medium-contrast)' }}> DOSE</span> &mdash;{' '}
-                    {getDosage(medication?.drug?.strength, medication?.dose).toLowerCase()} &mdash;{' '}
+                    {medication?.drug?.name} &mdash; {t('dose', 'Dose')}
+                    &mdash; {getDosage(medication?.drug?.strength, medication?.dose).toLowerCase()} &mdash;{' '}
                     {medication?.doseUnits?.display.toLowerCase()} &mdash; {medication?.route?.display.toLowerCase()}{' '}
                     &mdash; {medication?.frequency?.display} &mdash; {formatDuration(medication)} &mdash;
-                    <span style={{ color: 'var(--omrs-color-ink-medium-contrast)' }}>REFILLS</span>{' '}
-                    <span>{medication.numRefills}</span>{' '}
+                    {t('refills', 'Refills')} <span>{medication.numRefills}</span>{' '}
                   </TableCell>
                   <TableCell>{medication?.action}</TableCell>
                   <TableCell>{dayjs(medication.dateActivated).format('DD-MMM-YYYY')}</TableCell>
                   <TableCell>
                     <OverflowMenu>
                       <OverflowMenuItem
-                        itemText="View details"
+                        itemText={t('viewDetails', 'View details')}
                         onClick={() =>
                           history.push(
                             `/patient/${match.params.patientUuid}/chart/orders/medication-orders/${medication.uuid}`,
@@ -100,11 +102,11 @@ export default function MedicationsDetailedSummary() {
                         }
                       />
                       <OverflowMenuItem
-                        itemText="Revise"
+                        itemText={t('revise', 'Revise')}
                         onClick={() => openMedicationWorkspaceTab(medication?.uuid, medication?.drug?.name, 'REVISE')}
                       />
                       <OverflowMenuItem
-                        itemText="Discontinue"
+                        itemText={t('discontinue', 'Discontinue')}
                         isDelete
                         onClick={() =>
                           openMedicationWorkspaceTab(medication?.uuid, medication?.drug?.name, 'DISCONTINUE')
@@ -118,27 +120,29 @@ export default function MedicationsDetailedSummary() {
         </Table>
       </TableContainer>
       {(!currentMedications || currentMedications.length === 0) && (
-        <p>There are no current medications recorded for this patient.</p>
+        <p>{t('noCurrentMedicationsDocumented', 'No current medications are documented.')}</p>
       )}
 
-      <h2>Past medications</h2>
+      <h2>{t('medicationsPast', 'Medications - past')}</h2>
       <TableContainer>
         <TableToolbar>
           <TableToolbarContent>
             <Button
               renderIcon={() => <Add16 />}
-              onClick={() => openWorkspaceTab(MedicationOrderBasket, 'Medication Order', { action: 'NEW' })}>
-              Add
+              onClick={() =>
+                openWorkspaceTab(MedicationOrderBasket, t('medicationOrder', 'Medication Order'), { action: 'NEW' })
+              }>
+              {t('add', 'Add')}
             </Button>
           </TableToolbarContent>
         </TableToolbar>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Status</TableCell>
-              <TableCell>Medication</TableCell>
-              <TableCell>End date</TableCell>
-              <TableCell>Actions</TableCell>
+              <TableCell>{t('status', 'Status')}</TableCell>
+              <TableCell>{t('medication', 'Medication')}</TableCell>
+              <TableCell>{t('endDate', 'endDate')}</TableCell>
+              <TableCell>{t('actions', 'Actions')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -148,12 +152,11 @@ export default function MedicationsDetailedSummary() {
                   <TableCell>{medication?.action}</TableCell>
                   <TableCell>
                     {medication?.drug?.name} &mdash;
-                    <span style={{ color: 'var(--omrs-color-ink-medium-contrast)' }}> DOSE</span> &mdash;{' '}
-                    {getDosage(medication?.drug?.strength, medication?.dose).toLowerCase()} &mdash;{' '}
-                    {medication?.doseUnits?.display.toLowerCase()} &mdash; {medication?.route?.display.toLowerCase()}{' '}
-                    &mdash; {medication?.frequency?.display} &mdash; {formatDuration(medication)} &mdash;
-                    <span style={{ color: 'var(--omrs-color-ink-medium-contrast)' }}>REFILLS</span>{' '}
-                    <span>{medication.numRefills}</span>{' '}
+                    {t('dose', 'Dose')} &mdash; {getDosage(medication?.drug?.strength, medication?.dose).toLowerCase()}{' '}
+                    &mdash; {medication?.doseUnits?.display.toLowerCase()} &mdash;{' '}
+                    {medication?.route?.display.toLowerCase()} &mdash; {medication?.frequency?.display} &mdash;{' '}
+                    {formatDuration(medication)} &mdash;
+                    {t('refills', 'Refills')} <span>{medication.numRefills}</span>{' '}
                   </TableCell>
                   <TableCell>
                     {dayjs(medication.dateStopped ? medication.dateStopped : medication.autoExpireDate).format(
@@ -163,7 +166,7 @@ export default function MedicationsDetailedSummary() {
                   <TableCell>
                     <OverflowMenu>
                       <OverflowMenuItem
-                        itemText="View details"
+                        itemText={t('viewDetails', 'View details')}
                         onClick={() =>
                           history.push(
                             `/patient/${match.params.patientUuid}/chart/orders/medication-orders/${medication.uuid}`,
@@ -178,7 +181,7 @@ export default function MedicationsDetailedSummary() {
         </Table>
       </TableContainer>
       {(!pastMedications || pastMedications.length === 0) && (
-        <p>There are no past medications recorded for this patient.</p>
+        <p>{t('noPastMedicationsDocumented', 'No past medications are documented.')}</p>
       )}
     </>
   );

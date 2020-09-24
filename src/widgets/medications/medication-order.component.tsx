@@ -27,6 +27,7 @@ import {
   Row,
   TextArea,
 } from 'carbon-components-react';
+import { useTranslation } from 'react-i18next';
 
 const CARE_SETTINGS: string = '6f0c9a92-6f24-11e3-af88-005056821db0';
 const ORDERER: string = 'e89cae4a-3cb3-40a2-b964-8b20dda2c985';
@@ -58,6 +59,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
   const [, , patientUuid] = useCurrentPatient();
   const [previousOrder, setPreviousOrder] = useState<string>(null);
   const [concept, setConcept] = useState<string>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const abortcontroller = new AbortController();
@@ -258,16 +260,16 @@ export default function MedicationOrder(props: MedicationOrderProps) {
       <Grid>
         <Row>
           <Column sm={{ span: 4 }}>
-            <h2>Order medication</h2>
+            <h2>{t('orderMedication', 'Order Medication')}</h2>
             <span>
-              {drugName} &#x2013; {routeName} &#x2013; {dosageForm} &#x2013; DOSE <span>{`${dose} ${dosageForm}`}</span>{' '}
-              &#x2013; {frequencyName}
+              {drugName} &#x2013; {routeName} &#x2013; {dosageForm} &#x2013; {t('dose', 'Dose')}{' '}
+              <span>{`${dose} ${dosageForm}`}</span> &#x2013; {frequencyName}
             </span>
           </Column>
         </Row>
         <Row style={{ marginTop: '1rem' }}>
           <Column>
-            <FormGroup legendText="Dose">
+            <FormGroup legendText={t('dose', 'Dose')}>
               <RadioButtonGroup
                 name="dose"
                 orientation="vertical"
@@ -284,7 +286,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
             </FormGroup>
           </Column>
           <Column>
-            <FormGroup legendText="Frequency">
+            <FormGroup legendText={t('frequency', 'Frequency')}>
               <RadioButtonGroup
                 name="frequency"
                 orientation="vertical"
@@ -297,7 +299,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
             </FormGroup>
           </Column>
           <Column sm={{ span: 2 }}>
-            <FormGroup legendText="Start and end date">
+            <FormGroup legendText={t('startAndEndDate', 'Start and end date')}>
               <DatePicker
                 datePickerType="range"
                 value={[startDate, endDate]}
@@ -305,11 +307,11 @@ export default function MedicationOrder(props: MedicationOrderProps) {
                   setStartDate(startDate);
                   setEndDate(endDate);
                 }}>
-                <DatePickerInput labelText="Start date" id="startDate" required />
-                <DatePickerInput labelText="End date" id="endDate" required />
+                <DatePickerInput labelText={t('startDate', 'Start date')} id="startDate" required />
+                <DatePickerInput labelText={t('endDate', 'End date')} id="endDate" required />
               </DatePicker>
             </FormGroup>
-            <FormGroup legendText="Duration">
+            <FormGroup legendText={t('duration', 'Duration')}>
               <div style={{ display: 'flex' }}>
                 <NumberInput
                   id="duration"
@@ -321,7 +323,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
                 />
                 <ComboBox
                   id="option"
-                  placeholder="Duration"
+                  placeholder={t('duration', 'Duration')}
                   selectedItem={{
                     id: durationUnit,
                     text: durationUnitsArray.filter(x => x.uuid === durationUnit)[0]?.display ?? 'Days',
@@ -332,7 +334,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
                 />
               </div>
             </FormGroup>
-            <FormGroup legendText="Refills">
+            <FormGroup legendText={t('refills', 'Refills')}>
               <NumberInput
                 id="refills"
                 value={duration}
@@ -342,7 +344,7 @@ export default function MedicationOrder(props: MedicationOrderProps) {
                 }}
               />
             </FormGroup>
-            <FormGroup legendText="Dosing instructions">
+            <FormGroup legendText={t('dosingInstructions', 'Dosing instructions')}>
               <TextArea
                 id="dosingInstructionTextArea"
                 labelText=""
@@ -356,9 +358,9 @@ export default function MedicationOrder(props: MedicationOrderProps) {
         <Row>
           <Column sm={{ span: 4 }}>
             <ButtonSet>
-              <Button kind="secondary">Cancel</Button>
+              <Button kind="secondary">{t('cancel', 'Cancel')}</Button>
               <Button kind="primary" type="submit">
-                Save
+                {t('save', 'Save')}
               </Button>
             </ButtonSet>
           </Column>

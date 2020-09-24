@@ -68,7 +68,7 @@ describe('<MedicationRecord />', () => {
       expect(wrapper.getByText(/sulfadoxine/).textContent).toBeTruthy();
       expect(wrapper.getByText(/capsule/).textContent).toBeTruthy();
       expect(wrapper.getByText(/oral/).textContent).toBeTruthy();
-      expect(wrapper.getByText(/DOSE/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/Dose/).textContent).toBeTruthy();
       expect(wrapper.getByText(/1000 mg/).textContent).toBeTruthy();
       expect(wrapper.getByText(/Once daily/).textContent).toBeTruthy();
       expect(wrapper.getByText('Start date').textContent).toBeTruthy();
@@ -81,22 +81,6 @@ describe('<MedicationRecord />', () => {
       expect(wrapper.getByText('5 Days').textContent).toBeTruthy();
       expect(wrapper.getByText('Total number of refills').textContent).toBeTruthy();
       expect(wrapper.getByText('5').textContent).toBeTruthy();
-    });
-  });
-
-  it("displays the selected medication's audit information correctly", async () => {
-    mockUseCurrentPatient.mockReturnValue([false, patient, patient.id, null]);
-    mockUseRouteMatch.mockReturnValue(match);
-    mockOpenmrsFetch.mockReturnValue(Promise.resolve(mockMedicationOrderByUuidResponse));
-
-    wrapper = render(
-      <BrowserRouter>
-        <MedicationRecord />
-      </BrowserRouter>,
-    );
-
-    await wait(() => {
-      expect(wrapper).toBeDefined();
       expect(wrapper.getByText('Last updated').textContent).toBeTruthy();
       expect(wrapper.getByText('Last updated by').textContent).toBeTruthy();
       expect(wrapper.getByText('Last updated location').textContent).toBeTruthy();

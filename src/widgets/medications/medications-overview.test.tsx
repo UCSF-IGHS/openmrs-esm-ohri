@@ -58,10 +58,8 @@ describe('<MedicationsOverview/>', () => {
 
     await wait(() => {
       expect(wrapper).toBeDefined();
-      expect(wrapper.getByText('Active medications').textContent).toBeTruthy();
-      expect(
-        wrapper.getByText('This patient has no active medications recorded in the system.').textContent,
-      ).toBeTruthy();
+      expect(wrapper.getByText('Active Medications').textContent).toBeTruthy();
+      expect(wrapper.getByText('No current medications are documented.').textContent).toBeTruthy();
     });
   });
 
@@ -76,9 +74,9 @@ describe('<MedicationsOverview/>', () => {
 
     await wait(() => {
       expect(wrapper).toBeDefined();
-      expect(wrapper.getByText('Active medications').textContent).toBeTruthy();
+      expect(wrapper.getByText('Active Medications').textContent).toBeTruthy();
       expect(wrapper.getByText(/sulfadoxine/).textContent).toBeTruthy();
-      expect(wrapper.getByText(/DOSE/).textContent).toBeTruthy();
+      expect(wrapper.getByText(/Dose/).textContent).toBeTruthy();
       expect(wrapper.getByText(/500 mg/).textContent).toBeTruthy();
       expect(wrapper.getByText(/capsule/).textContent).toBeTruthy();
       expect(wrapper.getByText(/oral/).textContent).toBeTruthy();

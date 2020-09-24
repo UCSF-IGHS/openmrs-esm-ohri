@@ -61,20 +61,20 @@ describe('<MedicationsDetailedSummary/>', () => {
     await wait(() => {
       expect(container).toBeDefined();
       // Current medications
-      expect(getByText('Current medications').textContent).toBeTruthy();
+      expect(getByText('Medications - current').textContent).toBeTruthy();
       expect(getAllByText('Add').length).toBeGreaterThan(1);
-      expect(getByText('Past medications').textContent).toBeTruthy();
+      expect(getByText('Medications - past').textContent).toBeTruthy();
       expect(getAllByText('Medication')[0].textContent).toBeTruthy();
       expect(getAllByText('Status')[0].textContent).toBeTruthy();
       expect(getAllByText('Start date')[0].textContent).toBeTruthy();
       expect(getAllByText(/sulfadoxine/)[0].textContent).toBeTruthy();
       expect(getAllByText(/oral/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/capsule/)[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText(/DOSE/)[0].textContent).toBeTruthy();
+      expect(wrapper.getAllByText(/Dose/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/500 mg/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/Twice daily/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/3 Days/)[0].textContent).toBeTruthy();
-      expect(wrapper.getAllByText(/REFILLS/)[0].textContent).toBeTruthy();
+      expect(wrapper.getAllByText(/Refills/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText(/NEW/)[0].textContent).toBeTruthy();
       expect(wrapper.getAllByText('12-Feb-2020')[0].textContent).toBeTruthy();
     });

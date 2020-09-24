@@ -41,7 +41,7 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
   }>({ orderEdit: false, order: null });
   const [hasChanged, setHasChanged] = useState<Boolean>(false);
   const { t } = useTranslation();
-  const handleDrugSelected = $event => {
+  const handleDrugSelected = uuid => {
     setDrugName(searchTerm);
     setShowOrderMedication(true);
   };
@@ -164,7 +164,9 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
   const closeForm = () => {
     let userConfirmed: boolean = false;
     if (hasChanged) {
-      userConfirmed = confirm('There is ongoing work, are you sure you want to close this tab?');
+      userConfirmed = confirm(
+        t('ongoingWorkPrompt', 'There is ongoing work, are you sure you want to close this tab?'),
+      );
     }
 
     if (userConfirmed && hasChanged) {
@@ -179,10 +181,10 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
   return (
     <div className={styles.medicationOrderBasketContainer}>
       <div>
-        <h2>Order medication</h2>
+        <h2>{t('orderMedication', 'Order Medication')}</h2>
         <Search
-          labelText="Search for drugs"
-          placeHolderText="Search for drugs"
+          labelText={t('medicationName', 'Medication name')}
+          placeHolderText={t('medicationName', 'Medication name')}
           onChange={e => {
             handleChange(e.target.value);
             setHasChanged(true);
@@ -193,14 +195,14 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
       <div>
         {searchResults?.length > 0 ? (
           <>
-            <h4>Results for "{searchTerm}"</h4>
+            <h4>{t('searchResultsForTerm', 'Results for {searchTerm}', { searchTerm })}</h4>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableHeader>Number</TableHeader>
-                  <TableHeader>Drug name</TableHeader>
-                  <TableHeader>Strength</TableHeader>
-                  <TableHeader>Dosage form</TableHeader>
+                  <TableHeader>{t('numeroSign', 'No.')}</TableHeader>
+                  <TableHeader>{t('drugName', 'Drug Name')}</TableHeader>
+                  <TableHeader>{t('strength', 'Strength')}</TableHeader>
+                  <TableHeader>{t('dosageForm', 'Dosage Form')}</TableHeader>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -216,7 +218,12 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
             </Table>
           </>
         ) : (
-          <p>You can add items to your basket by searching for them in the search field above.</p>
+          <p>
+            {t(
+              'emptyMedicationOrderBaskedSearchHint',
+              'You can add items to your basket by searching for them in the search field above.',
+            )}
+          </p>
         )}
       </div>
 
@@ -226,12 +233,12 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
           <Table>
             <TableHead>
               <TableRow>
-                <TableHeader>Number</TableHeader>
-                <TableHeader>Drug name</TableHeader>
-                <TableHeader>Strength</TableHeader>
-                <TableHeader>Dosage form</TableHeader>
-                <TableHeader>Frequency</TableHeader>
-                <TableHeader>Actions</TableHeader>
+                <TableHeader>{t('numeroSign', 'No.')}</TableHeader>
+                <TableHeader>{t('drugName', 'Drug Name')}</TableHeader>
+                <TableHeader>{t('strength', 'Strength')}</TableHeader>
+                <TableHeader>{t('dosageForm', 'Dosage Form')}</TableHeader>
+                <TableHeader>{t('frequency', 'Frequency')}</TableHeader>
+                <TableHeader>{t('actions', 'Actions')}</TableHeader>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -244,9 +251,12 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
                   <TableCell>{order.frequencyName}</TableCell>
                   <TableCell>
                     <OverflowMenu>
-                      <OverflowMenuItem itemText="Edit" onClick={() => handleOrderItemEdit(order, index)} />
                       <OverflowMenuItem
-                        itemText="Remove"
+                        itemText={t('edit', 'Edit')}
+                        onClick={() => handleOrderItemEdit(order, index)}
+                      />
+                      <OverflowMenuItem
+                        itemText={t('remove', 'Remove')}
                         isDelete={true}
                         onClick={() => handleRemoveOrderItem(index)}
                       />
@@ -257,7 +267,7 @@ export default function MedicationOrderBasket(props: MedicationOrderBasketProps)
             </TableBody>
           </Table>
         ) : (
-          <p>Your basket is currently empty.</p>
+          <p>{t('emptyMedicationOrderBasket', 'Your basket is currently empty.')}</p>
         )}
       </div>
 
