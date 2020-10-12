@@ -1,6 +1,6 @@
 {
   "name": "@openmrs/esm-drugorder-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Drug order microfrontend for the OpenMRS SPA",
   "main": "dist/openmrs-esm-drugorder.js",
   "types": "src/index.ts",
@@ -18,6 +18,9 @@
   "keywords": [
     "openmrs"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "browserslist": [
     "extends browserslist-config-openmrs"
   ],
