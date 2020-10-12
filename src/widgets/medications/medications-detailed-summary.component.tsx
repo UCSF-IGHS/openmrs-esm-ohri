@@ -7,7 +7,7 @@ import { fetchPatientMedications, fetchPatientPastMedications, PatientMedication
 import MedicationOrderBasket from './medication-order-basket.component';
 import { openMedicationWorkspaceTab } from '../shared-utils';
 import { openWorkspaceTab } from '@openmrs/esm-patient-chart-widgets';
-import { isEmpty } from 'lodash-es';
+import isEmpty from 'lodash-es/isEmpty';
 import { toOmrsDateString } from '../../utils/omrs-dates';
 import {
   Button,

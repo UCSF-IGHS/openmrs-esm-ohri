@@ -1,4 +1,3 @@
-import './set-public-path';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import { attach } from '@openmrs/esm-extension-manager';
 
