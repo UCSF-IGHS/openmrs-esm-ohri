@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { defineConfigSchema } from '@openmrs/esm-module-config';
+import { defineConfigSchema } from '@openmrs/esm-config';
 import openmrsRootDecorator from '@openmrs/react-root-decorator';
 import './root.css';
 import MedicationsOverview from './widgets/medications/medications-overview.component';
