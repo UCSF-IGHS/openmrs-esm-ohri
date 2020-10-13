@@ -1,5 +1,5 @@
 import { backendDependencies } from './openmrs-backend-dependencies';
-import { attach } from '@openmrs/esm-extension-manager';
+import { attach } from '@openmrs/esm-extensions';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
