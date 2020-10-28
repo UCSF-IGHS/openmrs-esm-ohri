@@ -226,7 +226,7 @@ function OrderBasketItemActions({
       setItems([
         ...items,
         {
-          previousOrder: !!medication.previousOrder ? medication.previousOrder.uuid : medication.uuid,
+          previousOrder: medication.uuid,
           startDate: new Date(),
           action: 'REVISE',
           drug: drug,

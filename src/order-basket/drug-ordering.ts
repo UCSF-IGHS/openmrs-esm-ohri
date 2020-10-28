@@ -65,6 +65,7 @@ function medicationOrderToApiDto(orderBasketItems: Array<OrderBasketItem>, patie
         action: 'REVISE',
         patient: patientUuid,
         type: 'drugorder',
+        previousOrder: order.previousOrder,
         careSetting: careSetting,
         orderer: orderer,
         encounter: order.encounterUuid,

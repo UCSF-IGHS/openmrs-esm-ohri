@@ -31,7 +31,7 @@ export default function OrderBasketSearchResults({
     const abortController = new AbortController();
     searchMedications(searchTerm, encounterUuid, abortController).then(setSearchResults, createErrorHandler);
     return () => abortController.abort();
-  }, [searchTerm]);
+  }, [searchTerm, encounterUuid]);
 
   const handleSearchResultClicked = (searchResult: OrderBasketItem, directlyAddToBasket: boolean) => {
     setSearchTerm('');
