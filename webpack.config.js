@@ -1,8 +1,16 @@
 const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin;
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-
 const { peerDependencies } = require('./package.json');
+
+const cssLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: {
+      localIdentName: 'esm-drugorder__[name]__[local]___[hash:base64:5]',
+    },
+  },
+};
 
 module.exports = {
   entry: [
@@ -10,10 +18,10 @@ module.exports = {
     path.resolve(__dirname, "src/index.ts"),
   ],
   output: {
-    filename: "openmrs-esm-drugorder.js",
-    libraryTarget: "system",
-    path: path.resolve(__dirname, "dist"),
-    jsonpFunction: "webpackJsonp_openmrs_esm_drugorder",
+    filename: 'openmrs-esm-drugorder.js',
+    libraryTarget: 'system',
+    path: path.resolve(__dirname, 'dist'),
+    jsonpFunction: 'webpackJsonp_openmrs_esm_drugorder',
   },
   module: {
     rules: [
@@ -31,18 +39,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                localIdentName:
-                  "esm-drugorder__[name]__[local]___[hash:base64:5]",
-              },
-            },
-          },
-        ],
+        use: ['style-loader', cssLoader],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', cssLoader, { loader: 'sass-loader' }],
       },
     ],
   },

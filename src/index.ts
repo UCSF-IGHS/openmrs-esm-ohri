@@ -7,13 +7,13 @@ function setupOpenMRS() {
   attach('patient-chart-dashboard-medications', 'drugorder-widget');
 
   return {
-    lifecycle: () => {},
-    activate: () => false,
+    lifecycle: () => import('./openmrs-esm-drugorder'),
+    activate: /^patient\/.+\/drugorder/,
     extensions: [
       {
         name: 'drugorder-widget',
         type: 'widget',
-        load: () => import('./openmrs-esm-drugorder'),
+        load: () => import('./openmrs-esm-drugorder-extension'),
       },
     ],
   };
