@@ -11,6 +11,7 @@ $danger: #da1e28;
 .resetPatientChartWidgetContainer {
   /* The patient chart's .widgetContainer centers text. We don't want that with Carbon. */
   text-align: initial;
+  margin: 0 $spacing-05 $spacing-05 $spacing-05;
 }
 
 .productiveHeading01 {

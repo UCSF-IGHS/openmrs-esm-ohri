@@ -80,7 +80,7 @@ const OrderBasket = connect(
       fetchActivePatientOrders();
 
       if (erroredItems.length == 0) {
-        history.push(`/patient/${patientUuid}/chart/orders/medication-orders`);
+        history.push(`/patient/${patientUuid}/chart/orders`);
       }
     });
     return () => abortController.abort();
@@ -88,7 +88,7 @@ const OrderBasket = connect(
 
   const handleCancelClicked = () => {
     setItems([]);
-    history.push(`/patient/${patientUuid}/chart/orders/medication-orders`);
+    history.push(`/patient/${patientUuid}/chart/orders`);
   };
 
   const openMedicationOrderFormForAddingNewOrder = (newOrderBasketItem: OrderBasketItem) => {

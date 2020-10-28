@@ -15,7 +15,7 @@ export default function OrderBasketShell() {
       <Header aria-label={t('orderBasket', 'Order Basket')} style={{ position: 'sticky' }}>
         <HeaderName prefix="">{t('orderBasket', 'Order Basket')}</HeaderName>
         <HeaderGlobalBar>
-          <Link to={`/patient/${patientUuid}/chart/orders/medication-orders`}>
+          <Link to={`/patient/${patientUuid}/chart/orders`}>
             <HeaderGlobalAction aria-label={t('close', 'Close')} title={t('close', 'Close')}>
               <Close32 />
             </HeaderGlobalAction>

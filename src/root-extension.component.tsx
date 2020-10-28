@@ -14,7 +14,7 @@ function ExtensionRoot() {
     <div className={styles.resetPatientChartWidgetContainer}>
       <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
         <Switch>
-          <Route exact path="/patient/:patientUuid/chart/orders/medication-orders">
+          <Route exact path="/patient/:patientUuid/chart/orders">
             <Provider store={orderBasketStore}>
               <MedicationsSummary />
             </Provider>
