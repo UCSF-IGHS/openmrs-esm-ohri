@@ -20,7 +20,7 @@ import styles from './order-basket.scss';
 import { connect } from 'unistore/react';
 import { OrderBasketStore, OrderBasketStoreActions, orderBasketStoreActions } from '../order-basket-store';
 import { useHistory } from 'react-router-dom';
-import { useCurrentPatientOrders } from '../utils/use-current-patient-orders';
+import { useCurrentPatientOrders } from '../utils/use-current-patient-orders.hook';
 import MedicationsDetailsTable from '../components/medications-details-table.component';
 
 const OrderBasket = connect(

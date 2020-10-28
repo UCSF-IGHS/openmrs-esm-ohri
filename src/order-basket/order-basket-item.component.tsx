@@ -24,7 +24,7 @@ export default function OrderBasketItemTile({ orderBasketItem, onClick, onRemove
 
   const tileContent = (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <p>
+      <p className={styles.clipTextWithEllipsis}>
         <OrderActionLabel orderBasketItem={orderBasketItem} />
         <br />
         {orderBasketItem.isFreeTextDosage ? (

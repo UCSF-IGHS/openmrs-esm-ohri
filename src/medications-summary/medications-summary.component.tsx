@@ -4,7 +4,7 @@ import FloatingOrderBasketButton from './floating-order-basket-button.component'
 import styles from './medications-summary.scss';
 import MedicationsDetailsTable from '../components/medications-details-table.component';
 import { DataTableSkeleton } from 'carbon-components-react';
-import { useCurrentPatientOrders } from '../utils/use-current-patient-orders';
+import { useCurrentPatientOrders } from '../utils/use-current-patient-orders.hook';
 
 export default function MedicationsSummary() {
   const { t } = useTranslation();

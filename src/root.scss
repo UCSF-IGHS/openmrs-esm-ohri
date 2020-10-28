@@ -63,3 +63,9 @@ $danger: #da1e28;
 .label01 {
   @include carbon--type-style('label-01');
 }
+
+.clipTextWithEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

@@ -25,6 +25,7 @@ import { OrderBasketItem } from '../types/order-basket-item';
 import { daysDurationUnit } from '../constants';
 import { getCommonMedicationByUuid } from '../api/common-medication';
 import { OpenmrsResource } from '../types/openmrs-resource';
+import capitalize from 'lodash-es/capitalize';
 
 export interface MedicationOrderFormProps {
   initialOrderBasketItem: OrderBasketItem;
@@ -48,13 +49,15 @@ export default function MedicationOrderForm({
       <Header aria-label="" className={styles.medicationDetailsHeader}>
         <HeaderName prefix="">
           {orderBasketItem.isFreeTextDosage ? (
-            <strong>{orderBasketItem.commonMedicationName}</strong>
+            <strong>{capitalize(orderBasketItem.commonMedicationName)}</strong>
           ) : (
             <>
-              <strong>{orderBasketItem.commonMedicationName}</strong> &mdash; {orderBasketItem.route.name} &mdash;{' '}
-              {orderBasketItem.dosageUnit.name}
-              &mdash; <span className={styles.label01}>{t('dose', 'Dose').toUpperCase()}</span> &mdash;{' '}
-              <strong>{orderBasketItem.dosage.dosage}</strong>
+              <span>
+                <strong>{capitalize(orderBasketItem.commonMedicationName)}</strong> &mdash; {orderBasketItem.route.name}{' '}
+                &mdash; {orderBasketItem.dosageUnit.name} &mdash;{' '}
+                <span className={styles.label01}>{t('dose', 'Dose').toUpperCase()}</span> &mdash;{' '}
+                <strong>{orderBasketItem.dosage.dosage}</strong>
+              </span>
             </>
           )}
         </HeaderName>
@@ -85,6 +88,7 @@ export default function MedicationOrderForm({
                   labelText={t('freeTextDosage', 'Free Text Dosage')}
                   placeholder={t('freeTextDosage', 'Free Text Dosage')}
                   value={orderBasketItem.freeTextDosage}
+                  maxLength={65535}
                   onChange={e => setOrderBasketItem({ ...orderBasketItem, freeTextDosage: e.target.value })}
                 />
               </Column>
@@ -163,6 +167,7 @@ export default function MedicationOrderForm({
                       'patientInstructionsPlaceholder',
                       'Additional dosing instructions (e.g. "Take after eating")',
                     )}
+                    maxLength={65535}
                     value={orderBasketItem.patientInstructions}
                     onChange={e => setOrderBasketItem({ ...orderBasketItem, patientInstructions: e.target.value })}
                   />
@@ -183,6 +188,7 @@ export default function MedicationOrderForm({
                       labelText={t('prnReason', 'P.R.N. Reason')}
                       placeholder={t('prnReasonPlaceholder', 'Reason to take medicine')}
                       rows={3}
+                      maxLength={255}
                       value={orderBasketItem.asNeededCondition}
                       onChange={e => setOrderBasketItem({ ...orderBasketItem, asNeededCondition: e.target.value })}
                     />
@@ -200,6 +206,7 @@ export default function MedicationOrderForm({
             <Column md={4} className={styles.fullWidthDatePickerContainer}>
               <DatePicker
                 datePickerType="single"
+                maxDate={new Date()}
                 value={[orderBasketItem.startDate]}
                 onChange={([newStartDate]) => setOrderBasketItem({ ...orderBasketItem, startDate: newStartDate })}>
                 <DatePickerInput
@@ -291,6 +298,7 @@ export default function MedicationOrderForm({
                 placeholder={t('indicationPlaceholder', 'e.g. "Hypertension"')}
                 value={orderBasketItem.indication}
                 onChange={e => setOrderBasketItem({ ...orderBasketItem, indication: e.target.value })}
+                maxLength={150}
               />
             </Column>
           </Row>
