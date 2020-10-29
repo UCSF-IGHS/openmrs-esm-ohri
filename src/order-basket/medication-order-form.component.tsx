@@ -220,13 +220,15 @@ export default function MedicationOrderForm({
               <NumberInput
                 id="durationInput"
                 label={t('duration', 'Duration')}
-                min={0}
-                value={orderBasketItem.duration}
-                helperText={t('noDurationHint', '0 indicates an indefinite duration.')}
+                min={1}
+                // @ts-ignore Strings are accepted, even though the types don't reflect it.
+                value={orderBasketItem.duration ?? ''}
+                allowEmpty={true}
+                helperText={t('noDurationHint', 'An empty field indicates an indefinite duration.')}
                 onChange={e => {
                   // @ts-ignore
-                  const newValue = +e.imaginaryTarget.value;
-                  setOrderBasketItem({ ...orderBasketItem, duration: newValue === 0 ? undefined : newValue });
+                  const newValue = e.imaginaryTarget.value === '' ? null : +e.imaginaryTarget.value;
+                  setOrderBasketItem({ ...orderBasketItem, duration: newValue });
                 }}
               />
             </Column>

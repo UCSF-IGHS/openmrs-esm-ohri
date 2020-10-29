@@ -78,10 +78,12 @@ const MedicationsDetailsTable = connect<
             <span className={styles.label01}>{t('dose', 'DOSE').toUpperCase()}</span>{' '}
             <strong>{getDosage(medication.drug?.strength, medication.dose).toLowerCase()}</strong> &mdash;{' '}
             {medication.frequency?.display} &mdash;{' '}
-            {t('medicationDurationAndUnit', 'for {duration} {durationUnit}', {
-              duration: medication.duration,
-              durationUnit: medication.durationUnits?.display,
-            })}
+            {!medication.duration
+              ? t('medicationUndefinedDuration', 'Indefinite duration')
+              : t('medicationDurationAndUnit', 'for {duration} {durationUnit}', {
+                  duration: medication.duration,
+                  durationUnit: medication.durationUnits?.display,
+                })}
             <br />
             <span className={styles.label01}>{t('refills', 'REFILLS').toUpperCase()}</span> {medication.numRefills}
           </p>

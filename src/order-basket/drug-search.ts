@@ -69,7 +69,7 @@ function* explodeDrugResultWithCommonMedicationData(drug: Drug, encounterUuid: s
             asNeeded: false,
             asNeededCondition: '',
             startDate: new Date(),
-            duration: 0,
+            duration: null,
             durationUnit: daysDurationUnit,
             pillsDispensed: 0,
             numRefills: 0,

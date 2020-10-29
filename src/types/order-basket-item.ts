@@ -22,7 +22,7 @@ export interface OrderBasketItem {
   asNeededCondition: string;
   startDate: Date;
   durationUnit: OpenmrsResource;
-  duration: number;
+  duration: number | null;
   pillsDispensed: number;
   numRefills: number;
   indication: string;

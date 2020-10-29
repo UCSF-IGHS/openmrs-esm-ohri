@@ -46,6 +46,7 @@
   "pastMedications": "Past Medications",
   "orderBasket": "Order Basket",
   "medicationDurationAndUnit": "for {duration} {durationUnit}",
+  "medicationUndefinedDuration": "Indefinite duration",
   "endButtonTooltip": "End",
   "reorderButtonTooltip": "Reorder",
   "error": "Error",
@@ -95,12 +96,13 @@
   "durationUnit": "Duration Unit",
   "durationUnitPlaceholder": "Duration Unit",
   "quantityDispensed": "Quantity Dispensed",
+  "quantityDispensed": "Quantity Dispensed",
   "pillsDispensed": "Pills dispensed",
   "prescriptionRefills": "Prescription Refills",
   "indication": "Indication",
   "indicationPlaceholder": "e.g. \"Hypertension\"",
   "freeTextDosage": "Free Text Dosage",
-  "noDurationHint": "0 indicates an indefinite duration.",
+  "noDurationHint": "An empty field indicates an indefinite duration.",
 
   "validationFieldRequired": "Required.",
   "validationNoItemSelected": "Please select one of the available items."
