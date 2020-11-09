@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search } from 'carbon-components-react';
 import { useTranslation } from 'react-i18next';
 import styles from './order-basket-search.scss';
-import { useQueryParameter } from '../utils/use-query-parameter.hook';
 import OrderBasketSearchResults from './order-basket-search-results';
 import { OrderBasketItem } from '../types/order-basket-item';
 
@@ -13,7 +12,7 @@ export interface OrderBasketSearchProps {
 
 export default function OrderBasketSearch({ encounterUuid, onSearchResultClicked }: OrderBasketSearchProps) {
   const { t } = useTranslation();
-  const [searchTerm, setSearchTerm] = useQueryParameter('q', '');
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <>

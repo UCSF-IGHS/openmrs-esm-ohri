@@ -9,14 +9,18 @@ import { orderBasketStore } from './order-basket-store';
 
 defineConfigSchema('@openmrs/esm-drugorder-app', {});
 
-function ExtensionRoot() {
+export interface RootMedicationSummaryProps {
+  patientUuid: string;
+}
+
+function RootMedicationSummary({ patientUuid }: RootMedicationSummaryProps) {
   return (
     <div className={styles.resetPatientChartWidgetContainer}>
       <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
         <Switch>
           <Route exact path="/patient/:patientUuid/chart/orders">
             <Provider store={orderBasketStore}>
-              <MedicationsSummary />
+              <MedicationsSummary patientUuid={patientUuid} />
             </Provider>
           </Route>
         </Switch>
@@ -28,4 +32,4 @@ function ExtensionRoot() {
 export default openmrsRootDecorator({
   featureName: 'drugorder',
   moduleName: '@openmrs/esm-drugorder-app',
-})(ExtensionRoot);
+})(RootMedicationSummary);

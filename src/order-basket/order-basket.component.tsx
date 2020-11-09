@@ -14,21 +14,24 @@ import { getDurationUnits, getPatientEncounterId } from '../api/api';
 import { createErrorHandler } from '@openmrs/esm-error-handling';
 import { OpenmrsResource } from '../types/openmrs-resource';
 import { orderDrugs } from './drug-ordering';
-import { useCurrentPatient } from '@openmrs/esm-api';
 import OrderBasketItemList from './order-basket-item-list.component';
 import styles from './order-basket.scss';
 import { connect } from 'unistore/react';
 import { OrderBasketStore, OrderBasketStoreActions, orderBasketStoreActions } from '../order-basket-store';
 import { useHistory } from 'react-router-dom';
-import { useCurrentPatientOrders } from '../utils/use-current-patient-orders.hook';
+import { usePatientOrders } from '../utils/use-current-patient-orders.hook';
 import MedicationsDetailsTable from '../components/medications-details-table.component';
 
-const OrderBasket = connect(
+export interface OrderBasketProps {
+  patientUuid: string;
+  closeWorkspace(): void;
+}
+
+const OrderBasket = connect<OrderBasketProps, OrderBasketStoreActions, OrderBasketStore, {}>(
   'items',
   orderBasketStoreActions,
-)(({ items, setItems }: OrderBasketStore & OrderBasketStoreActions) => {
+)(({ patientUuid, items, closeWorkspace, setItems }: OrderBasketProps & OrderBasketStore & OrderBasketStoreActions) => {
   const { t } = useTranslation();
-  const [, , patientUuid] = useCurrentPatient();
   const [durationUnits, setDurationUnits] = useState<Array<OpenmrsResource>>([]);
   const [encounterUuid, setEncounterUuid] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +41,7 @@ const OrderBasket = connect(
     (finalizedOrderBasketItem: OrderBasketItem) => void | null
   >(null);
   const history = useHistory();
-  const [activePatientOrders, fetchActivePatientOrders] = useCurrentPatientOrders('ACTIVE');
+  const [activePatientOrders, fetchActivePatientOrders] = usePatientOrders(patientUuid, 'ACTIVE');
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -80,7 +83,7 @@ const OrderBasket = connect(
       fetchActivePatientOrders();
 
       if (erroredItems.length == 0) {
-        history.push(`/patient/${patientUuid}/chart/orders`);
+        closeWorkspace();
       }
     });
     return () => abortController.abort();
@@ -88,7 +91,7 @@ const OrderBasket = connect(
 
   const handleCancelClicked = () => {
     setItems([]);
-    history.push(`/patient/${patientUuid}/chart/orders`);
+    closeWorkspace();
   };
 
   const openMedicationOrderFormForAddingNewOrder = (newOrderBasketItem: OrderBasketItem) => {

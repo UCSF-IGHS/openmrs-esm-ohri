@@ -4,12 +4,16 @@ import FloatingOrderBasketButton from './floating-order-basket-button.component'
 import styles from './medications-summary.scss';
 import MedicationsDetailsTable from '../components/medications-details-table.component';
 import { DataTableSkeleton } from 'carbon-components-react';
-import { useCurrentPatientOrders } from '../utils/use-current-patient-orders.hook';
+import { usePatientOrders } from '../utils/use-current-patient-orders.hook';
 
-export default function MedicationsSummary() {
+export interface MedicationsSummaryProps {
+  patientUuid: string;
+}
+
+export default function MedicationsSummary({ patientUuid }: MedicationsSummaryProps) {
   const { t } = useTranslation();
-  const [activePatientOrders] = useCurrentPatientOrders('ACTIVE');
-  const [pastPatientOrders] = useCurrentPatientOrders('any');
+  const [activePatientOrders] = usePatientOrders(patientUuid, 'ACTIVE');
+  const [pastPatientOrders] = usePatientOrders(patientUuid, 'any');
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function MedicationsSummary() {
           <DataTableSkeleton />
         )}
       </div>
-      <FloatingOrderBasketButton />
+      <FloatingOrderBasketButton patientUuid={patientUuid} />
     </>
   );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import singleSpaReact from 'single-spa-react';
-import Root from './root-drugorder';
+import ExtensionRoot from './root-medication-summary';
 
 const { bootstrap, mount, unmount } = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: Root,
+  rootComponent: ExtensionRoot,
 });
 
-export { bootstrap, mount, unmount };
+export default { bootstrap, mount, unmount };
