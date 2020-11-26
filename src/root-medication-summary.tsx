@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { defineConfigSchema } from '@openmrs/esm-config';
-import openmrsRootDecorator from '@openmrs/react-root-decorator';
 import MedicationsSummary from './medications-summary/medications-summary.component';
 import styles from './root.scss';
 import { Provider } from 'unistore/react';
@@ -13,7 +12,7 @@ export interface RootMedicationSummaryProps {
   patientUuid: string;
 }
 
-function RootMedicationSummary({ patientUuid }: RootMedicationSummaryProps) {
+export default function RootMedicationSummary({ patientUuid }: RootMedicationSummaryProps) {
   return (
     <div className={styles.resetPatientChartWidgetContainer}>
       <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
@@ -28,8 +27,3 @@ function RootMedicationSummary({ patientUuid }: RootMedicationSummaryProps) {
     </div>
   );
 }
-
-export default openmrsRootDecorator({
-  featureName: 'drugorder',
-  moduleName: '@openmrs/esm-drugorder-app',
-})(RootMedicationSummary);
