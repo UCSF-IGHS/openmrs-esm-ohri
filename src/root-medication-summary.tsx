@@ -1,12 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { defineConfigSchema } from '@openmrs/esm-config';
 import MedicationsSummary from './medications-summary/medications-summary.component';
 import styles from './root.scss';
 import { Provider } from 'unistore/react';
 import { orderBasketStore } from './order-basket-store';
-
-defineConfigSchema('@openmrs/esm-drugorder-app', {});
 
 export interface RootMedicationSummaryProps {
   patientUuid: string;

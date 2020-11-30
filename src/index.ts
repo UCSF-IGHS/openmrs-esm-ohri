@@ -1,14 +1,19 @@
 import { getAsyncLifecycle } from '@openmrs/esm-react-utils';
+import { defineConfigSchema } from '@openmrs/esm-config';
 import { backendDependencies } from './openmrs-backend-dependencies';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
-const options = {
-  featureName: 'drugorder',
-  moduleName: '@openmrs/esm-drugorder-app',
-};
-
 function setupOpenMRS() {
+  const moduleName = '@openmrs/esm-drugorder-app';
+
+  const options = {
+    featureName: 'drugorder',
+    moduleName,
+  };
+
+  defineConfigSchema(moduleName, {});
+
   return {
     pages: [
       {
