@@ -39,7 +39,7 @@ git clone https://github.com/openmrs/openmrs-esm-drugorder.git
 ```
 
 2. Install dependencies in the root directory of the repo.
-
+- make sure you are using a relatively recent version of node, LTE is 14.x.x, you can type node -version to find your current version. I would recommend using n to manage your node version: see https://www.npmjs.com/package/n
 ```sh
 npm i
 ```
@@ -47,7 +47,7 @@ npm i
 3. Run the module from `localhost:8080`.
 
 ```sh
-npm start -- --https
+npm start
 ```
 
 ### Setup Dev Tools
