@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/openmrs/openmrs-esm-drugorder.svg?branch=master)](https://travis-ci.com/github/openmrs/openmrs-esm-drugorder)
+![Node.js CI](https://github.com/openmrs/openmrs-esm-drugorder/workflows/Node.js%20CI/badge.svg)
 
 # Drug Order ESM
 
@@ -47,7 +47,7 @@ npm i
 3. Run the module from `localhost:8080`.
 
 ```sh
-npm start
+npm run serve
 ```
 
 ### Setup Dev Tools
