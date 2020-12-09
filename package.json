@@ -15,7 +15,8 @@
     "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
     "typescript": "tsc",
     "prepublishOnly": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "npm test -- --coverage"
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
