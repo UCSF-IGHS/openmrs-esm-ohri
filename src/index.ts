@@ -1,5 +1,6 @@
-import { getAsyncLifecycle } from '@openmrs/esm-react-utils';
+import { registerBreadcrumbs } from '@openmrs/esm-api';
 import { defineConfigSchema } from '@openmrs/esm-config';
+import { getAsyncLifecycle, getAsyncExtensionLifecycle } from '@openmrs/esm-react-utils';
 import { backendDependencies } from './openmrs-backend-dependencies';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -14,6 +15,19 @@ function setupOpenMRS() {
 
   defineConfigSchema(moduleName, {});
 
+  registerBreadcrumbs([
+    {
+      path: `${window.spaBase}/patient/:patient/chart/orders`,
+      title: 'Orders',
+      parent: `${window.spaBase}/patient/:patient/chart`,
+    },
+    {
+      path: `${window.spaBase}/patient/:patient/drugorder/basket`,
+      title: 'Order Basket',
+      parent: `${window.spaBase}/patient/home`,
+    },
+  ]);
+
   return {
     pages: [
       {
@@ -25,12 +39,12 @@ function setupOpenMRS() {
       {
         id: 'drugorder-widget',
         slot: 'patient-chart-dashboard-medications',
-        load: getAsyncLifecycle(() => import('./root-medication-summary'), options),
+        load: getAsyncExtensionLifecycle(() => import('./root-medication-summary'), options),
       },
       {
         id: 'order-basket-workspace',
         slot: '/patient/:patientUuid/drugorder/basket',
-        load: getAsyncLifecycle(() => import('./root-order-basket'), options),
+        load: getAsyncExtensionLifecycle(() => import('./root-order-basket'), options),
       },
     ],
   };
