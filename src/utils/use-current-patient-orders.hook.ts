@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createErrorHandler } from '@openmrs/esm-error-handling';
+import { createErrorHandler } from '@openmrs/esm-framework';
 import { fetchPatientOrders } from '../api/api';
 import { Order } from '../types/order';
 

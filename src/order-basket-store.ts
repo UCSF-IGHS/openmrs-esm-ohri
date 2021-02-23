@@ -1,5 +1,5 @@
 import { OrderBasketItem } from './types/order-basket-item';
-import { createGlobalStore } from '@openmrs/esm-api';
+import { createGlobalStore } from '@openmrs/esm-framework';
 
 export interface OrderBasketStore {
   items: Array<OrderBasketItem>;

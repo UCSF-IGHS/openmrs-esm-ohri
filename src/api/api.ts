@@ -1,4 +1,4 @@
-import { openmrsFetch } from '@openmrs/esm-api';
+import { openmrsFetch } from '@openmrs/esm-framework';
 import { careSetting } from '../constants';
 import { Order, OrderPost } from '../types/order';
 

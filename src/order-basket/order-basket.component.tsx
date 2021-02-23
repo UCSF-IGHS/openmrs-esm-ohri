@@ -11,7 +11,7 @@ import {
 import MedicationOrderForm from './medication-order-form.component';
 import { OrderBasketItem } from '../types/order-basket-item';
 import { getDurationUnits, getPatientEncounterId } from '../api/api';
-import { createErrorHandler } from '@openmrs/esm-error-handling';
+import { createErrorHandler } from '@openmrs/esm-framework';
 import { OpenmrsResource } from '../types/openmrs-resource';
 import { orderDrugs } from './drug-ordering';
 import OrderBasketItemList from './order-basket-item-list.component';

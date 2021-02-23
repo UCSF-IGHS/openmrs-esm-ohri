@@ -3,7 +3,7 @@ import styles from './order-basket-search-results.scss';
 import { Button, ClickableTile, Link, Pagination } from 'carbon-components-react';
 import { useTranslation } from 'react-i18next';
 import { Medication16, ShoppingBag16 } from '@carbon/icons-react';
-import { createErrorHandler } from '@openmrs/esm-error-handling';
+import { createErrorHandler } from '@openmrs/esm-framework';
 import { searchMedications } from './drug-search';
 import { OrderBasketItem } from '../types/order-basket-item';
 import { paginate } from '../utils/pagination';

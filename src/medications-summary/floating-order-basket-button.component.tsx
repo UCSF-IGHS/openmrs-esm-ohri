@@ -4,7 +4,7 @@ import { ShoppingBag16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import styles from './floating-order-basket-button.scss';
 import { connect } from 'unistore/react';
-import { switchTo } from '@openmrs/esm-extensions';
+import { switchTo } from '@openmrs/esm-framework';
 import { OrderBasketStoreActions, OrderBasketStore } from '../order-basket-store';
 
 export interface FloatingOrderBasketButtonProps {

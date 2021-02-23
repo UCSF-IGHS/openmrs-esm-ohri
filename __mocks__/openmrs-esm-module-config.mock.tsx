@@ -14,4 +14,6 @@ export function useConfig() {
   return ConfigMock;
 }
 
-export const ModuleNameContext = React.createContext('fake-module-config');
+export const ComponentContext = React.createContext({
+  moduleName: 'fake-module-config',
+});
