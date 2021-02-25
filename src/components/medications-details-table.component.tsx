@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import {
-  Button,
-  DataTable,
-  OverflowMenu,
-  OverflowMenuItem,
-  Pagination,
+import dayjs from 'dayjs';
+import capitalize from 'lodash-es/capitalize';
+import styles from './medications-details-table.scss';
+import Button from 'carbon-components-react/es/components/Button';
+import OverflowMenu from 'carbon-components-react/es/components/OverflowMenu';
+import OverflowMenuItem from 'carbon-components-react/es/components/OverflowMenuItem';
+import Pagination from 'carbon-components-react/es/components/Pagination';
+import DataTable, {
   Table,
   TableBody,
   TableCell,
@@ -14,13 +16,10 @@ import {
   TableRow,
   TableToolbar,
   TableToolbarContent,
-} from 'carbon-components-react';
+} from 'carbon-components-react/es/components/DataTable';
 import { getDosage } from '../utils/get-dosage';
-import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import { Add16 } from '@carbon/icons-react';
-import capitalize from 'lodash-es/capitalize';
-import styles from './medications-details-table.scss';
 import { compare } from '../utils/compare';
 import { paginate } from '../utils/pagination';
 import { connect } from 'unistore/react';

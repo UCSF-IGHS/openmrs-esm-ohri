@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import OrderBasketSearch from './order-basket-search.component';
-import {
-  Button,
-  // @ts-ignore
-  ButtonSet,
-  DataTableSkeleton,
-  Loading,
-} from 'carbon-components-react';
 import MedicationOrderForm from './medication-order-form.component';
+import OrderBasketItemList from './order-basket-item-list.component';
+import MedicationsDetailsTable from '../components/medications-details-table.component';
+import Button from 'carbon-components-react/es/components/Button';
+import ButtonSet from 'carbon-components-react/es/components/ButtonSet';
+import Loading from 'carbon-components-react/es/components/Loading';
+import DataTableSkeleton from 'carbon-components-react/es/components/DataTableSkeleton';
+import styles from './order-basket.scss';
+import { useTranslation } from 'react-i18next';
 import { OrderBasketItem } from '../types/order-basket-item';
 import { getDurationUnits, getPatientEncounterId } from '../api/api';
 import { createErrorHandler } from '@openmrs/esm-framework';
 import { OpenmrsResource } from '../types/openmrs-resource';
 import { orderDrugs } from './drug-ordering';
-import OrderBasketItemList from './order-basket-item-list.component';
-import styles from './order-basket.scss';
 import { connect } from 'unistore/react';
 import { OrderBasketStore, OrderBasketStoreActions, orderBasketStoreActions } from '../order-basket-store';
-import { useHistory } from 'react-router-dom';
 import { usePatientOrders } from '../utils/use-current-patient-orders.hook';
-import MedicationsDetailsTable from '../components/medications-details-table.component';
 
 export interface OrderBasketProps {
   patientUuid: string;
@@ -40,7 +36,6 @@ const OrderBasket = connect<OrderBasketProps, OrderBasketStoreActions, OrderBask
   const [onMedicationOrderFormSigned, setOnMedicationOrderFormSign] = useState<
     (finalizedOrderBasketItem: OrderBasketItem) => void | null
   >(null);
-  const history = useHistory();
   const [activePatientOrders, fetchActivePatientOrders] = usePatientOrders(patientUuid, 'ACTIVE');
 
   useEffect(() => {

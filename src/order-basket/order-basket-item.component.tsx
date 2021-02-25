@@ -1,9 +1,10 @@
-import styles from './order-basket-item.scss';
-import { Button, ClickableTile, Tile } from 'carbon-components-react';
 import React, { useRef } from 'react';
-import { OrderBasketItem } from '../types/order-basket-item';
+import styles from './order-basket-item.scss';
+import Button from 'carbon-components-react/es/components/Button';
+import { ClickableTile, Tile } from 'carbon-components-react/es/components/Tile';
 import { TrashCan16, Warning16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
+import { OrderBasketItem } from '../types/order-basket-item';
 
 export interface OrderBasketItemTileProps {
   orderBasketItem: OrderBasketItem;

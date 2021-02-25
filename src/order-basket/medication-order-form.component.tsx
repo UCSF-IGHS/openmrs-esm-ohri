@@ -1,31 +1,25 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  // @ts-ignore
-  ButtonSet,
-  Checkbox,
-  Column,
-  ComboBox,
-  DatePicker,
-  DatePickerInput,
-  Form,
-  FormGroup,
-  Grid,
-  Header,
-  HeaderName,
-  NumberInput,
-  Row,
-  TextArea,
-  TextInput,
-  ToggleSmall,
-} from 'carbon-components-react';
 import styles from './medication-order-form.scss';
+import capitalize from 'lodash-es/capitalize';
+import Button from 'carbon-components-react/es/components/Button';
+import ButtonSet from 'carbon-components-react/es/components/ButtonSet';
+import Checkbox from 'carbon-components-react/es/components/Checkbox';
+import DatePicker from 'carbon-components-react/es/components/DatePicker';
+import DatePickerInput from 'carbon-components-react/es/components/DatePickerInput';
+import NumberInput from 'carbon-components-react/es/components/NumberInput';
+import TextInput from 'carbon-components-react/es/components/TextInput';
+import TextArea from 'carbon-components-react/es/components/TextArea';
+import ComboBox from 'carbon-components-react/es/components/ComboBox';
+import ToggleSmall from 'carbon-components-react/es/components/ToggleSmall';
+import Form from 'carbon-components-react/es/components/Form';
+import FormGroup from 'carbon-components-react/es/components/FormGroup';
+import { Grid, Row, Column } from 'carbon-components-react/es/components/Grid';
+import { Header, HeaderName } from 'carbon-components-react/es/components/UIShell';
 import { useTranslation } from 'react-i18next';
 import { OrderBasketItem } from '../types/order-basket-item';
 import { daysDurationUnit } from '../constants';
 import { getCommonMedicationByUuid } from '../api/common-medication';
 import { OpenmrsResource } from '../types/openmrs-resource';
-import capitalize from 'lodash-es/capitalize';
 
 export interface MedicationOrderFormProps {
   initialOrderBasketItem: OrderBasketItem;

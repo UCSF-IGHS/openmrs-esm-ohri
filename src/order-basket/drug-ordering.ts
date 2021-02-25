@@ -1,7 +1,7 @@
-import { OrderBasketItem } from '../types/order-basket-item';
 import dayjs from 'dayjs';
+import { OrderBasketItem } from '../types/order-basket-item';
 import { postOrder } from '../api/api';
-import { toOmrsDateString } from '../utils/omrs-dates';
+import { toOmrsIsoString } from '@openmrs/esm-framework';
 import { OrderPost } from '../types/order';
 
 const careSetting = '6f0c9a92-6f24-11e3-af88-005056821db0';
@@ -57,7 +57,7 @@ function medicationOrderToApiDto(orderBasketItems: Array<OrderBasketItem>, patie
         dosingInstructions: order.isFreeTextDosage ? order.freeTextDosage : order.patientInstructions,
         concept: order.drug.concept.uuid,
         orderReasonNonCoded: order.indication,
-        dateActivated: toOmrsDateString(order.startDate),
+        dateActivated: toOmrsIsoString(order.startDate),
       };
     } else if (order.action === 'REVISE') {
       return {
@@ -86,7 +86,7 @@ function medicationOrderToApiDto(orderBasketItems: Array<OrderBasketItem>, patie
         dosingInstructions: order.isFreeTextDosage ? order.freeTextDosage : order.patientInstructions,
         concept: order.drug.concept.uuid,
         orderReasonNonCoded: order.indication,
-        dateActivated: toOmrsDateString(order.startDate),
+        dateActivated: toOmrsIsoString(order.startDate),
       };
     } else if (order.action === 'DISCONTINUE') {
       return {

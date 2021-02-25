@@ -1,9 +1,9 @@
 import React from 'react';
+import OrderBasket from './order-basket/order-basket.component';
 import { BrowserRouter } from 'react-router-dom';
+import { switchTo, useCurrentPatient } from '@openmrs/esm-framework';
 import { Provider } from 'unistore/react';
 import { orderBasketStore } from './order-basket-store';
-import OrderBasket from './order-basket/order-basket.component';
-import { switchTo, useCurrentPatient } from '@openmrs/esm-framework';
 
 export interface RootOrderBasketProps {
   patientUuid?: string;

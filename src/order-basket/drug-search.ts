@@ -1,8 +1,8 @@
+import uniqBy from 'lodash-es/uniqBy';
 import { getDrugByName } from '../api/api';
 import { getCommonMedicationByUuid } from '../api/common-medication';
 import { OrderBasketItem } from '../types/order-basket-item';
 import { daysDurationUnit } from '../constants';
-import uniqBy from 'lodash-es/uniqBy';
 import { Drug } from '../types/order';
 
 // Note:

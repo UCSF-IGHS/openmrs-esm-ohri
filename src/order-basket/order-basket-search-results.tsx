@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from './order-basket-search-results.scss';
-import { Button, ClickableTile, Link, Pagination } from 'carbon-components-react';
+import Button from 'carbon-components-react/es/components/Button';
+import Link from 'carbon-components-react/es/components/Link';
+import Pagination from 'carbon-components-react/es/components/Pagination';
+import { ClickableTile } from 'carbon-components-react/es/components/Tile';
 import { useTranslation } from 'react-i18next';
 import { Medication16, ShoppingBag16 } from '@carbon/icons-react';
 import { createErrorHandler } from '@openmrs/esm-framework';
