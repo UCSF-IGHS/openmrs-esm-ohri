@@ -10,8 +10,8 @@ on:
       - created
 
 env:
-  ESM_NAME: "@openmrs/esm-drugorder-app"
-  JS_NAME: "openmrs-esm-drugorder-app.js"
+  ESM_NAME: "@ohri/esm-ohri-app"
+  JS_NAME: "openmrs-esm-ohri-app.js"
 
 jobs:
   build:

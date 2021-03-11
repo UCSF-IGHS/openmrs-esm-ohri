@@ -1,11 +1,11 @@
 {
-  "name": "@openmrs/esm-drugorder-app",
+  "name": "@ohri/esm-ohri-app",
   "version": "0.5.0",
   "description": "Drug order microfrontend for the OpenMRS SPA",
-  "main": "dist/openmrs-esm-drugorder-app.js",
+  "main": "dist/openmrs-esm-ohri-app.js",
   "types": "src/index.ts",
   "license": "MIT",
-  "homepage": "https://github.com/openmrs/openmrs-esm-drugorder#readme",
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
   "scripts": {
     "start": "openmrs debug --run-project",
     "serve": "webpack-dev-server",
@@ -35,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/openmrs-esm-drugorder.git"
+    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-drugorder/issues"
+    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",

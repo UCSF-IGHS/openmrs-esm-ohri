@@ -9,7 +9,7 @@ const cssLoader = {
   loader: 'css-loader',
   options: {
     modules: {
-      localIdentName: 'esm-drugorder__[name]__[local]___[hash:base64:5]',
+      localIdentName: 'esm-ohri__[name]__[local]___[hash:base64:5]',
     },
   },
 };
@@ -17,10 +17,10 @@ const cssLoader = {
 module.exports = env => ({
   entry: [resolve(__dirname, 'src/set-public-path.ts'), resolve(__dirname, 'src/index.ts')],
   output: {
-    filename: 'openmrs-esm-drugorder-app.js',
+    filename: 'openmrs-esm-ohri-app.js',
     libraryTarget: 'system',
     path: resolve(__dirname, 'dist'),
-    jsonpFunction: 'webpackJsonp_openmrs_esm_drugorder',
+    jsonpFunction: 'webpackJsonp_openmrs_esm_ohri',
   },
   module: {
     rules: [
