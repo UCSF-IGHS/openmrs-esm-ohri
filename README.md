@@ -1,4 +1,4 @@
-![Node.js CI](https://github.com/openmrs/openmrs-esm-drugorder/workflows/Node.js%20CI/badge.svg)
+![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/workflows/Node.js%20CI/badge.svg)
 
 # Drug Order ESM
 
@@ -28,14 +28,14 @@ The Drug Order MF module for OpenMRS Version 3.0 Frontend.
 
 * [Node](https://nodejs.org/en/download/)
 * [Git](https://git-scm.com/downloads)
-* [openmrs-esm-drugorder](https://github.com/openmrs/openmrs-esm-drugorder)
+* [openmrs-esm-ohri](https://github.com/UCSF-IGHS/openmrs-esm-ohri)
 
 ### Setup Patient Registration Module
 
-1. Clone the [openmrs-esm-drugorder](https://github.com/openmrs/openmrs-esm-drugorder) repo.
+1. Clone the [openmrs-esm-ohri](https://github.com/UCSF-IGHS/openmrs-esm-ohri) repo.
 
 ```sh
-git clone https://github.com/openmrs/openmrs-esm-drugorder.git
+git clone https://github.com/UCSF-IGHS/openmrs-esm-ohri.git
 ```
 
 2. Install dependencies in the root directory of the repo.
@@ -53,13 +53,13 @@ npm run serve
 ### Setup Dev Tools
 
 1. Click `Add new module` in the dev tools window.
-2. Type in the `Module Name:` `@openmrs/esm-drugorder-app`.
+2. Type in the `Module Name:` `@ohri/esm-ohri-app`.
 3. Type in the `Override URL:` `8080`.
 4. Go to the browser's development tools (e.g. via `Inspect`).
 5. Go to the `Application` tab.
 6. Go to `Local Storage`.
-7. Find the key: `import-map-override:@openmrs/esm-drugorder-app`
-8. Update the corresponding value to: `//localhost:8080/openmrs-esm-drugorder.js`.
+7. Find the key: `import-map-override:@openmrs/esm-ohri-app`
+8. Update the corresponding value to: `//localhost:8080/openmrs-esm-ohri.js`.
 9. Click on the padlock/warning message next to the URL in the browser.
 10. Select the `Allow` option from the `Insecure content` dropdown in the browser settings page.
 11. Refresh the page.
