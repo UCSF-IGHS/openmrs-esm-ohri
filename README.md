@@ -53,7 +53,7 @@ npm run serve
 ### Setup Dev Tools
 
 1. Click `Add new module` in the dev tools window.
-2. Type in the `Module Name:` `@ohri/esm-ohri-app`.
+2. Type in the `Module Name:` `@openmrs/esm-ohri-app`.
 3. Type in the `Override URL:` `8080`.
 4. Go to the browser's development tools (e.g. via `Inspect`).
 5. Go to the `Application` tab.
