@@ -4,7 +4,8 @@ import { backendDependencies } from './openmrs-backend-dependencies';
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
-  const moduleName = '@ohri/esm-ohri-app';
+  const moduleName = '@openmrs/esm-ohri-app';
+  console.log("SETTING UP ESM-OHR")
 
   const options = {
     featureName: 'ohri',
@@ -14,8 +15,30 @@ function setupOpenMRS() {
   defineConfigSchema(moduleName, {});
 
   return {
-    pages: [],
-    extensions: [],
+    pages: [
+      {
+        load: getAsyncLifecycle(() => import('./hts/summary-page/hts-summary-page'), options),
+        route: /^ohri\/.+\/hts/,
+      },
+    ],
+    extensions: [
+      {
+        id: "hts-summary-page-menu-item-ext",
+        slot: "patient-chart-nav-menu",
+        load: getAsyncLifecycle(() => import("./menu-items/hts-summary-page-link"), {
+          featureName: 'hts-summary-page-menu-item',
+          moduleName,
+        })
+      },
+      {
+        id: "hts-patient-encounters-list-ext",
+        slot: "conditions-overview-widget",
+        load: getAsyncLifecycle(() => import("./hts/encounters-list/hts-overview-list.component"), {
+          featureName: 'hts-patient-encounters-list',
+          moduleName,
+        })
+      }
+    ],
   };
 }
 
