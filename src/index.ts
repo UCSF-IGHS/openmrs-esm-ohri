@@ -32,7 +32,7 @@ function setupOpenMRS() {
       },
       {
         id: "hts-patient-encounters-list-ext",
-        slot: "conditions-overview-widget",
+        slot: "conditions-overview-widget-ext",
         load: getAsyncLifecycle(() => import("./hts/encounters-list/hts-overview-list.component"), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
