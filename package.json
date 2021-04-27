@@ -1,5 +1,5 @@
 {
-  "name": "@ohri/esm-ohri-app",
+  "name": "@openmrs/esm-ohri-app",
   "version": "0.5.0",
   "description": "Drug order microfrontend for the OpenMRS SPA",
   "main": "dist/openmrs-esm-ohri-app.js",

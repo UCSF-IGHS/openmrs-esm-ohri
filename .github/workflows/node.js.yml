@@ -10,7 +10,7 @@ on:
       - created
 
 env:
-  ESM_NAME: "@ohri/esm-ohri-app"
+  ESM_NAME: "@openmrs/esm-ohri-app"
   JS_NAME: "openmrs-esm-ohri-app.js"
 
 jobs:
