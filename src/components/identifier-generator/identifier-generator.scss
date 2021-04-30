@@ -1,0 +1,32 @@
+@import "../../root.scss";
+
+.rotate {
+    animation: rotation 2s infinite linear;
+}
+
+.renewSVG {
+    width: 1.5rem;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
+
+.idLabel {
+    @include carbon--type-style("label-01");
+    font-size: 1.1rem;
+}
+
+.idText {
+    font-size: 1.3rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
