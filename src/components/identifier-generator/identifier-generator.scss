@@ -19,6 +19,7 @@
 
 .idLabel {
     @include carbon--type-style("label-01");
+    color: #525252;
     font-size: 1.1rem;
 }
 
