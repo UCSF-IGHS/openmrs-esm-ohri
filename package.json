@@ -43,6 +43,7 @@
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",
     "carbon-components-react": "^7.25.0",
+    "formik": "^2.2.6",
     "lodash-es": "^4.17.15",
     "systemjs-webpack-interop": "^1.1.0"
   },
