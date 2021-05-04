@@ -99,21 +99,30 @@
     font-size: 1.1rem;
 }
 
-.gridWrapper {
+.sectionOneRow {
     margin-top: 3rem;
+    display: flex;
 }
 
-.customToggle  label, .gridWrapper label {
+.chooseLocationColumn {
+    width: 30%;
+    margin-right: 2rem;
+}
+
+.htsDateInputColumn {
+    width: 15%;
+}
+
+.idGenColumn {
+    width: 30%;
+}
+
+.customToggle  label, .sectionOneRow label {
     font-size: 1.1rem !important;
 }
 
 .customToggle label span {
     font-size: 1.35rem !important;
-}
-
-.gridOverrides  {
-    padding-left: 0px !important;
-    margin-left: 0px !important;
 }
 
 .dropDownOverrides {

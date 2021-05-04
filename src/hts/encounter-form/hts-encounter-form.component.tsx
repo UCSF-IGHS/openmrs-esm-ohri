@@ -3,15 +3,12 @@ import {
   Button,
   ButtonSet,
   Checkbox,
-  Column,
   ContentSwitcher,
   DatePicker,
   DatePickerInput,
   Dropdown,
   Form,
   FormGroup,
-  Grid,
-  Row,
   Switch,
   Toggle,
 } from 'carbon-components-react';
@@ -141,7 +138,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
       sub1.unsubscribe();
       sub2.unsubscribe();
       sub3.unsubscribe();
-      // sub4?.unsubscribe();
+      sub4?.unsubscribe();
       detach(htsFormSlot, 'hts-encounter-form-ext');
     };
   }, []);
@@ -437,47 +434,41 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
                       onToggle={event => setPatientConsent(event)}
                     />
                   </div>
-                  <div className={styles.gridWrapper}>
-                    <Grid className={styles.gridOverrides}>
-                      <Row>
-                        {htsLocations && (
-                          <Column>
-                            <Dropdown
-                              id="communityOutreach"
-                              titleText="Test Location"
-                              label="Choose location"
-                              items={htsLocations}
-                              itemToString={item => item.display}
-                              className={styles.dropDownOverrides}
-                              selectedItem={testLocation}
-                              onChange={({ selectedItem }) => {
-                                setTestLocation(selectedItem);
-                              }}
-                              invalid={locationInvalid}
-                              invalidText="This field is required"
-                            />
-                          </Column>
-                        )}
-                        <Column>
-                          <DatePicker
-                            datePickerType="simple"
-                            className={styles.datePickerOverrides}
-                            onChange={([date]) => setHTSDate(date)}>
-                            <DatePickerInput
-                              placeholder="dd/mm/yyyy"
-                              labelText="Date of HTS Test"
-                              id="hts-date"
-                              value={htsDate.toLocaleDateString(window.navigator.language)}
-                            />
-                          </DatePicker>
-                        </Column>
-                        <Column>
-                          <div>
-                            <IdentifierGenerator />
-                          </div>
-                        </Column>
-                      </Row>
-                    </Grid>
+                  <div className={styles.sectionOneRow}>
+                    {htsLocations && (
+                      <div className={styles.chooseLocationColumn}>
+                        <Dropdown
+                          id="communityOutreach"
+                          titleText="Test Location"
+                          label="Choose location"
+                          items={htsLocations}
+                          itemToString={item => item.display}
+                          className={styles.dropDownOverrides}
+                          selectedItem={testLocation}
+                          onChange={({ selectedItem }) => {
+                            setTestLocation(selectedItem);
+                          }}
+                          invalid={locationInvalid}
+                          invalidText="This field is required"
+                        />
+                      </div>
+                    )}
+                    <div className={styles.htsDateInputColumn}>
+                      <DatePicker
+                        datePickerType="simple"
+                        className={styles.datePickerOverrides}
+                        onChange={([date]) => setHTSDate(date)}>
+                        <DatePickerInput
+                          placeholder="dd/mm/yyyy"
+                          labelText="Date of HTS Test"
+                          id="hts-date"
+                          value={htsDate.toLocaleDateString(window.navigator.language)}
+                        />
+                      </DatePicker>
+                    </div>
+                    <div className={styles.idGenColumn}>
+                      <IdentifierGenerator />
+                    </div>
                   </div>
                   <div className={styles.populationTypeWrapper}>
                     <fieldset>

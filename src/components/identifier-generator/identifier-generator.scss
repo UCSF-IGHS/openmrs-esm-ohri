@@ -6,6 +6,12 @@
 
 .renewSVG {
     width: 1.5rem;
+    fill: #0f62fe;
+}
+
+.renewSVG:hover {
+    cursor: pointer;
+    fill: #525252;
 }
 
 @keyframes rotation {
