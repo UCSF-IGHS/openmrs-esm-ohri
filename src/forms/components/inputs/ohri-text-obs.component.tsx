@@ -1,10 +1,12 @@
 import React from 'react';
 import { TextInput } from 'carbon-components-react';
+import { OhriFormField } from '../../types';
+import styles from './_input.scss';
 
-const OHRITextObs: React.FC<{ id: string; label: string }> = ({ id, label }) => {
+const OHRITextObs: React.FC<{ questions: OhriFormField }> = ({ questions }) => {
   return (
-    <div>
-      <TextInput id={id} labelText={label} />
+    <div className={styles.textContainer}>
+      <TextInput id={questions.id} labelText={questions.label} />
     </div>
   );
 };
