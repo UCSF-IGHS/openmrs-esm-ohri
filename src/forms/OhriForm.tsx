@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Sample from './sample';
 import OHRITextObs from './components/inputs/OHRI-text-obs.component';
+import OHRIRadioObs from './components/inputs/OHRI-radio-obs.component';
+import OHRIDateObs from './components/inputs/OHRI-date-obs.component';
 import { Button, ButtonSet } from 'carbon-components-react';
 import styles from './_form.scss';
 
@@ -17,6 +19,10 @@ function OHRIForm() {
         const type = question.questionOptions.rendering;
         if (type == 'number') {
           return <OHRITextObs questions={question} />;
+        } else if (type == 'radio') {
+          return <OHRIRadioObs questions={question} />;
+        } else if (type == 'date') {
+          return <OHRIDateObs questions={question} />;
         }
       })}
       <ButtonSet>
