@@ -85,8 +85,7 @@ const Sample: OhriForm = {
               questionOptions: {
                 rendering: 'date',
                 concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                conceptMappings: [],
-                showDate: '',
+                weeksList: '',
               },
               id: 'hivtestdate',
               hide: '',

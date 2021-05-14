@@ -4,8 +4,14 @@ export interface QuestionOptionType {
   max?: string;
   min?: string;
   showDate?: string;
-  conceptMappings: Array<Object>;
+  conceptMappings?: Array<Object>;
   answers?: Array<Object>;
+  weeksList?: string;
+}
+
+export interface OhriAnswerOptionType {
+  label: string;
+  concept: string;
 }
 
 export interface OhriFormField {
