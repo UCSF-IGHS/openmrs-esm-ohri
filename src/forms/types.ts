@@ -1,10 +1,17 @@
 export interface QuestionOptionType {
   rendering: string;
   concept: string;
-  max: string;
-  min: string;
-  showDate: string;
-  conceptMappings: Array<Object>;
+  max?: string;
+  min?: string;
+  showDate?: string;
+  conceptMappings?: Array<Object>;
+  answers?: Array<Object>;
+  weeksList?: string;
+}
+
+export interface OhriAnswerOptionType {
+  label: string;
+  concept: string;
 }
 
 export interface OhriFormField {

@@ -20,15 +20,10 @@ module.exports = env => ({
     filename: 'openmrs-esm-ohri-app.js',
     libraryTarget: 'system',
     path: resolve(__dirname, 'dist'),
-    jsonpFunction: 'webpackJsonp_openmrs_esm_ohri',
+    // jsonpFunction: 'webpackJsonp_openmrs_esm_ohri',
   },
   module: {
     rules: [
-      {
-        parser: {
-          system: false,
-        },
-      },
       {
         test: /\.m?(js|ts|tsx)$/,
         exclude: /(node_modules|bower_components)/,
@@ -46,12 +41,12 @@ module.exports = env => ({
       },
     ],
   },
-  devtool: 'sourcemap',
+  devtool: 'source-map',
   devServer: {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
-    disableHostCheck: true,
+    // disableHostCheck: true,
   },
   externals: Object.keys(peerDependencies),
   plugins: [

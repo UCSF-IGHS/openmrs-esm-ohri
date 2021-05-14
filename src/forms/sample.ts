@@ -53,40 +53,40 @@ const Sample: OhriForm = {
               id: 'sbp',
             },
             {
-							"label": "Patient Consent",
-							"type": "obs",
-							"questionOptions": {
-								"rendering": "radio",
-								"concept": "1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-								"conceptMappings": [
-									{
-										"type": "SNOMED-CT",
-										"value": "182771004"
-									}
-								],
-								"answers": [
-									{
-										"label": "yes",
-										"concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-									},
-									{
-										"label": "no",
-										"concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-									}
-								]
-							},
-							"id": "informed-consent"
-						},
-						{
-							"label": "Date of HIV Test",
-							"type": "obs",
-							"questionOptions": {
-								"rendering": "date",
-								"concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-								"weeksList": ""
-							},
-							"id": "hivtestdate"
-						},
+              label: 'Patient Consent',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '182771004',
+                  },
+                ],
+                answers: [
+                  {
+                    label: 'yes',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  },
+                  {
+                    label: 'no',
+                    concept: '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  },
+                ],
+              },
+              id: 'informed-consent',
+            },
+            {
+              label: 'Date of HIV Test',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'date',
+                concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                weeksList: '',
+              },
+              id: 'hivtestdate',
+            },
             {
               label: 'Diastolic Blood Pressure',
               type: 'obs',
