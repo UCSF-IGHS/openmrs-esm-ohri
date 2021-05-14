@@ -51,42 +51,46 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'sbp',
+              hide: '',
             },
             {
-							"label": "Patient Consent",
-							"type": "obs",
-							"questionOptions": {
-								"rendering": "radio",
-								"concept": "1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-								"conceptMappings": [
-									{
-										"type": "SNOMED-CT",
-										"value": "182771004"
-									}
-								],
-								"answers": [
-									{
-										"label": "yes",
-										"concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-									},
-									{
-										"label": "no",
-										"concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-									}
-								]
-							},
-							"id": "informed-consent"
-						},
-						{
-							"label": "Date of HIV Test",
-							"type": "obs",
-							"questionOptions": {
-								"rendering": "date",
-								"concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-								"weeksList": ""
-							},
-							"id": "hivtestdate"
-						},
+              label: 'Patient Consent',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '182771004',
+                  },
+                ],
+                answers: [
+                  {
+                    label: 'yes',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  },
+                  {
+                    label: 'no',
+                    concept: '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  },
+                ],
+              },
+              id: 'informed-consent',
+              hide: '',
+            },
+            {
+              label: 'Date of HIV Test',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'date',
+                concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [],
+                showDate: '',
+              },
+              id: 'hivtestdate',
+              hide: '',
+            },
             {
               label: 'Diastolic Blood Pressure',
               type: 'obs',
@@ -128,6 +132,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'diastolicBloodPressure',
+              hide: '',
             },
             {
               label: 'Temperature',
@@ -166,6 +171,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'temp',
+              hide: '',
             },
             {
               label: 'Respiratory Rate',
@@ -204,6 +210,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'respiRate',
+              hide: '',
             },
             {
               label: 'Pulse (Heart Rate)',
@@ -242,6 +249,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'pulse',
+              hide: '',
             },
             {
               label: 'Height (cm)',
@@ -280,6 +288,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'height',
+              hide: '',
             },
             {
               label: 'Weight',
@@ -322,6 +331,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'weight',
+              hide: '',
             },
             {
               label: 'MUAC',
@@ -352,6 +362,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'muac',
+              hide: '',
             },
             {
               label: 'SPO2',
@@ -390,6 +401,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'spo2',
+              hide: '',
             },
           ],
         },

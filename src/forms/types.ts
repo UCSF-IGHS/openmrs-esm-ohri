@@ -1,10 +1,11 @@
 export interface QuestionOptionType {
   rendering: string;
   concept: string;
-  max: string;
-  min: string;
-  showDate: string;
+  max?: string;
+  min?: string;
+  showDate?: string;
   conceptMappings: Array<Object>;
+  answers?: Array<Object>;
 }
 
 export interface OhriFormField {
@@ -12,6 +13,7 @@ export interface OhriFormField {
   type: string;
   questionOptions: QuestionOptionType;
   id: string;
+  hide: string;
 }
 
 export interface OhriFormSection {
@@ -32,3 +34,5 @@ export interface OhriForm {
   uuid: string;
   referencedForms: [];
 }
+
+export type RenderType = 'numerical' | 'date' | 'obs';

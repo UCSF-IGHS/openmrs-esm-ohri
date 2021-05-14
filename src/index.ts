@@ -5,7 +5,6 @@ const importTranslation = require.context('../translations', false, /.json$/, 'l
 
 function setupOpenMRS() {
   const moduleName = '@openmrs/esm-ohri-app';
-  console.log('SETTING UP ESM-OHR');
 
   const options = {
     featureName: 'ohri',
