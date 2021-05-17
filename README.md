@@ -47,7 +47,7 @@ npm i
 3. Run the module from `localhost:8080`.
 
 ```sh
-npm run serve
+npm start
 ```
 
 ### Setup Dev Tools
