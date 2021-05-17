@@ -57,7 +57,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }
   React.useEffect(() => {
     let query = `encounterType=${htsEncounterTypeUUID}&patient=${patientUuid}`;
-    console.log('QUERY', query);
     let customRepresentation =
       'custom:(uuid,encounterDatetime,location:(uuid,name),' +
       'encounterProviders:(uuid,provider:(uuid,name)),' +

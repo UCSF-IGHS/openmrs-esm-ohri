@@ -20,6 +20,7 @@ export interface OhriFormField {
   questionOptions: QuestionOptionType;
   id: string;
   hide: string;
+  isHidden?: boolean;
 }
 
 export interface OhriFormSection {

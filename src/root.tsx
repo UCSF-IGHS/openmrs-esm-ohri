@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import OhriForm from './forms/OHRIForm';
+import OhriForm from './forms/ohri-form.component';
 
 export default function Root() {
   return (

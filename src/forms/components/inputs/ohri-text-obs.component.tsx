@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextInput } from 'carbon-components-react';
 import { OhriFormField } from '../../types';
 import styles from './_input.scss';
 import { useField } from 'formik';
 
-const OHRITextObs: React.FC<{ questions: OhriFormField; onChange: any }> = ({ questions, onChange }) => {
-  const [field, meta] = useField(questions.id);
+const OHRITextObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
+  const [field, meta] = useField(question.id);
+
+  useEffect(() => {
+    if (meta.touched) {
+      onChange(question.id, field.value);
+    }
+  }, [field.value]);
+
   return (
-    <div className={styles.textContainer}>
-      <TextInput {...field} id={questions.id} labelText={questions.label} name={questions.id} value={field.value} />
-    </div>
+    !question.isHidden && (
+      <div className={styles.textContainer}>
+        <TextInput
+          {...field}
+          id={question.id}
+          labelText={question.label}
+          name={question.id}
+          value={field.value || ''}
+        />
+      </div>
+    )
   );
 };
 

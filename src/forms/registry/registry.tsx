@@ -1,6 +1,6 @@
 import React from 'react';
-import OHRIDateObs from '../components/inputs/OHRI-date-obs.component';
-import OHRIRadioObs from '../components/inputs/OHRI-radio-obs.component';
+import OHRIDateObs from '../components/inputs/ohri-date-obs.component';
+import OHRIRadioObs from '../components/inputs/ohri-radio-obs.component';
 import OHRITextObs from '../components/inputs/OHRI-text-obs.component';
 import { RenderType } from '../types';
 

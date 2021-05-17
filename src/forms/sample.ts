@@ -170,7 +170,7 @@ const Sample: OhriForm = {
                 ],
               },
               id: 'temp',
-              hide: '',
+              hide: 'sbp === foo',
             },
             {
               label: 'Respiratory Rate',
