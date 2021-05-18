@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TextInput } from 'carbon-components-react';
-import { OhriFormField } from '../../types';
-import styles from './_input.scss';
+import { OhriFormField } from '../../../types';
+import styles from '../_input.scss';
 import { useField } from 'formik';
 
 const OHRITextObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {

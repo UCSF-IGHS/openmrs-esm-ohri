@@ -1,5 +1,5 @@
 import React from 'react';
-import { OhriFormField } from '../../types';
+import { OhriFormField } from '../../../types';
 import { Select, SelectItem, SelectItemGroup } from 'carbon-components-react';
 
 const OHRISelectObs: React.FC<{ questions: OhriFormField }> = ({ questions }) => {

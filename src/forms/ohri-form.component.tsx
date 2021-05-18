@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Sample from './sample';
-import OHRITextObs from './components/inputs/ohri-text-obs.component';
-import OHRIRadioObs from './components/inputs/ohri-radio-obs.component';
-import OHRIDateObs from './components/inputs/ohri-date-obs.component';
+import OHRITextObs from './components/inputs/text/ohri-text-obs.component';
+import OHRIRadioObs from './components/inputs/radio/ohri-radio-obs.component';
+import OHRIDateObs from './components/inputs/date/ohri-date-obs.component';
 import { Button, ButtonSet } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
@@ -48,10 +48,11 @@ function OHRIForm() {
   };
 
   const handleFormSubmit = () => {
+    // fields.map(field => field.getObs())
     return;
   };
 
-  const onFieldChange = (fieldName, value) => {
+  const onFieldChange = (fieldName: string, value: any) => {
     const field = fields.find(field => field.id == fieldName);
     if (field.dependant) {
       const dependant = fields.find(f => f.hideDeterminant == fieldName);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NumberInput } from 'carbon-components-react';
-import { OhriFormField } from '../../types';
+import { OhriFormField } from '../../../types';
 
 const OHRINumberObs: React.FC<{ questions: OhriFormField }> = ({ questions }) => {
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FormGroup, RadioButtonGroup, RadioButton } from 'carbon-components-react';
-import { OhriFormField, OhriAnswerOptionType } from '../../types';
-import styles from './_input.scss';
+import { OhriFormField, OhriAnswerOptionType } from '../../../types';
+import styles from '../_input.scss';
 import { useField } from 'formik';
 
 const OHRIRadioObs: React.FC<{ question: OhriFormField; onChange: any; setFieldValue: any }> = ({

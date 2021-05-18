@@ -1,5 +1,5 @@
 import React from 'react';
-import { OhriFormField } from '../../types';
+import { OhriFormField } from '../../../types';
 import { DatePicker, DatePickerInput } from 'carbon-components-react';
 import { useField } from 'formik';
 

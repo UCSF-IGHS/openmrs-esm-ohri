@@ -1,7 +1,7 @@
 import React from 'react';
-import OHRIDateObs from '../components/inputs/ohri-date-obs.component';
-import OHRIRadioObs from '../components/inputs/ohri-radio-obs.component';
-import OHRITextObs from '../components/inputs/OHRI-text-obs.component';
+import OHRIDateObs from '../components/inputs/date/ohri-date-obs.component';
+import OHRIRadioObs from '../components/inputs/radio/ohri-radio-obs.component';
+import OHRITextObs from '../components/inputs/text/ohri-text-obs.component';
 import { RenderType } from '../types';
 
 export const registry: Array<RegistryItem> = [
