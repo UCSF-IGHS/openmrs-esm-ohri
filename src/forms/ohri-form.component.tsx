@@ -7,9 +7,14 @@ import { Button, ButtonSet } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { OHRIFormContext } from './ohri-form-context';
+import { useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 
 function OHRIForm() {
   const [fields, setFields] = useState([]);
+  const [location, setLocation] = useState();
+  const [, patient] = useCurrentPatient();
+  const session = useSessionUser();
   const initialValues = {};
 
   useEffect(() => {
@@ -26,6 +31,12 @@ function OHRIForm() {
       }),
     );
   }, []);
+
+  useEffect(() => {
+    if (session) {
+      setLocation(session.sessionLocation);
+    }
+  }, [session]);
 
   const evaluateHideExpression = (field, determinantValue, allFields) => {
     const allFieldsKeys = allFields.map(f => f.id);
@@ -47,9 +58,9 @@ function OHRIForm() {
     }
   };
 
-  const handleFormSubmit = () => {
-    // fields.map(field => field.getObs())
-    return;
+  const handleFormSubmit = (values: Record<string, any>) => {
+    const observations = fields.filter(field => !field.isHidden).map(field => field['obs']);
+    console.log(observations);
   };
 
   const onFieldChange = (fieldName: string, value: any) => {
@@ -63,39 +74,60 @@ function OHRIForm() {
       setFields(fields_temp);
     }
   };
-
+  console.log(fields);
   return (
     <div className={styles.ohriformcontainer}>
-      <Formik initialValues={initialValues} validationSchema={Yup.object({})} onSubmit={handleFormSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={Yup.object({})}
+        onSubmit={(values, { setSubmitting }) => {
+          handleFormSubmit(values);
+          setSubmitting(false);
+        }}>
         {props => (
           <Form>
-            {fields.map((question, index) => {
-              const type = question.questionOptions.rendering;
-              if (type == 'number') {
-                return <OHRITextObs question={question} onChange={onFieldChange} key={index} />;
-              } else if (type == 'radio') {
-                return (
-                  <OHRIRadioObs
-                    question={question}
-                    onChange={onFieldChange}
-                    key={index}
-                    setFieldValue={props.setFieldValue}
-                  />
-                );
-              } else if (type == 'date') {
-                return (
-                  <OHRIDateObs
-                    question={question}
-                    onChange={onFieldChange}
-                    key={index}
-                    setFieldValue={props.setFieldValue}
-                  />
-                );
-              }
-            })}
+            <OHRIFormContext.Provider
+              value={{
+                values: props.values,
+                setFieldValue: props.setFieldValue,
+                encounterContext: {
+                  patient: patient,
+                  encounter: null,
+                  location: location,
+                  sessionMode: 'enter',
+                  date: new Date(),
+                },
+              }}>
+              {fields.map((question, index) => {
+                const type = question.questionOptions.rendering;
+                if (type == 'number') {
+                  return <OHRITextObs question={question} onChange={onFieldChange} key={index} />;
+                } else if (type == 'radio') {
+                  return (
+                    <OHRIRadioObs
+                      question={question}
+                      onChange={onFieldChange}
+                      key={index}
+                      setFieldValue={props.setFieldValue}
+                    />
+                  );
+                } else if (type == 'date') {
+                  return (
+                    <OHRIDateObs
+                      question={question}
+                      onChange={onFieldChange}
+                      key={index}
+                      setFieldValue={props.setFieldValue}
+                    />
+                  );
+                }
+              })}
+            </OHRIFormContext.Provider>
             <ButtonSet>
               <Button kind="secondary">Cancel</Button>
-              <Button kind="primary">Save</Button>
+              <Button kind="primary" type="submit">
+                Save
+              </Button>
             </ButtonSet>
           </Form>
         )}

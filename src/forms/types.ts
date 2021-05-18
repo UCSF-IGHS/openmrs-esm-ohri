@@ -43,3 +43,4 @@ export interface OhriForm {
 }
 
 export type RenderType = 'numerical' | 'date' | 'obs';
+export type SessionMode = 'edit' | 'enter';

@@ -5,7 +5,7 @@ import OhriForm from './forms/ohri-form.component';
 export default function Root() {
   return (
     <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
-      <Route exact path="/ohri-forms/" component={OhriForm} />
+      <Route exact path="/ohri-forms/*" component={OhriForm} />
     </BrowserRouter>
   );
 }
