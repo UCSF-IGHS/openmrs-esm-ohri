@@ -1,4 +1,4 @@
-![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/workflows/Node.js%20CI/badge.svg)
+[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
 
 # OHRI ESM
 
