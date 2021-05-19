@@ -1,4 +1,8 @@
 // OHRITextComponent
-.textContainer{
+.textContainer, .numberInputWrapper {
     padding-bottom: 20px;
+}
+
+.numberInputWrapper :global(.bx--number) {
+    width: 100%;
 }

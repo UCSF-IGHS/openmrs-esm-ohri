@@ -8,14 +8,16 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 const OHRITextObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
   const { encounterContext } = React.useContext(OHRIFormContext);
+  const [previousValue, setPreviousValue] = useState();
 
-  useEffect(() => {
-    if (meta.touched) {
-      console.log(getObs());
-      question['obs'] = getObs();
+  field.onBlur = () => {
+    if (previousValue !== field.value) {
       onChange(question.id, field.value);
     }
-  }, [field.value]);
+    if (field.value) {
+      question['obs'] = getObs();
+    }
+  };
 
   const getObs = () => {
     return {
@@ -38,6 +40,7 @@ const OHRITextObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ que
           labelText={question.label}
           name={question.id}
           value={field.value || ''}
+          onFocus={() => setPreviousValue(field.value)}
         />
       </div>
     )

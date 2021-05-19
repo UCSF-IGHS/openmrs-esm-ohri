@@ -8,14 +8,20 @@ import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
-import { useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
+import { openmrsFetch, openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
+import OHRINumberObs from './components/inputs/numeric/ohri-numeric-obs.component';
+
+// fallback encounter type
+const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
 
 function OHRIForm() {
   const [fields, setFields] = useState([]);
-  const [location, setLocation] = useState();
+  const [currentProvider, setCurrentProvider] = useState();
+  const [location, setLocation] = useState(null);
   const [, patient] = useCurrentPatient();
   const session = useSessionUser();
   const initialValues = {};
+  const encDate = new Date();
 
   useEffect(() => {
     const rawFormFields = Sample.pages[0].sections[0].questions;
@@ -30,6 +36,14 @@ function OHRIForm() {
         return field;
       }),
     );
+
+    const sub = openmrsObservableFetch('/ws/rest/v1/appui/session').subscribe((user: any) => {
+      setCurrentProvider(user.data?.currentProvider?.uuid);
+    });
+
+    return () => {
+      sub.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -59,8 +73,32 @@ function OHRIForm() {
   };
 
   const handleFormSubmit = (values: Record<string, any>) => {
-    const observations = fields.filter(field => !field.isHidden).map(field => field['obs']);
-    console.log(observations);
+    const enc = {
+      patient: patient.id,
+      encounterDatetime: encDate,
+      location: location.uuid,
+      encounterType: HTSEncounterType,
+      encounterProviders: [
+        {
+          provider: currentProvider,
+          encounterRole: '240b26f9-dd88-4172-823d-4a8bfeb7841f',
+        },
+      ],
+      obs: fields.filter(field => !field.isHidden && field['obs']).map(field => field['obs']),
+    };
+    const ac = new AbortController();
+    return openmrsFetch('/ws/rest/v1/encounter', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: enc,
+      signal: ac.signal,
+    }).then(response => {
+      if (response.ok) {
+        // handle routing
+      }
+    });
   };
 
   const onFieldChange = (fieldName: string, value: any) => {
@@ -74,7 +112,7 @@ function OHRIForm() {
       setFields(fields_temp);
     }
   };
-  console.log(fields);
+
   return (
     <div className={styles.ohriformcontainer}>
       <Formik
@@ -95,13 +133,13 @@ function OHRIForm() {
                   encounter: null,
                   location: location,
                   sessionMode: 'enter',
-                  date: new Date(),
+                  date: encDate,
                 },
               }}>
               {fields.map((question, index) => {
                 const type = question.questionOptions.rendering;
                 if (type == 'number') {
-                  return <OHRITextObs question={question} onChange={onFieldChange} key={index} />;
+                  return <OHRINumberObs question={question} onChange={onFieldChange} key={index} />;
                 } else if (type == 'radio') {
                   return (
                     <OHRIRadioObs
