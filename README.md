@@ -1,8 +1,8 @@
-![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/workflows/Node.js%20CI/badge.svg)
+[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
 
-# Drug Order ESM
+# OHRI ESM
 
-The Drug Order MF module for OpenMRS Version 3.0 Frontend.
+A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 
 ## Overview
 
@@ -30,7 +30,7 @@ The Drug Order MF module for OpenMRS Version 3.0 Frontend.
 * [Git](https://git-scm.com/downloads)
 * [openmrs-esm-ohri](https://github.com/UCSF-IGHS/openmrs-esm-ohri)
 
-### Setup Patient Registration Module
+### Setup OHRI Module
 
 1. Clone the [openmrs-esm-ohri](https://github.com/UCSF-IGHS/openmrs-esm-ohri) repo.
 
@@ -80,19 +80,16 @@ Currently, there are no releases for this module and it can only be locally depl
 
 ## Configuration
 
-This module is designed to be driven by configuration files. These files define the look and functionality required to drive the Patient Registration module.
+This module is designed to be driven by configuration files. These files define the look and functionality required to drive the OHRI module.
 
 *Note: Currently, the module cannot be configured as it is in the early stages of development.*
 
 ## Resources
 
-* [JIRA Epic](https://issues.openmrs.org/browse/MF-?)
-
+(tbd)
 ## Acknowledgements
 
-* [Manuel Römer](https://github.com/ManuelRoemer) - maintenance, design, analysis, onboarding, and development.
-* [Florian Rappl](https://github.com/FlorianRappl) - module scaffolding, onboarding, guidance, and review.
-
+(tbd)
 ## License
 
-The project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details. 
+(tbd)

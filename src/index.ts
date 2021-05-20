@@ -44,6 +44,13 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        id: 'hts-encounter-form-ext',
+        load: getAsyncLifecycle(() => import('./hts/encounter-form/hts-encounter-form.component'), {
+          featureName: 'hts-encounter-form',
+          moduleName,
+        }),
+      },
     ],
   };
 }
