@@ -35,11 +35,14 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-patient-encounters-list-ext',
-        slot: 'conditions-overview-widget',
+        slot: 'patient-chart-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
+        meta: {
+          columnSpan: 4,
+        },
       },
     ],
   };

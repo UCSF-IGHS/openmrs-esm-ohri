@@ -46,7 +46,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           id: r.uuid,
           date: dayjs(r.encounterDatetime).format('DD-MMM-YYYY'),
           location: r.location.name,
-          result: htsResult.value.name.name,
+          result: htsResult?.value?.name?.name || 'None',
           provider: htsProvider,
         });
       });

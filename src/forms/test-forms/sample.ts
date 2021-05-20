@@ -1,4 +1,4 @@
-import { OhriForm } from './types';
+import { OhriForm } from './../types';
 
 const Sample: OhriForm = {
   name: 'POC Vitals v1.0',

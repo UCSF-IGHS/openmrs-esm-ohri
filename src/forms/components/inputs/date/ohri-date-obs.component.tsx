@@ -2,15 +2,24 @@ import React from 'react';
 import { OhriFormField } from '../../../types';
 import { DatePicker, DatePickerInput } from 'carbon-components-react';
 import { useField } from 'formik';
+import { OHRIFormContext } from '../../../ohri-form-context';
 
-const OHRIDateObs: React.FC<{ question: OhriFormField; onChange: any; setFieldValue: any }> = ({
-  question,
-  onChange,
-  setFieldValue,
-}) => {
+const OHRIDateObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
+  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const onDateChange = ([date]) => {
     setFieldValue(question.id, date);
+    onChange(question.id, date);
+    question['obs'] = {
+      person: encounterContext.patient.id,
+      obsDatetime: encounterContext.date,
+      concept: question.questionOptions.concept,
+      location: encounterContext.location,
+      order: null,
+      groupMembers: [],
+      voided: false,
+      value: date,
+    };
   };
 
   return (

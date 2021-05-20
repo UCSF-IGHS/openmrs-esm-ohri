@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Sample from './sample';
-import OHRITextObs from './components/inputs/text/ohri-text-obs.component';
-import OHRIRadioObs from './components/inputs/radio/ohri-radio-obs.component';
-import OHRIDateObs from './components/inputs/date/ohri-date-obs.component';
 import { Button, ButtonSet } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
-import { openmrsFetch, openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
-import OHRINumberObs from './components/inputs/numeric/ohri-numeric-obs.component';
+import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
+import { getFieldComponent } from './registry/registry';
+import { saveEncounter } from './ohri-form.resource';
+import { OhriForm } from './types';
 
 // fallback encounter type
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
 
-function OHRIForm() {
+const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
   const [fields, setFields] = useState([]);
   const [currentProvider, setCurrentProvider] = useState();
   const [location, setLocation] = useState(null);
@@ -24,12 +22,15 @@ function OHRIForm() {
   const encDate = new Date();
 
   useEffect(() => {
-    const rawFormFields = Sample.pages[0].sections[0].questions;
-    rawFormFields.forEach(field => (initialValues[field.id] = ''));
+    const allFormFields = [];
+    formJson.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
+    // set Formik initial values
+    allFormFields.forEach(field => (initialValues[field.id] = ''));
+    // prepare fields
     setFields(
-      rawFormFields.map(field => {
+      allFormFields.map(field => {
         if (field.hide) {
-          evaluateHideExpression(field, null, rawFormFields);
+          evaluateHideExpression(field, null, allFormFields);
         } else {
           field.isHidden = false;
         }
@@ -87,16 +88,9 @@ function OHRIForm() {
       obs: fields.filter(field => !field.isHidden && field['obs']).map(field => field['obs']),
     };
     const ac = new AbortController();
-    return openmrsFetch('/ws/rest/v1/encounter', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: enc,
-      signal: ac.signal,
-    }).then(response => {
+    saveEncounter(ac, enc, null).then(response => {
       if (response.ok) {
-        // handle routing
+        // TODO: handle routing
       }
     });
   };
@@ -136,30 +130,13 @@ function OHRIForm() {
                   date: encDate,
                 },
               }}>
-              {fields.map((question, index) => {
-                const type = question.questionOptions.rendering;
-                if (type == 'number') {
-                  return <OHRINumberObs question={question} onChange={onFieldChange} key={index} />;
-                } else if (type == 'radio') {
-                  return (
-                    <OHRIRadioObs
-                      question={question}
-                      onChange={onFieldChange}
-                      key={index}
-                      setFieldValue={props.setFieldValue}
-                    />
-                  );
-                } else if (type == 'date') {
-                  return (
-                    <OHRIDateObs
-                      question={question}
-                      onChange={onFieldChange}
-                      key={index}
-                      setFieldValue={props.setFieldValue}
-                    />
-                  );
-                }
-              })}
+              {fields.map((question, index) =>
+                React.createElement(getFieldComponent(question.questionOptions.rendering), {
+                  question: question,
+                  onChange: onFieldChange,
+                  key: index,
+                }),
+              )}
             </OHRIFormContext.Provider>
             <ButtonSet>
               <Button kind="secondary">Cancel</Button>
@@ -172,6 +149,6 @@ function OHRIForm() {
       </Formik>
     </div>
   );
-}
+};
 
 export default OHRIForm;

@@ -42,5 +42,15 @@ export interface OhriForm {
   referencedForms: [];
 }
 
-export type RenderType = 'numerical' | 'date' | 'obs';
 export type SessionMode = 'edit' | 'enter';
+
+export type RenderType =
+  | 'select'
+  | 'text'
+  | 'date'
+  | 'number'
+  | 'multiCheckbox'
+  | 'radio'
+  | 'ui-select-extended'
+  | 'repeating'
+  | 'group';
