@@ -7,7 +7,7 @@ import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 import { getFieldComponent } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
-import { OhriForm } from './types';
+import { OhriForm, OhriFormField } from './types';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
 
@@ -15,19 +15,25 @@ import LoadingIcon from '../components/loading/loading.component';
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
 
 const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
-  const [fields, setFields] = useState([]);
+  const [fields, setFields] = useState<Array<OhriFormField>>([]);
   const [currentProvider, setCurrentProvider] = useState();
-  const [location, setLocation] = useState(null);
+  const [location, setEncounterLocation] = useState(null);
   const [, patient] = useCurrentPatient();
   const session = useSessionUser();
   const initialValues = {};
   const encDate = new Date();
 
   useEffect(() => {
-    const allFormFields = [];
+    const allFormFields: Array<OhriFormField> = [];
     formJson.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values
-    allFormFields.forEach(field => (initialValues[field.id] = ''));
+    allFormFields.forEach(field => {
+      if (field.questionOptions.rendering == 'multicheckbox') {
+        initialValues[field.id] = [];
+      } else {
+        initialValues[field.id] = '';
+      }
+    });
     // prepare fields
     setFields(
       allFormFields.map(field => {
@@ -51,7 +57,7 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
 
   useEffect(() => {
     if (session) {
-      setLocation(session.sessionLocation);
+      setEncounterLocation(session.sessionLocation);
     }
   }, [session]);
 
@@ -76,6 +82,16 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
   };
 
   const handleFormSubmit = (values: Record<string, any>) => {
+    const obsForSubmission = [];
+    fields
+      .filter(field => !field.isHidden && field['obs'])
+      .forEach(field => {
+        if (Array.isArray(field['obs'])) {
+          obsForSubmission.push(...field['obs']);
+        } else {
+          obsForSubmission.push(field['obs']);
+        }
+      });
     const enc = {
       patient: patient.id,
       encounterDatetime: encDate,
@@ -87,7 +103,7 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
           encounterRole: '240b26f9-dd88-4172-823d-4a8bfeb7841f',
         },
       ],
-      obs: fields.filter(field => !field.isHidden && field['obs']).map(field => field['obs']),
+      obs: obsForSubmission,
     };
     const ac = new AbortController();
     saveEncounter(ac, enc, null).then(response => {
@@ -124,6 +140,7 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
               value={{
                 values: props.values,
                 setFieldValue: props.setFieldValue,
+                setEncounterLocation: setEncounterLocation,
                 encounterContext: {
                   patient: patient,
                   encounter: null,
@@ -138,13 +155,16 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
                 <>
                   <PatientBanner patient={patient} />
                   <div className={styles.contentWrapper}>
-                    {fields.map((question, index) =>
-                      React.createElement(getFieldComponent(question.questionOptions.rendering), {
-                        question: question,
-                        onChange: onFieldChange,
-                        key: index,
-                      }),
-                    )}
+                    {fields.map((question, index) => {
+                      const component = getFieldComponent(question.questionOptions.rendering);
+                      if (component) {
+                        return React.createElement(component, {
+                          question: question,
+                          onChange: onFieldChange,
+                          key: index,
+                        });
+                      }
+                    })}
                   </div>
                 </>
               )}

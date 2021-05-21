@@ -1,12 +1,13 @@
 export interface QuestionOptionType {
-  rendering: string;
-  concept: string;
+  rendering: RenderType;
+  concept?: string;
   max?: string;
   min?: string;
   showDate?: string;
   conceptMappings?: Array<Object>;
   answers?: Array<Object>;
   weeksList?: string;
+  locationTag?: string;
 }
 
 export interface OhriAnswerOptionType {
@@ -19,8 +20,10 @@ export interface OhriFormField {
   type: string;
   questionOptions: QuestionOptionType;
   id: string;
-  hide: string;
+  hide?: string;
   isHidden?: boolean;
+  dependant?: any;
+  hideDeterminant?: string;
 }
 
 export interface OhriFormSection {
@@ -49,8 +52,10 @@ export type RenderType =
   | 'text'
   | 'date'
   | 'number'
-  | 'multiCheckbox'
+  | 'multicheckbox'
   | 'radio'
   | 'ui-select-extended'
   | 'repeating'
-  | 'group';
+  | 'group'
+  | 'content-switcher'
+  | 'encounter-location';

@@ -8,7 +8,6 @@ import { getConcept } from '../../../ohri-form.resource';
 
 const OHRIRadioObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
-  const radioContent = question.questionOptions.answers;
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [isBoolean, setIsBoolean] = useState(false);
 
@@ -45,7 +44,7 @@ const OHRIRadioObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ qu
           name={question.id}
           valueSelected={field.value}
           onChange={handleChange}>
-          {radioContent.map((answer: OhriAnswerOptionType, index) => {
+          {question.questionOptions.answers.map((answer: OhriAnswerOptionType, index) => {
             return <RadioButton id={answer.label} labelText={answer.label} value={answer.concept} key={index} />;
           })}
         </RadioButtonGroup>

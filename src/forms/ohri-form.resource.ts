@@ -20,3 +20,9 @@ export function saveEncounter(abortController: AbortController, payload, encount
 export function getConcept(conceptUuid: string, v: string): Observable<any> {
   return openmrsObservableFetch(`/ws/rest/v1/concept/${conceptUuid}?v=${v}`).pipe(map(response => response['data']));
 }
+
+export function getLocationsByTag(tag: string): Observable<{ uuid: string; display: string }[]> {
+  return openmrsObservableFetch(`/ws/rest/v1/location?tag=${tag}&v=custom:(uuid,display)`).pipe(
+    map(({ data }) => data['results']),
+  );
+}
