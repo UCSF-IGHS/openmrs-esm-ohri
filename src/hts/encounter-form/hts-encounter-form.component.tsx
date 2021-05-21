@@ -30,6 +30,7 @@ import { getConcept, getHTSLocations, saveHTSEncounter } from './hts-encounter-f
 import { Concept, HSTEncounter } from '../../api/types';
 import LoadingIcon from '../../components/loading/loading.component';
 import { IdentifierGenerator } from '../../components/identifier-generator/identifier-generator.component';
+import { PatientBanner } from '../../components/patient-banner/patient-banner.component';
 
 // TODO: Remove hardcoded values, configure through module config
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
@@ -46,8 +47,11 @@ const possibleHSTCodedAnswers = [
   '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
 ];
 
-const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ closeWorkspace, state }) => {
-  const config = useConfig();
+const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patientUuid: string }> = (
+  { closeWorkspace, patientUuid },
+  props,
+) => {
+  // const config = useConfig();
   // TODO: Configure all metadata through the config
   // const { encounterType, concepts } = config['htsEntryFormConfig'];
   const [, patient] = useCurrentPatient();
@@ -127,12 +131,12 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
     });
 
     let sub4 = null;
-    if (state.encounter) {
-      sub4 = openmrsObservableFetch(
-        `/ws/rest/v1/encounter/${state.encounter}?v=${htsEncounterRepresentation}`,
-      ).subscribe(response => {
-        setEncounter(response.data);
-      });
+    if (encounter) {
+      sub4 = openmrsObservableFetch(`/ws/rest/v1/encounter/${encounter}?v=${htsEncounterRepresentation}`).subscribe(
+        response => {
+          setEncounter(response.data);
+        },
+      );
     }
     return () => {
       sub1.unsubscribe();
@@ -154,7 +158,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
   }, [testLocation]);
 
   useEffect(() => {
-    setIsLoading(!(state.encounter ? !!encounter && !!populationTypeConcept : !!populationTypeConcept));
+    setIsLoading(!(encounter ? !!encounter && !!populationTypeConcept : !!populationTypeConcept));
   }, [encounter, populationTypeConcept]);
 
   useEffect(() => {
@@ -301,8 +305,8 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
     }
     saveHTSEncounter(new AbortController(), enc).then(response => {
       if (response.ok) {
-        state.updateHTSList();
-        closeWorkspace();
+        // state.updateHTSList();
+        // closeWorkspace();
       }
     });
   };
@@ -363,8 +367,8 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
     }
     saveHTSEncounter(new AbortController(), encounter, encounter.uuid).then(response => {
       if (response.ok) {
-        state.updateHTSList();
-        closeWorkspace();
+        // state.updateHTSList();
+        // closeWorkspace();
       }
     });
   };
@@ -388,36 +392,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
       {patient && (
         <>
           <div className={styles.container}>
-            <div id="header-wrapper" className={styles.headerWrapper}>
-              <div className={`${styles.column} ${styles.demo}`}>
-                <div className={styles.row}>
-                  <span className={styles.name}>{getPatientNames()}</span>
-                </div>
-                <div className={`${styles.row} ${styles.details}`}>
-                  <span>
-                    {capitalize(patient.gender)} &middot; {age(patient.birthDate)} &middot;{' '}
-                    {dayjs(patient.birthDate).format('DD - MMM - YYYY')}
-                  </span>
-                </div>
-              </div>
-              <div className={`${styles.column} ${styles.weight}`}>
-                <div className={`${styles.row} ${styles.weightLabel}`}>
-                  <span>Weight</span>
-                </div>
-                <div className={styles.row}>
-                  <span className={styles.weightValue}>60</span>
-                  <span className={styles.weightUnit}>kg</span>
-                </div>
-              </div>
-              <div className={`${styles.column} ${styles.allergies}`}>
-                <div className={styles.row}>
-                  <span className={styles.allergiesLabel}>Allergies</span>
-                </div>
-                <div className={styles.row}>
-                  <span className={styles.allergiesValue}>Peanuts, Fructose</span>
-                </div>
-              </div>
-            </div>
+            <PatientBanner patient={patient} />
             {isLoading ? (
               <LoadingIcon />
             ) : (

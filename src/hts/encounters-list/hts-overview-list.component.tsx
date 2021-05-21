@@ -31,11 +31,11 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const launchHTSForm = () => {
-    switchTo('workspace', htsFormSlot, {
-      title: t('htsForm', 'HIV Test'),
-      state: { updateHTSList: forceComponentUpdate },
-    });
-    attach(htsFormSlot, 'hts-encounter-form-ext');
+    // switchTo('workspace', htsFormSlot, {
+    //   title: t('htsForm', 'HIV Test'),
+    //   state: { updateHTSList: forceComponentUpdate },
+    // });
+    attach('patient-chart-workspace-slot', 'hts-encounter-form-ext');
   };
   const editHTSEncounter = encounterUuid => {
     switchTo('workspace', htsFormSlot, {

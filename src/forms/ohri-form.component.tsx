@@ -8,6 +8,8 @@ import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@open
 import { getFieldComponent } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { OhriForm } from './types';
+import { PatientBanner } from '../components/patient-banner/patient-banner.component';
+import LoadingIcon from '../components/loading/loading.component';
 
 // fallback encounter type
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
@@ -130,20 +132,31 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
                   date: encDate,
                 },
               }}>
-              {fields.map((question, index) =>
-                React.createElement(getFieldComponent(question.questionOptions.rendering), {
-                  question: question,
-                  onChange: onFieldChange,
-                  key: index,
-                }),
+              {!patient ? (
+                <LoadingIcon />
+              ) : (
+                <>
+                  <PatientBanner patient={patient} />
+                  <div className={styles.contentWrapper}>
+                    {fields.map((question, index) =>
+                      React.createElement(getFieldComponent(question.questionOptions.rendering), {
+                        question: question,
+                        onChange: onFieldChange,
+                        key: index,
+                      }),
+                    )}
+                  </div>
+                </>
               )}
             </OHRIFormContext.Provider>
-            <ButtonSet>
-              <Button kind="secondary">Cancel</Button>
-              <Button kind="primary" type="submit">
-                Save
-              </Button>
-            </ButtonSet>
+            <div className={styles.submit}>
+              <ButtonSet>
+                <Button kind="secondary">Cancel</Button>
+                <Button kind="primary" type="submit">
+                  Save
+                </Button>
+              </ButtonSet>
+            </div>
           </Form>
         )}
       </Formik>

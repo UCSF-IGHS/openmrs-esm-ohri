@@ -1,4 +1,9 @@
-// OHRI FORM
-.ohriformcontainer{
-    margin: 100px 20px 20px 20px;
+.ohriformcontainer {
+    margin: 3rem 0px 20px 0px;
+    height: 100%;
+    font-family: "IBM Plex Sans";
+}
+
+.contentWrapper, .submit {
+    margin: 0px 20px 0px 20px;
 }
