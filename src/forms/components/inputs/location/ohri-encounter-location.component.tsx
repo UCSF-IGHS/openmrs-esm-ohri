@@ -27,7 +27,7 @@ export const OHRIEncounterLocationPicker: React.FC<{ question: OhriFormField; on
   }, []);
 
   return (
-    <div className={styles.textContainer}>
+    <div className={styles.formInputField}>
       <Dropdown
         id={question.id}
         titleText={question.label}

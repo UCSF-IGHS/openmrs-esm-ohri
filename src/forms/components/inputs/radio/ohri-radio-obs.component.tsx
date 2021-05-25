@@ -37,7 +37,7 @@ const OHRIRadioObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ qu
   }, [question.questionOptions.concept]);
 
   return (
-    <div className={styles.textContainer}>
+    <div>
       <FormGroup legendText={question.label}>
         <RadioButtonGroup
           defaultSelected="default-selected"

@@ -3,6 +3,7 @@ import { OhriFormField } from '../../../types';
 import { DatePicker, DatePickerInput } from 'carbon-components-react';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
+import styles from '../_input.scss';
 
 const OHRIDateObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
@@ -23,7 +24,7 @@ const OHRIDateObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ que
   };
 
   return (
-    <div>
+    <div className={styles.formField}>
       <DatePicker datePickerType="single" onChange={onDateChange}>
         <DatePickerInput
           id="date-picker-calendar-id"

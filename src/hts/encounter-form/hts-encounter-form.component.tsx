@@ -24,8 +24,6 @@ import {
   useCurrentPatient,
 } from '@openmrs/esm-framework';
 import { htsEncounterRepresentation, htsFormSlot } from '../encounters-list/hts-overview-list.component';
-import { capitalize, result } from 'lodash';
-import dayjs from 'dayjs';
 import { getConcept, getHTSLocations, saveHTSEncounter } from './hts-encounter-form.resource';
 import { Concept, HSTEncounter } from '../../api/types';
 import LoadingIcon from '../../components/loading/loading.component';
@@ -47,10 +45,12 @@ const possibleHSTCodedAnswers = [
   '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
 ];
 
-const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patientUuid: string }> = (
-  { closeWorkspace, patientUuid },
-  props,
-) => {
+const HtsEncounterForm: React.FC<{
+  closeWorkspace: () => {};
+  state: any;
+  patientUuid: string;
+  encounterUuid: string;
+}> = ({ closeWorkspace, patientUuid, state, encounterUuid }, props) => {
   // const config = useConfig();
   // TODO: Configure all metadata through the config
   // const { encounterType, concepts } = config['htsEntryFormConfig'];
@@ -131,8 +131,8 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patient
     });
 
     let sub4 = null;
-    if (encounter) {
-      sub4 = openmrsObservableFetch(`/ws/rest/v1/encounter/${encounter}?v=${htsEncounterRepresentation}`).subscribe(
+    if (encounterUuid) {
+      sub4 = openmrsObservableFetch(`/ws/rest/v1/encounter/${encounterUuid}?v=${htsEncounterRepresentation}`).subscribe(
         response => {
           setEncounter(response.data);
         },
@@ -179,13 +179,14 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patient
       setPopulationTypeValueGroupObs(encounter.obs.filter(obs => obs.concept.uuid === populationTypeConceptUuid));
 
       const testOneObs = encounter.obs.find(obs => obs.concept.uuid === testOneConceptUuid);
-      setTestOneResult({
-        concept: testOneObs.value.uuid,
-        name:
-          testOneObs.value.uuid === '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-            ? 'Not Performed'
-            : testOneObs.value.name.name,
-      });
+      testOneObs &&
+        setTestOneResult({
+          concept: testOneObs.value.uuid,
+          name:
+            testOneObs.value.uuid === '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+              ? 'Not Performed'
+              : testOneObs.value.name.name,
+        });
 
       const confirmatoryTestObs = encounter.obs.find(obs => obs.concept.uuid === confirmatoryTestConceptUuid);
       if (confirmatoryTestObs) {
@@ -207,10 +208,6 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patient
       return testOneResult;
     }
     return null;
-  };
-
-  const getPatientNames = () => {
-    return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
   };
 
   const recordPopulationTypeObs = (checked, id, event) => {
@@ -305,8 +302,10 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patient
     }
     saveHTSEncounter(new AbortController(), enc).then(response => {
       if (response.ok) {
-        // state.updateHTSList();
-        // closeWorkspace();
+        if (state.updateParent) {
+          state.updateParent();
+        }
+        closeWorkspace();
       }
     });
   };
@@ -367,8 +366,10 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patient
     }
     saveHTSEncounter(new AbortController(), encounter, encounter.uuid).then(response => {
       if (response.ok) {
-        // state.updateHTSList();
-        // closeWorkspace();
+        if (state.updateParent) {
+          state.updateParent();
+        }
+        closeWorkspace();
       }
     });
   };
@@ -595,7 +596,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any; patient
               <Button kind="secondary" onClick={() => closeWorkspace()}>
                 Cancel
               </Button>
-              <Button kind="primary" type="sumit">
+              <Button kind="primary" type="submit">
                 Save &amp; Close
               </Button>
             </ButtonSet>

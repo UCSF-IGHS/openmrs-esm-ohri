@@ -51,6 +51,13 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
+      {
+        id: 'ohri-forms-view-ext',
+        load: getAsyncLifecycle(() => import('./hts/encounters-list/ohri-form-view.component'), {
+          featureName: 'ohri-forms',
+          moduleName,
+        }),
+      },
     ],
   };
 }

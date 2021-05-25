@@ -9,6 +9,8 @@ import { attach, openmrsFetch, switchTo } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import dayjs from 'dayjs';
 import EmptyState from '../../components/empty-state/empty-state.component';
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import HTSForm from '../../forms/test-forms/hts-form';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -31,18 +33,17 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const launchHTSForm = () => {
-    // switchTo('workspace', htsFormSlot, {
-    //   title: t('htsForm', 'HIV Test'),
-    //   state: { updateHTSList: forceComponentUpdate },
-    // });
-    attach('patient-chart-workspace-slot', 'hts-encounter-form-ext');
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: 'HTS Entry form',
+      state: { updateParent: forceComponentUpdate, formJson: HTSForm },
+    });
   };
   const editHTSEncounter = encounterUuid => {
-    switchTo('workspace', htsFormSlot, {
-      title: t('htsForm', 'HIV Test'),
-      state: { updateHTSList: forceComponentUpdate, encounter: encounterUuid },
+    launchOHRIWorkSpace('hts-encounter-form-ext', {
+      title: 'HTS Entry form',
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate },
     });
-    attach(htsFormSlot, 'hts-encounter-form-ext');
   };
   const tableHeaders = [
     { key: 'date', header: 'Date', isSortable: true },

@@ -14,7 +14,13 @@ import LoadingIcon from '../components/loading/loading.component';
 // fallback encounter type
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
 
-const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
+interface OHRIFormProps {
+  formJson: OhriForm;
+  onSubmit?: any;
+  onCancel?: any;
+}
+
+const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, onSubmit, onCancel }) => {
   const [fields, setFields] = useState<Array<OhriFormField>>([]);
   const [currentProvider, setCurrentProvider] = useState();
   const [location, setEncounterLocation] = useState(null);
@@ -108,7 +114,9 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
     const ac = new AbortController();
     saveEncounter(ac, enc, null).then(response => {
       if (response.ok) {
-        // TODO: handle routing
+        if (onSubmit) {
+          onSubmit();
+        }
       }
     });
   };
@@ -171,7 +179,9 @@ const OHRIForm: React.FC<{ formJson: OhriForm }> = ({ formJson }) => {
             </OHRIFormContext.Provider>
             <div className={styles.submit}>
               <ButtonSet>
-                <Button kind="secondary">Cancel</Button>
+                <Button kind="secondary" onClick={() => (onCancel ? onCancel() : null)}>
+                  Cancel
+                </Button>
                 <Button kind="primary" type="submit">
                   Save
                 </Button>

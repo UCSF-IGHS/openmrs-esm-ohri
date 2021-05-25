@@ -1,8 +1,13 @@
-// OHRITextComponent
-.textContainer, .numberInputWrapper {
-    padding-bottom: 20px;
+.formField {
+    padding-bottom: 1rem;
+}
+
+.formInputField {
+    @extend .formField;
+    max-width: 22rem;
 }
 
 .numberInputWrapper :global(.bx--number) {
-    width: 100%;
+    @extend .formField;
+    width: 15rem;
 }
