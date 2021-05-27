@@ -10,6 +10,7 @@ import { DataTableSkeleton } from 'carbon-components-react';
 import dayjs from 'dayjs';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
 import HTSForm from '../../forms/test-forms/hts-form';
 
 interface HtsOverviewListProps {
@@ -39,10 +40,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     });
   };
   const editHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('hts-encounter-form-ext', {
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: 'HTS Entry form',
       encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate },
+      state: { updateParent: forceComponentUpdate, formJson: HTSForm },
     });
   };
   const tableHeaders = [

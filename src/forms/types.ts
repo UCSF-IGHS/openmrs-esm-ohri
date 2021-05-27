@@ -1,3 +1,5 @@
+import { EncounterContext } from './ohri-form-context';
+
 export interface QuestionOptionType {
   rendering: RenderType;
   concept?: string;
@@ -59,3 +61,16 @@ export type RenderType =
   | 'group'
   | 'content-switcher'
   | 'encounter-location';
+
+export interface SubmissionHandler {
+  /**
+   * Context: An abstraction on how submission values are duly orchestrated.
+   *         This the `obs` handler, it should be able to handle all cases
+   *         based on the question's datatype.
+   * @param context
+   * @param value
+   */
+  getValue: (context: EncounterContext, value: any, rendering?: RenderType) => {};
+
+  getInitialValue: (encounter: any, field: OhriFormField) => {};
+}

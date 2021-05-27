@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button, ButtonSet } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
@@ -7,9 +7,11 @@ import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 import { getFieldComponent } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
-import { OhriForm, OhriFormField } from './types';
+import { OhriForm, OhriFormField, OhriFormSection } from './types';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
+import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
+import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from './submission-handlers/base-handlers';
 
 // fallback encounter type
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
@@ -18,28 +20,45 @@ interface OHRIFormProps {
   formJson: OhriForm;
   onSubmit?: any;
   onCancel?: any;
+  encounterUuid?: string;
 }
 
-const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, onSubmit, onCancel }) => {
+const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, onCancel }) => {
   const [fields, setFields] = useState<Array<OhriFormField>>([]);
-  const [currentProvider, setCurrentProvider] = useState();
+  const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
   const [, patient] = useCurrentPatient();
   const session = useSessionUser();
-  const initialValues = {};
+  const [initialValues, setInitialValues] = useState({});
   const encDate = new Date();
+  const [encounter, setEncounter] = useState(null);
 
   useEffect(() => {
+    const form = JSON.parse(JSON.stringify(formJson));
     const allFormFields: Array<OhriFormField> = [];
-    formJson.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
+    const tempInitVals = {};
+    form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values
-    allFormFields.forEach(field => {
-      if (field.questionOptions.rendering == 'multicheckbox') {
-        initialValues[field.id] = [];
-      } else {
-        initialValues[field.id] = '';
-      }
-    });
+    if (encounter) {
+      allFormFields.forEach(field => {
+        if (field.type == 'obs') {
+          tempInitVals[field.id] = ObsSubmissionHandler.getInitialValue(encounter, field);
+        } else if (field.type == 'encounterLocation') {
+          tempInitVals[field.id] = EncounterLocationSubmissionHandler.getInitialValue(encounter, field);
+        } else {
+          tempInitVals[field.id] = '';
+        }
+      });
+      setEncounterLocation(encounter.location);
+    } else {
+      allFormFields.forEach(field => {
+        if (field.questionOptions.rendering == 'multicheckbox') {
+          tempInitVals[field.id] = [];
+        } else {
+          tempInitVals[field.id] = '';
+        }
+      });
+    }
     // prepare fields
     setFields(
       allFormFields.map(field => {
@@ -51,21 +70,29 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, onSubmit, onCancel }) => 
         return field;
       }),
     );
-
-    const sub = openmrsObservableFetch('/ws/rest/v1/appui/session').subscribe((user: any) => {
-      setCurrentProvider(user.data?.currentProvider?.uuid);
-    });
-
-    return () => {
-      sub.unsubscribe();
-    };
-  }, []);
+    setInitialValues(tempInitVals);
+  }, [encounter]);
 
   useEffect(() => {
     if (session) {
-      setEncounterLocation(session.sessionLocation);
+      if (!encounterUuid) {
+        setEncounterLocation(session.sessionLocation);
+      }
+      setCurrentProvider(session.currentProvider.uuid);
     }
   }, [session]);
+
+  useEffect(() => {
+    let subscription;
+    if (encounterUuid) {
+      subscription = openmrsObservableFetch(
+        `/ws/rest/v1/encounter/${encounterUuid}?v=${htsEncounterRepresentation}`,
+      ).subscribe(response => {
+        setEncounter(response.data);
+      });
+    }
+    return () => subscription?.unsubscribe();
+  }, [encounterUuid]);
 
   const evaluateHideExpression = (field, determinantValue, allFields) => {
     const allFieldsKeys = allFields.map(f => f.id);
@@ -98,21 +125,43 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, onSubmit, onCancel }) => 
           obsForSubmission.push(field['obs']);
         }
       });
-    const enc = {
-      patient: patient.id,
-      encounterDatetime: encDate,
-      location: location.uuid,
-      encounterType: HTSEncounterType,
-      encounterProviders: [
-        {
-          provider: currentProvider,
-          encounterRole: '240b26f9-dd88-4172-823d-4a8bfeb7841f',
-        },
-      ],
-      obs: obsForSubmission,
-    };
+
+    let encounterForSubmission = {};
+    if (encounter) {
+      Object.assign(encounterForSubmission, encounter);
+      encounterForSubmission['location'] = location.uuid;
+      // update encounter providers
+      const hasCurrentProvider =
+        encounterForSubmission['encounterProviders'].findIndex(
+          encProvider => encProvider.provider.uuid == currentProvider,
+        ) !== -1;
+      if (!hasCurrentProvider) {
+        encounterForSubmission['encounterProviders'] = [
+          ...encounterForSubmission['encounterProviders'],
+          {
+            provider: currentProvider,
+            encounterRole: '240b26f9-dd88-4172-823d-4a8bfeb7841f',
+          },
+        ];
+      }
+      encounterForSubmission['obs'] = obsForSubmission;
+    } else {
+      encounterForSubmission = {
+        patient: patient.id,
+        encounterDatetime: encDate,
+        location: location.uuid,
+        encounterType: HTSEncounterType,
+        encounterProviders: [
+          {
+            provider: currentProvider,
+            encounterRole: '240b26f9-dd88-4172-823d-4a8bfeb7841f',
+          },
+        ],
+        obs: obsForSubmission,
+      };
+    }
     const ac = new AbortController();
-    saveEncounter(ac, enc, null).then(response => {
+    saveEncounter(ac, encounterForSubmission, encounterUuid).then(response => {
       if (response.ok) {
         if (onSubmit) {
           onSubmit();
@@ -132,10 +181,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, onSubmit, onCancel }) => 
       setFields(fields_temp);
     }
   };
-
   return (
     <div className={styles.ohriformcontainer}>
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         validationSchema={Yup.object({})}
         onSubmit={(values, { setSubmitting }) => {
@@ -149,11 +198,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, onSubmit, onCancel }) => 
                 values: props.values,
                 setFieldValue: props.setFieldValue,
                 setEncounterLocation: setEncounterLocation,
+                fields: fields,
                 encounterContext: {
                   patient: patient,
-                  encounter: null,
+                  encounter: encounter,
                   location: location,
-                  sessionMode: 'enter',
+                  sessionMode: encounterUuid ? 'edit' : 'enter',
                   date: encDate,
                 },
               }}>

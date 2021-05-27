@@ -10,28 +10,40 @@ export const OHRIMultiSelectObs: React.FC<{ question: OhriFormField; onChange: a
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
 
   const handleCheckboxChange = (checked, id, event) => {
-    if (field.value.includes(id)) {
+    if (!question['obs']) {
+      question['obs'] = [];
+    }
+
+    if (checked) {
+      const obs = question['obs'].find(o => o.value.uuid == id);
+      setFieldValue(question.id, [...field.value, id]);
+      if (obs && obs.voided) {
+        obs.voided = false;
+      } else {
+        question['obs'].push({
+          person: encounterContext.patient.id,
+          obsDatetime: encounterContext.date,
+          concept: question.questionOptions.concept,
+          location: encounterContext.location,
+          order: null,
+          groupMembers: [],
+          voided: false,
+          value: id,
+        });
+      }
+    } else {
       setFieldValue(
         question.id,
         field.value.filter(value => value !== id),
       );
-    } else {
-      setFieldValue(question.id, [...field.value, id]);
+      const obs = question['obs'].find(o => o.value.uuid == id);
+      if (obs && encounterContext.sessionMode == 'edit') {
+        obs.voided = true;
+      } else {
+        question['obs'] = question['obs'].filter(o => o.value !== id);
+      }
     }
   };
-
-  useEffect(() => {
-    question['obs'] = field.value.map(value => ({
-      person: encounterContext.patient.id,
-      obsDatetime: encounterContext.date,
-      concept: question.questionOptions.concept,
-      location: encounterContext.location,
-      order: null,
-      groupMembers: [],
-      voided: false,
-      value: value,
-    }));
-  }, [field.value]);
 
   return (
     <div>
@@ -43,6 +55,7 @@ export const OHRIMultiSelectObs: React.FC<{ question: OhriFormField; onChange: a
             value={option.concept}
             key={index}
             onChange={handleCheckboxChange}
+            checked={field.value.includes(option.concept)}
           />
         ))}
       </FormGroup>

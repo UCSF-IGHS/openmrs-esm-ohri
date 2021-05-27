@@ -6,6 +6,7 @@ type OHRIFormContextProps = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   setEncounterLocation: any;
   encounterContext: EncounterContext;
+  fields: any;
 };
 
 export interface EncounterContext {

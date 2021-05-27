@@ -14,23 +14,29 @@ const OHRITextObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ que
     if (previousValue !== field.value) {
       onChange(question.id, field.value);
     }
-    if (field.value) {
-      question['obs'] = getObs();
+    if (question['obs']) {
+      if (encounterContext.sessionMode == 'edit' && !field.value) {
+        question['obs'].voided = true;
+      } else if (!field.value) {
+        question['obs'] = undefined;
+      } else {
+        question['obs'].value = field.value;
+        question['obs'].voided = false;
+      }
+    } else if (field.value) {
+      question['obs'] = {
+        person: encounterContext.patient.id,
+        obsDatetime: encounterContext.date,
+        concept: question.questionOptions.concept,
+        location: encounterContext.location,
+        order: null,
+        groupMembers: [],
+        voided: false,
+        value: field.value,
+      };
     }
   };
 
-  const getObs = () => {
-    return {
-      person: encounterContext.patient.id,
-      obsDatetime: encounterContext.date,
-      concept: question.questionOptions.concept,
-      location: encounterContext.location,
-      order: null,
-      groupMembers: [],
-      voided: false,
-      value: field.value,
-    };
-  };
   return (
     !question.isHidden && (
       <div className={styles.textContainer}>

@@ -77,11 +77,11 @@ const HTSForm: OhriForm = {
                 answers: [
                   {
                     label: 'yes',
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
                   },
                   {
                     label: 'no',
-                    concept: '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
                   },
                 ],
               },
@@ -303,6 +303,7 @@ const HTSForm: OhriForm = {
                 ],
               },
               id: 'hiv-test-one',
+              hide: 'informed-consent == 0d8a135b-0acf-47f3-a51c-77aefe7787db',
             },
           ],
         },

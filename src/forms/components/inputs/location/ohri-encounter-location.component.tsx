@@ -9,7 +9,7 @@ import { createErrorHandler } from '@openmrs/esm-framework';
 
 export const OHRIEncounterLocationPicker: React.FC<{ question: OhriFormField; onChange: any }> = ({ question }) => {
   const [field, meta] = useField(question.id);
-  const { setEncounterLocation } = React.useContext(OHRIFormContext);
+  const { setEncounterLocation, setFieldValue } = React.useContext(OHRIFormContext);
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export const OHRIEncounterLocationPicker: React.FC<{ question: OhriFormField; on
         itemToString={item => item.display}
         selectedItem={field.value}
         onChange={({ selectedItem }) => {
+          setFieldValue(question.id, selectedItem);
           setEncounterLocation(selectedItem);
         }}
       />

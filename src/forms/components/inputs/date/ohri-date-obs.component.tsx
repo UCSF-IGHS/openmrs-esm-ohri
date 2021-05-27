@@ -11,16 +11,25 @@ const OHRIDateObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ que
   const onDateChange = ([date]) => {
     setFieldValue(question.id, date);
     onChange(question.id, date);
-    question['obs'] = {
-      person: encounterContext.patient.id,
-      obsDatetime: encounterContext.date,
-      concept: question.questionOptions.concept,
-      location: encounterContext.location,
-      order: null,
-      groupMembers: [],
-      voided: false,
-      value: date,
-    };
+    if (question['obs']) {
+      if (encounterContext.sessionMode == 'edit' && !date) {
+        question['obs'].voided = true;
+      } else {
+        question['obs'].value = date;
+        question['obs'].voided = false;
+      }
+    } else {
+      question['obs'] = {
+        person: encounterContext.patient.id,
+        obsDatetime: encounterContext.date,
+        concept: question.questionOptions.concept,
+        location: encounterContext.location,
+        order: null,
+        groupMembers: [],
+        voided: false,
+        value: date,
+      };
+    }
   };
 
   return (
