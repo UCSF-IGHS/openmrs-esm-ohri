@@ -1,11 +1,11 @@
 import React from 'react';
-import { OhriFormField } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import { DatePicker, DatePickerInput } from 'carbon-components-react';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 
-const OHRIDateObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
+const OHRIDateObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const onDateChange = ([date]) => {

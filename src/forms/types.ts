@@ -1,26 +1,38 @@
 import { EncounterContext } from './ohri-form-context';
 
-export interface QuestionOptionType {
-  rendering: RenderType;
-  concept?: string;
-  max?: string;
-  min?: string;
-  showDate?: string;
-  conceptMappings?: Array<Object>;
-  answers?: Array<Object>;
-  weeksList?: string;
-  locationTag?: string;
+/**
+ * Defines logic that processes field submission and value binding while in edit mode
+ */
+export interface SubmissionHandler {
+  /**
+   * Abstraction of the extraction of initial field value from an `encounter`
+   */
+  getInitialValue: (encounter: any, field: OHRIFormField) => {};
+
+  /**
+   * Handles field submission.
+   *
+   * @should Construct a new submission value, edit and handle deletion by voiding.
+   * @returns `submissionValue`
+   */
+  handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {};
+}
+export interface OHRIFormSchema {
+  name: string;
+  pages: Array<OHRIFormPage>;
+  processor: string;
+  uuid: string;
+  referencedForms: [];
 }
 
-export interface OhriAnswerOptionType {
+export interface OHRIFormPage {
   label: string;
-  concept: string;
+  sections: Array<OHRIFormSection>;
 }
-
-export interface OhriFormField {
+export interface OHRIFormField {
   label: string;
   type: string;
-  questionOptions: QuestionOptionType;
+  questionOptions: OHRIFormQuestionOptions;
   id: string;
   hide?: string;
   isHidden?: boolean;
@@ -28,23 +40,22 @@ export interface OhriFormField {
   hideDeterminant?: string;
 }
 
-export interface OhriFormSection {
+export interface OHRIFormSection {
   label: string;
   isExpanded: string;
-  questions: Array<OhriFormField>;
+  questions: Array<OHRIFormField>;
 }
 
-export interface OhriFormPage {
-  label: string;
-  sections: Array<OhriFormSection>;
-}
-
-export interface OhriForm {
-  name: string;
-  pages: Array<OhriFormPage>;
-  processor: string;
-  uuid: string;
-  referencedForms: [];
+export interface OHRIFormQuestionOptions {
+  rendering: RenderType;
+  concept?: string;
+  max?: string;
+  min?: string;
+  showDate?: string;
+  conceptMappings?: Array<Record<any, any>>;
+  answers?: Array<Record<any, any>>;
+  weeksList?: string;
+  locationTag?: string;
 }
 
 export type SessionMode = 'edit' | 'enter';
@@ -61,16 +72,3 @@ export type RenderType =
   | 'group'
   | 'content-switcher'
   | 'encounter-location';
-
-export interface SubmissionHandler {
-  /**
-   * Context: An abstraction on how submission values are duly orchestrated.
-   *         This the `obs` handler, it should be able to handle all cases
-   *         based on the question's datatype.
-   * @param context
-   * @param value
-   */
-  getValue: (context: EncounterContext, value: any, rendering?: RenderType) => {};
-
-  getInitialValue: (encounter: any, field: OhriFormField) => {};
-}

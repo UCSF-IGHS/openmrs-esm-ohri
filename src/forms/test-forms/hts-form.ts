@@ -1,6 +1,6 @@
-import { OhriForm } from './../types';
+import { OHRIFormSchema } from './../types';
 
-const HTSForm: OhriForm = {
+const HTSForm: OHRIFormSchema = {
   name: 'HTS Form v1.0',
   pages: [
     {

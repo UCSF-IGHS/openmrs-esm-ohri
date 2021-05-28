@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { NumberInput } from 'carbon-components-react';
-import { OhriFormField } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import './ohri-numeric-obs.scss';
 
-const OHRINumberObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
+const OHRINumberObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
   const { encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();

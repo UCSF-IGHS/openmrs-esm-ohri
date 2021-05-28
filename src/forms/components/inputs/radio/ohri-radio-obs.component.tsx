@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FormGroup, RadioButtonGroup, RadioButton } from 'carbon-components-react';
-import { OhriFormField, OhriAnswerOptionType } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { getConcept } from '../../../ohri-form.resource';
 
-const OHRIRadioObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
+const OHRIRadioObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [isBoolean, setIsBoolean] = useState(false);
@@ -62,7 +62,7 @@ const OHRIRadioObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ qu
           name={question.id}
           valueSelected={field.value}
           onChange={handleChange}>
-          {question.questionOptions.answers.map((answer: OhriAnswerOptionType, index) => {
+          {question.questionOptions.answers.map((answer, index) => {
             return (
               <RadioButton
                 id={`${question.id}-${answer.label}`}

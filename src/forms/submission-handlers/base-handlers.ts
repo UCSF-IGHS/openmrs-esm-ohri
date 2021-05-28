@@ -1,14 +1,14 @@
 import { EncounterContext } from '../ohri-form-context';
-import { OhriFormField, RenderType, SubmissionHandler } from '../types';
+import { OHRIFormField, SubmissionHandler } from '../types';
 
 /**
  * Obs handler
  */
 export const ObsSubmissionHandler: SubmissionHandler = {
-  getValue: (context: EncounterContext, value: any, rendering: RenderType) => {
+  handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {
     return null;
   },
-  getInitialValue: (encounter: any, field: OhriFormField) => {
+  getInitialValue: (encounter: any, field: OHRIFormField) => {
     const obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
     if (obs) {
       field['obs'] = obs;
@@ -30,10 +30,10 @@ export const ObsSubmissionHandler: SubmissionHandler = {
  * Encounter location handler
  */
 export const EncounterLocationSubmissionHandler: SubmissionHandler = {
-  getValue: (context: EncounterContext, value: any) => {
+  handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {
     return null;
   },
-  getInitialValue: (encounter: any, field: OhriFormField) => {
+  getInitialValue: (encounter: any, field: OHRIFormField) => {
     return {
       display: encounter.location.name,
       uuid: encounter.location.uuid,

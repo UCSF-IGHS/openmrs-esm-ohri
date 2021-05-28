@@ -7,24 +7,24 @@ import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 import { getFieldComponent } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
-import { OhriForm, OhriFormField, OhriFormSection } from './types';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from './submission-handlers/base-handlers';
+import { OHRIFormSchema, OHRIFormField } from './types';
 
 // fallback encounter type
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
 
 interface OHRIFormProps {
-  formJson: OhriForm;
+  formJson: OHRIFormSchema;
   onSubmit?: any;
   onCancel?: any;
   encounterUuid?: string;
 }
 
 const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, onCancel }) => {
-  const [fields, setFields] = useState<Array<OhriFormField>>([]);
+  const [fields, setFields] = useState<Array<OHRIFormField>>([]);
   const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
   const [, patient] = useCurrentPatient();
@@ -35,7 +35,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
-    const allFormFields: Array<OhriFormField> = [];
+    const allFormFields: Array<OHRIFormField> = [];
     const tempInitVals = {};
     form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values

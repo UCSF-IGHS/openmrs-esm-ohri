@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { FormGroup, ContentSwitcher, Switch } from 'carbon-components-react';
-import { OhriFormField, OhriAnswerOptionType } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 
-export const OHRIContentSwitcherObs: React.FC<{ question: OhriFormField; onChange: any }> = ({
+export const OHRIContentSwitcherObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({
   question,
   onChange,
 }) => {
@@ -38,7 +38,7 @@ export const OHRIContentSwitcherObs: React.FC<{ question: OhriFormField; onChang
     }
   };
   const selectedIndex = useMemo(
-    () => question.questionOptions.answers.findIndex((option: OhriAnswerOptionType) => option.concept == field.value),
+    () => question.questionOptions.answers.findIndex(option => option.concept == field.value),
     [field.value],
   );
   return (
@@ -46,7 +46,7 @@ export const OHRIContentSwitcherObs: React.FC<{ question: OhriFormField; onChang
       <div className={styles.textContainer}>
         <FormGroup legendText={question.label}>
           <ContentSwitcher onChange={handleChange} selectedIndex={selectedIndex}>
-            {question.questionOptions.answers.map((option: OhriAnswerOptionType, index) => (
+            {question.questionOptions.answers.map((option, index) => (
               <Switch name={option.concept} text={option.label} key={index} />
             ))}
           </ContentSwitcher>

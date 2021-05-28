@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'carbon-components-react';
-import { OhriFormField } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { getLocationsByTag } from '../../../ohri-form.resource';
 import { createErrorHandler } from '@openmrs/esm-framework';
 
-export const OHRIEncounterLocationPicker: React.FC<{ question: OhriFormField; onChange: any }> = ({ question }) => {
+export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question }) => {
   const [field, meta] = useField(question.id);
   const { setEncounterLocation, setFieldValue } = React.useContext(OHRIFormContext);
   const [locations, setLocations] = useState([]);

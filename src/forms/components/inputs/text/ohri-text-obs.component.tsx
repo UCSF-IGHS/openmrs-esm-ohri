@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { TextInput } from 'carbon-components-react';
-import { OhriFormField } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 
-const OHRITextObs: React.FC<{ question: OhriFormField; onChange: any }> = ({ question, onChange }) => {
+const OHRITextObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question, onChange }) => {
   const [field, meta] = useField(question.id);
   const { encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();

@@ -1,6 +1,6 @@
-import { OhriForm } from './../types';
+import { OHRIFormSchema } from './../types';
 
-const POCVitalsForm: OhriForm = {
+const POCVitalsForm: OHRIFormSchema = {
   name: 'POC Vitals v1.0',
   pages: [
     {

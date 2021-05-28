@@ -1,8 +1,8 @@
 import React from 'react';
-import { OhriFormField } from '../../../types';
+import { OHRIFormField } from '../../../types';
 import { Select, SelectItem, SelectItemGroup } from 'carbon-components-react';
 
-const OHRISelectObs: React.FC<{ questions: OhriFormField }> = ({ questions }) => {
+const OHRISelectObs: React.FC<{ questions: OHRIFormField }> = ({ questions }) => {
   return (
     <div>
       <Select id="s" defaultValue="Select Value" helperText="Kindly select Value">

@@ -1,6 +1,6 @@
-import { OhriForm } from './../types';
+import { OHRIFormSchema } from './../types';
 
-const HTSRestroForm: OhriForm = {
+const HTSRestroForm: OHRIFormSchema = {
   name: 'POC OHRI HTS Retrospective Form',
   pages: [
     {
