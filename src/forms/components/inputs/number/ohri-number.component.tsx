@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { NumberInput } from 'carbon-components-react';
-import { OHRIFormField } from '../../../types';
+import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
-import './ohri-numeric-obs.scss';
 
-const OHRINumberObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question, onChange }) => {
+const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
@@ -15,27 +14,7 @@ const OHRINumberObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ q
     if (previousValue !== field.value) {
       onChange(question.id, field.value);
     }
-    if (question['obs']) {
-      if (encounterContext.sessionMode == 'edit' && !field.value) {
-        question['obs'].voided = true;
-      } else if (!field.value) {
-        question['obs'] = undefined;
-      } else {
-        question['obs'].value = field.value;
-        question['obs'].voided = false;
-      }
-    } else if (field.value) {
-      question['obs'] = {
-        person: encounterContext.patient.id,
-        obsDatetime: encounterContext.date,
-        concept: question.questionOptions.concept,
-        location: encounterContext.location,
-        order: null,
-        groupMembers: [],
-        voided: false,
-        value: field.value,
-      };
-    }
+    question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
   };
 
   return (
@@ -57,4 +36,4 @@ const OHRINumberObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ q
   );
 };
 
-export default OHRINumberObs;
+export default OHRINumber;

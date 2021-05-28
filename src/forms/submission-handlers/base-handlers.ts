@@ -6,18 +6,44 @@ import { OHRIFormField, SubmissionHandler } from '../types';
  */
 export const ObsSubmissionHandler: SubmissionHandler = {
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {
-    return null;
+    if (field.questionOptions.rendering == 'multicheckbox') {
+      return multiSelectObsHandler(field, value, context);
+    }
+    if (field.value) {
+      if (field.questionOptions.rendering == 'radio') {
+        field.value.value = value;
+      } else if (context.sessionMode == 'edit' && !value) {
+        field.value.voided = true;
+      } else if (!value) {
+        field.value = undefined;
+      } else {
+        field.value.value = value;
+        field.value.voided = false;
+      }
+    } else {
+      field.value = {
+        person: context.patient.id,
+        obsDatetime: context.date,
+        concept: field.questionOptions.concept,
+        location: context.location,
+        order: null,
+        groupMembers: [],
+        voided: false,
+        value: value,
+      };
+    }
+    return field.value;
   },
   getInitialValue: (encounter: any, field: OHRIFormField) => {
     const obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
     if (obs) {
-      field['obs'] = obs;
+      field.value = obs;
       if (typeof obs.value == 'string' || typeof obs.value == 'number') {
         return field.questionOptions.rendering == 'date' ? new Date(obs.value) : obs.value;
       } else {
         if (field.questionOptions.rendering == 'multicheckbox') {
-          field['obs'] = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
-          return field['obs'].map(o => o.value.uuid);
+          field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
+          return field.value.map(o => o.value.uuid);
         }
         return obs.value.uuid;
       }
@@ -39,4 +65,40 @@ export const EncounterLocationSubmissionHandler: SubmissionHandler = {
       uuid: encounter.location.uuid,
     };
   },
+};
+
+///////////////////////////////
+// Helpers
+//////////////////////////////
+
+const multiSelectObsHandler = (field: OHRIFormField, value: any, context: EncounterContext) => {
+  const { checked, id } = value;
+  if (!field.value) {
+    field.value = [];
+  }
+  if (checked) {
+    const obs = field.value.find(o => o.value.uuid == id);
+    if (obs && obs.voided) {
+      obs.voided = false;
+    } else {
+      field.value.push({
+        person: context.patient.id,
+        obsDatetime: context.date,
+        concept: field.questionOptions.concept,
+        location: context.location,
+        order: null,
+        groupMembers: [],
+        voided: false,
+        value: id,
+      });
+    }
+  } else {
+    const obs = field.value.find(o => o.value.uuid == id);
+    if (obs && context.sessionMode == 'edit') {
+      obs.voided = true;
+    } else {
+      field.value = field.value.filter(o => o.value !== id);
+    }
+  }
+  return field.value;
 };

@@ -1,48 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { FormGroup, RadioButtonGroup, RadioButton } from 'carbon-components-react';
-import { OHRIFormField } from '../../../types';
+import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { getConcept } from '../../../ohri-form.resource';
 
-const OHRIRadioObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question, onChange }) => {
+const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [isBoolean, setIsBoolean] = useState(false);
+  const trueConceptUuid = '18316c68-b5f9-4986-b76d-9975cd0ebe31';
 
   const handleChange = value => {
     setFieldValue(question.id, value);
     onChange(question.id, value);
-    if (question['obs']) {
-      if (encounterContext.sessionMode == 'edit' && !field.value) {
-        question['obs'].voided = true;
-      } else if (!field.value) {
-        question['obs'] = undefined;
-      } else {
-        question['obs'].value = isBoolean ? value == '18316c68-b5f9-4986-b76d-9975cd0ebe31' : value;
-        question['obs'].voided = false;
-      }
-    } else {
-      question['obs'] = {
-        person: encounterContext.patient.id,
-        obsDatetime: encounterContext.date,
-        concept: question.questionOptions.concept,
-        location: encounterContext.location,
-        order: null,
-        groupMembers: [],
-        voided: false,
-        value: isBoolean ? value == '18316c68-b5f9-4986-b76d-9975cd0ebe31' : value,
-      };
-    }
+    question.value = handler.handleFieldSubmission(
+      question,
+      isBoolean ? value == trueConceptUuid : value,
+      encounterContext,
+    );
   };
 
   useEffect(() => {
     if (isBoolean) {
-      if (question['obs']) {
-        question['obs'].value = question['obs'].value.uuid == '18316c68-b5f9-4986-b76d-9975cd0ebe31';
+      if (question.value?.value && typeof question.value.value != 'boolean') {
+        question.value.value = question.value.value.uuid == trueConceptUuid;
       }
     }
-  }, [question['obs'], isBoolean]);
+  }, [question.value, isBoolean]);
 
   useEffect(() => {
     getConcept(question.questionOptions.concept, 'custom:(uuid,display,datatype:(uuid,display,name))').subscribe(
@@ -78,4 +63,4 @@ const OHRIRadioObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({ qu
   );
 };
 
-export default OHRIRadioObs;
+export default OHRIRadio;

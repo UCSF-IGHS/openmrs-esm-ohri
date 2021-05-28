@@ -2,7 +2,7 @@ import React from 'react';
 import { OHRIFormField } from '../../../types';
 import { Select, SelectItem, SelectItemGroup } from 'carbon-components-react';
 
-const OHRISelectObs: React.FC<{ questions: OHRIFormField }> = ({ questions }) => {
+const OHRISelect: React.FC<{ questions: OHRIFormField }> = ({ questions }) => {
   return (
     <div>
       <Select id="s" defaultValue="Select Value" helperText="Kindly select Value">
@@ -18,4 +18,4 @@ const OHRISelectObs: React.FC<{ questions: OHRIFormField }> = ({ questions }) =>
   );
 };
 
-export default OHRISelectObs;
+export default OHRISelect;

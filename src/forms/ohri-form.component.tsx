@@ -5,12 +5,11 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
-import { getFieldComponent } from './registry/registry';
+import { getFieldComponent, getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
-import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from './submission-handlers/base-handlers';
 import { OHRIFormSchema, OHRIFormField } from './types';
 
 // fallback encounter type
@@ -40,15 +39,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
     form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values
     if (encounter) {
-      allFormFields.forEach(field => {
-        if (field.type == 'obs') {
-          tempInitVals[field.id] = ObsSubmissionHandler.getInitialValue(encounter, field);
-        } else if (field.type == 'encounterLocation') {
-          tempInitVals[field.id] = EncounterLocationSubmissionHandler.getInitialValue(encounter, field);
-        } else {
-          tempInitVals[field.id] = '';
-        }
-      });
+      allFormFields.forEach(
+        field => (tempInitVals[field.id] = getHandler(field.type)?.getInitialValue(encounter, field) || ''),
+      );
       setEncounterLocation(encounter.location);
     } else {
       allFormFields.forEach(field => {
@@ -116,13 +109,14 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
 
   const handleFormSubmit = (values: Record<string, any>) => {
     const obsForSubmission = [];
+    // collect observations
     fields
-      .filter(field => !field.isHidden && field['obs'])
+      .filter(field => !field.isHidden && field.type == 'obs' && field.value)
       .forEach(field => {
-        if (Array.isArray(field['obs'])) {
-          obsForSubmission.push(...field['obs']);
+        if (Array.isArray(field.value)) {
+          obsForSubmission.push(...field.value);
         } else {
-          obsForSubmission.push(field['obs']);
+          obsForSubmission.push(field.value);
         }
       });
 
@@ -220,6 +214,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                           question: question,
                           onChange: onFieldChange,
                           key: index,
+                          handler: getHandler(question.type),
                         });
                       }
                     })}

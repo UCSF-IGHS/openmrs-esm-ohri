@@ -34,12 +34,18 @@ export interface OHRIFormField {
   type: string;
   questionOptions: OHRIFormQuestionOptions;
   id: string;
+  value?: any;
   hide?: string;
   isHidden?: boolean;
   dependant?: any;
   hideDeterminant?: string;
 }
 
+export interface OHRIFormFieldProps {
+  question: OHRIFormField;
+  onChange: (fieldName: string, value: any) => {};
+  handler: SubmissionHandler;
+}
 export interface OHRIFormSection {
   label: string;
   isExpanded: string;

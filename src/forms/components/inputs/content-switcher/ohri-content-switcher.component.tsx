@@ -1,41 +1,18 @@
 import React, { useMemo } from 'react';
 import { FormGroup, ContentSwitcher, Switch } from 'carbon-components-react';
-import { OHRIFormField } from '../../../types';
+import { OHRIFormField, OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 
-export const OHRIContentSwitcherObs: React.FC<{ question: OHRIFormField; onChange: any }> = ({
-  question,
-  onChange,
-}) => {
+export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
 
   const handleChange = value => {
     setFieldValue(question.id, value.name);
     onChange(question.id, value.name);
-    if (question['obs']) {
-      if (encounterContext.sessionMode == 'edit' && !field.value) {
-        question['obs'].voided = true;
-      } else if (!field.value) {
-        question['obs'] = undefined;
-      } else {
-        question['obs'].value = value.name;
-        question['obs'].voided = false;
-      }
-    } else {
-      question['obs'] = {
-        person: encounterContext.patient.id,
-        obsDatetime: encounterContext.date,
-        concept: question.questionOptions.concept,
-        location: encounterContext.location,
-        order: null,
-        groupMembers: [],
-        voided: false,
-        value: value.name,
-      };
-    }
+    question.value = handler.handleFieldSubmission(question, value.name, encounterContext);
   };
   const selectedIndex = useMemo(
     () => question.questionOptions.answers.findIndex(option => option.concept == field.value),
