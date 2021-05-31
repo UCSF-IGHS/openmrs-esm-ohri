@@ -105,12 +105,5 @@ export const mockEncounter = {
       ],
     },
   ],
-  links: [
-    { rel: 'self', uri: 'https://openmrs-spa.org/openmrs/ws/rest/v1/encounter/2a5c2ff3-8936-46d6-997f-083fc3ee8eda' },
-    {
-      rel: 'full',
-      uri: 'https://openmrs-spa.org/openmrs/ws/rest/v1/encounter/2a5c2ff3-8936-46d6-997f-083fc3ee8eda?v=full',
-    },
-  ],
   resourceVersion: '1.9',
 };
