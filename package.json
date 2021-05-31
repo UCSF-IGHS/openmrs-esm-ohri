@@ -17,7 +17,8 @@
     "typescript": "tsc",
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests",
-    "coverage": "npm test -- --coverage"
+    "coverage": "npm test -- --coverage",
+    "test:badges": "npm run test:coverage && jest-coverage-badges--output './badges' "
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
@@ -43,10 +44,14 @@
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",
     "carbon-components-react": "^7.25.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "formik": "^2.2.6",
-    "yup": "^0.29.1",
+    "jest-coverage-badges": "^1.1.2",
     "lodash-es": "^4.17.15",
-    "systemjs-webpack-interop": "^1.1.0"
+    "react-test-renderer": "^16.9.0",
+    "systemjs-webpack-interop": "^1.1.0",
+    "yup": "^0.29.1"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "3.x",
@@ -76,6 +81,7 @@
     "@types/single-spa-react": "^2.12.0",
     "@types/webpack-env": "^1.15.1",
     "@types/yup": "^0.29.3",
+    "@typescript-eslint/parser": "^4.26.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",

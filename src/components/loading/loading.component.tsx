@@ -4,7 +4,7 @@ import styles from './loading.component.scss';
 
 const LoadingIcon: React.FC = () => (
   <div className={styles['centerLoadingSVG']}>
-    <Loading description="Active loading indicator" withOverlay={false} small />
+    <Loading data-testid="loading" description="Active loading indicator" withOverlay={false} small />
   </div>
 );
 

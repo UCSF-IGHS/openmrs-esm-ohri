@@ -13,7 +13,9 @@ const EmptyState: React.FC<ErrorStateProps> = ({ error, headerTitle }) => {
 
   return (
     <Tile light className={styles.tile}>
-      <h1 className={styles.heading}>{headerTitle}</h1>
+      <h1 data-testid="header-title" className={styles.heading}>
+        {headerTitle}
+      </h1>
       <p className={styles.errorMessage}>
         {t('error', 'Error')} {`${error?.response?.status}: `}
         {error?.response?.statusText}

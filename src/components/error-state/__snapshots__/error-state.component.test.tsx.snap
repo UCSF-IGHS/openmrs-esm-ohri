@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test if component matches snapshot 1`] = `
+<div
+  className="bx--tile bx--tile--light tile"
+>
+  <h1
+    className="heading"
+    data-testid="header-title"
+  >
+    Header
+  </h1>
+  <p
+    className="errorMessage"
+  >
+    Error
+     
+    200: 
+    There was an issue getting the information from the server
+  </p>
+  <p
+    className="errorCopy"
+  >
+    Sorry, there was a problem displaying this information. You can try to reload this page, or contact the site administrator and quote the error code above.
+  </p>
+</div>
+`;
