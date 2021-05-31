@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, wait } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/jest-dom';
 import { Formik, Form } from 'formik';
-import OHRITextObs from './ohri-text-obs.component';
+import OHRITextObs from './ohri-text.component';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { mockPatient } from '../../../../../__mocks__/patient.mock';
 import { mockEncounter } from '../../../../../__mocks__/encounter.mock';
@@ -84,16 +84,4 @@ describe('text input field', () => {
     const input = await setupInput();
     expect(input.type).toEqual('text');
   });
-  // it('should render text input field with label Just checking', async () => {
-  //   const { findByLabelText } = render(
-  //     <Formik initialValues={{}} onSubmit={null}>
-  //       <Form>
-  //         <OHRITextObs question={questionObject} onChange={null} />
-  //       </Form>
-  //     </Formik>,
-  //   );
-
-  //   const inputLabel = await findByLabelText('Just checking');
-  //   expect(inputLabel).toBeInTheDocument();
-  // });
 });
