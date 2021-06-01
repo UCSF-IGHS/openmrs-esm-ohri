@@ -690,3 +690,14 @@ describe('ObsSubmissionHandler - getInitialValue', () => {
     expect(initialValue).toEqual('12f7be3d-fb5d-47dc-b5e3-56c501be80a6');
   });
 });
+
+// import { getValue } from './base-handlers';
+
+// describe('obs-handler', () => {
+//   describe.skip('getValues', () => {
+//     it('uses the context and value to get values', async () => {
+//       const result = await getValue();
+//       expect(result).toEqual([{}]);
+//     });
+//   });
+// });
