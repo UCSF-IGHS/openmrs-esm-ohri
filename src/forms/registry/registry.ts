@@ -8,7 +8,7 @@ import OHRIText from '../components/inputs/text/ohri-text.component';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
 import { RenderType, SubmissionHandler } from '../types';
 
-export const registry: Array<RegistryItem> = [
+const registry: Array<RegistryItem> = [
   {
     id: 'OHRIText',
     component: OHRIText,
@@ -46,7 +46,7 @@ export const registry: Array<RegistryItem> = [
   },
 ];
 
-export const handlers = [
+const handlers = [
   {
     id: 'ObsSubmissionHandler',
     handler: ObsSubmissionHandler,

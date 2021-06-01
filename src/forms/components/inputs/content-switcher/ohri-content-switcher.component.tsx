@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { FormGroup, ContentSwitcher, Switch } from 'carbon-components-react';
-import { OHRIFormField, OHRIFormFieldProps } from '../../../types';
+import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';

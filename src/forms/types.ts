@@ -6,6 +6,8 @@ import { EncounterContext } from './ohri-form-context';
 export interface SubmissionHandler {
   /**
    * Abstraction of the extraction of initial field value from an `encounter`
+   *
+   * @returns the `initialValue`
    */
   getInitialValue: (encounter: any, field: OHRIFormField) => {};
 
@@ -13,7 +15,7 @@ export interface SubmissionHandler {
    * Handles field submission.
    *
    * @should Construct a new submission value, edit and handle deletion by voiding.
-   * @returns `submissionValue`
+   * @returns the `submissionValue`
    */
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {};
 }
