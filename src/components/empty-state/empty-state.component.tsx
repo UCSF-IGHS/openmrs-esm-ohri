@@ -16,17 +16,15 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
 
   return (
     <Tile light className={styles.tile}>
-      <h1 data-testid="header-title" className={styles.heading}>
-        {props.headerTitle}
-      </h1>
+      <h1 className={styles.heading}>{props.headerTitle}</h1>
       <EmptyDataIllustration />
-      <p data-testid="inexistent-text" className={styles.content}>
+      <p className={styles.content}>
         <Trans i18nKey="emptyStateText" values={{ displayText: props.displayText.toLowerCase() }}>
           There are no {props.displayText.toLowerCase()} to display for this patient
         </Trans>
       </p>
-      <p data-testid="display-text" className={styles.action}>
-        <Link data-testid="click-link" onClick={() => props.launchForm()}>
+      <p className={styles.action}>
+        <Link onClick={() => props.launchForm()}>
           {t('record', 'Record')} {props.displayText.toLowerCase()}
         </Link>
       </p>
