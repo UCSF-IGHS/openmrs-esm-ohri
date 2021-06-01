@@ -21,11 +21,6 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: 'patients/hts/form',
-      },
-
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
         route: /^ohri-forms/,
       },
     ],
