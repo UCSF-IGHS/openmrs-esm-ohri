@@ -38,7 +38,7 @@ export interface OHRIFormField {
   questionOptions: OHRIFormQuestionOptions;
   id: string;
   value?: any;
-  hide?: string;
+  hide?: any;
   isHidden?: boolean;
   dependant?: any;
   hideDeterminant?: string;
@@ -74,7 +74,7 @@ export type RenderType =
   | 'text'
   | 'date'
   | 'number'
-  | 'multicheckbox'
+  | 'checkbox'
   | 'radio'
   | 'ui-select-extended'
   | 'repeating'

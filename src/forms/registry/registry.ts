@@ -33,7 +33,7 @@ const baseFieldComponents: Array<RegistryItem> = [
   {
     id: 'OHRIMultiSelect',
     component: OHRIMultiSelect,
-    type: 'multicheckbox',
+    type: 'checkbox',
   },
   {
     id: 'OHRIContentSwitcher',

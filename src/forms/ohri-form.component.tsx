@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonSet, Column, Grid } from 'carbon-components-react';
+import { Button, ButtonSet, Column, Grid, Row } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -46,7 +46,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
       setEncounterLocation(encounter.location);
     } else {
       allFormFields.forEach(field => {
-        if (field.questionOptions.rendering == 'multicheckbox') {
+        if (field.questionOptions.rendering == 'checkbox') {
           tempInitVals[field.id] = [];
         } else {
           tempInitVals[field.id] = '';
@@ -91,6 +91,11 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
   }, [encounterUuid]);
 
   const evaluateHideExpression = (field, determinantValue, allFields) => {
+    // TODO: Handle advanced skip patterns
+    if (typeof field.hide !== 'string') {
+      field.isHidden = false;
+      return;
+    }
     const allFieldsKeys = allFields.map(f => f.id);
     const parts = field.hide.trim().split(' ');
     const determinantField = parts[0];
@@ -196,47 +201,47 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
               <>
                 <PatientBanner patient={patient} />
                 <Grid>
-                  <Column>
-                    <OHRIFormSidebar pages={form.pages} setCurrentPage={setCurrentPage} />
-                  </Column>
-                  <Column>
-                    <OHRIFormContext.Provider
-                      value={{
-                        values: props.values,
-                        setFieldValue: props.setFieldValue,
-                        setEncounterLocation: setEncounterLocation,
-                        fields: fields,
-                        encounterContext: {
-                          patient: patient,
-                          encounter: encounter,
-                          location: location,
-                          sessionMode: encounterUuid ? 'edit' : 'enter',
-                          date: encDate,
-                        },
-                      }}>
-                      {currentPage && (
-                        <div className={styles.contentWrapper}>
-                          {currentPage.sections.map((section, index) => {
-                            return <OHRIFormSection fields={section.questions} onFieldChange={onFieldChange} />;
-                          })}
-                        </div>
-                      )}
-                    </OHRIFormContext.Provider>
-                  </Column>
+                  <Row>
+                    <Column lg={2} md={2} sm={1}>
+                      <OHRIFormSidebar pages={form.pages} setCurrentPage={setCurrentPage} />
+                      <Button style={{ marginBottom: '1rem', width: '11.688rem', display: 'block' }} type="submit">
+                        Save
+                      </Button>
+                      <Button
+                        style={{ width: '11.688rem' }}
+                        kind="tertiary"
+                        onClick={() => (onCancel ? onCancel() : null)}>
+                        Cancel
+                      </Button>
+                    </Column>
+                    <Column lg={10} md={6}>
+                      <OHRIFormContext.Provider
+                        value={{
+                          values: props.values,
+                          setFieldValue: props.setFieldValue,
+                          setEncounterLocation: setEncounterLocation,
+                          fields: fields,
+                          encounterContext: {
+                            patient: patient,
+                            encounter: encounter,
+                            location: location,
+                            sessionMode: encounterUuid ? 'edit' : 'enter',
+                            date: encDate,
+                          },
+                        }}>
+                        {currentPage && (
+                          <div className={styles.contentWrapper}>
+                            {currentPage.sections.map((section, index) => {
+                              return <OHRIFormSection fields={section.questions} onFieldChange={onFieldChange} />;
+                            })}
+                          </div>
+                        )}
+                      </OHRIFormContext.Provider>
+                    </Column>
+                  </Row>
                 </Grid>
               </>
             )}
-
-            <div className={styles.submit}>
-              <ButtonSet>
-                <Button kind="secondary" onClick={() => (onCancel ? onCancel() : null)}>
-                  Cancel
-                </Button>
-                <Button kind="primary" type="submit">
-                  Save
-                </Button>
-              </ButtonSet>
-            </div>
           </Form>
         )}
       </Formik>

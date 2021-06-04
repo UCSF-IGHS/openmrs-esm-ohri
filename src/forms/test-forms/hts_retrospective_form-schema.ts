@@ -19,10 +19,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 answers: [
                   {
                     label: 'yes',
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
                   },
                   {
                     label: 'no',
+                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
                   },
                 ],
               },
@@ -269,7 +270,7 @@ const HTSRestroForm: OHRIFormSchema = {
               label: 'Partner key population status',
               type: 'obs',
               questionOptions: {
-                rendering: 'multicheckbox',
+                rendering: 'checkbox',
                 concept: 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3',
                 answers: [
                   {
@@ -500,7 +501,10 @@ const HTSRestroForm: OHRIFormSchema = {
                 ],
               },
               id: 'serviceDeliveryPoint',
-              hide: "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
+              hide: {
+                hideWhenExpression:
+                  "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
+              },
             },
             {
               label: 'Facility service delivery point',
@@ -637,7 +641,10 @@ const HTSRestroForm: OHRIFormSchema = {
                   },
                 ],
               },
-              hide: "isEmpty(testingLocation) || testingLocation != '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
+              hide: {
+                hideWhenExpression:
+                  "isEmpty(testingLocation) || testingLocation != '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
+              },
               id: 'facilityServiceDeliveryPoint',
             },
           ],
@@ -692,10 +699,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 answers: [
                   {
                     label: 'yes',
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
                   },
                   {
                     label: 'no',
+                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
                   },
                 ],
               },
@@ -711,13 +719,269 @@ const HTSRestroForm: OHRIFormSchema = {
         {
           label: 'TB / STI Screening',
           isExpanded: 'true',
-          questions: [],
+          questions: [
+            {
+              label: 'Is the client experiencing the following TB symptoms?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'checkbox',
+                concept: '159800AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'AMPATH',
+                    value: '6174',
+                  },
+                ],
+                answers: [
+                  {
+                    concept: '1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Fever lasting more than three weeks',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '6173',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '386661006',
+                      },
+                      {
+                        type: 'ICD-10-WHO',
+                        value: 'R50.9',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '159799AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'cough lasting more than 2 weeks',
+                    conceptMappings: [
+                      {
+                        type: 'PIH',
+                        value: '2573',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '49727002',
+                      },
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '1597991000105004',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '6171',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '138905AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Hemoptysis',
+                    conceptMappings: [
+                      {
+                        type: '3BT',
+                        value: '10040493',
+                      },
+                      {
+                        type: 'ICD-10-WHO',
+                        value: 'R04.2',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '970',
+                      },
+                      {
+                        type: 'ICPC2',
+                        value: 'R24',
+                      },
+                      {
+                        type: 'IMO-ProblemIT',
+                        value: '27441',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '6172',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '66857006',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '967',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '133027AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Night sweats',
+                    conceptMappings: [
+                      {
+                        type: 'ICPC2',
+                        value: 'A09',
+                      },
+                      {
+                        type: 'ICD-10-WHO',
+                        value: 'R61.1',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '6029',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '42984000',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '6029',
+                      },
+                      {
+                        type: 'IMO-ProblemIT',
+                        value: '50760',
+                      },
+                      {
+                        type: '3BT',
+                        value: '10063085',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'tbSymptoms',
+            },
+            {
+              label: 'Is the client experiencing the following STI symptoms?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'checkbox',
+                concept: 'c4f81292-61a3-4561-a4ae-78be7d16d928',
+                answers: [
+                  {
+                    concept: 'd8e46cc0-4d08-45d9-a46d-bd083db63057',
+                    label: 'Complaints of scrotal swelling and pain (Male)',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '60817acb-90f1-4d46-be87-2c47e150770b',
+                    label: 'Complaints of urethral discharge or burning when urinating (Male)',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '06be8996-ef55-438b-bbb9-5bebeb18e779',
+                    label: 'Complaints of lower abdominal pains with or without  vaginal discharge (Female)',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '9a24bedc-d42c-422e-9f5d-371b59af0660',
+                    label: 'Complaints of vaginal discharge or burning when urinating (Female)',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'faf06026-fce9-4d2c-9ef2-24fb45343804',
+                    label: 'Complaints of genital sores or swollen inguinal lymph nodes with or without pains',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'stiSymptoms',
+            },
+          ],
         },
       ],
     },
     {
       label: 'HIV testing',
-      sections: [],
+      sections: [
+        {
+          label: 'HIV testing',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'Date test was performed',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'date',
+                concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                weeksList: '',
+              },
+              id: 'dateTestPerformed',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Recency testing',
+      sections: [
+        {
+          label: 'Recency testing',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'Patient consent',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '182771004',
+                  },
+                ],
+                answers: [
+                  {
+                    label: 'yes',
+                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
+                  },
+                  {
+                    label: 'no',
+                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
+                  },
+                ],
+              },
+              id: 'recencyTestingConsent',
+            },
+            {
+              label: 'Recency test result',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '165092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '271918004',
+                  },
+                ],
+                answers: [
+                  {
+                    concept: '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Recent',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '6493001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '165091AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Long duration',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '260384008',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'recencyTestResult',
+            },
+          ],
+        },
+      ],
     },
     {
       label: 'Linkage to care',
@@ -731,5 +995,6 @@ const HTSRestroForm: OHRIFormSchema = {
   processor: 'EncounterFormProcessor',
   uuid: 'xxxx',
   referencedForms: [],
+  encounterType: '79c1f50f-f77d-42e2-ad2a-d29304dde2fe',
 };
 export default HTSRestroForm;
