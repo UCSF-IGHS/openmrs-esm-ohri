@@ -24,12 +24,11 @@ import {
   useCurrentPatient,
 } from '@openmrs/esm-framework';
 import { htsEncounterRepresentation, htsFormSlot } from '../encounters-list/hts-overview-list.component';
-import { capitalize, result } from 'lodash';
-import dayjs from 'dayjs';
 import { getConcept, getHTSLocations, saveHTSEncounter } from './hts-encounter-form.resource';
 import { Concept, HSTEncounter } from '../../api/types';
 import LoadingIcon from '../../components/loading/loading.component';
 import { IdentifierGenerator } from '../../components/identifier-generator/identifier-generator.component';
+import { PatientBanner } from '../../components/patient-banner/patient-banner.component';
 
 // TODO: Remove hardcoded values, configure through module config
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
@@ -46,8 +45,13 @@ const possibleHSTCodedAnswers = [
   '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
 ];
 
-const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ closeWorkspace, state }) => {
-  const config = useConfig();
+const HtsEncounterForm: React.FC<{
+  closeWorkspace: () => {};
+  state: any;
+  patientUuid: string;
+  encounterUuid: string;
+}> = ({ closeWorkspace, patientUuid, state, encounterUuid }, props) => {
+  // const config = useConfig();
   // TODO: Configure all metadata through the config
   // const { encounterType, concepts } = config['htsEntryFormConfig'];
   const [, patient] = useCurrentPatient();
@@ -127,12 +131,12 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
     });
 
     let sub4 = null;
-    if (state.encounter) {
-      sub4 = openmrsObservableFetch(
-        `/ws/rest/v1/encounter/${state.encounter}?v=${htsEncounterRepresentation}`,
-      ).subscribe(response => {
-        setEncounter(response.data);
-      });
+    if (encounterUuid) {
+      sub4 = openmrsObservableFetch(`/ws/rest/v1/encounter/${encounterUuid}?v=${htsEncounterRepresentation}`).subscribe(
+        response => {
+          setEncounter(response.data);
+        },
+      );
     }
     return () => {
       sub1.unsubscribe();
@@ -154,7 +158,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
   }, [testLocation]);
 
   useEffect(() => {
-    setIsLoading(!(state.encounter ? !!encounter && !!populationTypeConcept : !!populationTypeConcept));
+    setIsLoading(!(encounter ? !!encounter && !!populationTypeConcept : !!populationTypeConcept));
   }, [encounter, populationTypeConcept]);
 
   useEffect(() => {
@@ -175,13 +179,14 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
       setPopulationTypeValueGroupObs(encounter.obs.filter(obs => obs.concept.uuid === populationTypeConceptUuid));
 
       const testOneObs = encounter.obs.find(obs => obs.concept.uuid === testOneConceptUuid);
-      setTestOneResult({
-        concept: testOneObs.value.uuid,
-        name:
-          testOneObs.value.uuid === '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-            ? 'Not Performed'
-            : testOneObs.value.name.name,
-      });
+      testOneObs &&
+        setTestOneResult({
+          concept: testOneObs.value.uuid,
+          name:
+            testOneObs.value.uuid === '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+              ? 'Not Performed'
+              : testOneObs.value.name.name,
+        });
 
       const confirmatoryTestObs = encounter.obs.find(obs => obs.concept.uuid === confirmatoryTestConceptUuid);
       if (confirmatoryTestObs) {
@@ -203,10 +208,6 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
       return testOneResult;
     }
     return null;
-  };
-
-  const getPatientNames = () => {
-    return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
   };
 
   const recordPopulationTypeObs = (checked, id, event) => {
@@ -301,7 +302,9 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
     }
     saveHTSEncounter(new AbortController(), enc).then(response => {
       if (response.ok) {
-        state.updateHTSList();
+        if (state.updateParent) {
+          state.updateParent();
+        }
         closeWorkspace();
       }
     });
@@ -363,7 +366,9 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
     }
     saveHTSEncounter(new AbortController(), encounter, encounter.uuid).then(response => {
       if (response.ok) {
-        state.updateHTSList();
+        if (state.updateParent) {
+          state.updateParent();
+        }
         closeWorkspace();
       }
     });
@@ -388,36 +393,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
       {patient && (
         <>
           <div className={styles.container}>
-            <div id="header-wrapper" className={styles.headerWrapper}>
-              <div className={`${styles.column} ${styles.demo}`}>
-                <div className={styles.row}>
-                  <span className={styles.name}>{getPatientNames()}</span>
-                </div>
-                <div className={`${styles.row} ${styles.details}`}>
-                  <span>
-                    {capitalize(patient.gender)} &middot; {age(patient.birthDate)} &middot;{' '}
-                    {dayjs(patient.birthDate).format('DD - MMM - YYYY')}
-                  </span>
-                </div>
-              </div>
-              <div className={`${styles.column} ${styles.weight}`}>
-                <div className={`${styles.row} ${styles.weightLabel}`}>
-                  <span>Weight</span>
-                </div>
-                <div className={styles.row}>
-                  <span className={styles.weightValue}>60</span>
-                  <span className={styles.weightUnit}>kg</span>
-                </div>
-              </div>
-              <div className={`${styles.column} ${styles.allergies}`}>
-                <div className={styles.row}>
-                  <span className={styles.allergiesLabel}>Allergies</span>
-                </div>
-                <div className={styles.row}>
-                  <span className={styles.allergiesValue}>Peanuts, Fructose</span>
-                </div>
-              </div>
-            </div>
+            <PatientBanner patient={patient} />
             {isLoading ? (
               <LoadingIcon />
             ) : (
@@ -620,7 +596,7 @@ const HtsEncounterForm: React.FC<{ closeWorkspace: () => {}; state: any }> = ({ 
               <Button kind="secondary" onClick={() => closeWorkspace()}>
                 Cancel
               </Button>
-              <Button kind="primary" type="sumit">
+              <Button kind="primary" type="submit">
                 Save &amp; Close
               </Button>
             </ButtonSet>

@@ -19,6 +19,10 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./hts/summary-page/hts-summary-page'), options),
         route: /^ohri\/.+\/hts/,
       },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^ohri-forms/,
+      },
     ],
     extensions: [
       {
@@ -31,16 +35,26 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-patient-encounters-list-ext',
-        slot: 'conditions-overview-widget-ext',
+        slot: 'patient-chart-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
+        meta: {
+          columnSpan: 4,
+        },
       },
       {
         id: 'hts-encounter-form-ext',
         load: getAsyncLifecycle(() => import('./hts/encounter-form/hts-encounter-form.component'), {
           featureName: 'hts-encounter-form',
+          moduleName,
+        }),
+      },
+      {
+        id: 'ohri-forms-view-ext',
+        load: getAsyncLifecycle(() => import('./hts/encounters-list/ohri-form-view.component'), {
+          featureName: 'ohri-forms',
           moduleName,
         }),
       },

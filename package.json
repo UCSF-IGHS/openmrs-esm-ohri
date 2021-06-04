@@ -2,13 +2,13 @@
   "name": "@openmrs/esm-ohri-app",
   "version": "0.5.0",
   "description": "Drug order microfrontend for the OpenMRS SPA",
-  "main": "dist/openmrs-esm-ohri-app.js",
-  "types": "src/index.ts",
+  "browser": "dist/openmrs-esm-ohri-app.js",
+  "main": "src/index.ts",
   "license": "MIT",
   "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
   "scripts": {
-    "start": "openmrs debug --run-project",
-    "serve": "webpack-dev-server",
+    "start": "openmrs develop",
+    "serve": "webpack serve --mode=development",
     "debug": "npm run serve",
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env.analyze=true",
@@ -43,6 +43,8 @@
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",
     "carbon-components-react": "^7.25.0",
+    "formik": "^2.2.6",
+    "yup": "^0.29.1",
     "lodash-es": "^4.17.15",
     "systemjs-webpack-interop": "^1.1.0"
   },
@@ -106,9 +108,9 @@
     "style-loader": "^1.0.0",
     "typescript": "^4.0.3",
     "unistore": "^3.5.2",
-    "webpack": "^4.39.2",
+    "webpack": "^5.37.0",
     "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-cli": "^3.3.7",
+    "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.8.0"
   }
 }

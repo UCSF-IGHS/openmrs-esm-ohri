@@ -9,6 +9,9 @@ import { attach, openmrsFetch, switchTo } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import dayjs from 'dayjs';
 import EmptyState from '../../components/empty-state/empty-state.component';
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
+// import HTSForm from '../../forms/test-forms/hts-form';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -31,18 +34,17 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const launchHTSForm = () => {
-    switchTo('workspace', htsFormSlot, {
-      title: t('htsForm', 'HIV Test'),
-      state: { updateHTSList: forceComponentUpdate },
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: 'HTS Entry form',
+      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
-    attach(htsFormSlot, 'hts-encounter-form-ext');
   };
   const editHTSEncounter = encounterUuid => {
-    switchTo('workspace', htsFormSlot, {
-      title: t('htsForm', 'HIV Test'),
-      state: { updateHTSList: forceComponentUpdate, encounter: encounterUuid },
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: 'HTS Entry form',
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
-    attach(htsFormSlot, 'hts-encounter-form-ext');
   };
   const tableHeaders = [
     { key: 'date', header: 'Date', isSortable: true },
@@ -73,7 +75,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           id: encounter.uuid,
           date: dayjs(encounter.encounterDatetime).format('DD-MMM-YYYY'),
           location: encounter.location.name,
-          result: htsResult?.value?.name?.name,
+          result: htsResult?.value?.name?.name || 'None',
           provider: htsProvider,
           action: editEncounterButton,
         });

@@ -1,0 +1,13 @@
+.formField {
+    padding-bottom: 1rem;
+}
+
+.formInputField {
+    @extend .formField;
+    max-width: 22rem;
+}
+
+.numberInputWrapper :global(.bx--number) {
+    @extend .formField;
+    width: 15rem;
+}
