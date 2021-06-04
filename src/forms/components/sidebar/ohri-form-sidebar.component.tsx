@@ -5,9 +5,11 @@ import XAxis16 from '@carbon/icons-react/es/x-axis/16';
 
 function OHRIFormSidebar({ pages, setCurrentPage }) {
   const navItems = pages.map(page => (
-    <Link className={styles.customStyle} onClick={() => setCurrentPage(page)}>
-      <XAxis16 /> {page.label}
-    </Link>
+    <div className={styles.space05}>
+      <Link onClick={() => setCurrentPage(page)}>
+        <XAxis16 /> {page.label}
+      </Link>
+    </div>
   ));
   return <div className={styles.leftNavWrapper}>{navItems}</div>;
 }
