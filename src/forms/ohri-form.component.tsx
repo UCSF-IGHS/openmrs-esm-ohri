@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonSet } from 'carbon-components-react';
+import { Button, ButtonSet, Column, Grid } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -12,7 +12,7 @@ import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { OHRIFormSchema, OHRIFormField } from './types';
 import OHRIFormSection from './components/section/ohri-form-section.component';
-import OHRIFormSidebar from './components/navbar/ohri-form-navbar.component';
+import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { HTSEncounterType } from './constants';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -31,7 +31,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
   const encDate = new Date();
   const [encounter, setEncounter] = useState(null);
   const [form, setForm] = useState<OHRIFormSchema>(null);
-  const [currentPage, setCurrentPage] = useState(form?.pages[0]);
+  const [currentPage, setCurrentPage] = useState(undefined);
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
@@ -66,6 +66,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
     );
     setForm(form);
     setInitialValues(tempInitVals);
+    setCurrentPage(form?.pages[0]);
   }, [encounter]);
 
   useEffect(() => {
@@ -189,34 +190,43 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
         }}>
         {props => (
           <Form>
-            <OHRIFormContext.Provider
-              value={{
-                values: props.values,
-                setFieldValue: props.setFieldValue,
-                setEncounterLocation: setEncounterLocation,
-                fields: fields,
-                encounterContext: {
-                  patient: patient,
-                  encounter: encounter,
-                  location: location,
-                  sessionMode: encounterUuid ? 'edit' : 'enter',
-                  date: encDate,
-                },
-              }}>
-              {!patient ? (
-                <LoadingIcon />
-              ) : (
-                <>
-                  <PatientBanner patient={patient} />
-                  <OHRIFormSidebar pages={form.pages} setCurrentPage={setCurrentPage} />
-                  <div className={styles.contentWrapper}>
-                    {currentPage.sections.map((section, index) => {
-                      return <OHRIFormSection fields={section.questions} onFieldChange={onFieldChange} />;
-                    })}
-                  </div>
-                </>
-              )}
-            </OHRIFormContext.Provider>
+            {!patient ? (
+              <LoadingIcon />
+            ) : (
+              <>
+                <PatientBanner patient={patient} />
+                <Grid>
+                  <Column>
+                    <OHRIFormSidebar pages={form.pages} setCurrentPage={setCurrentPage} />
+                  </Column>
+                  <Column>
+                    <OHRIFormContext.Provider
+                      value={{
+                        values: props.values,
+                        setFieldValue: props.setFieldValue,
+                        setEncounterLocation: setEncounterLocation,
+                        fields: fields,
+                        encounterContext: {
+                          patient: patient,
+                          encounter: encounter,
+                          location: location,
+                          sessionMode: encounterUuid ? 'edit' : 'enter',
+                          date: encDate,
+                        },
+                      }}>
+                      {currentPage && (
+                        <div className={styles.contentWrapper}>
+                          {currentPage.sections.map((section, index) => {
+                            return <OHRIFormSection fields={section.questions} onFieldChange={onFieldChange} />;
+                          })}
+                        </div>
+                      )}
+                    </OHRIFormContext.Provider>
+                  </Column>
+                </Grid>
+              </>
+            )}
+
             <div className={styles.submit}>
               <ButtonSet>
                 <Button kind="secondary" onClick={() => (onCancel ? onCancel() : null)}>
