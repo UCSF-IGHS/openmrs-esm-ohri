@@ -11,12 +11,9 @@ import { PatientBanner } from '../components/patient-banner/patient-banner.compo
 import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { OHRIFormSchema, OHRIFormField } from './types';
-import OHRIFormSection from './components/sections/ohri-form-sections.component';
+import OHRIFormSection from './components/section/ohri-form-section.component';
 import OHRIFormSidebar from './components/navbar/ohri-form-navbar.component';
-
-// fallback encounter type
-const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
-
+import { HTSEncounterType } from './constants';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
