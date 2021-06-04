@@ -11,7 +11,11 @@ import { PatientBanner } from '../components/patient-banner/patient-banner.compo
 import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { OHRIFormSchema, OHRIFormField } from './types';
-import { HTSEncounterType } from './constants';
+import OHRIFormSection from './components/sections/ohri-form-sections.component';
+import OHRIFormSidebar from './components/navbar/ohri-form-navbar.component';
+
+// fallback encounter type
+const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -29,6 +33,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
   const [initialValues, setInitialValues] = useState({});
   const encDate = new Date();
   const [encounter, setEncounter] = useState(null);
+  const [form, setForm] = useState<OHRIFormSchema>(null);
+  const [currentPage, setCurrentPage] = useState(form?.pages[0]);
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
@@ -61,6 +67,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
         return field;
       }),
     );
+    setForm(form);
     setInitialValues(tempInitVals);
   }, [encounter]);
 
@@ -204,17 +211,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
               ) : (
                 <>
                   <PatientBanner patient={patient} />
+                  <OHRIFormSidebar pages={form.pages} setCurrentPage={setCurrentPage} />
                   <div className={styles.contentWrapper}>
-                    {fields.map((question, index) => {
-                      const component = getFieldComponent(question.questionOptions.rendering);
-                      if (component) {
-                        return React.createElement(component, {
-                          question: question,
-                          onChange: onFieldChange,
-                          key: index,
-                          handler: getHandler(question.type),
-                        });
-                      }
+                    {currentPage.sections.map((section, index) => {
+                      return <OHRIFormSection fields={section.questions} onFieldChange={onFieldChange} />;
                     })}
                   </div>
                 </>
