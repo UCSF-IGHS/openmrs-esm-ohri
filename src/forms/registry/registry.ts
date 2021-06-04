@@ -4,70 +4,85 @@ import { OHRIEncounterLocationPicker } from '../components/inputs/location/ohri-
 import { OHRIMultiSelect } from '../components/inputs/multi-select/ohri-multi-select.component';
 import OHRINumber from '../components/inputs/number/ohri-number.component';
 import OHRIRadio from '../components/inputs/radio/ohri-radio.component';
+import OHRIDropdown from '../components/inputs/select/ohri-dropdown.component';
 import OHRIText from '../components/inputs/text/ohri-text.component';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
-import { RenderType, SubmissionHandler } from '../types';
+import { SubmissionHandler } from '../types';
 
-const registry: Array<RegistryItem> = [
+const baseFieldComponents: Array<RegistryItem> = [
   {
     id: 'OHRIText',
     component: OHRIText,
-    renderType: 'text',
+    type: 'text',
   },
   {
     id: 'OHRIRadio',
     component: OHRIRadio,
-    renderType: 'radio',
+    type: 'radio',
   },
   {
     id: 'OHRIDate',
     component: OHRIDate,
-    renderType: 'date',
+    type: 'date',
   },
   {
     id: 'OHRINumber',
     component: OHRINumber,
-    renderType: 'number',
+    type: 'number',
   },
   {
     id: 'OHRIMultiSelect',
     component: OHRIMultiSelect,
-    renderType: 'multicheckbox',
+    type: 'multicheckbox',
   },
   {
     id: 'OHRIContentSwitcher',
     component: OHRIContentSwitcher,
-    renderType: 'content-switcher',
+    type: 'content-switcher',
   },
   {
     id: 'OHRIEncounterLocationPicker',
     component: OHRIEncounterLocationPicker,
-    renderType: 'encounter-location',
+    type: 'encounter-location',
+  },
+  {
+    id: 'OHRIDropdown',
+    component: OHRIDropdown,
+    type: 'select',
   },
 ];
 
-const handlers = [
+const baseHandlers: Array<RegistryItem> = [
   {
     id: 'ObsSubmissionHandler',
-    handler: ObsSubmissionHandler,
+    component: ObsSubmissionHandler,
     type: 'obs',
   },
   {
     id: 'EncounterLocationSubmissionHandler',
-    handler: EncounterLocationSubmissionHandler,
+    component: EncounterLocationSubmissionHandler,
     type: 'encounterLocation',
   },
 ];
 
 export const getFieldComponent = renderType => {
-  return registry.find(item => item.renderType == renderType)?.component;
+  return baseFieldComponents.find(item => item.type == renderType)?.component;
 };
 
 export function getHandler(type: string): SubmissionHandler {
-  return handlers.find(handler => handler.type == type)?.handler;
+  return baseHandlers.find(handler => handler.type == type)?.component;
 }
+
+export function addHandler(handler: RegistryItem) {
+  baseHandlers.push(handler);
+}
+
+export function addFieldComponent(fieldComponent: RegistryItem) {
+  baseFieldComponents.push(fieldComponent);
+}
+
 export interface RegistryItem {
   id: string;
   component: any;
-  renderType: RenderType;
+  type: string;
 }
