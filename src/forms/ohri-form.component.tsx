@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, ButtonSet } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
@@ -11,9 +11,7 @@ import { PatientBanner } from '../components/patient-banner/patient-banner.compo
 import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { OHRIFormSchema, OHRIFormField } from './types';
-
-// fallback encounter type
-const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
+import { HTSEncounterType } from './constants';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -144,7 +142,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
         patient: patient.id,
         encounterDatetime: encDate,
         location: location.uuid,
-        encounterType: HTSEncounterType,
+        encounterType: formJson.encounterType || HTSEncounterType,
         encounterProviders: [
           {
             provider: currentProvider,

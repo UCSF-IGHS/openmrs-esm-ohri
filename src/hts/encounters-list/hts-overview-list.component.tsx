@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
-import HTSForm from '../../forms/test-forms/hts-form';
+// import HTSForm from '../../forms/test-forms/hts-form';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -36,14 +36,14 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const launchHTSForm = () => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: 'HTS Entry form',
-      state: { updateParent: forceComponentUpdate, formJson: HTSForm },
+      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: 'HTS Entry form',
       encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: HTSForm },
+      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
   };
   const tableHeaders = [

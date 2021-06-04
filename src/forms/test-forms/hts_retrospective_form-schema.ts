@@ -19,11 +19,10 @@ const HTSRestroForm: OHRIFormSchema = {
                 answers: [
                   {
                     label: 'yes',
-                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   },
                   {
                     label: 'no',
-                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
                   },
                 ],
               },
@@ -119,6 +118,77 @@ const HTSRestroForm: OHRIFormSchema = {
                 weeksList: '',
               },
               id: 'lastHIVTestDate',
+            },
+            {
+              label: 'Population type',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'select',
+                concept: 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3',
+                answers: [
+                  {
+                    concept: '63ea75cb-205f-4e7b-9ede-5f9b8a4dda9f',
+                    label: 'Migrant Workers',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'b282bb08-62a7-42c2-9bea-8751c267d13e',
+                    label: 'Uniformed Forces',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '22b202fc-67de-4af9-8c88-46e22559d4b2',
+                    label: 'Transgender Persons',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '678f3144-302f-493e-ba22-7ec60a84732a',
+                    label: 'Adolescent Girls & Young Women',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'def00c73-f6d5-42fb-bcec-0b192b5be22d',
+                    label: 'Fisher Folk',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '8da9bf92-22f6-40be-b468-1ad08de7d457',
+                    label: 'Prisoners',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'dc1058ea-4edd-4780-aeaa-a474f7f3a437',
+                    label: 'Refugees',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '160578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Male who has sex with men',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '266974005',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '160579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Sex worker',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '53713009',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Long distance truck driver',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'patientPopulationType',
             },
           ],
         },
@@ -282,143 +352,17 @@ const HTSRestroForm: OHRIFormSchema = {
               type: 'obs',
               questionOptions: {
                 rendering: 'select',
-                concept: '159936AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                concept: '13abe5c9-6de2-4970-b348-36d352ee8eeb',
                 answers: [
                   {
-                    concept: '159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Home based HIV testing program',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2049',
-                      },
-                    ],
+                    concept: '42dd1e18-00cb-471c-911c-cb254d5b01a5',
+                    label: 'Community Level testing',
+                    conceptMappings: [],
                   },
                   {
-                    concept: '1459AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Diagnostic testing and counseling for HIV',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2177',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Maternal and child health program',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2050',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Inpatient care or hospitalization',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '5485',
-                      },
-                      {
-                        type: 'PIH',
-                        value: '1429',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '394656005',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Tuberculosis treatment program',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '401173007',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '159939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'mobile voluntary counseling and testing program',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2048',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '163266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Current health facility',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '257622000',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '159940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Voluntary counseling and testing center',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2047',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Outpatient department',
-                    conceptMappings: [
-                      {
-                        type: 'PIH',
-                        value: '1651',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '1965',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '33022008',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Other',
-                    conceptMappings: [
-                      {
-                        type: 'PIH-Malawi',
-                        value: '6408',
-                      },
-                      {
-                        type: 'org.openmrs.module.mdrtb',
-                        value: 'OTHER',
-                      },
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '56221000105001',
-                      },
-                      {
-                        type: 'PIH',
-                        value: '5622',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '5622',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '74964007',
-                      },
-                    ],
+                    concept: '5995ebd5-11ae-47ca-ac12-bcb8c0117aec',
+                    label: 'Facility Level Testing',
+                    conceptMappings: [],
                   },
                 ],
               },
@@ -487,7 +431,79 @@ const HTSRestroForm: OHRIFormSchema = {
               id: 'reasonForTesting',
             },
             {
-              label: 'Service delivery point',
+              label: 'Community delivery point',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'select',
+                concept: '159936AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '43741000',
+                  },
+                  {
+                    type: 'AMPATH',
+                    value: '2051',
+                  },
+                ],
+                answers: [
+                  {
+                    concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Other',
+                    conceptMappings: [
+                      {
+                        type: 'PIH-Malawi',
+                        value: '6408',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'OTHER',
+                      },
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '56221000105001',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '5622',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5622',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '74964007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '159939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'mobile voluntary counseling and testing program',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '2048',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Home based HIV testing program',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '2049',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'serviceDeliveryPoint',
+              hide: "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
+            },
+            {
+              label: 'Facility service delivery point',
               type: 'obs',
               questionOptions: {
                 rendering: 'select',
@@ -572,16 +588,6 @@ const HTSRestroForm: OHRIFormSchema = {
                     ],
                   },
                   {
-                    concept: '159939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'mobile voluntary counseling and testing program',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2048',
-                      },
-                    ],
-                  },
-                  {
                     concept: '160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                     label: 'Tuberculosis treatment program',
                     conceptMappings: [
@@ -629,19 +635,10 @@ const HTSRestroForm: OHRIFormSchema = {
                       },
                     ],
                   },
-                  {
-                    concept: '159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Home based HIV testing program',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2049',
-                      },
-                    ],
-                  },
                 ],
               },
-              id: 'serviceDeliveryPoint',
+              hide: "isEmpty(testingLocation) || testingLocation != '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
+              id: 'facilityServiceDeliveryPoint',
             },
           ],
         },
@@ -649,11 +646,74 @@ const HTSRestroForm: OHRIFormSchema = {
     },
     {
       label: 'Pre-test counseling',
-      sections: [],
+      sections: [
+        {
+          label: 'Pre-test counseling',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'Type of counseling session',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'select',
+                concept: '0473ec07-2f34-4447-9c58-e35a1c491b6f',
+                answers: [
+                  {
+                    concept: '02586245-99c3-4d47-ac34-7121156afeab',
+                    label: 'Group Counselling',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '09472f39-6030-4f71-a8f2-30b2fdc734ed',
+                    label: 'Couple Counselling',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '0c78532a-f2e8-4793-874e-90b0c9485cef',
+                    label: 'Individual Counselling',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'counselingSessionType',
+            },
+            {
+              label: 'Patient consent',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '182771004',
+                  },
+                ],
+                answers: [
+                  {
+                    label: 'yes',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  },
+                  {
+                    label: 'no',
+                  },
+                ],
+              },
+              id: 'preTestCounselingConsent',
+            },
+          ],
+        },
+      ],
     },
     {
       label: 'TB / STI screening',
-      sections: [],
+      sections: [
+        {
+          label: 'TB / STI Screening',
+          isExpanded: 'true',
+          questions: [],
+        },
+      ],
     },
     {
       label: 'HIV testing',
@@ -672,5 +732,4 @@ const HTSRestroForm: OHRIFormSchema = {
   uuid: 'xxxx',
   referencedForms: [],
 };
-
 export default HTSRestroForm;

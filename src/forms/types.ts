@@ -25,6 +25,7 @@ export interface OHRIFormSchema {
   processor: string;
   uuid: string;
   referencedForms: [];
+  encounterType?: string;
 }
 
 export interface OHRIFormPage {
