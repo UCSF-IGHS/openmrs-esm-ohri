@@ -1,9 +1,11 @@
 import React from 'react';
+import styles from './_section.scss';
 import { getFieldComponent, getHandler } from '../../registry/registry';
 
-const OHRIFormSection = ({ fields, onFieldChange }) => {
+const OHRIFormSection = ({ fields, onFieldChange, sectionTitle }) => {
   return (
-    <div>
+    <div style={{ marginBottom: '3.063rem', borderBottom: 'solid 1px rgba(107, 104, 104, 0.5)' }}>
+      <h4 style={{ margin: '10px 0px 10px 0px' }}>{sectionTitle}</h4>
       {fields.map((question, index) => {
         const component = getFieldComponent(question.questionOptions.rendering);
         if (component) {

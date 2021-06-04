@@ -217,7 +217,13 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                       {currentPage && (
                         <div className={styles.contentWrapper}>
                           {currentPage.sections.map((section, index) => {
-                            return <OHRIFormSection fields={section.questions} onFieldChange={onFieldChange} />;
+                            return (
+                              <OHRIFormSection
+                                fields={section.questions}
+                                onFieldChange={onFieldChange}
+                                sectionTitle={section.label}
+                              />
+                            );
                           })}
                         </div>
                       )}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { getFieldComponent, getHandler } from '../../registry/registry';
 
-const OHRIFormSection = ({ fields, onFieldChange }) => {
+const OHRIFormSection = ({ fields, onFieldChange, sectionlabel }) => {
   return (
     <div>
+      <h4>{sectionlabel}</h4>
       {fields.map((question, index) => {
         const component = getFieldComponent(question.questionOptions.rendering);
         if (component) {
