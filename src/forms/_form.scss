@@ -4,6 +4,24 @@
     font-family: "IBM Plex Sans";
 }
 
+.formStyle{
+  background-color:#ffffff;
+}
+
 .contentWrapper, .submit {
     margin: 0px 20px 0px 20px;
+}
+
+.title {
+  width: 13.75rem;
+  height: 2.25rem;
+  margin: 0 31.5rem 1.5rem 0;
+  font-family: IBMPlexSans;
+  font-size: 1.75rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  color: var(--color-gray-100);
 }

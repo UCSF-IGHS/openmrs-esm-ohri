@@ -19,10 +19,11 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
 
   return (
     !question.isHidden && (
-      <div className={styles.textContainer}>
+      <div className={styles.textContain}>
         <TextInput
           {...field}
           id={question.id}
+          className={styles.textContainer}
           labelText={question.label}
           name={question.id}
           value={field.value || ''}

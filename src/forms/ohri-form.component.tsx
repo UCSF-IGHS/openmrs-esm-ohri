@@ -13,6 +13,7 @@ import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-
 import { OHRIFormSchema, OHRIFormField } from './types';
 import OHRIFormSection from './components/section/ohri-form-section.component';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
+import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -66,7 +67,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
     );
     setForm(form);
     setInitialValues(tempInitVals);
-    setCurrentPage(form?.pages[0]);
+    setCurrentPage(form?.pages);
   }, [encounter]);
 
   useEffect(() => {
@@ -194,7 +195,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
           setSubmitting(false);
         }}>
         {props => (
-          <Form>
+          <Form className={styles.formStyle}>
             {!patient ? (
               <LoadingIcon />
             ) : (
@@ -229,19 +230,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                             date: encDate,
                           },
                         }}>
-                        {currentPage && (
-                          <div className={styles.contentWrapper}>
-                            {currentPage.sections.map((section, index) => {
-                              return (
-                                <OHRIFormSection
-                                  fields={section.questions}
-                                  onFieldChange={onFieldChange}
-                                  sectionTitle={section.label}
-                                />
-                              );
-                            })}
-                          </div>
-                        )}
+                        <div className={styles.contentWrapper}>
+                          <h4 className={styles.title}>Add a HTS record</h4>
+                          {form.pages.map((page, index) => {
+                            return <OHRIFormPage page={page} onFieldChange={onFieldChange} />;
+                          })}
+                        </div>
                       </OHRIFormContext.Provider>
                     </Column>
                   </Row>

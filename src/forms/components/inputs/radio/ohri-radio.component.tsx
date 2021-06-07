@@ -46,7 +46,8 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
           defaultSelected="default-selected"
           name={question.id}
           valueSelected={field.value}
-          onChange={handleChange}>
+          onChange={handleChange}
+          orientation="vertical">
           {question.questionOptions.answers.map((answer, index) => {
             return (
               <RadioButton

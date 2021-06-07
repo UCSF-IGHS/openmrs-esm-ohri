@@ -10,4 +10,9 @@
 .numberInputWrapper :global(.bx--number) {
     @extend .formField;
     width: 15rem;
+    font-size: 0.875rem;
+}
+
+.textContainer label{
+    font-size: 0.875rem !important;
 }
