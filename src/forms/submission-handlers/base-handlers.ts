@@ -6,7 +6,7 @@ import { OHRIFormField, SubmissionHandler } from '../types';
  */
 export const ObsSubmissionHandler: SubmissionHandler = {
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {
-    if (field.questionOptions.rendering == 'multicheckbox') {
+    if (field.questionOptions.rendering == 'checkbox') {
       return multiSelectObsHandler(field, value, context);
     }
     if (field.value) {
@@ -41,7 +41,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       if (typeof obs.value == 'string' || typeof obs.value == 'number') {
         return field.questionOptions.rendering == 'date' ? new Date(obs.value) : obs.value;
       } else {
-        if (field.questionOptions.rendering == 'multicheckbox') {
+        if (field.questionOptions.rendering == 'checkbox') {
           field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
           return field.value.map(o => o.value.uuid);
         }

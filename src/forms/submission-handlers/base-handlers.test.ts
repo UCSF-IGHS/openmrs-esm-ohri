@@ -77,7 +77,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       label: 'Past enrolled patient programs',
       type: 'obs',
       questionOptions: {
-        rendering: 'multicheckbox',
+        rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
       },
       id: 'past-patient-programs',
@@ -287,7 +287,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       label: 'Past enrolled patient programs',
       type: 'obs',
       questionOptions: {
-        rendering: 'multicheckbox',
+        rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
       },
       value: [
@@ -467,7 +467,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       label: 'Past enrolled patient programs',
       type: 'obs',
       questionOptions: {
-        rendering: 'multicheckbox',
+        rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
       },
       value: [
@@ -609,7 +609,7 @@ describe('ObsSubmissionHandler - getInitialValue', () => {
       label: 'Past enrolled patient programs',
       type: 'obs',
       questionOptions: {
-        rendering: 'multicheckbox',
+        rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
       },
       id: 'past-patient-programs',
