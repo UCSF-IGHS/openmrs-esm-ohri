@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './_section.scss';
 import { getFieldComponent, getHandler } from '../../registry/registry';
 
 const OHRIFormSection = ({ fields, onFieldChange, sectionTitle }) => {
