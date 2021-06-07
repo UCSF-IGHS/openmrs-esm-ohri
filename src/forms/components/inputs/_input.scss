@@ -16,3 +16,35 @@
 .textContainer label{
     font-size: 0.875rem !important;
 }
+
+.radioButton_ohri input[type="radio"] {
+    opacity : 0 !important; 
+    position: fixed;
+    width: 0;
+    }
+    
+.radioButton_ohri  label {
+    display: inline-block;
+    border: 1px solid #a6c8ff;
+    color: #525252;
+    padding: 0.688rem 1rem;
+    padding-right: 3rem;
+    border-radius: 4px 0 0 4px;
+    background-color: #ffffff;
+}
+
+.radioButton_ohri  label:last-child {
+margin-left: -5px;
+border-radius: 0 4px 4px 0;
+}
+
+.radioButton_ohri input[type="radio"]:checked + label {
+color: #0f62fe;
+border-color: #0f62fe;
+background-color: #edf5ff;
+}
+
+.radioButton_ohri > .bx--radio-button-wrapper {
+    margin-right: 0rem !important;
+}
+    
