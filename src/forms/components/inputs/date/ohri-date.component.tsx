@@ -15,7 +15,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   };
   return (
     <div className={styles.formField}>
-      <DatePicker datePickerType="single" onChange={onDateChange}>
+      <DatePicker datePickerType="single" onChange={onDateChange} className={styles.datePickerOverrides}>
         <DatePickerInput
           id="date-picker-calendar-id"
           placeholder="mm/dd/yyyy"
