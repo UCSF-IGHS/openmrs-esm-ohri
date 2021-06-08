@@ -65,6 +65,7 @@ export interface OHRIFormQuestionOptions {
   answers?: Array<Record<any, any>>;
   weeksList?: string;
   locationTag?: string;
+  rows?: string;
 }
 
 export type SessionMode = 'edit' | 'enter';
@@ -80,4 +81,5 @@ export type RenderType =
   | 'repeating'
   | 'group'
   | 'content-switcher'
-  | 'encounter-location';
+  | 'encounter-location'
+  | 'textarea';

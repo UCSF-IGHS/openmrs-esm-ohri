@@ -22,9 +22,9 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
     !question.isHidden && (
       <div className={styles.textContainer}>
         <FormGroup legendText={question.label}>
-          <ContentSwitcher onChange={handleChange} selectedIndex={selectedIndex}>
+          <ContentSwitcher onChange={handleChange} selectedIndex={selectedIndex} className={styles.selectedOption}>
             {question.questionOptions.answers.map((option, index) => (
-              <Switch name={option.concept} text={option.label} key={index} />
+              <Switch className={styles.switchOverrides} name={option.concept} text={option.label} key={index} />
             ))}
           </ContentSwitcher>
         </FormGroup>

@@ -14,7 +14,7 @@ const HTSRestroForm: OHRIFormSchema = {
               label: 'Ever tested positive for HIV before?',
               type: 'obs',
               questionOptions: {
-                rendering: 'radio',
+                rendering: 'content-switcher',
                 concept: '1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                 answers: [
                   {

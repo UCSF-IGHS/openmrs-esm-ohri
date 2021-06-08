@@ -1,21 +1,42 @@
+@import "../../../root.scss";
+
 .formField {
     padding-bottom: 1rem;
 }
 
+.datePickerOverrides input {
+    width: $ohri-input-width !important;
+}
+
 .formInputField {
     @extend .formField;
-    max-width: 22rem;
+    width: $ohri-input-width;
 }
 
 .numberInputWrapper :global(.bx--number) {
     @extend .formField;
-    width: 15rem;
+    width: $ohri-input-width;
     font-size: 0.875rem;
 }
 
 .textContainer label{
     font-size: 0.875rem !important;
 }
+
+.selectedOption {
+  border-radius: 4px;
+  border: solid 1px #a6c8ff;
+  width: 15rem;
+}
+
+.selectedOption button {
+background-color: #ffffff;
+}
+
+// .selectedOption button {
+// background-color: #edf5ff !important;
+// color: #0f62fe;
+// }
 
 .radioButton_ohri input[type="radio"] {
     opacity : 0 !important; 

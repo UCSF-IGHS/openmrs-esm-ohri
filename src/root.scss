@@ -17,6 +17,7 @@ $openmrs-background-grey: #f4f4f4;
 $danger: #da1e28;
 $interactive-01: #0f62fe;
 $brand-teal-01: #007d79;
+$ohri-input-width: 22.313rem;
 
 .productiveHeading01 {
   @include carbon--type-style("productive-heading-01");
@@ -73,3 +74,4 @@ $brand-teal-01: #007d79;
 .text02 {
   color: $text-02;
 }
+
