@@ -19,10 +19,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 answers: [
                   {
                     label: 'Yes',
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
                   },
                   {
                     label: 'No',
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
                   },
                 ],
               },
@@ -703,10 +704,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 answers: [
                   {
                     label: 'Yes',
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
                   },
                   {
                     label: 'No',
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
                   },
                 ],
               },
@@ -953,10 +955,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 answers: [
                   {
                     label: 'Yes',
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
                   },
                   {
                     label: 'No',
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
                   },
                 ],
               },
@@ -1066,7 +1069,7 @@ const HTSRestroForm: OHRIFormSchema = {
                     ],
                   },
                   {
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
                     label: 'Yes',
                     conceptMappings: [
                       {
@@ -1140,7 +1143,7 @@ const HTSRestroForm: OHRIFormSchema = {
                 concept: 'e8e8fe71-adbb-48e7-b531-589985094d30',
                 answers: [
                   {
-                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
                     label: 'Yes',
                     conceptMappings: [
                       {
