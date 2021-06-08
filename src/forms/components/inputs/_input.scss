@@ -25,7 +25,6 @@
 
 .selectedOption {
   border-radius: 4px;
-  border: solid 1px #a6c8ff;
   width: 15rem;
 }
 
@@ -33,10 +32,27 @@
 background-color: #ffffff;
 }
 
-// .selectedOption button {
-// background-color: #edf5ff !important;
-// color: #0f62fe;
-// }
+.switchOverrides{
+background-color: #edf5ff !important;
+color: #0f62fe !important;
+padding: 0 0 0 1rem;
+border: solid 1px #0f62fe !important;
+}
+
+.switchOverrides:focus{
+    border: none !important;
+}
+
+.selectedOption button:after{
+    height: auto !important;
+    background-color: #a6c8ff !important;
+}
+
+.switchOverridesNone{
+background-color: #ffffff !important;
+padding: 0 0 0 1rem;
+border: solid 1px #edf5ff !important;
+}
 
 .radioButton_ohri input[type="radio"] {
     opacity : 0 !important; 
