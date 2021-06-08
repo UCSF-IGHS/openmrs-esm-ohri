@@ -18,12 +18,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 concept: '1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                 answers: [
                   {
-                    label: 'yes',
-                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
+                    label: 'Yes',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   },
                   {
-                    label: 'no',
-                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
+                    label: 'No',
                   },
                 ],
               },
@@ -436,18 +435,23 @@ const HTSRestroForm: OHRIFormSchema = {
               type: 'obs',
               questionOptions: {
                 rendering: 'select',
-                concept: '159936AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                conceptMappings: [
-                  {
-                    type: 'SNOMED-CT',
-                    value: '43741000',
-                  },
-                  {
-                    type: 'AMPATH',
-                    value: '2051',
-                  },
-                ],
+                concept: '74a3b695-30f7-403b-8f63-3f766461e104',
                 answers: [
+                  {
+                    concept: 'b12b2d5e-9e9b-4af8-b326-a9de5ea0acfe',
+                    label: 'Drop In Centre',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'c15aecde-acac-49b6-bffe-cd1bb291c28b',
+                    label: 'Workplace',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '7ac53e4f-c5c4-4bd9-a948-1df1fb73740a',
+                    label: 'Hotspot',
+                    conceptMappings: [],
+                  },
                   {
                     concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                     label: 'Other',
@@ -475,6 +479,21 @@ const HTSRestroForm: OHRIFormSchema = {
                       {
                         type: 'SNOMED-CT',
                         value: '74964007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '160545AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Outreach program',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Home based HIV testing program',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '2049',
                       },
                     ],
                   },
@@ -489,40 +508,45 @@ const HTSRestroForm: OHRIFormSchema = {
                     ],
                   },
                   {
-                    concept: '159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Home based HIV testing program',
+                    concept: '159940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Voluntary counseling and testing center',
                     conceptMappings: [
                       {
                         type: 'AMPATH',
-                        value: '2049',
+                        value: '2047',
                       },
                     ],
                   },
                 ],
               },
-              id: 'serviceDeliveryPoint',
               hide: {
                 hideWhenExpression:
                   "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'",
               },
+              id: 'serviceDeliveryPoint',
             },
             {
               label: 'Facility service delivery point',
               type: 'obs',
               questionOptions: {
                 rendering: 'select',
-                concept: '159936AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                conceptMappings: [
-                  {
-                    type: 'SNOMED-CT',
-                    value: '43741000',
-                  },
-                  {
-                    type: 'AMPATH',
-                    value: '2051',
-                  },
-                ],
+                concept: '80bcc9c1-e328-47e8-affe-6d1bffe4adf1',
                 answers: [
+                  {
+                    concept: '6007b076-9e67-47e5-8e57-ee5d1331fbe0',
+                    label: 'Post Natal Program',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '261855fb-32d6-43c3-b0bf-e8737db154f7',
+                    label: 'Family Planning Clinic',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '162050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Comprehensive care center',
+                    conceptMappings: [],
+                  },
                   {
                     concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                     label: 'Other',
@@ -554,42 +578,14 @@ const HTSRestroForm: OHRIFormSchema = {
                     ],
                   },
                   {
-                    concept: '160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Outpatient department',
-                    conceptMappings: [
-                      {
-                        type: 'PIH',
-                        value: '1651',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '1965',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '33022008',
-                      },
-                    ],
+                    concept: '160546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Sexually transmitted infection program/clinic',
+                    conceptMappings: [],
                   },
                   {
-                    concept: '159940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Voluntary counseling and testing center',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2047',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '163266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Current health facility',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '257622000',
-                      },
-                    ],
+                    concept: '160552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Nutrition program',
+                    conceptMappings: [],
                   },
                   {
                     concept: '160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
@@ -600,6 +596,16 @@ const HTSRestroForm: OHRIFormSchema = {
                         value: '401173007',
                       },
                     ],
+                  },
+                  {
+                    concept: '165475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Antenatal program',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '164835AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Labor and delivery unit',
+                    conceptMappings: [],
                   },
                   {
                     concept: '5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
@@ -620,22 +626,20 @@ const HTSRestroForm: OHRIFormSchema = {
                     ],
                   },
                   {
-                    concept: '159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Maternal and child health program',
+                    concept: '160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Outpatient department',
                     conceptMappings: [
                       {
-                        type: 'AMPATH',
-                        value: '2050',
+                        type: 'PIH',
+                        value: '1651',
                       },
-                    ],
-                  },
-                  {
-                    concept: '1459AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Diagnostic testing and counseling for HIV',
-                    conceptMappings: [
                       {
                         type: 'AMPATH',
-                        value: '2177',
+                        value: '1965',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '33022008',
                       },
                     ],
                   },
@@ -698,12 +702,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 ],
                 answers: [
                   {
-                    label: 'yes',
-                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
+                    label: 'Yes',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   },
                   {
-                    label: 'no',
-                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
+                    label: 'No',
                   },
                 ],
               },
@@ -733,6 +736,24 @@ const HTSRestroForm: OHRIFormSchema = {
                   },
                 ],
                 answers: [
+                  {
+                    concept: '1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Fever lasting more than three weeks',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '6173',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '386661006',
+                      },
+                      {
+                        type: 'ICD-10-WHO',
+                        value: 'R50.9',
+                      },
+                    ],
+                  },
                   {
                     concept: '1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                     label: 'Fever lasting more than three weeks',
@@ -931,12 +952,11 @@ const HTSRestroForm: OHRIFormSchema = {
                 ],
                 answers: [
                   {
-                    label: 'yes',
-                    concept: '18316c68-b5f9-4986-b76d-9975cd0ebe31',
+                    label: 'Yes',
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   },
                   {
-                    label: 'no',
-                    concept: '0d8a135b-0acf-47f3-a51c-77aefe7787db',
+                    label: 'No',
                   },
                 ],
               },
@@ -979,17 +999,545 @@ const HTSRestroForm: OHRIFormSchema = {
               },
               id: 'recencyTestResult',
             },
+            {
+              label: 'Date test was performed',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'date',
+                concept: '160082AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '439771001',
+                  },
+                ],
+                weeksList: '',
+              },
+              id: 'recencyTestDate',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Post-test counselling',
+      sections: [
+        {
+          label: 'Post-test counselling',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'Was post-test counselling conducted?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '159382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'PIH',
+                    value: '969',
+                  },
+                  {
+                    type: 'SNOMED-CT',
+                    value: '313077009',
+                  },
+                ],
+                answers: [
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'postTestCounsellingDone',
+            },
           ],
         },
       ],
     },
     {
       label: 'Linkage to care',
-      sections: [],
+      sections: [
+        {
+          label: 'Linkage to care',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'HTS Provider name',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'text',
+                concept: '1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'PIH',
+                    value: '1392',
+                  },
+                ],
+              },
+              id: 'htsProviderName',
+            },
+            {
+              label: 'HTS provider remarks',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'textarea',
+                concept: '437d1e25-e7ab-481c-aabc-01f21c6cdef1',
+                rows: '5',
+              },
+              id: 'htsProviderRemarks',
+            },
+            {
+              label: 'Was client linked to care?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'e8e8fe71-adbb-48e7-b531-589985094d30',
+                answers: [
+                  {
+                    concept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'linkedToCare',
+            },
+          ],
+        },
+      ],
     },
     {
       label: 'Referrals',
-      sections: [],
+      sections: [
+        {
+          label: 'Referrals',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'Was the client referred to prevention services?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'select',
+                concept: '1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                conceptMappings: [
+                  {
+                    type: 'SNOMED-CT',
+                    value: '439980006',
+                  },
+                  {
+                    type: 'AMPATH',
+                    value: '1272',
+                  },
+                  {
+                    type: 'AMPATH',
+                    value: '1932',
+                  },
+                ],
+                answers: [
+                  {
+                    concept: '1374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Dental care referral',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '103697008',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1459AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Diagnostic testing and counseling for HIV',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '2177',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1371AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Prenatal care referral',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '183548008',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1372AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Postnatal care referral',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '183861004',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Tobacco use counseling',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '408939007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Family planning services',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '5483',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '310031001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Other',
+                    conceptMappings: [
+                      {
+                        type: 'PIH-Malawi',
+                        value: '6408',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'OTHER',
+                      },
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '56221000105001',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '5622',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5622',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '74964007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Mental health services',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '390808007',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5489',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Alcohol counseling',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '1288',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '413473000',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '164164AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Surgical Outpatient Department',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '405607001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Maternal and child health program',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '2050',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1167AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Disclosure counseling',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '1167',
+                      },
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '11671000105001',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '409063005',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Voluntary counseling and testing for HIV',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Private health care clinic/facility',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '394794000',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5484AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Nutritional support',
+                    conceptMappings: [
+                      {
+                        type: 'PIH',
+                        value: '1400',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5484',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '278906000',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Health center hospital',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '12751000105006',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '22232009',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1275',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5486AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Social support services',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '54861000105000',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5486',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '315042007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '161359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Private home-based care',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '66280005',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1611AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Referral for opportunistic infection treatment',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '16111000105007',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '3457005',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'ARV for mother',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '55761000105009',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1446',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '416608005',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5576',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '2198',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Ophthalmology referral',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '183543004',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Inpatient care or hospitalization',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '5485',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1429',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '394656005',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'referredToPreventionServices',
+            },
+          ],
+        },
+      ],
     },
   ],
   processor: 'EncounterFormProcessor',
