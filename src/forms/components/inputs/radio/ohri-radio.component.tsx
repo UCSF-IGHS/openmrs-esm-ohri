@@ -9,7 +9,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [isBoolean, setIsBoolean] = useState(false);
-  const trueConceptUuid = '18316c68-b5f9-4986-b76d-9975cd0ebe31';
+  const trueConceptUuid = 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3';
 
   const handleChange = value => {
     setFieldValue(question.id, value);
