@@ -4,12 +4,12 @@ import OHRIFormSection from '../section/ohri-form-section.component';
 
 function OHRIFormPage({ page, onFieldChange }) {
   return (
-    <>
+    <div id={page.label}>
       <h4 className={styles.pageTitle}>{page.label}</h4>
       <span className={styles.required}>All fields are required unless marked optional</span>
       {page.sections.map((sec, index) => {
         return (
-          <div className={styles.formSection}>
+          <div className={styles.formSection} key={index}>
             <OHRIFormSection
               fields={sec.questions}
               showTitle={page.sections.length > 1}
@@ -20,7 +20,7 @@ function OHRIFormPage({ page, onFieldChange }) {
         );
       })}
       <hr className={styles.divider} />
-    </>
+    </div>
   );
 }
 

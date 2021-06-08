@@ -201,42 +201,46 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
             ) : (
               <>
                 <PatientBanner patient={patient} />
-                <Grid>
+                <Grid style={{ backgroundColor: 'red !important' }}>
                   <Row>
                     <Column lg={2} md={2} sm={1}>
-                      <OHRIFormSidebar pages={form.pages} setCurrentPage={setCurrentPage} />
-                      <Button style={{ marginBottom: '1rem', width: '11.688rem', display: 'block' }} type="submit">
-                        Save
-                      </Button>
-                      <Button
-                        style={{ width: '11.688rem' }}
-                        kind="tertiary"
-                        onClick={() => (onCancel ? onCancel() : null)}>
-                        Cancel
-                      </Button>
+                      <div className={styles.ohriSidebar}>
+                        <OHRIFormSidebar pages={form.pages} />
+                        <Button style={{ marginBottom: '1rem', width: '11.688rem', display: 'block' }} type="submit">
+                          Save
+                        </Button>
+                        <Button
+                          style={{ width: '11.688rem' }}
+                          kind="tertiary"
+                          onClick={() => (onCancel ? onCancel() : null)}>
+                          Cancel
+                        </Button>
+                      </div>
                     </Column>
                     <Column lg={10} md={6}>
-                      <OHRIFormContext.Provider
-                        value={{
-                          values: props.values,
-                          setFieldValue: props.setFieldValue,
-                          setEncounterLocation: setEncounterLocation,
-                          fields: fields,
-                          encounterContext: {
-                            patient: patient,
-                            encounter: encounter,
-                            location: location,
-                            sessionMode: encounterUuid ? 'edit' : 'enter',
-                            date: encDate,
-                          },
-                        }}>
-                        <div className={styles.contentWrapper}>
-                          <h4 className={styles.title}>Add a HTS record</h4>
-                          {form.pages.map((page, index) => {
-                            return <OHRIFormPage page={page} onFieldChange={onFieldChange} />;
-                          })}
-                        </div>
-                      </OHRIFormContext.Provider>
+                      <div className={styles.ohriFormContent}>
+                        <OHRIFormContext.Provider
+                          value={{
+                            values: props.values,
+                            setFieldValue: props.setFieldValue,
+                            setEncounterLocation: setEncounterLocation,
+                            fields: fields,
+                            encounterContext: {
+                              patient: patient,
+                              encounter: encounter,
+                              location: location,
+                              sessionMode: encounterUuid ? 'edit' : 'enter',
+                              date: encDate,
+                            },
+                          }}>
+                          <div className={styles.contentWrapper}>
+                            <h4 className={styles.title}>Add a HTS record</h4>
+                            {form.pages.map((page, index) => {
+                              return <OHRIFormPage page={page} onFieldChange={onFieldChange} />;
+                            })}
+                          </div>
+                        </OHRIFormContext.Provider>
+                      </div>
                     </Column>
                   </Row>
                 </Grid>
