@@ -43,9 +43,8 @@ border: solid 1px #0f62fe !important;
     border: none !important;
 }
 
-.selectedOption button:after {
-    height: auto !important;
-    background-color: #a6c8ff !important;
+.selectedOption button:before {
+    display:none !important;
 }
 
 .switchOverridesNone {
