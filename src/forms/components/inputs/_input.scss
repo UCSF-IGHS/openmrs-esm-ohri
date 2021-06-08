@@ -19,7 +19,7 @@
     font-size: 0.875rem;
 }
 
-.textContainer label{
+.textContainer label {
     font-size: 0.875rem !important;
 }
 
@@ -32,23 +32,23 @@
 background-color: #ffffff;
 }
 
-.switchOverrides{
+.switchOverrides {
 background-color: #edf5ff !important;
 color: #0f62fe !important;
 padding: 0 0 0 1rem;
 border: solid 1px #0f62fe !important;
 }
 
-.switchOverrides:focus{
+.switchOverrides:focus {
     border: none !important;
 }
 
-.selectedOption button:after{
+.selectedOption button:after {
     height: auto !important;
     background-color: #a6c8ff !important;
 }
 
-.switchOverridesNone{
+.switchOverridesNone {
 background-color: #ffffff !important;
 padding: 0 0 0 1rem;
 border: solid 1px #edf5ff !important;
@@ -84,4 +84,11 @@ background-color: #edf5ff;
 .radioButton_ohri > .bx--radio-button-wrapper {
     margin-right: 0rem !important;
 }
-    
+
+.textInputOverrides {
+    width: $ohri-input-width;
+}
+
+.textInputOverrides label {
+    font-size: 0.875rem !important;
+}

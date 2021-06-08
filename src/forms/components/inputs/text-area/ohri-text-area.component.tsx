@@ -19,15 +19,18 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
 
   return (
     !question.isHidden && (
-      <TextArea
-        {...field}
-        id={question.id}
-        labelText={question.label}
-        name={question.id}
-        value={field.value || ''}
-        onFocus={() => setPreviousValue(field.value)}
-        rows={question.questionOptions.rows || 4}
-      />
+      <div className={styles.formField}>
+        <TextArea
+          {...field}
+          id={question.id}
+          labelText={question.label}
+          name={question.id}
+          value={field.value || ''}
+          className={styles.textInputOverrides}
+          onFocus={() => setPreviousValue(field.value)}
+          rows={question.questionOptions.rows || 4}
+        />
+      </div>
     )
   );
 };
