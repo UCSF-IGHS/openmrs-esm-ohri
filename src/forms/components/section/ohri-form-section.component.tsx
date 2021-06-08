@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './_section.scss';
 import { getFieldComponent, getHandler } from '../../registry/registry';
 
 const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => {
+  let myRef = useRef();
+
   return (
     <div className={styles.container}>
       {showTitle && <h4 className={styles.sectionTitle}>{sectionTitle}</h4>}
