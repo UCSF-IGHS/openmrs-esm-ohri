@@ -29,7 +29,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
-  const htsEncounterTypeUUID = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
+  const htsPOCTypeUUID = '30b849bd-c4f4-4254-a033-fe9cf01001d8'; // HTS Testing
+  const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
@@ -50,11 +51,12 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     { key: 'date', header: 'Date', isSortable: true },
     { key: 'location', header: 'Location' },
     { key: 'result', header: 'Result' },
+    { key: 'encounter_type', header: 'Encounter Type' },
     { key: 'provider', header: 'HTS Provider' },
     { key: 'action', header: 'Action' },
   ];
 
-  function getHtsEncounters(query: string, customRepresentation: string) {
+  function getHtsEncounters(query: string, customRepresentation: string, encounterType: string) {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
       data.results.map(encounter => {
@@ -76,6 +78,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           date: dayjs(encounter.encounterDatetime).format('DD-MMM-YYYY'),
           location: encounter.location.name,
           result: htsResult?.value?.name?.name || 'None',
+          encounter_type: encounterType,
           provider: htsProvider,
           action: editEncounterButton,
         });
@@ -86,8 +89,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     });
   }
   React.useEffect(() => {
-    let query = `encounterType=${htsEncounterTypeUUID}&patient=${patientUuid}`;
-    getHtsEncounters(query, htsEncounterRepresentation);
+    let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
+    getHtsEncounters(query, htsEncounterRepresentation, 'HTS Retrospective');
   }, [counter]);
 
   const headerTitle = 'HTS Summary';
