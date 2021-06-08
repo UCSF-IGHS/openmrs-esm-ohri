@@ -1,6 +1,14 @@
-import { registerBreadcrumbs, defineConfigSchema, getAsyncLifecycle } from '@openmrs/esm-framework';
+import {
+  registerBreadcrumbs,
+  defineConfigSchema,
+  getAsyncLifecycle,
+  provide,
+  Config,
+  getSyncLifecycle,
+} from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
-
+import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
+import { createDashboardLink, dashboardMeta } from './dashboard.meta';
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
@@ -12,6 +20,9 @@ function setupOpenMRS() {
   };
 
   defineConfigSchema(moduleName, {});
+
+  // Load configurations
+  provide(patientDashboardsConfig);
 
   return {
     pages: [
@@ -26,6 +37,14 @@ function setupOpenMRS() {
     ],
     extensions: [
       {
+        id: 'hts-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(dashboardMeta), options),
+        meta: dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
         id: 'hts-summary-page-menu-item-ext',
         slot: 'patient-chart-nav-menu',
         load: getAsyncLifecycle(() => import('./menu-items/hts-summary-page-link'), {
@@ -35,7 +54,7 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-patient-encounters-list-ext',
-        slot: 'patient-chart-summary-dashboard-slot',
+        slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,

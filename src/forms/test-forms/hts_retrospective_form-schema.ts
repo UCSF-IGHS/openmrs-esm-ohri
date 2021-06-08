@@ -757,24 +757,6 @@ const HTSRestroForm: OHRIFormSchema = {
                     ],
                   },
                   {
-                    concept: '1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Fever lasting more than three weeks',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '6173',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '386661006',
-                      },
-                      {
-                        type: 'ICD-10-WHO',
-                        value: 'R50.9',
-                      },
-                    ],
-                  },
-                  {
                     concept: '159799AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                     label: 'cough lasting more than 2 weeks',
                     conceptMappings: [
@@ -1131,7 +1113,7 @@ const HTSRestroForm: OHRIFormSchema = {
               questionOptions: {
                 rendering: 'textarea',
                 concept: '437d1e25-e7ab-481c-aabc-01f21c6cdef1',
-                rows: '5',
+                rows: 5,
               },
               id: 'htsProviderRemarks',
             },
