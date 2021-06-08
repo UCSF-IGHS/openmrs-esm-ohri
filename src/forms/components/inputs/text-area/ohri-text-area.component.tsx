@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { TextInput } from 'carbon-components-react';
+import { TextArea } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 
-const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
+const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
@@ -20,18 +20,19 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   return (
     !question.isHidden && (
       <div className={styles.formField}>
-        <TextInput
+        <TextArea
           {...field}
           id={question.id}
-          className={styles.textInputOverrides}
           labelText={question.label}
           name={question.id}
           value={field.value || ''}
+          className={styles.textInputOverrides}
           onFocus={() => setPreviousValue(field.value)}
+          rows={question.questionOptions.rows || 4}
         />
       </div>
     )
   );
 };
 
-export default OHRIText;
+export default OHRITextArea;
