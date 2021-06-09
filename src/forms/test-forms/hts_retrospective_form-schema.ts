@@ -14,7 +14,7 @@ const HTSRestroForm: OHRIFormSchema = {
               label: 'Ever tested positive for HIV before?',
               type: 'obs',
               questionOptions: {
-                rendering: 'content-switcher',
+                rendering: 'radio',
                 concept: '1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                 answers: [
                   {
@@ -652,6 +652,51 @@ const HTSRestroForm: OHRIFormSchema = {
               },
               id: 'facilityServiceDeliveryPoint',
             },
+            {
+              label: 'Relationship with Index Client',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'select',
+                concept: '85d3b4fe-c1a9-4e27-a86b-dcc1e30c8a93',
+                answers: [
+                  {
+                    concept: 'deb58a7d-1c89-4ce4-bfd9-2276d5530089',
+                    label: 'Contact With and Suspected Exposure',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '66916a5c-760f-4c12-ae91-71f83298eb40',
+                    label: 'Social Contact',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '68a39d12-49c1-49aa-bd23-e8d505af8e93',
+                    label: 'Drug Injecting Partner',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1528AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Child',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '5617AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Partner or spouse',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'relationshipWithTheClient',
+            },
+            {
+              label: 'Index client ID Number',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'text',
+                concept: '7d502927-7f21-4f72-bfc6-dc4d972ab1af',
+              },
+              id: 'indexClientID',
+            },
           ],
         },
       ],
@@ -663,6 +708,66 @@ const HTSRestroForm: OHRIFormSchema = {
           label: 'Pre-test counseling',
           isExpanded: 'true',
           questions: [
+            {
+              label: 'Was pre-test counselling conducted?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'de32152d-93b0-412a-908a-20af0c46f215',
+                answers: [
+                  {
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'preTestCounsellingConducted',
+            },
             {
               label: 'Type of counseling session',
               type: 'obs',
@@ -758,7 +863,7 @@ const HTSRestroForm: OHRIFormSchema = {
                   },
                   {
                     concept: '159799AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'cough lasting more than 2 weeks',
+                    label: 'Cough lasting more than 2 weeks',
                     conceptMappings: [
                       {
                         type: 'PIH',
@@ -902,6 +1007,66 @@ const HTSRestroForm: OHRIFormSchema = {
           isExpanded: 'true',
           questions: [
             {
+              label: 'Was HIV test conducted?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                answers: [
+                  {
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'hivTestConducted',
+            },
+            {
               label: 'Date test was performed',
               type: 'obs',
               questionOptions: {
@@ -910,6 +1075,293 @@ const HTSRestroForm: OHRIFormSchema = {
                 weeksList: '',
               },
               id: 'dateTestPerformed',
+            },
+            {
+              label: 'Initial HIV test kit name',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'afa64df8-50af-4bc3-8135-6e6603f62068',
+                answers: [
+                  {
+                    concept: '5e318e60-3108-4468-90cd-7f2dc1c596a6',
+                    label: 'HIV Determine Kit',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '59ec348a-14a8-4e88-9b9e-72fa24b949fa',
+                    label: 'HIV-Syphilis Duo Kit',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'inititalHIVTestKitName',
+            },
+            {
+              label: 'Initial HIV test result',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'e767ba5d-7560-43ba-a746-2b0ff0a2a513',
+                answers: [
+                  {
+                    concept: '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Negative',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '664',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '260385009',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '664',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'NEGATIVE',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '665',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Indeterminate',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '1138',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '82334004',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '6378487b-584d-4422-a6a6-56c8830873ff',
+                    label: 'Positive',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'initialHIVTestResult',
+            },
+            {
+              label: 'Confirmatory HIV Test Kit Name',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'b78d89e7-08aa-484f-befb-1e3e70cd6985',
+                answers: [
+                  {
+                    concept: 'a099ce71-d75e-433d-a782-0b9ad4f4f655',
+                    label: 'HIV First Response Kit',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '0d64d0d0-8dcb-4a56-819c-999d52f04db8',
+                    label: 'HIV Stat Pack Kit',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'confirmatoryHIVTestKitName',
+            },
+            {
+              label: 'Confirmatory HIV test result',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'dbc4f8e9-7098-4585-9509-e2f84a4d8c6e',
+                answers: [
+                  {
+                    concept: '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Negative',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '664',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '260385009',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '664',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'NEGATIVE',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '665',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Indeterminate',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '1138',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '82334004',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '6378487b-584d-4422-a6a6-56c8830873ff',
+                    label: 'Positive',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'confirmatoryHIVTestResult',
+            },
+            {
+              label: 'Tie Breaker HIV test kit name',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '73434a78-e4fc-42f7-a812-f30f3b3cabe3',
+                answers: [
+                  {
+                    concept: '780c8ff2-5e11-48f8-ad3d-efa36a0413f6',
+                    label: 'HIV SD Bioline Kit',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '780c8ff2-5e11-48f8-ad3d-efa36a0413f6',
+                    label: 'HIV SD Bioline Kit',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'tieBreakerHIVTestKitName',
+            },
+            {
+              label: 'Tie Breaker HIV test kit result',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'bfc5fbb9-2b23-422e-a741-329bb2597032',
+                answers: [
+                  {
+                    concept: '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Negative',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '664',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '260385009',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '664',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'NEGATIVE',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '665',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Indeterminate',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '1138',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '82334004',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '6378487b-584d-4422-a6a6-56c8830873ff',
+                    label: 'Positive',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'tieBreakerHIVTestKitResult',
+            },
+            {
+              label: 'Final HIV test result',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab',
+                answers: [
+                  {
+                    concept: '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Negative',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '664',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '260385009',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '664',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'NEGATIVE',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '665',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Indeterminate',
+                    conceptMappings: [
+                      {
+                        type: 'AMPATH',
+                        value: '1138',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '82334004',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '6378487b-584d-4422-a6a6-56c8830873ff',
+                    label: 'Positive',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'finalHIVTestResult',
             },
           ],
         },
@@ -946,6 +1398,66 @@ const HTSRestroForm: OHRIFormSchema = {
                 ],
               },
               id: 'recencyTestingConsent',
+            },
+            {
+              label: 'Was recency test conducted?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '65e18678-18db-4801-9625-50d3302c780c',
+                answers: [
+                  {
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'recencyTestConducted',
             },
             {
               label: 'Recency test result',
@@ -985,20 +1497,159 @@ const HTSRestroForm: OHRIFormSchema = {
               id: 'recencyTestResult',
             },
             {
-              label: 'Date test was performed',
+              label: 'Was the client given the result',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '164848AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                answers: [
+                  {
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'clientReceivedResults',
+            },
+            {
+              label: 'When the client received the HIV test result?',
               type: 'obs',
               questionOptions: {
                 rendering: 'date',
                 concept: '160082AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                conceptMappings: [
-                  {
-                    type: 'SNOMED-CT',
-                    value: '439771001',
-                  },
-                ],
-                weeksList: '',
               },
               id: 'recencyTestDate',
+            },
+            {
+              label: 'Were results received as a couple?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '445846e9-b929-4519-bc83-d51c051918f5',
+                answers: [
+                  {
+                    concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+                    label: 'Yes',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1065',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1065',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 373066001',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+                    label: 'No',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Unknown',
+                    conceptMappings: [
+                      {
+                        type: 'CIEL',
+                        value: '1067',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '1067',
+                      },
+                      {
+                        type: 'SNOMED CT',
+                        value: 'CT: 261665006',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '1067',
+                      },
+                    ],
+                  },
+                ],
+              },
+              id: 'resultsReceivedAsCouple',
+            },
+            {
+              label: 'Couple results',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'radio',
+                concept: '5f38bc97-d6ca-43f8-a019-b9a9647d0c6a',
+                answers: [
+                  {
+                    concept: '3a27187f-da7a-4f6b-986d-6521f343326d',
+                    label: 'Concordant Positive',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'c1504c2b-a8bf-44bf-ab1e-1d342ba051ae',
+                    label: 'Concordant Negative',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'c2d2bea8-2db5-4730-86b1-592c9408f567',
+                    label: 'Discordant',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'coupleResults',
             },
           ],
         },
@@ -1080,6 +1731,225 @@ const HTSRestroForm: OHRIFormSchema = {
                 ],
               },
               id: 'postTestCounsellingDone',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Referrals',
+      sections: [
+        {
+          label: 'Referrals',
+          isExpanded: 'true',
+          questions: [
+            {
+              label: 'Was the client referred to prevention services?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'checkbox',
+                concept: '5f394708-ca7d-4558-8d23-a73de181b02d',
+                answers: [
+                  {
+                    concept: '88cdde2b-753b-48ac-a51a-ae5e1ab24846',
+                    label: 'Pre Exposure Prophylaxis (PEP)',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '46da10c7-49e3-45e5-8e82-7c529d52a1a8',
+                    label: 'STI Testing and Treatment',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '1691AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Post-exposure prophylaxis',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '162223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Voluntary male circumcision clinic',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Other',
+                    conceptMappings: [
+                      {
+                        type: 'PIH-Malawi',
+                        value: '6408',
+                      },
+                      {
+                        type: 'org.openmrs.module.mdrtb',
+                        value: 'OTHER',
+                      },
+                      {
+                        type: 'SNOMED-MVP',
+                        value: '56221000105001',
+                      },
+                      {
+                        type: 'PIH',
+                        value: '5622',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5622',
+                      },
+                      {
+                        type: 'SNOMED-CT',
+                        value: '74964007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: 'da0238c1-0ddd-49cc-b10d-c552391b6332',
+                    label: 'Harm Reduction for People Who Inject Drugs',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'ac2e75dc-fceb-4591-9ffb-3f852c0750d9',
+                    label: 'Behavioural Interventions to Support Risk Reduction - for KP',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '0be6a668-b4ff-4fc5-bbae-0e2a86af1bd1',
+                    label: 'Post-GBV Care',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'e7ee9ec2-3cc7-4e59-8172-9fd08911e8c5',
+                    label: 'Prevention Information',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'referredToPreventionServices',
+            },
+            {
+              label: 'Was the client referred to Sexual and Reproductive Health services?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'checkbox',
+                concept: 'bf634be9-197a-433b-8e4e-7a04242a4e1d',
+                answers: [
+                  {
+                    concept: 'a56cdd43-f2eb-49d6-88fd-113aaea2e85f',
+                    label: 'HIV Testing for Partners and Social Contacts of People from KP',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'f0589be1-d457-4138-b244-bfb115cdea21',
+                    label: 'HIV Testing for Partners and Biological Children',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '46da10c7-49e3-45e5-8e82-7c529d52a1a8',
+                    label: 'STI Testing and Treatment',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '9d4c029a-2ac3-44c3-9a20-fb32c81a9ba2',
+                    label: 'Anal Cancer Screening',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '060dd5b2-2d65-4db5-85f0-cd1ba809350f',
+                    label: 'Cervical Cancer Screening and Treatment',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '0097d9b1-6758-4754-8713-91638efe12ea',
+                    label: 'Check Pregnancy Status',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '6488e62a-314b-49da-b8d4-ca9c7a6941fc',
+                    label: 'Contraception and FP',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'referredToSRHServices',
+            },
+            {
+              label: 'Was the client referred to Clinical Services?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'checkbox',
+                concept: '960f2980-35e2-4677-88ed-79424fe0fc91',
+                answers: [
+                  {
+                    concept: '160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Tuberculosis treatment program',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '401173007',
+                      },
+                    ],
+                  },
+                  {
+                    concept: '164128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Isoniazid Preventive Treatment Program',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '858f0f06-bc62-4b04-b864-cef98a2f3845',
+                    label: 'Cotrimoxazole Chemoprophylaxis to Prevent Pneumocystis Carinii Pneumonia',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '0cf2ce2c-cd3f-478b-89b7-542018674dba',
+                    label: 'Assessment and Provision of Vaccinations',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'referredToClinicalServices',
+            },
+            {
+              label: 'Was the client referred for other services?',
+              type: 'obs',
+              questionOptions: {
+                rendering: 'checkbox',
+                concept: 'b5afd495-00fc-4d94-9e26-8f6c8cc8caa0',
+                answers: [
+                  {
+                    concept: '5490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Psychosocial counseling',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '5489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    label: 'Mental health services',
+                    conceptMappings: [
+                      {
+                        type: 'SNOMED-CT',
+                        value: '390808007',
+                      },
+                      {
+                        type: 'AMPATH',
+                        value: '5489',
+                      },
+                    ],
+                  },
+                  {
+                    concept: 'ea08440d-41d4-4795-bb4d-4639cf32645c',
+                    label: 'Services for Responding to Violence Against Women',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: 'a046ce31-e0d9-4044-a384-ecc429dc4035',
+                    label: 'Legal and Social Services',
+                    conceptMappings: [],
+                  },
+                  {
+                    concept: '846a63c0-4530-4008-b6a1-12201b9e0b88',
+                    label: 'Support for Disclosure and Partner Services',
+                    conceptMappings: [],
+                  },
+                ],
+              },
+              id: 'referredToOtherServices',
             },
           ],
         },
@@ -1177,348 +2047,14 @@ const HTSRestroForm: OHRIFormSchema = {
               },
               id: 'linkedToCare',
             },
-          ],
-        },
-      ],
-    },
-    {
-      label: 'Referrals',
-      sections: [
-        {
-          label: 'Referrals',
-          isExpanded: 'true',
-          questions: [
             {
-              label: 'Was the client referred to prevention services?',
+              label: 'Patient Identification Number',
               type: 'obs',
               questionOptions: {
-                rendering: 'select',
-                concept: '1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                conceptMappings: [
-                  {
-                    type: 'SNOMED-CT',
-                    value: '439980006',
-                  },
-                  {
-                    type: 'AMPATH',
-                    value: '1272',
-                  },
-                  {
-                    type: 'AMPATH',
-                    value: '1932',
-                  },
-                ],
-                answers: [
-                  {
-                    concept: '1374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Dental care referral',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '103697008',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1459AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Diagnostic testing and counseling for HIV',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2177',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1371AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Prenatal care referral',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '183548008',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1372AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Postnatal care referral',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '183861004',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Tobacco use counseling',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '408939007',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Family planning services',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '5483',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '310031001',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Other',
-                    conceptMappings: [
-                      {
-                        type: 'PIH-Malawi',
-                        value: '6408',
-                      },
-                      {
-                        type: 'org.openmrs.module.mdrtb',
-                        value: 'OTHER',
-                      },
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '56221000105001',
-                      },
-                      {
-                        type: 'PIH',
-                        value: '5622',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '5622',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '74964007',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Mental health services',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '390808007',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '5489',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Alcohol counseling',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '1288',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '413473000',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '164164AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Surgical Outpatient Department',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '405607001',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Maternal and child health program',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '2050',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1167AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Disclosure counseling',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '1167',
-                      },
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '11671000105001',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '409063005',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Voluntary counseling and testing for HIV',
-                    conceptMappings: [],
-                  },
-                  {
-                    concept: '160479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Private health care clinic/facility',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '394794000',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5484AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Nutritional support',
-                    conceptMappings: [
-                      {
-                        type: 'PIH',
-                        value: '1400',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '5484',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '278906000',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Health center hospital',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '12751000105006',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '22232009',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '1275',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5486AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Social support services',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '54861000105000',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '5486',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '315042007',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '161359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Private home-based care',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '66280005',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1611AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Referral for opportunistic infection treatment',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '16111000105007',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '3457005',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'ARV for mother',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-MVP',
-                        value: '55761000105009',
-                      },
-                      {
-                        type: 'PIH',
-                        value: '1446',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '416608005',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '5576',
-                      },
-                      {
-                        type: 'AMPATH',
-                        value: '2198',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '1373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Ophthalmology referral',
-                    conceptMappings: [
-                      {
-                        type: 'SNOMED-CT',
-                        value: '183543004',
-                      },
-                    ],
-                  },
-                  {
-                    concept: '5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-                    label: 'Inpatient care or hospitalization',
-                    conceptMappings: [
-                      {
-                        type: 'AMPATH',
-                        value: '5485',
-                      },
-                      {
-                        type: 'PIH',
-                        value: '1429',
-                      },
-                      {
-                        type: 'SNOMED-CT',
-                        value: '394656005',
-                      },
-                    ],
-                  },
-                ],
+                rendering: 'text',
+                concept: 'd3205b6a-7192-461f-9ea8-a1ac8af38964',
               },
-              id: 'referredToPreventionServices',
+              id: 'patientClinicIdentificationNumber',
             },
           ],
         },
