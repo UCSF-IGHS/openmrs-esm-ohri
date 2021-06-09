@@ -11,14 +11,18 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
 
   const handleCheckboxChange = (checked, id, event) => {
     if (checked) {
-      setFieldValue(question.id, [...field.value, id]);
+      setFieldValue(question.id, [...field.value, event.currentTarget.value]);
     } else {
       setFieldValue(
         question.id,
-        field.value.filter(value => value !== id),
+        field.value.filter(value => value !== event.currentTarget.value),
       );
     }
-    question.value = handler.handleFieldSubmission(question, { checked: checked, id: id }, encounterContext);
+    question.value = handler.handleFieldSubmission(
+      question,
+      { checked: checked, id: event.currentTarget.value },
+      encounterContext,
+    );
   };
 
   return (
@@ -26,7 +30,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       <FormGroup legendText={question.label}>
         {question.questionOptions.answers.map((option, index) => (
           <Checkbox
-            id={option.concept}
+            id={`${question.id}-${option.concept}`}
             labelText={option.label}
             value={option.concept}
             key={index}
