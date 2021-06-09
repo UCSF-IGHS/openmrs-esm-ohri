@@ -13,8 +13,8 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   field.onBlur = () => {
     if (previousValue !== field.value) {
       onChange(question.id, field.value);
+      question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
     }
-    question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
   };
 
   return (

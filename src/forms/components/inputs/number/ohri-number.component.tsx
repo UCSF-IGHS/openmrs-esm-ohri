@@ -13,8 +13,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
   field.onBlur = () => {
     if (previousValue !== field.value) {
       onChange(question.id, field.value);
+      question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
     }
-    question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
   };
 
   return (
