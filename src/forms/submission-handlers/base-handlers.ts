@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { EncounterContext } from '../ohri-form-context';
 import { OHRIFormField, SubmissionHandler } from '../types';
 
@@ -39,7 +40,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
     if (obs) {
       field.value = obs;
       if (typeof obs.value == 'string' || typeof obs.value == 'number') {
-        return field.questionOptions.rendering == 'date' ? new Date(obs.value) : obs.value;
+        return field.questionOptions.rendering == 'date' ? moment(obs.value).toDate() : obs.value;
       } else {
         if (field.questionOptions.rendering == 'checkbox') {
           field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
