@@ -1,7 +1,7 @@
 {
   "name": "@openmrs/esm-ohri-app",
   "version": "0.5.0",
-  "description": "Drug order microfrontend for the OpenMRS SPA",
+  "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-app.js",
   "main": "src/index.ts",
   "license": "MIT",
