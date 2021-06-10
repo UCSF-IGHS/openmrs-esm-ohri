@@ -66,6 +66,7 @@ export interface OHRIFormQuestionOptions {
   weeksList?: string;
   locationTag?: string;
   rows?: number;
+  toggleOptions?: { labelTrue: string; labelFalse: string };
 }
 
 export type SessionMode = 'edit' | 'enter';
@@ -82,4 +83,5 @@ export type RenderType =
   | 'group'
   | 'content-switcher'
   | 'encounter-location'
-  | 'textarea';
+  | 'textarea'
+  | 'toggle';

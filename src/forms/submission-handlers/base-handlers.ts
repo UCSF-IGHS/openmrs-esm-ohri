@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { ConceptTrue } from '../constants';
 import { EncounterContext } from '../ohri-form-context';
 import { OHRIFormField, SubmissionHandler } from '../types';
 
@@ -41,13 +42,16 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       field.value = obs;
       if (typeof obs.value == 'string' || typeof obs.value == 'number') {
         return field.questionOptions.rendering == 'date' ? moment(obs.value).toDate() : obs.value;
-      } else {
-        if (field.questionOptions.rendering == 'checkbox') {
-          field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
-          return field.value.map(o => o.value.uuid);
-        }
-        return obs.value.uuid;
       }
+      if (field.questionOptions.rendering == 'checkbox') {
+        field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
+        return field.value.map(o => o.value.uuid);
+      }
+      if (field.questionOptions.rendering == 'toggle') {
+        field.value.value = obs.value.uuid == ConceptTrue;
+        return field.value.value;
+      }
+      return obs.value.uuid;
     }
     return '';
   },

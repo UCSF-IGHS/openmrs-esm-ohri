@@ -7,6 +7,7 @@ import OHRIRadio from '../components/inputs/radio/ohri-radio.component';
 import OHRIDropdown from '../components/inputs/select/ohri-dropdown.component';
 import OHRITextArea from '../components/inputs/text-area/ohri-text-area.component';
 import OHRIText from '../components/inputs/text/ohri-text.component';
+import OHRIToggle from '../components/inputs/toggle/ohri-toggle.component';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
 import { SubmissionHandler } from '../types';
 
@@ -55,6 +56,11 @@ const baseFieldComponents: Array<RegistryItem> = [
     id: 'OHRITextArea',
     component: OHRITextArea,
     type: 'textarea',
+  },
+  {
+    id: 'OHRIToggle',
+    component: OHRIToggle,
+    type: 'toggle',
   },
 ];
 
