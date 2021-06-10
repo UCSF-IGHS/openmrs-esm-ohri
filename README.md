@@ -10,7 +10,7 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 
 ## Built With
 
-* [React (TypeScript)](https://reactjs.org/) - Front-end JS library
+* [React](https://reactjs.org/) ([TypeScript](https://www.typescriptlang.org)) - Front-end JS library
 * [Formik](https://formik.org/docs/overview) - Form builder JS library
 * [Day.js](https://day.js.org/) - Date library
 * [Jest](https://jestjs.io/) - JS testing framework

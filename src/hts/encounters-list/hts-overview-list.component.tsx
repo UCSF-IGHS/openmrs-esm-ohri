@@ -125,23 +125,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           launchForm={launchHTSForm}
         />
       )}
-
-      <div className={styles.widgetContainer} style={{ marginTop: '2.5rem' }}>
-        <div className={styles.widgetHeaderContainer}>
-          <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>Client Linkage</h4>
-          <div className={styles.toggleButtons}>
-            <Button
-              kind="ghost"
-              renderIcon={Add16}
-              iconDescription="New"
-              onClick={e => {
-                e.preventDefault();
-              }}>
-              {t('add', 'New')}
-            </Button>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
