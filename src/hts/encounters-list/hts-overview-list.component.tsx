@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
-// import HTSForm from '../../forms/test-forms/hts-form';
+import moment from 'moment';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -75,7 +75,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         );
         rows.push({
           id: encounter.uuid,
-          date: dayjs(encounter.encounterDatetime).format('DD-MMM-YYYY'),
+          date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
           location: encounter.location.name,
           result: htsResult?.value?.name?.name || 'None',
           encounter_type: encounterType,
