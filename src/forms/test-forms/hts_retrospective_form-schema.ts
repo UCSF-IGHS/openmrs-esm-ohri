@@ -798,8 +798,12 @@ const HTSRestroForm: OHRIFormSchema = {
               label: 'Patient consent',
               type: 'obs',
               questionOptions: {
-                rendering: 'radio',
+                rendering: 'toggle',
                 concept: '1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                toggleOptions: {
+                  labelTrue: 'Yes',
+                  labelFalse: 'No',
+                },
                 conceptMappings: [
                   {
                     type: 'SNOMED-CT',

@@ -4,19 +4,19 @@ import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { getConcept } from '../../../ohri-form.resource';
+import { ConceptTrue } from '../../../constants';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [isBoolean, setIsBoolean] = useState(false);
-  const trueConceptUuid = 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3';
 
   const handleChange = value => {
     setFieldValue(question.id, value);
     onChange(question.id, value);
     question.value = handler.handleFieldSubmission(
       question,
-      isBoolean ? value == trueConceptUuid : value,
+      isBoolean ? value == ConceptTrue : value,
       encounterContext,
     );
   };
@@ -24,7 +24,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
   useEffect(() => {
     if (isBoolean) {
       if (question.value?.value && typeof question.value.value != 'boolean') {
-        question.value.value = question.value.value.uuid == trueConceptUuid;
+        question.value.value = question.value.value.uuid == ConceptTrue;
       }
     }
   }, [question.value, isBoolean]);
