@@ -64,6 +64,17 @@ function setupOpenMRS() {
         },
       },
       {
+        id: 'hts-patient-linkage-list-ext',
+        slot: 'hts-linkage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
+          featureName: 'hts-patient-linkage-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
         id: 'hts-encounter-form-ext',
         load: getAsyncLifecycle(() => import('./hts/encounter-form/hts-encounter-form.component'), {
           featureName: 'hts-encounter-form',
