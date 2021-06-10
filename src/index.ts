@@ -53,10 +53,10 @@ function setupOpenMRS() {
         }),
       },
       {
-        id: 'hts-patient-encounters-list-ext',
+        id: 'hts-patient-linkage-list-ext',
         slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
-          featureName: 'hts-patient-encounters-list',
+        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
+          featureName: 'hts-patient-linkage-list',
           moduleName,
         }),
         meta: {
@@ -64,10 +64,10 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'hts-patient-linkage-list-ext',
-        slot: 'hts-linkage-dashboard-slot',
+        id: 'hts-patient-encounters-list-ext',
+        slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
-          featureName: 'hts-patient-linkage-list',
+          featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
         meta: {

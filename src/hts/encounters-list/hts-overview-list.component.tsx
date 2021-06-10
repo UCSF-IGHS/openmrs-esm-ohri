@@ -12,7 +12,6 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
 import moment from 'moment';
-import ClientLinkage from '../../forms/components/section/client-linkage-form-section.component';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -126,8 +125,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           launchForm={launchHTSForm}
         />
       )}
-
-      <ClientLinkage sectionTitle={'Client Linkage'} />
     </>
   );
 };
