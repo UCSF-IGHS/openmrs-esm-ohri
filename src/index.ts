@@ -21,9 +21,6 @@ function setupOpenMRS() {
 
   defineConfigSchema(moduleName, {});
 
-  // Load configurations
-  provide(patientDashboardsConfig);
-
   return {
     pages: [
       {
