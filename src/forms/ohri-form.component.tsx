@@ -234,7 +234,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                             },
                           }}>
                           <div className={styles.contentWrapper}>
-                            <h4 className={styles.title}>Add a HTS record</h4>
+                            <h4 className={styles.title}>{form.name}</h4>
                             {form.pages.map((page, index) => {
                               return <OHRIFormPage page={page} onFieldChange={onFieldChange} />;
                             })}
