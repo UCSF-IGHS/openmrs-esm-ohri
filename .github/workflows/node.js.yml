@@ -59,6 +59,26 @@ jobs:
         run: |
           mkdir -p dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}
           mv dist/*.* dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/
+          # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          mkdir ../build
+          cp -TR . ../build
+          tar -cvf deploy_dev.tar ../build/
+      - uses: appleboy/scp-action@v0.1.1
+        name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
+        with: 
+          host: ${{ secrets.HISTAC_HOST }}
+          username: ${{ secrets.HISTAC_USERNAME }}
+          port: ${{ secrets.HISTAC_PORT }}
+#           password: ${{ secrets.HISTAC_PASSWORD }}
+          key: ${{ secrets.HISTAC_KEY }}
+          passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
+          proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
+          source: "deploy_dev.tar"
+#           target: "dist_latest"
+          target: "/usr/share/tomcat/"
+          debug: true  
       # - name: Publish to Digital Ocean
       #   uses: jakejarvis/s3-sync-action@master
       #   with:
@@ -158,9 +178,10 @@ jobs:
           host: ${{ secrets.HISTAC_HOST }}
           username: ${{ secrets.HISTAC_USERNAME }}
           port: ${{ secrets.HISTAC_PORT }}
-          password: ${{ secrets.HISTAC_PASSWORD }}
-          # key: ${{ secrets.KEY }}
+#           password: ${{ secrets.HISTAC_PASSWORD }}
+          key: ${{ secrets.HISTAC_KEY }}
+          passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
           proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
           source: "deploy_dev.tar"
           target: "dist_latest"
-          debug: true      
+          debug: true     
