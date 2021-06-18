@@ -1,7 +1,7 @@
 import { OHRIFormSchema } from './../types';
 
 const HTSRestroForm: OHRIFormSchema = {
-  name: 'OHRI HTS Retrospective Form',
+  name: 'HTS Retrospective Form',
   pages: [
     {
       label: 'Screening',
