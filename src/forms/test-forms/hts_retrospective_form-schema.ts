@@ -124,7 +124,7 @@ const HTSRestroForm: OHRIFormSchema = {
               label: 'Population type',
               type: 'obs',
               questionOptions: {
-                rendering: 'select',
+                rendering: 'checkbox',
                 concept: 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3',
                 answers: [
                   {
