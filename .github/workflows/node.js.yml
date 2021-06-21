@@ -66,7 +66,7 @@ jobs:
           cp -TR . ../build
           tar -cvf deploy_dev.tar ../build/
       - uses: appleboy/scp-action@v0.1.1
-        name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
+        name: SCP file via ssh password to Transfer Files Upload Artifacts to Dev Server
         with: 
           host: ${{ secrets.HISTAC_HOST }}
           username: ${{ secrets.HISTAC_USERNAME }}
@@ -79,6 +79,17 @@ jobs:
 #           target: "dist_latest"
           target: "/usr/share/tomcat/"
           debug: true  
+      
+      - uses: garygrossgarten/github-action-ssh@release
+        name: Run the Update MicroFronEnd Script
+        with:
+            command: cd /usr/share/tomcat/microfrontends/dev && sh update_microfrontends.sh
+            host: ${{ secrets.HISTAC_HOST }}
+            username: ${{ secrets.HISTAC_USERNAME }}
+            passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
+            privateKey: ${{ secrets.HISTAC_KEY}}
+            port: ${{ secrets.HISTAC_PORT }}
+            proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
       # - name: Publish to Digital Ocean
       #   uses: jakejarvis/s3-sync-action@master
       #   with:
@@ -127,38 +138,38 @@ jobs:
 
     needs: deploy
 
-    # steps:
-    #   - uses: actions/checkout@v2
-    #   - name: Download Artifacts
-    #     uses: actions/download-artifact@v2
-    #   - name: Use Node.js
-    #     uses: actions/setup-node@v1
-    #     with:
-    #       node-version: "14.x"
-    #       registry-url: 'https://registry.npmjs.org'
-    #   - run: npm install
-    #   - run: npm publish --access public
-    #     env:
-    #       NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm install
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-#     steps:
-#       # Runs a set of commands using the runners shell
-#       - name: Run a multi-line script
-#         run: |
-#           mkdir ../build
-#           cp -TR . ../build
-#           tar -cvf deploy_dev.tar ../build/
-#       - uses: appleboy/scp-action@v0.1.1
-#         name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
-#         with: 
-#           host: ${{ secrets.DIGITAL_OCEAN_HOST }}
-#           username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
-#           port: ${{ secrets.DIGITAL_OCEAN_PORT }}
-#           password: ${{ secrets.DIGITAL_OCEAN_PASSWORD }}
-#           # key: ${{ secrets.KEY }}
-#           source: "deploy_dev.tar"
-#           target: "dist_latest"
-#           debug: true
+    steps:
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          mkdir ../build
+          cp -TR . ../build
+          tar -cvf deploy_dev.tar ../build/
+      - uses: appleboy/scp-action@v0.1.1
+        name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
+        with: 
+          host: ${{ secrets.DIGITAL_OCEAN_HOST }}
+          username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
+          port: ${{ secrets.DIGITAL_OCEAN_PORT }}
+          password: ${{ secrets.DIGITAL_OCEAN_PASSWORD }}
+          # key: ${{ secrets.KEY }}
+          source: "deploy_dev.tar"
+          target: "dist_latest"
+          debug: true
 
   test:
     runs-on: ubuntu-latest
