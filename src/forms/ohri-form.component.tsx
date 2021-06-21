@@ -201,12 +201,15 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
             ) : (
               <>
                 <PatientBanner patient={patient} />
-                <Grid style={{ backgroundColor: 'red !important' }}>
+                <Grid>
                   <Row>
                     <Column lg={2} md={2} sm={1}>
                       <div className={styles.ohriSidebar}>
-                        <OHRIFormSidebar pages={form.pages} />
-                        <Button style={{ marginBottom: '1rem', width: '11.688rem', display: 'block' }} type="submit">
+                        <OHRIFormSidebar pages={form.pages} currentPage={currentPage} />
+                        <hr className={styles.sideBarHorizontalLine} />
+                        <Button
+                          style={{ marginBottom: '0.625rem', width: '11.688rem', display: 'block' }}
+                          type="submit">
                           Save
                         </Button>
                         <Button

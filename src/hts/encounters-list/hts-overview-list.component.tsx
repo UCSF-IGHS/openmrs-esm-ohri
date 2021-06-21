@@ -36,13 +36,13 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const forceComponentUpdate = () => setCounter(counter + 1);
   const launchHTSForm = () => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: 'HTS Entry form',
+      title: HTSRestroForm.name,
       state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: 'HTS Entry form',
+      title: HTSRestroForm.name,
       encounterUuid: encounterUuid,
       state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
