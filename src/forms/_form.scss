@@ -1,23 +1,20 @@
 .ohriformcontainer {
     margin: 0rem 0rem .5rem 0rem;
     height: 100%;
-  background-color:#ffffff !important;
-
-}
-
-.formStyle{
-  background-color:#ffffff !important;
 }
 
 .contentWrapper, .submit {
     margin: 100px 20px 0px 20px;
 }
 
+// completed and validated.
+
 .title {
   margin: 0 31.5rem 1.5rem 0;
   font-size: 1.75rem;
   line-height: 1.29;
-  color: var(--color-gray-100);
+  width: 100%;
+  color: #161616;
 }
 
 .ohriSidebar{
@@ -30,4 +27,9 @@
   overflow: auto;
   z-index: 7999;
   overflow: hidden;
+}
+
+.sideBarHorizontalLine {
+  background-color: rgba(107, 104, 104, 0.5);
+  margin: 1.375rem 1.625rem 1.5rem 0.438rem;
 }
