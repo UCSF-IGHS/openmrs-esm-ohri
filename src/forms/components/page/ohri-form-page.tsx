@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import styles from './_page.scss';
 import OHRIFormSection from '../section/ohri-form-section.component';
-
-
 
 function OHRIFormPage({ page, onFieldChange }) {
   let newLabel = page.label.replace(/\s/g, '');

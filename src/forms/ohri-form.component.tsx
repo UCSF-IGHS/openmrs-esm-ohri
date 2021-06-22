@@ -220,7 +220,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                         </Button>
                       </div>
                     </Column>
-                    <Column lg={10} md={6}className={styles.ohriFormContent}>
+                    <Column lg={10} md={6} className={styles.ohriFormContent}>
                       <div>
                         <OHRIFormContext.Provider
                           value={{

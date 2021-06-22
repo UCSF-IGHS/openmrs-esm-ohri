@@ -3,7 +3,6 @@ import styles from './_section.scss';
 import { getFieldComponent, getHandler } from '../../registry/registry';
 
 const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => {
-
   return (
     <div className={styles.container}>
       {showTitle && <h4 className={styles.sectionTitle}>{sectionTitle}</h4>}
