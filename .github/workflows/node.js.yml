@@ -102,11 +102,9 @@ jobs:
   working:
     runs-on: ubuntu-latest
 
-    needs: pre_release 
+    needs: build
     
-    # Adding the feature branch to test the logic before merging
-    # if: ${{ github.ref == 'refs/heads/working' }} 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/working' }} 
 
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
