@@ -205,7 +205,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                   <Row>
                     <Column lg={2} md={2} sm={1}>
                       <div className={styles.ohriSidebar}>
-                        <OHRIFormSidebar pages={form.pages} currentPage={currentPage} />
+                        <OHRIFormSidebar currentPage={currentPage} />
                         <hr className={styles.sideBarHorizontalLine} />
                         <Button
                           style={{ marginBottom: '0.625rem', width: '11.688rem', display: 'block' }}
@@ -220,8 +220,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                         </Button>
                       </div>
                     </Column>
-                    <Column lg={10} md={6}>
-                      <div className={styles.ohriFormContent}>
+                    <Column lg={10} md={6}className={styles.ohriFormContent}>
+                      <div>
                         <OHRIFormContext.Provider
                           value={{
                             values: props.values,

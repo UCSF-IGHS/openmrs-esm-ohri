@@ -1,15 +1,31 @@
-import React from 'react';
-import { Link } from 'carbon-components-react';
+import React, { useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
-import OHRIFormSidebarSection from './ohri-form-sidebar-section.component';
+import { scrollIntoView } from '../../../utils/ohri-sidebar';
 
-function OHRIFormSidebar({ pages, currentPage }) {
-  const navItems = pages.map((page, index) => (
-    <div className={styles.sectionWrapper} key={index}>
-      <OHRIFormSidebarSection label={page.label} currentPage={currentPage} />
-    </div>
-  ));
-  return <div className={styles.leftNavWrapper}>{navItems}</div>;
+function OHRIFormSidebar({ currentPage }) {
+  const [activeLink, setActiveLink] = useState(null);
+
+  const handleClick = (selected) => {
+    setActiveLink(selected);
+    scrollIntoView(selected.replace(/\s/g, ''));
+  }
+
+  return (<div className={styles.leftNavWrapper}>
+    {
+      currentPage.map((page, index) => {
+        return (
+          <div
+            className={(page.label === activeLink) ? styles.sidebarSectionActive : styles.sidebarSection}
+
+            key={index}
+            onClick={() => handleClick(page.label)}
+          >
+            <div className={styles.sidebarSectionLink}>{page.label}</div>
+          </div>
+        )
+      })
+    }
+  </div>)
 }
 
 export default OHRIFormSidebar;
