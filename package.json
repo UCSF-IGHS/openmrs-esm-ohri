@@ -44,10 +44,11 @@
     "@carbon/icons-react": "^10.18.0",
     "carbon-components-react": "^7.25.0",
     "formik": "^2.2.6",
-    "yup": "^0.29.1",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
-    "systemjs-webpack-interop": "^1.1.0"
+    "react-scroll": "^1.8.2",
+    "systemjs-webpack-interop": "^1.1.0",
+    "yup": "^0.29.1"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "3.x",
