@@ -47,7 +47,7 @@ jobs:
 
     needs: pre_release
 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/dev' }} 
 
     steps:
       - name: Download Artifacts
@@ -68,8 +68,7 @@ jobs:
             username: ${{ secrets.HISTAC_USERNAME }}
             passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
-            port: ${{ secrets.HISTAC_PORT }}
-            proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
+            port: ${{ secrets.HISTAC_PORT }} 
      
   pre_release:
     runs-on: ubuntu-latest
@@ -109,19 +108,6 @@ jobs:
     if: ${{ github.event_name == 'push' }}
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
-      - run: npm install
-      - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
-      - run: npm publish --access public --tag next
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       # Update the Microfrontends to reflect what we have in the Working branch
       - uses: garygrossgarten/github-action-ssh@release
         name: Run the Update MicroFronEnd Script
@@ -131,6 +117,5 @@ jobs:
             username: ${{ secrets.HISTAC_USERNAME }}
             passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
-            port: ${{ secrets.HISTAC_PORT }}
-            proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
+            port: ${{ secrets.HISTAC_PORT }} 
   
