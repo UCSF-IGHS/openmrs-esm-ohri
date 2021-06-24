@@ -5,7 +5,10 @@ on:
     tags:
       - '*'
     branches:
-      - '*'
+      - '*' 
+      # Adding the feature branch to test the logic before merging
+      - feature/ohri-79-development-enviornment 
+
   pull_request:
     branches: [master]
     types: [opened, synchronize, reopened, closed]
@@ -63,7 +66,8 @@ jobs:
             command: cd /usr/share/tomcat/microfrontends/dev && sh update_microfrontends.sh
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
-            passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
+            # Disabling to make use of the service account 
+            # passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }} 
      
@@ -113,6 +117,8 @@ jobs:
             command: cd /usr/share/tomcat/microfrontends/working && sh update_microfrontends.sh
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
-            passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
+            # Disabling to make use of the service account 
+            # passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }} 
+  
