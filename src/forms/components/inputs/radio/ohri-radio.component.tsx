@@ -5,6 +5,9 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { getConcept } from '../../../ohri-form.resource';
 import { ConceptTrue } from '../../../constants';
+import { OHRILabel } from '../../label/ohri-label.component';
+import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import styles from '../_input.scss';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -39,7 +42,12 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
     );
   }, [question.questionOptions.concept]);
 
-  return (
+  return encounterContext.sessionMode == 'view' ? (
+    <div className={styles.formField}>
+      <OHRILabel value={question.label} />
+      {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
+    </div>
+  ) : (
     <div>
       <FormGroup legendText={question.label}>
         <RadioButtonGroup
