@@ -5,10 +5,7 @@ on:
     tags:
       - '*'
     branches:
-      - master
-      - staging
-      - demo
-      - dev
+      - '*'
   pull_request:
     branches: [master]
     types: [opened, synchronize, reopened, closed]
