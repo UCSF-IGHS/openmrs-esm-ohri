@@ -16,6 +16,7 @@ function OHRIFormSidebar({ currentPage }) {
       {currentPage.map((page, index) => {
         return (
           <div
+            aria-hidden="true"
             className={page.label === activeLink ? styles.sidebarSectionActive : styles.sidebarSection}
             key={index}
             onClick={() => handleClick(page.label)}>
