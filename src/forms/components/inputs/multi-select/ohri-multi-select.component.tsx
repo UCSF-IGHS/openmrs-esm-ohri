@@ -1,9 +1,12 @@
-import { FormGroup } from 'carbon-components-react';
+import { FormGroup, ListItem, UnorderedList } from 'carbon-components-react';
 import Checkbox from 'carbon-components-react/lib/components/Checkbox';
 import { useField } from 'formik';
 import React from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormFieldProps } from '../../../types';
+import { OHRILabel } from '../../label/ohri-label.component';
+import { OHRIValueEmpty } from '../../value/ohri-value.component';
+import styles from '../_input.scss';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -25,7 +28,20 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     );
   };
 
-  return (
+  return encounterContext.sessionMode == 'view' ? (
+    <div className={styles.formField}>
+      <OHRILabel value={question.label} />
+      {field.value?.length ? (
+        <UnorderedList style={{ marginLeft: '1rem' }}>
+          {handler.getDisplayValue(question, field.value).map(displayValue => (
+            <ListItem>{displayValue}</ListItem>
+          ))}
+        </UnorderedList>
+      ) : (
+        <OHRIValueEmpty />
+      )}
+    </div>
+  ) : (
     <div>
       <FormGroup legendText={question.label}>
         {question.questionOptions.answers.map((option, index) => (
@@ -36,6 +52,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
             key={index}
             onChange={handleCheckboxChange}
             checked={field.value.includes(option.concept)}
+            disabled={encounterContext.sessionMode == 'view'}
           />
         ))}
       </FormGroup>
