@@ -48,12 +48,29 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         return field.value.map(o => o.value.uuid);
       }
       if (field.questionOptions.rendering == 'toggle') {
-        field.value.value = obs.value.uuid == ConceptTrue;
-        return field.value.value;
+        return obs.value.uuid == ConceptTrue;
       }
       return obs.value.uuid;
     }
     return '';
+  },
+  getDisplayValue: (field: OHRIFormField, value: any) => {
+    const rendering = field.questionOptions.rendering;
+    if (!field.value) {
+      return null;
+    }
+    if (field.questionOptions.rendering == 'checkbox') {
+      return value.map(
+        chosenOption => field.questionOptions.answers.find(option => option.concept == chosenOption).label,
+      );
+    }
+    if (rendering == 'content-switcher' || rendering == 'select' || rendering == 'toggle') {
+      return field.questionOptions.answers.find(option => option.concept == field.value.value.uuid).label;
+    }
+    if (rendering == 'radio') {
+      return field.questionOptions.answers.find(option => option.concept == value).label;
+    }
+    return value;
   },
 };
 
@@ -69,6 +86,9 @@ export const EncounterLocationSubmissionHandler: SubmissionHandler = {
       display: encounter.location.name,
       uuid: encounter.location.uuid,
     };
+  },
+  getDisplayValue: (field: OHRIFormField, value) => {
+    return value.display;
   },
 };
 
