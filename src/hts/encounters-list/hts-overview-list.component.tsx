@@ -5,9 +5,8 @@ import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
-import { attach, openmrsFetch, switchTo } from '@openmrs/esm-framework';
+import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
-import dayjs from 'dayjs';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
@@ -29,7 +28,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
-  const htsPOCTypeUUID = '30b849bd-c4f4-4254-a033-fe9cf01001d8'; // HTS Testing
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
 
