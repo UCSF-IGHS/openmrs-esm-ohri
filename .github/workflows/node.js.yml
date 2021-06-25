@@ -10,7 +10,8 @@ on:
       - feature/ohri-79-development-enviornment 
 
   pull_request:
-    branches: [master]
+    branches:  
+      - '*'
     types: [opened, synchronize, reopened, closed]
   release:
     types:
