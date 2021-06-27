@@ -17,7 +17,8 @@
     "typescript": "tsc",
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests",
-    "coverage": "npm test -- --coverage"
+    "coverage": "npm test -- --coverage",
+    "test:badges": "npm run test:coverage && jest-coverage-badges--output './badges' "
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
