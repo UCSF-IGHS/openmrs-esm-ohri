@@ -185,7 +185,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
     }
   };
   return (
-    <div className={styles.ohriformcontainer}>
+    <div>
       <Formik
         enableReinitialize
         initialValues={initialValues}
@@ -202,7 +202,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
               <>
                 <PatientBanner patient={patient} />
                 <Grid>
-                  <Row>
+                  <Row className={styles.ohriformcontainer}>
                     <Column lg={2} md={2} sm={1}>
                       <div className={styles.ohriSidebar}>
                         <OHRIFormSidebar currentPage={currentPage} />
