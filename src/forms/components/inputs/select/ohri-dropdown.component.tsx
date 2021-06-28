@@ -3,6 +3,8 @@ import { useField } from 'formik';
 import React, { useEffect } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormFieldProps } from '../../../types';
+import { OHRILabel } from '../../label/ohri-label.component';
+import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
@@ -24,7 +26,12 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     setItems(question.questionOptions.answers.map(item => item.value || item.concept));
   }, [question.questionOptions.answers]);
 
-  return (
+  return encounterContext.sessionMode == 'view' ? (
+    <div className={styles.formField}>
+      <OHRILabel value={question.label} />
+      {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
+    </div>
+  ) : (
     <div className={styles.formInputField}>
       <Dropdown
         id={question.id}

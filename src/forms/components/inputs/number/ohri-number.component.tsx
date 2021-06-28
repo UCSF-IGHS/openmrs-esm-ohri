@@ -4,6 +4,8 @@ import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
+import { OHRILabel } from '../../label/ohri-label.component';
+import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -17,7 +19,12 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     }
   };
 
-  return (
+  return encounterContext.sessionMode == 'view' ? (
+    <div className={styles.formField}>
+      <OHRILabel value={question.label} />
+      {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
+    </div>
+  ) : (
     <div className={styles.numberInputWrapper}>
       <NumberInput
         {...field}
