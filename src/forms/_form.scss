@@ -1,13 +1,17 @@
 .ohriformcontainer {
-    margin: 0rem 0rem .5rem 0rem;
-    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 138px;
+    height: calc(100vh - 50px);
+    overflow: auto;
+    flex: 1;
 }
 
-.contentWrapper, .submit {
-    margin: 100px 20px 0px 20px;
+.ohriformcontent{
+  width: 100%;
 }
 
-// completed and validated.
+// complete and validated.
 
 .title {
   margin: 0 31.5rem 1.5rem 0;
@@ -19,11 +23,6 @@
 
 .ohriSidebar{
   position: fixed;
-  margin-top:5.5rem;
-}
-
-* {
-  scroll-margin-top: 28.125rem;
 }
 
 .sideBarHorizontalLine {
