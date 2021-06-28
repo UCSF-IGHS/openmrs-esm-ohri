@@ -33,7 +33,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
             {question.questionOptions.answers.map((option, index) => (
               <Switch
                 className={selectedIndex === index ? styles.switchOverrides : styles.switchOverridesNone}
-                name={option.concept}
+                name={option.concept || option.value}
                 text={option.label}
                 key={index}
                 disabled={encounterContext.sessionMode == 'view'}
