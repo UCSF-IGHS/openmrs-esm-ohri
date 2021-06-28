@@ -6,8 +6,6 @@ on:
       - '*'
     branches:
       - '*' 
-      # Adding the feature branch to test the logic before merging
-      - feature/ohri-79-development-enviornment 
 
   pull_request:
     branches:  
@@ -106,8 +104,8 @@ jobs:
     needs: pre_release 
     
     # Adding the feature branch to test the logic before merging
-    # if: ${{ github.ref == 'refs/heads/working' }} 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/working' }} 
+    # if: ${{ github.event_name == 'push' }}
 
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
