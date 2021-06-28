@@ -6,9 +6,8 @@ on:
       - '*'
     branches:
       - '*'  
-
   pull_request:
-    branches: 
+    branches:  
       - '*'
     types: [opened, synchronize, reopened, closed]
   release:
@@ -74,14 +73,14 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: build
-    
+    # Adding the feature branch to test the logic before merging
+    if: ${{ github.ref == 'refs/heads/working' }} 
 
     # Commenting to test feature branch scenario
     # if: ${{ github.ref == 'dev' }}
 
     # Adding the feature branch to test the logic before merging
-    if: ${{ github.ref == 'refs/heads/working' }} 
-    # if: ${{ github.event_name == 'push' }}
+    # if: ${{ github.ref == 'refs/heads/working' }}
 
     steps:
       - uses: actions/checkout@v2
@@ -104,8 +103,9 @@ jobs:
     needs: pre_release 
     
     # Adding the feature branch to test the logic before merging
-    # if: ${{ github.ref == 'refs/heads/working' }} 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/working' }} 
+    # if: ${{ github.event_name == 'push' }}
+
 
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
@@ -119,4 +119,3 @@ jobs:
             # passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }} 
-  
