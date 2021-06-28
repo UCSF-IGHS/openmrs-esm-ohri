@@ -24,6 +24,7 @@ const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string }>
             closeWorkspace: closeWorkspace,
             formJson: context.state.formJson,
             state: context.state,
+            mode: context.mode,
           }}
         />
       )}

@@ -1,6 +1,6 @@
 {
-  "name": "openmrs-ohri-app",
-  "version": "0.6.1",
+  "name": "openmrs-ohri-app", 
+  "version": "0.6.2",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-app.js",
   "main": "src/index.ts",
@@ -45,10 +45,11 @@
     "@carbon/icons-react": "^10.18.0",
     "carbon-components-react": "^7.25.0",
     "formik": "^2.2.6",
-    "yup": "^0.29.1",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
-    "systemjs-webpack-interop": "^1.1.0"
+    "react-scroll": "^1.8.2",
+    "systemjs-webpack-interop": "^1.1.0",
+    "yup": "^0.29.1"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "3.x",
@@ -66,8 +67,10 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.12.13",
     "@openmrs/esm-framework": "next",
-    "@testing-library/jest-dom": "^5.7.0",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/dom": "^7.20.0",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.3",
+    "@testing-library/user-event": "^12.0.11",
     "@types/carbon-components-react": "^7.10.9",
     "carbon-components": "^10.19.0",
     "@types/jest": "^24.9.1",
