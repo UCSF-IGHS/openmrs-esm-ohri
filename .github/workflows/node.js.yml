@@ -5,9 +5,7 @@ on:
     tags:
       - '*'
     branches:
-      - '*' 
-      # Adding the feature branch to test the logic before merging
-      
+      - '*'  
 
   pull_request:
     branches: 
@@ -82,8 +80,8 @@ jobs:
     # if: ${{ github.ref == 'dev' }}
 
     # Adding the feature branch to test the logic before merging
-    # if: ${{ github.ref == 'refs/heads/working' }} 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/working' }} 
+    # if: ${{ github.event_name == 'push' }}
 
     steps:
       - uses: actions/checkout@v2
