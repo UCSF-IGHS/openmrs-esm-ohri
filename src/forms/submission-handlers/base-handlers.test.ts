@@ -1,4 +1,6 @@
+import { Observable } from 'rxjs';
 import { EncounterContext } from '../ohri-form-context';
+import * as mockAPI from '../ohri-form.resource';
 import { OHRIFormField } from '../types';
 import { ObsSubmissionHandler } from './base-handlers';
 
@@ -688,5 +690,60 @@ describe('ObsSubmissionHandler - getInitialValue', () => {
     const initialValue = ObsSubmissionHandler.getInitialValue(encounterContext.encounter, field);
     // verify
     expect(initialValue).toEqual('12f7be3d-fb5d-47dc-b5e3-56c501be80a6');
+  });
+
+  it('should update obs value with boolean concept uuid for boolean types', () => {
+    // setup
+    spyOn(mockAPI, 'getConcept').and.returnValue(
+      new Observable(sub => {
+        sub.next({
+          uuid: '1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+          display: 'Ever tested positive for HIV before?',
+          datatype: {
+            uuid: 'bca4d5f1-ee6a-4282-a5ff-c8db12c4247c',
+            display: 'Boolean',
+            name: 'Boolean',
+          },
+        });
+      }),
+    );
+    const field: OHRIFormField = {
+      label: 'Ever tested positive for HIV before?',
+      type: 'obs',
+      questionOptions: {
+        rendering: 'content-switcher',
+        concept: '1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+        answers: [
+          {
+            label: 'Yes',
+            concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+          },
+          {
+            label: 'No',
+            concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+          },
+        ],
+      },
+      id: 'everTestedPositive',
+    };
+    encounterContext.encounter['obs'].push({
+      uuid: '51de7978-4ae2-497e-afb4-bb07699ced8f',
+      concept: {
+        uuid: '1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      },
+      value: {
+        uuid: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+      },
+    });
+
+    // verify initial value
+    expect(field.value).toBe(undefined);
+
+    // replay
+    ObsSubmissionHandler.getInitialValue(encounterContext.encounter, field);
+
+    // verify
+    expect(field.value).toBeTruthy();
+    expect(field.value.value).toEqual('cf82933b-3f3f-45e7-a5ab-5d31aaee3da3');
   });
 });
