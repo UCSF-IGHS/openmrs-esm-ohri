@@ -8,11 +8,7 @@ on:
       - '*'  
 
   pull_request:
-<<<<<<< HEAD
     branches: 
-=======
-    branches:  
->>>>>>> 212c5fb (Bump NPM, add name and PR to workflow)
       - '*'
     types: [opened, synchronize, reopened, closed]
   release:
@@ -109,8 +105,8 @@ jobs:
     needs: pre_release 
     
     # Adding the feature branch to test the logic before merging
-    # if: ${{ github.ref == 'refs/heads/working' }} 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/working' }} 
+    # if: ${{ github.event_name == 'push' }}
 
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
