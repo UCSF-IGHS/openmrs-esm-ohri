@@ -90,9 +90,9 @@ jobs:
   pre_demo:
     runs-on: ubuntu-latest
 
-    # Adding the feature branch to test the logic before merging
-    if: ${{ github.ref == 'refs/heads/working' }} 
-    # if: ${{ github.event_name == 'push' }}
+    needs: build
+    
+    if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
       - uses: actions/checkout@v2
@@ -128,6 +128,13 @@ jobs:
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }}
 
+  demo:
+    runs-on: ubuntu-latest
+
+    needs: pre_demo 
+    
+    if: startsWith(github.ref, 'refs/tags/v')
+    
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
       - uses: garygrossgarten/github-action-ssh@release
