@@ -1,8 +1,8 @@
 {
-  "name": "openmrs-esm-ohri-form-app",
-  "version": "0.5.6",
+  "name": "openmrs-ohri-app",
+  "version": "0.6.1",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
-  "browser": "dist/openmrs-esm-histac-ohri-app.js",
+  "browser": "dist/openmrs-esm-ohri-app.js",
   "main": "src/index.ts",
   "license": "MIT",
   "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
@@ -17,7 +17,8 @@
     "typescript": "tsc",
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests",
-    "coverage": "npm test -- --coverage"
+    "coverage": "npm test -- --coverage",
+    "test:badges": "npm run test:coverage && jest-coverage-badges--output './badges' "
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
