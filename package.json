@@ -17,13 +17,13 @@
     "typescript": "tsc",
     "prepublishOnly": "npm run build",
     "test": "jest --config ./jest.config.js --passWithNoTests",
-    "test:coverage": "npm test -- --coverage",
-    "test:badges": "npm run test:coverage && jest-coverage-badges --output './badges' "
+    "coverage": "npm test -- --coverage",
+    "badges": "npm run coverage && jest-coverage-badges --output './badges' "
   },
   "jest": {
     "collectCoverage": true,
     "coverageReporters": ["json-summary", "lcov"],
-    "collectCoverageFrom": ["./src/components/**", "!./src/components/**/*.snap"],
+    "collectCoverageFrom": ["./src/", "!./src/ **/*.snap"],
     "transform": {
       "^.+\\.tsx?$": "babel-jest"
     },
