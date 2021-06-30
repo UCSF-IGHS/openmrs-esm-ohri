@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
 
-function OHRIFormSidebar({ currentPage }) {
+function OHRIFormSidebar({ currentPage, selectedPage }) {
   const [activeLink, setActiveLink] = useState(null);
+
+  const joinWord = word => {
+    return word.replace(/\s/g, '');
+  };
 
   const handleClick = selected => {
     const activeID = selected.replace(/\s/g, '');
@@ -17,7 +21,7 @@ function OHRIFormSidebar({ currentPage }) {
         return (
           <div
             aria-hidden="true"
-            className={page.label === activeLink ? styles.sidebarSectionActive : styles.sidebarSection}
+            className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
             key={index}
             onClick={() => handleClick(page.label)}>
             <div className={styles.sidebarSectionLink}>{page.label}</div>
