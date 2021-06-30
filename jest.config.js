@@ -1,7 +1,15 @@
 module.exports = {
+  verbose: true,
   collectCoverage: true,
+  coverageThreshold: {
+    global: {
+      branches: 10,
+      functions: 10,
+      lines: 10,
+    },
+  },
   coverageReporters: ['json-summary', 'lcov'],
-  collectCoverageFrom: ['./src/components/**', '!./src/components/**/*.snap'],
+  collectCoverageFrom: ['./src/forms/**', '!./src/components/**/*.snap'],
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
   },
