@@ -1,5 +1,5 @@
 {
-  "name": "openmrs-ohri-app", 
+  "name": "openmrs-ohri-app",
   "version": "0.6.2",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-app.js",
@@ -48,6 +48,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
     "react-scroll": "^1.8.2",
+    "react-waypoint": "^10.1.0",
     "systemjs-webpack-interop": "^1.1.0",
     "yup": "^0.29.1"
   },
