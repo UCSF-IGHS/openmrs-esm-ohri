@@ -1,4 +1,7 @@
 module.exports = {
+  collectCoverage: true,
+  coverageReporters: ['json-summary', 'lcov'],
+  collectCoverageFrom: ['./src/components/**', '!./src/components/**/*.snap'],
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
   },
