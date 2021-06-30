@@ -3,10 +3,10 @@ import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
 
 function OHRIFormSidebar({ currentPage, selectedPage }) {
-  const [activeLink, setActiveLink] = useState(null);
+  const [activeLink, setActiveLink] = useState(selectedPage);
 
-  const joinWord = word => {
-    return word.replace(/\s/g, '');
+  const joinWord = value => {
+    return value.replace(/\s/g, '');
   };
 
   const handleClick = selected => {

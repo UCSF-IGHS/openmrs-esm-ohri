@@ -5,15 +5,13 @@ import { Waypoint } from 'react-waypoint';
 
 function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
   let newLabel = page.label.replace(/\s/g, '');
-  const [currentElementID, setCurrentElementID] = useState('');
 
   const handleEnter = elementID => {
-    setCurrentElementID(elementID);
     setSelectedPage(elementID);
   };
 
   return (
-    <Waypoint onEnter={() => handleEnter(newLabel)} topOffset={'138px'}>
+    <Waypoint onEnter={() => handleEnter(newLabel)} onLeave={() => {}} bottomOffset="95%">
       <div id={newLabel}>
         <h4 className={styles.pageTitle}>{page.label}</h4>
         <span className={styles.required}>All fields are required unless marked optional</span>
