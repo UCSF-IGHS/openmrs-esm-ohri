@@ -33,6 +33,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
   const [encounter, setEncounter] = useState(null);
   const [form, setForm] = useState<OHRIFormSchema>(null);
   const [currentPage, setCurrentPage] = useState(undefined);
+  const [selectedPage, setSelectedPage] = useState('');
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
@@ -184,6 +185,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
       setFields(fields_temp);
     }
   };
+
   return (
     <div>
       <Formik
@@ -205,7 +207,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                   <Row className={styles.ohriformcontainer}>
                     <Column lg={2} md={2} sm={1}>
                       <div className={styles.ohriSidebar}>
-                        <OHRIFormSidebar currentPage={currentPage} />
+                        <OHRIFormSidebar currentPage={currentPage} selectedPage={selectedPage} />
                         <hr className={styles.sideBarHorizontalLine} />
                         {mode != 'view' && (
                           <Button
@@ -222,8 +224,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                         </Button>
                       </div>
                     </Column>
-                    <Column lg={10} md={6} className={styles.ohriFormContent}>
-                      <div>
+                    <Column lg={10} md={6}>
+                      <div className={styles.contentWrapper}>
                         <OHRIFormContext.Provider
                           value={{
                             values: props.values,
@@ -238,10 +240,16 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                               date: encDate,
                             },
                           }}>
-                          <div className={styles.contentWrapper}>
-                            <h4 className={styles.title}>{form.name}</h4>
+                          <h4 className={styles.title}>{form.name}</h4>
+                          <div>
                             {form.pages.map((page, index) => {
-                              return <OHRIFormPage page={page} onFieldChange={onFieldChange} />;
+                              return (
+                                <OHRIFormPage
+                                  page={page}
+                                  onFieldChange={onFieldChange}
+                                  setSelectedPage={setSelectedPage}
+                                />
+                              );
                             })}
                           </div>
                         </OHRIFormContext.Provider>
