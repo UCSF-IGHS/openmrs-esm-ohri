@@ -26,11 +26,9 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const rowCount = 5;
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const launchHTSForm = () => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: 'HTS Entry form',
-      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
-    });
+  const addNewPatient = () => {
+    //  todo add logic for adding new patient
+    //http://localhost:8080/openmrs/spa/patient-registration
   };
   const tableHeaders = [
     { key: 'name', header: 'Name' },
@@ -42,13 +40,10 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   function getPatients() {
     return openmrsFetch(`/ws/fhir2/R4/Patient`).then(({ data }) => {
       let rows = [];
-      data.entry.map(patient => {
-        const patientName = () => {
-          return `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`;
-        };
+      data.entry.forEach(patient => {
         rows.push({
-          // name: patient.fullUrl,
-          name: patient.resource.name[0].family,
+          id: patient.resource.id,
+          name: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
           gender: capitalize(patient.resource.gender),
           age: age(patient.resource.birthDate),
           // last_visit: moment(patient.encounterDatetime).format('DD-MMM-YYYY'),
@@ -81,7 +76,7 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
                 iconDescription="New"
                 onClick={e => {
                   e.preventDefault();
-                  // todo Add New Patient
+                  addNewPatient();
                 }}>
                 {t('add', 'New')}
               </Button>
@@ -93,7 +88,7 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         <EmptyState
           displayText={t('patientList', 'patient list')}
           headerTitle={headerTitle}
-          // launchForm={launchHTSForm}
+          launchForm={addNewPatient}
         />
       )}
     </>
