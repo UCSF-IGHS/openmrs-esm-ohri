@@ -18,5 +18,5 @@ export const dashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'HTS Summary',
+  title: 'HTS Sessions',
 };
