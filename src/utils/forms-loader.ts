@@ -1,34 +1,31 @@
-import * as fs from 'fs';
 import * as semver from 'semver';
-import { ROOT_DIR } from '../constants';
-import path from 'path';
-
-const extension = '.json';
+import defaultFormsRegistry from '../packages/forms-registry';
 
 /**
  * Convinience function for loading form(s) associated to a given package or form version.
  *
  * @param packageName The package associated with the form
  * @param formNamespace The form namespace
- * @param basePath The basepath, by default uses ROOT_DIR: `~/../openmrs-esm-ohri/src`
  * @param version The form version
+ * @param isStrict If `true`, throws error if specified form version wasn't found
+ * @param formsRegistry Form registry. (This was added for testing purposes)
  * @returns The form json
  */
-export async function getForm(packageName: string, formNamespace: string, basePath?: string, version?: string) {
-  const forms = await readFiles(
-    `${path.resolve(__dirname, basePath) || ROOT_DIR}/packages/${packageName}/forms/${formNamespace}`,
-  );
+export function getForm(
+  packageName: string,
+  formNamespace: string,
+  version?: string,
+  isStrict?: boolean,
+  formsRegistry?: any,
+) {
+  const forms = lookupForms(packageName, formNamespace, formsRegistry);
   if (version) {
-    const form = getFormByVersion(forms, version);
+    const form = getFormByVersion(forms, version, isStrict);
     if (form) {
-      return require(form.path);
+      return form.json;
     }
   }
-  const latestForm = getLatestFormVersion(forms);
-  if (latestForm) {
-    return require(latestForm.path);
-  }
-  return null;
+  return getLatestFormVersion(forms).json;
 }
 
 export function getLatestFormVersion(forms: FormJsonFile[]) {
@@ -42,44 +39,38 @@ export function getLatestFormVersion(forms: FormJsonFile[]) {
   return forms.find(f => f.semanticVersion == latest);
 }
 
-export function getFormByVersion(forms: FormJsonFile[], requiredVersion: string) {
+export function getFormByVersion(forms: FormJsonFile[], requiredVersion: string, isStrict?: boolean) {
   for (let form of forms) {
     if (semver.satisfies(form.semanticVersion, requiredVersion)) {
       return form;
     }
   }
-  // TODO: Should we silently log this or fallback to the latest?
-  throw new Error(`Couldn't find form with version: ${requiredVersion}`);
+  if (isStrict) {
+    throw new Error(`Couldn't find form with version: ${requiredVersion}`);
+  } else {
+    return null;
+  }
 }
 
-function extractVersion(fileName: String, extension: string) {
-  return fileName.replace(extension, '').trim();
-}
-
-export function readFiles(path: string): Promise<Array<FormJsonFile>> {
-  return new Promise((resolve, reject) =>
-    fs.readdir(path, function(err, filenames) {
-      if (err) {
-        reject(`Couldn't read form(s) with path: ${path}`);
-        return;
-      }
-      resolve(
-        filenames
-          .filter(name => name.endsWith(extension))
-          .map(fileName => ({
-            name: fileName,
-            path: `${path}/${fileName}`,
-            version: extractVersion(fileName, extension),
-            semanticVersion: semver.coerce(extractVersion(fileName, extension)),
-          })),
-      );
-    }),
-  );
+export function lookupForms(packageName, formNamespace, formsRegistry) {
+  const pkg = formsRegistry ? formsRegistry[packageName] : defaultFormsRegistry[packageName];
+  if (!pkg) {
+    throw Error(`Package with name ${packageName} was not found in registry`);
+  }
+  if (!pkg[formNamespace]) {
+    throw new Error(`Form namespace '${formNamespace}' was not found in forms registry`);
+  }
+  return Object.keys(pkg[formNamespace]).map(formVersion => {
+    return {
+      version: formVersion,
+      semanticVersion: semver.coerce(formVersion).version,
+      json: pkg[formNamespace][formVersion],
+    };
+  });
 }
 
 export interface FormJsonFile {
-  name: string;
-  path: string;
   version: string;
   semanticVersion?: string;
+  json: any;
 }
