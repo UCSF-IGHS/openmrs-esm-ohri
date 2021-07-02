@@ -11,7 +11,7 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
   };
 
   return (
-    <Waypoint onEnter={() => handleEnter(newLabel)} onLeave={() => {}} bottomOffset="95%">
+    <Waypoint onEnter={() => handleEnter(newLabel)} bottomOffset="95%">
       <div id={newLabel}>
         <h4 className={styles.pageTitle}>{page.label}</h4>
         <span className={styles.required}>All fields are required unless marked optional</span>
