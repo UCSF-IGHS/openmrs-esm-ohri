@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonSet, Column, Grid, Row } from 'carbon-components-react';
+import { Button, Column, Grid, Row } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
-import { getFieldComponent, getHandler } from './registry/registry';
+import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
 import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
-import { OHRIFormSchema, OHRIFormField } from './types';
-import OHRIFormSection from './components/section/ohri-form-section.component';
+import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
@@ -20,9 +19,10 @@ interface OHRIFormProps {
   onSubmit?: any;
   onCancel?: any;
   encounterUuid?: string;
+  mode?: SessionMode;
 }
 
-const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, onCancel }) => {
+const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSubmit, onCancel }) => {
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
   const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
@@ -185,7 +185,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
     }
   };
   return (
-    <div className={styles.ohriformcontainer}>
+    <div>
       <Formik
         enableReinitialize
         initialValues={initialValues}
@@ -201,24 +201,29 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
             ) : (
               <>
                 <PatientBanner patient={patient} />
-                <Grid style={{ backgroundColor: 'red !important' }}>
-                  <Row>
+                <Grid>
+                  <Row className={styles.ohriformcontainer}>
                     <Column lg={2} md={2} sm={1}>
                       <div className={styles.ohriSidebar}>
-                        <OHRIFormSidebar pages={form.pages} />
-                        <Button style={{ marginBottom: '1rem', width: '11.688rem', display: 'block' }} type="submit">
-                          Save
-                        </Button>
+                        <OHRIFormSidebar currentPage={currentPage} />
+                        <hr className={styles.sideBarHorizontalLine} />
+                        {mode != 'view' && (
+                          <Button
+                            style={{ marginBottom: '0.625rem', width: '11.688rem', display: 'block' }}
+                            type="submit">
+                            Save
+                          </Button>
+                        )}
                         <Button
                           style={{ width: '11.688rem' }}
                           kind="tertiary"
                           onClick={() => (onCancel ? onCancel() : null)}>
-                          Cancel
+                          {mode == 'view' ? 'Close' : 'Cancel'}
                         </Button>
                       </div>
                     </Column>
-                    <Column lg={10} md={6}>
-                      <div className={styles.ohriFormContent}>
+                    <Column lg={10} md={6} className={styles.ohriFormContent}>
+                      <div>
                         <OHRIFormContext.Provider
                           value={{
                             values: props.values,
@@ -229,12 +234,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, onSubmit, 
                               patient: patient,
                               encounter: encounter,
                               location: location,
-                              sessionMode: encounterUuid ? 'edit' : 'enter',
+                              sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
                               date: encDate,
                             },
                           }}>
                           <div className={styles.contentWrapper}>
-                            <h4 className={styles.title}>Add a HTS record</h4>
+                            <h4 className={styles.title}>{form.name}</h4>
                             {form.pages.map((page, index) => {
                               return <OHRIFormPage page={page} onFieldChange={onFieldChange} />;
                             })}

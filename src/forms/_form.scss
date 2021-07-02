@@ -1,33 +1,31 @@
 .ohriformcontainer {
-    margin: 0rem 0rem .5rem 0rem;
-    height: 100%;
-  background-color:#ffffff !important;
-
+    width: 100%;
+    position: fixed;
+    top: 138px;
+    height: calc(100vh - 50px);
+    overflow: auto;
+    flex: 1;
 }
 
-.formStyle{
-  background-color:#ffffff !important;
+.ohriformcontent{
+  width: 100%;
 }
 
-.contentWrapper, .submit {
-    margin: 100px 20px 0px 20px;
-}
+// complete and validated.
 
 .title {
   margin: 0 31.5rem 1.5rem 0;
   font-size: 1.75rem;
   line-height: 1.29;
-  color: var(--color-gray-100);
+  width: 100%;
+  color: #161616;
 }
 
 .ohriSidebar{
   position: fixed;
-  margin-top:5.5rem;
 }
 
-.ohriFormContent {
-  position: absolute;
-  overflow: auto;
-  z-index: 7999;
-  overflow: hidden;
+.sideBarHorizontalLine {
+  background-color: rgba(107, 104, 104, 0.5);
+  margin: 1.375rem 1.625rem 1.5rem 0.438rem;
 }

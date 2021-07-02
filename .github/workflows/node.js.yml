@@ -5,8 +5,7 @@ on:
     tags:
       - '*'
     branches:
-      - '*' 
-
+      - '*'  
   pull_request:
     branches:  
       - '*'
@@ -31,8 +30,6 @@ jobs:
           node-version: "14.x"
       - run: npm install
       - run: npm run lint
-#       - run: npm run coverage
-#       - run: npm run typescript
       - run: npm run build --if-present
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
@@ -65,8 +62,6 @@ jobs:
             command: cd /usr/share/tomcat/microfrontends/dev && sh update_microfrontends.sh
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
-            # Disabling to make use of the service account 
-            # passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }} 
      
@@ -75,13 +70,7 @@ jobs:
 
     needs: build
     
-
-    # Commenting to test feature branch scenario
-    # if: ${{ github.ref == 'dev' }}
-
-    # Adding the feature branch to test the logic before merging
-    # if: ${{ github.ref == 'refs/heads/working' }} 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/working' }} 
 
     steps:
       - uses: actions/checkout@v2
@@ -98,15 +87,35 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
+  pre_demo:
+    runs-on: ubuntu-latest
+
+    needs: build
+    
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://registry.npmjs.org"
+      - run: npm install
+      - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
+      - run: npm publish --access public --tag latest
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
   working:
     runs-on: ubuntu-latest
 
     needs: pre_release 
     
-    # Adding the feature branch to test the logic before merging
     if: ${{ github.ref == 'refs/heads/working' }} 
-    # if: ${{ github.event_name == 'push' }}
-
+    
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
       - uses: garygrossgarten/github-action-ssh@release
@@ -115,8 +124,23 @@ jobs:
             command: cd /usr/share/tomcat/microfrontends/working && sh update_microfrontends.sh
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
-            # Disabling to make use of the service account 
-            # passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
+            privateKey: ${{ secrets.HISTAC_KEY}}
+            port: ${{ secrets.HISTAC_PORT }}
+
+  demo:
+    runs-on: ubuntu-latest
+
+    needs: pre_demo 
+    
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+      # Update the Microfrontends to reflect what we have in the Working branch
+      - uses: garygrossgarten/github-action-ssh@release
+        name: Run the Update MicroFronEnd Script
+        with:
+            command: cd /usr/share/tomcat/microfrontends/test && sh update_microfrontends.sh
+            host: ${{ secrets.HISTAC_HOST }}
+            username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }} 
-  
