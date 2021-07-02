@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './_page.scss';
 import OHRIFormSection from '../section/ohri-form-section.component';
 import { Waypoint } from 'react-waypoint';
