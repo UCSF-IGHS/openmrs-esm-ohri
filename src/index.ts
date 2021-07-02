@@ -8,6 +8,8 @@ import {
 } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import { createDashboardLink, dashboardMeta } from './dashboard.meta';
+import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
+
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {

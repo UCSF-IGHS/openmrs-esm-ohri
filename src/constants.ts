@@ -6,5 +6,3 @@ export const daysDurationUnit = {
   uuid: '1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
   display: 'Days',
 };
-
-export const ROOT_DIR = path.resolve(__dirname);
