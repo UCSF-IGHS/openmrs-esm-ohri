@@ -53,6 +53,7 @@
     "react-scroll": "^1.8.2",
     "react-test-renderer": "^16.9.0",
     "react-waypoint": "^10.1.0",
+    "semver": "^7.3.5",
     "systemjs-webpack-interop": "^1.1.0",
     "yup": "^0.29.1"
   },

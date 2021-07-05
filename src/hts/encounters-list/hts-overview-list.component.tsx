@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import styles from './hts-overview-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
@@ -9,8 +9,8 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
 import moment from 'moment';
+import { getForm } from '../../utils/forms-loader';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -32,19 +32,29 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const launchHTSForm = () => {
+
+  const htsRetroForm = useMemo(() => {
+    return getForm('hiv', 'hts_retro');
+  }, []);
+
+  const launchHTSForm = useCallback(() => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,
-      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
+      title: htsRetroForm?.name,
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
     });
-  };
-  const editHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,
-      encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
-    });
-  };
+  }, [htsRetroForm]);
+
+  const editHTSEncounter = useCallback(
+    encounterUuid => {
+      launchOHRIWorkSpace('ohri-forms-view-ext', {
+        title: htsRetroForm?.name,
+        encounterUuid: encounterUuid,
+        state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+      });
+    },
+    [htsRetroForm],
+  );
+
   const tableHeaders = [
     { key: 'date', header: 'Date', isSortable: true },
     { key: 'location', header: 'Location' },
