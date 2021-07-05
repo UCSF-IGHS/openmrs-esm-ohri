@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './hts-overview-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
@@ -115,11 +115,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
             {t('viewHTSEncounter', 'View')}
           </Button>
         );
-          
-        console.log(encounter);
-        
+           
         const HIVTestObservation = encounter.obs.find(
-          observation => observation.concept.name.uuid === '44379f60-af04-4a98-a7f1-6cb0405ea360',
+          observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
         );
 
         rows.push({
@@ -130,7 +128,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           result: htsResult?.value?.name?.name || 'None',
           encounter_type: encounterType,
           provider: htsProvider,
-          action: [editEncounterButton, viewEncounterButton],
+          action: encounterActionOverflowMenu,
         });
       });
 
@@ -138,7 +136,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       setIsLoading(false);
     });
   }
-  React.useEffect(() => {
+  useEffect(() => {
     let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
     getHtsEncounters(query, htsEncounterRepresentation, 'HTS Retrospective');
   }, [counter]);
