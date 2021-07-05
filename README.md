@@ -1,5 +1,7 @@
-[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
+## Badges
+[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg?branch=working)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
 
+![Badges](badges/badge-branches.svg) ![Badges](badges/badge-functions.svg) ![Badges](badges/badge-lines.svg)
 # OHRI ESM
 
 A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
@@ -76,7 +78,8 @@ npm test
 
 ## Deployment
 
-Currently, there are no releases for this module and it can only be locally deployed by following the installation instructions.
+Currently, available releases for this module:
+- [![DEMO](https://ohri-demo.globalhealthapp.net/)] 
 
 ## Configuration
 

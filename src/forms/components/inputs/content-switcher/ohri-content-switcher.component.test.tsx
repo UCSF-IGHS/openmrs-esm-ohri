@@ -2,12 +2,12 @@ import React from 'react';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import { Form, Formik } from 'formik';
 import { EncounterContext, OHRIFormContext } from '../../../ohri-form-context';
-import OHRIDropdown from './ohri-dropdown.component';
 import { OHRIFormField } from '../../../types';
 import { ObsSubmissionHandler } from '../../../submission-handlers/base-handlers';
+import { OHRIContentSwitcher } from './ohri-content-switcher.component';
 
 const question: OHRIFormField = {
-  label: 'Patient past program.',
+  label: 'Patient past program',
   type: 'obs',
   questionOptions: {
     rendering: 'select',
@@ -59,31 +59,29 @@ const renderForm = intialValues =>
               encounterContext: encounterContext,
               fields: [question],
             }}>
-            <OHRIDropdown question={question} onChange={jest.fn()} handler={ObsSubmissionHandler} />
+            <OHRIContentSwitcher question={question} onChange={jest.fn()} handler={ObsSubmissionHandler} />
           </OHRIFormContext.Provider>
         </Form>
       )}
     </Formik>,
   );
 
-describe('dropdown input field', () => {
+describe('content-switcher input field', () => {
   afterEach(() => {
     // teardown
     question.value = null;
   });
 
   it('should record new obs', async () => {
-    // setup
+    // // setup
     renderForm({});
-    const dropdownWidget = screen.getByRole('button', { name: /Patient past program./ });
+    const oncologyScreeningTab = screen.getByRole('tab', { name: /Oncology Screening and Diagnosis Program/i });
 
     // assert initial values
     expect(question.value).toBe(null);
 
-    // choose an option
-    fireEvent.click(dropdownWidget);
-    const fightMalariaOption = screen.getByText('Fight Malaria Initiative');
-    fireEvent.click(fightMalariaOption);
+    // select Oncology Screening and Diagnosis Program
+    fireEvent.click(oncologyScreeningTab);
 
     // verify
     expect(question.value).toEqual({
@@ -94,7 +92,7 @@ describe('dropdown input field', () => {
       order: null,
       groupMembers: [],
       voided: false,
-      value: '14cd2628-8a33-4b93-9c10-43989950bba0',
+      value: '12f7be3d-fb5d-47dc-b5e3-56c501be80a6',
     });
   });
 
@@ -112,12 +110,10 @@ describe('dropdown input field', () => {
       value: '6ddd933a-e65c-4f35-8884-c555b50c55e1',
     };
     renderForm({ 'patient-past-program': question.value.value });
-    const dropdownWidget = screen.getByRole('button', { name: /Patient past program./ });
+    const fightMalariaTab = screen.getByRole('tab', { name: /Fight Malaria Initiative/ });
 
-    // do some edits
-    fireEvent.click(dropdownWidget);
-    const oncologyScreeningOption = screen.getByText('Oncology Screening and Diagnosis Program');
-    fireEvent.click(oncologyScreeningOption);
+    // edit by selecting 'Fight Malaria Initiative'
+    fireEvent.click(fightMalariaTab);
 
     // verify
     expect(question.value).toEqual({
@@ -129,7 +125,7 @@ describe('dropdown input field', () => {
       order: null,
       groupMembers: [],
       voided: false,
-      value: '12f7be3d-fb5d-47dc-b5e3-56c501be80a6',
+      value: '14cd2628-8a33-4b93-9c10-43989950bba0',
     });
   });
 });
