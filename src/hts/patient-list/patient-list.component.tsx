@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
 import styles from './patient-list.scss';
+import { paginate } from './pagination';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
-import { attach, openmrsFetch, switchTo, age } from '@openmrs/esm-framework';
-import { DataTableSkeleton } from 'carbon-components-react';
+import { attach, openmrsFetch, switchTo, age, navigate } from '@openmrs/esm-framework';
+import { DataTableSkeleton, Pagination } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
 import moment from 'moment';
 import { capitalize } from 'lodash';
 import dayjs from 'dayjs';
@@ -24,17 +23,18 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [currentMedicationPage] = paginate(tableRows, page, pageSize);
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const addNewPatient = () => {
-    //  todo add logic for adding new patient
-    //http://localhost:8080/openmrs/spa/patient-registration
-  };
+  const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
+
   const tableHeaders = [
-    { key: 'name', header: 'Name' },
+    { key: 'name', header: 'Name', isSortable: true },
     { key: 'gender', header: 'Gender' },
     { key: 'age', header: 'Age' },
-    { key: 'last_visit', header: 'Last Visit', isSortable: true },
+    { key: 'last_visit', header: 'Last Visit' },
   ];
 
   function getPatients() {
@@ -47,7 +47,7 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           gender: capitalize(patient.resource.gender),
           age: age(patient.resource.birthDate),
           // last_visit: moment(patient.encounterDatetime).format('DD-MMM-YYYY'),
-          last_visit: '',
+          last_visit: '--',
         });
       });
 
@@ -83,6 +83,18 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
             </div>
           </div>
           <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
+          <div style={{ width: '800px' }}>
+            <Pagination
+              page={page}
+              pageSize={pageSize}
+              pageSizes={[10, 20, 30, 40, 50]}
+              totalItems={tableRows.length}
+              onChange={({ page, pageSize }) => {
+                setPage(page);
+                setPageSize(pageSize);
+              }}
+            />
+          </div>
         </div>
       ) : (
         <EmptyState
