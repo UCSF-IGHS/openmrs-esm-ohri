@@ -4,6 +4,8 @@ import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
+import { OHRILabel } from '../../label/ohri-label.component';
+import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 
 const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -17,7 +19,12 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     }
   };
 
-  return (
+  return encounterContext.sessionMode == 'view' ? (
+    <div className={styles.formField}>
+      <OHRILabel value={question.label} />
+      {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
+    </div>
+  ) : (
     !question.isHidden && (
       <div className={styles.formField}>
         <TextArea

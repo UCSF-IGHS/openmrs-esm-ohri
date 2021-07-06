@@ -18,6 +18,13 @@ export interface SubmissionHandler {
    * @returns the `submissionValue`
    */
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {};
+
+  /**
+   * Extracts value to be displayed while in `view` mode
+   *
+   * @returns the `displayValue`
+   */
+  getDisplayValue: (field: OHRIFormField, value: any) => any;
 }
 export interface OHRIFormSchema {
   name: string;
@@ -69,7 +76,7 @@ export interface OHRIFormQuestionOptions {
   toggleOptions?: { labelTrue: string; labelFalse: string };
 }
 
-export type SessionMode = 'edit' | 'enter';
+export type SessionMode = 'edit' | 'enter' | 'view';
 
 export type RenderType =
   | 'select'
