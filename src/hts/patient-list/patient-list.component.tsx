@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 import styles from './patient-list.scss';
-import { paginate } from './pagination';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
-import { attach, openmrsFetch, switchTo, age, navigate } from '@openmrs/esm-framework';
+import { attach, openmrsFetch, switchTo, age, navigate, usePagination } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Pagination } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { capitalize } from 'lodash';
+import { paginate } from './pagination';
 import dayjs from 'dayjs';
 
 interface HtsOverviewListProps {
@@ -19,13 +19,16 @@ interface HtsOverviewListProps {
 
 const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const [tableRows, setTableRows] = useState([]);
+  const [patients, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [currentMedicationPage] = paginate(tableRows, page, pageSize);
+  const [currentPatientPage] = paginate(patients, page, pageSize);
+  const [currentPage, setCurrentPage] = useState(0);
+  const pagination = usePagination(patients, pageSize);
+  const [totalPatientCount, setPatientCount] = useState(0);
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
@@ -48,12 +51,16 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           age: age(patient.resource.birthDate),
           // last_visit: moment(patient.encounterDatetime).format('DD-MMM-YYYY'),
           last_visit: '--',
+          patientUrl: patient.fullUrl,
         });
       });
 
       setTableRows(rows);
       setIsLoading(false);
     });
+  }
+  function handlePageChange(index: number) {
+    setCurrentPage(index);
   }
   React.useEffect(() => {
     getPatients();
@@ -65,7 +72,7 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
-      ) : tableRows.length > 0 ? (
+      ) : patients.length > 0 ? (
         <div className={styles.widgetContainer}>
           <div className={styles.widgetHeaderContainer}>
             <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
@@ -82,13 +89,13 @@ const PatientList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               </Button>
             </div>
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
+          <OTable tableHeaders={tableHeaders} tableRows={patients} />
           <div style={{ width: '800px' }}>
             <Pagination
               page={page}
               pageSize={pageSize}
               pageSizes={[10, 20, 30, 40, 50]}
-              totalItems={tableRows.length}
+              totalItems={patients.length}
               onChange={({ page, pageSize }) => {
                 setPage(page);
                 setPageSize(pageSize);
