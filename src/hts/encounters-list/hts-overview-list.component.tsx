@@ -9,9 +9,7 @@ import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-compon
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
-import { getForm } from '../../utils/forms-loader';
-import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
-
+import { getForm } from '../../utils/forms-loader'; 
 interface HtsOverviewListProps {
   patientUuid: string;
 }
@@ -32,6 +30,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
+  const htsRetroForm = useMemo(() => {
+    return getForm('hiv', 'hts_retro');
+  }, []);
+
   const launchHTSForm = () => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: HTSRestroForm.name,
@@ -47,7 +49,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   };
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,
+      title: htsRetroForm?.name,
       encounterUuid: encounterUuid,
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
