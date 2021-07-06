@@ -1,11 +1,10 @@
+# OHRI ESM
+
+A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 ## Badges
 [![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg?branch=working)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
 
 ![Badges](badges/badge-branches.svg) ![Badges](badges/badge-functions.svg) ![Badges](badges/badge-lines.svg)
-# OHRI ESM
-
-A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
-
 ## Overview
 
 (tbd)
