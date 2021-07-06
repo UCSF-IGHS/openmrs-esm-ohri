@@ -64,8 +64,9 @@ jobs:
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
+
             port: ${{ secrets.HISTAC_PORT }} 
-     
+
   pre_release:
     runs-on: ubuntu-latest
 
@@ -84,6 +85,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: npm install
       - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
+      - run: npm run build --if-present
       - run: npm publish --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
