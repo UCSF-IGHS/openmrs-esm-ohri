@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './hts-overview-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
@@ -10,7 +10,6 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
-import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -32,25 +31,30 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
+
+  const htsRetroForm = useMemo(() => {
+    return getForm('hiv', 'hts_retro');
+  }, []);
+
   const launchHTSForm = () => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,
-      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
+      title: htsRetroForm?.name,
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,
+      title: htsRetroForm?.name,
       encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
     });
   };
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,
+      title: htsRetroForm?.name,
       encounterUuid: encounterUuid,
       mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
     });
   };
 
@@ -70,19 +74,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       data.results.map(encounter => {
         const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
-        const editEncounterButton = (
-          <Button
-            key="edit-action"
-            kind="ghost"
-            iconDescription="Edit"
-            onClick={e => {
-              e.preventDefault();
-              editHTSEncounter(encounter.uuid);
-            }}>
-            {t('editHTSEncounter', 'Edit')}
-          </Button>
-        );
-
         const encounterActionOverflowMenu = (
           <OverflowMenu flipped>
             <OverflowMenuItem
@@ -100,19 +91,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               }}
             />
           </OverflowMenu>
-        );
-
-        const viewEncounterButton = (
-          <Button
-            key="view-action"
-            kind="ghost"
-            iconDescription="View"
-            onClick={e => {
-              e.preventDefault();
-              viewHTSEncounter(encounter.uuid);
-            }}>
-            {t('viewHTSEncounter', 'View')}
-          </Button>
         );
 
         const HIVTestObservation = encounter.obs.find(
