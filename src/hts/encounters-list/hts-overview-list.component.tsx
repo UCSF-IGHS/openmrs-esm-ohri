@@ -1,4 +1,3 @@
-
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './hts-overview-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
@@ -11,6 +10,7 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
+import HTSRestroForm from '../../forms/test-forms/hts_retrospective_form-schema';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -32,22 +32,19 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  
   const launchHTSForm = () => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: HTSRestroForm.name,
       state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
   };
-
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: HTSRestroForm.name,  
+      title: HTSRestroForm.name,
       encounterUuid: encounterUuid,
       state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
   };
-
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: HTSRestroForm.name,
@@ -55,8 +52,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: HTSRestroForm },
     });
-  }; 
-     
+  };
+
   const tableHeaders = [
     { key: 'date', header: 'Date entered', isSortable: true },
     { key: 'dateOfTest', header: 'Date tested', isSortable: true },
@@ -107,7 +104,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
         const viewEncounterButton = (
           <Button
-          key="view-action"  kind="ghost"  iconDescription="View"
+            key="view-action"
+            kind="ghost"
+            iconDescription="View"
             onClick={e => {
               e.preventDefault();
               viewHTSEncounter(encounter.uuid);
@@ -115,7 +114,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
             {t('viewHTSEncounter', 'View')}
           </Button>
         );
-           
+
         const HIVTestObservation = encounter.obs.find(
           observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
         );
