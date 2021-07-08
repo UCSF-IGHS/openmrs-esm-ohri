@@ -10,6 +10,7 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
+import { observeOn } from 'rxjs/operators';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -28,7 +29,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
+  // const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66'; // 
+  const hivTestResultConceptUUID = '77a518bb-3486-4e03-bcae-0b8ccf82c39d'; // HIV Result - Positive 
+  const hivTestDateUUID = 'bce64590-4758-4011-9bf9-1b29d80b5f75'; //Concet for Test Date
 
   const forceComponentUpdate = () => setCounter(counter + 1);
 
@@ -71,9 +74,12 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   function getHtsEncounters(query: string, customRepresentation: string, encounterType: string) {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
+
       data.results.map(encounter => {
-        const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
+        const htsResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
+        const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateUUID);
+
         const encounterActionOverflowMenu = (
           <OverflowMenu flipped>
             <OverflowMenuItem
@@ -91,16 +97,15 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               }}
             />
           </OverflowMenu>
-        );
+        ); 
 
         const HIVTestObservation = encounter.obs.find(
-          observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
-        );
+          observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
 
         rows.push({
           id: encounter.uuid,
           date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
-          dateOfTest: HIVTestObservation ? moment(HIVTestObservation.obsDatetime).format('DD-MMM-YYYY') : 'None',
+          dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
           location: encounter.location.name,
           result: htsResult?.value?.name?.name || 'None',
           encounter_type: encounterType,
