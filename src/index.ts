@@ -94,6 +94,14 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
+      {
+        id: 'test-patient-list',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts-home/patient-list.component'), {
+          featureName: 'test-patient-list',
+          moduleName,
+        }),
+      },
     ],
   };
 }
