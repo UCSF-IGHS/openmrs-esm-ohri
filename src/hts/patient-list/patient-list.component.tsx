@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import styles from './patient-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
@@ -9,12 +9,14 @@ import { openmrsFetch, age, navigate } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { capitalize } from 'lodash';
+import moment from 'moment';
+import { fetchLastVisit, fetchPatientList } from '../../api/api';
 
-interface HtsOverviewListProps {
+interface PatientListProps {
   patientUuid: string;
 }
 
-const PatientList: React.FC<HtsOverviewListProps> = () => {
+const PatientList: React.FC<PatientListProps> = () => {
   const { t } = useTranslation();
   const [patients, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,38 +34,38 @@ const PatientList: React.FC<HtsOverviewListProps> = () => {
   ];
 
   useEffect(() => {
-    setIsLoading(true);
+    if (!page) setIsLoading(true);
     loadPatients(nextOffSet, pageSize);
   }, [page, pageSize]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const navigateToPatientDB = patientUuid => navigate({ to: '${openmrsSpaBase}/patient/' + `${patientUuid}/chart` });
+  async function loadPatients(offSet: number, pageSize: number) {
+    let rows = [];
+    const { data: patientList } = await fetchPatientList(offSet, pageSize);
 
-  function loadPatients(offSet: number, pageSize: number) {
-    return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`).then(({ data }) => {
-      let rows = [];
-      setPatientCount(data.total);
-      data.entry.forEach(patient => {
-        rows.push({
-          id: patient.resource.id,
-          name: (
-            <Link
-              onClick={e => {
-                e.preventDefault();
-                navigateToPatientDB(patient.resource.id);
-              }}>
-              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
-            </Link>
-          ),
-          gender: capitalize(patient.resource.gender),
-          age: age(patient.resource.birthDate),
-          // last_visit: moment(patient.encounterDatetime).format('DD-MMM-YYYY'),
-          last_visit: '--',
-        });
+    for (let patient of patientList.entry) {
+      const { data } = await fetchLastVisit(patient.resource.id);
+      const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
+
+      rows.push({
+        id: patient.resource.id,
+        name: (
+          <Link
+            onClick={e => {
+              e.preventDefault();
+              navigateToPatientDB(patient.resource.id);
+            }}>
+            {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
+          </Link>
+        ),
+        gender: capitalize(patient.resource.gender),
+        age: age(patient.resource.birthDate),
+        last_visit: lastVisit ? moment(lastVisit).format('DD-MMM-YYYY') : '__',
       });
-      setTableRows(rows);
-      setIsLoading(false);
-    });
+    }
+    setTableRows(rows);
+    setIsLoading(false);
   }
   return (
     <>
