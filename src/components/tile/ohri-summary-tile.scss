@@ -1,0 +1,35 @@
+@import "../../root.scss";
+
+.tile {
+    height: 126px;
+    padding: 1px 0 16px 16px;
+    border: solid 1px #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tileTitle {
+    height: 18px;
+    margin: 15px 65px 24px 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: 0.16px;
+    color: #525252;
+}
+
+.tileSubTitle {
+  height: 16px;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.32px;
+  color: #525252;
+}
+
+.tileValue{
+  margin: 5px 35px 0 0;
+  font-size: 28px;
+  line-height: 1.29;
+  color: #161616;
+}
+

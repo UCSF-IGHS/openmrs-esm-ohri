@@ -33,7 +33,7 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-forms/,
+        route: /^ohri-home/,
       },
     ],
     extensions: [
@@ -63,6 +63,22 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
+      },
+      {
+        id: 'hts-home-header-ext',
+        slot: 'hts-home-header-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/welcome-section/hts-welcome-section.component'), {
+          featureName: 'hts-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hts-home-tile-ext',
+        slot: 'hts-home-tiles-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/summary-tile/hts-summary-tile.component'), {
+          featureName: 'hts-home-tiles',
+          moduleName,
+        }),
       },
       {
         id: 'hts-encounter-form-ext',
