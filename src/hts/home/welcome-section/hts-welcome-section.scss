@@ -1,17 +1,18 @@
 // welcome section
 .container{
-    display: flex;
-    flex-direction: column;
     padding: 16px;
 }
 
 .welcome {
-    width: 168px;
-    height: 22px;
-    margin: 0 678px 4px 0;
-    font-size: 16px;
-    line-height: 1.38;
-    color: #525252;
+  height: 22px;
+  margin: 0 678px 4px 0;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  color: #525252;
 }
 
 .welcomeDetails{
@@ -21,7 +22,6 @@
 }
 
 .userwelcome {
-    width: 303px;
     margin: 4px 543px 0 0;
     font-size: 28px;
     line-height: 1.29;
@@ -29,7 +29,6 @@
 }
 
 .currentDate {
-    width: 146px;
     height: 28px;
     margin: 12px 0 0 543px;
     padding: 8px 130px 4px 0;
