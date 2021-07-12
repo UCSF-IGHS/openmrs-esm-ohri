@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './patient-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
-import { openmrsFetch, age, navigate } from '@openmrs/esm-framework';
+import { age, navigate } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { capitalize } from 'lodash';
@@ -42,9 +42,10 @@ const PatientList: React.FC<PatientListProps> = () => {
   const navigateToPatientDB = patientUuid => navigate({ to: '${openmrsSpaBase}/patient/' + `${patientUuid}/chart` });
   async function loadPatients(offSet: number, pageSize: number) {
     let rows = [];
-    const { data: patientList } = await fetchPatientList(offSet, pageSize);
+    const { data: patients } = await fetchPatientList(offSet, pageSize);
 
-    for (let patient of patientList.entry) {
+    setPatientCount(patients.total);
+    for (let patient of patients.entry) {
       const { data } = await fetchLastVisit(patient.resource.id);
       const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
 
