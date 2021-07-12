@@ -1,7 +1,6 @@
 import { Column, Row } from 'carbon-components-react';
 import React, { useState } from 'react';
 import OHRISummaryTile from '../../../components/tile/ohri-summary-tile.component';
-import styles from './hts-summary-tile.scss';
 
 function HTSSummaryTile() {
   // const [tiles, setTiles] = useState(['Today’s clients', 'Positive in last 14 days', 'Linked to care in last 14 days'])
