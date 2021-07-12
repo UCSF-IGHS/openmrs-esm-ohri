@@ -42,9 +42,10 @@ const PatientList: React.FC<PatientListProps> = () => {
   const navigateToPatientDB = patientUuid => navigate({ to: '${openmrsSpaBase}/patient/' + `${patientUuid}/chart` });
   async function loadPatients(offSet: number, pageSize: number) {
     let rows = [];
-    const { data: patientList } = await fetchPatientList(offSet, pageSize);
+    const { data: patients } = await fetchPatientList(offSet, pageSize);
 
-    for (let patient of patientList.entry) {
+    setPatientCount(patients.total);
+    for (let patient of patients.entry) {
       const { data } = await fetchLastVisit(patient.resource.id);
       const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
 
