@@ -6,8 +6,9 @@ on:
       - '*'
     branches:
       - '*'  
+
   pull_request:
-    branches:  
+    branches: 
       - '*'
     types: [opened, synchronize, reopened, closed]
   release:
@@ -146,3 +147,4 @@ jobs:
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
             port: ${{ secrets.HISTAC_PORT }} 
+  
