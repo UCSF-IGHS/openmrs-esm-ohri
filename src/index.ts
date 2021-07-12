@@ -78,6 +78,17 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
+      {
+        id: 'patient-list-ext',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/patient-list/patient-list.component'), {
+          featureName: 'patient-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
     ],
   };
 }
