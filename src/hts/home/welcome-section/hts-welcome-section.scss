@@ -1,4 +1,8 @@
 // welcome section
+.container{
+    top: 30px;
+    padding: 16px;
+}
 
 .welcome {
   font-size: 16px;
@@ -13,26 +17,19 @@
 }
 
 .welcomeDetails{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    height: 36px;
 }
 
-.userWelcome {
-  font-size: 28px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.29;
-  letter-spacing: normal;
-  color: #161616;
-  margin-bottom: 16px;
+.userwelcome {
+    font-size: 28px;
+    line-height: 1.29;
+    color: #161616;
 }
 
 .currentDate {
-  display: flex;
-  flex-direction: row;
-  padding-left: 30%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 30%;
   font-size: 20px;
   font-weight: normal;
   font-stretch: normal;
@@ -44,12 +41,8 @@
 }
 
 .calendarIcon{
-    width: 25px;
-    height: 25px;
-    padding-right: 1px;
-}
-
-.bx--tab-content{
-  background-color: ivory !important;
+    width: 20px;
+    height: 20px;
+    padding-right: 20px;
 }
 
