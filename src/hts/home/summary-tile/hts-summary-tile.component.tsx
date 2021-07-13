@@ -1,30 +1,61 @@
 import { Column, Row } from 'carbon-components-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OHRISummaryTile from '../../../components/tile/ohri-summary-tile.component';
+import { fetchTodayClients } from '../../../api/api';
 
 function HTSSummaryTile() {
-  // const [tiles, setTiles] = useState(['Today’s clients', 'Positive in last 14 days', 'Linked to care in last 14 days'])
+  const [todayPatientCount, setTodayPatientCount] = useState(0);
+  const [positiveInLast14Days, setPositiveInLast14Days] = useState(0);
+  const [linkedToCareInLast14Days, setLinkedToCareInLast14Days] = useState(0);
 
   const tile = [
     {
-      title: 'Test',
-      linkAddres: '#',
-      subTitle: 'Test Sub',
-      value: 45,
+      title: "Today's Clients",
+      linkAddress: '#',
+      subTitle: 'Active Visits',
+      value: todayPatientCount,
     },
     {
-      title: 'Test 2',
-      linkAddres: '#',
-      subTitle: 'Test Sub',
+      title: 'Positive in last 14 days',
+      linkAddress: '#',
+      subTitle: 'Clients',
       value: 46,
     },
     {
-      title: 'Test 3',
-      linkAddres: '#',
-      subTitle: 'Test Sub',
+      title: 'Linked to care in last 14 days',
+      linkAddress: '#',
+      subTitle: 'Last 14 days',
       value: 43,
     },
   ];
+
+  useEffect(() => {
+    getTodayClientCount();
+  });
+
+  function getTodayClientCount() {
+    return fetchTodayClients().then(({ data }) => {
+      setTodayPatientCount(data.total);
+    });
+  }
+
+  function getPositiveInLast14days() {
+    return fetchTodayClients().then(({ data }) => {
+      setTodayPatientCount(data.total);
+
+      // const { entry: encounters } = openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`);
+      // return encounters.total;
+    });
+  }
+
+  function getLinkedToCareInLast14days() {
+    return fetchTodayClients().then(({ data }) => {
+      setTodayPatientCount(data.total);
+
+      // const { entry: encounters } = openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`);
+      // return encounters.total;
+    });
+  }
 
   return (
     <Row>
