@@ -30,8 +30,7 @@ function HTSSummaryTile() {
     <Row>
       {tile.map((name, index) => {
         return (
-          // define a col
-          <Column lg={4} md={3} sm={2}>
+          <Column lg={4} md={3} sm={2} key={index}>
             <OHRISummaryTile details={name} />
           </Column>
         );
