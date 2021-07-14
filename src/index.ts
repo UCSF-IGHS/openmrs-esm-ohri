@@ -105,6 +105,14 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        id: 'cohort-patient-list',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts-home/patient-list-cohort.component'), {
+          featureName: 'cohort-patient-list',
+          moduleName,
+        }),
+      },
     ],
   };
 }

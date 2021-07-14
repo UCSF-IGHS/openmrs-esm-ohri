@@ -1,6 +1,8 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { careSetting } from '../constants';
 import moment from 'moment';
+
+const BASE_WS_API_URL = '/ws/rest/v1/';
+const BASE_FHIR_API_URL = '/ws/fhir2/R4';
 
 export function fetchLastVisit(uuid: string) {
   return openmrsFetch(`/ws/fhir2/R4/Encounter?patient=${uuid}&_sort=-date&_count=1`);
@@ -26,4 +28,25 @@ export function fetchObservationsFromCodeConcept(codeConcept: string, valueConce
       cutOffDays ? `&_lastUpdated=ge${startDate}&_lastUpdated=le${endDate}` : ''
     }`,
   );
+}
+
+export function performPatientSearch(query, objectVersion) {
+  return openmrsFetch(`${BASE_WS_API_URL}/patient?q=${query}${objectVersion ? `&v=${objectVersion}` : ''}`, {
+    method: 'GET',
+  });
+}
+
+export function getPatients(searchPhrase?: string, offset?: number, pageSize: number = 10) {
+  return openmrsFetch(
+    `/ws/fhir2/R4/Patient?_count=${pageSize}${searchPhrase ? `&name=${searchPhrase}` : ''}${
+      offset ? `&_getpagesoffset=${offset}` : ''
+    }`,
+    {
+      method: 'GET',
+    },
+  );
+}
+
+export function getCohort(cohortUuid: string, version?: string) {
+  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
 }
