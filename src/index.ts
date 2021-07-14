@@ -81,6 +81,14 @@ function setupOpenMRS() {
         }),
       },
       {
+        id: 'hts-home-tabs-ext',
+        slot: 'hts-home-tabs-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/patient-tabs/ohri-patient-tabs.component'), {
+          featureName: 'hts-home-tabs',
+          moduleName,
+        }),
+      },
+      {
         id: 'hts-encounter-form-ext',
         load: getAsyncLifecycle(() => import('./hts/encounter-form/hts-encounter-form.component'), {
           featureName: 'hts-encounter-form',
