@@ -13,3 +13,25 @@ export function fetchTodayClients() {
   let date = moment().format('YYYY-MM-DD');
   return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`);
 }
+
+export function fetchPositivePatientsInLast14Days(codeConcept: string) {
+  let endDate = moment().format('YYYY-MM-DD');
+  let startDate = moment()
+    .subtract(14, 'days')
+    .format('YYYY-MM-DD');
+
+  return openmrsFetch(
+    `/ws/fhir2/R4/Observation?value-concept=${codeConcept}&_lastUpdated=ge${startDate}&_lastUpdated=le${endDate}`,
+  );
+}
+
+export function fetchPatientsLinkedToCareInLast14Days(codeConcept: string) {
+  let endDate = moment().format('YYYY-MM-DD');
+  let startDate = moment()
+    .subtract(14, 'days')
+    .format('YYYY-MM-DD');
+
+  return openmrsFetch(
+    `/ws/fhir2/R4/Observation?value-concept=${codeConcept}&_lastUpdated=ge${startDate}&_lastUpdated=le${endDate}`,
+  );
+}
