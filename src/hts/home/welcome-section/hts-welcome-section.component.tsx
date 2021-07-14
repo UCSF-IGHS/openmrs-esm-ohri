@@ -15,17 +15,13 @@ function HtsWelcomeSection({ tile }) {
         </div>
       </div> */}
       <Row className={styles.welcome}>OHRI Health Clinic</Row>
-      <Row>
-        <Column>
-          {/* replace with username */}
-          <div className={styles.userWelcome}>Welcome back, username</div>
+      <Row className={styles.welcomeDetails}>
+        <Column lg={6} md={6} sm={2} className={styles.userWelcome}>
+          Welcome back, username
         </Column>
-        <Column>
-          {/* replace with current date */}
-          <div className={styles.currentDate}>
-            <Calendar32 />
-            16 June 2021
-          </div>
+        <Column lg={6} md={6} sm={2} className={styles.currentDate}>
+          <Calendar32 className={styles.calendarIcon} />
+          16 June 2021
         </Column>
       </Row>
     </div>

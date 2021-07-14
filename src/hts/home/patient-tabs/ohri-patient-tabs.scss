@@ -1,0 +1,28 @@
+
+
+.container{
+    margin: 16px;
+}
+
+.bx--tabs--scrollable__nav-link{width: 100% !important;}
+
+.customTab{
+    background-color: white !important;
+    color: #0f62fe;
+}
+
+.customTab:hover{
+    outline: none;
+    background-color: white;
+}
+
+.customTabContent {
+  height: 18px;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.16px;
+  color: #0f62fe;
+}

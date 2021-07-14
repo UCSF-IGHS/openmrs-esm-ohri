@@ -1,19 +1,13 @@
 import React from 'react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
-import { Grid, Row } from 'carbon-components-react';
+import { Grid } from 'carbon-components-react';
 
 function OhriHome() {
   return (
     <Grid>
-      <Row>
-        <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} />
-      </Row>
-      {/* <Row> */}
+      <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} />
       <ExtensionSlot extensionSlotName={OHRIHomeTileSlot} />
-      {/* </Row> */}
-      <Row>
-        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} />
-      </Row>
+      <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} />
     </Grid>
   );
 }
