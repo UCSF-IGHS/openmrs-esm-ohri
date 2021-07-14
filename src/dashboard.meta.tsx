@@ -1,16 +1,12 @@
 import React from 'react';
 import { ConfigurableLink } from '@openmrs/esm-framework';
 import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
+import styles from './dasboard.scss';
 
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
-      // <div key={db.name}>
-      //   <ConfigurableLink to={`${basePath}/${db.name}`} className="bx--side-nav__link">
-      //     {db.title}
-      //   </ConfigurableLink>
-      // </div>
-      <SideNavMenu title="HIV">
+      <SideNavMenu title="HIV" className={styles.noMarker}>
         <SideNavMenuItem href={`${basePath}/${db.name}`}> HTS </SideNavMenuItem>
         <SideNavMenuItem> Care and Treatment </SideNavMenuItem>
         <SideNavMenuItem> PMTCT </SideNavMenuItem>
