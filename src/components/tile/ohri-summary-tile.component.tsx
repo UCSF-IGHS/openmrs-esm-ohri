@@ -5,7 +5,6 @@ import styles from './ohri-summary-tile.scss';
 
 function OHRISummaryTile({ details }) {
   return (
-    // switch to grid system
     <Tile className={styles.tile}>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <div className={styles.tileTitle}>{details.title}</div>
