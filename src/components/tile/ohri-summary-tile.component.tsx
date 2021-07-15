@@ -10,7 +10,7 @@ function OHRISummaryTile({ details }) {
         <div className={styles.tileTitle}>{details.title}</div>
         <div>
           <Button size="small" kind="ghost">
-            Link <ArrowRight32 style={{ width: '12px', height: '10px' }} />
+            View <ArrowRight32 style={{ width: '12px', height: '10px' }} />
           </Button>
         </div>
       </div>
