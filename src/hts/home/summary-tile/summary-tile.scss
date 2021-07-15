@@ -1,0 +1,19 @@
+@media screen and (max-width: 768px) {
+    .tileView {
+      visibility: visible;
+    }
+    .desktopView {
+        visibility: hidden;
+        display: none;
+      }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .desktopView {
+      visibility: visible;
+    }
+    .tileView {
+        visibility: hidden;
+        display: none;
+      }
+  }

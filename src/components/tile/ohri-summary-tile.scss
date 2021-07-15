@@ -6,6 +6,7 @@
     border: solid 1px #e0e0e0;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
 }
 
 .tileTitle {
@@ -33,3 +34,46 @@
   color: #161616;
 }
 
+// Tablet view
+
+.tabletTile {
+  width: 100%;
+  height: 126px;
+  margin: 17px 16px;
+  padding: 16px 18px 16px 16px;
+  border: solid 1px #e0e0e0;
+}
+
+.tabletTileTitle {
+  height: 18px;
+  margin: 0 392px 24px 0;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.16px;
+  color: #525252;
+}
+
+.tabletTileSubTitle{
+  height: 16px;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.32px;
+  color: #0f62fe;
+}
+
+.tabletTileValue{
+  height: 36px;
+  font-size: 28px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  color: #161616;
+}
