@@ -4,7 +4,6 @@
 }
 
 .welcome {
-  height: 22px;
   font-size: 16px;
   font-stretch: normal;
   font-style: normal;
@@ -14,17 +13,16 @@
 }
 
 .welcomeDetails{
-    height: 36px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .userwelcome {
-    font-size: 28px;
-    font-weight: 600;
+    font-size: 38px;
+    font-weight: 800;
     font-stretch: normal;
-    font-style: normal;
+    font-style:normal;
     line-height: 1.29;
     letter-spacing: normal;
     color: #161616;
