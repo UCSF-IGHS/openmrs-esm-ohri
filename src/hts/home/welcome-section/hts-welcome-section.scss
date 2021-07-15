@@ -1,13 +1,11 @@
 // welcome section
 .container{
-    top: 30px;
+    margin-top: 16px;
 }
 
 .welcome {
   height: 22px;
-  margin: 0 678px 4px 0;
   font-size: 16px;
-  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.38;
@@ -17,11 +15,18 @@
 
 .welcomeDetails{
     height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .userwelcome {
     font-size: 28px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
     line-height: 1.29;
+    letter-spacing: normal;
     color: #161616;
 }
 
