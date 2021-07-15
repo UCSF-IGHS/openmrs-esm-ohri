@@ -1,28 +1,14 @@
-
+@import "../../../root.scss";
 
 .container{
     margin: 16px;
+    width: 100%;
 }
 
-.bx--tabs--scrollable__nav-link{width: 100% !important;}
-
-.customTab{
-    background-color: white !important;
-    color: #0f62fe;
+.container div button{
+    width: 100% !important;
 }
 
-.customTab:hover{
-    outline: none;
-    background-color: white;
-}
-
-.customTabContent {
-  height: 18px;
-  font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.29;
-  letter-spacing: 0.16px;
-  color: #0f62fe;
+.container div button.bx--tabs--scrollable.bx--tabs--scrollable--container.bx--tabs--scrollable__nav-link{
+    box-shadow: inset 0 2px 0 0 $brand-teal-01;
 }
