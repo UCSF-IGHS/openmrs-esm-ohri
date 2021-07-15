@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from '../encounters-list/hts-overview-list.scss';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../components/empty-state/empty-state.component';
+import { Button } from 'carbon-components-react';
+import { Add16 } from '@carbon/icons-react';
 
 const ClientLinkage = () => {
   const { t } = useTranslation();
@@ -31,7 +33,7 @@ const ClientLinkage = () => {
         <EmptyState
           displayText={t('clientLinkage', 'client linkage')}
           headerTitle={headerTitle}
-          launchForm={() => {}}
+          launchForm={() => { }}
         />
       )}
     </>

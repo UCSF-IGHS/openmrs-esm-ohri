@@ -105,5 +105,8 @@
   "noDurationHint": "An empty field indicates an indefinite duration.",
 
   "validationFieldRequired": "Required.",
-  "validationNoItemSelected": "Please select one of the available items."
+  "validationNoItemSelected": "Please select one of the available items.",
+
+  "hivPositive": "HIV Positive", 
+  "hivNegative": "HIV Negative"
 }

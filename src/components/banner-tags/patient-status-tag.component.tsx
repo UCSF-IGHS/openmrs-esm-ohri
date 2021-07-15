@@ -22,7 +22,7 @@ function PatientStatusBannerTag({ patientUuid }) {
             </span>
           </div>
         }>
-        <Tag type="red">{t('hivPositive', 'HIV Positive 2')}</Tag>
+        <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>
       </TooltipDefinition>
     )
   );

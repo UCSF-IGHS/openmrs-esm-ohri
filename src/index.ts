@@ -120,6 +120,17 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        id: 'hts-patient-linkage-list-ext',
+        slot: 'hts-summary-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
+          featureName: 'hts-patient-linkage-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
     ],
   };
 }
