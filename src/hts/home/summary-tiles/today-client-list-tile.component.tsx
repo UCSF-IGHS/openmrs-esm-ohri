@@ -1,8 +1,9 @@
-import { age, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getPatients } from '../api/api';
-import EmptyState from '../components/empty-state/empty-state.component';
+import { fetchTodayClients } from '../../../api/api';
+import EmptyState from '../../../components/empty-state/empty-state.component';
+import { filterFHIRPatientsByName } from '../../../hts-home/patient-list.component';
 
 const basePath = '${openmrsSpaBase}/patient/';
 export const columns = [
@@ -45,55 +46,41 @@ export const columns = [
     },
   },
 ];
-
-export const filterFHIRPatientsByName = (searchTerm: string, patients: Array<any>) => {
-  return patients.filter(
-    patient =>
-      `${patient.name[0].given.join(' ')} ${patient.name[0].family}`.toLowerCase().search(searchTerm.toLowerCase()) !==
-      -1,
-  );
-};
-
-const TestPatientList: React.FC<{}> = () => {
+export const TodayzClientList: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
+  const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [patientsCount, setPatientsCount] = useState(0);
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
-  const [offSet, setOffSet] = useState(0);
 
   useEffect(() => {
-    setIsLoading(true);
-    getPatients(null, offSet, pageSize).then(({ data }) => {
-      setPatients(data.entry.map(pat => pat.resource));
-      setPatientsCount(data.total);
+    fetchTodayClients().then((response: Array<any>) => {
+      setPatients(response.map(pat => pat.data));
+      setTotalPatientCount(response.length);
       setIsLoading(false);
     });
   }, [pageSize, currentPage]);
+
+  useEffect(() => {
+    attach('today-clients-table-slot', 'patient-table');
+  }, []);
 
   const pagination = useMemo(() => {
     return {
       usePagination: true,
       currentPage: currentPage,
       onChange: props => {
-        if (props.pageSize != pageSize) {
-          // reset
-          setCurrentPage(1);
-        } else {
-          setOffSet(currentPage * pageSize + 1);
-          setCurrentPage(props.page);
-        }
+        setCurrentPage(props.page);
         setPageSize(props.pageSize);
-        return null;
       },
       pageSize: pageSize,
-      totalItems: searchTerm ? filteredResultsCounts : patientsCount,
+      totalItems: searchTerm ? filteredResultsCounts : totalPatientCount,
     };
-  }, [currentPage, filteredResultsCounts, pageSize, patientsCount, searchTerm]);
+  }, [currentPage, filteredResultsCounts, pageSize, totalPatientCount, searchTerm]);
 
   const handleSearch = useCallback(
     searchTerm => {
@@ -102,18 +89,7 @@ const TestPatientList: React.FC<{}> = () => {
         const filtrate = filterFHIRPatientsByName(searchTerm, patients);
         setFilteredResults(filtrate);
         setFilteredResultsCounts(filtrate.length);
-        // fetch other patients against search term in background
-        getPatients(searchTerm).then(({ data }) => {
-          let results = data.entry ? data.entry.map(pat => pat.resource) : [];
-          if (filtrate.length && results.length) {
-            // filter out existing result
-            results = results.filter(pat => filtrate.findIndex(i => pat.id === i.id) === -1);
-          }
-          setFilteredResults([...filtrate, ...results]);
-          setFilteredResultsCounts(data.total);
-        });
       }
-      return true;
     },
     [patients],
   );
@@ -135,14 +111,12 @@ const TestPatientList: React.FC<{}> = () => {
   }, [state]);
 
   return (
-    <div style={{ width: '40rem', marginBottom: '2rem' }}>
+    <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Test Patient List" displayText="patients" />
+        <EmptyState headerTitle="Today's clients" displayText="patients" />
       ) : (
-        <ExtensionSlot extensionSlotName="patient-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
       )}
     </div>
   );
 };
-
-export default TestPatientList;
