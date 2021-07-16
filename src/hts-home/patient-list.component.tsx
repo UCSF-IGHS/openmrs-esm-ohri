@@ -1,7 +1,7 @@
-import { age, ExtensionSlot, openmrsFetch } from '@openmrs/esm-framework';
+import { age, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getPatients, performPatientSearch } from '../api/api';
+import { getPatients } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
 
 const basePath = '${openmrsSpaBase}/patient/';
