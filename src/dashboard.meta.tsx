@@ -5,6 +5,7 @@ import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
+<<<<<<< HEAD
       // <div key={db.name}>
       //   <ConfigurableLink to={`${basePath}/${db.name}`} className="bx--side-nav__link">
       //     {db.title}
@@ -12,6 +13,13 @@ export const createDashboardLink = db => {
       // </div>
       <SideNavMenu title="HIV">
         <SideNavMenuItem href={`${basePath}/${db.name}`}> HTS </SideNavMenuItem>
+=======
+      <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>
+        <SideNavMenuItem isActive href={`${basePath}/${db.name}`}>
+          {' '}
+          HTS{' '}
+        </SideNavMenuItem>
+>>>>>>> d0bae89 (ohri-159-navigation, dasboard, lint fix)
         <SideNavMenuItem> Care and Treatment </SideNavMenuItem>
         <SideNavMenuItem> PMTCT </SideNavMenuItem>
       </SideNavMenu>

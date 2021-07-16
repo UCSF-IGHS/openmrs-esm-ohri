@@ -33,7 +33,7 @@ const ClientLinkage = () => {
         <EmptyState
           displayText={t('clientLinkage', 'client linkage')}
           headerTitle={headerTitle}
-          launchForm={() => { }}
+          launchForm={() => {}}
         />
       )}
     </>
