@@ -2,7 +2,7 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import moment from 'moment';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
-const BASE_FHIR_API_URL = '/ws/fhir2/R4';
+const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
 
 export function fetchLastVisit(uuid: string) {
   return openmrsFetch(`/ws/fhir2/R4/Encounter?patient=${uuid}&_sort=-date&_count=1`);
@@ -14,7 +14,21 @@ export function fetchPatientList(offSet: number = 1, pageSize: number = 10) {
 
 export function fetchTodayClients() {
   let date = moment().format('YYYY-MM-DD');
-  return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`);
+  return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`).then(({ data }) => {
+    if (data.entry.length) {
+      let patientRefs = data.entry.map(enc => {
+        return enc.resource.subject.reference;
+      });
+      // TODO: clear duplicates
+      // patientRefs = new Set([...patientRefs]);
+      return Promise.all(
+        patientRefs.map(ref => {
+          return openmrsFetch(BASE_FHIR_API_URL + ref);
+        }),
+      );
+    }
+    return [];
+  });
 }
 
 export function fetchObservationsFromCodeConcept(codeConcept: string, valueConcept?: string, cutOffDays?: number) {

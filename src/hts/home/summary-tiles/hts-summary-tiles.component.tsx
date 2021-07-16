@@ -8,30 +8,40 @@ import {
   linkedToCareCodeConcept,
   linkedToCareYesValueConcept,
 } from '../../../constants';
+import { TodayzClientList } from './today-client-list-tile.component';
 
-function HTSSummaryTile() {
+function HTSSummaryTiles({ launchWorkSpace }) {
   const [todayPatientCount, setTodayPatientCount] = useState(0);
   const [positiveInLast14Days, setPositiveInLast14Days] = useState(0);
   const [linkedToCareInLast14Days, setLinkedToCareInLast14Days] = useState(0);
 
-  const tile = [
+  const tiles = [
     {
       title: "Today's Clients",
       linkAddress: '#',
       subTitle: 'Active Visits',
       value: todayPatientCount,
+      onClick: () => {
+        launchWorkSpace("Today's clients", <TodayzClientList />);
+      },
     },
     {
       title: 'Positive in last 14 days',
       linkAddress: '#',
       subTitle: 'Clients',
       value: positiveInLast14Days,
+      onClick: () => {
+        launchWorkSpace('Positive in last 14 days', <p>TODO: Add list</p>);
+      },
     },
     {
       title: 'Linked to care in last 14 days',
       linkAddress: '#',
       subTitle: 'Last 14 days',
       value: linkedToCareInLast14Days,
+      onClick: () => {
+        launchWorkSpace('Linked to care in last 14 days', <p>TODO: Add list</p>);
+      },
     },
   ];
 
@@ -42,9 +52,9 @@ function HTSSummaryTile() {
   });
 
   function getTodayClientCount() {
-    return fetchTodayClients().then(({ data }) => {
-      setTodayPatientCount(data.total);
-    });
+    // return fetchTodayClients().then(({ data }) => {
+    //   setTodayPatientCount(data.total);
+    // });
   }
 
   function getPositiveInLast14days() {
@@ -63,10 +73,15 @@ function HTSSummaryTile() {
 
   return (
     <Row>
-      {tile.map((name, index) => {
+      {tiles.map((tile, index) => {
         return (
           <Column lg={4} md={3} sm={1} key={index}>
-            <OHRISummaryTile details={name} />
+            <OHRISummaryTile
+              title={tile.title}
+              subTitle={tile.subTitle}
+              value={tile.value}
+              onClickView={tile.onClick}
+            />
           </Column>
         );
       })}
@@ -74,4 +89,4 @@ function HTSSummaryTile() {
   );
 }
 
-export default HTSSummaryTile;
+export default HTSSummaryTiles;
