@@ -1,20 +1,37 @@
-import React from 'react';
-import { ExtensionSlot } from '@openmrs/esm-framework';
+import React, { useEffect, useState } from 'react';
+import { attach, ExtensionSlot } from '@openmrs/esm-framework';
 import { Grid, Row } from 'carbon-components-react';
+import PatientListWorkspace from '../workspace/patient-list-workspace';
 
 function OhriHome() {
+  const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);
+  const [workSpaceProps, setWorkSpaceProps] = useState<{ header: string; children: Element } | null>(null);
+
+  const launchWorkSpace = (header: string, children: Element) => {
+    setIsWorkSpaceVisible(true);
+    setWorkSpaceProps({ header: header, children: children });
+  };
+
   return (
-    <Grid>
-      <Row>
-        <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} />
-      </Row>
-      {/* <Row> */}
-      <ExtensionSlot extensionSlotName={OHRIHomeTileSlot} />
-      {/* </Row> */}
-      <Row>
-        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} />
-      </Row>
-    </Grid>
+    <>
+      <PatientListWorkspace
+        isVisible={isWorkSpaceVisible}
+        header={workSpaceProps?.header}
+        children={workSpaceProps?.children}
+        onClose={() => setIsWorkSpaceVisible(false)}
+      />
+      <Grid>
+        <Row>
+          <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} state={{ launchWorkSpace }} />
+        </Row>
+        {/* <Row> */}
+        <ExtensionSlot extensionSlotName={OHRIHomeTileSlot} state={{ launchWorkSpace }} />
+        {/* </Row> */}
+        <Row>
+          <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchWorkSpace }} />
+        </Row>
+      </Grid>
+    </>
   );
 }
 
