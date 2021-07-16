@@ -6,8 +6,11 @@ import styles from './dasboard.scss';
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
-      <SideNavMenu title="HIV" className={styles.noMarker}>
-        <SideNavMenuItem href={`${basePath}/${db.name}`}> HTS </SideNavMenuItem>
+      <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>
+        <SideNavMenuItem isActive href={`${basePath}/${db.name}`}>
+          {' '}
+          HTS{' '}
+        </SideNavMenuItem>
         <SideNavMenuItem> Care and Treatment </SideNavMenuItem>
         <SideNavMenuItem> PMTCT </SideNavMenuItem>
       </SideNavMenu>

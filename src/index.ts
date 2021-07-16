@@ -103,10 +103,28 @@ function setupOpenMRS() {
         }),
       },
       {
+        id: 'patient-hiv-status-tag',
+        slot: 'patient-banner-tags-slot',
+        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-status-tag.component'), options),
+        online: true,
+        offline: true,
+      },
+      {
         id: 'patient-list-ext',
         slot: 'homepage-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/patient-list/patient-list.component'), {
           featureName: 'patient-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'hts-patient-linkage-list-ext',
+        slot: 'hts-summary-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
+          featureName: 'hts-patient-linkage-list',
           moduleName,
         }),
         meta: {
