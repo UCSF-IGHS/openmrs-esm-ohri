@@ -1,8 +1,6 @@
-import { age, ExtensionSlot, openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton/DataTableSkeleton';
-import { capitalize } from 'lodash';
+import { age, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getCohort, getPatients, performPatientSearch } from '../api/api';
+import { getCohort } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
 
 export const columns = [
