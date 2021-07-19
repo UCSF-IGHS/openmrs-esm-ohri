@@ -1,13 +1,7 @@
 @import "../root.scss";
 
 .mainWrapper {
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
     background-color: #ffffff;
+    padding: 16px !important;
 }
-
-.home-content-top{
-margin: 16.1px 15.4px ;
-}
-
