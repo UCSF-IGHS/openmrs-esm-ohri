@@ -8,10 +8,9 @@ function HtsWelcomeSection() {
     <div className={styles.container}>
       <div className={styles.welcome}>OHRI Health Clinic</div>
       <div className={styles.welcomeDetails}>
-        <span className={styles.userWelcome}>Welcome back, username</span>
+        <div className={styles.userWelcome}>Welcome back, username</div>
         <div className={styles.currentDate}>
           <Calendar32 className={styles.calendarIcon} />
-          {/* 16 June 2021 */}
           {moment().format('DD MMMM YYYY')}
         </div>
       </div>
