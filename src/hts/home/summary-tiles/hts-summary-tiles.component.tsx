@@ -9,6 +9,8 @@ import {
   linkedToCareYesValueConcept,
 } from '../../../constants';
 import { TodayzClientList } from './today-client-list-tile.component';
+import OHRISummaryTileTablet from '../../../components/tile/ohri-summary-tile-tablet.component';
+import styles from './summary-tile.scss';
 
 function HTSSummaryTiles({ launchWorkSpace }) {
   const [todayPatientCount, setTodayPatientCount] = useState(0);
@@ -72,20 +74,25 @@ function HTSSummaryTiles({ launchWorkSpace }) {
   }
 
   return (
-    <Row>
-      {tiles.map((tile, index) => {
-        return (
-          <Column lg={4} md={3} sm={1} key={index}>
-            <OHRISummaryTile
-              title={tile.title}
-              subTitle={tile.subTitle}
-              value={tile.value}
-              onClickView={tile.onClick}
-            />
-          </Column>
-        );
-      })}
-    </Row>
+    <>
+      <Row className={styles.desktopView}>
+        {tiles.map((tile, index) => {
+          return (
+            <Column lg={4} md={3} sm={1} key={index}>
+              <OHRISummaryTile
+                title={tile.title}
+                subTitle={tile.subTitle}
+                value={tile.value}
+                onClickView={tile.onClick}
+              />
+            </Column>
+          );
+        })}
+      </Row>
+      <Row className={styles.tileView}>
+        <OHRISummaryTileTablet details={tiles} />
+      </Row>
+    </>
   );
 }
 
