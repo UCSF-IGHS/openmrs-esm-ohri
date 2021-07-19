@@ -16,8 +16,8 @@ on:
       - created
 
 env:
-  ESM_NAME: "openmrs-esm-ohri-form"
-  JS_NAME: "openmrs-esm-ohri-form.js"
+  ESM_NAME: "openmrs-ohri-app"
+  JS_NAME: "openmrs-ohri-app.js"
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
       - name: Prepare Directory
         shell: bash
         run: |
-          mkdir -p dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}
+          mkdir -p dist/${{ env_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}
           mv dist/*.* dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/
           # Runs a set of commands using the runners shell
       - uses: garygrossgarten/github-action-ssh@release
