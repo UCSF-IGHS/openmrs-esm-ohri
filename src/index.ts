@@ -131,6 +131,13 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        id: 'hiv-top-nav',
+        slot: 'top-nav-actions-slot',
+        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        online: true,
+        offline: true,
+      },
     ],
   };
 }
