@@ -29,10 +29,13 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
+  // const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66'; //
   const hivTestResultConceptUUID = '77a518bb-3486-4e03-bcae-0b8ccf82c39d'; // HIV Result - Positive
+  // const hivTestDateUUID = 'bce64590-4758-4011-9bf9-1b29d80b5f75'; //Concet for Test Date
   const hivTestFinal_DateUUID = ' e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; //
 
   const forceComponentUpdate = () => setCounter(counter + 1);
+
   const htsRetroForm = useMemo(() => {
     return getForm('hiv', 'hts_retro');
   }, []);
@@ -77,7 +80,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestFinal_DateUUID);
 
         const encounterActionOverflowMenu = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenu flipped>
             <OverflowMenuItem
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {

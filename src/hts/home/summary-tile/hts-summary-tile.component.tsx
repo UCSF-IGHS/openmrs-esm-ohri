@@ -1,6 +1,8 @@
 import { Column, Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
+import OHRISummaryTileTablet from '../../../components/tile/ohri-summary-tile-tablet.component';
 import OHRISummaryTile from '../../../components/tile/ohri-summary-tile.component';
+import styles from './summary-tile.scss';
 import { fetchTodayClients, fetchObservationsFromCodeConcept } from '../../../api/api';
 import {
   finalHIVCodeConcept,
@@ -62,15 +64,20 @@ function HTSSummaryTile() {
   }
 
   return (
-    <Row>
-      {tile.map((name, index) => {
-        return (
-          <Column lg={4} md={3} sm={1} key={index}>
-            <OHRISummaryTile details={name} />
-          </Column>
-        );
-      })}
-    </Row>
+    <>
+      <Row className={styles.desktopView}>
+        {tile.map((name, index) => {
+          return (
+            <Column lg={4} md={3} sm={1} key={index}>
+              <OHRISummaryTile details={name} />
+            </Column>
+          );
+        })}
+      </Row>
+      <Row className={styles.tileView}>
+        <OHRISummaryTileTablet details={tile} />
+      </Row>
+    </>
   );
 }
 

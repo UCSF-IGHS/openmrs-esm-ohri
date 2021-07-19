@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConfigurableLink } from '@openmrs/esm-framework';
 import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
-import styles from './dasboard.scss';
+import styles from './dashboard.scss';
 
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
