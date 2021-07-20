@@ -1,4 +1,4 @@
-import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../api/api';
@@ -70,6 +70,9 @@ export const PositiveInLast14Days: React.FC<{}> = () => {
 
   useEffect(() => {
     attach('positive-in-last-14-days-table-slot', 'patient-table');
+    return () => {
+      detach('positive-in-last-14-days-table-slot', 'patient-table');
+    };
   }, []);
 
   const pagination = useMemo(() => {

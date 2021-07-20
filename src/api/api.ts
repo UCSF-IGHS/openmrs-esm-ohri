@@ -16,16 +16,7 @@ export function fetchTodayClients() {
   let date = moment().format('YYYY-MM-DD');
   return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`).then(({ data }) => {
     if (data.entry?.length) {
-      let patientRefs = data.entry.map(enc => {
-        return enc.resource.subject.reference;
-      });
-      // TODO: clear duplicates
-      // patientRefs = new Set([...patientRefs]);
-      return Promise.all(
-        patientRefs.map(ref => {
-          return openmrsFetch(BASE_FHIR_API_URL + ref);
-        }),
-      );
+      return cleanDuplicatePatientReferences(data);
     }
     return [];
   });
@@ -47,17 +38,23 @@ export function fetchPatientsFromObservationCodeConcept(
     }`,
   ).then(({ data }) => {
     if (data.entry?.length) {
-      let patientRefs = data.entry.map(enc => {
-        return enc.resource.subject.reference;
-      });
-      return Promise.all(
-        patientRefs.map(ref => {
-          return openmrsFetch(BASE_FHIR_API_URL + ref);
-        }),
-      );
+      return cleanDuplicatePatientReferences(data);
     }
     return [];
   });
+}
+
+function cleanDuplicatePatientReferences(data) {
+  let patientRefs = data.entry.map(enc => {
+    return enc.resource.subject.reference;
+  });
+  patientRefs = new Set([...patientRefs]);
+  patientRefs = Array.from(patientRefs);
+  return Promise.all(
+    patientRefs.map(ref => {
+      return openmrsFetch(BASE_FHIR_API_URL + ref);
+    }),
+  );
 }
 
 export function performPatientSearch(query, objectVersion) {

@@ -32,10 +32,45 @@ export const columns = [
     },
   },
   {
-    key: 'lastVisit',
-    header: 'Last Visit',
+    key: 'phoneNumber',
+    header: 'Phone Number',
     getValue: patient => {
-      return 'TODO';
+      return '--';
+    },
+  },
+  {
+    key: 'dateOfEncounter',
+    header: 'Date Of Encounter',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'location',
+    header: 'Location',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'provider',
+    header: 'Provider',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'finalHivResult',
+    header: 'Final HIV Result',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'currentWaitingList',
+    header: 'Current Waiting List',
+    getValue: patient => {
+      return '--';
     },
   },
   {
