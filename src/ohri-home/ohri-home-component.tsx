@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { attach, ExtensionSlot } from '@openmrs/esm-framework';
 import { Grid, Row } from 'carbon-components-react';
 import PatientListWorkspace from '../workspace/patient-list-workspace';
+import styles from './ohri-home.scss';
 
 function OhriHome() {
   const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);
@@ -20,16 +21,10 @@ function OhriHome() {
         children={workSpaceProps?.children}
         onClose={() => setIsWorkSpaceVisible(false)}
       />
-      <Grid>
-        <Row>
-          <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} state={{ launchWorkSpace }} />
-        </Row>
-        {/* <Row> */}
+      <Grid className={styles.mainWrapper}>
+        <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} state={{ launchWorkSpace }} />
         <ExtensionSlot extensionSlotName={OHRIHomeTileSlot} state={{ launchWorkSpace }} />
-        {/* </Row> */}
-        <Row>
-          <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchWorkSpace }} />
-        </Row>
+        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchWorkSpace }} />
       </Grid>
     </>
   );
