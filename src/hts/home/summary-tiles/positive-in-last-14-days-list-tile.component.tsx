@@ -1,9 +1,10 @@
 import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchTodayClients } from '../../../api/api';
+import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../api/api';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import { filterFHIRPatientsByName } from '../../../hts-home/patient-list.component';
+import { finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../constants';
 
 const basePath = '${openmrsSpaBase}/patient/';
 export const columns = [
@@ -46,7 +47,7 @@ export const columns = [
     },
   },
 ];
-export const TodaysClientList: React.FC<{}> = () => {
+export const PositiveInLast14Days: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
   const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,15 +59,17 @@ export const TodaysClientList: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchTodayClients().then((response: Array<any>) => {
-      setPatients(response.map(pat => pat.data));
-      setTotalPatientCount(response.length);
-      setIsLoading(false);
-    });
+    fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
+      (response: Array<any>) => {
+        setPatients(response.map(pat => pat.data));
+        setTotalPatientCount(response.length);
+        setIsLoading(false);
+      },
+    );
   }, [pageSize, currentPage]);
 
   useEffect(() => {
-    attach('today-clients-table-slot', 'patient-table');
+    attach('positive-in-last-14-days-table-slot', 'patient-table');
   }, []);
 
   const pagination = useMemo(() => {
@@ -113,9 +116,9 @@ export const TodaysClientList: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Today's clients" displayText="patients" newResource={false} />
+        <EmptyState headerTitle="Positive in Last 14 Days" displayText="patients" newResource={false} />
       ) : (
-        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="positive-in-last-14-days-table-slot" state={state} key={counter} />
       )}
     </div>
   );

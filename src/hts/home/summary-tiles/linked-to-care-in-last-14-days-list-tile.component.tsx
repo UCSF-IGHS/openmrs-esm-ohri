@@ -46,7 +46,7 @@ export const columns = [
     },
   },
 ];
-export const TodaysClientList: React.FC<{}> = () => {
+export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
   const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -113,7 +113,7 @@ export const TodaysClientList: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Today's clients" displayText="patients" newResource={false} />
+        <EmptyState headerTitle="Linked To Care in Last 14 Days" displayText="patients" newResource={false} />
       ) : (
         <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
       )}
