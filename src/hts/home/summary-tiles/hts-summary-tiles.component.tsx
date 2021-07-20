@@ -1,14 +1,18 @@
 import { Column, Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
 import OHRISummaryTile from '../../../components/tile/ohri-summary-tile.component';
-import { fetchTodayClients, fetchObservationsFromCodeConcept } from '../../../api/api';
+import { fetchTodayClients, fetchPatientsFromObservationCodeConcept } from '../../../api/api';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
   linkedToCareCodeConcept,
   linkedToCareYesValueConcept,
 } from '../../../constants';
-import { TodayzClientList } from './today-client-list-tile.component';
+import OHRISummaryTileTablet from '../../../components/tile/ohri-summary-tile-tablet.component';
+import styles from './summary-tile.scss';
+import { TodaysClientList } from './today-client-list-tile.component';
+import { PositiveInLast14Days } from './positive-in-last-14-days-list-tile.component';
+import { LinkedToCareInLast14Days } from './linked-to-care-in-last-14-days-list-tile.component';
 
 function HTSSummaryTiles({ launchWorkSpace }) {
   const [todayPatientCount, setTodayPatientCount] = useState(0);
@@ -22,7 +26,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       subTitle: 'Active Visits',
       value: todayPatientCount,
       onClick: () => {
-        launchWorkSpace("Today's clients", <TodayzClientList />);
+        launchWorkSpace("Today's clients", <TodaysClientList />);
       },
     },
     {
@@ -31,7 +35,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       subTitle: 'Clients',
       value: positiveInLast14Days,
       onClick: () => {
-        launchWorkSpace('Positive in last 14 days', <p>TODO: Add list</p>);
+        launchWorkSpace('Positive in last 14 days', <PositiveInLast14Days />);
       },
     },
     {
@@ -40,7 +44,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       subTitle: 'Last 14 days',
       value: linkedToCareInLast14Days,
       onClick: () => {
-        launchWorkSpace('Linked to care in last 14 days', <p>TODO: Add list</p>);
+        launchWorkSpace('Linked to care in last 14 days', <LinkedToCareInLast14Days />);
       },
     },
   ];
@@ -52,21 +56,23 @@ function HTSSummaryTiles({ launchWorkSpace }) {
   });
 
   function getTodayClientCount() {
-    // return fetchTodayClients().then(({ data }) => {
-    //   setTodayPatientCount(data.total);
-    // });
-  }
-
-  function getPositiveInLast14days() {
-    return fetchObservationsFromCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(({ data }) => {
-      setPositiveInLast14Days(data.total);
+    return fetchTodayClients().then(response => {
+      setTodayPatientCount(response.length);
     });
   }
 
+  function getPositiveInLast14days() {
+    return fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
+      response => {
+        setPositiveInLast14Days(response.length);
+      },
+    );
+  }
+
   function getLinkedToCareInLast14days() {
-    return fetchObservationsFromCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
-      ({ data }) => {
-        setLinkedToCareInLast14Days(data.total);
+    return fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
+      response => {
+        setLinkedToCareInLast14Days(response.length);
       },
     );
   }

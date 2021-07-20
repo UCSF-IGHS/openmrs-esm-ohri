@@ -15,7 +15,7 @@ export function fetchPatientList(offSet: number = 1, pageSize: number = 10) {
 export function fetchTodayClients() {
   let date = moment().format('YYYY-MM-DD');
   return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`).then(({ data }) => {
-    if (data.entry.length) {
+    if (data.entry?.length) {
       let patientRefs = data.entry.map(enc => {
         return enc.resource.subject.reference;
       });
@@ -31,7 +31,11 @@ export function fetchTodayClients() {
   });
 }
 
-export function fetchObservationsFromCodeConcept(codeConcept: string, valueConcept?: string, cutOffDays?: number) {
+export function fetchPatientsFromObservationCodeConcept(
+  codeConcept: string,
+  valueConcept?: string,
+  cutOffDays?: number,
+) {
   let endDate = moment().format('YYYY-MM-DD');
   let startDate = moment()
     .subtract(cutOffDays, 'days')
@@ -41,7 +45,19 @@ export function fetchObservationsFromCodeConcept(codeConcept: string, valueConce
     `/ws/fhir2/R4/Observation?code=${codeConcept}${valueConcept ? `&value-concept=${valueConcept}` : ''}${
       cutOffDays ? `&_lastUpdated=ge${startDate}&_lastUpdated=le${endDate}` : ''
     }`,
-  );
+  ).then(({ data }) => {
+    if (data.entry?.length) {
+      let patientRefs = data.entry.map(enc => {
+        return enc.resource.subject.reference;
+      });
+      return Promise.all(
+        patientRefs.map(ref => {
+          return openmrsFetch(BASE_FHIR_API_URL + ref);
+        }),
+      );
+    }
+    return [];
+  });
 }
 
 export function performPatientSearch(query, objectVersion) {
