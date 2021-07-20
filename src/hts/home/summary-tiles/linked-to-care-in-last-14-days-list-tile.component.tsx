@@ -1,9 +1,10 @@
-import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchTodayClients } from '../../../api/api';
+import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../api/api';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import { filterFHIRPatientsByName } from '../../../hts-home/patient-list.component';
+import { linkedToCareCodeConcept, linkedToCareYesValueConcept } from '../../../constants';
 
 const basePath = '${openmrsSpaBase}/patient/';
 export const columns = [
@@ -58,15 +59,20 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchTodayClients().then((response: Array<any>) => {
-      setPatients(response.map(pat => pat.data));
-      setTotalPatientCount(response.length);
-      setIsLoading(false);
-    });
+    fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
+      (response: Array<any>) => {
+        setPatients(response.map(pat => pat.data));
+        setTotalPatientCount(response.length);
+        setIsLoading(false);
+      },
+    );
   }, [pageSize, currentPage]);
 
   useEffect(() => {
-    attach('today-clients-table-slot', 'patient-table');
+    attach('linked-to-care-last-14-days-table-slot', 'patient-table');
+    return () => {
+      detach('linked-to-care-last-14-days-table-slot', 'patient-table');
+    };
   }, []);
 
   const pagination = useMemo(() => {
@@ -115,7 +121,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <EmptyState headerTitle="Linked To Care in Last 14 Days" displayText="patients" newResource={false} />
       ) : (
-        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="linked-to-care-last-14-days-table-slot" state={state} key={counter} />
       )}
     </div>
   );
