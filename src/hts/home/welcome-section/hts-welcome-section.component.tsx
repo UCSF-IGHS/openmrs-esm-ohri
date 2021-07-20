@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './hts-welcome-section.scss';
 import { Calendar32 } from '@carbon/icons-react';
-import moment from 'moment';
+// import moment from 'moment';
 
 function HtsWelcomeSection() {
   return (
@@ -11,7 +11,7 @@ function HtsWelcomeSection() {
         <div className={styles.userWelcome}>Welcome back, username</div>
         <div className={styles.currentDate}>
           <Calendar32 className={styles.calendarIcon} />
-          {moment().format('DD MMMM YYYY')}
+          {new Date().toLocaleDateString() + ''}
         </div>
       </div>
     </div>
