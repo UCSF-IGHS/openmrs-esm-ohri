@@ -65,6 +65,9 @@ npm run serve
 10. Select the `Allow` option from the `Insecure content` dropdown in the browser settings page.
 11. Refresh the page.
 
+Optional Steps:
+To enable Devtools (a gray or red rectangular button near the bottom right of the screen): Open cosole of Developer Tools -> In console enter: ```localStorage.setItem('openmrs:devtools', true)```
+
 ## Tests
 
 To verify that all of the tests run:
@@ -87,6 +90,9 @@ This module is designed to be driven by configuration files. These files define 
 *Note: Currently, the module cannot be configured as it is in the early stages of development.*
 
 ## Resources
+Optional Steps:
+To run against a deployment server (to reflect local changes that will be on server upon Deployment): 
+On terminal run ->  ```npx openmrs develop --backend https://{server-address}```
 
 (tbd)
 ## Acknowledgements
