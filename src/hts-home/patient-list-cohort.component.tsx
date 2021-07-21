@@ -1,4 +1,4 @@
-import { age, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getCohort } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
@@ -48,7 +48,7 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
+const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> = ({ cohortId, cohortSlotName }) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +59,9 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
   const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
-    getCohort('e4d801f0-e2fd-11eb-8212-7d7156e00a1f', 'full').then(({ data }) => {
+    console.log('CohortId: ', cohortId);
+    getCohort({ cohortId: cohortId }, 'full').then(({ data }) => {
+      console.log('Patients: ', data);
       const patients = data.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
@@ -68,11 +70,12 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
       }));
+      console.log('setPatients: ');
       setPatients(patients);
       setIsLoading(false);
       setPatientsCount(patients.length);
     });
-  }, []);
+  }, [cohortId]);
 
   const pagination = useMemo(() => {
     return {
@@ -98,6 +101,15 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
     [patients],
   );
 
+  useEffect(() => {
+    // attach(cohortSlotName, 'patient-table');
+    attach('pre-test-counseling-slot', 'patient-table');
+    return () => {
+      // detach(cohortSlotName, 'patient-table');
+      detach('pre-test-counseling-slot', 'patient-table');
+    };
+  });
+
   const state = useMemo(
     () => ({
       patients: searchTerm ? filteredResults : patients,
@@ -118,7 +130,7 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
       {!isLoading && !patients.length ? (
         <EmptyState headerTitle="Test Patient List" displayText="patients" />
       ) : (
-        <ExtensionSlot extensionSlotName="patient-cohort-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="pre-test-counseling-slot" state={state} key={counter} />
       )}
     </div>
   );
