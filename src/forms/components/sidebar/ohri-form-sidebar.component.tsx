@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
+import { Button, SideNav, SideNavItems, SideNavLink } from 'carbon-components-react';
 
-function OHRIFormSidebar({ currentPage, selectedPage }) {
+function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
   const [activeLink, setActiveLink] = useState(selectedPage);
 
   const joinWord = value => {
@@ -17,7 +18,7 @@ function OHRIFormSidebar({ currentPage, selectedPage }) {
 
   return (
     <div className={styles.leftNavWrapper}>
-      {currentPage.map((page, index) => {
+      {/* {currentPage.map((page, index) => {
         return (
           <div
             aria-hidden="true"
@@ -27,8 +28,45 @@ function OHRIFormSidebar({ currentPage, selectedPage }) {
             <div className={styles.sidebarSectionLink}>{page.label}</div>
           </div>
         );
-      })}
+      })} */}
     </div>
+    // <>
+    //   <SideNav
+    //     isFixedNav
+    //     expanded={true}
+    //     isChildOfHeader={false}
+    //     aria-label="Side navigation"
+    //     style={{ top: '8.5rem', width: '12.6875rem', marginLeft: '9px' }}
+    //   >
+    //     <SideNavItems>
+    //       {currentPage.map((page, index) => {
+    //         return (
+    //           <SideNavLink
+    //             onClick={() => handleClick(page.label)}
+    //             className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
+    //             key={index}>
+    //             {page.label}
+    //           </SideNavLink>
+    //         );
+    //       })}
+    //       <hr className={styles.sideBarHorizontalLine} />
+    //       {mode != 'view' && (
+    //         <Button
+    //           style={{ marginBottom: '0.625rem', width: '11.688rem', display: 'block' }}
+    //           type="submit">
+    //           Save
+    //         </Button>
+    //       )}
+    //       <Button
+    //         style={{ width: '11.688rem' }}
+    //         kind="tertiary"
+    //         onClick={() => (onCancel ? onCancel() : null)}>
+    //         {mode == 'view' ? 'Close' : 'Cancel'}
+    //       </Button>
+    //     </SideNavItems>
+    //   </SideNav>
+
+    // </>
   );
 }
 

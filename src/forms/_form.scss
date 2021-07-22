@@ -1,5 +1,5 @@
 .ohriformcontainer {
-    width: 100%;
+    // width: 100%;
     position: fixed;
     top: 138px;
     height: 100vh;
@@ -10,7 +10,7 @@
 .pageContent:last-child {height: 100vh;} 
 
 .ohriformcontent{
-  width: 100%;
+  // width: 100%;
 }
 
 // complete and validated.
@@ -25,6 +25,8 @@
 
 .ohriSidebar{
   position: fixed;
+  display: flex;
+  flex-direction: column;
 }
 
 .sideBarHorizontalLine {
