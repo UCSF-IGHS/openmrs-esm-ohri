@@ -118,6 +118,14 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
+      {
+        id: 'patient-list-modal',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
+          featureName: 'patient-list-modal',
+          moduleName,
+        }),
+      },
     ],
   };
 }
