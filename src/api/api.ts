@@ -75,6 +75,6 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
   );
 }
 
-export function getCohort(cohortUuid: string, version?: string) {
-  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
+export function getCohort(cohortUuid: React.PropsWithChildren<{ cohortId: string }>, version?: string) {
+  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid.cohortId}${version ? `?v=${version}` : ``}`);
 }
