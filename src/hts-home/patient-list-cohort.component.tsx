@@ -86,7 +86,6 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
       }));
-      console.log('Patients: ', patients);
       setPatients(patients);
       setIsLoading(false);
       setPatientsCount(patients.length);
