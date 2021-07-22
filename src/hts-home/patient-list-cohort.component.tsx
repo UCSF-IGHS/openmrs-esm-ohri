@@ -1,4 +1,4 @@
-import { age, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getCohort } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
@@ -12,10 +12,31 @@ export const columns = [
     },
   },
   {
+    key: 'timeAddedToList',
+    header: 'Time Added To List',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'waitingTime',
+    header: 'Waiting Time',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
     key: 'gender',
     header: 'Sex',
     getValue: patient => {
       return patient.gender;
+    },
+  },
+  {
+    key: 'location', // exclude from pretest
+    header: 'Location',
+    getValue: patient => {
+      return '--';
     },
   },
   {
@@ -26,29 +47,26 @@ export const columns = [
     },
   },
   {
-    key: 'lastVisit',
-    header: 'Last Visit',
+    key: 'phoneNumber',
+    header: 'Phone Number',
     getValue: patient => {
-      return 'TODO';
+      return '--';
     },
   },
   {
-    key: 'id',
-    header: 'Patient ID',
+    key: 'hivResult', // only post test counselling
+    header: 'HIV Result',
     getValue: patient => {
-      return patient.id;
+      return '--';
     },
   },
 ];
-
-const customRep = 'custom:(uuid,name,location:(uuid,name),cohortMembers)';
-// patient:(uuid,identifiers,person:(age,display,gender,birthdate))
 
 const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
+const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> = ({ cohortId, cohortSlotName }) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +77,7 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
   const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
-    getCohort('e4d801f0-e2fd-11eb-8212-7d7156e00a1f', 'full').then(({ data }) => {
+    getCohort({ cohortId: cohortId }, 'full').then(({ data }) => {
       const patients = data.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
@@ -72,7 +90,7 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
       setIsLoading(false);
       setPatientsCount(patients.length);
     });
-  }, []);
+  }, [cohortId]);
 
   const pagination = useMemo(() => {
     return {
@@ -98,6 +116,13 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
     [patients],
   );
 
+  useEffect(() => {
+    attach(cohortSlotName, 'patient-table');
+    return () => {
+      detach(cohortSlotName, 'patient-table');
+    };
+  });
+
   const state = useMemo(
     () => ({
       patients: searchTerm ? filteredResults : patients,
@@ -114,11 +139,11 @@ const CohortPatientList: React.FC<{ cohortId: string }> = cohortId => {
   }, [state]);
 
   return (
-    <div style={{ width: '40rem', marginBottom: '2rem' }}>
+    <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
         <EmptyState headerTitle="Test Patient List" displayText="patients" />
       ) : (
-        <ExtensionSlot extensionSlotName="patient-cohort-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
       )}
     </div>
   );
