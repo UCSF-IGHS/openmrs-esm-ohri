@@ -12,10 +12,31 @@ export const columns = [
     },
   },
   {
+    key: 'timeAddedToList',
+    header: 'Time Added To List',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'waitingTime',
+    header: 'Waiting Time',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
     key: 'gender',
     header: 'Sex',
     getValue: patient => {
       return patient.gender;
+    },
+  },
+  {
+    key: 'location', // exclude from pretest
+    header: 'Location',
+    getValue: patient => {
+      return '--';
     },
   },
   {
@@ -26,23 +47,20 @@ export const columns = [
     },
   },
   {
-    key: 'lastVisit',
-    header: 'Last Visit',
+    key: 'phoneNumber',
+    header: 'Phone Number',
     getValue: patient => {
-      return 'TODO';
+      return '--';
     },
   },
   {
-    key: 'id',
-    header: 'Patient ID',
+    key: 'hivResult', // only post test counselling
+    header: 'HIV Result',
     getValue: patient => {
-      return patient.id;
+      return '--';
     },
   },
 ];
-
-const customRep = 'custom:(uuid,name,location:(uuid,name),cohortMembers)';
-// patient:(uuid,identifiers,person:(age,display,gender,birthdate))
 
 const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
@@ -68,6 +86,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
       }));
+      console.log('Patients: ', patients);
       setPatients(patients);
       setIsLoading(false);
       setPatientsCount(patients.length);
