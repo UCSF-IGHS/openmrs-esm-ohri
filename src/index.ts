@@ -75,7 +75,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-tile-ext',
         slot: 'hts-home-tiles-slot',
-        load: getAsyncLifecycle(() => import('./hts/home/summary-tile/hts-summary-tile.component'), {
+        load: getAsyncLifecycle(() => import('./hts/home/summary-tiles/hts-summary-tiles.component'), {
           featureName: 'hts-home-tiles',
           moduleName,
         }),
@@ -130,6 +130,22 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
+      },
+      {
+        id: 'test-patient-list',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts-home/patient-list.component'), {
+          featureName: 'test-patient-list',
+          moduleName,
+        }),
+      },
+      {
+        id: 'cohort-patient-list',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts-home/patient-list-cohort.component'), {
+          featureName: 'cohort-patient-list',
+          moduleName,
+        }),
       },
     ],
   };
