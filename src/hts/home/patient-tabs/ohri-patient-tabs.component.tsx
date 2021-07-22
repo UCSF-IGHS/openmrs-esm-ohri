@@ -9,13 +9,19 @@ function OHRIPatientTabs() {
     <Row className={styles.container}>
       <Tabs type="container">
         <Tab id="tab-1" label="Waiting for pre-test counselling">
-          <CohortPatientList cohortId={preTestCounsellingCohort} cohortSlotName="pre-test-counseling-slot" />
+          <div className={styles.tabPatientList}>
+            <CohortPatientList cohortId={preTestCounsellingCohort} cohortSlotName="pre-test-counseling-slot" />
+          </div>
         </Tab>
         <Tab id="tab-2" label="Waiting for HIV test">
-          <CohortPatientList cohortId={waitingForHIVTestCohort} cohortSlotName="waiting-for-hiv-testing-slot" />
+          <div className={styles.tabPatientList}>
+            <CohortPatientList cohortId={waitingForHIVTestCohort} cohortSlotName="waiting-for-hiv-testing-slot" />
+          </div>
         </Tab>
         <Tab id="tab-3" label="Waiting for post-test counselling">
-          <CohortPatientList cohortId={postTestCounsellingCohort} cohortSlotName="post-test-counseling-slot" />
+          <div className={styles.tabPatientList}>
+            <CohortPatientList cohortId={postTestCounsellingCohort} cohortSlotName="post-test-counseling-slot" />
+          </div>
         </Tab>
       </Tabs>
     </Row>

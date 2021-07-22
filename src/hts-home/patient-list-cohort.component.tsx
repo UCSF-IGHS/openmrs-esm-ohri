@@ -59,9 +59,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
-    console.log('CohortId: ', cohortId);
     getCohort({ cohortId: cohortId }, 'full').then(({ data }) => {
-      console.log('Patients: ', data);
       const patients = data.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
@@ -70,7 +68,6 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
       }));
-      console.log('setPatients: ');
       setPatients(patients);
       setIsLoading(false);
       setPatientsCount(patients.length);
@@ -102,11 +99,9 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   );
 
   useEffect(() => {
-    // attach(cohortSlotName, 'patient-table');
-    attach('pre-test-counseling-slot', 'patient-table');
+    attach(cohortSlotName, 'patient-table');
     return () => {
-      // detach(cohortSlotName, 'patient-table');
-      detach('pre-test-counseling-slot', 'patient-table');
+      detach(cohortSlotName, 'patient-table');
     };
   });
 
@@ -126,11 +121,11 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   }, [state]);
 
   return (
-    <div style={{ width: '40rem', marginBottom: '2rem' }}>
+    <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
         <EmptyState headerTitle="Test Patient List" displayText="patients" />
       ) : (
-        <ExtensionSlot extensionSlotName="pre-test-counseling-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
       )}
     </div>
   );
