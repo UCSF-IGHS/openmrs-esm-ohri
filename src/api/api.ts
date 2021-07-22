@@ -78,3 +78,34 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
 export function getCohort(cohortUuid: React.PropsWithChildren<{ cohortId: string }>, version?: string) {
   return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid.cohortId}${version ? `?v=${version}` : ``}`);
 }
+
+export function getCohorts(cohortTypeUuid?: string) {
+  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort${cohortTypeUuid ? `?qcohortType=${cohortTypeUuid}` : ''}`);
+}
+
+function postData(url = '', data = {}) {
+  return openmrsFetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(data),
+  });
+}
+
+export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
+  return postData(`${BASE_WS_API_URL}cohortm/cohortmember`, {
+    patient: patientUuid,
+    cohort: cohortUuid,
+    startDate: new Date(),
+  });
+}
+
+export function getPatientListsForPatient(patientUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember?patient=${patientUuid}&v=default`);
+}
