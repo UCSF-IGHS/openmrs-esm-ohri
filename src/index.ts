@@ -131,6 +131,13 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      { 
+        id: 'hiv-hts-programme-switcher',
+        slot: 'top-navigation-slot',
+        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        online: true,
+        offline: true,
+      },
       {
         id: 'test-patient-list',
         slot: 'homepage-dashboard-slot',
@@ -145,7 +152,7 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./hts-home/patient-list-cohort.component'), {
           featureName: 'cohort-patient-list',
           moduleName,
-        }),
+        }), 
       },
     ],
   };
