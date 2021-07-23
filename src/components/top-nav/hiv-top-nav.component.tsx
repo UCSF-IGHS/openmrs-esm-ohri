@@ -7,10 +7,9 @@ import linkList from './hts-top-nav-links';
 function HIVTopNav() {
   return (
     <HeaderMenu aria-label="hiv-top-nav" menuLinkName="HIV: HTS" className={styles.headerMenuOverrides}>
-      { linkList.map(link => (
-          <HeaderMenuItem href={link.url}> {link.title} </HeaderMenuItem>
-      )) } 
-     
+      {linkList.map(link => (
+        <HeaderMenuItem href={link.url}> {link.title} </HeaderMenuItem>
+      ))}
     </HeaderMenu>
   );
 }
