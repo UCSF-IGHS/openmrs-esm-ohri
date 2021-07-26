@@ -4,7 +4,7 @@ import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
-import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
+import { openmrsObservableFetch, showToast, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
@@ -170,6 +170,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
         if (onSubmit) {
           onSubmit();
         }
+        showToast({
+          description: 'A new HTS record was created',
+          title: 'HTS record created',
+          kind: 'success',
+          critical: true,
+        });
       }
     });
   };
