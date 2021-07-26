@@ -207,48 +207,70 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
         setSubmitting(false);
       }}>
       {props => (
-        <Form className={styles.wrapper}>
+        <Form>
           {!patient ? (
             <LoadingIcon />
           ) : (
-            <>
-              <div className={styles.header}>Header</div>
-              <div>
-                <div className={styles.leftpanel}>
-                  <OHRIFormSidebar
-                    currentPage={currentPage}
-                    selectedPage={selectedPage}
-                    mode={mode}
-                    onCancel={onCancel}
-                  />
-                </div>
-                <div className={styles.rightpanel}>
-                  <OHRIFormContext.Provider
-                    value={{
-                      values: props.values,
-                      setFieldValue: props.setFieldValue,
-                      setEncounterLocation: setEncounterLocation,
-                      fields: fields,
-                      encounterContext: {
-                        patient: patient,
-                        encounter: encounter,
-                        location: location,
-                        sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
-                        date: encDate,
-                      },
-                    }}>
-                    <h4 className={styles.title}>{form.name}</h4>
-                    {form.pages.map((page, index) => {
-                      return (
-                        <div className={styles.pageContent}>
-                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
-                        </div>
-                      );
-                    })}
-                  </OHRIFormContext.Provider>
+            <div className={styles.mainContainer}>
+              <div className={styles.fixedContainer}>Fixed Container</div>
+              <div className={styles.contentWrapper}>
+                <div className={styles.overflowContainer}>
+                  <div className={styles.overflowContent}>
+                    {/* Overflow Content
+                    <br /><br />
+                    For Non-Chrome browsers (Firefox, Safari, etc):<br />
+                    Without <code>min-height:0px;</code> on the content-wrapper,
+                    this content will not scroll but instead will expand to its
+                    full height.
+                    <br /><br />
+                    Note that the setup of the main-container here is important too.
+                    If its not
+                    <code>position:absolute; height:100%; flex-direction:column;</code>
+                    or
+                    <code>height:100vh; flex-direction:column;</code>
+                    then you may not run into this issue; */}
+                  </div>
                 </div>
               </div>
-            </>
+            </div>
+            // <div className={styles.wrapper}>
+            //   <div className={styles.header}>Header</div>
+            //   <div>
+            //     <div className={styles.leftpanel}>
+            //       <OHRIFormSidebar
+            //         currentPage={currentPage}
+            //         selectedPage={selectedPage}
+            //         mode={mode}
+            //         onCancel={onCancel}
+            //       />
+            //     </div>
+            //     <div className={styles.rightpanel}>
+            //       {/* <OHRIFormContext.Provider
+            //         value={{
+            //           values: props.values,
+            //           setFieldValue: props.setFieldValue,
+            //           setEncounterLocation: setEncounterLocation,
+            //           fields: fields,
+            //           encounterContext: {
+            //             patient: patient,
+            //             encounter: encounter,
+            //             location: location,
+            //             sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
+            //             date: encDate,
+            //           },
+            //         }}>
+            //         <h4 className={styles.title}>{form.name}</h4>
+            //         {form.pages.map((page, index) => {
+            //           return (
+            //             <div className={styles.pageContent}>
+            //               <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+            //             </div>
+            //           );
+            //         })}
+            //       </OHRIFormContext.Provider> */}
+            //     </div>
+            //   </div>
+            // </div>
           )}
         </Form>
       )}

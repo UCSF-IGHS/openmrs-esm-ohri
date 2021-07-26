@@ -56,11 +56,17 @@
   // width: 100%;
 
   // height: 100%;
-    display: -webkit-flex;
+    // display: -webkit-flex;
+    // display: flex;
+    // -webkit-flex-direction: column;
+    // flex-direction: column;
+
     display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
+   flex-direction: column;
+   height: 100vh;
     overflow:hidden;
+   width: auto;
+   background-color: rgb(240, 240, 240);
 }
 
 .wrapper > .header {
@@ -68,26 +74,70 @@
   flex: 0 0 auto;
 }
 
-.wrapper > .header + div {
-  -webkit-flex: 1 1 auto;
-  flex: 1 1 auto;
-  display: -webkit-flex;
+// .wrapper > .header + div {
+//   -webkit-flex: 1 1 auto;
+//   flex: 1 1 auto;
+//   display: -webkit-flex;
+//   display: flex;
+//   -webkit-flex-direction: row;
+//   flex-direction: row;
+
+// }
+
+// .wrapper > .header + div > div:first-of-type {
+//   -webkit-flex: 3 0 0;
+//   flex: 3 0 0;
+// }
+
+// .wrapper > .header + div > div:last-of-type {
+//   -webkit-flex: 7 0 0;
+//   flex: 7 0 0;
+//   margin-bottom: 20rem;
+//   height: 100vh;
+//   overflow-y: scroll;
+// }
+
+
+
+
+/* a container with flex-direction column */
+.mainContainer {
+  height: 75vh; /* or position:absolute; height:100%; */
   display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-
+  flex-direction: column;
 }
 
-.wrapper > .header + div > div:first-of-type {
-  -webkit-flex: 3 0 0;
-  flex: 3 0 0;
+/* an arbitrary container of fixed height */
+.fixedContainer {
+  height: 100px;
+  padding: 20px;
+  background-color: #0B5AB0;
+  color: white;
 }
 
-.wrapper > .header + div > div:last-of-type {
-  -webkit-flex: 7 0 0;
-  flex: 7 0 0;
-  margin-bottom: 20rem;
-  height: 100vh;
-  overflow-y: scroll;
+/* this is the flex container that will take the rest of the height */
+.contentWrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0px; /* IMPORTANT: you need this for non-chrome browsers */
 }
 
+/* the container for our overflowed content */
+.overflowContainer {
+  flex: 1;
+  overflow: auto;
+}
+
+/* the overflow content itself */
+.overflowContent {
+  // height: 2000px;
+  color: black;
+  background-color: #ddd;
+  padding: 20px;
+}
+
+code {
+  font-weight: bold;
+  color: darkred;
+  margin: 0 5px;
+}

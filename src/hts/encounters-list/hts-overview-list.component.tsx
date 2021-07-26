@@ -142,6 +142,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         open={open}
         passiveModal
         size="lg"
+        hasForm
+        // hasScrollingContent={false}
         modalHeading="Add a custom domain"
         modalLabel="Account resources"
         primaryButtonText="Add"
