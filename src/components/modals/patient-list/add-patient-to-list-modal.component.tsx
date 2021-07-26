@@ -106,7 +106,7 @@ export const AddPatientToListModal: React.FC<{
         if (response.ok) {
           showToast({
             kind: 'success',
-            description: 'Patient was successfully added to list',
+            description: `Patient was successfully added to ${response.data.cohort.display}`,
           });
           close();
         } else {

@@ -4,7 +4,7 @@ import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
-import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
+import { openmrsObservableFetch, showToast, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
@@ -21,6 +21,7 @@ interface OHRIFormProps {
   encounterUuid?: string;
   mode?: SessionMode;
 }
+import { useTranslation } from 'react-i18next';
 
 const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSubmit, onCancel }) => {
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
@@ -34,6 +35,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
   const [form, setForm] = useState<OHRIFormSchema>(null);
   const [currentPage, setCurrentPage] = useState(undefined);
   const [selectedPage, setSelectedPage] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
@@ -170,6 +172,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
         if (onSubmit) {
           onSubmit();
         }
+        showToast({
+          description: t('createSuccessToastDescription', 'A new HTS record was created'),
+          title: t('createSuccessToastTitle', 'HTS record created'),
+          kind: 'success',
+          critical: true,
+        });
       }
     });
   };
