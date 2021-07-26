@@ -17,7 +17,7 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
   };
 
   return (
-    <div style={{ top: '8.5rem', width: '11rem', marginLeft: '20px', marginRight: '20px' }}>
+    <div className={styles.sidebar}>
       {currentPage.map((page, index) => {
         return (
           <div
@@ -35,7 +35,7 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
           Save
         </Button>
       )}
-      <Button style={{ width: '11' }} kind="tertiary" onClick={() => (onCancel ? onCancel() : null)}>
+      <Button style={{ width: '11rem' }} kind="tertiary" onClick={() => (onCancel ? onCancel() : null)}>
         {mode == 'view' ? 'Close' : 'Cancel'}
       </Button>
     </div>
