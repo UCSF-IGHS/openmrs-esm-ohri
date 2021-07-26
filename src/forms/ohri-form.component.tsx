@@ -213,14 +213,59 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
               <LoadingIcon />
             ) : (
               <>
-                <PatientBanner patient={patient} />
+                <div className={styles.wrapper}>
+                  <div className={styles.header}>
+                    <PatientBanner patient={patient} />
+                  </div>
+                  <div>
+                    <div className={styles.leftpanel}>
+                      <OHRIFormSidebar
+                        currentPage={currentPage}
+                        selectedPage={selectedPage}
+                        mode={mode}
+                        onCancel={onCancel}
+                      />
+                    </div>
+                    <div className={styles.rightpanel}>
+                      <OHRIFormContext.Provider
+                        value={{
+                          values: props.values,
+                          setFieldValue: props.setFieldValue,
+                          setEncounterLocation: setEncounterLocation,
+                          fields: fields,
+                          encounterContext: {
+                            patient: patient,
+                            encounter: encounter,
+                            location: location,
+                            sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
+                            date: encDate,
+                          },
+                        }}>
+                        <h4 className={styles.title}>{form.name}</h4>
+                        {form.pages.map((page, index) => {
+                          return (
+                            <div className={styles.pageContent}>
+                              <OHRIFormPage
+                                page={page}
+                                onFieldChange={onFieldChange}
+                                setSelectedPage={setSelectedPage}
+                              />
+                            </div>
+                          );
+                        })}
+                      </OHRIFormContext.Provider>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 
                 <OHRIFormSidebar
                   currentPage={currentPage}
                   selectedPage={selectedPage}
                   mode={mode}
                   onCancel={onCancel}
-                />
-                <Content>
+                /> */}
+                {/* <Content>
                   <div className="bx--grid">
                     <div className="bx--row">
                       <div className={classNameFirstColumn}>
@@ -254,7 +299,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                       </div>
                     </div>
                   </div>
-                </Content>
+                </Content> */}
               </>
             )}
           </Form>

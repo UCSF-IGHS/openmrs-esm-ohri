@@ -17,8 +17,8 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
   };
 
   return (
-    <div className={styles.leftNavWrapper}>
-      {/* {currentPage.map((page, index) => {
+    <div style={{ top: '8.5rem', width: '11rem', marginLeft: '20px', marginRight: '20px' }}>
+      {currentPage.map((page, index) => {
         return (
           <div
             aria-hidden="true"
@@ -28,7 +28,16 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
             <div className={styles.sidebarSectionLink}>{page.label}</div>
           </div>
         );
-      })} */}
+      })}
+      <hr className={styles.sideBarHorizontalLine} />
+      {mode != 'view' && (
+        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
+          Save
+        </Button>
+      )}
+      <Button style={{ width: '11' }} kind="tertiary" onClick={() => (onCancel ? onCancel() : null)}>
+        {mode == 'view' ? 'Close' : 'Cancel'}
+      </Button>
     </div>
     // <>
     //   <SideNav
@@ -65,7 +74,6 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
     //       </Button>
     //     </SideNavItems>
     //   </SideNav>
-
     // </>
   );
 }
