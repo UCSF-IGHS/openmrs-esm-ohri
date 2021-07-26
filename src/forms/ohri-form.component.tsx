@@ -21,6 +21,7 @@ interface OHRIFormProps {
   encounterUuid?: string;
   mode?: SessionMode;
 }
+import { useTranslation } from 'react-i18next';
 
 const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSubmit, onCancel }) => {
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
@@ -34,6 +35,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
   const [form, setForm] = useState<OHRIFormSchema>(null);
   const [currentPage, setCurrentPage] = useState(undefined);
   const [selectedPage, setSelectedPage] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
@@ -171,8 +173,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
           onSubmit();
         }
         showToast({
-          description: 'A new HTS record was created',
-          title: 'HTS record created',
+          description: t('createSuccessToastDescription', 'A new HTS record was created'),
+          title: t('createSuccessToastTitle', 'HTS record created'),
           kind: 'success',
           critical: true,
         });
