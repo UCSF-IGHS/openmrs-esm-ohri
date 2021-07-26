@@ -1,11 +1,13 @@
 @import "../../root.scss";
 
 .headerWrapper {
-    display: flex;
     width: 100%;
+    display: flex;
     height: 5.5rem;
-    position:fixed;
+    top: 48px;
+    position:sticky;
     background: #ffffff;
+    // z-index: 8000;
     border-bottom: 0.063rem solid #c6c6c6;
 }
 

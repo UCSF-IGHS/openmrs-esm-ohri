@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Column, Grid, Row } from 'carbon-components-react';
+import { Button, Column, Content, Grid, Row } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import cx from 'classnames';
 import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser } from '@openmrs/esm-framework';
 import { getHandler } from './registry/registry';
@@ -14,6 +15,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
+// import OhriNewForm from '../ohri-form/ohri-form.component';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -185,6 +187,15 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
       setFields(fields_temp);
     }
   };
+  const classNameFirstColumn = cx({
+    'bx--col-lg-13': true,
+    // 'bx--offset-lg-3': useResponsiveOffset,
+  });
+
+  const style = {
+    height: '100%',
+    marginLeft: '12.6875rem',
+  };
 
   return (
     <div>
@@ -197,66 +208,55 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
           setSubmitting(false);
         }}>
         {props => (
-          <Form className={styles.formStyle}>
+          <Form>
             {!patient ? (
               <LoadingIcon />
             ) : (
               <>
-                <PatientBanner patient={patient} />
-                <Grid>
-                  <Row className={styles.ohriformcontainer}>
-                    <Column lg={2} md={2} sm={1}>
-                      <div className={styles.ohriSidebar}>
-                        <OHRIFormSidebar currentPage={currentPage} selectedPage={selectedPage} />
-                        <hr className={styles.sideBarHorizontalLine} />
-                        {mode != 'view' && (
-                          <Button
-                            style={{ marginBottom: '0.625rem', width: '11.688rem', display: 'block' }}
-                            type="submit">
-                            Save
-                          </Button>
-                        )}
-                        <Button
-                          style={{ width: '11.688rem' }}
-                          kind="tertiary"
-                          onClick={() => (onCancel ? onCancel() : null)}>
-                          {mode == 'view' ? 'Close' : 'Cancel'}
-                        </Button>
-                      </div>
-                    </Column>
-                    <Column lg={10} md={6}>
-                      <div className={styles.contentWrapper}>
-                        <OHRIFormContext.Provider
-                          value={{
-                            values: props.values,
-                            setFieldValue: props.setFieldValue,
-                            setEncounterLocation: setEncounterLocation,
-                            fields: fields,
-                            encounterContext: {
-                              patient: patient,
-                              encounter: encounter,
-                              location: location,
-                              sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
-                              date: encDate,
-                            },
-                          }}>
-                          <h4 className={styles.title}>{form.name}</h4>
-                          {form.pages.map((page, index) => {
-                            return (
-                              <div className={styles.pageContent}>
-                                <OHRIFormPage
-                                  page={page}
-                                  onFieldChange={onFieldChange}
-                                  setSelectedPage={setSelectedPage}
-                                />
-                              </div>
-                            );
-                          })}
-                        </OHRIFormContext.Provider>
-                      </div>
-                    </Column>
-                  </Row>
-                </Grid>
+                <div className={styles.wrapper}>
+                  <div className={styles.header}>
+                    <PatientBanner patient={patient} />
+                  </div>
+                  <div>
+                    <div className={styles.leftpanel}>
+                      <OHRIFormSidebar
+                        currentPage={currentPage}
+                        selectedPage={selectedPage}
+                        mode={mode}
+                        onCancel={onCancel}
+                      />
+                    </div>
+                    <div className={styles.rightpanel}>
+                      <OHRIFormContext.Provider
+                        value={{
+                          values: props.values,
+                          setFieldValue: props.setFieldValue,
+                          setEncounterLocation: setEncounterLocation,
+                          fields: fields,
+                          encounterContext: {
+                            patient: patient,
+                            encounter: encounter,
+                            location: location,
+                            sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
+                            date: encDate,
+                          },
+                        }}>
+                        <h4 className={styles.title}>{form.name}</h4>
+                        {form.pages.map((page, index) => {
+                          return (
+                            <div className={styles.pageContent}>
+                              <OHRIFormPage
+                                page={page}
+                                onFieldChange={onFieldChange}
+                                setSelectedPage={setSelectedPage}
+                              />
+                            </div>
+                          );
+                        })}
+                      </OHRIFormContext.Provider>
+                    </div>
+                  </div>
+                </div>
               </>
             )}
           </Form>
