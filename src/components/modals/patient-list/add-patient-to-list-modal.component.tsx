@@ -1,5 +1,5 @@
-import { useCurrentPatient } from '@openmrs/esm-framework';
-import { Modal, RadioButton, RadioButtonGroup, SkeletonText } from 'carbon-components-react';
+import { showToast, useCurrentPatient } from '@openmrs/esm-framework';
+import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addPatientToCohort, getCohorts, getPatientListsForPatient } from '../../../api/api';
@@ -7,6 +7,10 @@ import { addPatientToCohort, getCohorts, getPatientListsForPatient } from '../..
 const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ patientUuid }) => {
   const [, patient] = useCurrentPatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
+  const patientDisplay = useMemo(() => {
+    return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
+  }, [patient]);
+
   return (
     <>
       {isOpen && (
@@ -14,7 +18,7 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ p
           isOpen={isOpen}
           close={() => setIsOpen(false)}
           patientUuid={patientUuid}
-          title={`Add ${patient.name[0].given.join(' ')} ${patient.name[0].family} to list`}
+          title={`Add ${patientDisplay} to list`}
         />
       )}
       <li className="bx--overflow-menu-options__option">
@@ -41,27 +45,29 @@ export const AddPatientToListModal: React.FC<{
   title?: string;
   cohortType?: string;
 }> = ({ isOpen, close, patientUuid, cohortType, title }) => {
-  const [cohorts, setCohorts] = useState<Array<{ uuid: string; display: string }>>([]);
+  const [cohorts, setCohorts] = useState<Array<{ uuid: string; name: string }>>([]);
+  const [alreadySubscribedCohorts, setAlreadySubscribedCohorts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedList, setSelectedList] = useState(null);
+  const [selectedList, setSelectedList] = useState('none');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     Promise.all([getCohorts(cohortType), getPatientListsForPatient(patientUuid)]).then(
       ([allCohortsRes, patientCohortsRes]) => {
         // filter out cohorts in which this patient is already a member
-        // TODO: filter out voided cohorts nand memberships
-        const filteredCohorts = allCohortsRes.data.results.filter(
-          cohort => !patientCohortsRes.data.results.some(membership => cohort.uuid == membership.cohort.uuid),
+        const filteredCohorts = allCohortsRes.filter(
+          cohort => !patientCohortsRes.some(patientCohort => cohort.uuid == patientCohort.uuid),
         );
         setCohorts(filteredCohorts);
+        setAlreadySubscribedCohorts(patientCohortsRes);
         setIsLoading(false);
       },
     );
   }, [cohortType]);
 
   const availableLists = useMemo(() => {
-    const controls = cohorts.map(cohort => (
-      <RadioButton labelText={cohort.display} value={cohort.uuid} id={cohort.uuid} />
+    const controls = cohorts.map((cohort, index) => (
+      <RadioButton labelText={cohort.name} value={cohort.uuid} id={cohort.uuid} key={index} />
     ));
     controls.push(<RadioButton labelText="None" value="none" id="none" />);
     return controls;
@@ -76,11 +82,35 @@ export const AddPatientToListModal: React.FC<{
     );
   }, []);
 
+  const alreadySubscribedLists = useMemo(() => {
+    if (alreadySubscribedCohorts.length) {
+      return (
+        <UnorderedList style={{ marginLeft: '1rem', marginBottom: '1rem', color: '#c6c6c6' }}>
+          {alreadySubscribedCohorts.map(cohort => (
+            <ListItem>{cohort.name}</ListItem>
+          ))}
+        </UnorderedList>
+      );
+    }
+    return (
+      <div style={{ marginBottom: '1rem' }}>
+        <span style={{ fontSize: '.875rem', color: '#c6c6c6' }}>-- None --</span>
+      </div>
+    );
+  }, [alreadySubscribedCohorts]);
+
   const handleSubmit = useCallback(() => {
     if (selectedList != 'none') {
+      setIsSubmitting(true);
       addPatientToCohort(patientUuid, selectedList).then(response => {
         if (response.ok) {
+          showToast({
+            kind: 'success',
+            description: `Patient was successfully added to ${response.data.cohort.display}`,
+          });
           close();
+        } else {
+          setIsSubmitting(false);
         }
       });
     }
@@ -99,7 +129,9 @@ export const AddPatientToListModal: React.FC<{
               primaryButtonText="Confirm"
               secondaryButtonText="Cancel"
               onRequestSubmit={handleSubmit}
-              primaryButtonDisabled={selectedList == null}>
+              primaryButtonDisabled={selectedList == 'none' || isSubmitting}>
+              <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
+              {isLoading ? loader : alreadySubscribedLists}
               <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
 
               {isLoading ? (
