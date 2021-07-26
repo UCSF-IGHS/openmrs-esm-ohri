@@ -198,71 +198,61 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
   };
 
   return (
-    <div>
-      <Formik
-        enableReinitialize
-        initialValues={initialValues}
-        validationSchema={Yup.object({})}
-        onSubmit={(values, { setSubmitting }) => {
-          handleFormSubmit(values);
-          setSubmitting(false);
-        }}>
-        {props => (
-          <Form>
-            {!patient ? (
-              <LoadingIcon />
-            ) : (
-              <>
-                <div className={styles.wrapper}>
-                  <div className={styles.header}>
-                    <PatientBanner patient={patient} />
-                  </div>
-                  <div>
-                    <div className={styles.leftpanel}>
-                      <OHRIFormSidebar
-                        currentPage={currentPage}
-                        selectedPage={selectedPage}
-                        mode={mode}
-                        onCancel={onCancel}
-                      />
-                    </div>
-                    <div className={styles.rightpanel}>
-                      <OHRIFormContext.Provider
-                        value={{
-                          values: props.values,
-                          setFieldValue: props.setFieldValue,
-                          setEncounterLocation: setEncounterLocation,
-                          fields: fields,
-                          encounterContext: {
-                            patient: patient,
-                            encounter: encounter,
-                            location: location,
-                            sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
-                            date: encDate,
-                          },
-                        }}>
-                        <h4 className={styles.title}>{form.name}</h4>
-                        {form.pages.map((page, index) => {
-                          return (
-                            <div className={styles.pageContent}>
-                              <OHRIFormPage
-                                page={page}
-                                onFieldChange={onFieldChange}
-                                setSelectedPage={setSelectedPage}
-                              />
-                            </div>
-                          );
-                        })}
-                      </OHRIFormContext.Provider>
-                    </div>
-                  </div>
+    <Formik
+      enableReinitialize
+      initialValues={initialValues}
+      validationSchema={Yup.object({})}
+      onSubmit={(values, { setSubmitting }) => {
+        handleFormSubmit(values);
+        setSubmitting(false);
+      }}>
+      {props => (
+        <Form className={styles.wrapper}>
+          {!patient ? (
+            <LoadingIcon />
+          ) : (
+            <>
+              <div className={styles.header}>Header</div>
+              <div>
+                <div className={styles.leftpanel}>
+                  <OHRIFormSidebar
+                    currentPage={currentPage}
+                    selectedPage={selectedPage}
+                    mode={mode}
+                    onCancel={onCancel}
+                  />
                 </div>
-              </>
-            )}
-          </Form>
-        )}
-      </Formik>
-    </div>
+                <div className={styles.rightpanel}>
+                  <OHRIFormContext.Provider
+                    value={{
+                      values: props.values,
+                      setFieldValue: props.setFieldValue,
+                      setEncounterLocation: setEncounterLocation,
+                      fields: fields,
+                      encounterContext: {
+                        patient: patient,
+                        encounter: encounter,
+                        location: location,
+                        sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
+                        date: encDate,
+                      },
+                    }}>
+                    <h4 className={styles.title}>{form.name}</h4>
+                    {form.pages.map((page, index) => {
+                      return (
+                        <div className={styles.pageContent}>
+                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                        </div>
+                      );
+                    })}
+                  </OHRIFormContext.Provider>
+                </div>
+              </div>
+            </>
+          )}
+        </Form>
+      )}
+    </Formik>
   );
 };
 
