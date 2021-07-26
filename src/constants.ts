@@ -12,3 +12,8 @@ export const finalPositiveHIVValueConcept = '6378487b-584d-4422-a6a6-56c8830873f
 // Linked to Care Concepts
 export const linkedToCareCodeConcept = 'e8e8fe71-adbb-48e7-b531-589985094d30';
 export const linkedToCareYesValueConcept = '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+// Cohorts
+export const preTestCounsellingCohort = 'e4d801f0-e2fd-11eb-8212-7d7156e00a1f';
+export const waitingForHIVTestCohort = 'cdee0abe-e471-11eb-8212-7d7156e00a1f';
+export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';

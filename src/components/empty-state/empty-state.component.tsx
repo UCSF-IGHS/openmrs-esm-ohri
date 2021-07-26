@@ -7,8 +7,9 @@ import { Trans, useTranslation } from 'react-i18next';
 
 interface EmptyStateProps {
   headerTitle: string;
-  displayText: string;
+  displayText?: string;
   launchForm?: () => void;
+  newResource?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = props => {
@@ -20,13 +21,18 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
       <EmptyDataIllustration />
       <p className={styles.content}>
         <Trans i18nKey="emptyStateText" values={{ displayText: props.displayText.toLowerCase() }}>
-          There are no {props.displayText.toLowerCase()} to display for this patient
+          There are no {props.displayText.toLowerCase()} to display
+          {props.displayText.toLowerCase() != 'patients' ? ' for this patient' : ''}
         </Trans>
       </p>
       <p className={styles.action}>
-        <Link onClick={() => props.launchForm()}>
-          {t('record', 'Record')} {props.displayText.toLowerCase()}
-        </Link>
+        {props.newResource != false ? (
+          <Link onClick={() => props.launchForm()}>
+            {t('record', 'Record')} {props.displayText.toLowerCase()}
+          </Link>
+        ) : (
+          ''
+        )}
       </p>
     </Tile>
   );
