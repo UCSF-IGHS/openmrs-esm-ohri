@@ -81,7 +81,7 @@ npm test
 ## Deployment
 
 Currently, available releases for this module:
-- [![DEMO](https://ohri-demo.globalhealthapp.net/)] 
+- [![DEMO] 
 
 ## Configuration
 
