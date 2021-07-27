@@ -3,6 +3,7 @@
   height: 75vh; /* or position:absolute; height:100%; */
   display: flex;
   flex-direction: column;
+  overscroll-behavior: contain;
 }
 
 /* an arbitrary container of fixed height */
@@ -33,14 +34,20 @@
   height: 400px;
   width: 12rem;
   position: fixed;
+  margin-top: 20px;
 }
 
 /* the overflow content itself */
 .overflowContent {
-  color: black;
-  background-color: #ddd;
-  padding: 20px;
+  // color: black;
+  // background-color: #ddd;
+  // padding: 20px;
   height: auto;
   margin-left: 13rem;
-  
+  // margin-bottom: 40rem;
+  position: fixed;
+  top: 200px;
+  left: 0;
+  bottom: 0;
+  overflow-y: scroll;
 }
