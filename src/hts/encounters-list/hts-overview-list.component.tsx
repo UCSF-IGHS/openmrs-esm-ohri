@@ -5,11 +5,21 @@ import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import {
+  DataTableSkeleton,
+  Modal,
+  OverflowMenu,
+  OverflowMenuItem,
+  Select,
+  SelectItem,
+  TextInput,
+} from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
+import { observeOn } from 'rxjs/operators';
+import OHRIForm from '../../forms/ohri-form.component';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -26,9 +36,15 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [currentMode, setCurrentMode] = useState('view');
+  const [currentEncounterUuid, setCurrentEncounterUuid] = useState('');
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66';
+  // const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66'; //
+  const hivTestResultConceptUUID = '77a518bb-3486-4e03-bcae-0b8ccf82c39d'; // HIV Result - Positive
+  // const hivTestDateUUID = 'bce64590-4758-4011-9bf9-1b29d80b5f75'; //Concet for Test Date
+  const hivTestFinal_DateUUID = ' e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; //
 
   const forceComponentUpdate = () => setCounter(counter + 1);
 
@@ -37,10 +53,11 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }, []);
 
   const launchHTSForm = () => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    });
+    // launchOHRIWorkSpace('ohri-forms-view-ext', {
+    //   title: htsRetroForm?.name,
+    //   state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    // });
+    setOpen(true);
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -59,11 +76,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   };
 
   const tableHeaders = [
-    { key: 'date', header: 'Date entered', isSortable: true },
-    { key: 'dateOfTest', header: 'Date tested', isSortable: true },
+    { key: 'date', header: 'Date of HIV Test', isSortable: true },
     { key: 'location', header: 'Location' },
-    { key: 'result', header: 'Result' },
-    { key: 'encounter_type', header: 'Encounter Type' },
+    { key: 'result', header: 'Final HIV Test result' },
     { key: 'provider', header: 'HTS Provider' },
     { key: 'action', header: 'Action' },
   ];
@@ -71,23 +86,32 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   function getHtsEncounters(query: string, customRepresentation: string, encounterType: string) {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
+
       data.results.map(encounter => {
-        const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
+        const htsResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
+        const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestFinal_DateUUID);
+
         const encounterActionOverflowMenu = (
           <OverflowMenu flipped>
             <OverflowMenuItem
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewHTSEncounter(encounter.uuid);
+                // viewHTSEncounter(encounter.uuid);
+                setCurrentEncounterUuid(encounter.uuid);
+                setCurrentMode('view');
+                setOpen(true);
               }}
             />
             <OverflowMenuItem
               itemText={t('editHTSEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editHTSEncounter(encounter.uuid);
+                // editHTSEncounter(encounter.uuid);
+                setCurrentEncounterUuid(encounter.uuid);
+                setCurrentMode('edit');
+                setOpen(true);
               }}
             />
           </OverflowMenu>
@@ -100,7 +124,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         rows.push({
           id: encounter.uuid,
           date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
-          dateOfTest: HIVTestObservation ? moment(HIVTestObservation.obsDatetime).format('DD-MMM-YYYY') : 'None',
+          dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
           location: encounter.location.name,
           result: htsResult?.value?.name?.name || 'None',
           encounter_type: encounterType,
@@ -122,6 +146,18 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   return (
     <>
+      {/* formJson, encounterUuid, mode, onSubmit, onCancel */}
+      <Modal
+        open={open}
+        passiveModal
+        size="md"
+        hasForm
+        primaryButtonText="Add"
+        secondaryButtonText="Cancel"
+        onRequestClose={() => setOpen(false)}>
+        <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} />
+      </Modal>
+
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
