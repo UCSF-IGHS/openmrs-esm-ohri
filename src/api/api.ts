@@ -1,6 +1,7 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { careSetting } from '../constants';
 import moment from 'moment';
+import { finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -75,8 +76,8 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
   );
 }
 
-export function getCohort(cohortUuid: React.PropsWithChildren<{ cohortId: string }>, version?: string) {
-  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid.cohortId}${version ? `?v=${version}` : ``}`);
+export function getCohort(cohortUuid: string, version?: string) {
+  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
 }
 
 export async function getCohorts(cohortTypeUuid?: string) {
@@ -108,10 +109,16 @@ function postData(url = '', data = {}) {
 }
 
 export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
-  return postData(`${BASE_WS_API_URL}cohortm/cohortmember`, {
-    patient: patientUuid,
-    cohort: cohortUuid,
-    startDate: new Date(),
+  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: {
+      patient: patientUuid,
+      cohort: cohortUuid,
+      startDate: new Date(),
+    },
   });
 }
 
@@ -123,4 +130,15 @@ export async function getPatientListsForPatient(patientUuid: string) {
     throw error;
   }
   return results.filter(membership => !membership.voided).map(membership => membership.cohort);
+}
+
+export function fetchPatientsFinalHIVStatus(patientUUID: string) {
+  return openmrsFetch(
+    `/ws/fhir2/R4/Observation?code=${finalHIVCodeConcept}&value-concept=${finalPositiveHIVValueConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
+  ).then(({ data }) => {
+    if (data.entry?.length) {
+      return data.entry[0].resource.valueCodeableConcept.coding[0].display;
+    }
+    return 'Negative';
+  });
 }
