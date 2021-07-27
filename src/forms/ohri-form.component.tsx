@@ -187,15 +187,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
       setFields(fields_temp);
     }
   };
-  const classNameFirstColumn = cx({
-    'bx--col-lg-13': true,
-    // 'bx--offset-lg-3': useResponsiveOffset,
-  });
-
-  const style = {
-    height: '100%',
-    marginLeft: '12.6875rem',
-  };
 
   return (
     <Formik
