@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../encounters-list/hts-overview-list.scss';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import EmptyState from '../../components/empty-state/empty-state-boilerplate.component';
 import { Button } from 'carbon-components-react';
 import { Add16 } from '@carbon/icons-react';
 
