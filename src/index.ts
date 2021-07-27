@@ -33,7 +33,7 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-forms/,
+        route: /^ohri-home/,
       },
     ],
     extensions: [
@@ -65,6 +65,30 @@ function setupOpenMRS() {
         },
       },
       {
+        id: 'hts-home-header-ext',
+        slot: 'hts-home-header-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/welcome-section/hts-welcome-section.component'), {
+          featureName: 'hts-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hts-home-tile-ext',
+        slot: 'hts-home-tiles-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/summary-tiles/hts-summary-tiles.component'), {
+          featureName: 'hts-home-tiles',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hts-home-tabs-ext',
+        slot: 'hts-home-tabs-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/patient-tabs/ohri-patient-tabs.component'), {
+          featureName: 'hts-home-tabs',
+          moduleName,
+        }),
+      },
+      {
         id: 'hts-encounter-form-ext',
         load: getAsyncLifecycle(() => import('./hts/encounter-form/hts-encounter-form.component'), {
           featureName: 'hts-encounter-form',
@@ -88,6 +112,14 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
+      },
+      {
+        id: 'patient-list-modal',
+        slot: 'patient-actions-slot',
+        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
+          featureName: 'patient-list-modal',
+          moduleName,
+        }),
       },
     ],
   };
