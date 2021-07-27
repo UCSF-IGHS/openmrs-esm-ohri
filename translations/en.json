@@ -111,5 +111,8 @@
   "hivNegative": "HIV Negative",
  
   "createSuccessToastTitle": "HTS record created",
-  "createSuccessToastDescription": "A new HTS record was created"
+  "createSuccessToastDescription": "A new HTS record was created",
+  "updateSuccessToastTitle": "HTS record updated",
+  "updateSuccessToastDescription": "The patient HTS record was updated"
+  
 }
