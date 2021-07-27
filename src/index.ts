@@ -131,9 +131,9 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
-      { 
+      {
         id: 'hiv-hts-programme-switcher',
-        slot: 'top-navigation-slot',
+        slot: 'top-nav-info-slot',
         load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
         online: true,
         offline: true,

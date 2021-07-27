@@ -172,12 +172,21 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
         if (onSubmit) {
           onSubmit();
         }
-        showToast({
-          description: t('createSuccessToastDescription', 'A new HTS record was created'),
-          title: t('createSuccessToastTitle', 'HTS record created'),
-          kind: 'success',
-          critical: true,
-        });
+        if (encounterUuid) {
+          showToast({
+            description: t('updateSuccessToastDescription', 'The patient HTS record was updated'),
+            title: t('updateSuccessToastTitle', 'HTS record updated'),
+            kind: 'success',
+            critical: true,
+          });
+        } else {
+          showToast({
+            description: t('createSuccessToastDescription', 'A new HTS record was created'),
+            title: t('createSuccessToastTitle', 'HTS record created'),
+            kind: 'success',
+            critical: true,
+          });
+        }
       }
     });
   };
