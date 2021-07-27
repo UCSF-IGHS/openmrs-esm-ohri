@@ -35,10 +35,6 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^ohri-home/,
       },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^form-test/,
-      },
     ],
     extensions: [
       {
@@ -79,7 +75,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-tile-ext',
         slot: 'hts-home-tiles-slot',
-        load: getAsyncLifecycle(() => import('./hts/home/summary-tile/hts-summary-tile.component'), {
+        load: getAsyncLifecycle(() => import('./hts/home/summary-tiles/hts-summary-tiles.component'), {
           featureName: 'hts-home-tiles',
           moduleName,
         }),
@@ -125,15 +121,12 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'hts-patient-linkage-list-ext',
-        slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
-          featureName: 'hts-patient-linkage-list',
+        id: 'patient-list-modal',
+        slot: 'patient-actions-slot',
+        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
+          featureName: 'patient-list-modal',
           moduleName,
         }),
-        meta: {
-          columnSpan: 4,
-        },
       },
     ],
   };
