@@ -187,38 +187,29 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
       setFields(fields_temp);
     }
   };
-  const classNameFirstColumn = cx({
-    'bx--col-lg-13': true,
-    // 'bx--offset-lg-3': useResponsiveOffset,
-  });
-
-  const style = {
-    height: '100%',
-    marginLeft: '12.6875rem',
-  };
 
   return (
-    <div>
-      <Formik
-        enableReinitialize
-        initialValues={initialValues}
-        validationSchema={Yup.object({})}
-        onSubmit={(values, { setSubmitting }) => {
-          handleFormSubmit(values);
-          setSubmitting(false);
-        }}>
-        {props => (
-          <Form>
-            {!patient ? (
-              <LoadingIcon />
-            ) : (
-              <>
-                <div className={styles.wrapper}>
-                  <div className={styles.header}>
-                    <PatientBanner patient={patient} />
-                  </div>
-                  <div>
-                    <div className={styles.leftpanel}>
+    <Formik
+      enableReinitialize
+      initialValues={initialValues}
+      validationSchema={Yup.object({})}
+      onSubmit={(values, { setSubmitting }) => {
+        handleFormSubmit(values);
+        setSubmitting(false);
+      }}>
+      {props => (
+        <Form>
+          {!patient ? (
+            <LoadingIcon />
+          ) : (
+            <>
+              <div className={styles.mainContainer}>
+                <div className={styles.fixedContainer}>
+                  <PatientBanner patient={patient} />
+                </div>
+                <div className={styles.contentWrapper}>
+                  <div className={styles.overflowContainer}>
+                    <div className={styles.sidebar}>
                       <OHRIFormSidebar
                         currentPage={currentPage}
                         selectedPage={selectedPage}
@@ -226,7 +217,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                         onCancel={onCancel}
                       />
                     </div>
-                    <div className={styles.rightpanel}>
+                    <div className={styles.overflowContent}>
                       <OHRIFormContext.Provider
                         value={{
                           values: props.values,
@@ -257,12 +248,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                     </div>
                   </div>
                 </div>
-              </>
-            )}
-          </Form>
-        )}
-      </Formik>
-    </div>
+              </div>
+            </>
+          )}
+        </Form>
+      )}
+    </Formik>
   );
 };
 

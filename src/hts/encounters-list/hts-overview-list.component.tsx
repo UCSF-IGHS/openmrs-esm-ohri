@@ -5,12 +5,21 @@ import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import {
+  DataTableSkeleton,
+  Modal,
+  OverflowMenu,
+  OverflowMenuItem,
+  Select,
+  SelectItem,
+  TextInput,
+} from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import { observeOn } from 'rxjs/operators';
+import OHRIForm from '../../forms/ohri-form.component';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -27,6 +36,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [currentMode, setCurrentMode] = useState('view');
+  const [currentEncounterUuid, setCurrentEncounterUuid] = useState('');
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   // const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66'; //
@@ -41,10 +53,11 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }, []);
 
   const launchHTSForm = () => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    });
+    // launchOHRIWorkSpace('ohri-forms-view-ext', {
+    //   title: htsRetroForm?.name,
+    //   state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    // });
+    setOpen(true);
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -85,14 +98,20 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewHTSEncounter(encounter.uuid);
+                // viewHTSEncounter(encounter.uuid);
+                setCurrentEncounterUuid(encounter.uuid);
+                setCurrentMode('view');
+                setOpen(true);
               }}
             />
             <OverflowMenuItem
               itemText={t('editHTSEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editHTSEncounter(encounter.uuid);
+                // editHTSEncounter(encounter.uuid);
+                setCurrentEncounterUuid(encounter.uuid);
+                setCurrentMode('edit');
+                setOpen(true);
               }}
             />
           </OverflowMenu>
@@ -127,6 +146,18 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   return (
     <>
+      {/* formJson, encounterUuid, mode, onSubmit, onCancel */}
+      <Modal
+        open={open}
+        passiveModal
+        size="md"
+        hasForm
+        primaryButtonText="Add"
+        secondaryButtonText="Cancel"
+        onRequestClose={() => setOpen(false)}>
+        <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} />
+      </Modal>
+
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
