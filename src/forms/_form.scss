@@ -9,9 +9,6 @@
 /* an arbitrary container of fixed height */
 .fixedContainer {
   height: 100px;
-  padding: 20px;
-  background-color: #0B5AB0;
-  color: white;
   // position: fixed;
 }
 
@@ -31,23 +28,21 @@
 
 /* the fixed sidebar content */
 .sidebar{
-  height: 400px;
+  height: auto;
   width: 12rem;
   position: fixed;
-  margin-top: 20px;
+  margin-top: 2px;
 }
 
 /* the overflow content itself */
 .overflowContent {
-  // color: black;
-  // background-color: #ddd;
-  // padding: 20px;
   height: auto;
   margin-left: 13rem;
-  // margin-bottom: 40rem;
+  padding-bottom: 40rem;
   position: fixed;
-  top: 200px;
+  top: 132px;
   left: 0;
   bottom: 0;
   overflow-y: scroll;
+  max-width: 70%;
 }

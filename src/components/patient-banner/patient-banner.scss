@@ -7,7 +7,7 @@
     top: 48px;
     position:sticky;
     background: #ffffff;
-    // z-index: 8000;
+    z-index: -1;
     border-bottom: 0.063rem solid #c6c6c6;
 }
 
@@ -44,7 +44,6 @@
 * Weight
 */
 .weight {
-    width: 10rem;
     margin-left: 2rem;
 }
 
@@ -73,5 +72,5 @@
 * Allergies
 */
 .allergies {
-    width: 60%;
+    width: 30%;
 }

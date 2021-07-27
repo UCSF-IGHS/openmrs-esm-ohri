@@ -213,7 +213,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
           ) : (
             <>
               <div className={styles.mainContainer}>
-                <div className={styles.fixedContainer}>Fixed Container</div>
+                <div className={styles.fixedContainer}>
+                  <PatientBanner patient={patient} />
+                </div>
                 <div className={styles.contentWrapper}>
                   <div className={styles.overflowContainer}>
                     <div className={styles.sidebar}>

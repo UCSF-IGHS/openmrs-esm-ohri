@@ -13,8 +13,8 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
   return (
     <Waypoint onEnter={() => handleEnter(newLabel)} bottomOffset="95%">
       <div id={newLabel}>
-        <h4 className={styles.pageTitle}>{page.label}</h4>
-        <span className={styles.required}>All fields are required unless marked optional</span>
+        <p className={styles.pageTitle}>{page.label}</p>
+        <p className={styles.required}>All fields are required unless marked optional</p>
         {page.sections.map((sec, index) => {
           return (
             <div className={styles.formSection} key={index}>
@@ -27,7 +27,7 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
             </div>
           );
         })}
-        <hr className={styles.divider} />
+        {/* <hr className={styles.divider} /> */}
       </div>
     </Waypoint>
   );
