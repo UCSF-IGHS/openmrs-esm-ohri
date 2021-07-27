@@ -121,6 +121,47 @@ function setupOpenMRS() {
         },
       },
       {
+<<<<<<< HEAD
+        id: 'patient-list-modal',
+        slot: 'patient-actions-slot',
+        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
+          featureName: 'patient-list-modal',
+=======
+        id: 'hts-patient-linkage-list-ext',
+        slot: 'hts-summary-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
+          featureName: 'hts-patient-linkage-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      { 
+        id: 'hiv-hts-programme-switcher',
+        slot: 'top-navigation-slot',
+        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'test-patient-list',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts-home/patient-list.component'), {
+          featureName: 'test-patient-list',
+          moduleName,
+        }),
+      },
+      {
+        id: 'cohort-patient-list',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts-home/patient-list-cohort.component'), {
+          featureName: 'cohort-patient-list',
+>>>>>>> upstream/working
+          moduleName,
+        }), 
+      },
+      {
         id: 'patient-list-modal',
         slot: 'patient-actions-slot',
         load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {

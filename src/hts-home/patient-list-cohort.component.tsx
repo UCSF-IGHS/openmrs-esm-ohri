@@ -31,6 +31,20 @@ export const columns = [
     },
   },
   {
+    key: 'timeAddedToList',
+    header: 'Time Added To List',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
+    key: 'waitingTime',
+    header: 'Waiting Time',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
     key: 'gender',
     header: 'Sex',
     getValue: patient => {
@@ -41,7 +55,11 @@ export const columns = [
     key: 'location', // exclude from pretest
     header: 'Location',
     getValue: patient => {
+<<<<<<< HEAD
       return patient.location;
+=======
+      return '--';
+>>>>>>> upstream/working
     },
   },
   {
@@ -55,14 +73,22 @@ export const columns = [
     key: 'phoneNumber',
     header: 'Phone Number',
     getValue: patient => {
+<<<<<<< HEAD
       return patient.phoneNumber;
+=======
+      return '--';
+>>>>>>> upstream/working
     },
   },
   {
     key: 'hivResult', // only post test counselling
     header: 'HIV Result',
     getValue: patient => {
+<<<<<<< HEAD
       return patient.hivResult;
+=======
+      return '--';
+>>>>>>> upstream/working
     },
   },
 ];
@@ -82,7 +108,11 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     getCohort(cohortId, 'full').then(({ data }) => {
+=======
+    getCohort({ cohortId: cohortId }, 'full').then(({ data }) => {
+>>>>>>> upstream/working
       const patients = data.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
@@ -101,6 +131,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
       setPatientsCount(patients.length);
     });
   }, [cohortId]);
+<<<<<<< HEAD
 
   useEffect(() => {
     (async function() {
@@ -110,6 +141,8 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
       });
     })();
   }, [patients]);
+=======
+>>>>>>> upstream/working
 
   const pagination = useMemo(() => {
     return {

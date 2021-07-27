@@ -1,6 +1,11 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
+<<<<<<< HEAD
 import moment from 'moment';
 import { finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../constants';
+=======
+import { careSetting } from '../constants';
+import moment from 'moment';
+>>>>>>> upstream/working
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -75,9 +80,56 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
   );
 }
 
-export function getCohort(cohortUuid: string, version?: string) {
-  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
+export function getCohort(cohortUuid: React.PropsWithChildren<{ cohortId: string }>, version?: string) {
+  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid.cohortId}${version ? `?v=${version}` : ``}`);
 }
+
+export async function getCohorts(cohortTypeUuid?: string) {
+  const {
+    data: { results, error },
+  } = await openmrsFetch(
+    BASE_WS_API_URL +
+      `cohortm/cohort?v=custom:(uuid,name,voided)${cohortTypeUuid ? `&cohortType=${cohortTypeUuid}` : ''}`,
+  );
+  if (error) {
+    throw error;
+  }
+  return results.filter(cohort => !cohort.voided);
+}
+
+function postData(url = '', data = {}) {
+  return openmrsFetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(data),
+  });
+}
+
+export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
+  return postData(`${BASE_WS_API_URL}cohortm/cohortmember`, {
+    patient: patientUuid,
+    cohort: cohortUuid,
+    startDate: new Date(),
+  });
+}
+
+export async function getPatientListsForPatient(patientUuid: string) {
+  const {
+    data: { results, error },
+  } = await openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember?patient=${patientUuid}&v=full`);
+  if (error) {
+    throw error;
+  }
+  return results.filter(membership => !membership.voided).map(membership => membership.cohort);
+}
+<<<<<<< HEAD
 
 export async function getCohorts(cohortTypeUuid?: string) {
   const {
@@ -126,3 +178,5 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
     return 'Negative';
   });
 }
+=======
+>>>>>>> upstream/working

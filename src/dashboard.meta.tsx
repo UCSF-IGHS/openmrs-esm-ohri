@@ -7,7 +7,7 @@ export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
       <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>
-        <SideNavMenuItem isActive href={`${basePath}/${db.name}`}>
+        <SideNavMenuItem className={styles.currentNavItem} href={`${basePath}/${db.name}`}>
           {' '}
           HTS{' '}
         </SideNavMenuItem>
