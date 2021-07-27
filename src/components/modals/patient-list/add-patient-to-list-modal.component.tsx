@@ -130,21 +130,23 @@ export const AddPatientToListModal: React.FC<{
               secondaryButtonText="Cancel"
               onRequestSubmit={handleSubmit}
               primaryButtonDisabled={selectedList == 'none' || isSubmitting}>
-              <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
-              {isLoading ? loader : alreadySubscribedLists}
-              <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
+              <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
+                <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
+                {isLoading ? loader : alreadySubscribedLists}
+                <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
 
-              {isLoading ? (
-                loader
-              ) : (
-                <RadioButtonGroup
-                  legendText=""
-                  name="patient-lists"
-                  orientation="vertical"
-                  onChange={selected => setSelectedList(selected.toString())}>
-                  {availableLists}
-                </RadioButtonGroup>
-              )}
+                {isLoading ? (
+                  loader
+                ) : (
+                  <RadioButtonGroup
+                    legendText=""
+                    name="patient-lists"
+                    orientation="vertical"
+                    onChange={selected => setSelectedList(selected.toString())}>
+                    {availableLists}
+                  </RadioButtonGroup>
+                )}
+              </div>
             </Modal>,
             document.body,
           )}
