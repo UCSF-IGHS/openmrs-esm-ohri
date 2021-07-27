@@ -72,8 +72,8 @@ jobs:
 
     needs: build
     
-    if: ${{ github.ref == 'refs/heads/working' }} 
-
+    if: ${{ github.ref == 'refs/heads/working' || 'refs/heads/dev' || 'refs/heads/master' }}  
+     
     steps:
       - uses: actions/checkout@v2
       - name: Download Artifacts
