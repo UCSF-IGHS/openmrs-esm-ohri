@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
 import moment from 'moment';
+import { basePath } from '../constants';
 
 export const columns = [
   {
@@ -10,6 +11,9 @@ export const columns = [
     header: 'Name',
     getValue: patient => {
       return patient.name;
+    },
+    link: {
+      getUrl: patient => `${basePath}${patient.uuid}/chart`,
     },
   },
   {
@@ -78,7 +82,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
-    getCohort({ cohortId: cohortId }, 'full').then(({ data }) => {
+    getCohort(cohortId, 'full').then(({ data }) => {
       const patients = data.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,

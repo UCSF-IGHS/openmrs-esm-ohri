@@ -5,6 +5,8 @@ export const daysDurationUnit = {
   display: 'Days',
 };
 
+export const basePath = '${openmrsSpaBase}/patient/';
+
 // Final HIV Test Result Concepts
 export const finalHIVCodeConcept = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const finalPositiveHIVValueConcept = '6378487b-584d-4422-a6a6-56c8830873ff';
