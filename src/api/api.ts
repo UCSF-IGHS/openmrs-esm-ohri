@@ -91,26 +91,17 @@ export async function getCohorts(cohortTypeUuid?: string) {
   return results.filter(cohort => !cohort.voided);
 }
 
-function postData(url = '', data = {}) {
-  return openmrsFetch(url, {
+export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember`, {
     method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json',
     },
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer',
-    body: JSON.stringify(data),
-  });
-}
-
-export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
-  return postData(`${BASE_WS_API_URL}cohortm/cohortmember`, {
-    patient: patientUuid,
-    cohort: cohortUuid,
-    startDate: new Date(),
+    body: {
+      patient: patientUuid,
+      cohort: cohortUuid,
+      startDate: new Date(),
+    },
   });
 }
 
