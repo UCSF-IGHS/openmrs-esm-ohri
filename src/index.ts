@@ -35,6 +35,10 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^ohri-home/,
       },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^form-test/,
+      },
     ],
     extensions: [
       {
@@ -131,7 +135,7 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
-      { 
+      {
         id: 'hiv-hts-programme-switcher',
         slot: 'top-navigation-slot',
         load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
@@ -152,7 +156,7 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./hts-home/patient-list-cohort.component'), {
           featureName: 'cohort-patient-list',
           moduleName,
-        }), 
+        }),
       },
       {
         id: 'patient-list-modal',
