@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './hts-welcome-section.scss';
 import { Calendar32 } from '@carbon/icons-react';
-// import moment from 'moment';
 
 function HtsWelcomeSection() {
   return (
