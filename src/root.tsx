@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import OhriHome from './ohri-home/ohri-home-component';
+import OhriNewForm from './ohri-form/ohri-new-form.component';
 
 export default function Root() {
   return (
