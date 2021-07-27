@@ -77,3 +77,40 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
 export function getCohort(cohortUuid: string, version?: string) {
   return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
 }
+
+export async function getCohorts(cohortTypeUuid?: string) {
+  const {
+    data: { results, error },
+  } = await openmrsFetch(
+    BASE_WS_API_URL +
+      `cohortm/cohort?v=custom:(uuid,name,voided)${cohortTypeUuid ? `&cohortType=${cohortTypeUuid}` : ''}`,
+  );
+  if (error) {
+    throw error;
+  }
+  return results.filter(cohort => !cohort.voided);
+}
+
+export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: {
+      patient: patientUuid,
+      cohort: cohortUuid,
+      startDate: new Date(),
+    },
+  });
+}
+
+export async function getPatientListsForPatient(patientUuid: string) {
+  const {
+    data: { results, error },
+  } = await openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember?patient=${patientUuid}&v=full`);
+  if (error) {
+    throw error;
+  }
+  return results.filter(membership => !membership.voided).map(membership => membership.cohort);
+}
