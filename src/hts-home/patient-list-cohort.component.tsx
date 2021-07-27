@@ -1,7 +1,8 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getCohort } from '../api/api';
+import { fetchPatientsFinalHIVStatus, getCohort } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
+import moment from 'moment';
 
 export const columns = [
   {
@@ -15,14 +16,14 @@ export const columns = [
     key: 'timeAddedToList',
     header: 'Time Added To List',
     getValue: patient => {
-      return '--';
+      return patient.timeAddedToList;
     },
   },
   {
     key: 'waitingTime',
     header: 'Waiting Time',
     getValue: patient => {
-      return '--';
+      return patient.waitingTime;
     },
   },
   {
@@ -36,7 +37,7 @@ export const columns = [
     key: 'location', // exclude from pretest
     header: 'Location',
     getValue: patient => {
-      return '--';
+      return patient.location;
     },
   },
   {
@@ -50,14 +51,14 @@ export const columns = [
     key: 'phoneNumber',
     header: 'Phone Number',
     getValue: patient => {
-      return '--';
+      return patient.phoneNumber;
     },
   },
   {
     key: 'hivResult', // only post test counselling
     header: 'HIV Result',
     getValue: patient => {
-      return '--';
+      return patient.hivResult;
     },
   },
 ];
@@ -85,12 +86,26 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         name: member.patient.person.display,
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
+        timeAddedToList: moment(member.startDate).format('LL'),
+        waitingTime: moment(member.startDate).fromNow(),
+        location: data.location.name,
+        phoneNumber: '0700xxxxxx',
+        hivResult: '',
       }));
       setPatients(patients);
       setIsLoading(false);
       setPatientsCount(patients.length);
     });
   }, [cohortId]);
+
+  useEffect(() => {
+    (async function() {
+      patients.map(async patient => {
+        const hivResult = await fetchPatientsFinalHIVStatus(patient.uuid);
+        return (patient['hivResult'] = hivResult);
+      });
+    })();
+  }, [patients]);
 
   const pagination = useMemo(() => {
     return {
@@ -127,7 +142,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
     () => ({
       patients: searchTerm ? filteredResults : patients,
       columns,
-      search: { placeHolder: 'Search patient list', onSearch: handleSearch, currentSearchTerm: searchTerm },
+      search: { placeHolder: 'Search client list', onSearch: handleSearch, currentSearchTerm: searchTerm },
       pagination: pagination,
       autoFocus: true,
     }),
@@ -141,7 +156,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Test Patient List" displayText="patients" />
+        <EmptyState headerTitle="Test client list" displayText="patients" />
       ) : (
         <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
       )}
