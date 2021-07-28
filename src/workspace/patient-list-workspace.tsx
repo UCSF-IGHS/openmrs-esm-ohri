@@ -11,7 +11,8 @@ const PatientListWorkspace: React.FC<{
   header: string;
   onClose?: () => void;
   isVisible?: boolean;
-}> = ({ header, children, isVisible, onClose }) => {
+  meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
+}> = ({ header, children, isVisible, onClose, meta }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -24,10 +25,14 @@ const PatientListWorkspace: React.FC<{
       onClose();
     }
   }, [onClose]);
-  return <>{isOpen && <Overflow header={header} close={close} children={children} />}</>;
+  return <>{isOpen && <Overflow header={header} close={close} children={children} meta={meta} />}</>;
 };
 
-const Overflow: React.FC<{ close: () => void; header: string }> = ({ close, children, header }) => {
+const Overflow: React.FC<{
+  close: () => void;
+  header: string;
+  meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
+}> = ({ close, children, header, meta }) => {
   return (
     <div
       style={{
@@ -61,7 +66,7 @@ const Overflow: React.FC<{ close: () => void; header: string }> = ({ close, chil
             </div>
             <div className={styles.row}>
               <div className={styles.flexRow}>
-                <span className={styles.bannerTitle}>A list of {header}</span>
+                <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
               <div>
                 <Button size="small" kind="ghost" onClick="#">
@@ -71,7 +76,7 @@ const Overflow: React.FC<{ close: () => void; header: string }> = ({ close, chil
             </div>
             <div className={styles.row}>
               <div className={styles.demographics}>
-                <span>2 Clients</span> &middot; <span>Last Updated {moment().format('l')}</span>
+                <span>{meta.numberOfClients} Clients</span> &middot; <span>Last Updated {moment().format('l')}</span>
               </div>
             </div>
           </div>

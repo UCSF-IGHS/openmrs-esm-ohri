@@ -6,11 +6,19 @@ import styles from './ohri-home.scss';
 
 function OhriHome() {
   const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);
-  const [workSpaceProps, setWorkSpaceProps] = useState<{ header: string; children: Element } | null>(null);
+  const [workSpaceProps, setWorkSpaceProps] = useState<{
+    header: string;
+    children: Element;
+    meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
+  } | null>(null);
 
-  const launchWorkSpace = (header: string, children: Element) => {
+  const launchWorkSpace = (
+    header: string,
+    children: Element,
+    meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string },
+  ) => {
     setIsWorkSpaceVisible(true);
-    setWorkSpaceProps({ header: header, children: children });
+    setWorkSpaceProps({ header: header, children: children, meta: meta });
   };
 
   return (
@@ -20,6 +28,7 @@ function OhriHome() {
         header={workSpaceProps?.header}
         children={workSpaceProps?.children}
         onClose={() => setIsWorkSpaceVisible(false)}
+        meta={workSpaceProps?.meta}
       />
       <Grid className={styles.mainWrapper}>
         <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} state={{ launchWorkSpace }} />
