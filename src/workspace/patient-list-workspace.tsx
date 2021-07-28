@@ -56,15 +56,13 @@ const Overflow: React.FC<{
       <div className={styles.container}>
         <div className={styles.listBanner}>
           <div className={styles.listInfo}>
-            <div className={styles.row} style={{ borderBottom: '1px' }}>
+            <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
               <Breadcrumb>
-                <BreadcrumbItem>
-                  <a href={'home'}>Patient Lists</a>
-                </BreadcrumbItem>
-                <BreadcrumbItem href="#">Lost to follow-up</BreadcrumbItem>
+                <BreadcrumbItem>Patient Lists</BreadcrumbItem>
+                <BreadcrumbItem>{header}</BreadcrumbItem>
               </Breadcrumb>
             </div>
-            <div className={styles.row}>
+            <div className={styles.row} style={{}}>
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
