@@ -4,8 +4,8 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchTodayClients } from '../../../api/api';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import { filterFHIRPatientsByName } from '../../../hts-home/patient-list.component';
+import { basePath } from '../../../constants';
 
-const basePath = '${openmrsSpaBase}/patient/';
 export const columns = [
   {
     key: 'name',
@@ -133,7 +133,7 @@ export const TodaysClientList: React.FC<{}> = () => {
     () => ({
       patients: searchTerm ? filteredResults : patients,
       columns,
-      search: { placeHolder: 'Search patient list', onSearch: handleSearch, currentSearchTerm: searchTerm },
+      search: { placeHolder: 'Search client list', onSearch: handleSearch, currentSearchTerm: searchTerm },
       pagination,
       isLoading,
       autoFocus: true,
