@@ -234,7 +234,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                           date: encDate,
                         },
                       }}>
-                      <h4 className={styles.title}>{form.name}</h4>
                       {form.pages.map((page, index) => {
                         return (
                           // <div className={styles.pageContent}>
