@@ -106,6 +106,10 @@ export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
   });
 }
 
+export function evictCohortMembership(membershipUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember/${membershipUuid}`, { method: 'DELETE' });
+}
+
 export async function getPatientListsForPatient(patientUuid: string) {
   const {
     data: { results, error },
@@ -113,7 +117,7 @@ export async function getPatientListsForPatient(patientUuid: string) {
   if (error) {
     throw error;
   }
-  return results.filter(membership => !membership.voided).map(membership => membership.cohort);
+  return results.filter(membership => !membership.voided);
 }
 
 export function fetchPatientsFinalHIVStatus(patientUUID: string) {
