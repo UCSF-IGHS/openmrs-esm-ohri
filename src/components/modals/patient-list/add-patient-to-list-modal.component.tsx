@@ -2,7 +2,7 @@ import { showToast, useCurrentPatient } from '@openmrs/esm-framework';
 import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { addPatientToCohort, getCohorts, getPatientListsForPatient } from '../../../api/api';
+import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
 const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ patientUuid }) => {
   const [, patient] = useCurrentPatient(patientUuid);
@@ -47,19 +47,21 @@ export const AddPatientToListModal: React.FC<{
 }> = ({ isOpen, close, patientUuid, cohortType, title }) => {
   const [cohorts, setCohorts] = useState<Array<{ uuid: string; name: string }>>([]);
   const [alreadySubscribedCohorts, setAlreadySubscribedCohorts] = useState([]);
+  const [currentMemberships, setCurrentMemberships] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedList, setSelectedList] = useState('none');
+  const [selectedList, setSelectedList] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     Promise.all([getCohorts(cohortType), getPatientListsForPatient(patientUuid)]).then(
-      ([allCohortsRes, patientCohortsRes]) => {
+      ([allCohortsRes, currentCohortMemberships]) => {
         // filter out cohorts in which this patient is already a member
         const filteredCohorts = allCohortsRes.filter(
-          cohort => !patientCohortsRes.some(patientCohort => cohort.uuid == patientCohort.uuid),
+          cohort => !currentCohortMemberships.some(membership => cohort.uuid == membership.cohort.uuid),
         );
         setCohorts(filteredCohorts);
-        setAlreadySubscribedCohorts(patientCohortsRes);
+        setCurrentMemberships(currentCohortMemberships);
+        setAlreadySubscribedCohorts(currentCohortMemberships.map(membership => membership.cohort));
         setIsLoading(false);
       },
     );
@@ -100,8 +102,19 @@ export const AddPatientToListModal: React.FC<{
   }, [alreadySubscribedCohorts]);
 
   const handleSubmit = useCallback(() => {
-    if (selectedList != 'none') {
-      setIsSubmitting(true);
+    setIsSubmitting(true);
+    if (selectedList == 'none') {
+      // evict all the patient's memberships
+      // according to our usecases, there is a high chance that the current memberships will always be one
+      // but we can't be sure
+      Promise.all(currentMemberships.map(membership => evictCohortMembership(membership.uuid))).then(results => {
+        showToast({
+          kind: 'success',
+          description: `Patient was successfully removed from all lists`,
+        });
+        close();
+      });
+    } else {
       addPatientToCohort(patientUuid, selectedList).then(response => {
         if (response.ok) {
           showToast({
@@ -114,7 +127,7 @@ export const AddPatientToListModal: React.FC<{
         }
       });
     }
-  }, [selectedList, patientUuid, close]);
+  }, [selectedList, patientUuid, close, currentMemberships]);
   return (
     <>
       {typeof document === 'undefined'
@@ -129,24 +142,27 @@ export const AddPatientToListModal: React.FC<{
               primaryButtonText="Confirm"
               secondaryButtonText="Cancel"
               onRequestSubmit={handleSubmit}
-              primaryButtonDisabled={selectedList == 'none' || isSubmitting}>
-              <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
-                <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
-                {isLoading ? loader : alreadySubscribedLists}
-                <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
+              primaryButtonDisabled={
+                isLoading ||
+                selectedList == null ||
+                isSubmitting ||
+                (selectedList == 'none' && currentMemberships.length == 0)
+              }>
+              <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
+              {isLoading ? loader : alreadySubscribedLists}
+              <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
 
-                {isLoading ? (
-                  loader
-                ) : (
-                  <RadioButtonGroup
-                    legendText=""
-                    name="patient-lists"
-                    orientation="vertical"
-                    onChange={selected => setSelectedList(selected.toString())}>
-                    {availableLists}
-                  </RadioButtonGroup>
-                )}
-              </div>
+              {isLoading ? (
+                loader
+              ) : (
+                <RadioButtonGroup
+                  legendText=""
+                  name="patient-lists"
+                  orientation="vertical"
+                  onChange={selected => setSelectedList(selected.toString())}>
+                  {availableLists}
+                </RadioButtonGroup>
+              )}
             </Modal>,
             document.body,
           )}
