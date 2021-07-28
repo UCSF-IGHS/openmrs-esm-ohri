@@ -225,47 +225,42 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                 <div className={styles.fixedContainer}>
                   <PatientBanner patient={patient} />
                 </div>
-                <div className={styles.contentWrapper}>
-                  <div className={styles.overflowContainer}>
-                    <div className={styles.sidebar}>
-                      <OHRIFormSidebar
-                        currentPage={currentPage}
-                        selectedPage={selectedPage}
-                        mode={mode}
-                        onCancel={onCancel}
-                        handleClose={handleClose}
-                      />
-                    </div>
-                    <div className={styles.overflowContent}>
-                      <OHRIFormContext.Provider
-                        value={{
-                          values: props.values,
-                          setFieldValue: props.setFieldValue,
-                          setEncounterLocation: setEncounterLocation,
-                          fields: fields,
-                          encounterContext: {
-                            patient: patient,
-                            encounter: encounter,
-                            location: location,
-                            sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
-                            date: encDate,
-                          },
-                        }}>
-                        <h4 className={styles.title}>{form.name}</h4>
-                        {form.pages.map((page, index) => {
-                          return (
-                            <div className={styles.pageContent}>
-                              <OHRIFormPage
-                                page={page}
-                                onFieldChange={onFieldChange}
-                                setSelectedPage={setSelectedPage}
-                              />
-                            </div>
-                          );
-                        })}
-                      </OHRIFormContext.Provider>
-                    </div>
+                {/* <div className={styles.contentWrapper}> */}
+                <div className={styles.overflowContainer}>
+                  <div className={styles.sidebar}>
+                    <OHRIFormSidebar
+                      currentPage={currentPage}
+                      selectedPage={selectedPage}
+                      mode={mode}
+                      onCancel={onCancel}
+                      handleClose={handleClose}
+                    />
                   </div>
+                  <div className={styles.overflowContent}>
+                    <OHRIFormContext.Provider
+                      value={{
+                        values: props.values,
+                        setFieldValue: props.setFieldValue,
+                        setEncounterLocation: setEncounterLocation,
+                        fields: fields,
+                        encounterContext: {
+                          patient: patient,
+                          encounter: encounter,
+                          location: location,
+                          sessionMode: mode || (encounterUuid ? 'edit' : 'enter'),
+                          date: encDate,
+                        },
+                      }}>
+                      <h4 className={styles.title}>{form.name}</h4>
+                      {form.pages.map((page, index) => {
+                        return (
+                          // <div className={styles.pageContent}>
+                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                        );
+                      })}
+                    </OHRIFormContext.Provider>
+                  </div>
+                  {/* </div> */}
                 </div>
               </div>
             </>

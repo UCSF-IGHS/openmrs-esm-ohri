@@ -132,7 +132,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           action: encounterActionOverflowMenu,
         });
       });
-
       setTableRows(rows);
       setIsLoading(false);
     });
@@ -154,7 +153,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       <Modal
         open={open}
         passiveModal
-        size="md"
+        // size="md"
         hasForm
         primaryButtonText="Add"
         secondaryButtonText="Cancel"
