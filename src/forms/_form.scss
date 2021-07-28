@@ -41,13 +41,12 @@
   margin-left: 13rem;
   padding-bottom: 40rem;
   position: fixed;
-  top: 140px;
+  top: 165px;
   left: 0;
   bottom: 0;
   overflow-y: scroll;
   max-width: 100%;
 }
-
 
 @media (max-width: 1024px) {
   .overflowContent {
@@ -55,7 +54,7 @@
     margin-left: 13rem;
     padding-bottom: 40rem;
     position: fixed;
-    top: 140px;
+    top: 165px;
     left: 0;
     bottom: 0;
     overflow-y: scroll;
@@ -71,14 +70,13 @@
   }
 }
 
-
 @media (max-width: 1680px) {
   .overflowContent {
     height: auto;
     margin-left: 13rem;
     padding-bottom: 40rem;
     position: fixed;
-    top: 140px;
+    top: 165px;
     left: 0;
     bottom: 0;
     overflow-y: scroll;
