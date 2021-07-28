@@ -106,7 +106,7 @@
 
   "validationFieldRequired": "Required.",
   "validationNoItemSelected": "Please select one of the available items.",
-
+  
   "hivPositive": "HIV Positive",
   "hivNegative": "HIV Negative",
   "createSuccessToastTitle": "HTS record created",

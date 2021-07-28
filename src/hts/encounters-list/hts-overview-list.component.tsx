@@ -5,12 +5,25 @@ import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import {
+  ComposedModal,
+  DataTableSkeleton,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  OverflowMenu,
+  OverflowMenuItem,
+  Select,
+  SelectItem,
+  TextInput,
+} from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import { observeOn } from 'rxjs/operators';
+import OHRIForm from '../../forms/ohri-form.component';
+
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -27,6 +40,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [currentMode, setCurrentMode] = useState('view');
+  const [currentEncounterUuid, setCurrentEncounterUuid] = useState('');
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
@@ -38,8 +54,16 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }, []);
 
   const launchHTSForm = () => {
+    // launchOHRIWorkSpace('ohri-forms-view-ext', {
+    //   title: htsRetroForm?.name,
+    //   state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    // });
+    setOpen(true);
+  };
+  const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsRetroForm?.name,
+      encounterUuid: encounterUuid,
       state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
     });
   };
@@ -60,9 +84,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   };
 
   const tableHeaders = [
-    { key: 'date', header: 'Date', isSortable: true },
+    { key: 'date', header: 'Date of HIV Test', isSortable: true },
     { key: 'location', header: 'Location' },
-    { key: 'result', header: 'HIV Test result' },
+    { key: 'result', header: 'Final HIV Test result' },
     { key: 'provider', header: 'HTS Provider' },
     { key: 'action', header: 'Action' },
   ];
@@ -81,20 +105,20 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
         const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
 
-        const encounterActionOverflowMenu = (
+       const encounterActionOverflowMenu = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewHTSEncounter(encounter.uuid);
+                viewHTSEncounter(encounter.uuid); 
               }}
             />
             <OverflowMenuItem
               itemText={t('editHTSEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editHTSEncounter(encounter.uuid);
+                editHTSEncounter(encounter.uuid); 
               }}
             />
           </OverflowMenu>
@@ -115,7 +139,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           action: encounterActionOverflowMenu,
         });
       });
-
       setTableRows(rows);
       setIsLoading(false);
     });
@@ -127,8 +150,21 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const headerTitle = 'HTS Sessions';
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
+      <ComposedModal open={open}>
+        <ModalHeader style={{ backgroundColor: '#007d79', height: '48px', marginBottom: '0px', color: '#ffffff' }}>
+          {htsRetroForm?.name}
+        </ModalHeader>
+        <ModalBody>
+          <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} handleClose={handleClose} />
+        </ModalBody>
+      </ComposedModal>
+
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
