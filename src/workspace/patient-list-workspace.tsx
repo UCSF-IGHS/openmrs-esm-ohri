@@ -58,8 +58,23 @@ const Overflow: React.FC<{
           <div className={styles.listInfo}>
             <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
               <Breadcrumb>
-                <BreadcrumbItem>Patient Lists</BreadcrumbItem>
-                <BreadcrumbItem>{header}</BreadcrumbItem>
+                <BreadcrumbItem className={''}>
+                  <a
+                    href="/#"
+                    onClick={event => {
+                      event.preventDefault();
+                    }}>
+                    Patient Lists
+                  </a>
+                </BreadcrumbItem>
+                <BreadcrumbItem
+                  href="#"
+                  onClick={event => {
+                    event.preventDefault();
+                  }}
+                  isCurrentPage>
+                  {header}
+                </BreadcrumbItem>
               </Breadcrumb>
             </div>
             <div className={styles.row} style={{}}>
