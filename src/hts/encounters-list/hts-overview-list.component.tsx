@@ -24,7 +24,6 @@ import { getForm } from '../../utils/forms-loader';
 import { observeOn } from 'rxjs/operators';
 import OHRIForm from '../../forms/ohri-form.component';
 
-
 interface HtsOverviewListProps {
   patientUuid: string;
 }
@@ -98,20 +97,20 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
         const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
 
-       const encounterActionOverflowMenu = (
+        const encounterActionOverflowMenu = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewHTSEncounter(encounter.uuid); 
+                viewHTSEncounter(encounter.uuid);
               }}
             />
             <OverflowMenuItem
               itemText={t('editHTSEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editHTSEncounter(encounter.uuid); 
+                editHTSEncounter(encounter.uuid);
               }}
             />
           </OverflowMenu>
