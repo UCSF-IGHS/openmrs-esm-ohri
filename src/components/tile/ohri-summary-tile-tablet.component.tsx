@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Column, Row, Tile } from 'carbon-components-react';
+import { Row, Tile } from 'carbon-components-react';
 import styles from './ohri-summary-tile.scss';
 
 function OHRISummaryTileTablet({ details }) {
