@@ -102,6 +102,7 @@ export const AddPatientToListModal: React.FC<{
   }, [alreadySubscribedCohorts]);
 
   const handleSubmit = useCallback(() => {
+    setIsSubmitting(true);
     if (selectedList == 'none') {
       // evict all the patient's memberships
       // according to our usecases, there is a high chance that the current memberships will always be one
@@ -114,7 +115,6 @@ export const AddPatientToListModal: React.FC<{
         close();
       });
     } else {
-      setIsSubmitting(true);
       addPatientToCohort(patientUuid, selectedList).then(response => {
         if (response.ok) {
           showToast({
@@ -145,8 +145,8 @@ export const AddPatientToListModal: React.FC<{
               primaryButtonDisabled={
                 isLoading ||
                 selectedList == null ||
-                (selectedList == 'none' && currentMemberships.length == 0) ||
-                isSubmitting
+                isSubmitting ||
+                (selectedList == 'none' && currentMemberships.length == 0)
               }>
               <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
               {isLoading ? loader : alreadySubscribedLists}
