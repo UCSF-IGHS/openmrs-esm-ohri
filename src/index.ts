@@ -54,17 +54,6 @@ function setupOpenMRS() {
         }),
       },
       {
-        id: 'hts-patient-linkage-list-ext',
-        slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
-          featureName: 'hts-patient-linkage-list',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
@@ -88,6 +77,13 @@ function setupOpenMRS() {
           featureName: 'ohri-forms',
           moduleName,
         }),
+      },
+      {
+        id: 'hiv-hts-programme-switcher',
+        slot: 'top-nav-info-slot',
+        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        online: true,
+        offline: true,
       },
     ],
   };
