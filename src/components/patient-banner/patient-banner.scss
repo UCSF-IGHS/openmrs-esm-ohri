@@ -8,7 +8,6 @@
     position:sticky;
     background: #ffffff;
     z-index: -1;
-    border-bottom: 0.063rem solid #c6c6c6;
 }
 
 .row {
@@ -17,13 +16,18 @@
     align-items: baseline;
 }
 
+.vl{
+    border-left: 0.163rem solid #c6c6c6;
+    height: 100%;
+}
+
 /*
 * Demographics
 */
 .demo {
     width: 50%;
-    border-right: 0.1rem solid #c6c6c6;
     margin-left: 1rem;
+    margin-top: 10px;
 }
 
 .name {
@@ -44,10 +48,14 @@
 * Weight
 */
 .weight {
-    margin-left: 2rem;
+    margin-top: 10px;
+    margin-left: 1rem;
+    margin-top: 10px;
+    margin-right: 1rem;
 }
 
 .weightLabel, .allergiesLabel {
+    
     margin: 0 0 0.5rem 0;
     font-family: "IBM Plex Sans";
     font-size: 1.2rem;
@@ -72,5 +80,6 @@
 * Allergies
 */
 .allergies {
+    margin-top: 10px;
     width: 30%;
 }

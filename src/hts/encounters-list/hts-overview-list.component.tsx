@@ -153,7 +153,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   return (
     <>
       <ComposedModal open={open}>
-        <ModalHeader style={{ backgroundColor: '#007d79', height: '48px' }}>
+        <ModalHeader style={{ backgroundColor: '#007d79', height: '48px', marginBottom: '0px', color: '#ffffff' }}>
           {htsRetroForm?.name}
         </ModalHeader>
         <ModalBody>

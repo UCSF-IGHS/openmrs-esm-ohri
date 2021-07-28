@@ -222,7 +222,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
           ) : (
             <>
               <div className={styles.mainContainer}>
-                <div className={styles.fixedContainer}>
+                <div>
                   <PatientBanner patient={patient} />
                 </div>
                 {/* <div className={styles.contentWrapper}> */}
