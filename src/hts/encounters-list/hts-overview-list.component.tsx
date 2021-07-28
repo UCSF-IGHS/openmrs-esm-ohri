@@ -144,6 +144,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const headerTitle = 'HTS Sessions';
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {/* formJson, encounterUuid, mode, onSubmit, onCancel */}
@@ -155,7 +159,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         primaryButtonText="Add"
         secondaryButtonText="Cancel"
         onRequestClose={() => setOpen(false)}>
-        <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} />
+        <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} handleClose={handleClose} />
       </Modal>
 
       {isLoading ? (
