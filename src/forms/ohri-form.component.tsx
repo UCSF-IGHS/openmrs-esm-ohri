@@ -22,10 +22,11 @@ interface OHRIFormProps {
   onCancel?: any;
   encounterUuid?: string;
   mode?: SessionMode;
+  handleClose?: any;
 }
 import { useTranslation } from 'react-i18next';
 
-const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSubmit, onCancel }) => {
+const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSubmit, onCancel, handleClose }) => {
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
   const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
@@ -232,6 +233,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                         selectedPage={selectedPage}
                         mode={mode}
                         onCancel={onCancel}
+                        handleClose={handleClose}
                       />
                     </div>
                     <div className={styles.overflowContent}>
