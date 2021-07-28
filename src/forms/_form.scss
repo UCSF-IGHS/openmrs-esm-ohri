@@ -8,7 +8,6 @@
 
 /* an arbitrary container of fixed height */
 .fixedContainer {
-  height: 100px;
   // position: fixed;
 }
 
@@ -31,7 +30,8 @@
   height: auto;
   width: 12rem;
   position: fixed;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 /* the overflow content itself */
@@ -44,5 +44,48 @@
   left: 0;
   bottom: 0;
   overflow-y: scroll;
-  max-width: 70%;
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .overflowContent {
+    height: auto;
+    margin-left: 13rem;
+    padding-bottom: 40rem;
+    position: fixed;
+    top: 140px;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    max-width: 60%;
+  }
+
+  .mainContainer {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: contain;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 1680px) {
+  .overflowContent {
+    height: auto;
+    margin-left: 13rem;
+    padding-bottom: 40rem;
+    position: fixed;
+    top: 140px;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    max-width: 70%;
+  }
+
+  .mainContainer {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: contain;
+  }
 }

@@ -3,7 +3,7 @@ import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
 import { Button, SideNav, SideNavItems, SideNavLink } from 'carbon-components-react';
 
-function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
+function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose }) {
   const [activeLink, setActiveLink] = useState(selectedPage);
 
   const joinWord = value => {
@@ -31,11 +31,17 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel }) {
       })}
       <hr className={styles.sideBarHorizontalLine} />
       {mode != 'view' && (
-        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
+        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit" onClick={() => handleClose()}>
           Save
         </Button>
       )}
-      <Button style={{ width: '11rem' }} kind="tertiary" onClick={() => (onCancel ? onCancel() : null)}>
+      <Button
+        style={{ width: '11rem' }}
+        kind="tertiary"
+        onClick={() => {
+          onCancel ? onCancel() : null;
+          handleClose();
+        }}>
         {mode == 'view' ? 'Close' : 'Cancel'}
       </Button>
     </div>

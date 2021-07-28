@@ -21,6 +21,7 @@ export const PatientBanner: React.FC<{ patient: any }> = ({ patient }) => {
           </span>
         </div>
       </div>
+      <div className={styles.vl}></div>
       <div className={`${styles.column} ${styles.weight}`}>
         <div className={`${styles.row} ${styles.weightLabel}`}>
           <span>Weight</span>

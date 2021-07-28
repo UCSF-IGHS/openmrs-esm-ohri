@@ -6,8 +6,11 @@ import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import {
+  ComposedModal,
   DataTableSkeleton,
   Modal,
+  ModalBody,
+  ModalHeader,
   OverflowMenu,
   OverflowMenuItem,
   Select,
@@ -132,7 +135,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           action: encounterActionOverflowMenu,
         });
       });
-
       setTableRows(rows);
       setIsLoading(false);
     });
@@ -144,19 +146,20 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const headerTitle = 'HTS Sessions';
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
-      {/* formJson, encounterUuid, mode, onSubmit, onCancel */}
-      <Modal
-        open={open}
-        passiveModal
-        size="md"
-        hasForm
-        primaryButtonText="Add"
-        secondaryButtonText="Cancel"
-        onRequestClose={() => setOpen(false)}>
-        <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} />
-      </Modal>
+      <ComposedModal open={open}>
+        <ModalHeader style={{ backgroundColor: '#007d79', height: '48px', marginBottom: '0px', color: '#ffffff' }}>
+          {htsRetroForm?.name}
+        </ModalHeader>
+        <ModalBody>
+          <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} handleClose={handleClose} />
+        </ModalBody>
+      </ComposedModal>
 
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
