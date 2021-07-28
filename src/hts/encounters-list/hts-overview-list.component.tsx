@@ -44,13 +44,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [currentEncounterUuid, setCurrentEncounterUuid] = useState('');
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  // const hivTestResultConceptUUID = 'f4470401-08e2-40e5-b52b-c9d1254a4d66'; //
-  const hivTestResultConceptUUID = '77a518bb-3486-4e03-bcae-0b8ccf82c39d'; // HIV Result - Positive
-  // const hivTestDateUUID = 'bce64590-4758-4011-9bf9-1b29d80b5f75'; //Concet for Test Date
-  const hivTestFinal_DateUUID = ' e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; //
+  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
+  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-
   const htsRetroForm = useMemo(() => {
     return getForm('hiv', 'hts_retro');
   }, []);
@@ -90,31 +87,30 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
 
-      data.results.map(encounter => {
+      const sortedEncounters = data.results.sort(
+        (firstEncounter, secondEncounter) =>
+          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+      );
+
+      sortedEncounters.map(encounter => {
         const htsResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
-        const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestFinal_DateUUID);
+        const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
 
         const encounterActionOverflowMenu = (
-          <OverflowMenu flipped>
+          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                // viewHTSEncounter(encounter.uuid);
-                setCurrentEncounterUuid(encounter.uuid);
-                setCurrentMode('view');
-                setOpen(true);
+                viewHTSEncounter(encounter.uuid);
               }}
             />
             <OverflowMenuItem
               itemText={t('editHTSEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                // editHTSEncounter(encounter.uuid);
-                setCurrentEncounterUuid(encounter.uuid);
-                setCurrentMode('edit');
-                setOpen(true);
+                editHTSEncounter(encounter.uuid);
               }}
             />
           </OverflowMenu>

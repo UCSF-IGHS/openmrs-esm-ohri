@@ -103,6 +103,13 @@ function setupOpenMRS() {
         }),
       },
       {
+        id: 'hiv-hts-programme-switcher',
+        slot: 'top-nav-info-slot',
+        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        online: true,
+        offline: true,
+      },
+      { 
         id: 'patient-hiv-status-tag',
         slot: 'patient-banner-tags-slot',
         load: getAsyncLifecycle(() => import('./components/banner-tags/patient-status-tag.component'), options),
