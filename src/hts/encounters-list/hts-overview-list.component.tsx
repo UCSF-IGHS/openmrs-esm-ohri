@@ -78,7 +78,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const tableHeaders = [
     { key: 'date', header: 'Date of HIV Test', isSortable: true },
     { key: 'location', header: 'Location' },
-    { key: 'result', header: 'Final HIV Test result' },
+    { key: 'result', header: 'HIV Test result' },
     { key: 'provider', header: 'HTS Provider' },
     { key: 'action', header: 'Action' },
   ];
