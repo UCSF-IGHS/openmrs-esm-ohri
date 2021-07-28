@@ -67,13 +67,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
     });
   };
-  const editHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    });
-  };
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsRetroForm?.name,
