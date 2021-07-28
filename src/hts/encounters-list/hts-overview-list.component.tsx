@@ -50,7 +50,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const hivTestFinal_DateUUID = ' e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; //
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-
   const htsRetroForm = useMemo(() => {
     return getForm('hiv', 'hts_retro');
   }, []);
