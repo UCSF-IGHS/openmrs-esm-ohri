@@ -107,18 +107,24 @@ export const AddPatientToListModal: React.FC<{
       // evict all the patient's memberships
       // according to our usecases, there is a high chance that the current memberships will always be one
       // but we can't be sure
-      Promise.all(currentMemberships.map(membership => evictCohortMembership(membership.uuid))).then(results => {
-        showToast({
-          kind: 'success',
-          description: `Patient was successfully removed from all lists`,
+      Promise.all(currentMemberships.map(membership => evictCohortMembership(membership.uuid)))
+        .then(results => {
+          showToast({
+            kind: 'success',
+            critical: true,
+            description: `Patient was successfully removed from all lists`,
+          });
+          close();
+        })
+        .catch(error => {
+          setIsSubmitting(false);
         });
-        close();
-      });
     } else {
       addPatientToCohort(patientUuid, selectedList).then(response => {
         if (response.ok) {
           showToast({
             kind: 'success',
+            critical: true,
             description: `Patient was successfully added to ${response.data.cohort.display}`,
           });
           close();
@@ -148,21 +154,23 @@ export const AddPatientToListModal: React.FC<{
                 isSubmitting ||
                 (selectedList == 'none' && currentMemberships.length == 0)
               }>
-              <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
-              {isLoading ? loader : alreadySubscribedLists}
-              <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
+              <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
+                <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
+                {isLoading ? loader : alreadySubscribedLists}
+                <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
 
-              {isLoading ? (
-                loader
-              ) : (
-                <RadioButtonGroup
-                  legendText=""
-                  name="patient-lists"
-                  orientation="vertical"
-                  onChange={selected => setSelectedList(selected.toString())}>
-                  {availableLists}
-                </RadioButtonGroup>
-              )}
+                {isLoading ? (
+                  loader
+                ) : (
+                  <RadioButtonGroup
+                    legendText=""
+                    name="patient-lists"
+                    orientation="vertical"
+                    onChange={selected => setSelectedList(selected.toString())}>
+                    {availableLists}
+                  </RadioButtonGroup>
+                )}
+              </div>
             </Modal>,
             document.body,
           )}
