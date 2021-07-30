@@ -254,13 +254,11 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                       }}>
                       {form.pages.map((page, index) => {
                         return (
-                          // <div className={styles.pageContent}>
                           <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
                         );
                       })}
                     </OHRIFormContext.Provider>
                   </div>
-                  {/* </div> */}
                 </div>
               </div>
             </>
