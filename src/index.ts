@@ -33,7 +33,7 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^hts-home/,
+        route: /^ohri-home/,
       },
     ],
     extensions: [
