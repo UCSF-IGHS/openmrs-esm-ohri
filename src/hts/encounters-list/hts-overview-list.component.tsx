@@ -166,16 +166,25 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           </div>
           {open && (
             <ComposedModal open={open} onClose={() => handleClose()}>
-              <ModalHeader style={{ backgroundColor: '#007d79', height: '48px', marginBottom: '0px', color: '#ffffff' }}>
+              <ModalHeader
+                style={{
+                  backgroundColor: '#007d79',
+                  height: '48px',
+                  marginBottom: '0px',
+                  color: '#ffffff',
+                }}>
                 {htsRetroForm?.name}
               </ModalHeader>
               <ModalBody>
-                <OHRIForm formJson={htsRetroForm} encounterUuid={currentEncounterUuid} handleClose={handleClose} mode={currentMode} />
+                <OHRIForm
+                  formJson={htsRetroForm}
+                  encounterUuid={currentEncounterUuid}
+                  handleClose={handleClose}
+                  mode={currentMode}
+                />
               </ModalBody>
             </ComposedModal>
-          )
-          }
-
+          )}
         </>
       ) : (
         <EmptyState
