@@ -68,10 +68,12 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       );
     }
     if (rendering == 'content-switcher' || rendering == 'select' || rendering == 'toggle') {
-      return field.questionOptions.answers.find(option => option.concept == field.value.value.uuid).label;
+      // console.log(field.questionOptions.answers.find(option => option.concept == field.value.value.uuid).label)
+      // return field.questionOptions.answers.find(option => option.concept == field.value.value.uuid).label;
     }
     if (rendering == 'radio') {
-      return field.questionOptions.answers.find(option => option.concept == value).label;
+      // console.log(field.questionOptions.answers)
+      // return field.questionOptions.answers.find(option => option.concept == value).label;
     }
     return value;
   },

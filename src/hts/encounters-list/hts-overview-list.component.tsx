@@ -54,10 +54,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }, []);
 
   const launchHTSForm = () => {
-    // launchOHRIWorkSpace('ohri-forms-view-ext', {
-    //   title: htsRetroForm?.name,
-    //   state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    // });
+    setCurrentMode('enter');
     setOpen(true);
   };
   const editHTSEncounter = encounterUuid => {
@@ -104,7 +101,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               itemText={t('viewHTSEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewHTSEncounter(encounter.uuid);
+                // viewHTSEncounter(encounter.uuid);
+                setCurrentEncounterUuid(encounter.uuid);
+                setCurrentMode('view');
+                setOpen(true);
               }}
             />
             <OverflowMenuItem
