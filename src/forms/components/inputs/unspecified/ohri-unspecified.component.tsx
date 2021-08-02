@@ -4,9 +4,9 @@ import { boolean } from 'yup';
 import { OHRIFormField, RequiredType } from '../../../types';
 
 export const OHRIUnspecified: React.FC<{ question: OHRIFormField }> = ({ question }) => {
-  const handleOnChange = useCallback(e => {
-    console.log(e);
-  }, []);
+  // const handleOnChange = useCallback(e => {
+  //   // console.log(e);
+  // }, []);
   return (
     <>
       <Checkbox
