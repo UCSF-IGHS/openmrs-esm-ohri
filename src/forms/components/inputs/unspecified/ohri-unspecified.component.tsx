@@ -1,11 +1,13 @@
 import { Checkbox } from 'carbon-components-react';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { boolean } from 'yup';
 import { OHRIFormField, RequiredType } from '../../../types';
 
 export const OHRIUnspecified: React.FC<{ question: OHRIFormField }> = ({ question }) => {
+  const [checked, setChecked] = useState();
+
   const handleOnChange = useCallback(e => {
-    console.log(e);
+    setChecked(checked);
   }, []);
   return (
     <>
