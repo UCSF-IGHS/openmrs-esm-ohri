@@ -6,6 +6,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
+import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 import styles from '../_input.scss';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
@@ -55,6 +56,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
             disabled={encounterContext.sessionMode == 'view'}
           />
         ))}
+        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
       </FormGroup>
     </div>
   );

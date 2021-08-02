@@ -6,6 +6,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 
 const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -74,6 +75,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
           value={field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value}
         />
       </DatePicker>
+      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
     </div>
   );
 };

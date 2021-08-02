@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import { FormGroup, ContentSwitcher, Switch } from 'carbon-components-react';
-import { OHRIFormFieldProps } from '../../../types';
+import { OHRIFormFieldProps, RequiredType } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 
 export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -40,6 +41,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
               />
             ))}
           </ContentSwitcher>
+          {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
         </FormGroup>
       </div>
     )
