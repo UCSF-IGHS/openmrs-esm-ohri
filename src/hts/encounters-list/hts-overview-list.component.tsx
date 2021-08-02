@@ -8,20 +8,14 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import {
   ComposedModal,
   DataTableSkeleton,
-  Modal,
   ModalBody,
   ModalHeader,
   OverflowMenu,
   OverflowMenuItem,
-  Select,
-  SelectItem,
-  TextInput,
 } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
-import { observeOn } from 'rxjs/operators';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
 

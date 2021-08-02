@@ -146,11 +146,12 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
     () => ({
       patients: searchTerm ? filteredResults : patients,
       columns,
+      isLoading,
       search: { placeHolder: 'Search client list', onSearch: handleSearch, currentSearchTerm: searchTerm },
       pagination: pagination,
       autoFocus: true,
     }),
-    [searchTerm, filteredResults, patients, handleSearch, pagination],
+    [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading],
   );
 
   useEffect(() => {
