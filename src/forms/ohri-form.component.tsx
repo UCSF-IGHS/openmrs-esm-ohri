@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Column, Content, Grid, Row } from 'carbon-components-react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import cx from 'classnames';
 import { OHRIFormContext } from './ohri-form-context';
 import { openmrsObservableFetch, useCurrentPatient, useSessionUser, showToast } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +14,6 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
-// import OhriNewForm from '../ohri-form/ohri-form.component';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -226,7 +223,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                 <div>
                   <PatientBanner patient={patient} />
                 </div>
-                {/* <div className={styles.contentWrapper}> */}
                 <div className={styles.overflowContainer}>
                   <div className={styles.sidebar}>
                     <OHRIFormSidebar
