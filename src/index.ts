@@ -7,7 +7,7 @@ import {
   getSyncLifecycle,
 } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
-import { createDashboardLink, dashboardMeta } from './dashboard.meta';
+import { createDashboardFolder, createDashboardLink, dashboardMeta } from './dashboard.meta';
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -40,8 +40,30 @@ function setupOpenMRS() {
       {
         id: 'hts-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(dashboardMeta), options),
-        meta: dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(dashboardMeta.hts), options),
+        meta: dashboardMeta.hts,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'hiv-folder-side-nav',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(
+          createDashboardFolder({
+            folderTitle: 'HIV Dashboard',
+            childLinks: [
+              { name: 'HTS Summary', title: 'hts-summary', url: '/hts-summary' },
+              { name: 'Care and Treatment', title: 'care-and-treatment', url: '/care-and-treatment' },
+            ],
+          }),
+          options,
+        ),
+        meta: {
+          name: 'test-link-2',
+          slot: 'test-db-slot',
+          config: { columns: 1, type: 'grid' },
+          title: 'Test Dab',
+        },
         online: true,
         offline: true,
       },
