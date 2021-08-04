@@ -9,7 +9,7 @@ export const PatientBanner: React.FC<{ patient: any }> = ({ patient }) => {
     return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
   };
   return (
-    <div id="header-wrapper" className={styles.headerWrapper}>
+    <div className={styles.headerWrapper}>
       <div className={`${styles.column} ${styles.demo}`}>
         <div className={styles.row}>
           <span className={styles.name}>{getPatientNames()}</span>
@@ -21,6 +21,7 @@ export const PatientBanner: React.FC<{ patient: any }> = ({ patient }) => {
           </span>
         </div>
       </div>
+      <div className={styles.vl}></div>
       <div className={`${styles.column} ${styles.weight}`}>
         <div className={`${styles.row} ${styles.weightLabel}`}>
           <span>Weight</span>

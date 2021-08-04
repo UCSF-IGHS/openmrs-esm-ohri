@@ -10,8 +10,7 @@
   font-weight: 600;
   line-height: 1.4;
   color: var(--color-gray-100);
-  margin-top: 1.5rem;
-  max-Width: 25.55rem;
+  width: 100%;
 }
 
 .required{
@@ -21,8 +20,10 @@
   letter-spacing: 0.16px;
   color: var(--color-gray-70);
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .formSection {
-    margin-top: 1.438rem;
+  width: 100%;
+  margin-top: 1.438rem;
 }

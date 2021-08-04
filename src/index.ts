@@ -7,8 +7,9 @@ import {
   getSyncLifecycle,
 } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
-import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 import { createDashboardLink, dashboardMeta } from './dashboard.meta';
+import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
+
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
@@ -32,7 +33,7 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-forms/,
+        route: /^ohri-home/,
       },
     ],
     extensions: [
@@ -53,17 +54,6 @@ function setupOpenMRS() {
         }),
       },
       {
-        id: 'hts-patient-linkage-list-ext',
-        slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/client-linkage/client-linkage-form-section.component'), {
-          featureName: 'hts-patient-linkage-list',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
@@ -73,6 +63,30 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
+      },
+      {
+        id: 'hts-home-header-ext',
+        slot: 'hts-home-header-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/welcome-section/hts-welcome-section.component'), {
+          featureName: 'hts-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hts-home-tile-ext',
+        slot: 'hts-home-tiles-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/summary-tiles/hts-summary-tiles.component'), {
+          featureName: 'hts-home-tiles',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hts-home-tabs-ext',
+        slot: 'hts-home-tabs-slot',
+        load: getAsyncLifecycle(() => import('./hts/home/patient-tabs/ohri-patient-tabs.component'), {
+          featureName: 'hts-home-tabs',
+          moduleName,
+        }),
       },
       {
         id: 'hts-encounter-form-ext',
@@ -87,6 +101,39 @@ function setupOpenMRS() {
           featureName: 'ohri-forms',
           moduleName,
         }),
+      },
+      {
+        id: 'patient-hiv-status-tag',
+        slot: 'patient-banner-tags-slot',
+        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-status-tag.component'), options),
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'patient-list-ext',
+        slot: 'homepage-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/patient-list/patient-list.component'), {
+          featureName: 'patient-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'patient-list-modal',
+        slot: 'patient-actions-slot',
+        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
+          featureName: 'patient-list-modal',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hiv-hts-programme-switcher',
+        slot: 'top-nav-info-slot',
+        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        online: true,
+        offline: true,
       },
     ],
   };

@@ -19,5 +19,14 @@
         ]
       }
     }
+  },
+  "@openmrs/esm-patient-banner-app": {
+    "extensions": {
+      "patient-actions-slot": {
+        "remove": [
+          "add-patient-to-patient-list-button"
+        ]
+      }
+    }
   }
 }
