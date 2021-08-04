@@ -1,8 +1,8 @@
 {
-  "name": "Service enrolment Form",
+  "name": "Service Enrollment Form",
   "pages": [
     {
-      "label": "Service enrollment",
+      "label": "Client Profile",
       "sections": [
         {
           "label": "Client Profile",
@@ -514,7 +514,12 @@
               "id": "otherEntryPoint"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Transfer-In",
+      "sections": [
         {
           "label": "Transfer-In",
           "isExpanded": "true",
@@ -613,7 +618,12 @@
               "id": "dateOfFirstVisit"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "HIV Diagnosis",
+      "sections": [
         {
           "label": "HIV Diagnosis",
           "isExpanded": "true",
@@ -801,7 +811,12 @@
               "id": "diagnosisLocation"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Previous ARV/HAART Use",
+      "sections": [
         {
           "label": "Previous ARV/HAART Use",
           "isExpanded": "true",
@@ -929,7 +944,12 @@
               "id": "proteaseInhibitors"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Treatment Supporter",
+      "sections": [
         {
           "label": "Treatment Supporter",
           "isExpanded": "true",
