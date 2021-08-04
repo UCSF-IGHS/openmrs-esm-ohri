@@ -878,6 +878,16 @@
               "questionOptions": {
                 "rendering": "toggle",
                 "concept": "1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "toggleOptions": {
+                  "labelTrue": "Yes",
+                  "labelFalse": "No"
+                },
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "182771004"
+                  }
+                ],
                 "answers": [
                   {
                     "label": "Yes",
