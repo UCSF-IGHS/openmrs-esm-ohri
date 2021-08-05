@@ -1073,6 +1073,15 @@
               "id": "datePrepLastUsed"
             },
             {
+              "label": "Has the client used Post exposure prophylaxis (PEP)? [MISSING CONCEPT]",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "previousUseOfPep"
+            },
+            {
               "label": "When was PEP last used?",
               "type": "obs",
               "questionOptions": {
@@ -1083,11 +1092,62 @@
               "id": "datePepLastUsed"
             },
             {
-              "label": "Has the client used ARVs for the management of Hepatitis? [MISSING CONCEPT]",
+              "label": "Has the client used ARVs for the management of Hepatitis?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "906ed69c-949b-47b5-b469-2205f0da473a",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
               "id": "useOfArvs"
             },
@@ -1256,11 +1316,60 @@
               "id": "proteaseInhibitors"
             },
             {
-              "label": "Other HIV Drug Classes [MISSING CONCEPT ANSWERS]",
+              "label": "Other HIV Drug Classes",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "checkbox",
+                "concept": "3509e1d9-93d0-4a6b-b5cb-90259699b01a",
+                "answers": [
+                  {
+                    "concept": "154378AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Raltegravir",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Dolutegravir",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "154376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "maraviroc",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "75676AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Enfuvirtide",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other antiretroviral drug",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
               "id": "otherArvDrugClasses"
             }
@@ -1276,11 +1385,40 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Does the client have  a treatment supporter? [MISSING CONCEPT]",
+              "label": "Does the client have  a treatment supporter?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "0a540601-8cc4-4d18-9360-d760780f3eb1",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
               },
               "id": "hasTreatmentSupporter"
             },
