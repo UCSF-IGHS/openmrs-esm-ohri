@@ -6,25 +6,17 @@ import { postTestCounsellingCohort, preTestCounsellingCohort, waitingForHIVTestC
 
 function OHRIPatientTabs() {
   return (
-    <Row className={styles.container}>
-      <Tabs type="container">
-        <Tab id="tab-1" label="Waiting for pre-test counselling">
-          <div className={styles.tabPatientList}>
-            <CohortPatientList cohortId={preTestCounsellingCohort} cohortSlotName="pre-test-counseling-slot" />
-          </div>
-        </Tab>
-        <Tab id="tab-2" label="Waiting for HIV test">
-          <div className={styles.tabPatientList}>
-            <CohortPatientList cohortId={waitingForHIVTestCohort} cohortSlotName="waiting-for-hiv-testing-slot" />
-          </div>
-        </Tab>
-        <Tab id="tab-3" label="Waiting for post-test counselling">
-          <div className={styles.tabPatientList}>
-            <CohortPatientList cohortId={postTestCounsellingCohort} cohortSlotName="post-test-counseling-slot" />
-          </div>
-        </Tab>
-      </Tabs>
-    </Row>
+    <Tabs type="container" className={styles.tabContainer}>
+      <Tab id="tab-1" label="Waiting for pre-test counselling">
+        <CohortPatientList cohortId={preTestCounsellingCohort} cohortSlotName="pre-test-counseling-slot" />
+      </Tab>
+      <Tab id="tab-2" label="Waiting for HIV test">
+        <CohortPatientList cohortId={waitingForHIVTestCohort} cohortSlotName="waiting-for-hiv-testing-slot" />
+      </Tab>
+      <Tab id="tab-3" label="Waiting for post-test counselling">
+        <CohortPatientList cohortId={postTestCounsellingCohort} cohortSlotName="post-test-counseling-slot" />
+      </Tab>
+    </Tabs>
   );
 }
 

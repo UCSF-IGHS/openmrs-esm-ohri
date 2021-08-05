@@ -8,7 +8,6 @@ import DataTable, {
   TableRow,
 } from 'carbon-components-react/lib/components/DataTable';
 import Pagination from 'carbon-components-react/lib/components/Pagination';
-import Search from 'carbon-components-react/lib/components/Search';
 import { debounce } from 'lodash';
 import React, { useMemo } from 'react';
 import styles from './patient-table.component.scss';
@@ -26,20 +25,10 @@ const PatientTable: React.FC<PatientTableProps> = ({ patients, columns, search, 
       }),
     [patients, columns],
   );
-  const handleSearch = React.useMemo(() => debounce(searchTerm => search.onSearch(searchTerm), 300), []);
 
   return (
-    <div>
-      <div id="table-tool-bar" style={{ display: 'flex', flexDirection: 'row-reverse' }}>
-        <Search
-          id="patient-list-search"
-          labelText=""
-          placeholder={search.placeHolder}
-          onChange={evnt => handleSearch(evnt.target.value)}
-          className={styles.searchOverrides}
-        />
-      </div>
-      <DataTable rows={rows} headers={columns} isSortable={true} size="normal" useZebraStyles={true}>
+    <div className={styles.table1}>
+      <DataTable rows={rows} headers={columns} isSortable={true} size="short" useZebraStyles={true}>
         {({ rows, headers, getHeaderProps, getTableProps, onInputChange }) => (
           <TableContainer>
             <Table {...getTableProps()}>
