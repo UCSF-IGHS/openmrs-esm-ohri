@@ -87,6 +87,17 @@ function setupOpenMRS() {
         },
       },
       {
+        id: 'hts-care-and-treatment-list-ext',
+        slot: 'hts-summary-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/care-and-treatment-list.component'), {
+          featureName: 'hts-care-and-treatment-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
         id: 'hts-home-header-ext',
         slot: 'hts-home-header-slot',
         load: getAsyncLifecycle(() => import('./hts/home/welcome-section/hts-welcome-section.component'), {
