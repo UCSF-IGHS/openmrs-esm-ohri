@@ -44,7 +44,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
         className={styles.dropDownOverride}
         onChange={({ selectedItem }) => handleChange(selectedItem)}
       />
-      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
+      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} handleFieldChange={handleChange} />}
     </div>
   );
 };

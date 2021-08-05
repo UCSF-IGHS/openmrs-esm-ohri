@@ -14,7 +14,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
-
+import { validateFieldValue } from './ohri-form-validators';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -131,6 +131,23 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
   const handleFormSubmit = (values: Record<string, any>) => {
     const obsForSubmission = [];
+    let formHasErrors = false;
+    // handle field validation
+    fields
+      .filter(field => field['submission']?.specified != true)
+      .forEach(field => {
+        const error = validateFieldValue(field.value || field['submission']?.value, field);
+        if (error) {
+          field['submission'] = {
+            errors: error,
+          };
+          formHasErrors = true;
+          return;
+        }
+      });
+    if (formHasErrors) {
+      return;
+    }
     // collect observations
     fields
       .filter(field => !field.isHidden && field.type == 'obs' && field.value)
@@ -182,7 +199,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         if (onSubmit) {
           onSubmit();
         }
-
         if (encounterUuid) {
           showToast({
             description: t('updateSuccessToastDescription', 'The patient HTS record was updated'),
@@ -198,7 +214,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             critical: true,
           });
         }
-
         if (handleClose) {
           handleClose();
         }

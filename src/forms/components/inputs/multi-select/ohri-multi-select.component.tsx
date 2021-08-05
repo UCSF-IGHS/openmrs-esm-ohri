@@ -1,8 +1,9 @@
 import { FormGroup, ListItem, UnorderedList } from 'carbon-components-react';
 import MultiSelect from 'carbon-components-react/lib/components/MultiSelect';
 import { useField } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
+import { validateFieldValue } from '../../../ohri-form-validators';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
@@ -13,6 +14,31 @@ import { Concept } from '../../../../api/types';
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const [fieldError, setFieldError] = useState(null);
+  const [unspecified, setUnspecified] = useState(false);
+  const [previoulsySpecified, setPrevioulsySpecified] = useState(false);
+
+  useEffect(() => {
+    if (unspecified) {
+      setPrevioulsySpecified(true);
+      setFieldError(null);
+      setFieldValue(question.id, []);
+      onChange(question.id, null);
+      question.value = null;
+      question['submission'] = {
+        specified: true,
+        errors: null,
+      };
+    } else if (previoulsySpecified) {
+      setFieldError(validateFieldValue(field.value, question));
+    }
+  }, [unspecified]);
+
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setFieldError(question['submission']?.errors);
+    }
+  }, [question['submission']]);
 
   const questionItems = question.questionOptions.answers.map((option, index) => ({
     id: `${question.id}-${option.concept}`,
@@ -33,6 +59,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       question.id,
       selectedItems.map(selectedItem => selectedItem.concept),
     );
+    setFieldError(validateFieldValue(selectedItems, question));
 
     question.value = handler.handleFieldSubmission(
       question,
@@ -58,7 +85,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       )}
     </div>
   ) : (
-    <div className={styles.dropDownOverride}>
+    <div className={fieldError ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
       <MultiSelect
         onChange={handleSelectItemsChange}
         itemToString={item => (item ? item.text : '')}
@@ -68,6 +95,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
         label={question.label}
         titleText={question.label}
       />
+      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} setUnspecified={setUnspecified} />}
     </div>
   );
 };
