@@ -14,8 +14,12 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
+<<<<<<< HEAD
 import { OHRIFieldValidator } from './ohri-form-validator';
 import { canBeUnspecifiable } from './components/inputs/unspecified/ohri-unspecified.component';
+=======
+import { validateFieldValue } from './ohri-form-validators';
+>>>>>>> 23cc81a (Add validation constraints)
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -142,6 +146,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let formHasErrors = false;
     // handle field validation
     fields
+<<<<<<< HEAD
       .filter(field => field['submission']?.unspecified != true)
       .forEach(field => {
         const errors = OHRIFieldValidator.validate(field, values[field.id]);
@@ -149,6 +154,14 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           field['submission'] = {
             ...field['submission'],
             errors: errors,
+=======
+      .filter(field => field['submission']?.specified != true)
+      .forEach(field => {
+        const error = validateFieldValue(field.value || field['submission']?.value, field);
+        if (error) {
+          field['submission'] = {
+            errors: error,
+>>>>>>> 23cc81a (Add validation constraints)
           };
           formHasErrors = true;
           return;
