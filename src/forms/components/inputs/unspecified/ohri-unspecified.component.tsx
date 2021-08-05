@@ -1,14 +1,32 @@
 import { Checkbox } from 'carbon-components-react';
-import React, { useCallback, useState } from 'react';
-import { boolean } from 'yup';
+import React, { useCallback, useEffect, useState } from 'react';
 import { OHRIFormField, RequiredType } from '../../../types';
 
-export const OHRIUnspecified: React.FC<{ question: OHRIFormField }> = ({ question }) => {
-  const [checked, setChecked] = useState();
+export const OHRIUnspecified: React.FC<{
+  question: OHRIFormField;
+  handleFieldChange?: (value: any) => void;
+  setUnspecified?: (value: boolean) => void;
+}> = ({ question, setUnspecified }) => {
+  const [checked, setChecked] = useState(false);
 
-  const handleOnChange = useCallback(e => {
-    setChecked(checked);
+  useEffect(() => {
+    if (checked) {
+      setUnspecified && setUnspecified(true);
+    } else {
+      setUnspecified && setUnspecified(false);
+    }
+  }, [checked]);
+
+  useEffect(() => {
+    if (question.value) {
+      setChecked(false);
+    }
+  }, [question.value]);
+
+  const handleOnChange = useCallback(value => {
+    setChecked(value);
   }, []);
+
   return (
     <>
       <Checkbox
@@ -16,6 +34,7 @@ export const OHRIUnspecified: React.FC<{ question: OHRIFormField }> = ({ questio
         labelText="Unspecified"
         value="Unspecified"
         onChange={handleOnChange}
+        checked={checked}
       />
     </>
   );

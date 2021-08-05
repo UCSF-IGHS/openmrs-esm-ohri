@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { ConceptTrue } from '../constants';
+import { ConceptTrue, UnspecifiedValue } from '../constants';
 import { EncounterContext } from '../ohri-form-context';
 import { getConcept } from '../ohri-form.resource';
 import { OHRIFormField, SubmissionHandler } from '../types';
@@ -9,6 +9,9 @@ import { OHRIFormField, SubmissionHandler } from '../types';
  */
 export const ObsSubmissionHandler: SubmissionHandler = {
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {
+    if (value == UnspecifiedValue) {
+      return null;
+    }
     if (field.questionOptions.rendering == 'checkbox') {
       return multiSelectObsHandler(field, value, context);
     }

@@ -43,7 +43,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
             );
           })}
         </RadioButtonGroup>
-        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
+        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} handleFieldChange={handleChange} />}
       </FormGroup>
     </div>
   );

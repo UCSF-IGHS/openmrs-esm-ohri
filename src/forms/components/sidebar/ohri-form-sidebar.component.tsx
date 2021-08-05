@@ -31,7 +31,7 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClos
       })}
       <hr className={styles.sideBarHorizontalLine} />
       {mode != 'view' && (
-        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit" onClick={() => handleClose()}>
+        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
           Save
         </Button>
       )}
