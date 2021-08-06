@@ -3,6 +3,7 @@ import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getPatients } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
+import styles from './patient-table.component.scss';
 
 const basePath = '${openmrsSpaBase}/patient/';
 export const columns = [
@@ -135,7 +136,7 @@ const TestPatientList: React.FC<{}> = () => {
   }, [state]);
 
   return (
-    <div style={{ width: '40rem', marginBottom: '2rem' }}>
+    <div className={styles.table1}>
       {!isLoading && !patients.length ? (
         <EmptyState headerTitle="Test Patient List" displayText="patients" />
       ) : (

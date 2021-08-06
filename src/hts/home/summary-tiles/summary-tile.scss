@@ -1,17 +1,15 @@
 .desktopView{
-  visibility: visible;
+  display: flex;
 }
 .tileView {
-  visibility: hidden;
   display: none;
 }
 
 @media (max-width: 1024px) {
   .desktopView{
-    visibility: hidden;
     display: none;
   }
   .tileView {
-    visibility: visible;
+    display: flex;
   }
 }

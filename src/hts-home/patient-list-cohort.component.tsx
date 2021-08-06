@@ -4,6 +4,7 @@ import { fetchPatientsFinalHIVStatus, getCohort } from '../api/api';
 import EmptyState from '../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { basePath } from '../constants';
+import styles from './patient-table.component.scss';
 
 export const columns = [
   {
@@ -159,7 +160,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   }, [state]);
 
   return (
-    <div style={{ width: '100%', marginBottom: '2rem' }}>
+    <div className={styles.table1}>
       {!isLoading && !patients.length ? (
         <EmptyState headerTitle="Test client list" displayText="patients" />
       ) : (

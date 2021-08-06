@@ -7,6 +7,13 @@
     overflow-y: hidden;
 }
 
-.tabPatientList {
-  width: 85rem;
+.tabContainer{
+  margin-top: 16px;
+  background-color: #ffffff;
+
 }
+
+.tabContainer li button{
+  width: 100% !important;
+}
+// TODO: look into the border top color for the tabs.
