@@ -16,10 +16,6 @@ div.table1 > div > div{
 
 }
 
-// div.table1 > div > div > div > div{
-//     border: solid 1px #e0e0e0;
-// }
-
 div.table1 > div > div > div:first-child{
     height: 48px !important;
 }
@@ -35,6 +31,14 @@ div.table1 > div > div > div:nth-child(2){
 div.table1 > div > div > div:first-child > div > input{
     background-color: #fff !important;
     height: 32px !important;
+}
+
+div.table1 > div > div > div:first-child > div > button{
+    height: 32px;
+}
+
+div.table1 > div > div > div:first-child > div > button::before{
+    height: 26px;
 }
 
 div.table1 > div > div > div:first-child > div {
