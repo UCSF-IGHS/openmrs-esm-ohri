@@ -5,6 +5,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 import styles from '../_input.scss';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
@@ -42,6 +43,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
         selectedItem={field.value}
         onChange={({ selectedItem }) => handleChange(selectedItem)}
       />
+      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
     </div>
   );
 };

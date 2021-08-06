@@ -6,6 +6,7 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 
 const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -37,6 +38,7 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
           onFocus={() => setPreviousValue(field.value)}
           rows={question.questionOptions.rows || 4}
         />
+        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
       </div>
     )
   );
