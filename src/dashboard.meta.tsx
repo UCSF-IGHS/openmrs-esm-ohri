@@ -12,20 +12,7 @@ export const createDashboardLink = db => {
         </SideNavMenuItem>
         <SideNavMenuItem href={`${basePath}/${db.name}`}>Care and Treatment </SideNavMenuItem>
         <SideNavMenuItem> PMTCT </SideNavMenuItem>
-
-        {/*<div key={db.name}>*/}
-        {/*  <ConfigurableLink to={`${basePath}/${db.name}`} className="bx--side-nav__link">*/}
-        {/*    {db.title}*/}
-        {/*  </ConfigurableLink>*/}
-        {/*</div>*/}
       </SideNavMenu>
-      // <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>
-      //   <SideNavMenuItem className={styles.currentNavItem} isActive href={`${basePath}/${db.name}`}>
-      //     HTS{' '}
-      //   </SideNavMenuItem>
-      //   <SideNavMenuItem href={`${basePath}/${db.name}`}>Care and Treatment </SideNavMenuItem>
-      //   <SideNavMenuItem> PMTCT </SideNavMenuItem>
-      // </SideNavMenu>
     );
   };
   return DashboardLink;

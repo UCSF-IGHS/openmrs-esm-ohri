@@ -73,7 +73,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
     { key: 'action', header: 'Action' },
   ];
 
-  function getHtsEncounters(query: string, customRepresentation: string, encounterType: string) {
+  function getServiceEnrolmentColumns(query: string, customRepresentation: string, encounterType: string) {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
 
@@ -123,7 +123,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   }
   useEffect(() => {
     let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
-    getHtsEncounters(query, htsEncounterRepresentation, 'HTS Retrospective');
+    getServiceEnrolmentColumns(query, htsEncounterRepresentation, 'HTS Retrospective');
   }, [counter]);
 
   const headerTitle = 'Service Enrolment';

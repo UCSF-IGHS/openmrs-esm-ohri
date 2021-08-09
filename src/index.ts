@@ -46,28 +46,6 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'hiv-folder-side-nav',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(
-          createDashboardFolder({
-            folderTitle: 'HIV Dashboard',
-            childLinks: [
-              { name: 'HTS Summary', title: 'hts-summary', url: '/hts-summary' },
-              { name: 'Care and Treatment', title: 'care-and-treatment', url: '/care-and-treatment' },
-            ],
-          }),
-          options,
-        ),
-        meta: {
-          name: 'test-link-2',
-          slot: 'test-db-slot',
-          config: { columns: 1, type: 'grid' },
-          title: 'Test Dab',
-        },
-        online: true,
-        offline: true,
-      },
-      {
         id: 'hts-summary-page-menu-item-ext',
         slot: 'patient-chart-nav-menu',
         load: getAsyncLifecycle(() => import('./menu-items/hts-summary-page-link'), {
