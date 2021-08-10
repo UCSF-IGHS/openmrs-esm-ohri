@@ -17,8 +17,8 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   const questionItems = question.questionOptions.answers.map((option, index) => ({
     id: `${question.id}-${option.concept}`,
     concept: option.concept,
-    label: option.label,
-    key: option.key,
+    text: option.label,
+    key: index,
   }));
 
   let initiallySelectedQuestionItems = [];
