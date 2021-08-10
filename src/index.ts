@@ -35,6 +35,10 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^ohri-home/,
       },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^form-render-test/,
+      },
     ],
     extensions: [
       {
@@ -134,6 +138,17 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
         online: true,
         offline: true,
+      },
+      {
+        id: 'ohri-form-render-ext',
+        slot: 'form-render-json-slot',
+        load: getAsyncLifecycle(() => import('./forms/form-render/ohri-form-render.component'), {
+          featureName: 'ohri-form-render',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
       },
     ],
   };
