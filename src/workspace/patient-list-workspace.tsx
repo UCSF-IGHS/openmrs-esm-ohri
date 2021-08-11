@@ -77,7 +77,7 @@ const Overflow: React.FC<{
                 </BreadcrumbItem>
               </Breadcrumb>
             </div>
-            <div className={styles.row} style={{}}>
+            <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
@@ -94,8 +94,8 @@ const Overflow: React.FC<{
             </div>
           </div>
         </div>
+        <div className={styles.childPadding}>{children}</div>
       </div>
-      <div style={{ marginTop: '150px' }}>{children}</div>
     </div>
   );
 };

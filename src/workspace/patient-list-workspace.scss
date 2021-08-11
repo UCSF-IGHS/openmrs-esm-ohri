@@ -4,19 +4,25 @@
   border-top: 0.063rem solid $ui-03;
   border-bottom: 0.063rem solid $ui-03;
   background-color: $ui-01;
-  margin: 40px 0 0;
+  margin: 40px auto;
   color: black;
   z-index: 1;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  padding: 16px;
+  // padding: 16px;
   object-fit: contain;
+  width: 1440px;
+  height: inherit;
 }
 
 .listBanner {
   display: flex;
+  // background-color: red;
+  width: auto;
+  padding: 0 16px 16px 16px;
+  border-bottom: 1px solid  #e0e0e0;
 }
 
 .bannerTitle {
@@ -40,6 +46,16 @@
   justify-content: space-between;
   align-items: baseline;
   margin-top: 0.875rem;
+}
+
+.rowContent{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.875rem;
+  border-top: 0.063rem solid $ui-03;
+  border-bottom: 0.063rem solid $ui-03;
 }
 
 .flexRow {
@@ -68,4 +84,8 @@
 
 :global(.bx--tooltip--definition .bx--tooltip__trigger){
   border-bottom: none;
+}
+
+.childPadding {
+  padding: 32px 32px 0px 32px;
 }
