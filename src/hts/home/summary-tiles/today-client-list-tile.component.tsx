@@ -106,7 +106,7 @@ export const TodaysClientList: React.FC<{}> = () => {
 
   const pagination = useMemo(() => {
     return {
-      usePagination: true,
+      usePagination: false,
       currentPage: currentPage,
       onChange: props => {
         setCurrentPage(props.page);
