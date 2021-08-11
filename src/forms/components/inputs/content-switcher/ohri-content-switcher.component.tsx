@@ -69,9 +69,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
             ))}
           </ContentSwitcher>
         </FormGroup>
-        {canBeUnspecifiable(question) && (
-          <OHRIUnspecified question={question} handleFieldChange={handleChange} setUnspecified={setUnspecified} />
-        )}
+        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} setUnspecified={setUnspecified} />}
       </div>
     )
   );

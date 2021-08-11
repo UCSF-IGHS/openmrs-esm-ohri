@@ -1,30 +1,32 @@
 import { Checkbox } from 'carbon-components-react';
+import { useField } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
+import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormField, RequiredType } from '../../../types';
 
 export const OHRIUnspecified: React.FC<{
   question: OHRIFormField;
-  handleFieldChange?: (value: any) => void;
-  setUnspecified?: (value: boolean) => void;
+  setUnspecified: (value: boolean) => void;
 }> = ({ question, setUnspecified }) => {
-  const [checked, setChecked] = useState(false);
+  const [field, meta] = useField(`${question.id}-unspecified`);
+  const { setFieldValue } = React.useContext(OHRIFormContext);
 
   useEffect(() => {
-    if (checked) {
+    if (field.value) {
       setUnspecified && setUnspecified(true);
     } else {
       setUnspecified && setUnspecified(false);
     }
-  }, [checked]);
+  }, [field.value]);
 
   useEffect(() => {
     if (question.value) {
-      setChecked(false);
+      setFieldValue(`${question.id}-unspecified`, false);
     }
   }, [question.value]);
 
   const handleOnChange = useCallback(value => {
-    setChecked(value);
+    setFieldValue(`${question.id}-unspecified`, value);
   }, []);
 
   return (
@@ -34,7 +36,7 @@ export const OHRIUnspecified: React.FC<{
         labelText="Unspecified"
         value="Unspecified"
         onChange={handleOnChange}
-        checked={checked}
+        checked={field.value}
       />
     </>
   );
