@@ -15,6 +15,7 @@ import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
 import { validateFieldValue } from './ohri-form-validators';
+import { canBeUnspecifiable } from './components/inputs/unspecified/ohri-unspecified.component';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -54,9 +55,13 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values
     if (encounter) {
-      allFormFields.forEach(
-        field => (tempInitVals[field.id] = getHandler(field.type)?.getInitialValue(encounter, field) || ''),
-      );
+      allFormFields.forEach(field => {
+        const existingVal = getHandler(field.type)?.getInitialValue(encounter, field);
+        tempInitVals[field.id] = existingVal || '';
+        if (canBeUnspecifiable(field)) {
+          tempInitVals[`${field.id}-unspecified`] = !!!existingVal;
+        }
+      });
       setEncounterLocation(encounter.location);
     } else {
       allFormFields.forEach(field => {
@@ -64,6 +69,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           tempInitVals[field.id] = [];
         } else {
           tempInitVals[field.id] = '';
+        }
+        if (canBeUnspecifiable(field)) {
+          tempInitVals[`${field.id}-unspecified`] = false;
         }
       });
     }
