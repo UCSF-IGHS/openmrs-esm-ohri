@@ -45,6 +45,20 @@
                     "label": "Other",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "reasonForTesting"
@@ -86,9 +100,19 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "Yes"
+                  }
                 ]
               },
-              "id": "everTestedPositive"
+              "id": "everTestedForHIV"
             },
             {
               "label": "How recently has the client been tested for HIV within any of the following periods?",
@@ -138,6 +162,23 @@
                         "value": "1067"
                       }
                     ]
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "everTestedForHIV != 'Yes'"
+                    }
                   }
                 ]
               },
@@ -208,6 +249,23 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "everTestedForHIV != 'Yes'"
+                    }
+                  }
                 ]
               },
               "id": "lastHIVTestResult"
@@ -231,7 +289,7 @@
                   },
                   {
                     "concept": "166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Key population",
+                    "label": "Key/Priority Population",
                     "conceptMappings": [
                       {
                         "type": "SNOMED-CT",
@@ -244,6 +302,20 @@
                   {
                     "type": "SNOMED-CT",
                     "value": "363787002"
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
                   }
                 ]
               },
@@ -331,6 +403,19 @@
                     "label": "People Who Inject Drugs",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "Yes with Unspecified",
+                    "hide": {
+                      "hideWhenExpression": "populationType != 'Key/Priority Population'"
+                    }
+                  }
                 ]
               },
               "id": "patientPopulationType"
@@ -383,6 +468,16 @@
                         "value": "1067"
                       }
                     ]
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "Yes"
                   }
                 ]
               },
@@ -439,6 +534,19 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "Yes",
+                    "hide": {
+                      "hideWhenExpression": "clientSexualActivity != 'Yes'"
+                    }
+                  }
                 ]
               },
               "id": "unprotectedSexualIntercourse"
@@ -494,6 +602,19 @@
                     "type": "SNOMED-CT",
                     "value": "275881005"
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "Yes",
+                    "hide": {
+                      "hideWhenExpression": "clientSexualActivity != 'Yes'"
+                    }
+                  }
                 ]
               },
               "id": "clientSTIHistory"
@@ -526,6 +647,20 @@
                     "label": "Facility Level Testing",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "testingLocation"
@@ -552,9 +687,23 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
-              "id": "his-approach"
+              "id": "hts-approach"
             },
             {
               "label": "What was the specific community service delivery point?",
@@ -665,10 +814,24 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != 'Community Level testing'"
+                    }
+                  }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
               },
               "id": "serviceDeliveryPoint"
             },
@@ -761,6 +924,11 @@
                     ]
                   },
                   {
+                    "concept": "f78c35e6-7cfd-4ce7-8307-86d2fec5b631",
+                    "label": "Pediatric <5 Clinic",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other",
                     "conceptMappings": [
@@ -790,10 +958,24 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != 'Facility Level Testing'"
+                    }
+                  }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
               },
               "id": "facilityServiceDeliveryPoint"
             }
@@ -842,6 +1024,20 @@
                     "label": "No",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "preTestCounsellingConducted"
@@ -867,6 +1063,23 @@
                     "concept": "0c78532a-f2e8-4793-874e-90b0c9485cef",
                     "label": "Individual Counselling",
                     "conceptMappings": []
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "preTestCounsellingConducted != 'Yes'"
+                    }
                   }
                 ]
               },
@@ -897,6 +1110,20 @@
                     "label": "No",
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_PRETEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "preTestCounselingConsent"
@@ -907,6 +1134,20 @@
     },
     {
       "label": "TB/STI Screening",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "preTestCounselingConsent == 'No'"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "TB/STI Screening",
@@ -1031,6 +1272,20 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "tbSymptoms"
@@ -1067,6 +1322,20 @@
                     "label": "Complaints of genital sores or swollen inguinal lymph nodes with or without pain",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "stiSymptoms"
@@ -1077,6 +1346,20 @@
     },
     {
       "label": "HIV Testing",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "preTestCounselingConsent == 'No'"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "HIV Testing",
@@ -1116,6 +1399,20 @@
                     "label": "No",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "hivTestConducted"
@@ -1126,7 +1423,26 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": ""
+                "weeksList": "",
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified",
+                    "validation": ". <= today() && . >= '1/1/1980'"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "validation": ". <= today() && . >= '1/1/1980'",
+                    "hide": {
+                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                    }
+                  }
+                ]
               },
               "id": "dateTestPerformed"
             },
@@ -1177,9 +1493,26 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                    }
+                  }
                 ]
               },
-              "id": "inititalHIVTestKitName"
+              "id": "initialHIVTestKitName"
             },
             {
               "label": "What was the initial HIV test result?",
@@ -1232,6 +1565,23 @@
                     "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
                     "label": "Positive",
                     "conceptMappings": []
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                    }
                   }
                 ]
               },
@@ -1289,6 +1639,23 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "initialHIVTestKitName != 'HIV-Syphillis Duo Kit'"
+                    }
+                  }
                 ]
               },
               "id": "syphilisTestResult"
@@ -1326,6 +1693,23 @@
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
                     "conceptMappings": []
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "initialHIVTestResult != 'Positive'"
+                    }
                   }
                 ]
               },
@@ -1377,6 +1761,23 @@
                         "value": "74964007"
                       }
                     ]
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "confirmatoryHIVTestDone == 'No'"
+                    }
                   }
                 ]
               },
@@ -1434,6 +1835,23 @@
                     "label": "Positive",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "confirmatoryHIVTestDone == 'No'"
+                    }
+                  }
                 ]
               },
               "id": "confirmatoryHIVTestResult"
@@ -1471,6 +1889,23 @@
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
                     "conceptMappings": []
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "initialHIVTestResult != 'Positive' || isEmpty(confirmatoryHIVTestResult)"
+                    }
                   }
                 ]
               },
@@ -1517,6 +1952,23 @@
                         "value": "74964007"
                       }
                     ]
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "tiebreakerHIVTestDone == 'No'"
+                    }
                   }
                 ]
               },
@@ -1574,9 +2026,26 @@
                     "label": "Positive",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "initialHIVTestResult != 'Positive' || !isEmpty(confirmatoryHIVTestResult)"
+                    }
+                  }
                 ]
               },
-              "id": "tieBreakerHIVTestKitResult"
+              "id": "tieBreakerHIVTestResult"
             },
             {
               "label": "What was the final HIV test result?",
@@ -1620,6 +2089,24 @@
                     "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
                     "label": "Positive",
                     "conceptMappings": []
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                    },
+                    "validation": "(initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult == 'Positive' && . == 'Positive') || (initialHIVTestResult == 'Negative' && . == 'Negative') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult != 'Positive' && . == 'Indeterminate')"
                   }
                 ]
               },
@@ -1681,6 +2168,20 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "receivedHIVTestResult"
@@ -1719,6 +2220,23 @@
                     "label": "No",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "receivedHIVTestResult != 'Yes' || counselingSessionType != 'Couple Counselling'"
+                    }
+                  }
                 ]
               },
               "id": "resultReceivedCouple"
@@ -1745,6 +2263,23 @@
                     "label": "Discordant",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "resultReceivedCouple != 'Yes'"
+                    }
+                  }
                 ]
               },
               "id": "coupleResults"
@@ -1761,6 +2296,25 @@
                     "type": "SNOMED-CT",
                     "value": "439771001"
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified",
+                    "validation": ". <= today() && . >= '1/1/1980'"
+                  },
+                  {
+                    "intent": "HTS_HIVTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "validation": ". <= today() && . >= '1/1/1980'",
+                    "hide": {
+                      "hideWhenExpression": "receivedHIVTestResult != 'Yes'"
+                    }
+                  }
                 ]
               },
               "id": "hIVTestResultsReceivedDate"
@@ -1771,6 +2325,20 @@
     },
     {
       "label": "Recency Testing",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "hivTestConducted == 'No'"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "Recency Testing",
@@ -1795,6 +2363,16 @@
                   {
                     "label": "No",
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
                   }
                 ]
               },
@@ -1833,6 +2411,19 @@
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
                     "conceptMappings": []
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "recencyTestingConsent != 'Yes'"
+                    }
                   }
                 ]
               },
@@ -1897,6 +2488,19 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "recencyTestConducted != 'Yes'"
+                    }
+                  }
                 ]
               },
               "id": "recencyTestResult"
@@ -1907,6 +2511,20 @@
     },
     {
       "label": "Post Test Counselling",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "hivTestConducted == 'No'"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "Post Test Counselling",
@@ -1956,6 +2574,20 @@
                     "label": "No",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_POSTTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "postTestCounsellingDone"
@@ -1966,6 +2598,20 @@
     },
     {
       "label": "Referrals",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "hivTestConducted == 'No'"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "Referrals",
@@ -2048,6 +2694,16 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "referredToPreventionServices"
@@ -2124,6 +2780,16 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "referredToSRHServices"
@@ -2189,6 +2855,16 @@
                         "value": "74964007"
                       }
                     ]
+                  }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
                   }
                 ]
               },
@@ -2265,6 +2941,16 @@
                       }
                     ]
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "referredToOtherServices"
@@ -2275,6 +2961,20 @@
     },
     {
       "label": "Linkage to Care",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "finalHIVTestResult == 'Negative'"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "Linkage to Care",
@@ -2314,6 +3014,20 @@
                     "label": "No",
                     "conceptMappings": []
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_POSTTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
                 ]
               },
               "id": "linkedToCare"
@@ -2323,7 +3037,20 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "linkedToCare != 'No'"
+                    }
+                  }
+                ]
               },
               "id": "patientIdentificationNumber"
             },
@@ -2338,6 +3065,23 @@
                     "type": "PIH",
                     "value": "1392"
                   }
+                ],
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "HTS_POSTTEST",
+                    "required": "Yes"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No",
+                    "hide": {
+                      "hideWhenExpression": "finalHIVTestResult != 'Positive'"
+                    }
+                  }
                 ]
               },
               "id": "htsProviderName"
@@ -2348,7 +3092,17 @@
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "437d1e25-e7ab-481c-aabc-01f21c6cdef1",
-                "rows": 5
+                "rows": 5,
+                "behaviours": [
+                  {
+                    "intent": "HTS_RETROSPECTIVE",
+                    "required": "Yes with Unspecified"
+                  },
+                  {
+                    "intent": "*",
+                    "required": "No"
+                  }
+                ]
               },
               "id": "htsProviderRemarks"
             }
