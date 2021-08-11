@@ -56,7 +56,9 @@ const Overflow: React.FC<{
       <div className={styles.container}>
         <div className={styles.listBanner}>
           <div className={styles.listInfo}>
-            <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
+            <div
+              className={styles.row}
+              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem', paddingLeft: '16px' }}>
               <Breadcrumb>
                 <BreadcrumbItem className={''}>
                   <a
