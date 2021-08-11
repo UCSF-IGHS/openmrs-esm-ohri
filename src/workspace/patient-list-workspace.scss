@@ -3,9 +3,9 @@
 .container {
   border-top: 0.063rem solid $ui-03;
   border-bottom: 0.063rem solid $ui-03;
-  background-color: $ui-01;
+  background-color: $ohri-home-background;
   margin: 40px auto;
-  color: black;
+  color: $ui-05;
   z-index: 1;
   position: fixed;
   top: 0;
@@ -20,7 +20,8 @@
 .listBanner {
   display: flex;
   width: auto;
-  border-bottom: 1px solid  #e0e0e0;
+  border-bottom: 1px solid $ui-03;
+  background-color: $ui-01;
 }
 
 .bannerTitle {
@@ -35,7 +36,7 @@
 
 .demographics {
   @include carbon--type-style("body-short-01");
-  color: #525252;
+  color: $color-gray-70;
   padding-left: 16px;
   margin-bottom: 12px;
 }
