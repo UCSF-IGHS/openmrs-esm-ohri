@@ -1,11 +1,4 @@
-import {
-  registerBreadcrumbs,
-  defineConfigSchema,
-  getAsyncLifecycle,
-  provide,
-  Config,
-  getSyncLifecycle,
-} from '@openmrs/esm-framework';
+import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import { createDashboardLink, hts_dashboardMeta, caretreament_dashboardMeta } from './dashboard.meta';
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
@@ -157,17 +150,6 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
         online: true,
         offline: true,
-      },
-      {
-        id: 'ohri-form-render-ext',
-        slot: 'form-render-json-slot',
-        load: getAsyncLifecycle(() => import('./forms/form-render/ohri-form-render.component'), {
-          featureName: 'ohri-form-render',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
       },
     ],
   };

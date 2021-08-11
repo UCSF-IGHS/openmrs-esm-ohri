@@ -3,8 +3,9 @@
 .mainWrapper {
   max-width: 1440px;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: $ui-background;
   padding: 16px !important;
+  margin: auto;
 }
 
 .headerText {
@@ -17,10 +18,6 @@
   font-weight: 400;
   padding-bottom: 4px;
   margin: auto;
-}
-
-.widgetContainer {
-  background-color: $ui-background;
 }
 
 .widgetHeaderContainer {
