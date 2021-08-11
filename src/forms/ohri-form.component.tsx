@@ -188,6 +188,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
             critical: true,
           });
         }
+
+        if (handleClose) {
+          handleClose();
+        }
       }
     });
   };
