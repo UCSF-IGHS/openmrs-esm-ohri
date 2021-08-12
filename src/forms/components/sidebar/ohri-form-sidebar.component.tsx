@@ -1,8 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
+<<<<<<< HEAD
 import { Button, Toggle } from 'carbon-components-react';
 import { isEmpty } from '../../ohri-form-validator';
+=======
+import { Button } from 'carbon-components-react';
+>>>>>>> 4112986 (fixing linter failing test)
 
 function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose, values, setValues }) {
   const [activeLink, setActiveLink] = useState(selectedPage);
