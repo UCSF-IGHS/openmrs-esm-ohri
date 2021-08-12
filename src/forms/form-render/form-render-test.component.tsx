@@ -11,6 +11,7 @@ function FormRenderTest() {
   const { t } = useTranslation();
   const headerTitle = 'Form Render Test';
   const [currentMode, setCurrentMode] = useState<SessionMode>('view');
+  const [formInput, setFormInput] = useState('');
 
   const textareaProps = {
     labelText: 'You can either type or paste well formatted json.',
