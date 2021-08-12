@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
-import { Button, SideNav, SideNavItems, SideNavLink } from 'carbon-components-react';
+import { Button } from 'carbon-components-react';
 
 function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose }) {
   const [activeLink, setActiveLink] = useState(selectedPage);
