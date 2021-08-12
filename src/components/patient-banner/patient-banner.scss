@@ -8,6 +8,7 @@
     position:sticky;
     background: #ffffff;
     z-index: -1;
+    border-bottom: 1px solid #c6c6c6;
 }
 
 .row {
@@ -16,10 +17,6 @@
     align-items: baseline;
 }
 
-.vl{
-    border-left: 0.163rem solid #c6c6c6;
-    height: 100%;
-}
 
 /*
 * Demographics
