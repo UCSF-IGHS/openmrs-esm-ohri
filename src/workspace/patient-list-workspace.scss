@@ -3,7 +3,7 @@
 .container {
   border-top: 0.063rem solid $ui-03;
   border-bottom: 0.063rem solid $ui-03;
-  background-color: $ohri-home-background;
+  background-color: $ui-01;
   margin: 40px auto;
   color: $ui-05;
   z-index: 1;
@@ -21,7 +21,7 @@
   display: flex;
   width: auto;
   border-bottom: 1px solid $ui-03;
-  background-color: $ui-01;
+  // background-color: $ui-03;
 }
 
 .bannerTitle {
@@ -89,4 +89,5 @@
 
 .childPadding {
   padding: 32px 32px 0px 32px;
+  // background-color: $ui-03;
 }
