@@ -65,7 +65,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       )}
     </div>
   ) : (
-    <div>
+    <div className={styles.dropDownOverride}>
       <MultiSelect
         onChange={handleSelectItemsChange}
         itemToString={item => (item ? item.text : '')}
