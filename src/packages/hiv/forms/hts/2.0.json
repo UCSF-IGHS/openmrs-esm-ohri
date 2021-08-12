@@ -49,16 +49,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -105,12 +105,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "Yes"
+                    "required": "true"
                   }
                 ]
               },
@@ -169,16 +169,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "everTestedForHIV != 'Yes'"
                     }
@@ -256,16 +259,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "everTestedForHIV != 'Yes'"
                     }
@@ -311,16 +317,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -412,12 +418,15 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "*",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true",
                     "hide": {
                       "hideWhenExpression": "populationType != 'Key/Priority Population'"
@@ -480,12 +489,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "Yes"
+                    "required": "true"
                   }
                 ]
               },
@@ -546,12 +555,15 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "*",
-                    "required": "Yes",
+                    "required": "true",
                     "hide": {
                       "hideWhenExpression": "clientSexualActivity != 'Yes'"
                     }
@@ -615,12 +627,15 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "*",
-                    "required": "Yes",
+                    "required": "true",
                     "hide": {
                       "hideWhenExpression": "clientSexualActivity != 'Yes'"
                     }
@@ -661,16 +676,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -702,16 +717,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -830,16 +845,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != 'Community Level testing'"
                     }
@@ -975,16 +993,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != 'Facility Level Testing'"
                     }
@@ -1042,16 +1063,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -1083,16 +1104,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "preTestCounsellingConducted != 'Yes'"
                     }
@@ -1130,16 +1154,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_PRETEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -1293,17 +1317,17 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -1345,17 +1369,17 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -1424,16 +1448,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -1449,21 +1473,34 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true",
-                    "validation": ". <= today() && . >= '1/1/1980'"
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    },
+                    "validators": [
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      }
+                    ]
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
-                    "validation": ". <= today() && . >= '1/1/1980'",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "hivTestConducted != 'Yes'"
-                    }
+                    },
+                    "validators": [
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1520,16 +1557,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "hivTestConducted != 'Yes'"
                     }
@@ -1594,16 +1634,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "hivTestConducted != 'Yes'"
                     }
@@ -1668,16 +1711,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "initialHIVTestKitName != 'HIV-Syphillis Duo Kit'"
                     }
@@ -1724,16 +1770,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "initialHIVTestResult != 'Positive'"
                     }
@@ -1793,16 +1842,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "confirmatoryHIVTestDone == 'No'"
                     }
@@ -1867,16 +1919,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "confirmatoryHIVTestDone == 'No'"
                     }
@@ -1923,16 +1978,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "initialHIVTestResult != 'Positive' || isEmpty(confirmatoryHIVTestResult)"
                     }
@@ -1987,17 +2045,20 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "tiebreakerHIVTestDone == 'No'"
                     }
@@ -2062,16 +2123,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "initialHIVTestResult != 'Positive' || !isEmpty(confirmatoryHIVTestResult)"
                     }
@@ -2127,20 +2191,28 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "hivTestConducted != 'Yes'"
                     },
-                    "validation": "(initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult == 'Positive' && . == 'Positive') || (initialHIVTestResult == 'Negative' && . == 'Negative') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult != 'Positive' && . == 'Indeterminate')"
+                    "validators": [
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "(initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult == 'Positive' && myValue != 'Positive') || (initialHIVTestResult == 'Negative' && myValue != 'Negative') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult != 'Positive' && myValue != 'Indeterminate') || (!isEmpty(tieBreakerHIVTestResult) && myValue != tieBreakerHIVTestResult)"
+                      }
+                    ]
                   }
                 ]
               },
@@ -2206,16 +2278,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -2259,16 +2331,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "receivedHIVTestResult != 'Yes' || counselingSessionType != 'Couple Counselling'"
                     }
@@ -2303,16 +2378,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "resultReceivedCouple != 'Yes'"
                     }
@@ -2337,21 +2415,34 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true",
-                    "validation": ". <= today() && . >= '1/1/1980'"
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    },
+                    "validators": [
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      }
+                    ]
                   },
                   {
                     "intent": "HTS_HIVTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
-                    "validation": ". <= today() && . >= '1/1/1980'",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "receivedHIVTestResult != 'Yes'"
-                    }
+                    },
+                    "validators": [
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      }
+                    ]
                   }
                 ]
               },
@@ -2406,12 +2497,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -2455,12 +2546,15 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "recencyTestingConsent != 'Yes'"
                     }
@@ -2532,12 +2626,15 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "recencyTestConducted != 'Yes'"
                     }
@@ -2619,16 +2716,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_POSTTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -2740,12 +2837,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -2827,12 +2924,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -2904,12 +3001,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -2990,12 +3087,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -3064,16 +3161,16 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "HTS_POSTTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
@@ -3088,12 +3185,15 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "linkedToCare != 'No'"
                     }
@@ -3117,16 +3217,19 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
-                    "unspecified": "true"
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
                   },
                   {
                     "intent": "HTS_POSTTEST",
-                    "required": "Yes"
+                    "required": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No",
+                    "required": "false",
                     "hide": {
                       "hideWhenExpression": "finalHIVTestResult != 'Positive'"
                     }
@@ -3145,12 +3248,12 @@
                 "behaviours": [
                   {
                     "intent": "HTS_RETROSPECTIVE",
-                    "required": "Yes",
+                    "required": "true",
                     "unspecified": "true"
                   },
                   {
                     "intent": "*",
-                    "required": "No"
+                    "required": "false"
                   }
                 ]
               },
