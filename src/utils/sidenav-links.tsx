@@ -7,7 +7,7 @@ const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
-      <SideNavMenu title="HIV" className={styles.noMarker}>
+      <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>
         <SideNavMenuItem
           className={isActiveLink(db.hts.name) ? styles.currentNavItem : ''}
           href={`${basePath}/${db.hts.name}`}>
