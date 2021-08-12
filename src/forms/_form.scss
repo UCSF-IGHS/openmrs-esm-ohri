@@ -33,12 +33,13 @@
 .overflowContent {
   height: auto;
   margin-left: 14rem;
-  padding-bottom: 20rem;
+  padding-bottom: 40rem;
   position: fixed;
   top: 185px;
   bottom: 0;
   overflow-y: scroll;
   max-width: 100%;
+  padding-left: 10px;
 }
 
 @media (max-width: 1024px) {
