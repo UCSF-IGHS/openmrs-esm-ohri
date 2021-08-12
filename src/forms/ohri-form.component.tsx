@@ -15,6 +15,8 @@ import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
 import { OHRIFieldValidator } from './ohri-form-validator';
+import { canBeUnspecifiable } from './components/inputs/unspecified/ohri-unspecified.component';
+
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -22,13 +24,22 @@ interface OHRIFormProps {
   encounterUuid?: string;
   mode?: SessionMode;
   handleClose?: any;
+  patientUUID?: string;
 }
 
-const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSubmit, onCancel, handleClose }) => {
+const OHRIForm: React.FC<OHRIFormProps> = ({
+  formJson,
+  encounterUuid,
+  mode,
+  onSubmit,
+  onCancel,
+  handleClose,
+  patientUUID,
+}) => {
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
   const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
-  const [, patient] = useCurrentPatient();
+  const [, patient] = useCurrentPatient(patientUUID);
   const session = useSessionUser();
   const [initialValues, setInitialValues] = useState({});
   const encDate = new Date();
@@ -212,7 +223,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
             kind: 'success',
             critical: true,
           });
-        } 
+        }
         if (handleClose) {
           handleClose();
         }
