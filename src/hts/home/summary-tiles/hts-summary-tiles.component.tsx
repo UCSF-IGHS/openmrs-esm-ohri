@@ -28,7 +28,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       onClick: () => {
         launchWorkSpace("Today's clients", <TodaysClientList />, {
           numberOfClients: todayPatientCount,
-          subTitle: "A list of today's clients",
+          subTitle: "Today's clients",
           dateLastUpdated: '--',
         });
       },
@@ -41,7 +41,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       onClick: () => {
         launchWorkSpace('Positive in last 14 days', <PositiveInLast14Days />, {
           numberOfClients: positiveInLast14Days,
-          subTitle: 'A list of clients who tested positive in the last 14 days',
+          subTitle: 'Clients who tested positive in the last 14 days',
           dateLastUpdated: '--',
         });
       },
@@ -54,7 +54,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       onClick: () => {
         launchWorkSpace('Linked to care in last 14 days', <LinkedToCareInLast14Days />, {
           numberOfClients: linkedToCareInLast14Days,
-          subTitle: 'A list of clients linked to care in the last 14 days',
+          subTitle: 'Clients linked to care in the last 14 days',
           dateLastUpdated: '--',
         });
       },

@@ -104,7 +104,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
 
   const pagination = useMemo(() => {
     return {
-      usePagination: true,
+      usePagination: false,
       currentPage: currentPage,
       onChange: props => {
         setCurrentPage(props.page);
