@@ -42,7 +42,7 @@ const Overflow: React.FC<{
         top: '0px',
         left: '0px',
         zIndex: 9001,
-        backgroundColor: '#ededed',
+        backgroundColor: '#e0e0e0',
         color: '#ededed',
         padding: '1rem 2rem',
         marginTop: '48px',
