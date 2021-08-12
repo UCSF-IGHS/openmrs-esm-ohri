@@ -6,11 +6,6 @@
   overscroll-behavior: contain;
 }
 
-/* an arbitrary container of fixed height */
-.fixedContainer {
-  // position: fixed;
-}
-
 /* this is the flex container that will take the rest of the height */
 .contentWrapper {
   display: flex;
@@ -37,10 +32,10 @@
 /* the overflow content itself */
 .overflowContent {
   height: auto;
-  margin-left: 13rem;
-  padding-bottom: 40rem;
+  margin-left: 14rem;
+  padding-bottom: 20rem;
   position: fixed;
-  top: 140px;
+  top: 185px;
   bottom: 0;
   overflow-y: scroll;
   max-width: 100%;
@@ -50,7 +45,7 @@
   .overflowContent {
     height: auto;
     margin-left: 13rem;
-    padding-bottom: 40rem;
+    padding-bottom: 20rem;
     position: fixed;
     top: 140px;
     bottom: 0;
@@ -71,7 +66,7 @@
   .overflowContent {
     height: auto;
     margin-left: 13rem;
-    padding-bottom: 40rem;
+    padding-bottom: 20rem;
     position: fixed;
     top: 140px;
     bottom: 0;
