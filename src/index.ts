@@ -1,6 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
-import { createDashboardLink, dashboardMeta } from './dashboard.meta';
+import { createDashboardLink, hts_dashboardMeta, caretreament_dashboardMeta } from './dashboard.meta';
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -37,8 +37,16 @@ function setupOpenMRS() {
       {
         id: 'hts-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(dashboardMeta), options),
-        meta: dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
+        meta: hts_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'caretreatment-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(caretreament_dashboardMeta), options),
+        meta: caretreament_dashboardMeta,
         online: true,
         offline: true,
       },
@@ -54,6 +62,17 @@ function setupOpenMRS() {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
+          featureName: 'hts-patient-encounters-list',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'service-enrollment-encounters-list-ext',
+        slot: 'care-treatment-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/encounters-list/service-enrollment.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
