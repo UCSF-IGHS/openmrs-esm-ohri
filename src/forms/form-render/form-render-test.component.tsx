@@ -1,18 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Column, Form, Row, TextArea } from 'carbon-components-react';
+import React, { useState } from 'react';
+import { Button, Column, Dropdown, Form, Row, TextArea } from 'carbon-components-react';
 import styles from './form-render.scss';
-import { useTranslation } from 'react-i18next';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
-import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../ohri-form.component';
 
 function FormRenderTest() {
-  const { t } = useTranslation();
   const headerTitle = 'Form Render Test';
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
-  const [isLoading, setIsLoading] = useState(false); // do we still need this?
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
+  const [programInput, setProgramInput] = useState('');
+  const [formIntentInput, setFormIntentInput] = useState('');
+  const [errorMessage, setErrorMessage] = useState<any>();
 
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
 
@@ -25,15 +24,55 @@ function FormRenderTest() {
     rows: 20,
   };
 
-  const handleInputChange = e => {
-    setFormInput(JSON.parse(e.target.value));
+  const programs = [
+    {
+      id: 'HTS',
+      text: 'HTS',
+    },
+    {
+      id: 'Care and Treatment',
+      text: 'Care and Treatment',
+    },
+  ];
+
+  const formIntents = [
+    {
+      id: 'HTS_RETROSPECTIVE',
+      text: 'HTS RETROSPECTIVE',
+    },
+    {
+      id: 'HTS_PRETEST',
+      text: 'HTS PRETEST',
+    },
+    {
+      id: 'HTS_HIVTEST',
+      text: 'HTS HIVTEST',
+    },
+    {
+      id: 'HTS_POSTTEST',
+      text: 'HTS POSTTEST',
+    },
+  ];
+
+  const updateProgramInput = e => {
+    setProgramInput(e.selectedItem.id);
   };
 
-  useEffect(() => {
-    // if (!page) setIsLoading(true);
-    // renderForm(jsonInput);
-    // setIsLoading(false);
-  }, []);
+  const updateFormIntentInput = e => {
+    setFormIntentInput(e.selectedItem.id);
+  };
+
+  const updateJsonInput = e => {
+    try {
+      setFormInput(JSON.parse(e.target.value));
+    } catch (err) {
+      setErrorMessage(err.toString);
+    }
+  };
+
+  const handleFormSubmission = e => {
+    // TODO pass program and form intent
+  };
 
   return (
     <div className={styles.container}>
@@ -44,10 +83,43 @@ function FormRenderTest() {
         <Row>
           <Column lg={6} md={6} sm={12} style={{ borderRight: '1em' }}>
             <h4>Enter Json</h4>
-            <TextArea {...textareaProps} onChange={handleInputChange} />
+            <Form
+              action=""
+              onSubmit={e => {
+                e.preventDefault();
+                handleFormSubmission(e);
+              }}>
+              <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
+
+              <div style={{ width: 400 }}>
+                <Dropdown
+                  id="default"
+                  titleText="Programs"
+                  label="--Select Program"
+                  items={programs}
+                  itemToString={item => (item ? item.text : '')}
+                  onChange={updateProgramInput}
+                />
+              </div>
+
+              <div style={{ width: 400 }}>
+                <Dropdown
+                  id="default"
+                  titleText="Form Intent"
+                  label="--Select Form Intent"
+                  items={formIntents}
+                  itemToString={item => (item ? item.text : '')}
+                  onChange={updateFormIntentInput}
+                />
+              </div>
+              <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
+                Render
+              </Button>
+            </Form>
           </Column>
-          <Column lg={6} md={6} sm={12} style={{ border: '1em' }}>
-            <h5>Rendering Form...</h5>
+          <Column lg={6} md={6} sm={12} style={{ border: '1em', minHeight: '200px', backgroundColor: '#F4F4F4' }}>
+            <h6>Form Render</h6>
+            <h5 style={{ color: 'orange' }}>{errorMessage}</h5>
             {formInput && <OHRIForm formJson={formInput} patientUUID={patientUUID} />}
           </Column>
         </Row>
