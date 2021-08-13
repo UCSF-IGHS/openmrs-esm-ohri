@@ -14,7 +14,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
-import { validateFieldValue } from './ohri-form-validators';
+import { OHRIFieldValidator } from './ohri-form-validator';
 import { canBeUnspecifiable } from './components/inputs/unspecified/ohri-unspecified.component';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -133,12 +133,13 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
     let formHasErrors = false;
     // handle field validation
     fields
-      .filter(field => field['submission']?.specified != true)
+      .filter(field => field['submission']?.unspecified != true)
       .forEach(field => {
-        const error = validateFieldValue(field.value || field['submission']?.value, field);
-        if (error) {
+        const errors = OHRIFieldValidator.validate(field, values[field.id]);
+        if (errors.length) {
           field['submission'] = {
-            errors: error,
+            ...field['submission'],
+            errors: errors,
           };
           formHasErrors = true;
           return;
@@ -259,6 +260,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                       mode={mode}
                       onCancel={onCancel}
                       handleClose={handleClose}
+                      values={props.values}
+                      setValues={props.setValues}
                     />
                   </div>
                   <div className={styles.overflowContent}>

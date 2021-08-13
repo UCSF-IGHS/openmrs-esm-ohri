@@ -6,41 +6,26 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
-import { validateFieldValue } from '../../../ohri-form-validators';
+import { canBeUnspecifiable } from '../unspecified/ohri-unspecified.component';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
-  const [fieldError, setFieldError] = useState(null);
-  const [unspecified, setUnspecified] = useState(false);
-  const [previoulsySpecified, setPrevioulsySpecified] = useState(false);
-
-  useEffect(() => {
-    if (unspecified) {
-      setPrevioulsySpecified(true);
-      setFieldError(null);
-      setFieldValue(question.id, null);
-      onChange(question.id, null);
-      question.value = null;
-      question['submission'] = {
-        specified: true,
-        errors: null,
-      };
-    } else if (previoulsySpecified) {
-      setFieldError(validateFieldValue(field.value, question));
-    }
-  }, [unspecified]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
-      setFieldError(question['submission']?.errors);
+      setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
 
   field.onBlur = () => {
-    setFieldError(validateFieldValue(field.value, question));
+    if (field.value && canBeUnspecifiable(question)) {
+      setFieldValue(`${question.id}-unspecified`, false);
+    }
+    setErrors(OHRIFieldValidator.validate(question, field.value));
     if (previousValue !== field.value) {
       onChange(question.id, field.value);
       question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
@@ -55,7 +40,7 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   ) : (
     !question.isHidden && (
       <div className={styles.formField}>
-        <div className={fieldError ? styles.errorLabel : ''}>
+        <div className={errors.length ? styles.errorLabel : ''}>
           <TextInput
             {...field}
             id={question.id}
@@ -66,7 +51,6 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
             onFocus={() => setPreviousValue(field.value)}
           />
         </div>
-        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} setUnspecified={setUnspecified} />}
       </div>
     )
   );
