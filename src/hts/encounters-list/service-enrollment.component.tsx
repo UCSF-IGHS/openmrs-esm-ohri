@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import styles from './hts-overview-list.scss';
+import styles from './care-and-treatment-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
@@ -12,14 +12,16 @@ import {
   ModalHeader,
   OverflowMenu,
   OverflowMenuItem,
+  Tab,
+  Tabs,
 } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-interface HtsOverviewListProps {
+
+interface CareAndTreatmentProps {
   patientUuid: string;
 }
 
@@ -29,7 +31,7 @@ export const htsEncounterRepresentation =
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
-const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
+const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,32 +50,26 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }, []);
 
   const launchHTSForm = () => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    });
+    setCurrentEncounterUuid(null);
+    setCurrentMode('enter');
+    setOpen(true);
   };
   const editHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    });
+    setCurrentEncounterUuid(encounterUuid);
+    setCurrentMode('edit');
+    setOpen(true);
   };
   const viewHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      encounterUuid: encounterUuid,
-      mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
-    });
+    setCurrentEncounterUuid(encounterUuid);
+    setCurrentMode('view');
+    setOpen(true);
   };
 
   const tableHeaders = [
-    { key: 'date', header: 'Date of HIV Test', isSortable: true },
-    { key: 'location', header: 'Location' },
-    { key: 'result', header: 'HIV Test result' },
-    { key: 'provider', header: 'HTS Provider' },
+    { key: 'date', header: 'Date of service enrolment', isSortable: true },
+    { key: 'location', header: 'Description of client' },
+    { key: 'result', header: 'Population category' },
+    { key: 'provider', header: 'Date confirmed positive' },
     { key: 'action', header: 'Action' },
   ];
 
@@ -110,10 +106,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           </OverflowMenu>
         );
 
-        const HIVTestObservation = encounter.obs.find(
-          observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
-        );
-
         rows.push({
           id: encounter.uuid,
           date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
@@ -134,7 +126,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     getHtsEncounters(query, htsEncounterRepresentation, 'HTS Retrospective');
   }, [counter]);
 
-  const headerTitle = 'HTS Sessions';
+  const headerTitle = 'Service Enrolment';
 
   const handleClose = () => {
     setOpen(false);
@@ -146,24 +138,46 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
         <>
-          <div className={styles.widgetContainer}>
-            <div className={styles.widgetHeaderContainer}>
-              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <div className={styles.toggleButtons}>
-                <Button
-                  kind="ghost"
-                  renderIcon={Add16}
-                  iconDescription="New"
-                  onClick={e => {
-                    e.preventDefault();
-                    launchHTSForm();
-                  }}>
-                  {t('add', 'New')}
-                </Button>
-              </div>
-            </div>
-            <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
+          <div className={styles.newServiceEnrolmentBtn}>
+            <Button
+              kind="ghost"
+              renderIcon={Add16}
+              iconDescription="New"
+              onClick={e => {
+                e.preventDefault();
+                launchHTSForm();
+              }}>
+              {t('add', 'New')}
+            </Button>
           </div>
+          <div className={styles.widgetContainer}>
+            <Tabs type="container">
+              <Tab id="tab-1" label="Service Enrolment">
+                <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
+              </Tab>
+            </Tabs>
+          </div>
+          {open && (
+            <ComposedModal open={open} onClose={() => handleClose()}>
+              <ModalHeader
+                style={{
+                  backgroundColor: '#007d79',
+                  height: '48px',
+                  marginBottom: '0px',
+                  color: '#ffffff',
+                }}>
+                {htsRetroForm?.name}
+              </ModalHeader>
+              <ModalBody>
+                <OHRIForm
+                  formJson={htsRetroForm}
+                  encounterUuid={currentEncounterUuid}
+                  handleClose={handleClose}
+                  mode={currentMode}
+                />
+              </ModalBody>
+            </ComposedModal>
+          )}
         </>
       ) : (
         <EmptyState
@@ -176,4 +190,4 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   );
 };
 
-export default HtsOverviewList;
+export default CareAndTreatmentList;

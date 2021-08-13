@@ -14,6 +14,14 @@
 
 .formInputField {
     @extend .formField;
+    width: 90%;
+}
+
+.formInputField > div > div > label{
+    width: 90% !important;
+}
+
+.dropDownOverride{
     width: $ohri-input-width;
 }
 
@@ -33,14 +41,14 @@
 }
 
 .selectedOption button {
-background-color: #ffffff;
+    background-color: $ui-01;
 }
 
 .switchOverrides {
-background-color: #edf5ff !important;
-color: #0f62fe !important;
-padding: 0 0 0 1rem;
-border: solid 1px #0f62fe !important;
+    background-color: #edf5ff !important;
+    color: #0f62fe !important;
+    padding: 0 0 0 1rem;
+    border: solid 1px #0f62fe !important;
 }
 
 .switchOverrides button:focus {
@@ -52,36 +60,36 @@ border: solid 1px #0f62fe !important;
 }
 
 .switchOverridesNone {
-background-color: #ffffff !important;
-padding: 0 0 0 1rem;
-border: solid 1px #a6c8ff !important;
+    background-color: $ui-01 !important;
+    padding: 0 0 0 1rem;
+    border: solid 1px #a6c8ff !important;
 }
 
 .radioButton_ohri input[type="radio"] {
     opacity : 0 !important; 
     position: fixed;
     width: 0;
-    }
+}
     
 .radioButton_ohri  label {
     display: inline-block;
     border: 1px solid #a6c8ff;
-    color: #525252;
+    color: $color-gray-70;
     padding: 0.688rem 1rem;
     padding-right: 3rem;
     border-radius: 4px 0 0 4px;
-    background-color: #ffffff;
+    background-color: $ui-01;
 }
 
 .radioButton_ohri  label:last-child {
-margin-left: -5px;
-border-radius: 0 4px 4px 0;
+    margin-left: -5px;
+    border-radius: 0 4px 4px 0;
 }
 
 .radioButton_ohri input[type="radio"]:checked + label {
-color: #0f62fe;
-border-color: #0f62fe;
-background-color: #edf5ff;
+    color: #0f62fe;
+    border-color: #0f62fe;
+    background-color: #edf5ff;
 }
 
 .radioButton_ohri > .bx--radio-button-wrapper {
@@ -94,4 +102,13 @@ background-color: #edf5ff;
 
 .textInputOverrides label {
     font-size: 0.875rem !important;
+}
+
+.unspecified > div label {
+    font-size: 12px;
+    color: $color-gray-70;
+}
+
+.errorLegend legend, .errorLabel label {
+    color: #da1e28
 }
