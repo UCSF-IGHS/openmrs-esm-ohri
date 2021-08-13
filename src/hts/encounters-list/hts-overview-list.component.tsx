@@ -18,7 +18,7 @@ import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
-
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 interface HtsOverviewListProps {
   patientUuid: string;
 }
@@ -48,19 +48,25 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }, []);
 
   const launchHTSForm = () => {
-    setCurrentEncounterUuid(null);
-    setCurrentMode('enter');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsRetroForm?.name,
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    });
   };
   const editHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('edit');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsRetroForm?.name,
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    });
   };
   const viewHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('view');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsRetroForm?.name,
+      encounterUuid: encounterUuid,
+      mode: 'view',
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    });
   };
 
   const tableHeaders = [
@@ -158,27 +164,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
-          {open && (
-            <ComposedModal open={open} onClose={() => handleClose()}>
-              <ModalHeader
-                style={{
-                  backgroundColor: '#007d79',
-                  height: '48px',
-                  marginBottom: '0px',
-                  color: '#ffffff',
-                }}>
-                {htsRetroForm?.name}
-              </ModalHeader>
-              <ModalBody>
-                <OHRIForm
-                  formJson={htsRetroForm}
-                  encounterUuid={currentEncounterUuid}
-                  handleClose={handleClose}
-                  mode={currentMode}
-                />
-              </ModalBody>
-            </ComposedModal>
-          )}
         </>
       ) : (
         <EmptyState
