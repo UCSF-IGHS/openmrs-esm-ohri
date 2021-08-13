@@ -70,23 +70,23 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "reasonForTesting"
             },
             {
@@ -144,19 +144,19 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "true"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "true"
+                }
+              ],
               "id": "everTestedForHIV"
             },
             {
@@ -208,29 +208,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "durationSinceLastHIVTest"
             },
             {
@@ -298,29 +298,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "lastHIVTestResult"
             },
             {
@@ -356,23 +356,23 @@
                     "type": "SNOMED-CT",
                     "value": "363787002"
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "populationType"
             },
             {
@@ -457,26 +457,26 @@
                     "label": "People Who Inject Drugs",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "*",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
               "id": "patientPopulationType"
             }
           ]
@@ -546,19 +546,19 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "true"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "true"
+                }
+              ],
               "id": "clientSexualActivity"
             },
             {
@@ -630,25 +630,25 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "*",
-                    "required": "true",
-                    "hide": {
-                      "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "unprotectedSexualIntercourse"
             },
             {
@@ -720,25 +720,25 @@
                     "type": "SNOMED-CT",
                     "value": "275881005"
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "*",
-                    "required": "true",
-                    "hide": {
-                      "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "clientSTIHistory"
             }
           ]
@@ -769,23 +769,23 @@
                     "label": "Facility Level Testing",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "testingLocation"
             },
             {
@@ -810,23 +810,23 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "hts-approach"
             },
             {
@@ -938,29 +938,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '42dd1e18-00cb-471c-911c-cb254d5b01a5'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '42dd1e18-00cb-471c-911c-cb254d5b01a5'"
+                  }
+                }
+              ],
               "id": "serviceDeliveryPoint"
             },
             {
@@ -1086,29 +1086,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
+                  }
+                }
+              ],
               "id": "facilityServiceDeliveryPoint"
             }
           ]
@@ -1156,23 +1156,23 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "preTestCounsellingConducted"
             },
             {
@@ -1197,29 +1197,29 @@
                     "label": "Individual Counselling",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "counselingSessionType"
             },
             {
@@ -1265,23 +1265,23 @@
                     "label": "No",
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_PRETEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_PRETEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "preTestCounselingConsent"
             }
           ]
@@ -1428,24 +1428,24 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "tbSymptoms"
             },
             {
@@ -1480,24 +1480,24 @@
                     "label": "Complaints of genital sores or swollen inguinal lymph nodes with or without pain",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "stiSymptoms"
             }
           ]
@@ -1559,23 +1559,23 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "hivTestConducted"
             },
             {
@@ -1584,49 +1584,49 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    },
-                    "validators": [
-                      {
-                        "type": "date",
-                        "allowFutureDates": "false"
-                      },
-                      {
-                        "type": "js_expression",
-                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
-                      }
-                    ]
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    },
-                    "validators": [
-                      {
-                        "type": "date",
-                        "allowFutureDates": "false"
-                      },
-                      {
-                        "type": "js_expression",
-                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
-                      }
-                    ]
-                  }
-                ]
+                "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                    }
+                  ]
+                }
+              ],
               "id": "dateTestPerformed"
             },
             {
@@ -1676,29 +1676,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "initialHIVTestKitName"
             },
             {
@@ -1753,29 +1753,29 @@
                     "label": "Positive",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "initialHIVTestResult"
             },
             {
@@ -1830,29 +1830,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
+                  }
+                }
+              ],
               "id": "syphilisTestResult"
             },
             {
@@ -1889,29 +1889,29 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ],
               "id": "confirmatoryHIVTestDone"
             },
             {
@@ -1961,29 +1961,29 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
               "id": "confirmatoryHIVTestKitName"
             },
             {
@@ -2038,29 +2038,29 @@
                     "label": "Positive",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
               "id": "confirmatoryHIVTestResult"
             },
             {
@@ -2097,29 +2097,29 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
+                  }
+                }
+              ],
               "id": "tiebreakerHIVTestDone"
             },
             {
@@ -2164,30 +2164,30 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
               "id": "tieBreakerHIVTestKitName"
             },
             {
@@ -2242,29 +2242,29 @@
                     "label": "Positive",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult)"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult)"
+                  }
+                }
+              ],
               "id": "tieBreakerHIVTestResult"
             },
             {
@@ -2310,35 +2310,35 @@
                     "label": "Positive",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    },
-                    "validators": [
-                      {
-                        "type": "js_expression",
-                        "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerHIVTestResult) && myValue !== tieBreakerHIVTestResult)"
-                      }
-                    ]
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerHIVTestResult) && myValue !== tieBreakerHIVTestResult)"
+                    }
+                  ]
+                }
+              ],
               "id": "finalHIVTestResult"
             },
             {
@@ -2397,23 +2397,23 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "receivedHIVTestResult"
             },
             {
@@ -2450,29 +2450,29 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                }
+              ],
               "id": "resultReceivedCouple"
             },
             {
@@ -2497,29 +2497,29 @@
                     "label": "Discordant",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
               "id": "coupleResults"
             },
             {
@@ -2534,49 +2534,49 @@
                     "type": "SNOMED-CT",
                     "value": "439771001"
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    },
-                    "validators": [
-                      {
-                        "type": "date",
-                        "allowFutureDates": "false"
-                      },
-                      {
-                        "type": "js_expression",
-                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
-                      }
-                    ]
-                  },
-                  {
-                    "intent": "HTS_HIVTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    },
-                    "validators": [
-                      {
-                        "type": "date",
-                        "allowFutureDates": "false"
-                      },
-                      {
-                        "type": "js_expression",
-                        "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
-                      }
-                    ]
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                    }
+                  ]
+                }
+              ],
               "id": "hIVTestResultsReceivedDate"
             }
           ]
@@ -2642,19 +2642,19 @@
                     "label": "No",
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "recencyTestingConsent"
             },
             {
@@ -2691,25 +2691,25 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "recencyTestConducted"
             },
             {
@@ -2771,25 +2771,25 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
               "id": "recencyTestResult"
             }
           ]
@@ -2861,23 +2861,23 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_POSTTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_POSTTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "postTestCounsellingDone"
             }
           ]
@@ -2982,19 +2982,19 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "referredToPreventionServices"
             },
             {
@@ -3069,19 +3069,19 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "referredToSRHServices"
             },
             {
@@ -3146,19 +3146,19 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "referredToClinicalServices"
             },
             {
@@ -3232,19 +3232,19 @@
                       }
                     ]
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "referredToOtherServices"
             }
           ]
@@ -3306,23 +3306,23 @@
                     "label": "No",
                     "conceptMappings": []
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "HTS_POSTTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_POSTTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "linkedToCare"
             },
             {
@@ -3330,25 +3330,25 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
-                    }
-                  }
-                ]
+                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
               "id": "patientIdentificationNumber"
             },
             {
@@ -3362,29 +3362,29 @@
                     "type": "PIH",
                     "value": "1392"
                   }
-                ],
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "false"
-                    }
-                  },
-                  {
-                    "intent": "HTS_POSTTEST",
-                    "required": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false",
-                    "hide": {
-                      "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                    }
-                  }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_POSTTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ],
               "id": "htsProviderName"
             },
             {
@@ -3393,19 +3393,19 @@
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "437d1e25-e7ab-481c-aabc-01f21c6cdef1",
-                "rows": 5,
-                "behaviours": [
-                  {
-                    "intent": "HTS_RETROSPECTIVE",
-                    "required": "true",
-                    "unspecified": "true"
-                  },
-                  {
-                    "intent": "*",
-                    "required": "false"
-                  }
-                ]
+                "rows": 5
               },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
               "id": "htsProviderRemarks"
             }
           ]
