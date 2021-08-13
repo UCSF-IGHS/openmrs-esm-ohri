@@ -45,11 +45,11 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const htsRetroForm = useMemo(() => {
-    return getForm('hiv', 'hts_retro');
+  const serviceEnrolmentForm = useMemo(() => {
+    return getForm('hiv', 'service_enrolment');
   }, []);
 
-  const launchHTSForm = () => {
+  const launchServiceEnrolmentForm = () => {
     setCurrentEncounterUuid(null);
     setCurrentMode('enter');
     setOpen(true);
@@ -121,6 +121,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
       setIsLoading(false);
     });
   }
+
   useEffect(() => {
     let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
     getServiceEnrolmentColumns(query, htsEncounterRepresentation, 'HTS Retrospective');
@@ -145,7 +146,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
               iconDescription="New"
               onClick={e => {
                 e.preventDefault();
-                launchHTSForm();
+                launchServiceEnrolmentForm();
               }}>
               {t('add', 'New')}
             </Button>
@@ -166,11 +167,11 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
                   marginBottom: '0px',
                   color: '#ffffff',
                 }}>
-                {htsRetroForm?.name}
+                {serviceEnrolmentForm?.name}
               </ModalHeader>
               <ModalBody>
                 <OHRIForm
-                  formJson={htsRetroForm}
+                  formJson={serviceEnrolmentForm}
                   encounterUuid={currentEncounterUuid}
                   handleClose={handleClose}
                   mode={currentMode}
@@ -181,9 +182,9 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
         </>
       ) : (
         <EmptyState
-          displayText={t('htsEncounters', 'hts encounters')}
+          displayText={t('serviceEnrolments', 'service enrolments')}
           headerTitle={headerTitle}
-          launchForm={launchHTSForm}
+          launchForm={launchServiceEnrolmentForm}
         />
       )}
     </>
