@@ -2,46 +2,27 @@ import Dropdown from 'carbon-components-react/lib/components/Dropdown';
 import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { validateFieldValue } from '../../../ohri-form-validators';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 import styles from '../_input.scss';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [items, setItems] = React.useState([]);
-  const [fieldError, setFieldError] = useState(null);
-  const [unspecified, setUnspecified] = useState(false);
-  const [previoulsySpecified, setPrevioulsySpecified] = useState(false);
-
-  useEffect(() => {
-    if (unspecified) {
-      setPrevioulsySpecified(true);
-      setFieldError(null);
-      setFieldValue(question.id, null);
-      onChange(question.id, null);
-      question.value = null;
-      question['submission'] = {
-        specified: true,
-        errors: null,
-      };
-    } else if (previoulsySpecified) {
-      setFieldError(validateFieldValue(field.value, question));
-    }
-  }, [unspecified]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
-      setFieldError(question['submission']?.errors);
+      setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
 
   const handleChange = value => {
     setFieldValue(question.id, value);
-    setFieldError(validateFieldValue(value, question));
+    setErrors(OHRIFieldValidator.validate(question, value));
     onChange(question.id, value);
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
@@ -61,7 +42,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     </div>
   ) : (
     <div className={styles.formInputField}>
-      <div className={fieldError ? styles.errorLabel : ''}>
+      <div className={errors.length ? styles.errorLabel : ''}>
         <Dropdown
           id={question.id}
           titleText={question.label}
@@ -72,7 +53,6 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
           onChange={({ selectedItem }) => handleChange(selectedItem)}
         />
       </div>
-      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} setUnspecified={setUnspecified} />}
     </div>
   );
 };

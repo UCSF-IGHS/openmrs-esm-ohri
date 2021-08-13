@@ -1,46 +1,27 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { FormGroup, ContentSwitcher, Switch } from 'carbon-components-react';
-import { OHRIFormFieldProps, RequiredType } from '../../../types';
+import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
-import { validateFieldValue } from '../../../ohri-form-validators';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
-  const [fieldError, setFieldError] = useState(null);
-  const [unspecified, setUnspecified] = useState(false);
-  const [previoulsySpecified, setPrevioulsySpecified] = useState(false);
-
-  useEffect(() => {
-    if (unspecified) {
-      setPrevioulsySpecified(true);
-      setFieldError(null);
-      setFieldValue(question.id, null);
-      onChange(question.id, null);
-      question.value = null;
-      question['submission'] = {
-        specified: true,
-        errors: null,
-      };
-    } else if (previoulsySpecified) {
-      setFieldError(validateFieldValue(field.value, question));
-    }
-  }, [unspecified]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
-      setFieldError(question['submission']?.errors);
+      setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
 
   const handleChange = value => {
     setFieldValue(question.id, value?.name);
-    setFieldError(validateFieldValue(value, question));
+    setErrors(OHRIFieldValidator.validate(question, value));
     onChange(question.id, value?.name);
     question.value = handler.handleFieldSubmission(question, value?.name, encounterContext);
   };
@@ -56,7 +37,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
   ) : (
     !question.isHidden && (
       <div className={styles.textContainer}>
-        <FormGroup legendText={question.label} className={fieldError ? styles.errorLegend : ''}>
+        <FormGroup legendText={question.label} className={errors.length ? styles.errorLegend : ''}>
           <ContentSwitcher onChange={handleChange} selectedIndex={selectedIndex} className={styles.selectedOption}>
             {question.questionOptions.answers.map((option, index) => (
               <Switch
@@ -69,7 +50,6 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
             ))}
           </ContentSwitcher>
         </FormGroup>
-        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} setUnspecified={setUnspecified} />}
       </div>
     )
   );

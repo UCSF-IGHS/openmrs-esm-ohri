@@ -6,43 +6,23 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
-import { validateFieldValue } from '../../../ohri-form-validators';
-import { UnspecifiedValue } from '../../../constants';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
-  const [fieldError, setFieldError] = useState(null);
-  const [unspecified, setUnspecified] = useState(false);
-  const [previoulsySpecified, setPrevioulsySpecified] = useState(false);
-
-  useEffect(() => {
-    if (unspecified) {
-      setPrevioulsySpecified(true);
-      setFieldError(null);
-      setFieldValue(question.id, '');
-      onChange(question.id, null);
-      question.value = null;
-      question['submission'] = {
-        specified: true,
-        errors: null,
-      };
-    } else if (previoulsySpecified) {
-      setFieldError(validateFieldValue(field.value, question));
-    }
-  }, [unspecified]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
-      setFieldError(question['submission']?.errors);
+      setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
 
   const onDateChange = ([date]) => {
-    const refinedDate = date == UnspecifiedValue ? date : new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    const refinedDate = date instanceof Date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000) : date;
     setFieldValue(question.id, refinedDate);
-    setFieldError(validateFieldValue(refinedDate, question));
+    setErrors(OHRIFieldValidator.validate(question, refinedDate));
     onChange(question.id, refinedDate);
     question.value = handler.handleFieldSubmission(question, refinedDate, encounterContext);
   };
@@ -95,7 +75,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
       <DatePicker
         datePickerType="single"
         onChange={onDateChange}
-        className={`${styles.datePickerOverrides} ${fieldError ? styles.errorLabel : ''}`}
+        className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''}`}
         dateFormat={carbonDateformat}>
         <DatePickerInput
           id={question.id}
@@ -104,7 +84,6 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
           value={field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value}
         />
       </DatePicker>
-      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} setUnspecified={setUnspecified} />}
     </div>
   );
 };

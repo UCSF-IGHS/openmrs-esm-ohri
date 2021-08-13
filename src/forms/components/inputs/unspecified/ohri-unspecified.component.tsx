@@ -2,21 +2,39 @@ import { Checkbox } from 'carbon-components-react';
 import { useField } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { OHRIFormField, RequiredType } from '../../../types';
 import styles from '../_input.scss';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
+import { OHRIFormField } from '../../../types';
 
 export const OHRIUnspecified: React.FC<{
   question: OHRIFormField;
-  setUnspecified: (value: boolean) => void;
-}> = ({ question, setUnspecified }) => {
+}> = ({ question }) => {
   const [field, meta] = useField(`${question.id}-unspecified`);
   const { setFieldValue } = React.useContext(OHRIFormContext);
+  const [previouslyUnspecified, setPreviouslyUnspecified] = useState(false);
 
   useEffect(() => {
     if (field.value) {
-      setUnspecified && setUnspecified(true);
-    } else {
-      setUnspecified && setUnspecified(false);
+      setPreviouslyUnspecified(true);
+      question['submission'] = {
+        unspecified: true,
+        errors: [],
+      };
+      let emptyValue = null;
+      switch (question.questionOptions.rendering) {
+        case 'date':
+          emptyValue = '';
+          break;
+        case 'checkbox':
+          emptyValue = [];
+      }
+      setFieldValue(question.id, emptyValue);
+      question.value = null;
+    } else if (previouslyUnspecified && !question.value) {
+      question['submission'] = {
+        unspecified: false,
+        errors: OHRIFieldValidator.validate(question, null),
+      };
     }
   }, [field.value]);
 
