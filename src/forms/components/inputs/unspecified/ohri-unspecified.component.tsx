@@ -2,6 +2,7 @@ import { Checkbox } from 'carbon-components-react';
 import React, { useCallback, useState } from 'react';
 import { boolean } from 'yup';
 import { OHRIFormField, RequiredType } from '../../../types';
+import styles from '../_input.scss';
 
 export const OHRIUnspecified: React.FC<{ question: OHRIFormField }> = ({ question }) => {
   const [checked, setChecked] = useState();
@@ -10,14 +11,14 @@ export const OHRIUnspecified: React.FC<{ question: OHRIFormField }> = ({ questio
     setChecked(checked);
   }, []);
   return (
-    <>
+    <div className={styles.unspecified}>
       <Checkbox
         id={`${question.id}-unspcified`}
         labelText="Unspecified"
         value="Unspecified"
         onChange={handleOnChange}
       />
-    </>
+    </div>
   );
 };
 
