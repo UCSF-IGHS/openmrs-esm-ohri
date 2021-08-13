@@ -26,6 +26,17 @@ export interface SubmissionHandler {
    */
   getDisplayValue: (field: OHRIFormField, value: any) => any;
 }
+
+/**
+ * Field validator abstraction
+ */
+export interface FieldValidator {
+  /**
+   * Validates a field and returns validation errors
+   */
+  validate(field: OHRIFormField, value: any): { errCode: string; errMessage: string }[];
+}
+
 export interface OHRIFormSchema {
   name: string;
   pages: Array<OHRIFormPage>;

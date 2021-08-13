@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormGroup, RadioButtonGroup, RadioButton } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
@@ -6,14 +6,22 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setErrors(question['submission']?.errors);
+    }
+  }, [question['submission']]);
 
   const handleChange = value => {
     setFieldValue(question.id, value);
+    setErrors(OHRIFieldValidator.validate(question, value));
     onChange(question.id, value);
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
@@ -25,7 +33,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
     </div>
   ) : (
     <div>
-      <FormGroup legendText={question.label}>
+      <FormGroup legendText={question.label} className={errors.length ? styles.errorLegend : ''}>
         <RadioButtonGroup
           defaultSelected="default-selected"
           name={question.id}
@@ -43,7 +51,6 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
             );
           })}
         </RadioButtonGroup>
-        {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
       </FormGroup>
     </div>
   );

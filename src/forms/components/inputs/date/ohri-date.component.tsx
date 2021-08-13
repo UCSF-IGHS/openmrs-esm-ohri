@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { OHRIFormFieldProps } from '../../../types';
 import { DatePicker, DatePickerInput } from 'carbon-components-react';
 import { useField } from 'formik';
@@ -6,14 +6,23 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setErrors(question['submission']?.errors);
+    }
+  }, [question['submission']]);
+
   const onDateChange = ([date]) => {
-    const refinedDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    const refinedDate = date instanceof Date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000) : date;
     setFieldValue(question.id, refinedDate);
+    setErrors(OHRIFieldValidator.validate(question, refinedDate));
     onChange(question.id, refinedDate);
     question.value = handler.handleFieldSubmission(question, refinedDate, encounterContext);
   };
@@ -66,7 +75,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
       <DatePicker
         datePickerType="single"
         onChange={onDateChange}
-        className={styles.datePickerOverrides}
+        className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''}`}
         dateFormat={carbonDateformat}>
         <DatePickerInput
           id={question.id}
@@ -75,7 +84,6 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
           value={field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value}
         />
       </DatePicker>
-      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
     </div>
   );
 };
