@@ -20,7 +20,7 @@ export const OHRIFieldValidator: FieldValidator = {
 };
 
 export function isEmpty(value: any): boolean {
-  if (value == undefined || value == null || value == '') {
+  if (value === undefined || value === null || value === '') {
     return true;
   }
   if (typeof value == 'string' && !value?.trim()) {
