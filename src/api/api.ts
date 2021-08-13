@@ -130,3 +130,14 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
     return 'Negative';
   });
 }
+
+export function serviceEnrollmentColumn(patientUUID: string, conceptCode: string, columnName?: string) {
+  return openmrsFetch(`/ws/fhir2/R4/Observation?patient=${patientUUID}&code=${conceptCode}&_sort=-date&_count=1`).then(
+    ({ data }) => {
+      if (data.entry?.length) {
+        return data.entry[0].resource.valueCodeableConcept.coding[0].display;
+      }
+      return columnName;
+    },
+  );
+}
