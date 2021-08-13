@@ -43,7 +43,32 @@
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
                   }
                 ],
                 "behaviours": [
@@ -73,7 +98,25 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
                     "label": "No",
@@ -183,7 +226,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "everTestedForHIV != 'Yes'"
+                      "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -273,7 +316,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "everTestedForHIV != 'Yes'"
+                      "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -429,7 +472,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "populationType != 'Key/Priority Population'"
+                      "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ]
@@ -457,7 +500,25 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
                     "label": "No",
@@ -523,7 +584,25 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
                     "label": "No",
@@ -565,7 +644,7 @@
                     "intent": "*",
                     "required": "true",
                     "hide": {
-                      "hideWhenExpression": "clientSexualActivity != 'Yes'"
+                      "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -581,7 +660,25 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
                     "label": "No",
@@ -637,7 +734,7 @@
                     "intent": "*",
                     "required": "true",
                     "hide": {
-                      "hideWhenExpression": "clientSexualActivity != 'Yes'"
+                      "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -859,7 +956,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != 'Community Level testing'"
+                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '42dd1e18-00cb-471c-911c-cb254d5b01a5'"
                     }
                   }
                 ]
@@ -1007,7 +1104,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != 'Facility Level Testing'"
+                      "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
                     }
                   }
                 ]
@@ -1118,7 +1215,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "preTestCounsellingConducted != 'Yes'"
+                      "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -1144,7 +1241,25 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
                     "label": "No",
@@ -1185,7 +1300,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "preTestCounselingConsent == 'No'"
+            "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
         }
       ],
@@ -1401,7 +1516,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "preTestCounselingConsent == 'No'"
+            "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
         }
       ],
@@ -1480,6 +1595,10 @@
                     },
                     "validators": [
                       {
+                        "type": "date",
+                        "allowFutureDates": "false"
+                      },
+                      {
                         "type": "js_expression",
                         "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
                       }
@@ -1493,9 +1612,13 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     },
                     "validators": [
+                      {
+                        "type": "date",
+                        "allowFutureDates": "false"
+                      },
                       {
                         "type": "js_expression",
                         "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
@@ -1571,7 +1694,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -1648,7 +1771,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -1725,7 +1848,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "initialHIVTestKitName != 'HIV-Syphillis Duo Kit'"
+                      "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
                     }
                   }
                 ]
@@ -1784,7 +1907,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "initialHIVTestResult != 'Positive'"
+                      "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
                     }
                   }
                 ]
@@ -1856,7 +1979,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "confirmatoryHIVTestDone == 'No'"
+                      "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                     }
                   }
                 ]
@@ -1933,7 +2056,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "confirmatoryHIVTestDone == 'No'"
+                      "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                     }
                   }
                 ]
@@ -1992,7 +2115,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "initialHIVTestResult != 'Positive' || isEmpty(confirmatoryHIVTestResult)"
+                      "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
                     }
                   }
                 ]
@@ -2060,7 +2183,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "tiebreakerHIVTestDone == 'No'"
+                      "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                     }
                   }
                 ]
@@ -2137,7 +2260,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "initialHIVTestResult != 'Positive' || !isEmpty(confirmatoryHIVTestResult)"
+                      "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult)"
                     }
                   }
                 ]
@@ -2205,12 +2328,12 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "hivTestConducted != 'Yes'"
+                      "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     },
                     "validators": [
                       {
                         "type": "js_expression",
-                        "failsWhenExpression": "(initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult == 'Positive' && myValue != 'Positive') || (initialHIVTestResult == 'Negative' && myValue != 'Negative') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult == 'Positive' && confirmatoryHIVTestResult != 'Positive' && myValue != 'Indeterminate') || (!isEmpty(tieBreakerHIVTestResult) && myValue != tieBreakerHIVTestResult)"
+                        "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerHIVTestResult) && myValue !== tieBreakerHIVTestResult)"
                       }
                     ]
                   }
@@ -2345,7 +2468,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "receivedHIVTestResult != 'Yes' || counselingSessionType != 'Couple Counselling'"
+                      "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
                     }
                   }
                 ]
@@ -2392,7 +2515,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "resultReceivedCouple != 'Yes'"
+                      "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ]
@@ -2422,6 +2545,10 @@
                     },
                     "validators": [
                       {
+                        "type": "date",
+                        "allowFutureDates": "false"
+                      },
+                      {
                         "type": "js_expression",
                         "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
                       }
@@ -2435,9 +2562,13 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "receivedHIVTestResult != 'Yes'"
+                      "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     },
                     "validators": [
+                      {
+                        "type": "date",
+                        "allowFutureDates": "false"
+                      },
                       {
                         "type": "js_expression",
                         "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
@@ -2464,7 +2595,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "hivTestConducted == 'No'"
+            "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
         }
       ],
@@ -2487,7 +2618,25 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
                     "label": "No",
@@ -2556,7 +2705,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "recencyTestingConsent != 'Yes'"
+                      "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -2636,7 +2785,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "recencyTestConducted != 'Yes'"
+                      "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ]
@@ -2659,7 +2808,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "hivTestConducted == 'No'"
+            "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
         }
       ],
@@ -2747,7 +2896,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "hivTestConducted == 'No'"
+            "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
         }
       ],
@@ -3114,7 +3263,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "finalHIVTestResult == 'Negative'"
+            "hideWhenExpression": "finalHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
           }
         }
       ],
@@ -3195,7 +3344,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "linkedToCare != 'No'"
+                      "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                     }
                   }
                 ]
@@ -3231,7 +3380,7 @@
                     "intent": "*",
                     "required": "false",
                     "hide": {
-                      "hideWhenExpression": "finalHIVTestResult != 'Positive'"
+                      "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
                     }
                   }
                 ]
