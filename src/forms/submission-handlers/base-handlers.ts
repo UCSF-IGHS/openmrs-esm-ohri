@@ -51,7 +51,8 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         return field.value.map(o => o.value.uuid);
       }
       if (field.questionOptions.rendering == 'toggle') {
-        return obs.value.uuid == ConceptTrue;
+        field.value.value = obs.value.uuid;
+        return obs.value == ConceptTrue;
       }
       return obs.value.uuid;
     }

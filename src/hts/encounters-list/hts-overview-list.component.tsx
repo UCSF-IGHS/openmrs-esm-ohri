@@ -44,7 +44,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const htsRetroForm = useMemo(() => {
-    return getForm('hiv', 'hts_retro');
+    return getForm('hiv', 'hts_retro', '1.1');
   }, []);
 
   const launchHTSForm = () => {
@@ -175,6 +175,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
                   encounterUuid={currentEncounterUuid}
                   handleClose={handleClose}
                   mode={currentMode}
+                  onSubmit={forceComponentUpdate}
                 />
               </ModalBody>
             </ComposedModal>
