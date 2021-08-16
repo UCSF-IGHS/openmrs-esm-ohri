@@ -43,7 +43,7 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'caretreatment-summary-dashboard',
+        id: 'care-and-treatment-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(caretreament_dashboardMeta), options),
         meta: caretreament_dashboardMeta,
@@ -70,10 +70,10 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'service-enrollment-encounters-list-ext',
-        slot: 'care-treatment-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/encounters-list/service-enrollment.component'), {
-          featureName: 'hts-patient-encounters-list',
+        id: 'hts-care-and-treatment-list-ext',
+        slot: 'care-and-treatment-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/care-and-treatment-list.component'), {
+          featureName: 'hts-care-and-treatment-list',
           moduleName,
         }),
         meta: {
