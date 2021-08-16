@@ -20,6 +20,7 @@ import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
+import { careAndTreatmentEncounterType } from '../../constants';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
@@ -54,7 +55,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
     setCurrentMode('enter');
     setOpen(true);
   };
-  const editHTSEncounter = encounterUuid => {
+  const editServiceEnrolmentEncounter = encounterUuid => {
     setCurrentEncounterUuid(encounterUuid);
     setCurrentMode('edit');
     setOpen(true);
@@ -73,7 +74,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
     { key: 'action', header: 'Action' },
   ];
 
-  function getServiceEnrolmentColumns(query: string, customRepresentation: string, encounterType: string) {
+  function getServiceEnrolmentColumns(query: string, customRepresentation: string) {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
 
@@ -97,10 +98,10 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
               }}
             />
             <OverflowMenuItem
-              itemText={t('editHTSEncounter', 'Edit')}
+              itemText={t('editServiceEnrolmentEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editHTSEncounter(encounter.uuid);
+                editServiceEnrolmentEncounter(encounter.uuid);
               }}
             />
           </OverflowMenu>
@@ -112,7 +113,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
           location: encounter.location.name,
           result: htsResult?.value?.name?.name || 'None',
-          encounter_type: encounterType,
+          encounter_type: '',
           provider: htsProvider,
           action: encounterActionOverflowMenu,
         });
@@ -123,8 +124,8 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   }
 
   useEffect(() => {
-    let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
-    getServiceEnrolmentColumns(query, htsEncounterRepresentation, 'HTS Retrospective');
+    let query = `encounterType=${careAndTreatmentEncounterType}&patient=${patientUuid}`;
+    getServiceEnrolmentColumns(query, htsEncounterRepresentation);
   }, [counter]);
 
   const headerTitle = 'Service Enrolment';
