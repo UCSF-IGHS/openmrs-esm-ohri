@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormField } from '../../../types';
+import styles from '../_input.scss';
 
 export const OHRIUnspecified: React.FC<{
   question: OHRIFormField;
@@ -48,7 +49,7 @@ export const OHRIUnspecified: React.FC<{
   }, []);
 
   return (
-    <>
+    <div className={styles.unspecified}>
       <Checkbox
         id={`${question.id}-unspcified`}
         labelText="Unspecified"
@@ -56,7 +57,7 @@ export const OHRIUnspecified: React.FC<{
         onChange={handleOnChange}
         checked={field.value}
       />
-    </>
+    </div>
   );
 };
 
