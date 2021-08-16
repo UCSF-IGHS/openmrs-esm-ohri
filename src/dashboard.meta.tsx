@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
-import styles from './dashboard.scss';
+import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { ConfigurableLink, ExtensionSlot, navigate } from '@openmrs/esm-framework';
+import styles from './dashboard.scss';
 
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
@@ -23,7 +23,7 @@ export const hts_dashboardMeta = {
 
 export const caretreament_dashboardMeta = {
   name: 'care-and-treatment',
-  slot: 'care-treatment-dashboard-slot',
+  slot: 'care-and-treatment-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Care and Treatment',
 };

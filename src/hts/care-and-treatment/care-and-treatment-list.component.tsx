@@ -20,6 +20,7 @@ import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
+import { careAndTreatmentEncounterType } from '../../constants';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
@@ -40,9 +41,8 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
-  const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
-  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
+  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const serviceEnrolmentForm = useMemo(() => {
@@ -54,7 +54,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
     setCurrentMode('enter');
     setOpen(true);
   };
-  const editHTSEncounter = encounterUuid => {
+  const editServiceEnrolmentEncounter = encounterUuid => {
     setCurrentEncounterUuid(encounterUuid);
     setCurrentMode('edit');
     setOpen(true);
@@ -67,13 +67,13 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
 
   const tableHeaders = [
     { key: 'date', header: 'Date of service enrolment', isSortable: true },
-    { key: 'location', header: 'Description of client' },
-    { key: 'result', header: 'Population category' },
-    { key: 'provider', header: 'Date confirmed positive' },
+    { key: 'clientDescription', header: 'Description of client' },
+    { key: 'populationCategory', header: 'Population category' },
+    { key: 'dateConfirmedPositive', header: 'Date confirmed positive' },
     { key: 'action', header: 'Action' },
   ];
 
-  function getServiceEnrolmentColumns(query: string, customRepresentation: string, encounterType: string) {
+  function getServiceEnrolmentColumns(query: string, customRepresentation: string) {
     return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
       let rows = [];
 
@@ -97,10 +97,10 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
               }}
             />
             <OverflowMenuItem
-              itemText={t('editHTSEncounter', 'Edit')}
+              itemText={t('editServiceEnrolmentEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editHTSEncounter(encounter.uuid);
+                editServiceEnrolmentEncounter(encounter.uuid);
               }}
             />
           </OverflowMenu>
@@ -110,10 +110,9 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           id: encounter.uuid,
           date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
           dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
-          location: encounter.location.name,
-          result: htsResult?.value?.name?.name || 'None',
-          encounter_type: encounterType,
-          provider: htsProvider,
+          clientDescription: encounter.location?.name || '--',
+          populationCategory: htsResult?.value?.name?.name || 'None',
+          dateConfirmedPositive: '--',
           action: encounterActionOverflowMenu,
         });
       });
@@ -123,8 +122,8 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   }
 
   useEffect(() => {
-    let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
-    getServiceEnrolmentColumns(query, htsEncounterRepresentation, 'HTS Retrospective');
+    let query = `encounterType=${careAndTreatmentEncounterType}&patient=${patientUuid}`;
+    getServiceEnrolmentColumns(query, htsEncounterRepresentation);
   }, [counter]);
 
   const headerTitle = 'Service Enrolment';
@@ -158,27 +157,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
               </Tab>
             </Tabs>
           </div>
-          {open && (
-            <ComposedModal open={open} onClose={() => handleClose()}>
-              <ModalHeader
-                style={{
-                  backgroundColor: '#007d79',
-                  height: '48px',
-                  marginBottom: '0px',
-                  color: '#ffffff',
-                }}>
-                {serviceEnrolmentForm?.name}
-              </ModalHeader>
-              <ModalBody>
-                <OHRIForm
-                  formJson={serviceEnrolmentForm}
-                  encounterUuid={currentEncounterUuid}
-                  handleClose={handleClose}
-                  mode={currentMode}
-                />
-              </ModalBody>
-            </ComposedModal>
-          )}
         </>
       ) : (
         <EmptyState
@@ -186,6 +164,27 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           headerTitle={headerTitle}
           launchForm={launchServiceEnrolmentForm}
         />
+      )}
+      {open && (
+        <ComposedModal open={open} onClose={() => handleClose()}>
+          <ModalHeader
+            style={{
+              backgroundColor: '#007d79',
+              height: '48px',
+              marginBottom: '0px',
+              color: '#ffffff',
+            }}>
+            {serviceEnrolmentForm?.name}
+          </ModalHeader>
+          <ModalBody>
+            <OHRIForm
+              formJson={serviceEnrolmentForm}
+              encounterUuid={currentEncounterUuid}
+              handleClose={handleClose}
+              mode={currentMode}
+            />
+          </ModalBody>
+        </ComposedModal>
       )}
     </>
   );
