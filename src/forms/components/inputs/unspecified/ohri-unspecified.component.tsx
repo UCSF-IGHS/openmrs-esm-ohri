@@ -60,10 +60,3 @@ export const OHRIUnspecified: React.FC<{
     </div>
   );
 };
-
-export function canBeUnspecifiable(question: OHRIFormField): boolean {
-  // return question.questionOptions.required?.toLowerCase() == RequiredType.YES_WITH_UNSPECIFIED.toLowerCase();
-  // For now return `true` by default until the form json defition is updated
-  // TODO: Remove this
-  return true;
-}
