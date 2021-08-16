@@ -41,9 +41,8 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
-  const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
-  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
+  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const serviceEnrolmentForm = useMemo(() => {
@@ -68,9 +67,9 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
 
   const tableHeaders = [
     { key: 'date', header: 'Date of service enrolment', isSortable: true },
-    { key: 'location', header: 'Description of client' },
-    { key: 'result', header: 'Population category' },
-    { key: 'provider', header: 'Date confirmed positive' },
+    { key: 'clientDescription', header: 'Description of client' },
+    { key: 'populationCategory', header: 'Population category' },
+    { key: 'dateConfirmedPositive', header: 'Date confirmed positive' },
     { key: 'action', header: 'Action' },
   ];
 
@@ -111,10 +110,9 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           id: encounter.uuid,
           date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
           dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
-          location: encounter.location.name,
-          result: htsResult?.value?.name?.name || 'None',
-          encounter_type: '',
-          provider: htsProvider,
+          clientDescription: encounter.location?.name || '--',
+          populationCategory: htsResult?.value?.name?.name || 'None',
+          dateConfirmedPositive: '--',
           action: encounterActionOverflowMenu,
         });
       });
@@ -159,27 +157,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
               </Tab>
             </Tabs>
           </div>
-          {open && (
-            <ComposedModal open={open} onClose={() => handleClose()}>
-              <ModalHeader
-                style={{
-                  backgroundColor: '#007d79',
-                  height: '48px',
-                  marginBottom: '0px',
-                  color: '#ffffff',
-                }}>
-                {serviceEnrolmentForm?.name}
-              </ModalHeader>
-              <ModalBody>
-                <OHRIForm
-                  formJson={serviceEnrolmentForm}
-                  encounterUuid={currentEncounterUuid}
-                  handleClose={handleClose}
-                  mode={currentMode}
-                />
-              </ModalBody>
-            </ComposedModal>
-          )}
         </>
       ) : (
         <EmptyState
@@ -187,6 +164,27 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           headerTitle={headerTitle}
           launchForm={launchServiceEnrolmentForm}
         />
+      )}
+      {open && (
+        <ComposedModal open={open} onClose={() => handleClose()}>
+          <ModalHeader
+            style={{
+              backgroundColor: '#007d79',
+              height: '48px',
+              marginBottom: '0px',
+              color: '#ffffff',
+            }}>
+            {serviceEnrolmentForm?.name}
+          </ModalHeader>
+          <ModalBody>
+            <OHRIForm
+              formJson={serviceEnrolmentForm}
+              encounterUuid={currentEncounterUuid}
+              handleClose={handleClose}
+              mode={currentMode}
+            />
+          </ModalBody>
+        </ComposedModal>
       )}
     </>
   );
