@@ -1,5 +1,5 @@
 import { FormGroup, ListItem, UnorderedList } from 'carbon-components-react';
-import Checkbox from 'carbon-components-react/lib/components/Checkbox';
+import MultiSelect from 'carbon-components-react/lib/components/MultiSelect';
 import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
@@ -8,6 +8,7 @@ import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
+import { Concept } from '../../../../api/types';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -19,19 +20,33 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
+  
+  const questionItems = question.questionOptions.answers.map((option, index) => ({
+    id: `${question.id}-${option.concept}`,
+    concept: option.concept,
+    text: option.label,
+    key: index,
+  }));
 
-  const handleCheckboxChange = (checked, id, event) => {
-    if (checked) {
-      setFieldValue(question.id, [...field.value, event.currentTarget.value]);
-      setErrors(OHRIFieldValidator.validate(question, [...field.value, event.currentTarget.value]));
-    } else {
-      const value = field.value.filter(value => value !== event.currentTarget.value);
-      setFieldValue(question.id, value);
-      setErrors(OHRIFieldValidator.validate(question, value));
+  let initiallySelectedQuestionItems = [];
+  questionItems.forEach(item => {
+    if (field.value.includes(item.concept)) {
+      initiallySelectedQuestionItems.push(item);
     }
+  });
+
+  const handleSelectItemsChange = ({ selectedItems }) => {
+    setFieldValue(
+      question.id,
+      selectedItems.map(selectedItem => selectedItem.concept),
+    );
+
     question.value = handler.handleFieldSubmission(
       question,
-      { checked: checked, id: event.currentTarget.value },
+      selectedItems.map(selectedItem => ({
+        checked: true,
+        id: selectedItem.concept,
+      })),
       encounterContext,
     );
   };
@@ -51,19 +66,15 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     </div>
   ) : (
     <div>
-      <FormGroup legendText={question.label} className={errors.length ? styles.errorLegend : ''}>
-        {question.questionOptions.answers.map((option, index) => (
-          <Checkbox
-            id={`${question.id}-${option.concept}`}
-            labelText={option.label}
-            value={option.concept}
-            key={index}
-            onChange={handleCheckboxChange}
-            checked={field.value && field.value.includes(option.concept)}
-            disabled={encounterContext.sessionMode == 'view'}
-          />
-        ))}
-      </FormGroup>
+      <MultiSelect
+        onChange={handleSelectItemsChange}
+        itemToString={item => (item ? item.text : '')}
+        id={question.label}
+        items={questionItems}
+        initialSelectedItems={initiallySelectedQuestionItems}
+        label={question.label}
+        titleText={question.label}
+      /> 
     </div>
   );
 };
