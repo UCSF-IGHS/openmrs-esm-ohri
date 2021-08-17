@@ -7,7 +7,6 @@ import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { OHRIFieldValidator } from '../../../ohri-form-validator';
-import { canBeUnspecifiable } from '../unspecified/ohri-unspecified.component';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -22,7 +21,7 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
   }, [question['submission']]);
 
   field.onBlur = () => {
-    if (field.value && canBeUnspecifiable(question)) {
+    if (field.value && question.unspecified) {
       setFieldValue(`${question.id}-unspecified`, false);
     }
     setErrors(OHRIFieldValidator.validate(question, field.value));
