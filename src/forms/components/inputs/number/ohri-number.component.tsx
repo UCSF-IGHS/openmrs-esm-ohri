@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NumberInput } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
@@ -6,14 +6,25 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setErrors(question['submission']?.errors);
+    }
+  }, [question['submission']]);
 
   field.onBlur = () => {
+    if (field.value && question.unspecified) {
+      setFieldValue(`${question.id}-unspecified`, false);
+    }
+    setErrors(OHRIFieldValidator.validate(question, field.value));
     if (previousValue !== field.value) {
       onChange(question.id, field.value);
       question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
@@ -39,8 +50,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
         onFocus={() => setPreviousValue(field.value)}
         allowEmpty={true}
         size="xl"
+        className={errors.length ? styles.errorLabel : ''}
       />
-      {canBeUnspecifiable(question) && <OHRIUnspecified question={question} />}
     </div>
   );
 };

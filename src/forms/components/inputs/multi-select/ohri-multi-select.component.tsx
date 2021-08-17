@@ -1,19 +1,26 @@
 import { FormGroup, ListItem, UnorderedList } from 'carbon-components-react';
 import MultiSelect from 'carbon-components-react/lib/components/MultiSelect';
 import { useField } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
-import { canBeUnspecifiable, OHRIUnspecified } from '../unspecified/ohri-unspecified.component';
 import styles from '../_input.scss';
 import { Concept } from '../../../../api/types';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const [errors, setErrors] = useState([]);
 
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setErrors(question['submission']?.errors);
+    }
+  }, [question['submission']]);
+  
   const questionItems = question.questionOptions.answers.map((option, index) => ({
     id: `${question.id}-${option.concept}`,
     concept: option.concept,
@@ -67,7 +74,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
         initialSelectedItems={initiallySelectedQuestionItems}
         label={question.label}
         titleText={question.label}
-      />
+      /> 
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
+import { OHRIFieldValidator } from './ohri-form-validator';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -44,9 +45,13 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
     form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values
     if (encounter) {
-      allFormFields.forEach(
-        field => (tempInitVals[field.id] = getHandler(field.type)?.getInitialValue(encounter, field) || ''),
-      );
+      allFormFields.forEach(field => {
+        const existingVal = getHandler(field.type)?.getInitialValue(encounter, field);
+        tempInitVals[field.id] = existingVal === null || existingVal === undefined ? '' : existingVal;
+        if (field.unspecified) {
+          tempInitVals[`${field.id}-unspecified`] = !!!existingVal;
+        }
+      });
       setEncounterLocation(encounter.location);
     } else {
       allFormFields.forEach(field => {
@@ -54,6 +59,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
           tempInitVals[field.id] = [];
         } else {
           tempInitVals[field.id] = '';
+        }
+        if (field.unspecified) {
+          tempInitVals[`${field.id}-unspecified`] = false;
         }
       });
     }
@@ -121,6 +129,24 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
 
   const handleFormSubmit = (values: Record<string, any>) => {
     const obsForSubmission = [];
+    let formHasErrors = false;
+    // handle field validation
+    fields
+      .filter(field => field['submission']?.unspecified != true)
+      .forEach(field => {
+        const errors = OHRIFieldValidator.validate(field, values[field.id]);
+        if (errors.length) {
+          field['submission'] = {
+            ...field['submission'],
+            errors: errors,
+          };
+          formHasErrors = true;
+          return;
+        }
+      });
+    if (formHasErrors) {
+      return;
+    }
     // collect observations
     fields
       .filter(field => !field.isHidden && field.type == 'obs' && field.value)
@@ -172,7 +198,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
         if (onSubmit) {
           onSubmit();
         }
-
         if (encounterUuid) {
           showToast({
             description: t('updateSuccessToastDescription', 'The patient HTS record was updated'),
@@ -187,8 +212,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
             kind: 'success',
             critical: true,
           });
-        }
-
+        } 
         if (handleClose) {
           handleClose();
         }
@@ -235,6 +259,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
                       mode={mode}
                       onCancel={onCancel}
                       handleClose={handleClose}
+                      values={props.values}
+                      setValues={props.setValues}
                     />
                   </div>
                   <div className={styles.overflowContent}>
