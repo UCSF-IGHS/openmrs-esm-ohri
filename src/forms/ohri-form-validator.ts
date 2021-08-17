@@ -2,7 +2,7 @@ import { FieldValidator, OHRIFormField } from './types';
 
 export const OHRIFieldValidator: FieldValidator = {
   validate: (field: OHRIFormField, value: any) => {
-    if (field['submission']?.specified) {
+    if (field['submission']?.unspecified) {
       return [];
     }
     if (field.required || field.unspecified) {
