@@ -20,7 +20,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
-  
+
   const questionItems = question.questionOptions.answers.map((option, index) => ({
     id: `${question.id}-${option.concept}`,
     concept: option.concept,
@@ -74,7 +74,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
         initialSelectedItems={initiallySelectedQuestionItems}
         label={question.label}
         titleText={question.label}
-      /> 
+      />
     </div>
   );
 };

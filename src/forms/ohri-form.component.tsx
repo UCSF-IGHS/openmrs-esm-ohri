@@ -212,7 +212,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({ formJson, encounterUuid, mode, onSu
             kind: 'success',
             critical: true,
           });
-        } 
+        }
         if (handleClose) {
           handleClose();
         }
