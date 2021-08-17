@@ -83,8 +83,8 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   const [filteredResults, setFilteredResults] = useState([]);
 
   useEffect(() => {
-    getCohort(cohortId, 'full').then(({ data }) => {
-      const patients = data.cohortMembers.map(member => ({
+    getCohort(cohortId, 'full').then(results => {
+      const patients = results.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
         age: member.patient.person.age,
@@ -93,7 +93,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         birthday: member.patient.person.birthdate,
         timeAddedToList: moment(member.startDate).format('LL'),
         waitingTime: moment(member.startDate).fromNow(),
-        location: data.location.name,
+        location: results.location.name,
         phoneNumber: '0700xxxxxx',
         hivResult: '',
       }));
