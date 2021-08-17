@@ -2,15 +2,10 @@ import { FieldValidator, OHRIFormField } from './types';
 
 export const OHRIFieldValidator: FieldValidator = {
   validate: (field: OHRIFormField, value: any) => {
-    if (field['submission']?.specified) {
+    if (field['submission']?.unspecified) {
       return [];
     }
-    if (
-      /**question.questionOptions.required == RequiredType.YES ||
-      question.questionOptions.required == RequiredType.YES_WITH_UNSPECIFIED */
-      // eslint-disable-next-line no-constant-condition
-      true
-    ) {
+    if (field.required || field.unspecified) {
       if (isEmpty(value)) {
         return [{ errCode: 'field.required', errMessage: 'Field is mandatory' }];
       }

@@ -60,6 +60,8 @@ export interface OHRIFormField {
   isHidden?: boolean;
   dependant?: any;
   hideDeterminant?: string;
+  required?: boolean;
+  unspecified?: boolean;
 }
 
 export interface OHRIFormFieldProps {
@@ -85,7 +87,6 @@ export interface OHRIFormQuestionOptions {
   locationTag?: string;
   rows?: number;
   toggleOptions?: { labelTrue: string; labelFalse: string };
-  required?: RequiredType;
 }
 
 export type SessionMode = 'edit' | 'enter' | 'view';
@@ -104,9 +105,3 @@ export type RenderType =
   | 'encounter-location'
   | 'textarea'
   | 'toggle';
-
-export enum RequiredType {
-  YES = 'Yes',
-  YES_WITH_UNSPECIFIED = 'Yes with Unspecified',
-  NO = 'No',
-}

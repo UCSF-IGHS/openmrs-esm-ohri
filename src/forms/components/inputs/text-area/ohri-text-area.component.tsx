@@ -6,7 +6,6 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { canBeUnspecifiable } from '../unspecified/ohri-unspecified.component';
 import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
@@ -22,7 +21,7 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   }, [question['submission']]);
 
   field.onBlur = () => {
-    if (field.value && canBeUnspecifiable(question)) {
+    if (field.value && question.unspecified) {
       setFieldValue(`${question.id}-unspecified`, false);
     }
     setErrors(OHRIFieldValidator.validate(question, field.value));

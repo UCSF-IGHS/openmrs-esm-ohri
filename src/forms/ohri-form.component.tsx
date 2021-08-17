@@ -15,7 +15,6 @@ import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
 import { OHRIFieldValidator } from './ohri-form-validator';
-import { canBeUnspecifiable } from './components/inputs/unspecified/ohri-unspecified.component';
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
@@ -57,8 +56,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     if (encounter) {
       allFormFields.forEach(field => {
         const existingVal = getHandler(field.type)?.getInitialValue(encounter, field);
-        tempInitVals[field.id] = existingVal || '';
-        if (canBeUnspecifiable(field)) {
+        tempInitVals[field.id] = existingVal === null || existingVal === undefined ? '' : existingVal;
+        if (field.unspecified) {
           tempInitVals[`${field.id}-unspecified`] = !!!existingVal;
         }
       });
@@ -70,7 +69,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         } else {
           tempInitVals[field.id] = '';
         }
-        if (canBeUnspecifiable(field)) {
+        if (field.unspecified) {
           tempInitVals[`${field.id}-unspecified`] = false;
         }
       });
