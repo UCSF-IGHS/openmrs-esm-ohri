@@ -75,8 +75,12 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
   );
 }
 
-export function getCohort(cohortUuid: string, version?: string) {
-  return openmrsFetch(BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
+export async function getCohort(cohortUuid: string, version?: string) {
+  const { data } = await openmrsFetch(
+    BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`,
+  );
+  data.cohortMembers = data.cohortMembers.filter(member => !member.voided);
+  return data;
 }
 
 export async function getCohorts(cohortTypeUuid?: string) {
