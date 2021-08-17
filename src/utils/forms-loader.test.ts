@@ -1,5 +1,11 @@
-import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, lookupForms } from './forms-loader';
+import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, filterFormByIntent } from './forms-loader';
 import formsRegistry from '../../__mocks__/packages/test-forms-registry';
+import { 
+  testSchemaV2,
+  htsRetrospectiveResultingSchemaV2,
+  htsHivtestResultingSchemaV2,
+  htsWildcardResultingSchemaV2,
+} from './forms-loader.test.schema';
 
 const htsTestForms: FormJsonFile[] = [
   {
@@ -166,5 +172,25 @@ describe('Forms loader - getFormByVersion', () => {
         encounterType: '79c1f50f-f77d-42e2-ad2a-d29304dde2fe',
       },
     });
+  });
+});
+
+describe('Forms loader - filterFormByIntent', () => {
+  it('should return correct fields for HTS_RETROSPECTIVE intent', () => {
+    let resultingSchema = filterFormByIntent('HTS_RETROSPECTIVE', testSchemaV2);
+
+    expect(resultingSchema).toEqual(htsRetrospectiveResultingSchemaV2);
+  });
+
+  it('should return correct fields for HTS_HIVTEST intent', () => {
+    let resultingSchema = filterFormByIntent('HTS_HIVTEST', testSchemaV2);
+
+    expect(resultingSchema).toEqual(htsHivtestResultingSchemaV2);
+  });
+
+  it('should return correct fields for * intent', () => {
+    let resultingSchema = filterFormByIntent('*', testSchemaV2);
+
+    expect(resultingSchema).toEqual(htsWildcardResultingSchemaV2);
   });
 });
