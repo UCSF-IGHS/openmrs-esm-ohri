@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
-import { Button, Column, Dropdown, Form, Row, TextArea } from 'carbon-components-react';
+import { Button, Column, Dropdown, Form, Row, TextArea, Tabs, Tab } from 'carbon-components-react';
 import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
+import { filterFormByIntent } from '../../utils/forms-loader';
 
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
+  const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [programInput, setProgramInput] = useState('');
+  const [formIntents, setFormIntents] = useState([]);
   const [formIntentInput, setFormIntentInput] = useState('');
-  const [errorMessage, setErrorMessage] = useState<any>();
+  const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
 
-  const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
+  const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
+  const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
+
+  const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
+  const [schemaOutput, setSchemaOutput] = useState('');
+  const [schemaInput, setSchemaInput] = useState('');
 
   const textareaProps = {
     labelText: 'You can either type or paste well formatted json.',
@@ -35,49 +43,19 @@ function FormRenderTest() {
     },
   ];
 
-  const programObjects = {
-    HTS: [
-      {
-        id: 'HTS_RETROSPECTIVE',
-        text: 'HTS RETROSPECTIVE',
-      },
-      {
-        id: 'HTS_PRETEST',
-        text: 'HTS PRETEST',
-      },
-      {
-        id: 'HTS_HIVTEST',
-        text: 'HTS HIVTEST',
-      },
-      {
-        id: 'HTS_POSTTEST',
-        text: 'HTS POSTTEST',
-      },
-    ],
-    'Care and Treatment': {
-      id: 'Care and treatment',
-      text: 'Care and treatment',
-    },
-  };
+  const loadIntentsFromSchema = jsonSchema => {
+    let _formIntents = [];
 
-  const formIntents = [
-    {
-      id: 'HTS_RETROSPECTIVE',
-      text: 'HTS RETROSPECTIVE',
-    },
-    {
-      id: 'HTS_PRETEST',
-      text: 'HTS PRETEST',
-    },
-    {
-      id: 'HTS_HIVTEST',
-      text: 'HTS HIVTEST',
-    },
-    {
-      id: 'HTS_POSTTEST',
-      text: 'HTS POSTTEST',
-    },
-  ];
+    if (jsonSchema.availableIntents) {
+      _formIntents = jsonSchema.availableIntents.map(intent => ({
+        id: intent,
+        text: intent.replace('_', ' '),
+      }));
+      setIsIntentsDropdownDisabled(false);
+    }
+
+    setFormIntents(_formIntents);
+  };
 
   const updateProgramInput = e => {
     setProgramInput(e.selectedItem.id);
@@ -88,26 +66,46 @@ function FormRenderTest() {
   };
 
   const updateJsonInput = e => {
+    setInputErrorMessage('');
     try {
-      setFormInput(JSON.parse(e.target.value));
+      const parsedSchema = JSON.parse(e.target.value);
+      setSchemaInput(parsedSchema);
+      loadIntentsFromSchema(parsedSchema);
     } catch (err) {
-      setErrorMessage(err.toString);
+      setInputErrorMessage(err.toString());
     }
   };
 
   const handleFormSubmission = e => {
-    // TODO pass program and form intent
+    setIsSchemaLoaded(false);
+    setOutputErrorMessage('');
+
+    const filteredSchema = filterFormByIntent(formIntentInput, schemaInput);
+
+    try {
+      setSchemaOutput(JSON.stringify(filteredSchema, null, '  '));
+      setFormInput(filteredSchema);
+    } catch (err) {
+      setOutputErrorMessage(err.toString());
+    }
+
+    setIsSchemaLoaded(true);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.mainWrapper}>
-        <div className={styles.widgetHeaderContainer}>
-          <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-        </div>
+        <Row>
+          <Column>
+            <div className={styles.widgetHeaderContainer}>
+              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+            </div>
+          </Column>
+        </Row>
         <Row>
           <Column lg={6} md={6} sm={12} style={{ borderRight: '1em' }}>
             <h4>Enter Json</h4>
+            <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
             <Form
               action=""
               onSubmit={e => {
@@ -135,6 +133,7 @@ function FormRenderTest() {
                   items={formIntents}
                   itemToString={item => (item ? item.text : '')}
                   onChange={updateFormIntentInput}
+                  disabled={isIntentsDropdownDisabled}
                 />
               </div>
               <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
@@ -143,9 +142,26 @@ function FormRenderTest() {
             </Form>
           </Column>
           <Column lg={6} md={6} sm={12} style={{ border: '1em', minHeight: '200px', backgroundColor: '#F4F4F4' }}>
-            <h6>Form Render</h6>
-            <h5 style={{ color: 'orange' }}>{errorMessage}</h5>
-            {formInput && <OHRIForm formJson={formInput} patientUUID={patientUUID} />}
+            <h6 style={{ margin: '8px' }}>Ouput</h6>
+            <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
+            <Tabs type="container">
+              <Tab id="tab-form" label="Form render">
+                {isSchemaLoaded ? (
+                  <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
+                ) : (
+                  <p>Please enter a valid schema</p>
+                )}
+              </Tab>
+              <Tab id="tab-json-schema" label="JSON Schema">
+                <TextArea
+                  {...textareaProps}
+                  labelText=""
+                  placeholder=""
+                  value={schemaOutput}
+                  name="json-schema-result"
+                />
+              </Tab>
+            </Tabs>
           </Column>
         </Row>
       </div>

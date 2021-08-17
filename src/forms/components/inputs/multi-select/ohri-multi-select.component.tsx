@@ -14,6 +14,14 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    if (field.value && field.value.length == 0) {
+      // chances are high the value was cleared force the Multiselect component to be re-mounted
+      setCounter(counter + 1);
+    }
+  }, [field.value]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -65,15 +73,16 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       )}
     </div>
   ) : (
-    <div>
+    <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
       <MultiSelect
         onChange={handleSelectItemsChange}
         itemToString={item => (item ? item.text : '')}
         id={question.label}
         items={questionItems}
         initialSelectedItems={initiallySelectedQuestionItems}
-        label={question.label}
+        label={''}
         titleText={question.label}
+        key={counter}
       />
     </div>
   );
