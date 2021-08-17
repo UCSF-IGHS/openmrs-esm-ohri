@@ -1,18 +1,26 @@
-import React, { useCallback } from 'react';
-import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
-import { ConfigurableLink, ExtensionSlot, navigate } from '@openmrs/esm-framework';
+import React from 'react';
+import { SideNavMenuItem } from 'carbon-components-react';
+import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
 
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
-      <SideNavMenuItem className={styles.noMarker} href={`${basePath}/${db.name}`}>
+      <SideNavMenuItem
+        className={styles.noMarker}
+        href={`${basePath}/${db.name}`}
+        onClick={e => handleLinkClick(e, `${basePath}/${db.name}`)}>
         {db.title}
       </SideNavMenuItem>
     );
   };
   return DashboardLink;
 };
+
+export function handleLinkClick(event: any, to: string) {
+  event.preventDefault();
+  navigate({ to });
+}
 
 export const hts_dashboardMeta = {
   name: 'hts-summary',
