@@ -20,7 +20,12 @@ import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
-import { careAndTreatmentEncounterType } from '../../constants';
+import {
+  careAndTreatmentEncounterType,
+  dateOfHIVDiagnosisConcept,
+  patientTypeEnrollmentConcept,
+  studyPopulationTypeConcept,
+} from '../../constants';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
@@ -41,10 +46,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
-  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
-  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 
-  const forceComponentUpdate = () => setCounter(counter + 1);
   const serviceEnrolmentForm = useMemo(() => {
     return getForm('hiv', 'service_enrolment');
   }, []);
@@ -73,52 +75,60 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
     { key: 'action', header: 'Action' },
   ];
 
-  function getServiceEnrolmentColumns(query: string, customRepresentation: string) {
-    return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
-      let rows = [];
+  async function getServiceEnrolmentColumns(query: string, customRepresentation: string) {
+    const { data: encounters } = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`);
+    const sortedEncounters = encounters.results.sort(
+      (firstEncounter, secondEncounter) =>
+        new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+    );
 
-      const sortedEncounters = data.results.sort(
-        (firstEncounter, secondEncounter) =>
-          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+    let rows = [];
+    sortedEncounters.map(encounter => {
+      const clientDescription = encounter.obs.find(
+        observation => observation.concept.uuid === patientTypeEnrollmentConcept,
       );
 
-      sortedEncounters.map(encounter => {
-        const htsResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
-        const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
-        const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
+      const populationCategory = encounter.obs.find(
+        observation => observation.concept.uuid === studyPopulationTypeConcept,
+      );
 
-        const encounterActionOverflowMenu = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={t('viewHTSEncounter', 'View')}
-              onClick={e => {
-                e.preventDefault();
-                viewHTSEncounter(encounter.uuid);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={t('editServiceEnrolmentEncounter', 'Edit')}
-              onClick={e => {
-                e.preventDefault();
-                editServiceEnrolmentEncounter(encounter.uuid);
-              }}
-            />
-          </OverflowMenu>
-        );
+      const dateConfirmedPositive = encounter.obs.find(
+        observation => observation.concept.uuid === dateOfHIVDiagnosisConcept,
+      );
 
-        rows.push({
-          id: encounter.uuid,
-          date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
-          dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
-          clientDescription: encounter.location?.name || '--',
-          populationCategory: htsResult?.value?.name?.name || 'None',
-          dateConfirmedPositive: '--',
-          action: encounterActionOverflowMenu,
-        });
+      const encounterActionOverflowMenu = (
+        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenuItem
+            itemText={t('viewHTSEncounter', 'View')}
+            onClick={e => {
+              e.preventDefault();
+              viewHTSEncounter(encounter.uuid);
+            }}
+          />
+          <OverflowMenuItem
+            itemText={t('editServiceEnrolmentEncounter', 'Edit')}
+            onClick={e => {
+              e.preventDefault();
+              editServiceEnrolmentEncounter(encounter.uuid);
+            }}
+          />
+        </OverflowMenu>
+      );
+
+      rows.push({
+        id: encounter.uuid,
+        date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
+        clientDescription: clientDescription ? clientDescription.value.name.name : '--',
+        populationCategory: populationCategory ? populationCategory.value.name.name : '--',
+        dateConfirmedPositive: dateConfirmedPositive
+          ? moment(dateConfirmedPositive.obsDatetime).format('DD-MMM-YYYY')
+          : '--',
+        action: encounterActionOverflowMenu,
       });
-      setTableRows(rows);
-      setIsLoading(false);
     });
+
+    setTableRows(rows);
+    setIsLoading(false);
   }
 
   useEffect(() => {
