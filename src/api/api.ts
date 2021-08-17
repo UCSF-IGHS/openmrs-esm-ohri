@@ -131,18 +131,12 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
   });
 }
 
-export function serviceEnrolmentColumn(
+export function fetchPatientObservationFromEncounter(
   patientUUID: string,
-  encounterType: string,
-  observationConcept: string,
-  columnName?: string,
+  encounterUUID: string,
+  observationCode: string,
 ) {
   return openmrsFetch(
-    `/ws/fhir2/R4/Observation?patient=${patientUUID}&code=${observationConcept}&_sort=-date&_count=1`,
-  ).then(({ data }) => {
-    if (data.entry?.length) {
-      return data.entry[0].resource.valueCodeableConcept.coding[0].display;
-    }
-    return columnName;
-  });
+    `/ws/fhir2/R4/Observation?patient=${patientUUID}&encounter=${encounterUUID}&code=${observationCode}&_sort=-date&_count=1`,
+  );
 }
