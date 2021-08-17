@@ -35,6 +35,31 @@ function FormRenderTest() {
     },
   ];
 
+  const programObjects = {
+    HTS: [
+      {
+        id: 'HTS_RETROSPECTIVE',
+        text: 'HTS RETROSPECTIVE',
+      },
+      {
+        id: 'HTS_PRETEST',
+        text: 'HTS PRETEST',
+      },
+      {
+        id: 'HTS_HIVTEST',
+        text: 'HTS HIVTEST',
+      },
+      {
+        id: 'HTS_POSTTEST',
+        text: 'HTS POSTTEST',
+      },
+    ],
+    'Care and Treatment': {
+      id: 'Care and treatment',
+      text: 'Care and treatment',
+    },
+  };
+
   const formIntents = [
     {
       id: 'HTS_RETROSPECTIVE',
