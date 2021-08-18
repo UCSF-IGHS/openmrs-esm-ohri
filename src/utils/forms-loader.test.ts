@@ -1,6 +1,6 @@
 import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, filterFormByIntent } from './forms-loader';
 import formsRegistry from '../../__mocks__/packages/test-forms-registry';
-import { 
+import {
   testSchemaV2,
   htsRetrospectiveResultingSchemaV2,
   htsHivtestResultingSchemaV2,
