@@ -94,14 +94,14 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       <Row className={styles.desktopView}>
         {tiles.map((tile, index) => {
           return (
-            <Column lg={4} md={3} sm={1} key={index}>
+            <div style={{ width: '321px', marginLeft: '16px' }} key={index}>
               <OHRISummaryTile
                 title={tile.title}
                 subTitle={tile.subTitle}
                 value={tile.value}
                 onClickView={tile.onClick}
               />
-            </Column>
+            </div>
           );
         })}
       </Row>
