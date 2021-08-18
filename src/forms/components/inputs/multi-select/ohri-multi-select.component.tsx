@@ -8,12 +8,19 @@ import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
-import { Concept } from '../../../../api/types';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    if (field.value && field.value.length == 0) {
+      // chances are high the value was cleared force the Multiselect component to be re-mounted
+      setCounter(counter + 1);
+    }
+  }, [field.value]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -28,7 +35,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     key: index,
   }));
 
-  let initiallySelectedQuestionItems = [];
+  const initiallySelectedQuestionItems = [];
   questionItems.forEach(item => {
     if (field.value.includes(item.concept)) {
       initiallySelectedQuestionItems.push(item);
@@ -40,6 +47,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       question.id,
       selectedItems.map(selectedItem => selectedItem.concept),
     );
+    setErrors(OHRIFieldValidator.validate(question, selectedItems));
 
     question.value = handler.handleFieldSubmission(
       question,
@@ -65,15 +73,16 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       )}
     </div>
   ) : (
-    <div className={styles.dropDownOverride}>
+    <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
       <MultiSelect
         onChange={handleSelectItemsChange}
         itemToString={item => (item ? item.text : '')}
         id={question.label}
         items={questionItems}
         initialSelectedItems={initiallySelectedQuestionItems}
-        label={question.label}
+        label={''}
         titleText={question.label}
+        key={counter}
       />
     </div>
   );

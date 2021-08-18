@@ -104,24 +104,11 @@
     font-size: 0.875rem !important;
 }
 
-.errorLegend legend, .errorLabel label {
-    color: #da1e28
-}
-
-.unspecified{
-padding-top: 3px;
-}
-
-.unspecified > div label{
+.unspecified > div label {
     font-size: 12px;
     color: $color-gray-70;
-    // padding-top: 1px;
 }
 
-.unspecified > div label span{
-    margin-top: 2px;
-}
-
-.unspecified > div label::before{
-    border: 1px solid $color-gray-70;
+.errorLegend legend, .errorLabel label {
+    color: #da1e28
 }

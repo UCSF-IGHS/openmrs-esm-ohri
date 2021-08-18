@@ -76,9 +76,8 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @param {object} originalJson The original JSON form schema object
  * @returns {object} The form json
  */
-
-export function filterFormByIntent(intent, originalJson) {
-  //Dee-copy orignal JSON
+export function filterFormByIntent(intent, originalJson) { 
+  // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
 
   // Traverse the property tree with items of interest for validation
@@ -101,7 +100,7 @@ export function filterFormByIntent(intent, originalJson) {
     });
   });
 
-  // Return constructed Json based on intent validation
+  // Return constructed Json based on intent validation 
   return jsonBuffer;
 }
 
