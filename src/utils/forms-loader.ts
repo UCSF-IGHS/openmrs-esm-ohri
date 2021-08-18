@@ -85,7 +85,7 @@ export function filterFormByIntent(intent, originalJson) {
     page.sections.forEach(section => {
       section.questions.forEach(question => {
         // Check if question behaviours includes required intent
-        const requiredIntentBehaviours = question.behaviours.find(behaviour => behaviour.intent === intent);
+        const requiredIntentBehaviours = question.behaviours?.find(behaviour => behaviour.intent === intent);
 
         // If required intent is present, substitute original props
         if (requiredIntentBehaviours) {
