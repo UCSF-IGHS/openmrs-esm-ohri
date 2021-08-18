@@ -163,7 +163,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               </div>
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
-          </div> 
+          </div>
         </>
       ) : (
         <EmptyState
