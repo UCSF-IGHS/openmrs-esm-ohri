@@ -67,6 +67,7 @@ function FormRenderTest() {
 
   const updateJsonInput = e => {
     setInputErrorMessage('');
+
     try {
       const parsedSchema = JSON.parse(e.target.value);
       setSchemaInput(parsedSchema);
@@ -110,7 +111,7 @@ function FormRenderTest() {
               action=""
               onSubmit={e => {
                 e.preventDefault();
-                handleFormSubmission(e);
+                handleFormSubmission(e); 
               }}>
               <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
 
