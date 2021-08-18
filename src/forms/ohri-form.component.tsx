@@ -258,9 +258,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           ) : (
             <>
               <div className={styles.mainContainer}>
-                <div>
-                  <PatientBanner patient={patient} />
-                </div>
                 <div className={styles.overflowContainer}>
                   <div className={styles.sidebar}>
                     <OHRIFormSidebar

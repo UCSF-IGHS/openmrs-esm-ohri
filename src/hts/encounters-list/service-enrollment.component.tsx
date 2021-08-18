@@ -20,6 +20,7 @@ import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import OHRIForm from '../../forms/ohri-form.component';
 import { SessionMode } from '../../forms/types';
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
@@ -36,7 +37,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const [open, setOpen] = useState(false);
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
@@ -50,19 +50,25 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   }, []);
 
   const launchHTSForm = () => {
-    setCurrentEncounterUuid(null);
-    setCurrentMode('enter');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsRetroForm?.name,
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    });
   };
   const editHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('edit');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsRetroForm?.name,
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    });
   };
   const viewHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('view');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsRetroForm?.name,
+      encounterUuid: encounterUuid,
+      mode: 'view',
+      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+    });
   };
 
   const tableHeaders = [
@@ -128,10 +134,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
 
   const headerTitle = 'Service Enrolment';
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
       {isLoading ? (
@@ -157,27 +159,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
               </Tab>
             </Tabs>
           </div>
-          {open && (
-            <ComposedModal open={open} onClose={() => handleClose()}>
-              <ModalHeader
-                style={{
-                  backgroundColor: '#007d79',
-                  height: '48px',
-                  marginBottom: '0px',
-                  color: '#ffffff',
-                }}>
-                {htsRetroForm?.name}
-              </ModalHeader>
-              <ModalBody>
-                <OHRIForm
-                  formJson={htsRetroForm}
-                  encounterUuid={currentEncounterUuid}
-                  handleClose={handleClose}
-                  mode={currentMode}
-                />
-              </ModalBody>
-            </ComposedModal>
-          )}
         </>
       ) : (
         <EmptyState
