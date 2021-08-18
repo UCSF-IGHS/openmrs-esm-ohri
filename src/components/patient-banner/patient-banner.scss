@@ -8,6 +8,7 @@
     position:sticky;
     background: #ffffff;
     z-index: -1;
+    border-bottom: 1px solid #c6c6c6;
 }
 
 .row {
@@ -16,10 +17,6 @@
     align-items: baseline;
 }
 
-.vl{
-    border-left: 0.163rem solid #c6c6c6;
-    height: 100%;
-}
 
 /*
 * Demographics
@@ -42,44 +39,4 @@
     font-size: 1.2rem;
     color: #525252;
     font-family: "IBM Plex Sans";
-}
-
-/*
-* Weight
-*/
-.weight {
-    margin-top: 10px;
-    margin-left: 1rem;
-    margin-top: 10px;
-    margin-right: 1rem;
-}
-
-.weightLabel, .allergiesLabel {
-    
-    margin: 0 0 0.5rem 0;
-    font-family: "IBM Plex Sans";
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: #525252;
-}
-
-.weightValue, .allergiesValue {
-    font-family: "IBM Plex Sans";
-    font-size: 1.3rem;
-    color: #161616;
-}
-
-.weightUnit {
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
-    font-family: "IBM Plex Sans";
-    color: #525252;
-}
-
-/*
-* Allergies
-*/
-.allergies {
-    margin-top: 10px;
-    width: 30%;
 }

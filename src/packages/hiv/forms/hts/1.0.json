@@ -2,58 +2,17 @@
   "name": "Add HTS Retrospective Form",
   "pages": [
     {
-      "label": "Eligibility Screening",
+      "label": "Screening",
       "sections": [
         {
           "label": "Testing history",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "What is the reason for conducting the HIV test?",
+              "label": "Ever tested positive for HIV before?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "ce3816e7-082d-496b-890b-a2b169922c22",
-                "answers": [
-                  {
-                    "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
-                    "label": "Inconclusive HIV Result",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "a6ad599d-2bc4-47b7-81fe-a38e88867c1d",
-                    "label": "Self Initiative",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "0e65e5fd-a1d8-4730-a991-75a1d703cba6",
-                    "label": "HIV Self Test Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "6e768c50-a239-45ff-9920-2c6a9352320e",
-                    "label": "Index Client Testing",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "cb099534-b609-4561-9d4c-dd2fc74cedaf",
-                    "label": "Assisted Partner Notification (APN)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "reasonForTesting"
-            },
-            {
-              "label": "Has the client ever been tested for HIV?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
+                "rendering": "content-switcher",
                 "concept": "1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
                   {
@@ -63,98 +22,36 @@
                   {
                     "label": "No",
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
                   }
                 ]
               },
               "id": "everTestedPositive"
             },
             {
-              "label": "How recently has the client been tested for HIV within any of the following periods?",
+              "label": "Last HIV test result",
               "type": "obs",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "e7947a45-acff-49e1-ba1c-33e43a710e0d",
-                "answers": [
-                  {
-                    "concept": "909edba5-c9b1-44e3-92ee-f95269964fe1",
-                    "label": "0-3 Months",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "8df190d5-7a65-4b53-9b4a-b35b9cf400b1",
-                    "label": "3-6 Months",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "c85e6df3-7184-400e-a686-f41aaae08113",
-                    "label": "6-12 Months",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "8de5bf3f-8058-4735-ae50-b5a986b2362b",
-                    "label": "More Than 12 Months",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "durationSinceLastHIVTest"
-            },
-            {
-              "label": "What was the result of the last HIV test?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
+                "conceptMappings": [
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
-                    "conceptMappings": []
+                    "type": "PIH",
+                    "value": "2169"
                   },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "1594271000105002"
+                  },
+                  {
+                    "type": "org.openmrs.module.mdrtb",
+                    "value": "RESULT OF HIV TEST"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "31676001"
+                  }
+                ],
+                "answers": [
                   {
                     "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Negative",
@@ -182,29 +79,16 @@
                     ]
                   },
                   {
-                    "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
                     "conceptMappings": [
                       {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
                         "type": "AMPATH",
-                        "value": "1067"
+                        "value": "1138"
                       },
                       {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
                       }
                     ]
                   }
@@ -213,44 +97,29 @@
               "id": "lastHIVTestResult"
             },
             {
-              "label": "What is the client’s population type?",
+              "label": "Months since last HIV test",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
-                  {
-                    "concept": "166430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "General population",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385436007"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Key population",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385436007"
-                      }
-                    ]
-                  }
-                ],
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "363787002"
-                  }
-                ]
+                "rendering": "number",
+                "concept": "07a6f86e-388b-416e-b1ed-4b4e543a6406",
+                "max": "12",
+                "min": "0",
+                "showDate": "false"
               },
-              "id": "populationType"
+              "id": "monthSinceLastHIVTest"
             },
             {
-              "label": "Is the client part of any of the following key populations?",
+              "label": "Date of last HIV test",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": ""
+              },
+              "id": "lastHIVTestDate"
+            },
+            {
+              "label": "Population type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -314,21 +183,6 @@
                   {
                     "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Long distance truck driver",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "87447002"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "365371fd-0106-4a53-abc4-575e3d65d372",
-                    "label": "People With Disability",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "c038bff0-8e33-408c-b51f-7fb6448d2f6c",
-                    "label": "People Who Inject Drugs",
                     "conceptMappings": []
                   }
                 ]
@@ -342,161 +196,144 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Is the client sexually active?",
+              "label": "Partner HIV status as reported",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "160109AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "14361000105003"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "2313"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "278977008"
+                  },
                   {
                     "type": "PIH",
-                    "value": "2730"
+                    "value": "3082"
                   }
                 ],
                 "answers": [
                   {
-                    "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
-                  },
-                  {
-                    "label": "No",
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
                     "conceptMappings": [
                       {
-                        "type": "CIEL",
-                        "value": "1067"
+                        "type": "AMPATH",
+                        "value": "1138"
                       },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
                       {
                         "type": "AMPATH",
-                        "value": "1067"
+                        "value": "664"
                       },
                       {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
                       },
                       {
                         "type": "PIH",
-                        "value": "1067"
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
                       }
                     ]
                   }
                 ]
               },
-              "id": "clientSexualActivity"
+              "id": "partnerHIVStatus"
             },
             {
-              "label": "Has the client had unprotected sex with a partner of unknown or positive HIV status in the past 12 months?",
+              "label": "Partner key population status",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "159218AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "IMO-ProblemIT",
-                    "value": "816022"
-                  },
-                  {
-                    "type": "ICD-10-WHO",
-                    "value": "Z72.5"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "2314005"
-                  }
-                ],
+                "rendering": "checkbox",
+                "concept": "d3d4ae96-8c8a-43db-a9dc-dac951f5dcb3",
                 "answers": [
                   {
-                    "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "63ea75cb-205f-4e7b-9ede-5f9b8a4dda9f",
+                    "label": "Migrant Workers",
+                    "conceptMappings": []
                   },
                   {
-                    "label": "No",
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                    "concept": "b282bb08-62a7-42c2-9bea-8751c267d13e",
+                    "label": "Uniformed Forces",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
+                    "concept": "22b202fc-67de-4af9-8c88-46e22559d4b2",
+                    "label": "Transgender Persons",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "678f3144-302f-493e-ba22-7ec60a84732a",
+                    "label": "Adolescent Girls & Young Women",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "def00c73-f6d5-42fb-bcec-0b192b5be22d",
+                    "label": "Fisher Folk",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8da9bf92-22f6-40be-b468-1ad08de7d457",
+                    "label": "Prisoners",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc1058ea-4edd-4780-aeaa-a474f7f3a437",
+                    "label": "Refugees",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "160578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Male who has sex with men",
                     "conceptMappings": [
                       {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
+                        "type": "SNOMED-CT",
+                        "value": "266974005"
                       }
                     ]
+                  },
+                  {
+                    "concept": "160579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sex worker",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "53713009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance truck driver",
+                    "conceptMappings": []
                   }
                 ]
               },
-              "id": "unprotectedSexualIntercourse"
-            },
-            {
-              "label": "Has the client had a sexually transmitted infection in the last 6 months?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "156660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
-                  {
-                    "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
-                  },
-                  {
-                    "label": "No",
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  }
-                ],
-                "conceptMappings": [
-                  {
-                    "type": "ICD-10-WHO",
-                    "value": "Z86.1"
-                  },
-                  {
-                    "type": "IMO-ProblemIT",
-                    "value": "824556"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "275881005"
-                  }
-                ]
-              },
-              "id": "clientSTIHistory"
+              "id": "partnerKeyPopulationStatus"
             }
           ]
         }
@@ -510,10 +347,10 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "In which setting was the HIV test conducted?",
+              "label": "Where was HIV test conducted?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "select",
                 "concept": "13abe5c9-6de2-4970-b348-36d352ee8eeb",
                 "answers": [
                   {
@@ -531,7 +368,7 @@
               "id": "testingLocation"
             },
             {
-              "label": "How was the HIV test initiated? (Approach)",
+              "label": "How was the test initiated?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -539,7 +376,7 @@
                 "answers": [
                   {
                     "concept": "e6924b2c-8f27-44d8-8228-9c5d2e8eae84",
-                    "label": "Client initiated testing and counseling (CICT)",
+                    "label": "Client or Voluntary-initiated (VCT/CICT)",
                     "conceptMappings": []
                   },
                   {
@@ -557,7 +394,43 @@
               "id": "his-approach"
             },
             {
-              "label": "What was the specific community service delivery point?",
+              "label": "Reason for testing",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ce3816e7-082d-496b-890b-a2b169922c22",
+                "answers": [
+                  {
+                    "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
+                    "label": "Inconclusive HIV Result",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a6ad599d-2bc4-47b7-81fe-a38e88867c1d",
+                    "label": "Self Initiative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0e65e5fd-a1d8-4730-a991-75a1d703cba6",
+                    "label": "HIV Self Test Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6e768c50-a239-45ff-9920-2c6a9352320e",
+                    "label": "Index Client Testing",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "cb099534-b609-4561-9d4c-dd2fc74cedaf",
+                    "label": "Assisted Partner Notification (APN)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "reasonForTesting"
+            },
+            {
+              "label": "Community delivery point",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -579,13 +452,43 @@
                     "conceptMappings": []
                   },
                   {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  },
+                  {
                     "concept": "160545AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Outreach Program",
+                    "label": "Outreach program",
                     "conceptMappings": []
                   },
                   {
                     "concept": "159938AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Home Based HIV Testing Program",
+                    "label": "Home based HIV testing program",
                     "conceptMappings": [
                       {
                         "type": "AMPATH",
@@ -595,7 +498,7 @@
                   },
                   {
                     "concept": "159939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Mobile Voluntary Counselling and Testing Program",
+                    "label": "mobile voluntary counseling and testing program",
                     "conceptMappings": [
                       {
                         "type": "AMPATH",
@@ -605,35 +508,42 @@
                   },
                   {
                     "concept": "159940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Voluntary Counselling and Testing Center",
+                    "label": "Voluntary counseling and testing center",
                     "conceptMappings": [
                       {
                         "type": "AMPATH",
                         "value": "2047"
                       }
                     ]
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
+              },
+              "id": "serviceDeliveryPoint"
+            },
+            {
+              "label": "Facility service delivery point",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "80bcc9c1-e328-47e8-affe-6d1bffe4adf1",
+                "answers": [
+                  {
+                    "concept": "6007b076-9e67-47e5-8e57-ee5d1331fbe0",
+                    "label": "Post Natal Program",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
+                    "concept": "261855fb-32d6-43c3-b0bf-e8737db154f7",
+                    "label": "Family Planning Clinic",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "162050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Comprehensive care center",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -664,54 +574,20 @@
                         "value": "74964007"
                       }
                     ]
-                  }
-                ]
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(testingLocation) || testingLocation == '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
-              },
-              "id": "serviceDeliveryPoint"
-            },
-            {
-              "label": "What was the specific facility service delivery point?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "80bcc9c1-e328-47e8-affe-6d1bffe4adf1",
-                "answers": [
-                  {
-                    "concept": "6007b076-9e67-47e5-8e57-ee5d1331fbe0",
-                    "label": "Post Natal Program",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "261855fb-32d6-43c3-b0bf-e8737db154f7",
-                    "label": "Family Planning Clinic",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Antenatal Program",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "162050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Comprehensive Care Centre",
-                    "conceptMappings": []
                   },
                   {
                     "concept": "160546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sexually Transmitted Infection Program/Clinic",
+                    "label": "Sexually transmitted infection program/clinic",
                     "conceptMappings": []
                   },
                   {
                     "concept": "160552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Nutrition Program",
+                    "label": "Nutrition program",
                     "conceptMappings": []
                   },
                   {
                     "concept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Tuberculosis Treatment Program",
+                    "label": "Tuberculosis treatment program",
                     "conceptMappings": [
                       {
                         "type": "SNOMED-CT",
@@ -720,13 +596,18 @@
                     ]
                   },
                   {
+                    "concept": "165475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Antenatal program",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "164835AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Labour and Delivery Unit",
+                    "label": "Labor and delivery unit",
                     "conceptMappings": []
                   },
                   {
                     "concept": "5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Inpatient Care or Hospitalization",
+                    "label": "Inpatient care or hospitalization",
                     "conceptMappings": [
                       {
                         "type": "AMPATH",
@@ -744,7 +625,7 @@
                   },
                   {
                     "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Outpatient Department",
+                    "label": "Outpatient department",
                     "conceptMappings": [
                       {
                         "type": "PIH",
@@ -759,36 +640,6 @@
                         "value": "33022008"
                       }
                     ]
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
@@ -796,20 +647,65 @@
                 "hideWhenExpression": "isEmpty(testingLocation) || testingLocation != '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
               },
               "id": "facilityServiceDeliveryPoint"
+            },
+            {
+              "label": "Relationship with Index Client",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "85d3b4fe-c1a9-4e27-a86b-dcc1e30c8a93",
+                "answers": [
+                  {
+                    "concept": "deb58a7d-1c89-4ce4-bfd9-2276d5530089",
+                    "label": "Contact With and Suspected Exposure",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "66916a5c-760f-4c12-ae91-71f83298eb40",
+                    "label": "Social Contact",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "68a39d12-49c1-49aa-bd23-e8d505af8e93",
+                    "label": "Drug Injecting Partner",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1528AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Child",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5617AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Partner or spouse",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "relationshipWithTheClient"
+            },
+            {
+              "label": "Index client ID Number",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7d502927-7f21-4f72-bfc6-dc4d972ab1af"
+              },
+              "id": "indexClientID"
             }
           ]
         }
       ]
     },
     {
-      "label": "Pretest Counselling",
+      "label": "Pre-test counseling",
       "sections": [
         {
-          "label": "Pretest Counselling",
+          "label": "Pre-test counseling",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Was pretest counselling conducted?",
+              "label": "Was pre-test counselling conducted?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -841,16 +737,38 @@
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
                   }
                 ]
               },
               "id": "preTestCounsellingConducted"
             },
             {
-              "label": "Which type of pretest counselling was conducted?",
+              "label": "Type of counseling session",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "select",
                 "concept": "0473ec07-2f34-4447-9c58-e35a1c491b6f",
                 "answers": [
                   {
@@ -873,7 +791,7 @@
               "id": "counselingSessionType"
             },
             {
-              "label": "Was consent provided?",
+              "label": "Patient consent",
               "type": "obs",
               "questionOptions": {
                 "rendering": "toggle",
@@ -906,22 +824,28 @@
       ]
     },
     {
-      "label": "TB/STI Screening",
+      "label": "TB / STI screening",
       "sections": [
         {
-          "label": "TB/STI Screening",
+          "label": "TB / STI Screening",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Is the client experiencing any of the following TB symptoms?",
+              "label": "Is the client experiencing the following TB symptoms?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "159800AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "6174"
+                  }
+                ],
                 "answers": [
                   {
                     "concept": "1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fever lasting more than 3 weeks",
+                    "label": "Fever lasting more than three weeks",
                     "conceptMappings": [
                       {
                         "type": "AMPATH",
@@ -1036,7 +960,7 @@
               "id": "tbSymptoms"
             },
             {
-              "label": "Is the client experiencing any of the following STI symptoms?",
+              "label": "Is the client experiencing the following STI symptoms?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -1054,7 +978,7 @@
                   },
                   {
                     "concept": "06be8996-ef55-438b-bbb9-5bebeb18e779",
-                    "label": "Complaints of lower abdominal pain with or without  vaginal discharge (Female)",
+                    "label": "Complaints of lower abdominal pains with or without  vaginal discharge (Female)",
                     "conceptMappings": []
                   },
                   {
@@ -1064,7 +988,7 @@
                   },
                   {
                     "concept": "faf06026-fce9-4d2c-9ef2-24fb45343804",
-                    "label": "Complaints of genital sores or swollen inguinal lymph nodes with or without pain",
+                    "label": "Complaints of genital sores or swollen inguinal lymph nodes with or without pains",
                     "conceptMappings": []
                   }
                 ]
@@ -1076,14 +1000,14 @@
       ]
     },
     {
-      "label": "HIV Testing",
+      "label": "HIV testing",
       "sections": [
         {
-          "label": "HIV Testing",
+          "label": "HIV testing",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Was the HIV Test conducted?",
+              "label": "Was HIV test conducted?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1115,13 +1039,35 @@
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
                   }
                 ]
               },
               "id": "hivTestConducted"
             },
             {
-              "label": "When was the HIV test conducted?",
+              "label": "Date test was performed",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -1131,7 +1077,7 @@
               "id": "dateTestPerformed"
             },
             {
-              "label": "What was the initial HIV test kit name?",
+              "label": "Initial HIV test kit name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1144,45 +1090,15 @@
                   },
                   {
                     "concept": "59ec348a-14a8-4e88-9b9e-72fa24b949fa",
-                    "label": "HIV-Syphillis Duo Kit",
+                    "label": "HIV-Syphilis Duo Kit",
                     "conceptMappings": []
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other HIV Test Kit",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
               "id": "inititalHIVTestKitName"
             },
             {
-              "label": "What was the initial HIV test result?",
+              "label": "Initial HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1238,101 +1154,7 @@
               "id": "initialHIVTestResult"
             },
             {
-              "label": "What was the syphillis test result?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "165303AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "NEGATIVE"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "665"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Indeterminate",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "1138"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "82334004"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "syphilisTestResult"
-            },
-            {
-              "label": "Was a confirmatory HIV test done?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "1201b688-45f8-4e56-b089-0b31138a19dd",
-                "answers": [
-                  {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "confirmatoryHIVTestDone"
-            },
-            {
-              "label": "What was the confirmatory HIV test kit name?",
+              "label": "Confirmatory HIV Test Kit Name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1347,43 +1169,13 @@
                     "concept": "0d64d0d0-8dcb-4a56-819c-999d52f04db8",
                     "label": "HIV Stat Pack Kit",
                     "conceptMappings": []
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other HIV Test Kit",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
               "id": "confirmatoryHIVTestKitName"
             },
             {
-              "label": "What was the confirmatory HIV test result?",
+              "label": "Confirmatory HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1439,45 +1231,7 @@
               "id": "confirmatoryHIVTestResult"
             },
             {
-              "label": "Was a tiebreaker HIV test done?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "b221ce19-9292-4117-bdff-0adcf13f82d6",
-                "answers": [
-                  {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "tiebreakerHIVTestDone"
-            },
-            {
-              "label": "What was the tiebreaker HIV test kit name?",
+              "label": "Tie Breaker HIV test kit name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1489,41 +1243,16 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other HIV Test Kit",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
+                    "concept": "780c8ff2-5e11-48f8-ad3d-efa36a0413f6",
+                    "label": "HIV SD Bioline Kit",
+                    "conceptMappings": []
                   }
                 ]
               },
               "id": "tieBreakerHIVTestKitName"
             },
             {
-              "label": "What was the tiebreaker HIV test result?",
+              "label": "Tie Breaker HIV test kit result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1579,7 +1308,7 @@
               "id": "tieBreakerHIVTestKitResult"
             },
             {
-              "label": "What was the final HIV test result?",
+              "label": "Final HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1612,9 +1341,18 @@
                     ]
                   },
                   {
-                    "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1138"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
+                      }
+                    ]
                   },
                   {
                     "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
@@ -1624,16 +1362,52 @@
                 ]
               },
               "id": "finalHIVTestResult"
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Recency testing",
+      "sections": [
+        {
+          "label": "Recency testing",
+          "isExpanded": "true",
+          "questions": [
             {
-              "label": "Was the client given the HIV test results?",
+              "label": "Patient consent",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "164848AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "182771004"
+                  }
+                ],
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                  },
+                  {
+                    "label": "No",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
+              },
+              "id": "recencyTestingConsent"
+            },
+            {
+              "label": "Was recency test conducted?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "65e18678-18db-4801-9625-50d3302c780c",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Yes",
                     "conceptMappings": [
                       {
@@ -1683,163 +1457,10 @@
                   }
                 ]
               },
-              "id": "receivedHIVTestResult"
-            },
-            {
-              "label": "Were the results received as a couple?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "445846e9-b929-4519-bc83-d51c051918f5",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "resultReceivedCouple"
-            },
-            {
-              "label": "What were the couple results?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "5f38bc97-d6ca-43f8-a019-b9a9647d0c6a",
-                "answers": [
-                  {
-                    "concept": "3a27187f-da7a-4f6b-986d-6521f343326d",
-                    "label": "Concordant Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "c1504c2b-a8bf-44bf-ab1e-1d342ba051ae",
-                    "label": "Concordant Negative",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "c2d2bea8-2db5-4730-86b1-592c9408f567",
-                    "label": "Discordant",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "coupleResults"
-            },
-            {
-              "label": "When did the client receive the HIV test results?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "160082AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "439771001"
-                  }
-                ]
-              },
-              "id": "hIVTestResultsReceivedDate"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Recency Testing",
-      "sections": [
-        {
-          "label": "Recency Testing",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Was consent provided?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "toggle",
-                "concept": "976ca997-fb2b-4bef-a299-f7c9e16b50a8",
-                "toggleOptions": {
-                  "labelTrue": "Yes",
-                  "labelFalse": "No"
-                },
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
-                  },
-                  {
-                    "label": "No",
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
-                  }
-                ]
-              },
-              "id": "recencyTestingConsent"
-            },
-            {
-              "label": "Was the recency test conducted?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "4fe5857e-c804-41cf-b3c9-0acc1f516ab7",
-                "answers": [
-                  {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
               "id": "recencyTestConducted"
             },
             {
-              "label": "What was the result of the recency test?",
+              "label": "Recency test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1870,50 +1491,179 @@
                         "value": "260384008"
                       }
                     ]
-                  },
+                  }
+                ]
+              },
+              "id": "recencyTestResult"
+            },
+            {
+              "label": "Was the client given the result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "164848AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
                   {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Yes",
                     "conceptMappings": [
                       {
-                        "type": "AMPATH",
-                        "value": "664"
+                        "type": "CIEL",
+                        "value": "1065"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
+                        "type": "AMPATH",
+                        "value": "1065"
                       },
                       {
                         "type": "PIH",
-                        "value": "664"
+                        "value": "1065"
                       },
                       {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "NEGATIVE"
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
                       },
                       {
                         "type": "AMPATH",
-                        "value": "665"
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
                       }
                     ]
                   }
                 ]
               },
-              "id": "recencyTestResult"
+              "id": "clientReceivedResults"
+            },
+            {
+              "label": "When the client received the HIV test result?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "160082AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "recencyTestDate"
+            },
+            {
+              "label": "Were results received as a couple?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "445846e9-b929-4519-bc83-d51c051918f5",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "resultsReceivedAsCouple"
+            },
+            {
+              "label": "Couple results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5f38bc97-d6ca-43f8-a019-b9a9647d0c6a",
+                "answers": [
+                  {
+                    "concept": "3a27187f-da7a-4f6b-986d-6521f343326d",
+                    "label": "Concordant Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c1504c2b-a8bf-44bf-ab1e-1d342ba051ae",
+                    "label": "Concordant Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c2d2bea8-2db5-4730-86b1-592c9408f567",
+                    "label": "Discordant",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "coupleResults"
             }
           ]
         }
       ]
     },
     {
-      "label": "Post Test Counselling",
+      "label": "Post-test counselling",
       "sections": [
         {
-          "label": "Post Test Counselling",
+          "label": "Post-test counselling",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Was post test counselling conducted?",
+              "label": "Was post-test counselling conducted?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1929,6 +1679,28 @@
                   }
                 ],
                 "answers": [
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  },
                   {
                     "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Yes",
@@ -1972,7 +1744,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Which of the following prevention services was the client referred to?",
+              "label": "Was the client referred to prevention services?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -1996,26 +1768,6 @@
                   {
                     "concept": "162223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Voluntary male circumcision clinic",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "da0238c1-0ddd-49cc-b10d-c552391b6332",
-                    "label": "Harm Reduction for People Who Inject Drugs",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "ac2e75dc-fceb-4591-9ffb-3f852c0750d9",
-                    "label": "Behavioural Interventions to Support Risk Reduction - for KP",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "0be6a668-b4ff-4fc5-bbae-0e2a86af1bd1",
-                    "label": "Post-GBV Care",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "e7ee9ec2-3cc7-4e59-8172-9fd08911e8c5",
-                    "label": "Prevention Information",
                     "conceptMappings": []
                   },
                   {
@@ -2047,13 +1799,33 @@
                         "value": "74964007"
                       }
                     ]
+                  },
+                  {
+                    "concept": "da0238c1-0ddd-49cc-b10d-c552391b6332",
+                    "label": "Harm Reduction for People Who Inject Drugs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ac2e75dc-fceb-4591-9ffb-3f852c0750d9",
+                    "label": "Behavioural Interventions to Support Risk Reduction - for KP",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0be6a668-b4ff-4fc5-bbae-0e2a86af1bd1",
+                    "label": "Post-GBV Care",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e7ee9ec2-3cc7-4e59-8172-9fd08911e8c5",
+                    "label": "Prevention Information",
+                    "conceptMappings": []
                   }
                 ]
               },
               "id": "referredToPreventionServices"
             },
             {
-              "label": "Was the client referred to any of the following Sexual and Reproductive Health services?",
+              "label": "Was the client referred to Sexual and Reproductive Health services?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -2093,43 +1865,13 @@
                     "concept": "6488e62a-314b-49da-b8d4-ca9c7a6941fc",
                     "label": "Contraception and FP",
                     "conceptMappings": []
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
               "id": "referredToSRHServices"
             },
             {
-              "label": "Was the client referred to any of the following Clinical Services?",
+              "label": "Was the client referred to Clinical Services?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -2159,43 +1901,13 @@
                     "concept": "0cf2ce2c-cd3f-478b-89b7-542018674dba",
                     "label": "Assessment and Provision of Vaccinations",
                     "conceptMappings": []
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
               "id": "referredToClinicalServices"
             },
             {
-              "label": "Was the client referred for any other services?",
+              "label": "Was the client referred for other services?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -2234,36 +1946,6 @@
                     "concept": "846a63c0-4530-4008-b6a1-12201b9e0b88",
                     "label": "Support for Disclosure and Partner Services",
                     "conceptMappings": []
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
@@ -2274,14 +1956,39 @@
       ]
     },
     {
-      "label": "Linkage to Care",
+      "label": "Linkage to care",
       "sections": [
         {
-          "label": "Linkage to Care",
+          "label": "Linkage to care",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Was the client linked to care and treatment in this facility?",
+              "label": "HTS Provider name",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "1392"
+                  }
+                ]
+              },
+              "id": "htsProviderName"
+            },
+            {
+              "label": "HTS provider remarks",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "437d1e25-e7ab-481c-aabc-01f21c6cdef1",
+                "rows": 5
+              },
+              "id": "htsProviderRemarks"
+            },
+            {
+              "label": "Was client linked to care?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2313,44 +2020,41 @@
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
                   }
                 ]
               },
               "id": "linkedToCare"
             },
             {
-              "label": "What Identification Number was issued to the client?",
+              "label": "Patient Identification Number",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "d3205b6a-7192-461f-9ea8-a1ac8af38964"
               },
-              "id": "patientIdentificationNumber"
-            },
-            {
-              "label": "What was the HTS provider’s name?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "PIH",
-                    "value": "1392"
-                  }
-                ]
-              },
-              "id": "htsProviderName"
-            },
-            {
-              "label": "What were the HTS provider’s remarks?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "437d1e25-e7ab-481c-aabc-01f21c6cdef1",
-                "rows": 5
-              },
-              "id": "htsProviderRemarks"
+              "id": "patientClinicIdentificationNumber"
             }
           ]
         }

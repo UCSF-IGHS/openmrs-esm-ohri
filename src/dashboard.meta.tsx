@@ -1,14 +1,14 @@
-import React from 'react';
-import { ConfigurableLink, navigate } from '@openmrs/esm-framework';
-import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
+import React from 'react'; 
+import { SideNavMenuItem } from 'carbon-components-react';
+import { navigate } from '@openmrs/esm-framework'; 
 import styles from './dashboard.scss';
 
 export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
       <SideNavMenuItem
-        className={styles.noMarker}
-        href="${basePath}/${db.name}"
+        className={styles.noMarker} 
+        href={`${basePath}/${db.name}`} 
         onClick={e => handleLinkClick(e, `${basePath}/${db.name}`)}>
         {db.title}
       </SideNavMenuItem>
@@ -20,7 +20,7 @@ export const createDashboardLink = db => {
 export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
-}
+} 
 export const hts_dashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
@@ -30,7 +30,7 @@ export const hts_dashboardMeta = {
 
 export const caretreament_dashboardMeta = {
   name: 'care-and-treatment',
-  slot: 'care-treatment-dashboard-slot',
+  slot: 'care-and-treatment-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Care and Treatment',
 };

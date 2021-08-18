@@ -21,24 +21,6 @@ export const PatientBanner: React.FC<{ patient: any }> = ({ patient }) => {
           </span>
         </div>
       </div>
-      <div className={styles.vl}></div>
-      <div className={`${styles.column} ${styles.weight}`}>
-        <div className={`${styles.row} ${styles.weightLabel}`}>
-          <span>Weight</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.weightValue}>60</span>
-          <span className={styles.weightUnit}>kg</span>
-        </div>
-      </div>
-      <div className={`${styles.column} ${styles.allergies}`}>
-        <div className={styles.row}>
-          <span className={styles.allergiesLabel}>Allergies</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.allergiesValue}>Peanuts, Fructose</span>
-        </div>
-      </div>
     </div>
   );
 };
