@@ -111,7 +111,7 @@ function FormRenderTest() {
               action=""
               onSubmit={e => {
                 e.preventDefault();
-                handleFormSubmission(e); 
+                handleFormSubmission(e);
               }}>
               <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
 
