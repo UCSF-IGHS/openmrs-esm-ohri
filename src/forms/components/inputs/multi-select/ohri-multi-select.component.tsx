@@ -8,7 +8,6 @@ import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
-import { Concept } from '../../../../api/types';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -36,7 +35,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     key: index,
   }));
 
-  let initiallySelectedQuestionItems = [];
+  const initiallySelectedQuestionItems = [];
   questionItems.forEach(item => {
     if (field.value.includes(item.concept)) {
       initiallySelectedQuestionItems.push(item);
@@ -48,6 +47,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       question.id,
       selectedItems.map(selectedItem => selectedItem.concept),
     );
+    setErrors(OHRIFieldValidator.validate(question, selectedItems));
 
     question.value = handler.handleFieldSubmission(
       question,

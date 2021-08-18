@@ -4,6 +4,7 @@ import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
+
 import { filterFormByIntent } from '../../utils/forms-loader';
 
 function FormRenderTest() {
@@ -22,6 +23,8 @@ function FormRenderTest() {
   const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
   const [schemaOutput, setSchemaOutput] = useState('');
   const [schemaInput, setSchemaInput] = useState('');
+
+  const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
 
   const textareaProps = {
     labelText: 'You can either type or paste well formatted json.',

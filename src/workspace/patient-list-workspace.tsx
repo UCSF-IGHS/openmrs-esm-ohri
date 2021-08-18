@@ -42,7 +42,7 @@ const Overflow: React.FC<{
         top: '0px',
         left: '0px',
         zIndex: 9001,
-        backgroundColor: '#ededed',
+        backgroundColor: '#e0e0e0',
         color: '#ededed',
         padding: '1rem 2rem',
         marginTop: '48px',
@@ -56,7 +56,9 @@ const Overflow: React.FC<{
       <div className={styles.container}>
         <div className={styles.listBanner}>
           <div className={styles.listInfo}>
-            <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
+            <div
+              className={styles.row}
+              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem', paddingLeft: '16px' }}>
               <Breadcrumb>
                 <BreadcrumbItem className={''}>
                   <a
@@ -77,7 +79,7 @@ const Overflow: React.FC<{
                 </BreadcrumbItem>
               </Breadcrumb>
             </div>
-            <div className={styles.row} style={{}}>
+            <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
@@ -94,8 +96,8 @@ const Overflow: React.FC<{
             </div>
           </div>
         </div>
+        <div className={styles.childPadding}>{children}</div>
       </div>
-      <div style={{ marginTop: '150px' }}>{children}</div>
     </div>
   );
 };
