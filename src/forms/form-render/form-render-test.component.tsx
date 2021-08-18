@@ -24,8 +24,6 @@ function FormRenderTest() {
   const [schemaOutput, setSchemaOutput] = useState('');
   const [schemaInput, setSchemaInput] = useState('');
 
-  const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
-
   const textareaProps = {
     labelText: 'You can either type or paste well formatted json.',
     className: 'form-group',
@@ -114,7 +112,7 @@ function FormRenderTest() {
               action=""
               onSubmit={e => {
                 e.preventDefault();
-                handleFormSubmission(e); 
+                handleFormSubmission(e);
               }}>
               <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
 
