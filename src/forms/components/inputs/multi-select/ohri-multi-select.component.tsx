@@ -17,8 +17,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
 
   useEffect(() => {
     if (field.value && field.value.length == 0) {
-      // chances are high the value was cleared
-      // force the Multiselect component to be re-mounted
+      // chances are high the value was cleared force the Multiselect component to be re-mounted
       setCounter(counter + 1);
     }
   }, [field.value]);
@@ -81,7 +80,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
         id={question.label}
         items={questionItems}
         initialSelectedItems={initiallySelectedQuestionItems}
-        label={question.label}
+        label={''}
         titleText={question.label}
         key={counter}
       />

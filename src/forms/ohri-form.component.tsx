@@ -15,6 +15,7 @@ import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
 import { OHRIFieldValidator } from './ohri-form-validator';
+
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
   onSubmit?: any;
