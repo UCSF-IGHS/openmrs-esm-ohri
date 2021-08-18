@@ -48,7 +48,7 @@ export const OHRIFormLauncherWithIntent: React.FC<{
           }}
         />
       </div>
-      <div className={styles.toggleButtons}>
+      <div className={styles.launchButtonWrapper}>
         <Button
           kind="ghost"
           renderIcon={Add16}
