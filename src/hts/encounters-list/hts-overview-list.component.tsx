@@ -130,11 +130,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <OHRIFormLauncherWithIntent
-                formJson={htsForm}
-                onClickLaunchForm={launchHTSForm}
-                onChangeIntent={setHTSForm}
-              />
+              <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
