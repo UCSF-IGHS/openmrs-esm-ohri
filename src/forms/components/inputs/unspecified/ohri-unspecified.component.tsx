@@ -2,9 +2,9 @@ import { Checkbox } from 'carbon-components-react';
 import { useField } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
+import styles from '../_input.scss';
 import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormField } from '../../../types';
-import styles from '../_input.scss';
 
 export const OHRIUnspecified: React.FC<{
   question: OHRIFormField;

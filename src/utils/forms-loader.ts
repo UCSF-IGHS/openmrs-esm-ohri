@@ -77,7 +77,7 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @returns {object} The form json
  */
 export function filterFormByIntent(intent, originalJson) {
-  //Dee-copy original JSON
+  // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
 
   // Traverse the property tree with items of interest for validation

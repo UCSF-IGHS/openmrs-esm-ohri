@@ -1,6 +1,6 @@
 import React from 'react';
-import { ConfigurableLink, navigate } from '@openmrs/esm-framework';
-import { SideNav, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
+import { SideNavMenuItem } from 'carbon-components-react';
+import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
 
 export const createDashboardLink = db => {
@@ -8,7 +8,7 @@ export const createDashboardLink = db => {
     return (
       <SideNavMenuItem
         className={styles.noMarker}
-        href="${basePath}/${db.name}"
+        href={`${basePath}/${db.name}`}
         onClick={e => handleLinkClick(e, `${basePath}/${db.name}`)}>
         {db.title}
       </SideNavMenuItem>
@@ -30,7 +30,7 @@ export const hts_dashboardMeta = {
 
 export const caretreament_dashboardMeta = {
   name: 'care-and-treatment',
-  slot: 'care-treatment-dashboard-slot',
+  slot: 'care-and-treatment-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Care and Treatment',
 };

@@ -6,6 +6,8 @@ import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
 import { filterFormByIntent } from '../../utils/forms-loader';
 
+import { filterFormByIntent } from '../../utils/forms-loader';
+
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
