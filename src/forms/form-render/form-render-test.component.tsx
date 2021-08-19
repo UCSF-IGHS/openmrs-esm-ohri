@@ -35,9 +35,7 @@ function FormRenderTest() {
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = [];
 
-    _formIntents = jsonSchema.availableIntents;
-    _formIntents = jsonSchema.availableIntents || []
-    console.log(_formIntents);
+    _formIntents = jsonSchema.availableIntents || [];
 
     setFormIntents(_formIntents);
     setIsIntentsDropdownDisabled(false);
