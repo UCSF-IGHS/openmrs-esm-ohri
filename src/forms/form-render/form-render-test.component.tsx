@@ -12,7 +12,6 @@ function FormRenderTest() {
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
-  const [programInput, setProgramInput] = useState('');
   const [formIntentInput, setFormIntentInput] = useState('');
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState<any>();
@@ -33,33 +32,13 @@ function FormRenderTest() {
     rows: 20,
   };
 
-  const programs = [
-    {
-      id: 'HTS',
-      text: 'HTS',
-    },
-    {
-      id: 'Care and Treatment',
-      text: 'Care and Treatment',
-    },
-  ];
-
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = [];
 
-    if (jsonSchema.availableIntents) {
-      _formIntents = jsonSchema.availableIntents.map(intent => ({
-        id: intent,
-        text: intent.replace('_', ' '),
-      }));
-      setIsIntentsDropdownDisabled(false);
-    }
+    _formIntents = jsonSchema.availableIntents || [];
 
     setFormIntents(_formIntents);
-  };
-
-  const updateProgramInput = e => {
-    setProgramInput(e.selectedItem.id);
+    setIsIntentsDropdownDisabled(false);
   };
 
   const updateFormIntentInput = e => {
@@ -118,25 +97,15 @@ function FormRenderTest() {
               <div style={{ width: 400 }}>
                 <Dropdown
                   id="default"
-                  titleText="Programs"
-                  label="--Select Program"
-                  items={programs}
-                  itemToString={item => (item ? item.text : '')}
-                  onChange={updateProgramInput}
-                />
-              </div>
-
-              <div style={{ width: 400 }}>
-                <Dropdown
-                  id="default"
                   titleText="Form Intent"
                   label="--Select Form Intent"
                   items={formIntents}
-                  itemToString={item => (item ? item.text : '')}
+                  itemToString={item => item.display}
                   onChange={updateFormIntentInput}
                   disabled={isIntentsDropdownDisabled}
                 />
               </div>
+
               <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
                 Render
               </Button>
