@@ -3413,6 +3413,24 @@
       ]
     }
   ],
+  "availableIntents": [
+    {
+      "intent": "HTS_RETROSPECTIVE",
+      "display": "HTS Restrospective"
+    },
+    {
+      "intent": "HTS_PRETEST",
+      "display": "HTS Pretest"
+    },
+    {
+      "intent": "HTS_HIVTEST",
+      "display": "HIV Test"
+    },
+    {
+      "intent": "HTS_POSTTEST",
+      "display": "HTS Post Test"
+    }
+  ],
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
