@@ -4,6 +4,9 @@ import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
+import { filterFormByIntent } from '../../utils/forms-loader';
+
+import { filterFormByIntent } from '../../utils/forms-loader';
 
 import { filterFormByIntent } from '../../utils/forms-loader';
 
@@ -34,16 +37,11 @@ function FormRenderTest() {
 
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = [];
-
-    if (jsonSchema.availableIntents) {
-      _formIntents = jsonSchema.availableIntents.map(intent => ({
-        id: intent,
-        text: intent.replace('_', ' '),
-      }));
-      setIsIntentsDropdownDisabled(false);
-    }
+ 
+    _formIntents = jsonSchema.availableIntents || [];
 
     setFormIntents(_formIntents);
+    setIsIntentsDropdownDisabled(false); 
   };
 
   const updateFormIntentInput = e => {
@@ -52,7 +50,6 @@ function FormRenderTest() {
 
   const updateJsonInput = e => {
     setInputErrorMessage('');
-
     try {
       const parsedSchema = JSON.parse(e.target.value);
       setSchemaInput(parsedSchema);
@@ -106,11 +103,12 @@ function FormRenderTest() {
                   titleText="Form Intent"
                   label="--Select Form Intent"
                   items={formIntents}
-                  itemToString={item => (item ? item.text : '')}
+                  itemToString={item => item.display}
                   onChange={updateFormIntentInput}
                   disabled={isIntentsDropdownDisabled}
                 />
               </div>
+
               <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
                 Render
               </Button>
