@@ -11,11 +11,9 @@ function FormRenderTest() {
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
-  const [formIntents, setFormIntents] = useState([]);
-  const [programInput, setProgramInput] = useState('');
+  const [formIntents, setFormIntents] = useState([]); 
   const [formIntentInput, setFormIntentInput] = useState('');
-  const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
-  const [errorMessage, setErrorMessage] = useState<any>();
+  const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true); 
 
   const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
   const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
@@ -56,11 +54,7 @@ function FormRenderTest() {
     }
 
     setFormIntents(_formIntents);
-  };
-
-  const updateProgramInput = e => {
-    setProgramInput(e.selectedItem.id);
-  };
+  }; 
 
   const updateFormIntentInput = e => {
     setFormIntentInput(e.selectedItem.id);
@@ -114,17 +108,6 @@ function FormRenderTest() {
                 handleFormSubmission(e);
               }}>
               <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
-
-              <div style={{ width: 400 }}>
-                <Dropdown
-                  id="default"
-                  titleText="Programs"
-                  label="--Select Program"
-                  items={programs}
-                  itemToString={item => (item ? item.text : '')}
-                  onChange={updateProgramInput}
-                />
-              </div>
 
               <div style={{ width: 400 }}>
                 <Dropdown
