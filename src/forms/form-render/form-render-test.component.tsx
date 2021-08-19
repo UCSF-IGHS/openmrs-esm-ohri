@@ -56,8 +56,8 @@ function FormRenderTest() {
     }
 
     setFormIntents(_formIntents);
-  }; 
-  
+  };
+
   const updateFormIntentInput = e => {
     setFormIntentInput(e.selectedItem.id);
   };
