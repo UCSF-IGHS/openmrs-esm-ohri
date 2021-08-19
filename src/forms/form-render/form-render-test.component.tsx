@@ -36,7 +36,11 @@ function FormRenderTest() {
     let _formIntents = [];
 
     _formIntents = jsonSchema.availableIntents;
+    _formIntents = jsonSchema.availableIntents || []
+    console.log(_formIntents);
+
     setFormIntents(_formIntents);
+    setIsIntentsDropdownDisabled(false);
   };
 
   const updateFormIntentInput = e => {
@@ -98,10 +102,12 @@ function FormRenderTest() {
                   titleText="Form Intent"
                   label="--Select Form Intent"
                   items={formIntents}
+                  itemToString={item => item.display}
                   onChange={updateFormIntentInput}
                   disabled={isIntentsDropdownDisabled}
                 />
               </div>
+
               <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
                 Render
               </Button>
