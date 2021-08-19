@@ -8,6 +8,8 @@ import { filterFormByIntent } from '../../utils/forms-loader';
 
 import { filterFormByIntent } from '../../utils/forms-loader';
 
+import { filterFormByIntent } from '../../utils/forms-loader';
+
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
@@ -16,7 +18,6 @@ function FormRenderTest() {
   const [formIntents, setFormIntents] = useState([]);
   const [formIntentInput, setFormIntentInput] = useState('');
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
-  const [errorMessage, setErrorMessage] = useState<any>();
 
   const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
   const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
@@ -36,11 +37,11 @@ function FormRenderTest() {
 
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = [];
-
+ 
     _formIntents = jsonSchema.availableIntents || [];
 
     setFormIntents(_formIntents);
-    setIsIntentsDropdownDisabled(false);
+    setIsIntentsDropdownDisabled(false); 
   };
 
   const updateFormIntentInput = e => {
@@ -114,7 +115,7 @@ function FormRenderTest() {
             </Form>
           </Column>
           <Column lg={6} md={6} sm={12} style={{ border: '1em', minHeight: '200px', backgroundColor: '#F4F4F4' }}>
-            <h6 style={{ margin: '8px' }}>Output</h6>
+            <h6 style={{ margin: '8px' }}>Ouput</h6>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
             <Tabs type="container">
               <Tab id="tab-form" label="Form render">

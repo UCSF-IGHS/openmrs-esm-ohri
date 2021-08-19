@@ -83,8 +83,7 @@ export function filterFormByIntent(intent, originalJson) {
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     page.sections.forEach(section => {
-      section.questions.forEach(question => {
-        // Make sure question includes behaviours field
+      section.questions.forEach(question => { 
         if (question.behaviours) {
           // Check if question behaviours includes required intent
           const requiredIntentBehaviours = question.behaviours?.find(behaviour => behaviour.intent === intent);
@@ -98,7 +97,6 @@ export function filterFormByIntent(intent, originalJson) {
           } else {
             // Attempt to retrieve default behaviours
             const defaultIntentBehaviours = question.behaviours.find(behaviour => behaviour.intent === '*');
-
             if (defaultIntentBehaviours) {
               question.required = defaultIntentBehaviours.required || undefined;
               question.unspecified = defaultIntentBehaviours.unsepecified || undefined;
