@@ -46,7 +46,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const htsRetroForm = useMemo(() => {
-    return getForm('hiv', 'hts_retro');
+    return getForm('hiv', 'hts');
   }, []);
 
   const launchHTSForm = () => {
