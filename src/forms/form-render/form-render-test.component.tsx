@@ -58,10 +58,6 @@ function FormRenderTest() {
     setFormIntents(_formIntents);
   };
 
-  const updateProgramInput = e => {
-    setProgramInput(e.selectedItem.id);
-  };
-
   const updateFormIntentInput = e => {
     setFormIntentInput(e.selectedItem.id);
   };
