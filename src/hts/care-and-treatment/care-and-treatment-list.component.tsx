@@ -26,6 +26,7 @@ import {
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
 } from '../../constants';
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
@@ -47,24 +48,31 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
 
+  const forceComponentUpdate = () => setCounter(counter + 1);
   const serviceEnrolmentForm = useMemo(() => {
     return getForm('hiv', 'service_enrolment');
   }, []);
 
   const launchServiceEnrolmentForm = () => {
-    setCurrentEncounterUuid(null);
-    setCurrentMode('enter');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: serviceEnrolmentForm?.name,
+      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+    });
   };
   const editServiceEnrolmentEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('edit');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: serviceEnrolmentForm?.name,
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+    });
   };
   const viewHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('view');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: serviceEnrolmentForm?.name,
+      encounterUuid: encounterUuid,
+      mode: 'view',
+      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+    });
   };
 
   const tableHeaders = [
@@ -174,27 +182,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           headerTitle={headerTitle}
           launchForm={launchServiceEnrolmentForm}
         />
-      )}
-      {open && (
-        <ComposedModal open={open} onClose={() => handleClose()}>
-          <ModalHeader
-            style={{
-              backgroundColor: '#007d79',
-              height: '48px',
-              marginBottom: '0px',
-              color: '#ffffff',
-            }}>
-            {serviceEnrolmentForm?.name}
-          </ModalHeader>
-          <ModalBody>
-            <OHRIForm
-              formJson={serviceEnrolmentForm}
-              encounterUuid={currentEncounterUuid}
-              handleClose={handleClose}
-              mode={currentMode}
-            />
-          </ModalBody>
-        </ComposedModal>
       )}
     </>
   );
