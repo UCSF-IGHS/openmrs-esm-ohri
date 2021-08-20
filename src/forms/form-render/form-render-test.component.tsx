@@ -32,7 +32,7 @@ function FormRenderTest() {
     placeholder: 'Enter json...',
     id: 'jsonRenderInput',
     cols: 50,
-    rows: 20,
+    rows: 30,
   };
 
   const loadIntentsFromSchema = jsonSchema => {
@@ -41,7 +41,7 @@ function FormRenderTest() {
     _formIntents = jsonSchema.availableIntents || [];
 
     setFormIntents(_formIntents);
-    setIsIntentsDropdownDisabled(false); 
+    setIsIntentsDropdownDisabled(false);
   };
 
   const updateFormIntentInput = e => {
@@ -86,7 +86,7 @@ function FormRenderTest() {
           </Column>
         </Row>
         <Row>
-          <Column lg={6} md={6} sm={12} style={{ borderRight: '1em' }}>
+          <Column lg={5} md={5} sm={12} style={{ borderRight: '1em' }}>
             <h4>Enter Json</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
             <Form
@@ -114,27 +114,31 @@ function FormRenderTest() {
               </Button>
             </Form>
           </Column>
-          <Column lg={6} md={6} sm={12} style={{ border: '1em', minHeight: '200px', backgroundColor: '#F4F4F4' }}>
-            <h6 style={{ margin: '8px' }}>Ouput</h6>
-            <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
-            <Tabs type="container">
-              <Tab id="tab-form" label="Form render">
-                {isSchemaLoaded ? (
-                  <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
-                ) : (
-                  <p>Please enter a valid schema</p>
-                )}
-              </Tab>
-              <Tab id="tab-json-schema" label="JSON Schema">
-                <TextArea
-                  {...textareaProps}
-                  labelText=""
-                  placeholder=""
-                  value={schemaOutput}
-                  name="json-schema-result"
-                />
-              </Tab>
-            </Tabs>
+          <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
+            <h6 style={{ margin: '8px' }}>Output</h6>
+            <div style={{ border: '1rem', minHeight: '780px', backgroundColor: '#F4F4F4' }}>
+              <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
+              <Tabs type="container">
+                <Tab id="tab-form" label="Form render">
+                  {isSchemaLoaded ? (
+                    <div className={styles.formRenderDisplay}>
+                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
+                    </div>
+                  ) : (
+                    <p>Please enter a valid schema</p>
+                  )}
+                </Tab>
+                <Tab id="tab-json-schema" label="JSON Schema">
+                  <TextArea
+                    {...textareaProps}
+                    labelText=""
+                    placeholder=""
+                    value={schemaOutput}
+                    name="json-schema-result"
+                  />
+                </Tab>
+              </Tabs>
+            </div>
           </Column>
         </Row>
       </div>
