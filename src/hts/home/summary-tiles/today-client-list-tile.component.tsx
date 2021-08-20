@@ -148,7 +148,7 @@ export const TodaysClientList: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Today's clients" displayText="patients" newResource={false} />
+        <EmptyState headerTitle="Today's clients" displayText="patients" showLaunchLink={false} />
       ) : (
         <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
       )}
