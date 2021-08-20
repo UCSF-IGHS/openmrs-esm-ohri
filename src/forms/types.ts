@@ -18,7 +18,25 @@ export interface SubmissionHandler {
    * @returns the `submissionValue`
    */
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {};
+
+  /**
+   * Extracts value to be displayed while in `view` mode
+   *
+   * @returns the `displayValue`
+   */
+  getDisplayValue: (field: OHRIFormField, value: any) => any;
 }
+
+/**
+ * Field validator abstraction
+ */
+export interface FieldValidator {
+  /**
+   * Validates a field and returns validation errors
+   */
+  validate(field: OHRIFormField, value: any): { errCode: string; errMessage: string }[];
+}
+
 export interface OHRIFormSchema {
   name: string;
   pages: Array<OHRIFormPage>;
@@ -42,6 +60,8 @@ export interface OHRIFormField {
   isHidden?: boolean;
   dependant?: any;
   hideDeterminant?: string;
+  required?: boolean;
+  unspecified?: boolean;
 }
 
 export interface OHRIFormFieldProps {
@@ -69,7 +89,7 @@ export interface OHRIFormQuestionOptions {
   toggleOptions?: { labelTrue: string; labelFalse: string };
 }
 
-export type SessionMode = 'edit' | 'enter';
+export type SessionMode = 'edit' | 'enter' | 'view';
 
 export type RenderType =
   | 'select'

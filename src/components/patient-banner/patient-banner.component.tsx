@@ -9,7 +9,7 @@ export const PatientBanner: React.FC<{ patient: any }> = ({ patient }) => {
     return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
   };
   return (
-    <div id="header-wrapper" className={styles.headerWrapper}>
+    <div className={styles.headerWrapper}>
       <div className={`${styles.column} ${styles.demo}`}>
         <div className={styles.row}>
           <span className={styles.name}>{getPatientNames()}</span>
@@ -19,23 +19,6 @@ export const PatientBanner: React.FC<{ patient: any }> = ({ patient }) => {
             {capitalize(patient.gender)} &middot; {age(patient.birthDate)} &middot;{' '}
             {dayjs(patient.birthDate).format('DD - MMM - YYYY')}
           </span>
-        </div>
-      </div>
-      <div className={`${styles.column} ${styles.weight}`}>
-        <div className={`${styles.row} ${styles.weightLabel}`}>
-          <span>Weight</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.weightValue}>60</span>
-          <span className={styles.weightUnit}>kg</span>
-        </div>
-      </div>
-      <div className={`${styles.column} ${styles.allergies}`}>
-        <div className={styles.row}>
-          <span className={styles.allergiesLabel}>Allergies</span>
-        </div>
-        <div className={styles.row}>
-          <span className={styles.allergiesValue}>Peanuts, Fructose</span>
         </div>
       </div>
     </div>

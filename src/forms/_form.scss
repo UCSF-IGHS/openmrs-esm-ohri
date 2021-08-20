@@ -1,33 +1,84 @@
-.ohriformcontainer {
-    margin: 0rem 0rem .5rem 0rem;
-    height: 100%;
-  background-color:#ffffff !important;
-
+/* a container with flex-direction column */
+.mainContainer {
+  height: 75vh; /* or position:absolute; height:100%; */
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
 }
 
-.formStyle{
-  background-color:#ffffff !important;
+/* this is the flex container that will take the rest of the height */
+.contentWrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0px; /* IMPORTANT: you need this for non-chrome browsers */
 }
 
-.contentWrapper, .submit {
-    margin: 100px 20px 0px 20px;
-}
-
-.title {
-  margin: 0 31.5rem 1.5rem 0;
-  font-size: 1.75rem;
-  line-height: 1.29;
-  color: var(--color-gray-100);
-}
-
-.ohriSidebar{
-  position: fixed;
-  margin-top:5.5rem;
-}
-
-.ohriFormContent {
-  position: absolute;
+/* the container for our overflowed content */
+.overflowContainer {
+  flex: 1 1 auto;
   overflow: auto;
-  z-index: 7999;
-  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* the fixed sidebar content */
+.sidebar {
+  height: auto;
+  width: 12rem;
+  position: fixed;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+/* the overflow content itself */
+.overflowContent {
+  height: auto;
+  margin-left: 14rem;
+  padding-bottom: 40rem;
+  position: fixed;
+  top: 100px;
+  bottom: 0;
+  overflow-y: scroll;
+  max-width: 100%;
+  padding-left: 10px;
+}
+
+@media (max-width: 1024px) {
+  .overflowContent {
+    height: auto;
+    margin-left: 13rem;
+    padding-bottom: 20rem;
+    position: fixed;
+    top: 44px;
+    bottom: 0;
+    overflow-y: scroll;
+    max-width: 60%;
+  }
+
+  .mainContainer {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: contain;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 1680px) {
+  .overflowContent {
+    height: auto;
+    margin-left: 13rem;
+    padding-bottom: 20rem;
+    position: fixed;
+    top: 100px;
+    bottom: 0;
+    overflow-y: scroll;
+    max-width: 70%;
+  }
+
+  .mainContainer {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: contain;
+  }
 }

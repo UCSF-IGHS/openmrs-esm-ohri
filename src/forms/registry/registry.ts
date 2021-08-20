@@ -8,8 +8,9 @@ import OHRIDropdown from '../components/inputs/select/ohri-dropdown.component';
 import OHRITextArea from '../components/inputs/text-area/ohri-text-area.component';
 import OHRIText from '../components/inputs/text/ohri-text.component';
 import OHRIToggle from '../components/inputs/toggle/ohri-toggle.component';
+import { OHRIFieldValidator } from '../ohri-form-validator';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
-import { SubmissionHandler } from '../types';
+import { FieldValidator, SubmissionHandler } from '../types';
 
 const baseFieldComponents: Array<RegistryItem> = [
   {
@@ -77,6 +78,13 @@ const baseHandlers: Array<RegistryItem> = [
   },
 ];
 
+const fieldValidators: Array<ValidatorRegistryItem> = [
+  {
+    id: 'OHRIFieldValidator',
+    component: OHRIFieldValidator,
+  },
+];
+
 export const getFieldComponent = renderType => {
   return baseFieldComponents.find(item => item.type == renderType)?.component;
 };
@@ -93,8 +101,22 @@ export function addFieldComponent(fieldComponent: RegistryItem) {
   baseFieldComponents.push(fieldComponent);
 }
 
+export function addvalidator(validator: ValidatorRegistryItem) {
+  if (validator) {
+    fieldValidators.push(validator);
+  }
+}
+
+export function getValidator(id: string): FieldValidator {
+  return fieldValidators.find(validator => validator.id == id)?.component || fieldValidators[0].component;
+}
+
 export interface RegistryItem {
   id: string;
   component: any;
-  type: string;
+  type?: string;
+}
+
+interface ValidatorRegistryItem extends RegistryItem {
+  component: FieldValidator;
 }

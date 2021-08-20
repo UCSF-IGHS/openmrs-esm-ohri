@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Button from 'carbon-components-react/es/components/Button';
-import { Add16 } from '@carbon/icons-react';
 import styles from '../encounters-list/hts-overview-list.scss';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../components/empty-state/empty-state.component';
+import { Button } from 'carbon-components-react';
+import { Add16 } from '@carbon/icons-react';
 
 const ClientLinkage = () => {
   const { t } = useTranslation();

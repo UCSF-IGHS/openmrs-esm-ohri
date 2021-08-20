@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import OhriForm from './forms/ohri-form.component';
-import HTSRestroForm from './forms/test-forms/hts_retrospective_form-schema';
+import OhriHome from './ohri-home/ohri-home-component';
+import FormRenderTest from './forms/form-render/form-render-test.component';
 
 export default function Root() {
   return (
     <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
-      <Route exact path="/ohri-forms/*" render={props => <OhriForm formJson={HTSRestroForm} {...props} />} />
+      <Route exact path="/ohri-home" render={props => <OhriHome />} />
+      <Route exact path="/form-render-test" render={props => <FormRenderTest />} />
     </BrowserRouter>
   );
 }

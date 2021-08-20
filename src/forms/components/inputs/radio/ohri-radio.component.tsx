@@ -3,45 +3,37 @@ import { FormGroup, RadioButtonGroup, RadioButton } from 'carbon-components-reac
 import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { getConcept } from '../../../ohri-form.resource';
-import { ConceptTrue } from '../../../constants';
+import { OHRILabel } from '../../label/ohri-label.component';
+import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import styles from '../_input.scss';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
-  const [isBoolean, setIsBoolean] = useState(false);
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setErrors(question['submission']?.errors);
+    }
+  }, [question['submission']]);
 
   const handleChange = value => {
     setFieldValue(question.id, value);
+    setErrors(OHRIFieldValidator.validate(question, value));
     onChange(question.id, value);
-    question.value = handler.handleFieldSubmission(
-      question,
-      isBoolean ? value == ConceptTrue : value,
-      encounterContext,
-    );
+    question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
-  useEffect(() => {
-    if (isBoolean) {
-      if (question.value?.value && typeof question.value.value != 'boolean') {
-        question.value.value = question.value.value.uuid == ConceptTrue;
-      }
-    }
-  }, [question.value, isBoolean]);
-
-  useEffect(() => {
-    getConcept(question.questionOptions.concept, 'custom:(uuid,display,datatype:(uuid,display,name))').subscribe(
-      result => {
-        if (result.datatype.name == 'Boolean') {
-          setIsBoolean(true);
-        }
-      },
-    );
-  }, [question.questionOptions.concept]);
-
-  return (
+  return encounterContext.sessionMode == 'view' ? (
+    <div className={styles.formField}>
+      <OHRILabel value={question.label} />
+      {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
+    </div>
+  ) : (
     <div>
-      <FormGroup legendText={question.label}>
+      <FormGroup legendText={question.label} className={errors.length ? styles.errorLegend : ''}>
         <RadioButtonGroup
           defaultSelected="default-selected"
           name={question.id}
