@@ -134,3 +134,13 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
     return 'Negative';
   });
 }
+
+export function fetchPatientObservationFromEncounter(
+  patientUUID: string,
+  encounterUUID: string,
+  observationCode: string,
+) {
+  return openmrsFetch(
+    `/ws/fhir2/R4/Observation?patient=${patientUUID}&encounter=${encounterUUID}&code=${observationCode}&_sort=-date&_count=1`,
+  );
+}

@@ -100,7 +100,7 @@
   width: $ohri-input-width;
 }
 
-.textInputOverrides label {
+.textInputOverrides label { 
   font-size: 0.875rem !important;
 }
 
@@ -111,4 +111,14 @@
 
 .errorLegend legend, .errorLabel label {
   color: #da1e28
+  font-size: 0.875rem !important;
 }
+
+.unspecified > div label {
+    font-size: 12px;
+    color: $color-gray-70;
+}
+
+.errorLegend legend, .errorLabel label {
+    color: #da1e28
+} 

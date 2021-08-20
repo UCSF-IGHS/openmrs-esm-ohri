@@ -6,13 +6,16 @@ import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
 import { filterFormByIntent } from '../../utils/forms-loader';
 
+import { filterFormByIntent } from '../../utils/forms-loader';
+
+import { filterFormByIntent } from '../../utils/forms-loader';
+
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
   const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
-  const [programInput, setProgramInput] = useState('');
   const [formIntentInput, setFormIntentInput] = useState('');
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
 
@@ -34,16 +37,11 @@ function FormRenderTest() {
 
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = [];
-
-    if (jsonSchema.availableIntents) {
-      _formIntents = jsonSchema.availableIntents.map(intent => ({
-        id: intent,
-        text: intent.replace('_', ' '),
-      }));
-      setIsIntentsDropdownDisabled(false);
-    }
+ 
+    _formIntents = jsonSchema.availableIntents || [];
 
     setFormIntents(_formIntents);
+    setIsIntentsDropdownDisabled(false);
   };
 
   const updateFormIntentInput = e => {
@@ -105,11 +103,12 @@ function FormRenderTest() {
                   titleText="Form Intent"
                   label="--Select Form Intent"
                   items={formIntents}
-                  itemToString={item => (item ? item.text : '')}
+                  itemToString={item => item.display}
                   onChange={updateFormIntentInput}
                   disabled={isIntentsDropdownDisabled}
                 />
               </div>
+
               <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
                 Render
               </Button>

@@ -77,24 +77,38 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @returns {object} The form json
  */
 export function filterFormByIntent(intent, originalJson) {
-  //Dee-copy original JSON
+  // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
 
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     page.sections.forEach(section => {
-      section.questions.forEach(question => {
-        // Check if question behaviours includes required intent
-        const requiredIntentBehaviours = question.behaviours?.find(behaviour => behaviour.intent === intent);
+      section.questions.forEach(question => { 
+        if (question.behaviours) {
+          // Check if question behaviours includes required intent
+          const requiredIntentBehaviours = question.behaviours?.find(behaviour => behaviour.intent === intent);
 
-        // If required intent is present, substitute original props
-        if (requiredIntentBehaviours) {
-          question.required = requiredIntentBehaviours.required || undefined;
-          question.unspecified = requiredIntentBehaviours.unspecified || undefined;
-          question.hide = requiredIntentBehaviours.hide || undefined;
-          question.validators = requiredIntentBehaviours.validators || undefined;
+          // If required intent is present, substitute original props
+          if (requiredIntentBehaviours) {
+            question.required = requiredIntentBehaviours.required || undefined;
+            question.unspecified = requiredIntentBehaviours.unspecified || undefined;
+            question.hide = requiredIntentBehaviours.hide || undefined;
+            question.validators = requiredIntentBehaviours.validators || undefined;
+          } else {
+            // Attempt to retrieve default behaviours
+            const defaultIntentBehaviours = question.behaviours.find(behaviour => behaviour.intent === '*');
+            if (defaultIntentBehaviours) {
+              question.required = defaultIntentBehaviours.required || undefined;
+              question.unspecified = defaultIntentBehaviours.unsepecified || undefined;
+              question.hide = defaultIntentBehaviours.hide || undefined;
+              question.validators = defaultIntentBehaviours.validators || undefined;
+            }
+          }
 
-          delete question.behaviours;
+          // make sure behaviours prop is always deleted
+          if (question.behaviours) {
+            delete question.behaviours;
+          }
         }
       });
     });
