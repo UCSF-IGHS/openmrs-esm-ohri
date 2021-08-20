@@ -39,3 +39,47 @@
   width: fit-content;
   margin: 0 $spacing-03;
 }
+
+.formRenderDisplay > form > .mainContainer > .overflowContent {
+  background-color: red !important;
+  max-width: 70% !important;
+  top: 240px !important;
+  bottom: 190px !important;
+}
+
+.formRenderDisplay {
+  form {
+    .mainContainer {
+      .overflowContent {
+        background-color: mediumpurple !important;
+        max-width: 70% !important;
+        top: 240px !important;
+        bottom: 190px !important;
+      }
+    }
+  }
+}
+
+.formRenderDisplay {
+  .mainContainer {
+    .overflowContent {
+      background-color: mediumpurple !important;
+      max-width: 70% !important;
+      top: 240px !important;
+      bottom: 190px !important;
+    }
+  }
+}
+
+.overflowContent {
+  background-color: mediumpurple !important;
+  max-width: 70% !important;
+  top: 240px !important;
+  bottom: 190px !important;
+  height: auto;
+  margin-left: 14rem;
+  padding-bottom: 40rem;
+  position: fixed;
+  overflow-y: scroll;
+  padding-left: 10px;
+}
