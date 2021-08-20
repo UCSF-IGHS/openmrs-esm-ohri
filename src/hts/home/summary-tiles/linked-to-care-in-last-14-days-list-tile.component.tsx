@@ -146,7 +146,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Linked To Care in Last 14 Days" displayText="patients" newResource={false} />
+        <EmptyState headerTitle="Linked To Care in Last 14 Days" displayText="patients" showLaunchLink={false} />
       ) : (
         <ExtensionSlot extensionSlotName="linked-to-care-last-14-days-table-slot" state={state} key={counter} />
       )}
