@@ -1,0 +1,94 @@
+@import "../root.scss";
+
+.container {
+  border-top: 0.063rem solid $ui-03;
+  border-bottom: 0.063rem solid $ui-03;
+  background-color: $ui-01;
+  margin: 40px auto;
+  color: $ui-05;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  object-fit: contain;
+  max-width: 1440px;
+  height: inherit;
+}
+
+
+.listBanner {
+  display: flex;
+  width: auto;
+  border-bottom: 1px solid $ui-03;
+  // background-color: $ui-03;
+}
+
+.bannerTitle {
+  @include carbon--type-style("body-short-02");
+  margin-right: 0.25rem;
+  padding-left: 16px;
+}
+
+.listInfo {
+  width: 100%;
+}
+
+.demographics {
+  @include carbon--type-style("body-short-01");
+  color: $color-gray-70;
+  margin-top: 0.375rem;
+  padding-left: 16px;
+  padding-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.875rem;
+}
+
+.rowContent{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.875rem;
+  border-top: 0.063rem solid $ui-03;
+  border-bottom: 0.063rem solid $ui-03;
+}
+
+.flexRow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.identifiers {
+  @include carbon--type-style("body-short-01");
+  color: $ui-04;
+}
+
+.tooltipPadding {
+  padding: 0.25rem;
+}
+
+.tooltipSmallText {
+  font-size: 80%;
+}
+
+.actionsButtonText {
+  @include carbon--type-style("body-short-01");
+  color: $interactive-01;
+}
+
+:global(.bx--tooltip--definition .bx--tooltip__trigger){
+  border-bottom: none;
+}
+
+.childPadding {
+  padding: 32px 32px 0px 32px;
+  // background-color: $ui-03;
+}

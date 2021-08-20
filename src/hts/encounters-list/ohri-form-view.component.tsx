@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
 import OHRIForm from '../../forms/ohri-form.component';
+import { SessionMode } from '../../forms/types';
 
-const OHRIFormView: React.FC<{ state: any; closeWorkspace: any; encounterUuid: string }> = ({
+const OHRIFormView: React.FC<{ state: any; closeWorkspace: any; encounterUuid?: string; mode?: SessionMode }> = ({
   state,
   closeWorkspace,
   encounterUuid,
+  mode,
 }) => {
   const onFormSubmit = useCallback(() => {
     if (state.updateParent) {
@@ -18,6 +20,7 @@ const OHRIFormView: React.FC<{ state: any; closeWorkspace: any; encounterUuid: s
       onCancel={closeWorkspace}
       onSubmit={onFormSubmit}
       encounterUuid={encounterUuid}
+      mode={mode}
     />
   );
 };

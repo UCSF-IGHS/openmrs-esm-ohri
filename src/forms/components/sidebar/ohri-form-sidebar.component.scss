@@ -1,12 +1,14 @@
 @import "../../../root.scss";
-
-.space05 {
-    margin: $spacing-05 0 $spacing-05 0; 
+.sidebar{
+width: 11rem;
+// margin-left: 20px;
+margin-right: 20px;
+position: fixed;
 }
+
 .link {
   margin: 0.375rem 0 0.375rem 0.5rem;
   font-size: 1rem;
-
   line-height: 1.43;
   letter-spacing: 0.16px;
   color: #161616;
@@ -15,4 +17,42 @@
 
 .link:hover {
     outline: none;
+}
+
+// Sidebar-Section
+.sidebarSection{
+  border-left: 0.5rem solid #9ef0f0;
+  height: 1.75rem;
+  margin: 0.122rem 0 0.122rem;
+  padding: 0.382rem 0.375rem 0.118rem 1rem;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.sidebarSectionActive {
+  border-left: 0.5rem solid #009d9a;
+  height: 1.75rem;
+  font-weight: 600;
+  margin: 0.122rem 0 0.122rem;
+  padding: 0.382rem 0.375rem 0.118rem 1rem;
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+.sidebarSectionDone {
+  border-left: 0.5rem solid #42be65;
+  height: 1.75rem;
+  margin: 0.122rem 0 0.122rem;
+  padding: 0.382rem 0.375rem 0.118rem 1rem;
+  background-color: #defbe6;
+  cursor: pointer;
+}
+
+.sidebarSectionLink{
+  font-size: 0.875rem;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: 0.16px;
+  color: #161616;
 }

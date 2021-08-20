@@ -1,9 +1,10 @@
-[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
-
 # OHRI ESM
 
 A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
+## Badges
+[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg?branch=working)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
 
+![Badges](badges/badge-branches.svg) ![Badges](badges/badge-functions.svg) ![Badges](badges/badge-lines.svg)
 ## Overview
 
 (tbd)
@@ -64,6 +65,9 @@ npm run serve
 10. Select the `Allow` option from the `Insecure content` dropdown in the browser settings page.
 11. Refresh the page.
 
+Optional Steps:
+To enable Devtools (a gray or red rectangular button near the bottom right of the screen): Open cosole of Developer Tools -> In console enter: ```localStorage.setItem('openmrs:devtools', true)```
+
 ## Tests
 
 To verify that all of the tests run:
@@ -76,7 +80,8 @@ npm test
 
 ## Deployment
 
-Currently, there are no releases for this module and it can only be locally deployed by following the installation instructions.
+Currently, available releases for this module:
+- [![DEMO](https://ohri-demo.globalhealthapp.net/)] 
 
 ## Configuration
 
@@ -85,6 +90,9 @@ This module is designed to be driven by configuration files. These files define 
 *Note: Currently, the module cannot be configured as it is in the early stages of development.*
 
 ## Resources
+Optional Steps:
+To run against a deployment server (to reflect local changes that will be on server upon Deployment): 
+On terminal run ->  ```npx openmrs develop --backend https://{server-address}```
 
 (tbd)
 ## Acknowledgements
