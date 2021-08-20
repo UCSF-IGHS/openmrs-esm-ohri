@@ -1,24 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './hts-overview-list.scss';
-import Button from 'carbon-components-react/es/components/Button';
-import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import {
-  ComposedModal,
-  DataTableSkeleton,
-  ModalBody,
-  ModalHeader,
-  OverflowMenu,
-  OverflowMenuItem,
-} from 'carbon-components-react';
+import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
-import OHRIForm from '../../forms/ohri-form.component';
-import { SessionMode } from '../../forms/types';
-
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
 interface HtsOverviewListProps {
   patientUuid: string;
 }
@@ -34,33 +24,34 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const [open, setOpen] = useState(false);
-  const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
-  const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
   const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
+  const [htsForm, setHTSForm] = useState(getForm('hiv', 'hts'));
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const htsRetroForm = useMemo(() => {
-    return getForm('hiv', 'hts_retro');
-  }, []);
 
-  const launchHTSForm = () => {
-    setCurrentEncounterUuid(null);
-    setCurrentMode('enter');
-    setOpen(true);
+  const launchHTSForm = (form?: any) => {
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsForm?.name,
+      state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
+    });
   };
   const editHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('edit');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsForm?.name,
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate, formJson: htsForm },
+    });
   };
   const viewHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('view');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsForm?.name,
+      encounterUuid: encounterUuid,
+      mode: 'view',
+      state: { updateParent: forceComponentUpdate, formJson: htsForm },
+    });
   };
 
   const tableHeaders = [
@@ -130,10 +121,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
 
   const headerTitle = 'HTS Sessions';
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
       {isLoading ? (
@@ -143,42 +130,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <div className={styles.toggleButtons}>
-                <Button
-                  kind="ghost"
-                  renderIcon={Add16}
-                  iconDescription="New"
-                  onClick={e => {
-                    e.preventDefault();
-                    launchHTSForm();
-                  }}>
-                  {t('add', 'New')}
-                </Button>
-              </div>
+              <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
-          {open && (
-            <ComposedModal open={open} onClose={() => handleClose()}>
-              <ModalHeader
-                style={{
-                  backgroundColor: '#007d79',
-                  height: '48px',
-                  marginBottom: '0px',
-                  color: '#ffffff',
-                }}>
-                {htsRetroForm?.name}
-              </ModalHeader>
-              <ModalBody>
-                <OHRIForm
-                  formJson={htsRetroForm}
-                  encounterUuid={currentEncounterUuid}
-                  handleClose={handleClose}
-                  mode={currentMode}
-                />
-              </ModalBody>
-            </ComposedModal>
-          )}
         </>
       ) : (
         <EmptyState

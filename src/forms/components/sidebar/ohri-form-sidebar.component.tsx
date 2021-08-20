@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
-import { Button, SideNav, SideNavItems, SideNavLink } from 'carbon-components-react';
+import { Button, Toggle } from 'carbon-components-react';
+import { isEmpty } from '../../ohri-form-validator';
 
-function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose }) {
+function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose, values, setValues }) {
   const [activeLink, setActiveLink] = useState(selectedPage);
 
   const joinWord = value => {
     return value.replace(/\s/g, '');
   };
+
+  const unspecifiedFields = useMemo(() => {
+    return (
+      Object.keys(values)
+        .filter(key => key.endsWith('-unspecified'))
+        // find parent control
+        .map(key => key.split('-unspecified')[0])
+        // factor-out those with values
+        .filter(key => isEmpty(values[key]))
+        // return the unspecified control keys
+        .map(key => `${key}-unspecified`)
+    );
+  }, [values]);
 
   const handleClick = selected => {
     const activeID = selected.replace(/\s/g, '');
@@ -16,6 +30,21 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClos
     scrollIntoView(activeID);
   };
 
+  const markAllAsUnspecified = useCallback(
+    toggled => {
+      if (toggled) {
+        unspecifiedFields.forEach(field => {
+          values[field] = true;
+        });
+      } else {
+        unspecifiedFields.forEach(field => {
+          values[field] = false;
+        });
+      }
+      setValues(values);
+    },
+    [unspecifiedFields],
+  );
   return (
     <div className={styles.sidebar}>
       {currentPage.map((page, index) => {
@@ -30,8 +59,17 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClos
         );
       })}
       <hr className={styles.sideBarHorizontalLine} />
+      <div style={{ marginBottom: '.6rem' }}>
+        <Toggle
+          labelText=""
+          id="auto-unspecifier"
+          labelA="Unspecify All"
+          labelB="Revert"
+          onToggle={markAllAsUnspecified}
+        />
+      </div>
       {mode != 'view' && (
-        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit" onClick={() => handleClose()}>
+        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
           Save
         </Button>
       )}

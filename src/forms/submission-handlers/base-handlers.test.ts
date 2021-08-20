@@ -89,7 +89,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // Select Oncology Screening and Diagnosis Program
     let obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      { checked: true, id: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' },
+      [{ checked: true, id: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' }],
       encounterContext,
     );
 
@@ -111,7 +111,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // Add Fight Malaria Initiative
     obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      { checked: true, id: '305e7ad6-c1fd-11eb-8529-0242ac130003' },
+      [{ checked: true, id: '305e7ad6-c1fd-11eb-8529-0242ac130003' }],
       encounterContext,
     );
 
@@ -311,7 +311,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // replay
     const obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      { checked: true, id: '305e77c0-c1fd-11eb-8529-0242ac130003' },
+      [{ checked: true, id: '305e77c0-c1fd-11eb-8529-0242ac130003' }],
       encounterContext,
     );
 
@@ -493,7 +493,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // replay
     const obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      { checked: false, id: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' },
+      [{ checked: false, id: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' }],
       encounterContext,
     );
 

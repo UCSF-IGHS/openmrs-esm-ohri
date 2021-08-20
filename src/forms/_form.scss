@@ -6,11 +6,6 @@
   overscroll-behavior: contain;
 }
 
-/* an arbitrary container of fixed height */
-.fixedContainer {
-  // position: fixed;
-}
-
 /* this is the flex container that will take the rest of the height */
 .contentWrapper {
   display: flex;
@@ -26,7 +21,7 @@
 }
 
 /* the fixed sidebar content */
-.sidebar{
+.sidebar {
   height: auto;
   width: 12rem;
   position: fixed;
@@ -37,24 +32,23 @@
 /* the overflow content itself */
 .overflowContent {
   height: auto;
-  margin-left: 13rem;
+  margin-left: 14rem;
   padding-bottom: 40rem;
   position: fixed;
-  top: 140px;
-  left: 0;
+  top: 100px;
   bottom: 0;
   overflow-y: scroll;
   max-width: 100%;
+  padding-left: 10px;
 }
 
 @media (max-width: 1024px) {
   .overflowContent {
     height: auto;
     margin-left: 13rem;
-    padding-bottom: 40rem;
+    padding-bottom: 20rem;
     position: fixed;
-    top: 140px;
-    left: 0;
+    top: 44px;
     bottom: 0;
     overflow-y: scroll;
     max-width: 60%;
@@ -73,10 +67,9 @@
   .overflowContent {
     height: auto;
     margin-left: 13rem;
-    padding-bottom: 40rem;
+    padding-bottom: 20rem;
     position: fixed;
-    top: 140px;
-    left: 0;
+    top: 100px;
     bottom: 0;
     overflow-y: scroll;
     max-width: 70%;

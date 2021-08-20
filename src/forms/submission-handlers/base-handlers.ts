@@ -51,7 +51,8 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         return field.value.map(o => o.value.uuid);
       }
       if (field.questionOptions.rendering == 'toggle') {
-        return obs.value.uuid == ConceptTrue;
+        field.value.value = obs.value.uuid;
+        return obs.value == ConceptTrue;
       }
       return obs.value.uuid;
     }
@@ -112,25 +113,28 @@ const constructObs = (value: any, context: EncounterContext, field: OHRIFormFiel
   };
 };
 
-const multiSelectObsHandler = (field: OHRIFormField, value: any, context: EncounterContext) => {
-  const { checked, id } = value;
+const multiSelectObsHandler = (field: OHRIFormField, values: any, context: EncounterContext) => {
   if (!field.value) {
     field.value = [];
   }
-  if (checked) {
-    const obs = field.value.find(o => o.value.uuid == id);
-    if (obs && obs.voided) {
-      obs.voided = false;
+  values.forEach(value => {
+    const { checked, id } = value;
+
+    if (checked) {
+      const obs = field.value.find(o => o.value.uuid == id);
+      if (obs && obs.voided) {
+        obs.voided = false;
+      } else {
+        field.value.push(constructObs(id, context, field));
+      }
     } else {
-      field.value.push(constructObs(id, context, field));
+      const obs = field.value.find(v => v.value.uuid == id);
+      if (obs && context.sessionMode == 'edit') {
+        obs.voided = true;
+      } else {
+        field.value = field.value.filter(o => o.value !== id);
+      }
     }
-  } else {
-    const obs = field.value.find(o => o.value.uuid == id);
-    if (obs && context.sessionMode == 'edit') {
-      obs.voided = true;
-    } else {
-      field.value = field.value.filter(o => o.value !== id);
-    }
-  }
+  });
   return field.value;
 };

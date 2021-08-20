@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FormGroup, ContentSwitcher, Switch } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
@@ -6,15 +6,24 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
+import { OHRIFieldValidator } from '../../../ohri-form-validator';
 
 export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (question['submission']?.errors) {
+      setErrors(question['submission']?.errors);
+    }
+  }, [question['submission']]);
 
   const handleChange = value => {
-    setFieldValue(question.id, value.name);
-    onChange(question.id, value.name);
-    question.value = handler.handleFieldSubmission(question, value.name, encounterContext);
+    setFieldValue(question.id, value?.name);
+    setErrors(OHRIFieldValidator.validate(question, value));
+    onChange(question.id, value?.name);
+    question.value = handler.handleFieldSubmission(question, value?.name, encounterContext);
   };
   const selectedIndex = useMemo(
     () => question.questionOptions.answers.findIndex(option => option.concept == field.value),
@@ -28,7 +37,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
   ) : (
     !question.isHidden && (
       <div className={styles.textContainer}>
-        <FormGroup legendText={question.label}>
+        <FormGroup legendText={question.label} className={errors.length ? styles.errorLegend : ''}>
           <ContentSwitcher onChange={handleChange} selectedIndex={selectedIndex} className={styles.selectedOption}>
             {question.questionOptions.answers.map((option, index) => (
               <Switch

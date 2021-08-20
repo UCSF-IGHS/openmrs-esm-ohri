@@ -1,5 +1,11 @@
-import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, lookupForms } from './forms-loader';
+import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, filterFormByIntent } from './forms-loader';
 import formsRegistry from '../../__mocks__/packages/test-forms-registry';
+import {
+  testSchemaV2,
+  htsRetrospectiveResultingSchemaV2,
+  htsHivtestResultingSchemaV2,
+  htsWildcardResultingSchemaV2,
+} from './forms-loader.test.schema';
 
 const htsTestForms: FormJsonFile[] = [
   {
@@ -52,17 +58,81 @@ describe('Forms loader - getForm', () => {
           label: 'Screening',
           sections: [
             {
-              label: 'Index client ID Number',
-              type: 'obs',
-              questionOptions: {
-                rendering: 'text',
-                concept: '7d502927-7f21-4f72-bfc6-dc4d972ab1af',
-              },
-              id: 'indexClientID',
+              label: 'Testing history',
+              isExpanded: 'true',
+              questions: [
+                {
+                  label: 'When was the HIV test conducted?',
+                  type: 'obs',
+                  questionOptions: {
+                    rendering: 'date',
+                    concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    weeksList: '',
+                  },
+                  required: 'true',
+                  unspecified: 'true',
+                  hide: {
+                    hideWhenExpression: 'false',
+                  },
+                  validators: [
+                    {
+                      type: 'date',
+                      allowFutureDates: 'false',
+                    },
+                    {
+                      type: 'js_expression',
+                      failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                    },
+                  ],
+                  behaviours: [
+                    {
+                      intent: 'HTS_RETROSPECTIVE',
+                      required: 'true',
+                      unspecified: 'true',
+                      hide: {
+                        hideWhenExpression: 'false',
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                    {
+                      intent: 'HTS_HIVTEST',
+                      required: 'true',
+                    },
+                    {
+                      intent: '',
+                      required: 'false',
+                      hide: {
+                        hideWhenExpression: "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'",
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                  ],
+                  id: 'dateTestPerformed',
+                },
+              ],
             },
           ],
         },
       ],
+      availableIntents: ['HTS_RETROSPECTIVE', 'HTS_HIVTEST', '*'],
       processor: 'EncounterFormProcessor',
       uuid: 'da24c540-cc83-43bc-978f-c1ef180a497f',
       referencedForms: [],
@@ -99,7 +169,6 @@ describe('Forms loader - getForm', () => {
   it('should get lastet if required version was not found while in none strict mode', () => {
     // replay
     const latestForm = getForm('hiv', 'hts_poc', '9.1', false, formsRegistry);
-
     // verify
     expect(latestForm).toEqual({
       name: 'Test HTS POC',
@@ -108,17 +177,81 @@ describe('Forms loader - getForm', () => {
           label: 'Screening',
           sections: [
             {
-              label: 'Index client ID Number',
-              type: 'obs',
-              questionOptions: {
-                rendering: 'text',
-                concept: '7d502927-7f21-4f72-bfc6-dc4d972ab1af',
-              },
-              id: 'indexClientID',
+              label: 'Testing history',
+              isExpanded: 'true',
+              questions: [
+                {
+                  label: 'When was the HIV test conducted?',
+                  type: 'obs',
+                  questionOptions: {
+                    rendering: 'date',
+                    concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    weeksList: '',
+                  },
+                  required: 'true',
+                  unspecified: 'true',
+                  hide: {
+                    hideWhenExpression: 'false',
+                  },
+                  validators: [
+                    {
+                      type: 'date',
+                      allowFutureDates: 'false',
+                    },
+                    {
+                      type: 'js_expression',
+                      failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                    },
+                  ],
+                  behaviours: [
+                    {
+                      intent: 'HTS_RETROSPECTIVE',
+                      required: 'true',
+                      unspecified: 'true',
+                      hide: {
+                        hideWhenExpression: 'false',
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                    {
+                      intent: 'HTS_HIVTEST',
+                      required: 'true',
+                    },
+                    {
+                      intent: '',
+                      required: 'false',
+                      hide: {
+                        hideWhenExpression: "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'",
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                  ],
+                  id: 'dateTestPerformed',
+                },
+              ],
             },
           ],
         },
       ],
+      availableIntents: ['HTS_RETROSPECTIVE', 'HTS_HIVTEST', '*'],
       processor: 'EncounterFormProcessor',
       uuid: 'da24c540-cc83-43bc-978f-c1ef180a497f',
       referencedForms: [],
@@ -166,5 +299,25 @@ describe('Forms loader - getFormByVersion', () => {
         encounterType: '79c1f50f-f77d-42e2-ad2a-d29304dde2fe',
       },
     });
+  });
+});
+
+describe('Forms loader - filterFormByIntent', () => {
+  it('should return correct fields for HTS_RETROSPECTIVE intent', () => {
+    let resultingSchema = filterFormByIntent('HTS_RETROSPECTIVE', testSchemaV2);
+
+    expect(resultingSchema).toEqual(htsRetrospectiveResultingSchemaV2);
+  });
+
+  it('should return correct fields for HTS_HIVTEST intent', () => {
+    let resultingSchema = filterFormByIntent('HTS_HIVTEST', testSchemaV2);
+
+    expect(resultingSchema).toEqual(htsHivtestResultingSchemaV2);
+  });
+
+  it('should return correct fields for * intent', () => {
+    let resultingSchema = filterFormByIntent('*', testSchemaV2);
+
+    expect(resultingSchema).toEqual(htsWildcardResultingSchemaV2);
   });
 });
