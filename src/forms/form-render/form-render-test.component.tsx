@@ -15,7 +15,6 @@ function FormRenderTest() {
   const [programInput, setProgramInput] = useState('');
   const [formIntentInput, setFormIntentInput] = useState('');
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
-  const [errorMessage, setErrorMessage] = useState<any>();
 
   const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
   const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
@@ -30,19 +29,8 @@ function FormRenderTest() {
     placeholder: 'Enter json...',
     id: 'jsonRenderInput',
     cols: 50,
-    rows: 20,
+    rows: 30,
   };
-
-  const programs = [
-    {
-      id: 'HTS',
-      text: 'HTS',
-    },
-    {
-      id: 'Care and Treatment',
-      text: 'Care and Treatment',
-    },
-  ];
 
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = [];
@@ -56,10 +44,6 @@ function FormRenderTest() {
     }
 
     setFormIntents(_formIntents);
-  };
-
-  const updateProgramInput = e => {
-    setProgramInput(e.selectedItem.id);
   };
 
   const updateFormIntentInput = e => {
@@ -104,7 +88,7 @@ function FormRenderTest() {
           </Column>
         </Row>
         <Row>
-          <Column lg={6} md={6} sm={12} style={{ borderRight: '1em' }}>
+          <Column lg={5} md={5} sm={12} style={{ borderRight: '1em' }}>
             <h4>Enter Json</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
             <Form
@@ -114,17 +98,6 @@ function FormRenderTest() {
                 handleFormSubmission(e);
               }}>
               <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
-
-              <div style={{ width: 400 }}>
-                <Dropdown
-                  id="default"
-                  titleText="Programs"
-                  label="--Select Program"
-                  items={programs}
-                  itemToString={item => (item ? item.text : '')}
-                  onChange={updateProgramInput}
-                />
-              </div>
 
               <div style={{ width: 400 }}>
                 <Dropdown
@@ -142,27 +115,31 @@ function FormRenderTest() {
               </Button>
             </Form>
           </Column>
-          <Column lg={6} md={6} sm={12} style={{ border: '1em', minHeight: '200px', backgroundColor: '#F4F4F4' }}>
+          <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
             <h6 style={{ margin: '8px' }}>Output</h6>
-            <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
-            <Tabs type="container">
-              <Tab id="tab-form" label="Form render">
-                {isSchemaLoaded ? (
-                  <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
-                ) : (
-                  <p>Please enter a valid schema</p>
-                )}
-              </Tab>
-              <Tab id="tab-json-schema" label="JSON Schema">
-                <TextArea
-                  {...textareaProps}
-                  labelText=""
-                  placeholder=""
-                  value={schemaOutput}
-                  name="json-schema-result"
-                />
-              </Tab>
-            </Tabs>
+            <div style={{ border: '1rem', minHeight: '780px', backgroundColor: '#F4F4F4' }}>
+              <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
+              <Tabs type="container">
+                <Tab id="tab-form" label="Form render">
+                  {isSchemaLoaded ? (
+                    <div className={styles.formRenderDisplay}>
+                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
+                    </div>
+                  ) : (
+                    <p>Please enter a valid schema</p>
+                  )}
+                </Tab>
+                <Tab id="tab-json-schema" label="JSON Schema">
+                  <TextArea
+                    {...textareaProps}
+                    labelText=""
+                    placeholder=""
+                    value={schemaOutput}
+                    name="json-schema-result"
+                  />
+                </Tab>
+              </Tabs>
+            </div>
           </Column>
         </Row>
       </div>
