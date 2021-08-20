@@ -58,17 +58,81 @@ describe('Forms loader - getForm', () => {
           label: 'Screening',
           sections: [
             {
-              label: 'Index client ID Number',
-              type: 'obs',
-              questionOptions: {
-                rendering: 'text',
-                concept: '7d502927-7f21-4f72-bfc6-dc4d972ab1af',
-              },
-              id: 'indexClientID',
+              label: 'Testing history',
+              isExpanded: 'true',
+              questions: [
+                {
+                  label: 'When was the HIV test conducted?',
+                  type: 'obs',
+                  questionOptions: {
+                    rendering: 'date',
+                    concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    weeksList: '',
+                  },
+                  required: 'true',
+                  unspecified: 'true',
+                  hide: {
+                    hideWhenExpression: 'false',
+                  },
+                  validators: [
+                    {
+                      type: 'date',
+                      allowFutureDates: 'false',
+                    },
+                    {
+                      type: 'js_expression',
+                      failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                    },
+                  ],
+                  behaviours: [
+                    {
+                      intent: 'HTS_RETROSPECTIVE',
+                      required: 'true',
+                      unspecified: 'true',
+                      hide: {
+                        hideWhenExpression: 'false',
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                    {
+                      intent: 'HTS_HIVTEST',
+                      required: 'true',
+                    },
+                    {
+                      intent: '',
+                      required: 'false',
+                      hide: {
+                        hideWhenExpression: "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'",
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                  ],
+                  id: 'dateTestPerformed',
+                },
+              ],
             },
           ],
         },
       ],
+      availableIntents: ['HTS_RETROSPECTIVE', 'HTS_HIVTEST', '*'],
       processor: 'EncounterFormProcessor',
       uuid: 'da24c540-cc83-43bc-978f-c1ef180a497f',
       referencedForms: [],
@@ -105,7 +169,6 @@ describe('Forms loader - getForm', () => {
   it('should get lastet if required version was not found while in none strict mode', () => {
     // replay
     const latestForm = getForm('hiv', 'hts_poc', '9.1', false, formsRegistry);
-
     // verify
     expect(latestForm).toEqual({
       name: 'Test HTS POC',
@@ -114,17 +177,81 @@ describe('Forms loader - getForm', () => {
           label: 'Screening',
           sections: [
             {
-              label: 'Index client ID Number',
-              type: 'obs',
-              questionOptions: {
-                rendering: 'text',
-                concept: '7d502927-7f21-4f72-bfc6-dc4d972ab1af',
-              },
-              id: 'indexClientID',
+              label: 'Testing history',
+              isExpanded: 'true',
+              questions: [
+                {
+                  label: 'When was the HIV test conducted?',
+                  type: 'obs',
+                  questionOptions: {
+                    rendering: 'date',
+                    concept: '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                    weeksList: '',
+                  },
+                  required: 'true',
+                  unspecified: 'true',
+                  hide: {
+                    hideWhenExpression: 'false',
+                  },
+                  validators: [
+                    {
+                      type: 'date',
+                      allowFutureDates: 'false',
+                    },
+                    {
+                      type: 'js_expression',
+                      failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                    },
+                  ],
+                  behaviours: [
+                    {
+                      intent: 'HTS_RETROSPECTIVE',
+                      required: 'true',
+                      unspecified: 'true',
+                      hide: {
+                        hideWhenExpression: 'false',
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                    {
+                      intent: 'HTS_HIVTEST',
+                      required: 'true',
+                    },
+                    {
+                      intent: '',
+                      required: 'false',
+                      hide: {
+                        hideWhenExpression: "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'",
+                      },
+                      validators: [
+                        {
+                          type: 'date',
+                          allowFutureDates: 'false',
+                        },
+                        {
+                          type: 'js_expression',
+                          failsWhenExpression: "myValue < '1/1/1980' || myValue > today()",
+                        },
+                      ],
+                    },
+                  ],
+                  id: 'dateTestPerformed',
+                },
+              ],
             },
           ],
         },
       ],
+      availableIntents: ['HTS_RETROSPECTIVE', 'HTS_HIVTEST', '*'],
       processor: 'EncounterFormProcessor',
       uuid: 'da24c540-cc83-43bc-978f-c1ef180a497f',
       referencedForms: [],

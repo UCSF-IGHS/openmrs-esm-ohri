@@ -26,9 +26,11 @@ import {
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
 } from '../../constants';
+import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
+  viewMode: string;
 }
 
 export const htsFormSlot = 'hts-encounter-form-slot';
@@ -37,34 +39,39 @@ export const htsEncounterRepresentation =
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
-const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) => {
+const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, viewMode }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const [open, setOpen] = useState(false);
-  const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
-  const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
 
+  const forceComponentUpdate = () => setCounter(counter + 1);
   const serviceEnrolmentForm = useMemo(() => {
     return getForm('hiv', 'service_enrolment');
   }, []);
 
   const launchServiceEnrolmentForm = () => {
-    setCurrentEncounterUuid(null);
-    setCurrentMode('enter');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: serviceEnrolmentForm?.name,
+      screenSize: 'maximize',
+      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+    });
   };
   const editServiceEnrolmentEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('edit');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: serviceEnrolmentForm?.name,
+      encounterUuid: encounterUuid,
+      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+    });
   };
   const viewHTSEncounter = encounterUuid => {
-    setCurrentEncounterUuid(encounterUuid);
-    setCurrentMode('view');
-    setOpen(true);
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: serviceEnrolmentForm?.name,
+      encounterUuid: encounterUuid,
+      mode: 'view',
+      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+    });
   };
 
   const tableHeaders = [
@@ -138,10 +145,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
 
   const headerTitle = 'Service Enrolment';
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
       {isLoading ? (
@@ -174,27 +177,6 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           headerTitle={headerTitle}
           launchForm={launchServiceEnrolmentForm}
         />
-      )}
-      {open && (
-        <ComposedModal open={open} onClose={() => handleClose()}>
-          <ModalHeader
-            style={{
-              backgroundColor: '#007d79',
-              height: '48px',
-              marginBottom: '0px',
-              color: '#ffffff',
-            }}>
-            {serviceEnrolmentForm?.name}
-          </ModalHeader>
-          <ModalBody>
-            <OHRIForm
-              formJson={serviceEnrolmentForm}
-              encounterUuid={currentEncounterUuid}
-              handleClose={handleClose}
-              mode={currentMode}
-            />
-          </ModalBody>
-        </ComposedModal>
       )}
     </>
   );

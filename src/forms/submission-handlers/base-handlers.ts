@@ -10,10 +10,6 @@ import { OHRIFormField, SubmissionHandler } from '../types';
 export const ObsSubmissionHandler: SubmissionHandler = {
   handleFieldSubmission: (field: OHRIFormField, value: any, context: EncounterContext) => {
     if (field.questionOptions.rendering == 'checkbox') {
-      //Ensure an array is always
-      if (!Array.isArray) {
-        return multiSelectObsHandler(field, [value], context);
-      }
       return multiSelectObsHandler(field, value, context);
     }
     if (field.questionOptions.rendering == 'toggle') {
@@ -121,7 +117,6 @@ const multiSelectObsHandler = (field: OHRIFormField, values: any, context: Encou
   if (!field.value) {
     field.value = [];
   }
-
   values.forEach(value => {
     const { checked, id } = value;
 
@@ -133,7 +128,7 @@ const multiSelectObsHandler = (field: OHRIFormField, values: any, context: Encou
         field.value.push(constructObs(id, context, field));
       }
     } else {
-      const obs = field.value.find(o => value.uuid == id);
+      const obs = field.value.find(v => v.value.uuid == id);
       if (obs && context.sessionMode == 'edit') {
         obs.voided = true;
       } else {

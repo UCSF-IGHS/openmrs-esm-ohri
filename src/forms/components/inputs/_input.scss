@@ -13,16 +13,25 @@
 }
 
 .formInputField {
-  @extend .formField;
-  width: 90%;
+    @extend .formField;
+    width: auto;
 }
 
-.formInputField > div > div > label {
-  width: 90% !important;
+.formInputField > div > div > label{
+    width: auto;
 }
 
-.dropDownOverride {
-  width: $ohri-input-width;
+.formInputField > div > div > div {
+    width: $ohri-input-width !important;
+}
+
+.dropDownOverride{
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+.dropDownOverride > div > div{
+    width: $ohri-input-width !important;
 }
 
 .numberInputWrapper :global(.bx--number) {

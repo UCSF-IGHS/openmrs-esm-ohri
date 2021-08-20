@@ -8,6 +8,7 @@ export interface WorkspaceContextProps {
   encounterUuid?: string;
   state?: any;
   mode?: SessionMode;
+  screenSize?: string;
 }
 
 export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextProps) => {
@@ -20,6 +21,7 @@ export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextPr
     }),
     meta: {
       title: props.title,
+      screenSize: props.screenSize,
     },
   });
   workspaceContext.next(props);
