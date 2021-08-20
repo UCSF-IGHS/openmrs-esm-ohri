@@ -1,6 +1,6 @@
 /* a container with flex-direction column */
 .mainContainer {
-  height: 75vh; /* or position:absolute; height:100%; */
+  height: auto; /* or position:absolute; height:100%; */
   display: flex;
   flex-direction: column;
   overscroll-behavior: contain;
