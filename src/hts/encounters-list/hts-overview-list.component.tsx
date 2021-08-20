@@ -36,7 +36,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       screenSize: 'maximize',
-      state: { updateParent: forceComponentUpdate, formJson: htsForm },
+      state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
