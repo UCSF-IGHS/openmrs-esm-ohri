@@ -140,6 +140,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           displayText={t('htsEncounters', 'hts encounters')}
           headerTitle={headerTitle}
           launchForm={launchHTSForm}
+          launchFormComponent={
+            <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
+          }
         />
       )}
     </>
