@@ -33,7 +33,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
     </div>
   ) : (
     <FormGroup
-      style={{ paddingBottom: '-1rem' }}
+      style={{ paddingBottom: '1rem' }}
       legendText={question.label}
       className={errors.length ? styles.errorLegend : ''}>
       <RadioButtonGroup

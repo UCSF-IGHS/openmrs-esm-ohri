@@ -1,84 +1,44 @@
 /* a container with flex-direction column */
 .mainContainer {
-  height: auto; /* or position:absolute; height:100%; */
+  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  margin: 0px;
   overscroll-behavior: contain;
-}
-
-/* this is the flex container that will take the rest of the height */
-.contentWrapper {
-  display: flex;
-  flex: 1;
-  min-height: 0px; /* IMPORTANT: you need this for non-chrome browsers */
-}
-
-/* the container for our overflowed content */
-.overflowContainer {
-  flex: 1 1 auto;
-  overflow: auto;
-  overscroll-behavior: contain;
+  position: fixed;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 /* the fixed sidebar content */
 .sidebar {
-  height: auto;
-  width: 12rem;
-  position: fixed;
-  margin-top: 5px;
-  margin-left: 10px;
+  margin: 0px;
+  padding: 0px;
+  padding-left: 16px;
+  flex-grow: 0.6;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll;
+  /* Necessary to become containing block for position: fixed child */
+  transform: translate3d(0, 0, 0);
 }
 
 /* the overflow content itself */
 .overflowContent {
-  height: auto;
-  margin-left: 14rem;
+  height: inherit;
+  margin: 0px;
+  padding: 0px;
+  flex-basis: 65%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll;
+  overscroll-behavior: contain;
   padding-bottom: 40rem;
-  position: fixed;
-  top: 100px;
-  bottom: 0;
-  overflow-y: scroll;
-  max-width: 100%;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
-@media (max-width: 1024px) {
-  .overflowContent {
-    height: auto;
-    margin-left: 13rem;
-    padding-bottom: 20rem;
-    position: fixed;
-    top: 44px;
-    bottom: 0;
-    overflow-y: scroll;
-    max-width: 60%;
-  }
-
-  .mainContainer {
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-    overscroll-behavior: contain;
-    padding-right: 20px;
-  }
-}
-
-@media (max-width: 1680px) {
-  .overflowContent {
-    height: auto;
-    margin-left: 13rem;
-    padding-bottom: 20rem;
-    position: fixed;
-    top: 100px;
-    bottom: 0;
-    overflow-y: scroll;
-    max-width: 70%;
-  }
-
-  .mainContainer {
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-    overscroll-behavior: contain;
-  }
-}

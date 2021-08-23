@@ -61,6 +61,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
   const editServiceEnrolmentEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: serviceEnrolmentForm?.name,
+      screenSize: 'maximize',
       encounterUuid: encounterUuid,
       state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
     });
@@ -68,6 +69,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: serviceEnrolmentForm?.name,
+      screenSize: 'maximize',
       encounterUuid: encounterUuid,
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
