@@ -7,9 +7,11 @@ import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
+import { useTranslation } from 'react-i18next';
 import styles from '../_input.scss';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
+  const { t } = useTranslation();
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
@@ -17,7 +19,8 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
 
   useEffect(() => {
     if (field.value && field.value.length == 0) {
-      // chances are high the value was cleared force the Multiselect component to be re-mounted
+      // chances are high the value was cleared
+      // force the Multiselect component to be re-mounted
       setCounter(counter + 1);
     }
   }, [field.value]);
@@ -31,7 +34,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   const questionItems = question.questionOptions.answers.map((option, index) => ({
     id: `${question.id}-${option.concept}`,
     concept: option.concept,
-    text: option.label,
+    label: option.label,
     key: index,
   }));
 
@@ -74,9 +77,9 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     </div>
   ) : (
     <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
-      <MultiSelect
+      <MultiSelect.Filterable
+        placeholder={t('filterItemsInMultiselect', 'Search...')}
         onChange={handleSelectItemsChange}
-        itemToString={item => (item ? item.text : '')}
         id={question.label}
         items={questionItems}
         initialSelectedItems={initiallySelectedQuestionItems}
