@@ -31,16 +31,14 @@ export const createDashboardLink = db => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
       <SideNavMenu title="HIV" className={styling} defaultExpanded={true}>
-        {
-            navItems.map(navItem => (
-              <SideNavMenuItem
-                key={navItem.title}
-                className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-                href={`${basePath}/${navItem.name}`}>
-                {navItem.title}
-              </SideNavMenuItem>
-        ))
-        }
+        {navItems.map(navItem => (
+          <SideNavMenuItem
+            key={navItem.title}
+            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
+            href={`${basePath}/${navItem.name}`}>
+            {navItem.title}
+          </SideNavMenuItem>
+        ))}
       </SideNavMenu>
     );
   };
