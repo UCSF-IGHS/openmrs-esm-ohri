@@ -35,7 +35,8 @@ export const createDashboardLink = db => {
           <SideNavMenuItem
             key={navItem.title}
             className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}>
+            href={`${basePath}/${navItem.name}`}
+            onClick={e => handleLinkClick(e, `${basePath}/${navItem.name} `)}>
             {navItem.title}
           </SideNavMenuItem>
         ))}
