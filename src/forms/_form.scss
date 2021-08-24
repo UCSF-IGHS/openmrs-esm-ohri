@@ -23,6 +23,7 @@
   flex-shrink: 1;
   position: relative;
   overflow: scroll;
+  flex-basis: 10%;
   /* Necessary to become containing block for position: fixed child */
   transform: translate3d(0, 0, 0);
 }
@@ -32,7 +33,7 @@
   height: inherit;
   margin: 0px;
   padding: 0px;
-  flex-basis: 65%;
+  flex-basis: 75%;
   flex-grow: 1;
   flex-shrink: 1;
   position: relative;
@@ -42,3 +43,89 @@
   padding-left: 5px;
 }
 
+@media (max-width: 1024px) {
+  .sidebar {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 16px;
+  flex-grow: 0.6;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll;
+  /* Necessary to become containing block for position: fixed child */
+  transform: translate3d(0, 0, 0);
+  flex-basis: 23%;
+  }
+
+  .overflowContent {
+    height: inherit;
+    margin: 0px;
+    padding: 0px;
+    flex-basis: 75%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    padding-bottom: 60rem;
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 16px;
+  flex-grow: 0.6;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll;
+  /* Necessary to become containing block for position: fixed child */
+  transform: translate3d(0, 0, 0);
+  flex-basis: 28%;
+  }
+
+  .overflowContent {
+    height: inherit;
+    margin: 0px;
+    padding: 0px;
+    flex-basis: 75%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    padding-bottom: 40rem;
+    padding-left: 5px;
+  }
+}
+
+@media (max-width: 1440) {
+  .sidebar {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 16px;
+  flex-grow: 0.6;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll;
+  /* Necessary to become containing block for position: fixed child */
+  transform: translate3d(0, 0, 0);
+  flex-basis: 35%;
+  }
+
+  .overflowContent {
+    height: inherit;
+    margin: 0px;
+    padding: 0px;
+    flex-basis: 65%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    padding-bottom: 40rem;
+    padding-left: 5px;
+  }
+}
