@@ -257,7 +257,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             <LoadingIcon />
           ) : (
             <>
-              <div className={styles.mainContainer}> 
+              <div className={styles.mainContainer}>
                 <div className={styles.sidebar}>
                   <OHRIFormSidebar
                     currentPage={currentPage}
