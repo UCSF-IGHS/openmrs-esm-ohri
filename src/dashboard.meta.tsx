@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
+import { basePath } from './constants';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 
@@ -29,6 +30,16 @@ export const createDashboardLink = db => {
   const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
+    interface IDashboardMeta {
+      name: string;
+      slot: string;
+      config: {
+        columns: number;
+        type: string;
+      };
+      title: string;
+    }
+    const [currentNav, setCurrentNav] = useState<IDashboardMeta>();
     return (
       <SideNavMenu title="HIV" className={styling} defaultExpanded={true}>
         {navItems.map(navItem => (
@@ -36,7 +47,9 @@ export const createDashboardLink = db => {
             key={navItem.title}
             className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
             href={`${basePath}/${navItem.name}`}
-            onClick={e => handleLinkClick(e, `${basePath}/${navItem.name} `)}>
+            onClick={e => {
+              handleLinkClick(e, `${basePath}/${navItem.name} `), setCurrentNav(navItem);
+            }}>
             {navItem.title}
           </SideNavMenuItem>
         ))}
