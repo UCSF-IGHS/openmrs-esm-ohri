@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
 import { workspaceContext, WorkspaceContextProps } from './ohri-workspace-utils';
 
-const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string }> = ({
+const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string; viewMode: string }> = ({
   closeWorkspace,
   patientUuid,
+  viewMode,
 }) => {
   const [context, setContext] = useState<WorkspaceContextProps>(null);
-
   useEffect(() => {
     const sub = workspaceContext.subscribe(context => setContext(context));
     return () => sub.unsubscribe();
@@ -25,6 +25,7 @@ const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string }>
             formJson: context.state.formJson,
             state: context.state,
             mode: context.mode,
+            viewMode: viewMode,
           }}
         />
       )}

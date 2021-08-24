@@ -35,12 +35,14 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const launchHTSForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
+      screenSize: 'maximize',
       encounterUuid: encounterUuid,
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
@@ -48,6 +50,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
+      screenSize: 'maximize',
       encounterUuid: encounterUuid,
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
@@ -140,6 +143,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           displayText={t('htsEncounters', 'hts encounters')}
           headerTitle={headerTitle}
           launchForm={launchHTSForm}
+          launchFormComponent={
+            <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
+          }
         />
       )}
     </>

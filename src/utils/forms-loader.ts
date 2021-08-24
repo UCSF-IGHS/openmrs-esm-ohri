@@ -83,7 +83,7 @@ export function filterFormByIntent(intent, originalJson) {
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     page.sections.forEach(section => {
-      section.questions.forEach(question => { 
+      section.questions.forEach(question => {
         if (question.behaviours) {
           // Check if question behaviours includes required intent
           const requiredIntentBehaviours = question.behaviours?.find(behaviour => behaviour.intent === intent);
