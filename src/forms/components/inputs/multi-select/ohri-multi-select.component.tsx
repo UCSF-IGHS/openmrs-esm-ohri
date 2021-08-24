@@ -86,6 +86,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
         label={''}
         titleText={question.label}
         key={counter}
+        itemToString={item => (item ? item.label : ' ')}
       />
     </div>
   );

@@ -287,7 +287,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                       }}>
                       {form.pages.map((page, index) => {
                         return (
-                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                          <OHRIFormPage
+                            key={index}
+                            page={page}
+                            onFieldChange={onFieldChange}
+                            setSelectedPage={setSelectedPage}
+                          />
                         );
                       })}
                     </OHRIFormContext.Provider>
