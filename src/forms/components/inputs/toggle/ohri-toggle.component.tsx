@@ -39,7 +39,7 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
         labelA={question.questionOptions.toggleOptions.labelFalse}
         labelB={question.questionOptions.toggleOptions.labelTrue}
         onToggle={handleChange}
-        toggled={field.value}
+        toggled={!!field.value}
       />
     </div>
   );

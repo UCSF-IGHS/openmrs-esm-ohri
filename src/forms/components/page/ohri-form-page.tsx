@@ -23,6 +23,7 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
                 showTitle={page.sections.length > 1}
                 onFieldChange={onFieldChange}
                 sectionTitle={sec.label}
+                key={index}
               />
             </div>
           );

@@ -1,17 +1,59 @@
-import React from 'react';
-import { SideNavMenuItem } from 'carbon-components-react';
+import React, { useState } from 'react';
+import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
+import { basePath } from './constants';
+
+const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
+
+const registerSidenavItem = sidenavItem => {
+  let buffer;
+  const registry = JSON.parse(localStorage.getItem('sidenavItems'));
+
+  //check if List exists, if not initialize it
+  buffer = registry ? registry : [];
+
+  //avoid duplicates by limiting list size to 2 elements
+  if (buffer.length <= 2) {
+    buffer.push(sidenavItem);
+  }
+
+  localStorage.setItem('sidenavItems', JSON.stringify(buffer));
+
+  return buffer;
+};
+
+export const clearSidenavRegistry = () => localStorage.removeItem('sidenavItems');
 
 export const createDashboardLink = db => {
+  const navItems = registerSidenavItem(db);
+  const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
+
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
+    interface IDashboardMeta {
+      name: string;
+      slot: string;
+      config: {
+        columns: number;
+        type: string;
+      };
+      title: string;
+    }
+    const [currentNav, setCurrentNav] = useState<IDashboardMeta>();
     return (
-      <SideNavMenuItem
-        className={styles.noMarker}
-        href={`${basePath}/${db.name}`}
-        onClick={e => handleLinkClick(e, `${basePath}/${db.name}`)}>
-        {db.title}
-      </SideNavMenuItem>
+      <SideNavMenu title="HIV" className={styling} defaultExpanded={true}>
+        {navItems.map(navItem => (
+          <SideNavMenuItem
+            key={navItem.title}
+            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
+            href={`${basePath}/${navItem.name}`}
+            onClick={e => {
+              handleLinkClick(e, `${basePath}/${navItem.name} `), setCurrentNav(navItem);
+            }}>
+            {navItem.title}
+          </SideNavMenuItem>
+        ))}
+      </SideNavMenu>
     );
   };
   return DashboardLink;

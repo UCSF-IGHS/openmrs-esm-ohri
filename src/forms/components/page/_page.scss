@@ -1,11 +1,13 @@
 .divider {
   background-color: rgba(107, 104, 104, 0.5);
-  margin: 1.375rem 1.625rem 1.5rem 0.438rem;
+  // margin: 1rem 0 1rem 0;
+  margin: 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
   width: 80%;
 }
 
 .pageTitle {
-  margin: 0 39.438rem 0.25rem 0;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.4;
@@ -19,11 +21,14 @@
   line-height: 1.29;
   letter-spacing: 0.16px;
   color: var(--color-gray-70);
-  margin-bottom: 1.5rem;
   width: 100%;
 }
 
 .formSection {
-  width: 100%;
-  margin-top: 1.438rem;
+  // flex-shrink: 1;
+  flex: 1 1 65%;
+}
+
+.formSection > div > fieldset {
+  margin-bottom: 0 !important;
 }
