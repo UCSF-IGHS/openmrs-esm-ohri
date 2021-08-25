@@ -30,16 +30,10 @@ export const createDashboardLink = db => {
   const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
-    interface IDashboardMeta {
-      name: string;
-      slot: string;
-      config: {
-        columns: number;
-        type: string;
-      };
-      title: string;
-    }
-    const [currentNav, setCurrentNav] = useState<IDashboardMeta>();
+    const [rerender, setRerender] = useState(true);
+
+    const forceRerender = () => setRerender(!rerender);
+
     return (
       <SideNavMenu title="HIV" className={styling} defaultExpanded={true}>
         {navItems.map(navItem => (
@@ -48,7 +42,8 @@ export const createDashboardLink = db => {
             className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
             href={`${basePath}/${navItem.name}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `), setCurrentNav(navItem);
+              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              forceRerender();
             }}>
             {navItem.title}
           </SideNavMenuItem>
