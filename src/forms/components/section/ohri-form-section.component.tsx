@@ -17,7 +17,7 @@ const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => 
           const qnFragment = React.createElement(component, {
             question: value,
             onChange: onFieldChange,
-            key: new Date().getTime(),
+            key: index,
             handler: getHandler(value.type),
           });
 
