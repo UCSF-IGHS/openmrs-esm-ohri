@@ -34,16 +34,6 @@ export const createDashboardLink = db => {
 
     const forceRerender = () => setRerender(!rerender);
 
-    interface IDashboardMeta {
-      name: string;
-      slot: string;
-      config: {
-        columns: number;
-        type: string;
-      };
-      title: string;
-    }
-
     return (
       <SideNavMenu title="HIV" className={styling} defaultExpanded={true}>
         {navItems.map(navItem => (
@@ -52,7 +42,8 @@ export const createDashboardLink = db => {
             className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
             href={`${basePath}/${navItem.name}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `), forceRerender();
+              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              forceRerender();
             }}>
             {navItem.title}
           </SideNavMenuItem>
