@@ -36,8 +36,7 @@
   "status": "Status",
   "revise": "Revise",
   "discontinue": "Discontinue",
-  "modify": "Modify",
-  "discontinue": "Reorder",
+  "modify": "Modify", 
   "noCurrentMedicationsDocumented": "No current medications are documented.",
   "noPastMedicationsDocumented": "No past medications are documented.",
 
@@ -63,10 +62,7 @@
   "newOrders": "{count} new order(s)",
   "emptyMedicationOrderBasket": "Your basket is currently empty.",
   "removeFromBasket": "Remove from basket",
-  "quantity": "Quantity",
-  "refills": "Refills",
-  "indication": "Indication",
-  "none": "None",
+  "quantity": "Quantity", 
   "orderActionNew": "New",
   "orderActionRenewed": "Renew",
   "orderActionRevised": "Modify",
@@ -95,8 +91,7 @@
   "duration": "Duration",
   "durationUnit": "Duration Unit",
   "durationUnitPlaceholder": "Duration Unit",
-  "quantityDispensed": "Quantity Dispensed",
-  "quantityDispensed": "Quantity Dispensed",
+  "quantityDispensed": "Quantity Dispensed", 
   "pillsDispensed": "Pills dispensed",
   "prescriptionRefills": "Prescription Refills",
   "indication": "Indication",
@@ -112,6 +107,7 @@
   "createSuccessToastTitle": "HTS record created",
   "createSuccessToastDescription": "A new HTS record was created",
   "updateSuccessToastTitle": "HTS record updated",
-  "updateSuccessToastDescription": "The patient HTS record was updated"
-  
+  "updateSuccessToastDescription": "The patient HTS record was updated",
+  "filterItemsInMultiselect": "Search..."
+
 }

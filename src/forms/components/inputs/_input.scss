@@ -1,7 +1,7 @@
 @import "../../../root.scss";
-
-.formField {
-  padding-bottom: 1rem;
+.formField{
+  padding-bottom: 18px;
+  margin-top: 10px;
 }
 
 .ohriFormLabel {
@@ -13,16 +13,25 @@
 }
 
 .formInputField {
-  @extend .formField;
-  width: 90%;
+    @extend .formField;
+    width: auto;
 }
 
-.formInputField > div > div > label {
-  width: 90% !important;
+.formInputField > div > div > label{
+    max-width: auto;
 }
 
-.dropDownOverride {
-  width: $ohri-input-width;
+.formInputField > div > div > div {
+    width: $ohri-input-width !important;
+}
+
+.dropDownOverride{
+    width: auto;
+    padding-bottom: 15px;
+}
+
+.dropDownOverride > div > div{
+    width: $ohri-input-width !important;
 }
 
 .numberInputWrapper :global(.bx--number) {
@@ -104,9 +113,14 @@
   font-size: 0.875rem !important;
 }
 
+.unspecified{
+  margin-top: -13px;
+}
+
 .unspecified > div label {
   font-size: 12px;
   color: $color-gray-70;
+  padding-bottom: 1rem;
 }
 
 .errorLegend legend, .errorLabel label {
