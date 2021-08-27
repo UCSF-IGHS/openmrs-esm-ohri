@@ -35,6 +35,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const launchHTSForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
@@ -42,6 +43,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
   };
@@ -49,6 +51,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
