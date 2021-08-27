@@ -252,7 +252,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         setSubmitting(false);
       }}>
       {props => (
-        <Form>
+        <Form style={{ height: '100%' }}>
           {!patient ? (
             <LoadingIcon />
           ) : (
