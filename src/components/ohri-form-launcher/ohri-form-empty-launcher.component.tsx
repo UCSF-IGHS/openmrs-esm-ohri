@@ -27,7 +27,7 @@ export const OHRIFormLauncherEmpty: React.FC<{
 
   return (
     <div style={{ paddingTop: '.1rem', paddingRight: '.9rem', width: '6rem' }}>
-      <Button 
+      <Button
         renderIcon={Add16}
         onClick={e => {
           e.preventDefault();
