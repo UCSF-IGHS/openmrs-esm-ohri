@@ -26,8 +26,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
-  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
+  const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; // HIV Result
+  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
   const [htsForm, setHTSForm] = useState(getForm('hiv', 'hts'));
 
   const forceComponentUpdate = () => setCounter(counter + 1);
@@ -35,6 +35,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const launchHTSForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
@@ -42,6 +43,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
   };
@@ -49,6 +51,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
@@ -70,9 +73,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         (firstEncounter, secondEncounter) =>
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
-
       sortedEncounters.map(encounter => {
-        const htsResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
+        const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
         const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
 
@@ -93,10 +95,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
               }}
             />
           </OverflowMenu>
-        );
-
-        const HIVTestObservation = encounter.obs.find(
-          observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
         );
 
         rows.push({
