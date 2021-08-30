@@ -179,8 +179,8 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
         <EmptyState
           displayText={t('serviceEnrolments', 'service enrolments')}
           headerTitle={headerTitle}
-          launchFormComponent={<OHRIFormLauncherEmpty  launchForm={launchServiceEnrolmentForm}/>}
-        /> 
+          launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchServiceEnrolmentForm} />}
+        />
       )}
     </>
   );
