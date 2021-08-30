@@ -27,6 +27,8 @@ import {
   studyPopulationTypeConcept,
 } from '../../constants';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import EmptyStateServiceEnrollment from '../../components/empty-state/empty-state-service-enrolment.component';
+import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
@@ -177,7 +179,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
         <EmptyState
           displayText={t('serviceEnrolments', 'service enrolments')}
           headerTitle={headerTitle}
-          launchForm={launchServiceEnrolmentForm}
+          launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchServiceEnrolmentForm} />}
         />
       )}
     </>

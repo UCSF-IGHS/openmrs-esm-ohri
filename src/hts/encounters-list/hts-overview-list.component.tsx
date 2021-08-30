@@ -35,6 +35,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const launchHTSForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
@@ -42,6 +43,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
   };
@@ -49,6 +51,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
@@ -122,6 +125,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
         <>
+          ∏
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
@@ -135,6 +139,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           displayText={t('htsEncounters', 'hts encounters')}
           headerTitle={headerTitle}
           launchForm={launchHTSForm}
+          launchFormComponent={
+            <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
+          }
         />
       )}
     </>
