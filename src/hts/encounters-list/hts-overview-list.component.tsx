@@ -125,7 +125,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
         <>
-          ∏
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
