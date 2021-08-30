@@ -55,6 +55,7 @@ const EmptyStateServiceEnrollment: React.FC<EmptyStateProps> = ({
           </Trans>
         </p>
         <Button
+          kind="ghost"
           displayText={t('serviceEnrolments', 'service enrolments')}
           id="choose-intent"
           label="Add +"
