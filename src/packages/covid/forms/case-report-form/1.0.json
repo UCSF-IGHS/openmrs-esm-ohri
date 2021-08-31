@@ -336,12 +336,12 @@
                 "answers": [
                   {
                     "concept": "165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Respiratory specimen severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) antigen rapid diagnostic test",
+                    "label": "Rapid Antigen Test",
                     "conceptMappings": []
                   },
                   {
                     "concept": "165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Respiratory specimen severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA detection by probe and target amplification method",
+                    "label": "Diagnostic PCR Test",
                     "conceptMappings": []
                   }
                 ]
@@ -986,23 +986,13 @@
             },
             {
               "label": "Date administered (2nd dose)",
-              "type": "obsGroup",
+              "type": "obs",
               "questionOptions": {
-                "rendering": "group",
-                "concept": "42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9"
+                "rendering": "date",
+                "concept": "42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9",
+                "weeksList": ""
               },
-              "id": "secondVaccineDoseDate",
-              "questions": [
-                {
-                  "label": "Date administered (2nd dose)",
-                  "id": "__pzsornqtM",
-                  "questionOptions": {
-                    "rendering": "text",
-                    "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                  },
-                  "type": "obs"
-                }
-              ]
+              "id": "secondVaccineDoseDate"
             }
           ]
         }
