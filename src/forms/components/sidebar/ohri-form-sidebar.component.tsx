@@ -4,7 +4,16 @@ import { scrollIntoView } from '../../../utils/ohri-sidebar';
 import { Button, Toggle } from 'carbon-components-react';
 import { isEmpty } from '../../ohri-form-validator';
 
-function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose, values, setValues }) {
+function OHRIFormSidebar({
+  currentPage,
+  selectedPage,
+  mode,
+  onCancel,
+  handleClose,
+  values,
+  setValues,
+  allowUnspecifiedAll,
+}) {
   const [activeLink, setActiveLink] = useState(selectedPage);
 
   const joinWord = value => {
@@ -59,15 +68,17 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClos
         );
       })}
       <hr className={styles.sideBarHorizontalLine} />
-      <div style={{ marginBottom: '.6rem' }}>
-        <Toggle
-          labelText=""
-          id="auto-unspecifier"
-          labelA="Unspecify All"
-          labelB="Revert"
-          onToggle={markAllAsUnspecified}
-        />
-      </div>
+      {allowUnspecifiedAll && (
+        <div style={{ marginBottom: '.6rem' }}>
+          <Toggle
+            labelText=""
+            id="auto-unspecifier"
+            labelA="Unspecify All"
+            labelB="Revert"
+            onToggle={markAllAsUnspecified}
+          />
+        </div>
+      )}
       {mode != 'view' && (
         <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
           Save
