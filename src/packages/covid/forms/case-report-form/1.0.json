@@ -1,0 +1,3217 @@
+{
+  "name": "CARES Case report",
+  "pages": [
+    {
+      "label": "Place Of Diagnosis",
+      "sections": [
+        {
+          "label": "Place Of Diagnosis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Country of diagnosis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "504796a1-fa47-40cd-ac90-eb40e2765df6",
+                "answers": [
+                  {
+                    "concept": "165657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Country",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "223369002"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Country",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "223369002"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "countryOfDiagnosis"
+            },
+            {
+              "label": "County/Province/State of diagnosis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "165851AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "223725007"
+                  }
+                ]
+              },
+              "id": "placeOfDiagnosis"
+            },
+            {
+              "label": "Sub-County/District of diagnosis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "36e8970f-93d2-4870-8844-929ceb6c3790"
+              },
+              "id": "districtOfDiagnosis"
+            },
+            {
+              "label": "Ward/Division of diagnosis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "164829AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "225746001"
+                  }
+                ]
+              },
+              "id": "divisionOfDiagnosis"
+            },
+            {
+              "label": "Date of reporting to National Health Authority",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "af7765ce-c958-44a1-af09-5a03f342c2e6"
+              },
+              "id": "dateOfReportingToNHA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Laboratory Testing Information",
+      "sections": [
+        {
+          "label": "Laboratory Testing Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Was the specimen collected?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "510102a5-6b9e-4dfe-996f-11e214dbd144",
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
+              },
+              "id": "specimenCollected"
+            },
+            {
+              "label": "If no, why?",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "879b3af6-2a81-4d8d-9713-f218bb4650e9"
+              },
+              "id": "whySpecimenNotCollected",
+              "questions": [
+                {
+                  "label": "If no, why?",
+                  "id": "__L54uLsJxH",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Date specimen collected",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": "",
+                "conceptMappings": [
+                  {
+                    "type": "org.openmrs.module.mdrtb",
+                    "value": "SPUTUM COLLECTION DATE"
+                  }
+                ]
+              },
+              "id": "specimenCollectionDate"
+            },
+            {
+              "label": "Specimen type",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "ae127f82-1861-4165-ac81-8554e5a3aac4",
+                "answers": [
+                  {
+                    "concept": "163367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Aspirate specimen",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sputum",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Serum",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163362AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Oropharyngeal swab specimen",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nasopharyngeal Swab",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "specimenType"
+            },
+            {
+              "label": "Other specimen type",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "d07aba2e-f37d-49dd-bb65-b27e8df80399"
+              },
+              "id": "otherSpecimenType",
+              "questions": [
+                {
+                  "label": "Other specimen type",
+                  "id": "__LwpyzEECK",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Was the specimen sent to the lab",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "161934AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "7818"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "129125009"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "specimenSentToLab"
+            },
+            {
+              "label": "Date specimen sent to the lab",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "weeksList": "",
+                "concept": "Date specimen was sent to the lab for COVID-19 testing"
+              },
+              "id": "dateSpecimenSentToLab"
+            },
+            {
+              "label": "Specimen barcode or accession number",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "162086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "specimenNumber"
+            },
+            {
+              "label": "Date specimen received in the lab",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "2950ccab-915e-4bce-9b5c-c4183b3ee5e9",
+                "weeksList": ""
+              },
+              "id": "dateSpecimenReceived"
+            },
+            {
+              "label": "Date specimen tested (date of investigation)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "499df97a-2a34-4562-946a-3c4d5608b67f",
+                "weeksList": ""
+              },
+              "id": "dateSpecimenTested"
+            },
+            {
+              "label": "Name of confirming lab",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "164422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "laboratoryName"
+            },
+            {
+              "label": "SARS-Cov2 test type",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718",
+                "answers": [
+                  {
+                    "concept": "165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Respiratory specimen severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) antigen rapid diagnostic test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Respiratory specimen severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA detection by probe and target amplification method",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "sarsCovidTestType"
+            },
+            {
+              "label": "Rapid Antigen result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "cbcbb029-f11f-4437-9d53-1d0f0a170433",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "rapidAntigenTestResult"
+            },
+            {
+              "label": "Rapid Antigen test result date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "af159c77-bc5d-46dd-90d9-bcbffb22267f",
+                "weeksList": ""
+              },
+              "id": "rapidAntigenResultDate"
+            },
+            {
+              "label": "Diagnostic PCR result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3f4ee14b-b4ab-4597-9fe9-406883b63d76",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "diagnosticPcrResult"
+            },
+            {
+              "label": "Diagnostic PCR  test result date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "4a77ab44-0323-490e-96be-e168c0e5c9de",
+                "weeksList": ""
+              },
+              "id": "pcrTestResultDate"
+            },
+            {
+              "label": "Has sequencing been done",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165848AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "sequencingPerformed"
+            },
+            {
+              "label": "Date of laboratory confirmation",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "a51c05e1-5ad5-420d-a082-966d2989b716",
+                "weeksList": ""
+              },
+              "id": "dateOfLabConfirmation"
+            },
+            {
+              "label": "Place where the case was investigated",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b720a26b-e9e5-4159-a4a2-29b4aba6598b",
+                "answers": [
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "405e23a3-c4fc-478f-9b47-df8815174ed8",
+                    "label": "Quarantine facility",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd1c3bf-cdbf-464b-badd-dc8eb8c34967",
+                    "label": "Mass testing",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b9ad4a80-4900-4708-8541-fdb767b040fc",
+                    "label": "Household",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Health facility",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "placeCaseInvestigated"
+            },
+            {
+              "label": "Other place where the case was investigated",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "7a2fe2d6-ada8-4fa0-9cd7-de86dcfd2a89"
+              },
+              "id": "otherPlaceCaseInvestigated",
+              "questions": [
+                {
+                  "label": "Other place where the case was investigated",
+                  "id": "__rCynHGvrt",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Reasons for testing (select all that apply)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "ae46f4b1-c15d-4bba-ab41-b9157b82b0ce",
+                "answers": [
+                  {
+                    "concept": "5340f478-ec5d-41e6-bc62-961c52014d4d",
+                    "label": "Contact of a case",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8a6ab892-1b1d-4ad9-82da-c6c38ee8fcfb",
+                    "label": "Surveillance",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "677f4d21-7293-4810-abe6-57a192acde57",
+                    "label": "Entry into a country",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f8c9c2cc-3070-444e-8818-26fb8100bb78",
+                    "label": "Travel out of country",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "30320fb8-b29b-443f-98cf-f3ef491f8947",
+                    "label": "Health worker",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "38769c82-a3d3-4714-97b7-015726cdb209",
+                    "label": "Other frontline worker",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ad8be6bf-ced7-4390-a6af-c5acebeac216",
+                    "label": "Follow-up",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e0f1584a-cc8b-48e9-980f-64d9f724caf8",
+                    "label": "Quarantine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1cee0ab3-bf06-49e9-a49c-baf261620c67",
+                    "label": "Post-mortem",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f974e267-feeb-42be-9d37-61554dad16b1",
+                    "label": "Voluntary",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0ed2e3ca-b9a6-4ff6-ac74-4d4cd9520acc",
+                    "label": "RDT confirmatory",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Symptomatic",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1068"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "264931009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Free text general",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1915"
+                      },
+                      {
+                        "type": "LOINC",
+                        "value": "48767-8"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "reasonsForCovidTest"
+            },
+            {
+              "label": "Other reasons for testing",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "a782ce41-5499-4521-ae42-16347fe6b9e0"
+              },
+              "id": "othersReasonForCovidTest",
+              "questions": [
+                {
+                  "label": "Other reasons for testing",
+                  "id": "__yoxvJLyFL",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Vaccine History",
+      "sections": [
+        {
+          "label": "Vaccine History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Has the patient been vaccinated",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "40cb816f-797b-4cb4-a9fb-2727b2373623",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "patientVaccinated"
+            },
+            {
+              "label": "COVID Vaccine Administered",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "a31d1148-bbcc-4ad6-a015-8359d66bcfdc",
+                "answers": [
+                  {
+                    "concept": "166142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of first dose of Moderna COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Pfizer-BioNTech COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "2nd Moderna COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166145AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "2nd Pfizer-BioNTech COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166146AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Moderna COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Pfizer-BioNTech COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Oxford University-AstraZeneca COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Oxford University-AstraZeneca COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "2nd Oxford University-AstraZeneca COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Gamaleya Sputnik V COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of first dose of Gamaleya Sputnik V COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Gamaleya Sputnik V COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166251AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of first dose of Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Janssen COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Sinovac CoronaVac COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166381AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of CanSinoBIO Convidicea COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166385AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Vector Institute EpiVacCorona COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Chumakov Center CoviVac COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166388AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Bharat Biotech Covaxin COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166391AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Novavax COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166392AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of first dose of Novavax COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Novavax COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Sinopharm-Wuhan COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166475AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of CureVac CVnCoV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of first dose of CureVac CVnCoV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of CureVac CVnCoV COVID-19 vaccine",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "covidVaccineAdministered"
+            },
+            {
+              "label": "Other vaccine manufacturer (1st dose)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0cc868bd-e9dd-4b59-b278-f923afe22d82"
+              },
+              "id": "otherFirstDoseVaccineManufacturer"
+            },
+            {
+              "label": "Other vaccine manufacturer (2nd dose)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a900f2c7-8922-4820-b672-676dc58dd3e9"
+              },
+              "id": "otherSecondDoseVaccineManufacturer"
+            },
+            {
+              "label": "Date administered (1st dose)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "c85eb064-5ef7-4ac6-8e56-4749bd58df44",
+                "answers": [
+                  {
+                    "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Vaccination date",
+                    "conceptMappings": []
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "firstVaccineDoseDate"
+            },
+            {
+              "label": "Date administered (2nd dose)",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9"
+              },
+              "id": "secondVaccineDoseDate",
+              "questions": [
+                {
+                  "label": "Date administered (2nd dose)",
+                  "id": "__pzsornqtM",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Exposure Risk",
+      "sections": [
+        {
+          "label": "Exposure Risk",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Occupation",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "295dd0ce-a242-4318-a240-255601c6d68f",
+                "answers": [
+                  {
+                    "concept": "159465AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Student",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c61a0bdb-d775-4fa2-882b-17f4f7538b30",
+                    "label": "Health care worker",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "527de7c2-b4b6-4eda-9f18-45005255ed79",
+                    "label": "Health laboratory worker",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9a178649-6dc9-45a7-9591-e813637db0d2",
+                    "label": "Works with animals",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "clientOccupation"
+            },
+            {
+              "label": "Other Occupation",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "163229AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "otherOccupation"
+            },
+            {
+              "label": "If health care worker, specify name of facility",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "b50399ac-1358-4ad2-8756-304e73257538"
+              },
+              "id": "healthCareWorkerFacility",
+              "questions": [
+                {
+                  "label": "Health facility name",
+                  "id": "__wpDEqrupw",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Health Care Worker Country",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "165655AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "224406003"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "80437-7"
+                  }
+                ]
+              },
+              "id": "healthCareWorkerCountry"
+            },
+            {
+              "label": "Health Care Worker City",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "165654AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "80431-0"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "224406003"
+                  }
+                ]
+              },
+              "id": "healthCareWorkerCity"
+            },
+            {
+              "label": "In the 14 days prior to symptom onset (or positive test), has the case visited any health care facility?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "308467007"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "hasVisitedHealthFacility"
+            },
+            {
+              "label": "In the 14 days prior to symptom onset (or positive test), has the patient had close contact with a person with acute respiratory infection?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165850AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "428792000"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "hasContactWithSarsPatient"
+            },
+            {
+              "label": "In the 14 days prior to symptom onset (or positive test), has case had contact with a probable/suspected or confirmed case?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1eeff102-2eb4-48c3-8c18-2cab5b13f706",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "hasContactWithConfirmedCase"
+            },
+            {
+              "label": "In the 14 days prior to symptom onset (or positive test), has the case attended a wedding, funeral, market, mosque/church, football game or any other gathering with 10 or more people?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b79749c2-d178-4fec-9ca7-ec1aacb74f4b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "attendedLargeGathering"
+            },
+            {
+              "label": "Has the case travelled in the 14 days prior to symptom onset?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "417662000"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "recentTravel"
+            },
+            {
+              "label": "If yes, Country visited",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "162604AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "94651-7"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "443846001"
+                  }
+                ]
+              },
+              "id": "countryVisited"
+            },
+            {
+              "label": "City visited",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "165645AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "94653-3"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "161085007"
+                  }
+                ]
+              },
+              "id": "cityVisited"
+            },
+            {
+              "label": "Travel date/time",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5a865a1c-2778-4178-9773-f4ece614b5ca",
+                "weeksList": ""
+              },
+              "id": "travelDate"
+            },
+            {
+              "label": "Mode of transport",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "d46ce5fb-8964-430c-859d-cf42ab6840ef",
+                "answers": [
+                  {
+                    "concept": "48fc0df5-f63e-4e67-985b-6f3ee3226e53",
+                    "label": "Air transport",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0bacd43b-df1b-43ae-9102-5d78d8ad1218",
+                    "label": "Road transport",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "2a67b365-11de-4efd-a5c6-5cc0f81b2059",
+                    "label": "Water transport",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "3114f752-d235-49d3-b85b-269d2a4f7a22",
+                    "label": "Rail transport",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "4e54efb4-e622-4198-a2fe-f75e6f1174fa",
+                    "label": "Other transport",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "modeOfTransport"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Client Health Status",
+      "sections": [
+        {
+          "label": "Client Health Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Patient status",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165793AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "406221003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "162863AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Probable",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255544004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165792AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Confirmed present",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "410605003"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "162743AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Suspected",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "415684004"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "patientStatus"
+            },
+            {
+              "label": "Date of onset of symptoms",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "symptomStartDate"
+            },
+            {
+              "label": "Presenting symptoms",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "244b0dc0-eb1b-46ae-b62a-f580345d4f46",
+                "answers": [
+                  {
+                    "concept": "140237AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fever with Chills",
+                    "conceptMappings": [
+                      {
+                        "type": "3BT",
+                        "value": "10049408"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "274640006"
+                      },
+                      {
+                        "type": "ICPC2",
+                        "value": "A03"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "325040"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "135589AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Loss of sense of smell",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "328542"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "44169009"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "MB41.0"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5226AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Weakness",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "5226"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "13791008"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "84828"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5543"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "feb2a008-403c-480e-9d0e-f7100b370815",
+                    "label": "Cough",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6e7d9cd7-8a0b-40ca-bf57-c4fc7510b09a",
+                    "label": "Diarrhoea",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "118876AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Alteration of consciousness",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "3006004"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "380267"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sore throat",
+                    "conceptMappings": [
+                      {
+                        "type": "3BT",
+                        "value": "10048507"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "89743"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "MD36.0"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "267102003"
+                      },
+                      {
+                        "type": "ICPC2",
+                        "value": "R74"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "94a6ae53-0c36-4889-b2b7-025e48542835",
+                    "label": "Runny nose",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Red eye",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "75075"
+                      },
+                      {
+                        "type": "ICPC2",
+                        "value": "F02"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "75705005"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "3692"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "124628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Tired",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "224960004"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "R53"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "301027"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "133632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Muscle pain",
+                    "conceptMappings": [
+                      {
+                        "type": "ICPC2",
+                        "value": "L18"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "68962001"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "6034"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "27371"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "22166009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Asymptomatic",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "5006"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "84387000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "presentedCovidSymptoms"
+            },
+            {
+              "label": "Other presenting symptoms ",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "08287bbb-3b2d-41fc-83e6-9c827e79b8e0"
+              },
+              "id": "otherCovidPresentingSymptoms",
+              "questions": [
+                {
+                  "label": "Other presenting symptoms",
+                  "id": "__tytpMKMz8",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Pregnancy status ",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "5272"
+                  },
+                  {
+                    "type": "PIH-Malawi",
+                    "value": "1755"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "11449-6"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "44"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5272"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "77386006"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "pregnancyStatus"
+            },
+            {
+              "label": "Trimester of pregnancy",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "20067dce-0d11-4a0a-bd20-681f02483c79",
+                "answers": [
+                  {
+                    "concept": "1721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "First trimester",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255246003"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Second trimester",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "59466002"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Third trimester",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "41587001"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "pregnancyTrimester"
+            },
+            {
+              "label": "Post-partum (< 6 weeks)**",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text"
+              },
+              "id": "postpartum"
+            },
+            {
+              "label": "Comorbidity present",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "166020AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "398192003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "comorbidityPresent"
+            },
+            {
+              "label": "Known underlying conditions or comorbidity",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "0651869c-6e90-48d6-b25c-406270c76bee",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "398192003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "156358AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "former cigarette smoker",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "281018007"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "709842"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "155600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "cigarette smoker",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "709745"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "65568007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "156753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "immunocompromised state",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "802369"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "370388006"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "139201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "H/O: Liver Disease",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "360531"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "161535005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "145270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chronic Nonspecific Lung Disease",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "37180002"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "76407"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chronic neurological or neuromuscular disease",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "118940003"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "e3ea3c4b-df5f-4659-b357-93e3de325660",
+                    "label": "Diabetes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c4879004-17d7-4eee-b5fc-942e855e2027",
+                    "label": "Malignancy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9c37b227-6426-4866-9fb9-a19800572924",
+                    "label": "Renal disease",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9a40049b-4875-4a1f-8969-d9231b807ec7",
+                    "label": "Cardiovascular disease",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1a0ce98b-3fc0-4a07-b813-9dad49d8347e",
+                    "label": "Tuberculosis",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "underlyingComorbidityConditions"
+            },
+            {
+              "label": "Other known underlying conditions or comorbidity",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "166104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "398192003"
+                  }
+                ]
+              },
+              "id": "otherComorbidity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Clinical Management",
+      "sections": [
+        {
+          "label": "Clinical Management",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "SARS-Cov2 Management / Treatment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "16528a12-a8b2-41cd-83ef-d337d9d384c2",
+                "answers": [
+                  {
+                    "concept": "df300244-2824-4b65-a72e-4cdd5432e01f",
+                    "label": "Facility based care",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "52077d83-6c01-4819-8db5-f149b6f7a4d5",
+                    "label": "Home based care",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "covidTreatmentPlace"
+            },
+            {
+              "label": "Hospital Admission**",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text"
+              },
+              "id": "hospitalization"
+            },
+            {
+              "label": "Date of Admission",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "3290"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "8656-1"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1868"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "399423000"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "dateOfAdmission"
+            },
+            {
+              "label": "Name of hospital",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "af4edc22-c757-451e-827a-f7bfac1616d8"
+              },
+              "id": "clinicalManagementFacility",
+              "questions": [
+                {
+                  "label": "Name of hospital",
+                  "id": "__EHtMuGL3p",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Patient admitted to Intensive care unit (ICU)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f955d897-8855-4ad8-9431-8d35fd1909c7",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "patientInICU"
+            },
+            {
+              "label": "Patient ventilated",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "60a20cea-b880-4d76-a254-10966001bde1",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "patientVentilated"
+            },
+            {
+              "label": "Received extracorporeal membrane oxygenation (received oxygenation supportive therapy)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "67231000119106"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "receivedOxygenation"
+            },
+            {
+              "label": "Patient taken to isolation",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "74559356-9a59-4eb5-881d-ddf6e5f426c1",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "patientIsolated"
+            },
+            {
+              "label": "Date of isolation",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "165648AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "439272007"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "96549-1"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "dateOfIsolation"
+            },
+            {
+              "label": "Is the case in isolation with Infection Control Practice in place",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165795AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "40174006"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "properlyIsolated"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Medications Received",
+      "sections": [
+        {
+          "label": "Medications Received",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Medications received",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "4ec427d6-5f42-402a-bd76-7b12bfb8b73e",
+                "answers": [
+                  {
+                    "concept": "74609AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Dexamethasone",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "7561000"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "372584003"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "3264"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "6850"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "82453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Prednisone",
+                    "conceptMappings": [
+                      {
+                        "type": "RxNORM",
+                        "value": "8640"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "491"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "116602009"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10312003"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "79743AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Methylprednisolone",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "116593003"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "27242001"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "6902"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Tocilizumab",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "777794005"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "612865"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "444648007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165878AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Remdesivir",
+                    "conceptMappings": [
+                      {
+                        "type": "RxNORM",
+                        "value": "2284718"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "372701006"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "77413AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Heparin",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "7879"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "5224"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "84812008"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "75687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Enoxaparin",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "108984007"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "67108"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "medicationsReceived"
+            },
+            {
+              "label": "Other medications received",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "dd451da0-8e64-435c-a9eb-3962c923a261"
+              },
+              "id": "otherMedicationsReceived",
+              "questions": [
+                {
+                  "label": "Free text general",
+                  "id": "__xKwouroEy",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Treatment Outcome",
+      "sections": [
+        {
+          "label": "Treatment Outcome",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of last test",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "d74a12b3-78f9-4a9b-abab-7da8458ca091",
+                "weeksList": ""
+              },
+              "id": "lastFollowupTestDate"
+            },
+            {
+              "label": "Last follow up SARS Cov2 test results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "89feed9c-1dd9-477a-ab1c-86f5f75f6762",
+                "answers": [
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "lastFollowupTestResults"
+            },
+            {
+              "label": "Treatment Outcome",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "a845f3e6-4432-4de4-9fff-37fa270b1a06",
+                "answers": [
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Post-Acute Sequelae of SARS-CoV-2 infection (PASC)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Patient condition resolved",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "468a714e-594f-4314-a421-33a171fc7dde",
+                    "label": "Discharged as a treatment outcome",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6db09748-4d59-436c-a4ba-9ee70e22d0e0",
+                    "label": "Referred as a treatment outcome",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "treatmentOutcome"
+            },
+            {
+              "label": "Date of symptom resolution",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "162868AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "308928005"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "symptomEndDate"
+            },
+            {
+              "label": "Date discharged",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1869"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "442864001"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5071"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "8649-6"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "3800"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "dateDischarged"
+            },
+            {
+              "label": "Date of death",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1570"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1815"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "399753006"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "dateOfDate"
+            },
+            {
+              "label": "Long COVID (describe)",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "4560c560-4bd6-4989-bff8-6e4e1fa39972"
+              },
+              "id": "longCovidDescription",
+              "questions": [
+                {
+                  "label": "Free text general",
+                  "id": "__GrF0zsLLq",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Referred (describe)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "164359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "3457005"
+                  }
+                ]
+              },
+              "id": "referredDescription"
+            },
+            {
+              "label": "Unknown (describe)",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "b9a5de7c-47ab-48eb-9596-d1ee46e69c49"
+              },
+              "id": "unknownTreatmentOutcomeDescription",
+              "questions": [
+                {
+                  "label": "Unknown (describe)",
+                  "id": "__xIzJEDsru",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Other treatment outcome",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "896a1386-ecf9-4f8a-9648-e223949c9934"
+              },
+              "id": "otherTreatmentOutcome",
+              "questions": [
+                {
+                  "label": "Other treatment outcome",
+                  "id": "__GsyH7yoKu",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "If the case was asymptomatic at time of specimen collection resulting in first laboratory confirmation, did the case develop any symptoms or signs at any time prior to discharge or death?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3f375e82-b002-498d-9aa4-9e791990878b",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "developedSymptoms"
+            },
+            {
+              "label": "Discharge summary",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e1bee97b-91f4-4c19-a66d-acf82752ee4d"
+              },
+              "id": "dischargeSummary"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": []
+}
