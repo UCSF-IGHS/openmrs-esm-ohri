@@ -80,10 +80,13 @@ function setupOpenMRS() {
       {
         id: 'hts-care-and-treatment-list-ext',
         slot: 'care-and-treatment-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/care-and-treatment-list.component'), {
-          featureName: 'hts-care-and-treatment-list',
-          moduleName,
-        }),
+        load: getAsyncLifecycle(
+          () => import('./hts/care-and-treatment/service-enrolment/service-enrolment-list.component'),
+          {
+            featureName: 'hts-care-and-treatment-list',
+            moduleName,
+          },
+        ),
         meta: {
           columnSpan: 4,
         },

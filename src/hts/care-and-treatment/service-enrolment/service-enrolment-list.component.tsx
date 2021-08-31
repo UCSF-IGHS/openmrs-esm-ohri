@@ -1,34 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import styles from './care-and-treatment-list.scss';
+import styles from './service-enrolment-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
-import OTable from '../../components/data-table/o-table.component';
+import OTable from '../../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import {
-  ComposedModal,
-  DataTableSkeleton,
-  ModalBody,
-  ModalHeader,
-  OverflowMenu,
-  OverflowMenuItem,
-  Tab,
-  Tabs,
-} from 'carbon-components-react';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import { DataTableSkeleton, OverflowMenu, OverflowMenuItem, Tab, Tabs } from 'carbon-components-react';
+import EmptyState from '../../../components/empty-state/empty-state.component';
 import moment from 'moment';
-import { getForm } from '../../utils/forms-loader';
-import OHRIForm from '../../forms/ohri-form.component';
-import { SessionMode } from '../../forms/types';
+import { getForm } from '../../../utils/forms-loader';
 import {
   careAndTreatmentEncounterType,
   dateOfHIVDiagnosisConcept,
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
-} from '../../constants';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import EmptyStateServiceEnrollment from '../../components/empty-state/empty-state-service-enrolment.component';
-import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+} from '../../../constants';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
+import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 
 interface CareAndTreatmentProps {
   patientUuid: string;
