@@ -267,6 +267,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     handleClose={handleClose}
                     values={props.values}
                     setValues={props.setValues}
+                    allowUnspecifiedAll={formJson.allowUnspecifiedAll}
                   />
                 </div>
                 <div className={styles.overflowContent}>
