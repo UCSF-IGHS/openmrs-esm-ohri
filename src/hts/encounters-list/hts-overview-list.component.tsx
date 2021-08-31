@@ -9,15 +9,10 @@ import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import { encounterRepresentation } from '../../constants';
 interface HtsOverviewListProps {
   patientUuid: string;
 }
-
-export const htsFormSlot = 'hts-encounter-form-slot';
-export const htsEncounterRepresentation =
-  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
 const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -114,7 +109,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   }
   useEffect(() => {
     let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
-    getHtsEncounters(query, htsEncounterRepresentation, 'HTS Retrospective');
+    getHtsEncounters(query, encounterRepresentation, 'HTS Retrospective');
   }, [counter]);
 
   const headerTitle = 'HTS Sessions';

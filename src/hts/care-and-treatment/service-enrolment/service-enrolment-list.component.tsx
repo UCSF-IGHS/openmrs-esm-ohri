@@ -12,24 +12,19 @@ import { getForm } from '../../../utils/forms-loader';
 import {
   careAndTreatmentEncounterType,
   dateOfHIVDiagnosisConcept,
+  encounterRepresentation,
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
 } from '../../../constants';
 import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 
-interface CareAndTreatmentProps {
+interface ServiceEnrolmentProps {
   patientUuid: string;
   viewMode: string;
 }
 
-export const htsFormSlot = 'hts-encounter-form-slot';
-export const htsEncounterRepresentation =
-  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
-
-const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, viewMode }) => {
+const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, viewMode }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +43,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
       state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
     });
   };
+
   const editServiceEnrolmentEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: serviceEnrolmentForm?.name,
@@ -132,7 +128,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
 
   useEffect(() => {
     let query = `encounterType=${careAndTreatmentEncounterType}&patient=${patientUuid}`;
-    getServiceEnrolmentColumns(query, htsEncounterRepresentation);
+    getServiceEnrolmentColumns(query, encounterRepresentation);
   }, [counter]);
 
   const headerTitle = 'Service Enrolment';
@@ -174,4 +170,4 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
   );
 };
 
-export default CareAndTreatmentList;
+export default ServiceEnrolmentWidget;

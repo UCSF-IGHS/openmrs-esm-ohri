@@ -9,12 +9,12 @@ import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
-import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
 import { OHRIFieldValidator } from './ohri-form-validator';
+import { encounterRepresentation } from '../constants';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -104,7 +104,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let subscription;
     if (encounterUuid) {
       subscription = openmrsObservableFetch(
-        `/ws/rest/v1/encounter/${encounterUuid}?v=${htsEncounterRepresentation}`,
+        `/ws/rest/v1/encounter/${encounterUuid}?v=${encounterRepresentation}`,
       ).subscribe(response => {
         setEncounter(response.data);
       });

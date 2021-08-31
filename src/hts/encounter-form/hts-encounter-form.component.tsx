@@ -23,12 +23,12 @@ import {
   useConfig,
   useCurrentPatient,
 } from '@openmrs/esm-framework';
-import { htsEncounterRepresentation, htsFormSlot } from '../encounters-list/hts-overview-list.component';
 import { getConcept, getHTSLocations, saveHTSEncounter } from './hts-encounter-form.resource';
 import { Concept, HSTEncounter } from '../../api/types';
 import LoadingIcon from '../../components/loading/loading.component';
 import { IdentifierGenerator } from '../../components/identifier-generator/identifier-generator.component';
 import { PatientBanner } from '../../components/patient-banner/patient-banner.component';
+import { encounterRepresentation } from '../../constants';
 
 // TODO: Remove hardcoded values, configure through module config
 const HTSEncounterType = '30b849bd-c4f4-4254-a033-fe9cf01001d8';
@@ -132,7 +132,7 @@ const HtsEncounterForm: React.FC<{
 
     let sub4 = null;
     if (encounterUuid) {
-      sub4 = openmrsObservableFetch(`/ws/rest/v1/encounter/${encounterUuid}?v=${htsEncounterRepresentation}`).subscribe(
+      sub4 = openmrsObservableFetch(`/ws/rest/v1/encounter/${encounterUuid}?v=${encounterRepresentation}`).subscribe(
         response => {
           setEncounter(response.data);
         },
@@ -143,7 +143,7 @@ const HtsEncounterForm: React.FC<{
       sub2.unsubscribe();
       sub3.unsubscribe();
       sub4?.unsubscribe();
-      detach(htsFormSlot, 'hts-encounter-form-ext');
+      detach('hts-encounter-form-slot', 'hts-encounter-form-ext');
     };
   }, []);
 

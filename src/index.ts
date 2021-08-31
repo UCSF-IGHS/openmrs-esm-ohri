@@ -92,6 +92,17 @@ function setupOpenMRS() {
         },
       },
       {
+        id: 'clinical-visit-ext',
+        slot: 'care-and-treatment-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/clinical-visit/clinical-visit-list.component'), {
+          featureName: 'clinical-visit-widget',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
         id: 'hts-home-header-ext',
         slot: 'hts-home-header-slot',
         load: getAsyncLifecycle(() => import('./hts/home/welcome-section/hts-welcome-section.component'), {
