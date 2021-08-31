@@ -1,0 +1,163 @@
+{
+  "name": "Client Visit Form",
+  "pages": [
+    {
+      "label": "Client Profile",
+      "sections": [
+        {
+          "label": "Client Profile",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Date of encounter",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "date of encounter",
+                "weeksList": ""
+              },
+              "id": "dateOfEncounter"
+            },
+            {
+              "label": "Was the encounter scheduled?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "isEncounterScheduled"
+            },
+            {
+              "label": "What type of visit is the client scheduled for?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "typeOfVisitScheduled"
+            },
+            {
+              "label": "ART Cohort",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "artCohort"
+            },
+            {
+              "label": "How long (in months) has the client been on ART?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "durationInMonthsOnART"
+            }
+          ]
+        },
+        {
+          "label": "Presenting Complaints",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the client have any Presenting Complaints?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "hasPresentingComplaints"
+            },
+            {
+              "label": "Presenting Complaints",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "presentingComplaints"
+            },
+            {
+              "label": "Presenting Complaints Notes/Other Complaints",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "presentingComplaintNotes"
+            },
+            {
+              "label": "Onset of symptom",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "onsetSymptom"
+            }
+          ]
+        },
+        {
+          "label": "Tuberculosis Preventive Treatment",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Was the patient screened for Tuberculosis?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientScreenedForTuberclosis"
+            },
+            {
+              "label": "What was the screening outcome?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "screeningOutcome"
+            },
+            {
+              "label": "When is the TB treatment start date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "tbTreatmentStartDate"
+            },
+            {
+              "label": "Has the patient finished TB treatment since the last visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "finishedTbTreatmentSinceLastVisit"
+            },
+            {
+              "label": "When was TB treatment stop date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "tbTreatmentStopDate"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": [],
+  "encounterType": "cb0a65a7-0587-477e-89b9-cf2fd144f1d4"
+}
