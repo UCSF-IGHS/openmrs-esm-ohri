@@ -44,6 +44,7 @@ export interface OHRIFormSchema {
   uuid: string;
   referencedForms: [];
   encounterType?: string;
+  allowUnspecifiedAll?: boolean;
 }
 
 export interface OHRIFormPage {
