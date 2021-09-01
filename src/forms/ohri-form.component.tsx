@@ -44,7 +44,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const encDate = new Date();
   const [encounter, setEncounter] = useState(null);
   const [form, setForm] = useState<OHRIFormSchema>(null);
-  const [currentPage, setCurrentPage] = useState(undefined);
+  const [scrollAblePages, setScrollAblePages] = useState(undefined);
   const [selectedPage, setSelectedPage] = useState('');
   const { t } = useTranslation();
 
@@ -88,7 +88,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     );
     setForm(form);
     setInitialValues(tempInitVals);
-    setCurrentPage(form?.pages);
+    setScrollAblePages(form?.pages);
   }, [encounter]);
 
   useEffect(() => {
@@ -142,6 +142,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let formHasErrors = false;
     // handle field validation
     fields
+      .filter(field => !field.disabled || !field.isHidden)
       .filter(field => field['submission']?.unspecified != true)
       .forEach(field => {
         const errors = OHRIFieldValidator.validate(field, values[field.id]);
@@ -260,7 +261,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               <div className={styles.mainContainer}>
                 <div className={styles.sidebar}>
                   <OHRIFormSidebar
-                    currentPage={currentPage}
+                    scrollAblePages={scrollAblePages}
                     selectedPage={selectedPage}
                     mode={mode}
                     onCancel={onCancel}
@@ -268,6 +269,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     values={props.values}
                     setValues={props.setValues}
                     allowUnspecifiedAll={formJson.allowUnspecifiedAll}
+                    defaultPage={formJson.defaultPage}
                   />
                 </div>
                 <div className={styles.overflowContent}>
