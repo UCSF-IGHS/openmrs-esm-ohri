@@ -57,7 +57,12 @@
               "id": "durationInMonthsOnART"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Presenting Complaints",
+      "sections": [
         {
           "label": "Presenting Complaints",
           "isExpanded": "false",
@@ -99,7 +104,12 @@
               "id": "onsetSymptom"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Tuberculosis Preventive Treatment",
+      "sections": [
         {
           "label": "Tuberculosis Preventive Treatment",
           "isExpanded": "false",
@@ -181,7 +191,12 @@
               "id": "inhStopDate"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "OBGYN History",
+      "sections": [
         {
           "label": "OBGYN History",
           "isExpanded": "false",
@@ -298,7 +313,12 @@
               "id": "wasCervicalCancerScreened"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Chronic Conditions",
+      "sections": [
         {
           "label": "Chronic Conditions",
           "isExpanded": "false",
@@ -370,7 +390,12 @@
               "id": "previousAdmissions"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Allergies",
+      "sections": [
         {
           "label": "Allergies",
           "isExpanded": "false",
@@ -439,7 +464,12 @@
               "id": "severityOfAllergicReaction"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Adverse Drug Reaction",
+      "sections": [
         {
           "label": "Adverse Drug Reaction",
           "isExpanded": "false",
@@ -499,7 +529,12 @@
               "id": "adrOtherAction"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Immunizations",
+      "sections": [
         {
           "label": "Immunizations",
           "isExpanded": "false",
@@ -523,7 +558,12 @@
               "id": "whatVaccinesWereGiven"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Physical/Systemic Examination",
+      "sections": [
         {
           "label": "Physical/Systemic Examination",
           "isExpanded": "false",
@@ -684,7 +724,12 @@
               "id": "patientWHOStaging"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "HIV Monitoring",
+      "sections": [
         {
           "label": "HIV Monitoring",
           "isExpanded": "false",
@@ -752,7 +797,12 @@
               "id": "whenWasViralLoadDone"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Positive Health, Dignity, and Prevention (PHDP)",
+      "sections": [
         {
           "label": "Positive Health, Dignity, and Prevention (PHDP)",
           "isExpanded": "false",
@@ -767,7 +817,12 @@
               "id": "phdpServicesOfferedDuringVisit"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Treatment Plan",
+      "sections": [
         {
           "label": "Treatment Plan",
           "isExpanded": "false",
@@ -905,7 +960,12 @@
               "id": "fluconazoleStopDate"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Adherence",
+      "sections": [
         {
           "label": "Adherence",
           "isExpanded": "false",
@@ -947,7 +1007,12 @@
               "id": "reasonForPoorAdherenceToCotrimoxazoleDapsone"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Differentiated Service Delivery (DSD)",
+      "sections": [
         {
           "label": "Differentiated Service Delivery (DSD)",
           "isExpanded": "false",
@@ -989,7 +1054,12 @@
               "id": "selectedDifferentiatedCareModel"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Next Appointment & Referrals",
+      "sections": [
         {
           "label": "Next Appointment & Referrals",
           "isExpanded": "false",
