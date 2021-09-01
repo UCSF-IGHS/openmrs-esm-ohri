@@ -37,7 +37,14 @@
                   }
                 ]
               },
-              "id": "countryOfDiagnosis"
+              "id": "countryOfDiagnosis",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ]
             },
             {
               "label": "County/Province/State of diagnosis",
@@ -52,7 +59,14 @@
                   }
                 ]
               },
-              "id": "placeOfDiagnosis"
+              "id": "placeOfDiagnosis",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ]
             },
             {
               "label": "Sub-County/District of diagnosis",
@@ -61,7 +75,14 @@
                 "rendering": "text",
                 "concept": "36e8970f-93d2-4870-8844-929ceb6c3790"
               },
-              "id": "districtOfDiagnosis"
+              "id": "districtOfDiagnosis",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ]
             },
             {
               "label": "Ward/Division of diagnosis",
@@ -76,7 +97,14 @@
                   }
                 ]
               },
-              "id": "divisionOfDiagnosis"
+              "id": "divisionOfDiagnosis",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ]
             },
             {
               "label": "Date of reporting to National Health Authority",
@@ -85,7 +113,27 @@
                 "rendering": "date",
                 "concept": "af7765ce-c958-44a1-af09-5a03f342c2e6"
               },
-              "id": "dateOfReportingToNHA"
+              "id": "dateOfReportingToNHA",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -115,7 +163,14 @@
                   }
                 ]
               },
-              "id": "specimenCollected"
+              "id": "specimenCollected",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ]
             },
             {
               "label": "If no, why?",
@@ -124,7 +179,6 @@
                 "rendering": "group",
                 "concept": "879b3af6-2a81-4d8d-9713-f218bb4650e9"
               },
-              "id": "whySpecimenNotCollected",
               "questions": [
                 {
                   "label": "If no, why?",
@@ -134,6 +188,27 @@
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "whySpecimenNotCollected",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                    }
+                  ]
                 }
               ]
             },
@@ -151,7 +226,31 @@
                   }
                 ]
               },
-              "id": "specimenCollectionDate"
+              "id": "specimenCollectionDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Specimen type",
@@ -159,20 +258,10 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "ae127f82-1861-4165-ac81-8554e5a3aac4",
-                "answers": [
+                "answers":[
                   {
-                    "concept": "163367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Aspirate specimen",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sputum",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Serum",
+                    "concept": "163364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nasopharyngeal Swab",
                     "conceptMappings": []
                   },
                   {
@@ -181,13 +270,91 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "163364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Nasopharyngeal Swab",
+                    "concept": "1001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Serum",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "1004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sputum",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "163367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Aspirate specimen",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
                   }
                 ]
               },
-              "id": "specimenType"
+              "id": "specimenType",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Other specimen type",
@@ -196,7 +363,6 @@
                 "rendering": "group",
                 "concept": "d07aba2e-f37d-49dd-bb65-b27e8df80399"
               },
-              "id": "otherSpecimenType",
               "questions": [
                 {
                   "label": "Other specimen type",
@@ -206,6 +372,23 @@
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "otherSpecimenType",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "otherSpecimenType !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -277,7 +460,23 @@
                   }
                 ]
               },
-              "id": "specimenSentToLab"
+              "id": "specimenSentToLab",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Date specimen sent to the lab",
@@ -287,7 +486,31 @@
                 "weeksList": "",
                 "concept": "Date specimen was sent to the lab for COVID-19 testing"
               },
-              "id": "dateSpecimenSentToLab"
+              "id": "dateSpecimenSentToLab",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Specimen barcode or accession number",
@@ -296,7 +519,23 @@
                 "rendering": "text",
                 "concept": "162086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "specimenNumber"
+              "id": "specimenNumber",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Date specimen received in the lab",
@@ -306,7 +545,27 @@
                 "concept": "2950ccab-915e-4bce-9b5c-c4183b3ee5e9",
                 "weeksList": ""
               },
-              "id": "dateSpecimenReceived"
+              "id": "dateSpecimenReceived",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Date specimen tested (date of investigation)",
@@ -316,7 +575,31 @@
                 "concept": "499df97a-2a34-4562-946a-3c4d5608b67f",
                 "weeksList": ""
               },
-              "id": "dateSpecimenTested"
+              "id": "dateSpecimenTested",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Name of confirming lab",
@@ -325,7 +608,23 @@
                 "rendering": "text",
                 "concept": "164422AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "laboratoryName"
+              "id": "laboratoryName",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "SARS-Cov2 test type",
@@ -346,7 +645,23 @@
                   }
                 ]
               },
-              "id": "sarsCovidTestType"
+              "id": "sarsCovidTestType",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Rapid Antigen result",
@@ -393,7 +708,23 @@
                   }
                 ]
               },
-              "id": "rapidAntigenTestResult"
+              "id": "rapidAntigenTestResult",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "sarsCovidTestType !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Rapid Antigen test result date",
@@ -403,7 +734,31 @@
                 "concept": "af159c77-bc5d-46dd-90d9-bcbffb22267f",
                 "weeksList": ""
               },
-              "id": "rapidAntigenResultDate"
+              "id": "rapidAntigenResultDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "sarsCovidTestType !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Diagnostic PCR result",
@@ -450,7 +805,23 @@
                   }
                 ]
               },
-              "id": "diagnosticPcrResult"
+              "id": "diagnosticPcrResult",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "sarsCovidTestType !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Diagnostic PCR  test result date",
@@ -460,7 +831,31 @@
                 "concept": "4a77ab44-0323-490e-96be-e168c0e5c9de",
                 "weeksList": ""
               },
-              "id": "pcrTestResultDate"
+              "id": "pcrTestResultDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "sarsCovidTestType !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Has sequencing been done",
@@ -520,7 +915,18 @@
                   }
                 ]
               },
-              "id": "sequencingPerformed"
+              "id": "sequencingPerformed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date of laboratory confirmation",
@@ -530,7 +936,27 @@
                 "concept": "a51c05e1-5ad5-420d-a082-966d2989b716",
                 "weeksList": ""
               },
-              "id": "dateOfLabConfirmation"
+              "id": "dateOfLabConfirmation",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Place where the case was investigated",
@@ -591,7 +1017,18 @@
                   }
                 ]
               },
-              "id": "placeCaseInvestigated"
+              "id": "placeCaseInvestigated",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other place where the case was investigated",
@@ -600,7 +1037,6 @@
                 "rendering": "group",
                 "concept": "7a2fe2d6-ada8-4fa0-9cd7-de86dcfd2a89"
               },
-              "id": "otherPlaceCaseInvestigated",
               "questions": [
                 {
                   "label": "Other place where the case was investigated",
@@ -610,6 +1046,23 @@
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "otherPlaceCaseInvestigated",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "placeCaseInvestigated !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -705,7 +1158,18 @@
                   }
                 ]
               },
-              "id": "reasonsForCovidTest"
+              "id": "reasonsForCovidTest",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other reasons for testing",
@@ -714,7 +1178,6 @@
                 "rendering": "group",
                 "concept": "a782ce41-5499-4521-ae42-16347fe6b9e0"
               },
-              "id": "othersReasonForCovidTest",
               "questions": [
                 {
                   "label": "Other reasons for testing",
@@ -724,6 +1187,23 @@
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "othersReasonForCovidTest",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "reasonsForCovidTest !== '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             }
@@ -796,7 +1276,18 @@
                   }
                 ]
               },
-              "id": "patientVaccinated"
+              "id": "patientVaccinated",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "COVID Vaccine Administered",
@@ -947,7 +1438,18 @@
                   }
                 ]
               },
-              "id": "covidVaccineAdministered"
+              "id": "covidVaccineAdministered",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other vaccine manufacturer (1st dose)",
@@ -956,7 +1458,18 @@
                 "rendering": "text",
                 "concept": "0cc868bd-e9dd-4b59-b278-f923afe22d82"
               },
-              "id": "otherFirstDoseVaccineManufacturer"
+              "id": "otherFirstDoseVaccineManufacturer",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other vaccine manufacturer (2nd dose)",
@@ -965,7 +1478,18 @@
                 "rendering": "text",
                 "concept": "a900f2c7-8922-4820-b672-676dc58dd3e9"
               },
-              "id": "otherSecondDoseVaccineManufacturer"
+              "id": "otherSecondDoseVaccineManufacturer",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date administered (1st dose)",
@@ -982,7 +1506,18 @@
                 ],
                 "weeksList": ""
               },
-              "id": "firstVaccineDoseDate"
+              "id": "firstVaccineDoseDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date administered (2nd dose)",
@@ -992,7 +1527,18 @@
                 "concept": "42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9",
                 "weeksList": ""
               },
-              "id": "secondVaccineDoseDate"
+              "id": "secondVaccineDoseDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             }
           ]
         }
@@ -1064,7 +1610,18 @@
                   }
                 ]
               },
-              "id": "clientOccupation"
+              "id": "clientOccupation",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other Occupation",
@@ -1073,7 +1630,23 @@
                 "rendering": "text",
                 "concept": "163229AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "otherOccupation"
+              "id": "otherOccupation",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientOccupation !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "If health care worker, specify name of facility",
@@ -1082,7 +1655,6 @@
                 "rendering": "group",
                 "concept": "b50399ac-1358-4ad2-8756-304e73257538"
               },
-              "id": "healthCareWorkerFacility",
               "questions": [
                 {
                   "label": "Health facility name",
@@ -1092,6 +1664,23 @@
                     "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "healthCareWorkerFacility",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientOccupation !== 'c61a0bdb-d775-4fa2-882b-17f4f7538b30'"
+                    }
+                  ]
                 }
               ]
             },
@@ -1112,7 +1701,23 @@
                   }
                 ]
               },
-              "id": "healthCareWorkerCountry"
+              "id": "healthCareWorkerCountry",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientOccupation !== 'c61a0bdb-d775-4fa2-882b-17f4f7538b30'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Health Care Worker City",
@@ -1131,7 +1736,23 @@
                   }
                 ]
               },
-              "id": "healthCareWorkerCity"
+              "id": "healthCareWorkerCity",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientOccupation !== 'c61a0bdb-d775-4fa2-882b-17f4f7538b30'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "In the 14 days prior to symptom onset (or positive test), has the case visited any health care facility?",
@@ -1197,7 +1818,18 @@
                   }
                 ]
               },
-              "id": "hasVisitedHealthFacility"
+              "id": "hasVisitedHealthFacility",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "In the 14 days prior to symptom onset (or positive test), has the patient had close contact with a person with acute respiratory infection?",
@@ -1263,7 +1895,18 @@
                   }
                 ]
               },
-              "id": "hasContactWithSarsPatient"
+              "id": "hasContactWithSarsPatient",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "In the 14 days prior to symptom onset (or positive test), has case had contact with a probable/suspected or confirmed case?",
@@ -1323,7 +1966,18 @@
                   }
                 ]
               },
-              "id": "hasContactWithConfirmedCase"
+              "id": "hasContactWithConfirmedCase",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "In the 14 days prior to symptom onset (or positive test), has the case attended a wedding, funeral, market, mosque/church, football game or any other gathering with 10 or more people?",
@@ -1383,7 +2037,18 @@
                   }
                 ]
               },
-              "id": "attendedLargeGathering"
+              "id": "attendedLargeGathering",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Has the case travelled in the 14 days prior to symptom onset?",
@@ -1449,7 +2114,18 @@
                   }
                 ]
               },
-              "id": "recentTravel"
+              "id": "recentTravel",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "If yes, Country visited",
@@ -1468,7 +2144,23 @@
                   }
                 ]
               },
-              "id": "countryVisited"
+              "id": "countryVisited",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "recentTravel !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "City visited",
@@ -1487,7 +2179,18 @@
                   }
                 ]
               },
-              "id": "cityVisited"
+              "id": "cityVisited",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Travel date/time",
@@ -1497,7 +2200,31 @@
                 "concept": "5a865a1c-2778-4178-9773-f4ece614b5ca",
                 "weeksList": ""
               },
-              "id": "travelDate"
+              "id": "travelDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "recentTravel !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Mode of transport",
@@ -1533,7 +2260,23 @@
                   }
                 ]
               },
-              "id": "modeOfTransport"
+              "id": "modeOfTransport",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "recentTravel !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -1591,7 +2334,18 @@
                   }
                 ]
               },
-              "id": "patientStatus"
+              "id": "patientStatus",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date of onset of symptoms",
@@ -1600,7 +2354,18 @@
                 "rendering": "date",
                 "concept": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "symptomStartDate"
+              "id": "symptomStartDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Presenting symptoms",
@@ -1838,7 +2603,18 @@
                   }
                 ]
               },
-              "id": "presentedCovidSymptoms"
+              "id": "presentedCovidSymptoms",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other presenting symptoms ",
@@ -1847,7 +2623,6 @@
                 "rendering": "group",
                 "concept": "08287bbb-3b2d-41fc-83e6-9c827e79b8e0"
               },
-              "id": "otherCovidPresentingSymptoms",
               "questions": [
                 {
                   "label": "Other presenting symptoms",
@@ -1857,6 +2632,23 @@
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "otherCovidPresentingSymptoms",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "presentedCovidSymptoms !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -1944,7 +2736,18 @@
                   }
                 ]
               },
-              "id": "pregnancyStatus"
+              "id": "pregnancyStatus",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Trimester of pregnancy",
@@ -1985,7 +2788,23 @@
                   }
                 ]
               },
-              "id": "pregnancyTrimester"
+              "id": "pregnancyTrimester",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "pregnancyStatus !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Post-partum (< 6 weeks)",
@@ -2059,7 +2878,18 @@
                   }
                 ]
               },
-              "id": "postpartum"
+              "id": "postpartum",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Comorbidity present",
@@ -2125,7 +2955,18 @@
                   }
                 ]
               },
-              "id": "comorbidityPresent"
+              "id": "comorbidityPresent",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Known underlying conditions or comorbidity",
@@ -2277,7 +3118,23 @@
                   }
                 ]
               },
-              "id": "underlyingComorbidityConditions"
+              "id": "underlyingComorbidityConditions",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "comorbidityPresent !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Other known underlying conditions or comorbidity",
@@ -2292,7 +3149,23 @@
                   }
                 ]
               },
-              "id": "otherComorbidity"
+              "id": "otherComorbidity",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "underlyingComorbidityConditions !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -2324,7 +3197,18 @@
                   }
                 ]
               },
-              "id": "covidTreatmentPlace"
+              "id": "covidTreatmentPlace",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Hospital Admission",
@@ -2384,7 +3268,23 @@
                   }
                 ]
               },
-              "id": "hospitalised"
+              "id": "hospitalised",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "covidTreatmentPlace !== 'df300244-2824-4b65-a72e-4cdd5432e01f'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Date of Admission",
@@ -2412,7 +3312,31 @@
                 ],
                 "weeksList": ""
               },
-              "id": "dateOfAdmission"
+              "id": "dateOfAdmission",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "hospitalised !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Name of hospital",
@@ -2421,7 +3345,6 @@
                 "rendering": "group",
                 "concept": "af4edc22-c757-451e-827a-f7bfac1616d8"
               },
-              "id": "clinicalManagementFacility",
               "questions": [
                 {
                   "label": "Name of hospital",
@@ -2431,6 +3354,23 @@
                     "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "clinicalManagementFacility",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "covidTreatmentPlace !== 'df300244-2824-4b65-a72e-4cdd5432e01f'"
+                    }
+                  ]
                 }
               ]
             },
@@ -2492,7 +3432,23 @@
                   }
                 ]
               },
-              "id": "patientInICU"
+              "id": "patientInICU",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "hospitalised !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Patient ventilated",
@@ -2552,7 +3508,23 @@
                   }
                 ]
               },
-              "id": "patientVentilated"
+              "id": "patientVentilated",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "hospitalised !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Received extracorporeal membrane oxygenation (received oxygenation supportive therapy)",
@@ -2618,7 +3590,23 @@
                   }
                 ]
               },
-              "id": "receivedOxygenation"
+              "id": "receivedOxygenation",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "hospitalised !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Patient taken to isolation",
@@ -2678,7 +3666,18 @@
                   }
                 ]
               },
-              "id": "patientIsolated"
+              "id": "patientIsolated",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date of isolation",
@@ -2698,7 +3697,31 @@
                 ],
                 "weeksList": ""
               },
-              "id": "dateOfIsolation"
+              "id": "dateOfIsolation",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "patientIsolated !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Is the case in isolation with Infection Control Practice in place",
@@ -2764,7 +3787,23 @@
                   }
                 ]
               },
-              "id": "properlyIsolated"
+              "id": "properlyIsolated",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "patientIsolated !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -2942,7 +3981,18 @@
                   }
                 ]
               },
-              "id": "medicationsReceived"
+              "id": "medicationsReceived",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other medications received",
@@ -2952,6 +4002,22 @@
                 "concept": "dd451da0-8e64-435c-a9eb-3962c923a261"
               },
               "id": "otherMedicationsReceived",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "medicationsReceived !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ],
               "questions": [
                 {
                   "label": "Free text general",
@@ -2983,7 +4049,27 @@
                 "concept": "d74a12b3-78f9-4a9b-abab-7da8458ca091",
                 "weeksList": ""
               },
-              "id": "lastFollowupTestDate"
+              "id": "lastFollowupTestDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Last follow up SARS Cov2 test results",
@@ -3030,7 +4116,18 @@
                   }
                 ]
               },
-              "id": "lastFollowupTestResults"
+              "id": "lastFollowupTestResults",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Treatment Outcome",
@@ -3096,7 +4193,18 @@
                   }
                 ]
               },
-              "id": "treatmentOutcome"
+              "id": "treatmentOutcome",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date of symptom resolution",
@@ -3112,7 +4220,31 @@
                 ],
                 "weeksList": ""
               },
-              "id": "symptomEndDate"
+              "id": "symptomEndDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Date discharged",
@@ -3144,7 +4276,31 @@
                 ],
                 "weeksList": ""
               },
-              "id": "dateDischarged"
+              "id": "dateDischarged",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '468a714e-594f-4314-a421-33a171fc7dde'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Date of death",
@@ -3168,7 +4324,31 @@
                 ],
                 "weeksList": ""
               },
-              "id": "dateOfDate"
+              "id": "dateOfDeath",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Long COVID (describe)",
@@ -3188,6 +4368,22 @@
                   },
                   "type": "obs"
                 }
+              ],
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
               ]
             },
             {
@@ -3203,7 +4399,23 @@
                   }
                 ]
               },
-              "id": "referredDescription"
+              "id": "referredDescription",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '6db09748-4d59-436c-a4ba-9ee70e22d0e0'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Unknown (describe)",
@@ -3212,7 +4424,6 @@
                 "rendering": "group",
                 "concept": "b9a5de7c-47ab-48eb-9596-d1ee46e69c49"
               },
-              "id": "unknownTreatmentOutcomeDescription",
               "questions": [
                 {
                   "label": "Unknown (describe)",
@@ -3223,6 +4434,18 @@
                   },
                   "type": "obs"
                 }
+              ],
+              "id": "unknownTreatmentOutcomeDescription",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
               ]
             },
             {
@@ -3232,7 +4455,6 @@
                 "rendering": "group",
                 "concept": "896a1386-ecf9-4f8a-9648-e223949c9934"
               },
-              "id": "otherTreatmentOutcome",
               "questions": [
                 {
                   "label": "Other treatment outcome",
@@ -3242,6 +4464,23 @@
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   "type": "obs"
+                }
+              ],
+              "id": "otherTreatmentOutcome",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -3303,7 +4542,18 @@
                   }
                 ]
               },
-              "id": "developedSymptoms"
+              "id": "developedSymptoms",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Discharge summary",
@@ -3312,7 +4562,18 @@
                 "rendering": "text",
                 "concept": "e1bee97b-91f4-4c19-a66d-acf82752ee4d"
               },
-              "id": "dischargeSummary"
+              "id": "dischargeSummary",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             }
           ]
         }
