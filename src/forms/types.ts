@@ -64,6 +64,7 @@ export interface OHRIFormField {
   hideDeterminant?: string;
   required?: boolean;
   unspecified?: boolean;
+  disabled?: boolean;
 }
 
 export interface OHRIFormFieldProps {
