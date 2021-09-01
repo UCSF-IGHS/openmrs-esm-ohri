@@ -6,6 +6,13 @@ import {
   hts_dashboardMeta,
   caretreament_dashboardMeta,
 } from './dashboard.meta';
+import {
+  clearCovidSidenavRegistry,
+  createCovidDashboardLink,
+  caseReport_dashboardMeta,
+  clinicalVisit_dashboardMeta,
+} from './covid/dashboard.meta';
+
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -25,6 +32,7 @@ function setupOpenMRS() {
 
   //Clear sidenav items to avoid duplicates
   clearSidenavRegistry();
+  clearCovidSidenavRegistry();
 
   return {
     pages: [
@@ -43,6 +51,22 @@ function setupOpenMRS() {
     ],
     extensions: [
       {
+        id: 'covid-case-report-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
+        meta: caseReport_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-clinical-visit-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(clinicalVisit_dashboardMeta), options),
+        meta: clinicalVisit_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
         id: 'hts-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
@@ -58,14 +82,14 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
-      {
-        id: 'hts-summary-page-menu-item-ext',
-        slot: 'patient-chart-nav-menu',
-        load: getAsyncLifecycle(() => import('./menu-items/hts-summary-page-link'), {
-          featureName: 'hts-summary-page-menu-item',
-          moduleName,
-        }),
-      },
+      // {
+      //   id: 'hts-summary-page-menu-item-ext',
+      //   slot: 'patient-chart-nav-menu',
+      //   load: getAsyncLifecycle(() => import('./menu-items/hts-summary-page-link'), {
+      //     featureName: 'hts-summary-page-menu-item',
+      //     moduleName,
+      //   }),
+      // },
       {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',

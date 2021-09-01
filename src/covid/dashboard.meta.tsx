@@ -5,11 +5,11 @@ import styles from './dashboard.scss';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(caretreament_dashboardMeta.name) !== -1 || pathname.indexOf(hts_dashboardMeta.name) !== -1;
+  pathname.indexOf(clinicalVisit_dashboardMeta.name) !== -1 || pathname.indexOf(caseReport_dashboardMeta.name) !== -1;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
-  const registry = JSON.parse(localStorage.getItem('sidenavItems'));
+  const registry = JSON.parse(localStorage.getItem('sidenavItems-Covid'));
 
   //check if List exists, if not initialize it
   buffer = registry ? registry : [];
@@ -19,14 +19,14 @@ const registerSidenavItem = sidenavItem => {
     buffer.push(sidenavItem);
   }
 
-  localStorage.setItem('sidenavItems', JSON.stringify(buffer));
+  localStorage.setItem('sidenavItems-Covid', JSON.stringify(buffer));
 
   return buffer;
 };
 
-export const clearSidenavRegistry = () => localStorage.removeItem('sidenavItems');
+export const clearCovidSidenavRegistry = () => localStorage.removeItem('sidenavItems-Covid');
 
-export const createDashboardLink = db => {
+export const createCovidDashboardLink = db => {
   const navItems = registerSidenavItem(db);
   const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
 
@@ -36,7 +36,7 @@ export const createDashboardLink = db => {
     const forceRerender = () => setRerender(!rerender);
 
     return (
-      <SideNavMenu title="HIV" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+      <SideNavMenu title="Covid" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
@@ -60,23 +60,16 @@ export function handleLinkClick(event: any, to: string) {
   navigate({ to });
 }
 
-export const hts_dashboardMeta = {
-  name: 'hts-summary',
-  slot: 'hts-summary-dashboard-slot',
+export const clinicalVisit_dashboardMeta = {
+  name: 'covid-clinical-visit',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'HTS ',
+  title: 'Clinical Visit',
 };
 
-export const caretreament_dashboardMeta = {
-  name: 'care-and-treatment',
-  slot: 'care-and-treatment-dashboard-slot',
+export const caseReport_dashboardMeta = {
+  name: 'covid-case-report',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Care and Treatment',
-};
-
-export const pmtct = {
-  name: 'PMTCT',
-  slot: 'hts-summary-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'PMTCT',
+  title: 'Case Report',
 };
