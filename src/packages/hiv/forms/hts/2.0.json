@@ -3420,15 +3420,18 @@
     },
     {
       "intent": "HTS_PRETEST",
-      "display": "HTS Pretest"
+      "display": "HTS Pretest",
+      "defaultPage": "Pretest Counselling"
     },
     {
       "intent": "HTS_HIVTEST",
-      "display": "HIV Test"
+      "display": "HIV Test",
+      "defaultPage": "HIV Testing"
     },
     {
       "intent": "HTS_POSTTEST",
-      "display": "HTS Post Test"
+      "display": "HTS Post Test",
+      "defaultPage": "Post Test Counselling"
     }
   ],
   "processor": "EncounterFormProcessor",

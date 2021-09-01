@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
 import { Button, Toggle } from 'carbon-components-react';
 import { isEmpty } from '../../ohri-form-validator';
 
 function OHRIFormSidebar({
-  currentPage,
+  scrollAblePages,
   selectedPage,
   mode,
   onCancel,
@@ -13,8 +13,15 @@ function OHRIFormSidebar({
   values,
   setValues,
   allowUnspecifiedAll,
+  defaultPage,
 }) {
   const [activeLink, setActiveLink] = useState(selectedPage);
+
+  useEffect(() => {
+    if (defaultPage && scrollAblePages.find(({ label }) => label === defaultPage)) {
+      scrollIntoView(joinWord(defaultPage));
+    }
+  }, [defaultPage]);
 
   const joinWord = value => {
     return value.replace(/\s/g, '');
@@ -56,7 +63,7 @@ function OHRIFormSidebar({
   );
   return (
     <div className={styles.sidebar}>
-      {currentPage.map((page, index) => {
+      {scrollAblePages.map((page, index) => {
         return (
           <div
             aria-hidden="true"
