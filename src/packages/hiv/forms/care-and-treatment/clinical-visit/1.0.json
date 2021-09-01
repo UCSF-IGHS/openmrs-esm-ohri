@@ -150,6 +150,886 @@
                 "weeksList": ""
               },
               "id": "tbTreatmentStopDate"
+            },
+            {
+              "label": "When is INH/TPT  start date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "inhStartDate"
+            },
+            {
+              "label": "Has the patient finished IPT/TPT since the last visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientFinishedIPTSinceLastVisit"
+            },
+            {
+              "label": "When was INH/TPT  stop date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "inhStopDate"
+            }
+          ]
+        },
+        {
+          "label": "OBGYN History",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "When was the patients first day of Last Monthly Period (LMP)?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "lastMonthlyPeriod"
+            },
+            {
+              "label": "Is the patient pregnant?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "isPatientPregnant"
+            },
+            {
+              "label": "Does the patient intend to conceive in the next three months?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientIntendToConceiveInNextThreeMonths"
+            },
+            {
+              "label": "Is the patient breastfeeding?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "isPatientBreastFeeding"
+            },
+            {
+              "label": "When is the patients expected Date of Delivery (EDD)?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "patientExpectedDateOfDelivery"
+            },
+            {
+              "label": "Gestational Age in weeks",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "gestationAgeInWeeks"
+            },
+            {
+              "label": "Has a antenatal or postnatal profile been done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "hasAntenatalProfileBeenDone"
+            },
+            {
+              "label": "Is the patient on a family planning method?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "isPatientOnFamilyPlanning"
+            },
+            {
+              "label": "What family planning method is she on/wants?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "familyPlanningMethodSheOnOrWants"
+            },
+            {
+              "label": "Why is the patient not on Family Planning?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "whyPatientNotOnFamilyPlanning"
+            },
+            {
+              "label": "Has the patient been screened for Cervical Cancer?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "hasPatientScreenedForCervicalCancer"
+            },
+            {
+              "label": "When was cervical cancer screened?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "wasCervicalCancerScreened"
+            }
+          ]
+        },
+        {
+          "label": "Chronic Conditions",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the patient have any chronic illnesses or co-morbidities?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "doesPatientHaveChronicillnesses"
+            },
+            {
+              "label": "Condition",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "condition"
+            },
+            {
+              "label": "When was the onset of the chronic condition?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "onsetOfChronicCondition"
+            },
+            {
+              "label": "What is the current status of the chronic condition?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "currentStatusOfChronicCondition"
+            },
+            {
+              "label": "When did the condition become Inactive?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "whenConditionBecomeInactive"
+            },
+            {
+              "label": "Does the patient have previous admissions or prior surgery done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "doesPatientHavePreviousAdmissions"
+            },
+            {
+              "label": "Previous admissions or prior surgery notes",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "",
+                "rows": ""
+              },
+              "id": "previousAdmissions"
+            }
+          ]
+        },
+        {
+          "label": "Allergies",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the patient have Allergies?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "doesPatientHaveAllergies"
+            },
+            {
+              "label": "Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "allergen"
+            },
+            {
+              "label": "Drug Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "drugAllergen"
+            },
+            {
+              "label": "Food Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "foodAllergen"
+            },
+            {
+              "label": "Environmental Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "environmentalAllergen"
+            },
+            {
+              "label": "Other Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "otherAllergen"
+            },
+            {
+              "label": "What was the severity of the allergic reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "severityOfAllergicReaction"
+            }
+          ]
+        },
+        {
+          "label": "Adverse Drug Reaction",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Has the patient had an adverse drug reaction to medication they are currently taking?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "hasPatientHadAdverseDrugReaction"
+            },
+            {
+              "label": "What type of drug caused the reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "whatTypeOfDrugCausedTheReaction"
+            },
+            {
+              "label": "What was the severity of Adverse Drug Reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "severityOfAdverseDrugReaction"
+            },
+            {
+              "label": "What type of reaction did the patient have?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "typeOfReactionPatientHad"
+            },
+            {
+              "label": "What action was taken due to the adverse drug reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "actionTakenDueToAdverseDrugReaction"
+            },
+            {
+              "label": "ADR Other action",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "adrOtherAction"
+            }
+          ]
+        },
+        {
+          "label": "Immunizations",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Were any vaccines given during this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "vaccinesGivenDuringVisit"
+            },
+            {
+              "label": "What vaccines were given during this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "whatVaccinesWereGiven"
+            }
+          ]
+        },
+        {
+          "label": "Physical/Systemic Examination",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What are the general examination findings?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "generalExaminationFindings"
+            },
+            {
+              "label": "Other general examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "",
+                "rows": ""
+              },
+              "id": "otherGeneralExaminationFinding"
+            },
+            {
+              "label": "Was a physical examination/systemic assessment done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "physicalExaminationAssessmentDone"
+            },
+            {
+              "label": "What are the Physical Examination/Systemic findings?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "physicalExaminationFindings"
+            },
+            {
+              "label": "Skin",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "skinFindings"
+            },
+            {
+              "label": "Head/Ears/Eyes/Nose",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "headFindings"
+            },
+            {
+              "label": "Chest",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "chestFindings"
+            },
+            {
+              "label": "Cardiovascular",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "cardiovascularFindings"
+            },
+            {
+              "label": "Abdomen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "abdomenFindings"
+            },
+            {
+              "label": "Central Nervous System",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "centralNervousSystemFindings"
+            },
+            {
+              "label": "Genito-urinary system",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "genitoUrinarySystemFindings"
+            },
+            {
+              "label": "General Examination Note",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "",
+                "rows": ""
+              },
+              "id": "generalExaminationNote"
+            },
+            {
+              "label": "What is the patients nutritional status?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientNutritionalStatus"
+            },
+            {
+              "label": "Was nutritional support offered?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "wasNutritionalSupportOffered"
+            },
+            {
+              "label": "Was STI screening done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "wasSTIScreeningDone"
+            },
+            {
+              "label": "Was STI partner notification done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "wasSTIPartnerNotificationDone"
+            },
+            {
+              "label": "What is the patients W.H.O staging?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientWHOStaging"
+            }
+          ]
+        },
+        {
+          "label": "HIV Monitoring",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Was a CD4 requested at this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "wasCD4RequestedAtVisit"
+            },
+            {
+              "label": "What is the latest CD4 Count in cells/uL?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "max": "",
+                "min": "",
+                "showDate": ""
+              },
+              "id": "latestCD4CountInCells"
+            },
+            {
+              "label": "When was a CD4 Count done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "whenWasCD4CountDone"
+            },
+            {
+              "label": "Was a Viral Load requested at this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "viralLoadRequestedAtVisit"
+            },
+            {
+              "label": "What is the lasted Viral Load in copies/ml?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "max": "",
+                "min": "",
+                "showDate": ""
+              },
+              "id": "viralLoadInCopies"
+            },
+            {
+              "label": "When was the Viral Load done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "whenWasViralLoadDone"
+            }
+          ]
+        },
+        {
+          "label": "Positive Health, Dignity, and Prevention (PHDP)",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What PHDP services were offered to the patient during this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "phdpServicesOfferedDuringVisit"
+            }
+          ]
+        },
+        {
+          "label": "Treatment Plan",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What is the HIV management plan?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "hiveManagementPlan"
+            },
+            {
+              "label": "What is the HAART Regimen?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "haartRegimen"
+            },
+            {
+              "label": "What is the reason for regimen change/Switch was done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "reasonForRegimenChange"
+            },
+            {
+              "label": "Regimen Change other",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "regimenChangeOther"
+            },
+            {
+              "label": "What is the HAART stop reason?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "haartStopReason"
+            },
+            {
+              "label": "Other reasons for stopping ART",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "otherReasonsForStoppingART"
+            },
+            {
+              "label": "When was HAART stopped?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "whenWasHaartStopped"
+            },
+            {
+              "label": "When was HAART Restarted?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "whenWasHaartRestarted"
+            },
+            {
+              "label": "Is the patient currently on prophylaxis/Treatment for Pneumocystis Pneumonia (PCP)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "isPatientCurrentlyOnTreatmentForPneumocystisPneumonia"
+            },
+            {
+              "label": "Cotrimoxazole/Dapsone start date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "cotrimoxazoleDapsoneStartDate"
+            },
+            {
+              "label": "Cotrimoxazole/Dapsone stop date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "cotrimoxazoleDapsoneStopDate"
+            },
+            {
+              "label": "Is the patient currently on prophylaxis/Treatment for Cryptococcal meningitis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "isPatientOnTreatmentForCryptococcalMeningitis"
+            },
+            {
+              "label": "Fluconazole Start Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "fluconazoleStartDate"
+            },
+            {
+              "label": "Fluconazole Stop Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "fluconazoleStopDate"
+            }
+          ]
+        },
+        {
+          "label": "Adherence",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What  the patients HAART adherence assessment?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientHaartAdherenceAssessment"
+            },
+            {
+              "label": "What is the reason for Fair/Poor adherence to HAART?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "reasonForPoorAdherenceToHaart"
+            },
+            {
+              "label": "What is the patients cotrimoxazole/Dapsone adherence assessment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "patientCotrimoxazoleDapsoneAdherenceAssessment"
+            },
+            {
+              "label": "Reason for Fair/Poor adherence to Cotrimoxazole/Dapsone",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "reasonForPoorAdherenceToCotrimoxazoleDapsone"
+            }
+          ]
+        },
+        {
+          "label": "Differentiated Service Delivery (DSD)",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Differentiated Service Delivery Criteria",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "differentiatedServiceDeliveryCriteria"
+            },
+            {
+              "label": "What is the clients stability assessment?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "clientStabilityAssessment"
+            },
+            {
+              "label": "Differentiated care services?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "differentiatedCareServices"
+            },
+            {
+              "label": "What is the selected differentiated care model?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "selectedDifferentiatedCareModel"
+            }
+          ]
+        },
+        {
+          "label": "Next Appointment & Referrals",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the client have any referrals?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "doesnClientHaveAnyReferrals"
+            },
+            {
+              "label": "What is the next appointment date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "id": "nextAppointmentDate"
+            },
+            {
+              "label": "What is the reason for the next appointment date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "reasonForNextAppointmentDate"
+            },
+            {
+              "label": "What is the attending clinician's name",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "attendingClinicianName"
             }
           ]
         }
