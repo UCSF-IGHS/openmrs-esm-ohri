@@ -79,7 +79,8 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
 export function filterFormByIntent(intent, originalJson) {
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
-
+  // Set the default page based on the current intent
+  jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     page.sections.forEach(section => {
