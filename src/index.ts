@@ -87,6 +87,7 @@ function setupOpenMRS() {
             moduleName,
           },
         ),
+        order: 5,
         meta: {
           columnSpan: 4,
         },
