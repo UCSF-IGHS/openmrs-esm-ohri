@@ -2188,7 +2188,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "recentTravel !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -2294,41 +2299,33 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "165793AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "406221003"
-                  }
-                ],
+                "concept": "de3bc9b7-05b5-41b6-a38d-8d2eec646c4f",
                 "answers": [
                   {
-                    "concept": "162863AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Probable",
+                    "concept": "1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Symptomatic",
                     "conceptMappings": [
                       {
+                        "type": "AMPATH",
+                        "value": "1068"
+                      },
+                      {
                         "type": "SNOMED-CT",
-                        "value": "255544004"
+                        "value": "264931009"
                       }
                     ]
                   },
                   {
-                    "concept": "165792AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Confirmed present",
+                    "concept": "5006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Asymptomatic",
                     "conceptMappings": [
                       {
-                        "type": "SNOMED-CT",
-                        "value": "410605003"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "162743AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Suspected",
-                    "conceptMappings": [
+                        "type": "AMPATH",
+                        "value": "5006"
+                      },
                       {
                         "type": "SNOMED-CT",
-                        "value": "415684004"
+                        "value": "84387000"
                       }
                     ]
                   }
@@ -2363,7 +2360,20 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "patientStatus !== '1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -2612,7 +2622,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "patientStatus !== '1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -4129,6 +4144,10 @@
                 }
               ]
             },
+
+
+
+
             {
               "label": "Treatment Outcome",
               "type": "obs",
@@ -4136,6 +4155,53 @@
                 "rendering": "checkbox",
                 "concept": "a845f3e6-4432-4de4-9fff-37fa270b1a06",
                 "answers": [
+                  {
+                    "concept": "166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long COVID",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Symptoms resolved",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "468a714e-594f-4314-a421-33a171fc7dde",
+                    "label": "Discharged",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6db09748-4d59-436c-a4ba-9ee70e22d0e0",
+                    "label": "Referred",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  },
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other",
@@ -4165,31 +4231,6 @@
                         "value": "74964007"
                       }
                     ]
-                  },
-                  {
-                    "concept": "166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Post-Acute Sequelae of SARS-CoV-2 infection (PASC)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Died",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Patient condition resolved",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "468a714e-594f-4314-a421-33a171fc7dde",
-                    "label": "Discharged as a treatment outcome",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "6db09748-4d59-436c-a4ba-9ee70e22d0e0",
-                    "label": "Referred as a treatment outcome",
-                    "conceptMappings": []
                   }
                 ]
               },
@@ -4444,7 +4485,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "treatmentOutcome !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
