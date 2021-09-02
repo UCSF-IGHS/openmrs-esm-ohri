@@ -3,8 +3,9 @@ import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchTodayClients } from '../../../api/api';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import { filterFHIRPatientsByName } from '../../../hts-home/patient-list.component';
+import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
 import { basePath } from '../../../constants';
+import { filterFHIRPatientsByName } from './utils';
 
 export const columns = [
   {
@@ -148,7 +149,7 @@ export const TodaysClientList: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Today's clients" displayText="patients" showLaunchLink={false} />
+        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
         <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
       )}

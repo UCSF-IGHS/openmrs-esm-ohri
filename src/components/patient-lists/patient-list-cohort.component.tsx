@@ -1,10 +1,10 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFinalHIVStatus, getCohort } from '../api/api';
-import EmptyState from '../components/empty-state/empty-state.component';
+import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
+import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
-import { basePath } from '../constants';
-import styles from './patient-table.component.scss';
+import { basePath } from '../../constants';
+import TableEmptyState from '../empty-state/table-empty-state.component';
 
 export const columns = [
   {
@@ -160,9 +160,9 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   }, [state]);
 
   return (
-    <div className={styles.table1}>
+    <div>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Test client list" displayText="patients" />
+        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
         <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
       )}
