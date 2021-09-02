@@ -73,6 +73,12 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         (firstEncounter, secondEncounter) =>
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
+<<<<<<< Updated upstream
+=======
+
+      console.info('sortedEncounters', sortedEncounters);
+
+>>>>>>> Stashed changes
       sortedEncounters.map(encounter => {
         const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
@@ -97,6 +103,15 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
           </OverflowMenu>
         );
 
+<<<<<<< Updated upstream
+=======
+        const HIVTestObservation = encounter.obs.find(
+          observation => observation.concept.name.uuid === '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+        );
+
+        console.log('encounter', encounter);
+
+>>>>>>> Stashed changes
         rows.push({
           id: encounter.uuid,
           date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
