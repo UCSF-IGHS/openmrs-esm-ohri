@@ -9,7 +9,7 @@ function OHRISummaryTileTablet({ details }) {
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         {details.map((name, index) => {
           return (
-            <div>
+            <div key={index}>
               <div className={styles.tabletTileSubTitle}>{name.subTitle}</div>
               <div className={styles.tabletTileValue}>{name.value}</div>
             </div>

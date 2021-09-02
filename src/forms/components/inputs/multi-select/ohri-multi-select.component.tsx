@@ -1,5 +1,6 @@
 import { FormGroup, ListItem, UnorderedList } from 'carbon-components-react';
 import MultiSelect from 'carbon-components-react/lib/components/MultiSelect';
+import FilterableMultiSelect from '../MultiSelect/FilterableMultiSelect';
 import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
@@ -77,8 +78,12 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     </div>
   ) : (
     <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
+<<<<<<< Updated upstream
       <MultiSelect.Filterable
         placeholder={t('filterItemsInMultiselect', 'Search...')}
+=======
+      <FilterableMultiSelect
+>>>>>>> Stashed changes
         onChange={handleSelectItemsChange}
         id={question.label}
         items={questionItems}
