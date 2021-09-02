@@ -6,6 +6,9 @@ import moment from 'moment';
 import { basePath } from '../constants';
 import styles from './patient-table.component.scss';
 
+import { OverflowMenu } from 'carbon-components-react';
+import AddPatientToListOverflowMenuItem from '../components/modals/patient-list/add-patient-to-list-modal.component';
+
 export const columns = [
   {
     key: 'name',
@@ -66,6 +69,13 @@ export const columns = [
       return patient.hivResult;
     },
   },
+  {
+    key: 'actions',
+    header: '',
+    getValue: patient => {
+      return patient.actions;
+    },
+  },
 ];
 
 const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
@@ -96,6 +106,11 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         location: results.location.name,
         phoneNumber: '0700xxxxxx',
         hivResult: '',
+        actions: (
+          <OverflowMenu flipped>
+            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
+          </OverflowMenu>
+        ),
       }));
       setPatients(patients);
       setIsLoading(false);

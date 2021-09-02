@@ -110,6 +110,6 @@
   "updateSuccessToastDescription": "The patient HTS record was updated",
   "filterItemsInMultiselect": "Search...",
 
-  "covidCaseReports": "Covid Care Reports"
-
+  "covidCaseReports": "Covid Care Reports",
+  "addPatientToList": "Add to list"
 }
