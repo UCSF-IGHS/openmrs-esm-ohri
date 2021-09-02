@@ -4626,6 +4626,12 @@
       ]
     }
   ],
+  "availableIntents": [
+    {
+      "intent": "HTS_RETROSPECTIVE",
+      "display": "HTS Restrospective"
+    }
+  ],
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": []
