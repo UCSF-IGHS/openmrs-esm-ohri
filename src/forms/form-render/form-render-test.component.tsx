@@ -41,7 +41,7 @@ function FormRenderTest() {
   };
 
   const updateFormIntentInput = e => {
-    setFormIntentInput(e.selectedItem.id);
+    setFormIntentInput(e.selectedItem.intent);
   };
 
   const updateJsonInput = e => {

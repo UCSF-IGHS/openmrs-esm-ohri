@@ -64,8 +64,23 @@ function setupOpenMRS() {
       {
         id: 'hts-care-and-treatment-list-ext',
         slot: 'care-and-treatment-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/care-and-treatment-list.component'), {
-          featureName: 'hts-care-and-treatment-list',
+        load: getAsyncLifecycle(
+          () => import('./hts/care-and-treatment/service-enrolment/service-enrolment-list.component'),
+          {
+            featureName: 'hts-care-and-treatment-list',
+            moduleName,
+          },
+        ),
+        order: 5,
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'clinical-visit-ext',
+        slot: 'care-and-treatment-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/clinical-visit/clinical-visit-list.component'), {
+          featureName: 'clinical-visit-widget',
           moduleName,
         }),
         meta: {
