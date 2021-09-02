@@ -27,7 +27,6 @@ import {
   studyPopulationTypeConcept,
 } from '../../constants';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import EmptyStateServiceEnrollment from '../../components/empty-state/empty-state-service-enrolment.component';
 import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 
 interface CareAndTreatmentProps {
