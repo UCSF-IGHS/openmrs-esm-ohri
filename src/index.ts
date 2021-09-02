@@ -51,46 +51,6 @@ function setupOpenMRS() {
     ],
     extensions: [
       {
-        id: 'covid-case-report-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
-        meta: caseReport_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-clinical-visit-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(clinicalVisit_dashboardMeta), options),
-        meta: clinicalVisit_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'hts-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
-        meta: hts_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'care-and-treatment-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(caretreament_dashboardMeta), options),
-        meta: caretreament_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      // {
-      //   id: 'hts-summary-page-menu-item-ext',
-      //   slot: 'patient-chart-nav-menu',
-      //   load: getAsyncLifecycle(() => import('./menu-items/hts-summary-page-link'), {
-      //     featureName: 'hts-summary-page-menu-item',
-      //     moduleName,
-      //   }),
-      // },
-      {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
@@ -182,6 +142,49 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
         online: true,
         offline: true,
+      },
+      {
+        id: 'hts-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
+        meta: hts_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'care-and-treatment-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(caretreament_dashboardMeta), options),
+        meta: caretreament_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-case-report-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
+        meta: caseReport_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-clinical-visit-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(clinicalVisit_dashboardMeta), options),
+        meta: clinicalVisit_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-case-report-ext',
+        slot: 'covid-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/case-report/case-report.component'), {
+          featureName: 'covid-case-report',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
       },
     ],
   };

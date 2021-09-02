@@ -64,7 +64,7 @@ export const clinicalVisit_dashboardMeta = {
   name: 'covid-clinical-visit',
   slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Clinical Visit',
+  title: '',
 };
 
 export const caseReport_dashboardMeta = {

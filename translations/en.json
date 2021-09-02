@@ -108,6 +108,8 @@
   "createSuccessToastDescription": "A new HTS record was created",
   "updateSuccessToastTitle": "HTS record updated",
   "updateSuccessToastDescription": "The patient HTS record was updated",
-  "filterItemsInMultiselect": "Search..."
+  "filterItemsInMultiselect": "Search...",
+
+  "covidCaseReports": "Covid Care Reports"
 
 }
