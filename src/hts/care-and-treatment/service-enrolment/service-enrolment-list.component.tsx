@@ -16,8 +16,8 @@ import {
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
 } from '../../../constants';
-import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 
 interface ServiceEnrolmentProps {
   patientUuid: string;
