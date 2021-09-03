@@ -15,7 +15,27 @@
                 "rendering": "date",
                 "concept": "160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "hivEnrolmentDate"
+              "id": "hivEnrolmentDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue > today()'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Unique number as assigned at the HIV clinic:",
@@ -30,7 +50,18 @@
                   }
                 ]
               },
-              "id": "patientIdentifier"
+              "id": "patientIdentifier",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other Unique patient number assigned:",
@@ -45,7 +76,18 @@
                   }
                 ]
               },
-              "id": "otherUniquePatientIdentifier"
+              "id": "otherUniquePatientIdentifier",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Description of the client at the point of enrolment:",
@@ -76,7 +118,18 @@
                   }
                 ]
               },
-              "id": "clientDescription"
+              "id": "clientDescription",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "What is the client’s population category?",
@@ -113,7 +166,18 @@
                   }
                 ]
               },
-              "id": "clientPopulationCategory"
+              "id": "clientPopulationCategory",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "What is the client's Key/Priority Population Type?",
@@ -199,7 +263,23 @@
                   }
                 ]
               },
-              "id": "keyPopulationType"
+              "id": "keyPopulationType",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientPopulationCategory !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "What was the service point where the client was first diagnosed with HIV?",
@@ -482,7 +562,18 @@
                   }
                 ]
               },
-              "id": "enrollmentMethod"
+              "id": "enrollmentMethod",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Entry Point - Other",
@@ -517,7 +608,8 @@
                   }
                 ]
               },
-              "id": "otherEntryPoint"
+              "id": "otherEntryPoint",
+              "behaviours": []
             }
           ]
         }
@@ -543,7 +635,23 @@
                   }
                 ]
               },
-              "id": "locationTransferedFrom"
+              "id": "locationTransferedFrom",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Which date did the client started ART at transferring Facility?",
@@ -579,7 +687,23 @@
                   }
                 ]
               },
-              "id": "artStartDate"
+              "id": "artStartDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "What regimen was the client on at the time of referral?",
@@ -760,7 +884,23 @@
                   }
                 ]
               },
-              "id": "patientIdentifier"
+              "id": "patientIdentifier",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "What documentation did the client have at the time of transferring in?",
@@ -786,7 +926,23 @@
                   }
                 ]
               },
-              "id": "transferInDoc"
+              "id": "transferInDoc",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "When was the Transfer-in client first enrolled into HIV Care?",
@@ -802,7 +958,23 @@
                   }
                 ]
               },
-              "id": "dateOfFirstVisit"
+              "id": "dateOfFirstVisit",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -837,7 +1009,27 @@
                   }
                 ]
               },
-              "id": "hivDiagnosisDate"
+              "id": "hivDiagnosisDate",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "What type of test was used to confirm HIV diagnosis?",
@@ -858,7 +1050,18 @@
                   }
                 ]
               },
-              "id": "diagnosticHivTestType"
+              "id": "diagnosticHivTestType",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Where was the client diagnosed as HIV positive?",
@@ -995,7 +1198,18 @@
                   }
                 ]
               },
-              "id": "diagnosisLocation"
+              "id": "diagnosisLocation",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             }
           ]
         }
@@ -1066,7 +1280,8 @@
                   }
                 ]
               },
-              "id": "previousUseOfPrep"
+              "id": "previousUseOfPrep",
+              "behaviours": []
             },
             {
               "label": "When was PrEP last used?",
@@ -1076,7 +1291,27 @@
                 "concept": "5af829e9-2427-4ed7-bb55-de4381610364",
                 "weeksList": ""
               },
-              "id": "datePrepLastUsed"
+              "id": "datePrepLastUsed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Has the client used Post exposure prophylaxis (PEP)?",
@@ -1136,7 +1371,18 @@
                   }
                 ]
               },
-              "id": "previousUseOfPep"
+              "id": "previousUseOfPep",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "When was PEP last used?",
@@ -1146,7 +1392,27 @@
                 "concept": "fbe937b6-a4ad-4ce5-9c43-002222fbabfb",
                 "weeksList": ""
               },
-              "id": "datePepLastUsed"
+              "id": "datePepLastUsed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Has the client used ARVs for the management of Hepatitis?",
@@ -1206,7 +1472,18 @@
                   }
                 ]
               },
-              "id": "useOfArvs"
+              "id": "useOfArvs",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "When was the Hep-B Regimen last used?",
@@ -1216,7 +1493,27 @@
                 "concept": "6a6cbda5-b155-4144-9ff9-ec3d1d1cd509",
                 "weeksList": ""
               },
-              "id": "dateHepBLastUsed"
+              "id": "dateHepBLastUsed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Has the client had ART for Prevention of mother to child Transmission of HIV?",
@@ -1276,7 +1573,18 @@
                   }
                 ]
               },
-              "id": "previousUseOfArt"
+              "id": "previousUseOfArt",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "When was the PMTCT Regimen Last Used?",
@@ -1286,7 +1594,27 @@
                 "concept": "163782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": ""
               },
-              "id": "datePmtctLastUsed"
+              "id": "datePmtctLastUsed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "List of drugs used for PrEP, PEP, PMTCT and Hepatitis B (Nucleoside Reverse Transcriptase Inhibitors (NRTIS))",
@@ -1327,7 +1655,18 @@
                   }
                 ]
               },
-              "id": "nrtisDrugsUsed"
+              "id": "nrtisDrugsUsed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Non-Nucleoside Reverse Transcriptase Inhibitors (NNRTIS)",
@@ -1380,7 +1719,18 @@
                   }
                 ]
               },
-              "id": "nnrtisDrugsUsed"
+              "id": "nnrtisDrugsUsed",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Protease Inhibitors (PIS)",
@@ -1421,7 +1771,18 @@
                   }
                 ]
               },
-              "id": "proteaseInhibitors"
+              "id": "proteaseInhibitors",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other HIV Drug Classes",
@@ -1479,7 +1840,18 @@
                   }
                 ]
               },
-              "id": "otherArvDrugClasses"
+              "id": "otherArvDrugClasses",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             }
           ]
         }
@@ -1528,7 +1900,18 @@
                   }
                 ]
               },
-              "id": "hasTreatmentSupporter"
+              "id": "hasTreatmentSupporter",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Indicate the name of the clients treatment supporter",
@@ -1543,7 +1926,18 @@
                   }
                 ]
               },
-              "id": "treatmentSupporter"
+              "id": "treatmentSupporter",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "What is the treatment supporters phone number",
@@ -1558,7 +1952,18 @@
                   }
                 ]
               },
-              "id": "treatmentSupporterPhoneNumber"
+              "id": "treatmentSupporterPhoneNumber",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "What is the clients relationship to the treatment supporter",
@@ -1679,11 +2084,28 @@
                   }
                 ]
               },
-              "id": "relationToTreatmentSupporter"
+              "id": "relationToTreatmentSupporter",
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             }
           ]
         }
       ]
+    }
+  ],
+  "availableIntents": [
+    {
+      "intent": "CT_SE_RETROSPECTIVE",
+      "display": "HIV CT Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
