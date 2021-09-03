@@ -18,7 +18,7 @@
               "id": "hivEnrolmentDate",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -53,7 +53,7 @@
               "id": "patientIdentifier",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -79,7 +79,7 @@
               "id": "otherUniquePatientIdentifier",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -121,7 +121,7 @@
               "id": "clientDescription",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -169,7 +169,7 @@
               "id": "clientPopulationCategory",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -266,7 +266,7 @@
               "id": "keyPopulationType",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -565,7 +565,7 @@
               "id": "enrollmentMethod",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -638,7 +638,7 @@
               "id": "locationTransferedFrom",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -690,7 +690,7 @@
               "id": "artStartDate",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -887,7 +887,7 @@
               "id": "patientIdentifier",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -929,7 +929,7 @@
               "id": "transferInDoc",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -961,7 +961,7 @@
               "id": "dateOfFirstVisit",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1012,7 +1012,7 @@
               "id": "hivDiagnosisDate",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1053,7 +1053,7 @@
               "id": "diagnosticHivTestType",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1201,7 +1201,7 @@
               "id": "diagnosisLocation",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1294,7 +1294,7 @@
               "id": "datePrepLastUsed",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1374,7 +1374,7 @@
               "id": "previousUseOfPep",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1395,7 +1395,7 @@
               "id": "datePepLastUsed",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1475,7 +1475,7 @@
               "id": "useOfArvs",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1496,7 +1496,7 @@
               "id": "dateHepBLastUsed",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1576,7 +1576,7 @@
               "id": "previousUseOfArt",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1597,7 +1597,7 @@
               "id": "datePmtctLastUsed",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1658,7 +1658,7 @@
               "id": "nrtisDrugsUsed",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1722,7 +1722,7 @@
               "id": "nnrtisDrugsUsed",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1774,7 +1774,7 @@
               "id": "proteaseInhibitors",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1843,7 +1843,7 @@
               "id": "otherArvDrugClasses",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1903,7 +1903,7 @@
               "id": "hasTreatmentSupporter",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1929,7 +1929,7 @@
               "id": "treatmentSupporter",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1955,7 +1955,7 @@
               "id": "treatmentSupporterPhoneNumber",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2087,7 +2087,7 @@
               "id": "relationToTreatmentSupporter",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "CT_SE_RETROSPECTIVE",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
