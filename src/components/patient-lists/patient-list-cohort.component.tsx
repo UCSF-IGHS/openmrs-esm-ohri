@@ -7,7 +7,7 @@ import { basePath } from '../../constants';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 
 import { OverflowMenu } from 'carbon-components-react';
-import AddPatientToListOverflowMenuItem from '../components/modals/patient-list/add-patient-to-list-modal.component';
+import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 
 export const columns = [
   {
