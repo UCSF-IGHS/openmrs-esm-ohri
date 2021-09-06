@@ -32,25 +32,6 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
     { key: 'action', header: 'Action' },
   ];
 
-  // return (
-  //   <>
-  //     <EmptyState
-  //       displayText={t('covidCaseReports', 'Covid Care Reports')}
-  //       headerTitle={headerTitle}
-  //       launchForm={launchHTSForm}
-  //     />
-  //     <EmptyState
-  //       displayText={t('serviceEnrolments', 'service enrolments')}
-  //       headerTitle={headerTitle}
-  //       launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchServiceEnrolmentForm} />}
-  //     />
-  //     <Button
-  //       kind="ghost"
-  //       displayText={t('covidCaseReports', 'service enrolments')}
-  //       id="choose-intent"
-  //       label="Add +"></Button>
-  //   </>
-  // );
   return (
     <>
       {isLoading ? (
