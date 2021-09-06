@@ -189,10 +189,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
         <>
-          <RadioButtonGroup
-            name="filter-encounters-by-date"
-            legendText="Filter encounters by Date"
-            onChange={e => console.log(e)}>
+          <RadioButtonGroup name="filter-encounters-by-date" legendText="Filter encounters by Date">
             <RadioButton labelText="Today" value="today" />
             <RadioButton labelText="All" value="all" />
           </RadioButtonGroup>
