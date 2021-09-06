@@ -1281,7 +1281,16 @@
                 ]
               },
               "id": "previousUseOfPrep",
-              "behaviours": []
+              "behaviours": [
+                {
+                  "intent": "CT_SE_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                }
+              ]
             },
             {
               "label": "When was PrEP last used?",
