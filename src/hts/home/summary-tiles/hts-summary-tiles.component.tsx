@@ -94,7 +94,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
       <Row className={styles.desktopView}>
         {tiles.map((tile, index) => {
           return (
-            <div style={{ width: '321px', marginLeft: '16px' }} key={index}>
+            <div style={{ width: '321px', paddingLeft: '16px' }} key={index}>
               <OHRISummaryTile
                 title={tile.title}
                 subTitle={tile.subTitle}
