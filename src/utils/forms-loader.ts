@@ -100,7 +100,7 @@ export function filterFormByIntent(intent, originalJson) {
             const defaultIntentBehaviours = question.behaviours.find(behaviour => behaviour.intent === '*');
             if (defaultIntentBehaviours) {
               question.required = defaultIntentBehaviours.required || undefined;
-              question.unspecified = defaultIntentBehaviours.unsepecified || undefined;
+              question.unspecified = defaultIntentBehaviours.unspecified || undefined;
               question.hide = defaultIntentBehaviours.hide || undefined;
               question.validators = defaultIntentBehaviours.validators || undefined;
             }
