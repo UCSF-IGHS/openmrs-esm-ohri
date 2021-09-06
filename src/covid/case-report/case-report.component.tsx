@@ -4,8 +4,10 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import { Button, Tab, Tabs } from 'carbon-components-react';
 import styles from '../covid.scss';
 import { Add16 } from '@carbon/icons-react';
-import OTable from '../../components/data-table/o-table.component';
-
+import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
+import { getForm } from '../../utils/forms-loader';
+import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+import { launchForm } from '../../utils/ohri-forms-commons';
 interface CovidOverviewListProps {
   patientUuid: string;
 }
@@ -13,8 +15,14 @@ interface CovidOverviewListProps {
 const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = 'Covid Case Reports';
+  const [tableRows, setTableRows] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [covidCaseReport, setCovidCaseReport] = useState(getForm('covid', 'covid_case'));
 
   const launchHTSForm = (form?: any) => {};
+
+  const forceComponentUpdate = () => setCounter(counter + 1);
 
   const tableHeaders = [
     { key: 'date', header: 'Date of service enrolment', isSortable: true },
@@ -24,18 +32,42 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
     { key: 'action', header: 'Action' },
   ];
 
+  // return (
+  //   <>
+  //     <EmptyState
+  //       displayText={t('covidCaseReports', 'Covid Care Reports')}
+  //       headerTitle={headerTitle}
+  //       launchForm={launchHTSForm}
+  //     />
+  //     <EmptyState
+  //       displayText={t('serviceEnrolments', 'service enrolments')}
+  //       headerTitle={headerTitle}
+  //       launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchServiceEnrolmentForm} />}
+  //     />
+  //     <Button
+  //       kind="ghost"
+  //       displayText={t('covidCaseReports', 'service enrolments')}
+  //       id="choose-intent"
+  //       label="Add +"></Button>
+  //   </>
+  // );
   return (
     <>
-      <EmptyState
-        displayText={t('covidCaseReports', 'Covid Care Reports')}
-        headerTitle={headerTitle}
-        launchForm={launchHTSForm}
-      />
-      <Button
-        kind="ghost"
-        displayText={t('covidCaseReports', 'service enrolments')}
-        id="choose-intent"
-        label="Add +"></Button>
+      {isLoading ? (
+        <DataTableSkeleton rowCount={5} />
+      ) : tableRows.length > 0 ? (
+        <>
+          <div>Table goes here</div>
+        </>
+      ) : (
+        <EmptyState
+          displayText={t('covidCaseReports', 'Covid Case Reports')}
+          headerTitle={t('covidCaseReports', 'Covid Case Reports')}
+          launchFormComponent={
+            <OHRIFormLauncherEmpty launchForm={() => launchForm(covidCaseReport, forceComponentUpdate)} />
+          }
+        />
+      )}
     </>
   );
 };
