@@ -139,24 +139,23 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
         <>
-          <div className={styles.newServiceEnrolmentBtn}>
-            <Button
-              kind="ghost"
-              renderIcon={Add16}
-              iconDescription="New"
-              onClick={e => {
-                e.preventDefault();
-                launchServiceEnrolmentForm();
-              }}>
-              {t('add', 'New')}
-            </Button>
-          </div>
           <div className={styles.widgetContainer}>
-            <Tabs type="container">
-              <Tab id="tab-1" label="Service Enrolment">
-                <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
-              </Tab>
-            </Tabs>
+            <div className={styles.widgetHeaderContainer}>
+              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+              <div className={styles.toggleButtons}>
+                <Button
+                  kind="ghost"
+                  renderIcon={Add16}
+                  iconDescription="New"
+                  onClick={e => {
+                    e.preventDefault();
+                    launchServiceEnrolmentForm();
+                  }}>
+                  {t('add', 'New')}
+                </Button>
+              </div>
+            </div>
+            <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
         </>
       ) : (

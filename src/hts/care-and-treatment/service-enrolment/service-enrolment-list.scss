@@ -4,6 +4,21 @@
   background-color: $ui-background;
 }
 
+.widgetHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-04 0 $spacing-04 $spacing-05;
+}
+
+.widgetHeaderContainer > h4:after {
+  content: "";
+  display: block;
+  width: 2rem;
+  padding-top: 0.188rem;
+  border-bottom: 0.375rem solid $brand-teal-01;
+}
+
 .newServiceEnrolmentBtn {
   //margin: 0 $spacing-03;
   margin-bottom: 0.5em;
