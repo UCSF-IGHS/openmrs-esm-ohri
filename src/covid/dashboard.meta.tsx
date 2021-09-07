@@ -4,8 +4,6 @@ import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
-const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(clinicalVisit_dashboardMeta.name) !== -1 || pathname.indexOf(caseReport_dashboardMeta.name) !== -1;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -32,40 +30,42 @@ export const createCovidDashboardLink = db => {
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
-
     const forceRerender = () => setRerender(!rerender);
 
+    document.addEventListener('navigation-from-hts', e => {
+      e.preventDefault();
+      forceRerender();
+    });
+
     return (
-      <SideNavMenu title="Covid" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
-        {navItems.map(navItem => (
-          <SideNavMenuItem
-            key={navItem.title}
-            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}
-            onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `);
-              forceRerender();
-            }}>
-            {navItem.title}
-          </SideNavMenuItem>
-        ))}
-      </SideNavMenu>
+      <div id="sidenav-menu-covid">
+        <SideNavMenu title="Covid" className={styles.noMarker} defaultExpanded={isActiveLink(caseReport_dashboardMeta)}>
+          {navItems.map(navItem => (
+            <SideNavMenuItem
+              key={navItem.title}
+              className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
+              href={`${basePath}/${navItem.name}`}
+              onClick={e => {
+                handleLinkClick(e, `${basePath}/${navItem.name} `);
+                forceRerender();
+                document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+              }}>
+              {navItem.title}xx
+            </SideNavMenuItem>
+          ))}
+        </SideNavMenu>
+      </div>
     );
   };
   return DashboardLink;
 };
 
+let navigationEvent = new Event('navigation');
+
 export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
-
-export const clinicalVisit_dashboardMeta = {
-  name: 'covid-clinical-visit',
-  slot: 'covid-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: '',
-};
 
 export const caseReport_dashboardMeta = {
   name: 'covid-case-report',

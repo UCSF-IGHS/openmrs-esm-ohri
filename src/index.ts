@@ -6,12 +6,7 @@ import {
   hts_dashboardMeta,
   caretreament_dashboardMeta,
 } from './dashboard.meta';
-import {
-  clearCovidSidenavRegistry,
-  createCovidDashboardLink,
-  caseReport_dashboardMeta,
-  clinicalVisit_dashboardMeta,
-} from './covid/dashboard.meta';
+import { clearCovidSidenavRegistry, createCovidDashboardLink, caseReport_dashboardMeta } from './covid/dashboard.meta';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 
@@ -182,15 +177,6 @@ function setupOpenMRS() {
         load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
         meta: caseReport_dashboardMeta,
         order: 7,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-clinical-visit-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(clinicalVisit_dashboardMeta), options),
-        meta: clinicalVisit_dashboardMeta,
-        order: 8,
         online: true,
         offline: true,
       },
