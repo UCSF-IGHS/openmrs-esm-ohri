@@ -50,7 +50,7 @@ export const createCovidDashboardLink = db => {
                 forceRerender();
                 document.dispatchEvent(new CustomEvent('navigation-from-hts'));
               }}>
-              {navItem.title}xx
+              {navItem.title}
             </SideNavMenuItem>
           ))}
         </SideNavMenu>
