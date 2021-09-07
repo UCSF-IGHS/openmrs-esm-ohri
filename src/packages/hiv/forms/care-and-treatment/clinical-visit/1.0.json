@@ -18,7 +18,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "*",
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1496,6 +1496,16 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                }
+              ],
               "id": "attendingClinicianName"
             }
           ]
