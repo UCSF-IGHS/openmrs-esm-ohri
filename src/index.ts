@@ -6,6 +6,8 @@ import {
   hts_dashboardMeta,
   caretreament_dashboardMeta,
 } from './dashboard.meta';
+import { clearCovidSidenavRegistry, createCovidDashboardLink, caseReport_dashboardMeta } from './covid/dashboard.meta';
+
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -25,6 +27,7 @@ function setupOpenMRS() {
 
   //Clear sidenav items to avoid duplicates
   clearSidenavRegistry();
+  clearCovidSidenavRegistry();
 
   return {
     pages: [
@@ -43,30 +46,6 @@ function setupOpenMRS() {
     ],
     extensions: [
       {
-        id: 'hts-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
-        meta: hts_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'care-and-treatment-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(caretreament_dashboardMeta), options),
-        meta: caretreament_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'hts-summary-page-menu-item-ext',
-        slot: 'patient-chart-nav-menu',
-        load: getAsyncLifecycle(() => import('./menu-items/hts-summary-page-link'), {
-          featureName: 'hts-summary-page-menu-item',
-          moduleName,
-        }),
-      },
-      {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./hts/encounters-list/hts-overview-list.component'), {
@@ -80,8 +59,23 @@ function setupOpenMRS() {
       {
         id: 'hts-care-and-treatment-list-ext',
         slot: 'care-and-treatment-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/care-and-treatment-list.component'), {
-          featureName: 'hts-care-and-treatment-list',
+        load: getAsyncLifecycle(
+          () => import('./hts/care-and-treatment/service-enrolment/service-enrolment-list.component'),
+          {
+            featureName: 'hts-care-and-treatment-list',
+            moduleName,
+          },
+        ),
+        order: 5,
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'clinical-visit-ext',
+        slot: 'care-and-treatment-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./hts/care-and-treatment/clinical-visit/clinical-visit-list.component'), {
+          featureName: 'clinical-visit-widget',
           moduleName,
         }),
         meta: {
@@ -158,6 +152,44 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
         online: true,
         offline: true,
+      },
+      {
+        id: 'hts-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
+        meta: hts_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'care-and-treatment-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(caretreament_dashboardMeta), options),
+        meta: caretreament_dashboardMeta,
+        order: 6,
+        online: true,
+        offline: true,
+      },
+      {
+        //TODO: Fix dependency for 2nd Nav
+        id: 'covid-case-report-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
+        meta: caseReport_dashboardMeta,
+        order: 7,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-case-report-ext',
+        slot: 'covid-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/case-report/case-report.component'), {
+          featureName: 'covid-case-report',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
       },
     ],
   };

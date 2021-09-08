@@ -1,10 +1,13 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFinalHIVStatus, getCohort } from '../api/api';
-import EmptyState from '../components/empty-state/empty-state.component';
+import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
+import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
-import { basePath } from '../constants';
-import styles from './patient-table.component.scss';
+import { basePath } from '../../constants';
+import TableEmptyState from '../empty-state/table-empty-state.component';
+
+import { OverflowMenu, RadioButton, RadioButtonGroup } from 'carbon-components-react';
+import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 
 export const columns = [
   {
@@ -66,6 +69,13 @@ export const columns = [
       return patient.hivResult;
     },
   },
+  {
+    key: 'actions',
+    header: '',
+    getValue: patient => {
+      return patient.actions;
+    },
+  },
 ];
 
 const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
@@ -96,6 +106,11 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         location: results.location.name,
         phoneNumber: '0700xxxxxx',
         hivResult: '',
+        actions: (
+          <OverflowMenu flipped>
+            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
+          </OverflowMenu>
+        ),
       }));
       setPatients(patients);
       setIsLoading(false);
@@ -143,6 +158,15 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
     };
   });
 
+  const filterEncountersByDate = (date: string) => {
+    let filteredEncounters = [];
+
+    if (date === 'today') {
+      filteredEncounters = patients.filter(patient => patient.waitingTime < 24);
+      setPatients(filteredEncounters);
+    }
+  };
+
   const state = useMemo(
     () => ({
       patients: searchTerm ? filteredResults : patients,
@@ -160,11 +184,17 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   }, [state]);
 
   return (
-    <div className={styles.table1}>
+    <div>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Test client list" displayText="patients" />
+        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
+        <>
+          <RadioButtonGroup name="filter-encounters-by-date" legendText="Filter encounters by Date">
+            <RadioButton labelText="Today" value="today" />
+            <RadioButton labelText="All" value="all" />
+          </RadioButtonGroup>
+          <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
+        </>
       )}
     </div>
   );

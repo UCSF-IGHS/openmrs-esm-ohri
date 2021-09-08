@@ -4,12 +4,10 @@ import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
-const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(caretreament_dashboardMeta.name) !== -1 || pathname.indexOf(hts_dashboardMeta.name) !== -1;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
-  const registry = JSON.parse(localStorage.getItem('sidenavItems'));
+  const registry = JSON.parse(localStorage.getItem('sidenavItems-Covid'));
 
   //check if List exists, if not initialize it
   buffer = registry ? registry : [];
@@ -19,29 +17,31 @@ const registerSidenavItem = sidenavItem => {
     buffer.push(sidenavItem);
   }
 
-  localStorage.setItem('sidenavItems', JSON.stringify(buffer));
+  localStorage.setItem('sidenavItems-Covid', JSON.stringify(buffer));
 
   return buffer;
 };
 
-export const clearSidenavRegistry = () => localStorage.removeItem('sidenavItems');
+export const clearCovidSidenavRegistry = () => localStorage.removeItem('sidenavItems-Covid');
 
-export const createDashboardLink = db => {
+export const createCovidDashboardLink = db => {
   const navItems = registerSidenavItem(db);
-  const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
     const forceRerender = () => setRerender(!rerender);
 
-    document.addEventListener('navigation-from-covid', e => {
+    document.addEventListener('navigation-from-hts', e => {
       e.preventDefault();
       forceRerender();
     });
 
     return (
-      <div id='sidenav-menu-hts'>
-        <SideNavMenu title='HIV' className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+      <div id='sidenav-menu-covid'>
+        <SideNavMenu
+          title='Covid'
+          className={styles.noMarker}
+          defaultExpanded={isActiveLink(caseReport_dashboardMeta.name)}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
@@ -50,8 +50,7 @@ export const createDashboardLink = db => {
               onClick={e => {
                 handleLinkClick(e, `${basePath}/${navItem.name} `);
                 forceRerender();
-
-                document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+                document.dispatchEvent(new CustomEvent('navigation-from-covid'));
               }}>
               {navItem.title}
             </SideNavMenuItem>
@@ -63,28 +62,16 @@ export const createDashboardLink = db => {
   return DashboardLink;
 };
 
+let navigationEvent = new Event('navigation');
+
 export function handleLinkClick (event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
 
-export const hts_dashboardMeta = {
-  name: 'hts-summary',
-  slot: 'hts-summary-dashboard-slot',
+export const caseReport_dashboardMeta = {
+  name: 'covid-case-report',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'HTS ',
-};
-
-export const caretreament_dashboardMeta = {
-  name: 'care-and-treatment',
-  slot: 'care-and-treatment-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Care and Treatment',
-};
-
-export const pmtct = {
-  name: 'PMTCT',
-  slot: 'hts-summary-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'PMTCT',
+  title: 'Case Report',
 };

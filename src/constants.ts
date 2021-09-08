@@ -6,6 +6,10 @@ export const daysDurationUnit = {
 };
 
 export const basePath = '${openmrsSpaBase}/patient/';
+export const encounterRepresentation =
+  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
+  'encounterProviders:(uuid,provider:(uuid,name)),' +
+  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
 // Final HIV Test Result Concepts
 export const finalHIVCodeConcept = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
@@ -26,3 +30,6 @@ export const dateOfServiceEnrollmentConcept = '160555AAAAAAAAAAAAAAAAAAAAAAAAAAA
 export const patientTypeEnrollmentConcept = '83e40f2c-c316-43e6-a12e-20a338100281';
 export const studyPopulationTypeConcept = '166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+// Clinical visit
+export const clinicalVisitEncounterType = 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4';
