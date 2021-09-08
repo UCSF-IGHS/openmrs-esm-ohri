@@ -43,7 +43,7 @@ const CovidOverviewList: React.FC<CovidOverviewListProps> = ({ patientUuid }) =>
       state: { updateParent: forceComponentUpdate, formJson: form || caseReportForm },
     });
   };
-  
+
   const tableHeaders = [
     { key: 'encounterDate', header: 'Encounter Date', isSortable: true },
     { key: 'cov2TestType', header: 'SARS-Cov2 test type' },
