@@ -16,24 +16,100 @@
                 "concept": "date of encounter",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "dateOfEncounter"
             },
             {
               "label": "Was the encounter scheduled?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isEncounterScheduled"
             },
             {
               "label": "What type of visit is the client scheduled for?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "8a9809e9-8a0b-4e0e-b1f6-80b0cbbe361b",
+                "answers": [
+                  {
+                    "concept": "166446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Express pharmacy pickup without clinician visit",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164946"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "160523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Follow-up Visit, Regular",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "185389009"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6193"
+                      }
+                    ]
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "typeOfVisitScheduled"
             },
             {
@@ -44,6 +120,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "artCohort"
             },
             {
@@ -54,6 +142,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "durationInMonthsOnART"
             }
           ]
@@ -71,9 +171,31 @@
               "label": "Does the client have any Presenting Complaints?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "1154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "hasPresentingComplaints"
             },
             {
@@ -81,8 +203,30 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "33962009"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5219"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "presentingComplaints"
             },
             {
@@ -90,18 +234,63 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "10154-3"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "33962009"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "presentingComplaintNotes"
             },
             {
               "label": "Onset of symptom",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "date",
+                "concept": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "65222-2"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "308928005"
+                  }
+                ],
+                "weeksList": ""
               },
-              "id": "onsetSymptom"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "dateOfSymptomOnset"
             }
           ]
         }
@@ -119,17 +308,108 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "f8868467-bd15-4576-9da8-bfb8ef64ea17",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "171126009"
+                  }
+                ]
               },
-              "id": "patientScreenedForTuberclosis"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "patientScreenedForTuberculosis"
             },
             {
               "label": "What was the screening outcome?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "c0661c0f-348b-4941-812b-c531a0a67f2e",
+                "answers": [
+                  {
+                    "concept": "662edd6a-9f8a-4dfa-9956-a6ec42018c72",
+                    "label": "Presumptive Tuberculosis",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "currently on tuberculosis treatment",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "6176"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1257"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Currently taking tuberculosis prophylaxis",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "363819003"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164949"
+                      }
+                    ]
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "screeningOutcome"
             },
             {
@@ -137,58 +417,174 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
-                "weeksList": ""
+                "concept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413946009"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "11131000105005"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1113"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1113"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "tbTreatmentStartDate"
             },
             {
-              "label": "Has the patient finished TB treatment since the last visit?",
+              "label": "Is the patient currently taking Tuberculosis Treatment?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "6176"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1257"
+                  }
+                ]
               },
-              "id": "finishedTbTreatmentSinceLastVisit"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "isPatientOnTuberculosisTreatment"
             },
             {
-              "label": "When was TB treatment stop date?",
+              "label": "When was TB treatment end date?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
-                "weeksList": ""
+                "concept": "159431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "2597"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413947000"
+                  }
+                ]
               },
-              "id": "tbTreatmentStopDate"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "tbTreatmentEndDate"
             },
             {
-              "label": "When is INH/TPT  start date?",
+              "label": "When was Tuberculosis prophylaxis started?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
-                "weeksList": ""
+                "concept": "162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "inhStartDate"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "dateTuberculosisProphylaxisStarted"
             },
             {
-              "label": "Has the patient finished IPT/TPT since the last visit?",
+              "label": "Is the patient currently taking Tuberculosis prophylaxis?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "363819003"
+                  },
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164949"
+                  }
+                ]
               },
-              "id": "patientFinishedIPTSinceLastVisit"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "isPatientOnTuberculosisProphylaxisTreatment"
             },
             {
-              "label": "When was INH/TPT  stop date?",
+              "label": "When was Tuberculosis prophylaxis ended?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
-                "weeksList": ""
+                "concept": "163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "inhStopDate"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "dateTuberculosisProphylaxisEnded"
             }
           ]
         }
@@ -209,15 +605,67 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "lastMonthlyPeriod"
             },
             {
               "label": "Is the patient pregnant?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "77386006"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1484"
+                  },
+                  {
+                    "type": "ICD-10-WHO",
+                    "value": "Z33"
+                  },
+                  {
+                    "type": "IMO-ProblemIT",
+                    "value": "52609"
+                  }
+                ],
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isPatientPregnant"
             },
             {
@@ -227,6 +675,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "patientIntendToConceiveInNextThreeMonths"
             },
             {
@@ -234,8 +694,34 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "2056"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413712001"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5632"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isPatientBreastFeeding"
             },
             {
@@ -243,9 +729,38 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
-                "weeksList": ""
+                "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "11779-6"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5596"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1854"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "366322004"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "patientExpectedDateOfDelivery"
             },
             {
@@ -255,6 +770,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "gestationAgeInWeeks"
             },
             {
@@ -264,6 +791,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "hasAntenatalProfileBeenDone"
             },
             {
@@ -273,24 +812,162 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isPatientOnFamilyPlanning"
             },
             {
               "label": "What family planning method is she on/wants?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "select",
+                "concept": "374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "13197004"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "374"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "374"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "familyPlanningMethodSheOnOrWants"
             },
             {
               "label": "Why is the patient not on Family Planning?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "select",
+                "concept": "160575AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "6195"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "118185001"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "160573AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Currently not sexually active",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "162171002"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "3211"
+                      }
+                    ]
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whyPatientNotOnFamilyPlanning"
             },
             {
@@ -300,6 +977,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "hasPatientScreenedForCervicalCancer"
             },
             {
@@ -310,6 +999,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "wasCervicalCancerScreened"
             }
           ]
@@ -330,6 +1031,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "doesPatientHaveChronicillnesses"
             },
             {
@@ -339,6 +1052,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "condition"
             },
             {
@@ -349,6 +1074,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "onsetOfChronicCondition"
             },
             {
@@ -358,6 +1095,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "currentStatusOfChronicCondition"
             },
             {
@@ -368,6 +1117,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whenConditionBecomeInactive"
             },
             {
@@ -377,6 +1138,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "doesPatientHavePreviousAdmissions"
             },
             {
@@ -387,6 +1160,18 @@
                 "concept": "",
                 "rows": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "previousAdmissions"
             }
           ]
@@ -407,6 +1192,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "doesPatientHaveAllergies"
             },
             {
@@ -416,6 +1213,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "allergen"
             },
             {
@@ -425,6 +1234,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "drugAllergen"
             },
             {
@@ -434,6 +1255,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "foodAllergen"
             },
             {
@@ -443,6 +1276,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "environmentalAllergen"
             },
             {
@@ -452,6 +1297,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "otherAllergen"
             },
             {
@@ -461,6 +1318,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "severityOfAllergicReaction"
             }
           ]
@@ -481,6 +1350,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "hasPatientHadAdverseDrugReaction"
             },
             {
@@ -490,6 +1371,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whatTypeOfDrugCausedTheReaction"
             },
             {
@@ -499,6 +1392,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "severityOfAdverseDrugReaction"
             },
             {
@@ -508,6 +1413,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "typeOfReactionPatientHad"
             },
             {
@@ -517,6 +1434,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "actionTakenDueToAdverseDrugReaction"
             },
             {
@@ -526,6 +1455,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "adrOtherAction"
             }
           ]
@@ -546,6 +1487,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "vaccinesGivenDuringVisit"
             },
             {
@@ -555,6 +1508,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whatVaccinesWereGiven"
             }
           ]
@@ -575,6 +1540,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "generalExaminationFindings"
             },
             {
@@ -585,6 +1562,18 @@
                 "concept": "",
                 "rows": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "otherGeneralExaminationFinding"
             },
             {
@@ -594,6 +1583,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "physicalExaminationAssessmentDone"
             },
             {
@@ -603,6 +1604,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "physicalExaminationFindings"
             },
             {
@@ -612,6 +1625,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "skinFindings"
             },
             {
@@ -621,6 +1646,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "headFindings"
             },
             {
@@ -630,6 +1667,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "chestFindings"
             },
             {
@@ -639,6 +1688,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "cardiovascularFindings"
             },
             {
@@ -648,6 +1709,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "abdomenFindings"
             },
             {
@@ -657,6 +1730,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "centralNervousSystemFindings"
             },
             {
@@ -666,6 +1751,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "genitoUrinarySystemFindings"
             },
             {
@@ -676,6 +1773,18 @@
                 "concept": "",
                 "rows": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "generalExaminationNote"
             },
             {
@@ -685,6 +1794,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "patientNutritionalStatus"
             },
             {
@@ -694,6 +1815,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "wasNutritionalSupportOffered"
             },
             {
@@ -703,6 +1836,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "wasSTIScreeningDone"
             },
             {
@@ -712,6 +1857,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "wasSTIPartnerNotificationDone"
             },
             {
@@ -721,6 +1878,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "patientWHOStaging"
             }
           ]
@@ -741,6 +1910,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "wasCD4RequestedAtVisit"
             },
             {
@@ -753,6 +1934,18 @@
                 "min": "",
                 "showDate": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "latestCD4CountInCells"
             },
             {
@@ -763,6 +1956,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whenWasCD4CountDone"
             },
             {
@@ -772,6 +1977,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "viralLoadRequestedAtVisit"
             },
             {
@@ -784,6 +2001,18 @@
                 "min": "",
                 "showDate": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "viralLoadInCopies"
             },
             {
@@ -794,6 +2023,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whenWasViralLoadDone"
             }
           ]
@@ -814,6 +2055,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "phdpServicesOfferedDuringVisit"
             }
           ]
@@ -834,6 +2087,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "hiveManagementPlan"
             },
             {
@@ -843,6 +2108,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "haartRegimen"
             },
             {
@@ -852,6 +2129,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "reasonForRegimenChange"
             },
             {
@@ -861,6 +2150,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "regimenChangeOther"
             },
             {
@@ -870,6 +2171,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "haartStopReason"
             },
             {
@@ -879,6 +2192,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "otherReasonsForStoppingART"
             },
             {
@@ -889,6 +2214,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whenWasHaartStopped"
             },
             {
@@ -899,6 +2236,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "whenWasHaartRestarted"
             },
             {
@@ -908,6 +2257,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isPatientCurrentlyOnTreatmentForPneumocystisPneumonia"
             },
             {
@@ -918,6 +2279,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "cotrimoxazoleDapsoneStartDate"
             },
             {
@@ -928,6 +2301,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "cotrimoxazoleDapsoneStopDate"
             },
             {
@@ -937,6 +2322,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isPatientOnTreatmentForCryptococcalMeningitis"
             },
             {
@@ -947,6 +2344,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "fluconazoleStartDate"
             },
             {
@@ -957,6 +2366,18 @@
                 "concept": "",
                 "weeksList": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "fluconazoleStopDate"
             }
           ]
@@ -977,6 +2398,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "patientHaartAdherenceAssessment"
             },
             {
@@ -986,6 +2419,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "reasonForPoorAdherenceToHaart"
             },
             {
@@ -993,8 +2438,30 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "166462AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164941"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "418633004"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "patientCotrimoxazoleDapsoneAdherenceAssessment"
             },
             {
@@ -1004,6 +2471,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "reasonForPoorAdherenceToCotrimoxazoleDapsone"
             }
           ]
@@ -1024,6 +2503,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "differentiatedServiceDeliveryCriteria"
             },
             {
@@ -1033,6 +2524,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "clientStabilityAssessment"
             },
             {
@@ -1042,6 +2545,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "differentiatedCareServices"
             },
             {
@@ -1051,6 +2566,18 @@
                 "rendering": "text",
                 "concept": ""
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "selectedDifferentiatedCareModel"
             }
           ]
@@ -1071,16 +2598,61 @@
                 "rendering": "text",
                 "concept": ""
               },
-              "id": "doesnClientHaveAnyReferrals"
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "doesClientHaveAnyReferrals"
             },
             {
               "label": "What is the next appointment date?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "",
-                "weeksList": ""
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "5096"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "50961000105000"
+                  },
+                  {
+                    "type": "org.openmrs.module.mdrtb",
+                    "value": "RETURN VISIT DATE"
+                  },
+                  {
+                    "type": "PIH-Malawi",
+                    "value": "5096"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "406543005"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "nextAppointmentDate"
             },
             {
@@ -1097,13 +2669,47 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "1392"
+                  }
+                ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
+                }
+              ],
               "id": "attendingClinicianName"
             }
           ]
         }
       ]
+    }
+  ],
+  "availableIntents": [
+    {
+      "intent": "CT_CLINICAL_VISIT_INITIAL",
+      "display": "CT CLINICAL VISIT INITIAL"
+    },
+    {
+      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+      "display": "CT CLINICAL VISIT FOLLOW UP"
     }
   ],
   "processor": "EncounterFormProcessor",
