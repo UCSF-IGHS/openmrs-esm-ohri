@@ -1,9 +1,14 @@
 @import "../../../root.scss";
 .sidebar{
 width: 11rem;
-// margin-left: 20px;
+max-height: 500px;
 margin-right: 20px;
 position: fixed;
+}
+
+.sidebarList{
+  max-Height: 300px;
+  overflow-y: scroll;
 }
 
 .link {

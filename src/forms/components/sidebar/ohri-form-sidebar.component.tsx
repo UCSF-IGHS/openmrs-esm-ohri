@@ -62,8 +62,8 @@ function OHRIFormSidebar({
     [unspecifiedFields],
   );
   return (
-    <>
-      <div className={styles.sidebar}>
+    <div className={styles.sidebar}>
+      <div className={styles.sidebarList}>
         {scrollAblePages.map((page, index) => {
           return (
             <div
@@ -76,35 +76,34 @@ function OHRIFormSidebar({
           );
         })}
       </div>
+
       <hr className={styles.sideBarHorizontalLine} />
-      <div className={styles.buttonSection}>
-        {allowUnspecifiedAll && (
-          <div style={{ marginBottom: '.6rem' }}>
-            <Toggle
-              labelText=""
-              id="auto-unspecifier"
-              labelA="Unspecify All"
-              labelB="Revert"
-              onToggle={markAllAsUnspecified}
-            />
-          </div>
-        )}
-        {mode != 'view' && (
-          <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
-            Save
-          </Button>
-        )}
-        <Button
-          style={{ width: '11rem' }}
-          kind="tertiary"
-          onClick={() => {
-            onCancel ? onCancel() : null;
-            handleClose();
-          }}>
-          {mode == 'view' ? 'Close' : 'Cancel'}
+      {allowUnspecifiedAll && (
+        <div style={{ marginBottom: '.6rem' }}>
+          <Toggle
+            labelText=""
+            id="auto-unspecifier"
+            labelA="Unspecify All"
+            labelB="Revert"
+            onToggle={markAllAsUnspecified}
+          />
+        </div>
+      )}
+      {mode != 'view' && (
+        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
+          Save
         </Button>
-      </div>
-    </>
+      )}
+      <Button
+        style={{ width: '11rem' }}
+        kind="tertiary"
+        onClick={() => {
+          onCancel ? onCancel() : null;
+          handleClose();
+        }}>
+        {mode == 'view' ? 'Close' : 'Cancel'}
+      </Button>
+    </div>
   );
 }
 
