@@ -1,45 +1,30 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import styles from './care-and-treatment-list.scss';
+import styles from './service-enrolment-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
-import OTable from '../../components/data-table/o-table.component';
+import OTable from '../../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import {
-  ComposedModal,
-  DataTableSkeleton,
-  ModalBody,
-  ModalHeader,
-  OverflowMenu,
-  OverflowMenuItem,
-  Tab,
-  Tabs,
-} from 'carbon-components-react';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import { DataTableSkeleton, OverflowMenu, OverflowMenuItem, Tab, Tabs } from 'carbon-components-react';
+import EmptyState from '../../../components/empty-state/empty-state.component';
 import moment from 'moment';
-import { getForm } from '../../utils/forms-loader';
-import OHRIForm from '../../forms/ohri-form.component';
-import { SessionMode } from '../../forms/types';
+import { getForm } from '../../../utils/forms-loader';
 import {
   careAndTreatmentEncounterType,
   dateOfHIVDiagnosisConcept,
+  encounterRepresentation,
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
-} from '../../constants';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+} from '../../../constants';
+import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 
-interface CareAndTreatmentProps {
+interface ServiceEnrolmentProps {
   patientUuid: string;
   viewMode: string;
 }
 
-export const htsFormSlot = 'hts-encounter-form-slot';
-export const htsEncounterRepresentation =
-  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
-
-const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, viewMode }) => {
+const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, viewMode }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -58,6 +43,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
       state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
     });
   };
+
   const editServiceEnrolmentEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: serviceEnrolmentForm?.name,
@@ -142,7 +128,7 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
 
   useEffect(() => {
     let query = `encounterType=${careAndTreatmentEncounterType}&patient=${patientUuid}`;
-    getServiceEnrolmentColumns(query, htsEncounterRepresentation);
+    getServiceEnrolmentColumns(query, encounterRepresentation);
   }, [counter]);
 
   const headerTitle = 'Service Enrolment';
@@ -177,11 +163,11 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid, vi
         <EmptyState
           displayText={t('serviceEnrolments', 'service enrolments')}
           headerTitle={headerTitle}
-          launchForm={launchServiceEnrolmentForm}
+          launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchServiceEnrolmentForm} />}
         />
       )}
     </>
   );
 };
 
-export default CareAndTreatmentList;
+export default ServiceEnrolmentWidget;

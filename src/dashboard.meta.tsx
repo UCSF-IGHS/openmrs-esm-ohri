@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
-import { basePath } from './constants';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
+const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
+  pathname.indexOf(caretreament_dashboardMeta.name) !== -1 || pathname.indexOf(hts_dashboardMeta.name) !== -1;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -29,26 +30,21 @@ export const createDashboardLink = db => {
   const navItems = registerSidenavItem(db);
   const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
 
-  const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
-    interface IDashboardMeta {
-      name: string;
-      slot: string;
-      config: {
-        columns: number;
-        type: string;
-      };
-      title: string;
-    }
-    const [currentNav, setCurrentNav] = useState<IDashboardMeta>();
+  const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
+    const [rerender, setRerender] = useState(true);
+
+    const forceRerender = () => setRerender(!rerender);
+
     return (
-      <SideNavMenu title="HIV" className={styling} defaultExpanded={true}>
+      <SideNavMenu title="HIV" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
             className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
             href={`${basePath}/${navItem.name}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `), setCurrentNav(navItem);
+              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              forceRerender();
             }}>
             {navItem.title}
           </SideNavMenuItem>
@@ -63,6 +59,7 @@ export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
+
 export const hts_dashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',

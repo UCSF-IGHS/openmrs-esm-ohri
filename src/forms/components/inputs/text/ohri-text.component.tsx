@@ -48,6 +48,7 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
             name={question.id}
             value={field.value || ''}
             onFocus={() => setPreviousValue(field.value)}
+            disabled={question.disabled}
           />
         </div>
       </div>

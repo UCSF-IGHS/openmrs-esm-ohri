@@ -15,8 +15,14 @@
   width: 100%;
 }
 
+
+.pageTitle:not(:first-child) {
+  color: #900 !important; 
+}
+
+
 .required{
-  margin: 0.25rem 27rem 1.438rem 0;
+  margin: 0.25rem 27rem 0.5rem 0;
   font-size: 0.875rem;
   line-height: 1.29;
   letter-spacing: 0.16px;

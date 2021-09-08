@@ -88,8 +88,8 @@ export const AddPatientToListModal: React.FC<{
     if (alreadySubscribedCohorts.length) {
       return (
         <UnorderedList style={{ marginLeft: '1rem', marginBottom: '1rem', color: '#c6c6c6' }}>
-          {alreadySubscribedCohorts.map(cohort => (
-            <ListItem>{cohort.name}</ListItem>
+          {alreadySubscribedCohorts.map((cohort, index) => (
+            <ListItem key={index}>{cohort.name}</ListItem>
           ))}
         </UnorderedList>
       );
@@ -136,44 +136,40 @@ export const AddPatientToListModal: React.FC<{
   }, [selectedList, patientUuid, close, currentMemberships]);
   return (
     <>
-      {typeof document === 'undefined'
-        ? null
-        : ReactDOM.createPortal(
-            <Modal
-              open={isOpen}
-              modalHeading={title || 'Add Patient to list'}
-              modalLabel=""
-              onRequestClose={close}
-              passiveModal={false}
-              primaryButtonText="Confirm"
-              secondaryButtonText="Cancel"
-              onRequestSubmit={handleSubmit}
-              primaryButtonDisabled={
-                isLoading ||
-                selectedList == null ||
-                isSubmitting ||
-                (selectedList == 'none' && currentMemberships.length == 0)
-              }>
-              <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
-                <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
-                {isLoading ? loader : alreadySubscribedLists}
-                <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
+      <Modal
+        style={{ zIndex: 99999 }}
+        open={isOpen}
+        modalHeading={title || 'Add Patient to list'}
+        modalLabel=""
+        onRequestClose={close}
+        passiveModal={false}
+        primaryButtonText="Confirm"
+        secondaryButtonText="Cancel"
+        onRequestSubmit={handleSubmit}
+        primaryButtonDisabled={
+          isLoading ||
+          selectedList == null ||
+          isSubmitting ||
+          (selectedList == 'none' && currentMemberships.length == 0)
+        }>
+        <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
+          <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
+          {isLoading ? loader : alreadySubscribedLists}
+          <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
 
-                {isLoading ? (
-                  loader
-                ) : (
-                  <RadioButtonGroup
-                    legendText=""
-                    name="patient-lists"
-                    orientation="vertical"
-                    onChange={selected => setSelectedList(selected.toString())}>
-                    {availableLists}
-                  </RadioButtonGroup>
-                )}
-              </div>
-            </Modal>,
-            document.body,
+          {isLoading ? (
+            loader
+          ) : (
+            <RadioButtonGroup
+              legendText=""
+              name="patient-lists"
+              orientation="vertical"
+              onChange={selected => setSelectedList(selected.toString())}>
+              {availableLists}
+            </RadioButtonGroup>
           )}
+        </div>
+      </Modal>
     </>
   );
 };
