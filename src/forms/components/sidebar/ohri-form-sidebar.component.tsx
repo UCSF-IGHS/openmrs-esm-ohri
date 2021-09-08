@@ -76,7 +76,6 @@ function OHRIFormSidebar({
           );
         })}
       </div>
-
       <hr className={styles.sideBarHorizontalLine} />
       {allowUnspecifiedAll && (
         <div style={{ marginBottom: '.6rem' }}>
