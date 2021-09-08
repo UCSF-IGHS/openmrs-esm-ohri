@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import styles from './active-visit-tag.scss';
 import { isPatientHivPositive } from './patientHivStatus';
+import { fetchPatientsFinalHIVStatus } from '../../api/api';
 
 function PatientStatusBannerTag({ patientUuid }) {
   const { currentVisit } = useVisit(patientUuid);
@@ -13,7 +14,12 @@ function PatientStatusBannerTag({ patientUuid }) {
   const [hivPositive, setHivPositive] = useState(false);
 
   useEffect(() => {
-    isPatientHivPositive(patientUuid).then(result => setHivPositive(result));
+    (async function() {
+      const hivResult = await fetchPatientsFinalHIVStatus(patientUuid);
+      if (hivResult === 'Positive') {
+        setHivPositive(true);
+      }
+    })();
   }, [patientUuid]);
 
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
