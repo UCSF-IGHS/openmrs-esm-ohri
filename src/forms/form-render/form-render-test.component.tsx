@@ -105,7 +105,12 @@ function FormRenderTest() {
                 />
               </div>
 
-              <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
+              <Button
+                type="submit"
+                renderIcon={Run32}
+                className="form-group"
+                style={{ marginTop: '1em' }}
+                disabled={!formIntentInput}>
                 Render
               </Button>
             </Form>
