@@ -26,7 +26,6 @@ export const clearCovidSidenavRegistry = () => localStorage.removeItem('sidenavI
 
 export const createCovidDashboardLink = db => {
   const navItems = registerSidenavItem(db);
-  const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
@@ -39,7 +38,10 @@ export const createCovidDashboardLink = db => {
 
     return (
       <div id="sidenav-menu-covid">
-        <SideNavMenu title="Covid" className={styles.noMarker} defaultExpanded={isActiveLink(caseReport_dashboardMeta)}>
+        <SideNavMenu
+          title="Covid"
+          className={styles.noMarker}
+          defaultExpanded={isActiveLink(caseReport_dashboardMeta.name)}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
@@ -48,7 +50,7 @@ export const createCovidDashboardLink = db => {
               onClick={e => {
                 handleLinkClick(e, `${basePath}/${navItem.name} `);
                 forceRerender();
-                document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+                document.dispatchEvent(new CustomEvent('navigation-from-covid'));
               }}>
               {navItem.title}
             </SideNavMenuItem>
