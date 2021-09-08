@@ -1,6 +1,7 @@
-import { attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
+import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
 import { basePath } from '../../constants';
 import TableEmptyState from '../empty-state/table-empty-state.component';
@@ -187,13 +188,13 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <div style={{ height: '62px' }}>
+        <>
           <RadioButtonGroup name="filter-encounters-by-date" legendText="Filter encounters by Date">
             <RadioButton labelText="Today" value="today" />
             <RadioButton labelText="All" value="all" />
           </RadioButtonGroup>
           <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
-        </div>
+        </>
       )}
     </div>
   );
