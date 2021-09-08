@@ -151,7 +151,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
                     e.preventDefault();
                     launchServiceEnrolmentForm();
                   }}>
-                  {t('add', 'New')}
+                  {t('Add')}
                 </Button>
               </div>
             </div>
