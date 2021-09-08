@@ -32,30 +32,38 @@ export const createDashboardLink = db => {
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
-
     const forceRerender = () => setRerender(!rerender);
 
+    document.addEventListener('navigation-from-covid', e => {
+      e.preventDefault();
+      forceRerender();
+    });
+
     return (
-      <SideNavMenu title="HIV" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
-        {navItems.map(navItem => (
-          <SideNavMenuItem
-            key={navItem.title}
-            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}
-            onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `);
-              forceRerender();
-            }}>
-            {navItem.title}
-          </SideNavMenuItem>
-        ))}
-      </SideNavMenu>
+      <div id='sidenav-menu-hts'>
+        <SideNavMenu title='HIV' className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+          {navItems.map(navItem => (
+            <SideNavMenuItem
+              key={navItem.title}
+              className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
+              href={`${basePath}/${navItem.name}`}
+              onClick={e => {
+                handleLinkClick(e, `${basePath}/${navItem.name} `);
+                forceRerender();
+
+                document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+              }}>
+              {navItem.title}
+            </SideNavMenuItem>
+          ))}
+        </SideNavMenu>
+      </div>
     );
   };
   return DashboardLink;
 };
 
-export function handleLinkClick(event: any, to: string) {
+export function handleLinkClick (event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
