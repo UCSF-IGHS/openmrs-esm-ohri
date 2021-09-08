@@ -62,49 +62,45 @@ function OHRIFormSidebar({
     [unspecifiedFields],
   );
   return (
-    <>
-      <div className={styles.sidebar}>
-        {scrollAblePages.map((page, index) => {
-          return (
-            <div
-              aria-hidden="true"
-              className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
-              key={index}
-              onClick={() => handleClick(page.label)}>
-              <div className={styles.sidebarSectionLink}>{page.label}</div>
-            </div>
-          );
-        })}
-      </div>
-      <hr className={styles.sideBarHorizontalLine} />
-      <div className={styles.buttonSection}>
-        {allowUnspecifiedAll && (
-          <div style={{ marginBottom: '.6rem' }}>
-            <Toggle
-              labelText=""
-              id="auto-unspecifier"
-              labelA="Unspecify All"
-              labelB="Revert"
-              onToggle={markAllAsUnspecified}
-            />
+    <div className={styles.sidebar}>
+      {scrollAblePages.map((page, index) => {
+        return (
+          <div
+            aria-hidden="true"
+            className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
+            key={index}
+            onClick={() => handleClick(page.label)}>
+            <div className={styles.sidebarSectionLink}>{page.label}</div>
           </div>
-        )}
-        {mode != 'view' && (
-          <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
-            Save
-          </Button>
-        )}
-        <Button
-          style={{ width: '11rem' }}
-          kind="tertiary"
-          onClick={() => {
-            onCancel ? onCancel() : null;
-            handleClose();
-          }}>
-          {mode == 'view' ? 'Close' : 'Cancel'}
+        );
+      })}
+      <hr className={styles.sideBarHorizontalLine} />
+      {allowUnspecifiedAll && (
+        <div style={{ marginBottom: '.6rem' }}>
+          <Toggle
+            labelText=""
+            id="auto-unspecifier"
+            labelA="Unspecify All"
+            labelB="Revert"
+            onToggle={markAllAsUnspecified}
+          />
+        </div>
+      )}
+      {mode != 'view' && (
+        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
+          Save
         </Button>
-      </div>
-    </>
+      )}
+      <Button
+        style={{ width: '11rem' }}
+        kind="tertiary"
+        onClick={() => {
+          onCancel ? onCancel() : null;
+          handleClose();
+        }}>
+        {mode == 'view' ? 'Close' : 'Cancel'}
+      </Button>
+    </div>
   );
 }
 
