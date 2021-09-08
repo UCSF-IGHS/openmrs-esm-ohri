@@ -63,17 +63,19 @@ function OHRIFormSidebar({
   );
   return (
     <div className={styles.sidebar}>
-      {scrollAblePages.map((page, index) => {
-        return (
-          <div
-            aria-hidden="true"
-            className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
-            key={index}
-            onClick={() => handleClick(page.label)}>
-            <div className={styles.sidebarSectionLink}>{page.label}</div>
-          </div>
-        );
-      })}
+      <div className={styles.sidebarList}>
+        {scrollAblePages.map((page, index) => {
+          return (
+            <div
+              aria-hidden="true"
+              className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
+              key={index}
+              onClick={() => handleClick(page.label)}>
+              <div className={styles.sidebarSectionLink}>{page.label}</div>
+            </div>
+          );
+        })}
+      </div>
       <hr className={styles.sideBarHorizontalLine} />
       {allowUnspecifiedAll && (
         <div style={{ marginBottom: '.6rem' }}>

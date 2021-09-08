@@ -1,4 +1,4 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
 import EmptyState from '../../components/empty-state/empty-state.component';

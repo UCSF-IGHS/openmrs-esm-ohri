@@ -1,10 +1,42 @@
 @import "../../../root.scss";
 .sidebar{
 width: 11rem;
-// margin-left: 20px;
 margin-right: 20px;
 position: fixed;
 }
+
+.sidebarList{
+  max-Height: 100%;
+}
+
+@media (max-width:600px)  { 
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+  .sidebar{
+    width: 11rem;
+    max-height: 500px;
+    margin-right: 20px;
+    position: fixed;
+    }
+    
+    .sidebarList{
+      max-Height: 200px;
+      overflow-y: scroll;
+    }}
+
+@media (max-width: 1024px) {
+  .sidebar{
+    width: 11rem;
+    max-height: 500px;
+    margin-right: 20px;
+    position: fixed;
+    }
+    
+    .sidebarList{
+      max-Height: 200px;
+      overflow-y: scroll;
+    }
+}
+
 
 .link {
   margin: 0.375rem 0 0.375rem 0.5rem;
