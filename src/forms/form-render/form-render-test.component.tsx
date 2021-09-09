@@ -9,7 +9,7 @@ import { filterFormByIntent } from '../../utils/forms-loader';
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
-  const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
+  const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
   const [formIntentInput, setFormIntentInput] = useState('');
@@ -42,17 +42,20 @@ function FormRenderTest() {
 
   const updateFormIntentInput = e => {
     setFormIntentInput(e.selectedItem.intent);
+    setIsSchemaLoaded(false);
   };
 
-  const updateJsonInput = e => {
+  const updateFormJsonInput = e => {
     setInputErrorMessage('');
     try {
       const parsedSchema = JSON.parse(e.target.value);
       setSchemaInput(parsedSchema);
+      setFormInput(parsedSchema);
       loadIntentsFromSchema(parsedSchema);
     } catch (err) {
       setInputErrorMessage(err.toString());
     }
+    setIsSchemaLoaded(false);
   };
 
   const handleFormSubmission = e => {
@@ -91,7 +94,7 @@ function FormRenderTest() {
                 e.preventDefault();
                 handleFormSubmission(e);
               }}>
-              <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
+              <TextArea {...textareaProps} onChange={updateFormJsonInput} name={'jsonText'} />
 
               <div style={{ width: 400 }}>
                 <Dropdown
@@ -123,10 +126,10 @@ function FormRenderTest() {
                 <Tab id="tab-form" label="Form render">
                   {isSchemaLoaded ? (
                     <div className={styles.formRenderDisplay}>
-                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
+                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />
                     </div>
                   ) : (
-                    <p>Please enter a valid schema</p>
+                    <p>Please enter a valid schema or submit form</p>
                   )}
                 </Tab>
                 <Tab id="tab-json-schema" label="JSON Schema">
