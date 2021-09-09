@@ -1190,24 +1190,23 @@
             },
             {
               "label": "Allergen",
-              "type": "obs",
+              "type": "obsGroup",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "group",
+                "concept": "162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "behaviours": [
+              "id": "allergen",
+              "questions": [
                 {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
+                  "label": "Other",
+                  "id": "__wI8pwCD0p",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
                 }
-              ],
-              "id": "allergen"
+              ]
             },
             {
               "label": "Drug Allergen",
@@ -2840,63 +2839,160 @@
               "label": "What is the clients stability assessment?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "cf0aaf49-d6d8-40d3-85c3-b80985d8e68a",
+                "answers": [
+                  {
+                    "concept": "b45e6593-8964-4e6d-8e9b-fe69084157b6",
+                    "label": "Stable Client",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d4bc223e-0caf-4ee7-a177-4e9dbccca9dc",
+                    "label": "Unstable Client",
+                    "conceptMappings": []
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "clientStabilityAssessment"
             },
             {
               "label": "Differentiated care services?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "159832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "159836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "discontinue",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "6102"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "421286000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "re-enroll",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "159835AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "continue",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255238004"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "1598351000105008"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "6101"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "differentiatedCareServices"
             },
             {
               "label": "What is the selected differentiated care model?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "166448AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164947"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "363819003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "166444AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Community medication distribution, peer led",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164945"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166445AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Facility group medication distribution",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164946"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Community medication distribution, healthcare worker led",
+                    "conceptMappings": [
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164944"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166447AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Standard pharmacy pickup following clinician visit",
+                    "conceptMappings": [
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164942"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Express pharmacy pickup without clinician visit",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164946"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "selectedDifferentiatedCareModel"
             }
           ]
@@ -2915,20 +3011,14 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "7b734819-27fb-41bb-af95-f91182c242f2",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "3457005"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "doesClientHaveAnyReferrals"
             },
             {
@@ -2975,45 +3065,12 @@
               "id": "nextAppointmentDate"
             },
             {
-              "label": "What is the reason for the next appointment date?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "id": "reasonForNextAppointmentDate"
-            },
-            {
               "label": "What is the attending clinician's name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "PIH",
-                    "value": "1392"
-                  }
-                ]
+                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "true"
-                  }
-                }
-              ],
               "id": "attendingClinicianName"
             }
           ]
