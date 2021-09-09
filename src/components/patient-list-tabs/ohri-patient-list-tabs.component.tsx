@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, Tab } from 'carbon-components-react';
 import styles from './ohri-patient-list-tabs.scss';
-import CohortPatientList from '../../hts-home/patient-list-cohort.component';
+import CohortPatientList from '../patient-lists/patient-list-cohort.component';
 
 function OHRIPatientListTabs({ patientListConfigs }) {
   return (
