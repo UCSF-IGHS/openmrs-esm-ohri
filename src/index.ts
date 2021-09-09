@@ -41,6 +41,10 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^ohri-ct-home/,
+      },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
         route: /^form-render-test/,
       },
     ],
@@ -85,7 +89,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-header-ext',
         slot: 'hts-home-header-slot',
-        load: getAsyncLifecycle(() => import('./hts/home/welcome-section/hts-welcome-section.component'), {
+        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
           featureName: 'hts-home-header',
           moduleName,
         }),
@@ -105,6 +109,36 @@ function setupOpenMRS() {
           featureName: 'hts-home-tabs',
           moduleName,
         }),
+      },
+      {
+        id: 'ct-home-header-ext',
+        slot: 'ct-home-header-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
+          featureName: 'ct-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'ct-home-tile-ext',
+        slot: 'ct-home-tiles-slot',
+        load: getAsyncLifecycle(
+          () => import('./hts/care-and-treatment/home/summary-tiles/ct-summary-tiles.component'),
+          {
+            featureName: 'ct-home-tiles',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'ct-home-tabs-ext',
+        slot: 'ct-home-tabs-slot',
+        load: getAsyncLifecycle(
+          () => import('./hts/care-and-treatment/home/patient-list-tabs/ct-patient-list-tabs.component'),
+          {
+            featureName: 'ct-home-tabs',
+            moduleName,
+          },
+        ),
       },
       {
         id: 'hts-encounter-form-ext',
@@ -149,7 +183,10 @@ function setupOpenMRS() {
       {
         id: 'hiv-hts-programme-switcher',
         slot: 'top-nav-info-slot',
-        load: getAsyncLifecycle(() => import('./components/top-nav/hiv-top-nav.component'), options),
+        load: getAsyncLifecycle(
+          () => import('./components/programme-switcher/ohri-programme-switcher.component'),
+          options,
+        ),
         online: true,
         offline: true,
       },

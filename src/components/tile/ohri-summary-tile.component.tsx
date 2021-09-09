@@ -9,9 +9,11 @@ const OHRISummaryTile: React.FC<OHRISummaryTileProps> = ({ title, subTitle, valu
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <div className={styles.tileTitle}>{title}</div>
         <div>
-          <Button size="small" kind="ghost" onClick={onClickView}>
-            View <ArrowRight32 style={{ width: '12px', height: '10px' }} />
-          </Button>
+          {onClickView && (
+            <Button size="small" kind="ghost" onClick={onClickView}>
+              View <ArrowRight32 style={{ width: '12px', height: '10px' }} />
+            </Button>
+          )}
         </div>
       </div>
 

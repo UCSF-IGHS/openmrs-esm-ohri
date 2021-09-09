@@ -5,7 +5,7 @@ const linkList = [
   },
   {
     title: 'HIV: Care and Treatment',
-    url: '/openmrs/spa/ohri-home',
+    url: '/openmrs/spa/ohri-ct-home',
   },
 ];
 

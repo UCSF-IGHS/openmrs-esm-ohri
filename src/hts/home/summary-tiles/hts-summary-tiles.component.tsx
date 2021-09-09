@@ -1,6 +1,4 @@
-import { Column, Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
-import OHRISummaryTile from '../../../components/tile/ohri-summary-tile.component';
 import { fetchTodayClients, fetchPatientsFromObservationCodeConcept } from '../../../api/api';
 import {
   finalHIVCodeConcept,
@@ -8,11 +6,10 @@ import {
   linkedToCareCodeConcept,
   linkedToCareYesValueConcept,
 } from '../../../constants';
-import OHRISummaryTileTablet from '../../../components/tile/ohri-summary-tile-tablet.component';
-import styles from './summary-tile.scss';
 import { TodaysClientList } from './today-client-list-tile.component';
 import { PositiveInLast14Days } from './positive-in-last-14-days-list-tile.component';
 import { LinkedToCareInLast14Days } from './linked-to-care-in-last-14-days-list-tile.component';
+import OHRIProgrammeSummaryTiles from '../../../components/tile/ohri-programme-summary-tiles.component';
 
 function HTSSummaryTiles({ launchWorkSpace }) {
   const [todayPatientCount, setTodayPatientCount] = useState(0);
@@ -89,27 +86,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
     );
   }
 
-  return (
-    <>
-      <Row className={styles.desktopView}>
-        {tiles.map((tile, index) => {
-          return (
-            <div style={{ width: '321px', paddingLeft: '16px' }} key={index}>
-              <OHRISummaryTile
-                title={tile.title}
-                subTitle={tile.subTitle}
-                value={tile.value}
-                onClickView={tile.onClick}
-              />
-            </div>
-          );
-        })}
-      </Row>
-      <Row className={styles.tileView}>
-        <OHRISummaryTileTablet details={tiles} />
-      </Row>
-    </>
-  );
+  return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
 export default HTSSummaryTiles;
