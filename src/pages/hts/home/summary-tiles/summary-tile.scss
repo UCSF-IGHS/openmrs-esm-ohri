@@ -1,0 +1,16 @@
+.desktopView{
+    display: flex;
+  }
+  .tileView {
+    display: none;
+  }
+  
+  @media (max-width: 1024px) {
+    .desktopView{
+      display: none;
+    }
+    .tileView {
+      display: flex;
+    }
+  }
+  
