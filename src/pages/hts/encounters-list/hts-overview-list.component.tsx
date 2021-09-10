@@ -1,81 +1,62 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import styles from './care-and-treatment-list.scss';
-import Button from 'carbon-components-react/es/components/Button';
-import { Add16 } from '@carbon/icons-react';
+import React, { useEffect, useState } from 'react';
+import styles from './hts-overview-list.scss';
 import { useTranslation } from 'react-i18next';
-import OTable from '../../components/data-table/o-table.component';
+import OTable from '../../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import {
-  ComposedModal,
-  DataTableSkeleton,
-  ModalBody,
-  ModalHeader,
-  OverflowMenu,
-  OverflowMenuItem,
-  Tab,
-  Tabs,
-} from 'carbon-components-react';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import EmptyState from '../../../components/empty-state/empty-state.component';
 import moment from 'moment';
-import { getForm } from '../../utils/forms-loader';
-import OHRIForm from '../../forms/ohri-form.component';
-import { SessionMode } from '../../forms/types';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-
-interface CareAndTreatmentProps {
+import { getForm } from '../../../utils/forms-loader';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
+import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import { encounterRepresentation } from '../../../constants';
+interface HtsOverviewListProps {
   patientUuid: string;
 }
 
-export const htsFormSlot = 'hts-encounter-form-slot';
-export const htsEncounterRepresentation =
-  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
-
-const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) => {
+const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
-  const [currentEncounterUuid, setCurrentEncounterUuid] = useState(null);
   const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = '106513BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; // HIV Result
-  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'; //
+  const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; // HIV Result
+  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+  const [htsForm, setHTSForm] = useState(getForm('hiv', 'hts'));
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const htsRetroForm = useMemo(() => {
-    return getForm('hiv', 'hts');
-  }, []);
 
-  const launchHTSForm = () => {
+  const launchHTSForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+      title: htsForm?.name,
+      screenSize: 'maximize',
+      state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
+      title: htsForm?.name,
       encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+      screenSize: 'maximize',
+      state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
   };
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: htsRetroForm?.name,
+      title: htsForm?.name,
       encounterUuid: encounterUuid,
+      screenSize: 'maximize',
       mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: htsRetroForm },
+      state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
   };
 
   const tableHeaders = [
-    { key: 'date', header: 'Date of service enrolment', isSortable: true },
-    { key: 'location', header: 'Description of client' },
-    { key: 'result', header: 'Population category' },
-    { key: 'provider', header: 'Date confirmed positive' },
+    { key: 'date', header: 'Date of HIV Test', isSortable: true },
+    { key: 'location', header: 'Location' },
+    { key: 'result', header: 'HIV Test result' },
+    { key: 'provider', header: 'HTS Provider' },
     { key: 'action', header: 'Action' },
   ];
 
@@ -87,9 +68,8 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
         (firstEncounter, secondEncounter) =>
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
-
       sortedEncounters.map(encounter => {
-        const htsResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
+        const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
         const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
         const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
 
@@ -129,10 +109,10 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
   }
   useEffect(() => {
     let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
-    getHtsEncounters(query, htsEncounterRepresentation, 'HTS Retrospective');
+    getHtsEncounters(query, encounterRepresentation, 'HTS Retrospective');
   }, [counter]);
 
-  const headerTitle = 'Service Enrolment';
+  const headerTitle = 'HTS Sessions';
 
   return (
     <>
@@ -140,24 +120,12 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
         <>
-          <div className={styles.newServiceEnrolmentBtn}>
-            <Button
-              kind="ghost"
-              renderIcon={Add16}
-              iconDescription="New"
-              onClick={e => {
-                e.preventDefault();
-                launchHTSForm();
-              }}>
-              {t('add', 'New')}
-            </Button>
-          </div>
           <div className={styles.widgetContainer}>
-            <Tabs type="container">
-              <Tab id="tab-1" label="Service Enrolment">
-                <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
-              </Tab>
-            </Tabs>
+            <div className={styles.widgetHeaderContainer}>
+              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+              <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
+            </div>
+            <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
         </>
       ) : (
@@ -165,10 +133,13 @@ const CareAndTreatmentList: React.FC<CareAndTreatmentProps> = ({ patientUuid }) 
           displayText={t('htsEncounters', 'hts encounters')}
           headerTitle={headerTitle}
           launchForm={launchHTSForm}
+          launchFormComponent={
+            <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
+          }
         />
       )}
     </>
   );
 };
 
-export default CareAndTreatmentList;
+export default HtsOverviewList;

@@ -79,7 +79,8 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
 export function filterFormByIntent(intent, originalJson) {
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
-
+  // Set the default page based on the current intent
+  jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     page.sections.forEach(section => {
@@ -99,7 +100,7 @@ export function filterFormByIntent(intent, originalJson) {
             const defaultIntentBehaviours = question.behaviours.find(behaviour => behaviour.intent === '*');
             if (defaultIntentBehaviours) {
               question.required = defaultIntentBehaviours.required || undefined;
-              question.unspecified = defaultIntentBehaviours.unsepecified || undefined;
+              question.unspecified = defaultIntentBehaviours.unspecified || undefined;
               question.hide = defaultIntentBehaviours.hide || undefined;
               question.validators = defaultIntentBehaviours.validators || undefined;
             }
