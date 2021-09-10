@@ -4,6 +4,7 @@ import { Tile } from 'carbon-components-react/es/components/Tile';
 import EmptyDataIllustration from './empty-data-illustration.component';
 import styles from './empty-state.scss';
 import { Trans, useTranslation } from 'react-i18next';
+import { Button } from 'carbon-components-react';
 
 interface EmptyStateProps {
   headerTitle: string;
@@ -43,6 +44,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
           </p>
         )}
       </div>
+      <Button kind="ghost" displayText={t('add', 'Add')} id="choose-intent" label="Add +"></Button>
     </Tile>
   );
 };
