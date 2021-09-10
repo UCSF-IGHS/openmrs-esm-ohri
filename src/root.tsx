@@ -9,7 +9,6 @@ export default function Root() {
     <BrowserRouter basename={window['getOpenmrsSpaBase']()}>
       <Route exact path="/ohri-home" render={props => <OhriHome />} />
       <Route exact path="/form-render-test" render={props => <FormRenderTest />} />
-      <Route exact path="/covid-home" render={props => <CovidHome />} />
     </BrowserRouter>
   );
 }
