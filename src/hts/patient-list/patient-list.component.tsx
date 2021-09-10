@@ -32,7 +32,7 @@ const PatientList: React.FC<PatientListProps> = () => {
     { key: 'gender', header: 'Gender' },
     { key: 'age', header: 'Age' },
     { key: 'last_visit', header: 'Last Visit' },
-    { key: 'actions', header: '' },
+    { key: 'actions', header: 'Actions' },
   ];
 
   useEffect(() => {
