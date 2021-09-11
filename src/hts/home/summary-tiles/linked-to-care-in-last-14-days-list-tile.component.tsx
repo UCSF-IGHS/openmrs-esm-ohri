@@ -3,8 +3,9 @@ import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../api/api';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import { filterFHIRPatientsByName } from '../../../hts-home/patient-list.component';
+import { filterFHIRPatientsByName } from './utils';
 import { basePath, linkedToCareCodeConcept, linkedToCareYesValueConcept } from '../../../constants';
+import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
 
 export const columns = [
   {
@@ -146,7 +147,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <EmptyState headerTitle="Linked To Care in Last 14 Days" displayText="patients" showLaunchLink={false} />
+        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
         <ExtensionSlot extensionSlotName="linked-to-care-last-14-days-table-slot" state={state} key={counter} />
       )}
