@@ -90,8 +90,6 @@ export const AddPatientToListModal: React.FC<{
     );
   }, [cohortType]);
 
-  console.log('cohorts: ', cohorts);
-
   const availableLists = useMemo(() => {
     const controls = cohorts.map((cohort, index) => (
       <RadioButton labelText={cohort.name} value={cohort.uuid} id={cohort.uuid} key={index} />

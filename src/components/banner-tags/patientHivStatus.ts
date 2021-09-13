@@ -31,7 +31,6 @@ const isPatientHivPositive = async (patientUuid: string) => {
   const hivFinalStatus = await fetchPatientsFinalHIVStatus(patientUuid);
 
   const computedConcept = await fetchPatientComputedConcept_HIV_Status(patientUuid);
-  console.info('computedConcept: ', computedConcept);
 
   if (hivFinalStatus.toLowerCase().includes('positive') || computedConcept.toLowerCase().includes('positive')) {
     isHivPositive = true;

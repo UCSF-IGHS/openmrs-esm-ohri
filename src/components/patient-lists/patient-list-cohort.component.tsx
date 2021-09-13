@@ -2,12 +2,17 @@ import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
 import moment from 'moment';
-import { basePath } from '../../constants';
 import TableEmptyState from '../empty-state/table-empty-state.component';
-
-import { OverflowMenu } from 'carbon-components-react';
+import { getForm, filterFormByIntent } from '../../utils/forms-loader';
+import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
-import ContinueToListOverflowMenuItem from '../modals/patient-list/continue-patient-to-list-modal.component';
+import OHRIForm from '../../forms/ohri-form.component';
+import {
+  basePath,
+  waitingForHIVTestCohort,
+  postTestCounsellingCohort,
+  preTestCounsellingCohort,
+} from '../../constants';
 
 export const columns = [
   {
@@ -82,7 +87,11 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> = ({ cohortId, cohortSlotName }) => {
+const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; launchFormWorkSpace: any }> = ({
+  cohortId,
+  cohortSlotName,
+  launchFormWorkSpace,
+}) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,6 +100,30 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  const htsForm = getForm('hiv', 'hts');
+
+  const getFormTitle = () => {
+    if (cohortId === preTestCounsellingCohort) {
+      return 'Pre-test Counselling';
+    } else if (cohortId === waitingForHIVTestCohort) {
+      return 'HIV Testing';
+    } else if (cohortId === postTestCounsellingCohort) {
+      return 'Post-test Counselling';
+    }
+  };
+
+  const getFormIntent = () => {
+    if (cohortId === preTestCounsellingCohort) {
+      return 'HTS_PRETEST';
+    } else if (cohortId === waitingForHIVTestCohort) {
+      return 'HIV_TEST';
+    } else if (cohortId === postTestCounsellingCohort) {
+      return 'HTS_POSTTEST';
+    }
+  };
+
+  const patientFormTitle = getFormTitle();
+  const patientFormIntent = getFormIntent();
 
   useEffect(() => {
     getCohort(cohortId, 'full').then(results => {
@@ -109,7 +142,19 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         actions: (
           <OverflowMenu flipped>
             <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
-            <ContinueToListOverflowMenuItem patientUuid={member.patient.uuid} />
+            <OverflowMenuItem
+              itemText="Continue"
+              onClick={() => {
+                launchFormWorkSpace(
+                  patientFormTitle,
+                  <OHRIForm
+                    formJson={filterFormByIntent(patientFormIntent, htsForm)}
+                    patientUUID={member.patient.uuid}
+                    mode="enter"
+                  />,
+                );
+              }}
+            />
           </OverflowMenu>
         ),
       }));

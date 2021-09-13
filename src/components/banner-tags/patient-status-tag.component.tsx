@@ -11,7 +11,7 @@ function PatientStatusBannerTag({ patientUuid }) {
   const { currentVisit } = useVisit(patientUuid);
   const { t } = useTranslation();
   const [hivPositive, setHivPositive] = useState(false);
-  
+
   const [rerender, setRerender] = useState(true);
   const forceRerender = () => setRerender(!rerender);
 
@@ -23,8 +23,8 @@ function PatientStatusBannerTag({ patientUuid }) {
     isPatientHivPositive(patientUuid).then(result => setHivPositive(result));
   }, [hivPositive, patientUuid]);
 
+  //TODO: Improve refresh time
   // forceRerender();
-  console.info('isPositive: ', hivPositive);
 
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
 }
