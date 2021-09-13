@@ -37,6 +37,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       parentField = allFormFields.find(f => f.id == field['groupId']);
       obsGroup = encounter.obs.find(o => o.concept.uuid == parentField.questionOptions.concept);
       if (obsGroup) {
+        parentField.value = obsGroup;
         obs = obsGroup.groupMembers.find(o => o.concept.uuid == field.questionOptions.concept);
       }
     }
