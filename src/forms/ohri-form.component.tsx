@@ -12,7 +12,7 @@ import LoadingIcon from '../components/loading/loading.component';
 import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
-import { HTSEncounterType } from './constants';
+import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
 import { isEmpty as isValueEmpty, OHRIFieldValidator } from './ohri-form-validator';
 import { encounterRepresentation } from '../constants';
 
@@ -86,6 +86,13 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         return field;
       }),
     );
+    form.pages.forEach(page => {
+      if (page.hide) {
+        evaluateHideExpression(null, null, allFormFields, null, page, null);
+      } else {
+        page.isHidden = false;
+      }
+    });
     setForm(form);
     setInitialValues(tempInitVals);
     setScrollAblePages(form?.pages);
@@ -117,8 +124,11 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     determinantValue = undefined,
     allFields,
     initialVals?: Record<string, any>,
+    page?,
+    section?,
   ) => {
-    let hideExpression = field.hide.hideWhenExpression;
+    let hideExpression =
+      field?.hide?.hideWhenExpression || page?.hide?.hideWhenExpression || section?.hide?.hideWhenExpression;
     const allFieldsKeys = allFields.map(f => f.id);
     const parts = hideExpression.trim().split(' ');
     function isEmpty(value) {
@@ -131,13 +141,30 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       if (index % 2 == 0) {
         if (allFieldsKeys.includes(part)) {
           const determinant = allFields.find(field => field.id === part);
-          if (!determinant.fieldDependants) {
-            determinant.fieldDependants = new Set();
+          if (field) {
+            if (!determinant.fieldDependants) {
+              determinant.fieldDependants = new Set();
+            }
+            determinant.fieldDependants.add(field.id);
           }
-          determinant.fieldDependants.add(field.id);
+          if (page) {
+            if (!determinant.pageDependants) {
+              determinant.pageDependants = new Set();
+            }
+            determinant.pageDependants.add(page.label);
+          }
+          if (section) {
+            if (!determinant.sectionDependants) {
+              determinant.sectionDependants = new Set();
+            }
+            determinant.sectionDependants.add(section.label);
+          }
           // prep eval variables
           if (determinantValue == undefined) {
             determinantValue = initialVals ? initialVals[part] || null : initialValues[part] || null;
+            if (determinant.questionOptions.rendering == 'toggle') {
+              determinantValue = determinantValue ? ConceptTrue : ConceptFalse;
+            }
           }
           if (determinantValue && typeof determinantValue == 'string') {
             determinantValue = `'${determinantValue}'`;
@@ -147,8 +174,16 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         }
       }
     });
-    field.isHidden = eval(hideExpression);
-    console.log(field);
+    const isHidden = eval(hideExpression);
+    if (field) {
+      field.isHidden = isHidden;
+    }
+    if (page) {
+      page.isHidden = isHidden;
+    }
+    if (section) {
+      section.isHidden = isHidden;
+    }
   };
 
   const handleFormSubmit = (values: Record<string, any>) => {
@@ -247,7 +282,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
   const onFieldChange = (fieldName: string, value: any) => {
     const field = fields.find(field => field.id == fieldName);
-    console.log(field);
+    if (field.questionOptions.rendering == 'toggle') {
+      value = value ? ConceptTrue : ConceptFalse;
+    }
     if (field.fieldDependants) {
       field.fieldDependants.forEach(dep => {
         const dependant = fields.find(f => f.id == dep);
@@ -256,6 +293,16 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         const index = fields_temp.findIndex(f => f.id == dep);
         fields_temp[index] = dependant;
         setFields(fields_temp);
+      });
+    }
+    if (field.pageDependants) {
+      field.pageDependants?.forEach(dep => {
+        const dependant = form.pages.find(f => f.label == dep);
+        evaluateHideExpression(null, value, fields, null, dependant, null);
+        let form_temp = form;
+        const index = form_temp.pages.findIndex(page => page.label == dep);
+        form_temp[index] = dependant;
+        setForm(form_temp);
       });
     }
   };
@@ -306,7 +353,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     }}>
                     {form.pages.map((page, index) => {
                       return (
-                        <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                        !page.isHidden && (
+                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                        )
                       );
                     })}
                   </OHRIFormContext.Provider>
