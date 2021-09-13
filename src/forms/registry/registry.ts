@@ -1,3 +1,4 @@
+import { OHRIObsGroup } from '../components/group/ohri-obs-group.component';
 import { OHRIContentSwitcher } from '../components/inputs/content-switcher/ohri-content-switcher.component';
 import OHRIDate from '../components/inputs/date/ohri-date.component';
 import { OHRIEncounterLocationPicker } from '../components/inputs/location/ohri-encounter-location.component';
@@ -8,6 +9,7 @@ import OHRIDropdown from '../components/inputs/select/ohri-dropdown.component';
 import OHRITextArea from '../components/inputs/text-area/ohri-text-area.component';
 import OHRIText from '../components/inputs/text/ohri-text.component';
 import OHRIToggle from '../components/inputs/toggle/ohri-toggle.component';
+import { OHRIRepeat } from '../components/repeat/ohri-repeat.component';
 import { OHRIFieldValidator } from '../ohri-form-validator';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
 import { FieldValidator, SubmissionHandler } from '../types';
@@ -63,6 +65,16 @@ const baseFieldComponents: Array<RegistryItem> = [
     component: OHRIToggle,
     type: 'toggle',
   },
+  {
+    id: 'OHRIObsGroup',
+    component: OHRIObsGroup,
+    type: 'group',
+  },
+  {
+    id: 'OHRIRepeat',
+    component: OHRIRepeat,
+    type: 'repeating',
+  },
 ];
 
 const baseHandlers: Array<RegistryItem> = [
@@ -70,6 +82,11 @@ const baseHandlers: Array<RegistryItem> = [
     id: 'ObsSubmissionHandler',
     component: ObsSubmissionHandler,
     type: 'obs',
+  },
+  {
+    id: 'ObsGroupHandler',
+    component: ObsSubmissionHandler,
+    type: 'obsGroup',
   },
   {
     id: 'EncounterLocationSubmissionHandler',
