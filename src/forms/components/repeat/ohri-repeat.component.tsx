@@ -3,7 +3,7 @@ import Button from 'carbon-components-react/lib/components/Button';
 import Column from 'carbon-components-react/lib/components/Grid/Column';
 import Row from 'carbon-components-react/lib/components/Grid/Row';
 import { cloneDeep } from 'lodash';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../ohri-form-context';
 import { getHandler } from '../../registry/registry';
 import { OHRIFormField, OHRIFormFieldProps } from '../../types';
@@ -12,8 +12,17 @@ import { OHRIObsGroup } from '../group/ohri-obs-group.component';
 export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange }) => {
   const [questions, setQuestions] = useState([question]);
   const [counter, setCounter] = useState(0);
-  const { values, fields } = React.useContext(OHRIFormContext);
+  const { values, fields, encounterContext } = React.useContext(OHRIFormContext);
 
+  useEffect(() => {
+    if (encounterContext.encounter) {
+      const existingObs = encounterContext.encounter.obs.filter(
+        obs => obs.concept.uuid === question.questionOptions.concept,
+      );
+      // console.log(existingObs);
+      // console.log(question);
+    }
+  }, [encounterContext.encounter]);
   const handleAdd = () => {
     const idSuffix = counter + 1;
     const next = cloneDeep(question);
