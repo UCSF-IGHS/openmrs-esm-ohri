@@ -29,8 +29,17 @@ export const ObsSubmissionHandler: SubmissionHandler = {
     }
     return field.value;
   },
-  getInitialValue: (encounter: any, field: OHRIFormField) => {
-    const obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
+  getInitialValue: (encounter: any, field: OHRIFormField, allFormFields: Array<OHRIFormField>) => {
+    let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
+    let parentField = null;
+    let obsGroup = null;
+    if (!obs && field['groupId']) {
+      parentField = allFormFields.find(f => f.id == field['groupId']);
+      obsGroup = encounter.obs.find(o => o.concept.uuid == parentField.questionOptions.concept);
+      if (obsGroup) {
+        obs = obsGroup.groupMembers.find(o => o.concept.uuid == field.questionOptions.concept);
+      }
+    }
     if (obs) {
       const rendering = field.questionOptions.rendering;
       field.value = obs;
@@ -48,13 +57,16 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       }
       if (field.questionOptions.rendering == 'checkbox') {
         field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
+        if (!field.value.length && field['groupId']) {
+          field.value = obsGroup.groupMembers.filter(o => o.concept.uuid == field.questionOptions.concept);
+        }
         return field.value.map(o => o.value.uuid);
       }
       if (field.questionOptions.rendering == 'toggle') {
         field.value.value = obs.value.uuid;
         return obs.value == ConceptTrue;
       }
-      return obs.value.uuid;
+      return obs.value?.uuid;
     }
     return '';
   },
@@ -109,6 +121,8 @@ const constructObs = (value: any, context: EncounterContext, field: OHRIFormFiel
     order: null,
     groupMembers: [],
     voided: false,
+    // formFieldNamespace: 'ohri-forms',
+    // formFieldPath: 'field-id',
     value: value,
   };
 };

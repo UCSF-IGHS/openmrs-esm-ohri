@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -52,11 +52,25 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     const form = JSON.parse(JSON.stringify(formJson));
     const allFormFields: Array<OHRIFormField> = [];
     const tempInitVals = {};
-    form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
+    form.pages.forEach(page =>
+      page.sections.forEach(section => {
+        section.questions.forEach(question => {
+          allFormFields.push(question);
+          if (question.type == 'obsGroup') {
+            question.questions.forEach(groupedField => {
+              // set group id
+              groupedField['groupId'] = question.id;
+              allFormFields.push(groupedField);
+            });
+          }
+        });
+      }),
+    );
     // set Formik initial values
     if (encounter) {
       allFormFields.forEach(field => {
-        const existingVal = getHandler(field.type)?.getInitialValue(encounter, field);
+        const existingVal = getHandler(field.type)?.getInitialValue(encounter, field, allFormFields);
+
         tempInitVals[field.id] = existingVal === null || existingVal === undefined ? '' : existingVal;
         if (field.unspecified) {
           tempInitVals[`${field.id}-unspecified`] = !!!existingVal;
@@ -186,6 +200,14 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     }
   };
 
+  const addObs = useCallback((obsList: Array<any>, obs: any) => {
+    if (Array.isArray(obs)) {
+      obsList.push(...obs);
+    } else {
+      obsList.push(obs);
+    }
+  }, []);
+
   const handleFormSubmit = (values: Record<string, any>) => {
     const obsForSubmission = [];
     let formHasErrors = false;
@@ -209,12 +231,32 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     }
     // collect observations
     fields
-      .filter(field => !field.isHidden && field.type == 'obs' && field.value)
+      .filter(field => field.value || field.type == 'obsGroup') // filter out fields with empty values except groups
+      .filter(field => !field.isHidden && (field.type == 'obs' || field.type == 'obsGroup'))
+      .filter(field => !field['groupId']) // filter out grouped obs
       .forEach(field => {
-        if (Array.isArray(field.value)) {
-          obsForSubmission.push(...field.value);
+        if (field.type == 'obsGroup') {
+          const obsGroup = {
+            person: patient.id,
+            obsDatetime: encDate,
+            concept: field.questionOptions.concept,
+            location: location,
+            order: null,
+            groupMembers: [],
+            voided: false,
+          };
+          field.questions.forEach(groupedField => {
+            if (groupedField.value) {
+              if (Array.isArray(groupedField.value)) {
+                obsGroup.groupMembers.push(...groupedField.value);
+              } else {
+                obsGroup.groupMembers.push(groupedField.value);
+              }
+            }
+          });
+          addObs(obsForSubmission, obsGroup);
         } else {
-          obsForSubmission.push(field.value);
+          addObs(obsForSubmission, field.value);
         }
       });
 
