@@ -66,6 +66,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         });
       }),
     );
+    // form.pages.forEach(page => page.sections.forEach(section => allFormFields.push(...section.questions)));
     // set Formik initial values
     if (encounter) {
       allFormFields.forEach(field => {
@@ -202,8 +203,16 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
   const addObs = useCallback((obsList: Array<any>, obs: any) => {
     if (Array.isArray(obs)) {
-      obsList.push(...obs);
+      obs.forEach(o => {
+        if (!o.groupMembers) {
+          delete o.groupMembers;
+        }
+        obsList.push(o);
+      });
     } else {
+      if (!obs.groupMembers) {
+        delete obs.groupMembers;
+      }
       obsList.push(obs);
     }
   }, []);
