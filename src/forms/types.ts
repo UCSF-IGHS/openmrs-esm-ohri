@@ -50,6 +50,7 @@ export interface OHRIFormSchema {
 
 export interface OHRIFormPage {
   label: string;
+  isHidden?: boolean;
   sections: Array<OHRIFormSection>;
 }
 export interface OHRIFormField {
@@ -61,8 +62,8 @@ export interface OHRIFormField {
   hide?: any;
   isHidden?: boolean;
   fieldDependants?: Array<string>;
-  pagesDependants?: Array<string>;
-  sectionsDependants?: Array<string>;
+  pageDependants?: Array<string>;
+  sectionDependants?: Array<string>;
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
