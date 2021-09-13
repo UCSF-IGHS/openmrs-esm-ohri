@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
+import EmptyStateComingSoon from '../../../components/empty-state/empty-state-comingsoon.component';
 
 interface OverviewListProps {
   patientUuid: string;
@@ -8,13 +9,13 @@ interface OverviewListProps {
 
 const LabResultsOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = 'HTS Lab Results';
 
-  const launchHTSForm = (form?: any) => {};
+  const headerTitle = t('labResults', 'Lab Results');
+  const displayText = t('labResults', 'Lab Results');
 
   return (
     <>
-      <EmptyState displayText="HTS Lab Results" headerTitle={headerTitle} launchForm={launchHTSForm} />
+      <EmptyStateComingSoon headerTitle={headerTitle} displayText={displayText} />
     </>
   );
 };

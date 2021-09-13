@@ -1,17 +1,18 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { openmrsFetch } from '@openmrs/esm-framework';
+import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../constants';
 import { getForm } from '../../../utils/forms-loader';
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
 
-interface OverviewListProps {
+interface ClinicalVisitWidgetProps {
   patientUuid: string;
 }
 
-const ClinicalVisitOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,18 +44,30 @@ const ClinicalVisitOverviewList: React.FC<OverviewListProps> = ({ patientUuid })
     loadRows(clinicalVisitEncounterType);
   }, [loadRows, counter]);
 
-  const headerTitle = t('clinicalVisit', 'Clinical Visit');
-  const displayText = t('clinicalVisit', 'Clinical Visit');
-
   return (
     <>
-      <EmptyState
-        displayText={displayText}
-        headerTitle={headerTitle}
-        launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchClinicalVisitForm} />}
-      />
+      {isLoading ? (
+        <DataTableSkeleton rowCount={5} />
+      ) : tableRows.length > 0 ? (
+        <>
+          <div>Table goes here</div>
+        </>
+      ) : (
+        <EmptyState
+          displayText={t('clinicalVisitEncounters', 'clinical visit encounters')}
+          headerTitle={t('clinicalVisitTitle', 'Clinical Visits')}
+          launchForm={launchClinicalVisitForm}
+          launchFormComponent={
+            <OHRIFormLauncherWithIntent
+              formJson={clinicalVisitForm}
+              launchForm={launchClinicalVisitForm}
+              onChangeIntent={setClinicalVisitForm}
+            />
+          }
+        />
+      )}
     </>
   );
 };
 
-export default ClinicalVisitOverviewList;
+export default ClinicalVisitWidget;
