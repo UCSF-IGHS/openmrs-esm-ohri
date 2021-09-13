@@ -46,10 +46,9 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   });
 
   const handleSelectItemsChange = ({ selectedItems }) => {
-    setFieldValue(
-      question.id,
-      selectedItems.map(selectedItem => selectedItem.concept),
-    );
+    const value = selectedItems.map(selectedItem => selectedItem.concept);
+    setFieldValue(question.id, value);
+    onChange(question.id, value);
     setErrors(OHRIFieldValidator.validate(question, selectedItems));
 
     question.value = handler.handleFieldSubmission(
@@ -76,18 +75,20 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       )}
     </div>
   ) : (
-    <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
-      <MultiSelect.Filterable
-        placeholder={t('filterItemsInMultiselect', 'Search...')}
-        onChange={handleSelectItemsChange}
-        id={question.label}
-        items={questionItems}
-        initialSelectedItems={initiallySelectedQuestionItems}
-        label={''}
-        titleText={question.label}
-        key={counter}
-        itemToString={item => (item ? item.label : ' ')}
-      />
-    </div>
+    !question.isHidden && (
+      <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
+        <MultiSelect.Filterable
+          placeholder={t('filterItemsInMultiselect', 'Search...')}
+          onChange={handleSelectItemsChange}
+          id={question.label}
+          items={questionItems}
+          initialSelectedItems={initiallySelectedQuestionItems}
+          label={''}
+          titleText={question.label}
+          key={counter}
+          itemToString={item => (item ? item.label : ' ')}
+        />
+      </div>
+    )
   );
 };

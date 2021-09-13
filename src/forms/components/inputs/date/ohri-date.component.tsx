@@ -71,20 +71,24 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
       )}
     </div>
   ) : (
-    <div className={styles.formField}>
-      <DatePicker
-        datePickerType="single"
-        onChange={onDateChange}
-        className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''}`}
-        dateFormat={carbonDateformat}>
-        <DatePickerInput
-          id={question.id}
-          placeholder={placeHolder}
-          labelText={question.label}
-          value={field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value}
-        />
-      </DatePicker>
-    </div>
+    !question.isHidden && (
+      <div className={styles.formField}>
+        <DatePicker
+          datePickerType="single"
+          onChange={onDateChange}
+          className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''}`}
+          dateFormat={carbonDateformat}>
+          <DatePickerInput
+            id={question.id}
+            placeholder={placeHolder}
+            labelText={question.label}
+            value={
+              field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value
+            }
+          />
+        </DatePicker>
+      </div>
+    )
   );
 };
 

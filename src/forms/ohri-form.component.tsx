@@ -13,7 +13,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { HTSEncounterType } from './constants';
-import { OHRIFieldValidator } from './ohri-form-validator';
+import { isEmpty as isValueEmpty, OHRIFieldValidator } from './ohri-form-validator';
 import { encounterRepresentation } from '../constants';
 
 interface OHRIFormProps {
@@ -79,7 +79,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     setFields(
       allFormFields.map(field => {
         if (field.hide) {
-          evaluateHideExpression(field, null, allFormFields);
+          evaluateHideExpression(field, null, allFormFields, tempInitVals);
         } else {
           field.isHidden = false;
         }
@@ -112,29 +112,43 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     return () => subscription?.unsubscribe();
   }, [encounterUuid]);
 
-  const evaluateHideExpression = (field, determinantValue, allFields) => {
-    // TODO: Handle advanced skip patterns
-    if (typeof field.hide !== 'string') {
-      field.isHidden = false;
-      return;
-    }
+  const evaluateHideExpression = (
+    field,
+    determinantValue = undefined,
+    allFields,
+    initialVals?: Record<string, any>,
+  ) => {
+    let hideExpression = field.hide.hideWhenExpression;
     const allFieldsKeys = allFields.map(f => f.id);
-    const parts = field.hide.trim().split(' ');
-    const determinantField = parts[0];
-    if (allFieldsKeys.includes(determinantField)) {
-      field['hideDeterminant'] = determinantField;
-      const determinant = allFields.find(field => field.id === determinantField);
-      determinant['dependant'] = field.id;
-      let hideExp = field.hide;
-      // prep eval variables
-      determinantValue = determinantValue || initialValues[determinantField];
-      const expectedValue = parts[2];
-      hideExp = hideExp.replace(determinantField, 'determinantValue');
-      hideExp = hideExp.replace(expectedValue, 'expectedValue');
-      field.isHidden = eval(hideExp);
-    } else {
-      field.isHidden = false;
+    const parts = hideExpression.trim().split(' ');
+    function isEmpty(value) {
+      if (allFieldsKeys.includes(value)) {
+        return initialVals ? isValueEmpty(initialVals[value]) : isValueEmpty(initialValues[value]);
+      }
+      return isValueEmpty(value);
     }
+    parts.forEach((part, index) => {
+      if (index % 2 == 0) {
+        if (allFieldsKeys.includes(part)) {
+          const determinant = allFields.find(field => field.id === part);
+          if (!determinant.fieldDependants) {
+            determinant.fieldDependants = new Set();
+          }
+          determinant.fieldDependants.add(field.id);
+          // prep eval variables
+          if (determinantValue == undefined) {
+            determinantValue = initialVals ? initialVals[part] || null : initialValues[part] || null;
+          }
+          if (determinantValue && typeof determinantValue == 'string') {
+            determinantValue = `'${determinantValue}'`;
+          }
+          const regx = new RegExp(part, 'g');
+          hideExpression = hideExpression.replace(regx, determinantValue);
+        }
+      }
+    });
+    field.isHidden = eval(hideExpression);
+    console.log(field);
   };
 
   const handleFormSubmit = (values: Record<string, any>) => {
@@ -233,13 +247,16 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
   const onFieldChange = (fieldName: string, value: any) => {
     const field = fields.find(field => field.id == fieldName);
-    if (field.dependant) {
-      const dependant = fields.find(f => f.hideDeterminant == fieldName);
-      evaluateHideExpression(dependant, value, fields);
-      let fields_temp = [...fields];
-      const index = fields_temp.findIndex(f => f.id == field.dependant);
-      fields_temp[index] = dependant;
-      setFields(fields_temp);
+    console.log(field);
+    if (field.fieldDependants) {
+      field.fieldDependants.forEach(dep => {
+        const dependant = fields.find(f => f.id == dep);
+        evaluateHideExpression(dependant, value, fields);
+        let fields_temp = [...fields];
+        const index = fields_temp.findIndex(f => f.id == dep);
+        fields_temp[index] = dependant;
+        setFields(fields_temp);
+      });
     }
   };
 
