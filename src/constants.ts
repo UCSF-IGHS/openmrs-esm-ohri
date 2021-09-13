@@ -11,9 +11,10 @@ export const encounterRepresentation =
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
-// Final HIV Test Result Concepts
+//HIV Test Result Concepts
 export const finalHIVCodeConcept = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const finalPositiveHIVValueConcept = '6378487b-584d-4422-a6a6-56c8830873ff';
+export const computedHIV_StatusConcept = 'a5261998-c635-4e27-870c-e837faf6cf9a';
 
 // Linked to Care Concepts
 export const linkedToCareCodeConcept = 'e8e8fe71-adbb-48e7-b531-589985094d30';

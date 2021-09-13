@@ -11,10 +11,20 @@ function PatientStatusBannerTag({ patientUuid }) {
   const { currentVisit } = useVisit(patientUuid);
   const { t } = useTranslation();
   const [hivPositive, setHivPositive] = useState(false);
+  
+  const [rerender, setRerender] = useState(true);
+  const forceRerender = () => setRerender(!rerender);
+
+  const isPositive = isPatientHivPositive(patientUuid);
+
+  console.info('isPositive: ', hivPositive);
 
   useEffect(() => {
     isPatientHivPositive(patientUuid).then(result => setHivPositive(result));
-  }, [patientUuid]);
+  }, [hivPositive, patientUuid]);
+
+  // forceRerender();
+  console.info('isPositive: ', hivPositive);
 
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
 }
