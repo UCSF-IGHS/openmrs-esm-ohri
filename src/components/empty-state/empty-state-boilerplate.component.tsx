@@ -19,7 +19,7 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
       <EmptyDataIllustration />
       <p className={styles.content}>
         <Trans i18nKey="emptyStateText" values={{ displayText: props.displayText.toLowerCase() }}>
-          Coming soon
+          Coming soon (Under development)
         </Trans>
       </p>
     </Tile>
