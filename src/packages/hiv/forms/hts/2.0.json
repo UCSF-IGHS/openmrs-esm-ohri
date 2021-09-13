@@ -3432,6 +3432,10 @@
       "intent": "HTS_POSTTEST",
       "display": "HTS Post Test",
       "defaultPage": "Post Test Counselling"
+    },
+    {
+      "intent": "Default",
+      "display": "Default"
     }
   ],
   "processor": "EncounterFormProcessor",
