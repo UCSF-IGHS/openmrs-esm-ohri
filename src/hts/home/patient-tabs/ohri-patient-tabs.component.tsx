@@ -1,23 +1,29 @@
-import React, { useEffect } from 'react';
-import { Tabs, Tab, Row, Column } from 'carbon-components-react';
-import styles from './ohri-patient-tabs.scss';
-import CohortPatientList from '../../../components/patient-lists/patient-list-cohort.component';
+import React from 'react';
 import { postTestCounsellingCohort, preTestCounsellingCohort, waitingForHIVTestCohort } from '../../../constants';
+import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
+import { useTranslation } from 'react-i18next';
 
-function OHRIPatientTabs() {
-  return (
-    <Tabs type="container" className={styles.tabContainer}>
-      <Tab id="tab-1" label="Waiting for pre-test counselling">
-        <CohortPatientList cohortId={preTestCounsellingCohort} cohortSlotName="pre-test-counseling-slot" />
-      </Tab>
-      <Tab id="tab-2" label="Waiting for HIV test">
-        <CohortPatientList cohortId={waitingForHIVTestCohort} cohortSlotName="waiting-for-hiv-testing-slot" />
-      </Tab>
-      <Tab id="tab-3" label="Waiting for post-test counselling">
-        <CohortPatientList cohortId={postTestCounsellingCohort} cohortSlotName="post-test-counseling-slot" />
-      </Tab>
-    </Tabs>
-  );
+function HTSHomePatientTabs() {
+  const { t } = useTranslation();
+
+  const tabsConfigs = [
+    {
+      label: t('waitingForPreTestCounseling', 'Waiting for pre-test counselling'),
+      cohortId: preTestCounsellingCohort,
+      cohortSlotName: 'pre-test-counseling-slot',
+    },
+    {
+      label: t('waitingForHIVTest', 'Waiting for HIV test'),
+      cohortId: waitingForHIVTestCohort,
+      cohortSlotName: 'waiting-for-hiv-testing-slot',
+    },
+    {
+      label: t('waitingForPostTestCounseling', 'Waiting for post-test counselling'),
+      cohortId: postTestCounsellingCohort,
+      cohortSlotName: 'post-test-counseling-slot',
+    },
+  ];
+  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
 }
 
-export default OHRIPatientTabs;
+export default HTSHomePatientTabs;
