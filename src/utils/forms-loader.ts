@@ -83,7 +83,21 @@ export function filterFormByIntent(intent, originalJson) {
   jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
+    const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
+    if (pageBehaviour) {
+      page.hide = pageBehaviour?.hide;
+    } else {
+      const fallBackBehaviour = page.behaviours?.find(behaviour => behaviour.intent === '*');
+      page.hide = fallBackBehaviour?.hide;
+    }
     page.sections.forEach(section => {
+      const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent);
+      if (secBehaviour) {
+        section.hide = secBehaviour?.hide;
+      } else {
+        const fallBackBehaviour = section.behaviours?.find(behaviour => behaviour.intent === '*');
+        section.hide = fallBackBehaviour?.hide;
+      }
       section.questions.forEach(question => {
         if (question.behaviours) {
           // Check if question behaviours includes required intent
