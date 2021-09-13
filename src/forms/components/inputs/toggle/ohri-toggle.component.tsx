@@ -32,16 +32,18 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (
-    <div className={styles.formField}>
-      <Toggle
-        labelText={question.label}
-        id={question.id}
-        labelA={question.questionOptions.toggleOptions.labelFalse}
-        labelB={question.questionOptions.toggleOptions.labelTrue}
-        onToggle={handleChange}
-        toggled={!!field.value}
-      />
-    </div>
+    !question.isHidden && (
+      <div className={styles.formField}>
+        <Toggle
+          labelText={question.label}
+          id={question.id}
+          labelA={question.questionOptions.toggleOptions.labelFalse}
+          labelB={question.questionOptions.toggleOptions.labelTrue}
+          onToggle={handleChange}
+          toggled={!!field.value}
+        />
+      </div>
+    )
   );
 };
 

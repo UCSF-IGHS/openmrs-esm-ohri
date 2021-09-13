@@ -32,28 +32,30 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (
-    <FormGroup
-      style={{ paddingBottom: '1rem' }}
-      legendText={question.label}
-      className={errors.length ? styles.errorLegend : ''}>
-      <RadioButtonGroup
-        defaultSelected="default-selected"
-        name={question.id}
-        valueSelected={field.value}
-        onChange={handleChange}
-        orientation="vertical">
-        {question.questionOptions.answers.map((answer, index) => {
-          return (
-            <RadioButton
-              id={`${question.id}-${answer.label}`}
-              labelText={answer.label}
-              value={answer.concept}
-              key={index}
-            />
-          );
-        })}
-      </RadioButtonGroup>
-    </FormGroup>
+    !question.isHidden && (
+      <FormGroup
+        style={{ paddingBottom: '1rem' }}
+        legendText={question.label}
+        className={errors.length ? styles.errorLegend : ''}>
+        <RadioButtonGroup
+          defaultSelected="default-selected"
+          name={question.id}
+          valueSelected={field.value}
+          onChange={handleChange}
+          orientation="vertical">
+          {question.questionOptions.answers.map((answer, index) => {
+            return (
+              <RadioButton
+                id={`${question.id}-${answer.label}`}
+                labelText={answer.label}
+                value={answer.concept}
+                key={index}
+              />
+            );
+          })}
+        </RadioButtonGroup>
+      </FormGroup>
+    )
   );
 };
 
