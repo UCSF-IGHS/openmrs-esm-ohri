@@ -253,77 +253,16 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        //TODO: Fix dependency for 2nd Nav
-        id: 'covid-case-report-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
-        meta: caseReport_dashboardMeta,
-        order: 11,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-case-report-ext',
-        slot: 'covid-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/case-report/case-report.component'), {
-          featureName: 'covid-case-report',
-          moduleName,
-        }),
-        order: 12,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
         id: 'hts-service-enrolment-list-ext',
         slot: 'hts-service-summary-dashboard-slot',
         load: getAsyncLifecycle(
-          () => import('./pages/service-enrolment/encounter-list/service-enrolment-encounter-list.component'),
+          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
           {
             featureName: 'hts-service-enrolment-list',
             moduleName,
           },
         ),
-      },
-      {
-        id: 'hts-clinical-visit-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/clinical-visit/encounter-list/clinical-visit-encounter-list.component'),
-          {
-            featureName: 'hts-clinical-visit-list',
-            moduleName,
-          },
-        ),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'hts-lab-results-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/lab-results/encounter-list/lab-results-encounter-list.component'),
-          {
-            featureName: 'hts-lab-results-list',
-            moduleName,
-          },
-        ),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'hts-cd4-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/lab-results/cd4/cd4-encounter-list.component'), {
-          featureName: 'hts-lab-results-list',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
+      }
     ],
   };
 }
