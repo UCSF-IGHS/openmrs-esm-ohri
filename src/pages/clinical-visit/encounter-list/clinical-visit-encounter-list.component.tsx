@@ -6,7 +6,6 @@ import EmptyState from '../../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../constants';
 import { getForm } from '../../../utils/forms-loader';
-import { launchForm } from '../../../utils/ohri-forms-commons';
 import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
 
 interface ClinicalVisitWidgetProps {
@@ -25,7 +24,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
 
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-        //TODO: Implement table
+        // console.log(data);
       });
     },
     [patientUuid],

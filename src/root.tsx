@@ -10,7 +10,6 @@ export default function Root() {
       <Route exact path="/ohri-home" render={props => <OHRIHome programme="hts" dashboardTitle="HTS Home Page" />} />
       <Route exact path="/ohri-ct-home" render={props => <OHRIHome programme="ct" dashboardTitle="C&T Home Page" />} />
       <Route exact path="/form-render-test" render={props => <FormRenderTest />} />
-      <Route exact path="/covid-home" render={props => <CovidHome />} />
     </BrowserRouter>
   );
 }

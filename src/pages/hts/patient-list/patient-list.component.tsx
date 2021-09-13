@@ -4,14 +4,14 @@ import styles from './patient-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
-import OTable from '../../components/data-table/o-table.component';
+import OTable from '../../../components/data-table/o-table.component';
 import { age, navigate } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Link, Pagination, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import AddPatientToListOverflowMenuItem from '../../components/modals/patient-list/add-patient-to-list-modal.component';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import AddPatientToListOverflowMenuItem from '../../../components/modals/patient-list/add-patient-to-list-modal.component';
+import EmptyState from '../../../components/empty-state/empty-state.component';
 import { capitalize } from 'lodash';
 import moment from 'moment';
-import { fetchLastVisit, fetchPatientList } from '../../api/api';
+import { fetchLastVisit, fetchPatientList } from '../../../api/api';
 
 interface PatientListProps {
   patientUuid: string;
