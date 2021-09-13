@@ -1,13 +1,13 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
-import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
 import { basePath } from '../../constants';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 
 import { OverflowMenu } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
+import ContinueToListOverflowMenuItem from '../modals/patient-list/continue-patient-to-list-modal.component';
 
 export const columns = [
   {
@@ -109,6 +109,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
         actions: (
           <OverflowMenu flipped>
             <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
+            <ContinueToListOverflowMenuItem patientUuid={member.patient.uuid} />
           </OverflowMenu>
         ),
       }));

@@ -3,6 +3,10 @@ import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, Unordered
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
+// import { OHRIFormLauncherWithIntent } from '../../ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIHomeFormLauncherWithIntent } from '../../ohri-form-launcher/ohri-home-form-launcher.component';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
+import { getForm } from '../../../utils/forms-loader';
 
 const ContinueToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ patientUuid }) => {
   const [, patient] = useCurrentPatient(patientUuid);
@@ -11,16 +15,35 @@ const ContinueToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ pat
     return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
   }, [patient]);
 
+  const [counter, setCounter] = useState(0);
+  const [htsForm, setHTSForm] = useState(getForm('hiv', 'hts'));
+
+  const forceComponentUpdate = () => setCounter(counter + 1);
+
+  const launchHTSForm = (form?: any) => {
+    launchOHRIWorkSpace('ohri-forms-view-ext', {
+      title: htsForm?.name,
+      screenSize: 'maximize',
+      state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
+    });
+  };
+
   return (
     <>
-      {isOpen && (
+      <OHRIHomeFormLauncherWithIntent
+        formJson={htsForm}
+        launchForm={launchHTSForm}
+        onChangeIntent={setHTSForm}
+        titleText="Continue"
+      />
+      {/* {isOpen && (
         <AddPatientToListModal
           isOpen={isOpen}
           close={() => setIsOpen(false)}
           patientUuid={patientUuid}
           title={`Continue ${patientDisplay} to `}
         />
-      )}
+      )} */}
       <li className="bx--overflow-menu-options__option">
         <button
           className="bx--overflow-menu-options__btn"
@@ -31,7 +54,7 @@ const ContinueToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ pat
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">Continue</span>
+          <span className="bx--overflow-menu-options__option-content">Continue </span>
         </button>
       </li>
     </>
@@ -147,45 +170,7 @@ export const AddPatientToListModal: React.FC<{
   //     }
   //   }, [selectedList, patientUuid, close, currentMemberships]);
 
-  return (
-    <>
-      <Modal
-        style={{ zIndex: 99999 }}
-        open={isOpen}
-        modalHeading={title || 'Add Patient to list'}
-        modalLabel=""
-        onRequestClose={close}
-        passiveModal={false}
-        primaryButtonText="Confirm"
-        secondaryButtonText="Cancel"
-        onRequestSubmit={handleSubmit}
-        primaryButtonDisabled={
-          isLoading ||
-          selectedList == null ||
-          isSubmitting ||
-          (selectedList == 'none' && currentMemberships.length == 0)
-        }>
-        <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
-          <p style={{ marginBottom: '1rem' }}>Did the Client complete the pre-test counselling </p>
-
-          <RadioButtonGroup legendText="" name="patient-lists" orientation="vertical">
-            {preTestAnswer}
-          </RadioButtonGroup>
-          <p style={{ marginBottom: '1rem' }}>Would you like to add this client to another List </p>
-
-          {isLoading ? (
-            loader
-          ) : (
-            <RadioButtonGroup
-              legendText=""
-              name="patient-lists"
-              orientation="vertical"
-              onChange={selected => setSelectedList(selected.toString())}></RadioButtonGroup>
-          )}
-        </div>
-      </Modal>
-    </>
-  );
+  return <>Continue</>;
 };
 
 export default ContinueToListOverflowMenuItem;
