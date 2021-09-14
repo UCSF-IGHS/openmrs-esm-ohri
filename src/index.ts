@@ -61,6 +61,17 @@ function setupOpenMRS() {
         },
       },
       {
+        id: 'hts-service-enrolment-list-ext',
+        slot: 'hts-service-summary-dashboard-slot',
+        load: getAsyncLifecycle(
+          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
+          {
+            featureName: 'hts-service-enrolment-list',
+            moduleName,
+          },
+        ),
+      },
+      {
         id: 'hts-clinical-visit-list-ext',
         slot: 'hts-clinical-visit-dashboard-slot',
         load: getAsyncLifecycle(
@@ -252,17 +263,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
-      {
-        id: 'hts-service-enrolment-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
-          {
-            featureName: 'hts-service-enrolment-list',
-            moduleName,
-          },
-        ),
-      }
     ],
   };
 }
