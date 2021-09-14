@@ -100,7 +100,6 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
-
   const htsForm = getForm('hiv', 'hts');
 
   const getFormTitle = () => {
@@ -113,23 +112,26 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
     }
   };
 
+  let actionFormCohort = '';
   const getFormIntent = () => {
     if (cohortId === preTestCounsellingCohort) {
+      actionFormCohort = 'Start Pre-test Counselling';
       return 'HTS_PRETEST';
     } else if (cohortId === waitingForHIVTestCohort) {
+      actionFormCohort = 'Start HIV Test';
       return 'HIV_TEST';
     } else if (cohortId === postTestCounsellingCohort) {
+      actionFormCohort = 'Start Post-test Counselling';
       return 'HTS_POSTTEST';
     }
   };
 
   const patientFormTitle = getFormTitle();
-  const patientFormIntent = getFormIntent(); 
-    
+  const patientFormIntent = getFormIntent();
+
   useEffect(() => {
-    setIsLoading(true);
     getCohort(cohortId, 'full').then(results => {
-      const fullPatientList = results.cohortMembers.map(member => ({
+      const patients = results.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
         age: member.patient.person.age,
@@ -137,44 +139,28 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
         timeAddedToList: moment(member.startDate).format('LL'),
-        startDate: member.startDate,
         waitingTime: moment(member.startDate).fromNow(),
         location: results.location.name,
         phoneNumber: '0700xxxxxx',
         hivResult: '',
         actions: (
           <OverflowMenu flipped>
-            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
             <OverflowMenuItem
-              itemText="Continue"
+              itemText={actionFormCohort}
               onClick={() => {
-                launchFormWorkSpace(
-                  patientFormTitle,
-                  <OHRIForm
-                    formJson={filterFormByIntent(patientFormIntent, htsForm)}
-                    patientUUID={member.patient.uuid}
-                    mode="enter"
-                  />,
-                );
+                launchForm(filterFormByIntent(patientFormIntent, htsForm));
+                navigate({ to: `${basePath}${member.patient.uuid}/chart` });
               }}
             />
+            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} actionButtonTitle="Move to List" />
           </OverflowMenu>
         ),
       }));
-
-      // fliter today's patients
-      const todaysPatientList = fullPatientList.filter(patient => moment().diff(moment(patient.startDate), 'days') < 1);
-
-      setTodaysPatients(todaysPatientList);
-      setAllPatients(fullPatientList);
-
-      // By default, display today's patient list
-      setPatients(todaysPatients);
-      setPatientsCount(todaysPatients.length);
-
+      setPatients(patients);
       setIsLoading(false);
+      setPatientsCount(patients.length);
     });
-  }, [cohortId, counter]);
+  }, [cohortId]);
 
   useEffect(() => {
     (async function() {
@@ -216,17 +202,12 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
     };
   });
 
-  const handleEncounterDateGroupChange = newSelection => {
-    setIsLoading(true);
+  const filterEncountersByDate = (date: string) => {
+    let filteredEncounters = [];
 
-    if (newSelection === 'today') {
-      setPatients(todaysPatients);
-      setPatientsCount(todaysPatients.length);
-      setDateFilter('today');
-    } else {
-      setPatients(allPatients);
-      setPatientsCount(allPatients.length);
-      setDateFilter('all');
+    if (date === 'today') {
+      filteredEncounters = patients.filter(patient => patient.waitingTime < 24);
+      setPatients(filteredEncounters);
     }
   };
 
@@ -241,6 +222,10 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
     }),
     [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading],
   );
+
+  useEffect(() => {
+    setCounter(counter + 1);
+  }, [state]);
 
   return (
     <div>

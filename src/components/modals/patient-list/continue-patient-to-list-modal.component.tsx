@@ -36,14 +36,6 @@ const ContinueToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ pat
         onChangeIntent={setHTSForm}
         titleText="Continue"
       />
-      {/* {isOpen && (
-        <AddPatientToListModal
-          isOpen={isOpen}
-          close={() => setIsOpen(false)}
-          patientUuid={patientUuid}
-          title={`Continue ${patientDisplay} to `}
-        />
-      )} */}
       <li className="bx--overflow-menu-options__option">
         <button
           className="bx--overflow-menu-options__btn"
@@ -115,58 +107,6 @@ export const AddPatientToListModal: React.FC<{
       </>
     );
   }, []);
-
-  //   const alreadySubscribedLists = useMemo(() => {
-  //     if (alreadySubscribedCohorts.length) {
-  //       return (
-  //         <UnorderedList style={{ marginLeft: '1rem', marginBottom: '1rem', color: '#c6c6c6' }}>
-  //           {alreadySubscribedCohorts.map((cohort, index) => (
-  //             <ListItem key={index}>{cohort.name}</ListItem>
-  //           ))}
-  //         </UnorderedList>
-  //       );
-  //     }
-  //     return (
-  //       <div style={{ marginBottom: '1rem' }}>
-  //         <span style={{ fontSize: '.875rem', color: '#c6c6c6' }}>-- None --</span>
-  //       </div>
-  //     );
-  //   }, [alreadySubscribedCohorts]);
-
-  //   const handleSubmit = useCallback(() => {
-  //     console.log('selected: ', selectedList);
-  //     setIsSubmitting(true);
-  //     if (selectedList == 'none') {
-  //       // evict all the patient's memberships
-  //       // according to our usecases, there is a high chance that the current memberships will always be one
-  //       // but we can't be sure
-  //       Promise.all(currentMemberships.map(membership => evictCohortMembership(membership.uuid)))
-  //         .then(results => {
-  //           showToast({
-  //             kind: 'success',
-  //             critical: true,
-  //             description: `Patient was successfully removed from all lists`,
-  //           });
-  //           close();
-  //         })
-  //         .catch(error => {
-  //           setIsSubmitting(false);
-  //         });
-  //     } else {
-  //       addPatientToCohort(patientUuid, selectedList).then(response => {
-  //         if (response.ok) {
-  //           showToast({
-  //             kind: 'success',
-  //             critical: true,
-  //             description: `Patient was successfully added to ${response.data.cohort.display}`,
-  //           });
-  //           close();
-  //         } else {
-  //           setIsSubmitting(false);
-  //         }
-  //       });
-  //     }
-  //   }, [selectedList, patientUuid, close, currentMemberships]);
 
   return <>Continue</>;
 };
