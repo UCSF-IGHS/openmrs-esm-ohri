@@ -37,22 +37,24 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
       {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
     </div>
   ) : (
-    <div className={styles.numberInputWrapper}>
-      <NumberInput
-        {...field}
-        id={question.id}
-        invalidText="Number is not valid"
-        label={question.label}
-        max={question.questionOptions.max || undefined}
-        min={question.questionOptions.min || undefined}
-        name={question.id}
-        value={field.value || ''}
-        onFocus={() => setPreviousValue(field.value)}
-        allowEmpty={true}
-        size="xl"
-        className={errors.length ? styles.errorLabel : ''}
-      />
-    </div>
+    !question.isHidden && (
+      <div className={styles.numberInputWrapper}>
+        <NumberInput
+          {...field}
+          id={question.id}
+          invalidText="Number is not valid"
+          label={question.label}
+          max={question.questionOptions.max || undefined}
+          min={question.questionOptions.min || undefined}
+          name={question.id}
+          value={field.value || ''}
+          onFocus={() => setPreviousValue(field.value)}
+          allowEmpty={true}
+          size="xl"
+          className={errors.length ? styles.errorLabel : ''}
+        />
+      </div>
+    )
   );
 };
 

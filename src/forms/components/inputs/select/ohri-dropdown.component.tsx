@@ -41,19 +41,21 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (
-    <div className={styles.formInputField}>
-      <div className={errors.length ? styles.errorLabel : ''}>
-        <Dropdown
-          id={question.id}
-          titleText={question.label}
-          label="Choose an option"
-          items={items}
-          itemToString={itemToString}
-          selectedItem={field.value}
-          onChange={({ selectedItem }) => handleChange(selectedItem)}
-        />
+    !question.isHidden && (
+      <div className={styles.formInputField}>
+        <div className={errors.length ? styles.errorLabel : ''}>
+          <Dropdown
+            id={question.id}
+            titleText={question.label}
+            label="Choose an option"
+            items={items}
+            itemToString={itemToString}
+            selectedItem={field.value}
+            onChange={({ selectedItem }) => handleChange(selectedItem)}
+          />
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
