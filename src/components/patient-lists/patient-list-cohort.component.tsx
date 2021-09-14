@@ -1,12 +1,12 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
 import moment from 'moment';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
-import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { InlineLoading, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
-import OHRIForm from '../../forms/ohri-form.component';
+import { launchForm } from '../../utils/ohri-forms-commons';
 import {
   basePath,
   waitingForHIVTestCohort,
@@ -100,6 +100,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+
   const htsForm = getForm('hiv', 'hts');
 
   const getFormTitle = () => {
@@ -123,11 +124,12 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
   };
 
   const patientFormTitle = getFormTitle();
-  const patientFormIntent = getFormIntent();
-
+  const patientFormIntent = getFormIntent(); 
+    
   useEffect(() => {
+    setIsLoading(true);
     getCohort(cohortId, 'full').then(results => {
-      const patients = results.cohortMembers.map(member => ({
+      const fullPatientList = results.cohortMembers.map(member => ({
         uuid: member.patient.uuid,
         id: member.patient.identifiers[0].identifier,
         age: member.patient.person.age,
@@ -135,6 +137,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
         gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
         birthday: member.patient.person.birthdate,
         timeAddedToList: moment(member.startDate).format('LL'),
+        startDate: member.startDate,
         waitingTime: moment(member.startDate).fromNow(),
         location: results.location.name,
         phoneNumber: '0700xxxxxx',
@@ -158,11 +161,20 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
           </OverflowMenu>
         ),
       }));
-      setPatients(patients);
+
+      // fliter today's patients
+      const todaysPatientList = fullPatientList.filter(patient => moment().diff(moment(patient.startDate), 'days') < 1);
+
+      setTodaysPatients(todaysPatientList);
+      setAllPatients(fullPatientList);
+
+      // By default, display today's patient list
+      setPatients(todaysPatients);
+      setPatientsCount(todaysPatients.length);
+
       setIsLoading(false);
-      setPatientsCount(patients.length);
     });
-  }, [cohortId]);
+  }, [cohortId, counter]);
 
   useEffect(() => {
     (async function() {
@@ -204,12 +216,17 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
     };
   });
 
-  const filterEncountersByDate = (date: string) => {
-    let filteredEncounters = [];
+  const handleEncounterDateGroupChange = newSelection => {
+    setIsLoading(true);
 
-    if (date === 'today') {
-      filteredEncounters = patients.filter(patient => patient.waitingTime < 24);
-      setPatients(filteredEncounters);
+    if (newSelection === 'today') {
+      setPatients(todaysPatients);
+      setPatientsCount(todaysPatients.length);
+      setDateFilter('today');
+    } else {
+      setPatients(allPatients);
+      setPatientsCount(allPatients.length);
+      setDateFilter('all');
     }
   };
 
@@ -225,13 +242,11 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
     [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading],
   );
 
-  useEffect(() => {
-    setCounter(counter + 1);
-  }, [state]);
-
   return (
     <div>
-      {!isLoading && !patients.length ? (
+      {isLoading ? (
+        <InlineLoading style={{ margin: '20px auto', minWidth: '80px' }} description="Loading..." />
+      ) : !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
         <>

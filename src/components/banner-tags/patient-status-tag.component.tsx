@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import styles from './active-visit-tag.scss';
 import { isPatientHivPositive } from './patientHivStatus';
+import { fetchPatientsFinalHIVStatus } from '../../api/api';
 
 function PatientStatusBannerTag({ patientUuid }) {
   const { currentVisit } = useVisit(patientUuid);
@@ -19,13 +20,13 @@ function PatientStatusBannerTag({ patientUuid }) {
 
   console.info('isPositive: ', hivPositive);
 
-  useEffect(() => {
+  useEffect(() => { 
     isPatientHivPositive(patientUuid).then(result => setHivPositive(result));
   }, [hivPositive, patientUuid]);
 
   //TODO: Improve refresh time
   // forceRerender();
-
+  
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
 }
 

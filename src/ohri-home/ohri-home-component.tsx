@@ -4,8 +4,14 @@ import { Grid } from 'carbon-components-react';
 import PatientListWorkspace from '../workspace/patient-list-workspace';
 import PatientFormWorkspace from '../workspace/patient-form-workspace';
 import styles from './ohri-home.scss';
+import { hts_dashboardMeta } from '../dashboard.meta';
 
-function OhriHome() {
+interface HomeProps {
+  programme: string;
+  dashboardTitle: string;
+}
+
+function OHRIHome(HomeProps) {
   const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);
   const [isFormWorkSpaceVisible, setIsFormWorkSpaceVisible] = useState(false);
   const [workSpaceProps, setWorkSpaceProps] = useState<{
@@ -47,16 +53,20 @@ function OhriHome() {
         onClose={() => setIsWorkSpaceVisible(false)}
         meta={workSpaceProps?.meta}
       />
-      <Grid className={styles.mainWrapper}>
+      <Grid className={styles.mainWrapper}> 
         <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} state={{ launchWorkSpace }} />
         <ExtensionSlot extensionSlotName={OHRIHomeTileSlot} state={{ launchWorkSpace }} />
-        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchFormWorkSpace }} />
+        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchFormWorkSpace }} /> 
       </Grid>
     </>
   );
 }
 
-export default OhriHome;
-export const OHRIHomeHeaderSlot = 'hts-home-header-slot';
-export const OHRIHomeTileSlot = 'hts-home-tiles-slot';
-export const OHRIHomeTabSlot = 'hts-home-tabs-slot';
+function getSlotName(programme: string, slotBaseName: string) {
+  return programme + '-' + slotBaseName;
+}
+
+export default OHRIHome;
+export const OHRIHomeHeaderSlot = 'home-header-slot';
+export const OHRIHomeTileSlot = 'home-tiles-slot';
+export const OHRIHomeTabSlot = 'home-tabs-slot';

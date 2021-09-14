@@ -135,6 +135,17 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
   });
 }
 
+export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
+  return openmrsFetch(
+    `/ws/fhir2/R4/Observation?code=${computedHIV_StatusConcept}&value-concept=${finalPositiveHIVValueConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
+  ).then(({ data }) => {
+    if (data.entry?.length) {
+      return data.entry[0].resource.valueCodeableConcept.coding[0].display;
+    }
+    return 'Negative';
+  });
+}
+
 export function fetchPatientObservationFromEncounter(
   patientUUID: string,
   encounterUUID: string,

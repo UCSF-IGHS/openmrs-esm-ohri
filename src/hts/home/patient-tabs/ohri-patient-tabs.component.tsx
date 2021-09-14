@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { Tabs, Tab, Row, Column } from 'carbon-components-react';
-import styles from './ohri-patient-tabs.scss';
-import CohortPatientList from '../../../components/patient-lists/patient-list-cohort.component';
+import React from 'react';
 import { postTestCounsellingCohort, preTestCounsellingCohort, waitingForHIVTestCohort } from '../../../constants';
+import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
+import { useTranslation } from 'react-i18next';
 
 function OHRIPatientTabs({ launchFormWorkSpace }) {
   return (
@@ -32,4 +31,4 @@ function OHRIPatientTabs({ launchFormWorkSpace }) {
   );
 }
 
-export default OHRIPatientTabs;
+export default HTSHomePatientTabs;

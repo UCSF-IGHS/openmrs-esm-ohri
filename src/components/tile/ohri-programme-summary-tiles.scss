@@ -1,5 +1,7 @@
 .desktopView{
   display: flex;
+  background-color: #ffffff;
+  margin: 0px !important;
 }
 .tileView {
   display: none;
@@ -11,5 +13,8 @@
   }
   .tileView {
     display: flex;
+    display: flex;
+    background-color: #ffffff;
+    margin: 0px !important;
   }
 }
