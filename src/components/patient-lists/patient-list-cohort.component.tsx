@@ -4,9 +4,8 @@ import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
 import moment from 'moment';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
-import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { InlineLoading, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
-import OHRIForm from '../../forms/ohri-form.component';
 import { launchForm } from '../../utils/ohri-forms-commons';
 import {
   basePath,
@@ -230,7 +229,9 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
 
   return (
     <div>
-      {!isLoading && !patients.length ? (
+      {isLoading ? (
+        <InlineLoading style={{ margin: '20px auto', minWidth: '80px' }} description="Loading..." />
+      ) : !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
         <>
