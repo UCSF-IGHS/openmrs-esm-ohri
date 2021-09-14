@@ -37,9 +37,9 @@ export const createCovidDashboardLink = db => {
     });
 
     return (
-      <div id='sidenav-menu-covid'>
+      <div id="sidenav-menu-covid">
         <SideNavMenu
-          title='Covid'
+          title="Covid"
           className={styles.noMarker}
           defaultExpanded={isActiveLink(caseReport_dashboardMeta.name)}>
           {navItems.map(navItem => (
@@ -64,7 +64,7 @@ export const createCovidDashboardLink = db => {
 
 let navigationEvent = new Event('navigation');
 
-export function handleLinkClick (event: any, to: string) {
+export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }

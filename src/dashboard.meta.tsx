@@ -40,8 +40,8 @@ export const createDashboardLink = db => {
     });
 
     return (
-      <div id='sidenav-menu-hts'>
-        <SideNavMenu title='HIV' className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+      <div id="sidenav-menu-hts">
+        <SideNavMenu title="HIV" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
@@ -63,7 +63,7 @@ export const createDashboardLink = db => {
   return DashboardLink;
 };
 
-export function handleLinkClick (event: any, to: string) {
+export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }

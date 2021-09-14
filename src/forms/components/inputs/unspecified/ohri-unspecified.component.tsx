@@ -49,14 +49,16 @@ export const OHRIUnspecified: React.FC<{
   }, []);
 
   return (
-    <div className={styles.unspecified}>
-      <Checkbox
-        id={`${question.id}-unspcified`}
-        labelText="Unspecified"
-        value="Unspecified"
-        onChange={handleOnChange}
-        checked={field.value}
-      />
-    </div>
+    !question.isHidden && (
+      <div className={styles.unspecified}>
+        <Checkbox
+          id={`${question.id}-unspcified`}
+          labelText="Unspecified"
+          value="Unspecified"
+          onChange={handleOnChange}
+          checked={field.value}
+        />
+      </div>
+    )
   );
 };
