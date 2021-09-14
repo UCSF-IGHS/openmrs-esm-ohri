@@ -99,8 +99,8 @@ function OHRIFormSidebar({
         style={{ width: '11rem' }}
         kind="tertiary"
         onClick={() => {
-          onCancel ? onCancel() : null;
-          handleClose();
+          onCancel && onCancel();
+          handleClose && handleClose();
         }}>
         {mode == 'view' ? 'Close' : 'Cancel'}
       </Button>
