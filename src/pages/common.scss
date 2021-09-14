@@ -23,3 +23,13 @@
   width: fit-content;
   margin: 0 $spacing-03;
 }  
+ 
+.newServiceEnrolmentBtn {
+  //margin: 0 $spacing-03;x
+  margin-bottom: 0.5em;
+  text-align: right;
+}
+
+.newServiceEnrolmentBtn > button {
+  background-color: $ui-background;
+}

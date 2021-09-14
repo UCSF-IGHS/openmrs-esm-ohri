@@ -113,12 +113,16 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
     }
   };
 
+  let actionFormCohort = '';
   const getFormIntent = () => {
     if (cohortId === preTestCounsellingCohort) {
+      actionFormCohort = 'Start Pre-test Counselling';
       return 'HTS_PRETEST';
     } else if (cohortId === waitingForHIVTestCohort) {
+      actionFormCohort = 'Start HIV Test';
       return 'HIV_TEST';
     } else if (cohortId === postTestCounsellingCohort) {
+      actionFormCohort = 'Start Post-test Counselling';
       return 'HTS_POSTTEST';
     }
   };
@@ -144,20 +148,14 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
         hivResult: '',
         actions: (
           <OverflowMenu flipped>
-            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
             <OverflowMenuItem
-              itemText="Continue"
+              itemText={actionFormCohort}
               onClick={() => {
-                launchFormWorkSpace(
-                  patientFormTitle,
-                  <OHRIForm
-                    formJson={filterFormByIntent(patientFormIntent, htsForm)}
-                    patientUUID={member.patient.uuid}
-                    mode="enter"
-                  />,
-                );
+                launchForm(filterFormByIntent(patientFormIntent, htsForm));
+                navigate({ to: `${basePath}${member.patient.uuid}/chart` });
               }}
             />
+            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} actionButtonTitle="Move to List" />
           </OverflowMenu>
         ),
       }));
