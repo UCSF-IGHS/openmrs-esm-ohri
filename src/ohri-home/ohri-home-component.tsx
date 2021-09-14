@@ -53,10 +53,10 @@ function OHRIHome(HomeProps) {
         onClose={() => setIsWorkSpaceVisible(false)}
         meta={workSpaceProps?.meta}
       />
-      <Grid className={styles.mainWrapper}> 
+      <Grid className={styles.mainWrapper}>
         <ExtensionSlot extensionSlotName={OHRIHomeHeaderSlot} state={{ launchWorkSpace }} />
         <ExtensionSlot extensionSlotName={OHRIHomeTileSlot} state={{ launchWorkSpace }} />
-        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchFormWorkSpace }} /> 
+        <ExtensionSlot extensionSlotName={OHRIHomeTabSlot} state={{ launchFormWorkSpace }} />
       </Grid>
     </>
   );

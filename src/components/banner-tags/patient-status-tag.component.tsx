@@ -20,13 +20,13 @@ function PatientStatusBannerTag({ patientUuid }) {
 
   console.info('isPositive: ', hivPositive);
 
-  useEffect(() => { 
+  useEffect(() => {
     isPatientHivPositive(patientUuid).then(result => setHivPositive(result));
   }, [hivPositive, patientUuid]);
 
   //TODO: Improve refresh time
   // forceRerender();
-  
+
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
 }
 
