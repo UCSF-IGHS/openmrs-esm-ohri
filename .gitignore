@@ -66,5 +66,8 @@ dist
 *.iml
 .idea/
 
+# VSCode Configs
+.vscode/
+
 #Macfolders
 .DS_Store

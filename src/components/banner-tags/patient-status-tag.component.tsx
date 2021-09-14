@@ -13,15 +13,20 @@ function PatientStatusBannerTag({ patientUuid }) {
   const { t } = useTranslation();
   const [hivPositive, setHivPositive] = useState(false);
 
-  useEffect(() => {
-    (async function() {
-      const hivResult = await fetchPatientsFinalHIVStatus(patientUuid);
-      if (hivResult === 'Positive') {
-        setHivPositive(true);
-      }
-    })();
-  }, [patientUuid]);
+  const [rerender, setRerender] = useState(true);
+  const forceRerender = () => setRerender(!rerender);
 
+  const isPositive = isPatientHivPositive(patientUuid);
+
+  console.info('isPositive: ', hivPositive);
+
+  useEffect(() => { 
+    isPatientHivPositive(patientUuid).then(result => setHivPositive(result));
+  }, [hivPositive, patientUuid]);
+
+  //TODO: Improve refresh time
+  // forceRerender();
+  
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
 }
 
