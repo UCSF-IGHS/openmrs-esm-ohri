@@ -87,7 +87,7 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; launchFormWorkSpace: any }> = ({
+const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; launchFormWorkSpace?: any }> = ({
   cohortId,
   cohortSlotName,
   launchFormWorkSpace,
