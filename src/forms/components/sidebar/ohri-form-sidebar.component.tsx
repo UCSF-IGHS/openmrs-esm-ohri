@@ -18,7 +18,7 @@ function OHRIFormSidebar({
   const [activeLink, setActiveLink] = useState(selectedPage);
 
   useEffect(() => {
-    if (defaultPage && scrollAblePages.find(({ label }) => label === defaultPage)) {
+    if (defaultPage && scrollAblePages.find(({ label, isHidden }) => label === defaultPage && !isHidden)) {
       scrollIntoView(joinWord(defaultPage));
     }
   }, [defaultPage]);
