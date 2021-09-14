@@ -146,7 +146,6 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
         hivResult: '',
         actions: (
           <OverflowMenu flipped>
-            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} actionButtonTitle="Move to List" />
             <OverflowMenuItem
               itemText={actionFormCohort}
               onClick={() => {
@@ -154,6 +153,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
                 navigate({ to: `${basePath}${member.patient.uuid}/chart` });
               }}
             />
+            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} actionButtonTitle="Move to List" />
           </OverflowMenu>
         ),
       }));
