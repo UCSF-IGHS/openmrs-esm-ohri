@@ -79,6 +79,18 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      ,
+      {
+        id: 'hts-service-summary-list-ext',
+        slot: 'hts-service-summary-dashboard-slot',
+        load: getAsyncLifecycle(
+          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
+          {
+            featureName: 'hts-service-summary-list',
+            moduleName,
+          },
+        ),
+      },
       {
         id: 'hts-service-enrolment-list-ext',
         slot: 'hts-service-enrolment-dashboard-slot',
@@ -289,17 +301,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
-      {
-        id: 'hts-service-enrolment-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
-          {
-            featureName: 'hts-service-enrolment-list',
-            moduleName,
-          },
-        ),
-      }
     ],
   };
 }
