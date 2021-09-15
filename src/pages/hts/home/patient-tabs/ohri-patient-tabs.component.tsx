@@ -5,16 +5,40 @@ import CohortPatientList from '../../../../components/patient-lists/patient-list
 import { postTestCounsellingCohort, preTestCounsellingCohort, waitingForHIVTestCohort } from '../../../../constants';
 
 function OHRIPatientTabs() {
+  const formPackage = 'hiv';
+  const formName = 'hts';
   return (
     <Tabs type="container" className={styles.tabContainer}>
       <Tab id="tab-1" label="Waiting for pre-test counselling">
-        <CohortPatientList cohortId={preTestCounsellingCohort} cohortSlotName="pre-test-counseling-slot" />
+        <CohortPatientList
+          cohortId={preTestCounsellingCohort}
+          cohortSlotName="pre-test-counseling-slot"
+          launchableForm={{
+            package: formPackage,
+            name: formName,
+            intent: 'HTS_RETROSPECTIVE',
+            actionText: 'Start Pre-test',
+          }}
+        />
       </Tab>
       <Tab id="tab-2" label="Waiting for HIV test">
-        <CohortPatientList cohortId={waitingForHIVTestCohort} cohortSlotName="waiting-for-hiv-testing-slot" />
+        <CohortPatientList
+          cohortId={waitingForHIVTestCohort}
+          cohortSlotName="waiting-for-hiv-testing-slot"
+          launchableForm={{ package: formPackage, name: formName, intent: 'HIV_TEST', actionText: 'Start HIV Test' }}
+        />
       </Tab>
       <Tab id="tab-3" label="Waiting for post-test counselling">
-        <CohortPatientList cohortId={postTestCounsellingCohort} cohortSlotName="post-test-counseling-slot" />
+        <CohortPatientList
+          cohortId={postTestCounsellingCohort}
+          cohortSlotName="post-test-counseling-slot"
+          launchableForm={{
+            package: formPackage,
+            name: formName,
+            intent: 'HTS_POSTTEST',
+            actionText: 'Start Post-test',
+          }}
+        />
       </Tab>
     </Tabs>
   );

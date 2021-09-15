@@ -4,7 +4,10 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
-const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ patientUuid }) => {
+const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; displayText?: string }> = ({
+  patientUuid,
+  displayText,
+}) => {
   const [, patient] = useCurrentPatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
@@ -31,7 +34,7 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ p
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">Add to list</span>
+          <span className="bx--overflow-menu-options__option-content">{displayText || 'Add to list'}</span>
         </button>
       </li>
     </>

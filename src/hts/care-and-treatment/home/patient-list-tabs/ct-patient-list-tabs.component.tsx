@@ -12,6 +12,12 @@ function CTHomePatientTabs() {
       cohortId: clientsEnrolledToCare,
       isReportingCohort: true,
       cohortSlotName: 'all-ct-clients-slot',
+      launchableForm: {
+        package: 'hiv',
+        name: 'clinical_visit',
+        actionText: 'Start Follow Up Visit',
+        intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+      },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
       otherColumns: [
         {
