@@ -23,6 +23,65 @@ position: fixed;
     }
  }
 
+ @media screen and (min-width: 992px) {
+  //For Large Laptops
+  .sidebar{
+    width: 11rem;
+    max-height: 500px;
+    margin-right: 20px;
+    position: fixed;
+    }
+    
+    .sidebarList{
+      max-Height: 200px;
+      overflow-y: scroll;
+    }
+  }
+  
+  @media screen and (min-width: 1280px) {
+  //For Big TV's (HD Screens) 
+  .sidebar{
+    width: 11rem;
+    max-height: 500px;
+    margin-right: 20px;
+    position: fixed;
+    }
+    
+    .sidebarList{
+      max-Height: 200px;
+      overflow-y: scroll;
+    }
+  }
+  
+  @media screen and (min-width: 1920px) {
+  //For Projectors or Higher Resolution Screens (Full HD)
+  .sidebar{
+    width: 11rem;
+    max-height: 500px;
+    margin-right: 20px;
+    position: fixed;
+    }
+    
+    .sidebarList{
+      max-Height: 200px;
+      overflow-y: scroll;
+    }
+  }
+  @media screen and (min-width: 3840px) {
+  //For 4K Displays (Ultra HD)
+  .sidebar{
+    width: 11rem;
+    max-height: 500px;
+    margin-right: 20px;
+    position: fixed;
+    }
+    
+    .sidebarList{
+      max-Height: 200px;
+      overflow-y: scroll;
+    }
+  }
+
 .link {
   margin: 0.375rem 0 0.375rem 0.5rem;
   font-size: 1rem;
