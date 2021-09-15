@@ -35,7 +35,7 @@ const CD4OverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   //   }, 1000);
   // }, []);
 
-  return (<div></div>);
+  return <div></div>;
 };
 
 export default CD4OverviewList;

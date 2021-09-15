@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { HeaderMenu, HeaderMenuItem } from 'carbon-components-react';
 import styles from './hiv-top-nav.overrides.scss';
 import './sidenav.overrides.css';
-import linkList from './hts-top-nav-links';
 import { handleLinkClick } from '../../dashboard.meta';
+import linkList from '../programme-switcher/ohri-programme-switcher-links';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 

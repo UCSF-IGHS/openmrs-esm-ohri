@@ -1,6 +1,6 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFinalHIVStatus, getCohort } from '../../api/api';
+import { fetchPatientsFinalHIVStatus, getCohort, getReportingCohortMembers } from '../../api/api';
 import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
 import { basePath } from '../../constants';
@@ -9,7 +9,15 @@ import TableEmptyState from '../empty-state/table-empty-state.component';
 import { OverflowMenu } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 
-export const columns = [
+export interface PatientListColumn {
+  key: string;
+  header: string;
+  getValue: (patient: any) => string;
+  link?: any;
+  index?: number;
+}
+
+export const columns: PatientListColumn[] = [
   {
     key: 'name',
     header: 'Name',
@@ -71,7 +79,7 @@ export const columns = [
   },
   {
     key: 'actions',
-    header: '',
+    header: 'Actions',
     getValue: patient => {
       return patient.actions;
     },
@@ -82,7 +90,14 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> = ({ cohortId, cohortSlotName }) => {
+const CohortPatientList: React.FC<{
+  cohortId: string;
+  cohortSlotName: string;
+  isReportingCohort?: boolean;
+  otherColumns?: Array<PatientListColumn>;
+  excludeColumns?: Array<string>;
+  queryParams?: Array<string>;
+}> = ({ cohortId, cohortSlotName, isReportingCohort, otherColumns, excludeColumns, queryParams }) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,31 +106,66 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  const columnAtLastIndex = 'actions';
+
+  const constructPatient = rawPatient => {
+    return {
+      uuid: isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid,
+      id: isReportingCohort ? rawPatient.identifiers[0].identifier : rawPatient.patient.identifiers[0].identifier,
+      age: isReportingCohort ? rawPatient.person.age : rawPatient.patient.person.age,
+      name: isReportingCohort ? rawPatient.person.display : rawPatient.patient.person.display,
+      gender: isReportingCohort
+        ? rawPatient.person.gender == 'M'
+          ? 'Male'
+          : 'Female'
+        : rawPatient.patient.person.gender == 'M'
+        ? 'Male'
+        : 'Female',
+      birthday: isReportingCohort ? rawPatient.person.birthdate : rawPatient.patient.person.birthdate,
+    };
+  };
+
+  const setListMeta = (patientWithMeta, location) => {
+    return {
+      timeAddedToList: !isReportingCohort ? moment(patientWithMeta.startDate).format('LL') : null,
+      waitingTime: !isReportingCohort ? moment(patientWithMeta.startDate).fromNow() : null,
+      location: location && location.name,
+      phoneNumber: '0700xxxxxx',
+      hivResult: 'None',
+      actions: (
+        <OverflowMenu flipped>
+          <AddPatientToListOverflowMenuItem
+            patientUuid={isReportingCohort ? patientWithMeta.person.uuid : patientWithMeta.patient.uuid}
+          />
+        </OverflowMenu>
+      ),
+    };
+  };
 
   useEffect(() => {
-    getCohort(cohortId, 'full').then(results => {
-      const patients = results.cohortMembers.map(member => ({
-        uuid: member.patient.uuid,
-        id: member.patient.identifiers[0].identifier,
-        age: member.patient.person.age,
-        name: member.patient.person.display,
-        gender: member.patient.person.gender == 'M' ? 'Male' : 'Female',
-        birthday: member.patient.person.birthdate,
-        timeAddedToList: moment(member.startDate).format('LL'),
-        waitingTime: moment(member.startDate).fromNow(),
-        location: results.location.name,
-        phoneNumber: '0700xxxxxx',
-        hivResult: '',
-        actions: (
-          <OverflowMenu flipped>
-            <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} />
-          </OverflowMenu>
-        ),
-      }));
-      setPatients(patients);
-      setIsLoading(false);
-      setPatientsCount(patients.length);
-    });
+    if (!isReportingCohort) {
+      getCohort(cohortId, 'full').then(results => {
+        const patients = results.cohortMembers.map(member => ({
+          ...constructPatient(member),
+          ...setListMeta(member, results.location),
+        }));
+        setPatients(patients);
+        setIsLoading(false);
+        setPatientsCount(patients.length);
+      });
+    } else {
+      getReportingCohortMembers(cohortId, queryParams).then(results => {
+        const patients = results.map(({ data }) => {
+          return {
+            ...constructPatient(data),
+            ...setListMeta(data, null),
+          };
+        });
+        setPatients(patients);
+        setIsLoading(false);
+        setPatientsCount(patients.length);
+      });
+    }
   }, [cohortId]);
 
   useEffect(() => {
@@ -167,17 +217,37 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
     }
   };
 
-  const state = useMemo(
-    () => ({
+  const state = useMemo(() => {
+    let filteredColumns = [...columns];
+    if (excludeColumns) {
+      filteredColumns = columns.filter(c => !excludeColumns.includes(c.key));
+    }
+    if (otherColumns) {
+      otherColumns.forEach(column => {
+        if (column.index) {
+          filteredColumns.splice(column.index, 0, column);
+        } else {
+          filteredColumns.push(column);
+        }
+      });
+    }
+    // position column designated to be at the last index
+    const index = filteredColumns.findIndex(column => column.key == columnAtLastIndex);
+    if (index) {
+      const column = filteredColumns[index];
+      filteredColumns.splice(index, 1);
+      filteredColumns.push(column);
+    }
+
+    return {
       patients: searchTerm ? filteredResults : patients,
-      columns,
+      columns: filteredColumns,
       isLoading,
       search: { placeHolder: 'Search client list', onSearch: handleSearch, currentSearchTerm: searchTerm },
       pagination: pagination,
       autoFocus: true,
-    }),
-    [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading],
-  );
+    };
+  }, [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading, excludeColumns, otherColumns]);
 
   useEffect(() => {
     setCounter(counter + 1);
@@ -186,7 +256,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string }> 
   return (
     <div>
       {!isLoading && !patients.length ? (
-        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
+        <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
       ) : (
         <>
           <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
