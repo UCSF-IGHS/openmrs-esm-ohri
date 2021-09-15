@@ -30,17 +30,17 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; actionBu
         <button
           className="bx--overflow-menu-options__btn"
           role="menuitem"
-          title={title}
+          title={title} 
           data-floating-menu-primary-focus
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
-          }}>
+          }}> 
           {actionButtonTitle ? (
             <span className="bx--overflow-menu-options__option-content">{actionButtonTitle} </span>
           ) : (
             <span className="bx--overflow-menu-options__option-content">Add to List </span>
-          )}
+          )} 
         </button>
       </li>
     </>
