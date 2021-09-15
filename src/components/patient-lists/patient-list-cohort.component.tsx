@@ -170,13 +170,18 @@ const CohortPatientList: React.FC<{
       hivResult: 'None',
       actions: (
         <OverflowMenu flipped>
-          <OverflowMenuItem
-            itemText={actionFormCohort}
-            onClick={() => {
-              launchForm(filterFormByIntent(patientFormIntent, htsForm));
-              navigate({ to: `${basePath}${patientWithMeta.patient.uuid}/chart/hts-summary` });
-            }}
-          />
+          {actionFormCohort ? (
+            <OverflowMenuItem
+              itemText={actionFormCohort}
+              onClick={() => {
+                launchForm(filterFormByIntent(patientFormIntent, htsForm));
+                navigate({ to: `${basePath}${patientWithMeta.patient.uuid}/chart/hts-summary` });
+              }}
+            />
+          ) : (
+            <></>
+          )}
+
           <AddPatientToListOverflowMenuItem
             patientUuid={isReportingCohort ? patientWithMeta.person.uuid : patientWithMeta.patient.uuid}
           />
