@@ -9,7 +9,14 @@ function OHRIPatientListTabs({ patientListConfigs }) {
       {patientListConfigs.map((config, index) => {
         return (
           <Tab id={index} label={config.label}>
-            <CohortPatientList cohortId={config.cohortId} cohortSlotName={config.cohortSlotName} />
+            <CohortPatientList
+              cohortId={config.cohortId}
+              cohortSlotName={config.cohortSlotName}
+              isReportingCohort={config.isReportingCohort}
+              excludeColumns={config.excludeColumns}
+              otherColumns={config.otherColumns}
+              queryParams={config.queryParams}
+            />
           </Tab>
         );
       })}

@@ -23,6 +23,8 @@ export const linkedToCareYesValueConcept = '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 export const preTestCounsellingCohort = 'e4d801f0-e2fd-11eb-8212-7d7156e00a1f';
 export const waitingForHIVTestCohort = 'cdee0abe-e471-11eb-8212-7d7156e00a1f';
 export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';
+export const clientsEnrolledToCare = '1d5d64ee-3e94-45b9-904e-f9b585188119';
+export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9';
 
 // Service Enrollment Concepts
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';

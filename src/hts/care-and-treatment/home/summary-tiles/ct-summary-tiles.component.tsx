@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getReportingCohort } from '../../../../api/api';
 import OHRIProgrammeSummaryTiles from '../../../../components/tile/ohri-programme-summary-tiles.component';
+import { clientsEnrolledToCare } from '../../../../constants';
 
 function CTSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
+  const [activeClientsCount, setActiveClientsCount] = useState(0);
 
+  useEffect(() => {
+    getReportingCohort(clientsEnrolledToCare).then(data => {
+      setActiveClientsCount(data.members.length);
+    });
+  }, []);
   const tiles = [
     {
       title: t('activeClients', 'Active Clients'),
       linkAddress: '#',
       subTitle: t('patientsInClinicPopulation', 'Patients in clinic population'),
-      value: 200,
+      value: activeClientsCount,
     },
     {
       title: t('missedAppointments', 'Missed appointments'),

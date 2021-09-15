@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../common.scss';
-import EmptyState from '../../../components/empty-state/empty-state.component';
-import OTable from '../../../components/data-table/o-table.component';
 import { DataTableSkeleton } from 'carbon-components-react';
+import EmptyState from '../../components/empty-state/empty-state.component';
+import OTable from '../../components/data-table/o-table.component';
 
 interface OverviewListProps {
   patientUuid: string;
