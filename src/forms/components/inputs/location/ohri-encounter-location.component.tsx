@@ -34,19 +34,21 @@ export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; on
       {field.value ? <OHRIValueDisplay value={field.value.display} /> : <OHRIValueEmpty />}
     </div>
   ) : (
-    <div className={styles.formInputField}>
-      <Dropdown
-        id={question.id}
-        titleText={question.label}
-        label="Choose location"
-        items={locations}
-        itemToString={item => item.display}
-        selectedItem={field.value}
-        onChange={({ selectedItem }) => {
-          setFieldValue(question.id, selectedItem);
-          setEncounterLocation(selectedItem);
-        }}
-      />
-    </div>
+    !question.isHidden && (
+      <div className={styles.formInputField}>
+        <Dropdown
+          id={question.id}
+          titleText={question.label}
+          label="Choose location"
+          items={locations}
+          itemToString={item => item.display}
+          selectedItem={field.value}
+          onChange={({ selectedItem }) => {
+            setFieldValue(question.id, selectedItem);
+            setEncounterLocation(selectedItem);
+          }}
+        />
+      </div>
+    )
   );
 };

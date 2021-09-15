@@ -18,7 +18,7 @@ function OHRIFormSidebar({
   const [activeLink, setActiveLink] = useState(selectedPage);
 
   useEffect(() => {
-    if (defaultPage && scrollAblePages.find(({ label }) => label === defaultPage)) {
+    if (defaultPage && scrollAblePages.find(({ label, isHidden }) => label === defaultPage && !isHidden)) {
       scrollIntoView(joinWord(defaultPage));
     }
   }, [defaultPage]);
@@ -65,13 +65,15 @@ function OHRIFormSidebar({
     <div className={styles.sidebar}>
       {scrollAblePages.map((page, index) => {
         return (
-          <div
-            aria-hidden="true"
-            className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
-            key={index}
-            onClick={() => handleClick(page.label)}>
-            <div className={styles.sidebarSectionLink}>{page.label}</div>
-          </div>
+          !page.isHidden && (
+            <div
+              aria-hidden="true"
+              className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
+              key={index}
+              onClick={() => handleClick(page.label)}>
+              <div className={styles.sidebarSectionLink}>{page.label}</div>
+            </div>
+          )
         );
       })}
       <hr className={styles.sideBarHorizontalLine} />
@@ -95,8 +97,8 @@ function OHRIFormSidebar({
         style={{ width: '11rem' }}
         kind="tertiary"
         onClick={() => {
-          onCancel ? onCancel() : null;
-          handleClose();
+          onCancel && onCancel();
+          handleClose && handleClose();
         }}>
         {mode == 'view' ? 'Close' : 'Cancel'}
       </Button>
