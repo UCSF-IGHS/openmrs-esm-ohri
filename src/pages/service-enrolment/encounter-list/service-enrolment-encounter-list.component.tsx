@@ -5,41 +5,24 @@ import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import {
-  ComposedModal,
-  DataTableSkeleton,
-  ModalBody,
-  ModalHeader,
-  OverflowMenu,
-  OverflowMenuItem,
-  Tab,
-  Tabs,
-} from 'carbon-components-react';
+import { DataTableSkeleton, OverflowMenu, OverflowMenuItem, Tab, Tabs } from 'carbon-components-react';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { getForm } from '../../../utils/forms-loader';
-import OHRIForm from '../../../forms/ohri-form.component';
-import { SessionMode } from '../../../forms/types';
 import {
   careAndTreatmentEncounterType,
   dateOfHIVDiagnosisConcept,
+  encounterRepresentation,
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
 } from '../../../constants';
-import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
-import EmptyStateServiceEnrollment from '../../../components/empty-state/empty-state-service-enrolment.component';
 import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 
 interface ServiceEnrolmentProps {
   patientUuid: string;
   viewMode: string;
 }
-
-export const htsFormSlot = 'hts-encounter-form-slot';
-export const htsEncounterRepresentation =
-  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
 const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, viewMode }) => {
   const { t } = useTranslation();
@@ -60,6 +43,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
       state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
     });
   };
+
   const editServiceEnrolmentEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: serviceEnrolmentForm?.name,
@@ -144,7 +128,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
 
   useEffect(() => {
     let query = `encounterType=${careAndTreatmentEncounterType}&patient=${patientUuid}`;
-    getServiceEnrolmentColumns(query, htsEncounterRepresentation);
+    getServiceEnrolmentColumns(query, encounterRepresentation);
   }, [counter]);
 
   const headerTitle = 'Service Enrolment';
@@ -155,24 +139,23 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
         <DataTableSkeleton rowCount={rowCount} />
       ) : tableRows.length > 0 ? (
         <>
-          <div className={styles.newServiceEnrolmentBtn}>
-            <Button
-              kind="ghost"
-              renderIcon={Add16}
-              iconDescription="New"
-              onClick={e => {
-                e.preventDefault();
-                launchServiceEnrolmentForm();
-              }}>
-              {t('add', 'New')}
-            </Button>
-          </div>
           <div className={styles.widgetContainer}>
-            <Tabs type="container">
-              <Tab id="tab-1" label="Service Enrolment">
-                <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
-              </Tab>
-            </Tabs>
+            <div className={styles.widgetHeaderContainer}>
+              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+              <div className={styles.toggleButtons}>
+                <Button
+                  kind="ghost"
+                  renderIcon={Add16}
+                  iconDescription="New"
+                  onClick={e => {
+                    e.preventDefault();
+                    launchServiceEnrolmentForm();
+                  }}>
+                  {t('Add')}
+                </Button>
+              </div>
+            </div>
+            <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
         </>
       ) : (
