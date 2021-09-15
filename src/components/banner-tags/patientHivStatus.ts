@@ -1,4 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
+import { fetchPatientsFinalHIVStatus, fetchPatientComputedConcept_HIV_Status } from '../../api/api';
 
 const fetchPatientHtsEncounters = (patientUuid: string) => {
   const htsEncounterRepresentation =
@@ -13,6 +14,7 @@ const fetchPatientHtsEncounters = (patientUuid: string) => {
 
 const isPatientHivPositive = async (patientUuid: string) => {
   const hivTestResultConceptUUID = 'de18a5c1-c187-4698-9d75-258605ea07e8'; // Concept: Result of HIV test
+
   let isHivPositive = false;
   let htsTestResult;
 
@@ -25,6 +27,16 @@ const isPatientHivPositive = async (patientUuid: string) => {
       }
     });
   });
+
+  const hivFinalStatus = await fetchPatientsFinalHIVStatus(patientUuid);
+
+  const computedConcept = await fetchPatientComputedConcept_HIV_Status(patientUuid);
+
+  if (hivFinalStatus.toLowerCase().includes('positive') || computedConcept.toLowerCase().includes('positive')) {
+    isHivPositive = true;
+  } else {
+    isHivPositive = false;
+  }
 
   return isHivPositive;
 };
