@@ -170,7 +170,7 @@ const CohortPatientList: React.FC<{
       hivResult: 'None',
       actions: (
         <OverflowMenu flipped>
-          {patientFormIntent ? (
+          {actionFormCohort ? (
             <OverflowMenuItem
               itemText={actionFormCohort}
               onClick={() => {
