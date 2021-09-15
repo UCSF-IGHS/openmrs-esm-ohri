@@ -4,12 +4,17 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
-const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ patientUuid }) => {
+const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; actionButtonTitle?: string }> = ({
+  patientUuid,
+  actionButtonTitle,
+}) => {
   const [, patient] = useCurrentPatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
     return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
   }, [patient]);
+
+  const title = actionButtonTitle ? actionButtonTitle : 'Add to List';
 
   return (
     <>
@@ -25,13 +30,17 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string }> = ({ p
         <button
           className="bx--overflow-menu-options__btn"
           role="menuitem"
-          title="Add to list"
+          title={title}
           data-floating-menu-primary-focus
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">Add to list</span>
+          {actionButtonTitle ? (
+            <span className="bx--overflow-menu-options__option-content">{actionButtonTitle} </span>
+          ) : (
+            <span className="bx--overflow-menu-options__option-content">Add to List </span>
+          )}
         </button>
       </li>
     </>

@@ -54,7 +54,7 @@ const PatientList: React.FC<PatientListProps> = () => {
 
       const patientActions = (
         <OverflowMenu flipped>
-          <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} />
+          <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} actionButtonTitle="Move to List" />
         </OverflowMenu>
       );
 
