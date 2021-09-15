@@ -79,29 +79,43 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
 export function filterFormByIntent(intent, originalJson) {
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
-
+  // Set the default page based on the current intent
+  jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
+    const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
+    if (pageBehaviour) {
+      page.hide = pageBehaviour?.hide;
+    } else {
+      const fallBackBehaviour = page.behaviours?.find(behaviour => behaviour.intent === '*');
+      page.hide = fallBackBehaviour?.hide;
+    }
     page.sections.forEach(section => {
+      const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent);
+      if (secBehaviour) {
+        section.hide = secBehaviour?.hide;
+      } else {
+        const fallBackBehaviour = section.behaviours?.find(behaviour => behaviour.intent === '*');
+        section.hide = fallBackBehaviour?.hide;
+      }
       section.questions.forEach(question => {
         if (question.behaviours) {
           // Check if question behaviours includes required intent
-          const requiredIntentBehaviours = question.behaviours?.find(behaviour => behaviour.intent === intent);
-
+          const requiredIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === intent);
           // If required intent is present, substitute original props
-          if (requiredIntentBehaviours) {
-            question.required = requiredIntentBehaviours.required || undefined;
-            question.unspecified = requiredIntentBehaviours.unspecified || undefined;
-            question.hide = requiredIntentBehaviours.hide || undefined;
-            question.validators = requiredIntentBehaviours.validators || undefined;
+          if (requiredIntentBehaviour) {
+            question.required = requiredIntentBehaviour.required || undefined;
+            question.unspecified = requiredIntentBehaviour.unspecified || undefined;
+            question.hide = requiredIntentBehaviour.hide || undefined;
+            question.validators = requiredIntentBehaviour.validators || undefined;
           } else {
             // Attempt to retrieve default behaviours
-            const defaultIntentBehaviours = question.behaviours.find(behaviour => behaviour.intent === '*');
-            if (defaultIntentBehaviours) {
-              question.required = defaultIntentBehaviours.required || undefined;
-              question.unspecified = defaultIntentBehaviours.unsepecified || undefined;
-              question.hide = defaultIntentBehaviours.hide || undefined;
-              question.validators = defaultIntentBehaviours.validators || undefined;
+            const defaultIntentBehaviour = question.behaviours.find(behaviour => behaviour.intent === '*');
+            if (defaultIntentBehaviour) {
+              question.required = defaultIntentBehaviour.required || undefined;
+              question.unspecified = defaultIntentBehaviour.unspecified || undefined;
+              question.hide = defaultIntentBehaviour.hide || undefined;
+              question.validators = defaultIntentBehaviour.validators || undefined;
             }
           }
 
@@ -114,7 +128,6 @@ export function filterFormByIntent(intent, originalJson) {
     });
   });
 
-  // Return constructed Json based on intent validation
   return jsonBuffer;
 }
 

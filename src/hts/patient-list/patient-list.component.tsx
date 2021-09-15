@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import styles from './patient-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
@@ -6,7 +6,8 @@ import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../components/data-table/o-table.component';
 import { age, navigate } from '@openmrs/esm-framework';
-import { DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
+import { DataTableSkeleton, Link, Pagination, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import AddPatientToListOverflowMenuItem from '../../components/modals/patient-list/add-patient-to-list-modal.component';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import { capitalize } from 'lodash';
 import moment from 'moment';
@@ -31,6 +32,7 @@ const PatientList: React.FC<PatientListProps> = () => {
     { key: 'gender', header: 'Gender' },
     { key: 'age', header: 'Age' },
     { key: 'last_visit', header: 'Last Visit' },
+    { key: 'actions', header: 'Actions' },
   ];
 
   useEffect(() => {
@@ -50,6 +52,12 @@ const PatientList: React.FC<PatientListProps> = () => {
       const { data } = await fetchLastVisit(patient.resource.id);
       const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
 
+      const patientActions = (
+        <OverflowMenu flipped>
+          <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} />
+        </OverflowMenu>
+      );
+
       rows.push({
         id: patient.resource.id,
         name: (
@@ -64,6 +72,7 @@ const PatientList: React.FC<PatientListProps> = () => {
         gender: capitalize(patient.resource.gender),
         age: age(patient.resource.birthDate),
         last_visit: lastVisit ? moment(lastVisit).format('DD-MMM-YYYY') : '__',
+        actions: patientActions,
       });
     }
     setTableRows(rows);

@@ -44,10 +44,13 @@ export interface OHRIFormSchema {
   uuid: string;
   referencedForms: [];
   encounterType?: string;
+  allowUnspecifiedAll?: boolean;
+  defaultPage?: string;
 }
 
 export interface OHRIFormPage {
   label: string;
+  isHidden?: boolean;
   sections: Array<OHRIFormSection>;
 }
 export interface OHRIFormField {
@@ -58,10 +61,12 @@ export interface OHRIFormField {
   value?: any;
   hide?: any;
   isHidden?: boolean;
-  dependant?: any;
-  hideDeterminant?: string;
+  fieldDependants?: Array<string>;
+  pageDependants?: Array<string>;
+  sectionDependants?: Array<string>;
   required?: boolean;
   unspecified?: boolean;
+  disabled?: boolean;
 }
 
 export interface OHRIFormFieldProps {

@@ -1,0 +1,3088 @@
+{
+  "name": "Client Visit Form",
+  "pages": [
+    {
+      "label": "Client Profile",
+      "sections": [
+        {
+          "label": "Client Profile",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Date of encounter",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "dateOfEncounter"
+            },
+            {
+              "label": "Was the encounter scheduled?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ],
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1246"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "416151008"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1246"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "12461000105003"
+                  }
+                ]
+              },
+              "id": "isEncounterScheduled"
+            },
+            {
+              "label": "What type of visit is the client scheduled for?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "8a9809e9-8a0b-4e0e-b1f6-80b0cbbe361b",
+                "answers": [
+                  {
+                    "concept": "166446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Express pharmacy pickup without clinician visit",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164946"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "160523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Follow-up Visit, Regular",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "185389009"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6193"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "typeOfVisitScheduled"
+            },
+            {
+              "label": "ART Cohort",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "artCohort"
+            },
+            {
+              "label": "How long (in months) has the client been on ART?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "durationInMonthsOnART"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Presenting Complaints",
+      "sections": [
+        {
+          "label": "Presenting Complaints",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the client have any Presenting Complaints?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "hasPresentingComplaints"
+            },
+            {
+              "label": "Presenting Complaints",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "33962009"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5219"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "presentingComplaints"
+            },
+            {
+              "label": "Presenting Complaints Notes/Other Complaints",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "10154-3"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "33962009"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "presentingComplaintNotes"
+            },
+            {
+              "label": "Onset of symptom",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "65222-2"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "308928005"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "dateOfSymptomOnset"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Tuberculosis Preventive Treatment",
+      "sections": [
+        {
+          "label": "Tuberculosis Preventive Treatment",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Was the patient screened for Tuberculosis?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f8868467-bd15-4576-9da8-bfb8ef64ea17",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "171126009"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "patientScreenedForTuberculosis"
+            },
+            {
+              "label": "What was the screening outcome?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c0661c0f-348b-4941-812b-c531a0a67f2e",
+                "answers": [
+                  {
+                    "concept": "662edd6a-9f8a-4dfa-9956-a6ec42018c72",
+                    "label": "Presumptive Tuberculosis",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "currently on tuberculosis treatment",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "6176"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1257"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Currently taking tuberculosis prophylaxis",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "363819003"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164949"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "screeningOutcome"
+            },
+            {
+              "label": "When is the TB treatment start date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413946009"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "11131000105005"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1113"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1113"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "tbTreatmentStartDate"
+            },
+            {
+              "label": "Is the patient currently taking Tuberculosis Treatment?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "6176"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1257"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "isPatientOnTuberculosisTreatment"
+            },
+            {
+              "label": "When was TB treatment end date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "159431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "2597"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413947000"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "tbTreatmentEndDate"
+            },
+            {
+              "label": "When was Tuberculosis prophylaxis started?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "dateTuberculosisProphylaxisStarted"
+            },
+            {
+              "label": "Is the patient currently taking Tuberculosis prophylaxis?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "363819003"
+                  },
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164949"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "isPatientOnTuberculosisProphylaxisTreatment"
+            },
+            {
+              "label": "When was Tuberculosis prophylaxis ended?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "dateTuberculosisProphylaxisEnded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "OBGYN History",
+      "sections": [
+        {
+          "label": "OBGYN History",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "When was the patients first day of Last Monthly Period (LMP)?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "166079AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "248993009"
+                  }
+                ]
+              },
+              "id": "lastMonthlyPeriod"
+            },
+            {
+              "label": "Is the patient pregnant?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "77386006"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1484"
+                  },
+                  {
+                    "type": "ICD-10-WHO",
+                    "value": "Z33"
+                  },
+                  {
+                    "type": "IMO-ProblemIT",
+                    "value": "52609"
+                  }
+                ],
+                "answers": [
+                  {
+                    "label": "yes",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "label": "no",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "isPatientPregnant"
+            },
+            {
+              "label": "Does the patient intend to conceive in the next three months?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9109b9f3-8176-4d2f-b47d-82630dcc02ce"
+              },
+              "id": "patientIntendToConceiveInNextThreeMonths"
+            },
+            {
+              "label": "Is the patient breastfeeding?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "2056"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413712001"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5632"
+                  }
+                ]
+              },
+              "id": "isPatientBreastFeeding"
+            },
+            {
+              "label": "When is the patients expected Date of Delivery (EDD)?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "11779-6"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5596"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1854"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "366322004"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "patientExpectedDateOfDelivery"
+            },
+            {
+              "label": "Gestational Age in weeks",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "gestationAgeInWeeks"
+            },
+            {
+              "label": "Has/Was an antenatal profile been done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "975f11e5-7471-4e57-bba7-d3ee358ef7ea",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "243787009"
+                  }
+                ]
+              },
+              "id": "hasAntenatalProfileBeenDone"
+            },
+            {
+              "label": "Is the patient on a family planning method?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "160653AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "423925001"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "160652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Patient not using family planning",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "423925001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Currently using birth control",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "268458002"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "243816001"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "9651000105005"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "965"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Requests family planning information",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "397619005"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "13601000105006"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "isPatientOnFamilyPlanning"
+            },
+            {
+              "label": "What family planning method is she on/wants?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "familyPlanningMethodSheOnOrWants"
+            },
+            {
+              "label": "Why is the patient not on Family Planning?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "160575AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "6195"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "118185001"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "160573AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Currently not sexually active",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "162171002"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "3211"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "whyPatientNotOnFamilyPlanning"
+            },
+            {
+              "label": "Has the patient been screened for Cervical Cancer?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e5e99fc7-ff2d-4306-aefd-b87a07fc9ab4",
+                "answers": [
+                  {
+                    "concept": "165618AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cervical cancer screening not performed",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "4461000175108"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cervical cancer screening performed",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "268543007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "hasPatientScreenedForCervicalCancer"
+            },
+            {
+              "label": "When was cervical cancer screened?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "165429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "364713004"
+                  }
+                ]
+              },
+              "id": "wasCervicalCancerScreened"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Chronic Conditions",
+      "sections": [
+        {
+          "label": "Chronic Conditions",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the patient have any chronic illnesses or co-morbidities?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "doesPatientHaveChronicillnesses"
+            },
+            {
+              "label": "Condition",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "condition"
+            },
+            {
+              "label": "When was the onset of the chronic condition?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "onsetOfChronicCondition"
+            },
+            {
+              "label": "What is the current status of the chronic condition?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "currentStatusOfChronicCondition"
+            },
+            {
+              "label": "When did the condition become Inactive?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "whenConditionBecomeInactive"
+            },
+            {
+              "label": "Does the patient have previous admissions or prior surgery done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "doesPatientHavePreviousAdmissions"
+            },
+            {
+              "label": "Previous admissions or prior surgery notes",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "",
+                "rows": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "previousAdmissions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Allergies",
+      "sections": [
+        {
+          "label": "Allergies",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the patient have Allergies?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "doesPatientHaveAllergies"
+            },
+            {
+              "label": "Allergen",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "allergen",
+              "questions": [
+                {
+                  "label": "Other",
+                  "id": "__wI8pwCD0p",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "Drug Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "drugAllergen"
+            },
+            {
+              "label": "Food Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "foodAllergen"
+            },
+            {
+              "label": "Environmental Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "environmentalAllergen"
+            },
+            {
+              "label": "Other Allergen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "otherAllergen"
+            },
+            {
+              "label": "What was the severity of the allergic reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "severityOfAllergicReaction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Adverse Drug Reaction",
+      "sections": [
+        {
+          "label": "Adverse Drug Reaction",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Has the patient had an adverse drug reaction to medication they are currently taking?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "hasPatientHadAdverseDrugReaction"
+            },
+            {
+              "label": "What type of drug caused the reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "whatTypeOfDrugCausedTheReaction"
+            },
+            {
+              "label": "What was the severity of Adverse Drug Reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "severityOfAdverseDrugReaction"
+            },
+            {
+              "label": "What type of reaction did the patient have?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "typeOfReactionPatientHad"
+            },
+            {
+              "label": "What action was taken due to the adverse drug reaction?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "actionTakenDueToAdverseDrugReaction"
+            },
+            {
+              "label": "ADR Other action",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "adrOtherAction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Immunizations",
+      "sections": [
+        {
+          "label": "Immunizations",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Were any vaccines given during this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "vaccinesGivenDuringVisit"
+            },
+            {
+              "label": "What vaccines were given during this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "whatVaccinesWereGiven"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Physical/Systemic Examination",
+      "sections": [
+        {
+          "label": "Physical/Systemic Examination",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What are the general examination findings?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "generalExaminationFindings"
+            },
+            {
+              "label": "Other general examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "",
+                "rows": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "otherGeneralExaminationFinding"
+            },
+            {
+              "label": "What were the physical examination/systemic assessment findings?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "162737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "5880005"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abnormal",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "263654008"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "514"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1116"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Normal",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1115"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "17621005"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "physicalExaminationAssessmentDone"
+            },
+            {
+              "label": "What are the Physical Examination/Systemic findings?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "physicalExaminationFindings"
+            },
+            {
+              "label": "Skin",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "skinFindings"
+            },
+            {
+              "label": "Head/Ears/Eyes/Nose",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "headFindings"
+            },
+            {
+              "label": "Chest",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "chestFindings"
+            },
+            {
+              "label": "Cardiovascular",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "cardiovascularFindings"
+            },
+            {
+              "label": "Abdomen",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "abdomenFindings"
+            },
+            {
+              "label": "Central Nervous System",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "centralNervousSystemFindings"
+            },
+            {
+              "label": "Genito-urinary system",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "genitoUrinarySystemFindings"
+            },
+            {
+              "label": "General Examination Note",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "",
+                "rows": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "generalExaminationNote"
+            },
+            {
+              "label": "What is the patients nutritional status?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "patientNutritionalStatus"
+            },
+            {
+              "label": "Was nutritional support offered?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "wasNutritionalSupportOffered"
+            },
+            {
+              "label": "Was STI screening done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "wasSTIScreeningDone"
+            },
+            {
+              "label": "Was STI partner notification done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "wasSTIPartnerNotificationDone"
+            },
+            {
+              "label": "What is the patients W.H.O staging?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "1480"
+                  },
+                  {
+                    "type": "PIH-Malawi",
+                    "value": "7562"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "385354005"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5356"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "45233-4"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1220AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 1 peds",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1220"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103415007"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "12201000105000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 4 peds",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103418009"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "12231000105006"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1223"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 2 peds",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "12211000105002"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103416008"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1221"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1204AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 1 adult",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103415007"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1204"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1204"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1206AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 3 adult",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103417004"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1206"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1206"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1207AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 4 adult",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1207"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1207"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103418009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1222AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 3 peds",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1222"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "12221000105008"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103417004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1205AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "WHO stage 2 adult",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1205"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1205"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "103416008"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "patientWHOStaging"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "HIV Monitoring",
+      "sections": [
+        {
+          "label": "HIV Monitoring",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Was a CD4 requested at this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1941AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "82078001"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "313938009"
+                  }
+                ]
+              },
+              "id": "wasCD4RequestedAtVisit"
+            },
+            {
+              "label": "What is the latest CD4 Count in cells/uL?",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "657"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "313938009"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "6571000105005"
+                  }
+                ]
+              },
+              "id": "latestCD4CountInCells",
+              "questions": [
+                {
+                  "label": "CD4 count",
+                  "id": "__tyxr5uuwM",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "CD4%",
+                  "id": "__LLMzIGKx4",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                }
+              ]
+            },
+            {
+              "label": "When was a CD4 Count done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "3461"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "399651003"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "1593761000105001"
+                  }
+                ]
+              },
+              "id": "whenWasCD4CountDone"
+            },
+            {
+              "label": "Was a Viral Load requested at this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "viralLoadRequestedAtVisit"
+            },
+            {
+              "label": "What is the lasted Viral Load in copies/ml?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "max": "",
+                "min": "",
+                "showDate": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "viralLoadInCopies"
+            },
+            {
+              "label": "When was the Viral Load done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "399651003"
+                  }
+                ]
+              },
+              "id": "whenWasViralLoadDone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Positive Health, Dignity, and Prevention (PHDP)",
+      "sections": [
+        {
+          "label": "Positive Health, Dignity, and Prevention (PHDP)",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What PHDP services were offered to the patient during this visit?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "phdpServicesOfferedDuringVisit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Treatment Plan",
+      "sections": [
+        {
+          "label": "Treatment Plan",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What is the HIV management plan?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "hiveManagementPlan"
+            },
+            {
+              "label": "What date was Antiretroviral treatment started?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "5869"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1499"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "2516"
+                  },
+                  {
+                    "type": "PIH-Malawi",
+                    "value": "2516"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413946009"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "1595991000105005"
+                  }
+                ],
+                "weeksList": ""
+              },
+              "id": "dateAntiretroviralTreatmentStarted"
+            },
+            {
+              "label": "What is the HAART Regimen?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "reasonForRegimenChange"
+            },
+            {
+              "label": "What is the reason for regimen change/Switch was done?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "reasonForRegimenChange"
+            },
+            {
+              "label": "Regimen Change other",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "regimenChangeOther"
+            },
+            {
+              "label": "What is the HAART stop reason?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "haartStopReason"
+            },
+            {
+              "label": "Other reasons for stopping ART",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "otherReasonsForStoppingART"
+            },
+            {
+              "label": "When was HAART stopped?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "whenWasHaartStopped"
+            },
+            {
+              "label": "When was HAART Restarted?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "whenWasHaartRestarted"
+            },
+            {
+              "label": "What is the currently plan for prophylaxis/Treatment for Pneumocystis Pneumonia (PCP)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1261AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1261"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Change regimen",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1259"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1257AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Continue regimen",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "266714009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1257"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1257"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Dosing change",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1258"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "981"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Start drugs",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1256"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "12561000105002"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "306807008"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1256"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Stop all",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1260"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1260"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "274512008"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "currentlyTreatmentPlanForPneumocystisPneumonia"
+            },
+            {
+              "label": "Cotrimoxazole/Dapsone start date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "164361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413946009"
+                  }
+                ]
+              },
+              "id": "cotrimoxazoleDapsoneStartDate"
+            },
+            {
+              "label": "Cotrimoxazole/Dapsone stop date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "164362AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "413947000"
+                  }
+                ]
+              },
+              "id": "cotrimoxazoleDapsoneStopDate"
+            },
+            {
+              "label": "What is the currently plan for prophylaxis/Treatment for Cryptococcal meningitis",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1277"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1257AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Continue regimen",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "266714009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1257"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1257"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Stop all",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1260"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1260"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "274512008"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Start drugs",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1256"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "12561000105002"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "306807008"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1256"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "currentTreatmentPlanForCryptococcalMeningitis"
+            },
+            {
+              "label": "Fluconazole Start Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "fluconazoleStartDate"
+            },
+            {
+              "label": "Fluconazole Stop Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "",
+                "weeksList": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "fluconazoleStopDate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Adherence",
+      "sections": [
+        {
+          "label": "Adherence",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "What  the patients HAART adherence assessment?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "patientHaartAdherenceAssessment"
+            },
+            {
+              "label": "What is the reason for Fair/Poor adherence to HAART?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "reasonForPoorAdherenceToHaart"
+            },
+            {
+              "label": "What is the patients cotrimoxazole/Dapsone adherence assessment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "166462AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164941"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "418633004"
+                  }
+                ]
+              },
+              "id": "patientCotrimoxazoleDapsoneAdherenceAssessment"
+            },
+            {
+              "label": "Reason for Fair/Poor adherence to Cotrimoxazole/Dapsone",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "reasonForPoorAdherenceToCotrimoxazoleDapsone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Differentiated Service Delivery (DSD)",
+      "sections": [
+        {
+          "label": "Differentiated Service Delivery (DSD)",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Differentiated Service Delivery Criteria",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "differentiatedServiceDeliveryCriteria"
+            },
+            {
+              "label": "What is the clients stability assessment?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "cf0aaf49-d6d8-40d3-85c3-b80985d8e68a",
+                "answers": [
+                  {
+                    "concept": "b45e6593-8964-4e6d-8e9b-fe69084157b6",
+                    "label": "Stable Client",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d4bc223e-0caf-4ee7-a177-4e9dbccca9dc",
+                    "label": "Unstable Client",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "clientStabilityAssessment"
+            },
+            {
+              "label": "Differentiated care services?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "159836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "discontinue",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "6102"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "421286000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "re-enroll",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "159835AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "continue",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255238004"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "1598351000105008"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "6101"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "differentiatedCareServices"
+            },
+            {
+              "label": "What is the selected differentiated care model?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "166448AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164947"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "363819003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "166444AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Community medication distribution, peer led",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164945"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166445AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Facility group medication distribution",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164946"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166443AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Community medication distribution, healthcare worker led",
+                    "conceptMappings": [
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164944"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166447AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Standard pharmacy pickup following clinician visit",
+                    "conceptMappings": [
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164942"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Express pharmacy pickup without clinician visit",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373784005"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164946"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "selectedDifferentiatedCareModel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Next Appointment & Referrals",
+      "sections": [
+        {
+          "label": "Next Appointment & Referrals",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "Does the client have any referrals?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "7b734819-27fb-41bb-af95-f91182c242f2",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "3457005"
+                  }
+                ]
+              },
+              "id": "doesClientHaveAnyReferrals"
+            },
+            {
+              "label": "What is the next appointment date?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "5096"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "50961000105000"
+                  },
+                  {
+                    "type": "org.openmrs.module.mdrtb",
+                    "value": "RETURN VISIT DATE"
+                  },
+                  {
+                    "type": "PIH-Malawi",
+                    "value": "5096"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "406543005"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "nextAppointmentDate"
+            },
+            {
+              "label": "What is the attending clinician's name",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "attendingClinicianName"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "availableIntents": [
+    {
+      "intent": "CT_CLINICAL_VISIT_INITIAL",
+      "display": "Initial Visit"
+    },
+    {
+      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+      "display": "Follow Up Visit "
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": [],
+  "encounterType": "cb0a65a7-0587-477e-89b9-cf2fd144f1d4"
+}

@@ -22,7 +22,13 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "422549004"
+                  }
+                ]
               },
               "id": "patientIdentifier"
             },

@@ -9,12 +9,12 @@ import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
-import { htsEncounterRepresentation } from '../hts/encounters-list/hts-overview-list.component';
 import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
-import { HTSEncounterType } from './constants';
-import { OHRIFieldValidator } from './ohri-form-validator';
+import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
+import { isEmpty as isValueEmpty, OHRIFieldValidator } from './ohri-form-validator';
+import { encounterRepresentation } from '../constants';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -44,7 +44,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const encDate = new Date();
   const [encounter, setEncounter] = useState(null);
   const [form, setForm] = useState<OHRIFormSchema>(null);
-  const [currentPage, setCurrentPage] = useState(undefined);
+  const [scrollAblePages, setScrollAblePages] = useState(undefined);
   const [selectedPage, setSelectedPage] = useState('');
   const { t } = useTranslation();
 
@@ -79,16 +79,23 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     setFields(
       allFormFields.map(field => {
         if (field.hide) {
-          evaluateHideExpression(field, null, allFormFields);
+          evaluateHideExpression(field, null, allFormFields, tempInitVals);
         } else {
           field.isHidden = false;
         }
         return field;
       }),
     );
+    form.pages.forEach(page => {
+      if (page.hide) {
+        evaluateHideExpression(null, null, allFormFields, null, page, null);
+      } else {
+        page.isHidden = false;
+      }
+    });
     setForm(form);
     setInitialValues(tempInitVals);
-    setCurrentPage(form?.pages);
+    setScrollAblePages(form?.pages);
   }, [encounter]);
 
   useEffect(() => {
@@ -104,7 +111,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let subscription;
     if (encounterUuid) {
       subscription = openmrsObservableFetch(
-        `/ws/rest/v1/encounter/${encounterUuid}?v=${htsEncounterRepresentation}`,
+        `/ws/rest/v1/encounter/${encounterUuid}?v=${encounterRepresentation}`,
       ).subscribe(response => {
         setEncounter(response.data);
       });
@@ -112,28 +119,70 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     return () => subscription?.unsubscribe();
   }, [encounterUuid]);
 
-  const evaluateHideExpression = (field, determinantValue, allFields) => {
-    // TODO: Handle advanced skip patterns
-    if (typeof field.hide !== 'string') {
-      field.isHidden = false;
-      return;
-    }
+  const evaluateHideExpression = (
+    field,
+    determinantValue = undefined,
+    allFields,
+    initialVals?: Record<string, any>,
+    page?,
+    section?,
+  ) => {
+    let hideExpression =
+      field?.hide?.hideWhenExpression || page?.hide?.hideWhenExpression || section?.hide?.hideWhenExpression;
     const allFieldsKeys = allFields.map(f => f.id);
-    const parts = field.hide.trim().split(' ');
-    const determinantField = parts[0];
-    if (allFieldsKeys.includes(determinantField)) {
-      field['hideDeterminant'] = determinantField;
-      const determinant = allFields.find(field => field.id === determinantField);
-      determinant['dependant'] = field.id;
-      let hideExp = field.hide;
-      // prep eval variables
-      determinantValue = determinantValue || initialValues[determinantField];
-      const expectedValue = parts[2];
-      hideExp = hideExp.replace(determinantField, 'determinantValue');
-      hideExp = hideExp.replace(expectedValue, 'expectedValue');
-      field.isHidden = eval(hideExp);
-    } else {
-      field.isHidden = false;
+    const parts = hideExpression.trim().split(' ');
+    function isEmpty(value) {
+      if (allFieldsKeys.includes(value)) {
+        return initialVals ? isValueEmpty(initialVals[value]) : isValueEmpty(initialValues[value]);
+      }
+      return isValueEmpty(value);
+    }
+    parts.forEach((part, index) => {
+      if (index % 2 == 0) {
+        if (allFieldsKeys.includes(part)) {
+          const determinant = allFields.find(field => field.id === part);
+          if (field) {
+            if (!determinant.fieldDependants) {
+              determinant.fieldDependants = new Set();
+            }
+            determinant.fieldDependants.add(field.id);
+          }
+          if (page) {
+            if (!determinant.pageDependants) {
+              determinant.pageDependants = new Set();
+            }
+            determinant.pageDependants.add(page.label);
+          }
+          if (section) {
+            if (!determinant.sectionDependants) {
+              determinant.sectionDependants = new Set();
+            }
+            determinant.sectionDependants.add(section.label);
+          }
+          // prep eval variables
+          if (determinantValue == undefined) {
+            determinantValue = initialVals ? initialVals[part] || null : initialValues[part] || null;
+            if (determinant.questionOptions.rendering == 'toggle') {
+              determinantValue = determinantValue ? ConceptTrue : ConceptFalse;
+            }
+          }
+          if (determinantValue && typeof determinantValue == 'string') {
+            determinantValue = `'${determinantValue}'`;
+          }
+          const regx = new RegExp(part, 'g');
+          hideExpression = hideExpression.replace(regx, determinantValue);
+        }
+      }
+    });
+    const isHidden = eval(hideExpression);
+    if (field) {
+      field.isHidden = isHidden;
+    }
+    if (page) {
+      page.isHidden = isHidden;
+    }
+    if (section) {
+      section.isHidden = isHidden;
     }
   };
 
@@ -142,6 +191,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let formHasErrors = false;
     // handle field validation
     fields
+      .filter(field => !field.disabled || !field.isHidden)
       .filter(field => field['submission']?.unspecified != true)
       .forEach(field => {
         const errors = OHRIFieldValidator.validate(field, values[field.id]);
@@ -232,13 +282,28 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
   const onFieldChange = (fieldName: string, value: any) => {
     const field = fields.find(field => field.id == fieldName);
-    if (field.dependant) {
-      const dependant = fields.find(f => f.hideDeterminant == fieldName);
-      evaluateHideExpression(dependant, value, fields);
-      let fields_temp = [...fields];
-      const index = fields_temp.findIndex(f => f.id == field.dependant);
-      fields_temp[index] = dependant;
-      setFields(fields_temp);
+    if (field.questionOptions.rendering == 'toggle') {
+      value = value ? ConceptTrue : ConceptFalse;
+    }
+    if (field.fieldDependants) {
+      field.fieldDependants.forEach(dep => {
+        const dependant = fields.find(f => f.id == dep);
+        evaluateHideExpression(dependant, value, fields);
+        let fields_temp = [...fields];
+        const index = fields_temp.findIndex(f => f.id == dep);
+        fields_temp[index] = dependant;
+        setFields(fields_temp);
+      });
+    }
+    if (field.pageDependants) {
+      field.pageDependants?.forEach(dep => {
+        const dependant = form.pages.find(f => f.label == dep);
+        evaluateHideExpression(null, value, fields, null, dependant, null);
+        let form_temp = form;
+        const index = form_temp.pages.findIndex(page => page.label == dep);
+        form_temp[index] = dependant;
+        setForm(form_temp);
+      });
     }
   };
 
@@ -260,13 +325,15 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               <div className={styles.mainContainer}>
                 <div className={styles.sidebar}>
                   <OHRIFormSidebar
-                    currentPage={currentPage}
+                    scrollAblePages={scrollAblePages}
                     selectedPage={selectedPage}
                     mode={mode}
                     onCancel={onCancel}
                     handleClose={handleClose}
                     values={props.values}
                     setValues={props.setValues}
+                    allowUnspecifiedAll={formJson.allowUnspecifiedAll}
+                    defaultPage={formJson.defaultPage}
                   />
                 </div>
                 <div className={styles.overflowContent}>
@@ -286,7 +353,9 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     }}>
                     {form.pages.map((page, index) => {
                       return (
-                        <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                        !page.isHidden && (
+                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                        )
                       );
                     })}
                   </OHRIFormContext.Provider>

@@ -83,6 +83,24 @@ export async function getCohort(cohortUuid: string, version?: string) {
   return data;
 }
 
+export async function getReportingCohort(cohortUuid: string, queryParams?: string[]) {
+  const params = queryParams ? queryParams.join('&') : '';
+  const url = params ? `reportingrest/cohort/${cohortUuid}?${params}` : `reportingrest/cohort/${cohortUuid}`;
+  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+  return data;
+}
+
+export async function getReportingCohortMembers(cohortUuid: string, queryParams?: string[]) {
+  const params = queryParams ? queryParams.join('&') : '';
+  const url = params ? `reportingrest/cohort/${cohortUuid}?${params}` : `reportingrest/cohort/${cohortUuid}`;
+  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+  return Promise.all(
+    data.members.map(member => {
+      return openmrsFetch(BASE_WS_API_URL + `patient/${member.uuid}?v=full`);
+    }),
+  );
+}
+
 export async function getCohorts(cohortTypeUuid?: string) {
   const {
     data: { results, error },

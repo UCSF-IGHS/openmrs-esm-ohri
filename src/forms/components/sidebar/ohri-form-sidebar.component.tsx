@@ -1,11 +1,27 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
 import { Button, Toggle } from 'carbon-components-react';
 import { isEmpty } from '../../ohri-form-validator';
 
-function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClose, values, setValues }) {
+function OHRIFormSidebar({
+  scrollAblePages,
+  selectedPage,
+  mode,
+  onCancel,
+  handleClose,
+  values,
+  setValues,
+  allowUnspecifiedAll,
+  defaultPage,
+}) {
   const [activeLink, setActiveLink] = useState(selectedPage);
+
+  useEffect(() => {
+    if (defaultPage && scrollAblePages.find(({ label, isHidden }) => label === defaultPage && !isHidden)) {
+      scrollIntoView(joinWord(defaultPage));
+    }
+  }, [defaultPage]);
 
   const joinWord = value => {
     return value.replace(/\s/g, '');
@@ -47,27 +63,31 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClos
   );
   return (
     <div className={styles.sidebar}>
-      {currentPage.map((page, index) => {
+      {scrollAblePages.map((page, index) => {
         return (
-          <div
-            aria-hidden="true"
-            className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
-            key={index}
-            onClick={() => handleClick(page.label)}>
-            <div className={styles.sidebarSectionLink}>{page.label}</div>
-          </div>
+          !page.isHidden && (
+            <div
+              aria-hidden="true"
+              className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
+              key={index}
+              onClick={() => handleClick(page.label)}>
+              <div className={styles.sidebarSectionLink}>{page.label}</div>
+            </div>
+          )
         );
       })}
       <hr className={styles.sideBarHorizontalLine} />
-      <div style={{ marginBottom: '.6rem' }}>
-        <Toggle
-          labelText=""
-          id="auto-unspecifier"
-          labelA="Unspecify All"
-          labelB="Revert"
-          onToggle={markAllAsUnspecified}
-        />
-      </div>
+      {allowUnspecifiedAll && (
+        <div style={{ marginBottom: '.6rem' }}>
+          <Toggle
+            labelText=""
+            id="auto-unspecifier"
+            labelA="Unspecify All"
+            labelB="Revert"
+            onToggle={markAllAsUnspecified}
+          />
+        </div>
+      )}
       {mode != 'view' && (
         <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
           Save
@@ -77,8 +97,8 @@ function OHRIFormSidebar({ currentPage, selectedPage, mode, onCancel, handleClos
         style={{ width: '11rem' }}
         kind="tertiary"
         onClick={() => {
-          onCancel ? onCancel() : null;
-          handleClose();
+          onCancel && onCancel();
+          handleClose && handleClose();
         }}>
         {mode == 'view' ? 'Close' : 'Cancel'}
       </Button>
