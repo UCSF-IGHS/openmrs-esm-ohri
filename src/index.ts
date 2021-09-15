@@ -79,6 +79,18 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      ,
+      {
+        id: 'hts-service-summary-list-ext',
+        slot: 'hts-service-summary-dashboard-slot',
+        load: getAsyncLifecycle(
+          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
+          {
+            featureName: 'hts-service-summary-list',
+            moduleName,
+          },
+        ),
+      },
       {
         id: 'hts-service-enrolment-list-ext',
         slot: 'hts-service-enrolment-dashboard-slot',
@@ -95,21 +107,6 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'hts-service-summary-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
-          {
-            featureName: 'hts-service-summary-list',
-            moduleName,
-          },
-        ),
-        order: 6,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
         id: 'hts-lab-results-list-ext',
         slot: 'hts-lab-results-dashboard-slot',
         load: getAsyncLifecycle(
@@ -119,7 +116,19 @@ function setupOpenMRS() {
             moduleName,
           },
         ),
-        order: 5,
+        order: 6,
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'hts-cd4-list-ext',
+        slot: 'hts-lab-results-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./pages/lab-results/cd4/cd4-encounter-list.component'), {
+          featureName: 'hts-lab-results-list',
+          moduleName,
+        }),
+        order: 7,
         meta: {
           columnSpan: 4,
         },
@@ -142,7 +151,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-header-ext',
         slot: 'hts-home-header-slot',
-        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hts/home/welcome-section/hts-welcome-section.component'), {
           featureName: 'hts-home-header',
           moduleName,
         }),
@@ -291,27 +300,6 @@ function setupOpenMRS() {
         meta: drugOrders_dashboardMeta,
         online: true,
         offline: true,
-      },
-      {
-        //TODO: Fix dependency for 2nd Nav
-        id: 'covid-case-report-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
-        meta: caseReport_dashboardMeta,
-        order: 7,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-case-report-ext',
-        slot: 'covid-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/case-report/case-report.component'), {
-          featureName: 'covid-case-report',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
       },
     ],
   };

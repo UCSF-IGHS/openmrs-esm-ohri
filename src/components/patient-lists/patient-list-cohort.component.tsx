@@ -1,13 +1,20 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort, getReportingCohortMembers } from '../../api/api';
 import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
-import { basePath } from '../../constants';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 
-import { OverflowMenu } from 'carbon-components-react';
+import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
+import {
+  basePath,
+  waitingForHIVTestCohort,
+  postTestCounsellingCohort,
+  preTestCounsellingCohort,
+} from '../../constants';
+import { launchForm } from '../../utils/ohri-forms-commons';
+import { getForm, filterFormByIntent } from '../../utils/forms-loader';
 
 export interface PatientListColumn {
   key: string;
@@ -107,6 +114,7 @@ const CohortPatientList: React.FC<{
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const columnAtLastIndex = 'actions';
+  const htsForm = getForm('hiv', 'hts');
 
   const constructPatient = rawPatient => {
     return {
@@ -125,6 +133,34 @@ const CohortPatientList: React.FC<{
     };
   };
 
+  const getFormTitle = () => {
+    if (cohortId === preTestCounsellingCohort) {
+      return 'Pre-test Counselling';
+    } else if (cohortId === waitingForHIVTestCohort) {
+      return 'HIV Testing';
+    } else if (cohortId === postTestCounsellingCohort) {
+      return 'Post-test Counselling';
+    }
+  };
+
+  let actionFormCohort = '';
+  const getFormIntent = () => {
+    if (cohortId === preTestCounsellingCohort) {
+      actionFormCohort = 'Start Pre-test Counselling';
+      //TODO: Use the proper hook to open the form  HTS_PRETEST
+      return 'HTS_RETROSPECTIVE';
+    } else if (cohortId === waitingForHIVTestCohort) {
+      actionFormCohort = 'Start HIV Test';
+      return 'HIV_TEST';
+    } else if (cohortId === postTestCounsellingCohort) {
+      actionFormCohort = 'Start Post-test Counselling';
+      return 'HTS_POSTTEST';
+    }
+  };
+
+  const patientFormTitle = getFormTitle();
+  const patientFormIntent = getFormIntent();
+
   const setListMeta = (patientWithMeta, location) => {
     return {
       timeAddedToList: !isReportingCohort ? moment(patientWithMeta.startDate).format('LL') : null,
@@ -134,6 +170,13 @@ const CohortPatientList: React.FC<{
       hivResult: 'None',
       actions: (
         <OverflowMenu flipped>
+          <OverflowMenuItem
+            itemText={actionFormCohort}
+            onClick={() => {
+              launchForm(filterFormByIntent(patientFormIntent, htsForm));
+              navigate({ to: `${basePath}${patientWithMeta.patient.uuid}/chart/hts-summary` });
+            }}
+          />
           <AddPatientToListOverflowMenuItem
             patientUuid={isReportingCohort ? patientWithMeta.person.uuid : patientWithMeta.patient.uuid}
           />
