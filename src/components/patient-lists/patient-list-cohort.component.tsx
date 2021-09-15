@@ -118,9 +118,9 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
   let actionFormCohort = '';
   const getFormIntent = () => {
     if (cohortId === preTestCounsellingCohort) {
-      actionFormCohort = 'Start Pre-test Counselling'; 
+      actionFormCohort = 'Start Pre-test Counselling';
       //TODO: Use the proper hook to open the form  HTS_PRETEST
-      return 'HTS_RETROSPECTIVE'; 
+      return 'HTS_RETROSPECTIVE';
     } else if (cohortId === waitingForHIVTestCohort) {
       actionFormCohort = 'Start HIV Test';
       return 'HIV_TEST';
@@ -128,7 +128,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
       actionFormCohort = 'Start Post-test Counselling';
       return 'HTS_POSTTEST';
     }
-  }; 
+  };
 
   const patientFormTitle = getFormTitle();
   const patientFormIntent = getFormIntent();
@@ -152,7 +152,7 @@ const CohortPatientList: React.FC<{ cohortId: string; cohortSlotName: string; la
               itemText={actionFormCohort}
               onClick={() => {
                 launchForm(filterFormByIntent(patientFormIntent, htsForm));
-                navigate({ to: `${basePath}${member.patient.uuid}/chart/hts-summary` }); 
+                navigate({ to: `${basePath}${member.patient.uuid}/chart/hts-summary` });
               }}
             />
             <AddPatientToListOverflowMenuItem patientUuid={member.patient.uuid} actionButtonTitle="Move to List" />

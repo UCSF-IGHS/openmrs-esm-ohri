@@ -53,7 +53,7 @@ const PatientList: React.FC<PatientListProps> = () => {
       const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
 
       const patientActions = (
-        <OverflowMenu flipped> 
+        <OverflowMenu flipped>
           <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} actionButtonTitle="Add to List" />
         </OverflowMenu>
       );
