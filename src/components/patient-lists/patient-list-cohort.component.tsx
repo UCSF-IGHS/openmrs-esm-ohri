@@ -1,18 +1,12 @@
-import { age, attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework';
+import { attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFinalHIVStatus, getCohort, getReportingCohortMembers } from '../../api/api';
-import EmptyState from '../empty-state/empty-state.component';
 import moment from 'moment';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
-import {
-  basePath,
-  waitingForHIVTestCohort,
-  postTestCounsellingCohort,
-  preTestCounsellingCohort,
-} from '../../constants';
+import { basePath } from '../../constants';
 import { launchForm } from '../../utils/ohri-forms-commons';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
 
@@ -97,14 +91,29 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const CohortPatientList: React.FC<{
+interface CohortPatientListProps {
   cohortId: string;
   cohortSlotName: string;
   isReportingCohort?: boolean;
   otherColumns?: Array<PatientListColumn>;
   excludeColumns?: Array<string>;
   queryParams?: Array<string>;
-}> = ({ cohortId, cohortSlotName, isReportingCohort, otherColumns, excludeColumns, queryParams }) => {
+  launchableForm?: {
+    package: string;
+    name: string;
+    intent: string;
+    actionText: string;
+  };
+}
+const CohortPatientList: React.FC<CohortPatientListProps> = ({
+  cohortId,
+  cohortSlotName,
+  isReportingCohort,
+  otherColumns,
+  excludeColumns,
+  queryParams,
+  launchableForm,
+}) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -114,7 +123,7 @@ const CohortPatientList: React.FC<{
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const columnAtLastIndex = 'actions';
-  const htsForm = getForm('hiv', 'hts');
+  const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
 
   const constructPatient = rawPatient => {
     return {
@@ -133,35 +142,8 @@ const CohortPatientList: React.FC<{
     };
   };
 
-  const getFormTitle = () => {
-    if (cohortId === preTestCounsellingCohort) {
-      return 'Pre-test Counselling';
-    } else if (cohortId === waitingForHIVTestCohort) {
-      return 'HIV Testing';
-    } else if (cohortId === postTestCounsellingCohort) {
-      return 'Post-test Counselling';
-    }
-  };
-
-  let actionFormCohort = '';
-  const getFormIntent = () => {
-    if (cohortId === preTestCounsellingCohort) {
-      actionFormCohort = 'Start Pre-test Counselling';
-      //TODO: Use the proper hook to open the form  HTS_PRETEST
-      return 'HTS_RETROSPECTIVE';
-    } else if (cohortId === waitingForHIVTestCohort) {
-      actionFormCohort = 'Start HIV Test';
-      return 'HIV_TEST';
-    } else if (cohortId === postTestCounsellingCohort) {
-      actionFormCohort = 'Start Post-test Counselling';
-      return 'HTS_POSTTEST';
-    }
-  };
-
-  const patientFormTitle = getFormTitle();
-  const patientFormIntent = getFormIntent();
-
   const setListMeta = (patientWithMeta, location) => {
+    const patientUuid = !isReportingCohort ? patientWithMeta.patient.uuid : patientWithMeta.person.uuid;
     return {
       timeAddedToList: !isReportingCohort ? moment(patientWithMeta.startDate).format('LL') : null,
       waitingTime: !isReportingCohort ? moment(patientWithMeta.startDate).fromNow() : null,
@@ -170,27 +152,27 @@ const CohortPatientList: React.FC<{
       hivResult: 'None',
       actions: (
         <OverflowMenu flipped>
-          {actionFormCohort ? (
+          {form ? (
             <OverflowMenuItem
-              itemText={actionFormCohort}
+              itemText={launchableForm.actionText}
               onClick={() => {
-                launchForm(filterFormByIntent(patientFormIntent, htsForm));
-                navigate({ to: `${basePath}${patientWithMeta.patient.uuid}/chart/hts-summary` });
+                launchForm(filterFormByIntent(launchableForm.intent, form));
+                navigate({ to: `${basePath}${patientUuid}/chart/hts-summary` });
               }}
             />
           ) : (
             <></>
           )}
 
-          <AddPatientToListOverflowMenuItem
-            patientUuid={isReportingCohort ? patientWithMeta.person.uuid : patientWithMeta.patient.uuid}
-          />
+          <AddPatientToListOverflowMenuItem patientUuid={patientUuid} displayText="Move to list" />
         </OverflowMenu>
       ),
     };
   };
 
   useEffect(() => {
+    if (launchableForm) {
+    }
     if (!isReportingCohort) {
       getCohort(cohortId, 'full').then(results => {
         const patients = results.cohortMembers.map(member => ({
