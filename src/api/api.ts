@@ -1,6 +1,6 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import moment from 'moment';
-import { finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../constants';
+import { finalHIVCodeConcept, finalPositiveHIVValueConcept, computedHIV_StatusConcept } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -161,4 +161,15 @@ export function fetchPatientObservationFromEncounter(
   return openmrsFetch(
     `/ws/fhir2/R4/Observation?patient=${patientUUID}&encounter=${encounterUUID}&code=${observationCode}&_sort=-date&_count=1`,
   );
+}
+
+export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
+  return openmrsFetch(
+    `/ws/fhir2/R4/Observation?code=${computedHIV_StatusConcept}&value-concept=${computedHIV_StatusConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
+  ).then(({ data }) => {
+    if (data.entry?.length) {
+      return data.entry[0].resource.valueCodeableConcept.coding[0].display;
+    }
+    return 'Negative';
+  });
 }
