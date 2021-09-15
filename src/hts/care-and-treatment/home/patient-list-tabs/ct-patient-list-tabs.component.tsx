@@ -49,6 +49,12 @@ function CTHomePatientTabs() {
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
+      launchableForm: {
+        package: 'hiv',
+        name: 'clinical_visit',
+        actionText: 'Start Follow Up Visit',
+        intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+      },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
       queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
       otherColumns: [
