@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Dropdown } from 'carbon-components-react'; 
+import { Button, Dropdown } from 'carbon-components-react';
 import { filterFormByIntent } from '../../utils/forms-loader';
 
 export const OHRIFormLauncherWithIntent: React.FC<{
