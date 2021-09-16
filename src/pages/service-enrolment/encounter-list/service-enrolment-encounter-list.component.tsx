@@ -145,16 +145,11 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
               <div className={styles.toggleButtons}>
-                <Button
-                  kind="ghost"
-                  renderIcon={Add16}
-                  iconDescription="New"
-                  onClick={e => {
-                    e.preventDefault();
-                    launchServiceEnrolmentForm();
-                  }}>
-                  {t('Add')}
-                </Button>
+                <OHRIFormLauncherWithIntent
+                  formJson={serviceEnrolmenttForm}
+                  launchForm={launchServiceEnrolmentForm}
+                  onChangeIntent={setServiceEnrolmentForm}
+                />
               </div>
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
