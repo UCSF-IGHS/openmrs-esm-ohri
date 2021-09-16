@@ -12,7 +12,7 @@ function FormRenderTest() {
   const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
-  const [formIntentInput, setFormIntentInput] = useState('');
+  const [formIntentInput, setFormIntentInput] = useState('Empty Intent');
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
 
   const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
@@ -35,6 +35,10 @@ function FormRenderTest() {
     let _formIntents = [];
 
     _formIntents = jsonSchema.availableIntents || [];
+
+    if (_formIntents.length > 0) {
+      setFormIntentInput(null);
+    }
 
     setFormIntents(_formIntents);
     setIsIntentsDropdownDisabled(false);
