@@ -18,6 +18,7 @@ import {
 } from '../../../constants';
 import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
+import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
 
 interface ServiceEnrolmentProps {
   patientUuid: string;
@@ -30,6 +31,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
+  const [serviceEnrolmenttForm, setServiceEnrolmentForm] = useState(getForm('hiv', 'service_enrolment'));
 
   const forceComponentUpdate = () => setCounter(counter + 1);
   const serviceEnrolmentForm = useMemo(() => {
@@ -143,16 +145,11 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
               <div className={styles.toggleButtons}>
-                <Button
-                  kind="ghost"
-                  renderIcon={Add16}
-                  iconDescription="New"
-                  onClick={e => {
-                    e.preventDefault();
-                    launchServiceEnrolmentForm();
-                  }}>
-                  {t('Add')}
-                </Button>
+                <OHRIFormLauncherWithIntent
+                  formJson={serviceEnrolmenttForm}
+                  launchForm={launchServiceEnrolmentForm}
+                  onChangeIntent={setServiceEnrolmentForm}
+                />
               </div>
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
@@ -162,7 +159,14 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
         <EmptyState
           displayText={t('serviceEnrolments', 'service enrolments')}
           headerTitle={headerTitle}
-          launchFormComponent={<OHRIFormLauncherEmpty launchForm={launchServiceEnrolmentForm} />}
+          launchForm={launchServiceEnrolmentForm}
+          launchFormComponent={
+            <OHRIFormLauncherWithIntent
+              formJson={serviceEnrolmenttForm}
+              launchForm={launchServiceEnrolmentForm}
+              onChangeIntent={setServiceEnrolmentForm}
+            />
+          }
         />
       )}
     </>
