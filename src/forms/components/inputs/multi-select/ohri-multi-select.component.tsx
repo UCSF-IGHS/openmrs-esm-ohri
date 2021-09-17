@@ -1,5 +1,4 @@
-import { FormGroup, ListItem, UnorderedList } from 'carbon-components-react';
-import MultiSelect from 'carbon-components-react/lib/components/MultiSelect';
+import { FormGroup, ListItem, MultiSelect, UnorderedList } from 'carbon-components-react';
 import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
