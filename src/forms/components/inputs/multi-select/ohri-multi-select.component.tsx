@@ -39,7 +39,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
 
   const initiallySelectedQuestionItems = [];
   questionItems.forEach(item => {
-    if (field.value.includes(item.concept)) {
+    if (field.value?.includes(item.concept)) {
       initiallySelectedQuestionItems.push(item);
     }
   });
