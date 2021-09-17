@@ -32,9 +32,7 @@ function FormRenderTest() {
   };
 
   const loadIntentsFromSchema = jsonSchema => {
-    let _formIntents = [];
-
-    _formIntents = jsonSchema.availableIntents || [];
+    let _formIntents = jsonSchema.availableIntents || [];
 
     if (_formIntents.length > 0) {
       setFormIntentInput(null);
@@ -133,7 +131,7 @@ function FormRenderTest() {
                       <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />
                     </div>
                   ) : (
-                    <p>Please enter a valid schema or submit form</p>
+                    <p>Please submit the form</p>
                   )}
                 </Tab>
                 <Tab id="tab-json-schema" label="JSON Schema">
