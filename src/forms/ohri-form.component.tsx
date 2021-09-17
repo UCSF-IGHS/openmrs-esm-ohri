@@ -13,7 +13,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
-import { isEmpty as isValueEmpty, OHRIFieldValidator } from './ohri-form-validator';
+import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from './ohri-form-validator';
 import { encounterRepresentation } from '../constants';
 
 interface OHRIFormProps {
@@ -203,11 +203,15 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const addObs = useCallback((obsList: Array<any>, obs: any) => {
     if (Array.isArray(obs)) {
       obs.forEach(o => {
-        if (!o.groupMembers) {
+        delete o.formFieldNamespace;
+        delete o.formFieldPath;
+        if (isEmpty(o.groupMembers)) {
           delete o.groupMembers;
         } else {
-          o.groupMembers.obs.forEach(obsChild => {
-            if (!obsChild.groupMembers) {
+          o.groupMembers.forEach(obsChild => {
+            delete obsChild.formFieldNamespace;
+            delete obsChild.formFieldPath;
+            if (isEmpty(obsChild.groupMembers)) {
               delete obsChild.groupMembers;
             }
           });
@@ -215,11 +219,15 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         obsList.push(o);
       });
     } else {
-      if (!obs.groupMembers) {
+      delete obs.formFieldNamespace;
+      delete obs.formFieldPath;
+      if (isEmpty(obs.groupMembers)) {
         delete obs.groupMembers;
       } else {
-        obs.groupMembers.obs.forEach(obsChild => {
-          if (!obsChild.groupMembers) {
+        obs.groupMembers.forEach(obsChild => {
+          delete obsChild.formFieldNamespace;
+          delete obsChild.formFieldPath;
+          if (isEmpty(obsChild.groupMembers)) {
             delete obsChild.groupMembers;
           }
         });
@@ -263,6 +271,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             location: location,
             order: null,
             groupMembers: [],
+            uuid: field?.value?.uuid,
             voided: false,
           };
           field.questions.forEach(groupedField => {
