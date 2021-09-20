@@ -1,12 +1,11 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useState } from 'react';
+import { openmrsFetch } from '@openmrs/esm-framework';
+import { DataTableSkeleton } from 'carbon-components-react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../constants';
 import { getForm } from '../../../utils/forms-loader';
-import { launchForm } from '../../../utils/ohri-forms-commons';
 import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
 
 interface ClinicalVisitWidgetProps {
