@@ -26,7 +26,7 @@ const ViralLoadOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => 
 
   useEffect(() => {
     setTimeout(() => {
-      tableRows.push({});
+      tableRows.push({ id: '1' });
       setIsLoading(false);
     }, 1000);
   }, []);
@@ -38,9 +38,6 @@ const ViralLoadOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => 
       ) : tableRows.length > 0 ? (
         <>
           <div className={styles.widgetContainer}>
-            <div className={styles.widgetHeaderContainer}>
-              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-            </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
         </>
