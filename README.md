@@ -100,4 +100,4 @@ On terminal run ->  ```npx openmrs develop --backend https://{server-address}```
 (tbd)
 ## License
 
-(tbd)
+[MPL 2.0 w/ HD](http://openmrs.org/license/) © [OpenMRS Inc.](http://www.openmrs.org/)
