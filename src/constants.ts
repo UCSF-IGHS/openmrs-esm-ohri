@@ -61,3 +61,6 @@ export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; //
 // Encounter types
 export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
+
+// HTS Retrospective
+export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
