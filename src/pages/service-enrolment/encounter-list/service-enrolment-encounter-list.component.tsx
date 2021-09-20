@@ -1,11 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../common.scss';
-import Button from 'carbon-components-react/es/components/Button';
-import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import OTable from '../../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, OverflowMenuItem, Tab, Tabs } from 'carbon-components-react';
+import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { getForm } from '../../../utils/forms-loader';
@@ -16,7 +14,6 @@ import {
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
 } from '../../../constants';
-import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
 import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
 
@@ -31,18 +28,15 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const rowCount = 5;
-  const [serviceEnrolmenttForm, setServiceEnrolmentForm] = useState(getForm('hiv', 'service_enrolment'));
+  const [serviceEnrolmentForm, setServiceEnrolmentForm] = useState(getForm('hiv', 'service_enrolment'));
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const serviceEnrolmentForm = useMemo(() => {
-    return getForm('hiv', 'service_enrolment');
-  }, []);
 
-  const launchServiceEnrolmentForm = () => {
+  const launchServiceEnrolmentForm = formJson => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: serviceEnrolmentForm?.name,
+      title: formJson?.name,
       screenSize: 'maximize',
-      state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
+      state: { updateParent: forceComponentUpdate, formJson: formJson },
     });
   };
 
@@ -54,6 +48,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
       state: { updateParent: forceComponentUpdate, formJson: serviceEnrolmentForm },
     });
   };
+
   const viewHTSEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: serviceEnrolmentForm?.name,
@@ -146,7 +141,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
               <div className={styles.toggleButtons}>
                 <OHRIFormLauncherWithIntent
-                  formJson={serviceEnrolmenttForm}
+                  formJson={serviceEnrolmentForm}
                   launchForm={launchServiceEnrolmentForm}
                   onChangeIntent={setServiceEnrolmentForm}
                 />
@@ -159,10 +154,9 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid, 
         <EmptyState
           displayText={t('serviceEnrolments', 'service enrolments')}
           headerTitle={headerTitle}
-          launchForm={launchServiceEnrolmentForm}
           launchFormComponent={
             <OHRIFormLauncherWithIntent
-              formJson={serviceEnrolmenttForm}
+              formJson={serviceEnrolmentForm}
               launchForm={launchServiceEnrolmentForm}
               onChangeIntent={setServiceEnrolmentForm}
             />
