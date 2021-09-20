@@ -25,7 +25,7 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={waitingForHIVTestCohort}
           cohortSlotName="waiting-for-hiv-testing-slot"
-          launchableForm={{ package: formPackage, name: formName, intent: 'HTS_PRETEST', actionText: 'Start HIV Test' }}
+          launchableForm={{ package: formPackage, name: formName, intent: 'HIV_TEST', actionText: 'Start HIV Test' }}
         />
       </Tab>
       <Tab id="tab-3" label="Waiting for post-test counselling">
