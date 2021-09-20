@@ -1,14 +1,20 @@
 import { attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFinalHIVStatus, getCohort, getReportingCohortMembers } from '../../api/api';
+import {
+  fetchPatientLastHtsEncounter,
+  fetchPatientsFinalHIVStatus,
+  getCohort,
+  getReportingCohortMembers,
+} from '../../api/api';
 import moment from 'moment';
 import TableEmptyState from '../empty-state/table-empty-state.component';
 
-import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { OverflowMenu, OverflowMenuItem, InlineLoading, ContentSwitcher, Switch } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
-import { launchForm } from '../../utils/ohri-forms-commons';
+import { launchFormInEditMode } from '../../utils/ohri-forms-commons';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
+import styles from './patient-list-cohort.scss';
 
 export interface PatientListColumn {
   key: string;
@@ -105,6 +111,47 @@ interface CohortPatientListProps {
     actionText: string;
   };
 }
+
+const PatientActionOverflowMenuItem = ({ patientUuid, launchableActionText, form }) => {
+  const [actionText, setActionText] = useState(launchableActionText);
+  const [encounterUuid, setEncounterUuid] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  const continueEncounterActionTex = 'Countinue encounter';
+
+  useEffect(() => {
+    // Avoiding multiple requests for same data
+    if (!encounterUuid) {
+      setIsLoading(true);
+      fetchPatientLastHtsEncounter(patientUuid).then(lastHtsEncounter => {
+        if (lastHtsEncounter) {
+          setActionText(continueEncounterActionTex);
+          setEncounterUuid(lastHtsEncounter.uuid);
+        }
+        setIsLoading(false);
+      });
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return (
+    <>
+      {isLoading ? (
+        <InlineLoading style={{ margin: '0 auto', width: '16px' }} />
+      ) : (
+        <OverflowMenuItem
+          itemText={actionText}
+          onClick={() => {
+            launchFormInEditMode(form, encounterUuid);
+            navigate({ to: `${basePath}${patientUuid}/chart/hts-summary` });
+          }}
+        />
+      )}
+    </>
+  );
+};
+
 const CohortPatientList: React.FC<CohortPatientListProps> = ({
   cohortId,
   cohortSlotName,
@@ -115,6 +162,8 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   launchableForm,
 }) => {
   const [patients, setPatients] = useState([]);
+  const [fullPatientList, setFullPatientList] = useState([]);
+  const [todayPatientList, setTodayPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -124,6 +173,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [filteredResults, setFilteredResults] = useState([]);
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
+  const dateFilterableTabSlots = ['waiting-for-hiv-testing-slot', 'post-test-counseling-slot'];
 
   const constructPatient = rawPatient => {
     return {
@@ -144,6 +194,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   const setListMeta = (patientWithMeta, location) => {
     const patientUuid = !isReportingCohort ? patientWithMeta.patient.uuid : patientWithMeta.person.uuid;
+
     return {
       timeAddedToList: !isReportingCohort ? moment(patientWithMeta.startDate).format('LL') : null,
       waitingTime: !isReportingCohort ? moment(patientWithMeta.startDate).fromNow() : null,
@@ -153,12 +204,11 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
       actions: (
         <OverflowMenu flipped>
           {form ? (
-            <OverflowMenuItem
-              itemText={launchableForm.actionText}
-              onClick={() => {
-                launchForm(filterFormByIntent(launchableForm.intent, form));
-                navigate({ to: `${basePath}${patientUuid}/chart/hts-summary` });
-              }}
+            <PatientActionOverflowMenuItem
+              patientUuid={patientUuid}
+              launchableActionText={launchableForm.actionText}
+              form={filterFormByIntent(launchableForm.intent, form)}
+              key={patientUuid}
             />
           ) : (
             <></>
@@ -179,9 +229,22 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ...constructPatient(member),
           ...setListMeta(member, results.location),
         }));
-        setPatients(patients);
+
+        if (dateFilterableTabSlots.includes(cohortSlotName)) {
+          // TODO: Make sure this is the correct logic for today's patients
+          const todaysPatients = patients.filter(patient => moment().diff(moment(patient.timeAddedToList), 'days') < 1);
+
+          setTodayPatientList(todaysPatients);
+          setFullPatientList(patients);
+
+          // By default, display today's patient list
+          setPatients(todayPatientList);
+          setPatientsCount(todayPatientList.length);
+        } else {
+          setPatients(patients);
+          setPatientsCount(patients.length);
+        }
         setIsLoading(false);
-        setPatientsCount(patients.length);
       });
     } else {
       getReportingCohortMembers(cohortId, queryParams).then(results => {
@@ -191,9 +254,21 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
             ...setListMeta(data, null),
           };
         });
-        setPatients(patients);
+
+        if (dateFilterableTabSlots.includes(cohortSlotName)) {
+          const todaysPatients = patients.filter(patient => moment().diff(moment(patient.timeAddedToList), 'days') < 1);
+
+          setTodayPatientList(todaysPatients);
+          setFullPatientList(patients);
+
+          // By default, display today's patient list
+          setPatients(todayPatientList);
+          setPatientsCount(todayPatientList.length);
+        } else {
+          setPatients(patients);
+          setPatientsCount(patients.length);
+        }
         setIsLoading(false);
-        setPatientsCount(patients.length);
       });
     }
   }, [cohortId]);
@@ -238,15 +313,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     };
   });
 
-  const filterEncountersByDate = (date: string) => {
-    let filteredEncounters = [];
-
-    if (date === 'today') {
-      filteredEncounters = patients.filter(patient => patient.waitingTime < 24);
-      setPatients(filteredEncounters);
-    }
-  };
-
   const state = useMemo(() => {
     let filteredColumns = [...columns];
     if (excludeColumns) {
@@ -283,8 +349,30 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     setCounter(counter + 1);
   }, [state]);
 
+  const handleEncounterDateGroupChange = newSelection => {
+    setIsLoading(true);
+
+    if (newSelection.name === 'today') {
+      setPatients(todayPatientList);
+      setPatientsCount(todayPatientList.length);
+    } else {
+      setPatients(fullPatientList);
+      setPatientsCount(fullPatientList.length);
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <div>
+      {dateFilterableTabSlots.includes(cohortSlotName) && (
+        <div className={styles.contentSwitcherWrapper}>
+          <ContentSwitcher onChange={handleEncounterDateGroupChange}>
+            <Switch name="today" text="Today" />
+            <Switch name="all" text="All" />
+          </ContentSwitcher>
+        </div>
+      )}
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
       ) : (
