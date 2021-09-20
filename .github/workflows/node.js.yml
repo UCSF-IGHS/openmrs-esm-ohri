@@ -60,7 +60,7 @@ jobs:
       - uses: garygrossgarten/github-action-ssh@release
         name: Run the Update MicroFronEnd Script
         with:
-            command: cd /usr/share/tomcat/microfrontends/dev && /bin/bash update_microfrontends.sh
+            command: cd /usr/share/tomcat/microfrontends/dev && sh update_microfrontends.sh
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
