@@ -5,17 +5,13 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { getForm } from '../../utils/forms-loader';
-import { launchForm } from '../../utils/ohri-forms-commons';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { Add16 } from '@carbon/icons-react';
+import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import { clinicalVisitEncounterType, encounterRepresentation, visitTypeConcept } from '../../constants';
-import moment from 'moment';
 
 export interface EncounterListColumn {
-  conceptUuid?: string;
   key: string;
   header: string;
   getValue: (encounter: any) => string;
@@ -30,14 +26,7 @@ export interface EncounterListProps {
   description: string;
 }
 
-const EncounterList: React.FC<EncounterListProps> = ({
-  patientUuid,
-  encounterUuid,
-  form,
-  columns,
-  headerTitle,
-  description,
-}) => {
+const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, columns, headerTitle, description }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

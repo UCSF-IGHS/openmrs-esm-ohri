@@ -8,6 +8,7 @@ import {
   visitTypeConcept,
 } from '../../../constants';
 import EncounterList, { EncounterListColumn } from '../../../components/encounter-list/encounter-list.component';
+import moment from 'moment';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;
@@ -15,43 +16,45 @@ interface ClinicalVisitWidgetProps {
 
 const columns: EncounterListColumn[] = [
   {
-    conceptUuid: dateOfEncounterConcept,
     key: 'visitDate',
     header: 'Visit Date',
     getValue: encounter => {
-      return 'visit date';
+      let visitDate = encounter.obs.find(observation => observation.concept.uuid === dateOfEncounterConcept);
+      return visitDate ? moment(visitDate.value.name.name).format('DD-MMM-YYYY') : '--';
     },
   },
   {
-    conceptUuid: visitTypeConcept,
     key: 'visitType',
     header: 'Visit Type',
     getValue: encounter => {
-      return 'visit type';
+      let visitType = encounter.obs.find(observation => observation.concept.uuid === visitTypeConcept);
+      return visitType ? visitType.value.name.name : '--';
     },
   },
   {
-    conceptUuid: regimenConcept,
     key: 'regimen',
     header: 'Regimen',
     getValue: encounter => {
-      return 'regimen';
+      let regimen = encounter.obs.find(observation => observation.concept.uuid === regimenConcept);
+      return regimen ? regimen.value.name.name : '--';
     },
   },
   {
-    conceptUuid: expressCareProgramStatusConcept,
     key: 'differentiatedCareService',
     header: 'Differentiated Care Service',
     getValue: encounter => {
-      return 'care service';
+      let differentiatedCareService = encounter.obs.find(
+        observation => observation.concept.uuid === expressCareProgramStatusConcept,
+      );
+      return differentiatedCareService ? differentiatedCareService.value.name.name : '--';
     },
   },
   {
-    conceptUuid: returnVisitDateConcept,
     key: 'nextAppointmentDate',
     header: 'Next Appointment Date',
     getValue: encounter => {
-      return 'next appointment';
+      let nextAppointmentDate = encounter.obs.find(observation => observation.concept.uuid === returnVisitDateConcept);
+      return nextAppointmentDate ? nextAppointmentDate.value.name.name : '--';
     },
   },
   {
