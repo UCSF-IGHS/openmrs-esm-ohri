@@ -62,6 +62,11 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
     }
   }, [values]);
 
+  useEffect(() => {
+    questions[0] = question;
+    setQuestions([...questions]);
+  }, [question]);
+
   const handleAdd = (obsGroup?: any) => {
     const idSuffix = ++counter;
     const next = cloneDeep(question);
