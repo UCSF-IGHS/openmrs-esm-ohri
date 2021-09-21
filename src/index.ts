@@ -31,7 +31,6 @@ function setupOpenMRS() {
 
   //Clear sidenav items to avoid duplicates
   clearSidenavRegistry();
-  clearCovidSidenavRegistry();
 
   return {
     pages: [
@@ -109,22 +108,7 @@ function setupOpenMRS() {
       {
         id: 'hts-lab-results-list-ext',
         slot: 'hts-lab-results-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/lab-results/encounter-list/lab-results-encounter-list.component'),
-          {
-            featureName: 'hts-lab-results-list',
-            moduleName,
-          },
-        ),
-        order: 6,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'hts-cd4-list-ext',
-        slot: 'hts-lab-results-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/lab-results/cd4/cd4-encounter-list.component'), {
+        load: getAsyncLifecycle(() => import('./pages/lab-results/overview/lab-results-overview.component'), {
           featureName: 'hts-lab-results-list',
           moduleName,
         }),

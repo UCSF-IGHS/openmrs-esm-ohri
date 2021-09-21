@@ -36,3 +36,6 @@ export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // Clinical visit
 export const clinicalVisitEncounterType = 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4';
+
+// HTS Retrospective
+export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
