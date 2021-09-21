@@ -36,7 +36,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
       let rows = [];
 
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-        //TODO: Implement table
+        console.log('Response data: ', data);
       });
     },
     [patientUuid],
