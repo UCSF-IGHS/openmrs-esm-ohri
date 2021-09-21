@@ -1,8 +1,9 @@
 @import "../../../root.scss";
 .sidebar{
 width: 11rem;
-margin-right: 20px;
-position: fixed;
+margin-right: 2rem;
+margin-left: 1rem;
+overscroll-behavior: contain;
 }
 
 .sidebarList{

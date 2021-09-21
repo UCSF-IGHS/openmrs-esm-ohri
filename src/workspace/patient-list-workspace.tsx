@@ -79,15 +79,15 @@ const Overflow: React.FC<{
                 </BreadcrumbItem>
               </Breadcrumb>
             </div>
-            <div className={styles.row} style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem' }}>
+            <div
+              className={styles.row}
+              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem', paddingRight: '1rem' }}>
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
-              <div>
-                <Button size="small" kind="ghost" onClick="#">
-                  Actions <OverflowMenuVertical32 style={{ height: '20px' }} />
-                </Button>
-              </div>
+              <Button size="small" kind="ghost" onClick="#">
+                Actions <OverflowMenuVertical32 style={{ height: '20px' }} />
+              </Button>
             </div>
             <div className={styles.row}>
               <div className={styles.demographics}>

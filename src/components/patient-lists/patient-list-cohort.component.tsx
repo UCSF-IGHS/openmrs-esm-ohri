@@ -9,6 +9,7 @@ import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient
 import { basePath } from '../../constants';
 import { launchForm } from '../../utils/ohri-forms-commons';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
+import styles from './patient-table.component.scss';
 
 export interface PatientListColumn {
   key: string;
@@ -284,7 +285,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [state]);
 
   return (
-    <div>
+    <div className={styles.table1}>
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
       ) : (

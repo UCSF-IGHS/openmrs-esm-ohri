@@ -323,19 +323,19 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           ) : (
             <>
               <div className={styles.mainContainer}>
-                <div className={styles.sidebar}>
-                  <OHRIFormSidebar
-                    scrollAblePages={scrollAblePages}
-                    selectedPage={selectedPage}
-                    mode={mode}
-                    onCancel={onCancel}
-                    handleClose={handleClose}
-                    values={props.values}
-                    setValues={props.setValues}
-                    allowUnspecifiedAll={formJson.allowUnspecifiedAll}
-                    defaultPage={formJson.defaultPage}
-                  />
-                </div>
+                {/* <div className={styles.sidebar}> */}
+                <OHRIFormSidebar
+                  scrollAblePages={scrollAblePages}
+                  selectedPage={selectedPage}
+                  mode={mode}
+                  onCancel={onCancel}
+                  handleClose={handleClose}
+                  values={props.values}
+                  setValues={props.setValues}
+                  allowUnspecifiedAll={formJson.allowUnspecifiedAll}
+                  defaultPage={formJson.defaultPage}
+                />
+                {/* </div> */}
                 <div className={styles.overflowContent}>
                   <OHRIFormContext.Provider
                     value={{
