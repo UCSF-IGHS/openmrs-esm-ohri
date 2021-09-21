@@ -8,6 +8,7 @@ import { clinicalVisitEncounterType, encounterRepresentation } from '../../../co
 import { getForm } from '../../../utils/forms-loader';
 import { launchForm } from '../../../utils/ohri-forms-commons';
 import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import EncounterList from '../../../components/encounter-list/encounter-list.component';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;
@@ -20,9 +21,19 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   const [counter, setCounter] = useState(0);
   const [clinicalVisitForm, setClinicalVisitForm] = useState(getForm('hiv', 'clinical_visit'));
 
+  const tableHeaders = [
+    { key: 'visitDate', header: 'Visit Date', isSortable: true },
+    { key: 'visitType', header: 'Visit Type' },
+    { key: 'regimen', header: 'Regimen' },
+    { key: 'differentiatedCareService', header: 'Differentiated Care Service' },
+    { key: 'nextAppointmentDate', header: 'Next Appointment Date' },
+    { key: 'action', header: 'Action' },
+  ];
+
   const loadRows = useCallback(
     encounterType => {
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
+      let rows = [];
 
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
         //TODO: Implement table
@@ -47,6 +58,8 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
 
   return (
     <>
+      {/*<EncounterList patientUuid={patientUuid} encounterUuid={clinicalVisitEncounterType} columns={} />*/}
+
       {isLoading ? (
         <DataTableSkeleton rowCount={5} />
       ) : tableRows.length > 0 ? (
