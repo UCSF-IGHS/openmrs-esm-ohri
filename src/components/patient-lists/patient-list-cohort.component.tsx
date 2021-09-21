@@ -162,8 +162,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   launchableForm,
 }) => {
   const [patients, setPatients] = useState([]);
-  const [fullPatientList, setFullPatientList] = useState([]);
-  const [todayPatientList, setTodayPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -173,7 +171,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [filteredResults, setFilteredResults] = useState([]);
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
-  const dateFilterableTabSlots = ['waiting-for-hiv-testing-slot', 'post-test-counseling-slot'];
 
   const constructPatient = rawPatient => {
     return {
@@ -229,21 +226,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ...constructPatient(member),
           ...setListMeta(member, results.location),
         }));
-
-        if (dateFilterableTabSlots.includes(cohortSlotName)) {
-          // TODO: Make sure this is the correct logic for today's patients
-          const todaysPatients = patients.filter(patient => moment().diff(moment(patient.timeAddedToList), 'days') < 1);
-
-          setTodayPatientList(todaysPatients);
-          setFullPatientList(patients);
-
-          // By default, display today's patient list
-          setPatients(todayPatientList);
-          setPatientsCount(todayPatientList.length);
-        } else {
-          setPatients(patients);
-          setPatientsCount(patients.length);
-        }
         setIsLoading(false);
       });
     } else {
@@ -255,19 +237,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           };
         });
 
-        if (dateFilterableTabSlots.includes(cohortSlotName)) {
-          const todaysPatients = patients.filter(patient => moment().diff(moment(patient.timeAddedToList), 'days') < 1);
-
-          setTodayPatientList(todaysPatients);
-          setFullPatientList(patients);
-
-          // By default, display today's patient list
-          setPatients(todayPatientList);
-          setPatientsCount(todayPatientList.length);
-        } else {
-          setPatients(patients);
-          setPatientsCount(patients.length);
-        }
         setIsLoading(false);
       });
     }
@@ -349,30 +318,8 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     setCounter(counter + 1);
   }, [state]);
 
-  const handleEncounterDateGroupChange = newSelection => {
-    setIsLoading(true);
-
-    if (newSelection.name === 'today') {
-      setPatients(todayPatientList);
-      setPatientsCount(todayPatientList.length);
-    } else {
-      setPatients(fullPatientList);
-      setPatientsCount(fullPatientList.length);
-    }
-
-    setIsLoading(false);
-  };
-
   return (
     <div>
-      {dateFilterableTabSlots.includes(cohortSlotName) && (
-        <div className={styles.contentSwitcherWrapper}>
-          <ContentSwitcher onChange={handleEncounterDateGroupChange}>
-            <Switch name="today" text="Today" />
-            <Switch name="all" text="All" />
-          </ContentSwitcher>
-        </div>
-      )}
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
       ) : (
