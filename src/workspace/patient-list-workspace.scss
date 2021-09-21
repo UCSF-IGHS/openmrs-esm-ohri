@@ -89,8 +89,12 @@
 }
 
 .childPadding {
-  padding: 32px 32px 0px 32px;
+  padding: 32px 16px 0px 16px;
   // background-color: $ui-03;
+}
+
+.childPadding > div > div {
+padding-top: 0;
 }
 
 // extension

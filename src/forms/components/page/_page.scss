@@ -7,6 +7,10 @@
   width: 95%;
 }
 
+.pageContent:last-child > hr {
+  display: none;
+}
+
 .pageTitle {
   font-size: 1.25rem;
   font-weight: 600;

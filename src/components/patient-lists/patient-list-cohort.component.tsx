@@ -319,7 +319,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [state]);
 
   return (
-    <div>
+    <div className={styles.table1}>
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
       ) : (
