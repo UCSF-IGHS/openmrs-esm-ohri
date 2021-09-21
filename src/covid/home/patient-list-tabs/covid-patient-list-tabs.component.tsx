@@ -45,7 +45,7 @@ function CTHomePatientTabs() {
       ],
     },
     {
-      label: t('allCovidClients', "Vaccinated Clients"),
+      label: t('pendingLabResults', "Pending lab results"),
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
@@ -83,7 +83,7 @@ function CTHomePatientTabs() {
       ],
     },
     {
-      label: t('clientsAndOutcomes', "Clients and Outcomes"),
+      label: t('undocumentedCovidOutcomes', "Undocumented COVID-19 Outcomes"),
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
@@ -121,7 +121,7 @@ function CTHomePatientTabs() {
       ],
     },
     {
-      label: t('plhivCovidClients', "PLHIV COVID-19 Clients"),
+      label: t('clientsWithPartialVaccination', "Clients with partial vaccination"),
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
