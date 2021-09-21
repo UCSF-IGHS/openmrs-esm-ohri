@@ -48,6 +48,10 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^ohri-covid-home/,
+      },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
         route: /^form-render-test/,
       },
     ],
@@ -182,6 +186,36 @@ function setupOpenMRS() {
           () => import('./hts/care-and-treatment/home/patient-list-tabs/ct-patient-list-tabs.component'),
           {
             featureName: 'ct-home-tabs',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'covid-home-header-ext',
+        slot: 'covid-home-header-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
+          featureName: 'covid-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'covid-home-tile-ext',
+        slot: 'covid-home-tiles-slot',
+        load: getAsyncLifecycle(
+          () => import('./covid/home/summary-tiles/covid-summary-tiles.component'),
+          {
+            featureName: 'covid-home-tiles',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'covid-home-tabs-ext',
+        slot: 'covid-home-tabs-slot',
+        load: getAsyncLifecycle(
+          () => import('./covid/home/patient-list-tabs/covid-patient-list-tabs.component'),
+          {
+            featureName: 'covid-home-tabs',
             moduleName,
           },
         ),
