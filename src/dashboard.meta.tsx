@@ -28,6 +28,7 @@ const registerSidenavItem = sidenavItem => {
 };
 
 export const clearSidenavRegistry = () => localStorage.removeItem('sidenavItems');
+console.info('localStorage: ', localStorage);
 
 export const createDashboardLink = db => {
   const navItems = registerSidenavItem(db);
@@ -53,7 +54,7 @@ export const createDashboardLink = db => {
               handleLinkClick(e, `${basePath}/${navItem.name} `);
               forceRerender();
 
-              document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+              document.dispatchEvent(new CustomEvent('navigation-from-hiv'));
             }}>
             {navItem.title}
           </SideNavMenuItem>
