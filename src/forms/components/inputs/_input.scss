@@ -4,9 +4,6 @@
   margin-top: 10px;
 }
 
-.formField > div > div >label {
-  color: #525252 !important;
-}
 .ohriFormLabel {
   font-size: 0.75rem
 }
@@ -135,7 +132,3 @@
     font-size: 12px;
     color: $color-gray-70;
 }
-
-.errorLegend legend, .errorLabel label {
-    color: #da1e28
-} 
