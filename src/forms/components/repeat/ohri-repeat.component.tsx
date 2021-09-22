@@ -42,12 +42,11 @@ export const getInitialValueFromObs = (field: OHRIFormField, obsGroup: any) => {
   return '';
 };
 
-let counter = 0;
-
 export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange }) => {
   const [questions, setQuestions] = useState([question]);
-  const { fields, encounterContext } = React.useContext(OHRIFormContext);
+  const { fields, encounterContext, obsGroupsToVoid } = React.useContext(OHRIFormContext);
   const { values, setValues } = useFormikContext();
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     if (encounterContext.encounter && !counter) {
@@ -56,9 +55,12 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
         obs => obs.concept.uuid === question.questionOptions.concept && obs.uuid != alreadyMappedGroup,
       );
       // create new fields and map them values
+      let tempCounter = counter;
       unMappedObsGroups.forEach(obsGroup => {
-        handleAdd(obsGroup);
+        tempCounter = tempCounter + 1;
+        handleAdd(tempCounter, obsGroup);
       });
+      setCounter(tempCounter);
     }
   }, [values]);
 
@@ -67,8 +69,8 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
     setQuestions([...questions]);
   }, [question]);
 
-  const handleAdd = (obsGroup?: any) => {
-    const idSuffix = ++counter;
+  const handleAdd = (count: number, obsGroup?: any) => {
+    const idSuffix = count;
     const next = cloneDeep(question);
     next.value = obsGroup;
     next.id = `${next.id}-${idSuffix}`;
@@ -87,6 +89,12 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
   };
 
   const removeQuestion = (question: OHRIFormField) => {
+    if (question.value && question.value.uuid) {
+      // obs group should be voided
+      question.value['voided'] = true;
+      delete question.value.value;
+      obsGroupsToVoid.push(question.value);
+    }
     setQuestions(questions.filter(q => q.id !== question.id));
     // cleanup
     const dueFields = [question.id, ...question.questions.map(q => q.id)];
@@ -102,7 +110,14 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
         <OHRIObsGroup question={question} onChange={onChange} handler={getHandler('obsGroup')} />
         <div>
           <ButtonSet>
-            <Button onClick={() => handleAdd(null)}>Add</Button>{' '}
+            <Button
+              onClick={() => {
+                const nextCount = counter + 1;
+                handleAdd(nextCount, null);
+                setCounter(nextCount);
+              }}>
+              Add
+            </Button>{' '}
             {index !== 0 && (
               <Button kind="danger" onClick={() => removeQuestion(question)}>
                 Remove
