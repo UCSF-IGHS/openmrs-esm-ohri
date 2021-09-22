@@ -57,7 +57,7 @@ const CovidAssessment: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   const tableHeaders = [
     { key: 'encounterDate', header: 'Encounter Date', isSortable: true },
     { key: 'reasonsForTesting', header: 'Reason for testing' },
-    { key: 'testDate', header: 'Test Date' }, 
+    { key: 'testDate', header: 'Test Date' },
     { key: 'lastTestResult', header: ' Test Result' },
     { key: 'outcome', header: 'Outcome' },
   ];
