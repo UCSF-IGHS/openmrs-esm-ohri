@@ -28,7 +28,6 @@ const registerSidenavItem = sidenavItem => {
 };
 
 export const clearSidenavRegistry = () => localStorage.removeItem('sidenavItems');
-console.info('localStorage: ', localStorage);
 
 export const createDashboardLink = db => {
   const navItems = registerSidenavItem(db);

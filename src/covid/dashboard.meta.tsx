@@ -27,7 +27,6 @@ export const clearCovidSidenavRegistry = () => localStorage.removeItem('sidenavI
 export const createCovidDashboardLink = db => {
   const navItems = registerSidenavItem(db);
   const styling = navItems.length !== 4 ? styles.hide : styles.noMarker;
-  console.info('styling: ', styling);
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
