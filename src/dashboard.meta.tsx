@@ -52,8 +52,7 @@ export const createDashboardLink = db => {
             onClick={e => {
               handleLinkClick(e, `${basePath}/${navItem.name} `);
               forceRerender();
-
-              document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+              document.dispatchEvent(new CustomEvent('navigation-from-hiv'));
             }}>
             {navItem.title}
           </SideNavMenuItem>
