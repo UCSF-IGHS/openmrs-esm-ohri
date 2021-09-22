@@ -16,7 +16,7 @@ function CTSummaryTiles({ launchWorkSpace }) {
   }, []);
   const tiles = [
     {
-      title: t('testing', 'Assessment'),
+      title: t('assessments', 'Assessments'),
       linkAddress: '#',
       subTitle: t('testsConducted', 'Completed assessments'),
       value: activeClientsCount,
