@@ -25,7 +25,7 @@ function FormRenderTest() {
   const textareaProps = {
     labelText: 'You can either type or paste well formatted json.',
     className: 'form-group',
-    placeholder: 'Enter json...',
+    placeholder: 'Enter Json',
     id: 'jsonRenderInput',
     cols: 50,
     rows: 30,
@@ -88,7 +88,7 @@ function FormRenderTest() {
         </Row>
         <Row>
           <Column lg={5} md={5} sm={12} style={{ borderRight: '1em' }}>
-            <h4>Enter Json</h4>
+            <h4>Json Schema</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
             <Form
               action=""
@@ -121,7 +121,7 @@ function FormRenderTest() {
             </Form>
           </Column>
           <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
-            <h6 style={{ margin: '8px' }}>Output</h6>
+            <h6 style={{ margin: '8px' }}>Generated Form</h6>
             <div style={{ border: '1rem', minHeight: '780px', backgroundColor: '#F4F4F4' }}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs type="container">
@@ -134,7 +134,7 @@ function FormRenderTest() {
                     <p>Please submit the form</p>
                   )}
                 </Tab>
-                <Tab id="tab-json-schema" label="JSON Schema">
+                <Tab id="tab-json-schema" label="Final Schema">
                   <TextArea
                     {...textareaProps}
                     labelText=""
