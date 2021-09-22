@@ -52,7 +52,7 @@
               "label": "SARS-Cov2 test type",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "radio",
                 "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718",
                 "answers": [
                   {
