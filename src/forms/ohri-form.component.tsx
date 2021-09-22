@@ -46,6 +46,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [form, setForm] = useState<OHRIFormSchema>(null);
   const [scrollAblePages, setScrollAblePages] = useState(undefined);
   const [selectedPage, setSelectedPage] = useState('');
+  const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -289,6 +290,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         }
       });
 
+    // Add voided obs groups
+    obsGroupsToVoid.forEach(obs => addObs(obsForSubmission, obs));
     let encounterForSubmission = {};
     if (encounter) {
       Object.assign(encounterForSubmission, encounter);
@@ -377,7 +380,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       });
     }
   };
-
   return (
     <Formik
       enableReinitialize
@@ -413,6 +415,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                       values: props.values,
                       setFieldValue: props.setFieldValue,
                       setEncounterLocation: setEncounterLocation,
+                      setObsGroupsToVoid: setObsGroupsToVoid,
+                      obsGroupsToVoid: obsGroupsToVoid,
                       fields: fields,
                       encounterContext: {
                         patient: patient,
