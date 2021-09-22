@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
+import { DataTableSkeleton } from 'carbon-components-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
