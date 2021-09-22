@@ -1,5 +1,5 @@
 import React from 'react';
-import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../constants';
+import { clientsAssessedForCovid, todayzAppointmentsCT } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
 
@@ -9,16 +9,16 @@ function CTHomePatientTabs() {
   const tabsConfigs = [
     {
       label: t('allCTClients', 'All COVID-19 Clients'),
-      cohortId: clientsEnrolledToCare,
+      cohortId: clientsAssessedForCovid,
       isReportingCohort: true,
-      cohortSlotName: 'all-ct-clients-slot',
+      cohortSlotName: 'clients-assessed-for-covid-slot',
       launchableForm: {
         package: 'hiv',
         name: 'clinical_visit',
         actionText: 'Start Follow Up Visit',
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
       },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       otherColumns: [
         {
           key: 'clientId',
@@ -29,17 +29,31 @@ function CTHomePatientTabs() {
           index: 1,
         },
         {
-          key: 'lastAppointment',
-          header: 'Last Appointment',
+          key: 'assessmentDate',
+          header: 'Assessment date',
           getValue: patient => {
-            return '13/01/2021';
+            return '22/09/2021';
           },
         },
         {
-          key: 'appointmentDate',
-          header: 'Appointment Date',
+          key: 'reasonForTesting',
+          header: 'Reason for testing',
           getValue: patient => {
-            return '03/03/2021';
+            return 'Contact of a case';
+          },
+        },
+        {
+          key: 'testDate',
+          header: 'Test date',
+          getValue: patient => {
+            return '22/09/2021';
+          },
+        },
+        {
+          key: 'testResult',
+          header: 'Test results',
+          getValue: patient => {
+            return 'Positive';
           },
         },
       ],
@@ -83,7 +97,7 @@ function CTHomePatientTabs() {
       ],
     },
     {
-      label: t('undocumentedCovidOutcomes', 'Undocumented COVID-19 Outcomes'),
+      label: t('undocumentedOutcomes', 'Undocumented Outcomes'),
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
