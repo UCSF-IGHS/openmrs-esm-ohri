@@ -29,7 +29,6 @@ export const createCovidDashboardLink = db => {
   const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
   console.info('styling: ', styling);
 
-
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
     const forceRerender = () => setRerender(!rerender);

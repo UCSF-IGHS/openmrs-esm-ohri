@@ -10,7 +10,7 @@ interface OverviewListProps {
 }
 
 const CovidLabResultsList: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;

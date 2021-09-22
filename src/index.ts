@@ -363,6 +363,18 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        id: 'covid-assessent-ext',
+        slot: 'covid-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./pages/covid/case-assessment.encounter-lists'), {
+          featureName: 'covid-lab-result',
+          moduleName,
+        }),
+        order: 11,
+        meta: {
+          columnSpan: 4,
+        },
+      },
     ],
   };
 }
