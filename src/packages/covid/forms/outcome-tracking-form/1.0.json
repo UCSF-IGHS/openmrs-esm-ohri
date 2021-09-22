@@ -12,7 +12,7 @@
               "label": "What was the patient’s outcome",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "radio",
                 "concept": "a845f3e6-4432-4de4-9fff-37fa270b1a06",
                 "answers": [
                   {
