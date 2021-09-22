@@ -3,7 +3,6 @@ import { ExtensionSlot } from '@openmrs/esm-framework';
 import { Grid } from 'carbon-components-react';
 import PatientListWorkspace from '../workspace/patient-list-workspace';
 import styles from './ohri-home.scss';
-import { hts_dashboardMeta } from '../dashboard.meta';
 
 interface HomeProps {
   programme: string;
@@ -45,10 +44,19 @@ function OHRIHome(HomeProps) {
           extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTileSlot)}
           state={{ launchWorkSpace }}
         />
-        <ExtensionSlot
-          extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTabSlot)}
-          state={{ launchWorkSpace }}
-        />
+        <div
+          style={{
+            height: '100vh',
+            backgroundColor: '#f4f4f4',
+            marginLeft: '-16px',
+            marginRight: '-16px',
+            marginBottom: '-16px',
+          }}>
+          <ExtensionSlot
+            extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTabSlot)}
+            state={{ launchWorkSpace }}
+          />
+        </div>
       </Grid>
     </>
   );

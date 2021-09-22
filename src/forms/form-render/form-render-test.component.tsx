@@ -9,10 +9,10 @@ import { filterFormByIntent } from '../../utils/forms-loader';
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
-  const [currentMode, setCurrentMode] = useState<SessionMode>('enter');
+  const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
-  const [formIntentInput, setFormIntentInput] = useState('');
+  const [formIntentInput, setFormIntentInput] = useState('Empty Intent');
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
 
   const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
@@ -32,9 +32,11 @@ function FormRenderTest() {
   };
 
   const loadIntentsFromSchema = jsonSchema => {
-    let _formIntents = [];
+    let _formIntents = jsonSchema.availableIntents || [];
 
-    _formIntents = jsonSchema.availableIntents || [];
+    if (_formIntents.length > 0) {
+      setFormIntentInput(null);
+    }
 
     setFormIntents(_formIntents);
     setIsIntentsDropdownDisabled(false);
@@ -42,17 +44,20 @@ function FormRenderTest() {
 
   const updateFormIntentInput = e => {
     setFormIntentInput(e.selectedItem.intent);
+    setIsSchemaLoaded(false);
   };
 
-  const updateJsonInput = e => {
+  const updateFormJsonInput = e => {
     setInputErrorMessage('');
     try {
       const parsedSchema = JSON.parse(e.target.value);
       setSchemaInput(parsedSchema);
+      setFormInput(parsedSchema);
       loadIntentsFromSchema(parsedSchema);
     } catch (err) {
       setInputErrorMessage(err.toString());
     }
+    setIsSchemaLoaded(false);
   };
 
   const handleFormSubmission = e => {
@@ -91,7 +96,7 @@ function FormRenderTest() {
                 e.preventDefault();
                 handleFormSubmission(e);
               }}>
-              <TextArea {...textareaProps} onChange={updateJsonInput} name={'jsonText'} />
+              <TextArea {...textareaProps} onChange={updateFormJsonInput} name={'jsonText'} />
 
               <div style={{ width: 400 }}>
                 <Dropdown
@@ -105,7 +110,12 @@ function FormRenderTest() {
                 />
               </div>
 
-              <Button type="submit" renderIcon={Run32} className="form-group" style={{ marginTop: '1em' }}>
+              <Button
+                type="submit"
+                renderIcon={Run32}
+                className="form-group"
+                style={{ marginTop: '1em' }}
+                disabled={!formIntentInput}>
                 Render
               </Button>
             </Form>
@@ -118,10 +128,10 @@ function FormRenderTest() {
                 <Tab id="tab-form" label="Form render">
                   {isSchemaLoaded ? (
                     <div className={styles.formRenderDisplay}>
-                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentMode} />
+                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />
                     </div>
                   ) : (
-                    <p>Please enter a valid schema</p>
+                    <p>Please submit the form</p>
                   )}
                 </Tab>
                 <Tab id="tab-json-schema" label="JSON Schema">
