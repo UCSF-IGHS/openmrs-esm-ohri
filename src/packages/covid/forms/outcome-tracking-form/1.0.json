@@ -29,83 +29,10 @@
                     "concept": "165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Symptoms resolved",
                     "conceptMappings": []
-                  },
-                  {
-                    "concept": "468a714e-594f-4314-a421-33a171fc7dde",
-                    "label": "Discharged",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "6db09748-4d59-436c-a4ba-9ee70e22d0e0",
-                    "label": "Referred",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
-              "id": "patientOutcome",
-              "behaviours": [
-                {
-                  "intent": "COVID_OUTCOME_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
-                }
-              ]
+              "id": "patientOutcome"
             },
             {
               "label": "Date recovered or date symptoms resolved",
