@@ -17,10 +17,10 @@ import {
   covid_Assessments_dashboardMeta,
   covid_Outcomes_dashboardMeta,
   covid_Lab_Results_dashboardMeta,
+  covid_Vaccinations_dashboardMeta,
 } from './covid/dashboard.meta';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
-import { covid_Vaccinations_dashboardMeta } from './covid/dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -109,7 +109,7 @@ function setupOpenMRS() {
             moduleName,
           },
         ),
-        order: 5,
+        order: 3,
         meta: {
           columnSpan: 4,
         },
@@ -266,7 +266,7 @@ function setupOpenMRS() {
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(serviceEnrolment_dashboardMeta), options),
         meta: serviceEnrolment_dashboardMeta,
-        order: 6,
+        order: 7,
         online: true,
         offline: true,
       },
@@ -283,6 +283,7 @@ function setupOpenMRS() {
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(labResults_dashboardMeta), options),
         meta: labResults_dashboardMeta,
+        order: 8,
         online: true,
         offline: true,
       },
@@ -291,33 +292,6 @@ function setupOpenMRS() {
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(drugOrders_dashboardMeta), options),
         meta: drugOrders_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-case-report-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
-        meta: caseReport_dashboardMeta,
-        order: 10,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-assessments-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(covid_Assessments_dashboardMeta), options),
-        meta: covid_Assessments_dashboardMeta,
-        order: 11,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'covid-outcomes-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(covid_Outcomes_dashboardMeta), options),
-        meta: covid_Outcomes_dashboardMeta,
-        order: 12,
         online: true,
         offline: true,
       },
@@ -331,11 +305,30 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'covid-lab-results',
+        id: 'covid-case-report-dashboard',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(covid_Vaccinations_dashboardMeta), options),
-        meta: covid_Vaccinations_dashboardMeta,
+        load: getSyncLifecycle(createCovidDashboardLink(caseReport_dashboardMeta), options),
+        meta: caseReport_dashboardMeta,
+        order: 15,
+        online: true,
+        offline: true,
+      },
+
+      {
+        id: 'covid-outcomes-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covid_Outcomes_dashboardMeta), options),
+        meta: covid_Outcomes_dashboardMeta,
         order: 12,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-assessments-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covid_Assessments_dashboardMeta), options),
+        meta: covid_Assessments_dashboardMeta,
+        order: 11,
         online: true,
         offline: true,
       },
@@ -343,7 +336,7 @@ function setupOpenMRS() {
         id: 'covid-case-report-ext',
         slot: 'covid-dashboard-slot',
         load: getAsyncLifecycle(() => import('./covid/case-report/case-report.component'), {
-          featureName: 'covid-case-report',
+          featureName: 'covid-case-dashboard-slot',
           moduleName,
         }),
         meta: {
@@ -353,9 +346,9 @@ function setupOpenMRS() {
       },
       {
         id: 'covid-lab-results-ext',
-        slot: 'covid-dashboard-slot',
+        slot: 'covid-lab-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/covid/lab-results.encounter-list'), {
-          featureName: 'covid-lab-result',
+          featureName: 'covid-lab-list',
           moduleName,
         }),
         order: 11,
@@ -365,9 +358,9 @@ function setupOpenMRS() {
       },
       {
         id: 'covid-assessent-ext',
-        slot: 'covid-dashboard-slot',
+        slot: 'covid-assessment-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/covid/case-assessment.encounter-lists'), {
-          featureName: 'covid-lab-result',
+          featureName: 'covid-assessment-list',
           moduleName,
         }),
         order: 11,

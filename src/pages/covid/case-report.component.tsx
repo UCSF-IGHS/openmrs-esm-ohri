@@ -106,7 +106,8 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
     getCovidEncounters(query, covidEncounterRepresentation);
   }, [counter]);
 
-  const headerTitle = 'Covid-19 Case Report';
+  const headerTitle = t('covidLabResults', 'Lab Results');
+  const displayText = t('covidLabResults', 'Lab Results');
 
   return (
     <>
@@ -128,8 +129,8 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
         </>
       ) : (
         <EmptyState
-          displayText={t('covidCaseReports', 'Covid Case Reports')}
-          headerTitle={t('covidCaseReports', 'Covid Case Reports')}
+          displayText={displayText}
+          headerTitle={headerTitle}
           launchFormComponent={
             <OHRIFormLauncherWithIntent
               formJson={covidCaseReportForm}

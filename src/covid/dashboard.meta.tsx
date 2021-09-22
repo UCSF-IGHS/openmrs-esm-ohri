@@ -12,8 +12,8 @@ const registerSidenavItem = sidenavItem => {
   //check if List exists, if not initialize it
   buffer = registry ? registry : [];
 
-  //avoid duplicates by limiting list size to 2 elements
-  if (buffer.length <= 2) {
+  //avoid duplicates by limiting list size to 4 elements
+  if (buffer.length <= 4) {
     buffer.push(sidenavItem);
   }
 
@@ -26,7 +26,7 @@ export const clearCovidSidenavRegistry = () => localStorage.removeItem('sidenavI
 
 export const createCovidDashboardLink = db => {
   const navItems = registerSidenavItem(db);
-  const styling = navItems.length !== 2 ? styles.hide : styles.noMarker;
+  const styling = navItems.length !== 4 ? styles.hide : styles.noMarker;
   console.info('styling: ', styling);
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
@@ -61,42 +61,41 @@ export const createCovidDashboardLink = db => {
   return DashboardLink;
 };
 
-let navigationEvent = new Event('navigation');
-
 export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
 
-export const caseReport_dashboardMeta = {
-  name: 'covid-case-report',
-  slot: 'covid-dashboard-slot',
+export const covid_Lab_Results_dashboardMeta = {
+  name: 'covid-lab-results',
+  slot: 'covid-lab-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Case Report',
+  title: 'Covid Lab Results',
 };
 
 export const covid_Assessments_dashboardMeta = {
   name: 'covid-assessment',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-assessment-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Case Assessment',
+  title: 'Covid Assessment',
+};
+
+export const caseReport_dashboardMeta = {
+  name: 'covid-case-report',
+  slot: 'covid-case-dashboard-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Outcomes',
 };
 
 export const covid_Outcomes_dashboardMeta = {
   name: 'covid-outcomes',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-outcomes-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Case Outcomes',
 };
-export const covid_Lab_Results_dashboardMeta = {
-  name: 'covid-lab-results',
-  slot: 'covid-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Lab Results',
-};
 export const covid_Vaccinations_dashboardMeta = {
   name: 'covid-case-report',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-vacinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Case Report',
+  title: 'Vacinnations',
 };
