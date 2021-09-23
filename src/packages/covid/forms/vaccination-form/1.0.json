@@ -25,12 +25,21 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue > today() && myValue <= '1/1/2020'"
+                    }
+                  ]
                 }
               ]
             },
             {
-              "label": "COVID Vaccine Administered ",
+              "label": "COVID Vaccine Administered [MISSING ANSWERS]",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -207,7 +216,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "covidVaccineAdministered !== '166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -227,7 +241,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "covidVaccineAdministered !== '166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -254,7 +273,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },
@@ -274,7 +298,12 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue <= '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
                 }
               ]
             },

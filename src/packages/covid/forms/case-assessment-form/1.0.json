@@ -30,7 +30,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                      "failsWhenExpression": "myValue > today() && myValue <= '1/1/2020'"
                     }
                   ]
                 }
