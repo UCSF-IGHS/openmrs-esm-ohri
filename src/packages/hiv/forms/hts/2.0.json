@@ -3409,7 +3409,7 @@
               "id": "htsProviderRemarks"
             },
             {
-              "label":"Some Obs group",
+              "label":"Test Obs group",
               "type":"obsGroup",
               "questionOptions":{
                  "rendering":"repeating",
@@ -3430,7 +3430,7 @@
                     "label":"Was client linked to care?",
                     "type":"obs",
                     "questionOptions":{
-                       "rendering":"radio",
+                       "rendering":"select",
                        "concept":"e8e8fe71-adbb-48e7-b531-589985094d30",
                        "answers":[
                           {

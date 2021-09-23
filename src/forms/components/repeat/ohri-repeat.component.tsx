@@ -1,4 +1,4 @@
-import { ButtonSet } from 'carbon-components-react';
+import { ButtonSet, Column, FormGroup } from 'carbon-components-react';
 import Button from 'carbon-components-react/lib/components/Button';
 import Row from 'carbon-components-react/lib/components/Grid/Row';
 import { useFormikContext } from 'formik';
@@ -11,6 +11,7 @@ import { getConcept } from '../../ohri-form.resource';
 import { getHandler } from '../../registry/registry';
 import { OHRIFormField, OHRIFormFieldProps } from '../../types';
 import { OHRIObsGroup } from '../group/ohri-obs-group.component';
+import { TrashCan32, Add16 } from '@carbon/icons-react';
 
 export const getInitialValueFromObs = (field: OHRIFormField, obsGroup: any) => {
   const rendering = field.questionOptions.rendering;
@@ -104,29 +105,49 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
       delete values[field];
     });
   };
-  const Nodes = questions.map((question, index) => {
+  const nodes = questions.map((question, index) => {
+    const deleteControl =
+      index !== 0 ? (
+        <Column style={{ paddingTop: '1.5rem', marginLeft: '.5rem' }}>
+          <Button
+            renderIcon={TrashCan32}
+            kind="danger--tertiary"
+            onClick={() => removeQuestion(question)}
+            hasIconOnly
+          />
+        </Column>
+      ) : null;
     return (
-      <Row style={{ margin: '0', marginBottom: '1rem' }}>
-        <OHRIObsGroup question={question} onChange={onChange} handler={getHandler('obsGroup')} />
-        <div>
-          <ButtonSet>
-            <Button
-              onClick={() => {
-                const nextCount = counter + 1;
-                handleAdd(nextCount, null);
-                setCounter(nextCount);
-              }}>
-              Add
-            </Button>{' '}
-            {index !== 0 && (
-              <Button kind="danger" onClick={() => removeQuestion(question)}>
-                Remove
-              </Button>
-            )}
-          </ButtonSet>
-        </div>
-      </Row>
+      <>
+        <Row style={{ margin: '0', marginBottom: '1rem', marginTop: '1rem' }}>
+          <OHRIObsGroup question={question} onChange={onChange} handler={getHandler('obsGroup')} />
+          {deleteControl}
+        </Row>
+      </>
     );
   });
-  return <>{Nodes}</>;
+
+  nodes.push(
+    <Row>
+      <Column>
+        <Button
+          renderIcon={Add16}
+          kind="ghost"
+          onClick={() => {
+            const nextCount = counter + 1;
+            handleAdd(nextCount, null);
+            setCounter(nextCount);
+          }}>
+          Add
+        </Button>
+      </Column>
+    </Row>,
+  );
+  return (
+    !question.isHidden && (
+      <FormGroup legendText={question.label} style={{ marginTop: '0.65rem' }}>
+        {nodes}
+      </FormGroup>
+    )
+  );
 };
