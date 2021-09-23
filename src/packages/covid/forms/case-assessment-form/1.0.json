@@ -9,6 +9,34 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Date of Assessment [missing concept]",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text"
+              },
+              "id": "encounterStartDateTime",
+              "behaviours": [
+                {
+                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "label": "Reasons for testing (select all that apply)",
               "type": "obs",
               "questionOptions": {
