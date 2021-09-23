@@ -16,7 +16,18 @@
                 "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": ""
               },
-              "id": "vaccinationDate"
+              "id": "vaccinationDate",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "COVID Vaccine Administered ",
@@ -167,7 +178,18 @@
                   }
                 ]
               },
-              "id": "covidVaccineAdministered"
+              "id": "covidVaccineAdministered",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other vaccine manufacturer (1st dose)",
@@ -210,10 +232,18 @@
               ]
             },
             {
-              "label": "What is the vaccines expiration date? [MISSING CONCEPT]",
+              "label": "What is the vaccines expiration date?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text"
+                "rendering": "date",
+                "concept": "162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "362981000"
+                  }
+                ],
+                "weeksList": ""
               },
               "id": "vaccineExpirationDate",
               "behaviours": [
@@ -229,10 +259,11 @@
               ]
             },
             {
-              "label": "What is the vaccines lot number? [MISSING CONCEPT]",
+              "label": "What is the vaccines lot number?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text"
+                "rendering": "text",
+                "concept": "1420AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "id": "vaccineLotNumber",
               "behaviours": [
