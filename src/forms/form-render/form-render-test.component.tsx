@@ -24,7 +24,7 @@ function FormRenderTest() {
 
   const textareaProps = {
     labelText: 'You can either type or paste well formatted json.',
-    className: 'form-group',
+    className: 'form-group json-render-textarea',
     placeholder: 'Enter Json',
     id: 'jsonRenderInput',
     cols: 50,
