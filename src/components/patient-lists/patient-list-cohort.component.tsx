@@ -226,6 +226,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ...constructPatient(member),
           ...setListMeta(member, results.location),
         }));
+        setPatients(patients);
         setIsLoading(false);
       });
     } else {
@@ -236,7 +237,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
             ...setListMeta(data, null),
           };
         });
-
+        setPatients(patients);
         setIsLoading(false);
       });
     }
