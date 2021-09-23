@@ -11,14 +11,9 @@ import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableS
 import OTable from '../../components/data-table/o-table.component';
 import {
   covid_Assessment_EncounterUUID,
-  covidPatientStatusUUID,
-  covidOutcomeUUID,
-  covidReasonsForTestingUUID,
-  covidTestResultUUID,
-  covidTestDateUUID,
-  covidTestTypeUUID,
-  covidSARS_TestResult,
-  covidTreatmenOutConceptName_UUID,
+  covidReasonsForTestingConcep_UUID,
+  covidSARS_TestResultConcept_UUID,
+  covidTreatementOutConcept_UUID,
   covidSpecimentTestDate_UUID,
 } from '../../constants';
 interface CovidOverviewListProps {
@@ -40,6 +35,7 @@ interface CovidAssessmentWidgetProps {
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
+  getEncounterValues,
 } from '../../components/encounter-list/encounter-list.component';
 
 const columns: EncounterListColumn[] = [
@@ -47,48 +43,47 @@ const columns: EncounterListColumn[] = [
     key: 'encounterDate',
     header: 'Encounter Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
+      return getEncounterValues(encounter, 'encounterDatetime', true);
     },
   },
   {
     key: 'reasonsForTesting',
     header: 'Reason for testing',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidReasonsForTestingUUID);
+      return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
     },
   },
   {
     key: 'testDate',
     header: 'Test Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestDateUUID, true);
+      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
     },
   },
   {
     key: 'lastTestResult',
     header: 'Test Result',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSARS_TestResult);
+      return getObsFromEncounter(encounter, covidSARS_TestResultConcept_UUID);
     },
   },
   {
     key: 'outcome',
     header: 'Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTreatmenOutConceptName_UUID);
+      return getObsFromEncounter(encounter, covidTreatementOutConcept_UUID);
     },
   },
 ];
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
-  console.info('columns: ', columns);
   return (
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={covid_Assessment_EncounterUUID}
       form={{ package: 'covid', name: 'covid_assessment' }}
       columns={columns}
-      description="clinical visit encounters"
+      description="covid assessments"
       headerTitle="Covid Assessment"
     />
   );

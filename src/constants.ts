@@ -51,20 +51,20 @@ export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 // Covid Restrospective
 //   const covidEncounterUUID = '902839fa-f58c-44a1-95a4-dba62d7263f8'; // Covid Case Report
 export const covid_Assessment_EncounterUUID = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
-// export const covidReasonsForTestingUUID = 'ae46f4b1-c15d-4bba-ab41-b9157b82b0ce'; // Reasons for testing
+export const covidReasonsForTestingConcep_UUID = 'ae46f4b1-c15d-4bba-ab41-b9157b82b0ce'; // Reasons for testing
 export const covidTestTypeUUID = '069f6dfe-88c1-4a45-a894-0d99549c8718'; // SARS2-Cov2 Test Type
 export const covidTestResultUUID = '3f4ee14b-b4ab-4597-9fe9-406883b63d76'; // Diagnostic PCR Result
 export const covidOutcomeUUID = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
 
-export const covidTestDateUUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Date specimen collected
-// export const covidVaccinationStatusUUID = '40cb816f-797b-4cb4-a9fb-2727b2373623'; // Has the patient been vaccinated
+export const covidSpecimenCollectiDate_UUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Date specimen collected
+export const covidVaccinationStatusUUID = '40cb816f-797b-4cb4-a9fb-2727b2373623'; // Has the patient been vaccinated
 export const covidPatientStatusUUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f'; // Client Health Status
 
-export const covidTreatementOutConceptConcept_UUID = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
-// export const covidSARS_TestResult = '89feed9c-1dd9-477a-ab1c-86f5f75f6762';
+export const covidTreatementOutConcept_UUID = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
+export const covidSARS_TestResultConcept_UUID = '89feed9c-1dd9-477a-ab1c-86f5f75f6762';
 
 // Covid Assessment
-export const covidSARS_TestResult = '0961651c-d52e-41dd-957a-94b9ce08e4eb';
+export const covidSARS_TestResult_Name_UUID = '0961651c-d52e-41dd-957a-94b9ce08e4eb';
 export const covidReasonsForTestingUUID = '5793ad0f-d726-4918-a1b5-f25f4fb2b857';
 export const covidTreatmenOutConceptName_UUID = '28d43e48-3673-4671-a6b1-3ed45fdfcba6';
 export const covidSpecimentTestDate_UUID = '499df97a-2a34-4562-946a-3c4d5608b67f';

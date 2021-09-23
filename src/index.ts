@@ -325,17 +325,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
-      // {
-      //   id: 'covid-assessments-ext',
-      //   slot: 'covid-assessments-dashboard-slot',
-      //   load: getAsyncLifecycle(() => import('./covid/pages/covid-assessments.component'), {
-      //     featureName: 'covid-assessments',
-      //     moduleName,
-      //   }),
-      //   meta: {
-      //     columnSpan: 4,
-      //   },
-      // },
       {
         id: 'covid-assessments-ext',
         slot: 'covid-dashboard-slot',
