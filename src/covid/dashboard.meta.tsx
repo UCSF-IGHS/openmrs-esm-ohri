@@ -2,8 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
+import Events from '../utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
+const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
+  pathname.indexOf(covidAssessments_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(covidOutcomes_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(covidLabResults_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(covidVaccinations_dashboardMeta.name) !== -1;
+
+const menuItems = 4;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -11,11 +19,7 @@ const registerSidenavItem = sidenavItem => {
 
   //check if List exists, if not initialize it
   buffer = registry ? registry : [];
-
-  //avoid duplicates by limiting list size to 4 elements
-  if (buffer.length <= 4) {
-    buffer.push(sidenavItem);
-  }
+  buffer.push(sidenavItem);
 
   localStorage.setItem('sidenavItems-Covid', JSON.stringify(buffer));
 
@@ -26,20 +30,20 @@ export const clearCovidSidenavRegistry = () => localStorage.removeItem('sidenavI
 
 export const createCovidDashboardLink = db => {
   const navItems = registerSidenavItem(db);
-  const styling = navItems.length !== 4 ? styles.hide : styles.noMarker;
+  const styling = navItems.length === menuItems ? styles.noMarker : styles.hide;
 
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }, props) => {
     const [rerender, setRerender] = useState(true);
     const forceRerender = () => setRerender(!rerender);
 
-    document.addEventListener('navigation-from-hiv', e => {
+    Events.subscribe('navigation-from-hts', e => {
       e.preventDefault();
       forceRerender();
     });
 
     return (
       <div id="sidenav-menu-covid">
-        <SideNavMenu title="Covid" className={styling} defaultExpanded={isActiveLink(caseReport_dashboardMeta)}>
+        <SideNavMenu title="Covid" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
@@ -48,7 +52,7 @@ export const createCovidDashboardLink = db => {
               onClick={e => {
                 handleLinkClick(e, `${basePath}/${navItem.name} `);
                 forceRerender();
-                document.dispatchEvent(new CustomEvent('navigation-from-hiv'));
+                Events.dispatch('navigation-from-covid');
               }}>
               {navItem.title}
             </SideNavMenuItem>
@@ -65,36 +69,30 @@ export function handleLinkClick(event: any, to: string) {
   navigate({ to });
 }
 
-export const covid_Lab_Results_dashboardMeta = {
-  name: 'covid-lab-results',
-  slot: 'covid-lab-dashboard-slot',
+export const covidAssessments_dashboardMeta = {
+  name: 'covid-assessments',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Covid Lab Results',
+  title: 'Assessments',
 };
 
-export const covid_Assessments_dashboardMeta = {
-  name: 'covid-assessment',
-  slot: 'covid-assessment-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Covid Assessment',
-};
-
-export const caseReport_dashboardMeta = {
-  name: 'covid-case-report',
-  slot: 'covid-case-dashboard-slot',
+export const covidOutcomes_dashboardMeta = {
+  name: 'covid-outcomes',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Outcomes',
 };
 
-export const covid_Outcomes_dashboardMeta = {
-  name: 'covid-outcomes',
-  slot: 'covid-outcomes-dashboard-slot',
+export const covidLabResults_dashboardMeta = {
+  name: 'covid-lab-results',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Case Outcomes',
+  title: 'Lab Results',
 };
-export const covid_Vaccinations_dashboardMeta = {
-  name: 'covid-case-report',
-  slot: 'covid-vacinations-dashboard-slot',
+
+export const covidVaccinations_dashboardMeta = {
+  name: 'covid-vaccinations',
+  slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Vacinnations',
+  title: 'Vaccinations',
 };

@@ -69,7 +69,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
       form={{ package: 'hiv', name: 'clinical_visit' }}
       columns={columns}
       description="clinical visit encounters"
-      headerTitle="Clinical Visits"
+      headerTitle="Clinical Visits 3"
     />
   );
 };

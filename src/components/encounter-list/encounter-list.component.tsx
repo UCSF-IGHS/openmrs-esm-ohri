@@ -9,7 +9,7 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-lauc
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { clinicalVisitEncounterType, dateOfEncounterConcept, encounterRepresentation } from '../../constants';
+import { dateOfEncounterConcept, encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 
@@ -29,6 +29,9 @@ export interface EncounterListProps {
 }
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
+  // console.info('encounter: ', encounter);
+  console.info('obsConcept: ', obsConcept);
+
   const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
   if (!obs) {
     return '--';
@@ -38,13 +41,21 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
     return moment(obs.value).format('DD-MMM-YYYY');
   }
 
+  console.info('obs.value: ', obs.value);
   if (typeof obs.value === 'object') {
     return obs.value.name.name;
   }
   return obs.value;
 }
 
-const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, columns, headerTitle, description }) => {
+const EncounterList: React.FC<EncounterListProps> = ({
+  patientUuid,
+  encounterUuid,
+  form,
+  columns,
+  headerTitle,
+  description,
+}) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -150,7 +161,7 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
   }, [encounterForm, launchEncounterForm]);
 
   useEffect(() => {
-    loadRows(clinicalVisitEncounterType);
+    loadRows(encounterUuid);
   }, [counter]);
 
   return (
