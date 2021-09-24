@@ -29,6 +29,11 @@ export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'6
 
 // COVID Cohorts
 export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
+export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
+
+// COVID Concepts
+export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidTestType = '069f6dfe-88c1-4a45-a894-0d99549c8718';
 
 // Service Enrollment Concepts
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';
@@ -46,7 +51,8 @@ export const expressCareProgramStatusConcept = '159832AAAAAAAAAAAAAAAAAAAAAAAAAA
 export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Next Appointment Date
 
 // HTS Retrospective
-export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
+export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
+export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
 
 // Covid Restrospective
 //   const covidEncounterUUID = '902839fa-f58c-44a1-95a4-dba62d7263f8'; // Covid Case Report

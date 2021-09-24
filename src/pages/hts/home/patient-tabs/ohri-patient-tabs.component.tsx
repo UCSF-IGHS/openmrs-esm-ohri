@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import { Tabs, Tab, Row, Column } from 'carbon-components-react';
 import styles from './ohri-patient-tabs.scss';
 import CohortPatientList from '../../../../components/patient-lists/patient-list-cohort.component';
-import { postTestCounsellingCohort, preTestCounsellingCohort, waitingForHIVTestCohort } from '../../../../constants';
+import {
+  htsRetrospectiveEncounterType,
+  postTestCounsellingCohort,
+  preTestCounsellingCohort,
+  waitingForHIVTestCohort,
+} from '../../../../constants';
 
 function OHRIPatientTabs() {
   const formPackage = 'hiv';
@@ -13,6 +18,7 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={preTestCounsellingCohort}
           cohortSlotName="pre-test-counseling-slot"
+          associatedEncounterType={htsRetrospectiveEncounterType}
           launchableForm={{
             package: formPackage,
             name: formName,
