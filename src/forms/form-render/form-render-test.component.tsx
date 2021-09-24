@@ -5,6 +5,7 @@ import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
 import { filterFormByIntent } from '../../utils/forms-loader';
+import AceEditor from 'react-ace';
 
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
@@ -49,7 +50,7 @@ function FormRenderTest() {
   const updateFormJsonInput = e => {
     setInputErrorMessage('');
     try {
-      const parsedSchema = JSON.parse(e.target.value);
+      const parsedSchema = JSON.parse(e);
       setSchemaInput(parsedSchema);
       setFormInput(parsedSchema);
       loadIntentsFromSchema(parsedSchema);
@@ -78,25 +79,19 @@ function FormRenderTest() {
   return (
     <div className={styles.container}>
       <div className={styles.mainWrapper}>
-        <Row>
-          <Column>
-            <div className={styles.widgetHeaderContainer}>
-              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-            </div>
-          </Column>
-        </Row>
+        <div className={styles.userWelcome}>{headerTitle}</div>
         <Row>
           <Column lg={5} md={5} sm={12} style={{ borderRight: '1em' }}>
-            <h4>Json Schema</h4>
+            <h4>JSON Schema</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
+
             <Form
-              action=""
               onSubmit={e => {
                 e.preventDefault();
                 handleFormSubmission(e);
               }}
               className={styles.txtArea}>
-              <TextArea labelText={''} {...textareaProps} onChange={updateFormJsonInput} name={'jsonText'} />
+              <AceEditor mode="json" theme="github" onChange={updateFormJsonInput} name={'jsonText'} />
 
               <div style={{ width: 400 }}>
                 <Dropdown
@@ -121,7 +116,7 @@ function FormRenderTest() {
             </Form>
           </Column>
           <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
-            <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>Generated Form</h4>
+            <h4>Generated Form</h4>
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs type="container">

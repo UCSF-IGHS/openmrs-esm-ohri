@@ -14,7 +14,6 @@
   font-style: normal;
   line-height: 1.38;
   letter-spacing: normal;
-  color: #525252;
   font-weight: 400;
   padding-bottom: 4px;
   margin: auto;
@@ -69,4 +68,15 @@
 .txtArea > div div textarea {
   //background-color: #1f1d1d !important;
   //color: #c6c6c6 !important;
+}
+
+.userWelcome {
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  color: #161616;
+  margin-bottom: 16px;
 }
