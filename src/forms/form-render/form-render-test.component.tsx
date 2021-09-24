@@ -23,9 +23,8 @@ function FormRenderTest() {
   const [schemaInput, setSchemaInput] = useState('');
 
   const textareaProps = {
-    labelText: 'You can either type or paste well formatted json.',
     className: 'form-group json-render-textarea',
-    placeholder: 'Enter Json',
+    placeholder: 'You can either type or paste well formatted json',
     id: 'jsonRenderInput',
     cols: 50,
     rows: 30,
@@ -95,8 +94,9 @@ function FormRenderTest() {
               onSubmit={e => {
                 e.preventDefault();
                 handleFormSubmission(e);
-              }}>
-              <TextArea {...textareaProps} onChange={updateFormJsonInput} name={'jsonText'} />
+              }}
+              className={styles.txtArea}>
+              <TextArea labelText={''} {...textareaProps} onChange={updateFormJsonInput} name={'jsonText'} />
 
               <div style={{ width: 400 }}>
                 <Dropdown
@@ -121,11 +121,11 @@ function FormRenderTest() {
             </Form>
           </Column>
           <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
-            <h6 style={{ margin: '8px' }}>Generated Form</h6>
-            <div style={{ border: '1rem', minHeight: '780px', backgroundColor: '#F4F4F4' }}>
+            <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>Generated Form</h4>
+            <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs type="container">
-                <Tab id="tab-form" label="Form render">
+                <Tab id="tab-form" label="Form Render" className={styles.renderTab}>
                   {isSchemaLoaded ? (
                     <div className={styles.formRenderDisplay}>
                       <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />
