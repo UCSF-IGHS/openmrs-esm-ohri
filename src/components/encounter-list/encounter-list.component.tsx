@@ -33,7 +33,7 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
 }
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
-  const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
+  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
 
   if (!obs) {
     return '--';
