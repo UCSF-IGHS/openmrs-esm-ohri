@@ -40,51 +40,33 @@
   margin: 0 $spacing-03;
 }
 
+.formRenderContent {
+  min-height: 780px;
+}
+
+.formRenderContent > div {
+  padding: 0;
+}
+
+.formRenderContent > div > p {
+  padding: 0.5rem;
+}
+
+.renderTab > .tab-form {
+  border: 0.01rem dotted #6f6f6f !important;
+  padding: 0 0 1rem;
+}
+
+.formRenderDisplay {
+  padding: 0;
+  border: 0.01rem dotted #6f6f6f !important;
+}
+
 .formRenderDisplay > form > .mainContainer > .overflowContent {
-  background-color: red !important;
-  max-width: 70% !important;
-  top: 240px !important;
-  bottom: 190px !important;
+  padding-bottom: 1rem !important;
 }
 
-.formRenderDisplay {
-  form {
-    .mainContainer {
-      .overflowContent {
-        background-color: mediumpurple !important;
-        max-width: 70% !important;
-        top: 240px !important;
-        bottom: 190px !important;
-      }
-    }
-  }
-}
-
-.formRenderDisplay {
-  .mainContainer {
-    .overflowContent {
-      background-color: mediumpurple !important;
-      max-width: 70% !important;
-      top: 240px !important;
-      bottom: 190px !important;
-    }
-  }
-}
-
-.overflowContent {
-  background-color: mediumpurple !important;
-  max-width: 70% !important;
-  top: 240px !important;
-  bottom: 190px !important;
-  height: auto;
-  margin-left: 14rem;
-  padding-bottom: 40rem;
-  position: fixed;
-  overflow-y: scroll;
-  padding-left: 10px;
-}
-
-.json-render-textarea {
-  background-color: #141414 !important;
-  color: #c6c6c6 !important;
+.txtArea > div div textarea {
+  //background-color: #1f1d1d !important;
+  //color: #c6c6c6 !important;
 }
