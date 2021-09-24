@@ -79,7 +79,7 @@ function FormRenderTest() {
   return (
     <div className={styles.container}>
       <div className={styles.mainWrapper}>
-        <div className={styles.userWelcome}>{headerTitle}</div>
+        <div className={styles.formRenderTitle}>{headerTitle}</div>
         <Row>
           <Column lg={5} md={5} sm={12} style={{ borderRight: '1em' }}>
             <h4>JSON Schema</h4>
