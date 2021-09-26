@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
-import { DataTableSkeleton } from 'carbon-components-react';
-import EmptyState from '../../components/empty-state/empty-state.component';
-import OTable from '../../components/data-table/o-table.component';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
-import { getForm } from '../../utils/forms-loader'; 
 
 import {
   covidRapidTestResultDate_UUID,
@@ -42,14 +37,6 @@ import EncounterList, {
   getEncounterValues,
 } from '../../components/encounter-list/encounter-list.component';
 
-/*
-Encounter Date
-Reason for Testing
-Test Date
-Type of Test
-Test Result
-Test Status
-*/
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
@@ -82,7 +69,6 @@ const columns: EncounterListColumn[] = [
   {
     key: 'lastTestResult',
     header: 'Test Result',
-    // covidTestResultConcept_UUID
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
     },
