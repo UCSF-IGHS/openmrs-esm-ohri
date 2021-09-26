@@ -71,21 +71,14 @@ export function handleLinkClick(event: any, to: string) {
 
 export const covidAssessments_dashboardMeta = {
   name: 'covid-assessments',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-assessments-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Assessments',
 };
 
-export const covidOutcomes_dashboardMeta = {
-  name: 'covid-outcomes',
-  slot: 'covid-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Outcomes',
-};
-
 export const covidLabResults_dashboardMeta = {
   name: 'covid-lab-results',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-lab-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Lab Results',
 };
@@ -95,4 +88,11 @@ export const covidVaccinations_dashboardMeta = {
   slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Vaccinations',
+};
+
+export const covidOutcomes_dashboardMeta = {
+  name: 'covid-outcomes',
+  slot: 'covid-dashboard-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Outcomes',
 };

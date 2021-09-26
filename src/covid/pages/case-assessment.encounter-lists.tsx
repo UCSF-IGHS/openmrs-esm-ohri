@@ -15,6 +15,11 @@ import {
   covidSARS_TestResultConcept_UUID,
   covidTreatementOutConcept_UUID,
   covidSpecimentTestDate_UUID,
+  covidPresentSymptonsConcept_UUID,
+  covidUnderComorbidityConcept_UUID,
+  covidSymptosConcept_UUID,
+  covidPresentSymptonsName_UUID,
+  covidPatientStatusConcept_UUID,
 } from '../../constants';
 interface CovidOverviewListProps {
   patientUuid: string;
@@ -41,7 +46,7 @@ import EncounterList, {
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
-    header: 'Encounter Date',
+    header: 'Date of Assessment',
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDatetime', true);
     },
@@ -54,10 +59,17 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'testDate',
-    header: 'Test Date',
+    key: 'symptomatic',
+    header: 'Symptomatic',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
+      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID);
+    },
+  },
+  {
+    key: 'testDate',
+    header: 'Co-morbidity',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID);
     },
   },
   {
@@ -69,22 +81,25 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'outcome',
-    header: 'Outcome',
+    header: 'Status',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTreatementOutConcept_UUID);
+      return getObsFromEncounter(encounter, covidPatientStatusConcept_UUID);
     },
   },
 ];
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
+  const { t } = useTranslation();
+  const headerTitle = t('covidAssessments', 'Covid Assessment');
+  const displayText = t('covidAssessments', 'Covid Assessment');
   return (
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={covid_Assessment_EncounterUUID}
       form={{ package: 'covid', name: 'covid_assessment' }}
       columns={columns}
-      description="covid assessments"
-      headerTitle="Covid Assessment"
+      description={displayText}
+      headerTitle={headerTitle}
     />
   );
 };

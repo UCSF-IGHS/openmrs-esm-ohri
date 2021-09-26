@@ -246,7 +246,7 @@ function setupOpenMRS() {
       },
 
       {
-        id: 'covid-assessments-dashboard',
+        id: 'covid-Assessments-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createCovidDashboardLink(covidAssessments_dashboardMeta), options),
         meta: covidAssessments_dashboardMeta,
@@ -327,9 +327,9 @@ function setupOpenMRS() {
       },
       {
         id: 'covid-assessments-ext',
-        slot: 'covid-dashboard-slot',
+        slot: 'covid-assessments-dashboard-slot',
         load: getAsyncLifecycle(() => import('./covid/pages/case-assessment.encounter-lists'), {
-          featureName: 'covid-assessments',
+          featureName: 'covid-assessment',
           moduleName,
         }),
         meta: {
@@ -337,10 +337,22 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'covid-lab-results-ext',
-        slot: 'covid-lab-results-dashboard-slot',
+        id: 'covid-Lab-results-ext',
+        slot: 'covid-lab-dashboard-slot',
         load: getAsyncLifecycle(() => import('./covid/pages/lab-results.encounter-list'), {
           featureName: 'covid-lab-results',
+          moduleName,
+        }),
+        order: 10,
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'covid-vaccinations-ext',
+        slot: 'covid-vaccinations-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.component'), {
+          featureName: 'covid-vaccinations',
           moduleName,
         }),
         meta: {
@@ -354,17 +366,7 @@ function setupOpenMRS() {
           featureName: 'covid-outcomes',
           moduleName,
         }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'covid-vaccinations-ext',
-        slot: 'covid-vaccinations-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.component'), {
-          featureName: 'covid-vaccinations',
-          moduleName,
-        }),
+        order: 12,
         meta: {
           columnSpan: 4,
         },

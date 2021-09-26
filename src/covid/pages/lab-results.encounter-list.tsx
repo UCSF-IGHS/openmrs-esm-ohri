@@ -5,81 +5,111 @@ import { DataTableSkeleton } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import OTable from '../../components/data-table/o-table.component';
 import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
-import { getForm } from '../../utils/forms-loader';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import { getForm } from '../../utils/forms-loader'; 
+
+import {
+  covidRapidTestResultDate_UUID,
+  covidReasonsForTestingConcep_UUID,
+  covidSARS_TestResultConcept_UUID,
+  covidSpecimentTestDate_UUID,
+  covidTestResultConcept_UUID,
+  covidTestResultUUID,
+  covidTestStatusConcept_UUID,
+  covidTestTypeUUID,
+  covidTypeofTestConcept_UUID,
+  covid_Assessment_EncounterUUID,
+} from '../../constants';
 interface OverviewListProps {
   patientUuid: string;
 }
 
-const CovidLabResultsList: React.FC<OverviewListProps> = ({ patientUuid }) => {
+interface CovidOverviewListProps {
+  patientUuid: string;
+}
+
+export const covidFormSlot = 'hts-encounter-form-slot';
+export const covidEncounterRepresentation =
+  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
+  'encounterProviders:(uuid,provider:(uuid,name)),' +
+  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
+interface CovidLabWidgetProps {
+  patientUuid: string;
+}
+//Generic Component Import
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+  getEncounterValues,
+} from '../../components/encounter-list/encounter-list.component';
+
+/*
+Encounter Date
+Reason for Testing
+Test Date
+Type of Test
+Test Result
+Test Status
+*/
+const columns: EncounterListColumn[] = [
+  {
+    key: 'encounterDate',
+    header: 'Date of LabTest',
+    getValue: encounter => {
+      return getEncounterValues(encounter, 'encounterDatetime', true);
+    },
+  },
+  {
+    key: 'reasonsForTesting',
+    header: 'Reason for testing',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
+    },
+  },
+  {
+    key: 'testDate',
+    header: 'Test Date',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
+    },
+  },
+  {
+    key: 'testType',
+    header: 'Test Type',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
+    },
+  },
+  {
+    key: 'lastTestResult',
+    header: 'Test Result',
+    // covidTestResultConcept_UUID
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+    },
+  },
+  {
+    key: 'testStatus',
+    header: 'Test Status',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+    },
+  },
+];
+
+const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const [tableRows, setTableRows] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const rowCount = 5;
-  const [counter, setCounter] = useState(0);
-  const [covidLabTestForm, setCovidLabTestForm] = useState(getForm('covid', 'lab_test'));
-
-  const tableHeaders = [
-    { key: 'encounterDate', header: 'Encounter Date', isSortable: true },
-    { key: 'reasonsForTesting', header: 'Reason for testing' },
-    { key: 'cov2TestType', header: 'Type of Test' },
-    { key: 'lastTestDate', header: 'Test Date' },
-    { key: 'lastTestResult', header: 'Test Result' },
-    { key: 'testStatus', header: 'Test status' },
-  ];
-
-  const headerTitle = t('covidLabResults', 'Covid Lab Results');
-  const displayText = t('covidLabResults', 'Covid Lab Results');
-
-  const launchLabTestForm = (form?: any) => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: covidLabTestForm?.name,
-      state: { updateParent: forceComponentUpdate, formJson: form || covidLabTestForm },
-    });
-  };
-
-  const forceComponentUpdate = () => setCounter(counter + 1);
-
-  useEffect(() => {
-    setTimeout(() => {
-      tableRows.push({});
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
+  const headerTitle = t('covidLabResults', 'Lab Results');
+  const displayText = t('covidLabResults', 'Lab Results');
   return (
-    <>
-      {isLoading ? (
-        <DataTableSkeleton rowCount={rowCount} />
-      ) : tableRows.length > 0 ? (
-        <>
-          <div className={styles.widgetContainer}>
-            <div className={styles.widgetHeaderContainer}>
-              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <OHRIFormLauncherWithIntent
-                formJson={covidLabTestForm}
-                launchForm={launchLabTestForm}
-                onChangeIntent={setCovidLabTestForm}
-              />
-            </div>
-            <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
-          </div>
-        </>
-      ) : (
-        <EmptyState
-          displayText={displayText}
-          headerTitle={headerTitle}
-          launchFormComponent={
-            <OHRIFormLauncherWithIntent
-              formJson={covidLabTestForm}
-              launchForm={launchLabTestForm}
-              onChangeIntent={setCovidLabTestForm}
-            />
-          }
-        />
-      )}
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={covid_Assessment_EncounterUUID}
+      form={{ package: 'covid', name: 'covid_lab_test' }}
+      columns={columns}
+      description={displayText}
+      headerTitle={headerTitle}
+    />
   );
 };
 
-export default CovidLabResultsList;
+export default CovidLabResults;
