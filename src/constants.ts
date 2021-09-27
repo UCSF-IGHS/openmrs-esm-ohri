@@ -68,3 +68,20 @@ export const covidSARS_TestResult_Name_UUID = '0961651c-d52e-41dd-957a-94b9ce08e
 export const covidReasonsForTestingUUID = '5793ad0f-d726-4918-a1b5-f25f4fb2b857';
 export const covidTreatmenOutConceptName_UUID = '28d43e48-3673-4671-a6b1-3ed45fdfcba6';
 export const covidSpecimentTestDate_UUID = '499df97a-2a34-4562-946a-3c4d5608b67f';
+export const covidTypeofTestConcept_UUID = '069f6dfe-88c1-4a45-a894-0d99549c8718';
+export const covidSymptosConcept_UUID = '';
+export const covidPresentSymptonsConcept_UUID = '244b0dc0-eb1b-46ae-b62a-f580345d4f46';
+export const covidComorbidityPresentConcept_UUID = '166020AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidUnderComorbidityConcept_UUID = '0651869c-6e90-48d6-b25c-406270c76bee';
+export const covidPresentSymptonsName_UUID = '12568215-ae1c-42ec-b7e8-8818d2761f46';
+export const covidPatientStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
+
+//Covid Lab Results
+export const covidSpecimenCollectionDate_UUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidLabResultsEncounterType_UUID = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
+export const covidSpecimentTypeConcept_UUID = 'ae127f82-1861-4165-ac81-8554e5a3aac4';
+export const covidTestResultConcept_UUID = 'cbcbb029-f11f-4437-9d53-1d0f0a170433';
+export const covidRapidTestResultDate_UUID = 'af159c77-bc5d-46dd-90d9-bcbffb22267f';
+export const covidDiagnosticPcrResult_UUID = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
+export const covidDiagnorticPcrResultDate_UUID = '4a77ab44-0323-490e-96be-e168c0e5c9de';
+export const covidTestStatusConcept_UUID = '';
