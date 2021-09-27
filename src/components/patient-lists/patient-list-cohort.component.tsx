@@ -1,7 +1,7 @@
 import { attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  fetchPatientLastHtsEncounter,
+  fetchPatientLastEncounter,
   fetchPatientsFinalHIVStatus,
   getCohort,
   getReportingCohortMembers,
@@ -11,7 +11,7 @@ import TableEmptyState from '../empty-state/table-empty-state.component';
 
 import { OverflowMenu, OverflowMenuItem, InlineLoading, ContentSwitcher, Switch } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
-import { basePath } from '../../constants';
+import { basePath, htsRetrospectiveEncounterType } from '../../constants';
 import { launchFormInEditMode } from '../../utils/ohri-forms-commons';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
 import styles from './patient-list-cohort.scss';
@@ -104,6 +104,7 @@ interface CohortPatientListProps {
   otherColumns?: Array<PatientListColumn>;
   excludeColumns?: Array<string>;
   queryParams?: Array<string>;
+  associatedEncounterType?: string;
   launchableForm?: {
     package: string;
     name: string;
@@ -123,7 +124,7 @@ const PatientActionOverflowMenuItem = ({ patientUuid, launchableActionText, form
     // Avoiding multiple requests for same data
     if (!encounterUuid) {
       setIsLoading(true);
-      fetchPatientLastHtsEncounter(patientUuid).then(lastHtsEncounter => {
+      fetchPatientLastEncounter(patientUuid, htsRetrospectiveEncounterType).then(lastHtsEncounter => {
         if (lastHtsEncounter) {
           setActionText(continueEncounterActionTex);
           setEncounterUuid(lastHtsEncounter.uuid);
@@ -159,6 +160,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   otherColumns,
   excludeColumns,
   queryParams,
+  associatedEncounterType,
   launchableForm,
 }) => {
   const [patients, setPatients] = useState([]);
@@ -171,13 +173,15 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [filteredResults, setFilteredResults] = useState([]);
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
-
   const constructPatient = rawPatient => {
     return {
       uuid: isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid,
       id: isReportingCohort ? rawPatient.identifiers[0].identifier : rawPatient.patient.identifiers[0].identifier,
       age: isReportingCohort ? rawPatient.person.age : rawPatient.patient.person.age,
       name: isReportingCohort ? rawPatient.person.display : rawPatient.patient.person.display,
+      birthdate: isReportingCohort
+        ? moment(rawPatient.person.birthdate).format('DD-MMM-YYYY')
+        : moment(rawPatient.patient.person.birthdate).format('DD-MMM-YYYY'),
       gender: isReportingCohort
         ? rawPatient.person.gender == 'M'
           ? 'Male'
@@ -244,13 +248,26 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [cohortId]);
 
   useEffect(() => {
+    if (patients.length && associatedEncounterType) {
+      const patientsBuffer = [];
+      patients.forEach(patient => {
+        fetchPatientLastEncounter(patient.uuid, associatedEncounterType).then(encounter => {
+          patient.latestEncounter = encounter;
+          patientsBuffer.push({ ...patient, latestEncounter: encounter });
+          setPatients(patientsBuffer);
+        });
+      });
+    }
+  }, [patients.length]);
+
+  useEffect(() => {
     (async function() {
       patients.map(async patient => {
         const hivResult = await fetchPatientsFinalHIVStatus(patient.uuid);
         return (patient['hivResult'] = hivResult);
       });
     })();
-  }, [patients]);
+  }, [patients.length]);
 
   const pagination = useMemo(() => {
     return {
