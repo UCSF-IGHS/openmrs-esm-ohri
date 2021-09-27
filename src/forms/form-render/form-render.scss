@@ -1,11 +1,24 @@
 @import "../../root.scss";
 
 .mainWrapper {
-  max-width: 1440px;
+  //max-width: 1440px;
   min-height: 100vh;
   background-color: $ui-background;
   padding: 16px !important;
   margin: auto;
+}
+
+@media (max-width: 768px) {
+  .mainWrapper {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .mainWrapper {
+    max-width: 90%;
+  }
 }
 
 .headerText {
@@ -65,11 +78,6 @@
   padding-bottom: 1rem !important;
 }
 
-.txtArea > div div textarea {
-  //background-color: #1f1d1d !important;
-  //color: #c6c6c6 !important;
-}
-
 .formRenderTitle {
   font-size: 25px;
   font-weight: normal;
@@ -79,4 +87,17 @@
   letter-spacing: normal;
   color: #161616;
   margin-bottom: 16px;
+}
+
+.container > #tab-form {
+  padding: 0;
+}
+
+.renderColumn {
+  border-right: 1em;
+}
+
+.renderColumn > div > form {
+  margin: -1rem;
+  margin-top: 0.1rem;
 }

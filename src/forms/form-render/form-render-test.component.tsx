@@ -6,6 +6,7 @@ import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
 import { filterFormByIntent } from '../../utils/forms-loader';
 import AceEditor from 'react-ace';
+import 'ace-builds/webpack-resolver';
 
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
@@ -22,6 +23,7 @@ function FormRenderTest() {
   const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
   const [schemaOutput, setSchemaOutput] = useState('');
   const [schemaInput, setSchemaInput] = useState('');
+  const [editorTheme, setEditorTheme] = useState('github');
 
   const textareaProps = {
     className: 'form-group json-render-textarea',
@@ -30,6 +32,18 @@ function FormRenderTest() {
     cols: 50,
     rows: 30,
   };
+
+  const availableEditorThemes = [
+    'monokai',
+    'github',
+    'tomorrow',
+    'kuroir',
+    'twilight',
+    'xcode',
+    'solarized_dark',
+    'solarized_light',
+    'terminal',
+  ];
 
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = jsonSchema.availableIntents || [];
@@ -81,19 +95,37 @@ function FormRenderTest() {
       <div className={styles.mainWrapper}>
         <div className={styles.formRenderTitle}>{headerTitle}</div>
         <Row>
-          <Column lg={5} md={5} sm={12} style={{ borderRight: '1em' }}>
+          <Column lg={5} md={5} sm={12} className={styles.renderColumn}>
             <h4>JSON Schema</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
 
             <Tabs type="container">
-              <Tab id="tab-form" label="JSON Input" className={styles.renderTab}>
+              <Tab id="tab-form" label="JSON Input">
                 <Form
                   onSubmit={e => {
                     e.preventDefault();
                     handleFormSubmission(e);
                   }}
                   className={styles.txtArea}>
-                  <AceEditor mode="json" theme="github" onChange={updateFormJsonInput} name={'jsonText'} />
+                  <AceEditor
+                    mode="json"
+                    theme={editorTheme}
+                    onChange={updateFormJsonInput}
+                    name={'jsonText'}
+                    placeholder="Enter JSON Text"
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    width="100%"
+                    setOptions={{
+                      enableBasicAutocompletion: true,
+                      enableLiveAutocompletion: true,
+                      displayIndentGuides: true,
+                      enableSnippets: false,
+                      showLineNumbers: true,
+                      tabSize: 2,
+                    }}
+                  />
 
                   <div style={{ width: 400 }}>
                     <Dropdown
@@ -104,6 +136,19 @@ function FormRenderTest() {
                       itemToString={item => item.display}
                       onChange={updateFormIntentInput}
                       disabled={isIntentsDropdownDisabled}
+                    />
+                  </div>
+
+                  <div style={{ width: 400 }}>
+                    <Dropdown
+                      id=""
+                      titleText="JSON Editor Theme"
+                      label={editorTheme}
+                      items={availableEditorThemes}
+                      itemToString={item => item}
+                      onChange={e => {
+                        setEditorTheme(e.selectedItem);
+                      }}
                     />
                   </div>
 
