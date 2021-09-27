@@ -173,6 +173,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPatients, setLoadedPatients] = useState(false);
   const [loadedEncounters, setLoadedEncounters] = useState(false);
+  const [loadedHIVStatuses, setLoadedHIVStatuses] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [patientsCount, setPatientsCount] = useState(0);
@@ -256,30 +257,31 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   useEffect(() => {
     if (patients.length && associatedEncounterType) {
-      patients.forEach((patient, index) => {
-        fetchPatientLastEncounter(patient.uuid, associatedEncounterType).then(encounter => {
-          patient.latestEncounter = encounter;
-          if (index == patients.length - 1) {
-            setPatients([...patients]);
-            setLoadedEncounters(true);
-          }
-        });
-      });
+      Promise.all(patients.map(patient => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
+        results => {
+          results.forEach((encounter, index) => {
+            patients[index].latestEncounter = encounter;
+            if (index == patients.length - 1) {
+              setPatients([...patients]);
+              setLoadedEncounters(true);
+            }
+          });
+        },
+      );
     }
     setPatientsCount(patients.length);
   }, [loadedPatients]);
 
   useEffect(() => {
-    if (loadedEncounters || !associatedEncounterType) {
-      patients.forEach((patient, index) => {
-        if (patient.hivResult == 'None') {
-          fetchPatientsFinalHIVStatus(patient.uuid).then(hivResult => {
-            patient.hivResult = hivResult;
-            if (index == patients.length - 1) {
-              setPatients([...patients]);
-            }
-          });
-        }
+    if ((loadedEncounters || !associatedEncounterType) && !loadedHIVStatuses) {
+      Promise.all(patients.map(patient => fetchPatientsFinalHIVStatus(patient.uuid))).then(results => {
+        results.forEach((hivResult, index) => {
+          patients[index].hivResult = hivResult;
+          if (index == patients.length - 1) {
+            setPatients([...patients]);
+            setLoadedHIVStatuses(true);
+          }
+        });
       });
     }
   }, [patients, loadedEncounters]);
