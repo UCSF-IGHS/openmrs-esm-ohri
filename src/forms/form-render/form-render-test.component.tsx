@@ -89,35 +89,48 @@ function FormRenderTest() {
             <h4>JSON Schema</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
 
-            <Form
-              onSubmit={e => {
-                e.preventDefault();
-                handleFormSubmission(e);
-              }}
-              className={styles.txtArea}>
-              <AceEditor mode="json" theme="github" onChange={updateFormJsonInput} name={'jsonText'} />
+            <Tabs type="container">
+              <Tab id="tab-form" label="JSON Input" className={styles.renderTab}>
+                <Form
+                  onSubmit={e => {
+                    e.preventDefault();
+                    handleFormSubmission(e);
+                  }}
+                  className={styles.txtArea}>
+                  <AceEditor mode="json" theme="github" onChange={updateFormJsonInput} name={'jsonText'} />
 
-              <div style={{ width: 400 }}>
-                <Dropdown
-                  id="default"
-                  titleText="Form Intent"
-                  label="--Select Form Intent"
-                  items={formIntents}
-                  itemToString={item => item.display}
-                  onChange={updateFormIntentInput}
-                  disabled={isIntentsDropdownDisabled}
+                  <div style={{ width: 400 }}>
+                    <Dropdown
+                      id="default"
+                      titleText="Form Intent"
+                      label="--Select Form Intent"
+                      items={formIntents}
+                      itemToString={item => item.display}
+                      onChange={updateFormIntentInput}
+                      disabled={isIntentsDropdownDisabled}
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    renderIcon={Run32}
+                    className="form-group"
+                    style={{ marginTop: '1em' }}
+                    disabled={!formIntentInput}>
+                    Render
+                  </Button>
+                </Form>
+              </Tab>
+              <Tab id="tab-json-schema" label="Final Schema">
+                <TextArea
+                  {...textareaProps}
+                  labelText=""
+                  placeholder=""
+                  value={schemaOutput}
+                  name="json-schema-result"
                 />
-              </div>
-
-              <Button
-                type="submit"
-                renderIcon={Run32}
-                className="form-group"
-                style={{ marginTop: '1em' }}
-                disabled={!formIntentInput}>
-                Render
-              </Button>
-            </Form>
+              </Tab>
+            </Tabs>
           </Column>
           <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
             <h4>Generated Form</h4>
@@ -132,15 +145,6 @@ function FormRenderTest() {
                   ) : (
                     <p>Please submit the form</p>
                   )}
-                </Tab>
-                <Tab id="tab-json-schema" label="Final Schema">
-                  <TextArea
-                    {...textareaProps}
-                    labelText=""
-                    placeholder=""
-                    value={schemaOutput}
-                    name="json-schema-result"
-                  />
                 </Tab>
               </Tabs>
             </div>
