@@ -97,7 +97,8 @@
   border-right: 1em;
 }
 
-.renderColumn > div > form {
+.renderColumn > div > form,
+.renderColumn > div > .finalJsonSchema {
   margin: -1rem;
-  margin-top: 0.1rem;
+  margin-top: -0.5rem;
 }
