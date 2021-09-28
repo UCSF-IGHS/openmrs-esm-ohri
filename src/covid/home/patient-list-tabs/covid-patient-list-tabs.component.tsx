@@ -1,7 +1,15 @@
 import React from 'react';
-import { clientsAssessedForCovid, todayzAppointmentsCT } from '../../../constants';
+import {
+  clientsAssessedForCovid,
+  covidCaseAssessmentEncType,
+  covidClientsWithPendingLabResults,
+  covidTestType,
+  dateSpecimenCollected,
+  todayzAppointmentsCT,
+} from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
+import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
 
 function CTHomePatientTabs() {
   const { t } = useTranslation();
@@ -60,7 +68,7 @@ function CTHomePatientTabs() {
     },
     {
       label: t('pendingLabResults', 'Pending lab results'),
-      cohortId: todayzAppointmentsCT,
+      cohortId: covidClientsWithPendingLabResults,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
       launchableForm: {
@@ -69,8 +77,9 @@ function CTHomePatientTabs() {
         actionText: 'Start Follow Up Visit',
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
       },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
+      associatedEncounterType: covidCaseAssessmentEncType,
       otherColumns: [
         {
           key: 'clientId',
@@ -81,17 +90,25 @@ function CTHomePatientTabs() {
           index: 1,
         },
         {
-          key: 'lastAppointment',
-          header: 'Last Appointment',
+          key: 'birthday',
+          header: 'Date of Birth',
           getValue: patient => {
-            return '13/01/2021';
+            return patient.birthdate;
+          },
+          index: 3,
+        },
+        {
+          key: 'testDate',
+          header: 'Test Date',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, dateSpecimenCollected, true);
           },
         },
         {
-          key: 'appointmentDate',
-          header: 'Appointment Date',
-          getValue: patient => {
-            return '03/03/2021';
+          key: 'testType',
+          header: 'Test Type',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, covidTestType);
           },
         },
       ],

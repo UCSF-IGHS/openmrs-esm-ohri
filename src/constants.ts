@@ -24,11 +24,16 @@ export const linkedToCareYesValueConcept = '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 export const preTestCounsellingCohort = 'e4d801f0-e2fd-11eb-8212-7d7156e00a1f';
 export const waitingForHIVTestCohort = 'cdee0abe-e471-11eb-8212-7d7156e00a1f';
 export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';
-export const clientsEnrolledToCare = '1d5d64ee-3e94-45b9-904e-f9b585188119';//'9505cba5-63db-42ba-833b-5d9eb98a6cbc';
+export const clientsEnrolledToCare = '1d5d64ee-3e94-45b9-904e-f9b585188119'; //'9505cba5-63db-42ba-833b-5d9eb98a6cbc';
 export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'605344bc-8a54-4df0-95d5-acadf844567e';
 
 // COVID Cohorts
 export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
+export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
+
+// COVID Concepts
+export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidTestType = '069f6dfe-88c1-4a45-a894-0d99549c8718';
 
 // Service Enrollment Concepts
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';
@@ -46,4 +51,5 @@ export const expressCareProgramStatusConcept = '159832AAAAAAAAAAAAAAAAAAAAAAAAAA
 export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Next Appointment Date
 
 // HTS Retrospective
-export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
+export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
+export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
