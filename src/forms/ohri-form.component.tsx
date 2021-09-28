@@ -275,8 +275,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             uuid: field?.value?.uuid,
             voided: false,
           };
+          let hasValue = false;
           field.questions.forEach(groupedField => {
             if (groupedField.value) {
+              hasValue = true;
               if (Array.isArray(groupedField.value)) {
                 obsGroup.groupMembers.push(...groupedField.value);
               } else {
@@ -284,7 +286,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               }
             }
           });
-          addObs(obsForSubmission, obsGroup);
+          hasValue && addObs(obsForSubmission, obsGroup);
         } else {
           addObs(obsForSubmission, field.value);
         }
