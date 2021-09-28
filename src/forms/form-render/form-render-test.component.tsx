@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Column, Dropdown, Form, Row, TextArea, Tabs, Tab } from 'carbon-components-react';
+import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
 import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
@@ -24,14 +24,6 @@ function FormRenderTest() {
   const [schemaOutput, setSchemaOutput] = useState('');
   const [schemaInput, setSchemaInput] = useState('');
   const [editorTheme, setEditorTheme] = useState('github');
-
-  const textareaProps = {
-    className: 'form-group json-render-textarea',
-    placeholder: 'You can either type or paste well formatted json',
-    id: 'jsonRenderInput',
-    cols: 50,
-    rows: 30,
-  };
 
   const availableEditorThemes = [
     'monokai',
@@ -109,8 +101,7 @@ function FormRenderTest() {
                   onSubmit={e => {
                     e.preventDefault();
                     handleFormSubmission(e);
-                  }}
-                  className={styles.txtArea}>
+                  }}>
                   <AceEditor
                     mode="json"
                     theme={editorTheme}
@@ -167,13 +158,29 @@ function FormRenderTest() {
                 </Form>
               </Tab>
               <Tab id="tab-json-schema" label="Final Schema">
-                <TextArea
-                  {...textareaProps}
-                  labelText=""
-                  placeholder=""
-                  value={schemaOutput}
-                  name="json-schema-result"
-                />
+                <div className={styles.finalJsonSchema}>
+                  <AceEditor
+                    mode="json"
+                    theme={editorTheme}
+                    value={schemaOutput}
+                    name={'json-schema-result'}
+                    placeholder=""
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    width="100%"
+                    height="700px"
+                    readOnly={true}
+                    setOptions={{
+                      enableBasicAutocompletion: false,
+                      enableLiveAutocompletion: false,
+                      displayIndentGuides: true,
+                      enableSnippets: false,
+                      showLineNumbers: true,
+                      tabSize: 2,
+                    }}
+                  />
+                </div>
               </Tab>
             </Tabs>
           </Column>
