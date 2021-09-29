@@ -62,14 +62,14 @@ const columns: EncounterListColumn[] = [
     key: 'symptomatic',
     header: 'Symptomatic',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID);
+      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID, false, true);
     },
   },
   {
     key: 'testDate',
     header: 'Co-morbidity',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID);
+      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID, false, true);
     },
   },
   {
