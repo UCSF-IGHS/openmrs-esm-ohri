@@ -31,7 +31,7 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
 }
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
 
   if (!obs) {
@@ -40,6 +40,10 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
 
   if (isDate) {
     return moment(obs.value).format('DD-MMM-YYYY');
+  }
+
+  if (isTrueFalseConcept) {
+    return obs.value ? 'Yes' : 'No';
   }
 
   if (typeof obs.value === 'object') {
@@ -150,7 +154,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
       <Button
         kind="ghost"
         renderIcon={Add16}
-        iconDescription="New"
+        iconDescription="Add "
         onClick={e => {
           e.preventDefault();
           launchEncounterForm();

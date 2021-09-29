@@ -8,7 +8,8 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   formJson: any;
   launchForm: (formJson?: any) => void;
   onChangeIntent: (formJson: any) => void;
-}> = ({ formJson, launchForm, onChangeIntent }) => {
+  dropDownText?: string;
+}> = ({ formJson, launchForm, onChangeIntent, dropDownText }) => {
   // Keeping this here for now, we need to figureout how to enforce users to select an intent when launching a form in edit mode
   // This should be thrown away after the above is resolved
   // const [processedForm, setProcessedForm] = useState(null);
@@ -23,7 +24,7 @@ export const OHRIFormLauncherWithIntent: React.FC<{
     <div style={{ paddingTop: '.3rem', paddingRight: '.5rem', width: '13rem' }}>
       <Dropdown
         id="choose-intent"
-        label="New"
+        label={dropDownText || 'New'}
         items={formJson.availableIntents}
         titleText=""
         selectedItem={null}
