@@ -129,30 +129,30 @@
                 "rendering": "group",
                 "concept": "4560c560-4bd6-4989-bff8-6e4e1fa39972"
               },
-              "id": "longCovidDescription",
+              "id": "longCovidDescriptionGroup",
               "questions": [
                 {
                   "label": "Long COVID (describe)",
-                  "id": "__GrF0zsLLq",
+                  "id": "longCovidDescription",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "behaviours": [
-                {
-                  "intent": "COVID_OUTCOME_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "patientOutcome !== '166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "COVID_OUTCOME_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "patientOutcome !== '166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }

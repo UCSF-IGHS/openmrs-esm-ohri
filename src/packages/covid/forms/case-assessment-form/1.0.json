@@ -139,31 +139,31 @@
               "questions": [
                 {
                   "label": "Other reasons for testing",
-                  "id": "__yoxvJLyFL",
+                  "id": "othersReasonForCovidTest",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "othersReasonForCovidTest",
-              "behaviours": [
-                {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "reasonsForCovidTest !== '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "reasonsForCovidTest !== '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "othersReasonForCovidTestGroup"
             },
             {
               "label": "Patient status",
@@ -512,31 +512,31 @@
               "questions": [
                 {
                   "label": "Other presenting symptoms",
-                  "id": "__tytpMKMz8",
+                  "id": "otherCovidPresentingSymptoms",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "otherCovidPresentingSymptoms",
-              "behaviours": [
-                {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "presentedCovidSymptoms !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "presentedCovidSymptoms !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "otherCovidPresentingSymptomsGroup"
             },
             {
               "label": "Comorbidity present",
