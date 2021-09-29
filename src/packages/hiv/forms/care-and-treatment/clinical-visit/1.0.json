@@ -229,21 +229,13 @@
                   {
                     "type": "AMPATH",
                     "value": "5219"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "8661-1"
                   }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "presentingComplaints"
             },
             {
@@ -292,21 +284,8 @@
                     "type": "SNOMED-CT",
                     "value": "308928005"
                   }
-                ],
-                "weeksList": ""
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "dateOfSymptomOnset"
             }
           ]
@@ -324,27 +303,66 @@
               "label": "Was the patient screened for Tuberculosis?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "f8868467-bd15-4576-9da8-bfb8ef64ea17",
                 "conceptMappings": [
                   {
                     "type": "SNOMED-CT",
                     "value": "171126009"
                   }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "patientScreenedForTuberculosis"
             },
             {
@@ -355,9 +373,32 @@
                 "concept": "c0661c0f-348b-4941-812b-c531a0a67f2e",
                 "answers": [
                   {
-                    "concept": "662edd6a-9f8a-4dfa-9956-a6ec42018c72",
-                    "label": "Presumptive Tuberculosis",
-                    "conceptMappings": []
+                    "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Currently taking tuberculosis prophylaxis",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "363819003"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164949"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "currently on tuberculosis treatment",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "6176"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1257"
+                      }
+                    ]
                   },
                   {
                     "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -386,47 +427,12 @@
                     ]
                   },
                   {
-                    "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "currently on tuberculosis treatment",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "6176"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1257"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Currently taking tuberculosis prophylaxis",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "363819003"
-                      },
-                      {
-                        "type": "KenyaEMR",
-                        "value": "164949"
-                      }
-                    ]
+                    "concept": "662edd6a-9f8a-4dfa-9956-a6ec42018c72",
+                    "label": "Presumptive Tuberculosis",
+                    "conceptMappings": []
                   }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "screeningOutcome"
             },
             {
@@ -472,7 +478,7 @@
               "label": "Is the patient currently taking Tuberculosis Treatment?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "159798AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
@@ -483,20 +489,59 @@
                     "type": "PIH",
                     "value": "1257"
                   }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "isPatientOnTuberculosisTreatment"
             },
             {
@@ -555,7 +600,7 @@
               "label": "Is the patient currently taking Tuberculosis prophylaxis?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "166449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
@@ -566,20 +611,59 @@
                     "type": "KenyaEMR",
                     "value": "164949"
                   }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "isPatientOnTuberculosisProphylaxisTreatment"
             },
             {
@@ -682,8 +766,65 @@
               "label": "Does the patient intend to conceive in the next three months?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "9109b9f3-8176-4d2f-b47d-82630dcc02ce"
+                "rendering": "radio",
+                "concept": "9109b9f3-8176-4d2f-b47d-82630dcc02ce",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "160571"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
               },
               "id": "patientIntendToConceiveInNextThreeMonths"
             },
@@ -691,7 +832,7 @@
               "label": "Is the patient breastfeeding?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
@@ -705,6 +846,57 @@
                   {
                     "type": "AMPATH",
                     "value": "5632"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -774,12 +966,63 @@
               "label": "Has/Was an antenatal profile been done?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "975f11e5-7471-4e57-bba7-d3ee358ef7ea",
                 "conceptMappings": [
                   {
                     "type": "SNOMED-CT",
                     "value": "243787009"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -856,32 +1099,34 @@
                 "concept": "374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
+                    "concept": "159837AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hysterectomy",
                     "conceptMappings": [
                       {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
+                        "type": "SNOMED-CT",
+                        "value": "236886002"
                       },
                       {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
+                        "type": "IMO-ProcedureIT",
+                        "value": "667244"
                       },
                       {
                         "type": "AMPATH",
-                        "value": "5622"
+                        "value": "5276"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5278AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Diaphragm",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "5278"
                       },
                       {
                         "type": "SNOMED-CT",
-                        "value": "74964007"
+                        "value": "368441006"
                       }
                     ]
                   },
@@ -914,6 +1159,256 @@
                         "value": "74964007"
                       }
                     ]
+                  },
+                  {
+                    "concept": "164814AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Female condom",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "442288006"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Lactational amenorrhea",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "567070"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "237122005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Natural family planning",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "5277"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "225371000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "162332AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Contraception method undecided",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "408822009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "78796AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Levonorgestrel",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "126109000"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "6373"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1718"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "109032009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159589AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Implantable contraceptive (unspecified type)",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "428987008"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "169552007"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "6220"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "907AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Medroxyprogesterone acetate",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "191"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "126112002"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5279"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "907"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "159524AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sexual abstinence",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "6219"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "162171002"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1274"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1720"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "3628"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "164813AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Male condom",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "442450006"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Vasectomy",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProcedureIT",
+                        "value": "1848460"
+                      },
+                      {
+                        "type": "IMO-ProcedureIT",
+                        "value": "1809386"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "22523008"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1721"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "136452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "IUD Contraception",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "243818000"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "567066"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "312081001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1175AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not applicable",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "385432009"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1175"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Norplant (implantable contraceptive)",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "169552007"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1718"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1472AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Tubal ligation procedure",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1719"
+                      },
+                      {
+                        "type": "IMO-ProcedureIT",
+                        "value": "674775"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1719"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "77543007"
+                      }
+                    ]
+                  }
+                ],
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "13197004"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "374"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "374"
                   }
                 ]
               },
@@ -925,16 +1420,6 @@
               "questionOptions": {
                 "rendering": "select",
                 "concept": "160575AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "PIH",
-                    "value": "6195"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "118185001"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "160573AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -949,21 +1434,47 @@
                         "value": "3211"
                       }
                     ]
+                  },
+                  {
+                    "concept": "160572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Patient thinks she can't get pregnant",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "118185001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "160571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Patient wishes to get pregnant",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "118185001"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "1045429"
+                      },
+                      {
+                        "type": "KenyaEMR",
+                        "value": "164933"
+                      }
+                    ]
+                  }
+                ],
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "6195"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "118185001"
                   }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "whyPatientNotOnFamilyPlanning"
             },
             {
@@ -1027,21 +1538,66 @@
               "label": "Does the patient have any chronic illnesses or co-morbidities?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "166020AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "398192003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "doesPatientHaveChronicillnesses"
             },
             {
@@ -1135,20 +1691,14 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "163403AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "32485007"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "doesPatientHavePreviousAdmissions"
             },
             {
@@ -1189,34 +1739,58 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "6ed9f792-b743-48e2-b36e-0e7e1caad3eb"
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "doesPatientHaveAllergies"
             },
             {
               "label": "Allergen",
               "type": "obsGroup",
               "questionOptions": {
+                "rendering": "radio",
+                "concept": "7f91dd90-f0db-4970-91c7-90091329c755",
+                "answers": [
+                  {
+                    "concept": "152952AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Environmental Allergies",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "426232007"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "602827"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "141760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Drug Allergy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "139994AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Food Allergy",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "allergen",
+              "questions": []
+            },
+            {
+              "label": "Drug Allergen",
+              "type": "obsGroup",
+              "questionOptions": {
                 "rendering": "group",
                 "concept": "162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "allergen",
+              "id": "drugAllergen",
               "questions": [
                 {
                   "label": "Other",
-                  "id": "__wI8pwCD0p",
+                  "id": "__sxJEyIFHn",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1226,67 +1800,152 @@
               ]
             },
             {
-              "label": "Drug Allergen",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "drugAllergen"
-            },
-            {
               "label": "Food Allergen",
-              "type": "obs",
+              "type": "obsGroup",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "multicheckbox",
+                "concept": "162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "behaviours": [
+              "id": "foodAllergen",
+              "questions": [
                 {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
+                  "label": "Soy",
+                  "id": "",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162176AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
                 },
                 {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
+                  "label": "Chocolate",
+                  "id": "",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162544AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Milk protein",
+                  "id": "",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162547AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Fish",
+                  "id": "",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Other",
+                  "id": "",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Caffeine",
+                  "id": "",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "72609AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
                 }
-              ],
-              "id": "foodAllergen"
+              ]
             },
             {
               "label": "Environmental Allergen",
-              "type": "obs",
+              "type": "obsGroup",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "multicheckbox",
+                "concept": "162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "behaviours": [
+              "id": "environmentalAllergen",
+              "questions": [
                 {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
+                  "label": "Bee stings",
+                  "id": "__KFvq3yLsv",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
                 },
                 {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
+                  "label": "Dust",
+                  "id": "__rzDytMIu6",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Ragweed",
+                  "id": "__yKnoK0srG",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Other",
+                  "id": "__wqGIyvrsp",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Adhesive tape",
+                  "id": "__CMoGMzGLG",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Pollen",
+                  "id": "__xMxzxJnqH",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Latex",
+                  "id": "__DGJquLwEJ",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
+                },
+                {
+                  "label": "Mold",
+                  "id": "__qnLu4JHqr",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "162539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs"
                 }
-              ],
-              "id": "environmentalAllergen"
+              ]
             },
             {
               "label": "Other Allergen",
@@ -1313,21 +1972,85 @@
               "label": "What was the severity of the allergic reaction?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "162642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "405162009"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Moderate",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1900"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "6736007"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1907"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1744"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mild",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255604002"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1743"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1901"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Severe",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1903"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1745"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "24484000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "162693AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Life threatening severity",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "442452003"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "severityOfAllergicReaction"
             }
           ]
@@ -1346,20 +2069,14 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "162871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "363787002"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "hasPatientHadAdverseDrugReaction"
             },
             {
@@ -1387,21 +2104,99 @@
               "label": "What was the severity of Adverse Drug Reaction?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "162760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-US",
+                    "value": "446401000124104"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "405162009"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fatal",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "399166001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Moderate",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1900"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "6736007"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1907"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1744"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mild",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255604002"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1743"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1901"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "162693AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Life threatening severity",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "442452003"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Severe",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1903"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1745"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "24484000"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "severityOfAdverseDrugReaction"
             },
             {
@@ -1556,22 +2351,15 @@
               "label": "Other general examination finding",
               "type": "obs",
               "questionOptions": {
-                "rendering": "textarea",
-                "concept": "",
-                "rows": ""
+                "rendering": "text",
+                "concept": "163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271907004"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "otherGeneralExaminationFinding"
             },
             {
@@ -1580,12 +2368,6 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "162737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "5880005"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1618,6 +2400,12 @@
                         "value": "17621005"
                       }
                     ]
+                  }
+                ],
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "5880005"
                   }
                 ]
               },
@@ -1666,6 +2454,15 @@
               "id": "skinFindings"
             },
             {
+              "label": "Other skin examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "160981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "otherSkinExaminationFinding"
+            },
+            {
               "label": "Head/Ears/Eyes/Nose",
               "type": "obs",
               "questionOptions": {
@@ -1685,6 +2482,15 @@
                 }
               ],
               "id": "headFindings"
+            },
+            {
+              "label": "Other HEENT examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "otherHEENTExaminationFinding"
             },
             {
               "label": "Chest",
@@ -1708,6 +2514,15 @@
               "id": "chestFindings"
             },
             {
+              "label": "Other Chest examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "otherChestExaminationFinding"
+            },
+            {
               "label": "Cardiovascular",
               "type": "obs",
               "questionOptions": {
@@ -1729,6 +2544,15 @@
               "id": "cardiovascularFindings"
             },
             {
+              "label": "Other cardiovascular examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "otherCardiovascularExaminationFinding"
+            },
+            {
               "label": "Abdomen",
               "type": "obs",
               "questionOptions": {
@@ -1748,6 +2572,15 @@
                 }
               ],
               "id": "abdomenFindings"
+            },
+            {
+              "label": "Other abdominal examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "id": "otherAbdominalExaminationFinding"
             },
             {
               "label": "Central Nervous System",
