@@ -31,6 +31,7 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
 }
+
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
 
