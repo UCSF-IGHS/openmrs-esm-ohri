@@ -139,7 +139,7 @@
               "questions": [
                 {
                   "label": "Other reasons for testing",
-                  "id": "othersReasonForCovidTestGroupOne",
+                  "id": "othersReasonForCovidTest",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -163,7 +163,7 @@
                   ]
                 }
               ],
-              "id": "othersReasonForCovidTest"
+              "id": "othersReasonForCovidTestGroup"
             },
             {
               "label": "Patient status",
@@ -512,7 +512,7 @@
               "questions": [
                 {
                   "label": "Other presenting symptoms",
-                  "id": "otherCovidPresentingSymptomsGroupOne",
+                  "id": "otherCovidPresentingSymptoms",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -536,7 +536,7 @@
                   ]
                 }
               ],
-              "id": "otherCovidPresentingSymptoms"
+              "id": "otherCovidPresentingSymptomsGroup"
             },
             {
               "label": "Comorbidity present",
