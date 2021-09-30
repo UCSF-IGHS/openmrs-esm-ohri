@@ -153,11 +153,7 @@
                       "hide": {
                         "hideWhenExpression": "false"
                       },
-                      "validators": [
-                        {
-                          "type": "js_expression",
-                          "failsWhenExpression": "reasonsForCovidTest !== '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                        }
+                      "validators": []
                       ]
                     }
                   ]
