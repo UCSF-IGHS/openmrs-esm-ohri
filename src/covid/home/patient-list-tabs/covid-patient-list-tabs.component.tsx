@@ -1,10 +1,14 @@
 import React from 'react';
 import {
   clientsAssessedForCovid,
+  clientsWithoutCovidOutcomes,
   covidCaseAssessmentEncType,
   covidClientsWithPendingLabResults,
+  covidOutcome,
   covidTestType,
   dateSpecimenCollected,
+  pcrTestResultDate,
+  rapidAntigenResultDate,
   todayzAppointmentsCT,
 } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
@@ -12,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
 import moment from 'moment';
 
-function CTHomePatientTabs() {
+function CovidHomePatientTabs() {
   const { t } = useTranslation();
 
   const tabsConfigs = [
@@ -22,10 +26,9 @@ function CTHomePatientTabs() {
       isReportingCohort: true,
       cohortSlotName: 'clients-assessed-for-covid-slot',
       launchableForm: {
-        package: 'hiv',
-        name: 'clinical_visit',
-        actionText: 'Start Follow Up Visit',
-        intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+        package: 'covid',
+        name: 'covid_case',
+        actionText: 'Edit case assessment form',
       },
       associatedEncounterType: covidCaseAssessmentEncType,
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
@@ -66,15 +69,13 @@ function CTHomePatientTabs() {
       label: t('pendingLabResults', 'Pending lab results'),
       cohortId: covidClientsWithPendingLabResults,
       isReportingCohort: true,
-      cohortSlotName: 'ct-todays-appointments',
+      cohortSlotName: 'pending-covid-lab-results-slot',
       launchableForm: {
-        package: 'hiv',
-        name: 'clinical_visit',
-        actionText: 'Start Follow Up Visit',
-        intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+        package: 'covid',
+        name: 'covid_case',
+        actionText: 'Enter test result',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
-      queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
       associatedEncounterType: covidCaseAssessmentEncType,
       otherColumns: [
         {
@@ -111,17 +112,16 @@ function CTHomePatientTabs() {
     },
     {
       label: t('undocumentedOutcomes', 'Undocumented Outcomes'),
-      cohortId: todayzAppointmentsCT,
+      cohortId: clientsWithoutCovidOutcomes,
       isReportingCohort: true,
-      cohortSlotName: 'ct-todays-appointments',
+      cohortSlotName: 'undocumented-outcomes-slot',
+      associatedEncounterType: covidCaseAssessmentEncType,
       launchableForm: {
-        package: 'hiv',
-        name: 'clinical_visit',
-        actionText: 'Start Follow Up Visit',
-        intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+        package: 'covid',
+        name: 'covid_case',
+        actionText: 'Enter COVID-19 outcome',
       },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
-      queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
       otherColumns: [
         {
           key: 'clientId',
@@ -132,17 +132,35 @@ function CTHomePatientTabs() {
           index: 1,
         },
         {
-          key: 'lastAppointment',
-          header: 'Last Appointment',
-          getValue: patient => {
-            return '13/01/2021';
+          key: 'covidAssessmentDate',
+          header: 'COVID Assessment Date',
+          getValue: ({ latestEncounter }) => {
+            return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
           },
         },
         {
-          key: 'appointmentDate',
-          header: 'Appointment Date',
-          getValue: patient => {
-            return '03/03/2021';
+          key: 'covidDiagnosisDate',
+          header: 'COVID-19 Diagnosis Date',
+          getValue: ({ latestEncounter }) => {
+            const obs = latestEncounter?.obs?.find(observation => observation.concept.uuid === covidTestType);
+            const rapidAntigen = '6cd82734-3ba5-4165-b839-0750099d72bd';
+            if (obs) {
+              if (obs.value.name.uuid == rapidAntigen) {
+                // lookup Rapid test result date
+                return getObsFromEncounter(latestEncounter, rapidAntigenResultDate, true);
+              } else {
+                // loockup PCR test result date
+                return getObsFromEncounter(latestEncounter, pcrTestResultDate, true);
+              }
+            }
+            return '--';
+          },
+        },
+        {
+          key: 'covidOutcome',
+          header: 'COVID-19 Outcome',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, covidOutcome, true);
           },
         },
       ],
@@ -151,12 +169,11 @@ function CTHomePatientTabs() {
       label: t('clientsWithPartialVaccination', 'Clients with partial vaccination'),
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
-      cohortSlotName: 'ct-todays-appointments',
+      cohortSlotName: 'clients-with-partial-vaccination-slot',
       launchableForm: {
-        package: 'hiv',
-        name: 'clinical_visit',
-        actionText: 'Start Follow Up Visit',
-        intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+        package: 'covid',
+        name: 'covid_case',
+        actionText: 'Edit Vaccination',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
       queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
@@ -189,4 +206,4 @@ function CTHomePatientTabs() {
   return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
 }
 
-export default CTHomePatientTabs;
+export default CovidHomePatientTabs;

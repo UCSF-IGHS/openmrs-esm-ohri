@@ -273,7 +273,8 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [loadedPatients]);
 
   useEffect(() => {
-    if ((loadedEncounters || !associatedEncounterType) && !loadedHIVStatuses) {
+    const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
+    if ((loadedEncounters || !associatedEncounterType) && !loadedHIVStatuses && fetchHivResults) {
       Promise.all(patients.map(patient => fetchPatientsFinalHIVStatus(patient.uuid))).then(results => {
         results.forEach((hivResult, index) => {
           patients[index].hivResult = hivResult;
