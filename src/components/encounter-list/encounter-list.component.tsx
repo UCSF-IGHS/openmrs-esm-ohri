@@ -26,6 +26,7 @@ export interface EncounterListProps {
   columns: Array<any>;
   headerTitle: string;
   description: string;
+  dropdownText?: string;
 }
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
@@ -44,6 +45,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   }
 
   if (isTrueFalseConcept) {
+    console.info('obs: ', obs);
     return obs.value ? 'Yes' : 'No';
   }
 
@@ -60,12 +62,15 @@ const EncounterList: React.FC<EncounterListProps> = ({
   columns,
   headerTitle,
   description,
+  dropdownText,
 }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+
+  dropdownText = dropdownText ? 'Add' : 'New';
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -148,6 +153,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           formJson={encounterForm}
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
+          dropDownText={dropdownText}
         />
       );
     }
@@ -160,7 +166,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           e.preventDefault();
           launchEncounterForm();
         }}>
-        {t('Add')}
+        {dropdownText}
       </Button>
     );
   }, [encounterForm, launchEncounterForm]);

@@ -74,13 +74,6 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'testStatus',
-    header: 'Test Status',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
-    },
-  },
-  {
     key: 'actions',
     header: 'Actions',
     getValue: () => {},
@@ -99,6 +92,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      dropdownText="Add"
     />
   );
 };

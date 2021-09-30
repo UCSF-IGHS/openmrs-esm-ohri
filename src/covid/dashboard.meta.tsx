@@ -42,7 +42,7 @@ export const createCovidDashboardLink = db => {
 
     return (
       <div id="sidenav-menu-covid">
-        <SideNavMenu title="Covid" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+        <SideNavMenu title="COVID" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
