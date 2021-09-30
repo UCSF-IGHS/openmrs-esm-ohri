@@ -86,6 +86,11 @@ const columns: EncounterListColumn[] = [
       return getObsFromEncounter(encounter, covidPatientStatusConcept_UUID);
     },
   },
+  {
+    key: 'actions',
+    header: 'Actions',
+    getValue: () => {},
+  },
 ];
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
