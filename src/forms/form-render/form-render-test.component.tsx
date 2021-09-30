@@ -112,6 +112,7 @@ function FormRenderTest() {
                     showGutter={true}
                     highlightActiveLine={true}
                     width="100%"
+                    className={styles.jsonEditor}
                     setOptions={{
                       enableBasicAutocompletion: true,
                       enableLiveAutocompletion: true,
@@ -122,7 +123,7 @@ function FormRenderTest() {
                     }}
                   />
 
-                  <div style={{ width: 400 }}>
+                  <div className={styles.renderDropdown}>
                     <Dropdown
                       id="default"
                       titleText="Form Intent"
@@ -134,7 +135,7 @@ function FormRenderTest() {
                     />
                   </div>
 
-                  <div style={{ width: 400 }}>
+                  <div className={styles.renderDropdown}>
                     <Dropdown
                       id=""
                       titleText="JSON Editor Theme"
