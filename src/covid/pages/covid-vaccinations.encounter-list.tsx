@@ -36,13 +36,14 @@ const columns: EncounterListColumn[] = [
       return getEncounterValues(encounter, 'encounterDatetime', true);
     },
   },
-  {
-    key: 'covidStatus',
-    header: 'Covid Status',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationStatusConcept_UUID);
-    },
-  },
+  //TODO: Add Vaccination Status concept
+  // {
+  //   key: 'covidStatus',
+  //   header: 'Covid Status',
+  //   getValue: encounter => {
+  //     return getObsFromEncounter(encounter, covidVaccinationStatusConcept_UUID);
+  //   },
+  // },
   {
     key: 'covidVaccineType',
     header: 'COVID Vacine Administered ',
