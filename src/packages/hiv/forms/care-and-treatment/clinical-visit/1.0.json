@@ -1868,14 +1868,14 @@
               "label": "Environmental Allergen",
               "type": "obsGroup",
               "questionOptions": {
-                "rendering": "multicheckbox",
+                "rendering": "group",
                 "concept": "162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "id": "environmentalAllergen",
               "questions": [
                 {
                   "label": "Bee stings",
-                  "id": "__KFvq3yLsv",
+                  "id": "__0IHnLwMop",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1884,7 +1884,7 @@
                 },
                 {
                   "label": "Dust",
-                  "id": "__rzDytMIu6",
+                  "id": "__LGD2CsHwF",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1893,7 +1893,7 @@
                 },
                 {
                   "label": "Ragweed",
-                  "id": "__yKnoK0srG",
+                  "id": "__3J65GoHJF",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1902,7 +1902,7 @@
                 },
                 {
                   "label": "Other",
-                  "id": "__wqGIyvrsp",
+                  "id": "__IwKrsq9nD",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1911,7 +1911,7 @@
                 },
                 {
                   "label": "Adhesive tape",
-                  "id": "__CMoGMzGLG",
+                  "id": "__ysxJuLK8D",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1920,7 +1920,7 @@
                 },
                 {
                   "label": "Pollen",
-                  "id": "__xMxzxJnqH",
+                  "id": "__yuKKzKFMu",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1929,7 +1929,7 @@
                 },
                 {
                   "label": "Latex",
-                  "id": "__DGJquLwEJ",
+                  "id": "__ouKIFEHzr",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -1938,7 +1938,7 @@
                 },
                 {
                   "label": "Mold",
-                  "id": "__qnLu4JHqr",
+                  "id": "__uuEo1nuMp",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -2467,20 +2467,34 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1122AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "164633005"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "1122"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "11424-9"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1122"
+                  },
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "11221000105004"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "2427"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "headFindings"
             },
             {
@@ -2488,7 +2502,17 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "163045AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "11393-6"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "164633005"
+                  }
+                ]
               },
               "id": "otherHEENTExaminationFinding"
             },
@@ -2497,20 +2521,26 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "272016000"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "6336"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "3238"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1123"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "chestFindings"
             },
             {
@@ -2518,7 +2548,17 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "160689AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "11391-0"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "272016000"
+                  }
+                ]
               },
               "id": "otherChestExaminationFinding"
             },
@@ -2527,20 +2567,22 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1124"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "2423"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271910006"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "cardiovascularFindings"
             },
             {
@@ -2548,7 +2590,13 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "163046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271910006"
+                  }
+                ]
               },
               "id": "otherCardiovascularExaminationFinding"
             },
@@ -2557,20 +2605,22 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1125"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "2425"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271911005"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "abdomenFindings"
             },
             {
@@ -2578,7 +2628,17 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "160947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "609624008"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "10191-5"
+                  }
+                ]
               },
               "id": "otherAbdominalExaminationFinding"
             },
@@ -2587,105 +2647,217 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1129AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "2421"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "22325002"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1129"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "centralNervousSystemFindings"
+            },
+            {
+              "label": "Other CNS examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "163109AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271888005"
+                  }
+                ]
+              },
+              "id": "otherCNSExaminationFinding"
+            },
+            {
+              "label": "Musculoskeletal System",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271916000"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1128"
+                  }
+                ]
+              },
+              "id": "musculoskeletalSystem"
+            },
+            {
+              "label": "Other musculoskeletal examination finding",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "163048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271916000"
+                  }
+                ]
+              },
+              "id": "otherMusculoskeletalExaminationFinding"
             },
             {
               "label": "Genito-urinary system",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-MVP",
+                    "value": "11261000105008"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "164637006"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1126"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "genitoUrinarySystemFindings"
             },
             {
-              "label": "General Examination Note",
+              "label": "Other Genito-urinary system examination finding",
               "type": "obs",
               "questionOptions": {
-                "rendering": "textarea",
-                "concept": "",
-                "rows": ""
+                "rendering": "text",
+                "concept": "163047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "118238000"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "generalExaminationNote"
+              "id": "otherGenitoUrinaryExaminationFinding"
             },
             {
               "label": "What is the patients nutritional status?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "c481f80d-7553-41ab-94ca-efddb8ab294c",
+                "answers": [
+                  {
+                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Normal",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1115"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "17621005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "115115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Obesity",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "92278"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "414916001"
+                      },
+                      {
+                        "type": "ICPC2",
+                        "value": "T82"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "patientNutritionalStatus"
             },
             {
               "label": "Was nutritional support offered?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "5484AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "1400"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5484"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "278906000"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "161648AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Food support",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "278906000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "161650AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Therapeutic feeding",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "75118006"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "161649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Micronutrient support",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "278906000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "161651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Counseling about infant feeding practices",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "171053005"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "wasNutritionalSupportOffered"
             },
             {
@@ -2693,20 +2865,8 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "161558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "wasSTIScreeningDone"
             },
             {
@@ -2714,20 +2874,18 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "165613AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "310368009"
+                  },
+                  {
+                    "type": "KenyaEMR",
+                    "value": "164935"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "wasSTIPartnerNotificationDone"
             },
             {
@@ -2736,28 +2894,6 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "5356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "PIH",
-                    "value": "1480"
-                  },
-                  {
-                    "type": "PIH-Malawi",
-                    "value": "7562"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "385354005"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "5356"
-                  },
-                  {
-                    "type": "LOINC",
-                    "value": "45233-4"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "1220AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -2903,6 +3039,28 @@
                       }
                     ]
                   }
+                ],
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "1480"
+                  },
+                  {
+                    "type": "PIH-Malawi",
+                    "value": "7562"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "385354005"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "5356"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "45233-4"
+                  }
                 ]
               },
               "id": "patientWHOStaging"
@@ -2918,25 +3076,6 @@
           "label": "HIV Monitoring",
           "isExpanded": "false",
           "questions": [
-            {
-              "label": "Was a CD4 requested at this visit?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1941AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "82078001"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "313938009"
-                  }
-                ]
-              },
-              "id": "wasCD4RequestedAtVisit"
-            },
             {
               "label": "What is the latest CD4 Count in cells/uL?",
               "type": "obsGroup",
@@ -2962,7 +3101,7 @@
               "questions": [
                 {
                   "label": "CD4 count",
-                  "id": "__tyxr5uuwM",
+                  "id": "__vtIqusotx",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -2971,7 +3110,7 @@
                 },
                 {
                   "label": "CD4%",
-                  "id": "__LLMzIGKx4",
+                  "id": "__v0tyuzwJp",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -3004,48 +3143,59 @@
               "id": "whenWasCD4CountDone"
             },
             {
-              "label": "Was a Viral Load requested at this visit?",
+              "label": "What was the lasted Viral Load test outcome?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "686dc1b2-68b5-4024-b311-bd2f5e3ce394",
+                "answers": [
+                  {
+                    "concept": "1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Detected",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260373001"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1301"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1302AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not detected",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260415000"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1302"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "viralLoadRequestedAtVisit"
+              "id": "latestViralLoadTestOutcome"
             },
             {
               "label": "What is the lasted Viral Load in copies/ml?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "",
+                "concept": "163545AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "max": "",
                 "min": "",
-                "showDate": ""
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "315124004"
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "viralLoadInCopies"
             },
             {
