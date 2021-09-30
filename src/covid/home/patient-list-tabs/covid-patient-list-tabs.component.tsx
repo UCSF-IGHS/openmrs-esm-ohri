@@ -10,6 +10,7 @@ import {
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
 import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import moment from 'moment';
 
 function CTHomePatientTabs() {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ function CTHomePatientTabs() {
         actionText: 'Start Follow Up Visit',
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
       },
+      associatedEncounterType: covidCaseAssessmentEncType,
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       otherColumns: [
         {
@@ -37,31 +39,25 @@ function CTHomePatientTabs() {
           index: 1,
         },
         {
+          key: 'birthday',
+          header: 'Date of Birth',
+          getValue: patient => {
+            return patient.birthdate;
+          },
+          index: 3,
+        },
+        {
           key: 'assessmentDate',
           header: 'Assessment date',
-          getValue: patient => {
-            return '22/09/2021';
+          getValue: ({ latestEncounter }) => {
+            return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
           },
         },
         {
-          key: 'reasonForTesting',
-          header: 'Reason for testing',
+          key: 'status',
+          header: 'Status',
           getValue: patient => {
-            return 'Contact of a case';
-          },
-        },
-        {
-          key: 'testDate',
-          header: 'Test date',
-          getValue: patient => {
-            return '22/09/2021';
-          },
-        },
-        {
-          key: 'testResult',
-          header: 'Test results',
-          getValue: patient => {
-            return 'Positive';
+            return '--';
           },
         },
       ],

@@ -256,7 +256,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [cohortId]);
 
   useEffect(() => {
-    if (patients.length && associatedEncounterType) {
+    if (patients.length && associatedEncounterType && !loadedEncounters) {
       Promise.all(patients.map(patient => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
         results => {
           results.forEach((encounter, index) => {
