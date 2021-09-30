@@ -343,7 +343,6 @@ function setupOpenMRS() {
           featureName: 'covid-lab-results',
           moduleName,
         }),
-        order: 10,
         meta: {
           columnSpan: 4,
         },
@@ -351,7 +350,7 @@ function setupOpenMRS() {
       {
         id: 'covid-vaccinations-ext',
         slot: 'covid-vaccinations-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.component'), {
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
           featureName: 'covid-vaccinations',
           moduleName,
         }),
@@ -362,11 +361,10 @@ function setupOpenMRS() {
       {
         id: 'covid-outcomes-ext',
         slot: 'covid-outcomes-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.component'), {
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.encounter-list'), {
           featureName: 'covid-outcomes',
           moduleName,
         }),
-        order: 12,
         meta: {
           columnSpan: 4,
         },
