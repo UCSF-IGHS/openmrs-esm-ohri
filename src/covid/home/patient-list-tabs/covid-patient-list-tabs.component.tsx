@@ -27,7 +27,7 @@ function CovidHomePatientTabs() {
       cohortSlotName: 'clients-assessed-for-covid-slot',
       launchableForm: {
         package: 'covid',
-        name: 'covid_case',
+        name: 'covid_assessment',
         actionText: 'Edit case assessment form',
       },
       associatedEncounterType: covidCaseAssessmentEncType,
@@ -72,7 +72,7 @@ function CovidHomePatientTabs() {
       cohortSlotName: 'pending-covid-lab-results-slot',
       launchableForm: {
         package: 'covid',
-        name: 'covid_case',
+        name: 'covid_lab_test',
         actionText: 'Enter test result',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
@@ -118,7 +118,7 @@ function CovidHomePatientTabs() {
       associatedEncounterType: covidCaseAssessmentEncType,
       launchableForm: {
         package: 'covid',
-        name: 'covid_case',
+        name: 'covid_outcome_tracking',
         actionText: 'Enter COVID-19 outcome',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
@@ -172,7 +172,7 @@ function CovidHomePatientTabs() {
       cohortSlotName: 'clients-with-partial-vaccination-slot',
       launchableForm: {
         package: 'covid',
-        name: 'covid_case',
+        name: 'covid_assessment',
         actionText: 'Edit Vaccination',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
