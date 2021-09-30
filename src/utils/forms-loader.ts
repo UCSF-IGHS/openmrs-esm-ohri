@@ -133,7 +133,7 @@ function updateQuestionRequiredBehaviour(question, intent) {
     question.validators = requiredIntentBehaviour.validators || undefined;
   } else {
     // Attempt to retrieve default behaviours
-    const defaultIntentBehaviour = question.behaviours.find(behaviour => behaviour.intent === '*');
+    const defaultIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === '*');
     if (defaultIntentBehaviour) {
       question.required = defaultIntentBehaviour.required || undefined;
       question.unspecified = defaultIntentBehaviour.unspecified || undefined;
