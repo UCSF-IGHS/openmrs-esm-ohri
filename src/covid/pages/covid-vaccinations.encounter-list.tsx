@@ -21,10 +21,17 @@ interface CovidVaccinationsWidgetProps {
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 
+/* 
+Vaccination 
+- Encounter 
+- Vaccination Date 
+- COVID Vacine Administered 
+- Next Vaccination Date
+*/
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
-    header: 'Date',
+    header: 'Encounter Date',
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDatetime', true);
     },
@@ -38,7 +45,7 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'covidVaccineType',
-    header: 'Vaccine type',
+    header: 'COVID Vacine Administered ',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidVaccinationTypeConcept_UUID);
     },
@@ -52,7 +59,7 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'secondDose',
-    header: 'Second dose',
+    header: 'Next Vaccination Date',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidVaccination2ndDoseDateConcept_UUID, true);
     },
@@ -76,6 +83,7 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      dropdownText="Add"
     />
   );
 };
