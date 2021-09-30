@@ -72,7 +72,7 @@ jobs:
 
     needs: build
     
-    if: ${{ github.ref == 'refs/heads/working' || 'refs/heads/dev' || 'refs/heads/master' }}  
+    if: ${{ github.event == 'refs/heads/working' || 'refs/heads/dev' || 'refs/heads/master' }}  
      
     steps:
       - uses: actions/checkout@v2
@@ -117,7 +117,7 @@ jobs:
 
     needs: pre_release 
     
-    if: ${{ github.ref == 'refs/heads/working' }} 
+    if: ${{ github.event_name == 'push' }} 
     
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
