@@ -105,6 +105,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      dropdownText="Add"
     />
   );
 };
