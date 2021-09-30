@@ -22,7 +22,6 @@ const registerSidenavItem = sidenavItem => {
   buffer.push(sidenavItem);
 
   localStorage.setItem('sidenavItems-Covid', JSON.stringify(buffer));
-
   return buffer;
 };
 
@@ -85,14 +84,14 @@ export const covidLabResults_dashboardMeta = {
 
 export const covidVaccinations_dashboardMeta = {
   name: 'covid-vaccinations',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-vaccinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Vaccinations',
 };
 
 export const covidOutcomes_dashboardMeta = {
   name: 'covid-outcomes',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-outcomes-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Outcomes',
 };

@@ -57,7 +57,6 @@ export const covidTestResultUUID = '3f4ee14b-b4ab-4597-9fe9-406883b63d76'; // Di
 export const covidOutcomeUUID = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
 
 export const covidSpecimenCollectiDate_UUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Date specimen collected
-export const covidVaccinationStatusUUID = '40cb816f-797b-4cb4-a9fb-2727b2373623'; // Has the patient been vaccinated
 export const covidPatientStatusUUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f'; // Client Health Status
 
 export const covidTreatementOutConcept_UUID = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
@@ -85,3 +84,11 @@ export const covidRapidTestResultDate_UUID = 'af159c77-bc5d-46dd-90d9-bcbffb2226
 export const covidDiagnosticPcrResult_UUID = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
 export const covidDiagnorticPcrResultDate_UUID = '4a77ab44-0323-490e-96be-e168c0e5c9de';
 export const covidTestStatusConcept_UUID = '';
+
+// Covid Vaccination
+export const covidVaccinationEncounterUUID = '5b37ce7a-c55e-4226-bdc8-5af04025a6de';
+export const covidVaccinationStatusUUID = '40cb816f-797b-4cb4-a9fb-2727b2373623'; // Has the patient been vaccinated
+export const covidVaccinationStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f'; // What is the patient status with regard to COVID-19?
+export const covidVaccination1stDoseDateConcept_UUID = 'c85eb064-5ef7-4ac6-8e56-4749bd58df44'; // What is COVID-19 vaccination date (1st dose)?
+export const covidVaccination2ndDoseDateConcept_UUID = '42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9'; // What is COVID-19 vaccination date (2nd dose)?
+export const covidVaccinationTypeConcept_UUID = 'a31d1148-bbcc-4ad6-a015-8359d66bcfdc'; // What COVID-19 vaccine was administered?
