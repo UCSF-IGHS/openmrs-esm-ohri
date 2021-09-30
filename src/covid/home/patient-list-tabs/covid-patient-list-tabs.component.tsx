@@ -40,6 +40,7 @@ function CovidHomePatientTabs() {
           getValue: ({ latestEncounter }) => {
             return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
           },
+          index: 3,
         },
         {
           key: 'finalAssessment',
