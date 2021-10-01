@@ -31,6 +31,7 @@ export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'6
 export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
 export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
 export const clientsWithoutCovidOutcomes = '5cf97790-3830-4f2a-807f-8595265c0806';
+export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba';
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
