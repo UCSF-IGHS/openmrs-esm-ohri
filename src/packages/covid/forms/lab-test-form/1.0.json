@@ -199,31 +199,31 @@
               "questions": [
                 {
                   "label": "Other specimen type",
-                  "id": "__LwpyzEECK",
+                  "id": "otherSpecimenType",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "otherSpecimenType",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "otherSpecimenType !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "otherSpecimenType !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "otherSpecimenTypeGroup"
             }
           ]
         },
