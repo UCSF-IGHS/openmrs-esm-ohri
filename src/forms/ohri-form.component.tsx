@@ -152,6 +152,19 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       }
       return isValueEmpty(value);
     }
+    function includes(questionId, value) {
+      if (allFieldsKeys.includes(questionId)) {
+        const determinant = allFields.find(candidate => candidate.id === questionId);
+        if (!determinant.fieldDependants) {
+          determinant.fieldDependants = new Set();
+        }
+        determinant.fieldDependants.add(field.id);
+        const initValues = initialVals || initialValues;
+        const valueArray = determinantValue || initValues[questionId];
+        return valueArray?.includes(value);
+      }
+      return false;
+    }
     parts.forEach((part, index) => {
       if (index % 2 == 0) {
         if (allFieldsKeys.includes(part)) {
