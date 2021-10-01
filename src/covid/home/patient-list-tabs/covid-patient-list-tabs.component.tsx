@@ -175,7 +175,7 @@ function CovidHomePatientTabs() {
         name: 'covid_assessment',
         actionText: 'Edit Vaccination',
       },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult'],
       queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
       otherColumns: [
         {
