@@ -167,7 +167,18 @@
                   }
                 ]
               },
-              "id": "covidVaccineAdministered"
+              "id": "covidVaccineAdministered",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Other vaccine manufacturer (1st dose)",
@@ -267,12 +278,7 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue <= '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -306,7 +312,31 @@
                   }
                 ]
               },
-              "id": "dateOfNextVaccination"
+              "id": "dateOfNextVaccination",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue > '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Date vaccination schedule completed [MISSING CONCEPT]",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text"
+              },
+              "id": "dateOfVaccineCompletion"
             }
           ]
         }
