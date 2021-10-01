@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './_page.scss';
 import OHRIFormSection from '../section/ohri-form-section.component';
 import { Waypoint } from 'react-waypoint';
+import { Toggle } from 'carbon-components-react';
 
 function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
   let newLabel = page.label.replace(/\s/g, '');
@@ -13,8 +14,20 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
   return (
     <Waypoint onEnter={() => handleEnter(newLabel)} bottomOffset="95%">
       <div id={newLabel} className={styles.pageContent}>
-        <p className={styles.pageTitle}>{page.label}</p>
-        <p className={styles.required}>All fields are required unless marked optional</p>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <p className={styles.pageTitle}>{page.label}</p>
+          <div style={{ marginLeft: '-300px' }}>
+            <Toggle
+              size="sm"
+              aria-label="toggle button"
+              defaultToggled
+              id="showHideSections"
+              labelA="Expand sections"
+              labelB="Collapse sections"
+            />
+          </div>
+        </div>
+        {/* <p className={styles.required}>All fields are required unless marked optional</p> */}
         {page.sections.map((sec, index) => {
           return (
             <div className={styles.formSection} key={index}>
