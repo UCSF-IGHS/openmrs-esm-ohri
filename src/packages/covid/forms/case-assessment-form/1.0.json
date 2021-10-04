@@ -151,7 +151,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "!reasonsForCovidTest.includes('5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                        "hideWhenExpression": "!includes('reasonsForCovidTest','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
                       "validators": []
                     }
