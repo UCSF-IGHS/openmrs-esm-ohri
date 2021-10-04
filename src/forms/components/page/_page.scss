@@ -19,7 +19,7 @@
   width: 100%;
 }
 
-.required{
+.required {
   margin: 0.25rem 27rem 0.5rem 0;
   font-size: 0.875rem;
   line-height: 1.29;
@@ -31,6 +31,7 @@
 .formSection {
   // flex-shrink: 1;
   flex: 1 1 65%;
+  background-color: #f4f4f4;
 }
 
 .formSection > div > fieldset {
