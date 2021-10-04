@@ -34,12 +34,12 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
             />
           </div>
         </div>
-        <Collapse isOpened={isCollapsed}>
+        <Collapse isOpened={true}>
           <Accordion>
             {/* <p className={styles.required}>All fields are required unless marked optional</p> */}
             {page.sections.map((sec, index) => {
               return (
-                <AccordionItem title={sec.label} open={true}>
+                <AccordionItem title={sec.label} open={isCollapsed}>
                   <div className={styles.formSection} key={index}>
                     <OHRIFormSection
                       fields={sec.questions}
