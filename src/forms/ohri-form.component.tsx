@@ -255,7 +255,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let formHasErrors = false;
     // handle field validation
     fields
-      .filter(field => !field.disabled || !field.isHidden)
+      .filter(field => !field.disabled && !field.isHidden)
       .filter(field => field['submission']?.unspecified != true)
       .forEach(field => {
         const errors = OHRIFieldValidator.validate(field, values[field.id]);
