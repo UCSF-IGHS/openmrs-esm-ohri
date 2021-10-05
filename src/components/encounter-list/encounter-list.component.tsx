@@ -36,17 +36,16 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
 
+  if (isTrueFalseConcept) {
+    return obs ? 'Yes' : 'No';
+  }
+
   if (!obs) {
     return '--';
   }
 
   if (isDate) {
     return moment(obs.value).format('DD-MMM-YYYY');
-  }
-
-  if (isTrueFalseConcept) {
-    console.info('obs: ', obs);
-    return obs.value ? 'Yes' : 'No';
   }
 
   if (typeof obs.value === 'object') {
