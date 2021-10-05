@@ -39,7 +39,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
-  
+
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
