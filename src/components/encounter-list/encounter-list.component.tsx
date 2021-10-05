@@ -40,6 +40,10 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return obs ? 'Yes' : 'No';
   }
 
+  if (isTrueFalseConcept) {
+    return obs ? 'Yes' : 'No';
+  }
+
   if (!obs) {
     return '--';
   }

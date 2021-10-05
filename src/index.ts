@@ -220,6 +220,13 @@ function setupOpenMRS() {
         offline: true,
       },
       {
+        id: 'patient-covid-status-tag',
+        slot: 'patient-banner-tags-slot',
+        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-covid-outcomes-tag.component'), options),
+        online: true,
+        offline: true,
+      },
+      {
         id: 'patient-list-ext',
         slot: 'homepage-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
