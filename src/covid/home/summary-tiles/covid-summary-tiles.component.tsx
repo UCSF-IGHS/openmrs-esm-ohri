@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getReportingCohort } from '../../../api/api';
 import OHRIProgrammeSummaryTiles from '../../../components/tile/ohri-programme-summary-tiles.component';
 import { covidVaccinatedClients } from '../../../constants';
 
