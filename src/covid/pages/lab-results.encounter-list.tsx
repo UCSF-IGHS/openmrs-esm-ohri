@@ -40,7 +40,7 @@ import EncounterList, {
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
-    header: 'Lab encounter date',
+    header: 'Date of Lab Test',
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDatetime', true);
     },

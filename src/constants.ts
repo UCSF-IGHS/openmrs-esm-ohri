@@ -92,3 +92,5 @@ export const covidVaccinationStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2ee
 export const covidVaccination1stDoseDateConcept_UUID = 'c85eb064-5ef7-4ac6-8e56-4749bd58df44'; // What is COVID-19 vaccination date (1st dose)?
 export const covidVaccination2ndDoseDateConcept_UUID = '42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9'; // What is COVID-19 vaccination date (2nd dose)?
 export const covidVaccinationTypeConcept_UUID = 'a31d1148-bbcc-4ad6-a015-8359d66bcfdc'; // What COVID-19 vaccine was administered?
+export const covidVaccinationAdministeredConcept_UUID = '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Which date COVID-19 vaccine was administered?
+export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Return Visit date
