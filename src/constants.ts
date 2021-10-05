@@ -31,6 +31,8 @@ export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'6
 export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
 export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
 export const clientsWithoutCovidOutcomes = '5cf97790-3830-4f2a-807f-8595265c0806';
+export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba';
+export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b';
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -38,6 +40,7 @@ export const covidTestType = '069f6dfe-88c1-4a45-a894-0d99549c8718';
 export const covidOutcome = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
 export const rapidAntigenResultDate = 'af159c77-bc5d-46dd-90d9-bcbffb22267f';
 export const pcrTestResultDate = '4a77ab44-0323-490e-96be-e168c0e5c9de';
+export const finalCovid19Result = '5da5c21b-969f-41bd-9091-e40d4c707544';
 
 // Service Enrollment Concepts
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';
@@ -54,7 +57,7 @@ export const regimenConcept = 'dfbe256e-30ba-4033-837a-2e8477f2e7cd';
 export const expressCareProgramStatusConcept = '159832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // differentiated Care Services
 export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Next Appointment Date
 
-// HTS Retrospective
+// Encounter types
 export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
 
