@@ -98,9 +98,9 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
 
 const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType }) => {
   const [actionText, setActionText] = useState(launchableForm.actionText);
-  const [encounterUuid, setEncounterUuid] = useState('');
+  const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const continueEncounterActionText = 'Countinue encounter';
+  const continueEncounterActionText = launchableForm.editActionText || 'Countinue encounter';
 
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
@@ -156,6 +156,7 @@ interface CohortPatientListProps {
     // if provided, the latest encounter of this type will be edited
     // if value is not provided and `editLatestEncounter` is true, the `associatedEncounterType` will be used
     encounterType?: string;
+    editActionText?: string;
   };
 }
 
