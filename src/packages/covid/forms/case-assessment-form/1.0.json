@@ -151,14 +151,9 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('reasonsForCovidTest','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
-                      "validators": [
-                        {
-                          "type": "js_expression",
-                          "failsWhenExpression": "reasonsForCovidTest !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                        }
-                      ]
+                      "validators": []
                     }
                   ]
                 }
