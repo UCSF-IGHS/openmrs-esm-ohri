@@ -2,10 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   covidVaccinationEncounterUUID,
-  covidVaccinationStatusConcept_UUID,
   covidVaccination1stDoseDateConcept_UUID,
-  covidVaccination2ndDoseDateConcept_UUID,
   covidVaccinationTypeConcept_UUID,
+  covidVaccinationNextVacinationDateConcept_UUID,
+  covidVaccinationAdministeredConcept_UUID,
 } from '../../constants';
 
 //Generic Component Import
@@ -21,13 +21,6 @@ interface CovidVaccinationsWidgetProps {
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 
-/* 
-Vaccination 
-- Encounter 
-- Vaccination Date 
-- COVID Vacine Administered 
-- Next Vaccination Date
-*/
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
@@ -52,17 +45,17 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'firstDose',
-    header: 'First dose',
+    key: 'vaccinationDate',
+    header: 'Vaccination Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccination1stDoseDateConcept_UUID, true);
+      return getObsFromEncounter(encounter, covidVaccinationAdministeredConcept_UUID, true);
     },
   },
   {
-    key: 'secondDose',
+    key: 'nextVisit', 
     header: 'Next Vaccination Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccination2ndDoseDateConcept_UUID, true);
+      return getObsFromEncounter(encounter, covidVaccinationNextVacinationDateConcept_UUID, true);
     },
   },
   {
