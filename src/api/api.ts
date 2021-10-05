@@ -1,11 +1,14 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import moment from 'moment';
+import { getObsFromEncounter } from '../components/encounter-list/encounter-list.component';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
   htsRetrospectiveType,
+  covidOutcomeUUID,
+  covid_Assessment_EncounterUUID,
 } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
@@ -189,4 +192,19 @@ export function fetchPatientLastHtsEncounter(patientUuid: string) {
 
     return null;
   });
+}
+
+export function fetchPatientCovidOutcome(patientUuid: string) {
+  //TODO: Continue logic to filter outcome
+
+  // const query = `encounterType=${covidOutcomeUUID}&patient=${patientUuid}`;
+  // return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+  //   if (data.results.length) {
+  //     console.info('results: ', data.results[data.results.length - 1]);
+  //     return data.results[data.results.length - 1];
+  //   }
+  return getObsFromEncounter(covid_Assessment_EncounterUUID, covidOutcomeUUID);
+
+  //   return null;
+  // });
 }
