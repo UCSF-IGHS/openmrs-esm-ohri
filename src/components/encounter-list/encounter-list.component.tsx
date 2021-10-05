@@ -44,7 +44,6 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   }
 
   if (isTrueFalseConcept) {
-    console.info('obs: ', obs);
     return obs.value ? 'Yes' : 'No';
   }
 
