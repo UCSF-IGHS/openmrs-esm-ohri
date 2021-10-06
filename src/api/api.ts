@@ -5,7 +5,6 @@ import {
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
-  htsRetrospectiveEncounterType,
 } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
