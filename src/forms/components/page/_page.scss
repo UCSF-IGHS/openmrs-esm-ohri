@@ -1,14 +1,20 @@
+@import "../../../root.scss";
+
 .divider {
   background-color: rgba(107, 104, 104, 0.5);
-  // margin: 1rem 0 1rem 0;
-  margin: 0;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  width: 95%;
+  margin: 25px 0;
+  //width: 95%;
 }
 
 .pageContent:last-child > hr {
   display: none;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  padding-bottom: 10px;
 }
 
 .pageTitle {
@@ -19,7 +25,7 @@
   width: 100%;
 }
 
-.required{
+.required {
   margin: 0.25rem 27rem 0.5rem 0;
   font-size: 0.875rem;
   line-height: 1.29;
@@ -29,10 +35,26 @@
 }
 
 .formSection {
-  // flex-shrink: 1;
   flex: 1 1 65%;
 }
 
 .formSection > div > fieldset {
   margin-bottom: 0 !important;
+}
+
+.collapseToggle {
+  margin-Left: -180px;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.sectionContent > div {
+  background-color: $ui-01;
+}
+
+.formSection > div div div input,
+.formSection > div div div textarea,
+.formSection > div div div dropdown,
+.formSection > div div div button {
+  background-color: #ffffff !important;
 }

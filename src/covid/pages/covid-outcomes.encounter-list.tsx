@@ -57,8 +57,9 @@ const columns: EncounterListColumn[] = [
 
 const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+
   const headerTitle = t('covidOutcomes', 'COVID Outcomes');
-  const displayText = t('covidOutcomes', 'COVID Outcomes');
+  const displayText = t('covidOutcomes', 'COVID Outcomes'); 
   return (
     <EncounterList
       patientUuid={patientUuid}
