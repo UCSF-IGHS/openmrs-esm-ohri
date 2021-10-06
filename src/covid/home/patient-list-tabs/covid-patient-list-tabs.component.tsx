@@ -72,22 +72,6 @@ function CovidHomePatientTabs() {
       associatedEncounterType: covidCaseAssessmentEncType,
       otherColumns: [
         {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
-        {
-          key: 'birthday',
-          header: 'Date of Birth',
-          getValue: patient => {
-            return patient.birthdate;
-          },
-          index: 3,
-        },
-        {
           key: 'testDate',
           header: 'Test Date',
           getValue: ({ latestEncounter }) => {
@@ -117,14 +101,6 @@ function CovidHomePatientTabs() {
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
       otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
         {
           key: 'covidAssessmentDate',
           header: 'COVID Assessment Date',
