@@ -5,8 +5,7 @@ import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
-  encounterRepresentation, 
-  htsRetrospectiveType,
+  encounterRepresentation,
   covidOutcomeUUID,
   covid_Assessment_EncounterUUID,
 } from '../constants';
