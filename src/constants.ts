@@ -33,6 +33,7 @@ export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd
 export const clientsWithoutCovidOutcomes = '5cf97790-3830-4f2a-807f-8595265c0806';
 export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba';
 export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b';
+export const covid19PositiveClients = 'adbf0411-b35c-4174-b0ff-f24a635e4da3';
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
