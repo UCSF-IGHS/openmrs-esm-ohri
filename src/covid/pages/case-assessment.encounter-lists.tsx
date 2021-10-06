@@ -67,7 +67,7 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'testDate',
-    header: 'Co-morbidity',
+    header: 'Comorbidity',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID, false, true);
     },
@@ -95,8 +95,8 @@ const columns: EncounterListColumn[] = [
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('covidAssessments', 'Covid Assessment');
-  const displayText = t('covidAssessments', 'Covid Assessment');
+  const headerTitle = t('covidAssessments', 'COVID Assessment');
+  const displayText = t('covidAssessments', 'COVID Assessment');
   return (
     <EncounterList
       patientUuid={patientUuid}
