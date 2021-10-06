@@ -4629,7 +4629,7 @@
   "availableIntents": [
     {
       "intent": "HTS_RETROSPECTIVE",
-      "display": "HTS Restrospective"
+      "display": "HTS Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
