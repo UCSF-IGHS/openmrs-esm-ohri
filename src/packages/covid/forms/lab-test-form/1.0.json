@@ -433,7 +433,7 @@
   "availableIntents": [
     {
       "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-      "display": "COVID Lab test form Restrospective"
+      "display": "COVID Lab Test form Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",

@@ -817,7 +817,7 @@
   "availableIntents": [
     {
       "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
-      "display": "COVID Assessment Restrospective"
+      "display": "COVID Assessment Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
