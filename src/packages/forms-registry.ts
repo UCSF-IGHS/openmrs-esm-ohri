@@ -6,6 +6,7 @@ import covid_lab_test_form_v_1_0 from './covid/forms/lab-test-form/1.0.json';
 import covid_outcome_tracking_form_v_1_0 from './covid/forms/outcome-tracking-form/1.0.json';
 import covid_vaccination_form_v_1_0 from './covid/forms/vaccination-form/1.0.json';
 import clinical_visit_v_1_0 from './hiv/forms/care-and-treatment/clinical-visit/1.0.json';
+import lab_results_v_1_0 from './hiv/forms/care-and-treatment/lab-results/1.0.json';
 
 export default {
   hiv: {
@@ -18,6 +19,9 @@ export default {
     },
     clinical_visit: {
       '1.0': clinical_visit_v_1_0,
+    },
+    lab_results: {
+      '1.0': lab_results_v_1_0,
     },
   },
   covid: {
