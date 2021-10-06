@@ -30,6 +30,7 @@ function CovidHomePatientTabs() {
         name: 'covid_assessment',
         editActionText: 'Edit case assessment form',
         editLatestEncounter: true,
+        targetDashboard: 'covid-assessments',
       },
       associatedEncounterType: covidCaseAssessmentEncType,
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
@@ -68,6 +69,7 @@ function CovidHomePatientTabs() {
         name: 'covid_lab_test',
         editActionText: 'Enter test result',
         editLatestEncounter: true,
+        targetDashboard: 'covid-lab-results',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       associatedEncounterType: covidCaseAssessmentEncType,
@@ -99,6 +101,7 @@ function CovidHomePatientTabs() {
         name: 'covid_outcome_tracking',
         editActionText: 'Enter COVID-19 outcome',
         editLatestEncounter: true,
+        targetDashboard: 'covid-outcomes',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
       otherColumns: [
