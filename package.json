@@ -51,6 +51,7 @@
     "jest-coverage-badges": "^1.1.2",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
+    "react-ace": "^9.4.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-scroll": "^1.8.2",
     "react-test-renderer": "^16.9.0",
