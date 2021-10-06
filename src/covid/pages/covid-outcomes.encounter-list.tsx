@@ -42,13 +42,6 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'vaccinationStatus',
-    header: 'Vaccination Status',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationStatusUUID);
-    },
-  },
-  {
     key: 'outcome',
     header: 'Outcome status',
     getValue: encounter => {
