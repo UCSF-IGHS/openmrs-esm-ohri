@@ -7,9 +7,9 @@ import {
   covidOutcome,
   covidTestType,
   dateSpecimenCollected,
+  finalCovid19Result,
   pcrTestResultDate,
   rapidAntigenResultDate,
-  todayzAppointmentsCT,
 } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
@@ -28,27 +28,13 @@ function CovidHomePatientTabs() {
       launchableForm: {
         package: 'covid',
         name: 'covid_assessment',
-        actionText: 'Edit case assessment form',
+        editActionText: 'Edit case assessment form',
+        editLatestEncounter: true,
+        targetDashboard: 'covid-assessments',
       },
       associatedEncounterType: covidCaseAssessmentEncType,
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
-        {
-          key: 'birthday',
-          header: 'Date of Birth',
-          getValue: patient => {
-            return patient.birthdate;
-          },
-          index: 3,
-        },
         {
           key: 'assessmentDate',
           header: 'Assessment date',
@@ -57,10 +43,17 @@ function CovidHomePatientTabs() {
           },
         },
         {
-          key: 'status',
-          header: 'Status',
-          getValue: patient => {
-            return '--';
+          key: 'finalAssessment',
+          header: 'Final result',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, finalCovid19Result);
+          },
+        },
+        {
+          key: 'outcome',
+          header: 'Outcome',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, covidOutcome);
           },
         },
       ],
@@ -73,27 +66,13 @@ function CovidHomePatientTabs() {
       launchableForm: {
         package: 'covid',
         name: 'covid_lab_test',
-        actionText: 'Enter test result',
+        editActionText: 'Enter test result',
+        editLatestEncounter: true,
+        targetDashboard: 'covid-lab-results',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       associatedEncounterType: covidCaseAssessmentEncType,
       otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
-        {
-          key: 'birthday',
-          header: 'Date of Birth',
-          getValue: patient => {
-            return patient.birthdate;
-          },
-          index: 3,
-        },
         {
           key: 'testDate',
           header: 'Test Date',
@@ -119,18 +98,12 @@ function CovidHomePatientTabs() {
       launchableForm: {
         package: 'covid',
         name: 'covid_outcome_tracking',
-        actionText: 'Enter COVID-19 outcome',
+        editActionText: 'Enter COVID-19 outcome',
+        editLatestEncounter: true,
+        targetDashboard: 'covid-outcomes',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
       otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
         {
           key: 'covidAssessmentDate',
           header: 'COVID Assessment Date',
@@ -160,44 +133,7 @@ function CovidHomePatientTabs() {
           key: 'covidOutcome',
           header: 'COVID-19 Outcome',
           getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, covidOutcome, true);
-          },
-        },
-      ],
-    },
-    {
-      label: t('clientsWithPartialVaccination', 'Clients with partial vaccination'),
-      cohortId: todayzAppointmentsCT,
-      isReportingCohort: true,
-      cohortSlotName: 'clients-with-partial-vaccination-slot',
-      launchableForm: {
-        package: 'covid',
-        name: 'covid_assessment',
-        actionText: 'Edit Vaccination',
-      },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
-      queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
-      otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
-        {
-          key: 'lastAppointment',
-          header: 'Last Appointment',
-          getValue: patient => {
-            return '13/01/2021';
-          },
-        },
-        {
-          key: 'appointmentDate',
-          header: 'Appointment Date',
-          getValue: patient => {
-            return '03/03/2021';
+            return getObsFromEncounter(latestEncounter, covidOutcome);
           },
         },
       ],
