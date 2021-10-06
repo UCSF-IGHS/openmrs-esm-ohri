@@ -27,23 +27,20 @@ export interface EncounterListProps {
   headerTitle: string;
   description: string;
   dropdownText?: string;
+  hideFormLauncher?: boolean;
 }
+
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
-}
-
+} 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
 
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
-
-  if (isTrueFalseConcept) {
-    return obs ? 'Yes' : 'No';
-  }
-
+  
   if (!obs) {
     return '--';
   }
@@ -66,6 +63,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   headerTitle,
   description,
   dropdownText,
+  hideFormLauncher, 
 }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
@@ -187,7 +185,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <div className={styles.toggleButtons}>{formLauncher}</div>
+              {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
           </div>

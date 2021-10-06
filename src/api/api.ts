@@ -5,10 +5,10 @@ import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
-  encounterRepresentation,
+  encounterRepresentation, 
+  htsRetrospectiveType,
   covidOutcomeUUID,
   covid_Assessment_EncounterUUID,
-  htsRetrospectiveEncounterType,
 } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';

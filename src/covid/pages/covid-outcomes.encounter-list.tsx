@@ -42,13 +42,6 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'vaccinationStatus',
-    header: 'Vaccination Status',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationStatusUUID);
-    },
-  },
-  {
     key: 'outcome',
     header: 'Outcome status',
     getValue: encounter => {
@@ -64,8 +57,9 @@ const columns: EncounterListColumn[] = [
 
 const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('covidOutcomes', 'Covid Outcomes');
-  const displayText = t('covidOutcomes', 'Covid Outcomes');
+
+  const headerTitle = t('covidOutcomes', 'COVID Outcomes');
+  const displayText = t('covidOutcomes', 'COVID Outcomes'); 
   return (
     <EncounterList
       patientUuid={patientUuid}
@@ -75,6 +69,7 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
       description={displayText}
       headerTitle={headerTitle}
       dropdownText="Add"
+      hideFormLauncher
     />
   );
 };
