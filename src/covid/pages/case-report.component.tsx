@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton } from 'carbon-components-react';
+import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import { getForm } from '../../utils/forms-loader';
+import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import { launchForm } from '../../utils/ohri-forms-commons';
 import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
 import OTable from '../../components/data-table/o-table.component';
 import moment from 'moment';
@@ -104,7 +106,8 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
     getCovidEncounters(query, covidEncounterRepresentation);
   }, [counter]);
 
-  const headerTitle = 'Covid-19 Case Report';
+  const headerTitle = t('covidLabResults', 'Lab Results');
+  const displayText = t('covidLabResults', 'Lab Results');
 
   return (
     <>
@@ -126,8 +129,8 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
         </>
       ) : (
         <EmptyState
-          displayText={t('covidCaseReports', 'Covid Case Reports')}
-          headerTitle={t('covidCaseReports', 'Covid Case Reports')}
+          displayText={displayText}
+          headerTitle={headerTitle}
           launchFormComponent={
             <OHRIFormLauncherWithIntent
               formJson={covidCaseReportForm}

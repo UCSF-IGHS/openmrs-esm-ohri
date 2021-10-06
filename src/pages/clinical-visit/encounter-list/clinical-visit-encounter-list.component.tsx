@@ -61,6 +61,7 @@ const columns: EncounterListColumn[] = [
   },
 ];
 
+//TODO: Use translation for values
 const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }) => {
   return (
     <EncounterList

@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton } from 'carbon-components-react';
+import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import { getForm } from '../../utils/forms-loader';
+import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
+import { launchForm } from '../../utils/ohri-forms-commons';
 import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
 import OTable from '../../components/data-table/o-table.component';
 import moment from 'moment';
@@ -19,7 +21,7 @@ export const covidEncounterRepresentation =
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
-const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
+const CovidOutcomes: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   const rowCount = 5;
   const covidEncounterUUID = '902839fa-f58c-44a1-95a4-dba62d7263f8'; // Covid Case Report
   const covidTestTypeUUID = '069f6dfe-88c1-4a45-a894-0d99549c8718'; // SARS2-Cov2 Test Type
@@ -104,7 +106,8 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
     getCovidEncounters(query, covidEncounterRepresentation);
   }, [counter]);
 
-  const headerTitle = 'Covid-19 Case Report';
+  const headerTitle = t('covidOutcomes', 'Outcomes');
+  const displayText = t('covidOutcomes', 'Outcomes');
 
   return (
     <>
@@ -126,8 +129,8 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
         </>
       ) : (
         <EmptyState
-          displayText={t('covidCaseReports', 'Covid Case Reports')}
-          headerTitle={t('covidCaseReports', 'Covid Case Reports')}
+          displayText={displayText}
+          headerTitle={headerTitle}
           launchFormComponent={
             <OHRIFormLauncherWithIntent
               formJson={covidCaseReportForm}
@@ -141,4 +144,4 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   );
 };
 
-export default CovidCaseReport;
+export default CovidOutcomes;

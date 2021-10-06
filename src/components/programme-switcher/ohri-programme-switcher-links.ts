@@ -1,11 +1,15 @@
 const linkList = [
   {
-    title: 'HIV: HTS',
+    title: 'HIV HTS',
     url: '/openmrs/spa/ohri-home',
   },
   {
-    title: 'HIV: Care and Treatment',
+    title: 'HIV Care and Treatment',
     url: '/openmrs/spa/ohri-ct-home',
+  },
+  {
+    title: 'COVID-19',
+    url: '/openmrs/spa/ohri-covid-home',
   },
 ];
 
