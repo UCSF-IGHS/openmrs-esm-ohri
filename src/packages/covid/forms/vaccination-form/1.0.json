@@ -1,11 +1,11 @@
 {
-  "name": "COVID vaccination Form",
+  "name": "COVID-19 Vaccination Form",
   "pages": [
     {
-      "label": "COVID vaccination",
+      "label": "COVID-19 Vaccination",
       "sections": [
         {
-          "label": "COVID vaccination",
+          "label": "COVID-19 Vaccination",
           "isExpanded": "true",
           "questions": [
             {
@@ -32,82 +32,32 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() && myValue <= '1/1/2020'"
+                      "failsWhenExpression": "myValue < today() && myValue <= '1/1/2020'"
                     }
                   ]
                 }
               ]
             },
             {
-              "label": "COVID Vaccine Administered",
+              "label": "COVID-19 Vaccine Administered (1st dose)",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "select",
                 "concept": "a31d1148-bbcc-4ad6-a015-8359d66bcfdc",
                 "answers": [
                   {
-                    "concept": "166142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of first dose of Moderna COVID-19 vaccine",
+                    "concept": "166388AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bharat Biotech Covaxin  COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "166144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Moderna COVID-19 vaccine",
+                    "concept": "166381AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CanSinoBIO Convidicea COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "166143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Pfizer-BioNTech COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166145AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Pfizer-BioNTech COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Oxford University-AstraZeneca COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Oxford University-AstraZeneca COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Gamaleya Sputnik V COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Gamaleya Sputnik V COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166251AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Sinopharm BBIBP-CorV COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Sinopharm BBIBP-CorV COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of Sinopharm BBIBP-CorV COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166392AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Novavax COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Novavax COVID-19 vaccine",
+                    "concept": "166387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chumakov Center CoviVac COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
@@ -116,8 +66,33 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd CureVac CVnCoV COVID-19 vaccine",
+                    "concept": "166143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Pfizer-BioNTech COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Oxford University-AstraZeneca COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Gamaleya Sputnik V COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166251AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166392AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "1st Novavax COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Sinopharm BBIBP-CorV COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
@@ -131,13 +106,8 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "166387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Chumakov Center CoviVac COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166388AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Bharat Biotech Covaxin  COVID-19 vaccine",
+                    "concept": "166142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of first dose of Moderna COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
@@ -151,23 +121,13 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "166381AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "CanSinoBIO Convidicea COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
                     "concept": "0cc868bd-e9dd-4b59-b278-f923afe22d82",
                     "label": "Other vaccine manufacturer (1st dose)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "a900f2c7-8922-4820-b672-676dc58dd3e9",
-                    "label": "Other vaccine manufacturer (2nd dose)",
                     "conceptMappings": []
                   }
                 ]
               },
-              "id": "covidVaccineAdministered",
+              "id": "firstDoseVaccineAdministered",
               "behaviours": [
                 {
                   "intent": "COVID_VACCINATION_RETROSPECTIVE",
@@ -194,14 +154,71 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
+                    "hideWhenExpression": "!includes('firstDoseVaccineAdministered','0cc868bd-e9dd-4b59-b278-f923afe22d82')"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "COVID Vaccine administered (2nd does)",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "fc33cb72-4d15-4637-a731-7fa3189ce388",
+                "answers": [
+                  {
+                    "concept": "166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of CureVac CVnCoV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Novavax COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Gamaleya Sputnik V COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Oxford University-AstraZeneca COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166145AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Pfizer-BioNTech COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of second dose of Moderna COVID-19 vaccine",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "a900f2c7-8922-4820-b672-676dc58dd3e9",
+                    "label": "Other vaccine manufacturer (2nd dose)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "secondDoseVaccineAdministered",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "covidVaccineAdministered !== '0cc868bd-e9dd-4b59-b278-f923afe22d82'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -219,19 +236,14 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('secondDoseVaccineAdministered','a900f2c7-8922-4820-b672-676dc58dd3e9')"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "covidVaccineAdministered !== 'a900f2c7-8922-4820-b672-676dc58dd3e9'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
             {
-              "label": "What is the vaccines expiration date?",
+              "label": "What is the vaccine's expiration date?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -263,7 +275,7 @@
               ]
             },
             {
-              "label": "What is the vaccines lot number?",
+              "label": "What is the vaccine's lot number?",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
@@ -324,19 +336,43 @@
                   "validators": [
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "failsWhenExpression": "myValue < '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   ]
                 }
               ]
             },
             {
-              "label": "Date vaccination schedule completed [MISSING CONCEPT]",
+              "label": "Date vaccination schedule completed",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text"
+                "rendering": "date",
+                "concept": "162585AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": "",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "171258008"
+                  }
+                ]
               },
-              "id": "dateOfVaccineCompletion"
+              "id": "dateOfVaccineCompletion",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -346,7 +382,7 @@
   "availableIntents": [
     {
       "intent": "COVID_VACCINATION_RETROSPECTIVE",
-      "display": "COVID Vaccination Restrospective"
+      "display": "COVID-19 Vaccination Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
