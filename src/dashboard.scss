@@ -1,5 +1,13 @@
 .noMarker {
-    list-style-type: none;
+  list-style-type: none;
+}
+
+.noMarker button {
+  background-color: #e5e5e5 !important;
+}
+
+.noMarker ul li a {
+  padding-left: 40px !important;
 }
 
 .currentNavItem > a {

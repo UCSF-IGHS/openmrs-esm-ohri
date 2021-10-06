@@ -35,7 +35,7 @@ export const createCovidDashboardLink = db => {
     const [rerender, setRerender] = useState(true);
     const forceRerender = () => setRerender(!rerender);
 
-    Events.subscribe('navigation-from-hts', e => {
+    Events.subscribe('navigation-from-hiv', e => {
       e.preventDefault();
       forceRerender();
     });
