@@ -51,3 +51,10 @@
 .sectionContent > div {
   background-color: $ui-01;
 }
+
+.formSection > div div div input,
+.formSection > div div div textarea,
+.formSection > div div div dropdown,
+.formSection > div div div button {
+  background-color: #ffffff !important;
+}
