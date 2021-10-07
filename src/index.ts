@@ -31,7 +31,6 @@ function setupOpenMRS() {
 
   //Clear sidenav items to avoid duplicates
   clearSidenavRegistry();
-  clearCovidSidenavRegistry();
 
   return {
     pages: [
@@ -46,6 +45,10 @@ function setupOpenMRS() {
       {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^ohri-ct-home/,
+      },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^ohri-covid-home/,
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
@@ -109,22 +112,7 @@ function setupOpenMRS() {
       {
         id: 'hts-lab-results-list-ext',
         slot: 'hts-lab-results-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/lab-results/encounter-list/lab-results-encounter-list.component'),
-          {
-            featureName: 'hts-lab-results-list',
-            moduleName,
-          },
-        ),
-        order: 6,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'hts-cd4-list-ext',
-        slot: 'hts-lab-results-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/lab-results/cd4/cd4-encounter-list.component'), {
+        load: getAsyncLifecycle(() => import('./pages/lab-results/overview/lab-results-overview.component'), {
           featureName: 'hts-lab-results-list',
           moduleName,
         }),
@@ -198,6 +186,36 @@ function setupOpenMRS() {
           () => import('./hts/care-and-treatment/home/patient-list-tabs/ct-patient-list-tabs.component'),
           {
             featureName: 'ct-home-tabs',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'covid-home-header-ext',
+        slot: 'covid-home-header-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
+          featureName: 'covid-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'covid-home-tile-ext',
+        slot: 'covid-home-tiles-slot',
+        load: getAsyncLifecycle(
+          () => import('./covid/home/summary-tiles/covid-summary-tiles.component'),
+          {
+            featureName: 'covid-home-tiles',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'covid-home-tabs-ext',
+        slot: 'covid-home-tabs-slot',
+        load: getAsyncLifecycle(
+          () => import('./covid/home/patient-list-tabs/covid-patient-list-tabs.component'),
+          {
+            featureName: 'covid-home-tabs',
             moduleName,
           },
         ),

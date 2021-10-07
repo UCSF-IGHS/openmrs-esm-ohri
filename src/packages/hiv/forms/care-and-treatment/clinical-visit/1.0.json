@@ -15,6 +15,18 @@
                 "rendering": "date",
                 "concept": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "dateOfEncounter"
             },
             {
@@ -52,6 +64,18 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "CT_CLINICAL_VISIT_INITIAL",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "isEncounterScheduled"
             },
             {
@@ -3084,5 +3108,6 @@
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
-  "encounterType": "cb0a65a7-0587-477e-89b9-cf2fd144f1d4"
+  "encounterType": "cb0a65a7-0587-477e-89b9-cf2fd144f1d4",
+  "allowUnspecifiedAll": true
 }

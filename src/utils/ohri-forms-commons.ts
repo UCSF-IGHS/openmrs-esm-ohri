@@ -1,7 +1,6 @@
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
 export const launchForm = (form: any, onUnpdateParent?: () => void) => {
-  console.log(form.name);
   launchOHRIWorkSpace('ohri-forms-view-ext', {
     title: form?.name,
     screenSize: 'maximize',

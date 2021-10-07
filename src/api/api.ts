@@ -1,6 +1,11 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import moment from 'moment';
-import { finalHIVCodeConcept, finalPositiveHIVValueConcept, computedHIV_StatusConcept } from '../constants';
+import {
+  finalHIVCodeConcept,
+  finalPositiveHIVValueConcept,
+  computedHIV_StatusConcept,
+  encounterRepresentation,
+} from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -171,5 +176,17 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
     }
     return 'Negative';
+  });
+}
+
+// TODO: the WS/REST Encounter resource doesn't support sorting, figure out a better approach ie. FHIR or Reporting
+export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
+  const query = `encounterType=${encounterType}&patient=${patientUuid}`;
+  return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+    if (data.results.length) {
+      return data.results[data.results.length - 1];
+    }
+
+    return null;
   });
 }

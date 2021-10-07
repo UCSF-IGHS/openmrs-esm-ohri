@@ -14,7 +14,7 @@ const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: str
   message,
 }) => {
   return (
-    <>
+    <div style={{ marginLeft: '-16px' }}>
       <DataTable rows={[]} headers={tableHeaders} isSortable={true} size="short" useZebraStyles={true}>
         {({ headers, getHeaderProps, getTableProps }) => (
           <TableContainer>
@@ -41,7 +41,7 @@ const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: str
           </TableContainer>
         )}
       </DataTable>
-    </>
+    </div>
   );
 };
 
