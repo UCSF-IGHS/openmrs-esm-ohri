@@ -1,5 +1,12 @@
 import * as semver from 'semver';
+import { OHRIFormField } from '../forms/types';
 import defaultFormsRegistry from '../packages/forms-registry';
+
+export interface FormJsonFile {
+  version: string;
+  semanticVersion?: string;
+  json: any;
+}
 
 /**
  * Convinience function for loading form(s) associated to a given package or form version.
@@ -98,31 +105,14 @@ export function filterFormByIntent(intent, originalJson) {
         const fallBackBehaviour = section.behaviours?.find(behaviour => behaviour.intent === '*');
         section.hide = fallBackBehaviour?.hide;
       }
-      section.questions.forEach(question => {
-        if (question.behaviours) {
-          // Check if question behaviours includes required intent
-          const requiredIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === intent);
-          // If required intent is present, substitute original props
-          if (requiredIntentBehaviour) {
-            question.required = requiredIntentBehaviour.required || undefined;
-            question.unspecified = requiredIntentBehaviour.unspecified || undefined;
-            question.hide = requiredIntentBehaviour.hide || undefined;
-            question.validators = requiredIntentBehaviour.validators || undefined;
-          } else {
-            // Attempt to retrieve default behaviours
-            const defaultIntentBehaviour = question.behaviours.find(behaviour => behaviour.intent === '*');
-            if (defaultIntentBehaviour) {
-              question.required = defaultIntentBehaviour.required || undefined;
-              question.unspecified = defaultIntentBehaviour.unspecified || undefined;
-              question.hide = defaultIntentBehaviour.hide || undefined;
-              question.validators = defaultIntentBehaviour.validators || undefined;
-            }
-          }
-
-          // make sure behaviours prop is always deleted
-          if (question.behaviours) {
-            delete question.behaviours;
-          }
+      section.questions.forEach((question: OHRIFormField) => {
+        if (question['behaviours']) {
+          updateQuestionRequiredBehaviour(question, intent);
+        }
+        if (question.questions && question.questions.length) {
+          question.questions.forEach(childQuestion => {
+            updateQuestionRequiredBehaviour(childQuestion, intent);
+          });
         }
       });
     });
@@ -131,8 +121,29 @@ export function filterFormByIntent(intent, originalJson) {
   return jsonBuffer;
 }
 
-export interface FormJsonFile {
-  version: string;
-  semanticVersion?: string;
-  json: any;
+// Helpers
+
+function updateQuestionRequiredBehaviour(question, intent) {
+  const requiredIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === intent);
+  // If required intent is present, substitute original props
+  if (requiredIntentBehaviour) {
+    question.required = requiredIntentBehaviour.required || undefined;
+    question.unspecified = requiredIntentBehaviour.unspecified || undefined;
+    question.hide = requiredIntentBehaviour.hide || undefined;
+    question.validators = requiredIntentBehaviour.validators || undefined;
+  } else {
+    // Attempt to retrieve default behaviours
+    const defaultIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === '*');
+    if (defaultIntentBehaviour) {
+      question.required = defaultIntentBehaviour.required || undefined;
+      question.unspecified = defaultIntentBehaviour.unspecified || undefined;
+      question.hide = defaultIntentBehaviour.hide || undefined;
+      question.validators = defaultIntentBehaviour.validators || undefined;
+    }
+  }
+
+  // make sure behaviours prop is always deleted
+  if (question.behaviours) {
+    delete question.behaviours;
+  }
 }

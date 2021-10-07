@@ -9,7 +9,7 @@ export interface SubmissionHandler {
    *
    * @returns the `initialValue`
    */
-  getInitialValue: (encounter: any, field: OHRIFormField) => {};
+  getInitialValue: (encounter: any, field: OHRIFormField, allFormFields?: Array<OHRIFormField>) => {};
 
   /**
    * Handles field submission.
@@ -58,6 +58,7 @@ export interface OHRIFormField {
   type: string;
   questionOptions: OHRIFormQuestionOptions;
   id: string;
+  questions?: Array<OHRIFormField>;
   value?: any;
   hide?: any;
   isHidden?: boolean;
