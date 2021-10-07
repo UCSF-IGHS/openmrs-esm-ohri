@@ -1,6 +1,6 @@
-import Dropdown from 'carbon-components-react/lib/components/Dropdown';
-import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { Dropdown } from 'carbon-components-react';
+import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';

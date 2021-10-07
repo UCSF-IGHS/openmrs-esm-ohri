@@ -3407,7 +3407,186 @@
                 }
               ],
               "id": "htsProviderRemarks"
-            }
+            },
+            {
+              "label":"Test Obs group",
+              "type":"obsGroup",
+              "questionOptions":{
+                 "rendering":"repeating",
+                 "concept":"8acba1d1-67cc-422c-961e-86d6b47bc45b"
+              },
+              "id":"fooObsGroup",
+              "questions":[
+                 {
+                    "label":"Patient Identification Number",
+                    "type":"obs",
+                    "questionOptions":{
+                       "rendering":"text",
+                       "concept":"d3205b6a-7192-461f-9ea8-a1ac8af38964"
+                    },
+                    "id":"patientClinicIdentificationNumberGroup"
+                 },
+                 {
+                    "label":"Was client linked to care?",
+                    "type":"obs",
+                    "questionOptions":{
+                       "rendering":"select",
+                       "concept":"e8e8fe71-adbb-48e7-b531-589985094d30",
+                       "answers":[
+                          {
+                             "concept":"cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                             "label":"Yes",
+                             "conceptMappings":[
+                                {
+                                   "type":"CIEL",
+                                   "value":"1065"
+                                },
+                                {
+                                   "type":"AMPATH",
+                                   "value":"1065"
+                                },
+                                {
+                                   "type":"PIH",
+                                   "value":"1065"
+                                },
+                                {
+                                   "type":"SNOMED CT",
+                                   "value":"CT: 373066001"
+                                }
+                             ]
+                          },
+                          {
+                             "concept":"488b58ff-64f5-4f8a-8979-fa79940b1594",
+                             "label":"No",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                             "label":"Unknown",
+                             "conceptMappings":[
+                                {
+                                   "type":"CIEL",
+                                   "value":"1067"
+                                },
+                                {
+                                   "type":"AMPATH",
+                                   "value":"1067"
+                                },
+                                {
+                                   "type":"SNOMED CT",
+                                   "value":"CT: 261665006"
+                                },
+                                {
+                                   "type":"PIH",
+                                   "value":"1067"
+                                }
+                             ]
+                          }
+                       ]
+                    },
+                    "id":"linkedToCareGroup"
+                 },
+                 {
+                    "label":"Was the client referred to prevention services?",
+                    "type":"obs",
+                    "questionOptions":{
+                       "rendering":"checkbox",
+                       "concept":"5f394708-ca7d-4558-8d23-a73de181b02d",
+                       "answers":[
+                          {
+                             "concept":"88cdde2b-753b-48ac-a51a-ae5e1ab24846",
+                             "label":"Pre Exposure Prophylaxis (PEP)",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"46da10c7-49e3-45e5-8e82-7c529d52a1a8",
+                             "label":"STI Testing and Treatment",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"1691AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                             "label":"Post-exposure prophylaxis",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"162223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                             "label":"Voluntary male circumcision clinic",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                             "label":"Other",
+                             "conceptMappings":[
+                                {
+                                   "type":"PIH-Malawi",
+                                   "value":"6408"
+                                },
+                                {
+                                   "type":"org.openmrs.module.mdrtb",
+                                   "value":"OTHER"
+                                },
+                                {
+                                   "type":"SNOMED-MVP",
+                                   "value":"56221000105001"
+                                },
+                                {
+                                   "type":"PIH",
+                                   "value":"5622"
+                                },
+                                {
+                                   "type":"AMPATH",
+                                   "value":"5622"
+                                },
+                                {
+                                   "type":"SNOMED-CT",
+                                   "value":"74964007"
+                                }
+                             ]
+                          },
+                          {
+                             "concept":"da0238c1-0ddd-49cc-b10d-c552391b6332",
+                             "label":"Harm Reduction for People Who Inject Drugs",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"ac2e75dc-fceb-4591-9ffb-3f852c0750d9",
+                             "label":"Behavioural Interventions to Support Risk Reduction - for KP",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"0be6a668-b4ff-4fc5-bbae-0e2a86af1bd1",
+                             "label":"Post-GBV Care",
+                             "conceptMappings":[
+                                
+                             ]
+                          },
+                          {
+                             "concept":"e7ee9ec2-3cc7-4e59-8172-9fd08911e8c5",
+                             "label":"Prevention Information",
+                             "conceptMappings":[
+                                
+                             ]
+                          }
+                       ]
+                    },
+                    "id":"referredToPreventionServicesGroup"
+                 }
+              ]
+           }
           ]
         }
       ]
