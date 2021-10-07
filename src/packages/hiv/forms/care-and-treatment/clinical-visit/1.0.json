@@ -216,29 +216,6 @@
               "id": "hasPresentingComplaints"
             },
             {
-              "label": "Presenting Complaints",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "33962009"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "5219"
-                  },
-                  {
-                    "type": "LOINC",
-                    "value": "8661-1"
-                  }
-                ]
-              },
-              "id": "presentingComplaints"
-            },
-            {
               "label": "Presenting Complaints Notes/Other Complaints",
               "type": "obs",
               "questionOptions": {
@@ -1705,10 +1682,67 @@
               "label": "Previous admissions or prior surgery notes",
               "type": "obs",
               "questionOptions": {
-                "rendering": "textarea",
-                "concept": "",
-                "rows": ""
+                "rendering": "radio",
+                "concept": "163403AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "32485007"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
+              "id": "previousAdmissions",
               "behaviours": [
                 {
                   "intent": "CT_CLINICAL_VISIT_INITIAL",
@@ -1720,8 +1754,7 @@
                   "required": "true",
                   "unspecified": "true"
                 }
-              ],
-              "id": "previousAdmissions"
+              ]
             }
           ]
         }
@@ -1738,8 +1771,59 @@
               "label": "Does the patient have Allergies?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "6ed9f792-b743-48e2-b36e-0e7e1caad3eb"
+                "rendering": "radio",
+                "concept": "6ed9f792-b743-48e2-b36e-0e7e1caad3eb",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
               "id": "doesPatientHaveAllergies"
             },
@@ -2083,21 +2167,66 @@
               "label": "What type of drug caused the reaction?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "162871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "363787002"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "whatTypeOfDrugCausedTheReaction"
             },
             {
@@ -2331,7 +2460,21 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1119"
+                  },
+                  {
+                    "type": "PIH",
+                    "value": "2419"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "271907004"
+                  }
+                ]
               },
               "behaviours": [
                 {
@@ -2437,7 +2580,17 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "1120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1120"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "164320006"
+                  }
+                ]
               },
               "behaviours": [
                 {
@@ -2864,8 +3017,59 @@
               "label": "Was STI screening done?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "161558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "rendering": "radio",
+                "concept": "161558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
               "id": "wasSTIScreeningDone"
             },
@@ -2873,7 +3077,7 @@
               "label": "Was STI partner notification done?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "radio",
                 "concept": "165613AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
@@ -2883,6 +3087,57 @@
                   {
                     "type": "KenyaEMR",
                     "value": "164935"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
                   }
                 ]
               },
@@ -3228,8 +3483,59 @@
               "label": "What PHDP services were offered to the patient during this visit?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": ""
+                "rendering": "radio",
+                "concept": "cbb9382b-3a47-44bf-9ecc-828966535524",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
               },
               "behaviours": [
                 {
@@ -3244,6 +3550,264 @@
                 }
               ],
               "id": "phdpServicesOfferedDuringVisit"
+            },
+            {
+              "label": "Condom distribution",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "6287"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "condomDistribution"
+            },
+            {
+              "label": "Disclosure to sex partner",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "159423AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "PIH",
+                    "value": "2061"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "disclosureToSexPartner"
+            },
+            {
+              "label": "Partner testing",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "161557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "partnerTesting"
+            },
+            {
+              "label": "Substance abuse screening preformed",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165268AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "443938003"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "substanceAbuseScreenPerformed"
             }
           ]
         }
