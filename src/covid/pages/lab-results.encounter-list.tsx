@@ -40,7 +40,7 @@ import EncounterList, {
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
-    header: 'Date of LabTest',
+    header: 'Date of Lab Test',
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDatetime', true);
     },
@@ -74,11 +74,9 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'testStatus',
-    header: 'Test Status',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
-    },
+    key: 'actions',
+    header: 'Actions',
+    getValue: () => {},
   },
 ];
 
@@ -94,6 +92,8 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      dropdownText="Add"
+      hideFormLauncher
     />
   );
 };

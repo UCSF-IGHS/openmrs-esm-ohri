@@ -15,11 +15,16 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [touched, setTouched] = useState(false);
 
   useEffect(() => {
+    // Carbon's MultiSelect has issues related to not updating the component based on the `initialSelectedItems` prop
+    // this is an intermittent issue. As a temporary solution, were are forcing the component to re-render
     if (field.value && field.value.length == 0) {
       // chances are high the value was cleared
       // force the Multiselect component to be re-mounted
+      setCounter(counter + 1);
+    } else if (!touched && question.value) {
       setCounter(counter + 1);
     }
   }, [field.value]);
@@ -39,12 +44,13 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
 
   const initiallySelectedQuestionItems = [];
   questionItems.forEach(item => {
-    if (field.value.includes(item.concept)) {
+    if (field.value?.includes(item.concept)) {
       initiallySelectedQuestionItems.push(item);
     }
   });
 
   const handleSelectItemsChange = ({ selectedItems }) => {
+    setTouched(true);
     const value = selectedItems.map(selectedItem => selectedItem.concept);
     setFieldValue(question.id, value);
     onChange(question.id, value);

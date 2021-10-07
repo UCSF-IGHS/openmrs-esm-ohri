@@ -24,7 +24,7 @@ const ClientLinkage = () => {
                 onClick={e => {
                   e.preventDefault();
                 }}>
-                {t('add', 'New')}
+                {t('add', 'Add')}
               </Button>
             </div>
           </div>

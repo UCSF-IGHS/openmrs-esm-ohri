@@ -1,11 +1,14 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import moment from 'moment';
+import { getObsFromEncounter } from '../components/encounter-list/encounter-list.component';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
   htsRetrospectiveType,
+  covidOutcomeUUID,
+  covid_Assessment_EncounterUUID,
 } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
@@ -180,8 +183,9 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
   });
 }
 
-export function fetchPatientLastHtsEncounter(patientUuid: string) {
-  const query = `encounterType=${htsRetrospectiveType}&patient=${patientUuid}`;
+// TODO: the WS/REST Encounter resource doesn't support sorting, figure out a better approach ie. FHIR or Reporting
+export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
+  const query = `encounterType=${encounterType}&patient=${patientUuid}`;
   return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
     if (data.results.length) {
       return data.results[data.results.length - 1];
@@ -189,4 +193,16 @@ export function fetchPatientLastHtsEncounter(patientUuid: string) {
 
     return null;
   });
+}
+
+export function fetchPatientCovidOutcome(patientUuid: string) {
+  //TODO: Continue logic to filter outcome
+  // const query = `encounterType=${covidOutcomeUUID}&patient=${patientUuid}`;
+  // return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+  //   if (data.results.length) {
+  //     return data.results[data.results.length - 1];
+  //   }
+  // return getObsFromEncounter(covid_Assessment_EncounterUUID, covidOutcomeUUID);
+  //   return null;
+  // });
 }

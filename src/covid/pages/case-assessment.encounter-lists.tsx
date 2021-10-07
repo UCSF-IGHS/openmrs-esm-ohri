@@ -62,14 +62,14 @@ const columns: EncounterListColumn[] = [
     key: 'symptomatic',
     header: 'Symptomatic',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID);
+      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID, false, true);
     },
   },
   {
     key: 'testDate',
-    header: 'Co-morbidity',
+    header: 'Comorbidity',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID);
+      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID, false, true);
     },
   },
   {
@@ -86,12 +86,17 @@ const columns: EncounterListColumn[] = [
       return getObsFromEncounter(encounter, covidPatientStatusConcept_UUID);
     },
   },
+  {
+    key: 'actions',
+    header: 'Actions',
+    getValue: () => {},
+  },
 ];
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('covidAssessments', 'Covid Assessment');
-  const displayText = t('covidAssessments', 'Covid Assessment');
+  const headerTitle = t('covidAssessments', 'COVID Assessment');
+  const displayText = t('covidAssessments', 'COVID Assessment');
   return (
     <EncounterList
       patientUuid={patientUuid}
@@ -100,6 +105,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      dropdownText="Add"
     />
   );
 };
