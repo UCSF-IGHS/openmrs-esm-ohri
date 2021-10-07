@@ -153,7 +153,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       }
       return isValueEmpty(value);
     }
-  
+
     function includes(questionId, value) {
       if (allFieldsKeys.includes(questionId)) {
         const determinant = allFields.find(candidate => candidate.id === questionId);
