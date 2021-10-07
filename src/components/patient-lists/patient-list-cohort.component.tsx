@@ -2,17 +2,16 @@ import { attach, detach, ExtensionSlot, navigate } from '@openmrs/esm-framework'
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   fetchPatientLastEncounter,
-  fetchPatientLastHtsEncounter,
   fetchPatientsFinalHIVStatus,
   getCohort,
   getReportingCohortMembers,
 } from '../../api/api';
 import moment from 'moment';
 import TableEmptyState from '../empty-state/table-empty-state.component';
+import { OverflowMenu, OverflowMenuItem, InlineLoading } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
-import { OverflowMenu, OverflowMenuItem, InlineLoading, ContentSwitcher, Switch } from 'carbon-components-react';
 import { getForm, filterFormByIntent } from '../../utils/forms-loader';
 import styles from './patient-list-cohort.scss';
 
@@ -162,46 +161,6 @@ interface CohortPatientListProps {
   };
 }
 
-const PatientActionOverflowMenuItem = ({ patientUuid, launchableActionText, form }) => {
-  const [actionText, setActionText] = useState(launchableActionText);
-  const [encounterUuid, setEncounterUuid] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-
-  const continueEncounterActionTex = 'Countinue encounter';
-
-  useEffect(() => {
-    // Avoiding multiple requests for same data
-    if (!encounterUuid) {
-      setIsLoading(true);
-      fetchPatientLastHtsEncounter(patientUuid).then(lastHtsEncounter => {
-        if (lastHtsEncounter) {
-          setActionText(continueEncounterActionTex);
-          setEncounterUuid(lastHtsEncounter.uuid);
-        }
-        setIsLoading(false);
-      });
-    } else {
-      setIsLoading(false);
-    }
-  }, []);
-
-  return (
-    <>
-      {isLoading ? (
-        <InlineLoading style={{ margin: '0 auto', width: '16px' }} />
-      ) : (
-        <OverflowMenuItem
-          itemText={actionText}
-          onClick={() => {
-            launchFormInEditMode(form, encounterUuid);
-            navigate({ to: `${basePath}${patientUuid}/chart/hts-summary` });
-          }}
-        />
-      )}
-    </>
-  );
-};
-
 const CohortPatientList: React.FC<CohortPatientListProps> = ({
   cohortId,
   cohortSlotName,
@@ -251,7 +210,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   const setListMeta = (patientWithMeta, location) => {
     const patientUuid = !isReportingCohort ? patientWithMeta.patient.uuid : patientWithMeta.person.uuid;
-
     return {
       timeAddedToList: !isReportingCohort ? moment(patientWithMeta.startDate).format('LL') : null,
       waitingTime: !isReportingCohort ? moment(patientWithMeta.startDate).fromNow() : null,
@@ -284,6 +242,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ...constructPatient(member),
           ...setListMeta(member, results.location),
         }));
+        setPatients(patients);
         setIsLoading(false);
         setLoadedPatients(true);
       });
@@ -295,7 +254,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
             ...setListMeta(data, null),
           };
         });
-
+        setPatients(patients);
         setIsLoading(false);
         setLoadedPatients(true);
       });
