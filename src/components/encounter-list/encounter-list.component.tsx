@@ -9,7 +9,7 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-lauc
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { clinicalVisitEncounterType, dateOfEncounterConcept, encounterRepresentation } from '../../constants';
+import { dateOfEncounterConcept, encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 
@@ -26,10 +26,22 @@ export interface EncounterListProps {
   columns: Array<any>;
   headerTitle: string;
   description: string;
+  dropdownText?: string;
+  hideFormLauncher?: boolean;
 }
 
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
-  const obs = encounter?.obs?.find(observation => observation.concept.uuid === obsConcept);
+export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
+  if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
+  else return encounter[param] ? encounter[param] : '--';
+}
+
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
+
+  if (isTrueFalseConcept) {
+    return obs ? 'Yes' : 'No';
+  }
+
   if (!obs) {
     return '--';
   }
@@ -44,12 +56,23 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
   return obs.value;
 }
 
-const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, columns, headerTitle, description }) => {
+const EncounterList: React.FC<EncounterListProps> = ({
+  patientUuid,
+  encounterUuid,
+  form,
+  columns,
+  headerTitle,
+  description,
+  dropdownText,
+  hideFormLauncher,
+}) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+
+  dropdownText = dropdownText ? 'Add' : 'New';
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -132,6 +155,7 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
           formJson={encounterForm}
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
+          dropDownText={dropdownText}
         />
       );
     }
@@ -139,18 +163,18 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
       <Button
         kind="ghost"
         renderIcon={Add16}
-        iconDescription="New"
+        iconDescription="Add "
         onClick={e => {
           e.preventDefault();
           launchEncounterForm();
         }}>
-        {t('Add')}
+        {dropdownText}
       </Button>
     );
   }, [encounterForm, launchEncounterForm]);
 
   useEffect(() => {
-    loadRows(clinicalVisitEncounterType);
+    loadRows(encounterUuid);
   }, [counter]);
 
   return (
@@ -162,7 +186,7 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <div className={styles.toggleButtons}>{formLauncher}</div>
+              {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
           </div>

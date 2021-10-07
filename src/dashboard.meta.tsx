@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
+import Events from './utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
@@ -37,7 +38,7 @@ export const createDashboardLink = db => {
     const [rerender, setRerender] = useState(true);
     const forceRerender = () => setRerender(!rerender);
 
-    document.addEventListener('navigation-from-covid', e => {
+    Events.subscribe('navigation-from-covid', e => {
       e.preventDefault();
       forceRerender();
     });
@@ -52,8 +53,7 @@ export const createDashboardLink = db => {
             onClick={e => {
               handleLinkClick(e, `${basePath}/${navItem.name} `);
               forceRerender();
-
-              document.dispatchEvent(new CustomEvent('navigation-from-hts'));
+              Events.dispatch('navigation-from-hiv');
             }}>
             {navItem.title}
           </SideNavMenuItem>

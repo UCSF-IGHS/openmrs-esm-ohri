@@ -10,7 +10,14 @@ import {
   labResults_dashboardMeta,
   drugOrders_dashboardMeta,
 } from './dashboard.meta';
-import { clearCovidSidenavRegistry, createCovidDashboardLink, caseReport_dashboardMeta } from './covid/dashboard.meta';
+import {
+  clearCovidSidenavRegistry,
+  createCovidDashboardLink,
+  covidAssessments_dashboardMeta,
+  covidOutcomes_dashboardMeta,
+  covidLabResults_dashboardMeta,
+  covidVaccinations_dashboardMeta,
+} from './covid/dashboard.meta';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 
@@ -31,6 +38,7 @@ function setupOpenMRS() {
 
   //Clear sidenav items to avoid duplicates
   clearSidenavRegistry();
+  clearCovidSidenavRegistry();
 
   return {
     pages: [
@@ -77,7 +85,7 @@ function setupOpenMRS() {
             moduleName,
           },
         ),
-        order: 5,
+        order: 2,
         meta: {
           columnSpan: 4,
         },
@@ -104,7 +112,7 @@ function setupOpenMRS() {
             moduleName,
           },
         ),
-        order: 5,
+        order: 3,
         meta: {
           columnSpan: 4,
         },
@@ -201,24 +209,18 @@ function setupOpenMRS() {
       {
         id: 'covid-home-tile-ext',
         slot: 'covid-home-tiles-slot',
-        load: getAsyncLifecycle(
-          () => import('./covid/home/summary-tiles/covid-summary-tiles.component'),
-          {
-            featureName: 'covid-home-tiles',
-            moduleName,
-          },
-        ),
+        load: getAsyncLifecycle(() => import('./covid/home/summary-tiles/covid-summary-tiles.component'), {
+          featureName: 'covid-home-tiles',
+          moduleName,
+        }),
       },
       {
         id: 'covid-home-tabs-ext',
         slot: 'covid-home-tabs-slot',
-        load: getAsyncLifecycle(
-          () => import('./covid/home/patient-list-tabs/covid-patient-list-tabs.component'),
-          {
-            featureName: 'covid-home-tabs',
-            moduleName,
-          },
-        ),
+        load: getAsyncLifecycle(() => import('./covid/home/patient-list-tabs/covid-patient-list-tabs.component'), {
+          featureName: 'covid-home-tabs',
+          moduleName,
+        }),
       },
       {
         id: 'hts-encounter-form-ext',
@@ -270,6 +272,39 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
+
+      {
+        id: 'covid-Assessments-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covidAssessments_dashboardMeta), options),
+        meta: covidAssessments_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-lab-results',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covidLabResults_dashboardMeta), options),
+        meta: covidLabResults_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-vaccinations-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covidVaccinations_dashboardMeta), options),
+        meta: covidVaccinations_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-outcomes-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covidOutcomes_dashboardMeta), options),
+        meta: covidOutcomes_dashboardMeta,
+        online: true,
+        offline: true,
+      },
       {
         id: 'hts-service-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
@@ -291,7 +326,6 @@ function setupOpenMRS() {
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(serviceEnrolment_dashboardMeta), options),
         meta: serviceEnrolment_dashboardMeta,
-        order: 6,
         online: true,
         offline: true,
       },
@@ -318,6 +352,50 @@ function setupOpenMRS() {
         meta: drugOrders_dashboardMeta,
         online: true,
         offline: true,
+      },
+      {
+        id: 'covid-assessments-ext',
+        slot: 'covid-assessments-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/case-assessment.encounter-lists'), {
+          featureName: 'covid-assessment',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'covid-Lab-results-ext',
+        slot: 'covid-lab-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/lab-results.encounter-list'), {
+          featureName: 'covid-lab-results',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'covid-vaccinations-ext',
+        slot: 'covid-vaccinations-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
+          featureName: 'covid-vaccinations',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      {
+        id: 'covid-outcomes-ext',
+        slot: 'covid-outcomes-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.encounter-list'), {
+          featureName: 'covid-outcomes',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
       },
     ],
   };

@@ -192,7 +192,7 @@
   "availableIntents": [
     {
       "intent": "COVID_OUTCOME_RETROSPECTIVE",
-      "display": "COVID Outcome Restrospective"
+      "display": "COVID Outcome Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",

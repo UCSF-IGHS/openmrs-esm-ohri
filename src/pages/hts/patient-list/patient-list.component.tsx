@@ -95,7 +95,7 @@ const PatientList: React.FC<PatientListProps> = () => {
                   e.preventDefault();
                   addNewPatient();
                 }}>
-                {t('add', 'New')}
+                {t('add', 'Add')}
               </Button>
             </div>
           </div>

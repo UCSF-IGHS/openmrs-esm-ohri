@@ -38,6 +38,10 @@ function FormRenderTest() {
       setFormIntentInput(null);
     }
 
+    if (_formIntents.length > 0) {
+      setFormIntentInput(null);
+    }
+
     setFormIntents(_formIntents);
     setIsIntentsDropdownDisabled(false);
   };
