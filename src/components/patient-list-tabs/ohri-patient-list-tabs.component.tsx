@@ -16,6 +16,7 @@ function OHRIPatientListTabs({ patientListConfigs }) {
               excludeColumns={config.excludeColumns}
               otherColumns={config.otherColumns}
               queryParams={config.queryParams}
+              associatedEncounterType={config.associatedEncounterType}
               launchableForm={config.launchableForm}
             />
           </Tab>
