@@ -146,6 +146,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       field?.hide?.hideWhenExpression || page?.hide?.hideWhenExpression || section?.hide?.hideWhenExpression;
     const allFieldsKeys = allFields.map(f => f.id);
     const parts = hideExpression.trim().split(' ');
+
     function isEmpty(value) {
       if (allFieldsKeys.includes(value)) {
         return initialVals ? isValueEmpty(initialVals[value]) : isValueEmpty(initialValues[value]);
@@ -165,6 +166,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       }
       return false;
     }
+
     parts.forEach((part, index) => {
       if (index % 2 == 0) {
         if (allFieldsKeys.includes(part)) {

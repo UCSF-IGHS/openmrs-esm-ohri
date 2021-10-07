@@ -82,7 +82,10 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     </div>
   ) : (
     !question.isHidden && (
-      <div className={errors.length ? `${styles.dropDownOverride} ${styles.errorLabel}` : styles.dropDownOverride}>
+      <div
+        className={
+          errors.length ? `${styles.multiselectOverride} ${styles.errorLabel}` : `${styles.multiselectOverride}`
+        }>
         <MultiSelect.Filterable
           placeholder={t('filterItemsInMultiselect', 'Search...')}
           onChange={handleSelectItemsChange}
