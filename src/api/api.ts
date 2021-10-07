@@ -6,7 +6,6 @@ import {
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
-  htsRetrospectiveType,
   covidOutcomeUUID,
   covid_Assessment_EncounterUUID,
 } from '../constants';

@@ -51,7 +51,6 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
             );
           })}
         </Accordion>
-        <hr className={styles.divider} />
       </div>
     </Waypoint>
   );

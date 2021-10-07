@@ -30,6 +30,7 @@ function CovidHomePatientTabs() {
         name: 'covid_assessment',
         editActionText: 'Edit case assessment form',
         editLatestEncounter: true,
+        targetDashboard: 'covid-assessments',
       },
       associatedEncounterType: covidCaseAssessmentEncType,
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
@@ -67,26 +68,11 @@ function CovidHomePatientTabs() {
         name: 'covid_lab_test',
         editActionText: 'Enter test result',
         editLatestEncounter: true,
+        targetDashboard: 'covid-lab-results',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       associatedEncounterType: covidCaseAssessmentEncType,
       otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
-        {
-          key: 'birthday',
-          header: 'Date of Birth',
-          getValue: patient => {
-            return patient.birthdate;
-          },
-          index: 3,
-        },
         {
           key: 'testDate',
           header: 'Test Date',
@@ -114,17 +100,10 @@ function CovidHomePatientTabs() {
         name: 'covid_outcome_tracking',
         editActionText: 'Enter COVID-19 outcome',
         editLatestEncounter: true,
+        targetDashboard: 'covid-outcomes',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
       otherColumns: [
-        {
-          key: 'clientId',
-          header: 'Client ID',
-          getValue: patient => {
-            return patient.id;
-          },
-          index: 1,
-        },
         {
           key: 'covidAssessmentDate',
           header: 'COVID Assessment Date',
