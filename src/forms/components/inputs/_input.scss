@@ -1,7 +1,12 @@
 @import "../../../root.scss";
-.formField{
+
+.formField {
   padding-bottom: 18px;
   margin-top: 10px;
+}
+
+.formField > div > div > label {
+  color: #525252 !important;
 }
 
 .ohriFormLabel {
@@ -13,25 +18,34 @@
 }
 
 .formInputField {
-    @extend .formField;
-    width: auto;
+  @extend .formField;
+  width: auto;
 }
 
-.formInputField > div > div > label{
-    max-width: auto;
+.formInputField > div > div > label {
+  max-width: auto;
 }
 
 .formInputField > div > div > div {
-    width: $ohri-input-width !important;
+  width: $ohri-input-width !important;
 }
 
-.dropDownOverride{
-    width: auto;
-    padding-bottom: 15px;
+.multiselectOverride {
+  width: auto;
+  padding-bottom: 15px;
 }
 
-.dropDownOverride > div > div{
-    width: $ohri-input-width !important;
+.multiselectOverride > div > div {
+  width: $ohri-input-width !important;
+}
+
+.multiselectOverride > div div div input {
+  border: 0 !important;
+  border-bottom: 1px solid #8d8d8d !important;
+}
+
+.dropDownOverride > div div button {
+  border-bottom: 1px solid #8d8d8d !important;
 }
 
 .numberInputWrapper :global(.bx--number) {
@@ -109,11 +123,11 @@
   width: $ohri-input-width;
 }
 
-.textInputOverrides label { 
+.textInputOverrides label {
   font-size: 0.875rem !important;
 }
 
-.unspecified{
+.unspecified {
   margin-top: -13px;
 }
 
@@ -128,8 +142,12 @@
 }
 
 .unspecified > div label {
-    font-size: 12px;
-    color: $color-gray-70;
+  font-size: 12px;
+  color: $color-gray-70;
+}
+
+.errorLegend legend, .errorLabel label {
+  color: #da1e28
 }
 
 .obsGroupColumn > div {
