@@ -22,7 +22,6 @@ const registerSidenavItem = sidenavItem => {
   buffer.push(sidenavItem);
 
   localStorage.setItem('sidenavItems-Covid', JSON.stringify(buffer));
-
   return buffer;
 };
 
@@ -36,14 +35,14 @@ export const createCovidDashboardLink = db => {
     const [rerender, setRerender] = useState(true);
     const forceRerender = () => setRerender(!rerender);
 
-    Events.subscribe('navigation-from-hts', e => {
+    Events.subscribe('navigation-from-hiv', e => {
       e.preventDefault();
       forceRerender();
     });
 
     return (
       <div id="sidenav-menu-covid">
-        <SideNavMenu title="Covid" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+        <SideNavMenu title="COVID" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
@@ -85,14 +84,14 @@ export const covidLabResults_dashboardMeta = {
 
 export const covidVaccinations_dashboardMeta = {
   name: 'covid-vaccinations',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-vaccinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Vaccinations',
 };
 
 export const covidOutcomes_dashboardMeta = {
   name: 'covid-outcomes',
-  slot: 'covid-dashboard-slot',
+  slot: 'covid-outcomes-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Outcomes',
 };

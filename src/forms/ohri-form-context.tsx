@@ -4,7 +4,9 @@ import { SessionMode } from './types';
 type OHRIFormContextProps = {
   values: Record<string, any>;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
-  setEncounterLocation: any;
+  setEncounterLocation: (value: any) => void;
+  obsGroupsToVoid: Array<any>;
+  setObsGroupsToVoid: (value: any) => void;
   encounterContext: EncounterContext;
   fields: any;
 };

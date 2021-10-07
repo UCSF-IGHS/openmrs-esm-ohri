@@ -26,13 +26,20 @@ export interface EncounterListProps {
   columns: Array<any>;
   headerTitle: string;
   description: string;
+  dropdownText?: string;
+  hideFormLauncher?: boolean;
 }
+
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
 }
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
-  const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
+
+  if (isTrueFalseConcept) {
+    return obs ? 'Yes' : 'No';
+  }
 
   if (!obs) {
     return '--';
@@ -55,12 +62,16 @@ const EncounterList: React.FC<EncounterListProps> = ({
   columns,
   headerTitle,
   description,
+  dropdownText,
+  hideFormLauncher,
 }) => {
   const { t } = useTranslation();
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+
+  dropdownText = dropdownText ? 'Add' : 'New';
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -143,6 +154,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           formJson={encounterForm}
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
+          dropDownText={dropdownText}
         />
       );
     }
@@ -150,12 +162,12 @@ const EncounterList: React.FC<EncounterListProps> = ({
       <Button
         kind="ghost"
         renderIcon={Add16}
-        iconDescription="New"
+        iconDescription="Add "
         onClick={e => {
           e.preventDefault();
           launchEncounterForm();
         }}>
-        {t('Add')}
+        {dropdownText}
       </Button>
     );
   }, [encounterForm, launchEncounterForm]);
@@ -173,7 +185,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <div className={styles.toggleButtons}>{formLauncher}</div>
+              {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
           </div>

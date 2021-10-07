@@ -113,6 +113,10 @@
   "clinicalVisitEncounters": "clinical visit encounters",
   "clinicalVisitTitle": "Clinical Visits",
   "covidAssessments": "Covid Assessment",
-  "covidLabResults": "Lab Results"
+  "covidLabResults": "Lab Results",
+
+  "covidOutcomeActive": "COVID: Active",
+  "covidOutcomeUnknown": "COVID: Unknown Status",
+  "covidOutcomeRecovered": "COVID: Recovered"
 
 }
