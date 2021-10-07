@@ -16,7 +16,79 @@
                 "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": ""
               },
-              "id": "dateTestOrdered"
+              "id": "dateTestOrdered",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Test",
@@ -83,7 +155,79 @@
                   }
                 ]
               },
-              "id": "labTestOrdered"
+              "id": "labTestOrdered",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < today()"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Reason for Viral Load Request",
@@ -136,7 +280,45 @@
                   }
                 ]
               },
-              "id": "reasonForViralLoadRequest"
+              "id": "reasonForViralLoadRequest",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Reason for CD4 Request",
@@ -174,7 +356,45 @@
                   }
                 ]
               },
-              "id": "reasonForCd4Request"
+              "id": "reasonForCd4Request",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
             }
           ]
         },
@@ -196,7 +416,65 @@
                   }
                 ]
               },
-              "id": "dateOfViralLoadResult"
+              "id": "dateOfViralLoadResult",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Viral Load Result Interpretation",
@@ -235,7 +513,45 @@
                   }
                 ]
               },
-              "id": "viralLoadResultInterpretation"
+              "id": "viralLoadResultInterpretation",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Viral Load Result in Copies/ml",
@@ -262,7 +578,45 @@
                   }
                 ]
               },
-              "id": "viralLoadResult"
+              "id": "viralLoadResult",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date of CD4 Result",
@@ -286,7 +640,65 @@
                 ],
                 "weeksList": ""
               },
-              "id": "dateOfCd4Result"
+              "id": "dateOfCd4Result",
+              "behaviours": [
+                {
+                  "intent": "LAB_VIRAL_LOAD_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_REQUEST",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_VIRAL_LOAD_RESULT",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "LAB_CD4_RESULT",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "CD4 Result",
@@ -318,7 +730,65 @@
                     "rendering": "text",
                     "concept": "5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
+                  "type": "obs",
+                  "behaviours": [
+                    {
+                      "intent": "LAB_VIRAL_LOAD_REQUEST",
+                      "required": "false",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    },
+                    {
+                      "intent": "LAB_CD4_REQUEST",
+                      "required": "false",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    },
+                    {
+                      "intent": "LAB_VIRAL_LOAD_RESULT",
+                      "required": "false",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    },
+                    {
+                      "intent": "LAB_CD4_RESULT",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "label": "CD4%",
@@ -327,7 +797,65 @@
                     "rendering": "text",
                     "concept": "730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
+                  "type": "obs",
+                  "behaviours": [
+                    {
+                      "intent": "LAB_VIRAL_LOAD_REQUEST",
+                      "required": "false",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    },
+                    {
+                      "intent": "LAB_CD4_REQUEST",
+                      "required": "false",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    },
+                    {
+                      "intent": "LAB_VIRAL_LOAD_RESULT",
+                      "required": "false",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    },
+                    {
+                      "intent": "LAB_CD4_RESULT",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('labTestOrdered','5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue >= today() && myValue <= '1/1/1980'"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
