@@ -111,5 +111,12 @@
   "filterItemsInMultiselect": "Search...",
   "covidCaseReports": "Covid Care Reports",
   "clinicalVisitEncounters": "clinical visit encounters",
-  "clinicalVisitTitle": "Clinical Visits"
+  "clinicalVisitTitle": "Clinical Visits",
+  "covidAssessments": "Covid Assessment",
+  "covidLabResults": "Lab Results",
+
+  "covidOutcomeActive": "COVID: Active",
+  "covidOutcomeUnknown": "COVID: Unknown Status",
+  "covidOutcomeRecovered": "COVID: Recovered"
+
 }

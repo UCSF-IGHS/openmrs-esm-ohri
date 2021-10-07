@@ -18,6 +18,7 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={preTestCounsellingCohort}
           cohortSlotName="pre-test-counseling-slot"
+          associatedEncounterType={htsRetrospectiveEncounterType}
           launchableForm={{
             package: formPackage,
             name: formName,

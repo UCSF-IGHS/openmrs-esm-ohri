@@ -72,6 +72,7 @@
 .formRenderDisplay {
   padding: 0;
   border: 0.01rem dotted #6f6f6f !important;
+  margin-top: 0.5rem;
 }
 
 .formRenderDisplay > form > .mainContainer > .overflowContent {
@@ -101,4 +102,14 @@
 .renderColumn > div > .finalJsonSchema {
   margin: -1rem;
   margin-top: -0.5rem;
+}
+
+.renderColumn > div > form .renderDropdown {
+  padding-top: 0.8rem;
+  width: 400px;
+}
+
+.jsonEditor,
+.finalJsonSchema {
+  border: 0.01rem dotted #6f6f6f !important;
 }
