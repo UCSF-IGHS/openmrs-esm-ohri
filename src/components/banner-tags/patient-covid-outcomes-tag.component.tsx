@@ -26,11 +26,11 @@ const PatientCovidOutcomesBannerTag = ({ patientUuid }) => {
   const [covidOutcome, setCovidOutcome] = useState(possibleOutcomes.unknown);
 
   useEffect(() => {
-    fetchPatientCovidOutcome(patientUuid).then(covidOutcome => {
-      console.info('covidOutcome: ', covidOutcome);
+    //TODO: Fetch computed comcept
+    // fetchPatientCovidOutcome(patientUuid).then(covidOutcome => {
 
-      setCovidOutcome(possibleOutcomes.unknown);
-    });
+    //   setCovidOutcome(possibleOutcomes.unknown);
+    // });
 
     setTimeout(() => {
       setIsCovidOutcomeLoaded(true);
