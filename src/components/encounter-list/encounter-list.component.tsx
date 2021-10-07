@@ -29,7 +29,7 @@ export interface EncounterListProps {
 }
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
-  const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
+  const obs = encounter?.obs?.find(observation => observation.concept.uuid === obsConcept);
   if (!obs) {
     return '--';
   }
