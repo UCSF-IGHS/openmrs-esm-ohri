@@ -43,7 +43,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   ) : (
     !question.isHidden && (
       <div className={styles.formInputField}>
-        <div className={errors.length ? styles.errorLabel : ''}>
+        <div className={errors.length ? styles.errorLabel : styles.dropDownOverride}>
           <Dropdown
             id={question.id}
             titleText={question.label}
