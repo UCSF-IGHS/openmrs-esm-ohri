@@ -12,6 +12,7 @@ interface EmptyStateProps {
   launchForm?: () => void;
   launchFormComponent?: any;
   showLaunchLink?: boolean;
+  hideFormLauncher?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
@@ -20,6 +21,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   launchFormComponent,
   showLaunchLink = true,
   launchForm,
+  hideFormLauncher,
 }) => {
   const { t } = useTranslation();
   return (
@@ -44,7 +46,6 @@ const EmptyState: React.FC<EmptyStateProps> = ({
           </p>
         )}
       </div>
-      <Button kind="ghost" displayText={t('add', 'Add')} id="choose-intent" label="Add +"></Button>
     </Tile>
   );
 };
