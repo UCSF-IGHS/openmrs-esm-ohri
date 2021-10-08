@@ -9,7 +9,7 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-lauc
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { dateOfEncounterConcept, encounterRepresentation } from '../../constants';
+import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 
