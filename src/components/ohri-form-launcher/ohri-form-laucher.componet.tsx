@@ -25,21 +25,20 @@ export const OHRIFormLauncherWithIntent: React.FC<{
     <div style={{ paddingTop: '.3rem', paddingRight: '.5rem', width: '13rem' }}>
       {!hideFormLauncher && (
         <Dropdown
-        id="choose-intent"
-        label={dropDownText || 'New'}
-        items={formJson.availableIntents}
-        titleText=""
-        selectedItem={null}
-        onChange={({ selectedItem }) => {
-          const processedForm = filterFormByIntent(selectedItem.intent, formJson);
-          // setProcessedForm(processedForm);
-          // onChangeIntent(processedForm);
-          launchForm(processedForm);
-        }}
-        itemToString={item => item.display}
-      />
+          id="choose-intent"
+          label={dropDownText || 'New'}
+          items={formJson.availableIntents}
+          titleText=""
+          selectedItem={null}
+          onChange={({ selectedItem }) => {
+            const processedForm = filterFormByIntent(selectedItem.intent, formJson);
+            // setProcessedForm(processedForm);
+            // onChangeIntent(processedForm);
+            launchForm(processedForm);
+          }}
+          itemToString={item => item.display}
+        />
       )}
-      
     </div>
   );
 };

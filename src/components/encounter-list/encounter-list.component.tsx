@@ -77,6 +77,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [nextOffSet, setNextOffSet] = useState(0);
 
   dropdownText = dropdownText ? 'Add' : 'New';
+  hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -160,7 +161,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
           dropDownText={dropdownText}
-          hideFormLauncher
+          hideFormLauncher={hideFormLauncher}
         />
       );
     }
@@ -213,7 +214,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           headerTitle={headerTitle}
           launchForm={launchEncounterForm}
           launchFormComponent={formLauncher}
-          hideFormLauncher
+          hideFormLauncher={hideFormLauncher}
         />
       )}
     </>
