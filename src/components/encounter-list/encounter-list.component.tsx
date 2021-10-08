@@ -7,9 +7,10 @@ import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { getForm } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
-import OTable from '../data-table/o-table.component';
+import OTable from '../data-table/o-table.component';  
 import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
 import { dateOfEncounterConcept, encounterRepresentation } from '../../constants';
+import { encounterRepresentation } from '../../constants'; 
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 
@@ -35,8 +36,9 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   else return encounter[param] ? encounter[param] : '--';
 }
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
-  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
-
+  
+  const obs = encounter?.obs?.find(observation => observation.concept.uuid === obsConcept);
+ 
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
@@ -71,6 +73,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
 
+
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
@@ -78,7 +81,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
   dropdownText = dropdownText ? 'Add' : 'New';
   hideFormLauncher = hideFormLauncher || false;
-
+ 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: encounterForm.name,
@@ -160,8 +163,8 @@ const EncounterList: React.FC<EncounterListProps> = ({
           formJson={encounterForm}
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
-          dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
+          dropDownText={dropdownText} 
+          hideFormLauncher={hideFormLauncher} 
         />
       );
     }

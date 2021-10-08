@@ -7,7 +7,6 @@ import { openmrsObservableFetch, useCurrentPatient, useSessionUser, showToast } 
 import { useTranslation } from 'react-i18next';
 import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
-import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
 import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';

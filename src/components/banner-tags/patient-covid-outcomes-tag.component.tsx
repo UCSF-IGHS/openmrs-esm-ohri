@@ -30,11 +30,8 @@ const PatientCovidOutcomesBannerTag = ({ patientUuid }) => {
     // fetchPatientCovidOutcome(patientUuid).then(covidOutcome => {
 
     //   setCovidOutcome(possibleOutcomes.unknown);
-    // });
-
-    setTimeout(() => {
-      setIsCovidOutcomeLoaded(true);
-    }, 1500);
+    // }); 
+ 
   }, []);
 
   return <>{isCovidOutComeLoaded && <Tag type="purple"> {t('covidOutcomeUnknown', 'Unknown Covid Statuts')} </Tag>}</>;

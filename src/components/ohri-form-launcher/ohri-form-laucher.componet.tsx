@@ -8,9 +8,8 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   formJson: any;
   launchForm: (formJson?: any) => void;
   onChangeIntent: (formJson: any) => void;
-  dropDownText?: string;
-  hideFormLauncher?: boolean;
-}> = ({ formJson, launchForm, onChangeIntent, dropDownText, hideFormLauncher }) => {
+  dropDownText?: string;  
+}> = ({ formJson, launchForm, onChangeIntent, dropDownText }) => { 
   // Keeping this here for now, we need to figureout how to enforce users to select an intent when launching a form in edit mode
   // This should be thrown away after the above is resolved
   // const [processedForm, setProcessedForm] = useState(null);
@@ -22,23 +21,21 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   //   }, []);
 
   return (
-    <div style={{ paddingTop: '.3rem', paddingRight: '.5rem', width: '13rem' }}>
-      {!hideFormLauncher && (
-        <Dropdown
-          id="choose-intent"
-          label={dropDownText || 'New'}
-          items={formJson.availableIntents}
-          titleText=""
-          selectedItem={null}
-          onChange={({ selectedItem }) => {
-            const processedForm = filterFormByIntent(selectedItem.intent, formJson);
-            // setProcessedForm(processedForm);
-            // onChangeIntent(processedForm);
-            launchForm(processedForm);
-          }}
-          itemToString={item => item.display}
-        />
-      )}
+    <div style={{ paddingTop: '.3rem', paddingRight: '.5rem', width: '13rem' }}> 
+      <Dropdown
+        id="choose-intent"
+        label={dropDownText || 'New'}
+        items={formJson.availableIntents}
+        titleText=""
+        selectedItem={null}
+        onChange={({ selectedItem }) => {
+          const processedForm = filterFormByIntent(selectedItem.intent, formJson);
+          // setProcessedForm(processedForm);
+          // onChangeIntent(processedForm);
+          launchForm(processedForm);
+        }}
+        itemToString={item => item.display}
+      /> 
     </div>
   );
 };
