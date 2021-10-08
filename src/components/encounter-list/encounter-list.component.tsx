@@ -8,7 +8,7 @@ import { getForm } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
@@ -71,7 +71,13 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
 
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalPatientCount, setPatientCount] = useState(0);
+  const [nextOffSet, setNextOffSet] = useState(0);
+
   dropdownText = dropdownText ? 'Add' : 'New';
+  hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -188,6 +194,17 @@ const EncounterList: React.FC<EncounterListProps> = ({
               {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
+            <Pagination
+              page={page}
+              pageSize={pageSize}
+              pageSizes={[10, 20, 30, 40, 50]}
+              totalItems={tableRows.length}
+              onChange={({ page, pageSize }) => {
+                setNextOffSet(page * pageSize + 1);
+                setPage(page);
+                setPageSize(pageSize);
+              }}
+            />
           </div>
         </>
       ) : (
@@ -196,6 +213,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           headerTitle={headerTitle}
           launchForm={launchEncounterForm}
           launchFormComponent={formLauncher}
+          hideFormLauncher={hideFormLauncher}
         />
       )}
     </>

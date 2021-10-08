@@ -31,9 +31,9 @@ export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'6
 export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
 export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
 export const clientsWithoutCovidOutcomes = '5cf97790-3830-4f2a-807f-8595265c0806';
-export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba';
-export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b';
-export const covid19PositiveClients = 'adbf0411-b35c-4174-b0ff-f24a635e4da3';
+export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba'; 
+export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b'; 
+export const covid19PositiveClients = 'adbf0411-b35c-4174-b0ff-f24a635e4da3';  
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -107,4 +107,4 @@ export const covidVaccination1stDoseDateConcept_UUID = 'c85eb064-5ef7-4ac6-8e56-
 export const covidVaccination2ndDoseDateConcept_UUID = '42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9'; // What is COVID-19 vaccination date (2nd dose)?
 export const covidVaccinationTypeConcept_UUID = 'a31d1148-bbcc-4ad6-a015-8359d66bcfdc'; // What COVID-19 vaccine was administered?
 export const covidVaccinationAdministeredConcept_UUID = '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Which date COVID-19 vaccine was administered?
-export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Return Visit date
+export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
