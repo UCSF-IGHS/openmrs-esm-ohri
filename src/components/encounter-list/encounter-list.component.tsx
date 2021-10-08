@@ -161,7 +161,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
           dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
         />
       );
     }
