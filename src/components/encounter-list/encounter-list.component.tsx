@@ -8,8 +8,8 @@ import { getForm } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { dateOfEncounterConcept, encounterRepresentation } from '../../constants';
+import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 
@@ -67,12 +67,17 @@ const EncounterList: React.FC<EncounterListProps> = ({
   hideFormLauncher,
 }) => {
   const { t } = useTranslation();
+  const [allRows, setAllRows] = useState([]);
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
 
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(1);
+
   dropdownText = dropdownText ? 'Add' : 'New';
+  hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -103,41 +108,63 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
   const loadRows = useCallback(
     encounterType => {
+      setIsLoading(true);
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-        const rows = data.results.map(encounter => {
-          const row = { id: encounter.uuid };
-          columns.forEach(column => {
-            row[column.key] = column.getValue(encounter);
-          });
-          row['actions'] = (
-            <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-              <OverflowMenuItem
-                itemText={t('viewEncounter', 'View')}
-                onClick={e => {
-                  e.preventDefault();
-                  viewEncounter(encounter.uuid);
-                }}
-              />
-              <OverflowMenuItem
-                itemText={t('editEncounter', 'Edit')}
-                onClick={e => {
-                  e.preventDefault();
-                  editEncounter(encounter.uuid);
-                }}
-              />
-            </OverflowMenu>
+        if (data.results?.length > 0) {
+          const sortedEncounters = data.results.sort(
+            (firstEncounter, secondEncounter) =>
+              new Date(secondEncounter.encounterDatetime).getTime() -
+              new Date(firstEncounter.encounterDatetime).getTime(),
           );
-          return row;
-        });
-        setTableRows(rows);
+
+          setAllRows(sortedEncounters);
+          updateTable(sortedEncounters, 0, pageSize);
+        } else {
+          setAllRows([]);
+        }
         setIsLoading(false);
       });
     },
     [patientUuid],
   );
 
+  const updateTable = (fullDataset, start, itemCount) => {
+    let currentRows = [];
+
+    for (let i = start; i < start + itemCount; i++) {
+      if (i < fullDataset.length) {
+        currentRows.push(fullDataset[i]);
+      }
+    }
+
+    const rows = currentRows.map(encounter => {
+      const row = { id: encounter.uuid };
+      columns.forEach(column => {
+        row[column.key] = column.getValue(encounter);
+      });
+      row['actions'] = (
+        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenuItem
+            itemText={t('viewEncounter', 'View')}
+            onClick={e => {
+              e.preventDefault();
+              viewEncounter(encounter.uuid);
+            }}
+          />
+          <OverflowMenuItem
+            itemText={t('editEncounter', 'Edit')}
+            onClick={e => {
+              e.preventDefault();
+              editEncounter(encounter.uuid);
+            }}
+          />
+        </OverflowMenu>
+      );
+      return row;
+    });
+    setTableRows(rows);
+  };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
   const launchEncounterForm = (form?: any) => {
@@ -156,6 +183,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
           dropDownText={dropdownText}
+          hideFormLauncher={hideFormLauncher}
         />
       );
     }
@@ -181,7 +209,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={5} />
-      ) : tableRows.length > 0 ? (
+      ) : allRows.length > 0 ? (
         <>
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
@@ -189,6 +217,19 @@ const EncounterList: React.FC<EncounterListProps> = ({
               {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
+            <Pagination
+              page={page}
+              pageSize={pageSize}
+              pageSizes={[10, 20, 30, 40, 50]}
+              totalItems={allRows.length}
+              onChange={({ page, pageSize }) => {
+                let startOffset = (page - 1) * pageSize;
+                updateTable(allRows, startOffset, pageSize);
+
+                setPage(page);
+                setPageSize(pageSize);
+              }}
+            />
           </div>
         </>
       ) : (
@@ -197,6 +238,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           headerTitle={headerTitle}
           launchForm={launchEncounterForm}
           launchFormComponent={formLauncher}
+          hideFormLauncher
         />
       )}
     </>
