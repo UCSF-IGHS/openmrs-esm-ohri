@@ -24,7 +24,7 @@ const PatientCovidOutcomesBannerTag = ({ patientUuid }) => {
   };
 
   const [covidOutcome, setCovidOutcome] = useState(possibleOutcomes.unknown);
-  
+
   return <>{isCovidOutComeLoaded && <Tag type="purple"> {t('covidOutcomeUnknown', 'Unknown Covid Statuts')} </Tag>}</>;
 };
 
