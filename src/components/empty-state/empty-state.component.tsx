@@ -18,9 +18,8 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   headerTitle,
   displayText,
   launchFormComponent,
-
+  hideFormLauncher = true,
   launchForm,
-  hideFormLauncher,
 }) => {
   const { t } = useTranslation();
   return (
@@ -37,7 +36,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
             {displayText.toLowerCase() != 'patients' ? ' for this patient' : ''}
           </Trans>
         </p>
-        {!hideFormLauncher && launchFormComponent && (
+        {launchFormComponent && !hideFormLauncher && (
           <p className={styles.action}>
             <Link onClick={() => launchForm()}>
               {t('record', 'Record')} {displayText.toLowerCase()}

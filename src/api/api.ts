@@ -195,12 +195,8 @@ export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
 }
 
 export function fetchPatientCovidOutcome(patientUuid: string) {
-  //TODO: Continue logic to filter outcome  
+   //TODO: Continue logic to filter outcome   
   // const query = `encounterType=${covidOutcomeUUID}&patient=${patientUuid}`;
-  // return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-  //   if (data.results.length) {
-  //     return data.results[data.results.length - 1];
-  //   } 
-  //   return null;
+  // return getObsFromEncounter(covid_Assessment_EncounterUUID, covidOutcomeUUID);
   // });
 }
