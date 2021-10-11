@@ -178,7 +178,7 @@
       ]
     },
     {
-      "label": "Presenting Complaints",
+      "label": "History",
       "sections": [
         {
           "label": "Presenting Complaints",
@@ -266,12 +266,7 @@
               "id": "dateOfSymptomOnset"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Tuberculosis Preventive Treatment",
-      "sections": [
+        },
         {
           "label": "Tuberculosis Preventive Treatment",
           "isExpanded": "false",
@@ -665,12 +660,7 @@
               "id": "dateTuberculosisProphylaxisEnded"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "OBGYN History",
-      "sections": [
+        },
         {
           "label": "OBGYN History",
           "isExpanded": "false",
@@ -1505,7 +1495,7 @@
       ]
     },
     {
-      "label": "Chronic Conditions",
+      "label": "Past Medical History",
       "sections": [
         {
           "label": "Chronic Conditions",
@@ -1757,12 +1747,7 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Allergies",
-      "sections": [
+        },
         {
           "label": "Allergies",
           "isExpanded": "false",
@@ -2138,12 +2123,7 @@
               "id": "severityOfAllergicReaction"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Adverse Drug Reaction",
-      "sections": [
+        },
         {
           "label": "Adverse Drug Reaction",
           "isExpanded": "false",
@@ -2392,12 +2372,7 @@
               "id": "adrOtherAction"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Immunizations",
-      "sections": [
+        },
         {
           "label": "Immunizations",
           "isExpanded": "false",
@@ -2449,10 +2424,10 @@
       ]
     },
     {
-      "label": "Physical/Systemic Examination",
+      "label": "Examination",
       "sections": [
         {
-          "label": "Physical/Systemic Examination",
+          "label": "Examination",
           "isExpanded": "false",
           "questions": [
             {
@@ -2576,81 +2551,6 @@
               "id": "physicalExaminationFindings"
             },
             {
-              "label": "Skin",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "AMPATH",
-                    "value": "1120"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "164320006"
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "skinFindings"
-            },
-            {
-              "label": "Other skin examination finding",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "160981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "id": "otherSkinExaminationFinding"
-            },
-            {
-              "label": "Head/Ears/Eyes/Nose",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1122AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "164633005"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "1122"
-                  },
-                  {
-                    "type": "LOINC",
-                    "value": "11424-9"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "1122"
-                  },
-                  {
-                    "type": "SNOMED-MVP",
-                    "value": "11221000105004"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "2427"
-                  }
-                ]
-              },
-              "id": "headFindings"
-            },
-            {
               "label": "Other HEENT examination finding",
               "type": "obs",
               "questionOptions": {
@@ -2668,33 +2568,6 @@
                 ]
               },
               "id": "otherHEENTExaminationFinding"
-            },
-            {
-              "label": "Chest",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "272016000"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "6336"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "3238"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "1123"
-                  }
-                ]
-              },
-              "id": "chestFindings"
             },
             {
               "label": "Other Chest examination finding",
@@ -2716,29 +2589,6 @@
               "id": "otherChestExaminationFinding"
             },
             {
-              "label": "Cardiovascular",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "AMPATH",
-                    "value": "1124"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "2423"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "271910006"
-                  }
-                ]
-              },
-              "id": "cardiovascularFindings"
-            },
-            {
               "label": "Other cardiovascular examination finding",
               "type": "obs",
               "questionOptions": {
@@ -2752,29 +2602,6 @@
                 ]
               },
               "id": "otherCardiovascularExaminationFinding"
-            },
-            {
-              "label": "Abdomen",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "AMPATH",
-                    "value": "1125"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "2425"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "271911005"
-                  }
-                ]
-              },
-              "id": "abdomenFindings"
             },
             {
               "label": "Other abdominal examination finding",
@@ -2796,29 +2623,6 @@
               "id": "otherAbdominalExaminationFinding"
             },
             {
-              "label": "Central Nervous System",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1129AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "PIH",
-                    "value": "2421"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "22325002"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "1129"
-                  }
-                ]
-              },
-              "id": "centralNervousSystemFindings"
-            },
-            {
               "label": "Other CNS examination finding",
               "type": "obs",
               "questionOptions": {
@@ -2834,25 +2638,6 @@
               "id": "otherCNSExaminationFinding"
             },
             {
-              "label": "Musculoskeletal System",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "271916000"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "1128"
-                  }
-                ]
-              },
-              "id": "musculoskeletalSystem"
-            },
-            {
               "label": "Other musculoskeletal examination finding",
               "type": "obs",
               "questionOptions": {
@@ -2866,29 +2651,6 @@
                 ]
               },
               "id": "otherMusculoskeletalExaminationFinding"
-            },
-            {
-              "label": "Genito-urinary system",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-MVP",
-                    "value": "11261000105008"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "164637006"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "1126"
-                  }
-                ]
-              },
-              "id": "genitoUrinarySystemFindings"
             },
             {
               "label": "Other Genito-urinary system examination finding",
@@ -3325,7 +3087,7 @@
       ]
     },
     {
-      "label": "HIV Monitoring",
+      "label": "Management",
       "sections": [
         {
           "label": "HIV Monitoring",
@@ -3469,12 +3231,7 @@
               "id": "whenWasViralLoadDone"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Positive Health, Dignity, and Prevention (PHDP)",
-      "sections": [
+        },
         {
           "label": "Positive Health, Dignity, and Prevention (PHDP)",
           "isExpanded": "false",
@@ -3810,12 +3567,7 @@
               "id": "substanceAbuseScreenPerformed"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Treatment Plan",
-      "sections": [
+        },
         {
           "label": "Treatment Plan",
           "isExpanded": "false",
@@ -4275,12 +4027,7 @@
               "id": "fluconazoleStopDate"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Adherence",
-      "sections": [
+        },
         {
           "label": "Adherence",
           "isExpanded": "false",
@@ -4368,12 +4115,7 @@
               "id": "reasonForPoorAdherenceToCotrimoxazoleDapsone"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Differentiated Service Delivery (DSD)",
-      "sections": [
+        },
         {
           "label": "Differentiated Service Delivery (DSD)",
           "isExpanded": "false",
@@ -4560,12 +4302,7 @@
               "id": "selectedDifferentiatedCareModel"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Next Appointment & Referrals",
-      "sections": [
+        },
         {
           "label": "Next Appointment & Referrals",
           "isExpanded": "false",
