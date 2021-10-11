@@ -18,7 +18,6 @@
   /* Necessary to become containing block for position: fixed child */
   transform: translate3d(0, 0, 0);
   overscroll-behavior: contain;
-
 }
 
 /* the overflow content itself */
@@ -38,16 +37,16 @@
 
 @media (max-width: 1024px) {
   .sidebar {
-  margin: 0px;
-  padding: 0px;
-  padding-left: 16px;
-  flex-grow: 0.6;
-  flex-shrink: 1;
-  position: relative;
-  overflow: scroll;
-  /* Necessary to become containing block for position: fixed child */
-  transform: translate3d(0, 0, 0);
-  flex-basis: 23%;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 16px;
+    flex-grow: 0.6;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    /* Necessary to become containing block for position: fixed child */
+    transform: translate3d(0, 0, 0);
+    flex-basis: 23%;
   }
 
   .overflowContent {
@@ -67,16 +66,16 @@
 
 @media (max-width: 768px) {
   .sidebar {
-  margin: 0px;
-  padding: 0px;
-  padding-left: 16px;
-  flex-grow: 0.6;
-  flex-shrink: 1;
-  position: relative;
-  overflow: scroll;
-  /* Necessary to become containing block for position: fixed child */
-  transform: translate3d(0, 0, 0);
-  flex-basis: 28%;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 16px;
+    flex-grow: 0.6;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    /* Necessary to become containing block for position: fixed child */
+    transform: translate3d(0, 0, 0);
+    flex-basis: 28%;
   }
 
   .overflowContent {
@@ -96,16 +95,16 @@
 
 @media (max-width: 1440) {
   .sidebar {
-  margin: 0px;
-  padding: 0px;
-  padding-left: 16px;
-  flex-grow: 0.6;
-  flex-shrink: 1;
-  position: relative;
-  overflow: scroll;
-  /* Necessary to become containing block for position: fixed child */
-  transform: translate3d(0, 0, 0);
-  flex-basis: 35%;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 16px;
+    flex-grow: 0.6;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    /* Necessary to become containing block for position: fixed child */
+    transform: translate3d(0, 0, 0);
+    flex-basis: 35%;
   }
 
   .overflowContent {
