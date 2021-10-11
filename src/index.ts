@@ -244,6 +244,13 @@ function setupOpenMRS() {
         offline: true,
       },
       {
+        id: 'patient-covid-status-tag',
+        slot: 'patient-banner-tags-slot',
+        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-covid-outcomes-tag.component'), options),
+        online: true,
+        offline: true,
+      },
+      {
         id: 'patient-list-ext',
         slot: 'homepage-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
@@ -396,6 +403,30 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
+      }, 
+      {
+        id: 'covid-home-header-ext',
+        slot: 'covid-home-header-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
+          featureName: 'covid-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'covid-home-tile-ext',
+        slot: 'covid-home-tiles-slot',
+        load: getAsyncLifecycle(() => import('./covid/home/summary-tiles/covid-summary-tiles.component'), {
+          featureName: 'covid-home-tiles',
+          moduleName,
+        }),
+      },
+      {
+        id: 'covid-home-tabs-ext',
+        slot: 'covid-home-tabs-slot',
+        load: getAsyncLifecycle(() => import('./covid/home/patient-list-tabs/covid-patient-list-tabs.component'), {
+          featureName: 'covid-home-tabs',
+          moduleName,
+        }),
       },
     ],
   };
