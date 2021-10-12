@@ -6,9 +6,10 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import { getForm } from '../../utils/forms-loader';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
 import OTable from '../../components/data-table/o-table.component';
 import moment from 'moment';
+
 interface CovidOverviewListProps {
   patientUuid: string;
 }
@@ -99,6 +100,7 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
       setIsLoading(false);
     });
   }
+
   useEffect(() => {
     let query = `encounterType=${covidEncounterUUID}&patient=${patientUuid}`;
     getCovidEncounters(query, covidEncounterRepresentation);
