@@ -29,6 +29,7 @@ const EmptyStateComingSoon: React.FC<EmptyStateProps> = ({ headerTitle, displayT
           </Trans>
         </p>
       </div>
+      {/* @ts-ignore */}
       <Button kind="ghost" displayText={t('add', 'Add')} id="choose-intent" label="Add +"></Button>
     </Tile>
   );
