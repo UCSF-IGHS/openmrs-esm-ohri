@@ -44,6 +44,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
           </p>
         )}
       </div>
+      {/* @ts-ignore */}
       <Button kind="ghost" displayText={t('add', 'Add')} id="choose-intent" label="Add +"></Button>
     </Tile>
   );
