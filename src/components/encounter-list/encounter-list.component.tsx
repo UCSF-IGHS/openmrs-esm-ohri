@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { getForm } from '../../utils/forms-loader';
-import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
@@ -34,6 +34,7 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
 }
+
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
 
