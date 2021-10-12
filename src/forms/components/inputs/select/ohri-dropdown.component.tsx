@@ -29,7 +29,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
 
   const itemToString = item => {
     const answer = question.questionOptions.answers.find(opt => (opt.value ? opt.value == item : opt.concept == item));
-    return answer.label;
+    return answer?.label;
   };
   useEffect(() => {
     setItems(question.questionOptions.answers.map(item => item.value || item.concept));
