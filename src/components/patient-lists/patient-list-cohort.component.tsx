@@ -184,7 +184,6 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [filteredResults, setFilteredResults] = useState([]);
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
-
   const constructPatient = rawPatient => {
     const patientUuid = isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid;
     const dashboard = launchableForm?.targetDashboard ? `/${launchableForm?.targetDashboard}` : '';
