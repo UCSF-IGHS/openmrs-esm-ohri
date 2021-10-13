@@ -50,7 +50,7 @@
   margin-top: 0.875rem;
 }
 
-.rowContent{
+.rowContent {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -84,7 +84,7 @@
   color: $interactive-01;
 }
 
-:global(.bx--tooltip--definition .bx--tooltip__trigger){
+:global(.bx--tooltip--definition .bx--tooltip__trigger) {
   border-bottom: none;
 }
 
@@ -94,14 +94,14 @@
 }
 
 .childPadding > div > div {
-padding-top: 0;
+  padding-top: 0;
 }
 
 // extension
-.Extentioncontainer{
+.extensionContainer {
   height: 100%;
 }
 
-.Extentioncontainer > div{
+.extensionContainer > div {
   height: 100%;
 }
