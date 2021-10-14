@@ -7,7 +7,6 @@ import { openmrsObservableFetch, useCurrentPatient, useSessionUser, showToast } 
 import { useTranslation } from 'react-i18next';
 import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
-import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import LoadingIcon from '../components/loading/loading.component';
 import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
@@ -352,15 +351,15 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         }
         if (encounterUuid) {
           showToast({
-            description: t('updateSuccessToastDescription', 'The patient HTS record was updated'),
-            title: t('updateSuccessToastTitle', 'HTS record updated'),
+            description: t('updatedRecordDescription', 'The patient encounter was updated'),
+            title: t('updatedRecord', 'Record updated'),
             kind: 'success',
             critical: true,
           });
         } else {
           showToast({
-            description: t('createSuccessToastDescription', 'A new HTS record was created'),
-            title: t('createSuccessToastTitle', 'HTS record created'),
+            description: t('createdRecordDescription', 'A new encounter was created'),
+            title: t('createdRecord', 'Record created'),
             kind: 'success',
             critical: true,
           });
@@ -414,7 +413,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           ) : (
             <>
               <div className={styles.mainContainer}>
-                {/* <div className={styles.sidebar}> */}
                 <OHRIFormSidebar
                   scrollAblePages={scrollAblePages}
                   selectedPage={selectedPage}
@@ -426,7 +424,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                   allowUnspecifiedAll={formJson.allowUnspecifiedAll}
                   defaultPage={formJson.defaultPage}
                 />
-                {/* </div> */}
                 <div className={styles.overflowContent}>
                   <OHRIFormContext.Provider
                     value={{

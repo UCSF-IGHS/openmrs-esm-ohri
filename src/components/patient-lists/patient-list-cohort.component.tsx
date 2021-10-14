@@ -31,7 +31,7 @@ export const columns: PatientListColumn[] = [
       return patient.name;
     },
     link: {
-      getUrl: patient => `${basePath}${patient.uuid}/chart`,
+      getUrl: patient => patient.url,
     },
   },
   {
@@ -157,6 +157,7 @@ interface CohortPatientListProps {
     // if value is not provided and `editLatestEncounter` is true, the `associatedEncounterType` will be used
     encounterType?: string;
     editActionText?: string;
+    targetDashboard?: string;
   };
 }
 
@@ -184,8 +185,10 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
   const constructPatient = rawPatient => {
+    const patientUuid = isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid;
+    const dashboard = launchableForm?.targetDashboard ? `/${launchableForm?.targetDashboard}` : '';
     return {
-      uuid: isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid,
+      uuid: patientUuid,
       id: isReportingCohort ? rawPatient.identifiers[0].identifier : rawPatient.patient.identifiers[0].identifier,
       age: isReportingCohort ? rawPatient.person.age : rawPatient.patient.person.age,
       name: isReportingCohort ? rawPatient.person.display : rawPatient.patient.person.display,
@@ -200,6 +203,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
         ? 'Male'
         : 'Female',
       birthday: isReportingCohort ? rawPatient.person.birthdate : rawPatient.patient.person.birthdate,
+      url: `${basePath}${patientUuid}/chart${dashboard}`,
     };
   };
 

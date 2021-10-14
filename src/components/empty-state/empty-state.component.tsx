@@ -11,14 +11,14 @@ interface EmptyStateProps {
   displayText?: string;
   launchForm?: () => void;
   launchFormComponent?: any;
-  showLaunchLink?: boolean;
+  hideFormLauncher?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
   headerTitle,
   displayText,
   launchFormComponent,
-  showLaunchLink = true,
+  hideFormLauncher = true,
   launchForm,
 }) => {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
             {displayText.toLowerCase() != 'patients' ? ' for this patient' : ''}
           </Trans>
         </p>
-        {showLaunchLink && !launchFormComponent && (
+        {launchFormComponent && !hideFormLauncher && (
           <p className={styles.action}>
             <Link onClick={() => launchForm()}>
               {t('record', 'Record')} {displayText.toLowerCase()}
