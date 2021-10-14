@@ -163,7 +163,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       order: null,
       groupMembers: [],
       voided: false,
-      value: htsDate,
+      value: '2020-01-20 00:00',
     });
   });
 
@@ -377,7 +377,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       order: null,
       groupMembers: [],
       voided: false,
-      value: newHtsDate,
+      value: '2021-12-16 00:00',
     });
   });
 
