@@ -404,6 +404,15 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      // {
+      //   id: 'ohri-form-header-toggle-ext',
+      //   slot: 'patient-chart-workspace-header-slot',
+      //   load: getAsyncLifecycle(() => import('./components/ohri-form-toggle/ohri-form-toggle.component'), {
+      //     featureName: 'ohri-form-header-toggle',
+      //     moduleName,
+      //   }),
+      //   meta: {},
+      // },
     ],
   };
 }
