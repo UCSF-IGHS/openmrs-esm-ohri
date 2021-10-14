@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { getForm } from '../../utils/forms-loader';
-import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { clinicalVisitEncounterType, dateOfEncounterConcept, encounterRepresentation } from '../../constants';
+import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 
@@ -26,10 +26,22 @@ export interface EncounterListProps {
   columns: Array<any>;
   headerTitle: string;
   description: string;
+  dropdownText?: string;
+  hideFormLauncher?: boolean;
 }
 
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
-  const obs = encounter.obs.find(observation => observation.concept.uuid === obsConcept);
+export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
+  if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
+  else return encounter[param] ? encounter[param] : '--';
+}
+
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
+
+  if (isTrueFalseConcept) {
+    return obs ? 'Yes' : 'No';
+  }
+
   if (!obs) {
     return '--';
   }
@@ -44,12 +56,28 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean) {
   return obs.value;
 }
 
-const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, columns, headerTitle, description }) => {
+const EncounterList: React.FC<EncounterListProps> = ({
+  patientUuid,
+  encounterUuid,
+  form,
+  columns,
+  headerTitle,
+  description,
+  dropdownText,
+  hideFormLauncher,
+}) => {
   const { t } = useTranslation();
+  const [allRows, setAllRows] = useState([]);
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(1);
+
+  dropdownText = dropdownText ? 'Add' : 'New';
+  hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
@@ -80,41 +108,63 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
 
   const loadRows = useCallback(
     encounterType => {
+      setIsLoading(true);
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-        const rows = data.results.map(encounter => {
-          const row = { id: encounter.uuid };
-          columns.forEach(column => {
-            row[column.key] = column.getValue(encounter);
-          });
-          row['actions'] = (
-            <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-              <OverflowMenuItem
-                itemText={t('viewEncounter', 'View')}
-                onClick={e => {
-                  e.preventDefault();
-                  viewEncounter(encounter.uuid);
-                }}
-              />
-              <OverflowMenuItem
-                itemText={t('editEncounter', 'Edit')}
-                onClick={e => {
-                  e.preventDefault();
-                  editEncounter(encounter.uuid);
-                }}
-              />
-            </OverflowMenu>
+        if (data.results?.length > 0) {
+          const sortedEncounters = data.results.sort(
+            (firstEncounter, secondEncounter) =>
+              new Date(secondEncounter.encounterDatetime).getTime() -
+              new Date(firstEncounter.encounterDatetime).getTime(),
           );
-          return row;
-        });
-        setTableRows(rows);
+
+          setAllRows(sortedEncounters);
+          updateTable(sortedEncounters, 0, pageSize);
+        } else {
+          setAllRows([]);
+        }
         setIsLoading(false);
       });
     },
     [patientUuid],
   );
 
+  const updateTable = (fullDataset, start, itemCount) => {
+    let currentRows = [];
+
+    for (let i = start; i < start + itemCount; i++) {
+      if (i < fullDataset.length) {
+        currentRows.push(fullDataset[i]);
+      }
+    }
+
+    const rows = currentRows.map(encounter => {
+      const row = { id: encounter.uuid };
+      columns.forEach(column => {
+        row[column.key] = column.getValue(encounter);
+      });
+      row['actions'] = (
+        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenuItem
+            itemText={t('viewEncounter', 'View')}
+            onClick={e => {
+              e.preventDefault();
+              viewEncounter(encounter.uuid);
+            }}
+          />
+          <OverflowMenuItem
+            itemText={t('editEncounter', 'Edit')}
+            onClick={e => {
+              e.preventDefault();
+              editEncounter(encounter.uuid);
+            }}
+          />
+        </OverflowMenu>
+      );
+      return row;
+    });
+    setTableRows(rows);
+  };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
   const launchEncounterForm = (form?: any) => {
@@ -132,6 +182,8 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
           formJson={encounterForm}
           launchForm={launchEncounterForm}
           onChangeIntent={encounterForm}
+          dropDownText={dropdownText}
+          hideFormLauncher={hideFormLauncher}
         />
       );
     }
@@ -139,32 +191,45 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
       <Button
         kind="ghost"
         renderIcon={Add16}
-        iconDescription="New"
+        iconDescription="Add "
         onClick={e => {
           e.preventDefault();
           launchEncounterForm();
         }}>
-        {t('Add')}
+        {dropdownText}
       </Button>
     );
   }, [encounterForm, launchEncounterForm]);
 
   useEffect(() => {
-    loadRows(clinicalVisitEncounterType);
+    loadRows(encounterUuid);
   }, [counter]);
 
   return (
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={5} />
-      ) : tableRows.length > 0 ? (
+      ) : allRows.length > 0 ? (
         <>
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <div className={styles.toggleButtons}>{formLauncher}</div>
+              {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
+            <Pagination
+              page={page}
+              pageSize={pageSize}
+              pageSizes={[10, 20, 30, 40, 50]}
+              totalItems={allRows.length}
+              onChange={({ page, pageSize }) => {
+                let startOffset = (page - 1) * pageSize;
+                updateTable(allRows, startOffset, pageSize);
+
+                setPage(page);
+                setPageSize(pageSize);
+              }}
+            />
           </div>
         </>
       ) : (
@@ -173,6 +238,7 @@ const EncounterList: React.FC<EncounterListProps> = ({ patientUuid, form, column
           headerTitle={headerTitle}
           launchForm={launchEncounterForm}
           launchFormComponent={formLauncher}
+          hideFormLauncher
         />
       )}
     </>

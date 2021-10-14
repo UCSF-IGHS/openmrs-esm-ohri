@@ -3,7 +3,6 @@ import { ExtensionSlot } from '@openmrs/esm-framework';
 import { Grid } from 'carbon-components-react';
 import PatientListWorkspace from '../workspace/patient-list-workspace';
 import styles from './ohri-home.scss';
-import { hts_dashboardMeta } from '../dashboard.meta';
 
 interface HomeProps {
   programme: string;

@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import { Tabs, Tab, Row, Column } from 'carbon-components-react';
 import styles from './ohri-patient-tabs.scss';
 import CohortPatientList from '../../../../components/patient-lists/patient-list-cohort.component';
-import { postTestCounsellingCohort, preTestCounsellingCohort, waitingForHIVTestCohort } from '../../../../constants';
+import {
+  htsRetrospectiveEncounterType,
+  postTestCounsellingCohort,
+  preTestCounsellingCohort,
+  waitingForHIVTestCohort,
+} from '../../../../constants';
 
 function OHRIPatientTabs() {
   const formPackage = 'hiv';
@@ -13,11 +18,14 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={preTestCounsellingCohort}
           cohortSlotName="pre-test-counseling-slot"
+          associatedEncounterType={htsRetrospectiveEncounterType}
           launchableForm={{
             package: formPackage,
             name: formName,
             intent: 'HTS_RETROSPECTIVE',
             actionText: 'Start Pre-test',
+            editLatestEncounter: true,
+            encounterType: htsRetrospectiveEncounterType,
           }}
         />
       </Tab>
@@ -25,7 +33,14 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={waitingForHIVTestCohort}
           cohortSlotName="waiting-for-hiv-testing-slot"
-          launchableForm={{ package: formPackage, name: formName, intent: 'HIV_TEST', actionText: 'Start HIV Test' }}
+          launchableForm={{
+            package: formPackage,
+            name: formName,
+            intent: 'HIV_TEST',
+            actionText: 'Start HIV Test',
+            editLatestEncounter: true,
+            encounterType: htsRetrospectiveEncounterType,
+          }}
         />
       </Tab>
       <Tab id="tab-3" label="Waiting for post-test counselling">
@@ -37,6 +52,8 @@ function OHRIPatientTabs() {
             name: formName,
             intent: 'HTS_POSTTEST',
             actionText: 'Start Post-test',
+            editLatestEncounter: true,
+            encounterType: htsRetrospectiveEncounterType,
           }}
         />
       </Tab>

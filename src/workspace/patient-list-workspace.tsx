@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { Breadcrumb, BreadcrumbItem, Button, Header } from 'carbon-components-react';
 import ArrowLeft16 from '@carbon/icons-react/lib/arrow--left/16';
-import Button from 'carbon-components-react/lib/components/Button';
-import Header from 'carbon-components-react/lib/components/UIShell/Header';
-import styles from './patient-list-workspace.scss';
-import moment from 'moment';
-import { Breadcrumb, BreadcrumbItem } from 'carbon-components-react';
 import { OverflowMenuVertical32 } from '@carbon/icons-react';
+import moment from 'moment';
+import styles from './patient-list-workspace.scss';
 
 const PatientListWorkspace: React.FC<{
   header: string;
@@ -85,6 +83,7 @@ const Overflow: React.FC<{
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
+              {/* @ts-ignore */}
               <Button size="small" kind="ghost" onClick="#">
                 Actions <OverflowMenuVertical32 style={{ height: '20px' }} />
               </Button>

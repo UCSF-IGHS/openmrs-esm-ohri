@@ -16,7 +16,7 @@ export const OHRIFormLauncherEmpty: React.FC<{
           e.preventDefault();
           launchForm();
         }}>
-        {t('add', 'Add')}
+        {t('add', 'New')}
       </Button>
     </div>
   );

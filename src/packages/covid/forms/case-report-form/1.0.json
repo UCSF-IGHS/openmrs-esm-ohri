@@ -182,35 +182,35 @@
               "questions": [
                 {
                   "label": "If no, why?",
-                  "id": "__L54uLsJxH",
+                  "id": "whySpecimenNotCollected",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "whySpecimenNotCollected",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "specimenCollected !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "date",
+                          "allowFutureDates": "false"
+                        },
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "specimenCollected !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "whySpecimenNotCollectedGroup"
             },
             {
               "label": "Date specimen collected",
@@ -366,31 +366,31 @@
               "questions": [
                 {
                   "label": "Other specimen type",
-                  "id": "__LwpyzEECK",
+                  "id": "otherSpecimenType",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "otherSpecimenType",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "otherSpecimenType !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "otherSpecimenType !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "otherSpecimenTypeGroup"
             },
             {
               "label": "Was the specimen sent to the lab",
@@ -1040,31 +1040,31 @@
               "questions": [
                 {
                   "label": "Other place where the case was investigated",
-                  "id": "__rCynHGvrt",
+                  "id": "otherPlaceCaseInvestigated",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "otherPlaceCaseInvestigated",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "placeCaseInvestigated !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "placeCaseInvestigated !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "otherPlaceCaseInvestigatedGroup"
             },
             {
               "label": "Reasons for testing (select all that apply)",
@@ -1181,31 +1181,31 @@
               "questions": [
                 {
                   "label": "Other reasons for testing",
-                  "id": "__yoxvJLyFL",
+                  "id": "othersReasonForCovidTest",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "othersReasonForCovidTest",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "reasonsForCovidTest !== '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "reasonsForCovidTest !== '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "othersReasonForCovidTestGroup"
             }
           ]
         }
@@ -1657,32 +1657,32 @@
               },
               "questions": [
                 {
-                  "label": "Health facility name",
-                  "id": "__wpDEqrupw",
+                  "label": "If health care worker, specify name of facility",
+                  "id": "healthCareWorkerFacility",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "healthCareWorkerFacility",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientOccupation !== 'c61a0bdb-d775-4fa2-882b-17f4f7538b30'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "clientOccupation !== 'c61a0bdb-d775-4fa2-882b-17f4f7538b30'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "healthCareWorkerFacilityGroup"
             },
             {
               "label": "Health Care Worker Country",
@@ -2641,31 +2641,31 @@
               "questions": [
                 {
                   "label": "Other presenting symptoms",
-                  "id": "__tytpMKMz8",
+                  "id": "otherCovidPresentingSymptoms",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "otherCovidPresentingSymptoms",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "presentedCovidSymptoms !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "presentedCovidSymptoms !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "otherCovidPresentingSymptomsGroup"
             },
             {
               "label": "Pregnancy status ",
@@ -3363,31 +3363,31 @@
               "questions": [
                 {
                   "label": "Name of hospital",
-                  "id": "__EHtMuGL3p",
+                  "id": "clinicalManagementFacility",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "clinicalManagementFacility",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "covidTreatmentPlace !== 'df300244-2824-4b65-a72e-4cdd5432e01f'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "covidTreatmentPlace !== 'df300244-2824-4b65-a72e-4cdd5432e01f'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "clinicalManagementFacilityGroup"
             },
             {
               "label": "Patient admitted to Intensive care unit (ICU)",
@@ -4016,32 +4016,32 @@
                 "rendering": "group",
                 "concept": "dd451da0-8e64-435c-a9eb-3962c923a261"
               },
-              "id": "otherMedicationsReceived",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "medicationsReceived !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
-                }
-              ],
+              "id": "otherMedicationsReceivedGroup",
               "questions": [
                 {
-                  "label": "Free text general",
-                  "id": "__xKwouroEy",
+                  "label": "Other medications received",
+                  "id": "otherMedicationsReceived",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
+                  "type": "obs",
+                  "behaviours": [
+                    {
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "medicationsReceived !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -4398,30 +4398,30 @@
                 "rendering": "group",
                 "concept": "4560c560-4bd6-4989-bff8-6e4e1fa39972"
               },
-              "id": "longCovidDescription",
+              "id": "longCovidDescriptionGroup",
               "questions": [
                 {
-                  "label": "Free text general",
-                  "id": "__GrF0zsLLq",
+                  "label": "Long COVID (describe)",
+                  "id": "longCovidDescription",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "treatmentOutcome !== '166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "treatmentOutcome !== '166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -4468,31 +4468,31 @@
               "questions": [
                 {
                   "label": "Unknown (describe)",
-                  "id": "__xIzJEDsru",
+                  "id": "unknownTreatmentOutcomeDescription",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "unknownTreatmentOutcomeDescription",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "treatmentOutcome !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "treatmentOutcome !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "unknownTreatmentOutcomeDescriptionGroup"
             },
             {
               "label": "Other treatment outcome",
@@ -4504,31 +4504,31 @@
               "questions": [
                 {
                   "label": "Other treatment outcome",
-                  "id": "__GsyH7yoKu",
+                  "id": "otherTreatmentOutcome",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "type": "obs"
-                }
-              ],
-              "id": "otherTreatmentOutcome",
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
+                  "type": "obs",
+                  "behaviours": [
                     {
-                      "type": "js_expression",
-                      "failsWhenExpression": "treatmentOutcome !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "intent": "HTS_RETROSPECTIVE",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "treatmentOutcome !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                        }
+                      ]
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "otherTreatmentOutcomeGroup"
             },
             {
               "label": "If the case was asymptomatic at time of specimen collection resulting in first laboratory confirmation, did the case develop any symptoms or signs at any time prior to discharge or death?",
@@ -4629,7 +4629,7 @@
   "availableIntents": [
     {
       "intent": "HTS_RETROSPECTIVE",
-      "display": "HTS Restrospective"
+      "display": "HTS Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",

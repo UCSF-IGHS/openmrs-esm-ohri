@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../../components/empty-state/empty-state.component';
 import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
+import { DataTableSkeleton } from 'carbon-components-react';
 import { getForm } from '../../utils/forms-loader';
-import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { launchForm } from '../../utils/ohri-forms-commons';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
 import OTable from '../../components/data-table/o-table.component';
 import moment from 'moment';
+
 interface CovidOverviewListProps {
   patientUuid: string;
 }
@@ -101,6 +100,7 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
       setIsLoading(false);
     });
   }
+
   useEffect(() => {
     let query = `encounterType=${covidEncounterUUID}&patient=${patientUuid}`;
     getCovidEncounters(query, covidEncounterRepresentation);

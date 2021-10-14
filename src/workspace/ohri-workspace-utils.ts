@@ -1,7 +1,15 @@
-import { attach, detach, detachAll, getAsyncLifecycle, registerExtension } from '@openmrs/esm-framework';
+import {
+  attach,
+  detach,
+  detachAll,
+  getAsyncLifecycle,
+  registerExtension,
+  showToast,
+  useAssignedExtensionIds,
+} from '@openmrs/esm-framework';
 import { BehaviorSubject } from 'rxjs';
 import { SessionMode } from '../forms/types';
-import { OHRIWorkspaceSlot } from './ohri-workspace.component';
+import { OHRIWorkspaceSlot, workspaceInUse } from './ohri-workspace.component';
 
 export interface WorkspaceContextProps {
   title: string;
@@ -9,9 +17,18 @@ export interface WorkspaceContextProps {
   state?: any;
   mode?: SessionMode;
   screenSize?: string;
+  collapseSections?: Boolean;
 }
 
 export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextProps) => {
+  if (workspaceInUse) {
+    showToast({
+      kind: 'info',
+      critical: true,
+      description: `Workspace in use`,
+    });
+    return;
+  }
   detachAll(OHRIWorkspaceSlot);
   registerExtension('ohri-workspace', {
     moduleName: '@openmrs/esm-ohri-app',
@@ -22,6 +39,7 @@ export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextPr
     meta: {
       title: props.title,
       screenSize: props.screenSize,
+      collapseSections: props.collapseSections,
     },
   });
   workspaceContext.next(props);

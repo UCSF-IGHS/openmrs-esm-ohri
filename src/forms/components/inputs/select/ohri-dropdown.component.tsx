@@ -1,6 +1,6 @@
-import Dropdown from 'carbon-components-react/lib/components/Dropdown';
-import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { Dropdown } from 'carbon-components-react';
+import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFieldValidator } from '../../../ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
@@ -29,7 +29,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
 
   const itemToString = item => {
     const answer = question.questionOptions.answers.find(opt => (opt.value ? opt.value == item : opt.concept == item));
-    return answer.label;
+    return answer?.label;
   };
   useEffect(() => {
     setItems(question.questionOptions.answers.map(item => item.value || item.concept));
@@ -43,7 +43,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   ) : (
     !question.isHidden && (
       <div className={styles.formInputField}>
-        <div className={errors.length ? styles.errorLabel : ''}>
+        <div className={errors.length ? styles.errorLabel : styles.dropDownOverride}>
           <Dropdown
             id={question.id}
             titleText={question.label}
