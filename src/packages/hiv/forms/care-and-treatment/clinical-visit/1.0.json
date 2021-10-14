@@ -1502,6 +1502,103 @@
           "isExpanded": "false",
           "questions": [
             {
+              "id": "patientConditionsGroup",
+              "label": "Patient Conditions",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "repeating",
+                "concept": "8acba1d1-67cc-422c-961e-86d6b47bc45b"
+              },
+              "questions": [
+                {
+                  "label": "Condition",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "condition"
+                },
+                {
+                  "label": "When was the onset of the chronic condition?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "",
+                    "weeksList": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "onsetOfChronicCondition"
+                },
+                {
+                  "label": "What is the current status of the chronic condition?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "currentStatusOfChronicCondition"
+                },
+                {
+                  "label": "When did the condition become Inactive?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "",
+                    "weeksList": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "whenConditionBecomeInactive"
+                }
+              ]
+            },
+            {
               "label": "Does the patient have any chronic illnesses or co-morbidities?",
               "type": "obs",
               "questionOptions": {
@@ -1566,92 +1663,6 @@
                 ]
               },
               "id": "doesPatientHaveChronicillnesses"
-            },
-            {
-              "label": "Condition",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "condition"
-            },
-            {
-              "label": "When was the onset of the chronic condition?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "",
-                "weeksList": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "onsetOfChronicCondition"
-            },
-            {
-              "label": "What is the current status of the chronic condition?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "currentStatusOfChronicCondition"
-            },
-            {
-              "label": "When did the condition become Inactive?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "",
-                "weeksList": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "whenConditionBecomeInactive"
             },
             {
               "label": "Does the patient have previous admissions or prior surgery done?",
@@ -1753,6 +1764,138 @@
           "isExpanded": "false",
           "questions": [
             {
+              "id": "patientAllergyGroup",
+              "label": "Patient Allergies",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "repeating",
+                "concept": "8acba1d1-67cc-422c-961e-86d6b47bc45b"
+              },
+              "questions": [
+                {
+                  "label": "Allergen",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "7f91dd90-f0db-4970-91c7-90091329c755",
+                    "answers": [
+                      {
+                        "concept": "152952AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Environmental Allergies",
+                        "conceptMappings": [
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "426232007"
+                          },
+                          {
+                            "type": "IMO-ProblemIT",
+                            "value": "602827"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "141760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Drug Allergy",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "139994AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Food Allergy",
+                        "conceptMappings": []
+                      }
+                    ]
+                  },
+                  "id": "allergen",
+                  "questions": []
+                },
+                {
+                  "label": "What was the severity of the allergic reaction?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "162642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "405162009"
+                      }
+                    ],
+                    "answers": [
+                      {
+                        "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Moderate",
+                        "conceptMappings": [
+                          {
+                            "type": "PIH",
+                            "value": "1900"
+                          },
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "6736007"
+                          },
+                          {
+                            "type": "PIH",
+                            "value": "1907"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1744"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild",
+                        "conceptMappings": [
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "255604002"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1743"
+                          },
+                          {
+                            "type": "PIH",
+                            "value": "1901"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Severe",
+                        "conceptMappings": [
+                          {
+                            "type": "PIH",
+                            "value": "1903"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1745"
+                          },
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "24484000"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "162693AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Life threatening severity",
+                        "conceptMappings": [
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "442452003"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "id": "severityOfAllergicReaction"
+                }
+              ]
+            },
+            {
               "label": "Does the patient have Allergies?",
               "type": "obs",
               "questionOptions": {
@@ -1811,42 +1954,6 @@
                 ]
               },
               "id": "doesPatientHaveAllergies"
-            },
-            {
-              "label": "Allergen",
-              "type": "obsGroup",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "7f91dd90-f0db-4970-91c7-90091329c755",
-                "answers": [
-                  {
-                    "concept": "152952AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Environmental Allergies",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "426232007"
-                      },
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "602827"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "141760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Drug Allergy",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "139994AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Food Allergy",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "allergen",
-              "questions": []
             },
             {
               "label": "Drug Allergen",
@@ -2036,91 +2143,6 @@
                 }
               ],
               "id": "otherAllergen"
-            },
-            {
-              "label": "What was the severity of the allergic reaction?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "162642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "405162009"
-                  }
-                ],
-                "answers": [
-                  {
-                    "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Moderate",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "1900"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "6736007"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1907"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1744"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Mild",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "255604002"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1743"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1901"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Severe",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "1903"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1745"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "24484000"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "162693AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Life threatening severity",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "442452003"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "severityOfAllergicReaction"
             }
           ]
         },
@@ -2128,6 +2150,224 @@
           "label": "Adverse Drug Reaction",
           "isExpanded": "false",
           "questions": [
+            {
+              "id": "patientDrugReactionGroup",
+              "label": "Patient Drug Reactions",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "repeating",
+                "concept": "8acba1d1-67cc-422c-961e-86d6b47bc45b"
+              },
+              "questions": [
+                {
+                  "label": "What type of drug caused the reaction?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "162871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "363787002"
+                      }
+                    ],
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes",
+                        "conceptMappings": [
+                          {
+                            "type": "CIEL",
+                            "value": "1065"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1065"
+                          },
+                          {
+                            "type": "PIH",
+                            "value": "1065"
+                          },
+                          {
+                            "type": "SNOMED CT",
+                            "value": "CT: 373066001"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "label": "No",
+                        "conceptMappings": []
+                      },
+                      {
+                        "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Unknown",
+                        "conceptMappings": [
+                          {
+                            "type": "CIEL",
+                            "value": "1067"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1067"
+                          },
+                          {
+                            "type": "SNOMED CT",
+                            "value": "CT: 261665006"
+                          },
+                          {
+                            "type": "PIH",
+                            "value": "1067"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "id": "whatTypeOfDrugCausedTheReaction"
+                },
+                {
+                  "label": "What was the severity of Adverse Drug Reaction?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "162760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-US",
+                        "value": "446401000124104"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "405162009"
+                      }
+                    ],
+                    "answers": [
+                      {
+                        "concept": "162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Fatal",
+                        "conceptMappings": [
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "399166001"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Moderate",
+                        "conceptMappings": [
+                          {
+                            "type": "PIH",
+                            "value": "1900"
+                          },
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "6736007"
+                          },
+                          {
+                            "type": "PIH",
+                            "value": "1907"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1744"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Mild",
+                        "conceptMappings": [
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "255604002"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1743"
+                          },
+                          {
+                            "type": "PIH",
+                            "value": "1901"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "162693AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Life threatening severity",
+                        "conceptMappings": [
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "442452003"
+                          }
+                        ]
+                      },
+                      {
+                        "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Severe",
+                        "conceptMappings": [
+                          {
+                            "type": "PIH",
+                            "value": "1903"
+                          },
+                          {
+                            "type": "AMPATH",
+                            "value": "1745"
+                          },
+                          {
+                            "type": "SNOMED-CT",
+                            "value": "24484000"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "id": "severityOfAdverseDrugReaction"
+                },
+                {
+                  "label": "What type of reaction did the patient have?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "typeOfReactionPatientHad"
+                },
+                {
+                  "label": "What action was taken due to the adverse drug reaction?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "actionTakenDueToAdverseDrugReaction"
+                }
+              ]
+            },
             {
               "label": "Has the patient had an adverse drug reaction to medication they are currently taking?",
               "type": "obs",
@@ -2142,213 +2382,6 @@
                 ]
               },
               "id": "hasPatientHadAdverseDrugReaction"
-            },
-            {
-              "label": "What type of drug caused the reaction?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "162871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "363787002"
-                  }
-                ],
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
-                    "label": "No",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "whatTypeOfDrugCausedTheReaction"
-            },
-            {
-              "label": "What was the severity of Adverse Drug Reaction?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "162760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-US",
-                    "value": "446401000124104"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "405162009"
-                  }
-                ],
-                "answers": [
-                  {
-                    "concept": "162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fatal",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "399166001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Moderate",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "1900"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "6736007"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1907"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1744"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Mild",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "255604002"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1743"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1901"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "162693AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Life threatening severity",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "442452003"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Severe",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "1903"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1745"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "24484000"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "severityOfAdverseDrugReaction"
-            },
-            {
-              "label": "What type of reaction did the patient have?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "typeOfReactionPatientHad"
-            },
-            {
-              "label": "What action was taken due to the adverse drug reaction?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "actionTakenDueToAdverseDrugReaction"
             },
             {
               "label": "ADR Other action",
@@ -2378,6 +2411,38 @@
           "isExpanded": "false",
           "questions": [
             {
+              "id": "vaccinesGroup",
+              "label": "Vaccines given",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "repeating",
+                "concept": "8acba1d1-67cc-422c-961e-86d6b47bc45b"
+              },
+              "questions": [
+                {
+                  "label": "What vaccines were given during this visit?",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "behaviours": [
+                    {
+                      "intent": "CT_CLINICAL_VISIT_INITIAL",
+                      "required": "true",
+                      "unspecified": "true"
+                    },
+                    {
+                      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+                      "required": "true",
+                      "unspecified": "true"
+                    }
+                  ],
+                  "id": "whatVaccinesWereGiven"
+                }
+              ]
+            },
+            {
               "label": "Were any vaccines given during this visit?",
               "type": "obs",
               "questionOptions": {
@@ -2397,27 +2462,6 @@
                 }
               ],
               "id": "vaccinesGivenDuringVisit"
-            },
-            {
-              "label": "What vaccines were given during this visit?",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "behaviours": [
-                {
-                  "intent": "CT_CLINICAL_VISIT_INITIAL",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "whatVaccinesWereGiven"
             }
           ]
         }
