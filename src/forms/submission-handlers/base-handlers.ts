@@ -21,10 +21,18 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       } else if (!value) {
         field.value = undefined;
       } else {
-        field.value.value = value;
+        if (field.questionOptions.rendering == 'date') {
+          field.value.value = moment(value).format('YYYY-MM-DD HH:mm');
+        } else {
+          field.value.value = value;
+        }
         field.value.voided = false;
       }
     } else {
+      if (field.questionOptions.rendering == 'date') {
+        field.value = constructObs(moment(value).format('YYYY-MM-DD HH:mm'), context, field);
+        return field.value;
+      }
       field.value = constructObs(value, context, field);
     }
     return field.value;
