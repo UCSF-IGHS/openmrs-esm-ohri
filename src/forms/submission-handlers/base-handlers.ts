@@ -33,6 +33,12 @@ export const ObsSubmissionHandler: SubmissionHandler = {
     let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
     let parentField = null;
     let obsGroup = null;
+    // If this field is a group member and the obs was picked from the encounters's top obs leaves,
+    // chances are high this obs wasn't captured as part of the obs group. return empty.
+    // this should be solved by tracking obs through `formFieldNamespace`.
+    if (obs && field['groupId']) {
+      return '';
+    }
     if (!obs && field['groupId']) {
       parentField = allFormFields.find(f => f.id == field['groupId']);
       obsGroup = encounter.obs.find(o => o.concept.uuid == parentField.questionOptions.concept);
