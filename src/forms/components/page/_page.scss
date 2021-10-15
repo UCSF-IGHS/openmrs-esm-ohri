@@ -54,6 +54,6 @@
 .formSection > div div div input,
 .formSection > div div div textarea,
 .formSection > div div div dropdown,
-.formSection > div div div button {
+.formSection :global(.bx--dropdown) button {
   background-color: #ffffff !important;
 }
