@@ -77,31 +77,33 @@ function OHRIFormSidebar({
         );
       })}
       <hr className={styles.sideBarHorizontalLine} />
-      {allowUnspecifiedAll && (
-        <div style={{ marginBottom: '.6rem' }}>
-          <Toggle
-            labelText=""
-            id="auto-unspecifier"
-            labelA="Unspecify All"
-            labelB="Revert"
-            onToggle={markAllAsUnspecified}
-          />
-        </div>
-      )}
-      {mode != 'view' && (
-        <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
-          Save
+      <div className={styles.sidenavActions}>
+        {allowUnspecifiedAll && (
+          <div style={{ marginBottom: '.6rem' }}>
+            <Toggle
+              labelText=""
+              id="auto-unspecifier"
+              labelA="Unspecify All"
+              labelB="Revert"
+              onToggle={markAllAsUnspecified}
+            />
+          </div>
+        )}
+        {mode != 'view' && (
+          <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
+            Save
+          </Button>
+        )}
+        <Button
+          style={{ width: '11rem' }}
+          kind="tertiary"
+          onClick={() => {
+            onCancel && onCancel();
+            handleClose && handleClose();
+          }}>
+          {mode == 'view' ? 'Close' : 'Cancel'}
         </Button>
-      )}
-      <Button
-        style={{ width: '11rem' }}
-        kind="tertiary"
-        onClick={() => {
-          onCancel && onCancel();
-          handleClose && handleClose();
-        }}>
-        {mode == 'view' ? 'Close' : 'Cancel'}
-      </Button>
+      </div>
     </div>
   );
 }
