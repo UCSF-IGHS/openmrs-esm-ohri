@@ -150,6 +150,10 @@
   color: #da1e28
 }
 
+.obsGroupColumn {
+  max-width: 18rem;
+}
+
 .obsGroupColumn > div {
   margin-top: 0 !important;
 }
@@ -162,4 +166,9 @@
 /** Targets carbon's dropdown */
 .obsGroupColumn > div > div > div > div {
   max-width: 18rem !important;
+}
+
+.repeatContentWrapper {
+  margin-top: 0.65rem;
+  margin-bottom: 2rem;
 }
