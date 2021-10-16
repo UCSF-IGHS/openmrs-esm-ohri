@@ -4,7 +4,7 @@ import Row from 'carbon-components-react/lib/components/Grid/Row';
 import { useFormikContext } from 'formik';
 import { cloneDeep } from 'lodash';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
 import { getConcept } from '../../ohri-form.resource';
@@ -12,6 +12,8 @@ import { getHandler } from '../../registry/registry';
 import { OHRIFormField, OHRIFormFieldProps } from '../../types';
 import { OHRIObsGroup } from '../group/ohri-obs-group.component';
 import { TrashCan32, Add16 } from '@carbon/icons-react';
+import { useLayoutType } from '@openmrs/esm-framework';
+import styles from '../inputs/_input.scss';
 
 export const getInitialValueFromObs = (field: OHRIFormField, obsGroup: any) => {
   const rendering = field.questionOptions.rendering;
@@ -48,6 +50,14 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
   const { fields, encounterContext, obsGroupsToVoid } = React.useContext(OHRIFormContext);
   const { values, setValues } = useFormikContext();
   const [counter, setCounter] = useState(0);
+  const viewPort = useLayoutType();
+
+  const rowWidth = useMemo(() => {
+    if (viewPort == 'phone' || viewPort == 'tablet') {
+      return '50rem';
+    }
+    return '90rem';
+  }, [viewPort]);
 
   useEffect(() => {
     if (encounterContext.encounter && !counter) {
@@ -108,7 +118,7 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
   const nodes = questions.map((question, index) => {
     const deleteControl =
       index !== 0 ? (
-        <Column style={{ paddingTop: '1.5rem', marginLeft: '.5rem' }}>
+        <Column style={{ paddingTop: '1.2rem', marginLeft: '.5rem' }}>
           <Button
             renderIcon={TrashCan32}
             kind="danger--tertiary"
@@ -119,7 +129,7 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
       ) : null;
     return (
       <>
-        <Row style={{ margin: '0', marginBottom: '1rem', marginTop: '1rem' }}>
+        <Row style={{ margin: '0', marginBottom: '1rem', marginTop: '1rem', width: rowWidth }}>
           <OHRIObsGroup question={question} onChange={onChange} handler={getHandler('obsGroup')} />
           {deleteControl}
         </Row>
@@ -138,16 +148,16 @@ export const OHRIRepeat: React.FC<OHRIFormFieldProps> = ({ question, onChange })
             handleAdd(nextCount, null);
             setCounter(nextCount);
           }}>
-          Add
+          {question.questionOptions.repeatOptions?.addText || 'Add'}
         </Button>
       </Column>
     </Row>,
   );
   return (
     !question.isHidden && (
-      <FormGroup legendText={question.label} style={{ marginTop: '0.65rem' }}>
-        {nodes}
-      </FormGroup>
+      <div style={{ marginTop: '0.65rem', marginBottom: '2rem' }}>
+        <FormGroup legendText={question.label}>{nodes}</FormGroup>
+      </div>
     )
   );
 };
