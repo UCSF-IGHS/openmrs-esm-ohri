@@ -74,7 +74,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
 
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   dropdownText = dropdownText ? 'Add' : 'New';
   hideFormLauncher = hideFormLauncher || false;
