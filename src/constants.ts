@@ -115,3 +115,14 @@ export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAA
 // HTS HIV
 export const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+
+// HIV Lab Results
+export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
+export const hivLabTestResultConcept_UUID = '';
+export const hivReasonViralLoadRequest_UUID = '86cc0cfe-bace-4969-94b6-d139f4971d13';
+export const hivReasonCD4Request_UUID = '759e89a6-3260-4aee-9922-86a6301bcff3';
+export const hivDateViralLoadResult_UUID = '163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const hivDateViralLoadInterpretation_UUID = '686dc1b2-68b5-4024-b311-bd2f5e3ce394';
+export const hivDateCD4Result_UUID = '159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const hivCD4Result_UUID = '657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const hivCD4Count_UUID = '5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
