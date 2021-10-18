@@ -113,3 +113,38 @@
 .finalJsonSchema {
   border: 0.01rem dotted #6f6f6f !important;
 }
+
+.formRenderTitle {
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: normal;
+  color: #161616;
+  margin-bottom: 16px;
+}
+
+.container > #tab-form {
+  padding: 0;
+}
+
+.renderColumn {
+  border-right: 1em;
+}
+
+.renderColumn > div > form,
+.renderColumn > div > .finalJsonSchema {
+  margin: -1rem;
+  margin-top: -0.5rem;
+}
+
+.renderColumn > div > form .renderDropdown {
+  padding-top: 0.8rem;
+  width: 400px;
+}
+
+.jsonEditor,
+.finalJsonSchema {
+  border: 0.01rem dotted #6f6f6f !important;
+}

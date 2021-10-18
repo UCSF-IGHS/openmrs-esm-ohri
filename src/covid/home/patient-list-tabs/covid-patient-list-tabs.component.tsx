@@ -80,7 +80,6 @@ function CovidHomePatientTabs() {
           getValue: ({ latestEncounter }) => {
             return getObsFromEncounter(latestEncounter, dateSpecimenCollected, true);
           },
-          index: 3,
         },
         {
           key: 'testType',
