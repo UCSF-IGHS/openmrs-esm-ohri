@@ -100,7 +100,7 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const continueEncounterActionText = launchableForm.editActionText || 'Countinue encounter';
+  const continueEncounterActionText = launchableForm.editActionText || 'Continue encounter';
 
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {

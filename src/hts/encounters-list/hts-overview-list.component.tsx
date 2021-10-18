@@ -8,8 +8,9 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import moment from 'moment';
 import { getForm } from '../../utils/forms-loader';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
 import { encounterRepresentation } from '../../constants';
+
 interface HtsOverviewListProps {
   patientUuid: string;
 }
@@ -107,6 +108,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       setIsLoading(false);
     });
   }
+
   useEffect(() => {
     let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
     getHtsEncounters(query, encounterRepresentation, 'HTS Retrospective');
