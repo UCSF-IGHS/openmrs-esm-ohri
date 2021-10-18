@@ -297,18 +297,18 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'covid-vaccinations-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(covidVaccinations_dashboardMeta), options),
-        meta: covidVaccinations_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
         id: 'covid-outcomes-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createCovidDashboardLink(covidOutcomes_dashboardMeta), options),
         meta: covidOutcomes_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-vaccinations-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covidVaccinations_dashboardMeta), options),
+        meta: covidVaccinations_dashboardMeta,
         online: true,
         offline: true,
       },
@@ -383,10 +383,10 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'covid-vaccinations-ext',
-        slot: 'covid-vaccinations-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
-          featureName: 'covid-vaccinations',
+        id: 'covid-outcomes-ext',
+        slot: 'covid-outcomes-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.encounter-list'), {
+          featureName: 'covid-outcomes',
           moduleName,
         }),
         meta: {
@@ -394,10 +394,10 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'covid-outcomes-ext',
-        slot: 'covid-outcomes-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.encounter-list'), {
-          featureName: 'covid-outcomes',
+        id: 'covid-vaccinations-ext',
+        slot: 'covid-vaccinations-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
+          featureName: 'covid-vaccinations',
           moduleName,
         }),
         meta: {
