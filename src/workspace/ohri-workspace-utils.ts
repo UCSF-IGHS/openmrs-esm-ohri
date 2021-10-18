@@ -17,7 +17,9 @@ export interface WorkspaceContextProps {
   state?: any;
   mode?: SessionMode;
   screenSize?: string;
+  collapseSections?: Boolean;
 }
+
 export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextProps) => {
   if (workspaceInUse) {
     showToast({
@@ -37,6 +39,7 @@ export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextPr
     meta: {
       title: props.title,
       screenSize: props.screenSize,
+      collapseSections: props.collapseSections,
     },
   });
   workspaceContext.next(props);
