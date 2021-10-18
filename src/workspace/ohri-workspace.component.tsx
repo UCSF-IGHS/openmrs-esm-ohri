@@ -5,11 +5,12 @@ import styles from './patient-list-workspace.scss';
 
 export let workspaceInUse = false;
 
-const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string; viewMode: string }> = ({
-  closeWorkspace,
-  patientUuid,
-  viewMode,
-}) => {
+const OHRIWorkspace: React.FC<{
+  closeWorkspace: () => {};
+  patientUuid: string;
+  viewMode: string;
+  collapseSections: Boolean;
+}> = ({ closeWorkspace, patientUuid, viewMode, collapseSections }) => {
   const currentExtensions = useAssignedExtensionIds('patient-chart-workspace-slot');
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string; v
     <>
       {context && (
         <ExtensionSlot
-          className={styles.Extentioncontainer}
+          className={styles.extensionContainer}
           extensionSlotName={OHRIWorkspaceSlot}
           state={{
             encounterUuid: context.encounterUuid,
@@ -43,6 +44,7 @@ const OHRIWorkspace: React.FC<{ closeWorkspace: () => {}; patientUuid: string; v
             state: context.state,
             mode: context.mode,
             viewMode: viewMode,
+            collapseSections: collapseSections,
           }}
         />
       )}
