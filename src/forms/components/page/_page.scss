@@ -12,8 +12,7 @@
 .pageHeader {
   display: flex;
   flex-direction: row;
-  padding-top: 15px;
-  padding-bottom: 10px;
+  margin: 24px 0 24px 0;
 }
 
 .pageTitle {
@@ -54,6 +53,6 @@
 .formSection > div div div input,
 .formSection > div div div textarea,
 .formSection > div div div dropdown,
-.formSection > div div div button {
+.formSection :global(.bx--dropdown) button {
   background-color: #ffffff !important;
 }
