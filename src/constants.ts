@@ -27,12 +27,13 @@ export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';
 export const clientsEnrolledToCare = '1d5d64ee-3e94-45b9-904e-f9b585188119'; //'9505cba5-63db-42ba-833b-5d9eb98a6cbc';
 export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'605344bc-8a54-4df0-95d5-acadf844567e';
 
-// COVID Cohorts
-export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
-export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
-export const clientsWithoutCovidOutcomes = '5cf97790-3830-4f2a-807f-8595265c0806';
-export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba';
-export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b';
+// COVID Cohorts //Commented UUID are for working server
+export const clientsAssessedForCovid = '0d6edb52-4559-47ad-a658-259040262663'; // 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
+export const covidClientsWithPendingLabResults = 'e2e8ad86-b19a-499b-b760-fa4a42f676d6'; // 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
+export const clientsWithoutCovidOutcomes = 'db1e61ab-12c3-4baa-bf7e-e96af8127251'; // '5cf97790-3830-4f2a-807f-8595265c0806';
+export const allCovidAssessments = '9a2bc38e-f43b-44b4-8e58-6ef45c65d7aa'; // '3caa6d63-f268-403d-9930-268e3258c3ba';
+export const covidVaccinatedClients = 'e3796fe4-e171-4880-a4ec-2aead327e227'; // 'b5d52da9-10c2-43af-ae23-552acc5e445b';
+export const covid19PositiveClients = 'f31c7a68-89b8-406e-b8a4-0e29bc5191e2'; // 'adbf0411-b35c-4174-b0ff-f24a635e4da3';
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -60,6 +61,9 @@ export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; //
 // Encounter types
 export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
+
+// HTS Retrospective
+export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 
 // Covid Restrospective
 //   const covidEncounterUUID = '902839fa-f58c-44a1-95a4-dba62d7263f8'; // Covid Case Report
@@ -106,4 +110,4 @@ export const covidVaccination1stDoseDateConcept_UUID = 'c85eb064-5ef7-4ac6-8e56-
 export const covidVaccination2ndDoseDateConcept_UUID = '42ee7f5c-fdd3-48c1-8d3a-5c6e248e6cb9'; // What is COVID-19 vaccination date (2nd dose)?
 export const covidVaccinationTypeConcept_UUID = 'a31d1148-bbcc-4ad6-a015-8359d66bcfdc'; // What COVID-19 vaccine was administered?
 export const covidVaccinationAdministeredConcept_UUID = '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Which date COVID-19 vaccine was administered?
-export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Return Visit date
+export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
