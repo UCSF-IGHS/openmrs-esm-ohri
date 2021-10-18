@@ -10,9 +10,8 @@
 
 /* the fixed sidebar content */
 .sidebar {
-  margin: 0px;
-  padding: 0px;
-  padding-left: 16px;
+  margin: 0;
+  padding: 0 0 0 16px;
   width: 13rem;
   position: relative;
   /* Necessary to become containing block for position: fixed child */
@@ -23,23 +22,20 @@
 /* the overflow content itself */
 .overflowContent {
   height: 100vh;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
   flex-basis: 75%;
   flex-grow: 1;
   flex-shrink: 1;
   position: relative;
   overflow-y: scroll;
   overscroll-behavior: contain;
-  padding-bottom: 100rem;
-  padding-left: 5px;
+  padding: 0 0 100rem 5px;
 }
 
 @media (max-width: 1024px) {
   .sidebar {
-    margin: 0px;
-    padding: 0px;
-    padding-left: 16px;
+    margin: 0;
+    padding: 0 0 0 16px;
     flex-grow: 0.6;
     flex-shrink: 1;
     position: relative;
@@ -51,24 +47,21 @@
 
   .overflowContent {
     height: inherit;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
     flex-basis: 75%;
     flex-grow: 1;
     flex-shrink: 1;
     position: relative;
     overflow: scroll;
     overscroll-behavior: contain;
-    padding-bottom: 60rem;
-    padding-left: 5px;
+    padding: 0 0 60rem 5px;
   }
 }
 
 @media (max-width: 768px) {
   .sidebar {
-    margin: 0px;
-    padding: 0px;
-    padding-left: 16px;
+    margin: 0;
+    padding: 0 0 0 16px;
     flex-grow: 0.6;
     flex-shrink: 1;
     position: relative;
@@ -80,24 +73,21 @@
 
   .overflowContent {
     height: inherit;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
     flex-basis: 75%;
     flex-grow: 1;
     flex-shrink: 1;
     position: relative;
     overflow: scroll;
     overscroll-behavior: contain;
-    padding-bottom: 40rem;
-    padding-left: 5px;
+    padding: 0 0 40rem 5px;
   }
 }
 
-@media (max-width: 1440) {
+@media (max-width: 1440px) {
   .sidebar {
-    margin: 0px;
-    padding: 0px;
-    padding-left: 16px;
+    margin: 0;
+    padding: 0 0 0 16px;
     flex-grow: 0.6;
     flex-shrink: 1;
     position: relative;
@@ -109,15 +99,13 @@
 
   .overflowContent {
     height: inherit;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
     flex-basis: 65%;
     flex-grow: 1;
     flex-shrink: 1;
     position: relative;
     overflow: scroll;
     overscroll-behavior: contain;
-    padding-bottom: 40rem;
-    padding-left: 5px;
+    padding: 0 0 40rem 5px;
   }
 }
