@@ -24,7 +24,7 @@ export const supportsUnspecified = question => {
 };
 const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.sectionContainer}>
       {showTitle && <h4 className={styles.sectionTitle}>{sectionTitle}</h4>}
       {fields.map((value, index) => {
         const component = getFieldControl(value);
