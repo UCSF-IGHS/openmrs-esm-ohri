@@ -12,11 +12,19 @@
   margin-bottom: 0.5rem;
 }
 
-.container {
+.sectionContainer {
   margin-top: 1.438rem;
   width: 90%;
 }
 
 .questionOverrides {
   //margin-top: 14px;
+}
+
+.sectionContainer :global(.bx--fieldset) {
+  margin-bottom: 0;
+}
+
+.sectionContainer > div {
+  margin-bottom: 2rem;
 }
