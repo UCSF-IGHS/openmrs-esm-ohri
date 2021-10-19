@@ -142,28 +142,44 @@ const constructObs = (value: any, context: EncounterContext, field: OHRIFormFiel
   };
 };
 
-const multiSelectObsHandler = (field: OHRIFormField, values: any, context: EncounterContext) => {
+const multiSelectObsHandler = (field: OHRIFormField, values: Array<string>, context: EncounterContext) => {
   if (!field.value) {
     field.value = [];
   }
   values.forEach(value => {
-    const { checked, id } = value;
-
-    if (checked) {
-      const obs = field.value.find(o => o.value.uuid == id);
-      if (obs && obs.voided) {
-        obs.voided = false;
-      } else {
-        field.value.push(constructObs(id, context, field));
+    const obs = field.value.find(o => {
+      if (typeof o.value == 'string') {
+        return o.value == value;
       }
+      return o.value.uuid == value;
+    });
+    if (obs && obs.voided) {
+      obs.voided = false;
     } else {
-      const obs = field.value.find(v => v.value.uuid == id);
-      if (obs && context.sessionMode == 'edit') {
-        obs.voided = true;
-      } else {
-        field.value = field.value.filter(o => o.value !== id);
-      }
+      obs || field.value.push(constructObs(value, context, field));
     }
   });
+
+  // void or remove unchecked options
+  field.questionOptions.answers
+    .filter(opt => !values.some(v => v == opt.concept))
+    .forEach(opt => {
+      const observations = field.value.filter(o => {
+        if (typeof o.value == 'string') {
+          return o.value == opt.concept;
+        }
+        return o.value.uuid == opt.concept;
+      });
+      if (!observations.length) {
+        return;
+      }
+      observations.forEach(obs => {
+        if (context.sessionMode == 'edit' && obs.uuid) {
+          obs.voided = true;
+        } else {
+          field.value = field.value.filter(o => o.value !== opt.concept);
+        }
+      });
+    });
   return field.value;
 };
