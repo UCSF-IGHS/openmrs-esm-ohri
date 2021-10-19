@@ -33,7 +33,5 @@
 }
 
 .widgetContainer :global(.bx--data-table) thead th button span {
-  height: unset;
-  padding-top: 3px;
-  padding-bottom: 5px;
+  height: unset !important;
 }

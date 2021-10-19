@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Dropdown } from 'carbon-components-react';
+import { Button, Dropdown, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import { Add16 } from '@carbon/icons-react';
 import styles from './laucher-with-intent.scss';
 import { filterFormByIntent } from '../../utils/forms-loader';
+import { useTranslation } from 'react-i18next';
 
 export const OHRIFormLauncherWithIntent: React.FC<{
   formJson: any;
@@ -20,24 +21,38 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   //     setProcessedForm(processed);
   //     onChangeIntent(processed);
   //   }, []);
+  const { t } = useTranslation();
+
+  // console.log(formJson.availableIntents);
 
   return (
     <div style={{ paddingTop: '.3rem', paddingRight: '.5rem', width: '13rem' }}>
       {!hideFormLauncher && (
-        <Dropdown
-          id="choose-intent"
-          label={dropDownText || 'New'}
-          items={formJson.availableIntents}
-          titleText=""
-          selectedItem={null}
-          onChange={({ selectedItem }) => {
-            const processedForm = filterFormByIntent(selectedItem.intent, formJson);
-            // setProcessedForm(processedForm);
-            // onChangeIntent(processedForm);
-            launchForm(processedForm);
-          }}
-          itemToString={item => item.display}
-        />
+        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          {formJson.availableIntents.forEach(intent => {
+            <OverflowMenuItem
+              itemText={t(intent.intent, intent.display)}
+              onClick={e => {
+                e.preventDefault();
+                // viewEncounter(encounter.uuid);
+              }}
+            />;
+          })}
+        </OverflowMenu>
+        // <Dropdown
+        //   id="choose-intent"
+        //   label={dropDownText || 'New'}
+        //   items={formJson.availableIntents}
+        //   titleText=""
+        //   selectedItem={null}
+        //   onChange={({ selectedItem }) => {
+        //     const processedForm = filterFormByIntent(selectedItem.intent, formJson);
+        //     // setProcessedForm(processedForm);
+        //     // onChangeIntent(processedForm);
+        //     launchForm(processedForm);
+        //   }}
+        //   itemToString={item => item.display}
+        // />
       )}
     </div>
   );
