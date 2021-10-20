@@ -2,7 +2,7 @@
   "name": "COVID Lab Test Form",
   "pages": [
     {
-      "label": "COVID Lab Test Form",
+      "label": "COVID Lab Test",
       "sections": [
         {
           "label": "Sample",
