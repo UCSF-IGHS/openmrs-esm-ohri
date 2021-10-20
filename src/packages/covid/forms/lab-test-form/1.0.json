@@ -1,8 +1,8 @@
 {
-  "name": "COVID Lab Testing Form",
+  "name": "COVID Lab Test Form",
   "pages": [
     {
-      "label": "COVID Lab Testing Form",
+      "label": "COVID Lab Test Form",
       "sections": [
         {
           "label": "Sample",
@@ -38,21 +38,17 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
+                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                     }
                   ]
                 }
               ]
             },
             {
-              "label": "SARS-Cov2 test type",
+              "label": "SARS-Cov2 test requested",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "checkbox",
                 "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718",
                 "answers": [
                   {
@@ -211,14 +207,9 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('specimenType','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
-                      "validators": [
-                        {
-                          "type": "js_expression",
-                          "failsWhenExpression": "otherSpecimenType !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                        }
-                      ]
+                      "validators": []
                     }
                   ]
                 }
@@ -265,13 +256,13 @@
                     ]
                   },
                   {
-                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Inconclusive",
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
+                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Inconclusive",
                     "conceptMappings": []
                   }
                 ]
@@ -283,14 +274,9 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('sarsCovidTestType','165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "sarsCovidTestType !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -309,22 +295,9 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('sarsCovidTestType','165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "sarsCovidTestType !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -362,13 +335,13 @@
                     ]
                   },
                   {
-                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Inconclusive",
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
+                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Inconclusive",
                     "conceptMappings": []
                   }
                 ]
@@ -380,14 +353,9 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('sarsCovidTestType','165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "sarsCovidTestType !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -406,22 +374,67 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
+                    "hideWhenExpression": "!includes('sarsCovidTestType','165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Final COVID-19 Test Result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5da5c21b-969f-41bd-9091-e40d4c707544",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "finalCovidTestResult",
+              "behaviours": [
+                {
+                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "sarsCovidTestType !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             }
@@ -433,7 +446,7 @@
   "availableIntents": [
     {
       "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-      "display": "COVID Lab Test form Retrospective"
+      "display": "COVID Lab Test Form Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
