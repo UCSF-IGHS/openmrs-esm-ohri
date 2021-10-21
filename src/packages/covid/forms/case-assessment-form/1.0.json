@@ -1113,7 +1113,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f')"
+                    "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f') || !includes('clientVaccinated', '9fad04c7-bdb7-4a8c-b559-672621033322')"
                   },
                   "validators": []
                 }
