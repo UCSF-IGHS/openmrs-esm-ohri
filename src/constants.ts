@@ -24,8 +24,8 @@ export const linkedToCareYesValueConcept = '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 export const preTestCounsellingCohort = 'e4d801f0-e2fd-11eb-8212-7d7156e00a1f';
 export const waitingForHIVTestCohort = 'cdee0abe-e471-11eb-8212-7d7156e00a1f';
 export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';
-export const clientsEnrolledToCare = '1d5d64ee-3e94-45b9-904e-f9b585188119'; //'9505cba5-63db-42ba-833b-5d9eb98a6cbc';
-export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'605344bc-8a54-4df0-95d5-acadf844567e';
+export const clientsEnrolledToCare = '9505cba5-63db-42ba-833b-5d9eb98a6cbc';
+export const todayzAppointmentsCT = '605344bc-8a54-4df0-95d5-acadf844567e';
 
 // COVID Cohorts
 export const clientsAssessedForCovid = '0d6edb52-4559-47ad-a658-259040262663'; // 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
