@@ -456,7 +456,7 @@
   "availableIntents": [
     {
       "intent": "COVID_VACCINATION_RETROSPECTIVE",
-      "display": "COVID-19 Vaccination Retrospective"
+      "display": "COVID Vaccination Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
