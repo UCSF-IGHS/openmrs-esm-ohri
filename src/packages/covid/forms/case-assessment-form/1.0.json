@@ -9,6 +9,14 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Date of Assessment [MISSING CONCEPT]",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text"
+              },
+              "id": "dateOfAssessment"
+            },
+            {
               "label": "Reasons for testing (select all that apply)",
               "type": "obs",
               "questionOptions": {
@@ -86,7 +94,7 @@
                   },
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
+                    "label": "Other (specify)",
                     "conceptMappings": [
                       {
                         "type": "PIH-Malawi",
@@ -168,20 +176,6 @@
                 "concept": "de3bc9b7-05b5-41b6-a38d-8d2eec646c4f",
                 "answers": [
                   {
-                    "concept": "1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Symptomatic",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "1068"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "264931009"
-                      }
-                    ]
-                  },
-                  {
                     "concept": "5006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Asymptomatic",
                     "conceptMappings": [
@@ -192,6 +186,20 @@
                       {
                         "type": "SNOMED-CT",
                         "value": "84387000"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Symptomatic",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1068"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "264931009"
                       }
                     ]
                   }
@@ -224,7 +232,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": [
                     {
@@ -233,11 +241,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "patientStatus !== '1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                     }
                   ]
                 }
@@ -486,14 +490,9 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "patientStatus !== '1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -519,14 +518,9 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('presentedCovidSymptoms','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
-                      "validators": [
-                        {
-                          "type": "js_expression",
-                          "failsWhenExpression": "presentedCovidSymptoms !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                        }
-                      ]
+                      "validators": []
                     }
                   ]
                 }
@@ -767,14 +761,9 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('comorbidityPresent','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "comorbidityPresent !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
@@ -798,14 +787,335 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
+                    "hideWhenExpression": "!includes('underlyingComorbidityConditions','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Has the client been vaccinated for COVID-19",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "128731bf-bbff-40c3-a6c9-0bf4c86182ac",
+                "answers": [
+                  {
+                    "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
+                    "label": "Partially Vaccinated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
+                    "label": "Fully Vaccinated",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "clientVaccinated",
+              "behaviours": [
+                {
+                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "underlyingComorbidityConditions !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "What vaccine was administered?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "e41fbe17-4aee-4a44-950b-6676d6e0ede2",
+                "answers": [
+                  {
+                    "concept": "165923AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "COVID-19 convalescent plasma",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "50863008"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Moderna COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "MOD"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM0GQ8"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "2470232"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119349007"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "207"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166155AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Pfizer-BioNtech COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "PFR"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM0GQ8"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "8468230"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "208"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119349007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166156AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Astrazeneca COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "210"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "ASZ"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "2471010"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166157AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Gamaleya Sputnik v COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "213"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sinovac COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM1NL1"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "213"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166355AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "JNJ-78436735 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "212"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "JSN"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "2479830"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166378AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cansino Biologics Convidicea COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166386AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chumakov Center Kovivac COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166389AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bharat Biotech Covaxin COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM1NL1"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166390AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Novavax NVX-COV2373 COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM5JC5"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "211"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "NVX"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CureVac CVnCoV COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM0GQ8"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "213"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "vaccineAdministered",
+              "behaviours": [
+                {
+                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f')"
+                  },
+                  "validators": []
                 }
               ]
             }
@@ -824,6 +1134,5 @@
   "uuid": "xxxx",
   "referencedForms": [],
   "encounterType": "253a43d3-c99e-415c-8b78-ee7d4d3c1d54",
-  "allowUnspecifiedAll": true 
+  "allowUnspecifiedAll": true
 }
-
