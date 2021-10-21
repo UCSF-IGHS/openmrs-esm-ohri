@@ -17,12 +17,12 @@
                 "answers": [
                   {
                     "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
-                    "label": "COVID-19 Partially Vaccinated",
+                    "label": "Partially Vaccinated",
                     "conceptMappings": []
                   },
                   {
                     "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
-                    "label": "COVID-19 Fully Vaccinated",
+                    "label": "Fully Vaccinated",
                     "conceptMappings": []
                   }
                 ]
