@@ -182,6 +182,9 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+
+  const [allPatients, setAllPatients] = useState([]);
+
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
   const constructPatient = rawPatient => {
@@ -234,6 +237,18 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     };
   };
 
+  const updatePatientTable = (fullDataset, start, itemCount) => {
+    let currentRows = [];
+
+    for (let i = start; i < start + itemCount; i++) {
+      if (i < fullDataset.length) {
+        currentRows.push(fullDataset[i]);
+      }
+    }
+
+    setPatients(currentRows);
+  };
+
   useEffect(() => {
     if (!isReportingCohort) {
       getCohort(cohortId, 'full').then(results => {
@@ -241,7 +256,11 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ...constructPatient(member),
           ...setListMeta(member, results.location),
         }));
-        setPatients(patients);
+
+        //Fix to enable pagination
+        setAllPatients(patients);
+        updatePatientTable(patients, 0, pageSize);
+
         setIsLoading(false);
         setLoadedPatients(true);
       });
@@ -253,7 +272,11 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
             ...setListMeta(data, null),
           };
         });
-        setPatients(patients);
+
+        //Fix to enable Pagination
+        setAllPatients(patients);
+        updatePatientTable(patients, 0, pageSize);
+
         setIsLoading(false);
         setLoadedPatients(true);
       });
@@ -267,14 +290,14 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           results.forEach((encounter, index) => {
             patients[index].latestEncounter = encounter;
             if (index == patients.length - 1) {
-              setPatients([...patients]);
+              setAllPatients([...patients]);
               setLoadedEncounters(true);
             }
           });
         },
       );
     }
-    setPatientsCount(patients.length);
+    setPatientsCount(allPatients.length);
   }, [loadedPatients]);
 
   useEffect(() => {
@@ -297,6 +320,9 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
       usePagination: true,
       currentPage: currentPage,
       onChange: ({ pageSize, page }) => {
+        let startOffset = (page - 1) * pageSize;
+        updatePatientTable(allPatients, startOffset, pageSize);
+
         setCurrentPage(page);
         setPageSize(pageSize);
         return null;
