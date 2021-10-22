@@ -1,0 +1,18 @@
+@import "../../root.scss";
+
+.actionsButtonText {
+  @include carbon--type-style("body-short-01");
+  color: $interactive-01;
+}
+
+:global(.bx--tooltip--definition .bx--tooltip__trigger) {
+  border-bottom: none;
+}
+
+.overflowMenuContainer {
+  width: auto;
+  height: auto;
+  margin-bottom: -1.5rem;
+  margin-top: -1.25rem;
+  margin-right: 0.5rem;
+}
