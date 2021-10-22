@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './_page.scss';
 import OHRIFormSection from '../section/ohri-form-section.component';
 import { Waypoint } from 'react-waypoint';
 import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
 
-function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
+function OHRIFormPage({ page, onFieldChange, setSelectedPage, isCollapsed }) {
   let newLabel = page.label.replace(/\s/g, '');
-  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleEnter = elementID => {
     setSelectedPage(elementID);
-  };
-
-  const toggleCollapsedStatus = e => {
-    setIsCollapsed(e);
   };
 
   return (
@@ -21,17 +16,6 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage }) {
       <div id={newLabel} className={styles.pageContent}>
         <div style={{}} className={styles.pageHeader}>
           <p className={styles.pageTitle}>{page.label}</p>
-          <div className={styles.collapseToggle}>
-            <Toggle
-              size="sm"
-              aria-label="toggle button"
-              defaultToggled
-              id={`${newLabel}-toggle`}
-              labelA="Expand sections"
-              labelB="Collapse sections"
-              onToggle={toggleCollapsedStatus}
-            />
-          </div>
         </div>
         <Accordion>
           {/* <p className={styles.required}>All fields are required unless marked optional</p> */}
