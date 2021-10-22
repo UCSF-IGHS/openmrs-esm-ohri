@@ -290,7 +290,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           results.forEach((encounter, index) => {
             patients[index].latestEncounter = encounter;
             if (index == patients.length - 1) {
-              setAllPatients([...patients]);
+              setPatients([...patients]);
               setLoadedEncounters(true);
             }
           });
