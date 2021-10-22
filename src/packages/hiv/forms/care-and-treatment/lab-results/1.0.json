@@ -867,7 +867,7 @@
   "availableIntents": [
     {
       "intent": "LAB_VIRAL_LOAD_REQUEST",
-      "display": "Lab viral load Request"
+      "display": "Lab Viral Load Request"
     },
     {
       "intent": "LAB_CD4_REQUEST",
@@ -875,7 +875,7 @@
     },
     {
       "intent": "LAB_VIRAL_LOAD_RESULT",
-      "display": "Lab viral load Result"
+      "display": "Lab Viral Load Result"
     },
     {
       "intent": "LAB_CD4_RESULT",
@@ -885,5 +885,6 @@
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
+  "encounterType": "15272be5-ae9c-4278-a303-4b8907eae73b",
   "allowUnspecifiedAll": true
 }
