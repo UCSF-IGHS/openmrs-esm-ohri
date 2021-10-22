@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { getForm } from '../../utils/forms-loader';
-import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
@@ -74,7 +74,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
 
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   dropdownText = dropdownText ? 'Add' : 'New';
   hideFormLauncher = hideFormLauncher || false;

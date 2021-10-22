@@ -5,7 +5,7 @@ import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { getForm } from '../../utils/forms-loader';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-laucher.componet';
+import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
 import moment from 'moment';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import OTable from '../../components/data-table/o-table.component';
@@ -21,6 +21,7 @@ import {
   covidPresentSymptonsName_UUID,
   covidPatientStatusConcept_UUID,
 } from '../../constants';
+
 interface CovidOverviewListProps {
   patientUuid: string;
 }

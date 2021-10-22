@@ -21,10 +21,18 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       } else if (!value) {
         field.value = undefined;
       } else {
-        field.value.value = value;
+        if (field.questionOptions.rendering == 'date') {
+          field.value.value = moment(value).format('YYYY-MM-DD HH:mm');
+        } else {
+          field.value.value = value;
+        }
         field.value.voided = false;
       }
     } else {
+      if (field.questionOptions.rendering == 'date') {
+        field.value = constructObs(moment(value).format('YYYY-MM-DD HH:mm'), context, field);
+        return field.value;
+      }
       field.value = constructObs(value, context, field);
     }
     return field.value;
@@ -33,6 +41,12 @@ export const ObsSubmissionHandler: SubmissionHandler = {
     let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
     let parentField = null;
     let obsGroup = null;
+    // If this field is a group member and the obs was picked from the encounters's top obs leaves,
+    // chances are high this obs wasn't captured as part of the obs group. return empty.
+    // this should be solved by tracking obs through `formFieldNamespace`.
+    if (obs && field['groupId']) {
+      return '';
+    }
     if (!obs && field['groupId']) {
       parentField = allFormFields.find(f => f.id == field['groupId']);
       obsGroup = encounter.obs.find(o => o.concept.uuid == parentField.questionOptions.concept);
@@ -128,28 +142,44 @@ const constructObs = (value: any, context: EncounterContext, field: OHRIFormFiel
   };
 };
 
-const multiSelectObsHandler = (field: OHRIFormField, values: any, context: EncounterContext) => {
+const multiSelectObsHandler = (field: OHRIFormField, values: Array<string>, context: EncounterContext) => {
   if (!field.value) {
     field.value = [];
   }
   values.forEach(value => {
-    const { checked, id } = value;
-
-    if (checked) {
-      const obs = field.value.find(o => o.value.uuid == id);
-      if (obs && obs.voided) {
-        obs.voided = false;
-      } else {
-        field.value.push(constructObs(id, context, field));
+    const obs = field.value.find(o => {
+      if (typeof o.value == 'string') {
+        return o.value == value;
       }
+      return o.value.uuid == value;
+    });
+    if (obs && obs.voided) {
+      obs.voided = false;
     } else {
-      const obs = field.value.find(v => v.value.uuid == id);
-      if (obs && context.sessionMode == 'edit') {
-        obs.voided = true;
-      } else {
-        field.value = field.value.filter(o => o.value !== id);
-      }
+      obs || field.value.push(constructObs(value, context, field));
     }
   });
+
+  // void or remove unchecked options
+  field.questionOptions.answers
+    .filter(opt => !values.some(v => v == opt.concept))
+    .forEach(opt => {
+      const observations = field.value.filter(o => {
+        if (typeof o.value == 'string') {
+          return o.value == opt.concept;
+        }
+        return o.value.uuid == opt.concept;
+      });
+      if (!observations.length) {
+        return;
+      }
+      observations.forEach(obs => {
+        if (context.sessionMode == 'edit' && obs.uuid) {
+          obs.voided = true;
+        } else {
+          field.value = field.value.filter(o => o.value !== opt.concept);
+        }
+      });
+    });
   return field.value;
 };

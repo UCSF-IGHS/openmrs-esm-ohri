@@ -81,6 +81,10 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       questionOptions: {
         rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
+        answers: [
+          { label: 'Oncology Screening and Diagnosis Program', concept: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' },
+          { label: 'Fight Malaria Initiative', concept: '305e7ad6-c1fd-11eb-8529-0242ac130003' },
+        ],
       },
       id: 'past-patient-programs',
     };
@@ -89,7 +93,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // Select Oncology Screening and Diagnosis Program
     let obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      [{ checked: true, id: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' }],
+      ['105e7ad6-c1fd-11eb-8529-0242ac130ju9'],
       encounterContext,
     );
 
@@ -111,7 +115,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // Add Fight Malaria Initiative
     obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      [{ checked: true, id: '305e7ad6-c1fd-11eb-8529-0242ac130003' }],
+      ['105e7ad6-c1fd-11eb-8529-0242ac130ju9', '305e7ad6-c1fd-11eb-8529-0242ac130003'],
       encounterContext,
     );
 
@@ -163,7 +167,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       order: null,
       groupMembers: [],
       voided: false,
-      value: htsDate,
+      value: '2020-01-20 00:00',
     });
   });
 
@@ -291,6 +295,10 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       questionOptions: {
         rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
+        answers: [
+          { label: 'Option 1', concept: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' },
+          { label: 'Option 2', concept: '305e77c0-c1fd-11eb-8529-0242ac130003' },
+        ],
       },
       value: [
         {
@@ -302,7 +310,9 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
           order: null,
           groupMembers: [],
           voided: false,
-          value: '105e7ad6-c1fd-11eb-8529-0242ac130ju9',
+          value: {
+            uuid: '105e7ad6-c1fd-11eb-8529-0242ac130ju9',
+          },
         },
       ],
       id: 'past-patient-programs',
@@ -311,7 +321,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     // replay
     const obs = ObsSubmissionHandler.handleFieldSubmission(
       field,
-      [{ checked: true, id: '305e77c0-c1fd-11eb-8529-0242ac130003' }],
+      ['105e7ad6-c1fd-11eb-8529-0242ac130ju9', '305e77c0-c1fd-11eb-8529-0242ac130003'],
       encounterContext,
     );
 
@@ -326,7 +336,9 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
         order: null,
         groupMembers: [],
         voided: false,
-        value: '105e7ad6-c1fd-11eb-8529-0242ac130ju9',
+        value: {
+          uuid: '105e7ad6-c1fd-11eb-8529-0242ac130ju9',
+        },
       },
       {
         person: '833db896-c1f0-11eb-8529-0242ac130003',
@@ -377,7 +389,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       order: null,
       groupMembers: [],
       voided: false,
-      value: newHtsDate,
+      value: '2021-12-16 00:00',
     });
   });
 
@@ -471,6 +483,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
       questionOptions: {
         rendering: 'checkbox',
         concept: '3hbkj9-b6d8-4eju-8f37-0b14f5347jv9',
+        answers: [{ label: 'Option 1', concept: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' }],
       },
       value: [
         {
@@ -491,11 +504,7 @@ describe('ObsSubmissionHandler - handleFieldSubmission', () => {
     };
 
     // replay
-    const obs = ObsSubmissionHandler.handleFieldSubmission(
-      field,
-      [{ checked: false, id: '105e7ad6-c1fd-11eb-8529-0242ac130ju9' }],
-      encounterContext,
-    );
+    const obs = ObsSubmissionHandler.handleFieldSubmission(field, [], encounterContext);
 
     // verify
     expect(obs).toEqual([
