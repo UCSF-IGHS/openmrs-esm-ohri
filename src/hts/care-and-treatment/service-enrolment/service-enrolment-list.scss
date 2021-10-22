@@ -20,7 +20,6 @@
 }
 
 .newServiceEnrolmentBtn {
-  //margin: 0 $spacing-03;
   margin-bottom: 0.5em;
   text-align: right;
 }
@@ -29,6 +28,10 @@
   background-color: $ui-background;
 }
 
-.toggleButtons{
-  padding-right: 2rem;
+.toggleButtons {
+  //padding-right: 2rem;
+}
+
+.widgetContainer :global(.bx--data-table) thead th button span {
+  height: unset !important;
 }
