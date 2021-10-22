@@ -349,7 +349,24 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
       patients: searchTerm ? filteredResults : patients,
       columns: filteredColumns,
       isLoading,
-      search: { placeHolder: 'Search client list', onSearch: handleSearch, currentSearchTerm: searchTerm },
+      search: {
+        placeHolder: 'Search client list',
+        onSearch: searchTerm => {
+          if (!searchTerm) {
+            // clear value
+            setSearchTerm('');
+          }
+        },
+        currentSearchTerm: searchTerm,
+        otherSearchProps: {
+          onKeyDown: e => {
+            if (e.keyCode == 13) {
+              handleSearch(e.target.value);
+            }
+          },
+          autoFocus: true,
+        },
+      },
       pagination: pagination,
       autoFocus: true,
     };
