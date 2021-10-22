@@ -204,15 +204,19 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         }
       }
     });
-    const isHidden = eval(hideExpression);
-    if (field) {
-      field.isHidden = isHidden;
-    }
-    if (page) {
-      page.isHidden = isHidden;
-    }
-    if (section) {
-      section.isHidden = isHidden;
+    try {
+      const isHidden = eval(hideExpression);
+      if (field) {
+        field.isHidden = isHidden;
+      }
+      if (page) {
+        page.isHidden = isHidden;
+      }
+      if (section) {
+        section.isHidden = isHidden;
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
