@@ -3,7 +3,16 @@ import styles from './_form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { OHRIFormContext } from './ohri-form-context';
-import { openmrsObservableFetch, useCurrentPatient, useSessionUser, showToast } from '@openmrs/esm-framework';
+import {
+  openmrsObservableFetch,
+  useCurrentPatient,
+  useSessionUser,
+  showToast,
+  attach,
+  getAsyncLifecycle,
+  registerExtension,
+  detach,
+} from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
 import { getHandler } from './registry/registry';
 import { saveEncounter } from './ohri-form.resource';
@@ -46,7 +55,31 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [scrollAblePages, setScrollAblePages] = useState(undefined);
   const [selectedPage, setSelectedPage] = useState('');
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
+  const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const extDetails = {
+      id: 'ohri-form-header-toggle-ext',
+      moduleName: '@openmrs/esm-ohri-app',
+      slot: 'patient-chart-workspace-header-slot',
+      load: getAsyncLifecycle(() => import('./../components/ohri-form-toggle/ohri-form-toggle.component'), {
+        featureName: 'ohri-form-header-toggle',
+        moduleName: '@openmrs/esm-ohri-app',
+      }),
+      meta: {
+        handleCollapse: (value: boolean) => {
+          setCollapsed(value);
+        },
+      },
+    };
+    registerExtension(extDetails.id, extDetails);
+    attach('patient-chart-workspace-header-slot', extDetails.id);
+
+    return () => {
+      detach('patient-chart-workspace-header-slot', extDetails.id);
+    };
+  }, []);
 
   useEffect(() => {
     const form = JSON.parse(JSON.stringify(formJson));
@@ -447,7 +480,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     {form.pages.map((page, index) => {
                       return (
                         !page.isHidden && (
-                          <OHRIFormPage page={page} onFieldChange={onFieldChange} setSelectedPage={setSelectedPage} />
+                          <OHRIFormPage
+                            page={page}
+                            onFieldChange={onFieldChange}
+                            setSelectedPage={setSelectedPage}
+                            isCollapsed={collapsed}
+                          />
                         )
                       );
                     })}
