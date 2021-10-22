@@ -9,6 +9,65 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Has the client been previously vaccinated for COVID-19",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "128731bf-bbff-40c3-a6c9-0bf4c86182ac",
+                "answers": [
+                  {
+                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
+                    "label": "Fully Vaccinated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
+                    "label": "Partially Vaccinated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ce649506-e95e-4a5d-b731-43c8ac452b86",
+                    "label": "Not Vaccinated",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "previouslyVaccinated",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
               "label": "Date COVID-19 Vaccination was administered",
               "type": "obs",
               "questionOptions": {
@@ -32,14 +91,56 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < today() && myValue <= '1/1/2020'"
+                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                     }
                   ]
                 }
               ]
             },
             {
-              "label": "COVID-19 Vaccine Administered (1st dose)",
+              "label": "What dose is being administered?",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "97bf47f9-0ba7-4d00-99bd-8939cd586072",
+                "answers": [
+                  {
+                    "concept": "166074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "First",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255216001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Second",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "81170007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "vaccineDose",
+              "behaviours": [
+                {
+                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "COVID Vaccine Administered (1st dose)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -92,7 +193,7 @@
                   },
                   {
                     "concept": "166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "label": "Sinopharm BBIBP-CorV COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
@@ -107,7 +208,7 @@
                   },
                   {
                     "concept": "166142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of first dose of Moderna COVID-19 vaccine",
+                    "label": "1st Moderna COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
@@ -134,7 +235,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('vaccineDose','166074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
@@ -161,7 +262,7 @@
               ]
             },
             {
-              "label": "COVID Vaccine administered (2nd does)",
+              "label": "COVID Vaccine administered (2nd dose)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -169,37 +270,37 @@
                 "answers": [
                   {
                     "concept": "166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of CureVac CVnCoV COVID-19 vaccine",
+                    "label": "2nd CureVac CVnCoV COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
                     "concept": "166393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of Novavax COVID-19 vaccine",
+                    "label": "2nd Novavax COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
                     "concept": "166252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of Sinopharm BBIBP-CorV COVID-19 vaccine",
+                    "label": "2nd  Sinopharm BBIBP-CorV COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
                     "concept": "166153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of Gamaleya Sputnik V COVID-19 vaccine",
+                    "label": "2nd Gamaleya Sputnik V COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
                     "concept": "166150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of Oxford University-AstraZeneca COVID-19 vaccine",
+                    "label": "2nd Oxford University-AstraZeneca Covishield vaccine",
                     "conceptMappings": []
                   },
                   {
                     "concept": "166145AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of Pfizer-BioNTech COVID-19 vaccine",
+                    "label": "2nd Pfizer-BioNTech COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
                     "concept": "166144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Intramuscular administration of second dose of Moderna COVID-19 vaccine",
+                    "label": "2nd Moderna COVID-19 vaccine",
                     "conceptMappings": []
                   },
                   {
@@ -216,7 +317,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('vaccineDose','166075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
@@ -263,7 +364,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "vaccineDose == null"
                   },
                   "validators": [
                     {
@@ -288,7 +389,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "(vaccineDose == null"
                   },
                   "validators": []
                 }
@@ -331,7 +432,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "vaccineDose == null"
                   },
                   "validators": [
                     {
@@ -382,7 +483,7 @@
   "availableIntents": [
     {
       "intent": "COVID_VACCINATION_RETROSPECTIVE",
-      "display": "COVID-19 Vaccination Retrospective"
+      "display": "COVID Vaccination Retrospective"
     }
   ],
   "processor": "EncounterFormProcessor",
