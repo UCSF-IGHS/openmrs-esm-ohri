@@ -389,7 +389,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "(vaccineDose == null"
+                    "hideWhenExpression": "vaccineDose == null"
                   },
                   "validators": []
                 }
