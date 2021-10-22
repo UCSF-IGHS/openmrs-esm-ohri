@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Toggle } from 'carbon-components-react';
 import { extensionStore, useAssignedExtensionIds } from '@openmrs/esm-framework';
-import styles from './ohri-form-toggle.scss';
+import styles from './ohri-section-collapsible-toggle.scss';
 
-const CollapsableToggleButton = () => {
+const OHRISectionCollapsibleToggle = () => {
   const extensions = useAssignedExtensionIds('patient-chart-workspace-header-slot');
 
   const callBack = useMemo(() => {
@@ -33,4 +33,4 @@ const CollapsableToggleButton = () => {
   );
 };
 
-export default CollapsableToggleButton;
+export default OHRISectionCollapsibleToggle;
