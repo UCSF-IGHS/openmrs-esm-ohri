@@ -16,14 +16,41 @@
                 "concept": "128731bf-bbff-40c3-a6c9-0bf4c86182ac",
                 "answers": [
                   {
+                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
+                    "label": "Fully Vaccinated",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
                     "label": "Partially Vaccinated",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
-                    "label": "Fully Vaccinated",
+                    "concept": "ce649506-e95e-4a5d-b731-43c8ac452b86",
+                    "label": "Not Vaccinated",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
                   }
                 ]
               },
