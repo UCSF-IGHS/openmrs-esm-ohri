@@ -1,11 +1,11 @@
 {
-  "name": "COVID Outcome tracking Form",
+  "name": "COVID-19 Outcome tracking Form",
   "pages": [
     {
       "label": "COVID Outcome",
       "sections": [
         {
-          "label": "COVID Outcome",
+          "label": "COVID-19 Outcome",
           "isExpanded": "true",
           "questions": [
             {
@@ -16,8 +16,8 @@
                 "concept": "a845f3e6-4432-4de4-9fff-37fa270b1a06",
                 "answers": [
                   {
-                    "concept": "166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Long COVID",
+                    "concept": "165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Recovered (Symptoms resolved)",
                     "conceptMappings": []
                   },
                   {
@@ -26,8 +26,8 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Symptoms resolved",
+                    "concept": "166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long COVID",
                     "conceptMappings": []
                   }
                 ]
@@ -55,7 +55,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientOutcome','165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": [
                     {
@@ -64,11 +64,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "patientOutcome !== '165870AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                     }
                   ]
                 }
@@ -103,7 +99,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientOutcome','160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": [
                     {
@@ -112,11 +108,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue >= today() && myValue <= '1/1/2020'"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "patientOutcome !== '160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                     }
                   ]
                 }
@@ -145,12 +137,16 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('patientOutcome','166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
                       "validators": [
                         {
+                          "type": "date",
+                          "allowFutureDates": "false"
+                        },
+                        {
                           "type": "js_expression",
-                          "failsWhenExpression": "patientOutcome !== '166183AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                          "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                         }
                       ]
                     }
