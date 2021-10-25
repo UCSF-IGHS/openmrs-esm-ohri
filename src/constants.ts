@@ -24,16 +24,16 @@ export const linkedToCareYesValueConcept = '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 export const preTestCounsellingCohort = 'e4d801f0-e2fd-11eb-8212-7d7156e00a1f';
 export const waitingForHIVTestCohort = 'cdee0abe-e471-11eb-8212-7d7156e00a1f';
 export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';
-export const clientsEnrolledToCare = '9505cba5-63db-42ba-833b-5d9eb98a6cbc';
-export const todayzAppointmentsCT = '605344bc-8a54-4df0-95d5-acadf844567e';
+export const clientsEnrolledToCare = '1d5d64ee-3e94-45b9-904e-f9b585188119'; //'9505cba5-63db-42ba-833b-5d9eb98a6cbc';
+export const todayzAppointmentsCT = '6751bf2e-492a-4000-9f37-7cf63af326e9'; //'605344bc-8a54-4df0-95d5-acadf844567e';
 
 // COVID Cohorts
-export const clientsAssessedForCovid = '0d6edb52-4559-47ad-a658-259040262663'; // 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
-export const covidClientsWithPendingLabResults = 'e2e8ad86-b19a-499b-b760-fa4a42f676d6'; // 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
-export const clientsWithoutCovidOutcomes = 'db1e61ab-12c3-4baa-bf7e-e96af8127251'; // '5cf97790-3830-4f2a-807f-8595265c0806';
-export const allCovidAssessments = '9a2bc38e-f43b-44b4-8e58-6ef45c65d7aa'; // '3caa6d63-f268-403d-9930-268e3258c3ba';
-export const covidVaccinatedClients = 'e3796fe4-e171-4880-a4ec-2aead327e227'; // 'b5d52da9-10c2-43af-ae23-552acc5e445b';
-export const covid19PositiveClients = 'f31c7a68-89b8-406e-b8a4-0e29bc5191e2'; // 'adbf0411-b35c-4174-b0ff-f24a635e4da3';
+export const clientsAssessedForCovid = 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
+export const covidClientsWithPendingLabResults = 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
+export const clientsWithoutCovidOutcomes = '5cf97790-3830-4f2a-807f-8595265c0806';
+export const allCovidAssessments = '3caa6d63-f268-403d-9930-268e3258c3ba';
+export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b';
+export const covid19PositiveClients = 'adbf0411-b35c-4174-b0ff-f24a635e4da3';
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
