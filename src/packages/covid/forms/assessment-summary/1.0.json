@@ -1,0 +1,50 @@
+{
+  "name": "COVID Assessment Summary",
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": [
+    {
+      "formName": "covid_assessment",
+      "alias": "covid_assessment",
+      "ref": {
+        "uuid": "xxxx",
+        "display": "Assessment"
+      }
+    },
+    {
+      "formName": "covid_lab_test",
+      "alias": "covid_lab_test",
+      "ref": {
+        "uuid": "xxxx",
+        "display": "Lab Testing"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "label": "Assessment",
+      "sections": [
+        {
+          "reference": {
+            "form": "covid_assessment",
+            "page": "Assessment Form",
+            "section": "Assessment Form"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Lab Testing",
+      "sections": [
+        {
+          "reference": {
+            "form": "covid_lab_test",
+            "page": "COVID Lab Test",
+            "section": "Sample"
+          }
+        }
+      ]
+    }
+  ],
+  "allowUnspecifiedAll": true
+}
