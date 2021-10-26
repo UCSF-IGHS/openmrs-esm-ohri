@@ -19,6 +19,11 @@ const columns: EncounterListColumn[] = [
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDateTime', true);
     },
+    link: {
+      handleNavigate: encounter => {
+        encounter.launchFormActions?.viewEncounter();
+      },
+    },
   },
   {
     key: 'location',

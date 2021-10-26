@@ -14,6 +14,7 @@ import {
   covidTypeofTestConcept_UUID,
   covid_Assessment_EncounterUUID,
 } from '../../constants';
+
 interface OverviewListProps {
   patientUuid: string;
 }
@@ -27,9 +28,11 @@ export const covidEncounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
+
 interface CovidLabWidgetProps {
   patientUuid: string;
 }
+
 //Generic Component Import
 import EncounterList, {
   EncounterListColumn,
@@ -43,6 +46,11 @@ const columns: EncounterListColumn[] = [
     header: 'Date of Lab Test',
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDatetime', true);
+    },
+    link: {
+      handleNavigate: encounter => {
+        encounter.launchFormActions?.viewEncounter();
+      },
     },
   },
   {
