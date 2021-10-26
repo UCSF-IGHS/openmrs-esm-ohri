@@ -1,4 +1,4 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { navigate, openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { getForm } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
@@ -17,6 +17,7 @@ export interface EncounterListColumn {
   key: string;
   header: string;
   getValue: (encounter: any) => string;
+  link?: any;
 }
 
 export interface EncounterListProps {
@@ -140,8 +141,30 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
+      encounter['launchActions'] = {
+        viewEncounter: () => viewEncounter(encounter.uuid),
+        editEncounter: editEncounter,
+      };
       columns.forEach(column => {
-        row[column.key] = column.getValue(encounter);
+        let val = column.getValue(encounter);
+        if (column.link) {
+          val = (
+            <Link
+              onClick={e => {
+                e.preventDefault();
+                if (column.link.handleNavigate) {
+                  column.link.handleNavigate(encounter);
+                  // viewEncounter(encounter.uuid);
+                } else {
+                  // implement default link navigation
+                  navigate({ to: column.link.getUrl() });
+                }
+              }}>
+              {val}
+            </Link>
+          );
+        }
+        row[column.key] = val;
       });
       row['actions'] = (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
@@ -161,6 +184,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           />
         </OverflowMenu>
       );
+      row['viewEncounterLink'] = () => {};
       return row;
     });
     setTableRows(rows);
