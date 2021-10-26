@@ -21,7 +21,7 @@ import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import OHRIFormPage from './components/page/ohri-form-page';
 import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
-import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from './ohri-form-validator';
+import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from './validators/ohri-form-validator';
 import { encounterRepresentation } from '../constants';
 
 interface OHRIFormProps {
