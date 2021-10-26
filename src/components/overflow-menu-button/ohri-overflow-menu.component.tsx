@@ -85,7 +85,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                   id={'menuItem-' + index}
                   className="bx--overflow-menu-options__btn"
                   role="menuitem"
-                  title={menuItem.display}
+                  title={t('endVisit', 'End Visit')}
                   onClick={e => {
                     e.preventDefault();
                     const processedForm = filterFormByIntent(menuItem.intent, formJson);

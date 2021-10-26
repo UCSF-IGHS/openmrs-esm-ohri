@@ -63,13 +63,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       id: 'ohri-form-header-toggle-ext',
       moduleName: '@openmrs/esm-ohri-app',
       slot: 'patient-chart-workspace-header-slot',
-      load: getAsyncLifecycle(
-        () => import('./components/section-collapsible-toggle/ohri-section-collapsible-toggle.component'),
-        {
-          featureName: 'ohri-form-header-toggle',
-          moduleName: '@openmrs/esm-ohri-app',
-        },
-      ),
+      load: getAsyncLifecycle(() => import('./../components/ohri-form-toggle/ohri-form-toggle.component'), {
+        featureName: 'ohri-form-header-toggle',
+        moduleName: '@openmrs/esm-ohri-app',
+      }),
       meta: {
         handleCollapse: (value: boolean) => {
           setCollapsed(value);
@@ -202,7 +199,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       }
       return false;
     }
-
     parts.forEach((part, index) => {
       if (index % 2 == 0) {
         if (allFieldsKeys.includes(part)) {

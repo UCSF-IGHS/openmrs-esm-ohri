@@ -55,6 +55,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     setFieldValue(question.id, value);
     onChange(question.id, value);
     setErrors(OHRIFieldValidator.validate(question, selectedItems));
+
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 

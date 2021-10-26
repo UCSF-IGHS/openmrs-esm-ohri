@@ -244,6 +244,13 @@ function setupOpenMRS() {
         offline: true,
       },
       {
+        id: 'patient-covid-status-tag',
+        slot: 'patient-banner-tags-slot',
+        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-covid-outcomes-tag.component'), options),
+        online: true,
+        offline: true,
+      },
+      {
         id: 'patient-list-ext',
         slot: 'homepage-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
@@ -290,18 +297,18 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'covid-vaccinations-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(covidVaccinations_dashboardMeta), options),
-        meta: covidVaccinations_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
         id: 'covid-outcomes-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createCovidDashboardLink(covidOutcomes_dashboardMeta), options),
         meta: covidOutcomes_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-vaccinations-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCovidDashboardLink(covidVaccinations_dashboardMeta), options),
+        meta: covidVaccinations_dashboardMeta,
         online: true,
         offline: true,
       },
@@ -376,17 +383,6 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'covid-vaccinations-ext',
-        slot: 'covid-vaccinations-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
-          featureName: 'covid-vaccinations',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
         id: 'covid-outcomes-ext',
         slot: 'covid-outcomes-dashboard-slot',
         load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.encounter-list'), {
@@ -397,6 +393,26 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        id: 'covid-vaccinations-ext',
+        slot: 'covid-vaccinations-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
+          featureName: 'covid-vaccinations',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
+      // {
+      //   id: 'ohri-form-header-toggle-ext',
+      //   slot: 'patient-chart-workspace-header-slot',
+      //   load: getAsyncLifecycle(() => import('./components/ohri-form-toggle/ohri-form-toggle.component'), {
+      //     featureName: 'ohri-form-header-toggle',
+      //     moduleName,
+      //   }),
+      //   meta: {},
+      // },
     ],
   };
 }

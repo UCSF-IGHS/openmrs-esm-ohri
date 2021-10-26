@@ -6,6 +6,7 @@ import EncounterList, {
   getEncounterValues,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
+
 import { hivLabResultsEncounterType_UUID, hivCD4Count_UUID, hivCD4Result_UUID } from '../../../constants';
 
 interface CD4OverviewListProps {

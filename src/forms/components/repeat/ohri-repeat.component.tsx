@@ -13,7 +13,6 @@ import { OHRIFormField, OHRIFormFieldProps } from '../../types';
 import { OHRIObsGroup } from '../group/ohri-obs-group.component';
 import { TrashCan32, Add16 } from '@carbon/icons-react';
 import { useLayoutType } from '@openmrs/esm-framework';
-import styles from '../inputs/_input.scss';
 
 export const getInitialValueFromObs = (field: OHRIFormField, obsGroup: any) => {
   const rendering = field.questionOptions.rendering;

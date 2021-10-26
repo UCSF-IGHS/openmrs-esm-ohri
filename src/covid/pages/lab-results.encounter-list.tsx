@@ -1,76 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from '../covid.scss';
+import EmptyState from '../../components/empty-state/empty-state.component';
 
-import {
-  covidRapidTestResultDate_UUID,
-  covidReasonsForTestingConcep_UUID,
-  covidSARS_TestResultConcept_UUID,
-  covidSpecimentTestDate_UUID,
-  covidTestResultConcept_UUID,
-  covidTestResultUUID,
-  covidTestStatusConcept_UUID,
-  covidTestTypeUUID,
-  covidTypeofTestConcept_UUID,
-  covid_Assessment_EncounterUUID,
-} from '../../constants';
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-interface CovidOverviewListProps {
-  patientUuid: string;
-}
-
-export const covidFormSlot = 'hts-encounter-form-slot';
-export const covidEncounterRepresentation =
-  'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
-interface CovidLabWidgetProps {
-  patientUuid: string;
-}
-//Generic Component Import
 import EncounterList, {
   EncounterListColumn,
-  getObsFromEncounter,
   getEncounterValues,
+  getObsFromEncounter,
 } from '../../components/encounter-list/encounter-list.component';
+import { hivLabResultsEncounterType_UUID, hivCD4Count_UUID, hivCD4Result_UUID } from '../../constants';
+
+interface LabResultsOverviewListProps {
+  patientUuid: string;
+}
 
 const columns: EncounterListColumn[] = [
   {
     key: 'encounterDate',
-    header: 'Date of Lab Test',
+    header: 'Date of Test ordered',
     getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
+      return getEncounterValues(encounter, 'encounterDateTime', true);
     },
   },
   {
-    key: 'reasonsForTesting',
-    header: 'Reason for testing',
+    key: 'location',
+    header: 'Location',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
+      return encounter.location.name || 'None';
     },
   },
   {
-    key: 'testDate',
-    header: 'Test Date',
+    key: 'hivLabResult',
+    header: 'CD4 Date Result',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
+      return getObsFromEncounter(encounter, hivCD4Result_UUID);
     },
   },
   {
-    key: 'testType',
-    header: 'Test Type',
+    key: 'hivCD4Count',
+    header: 'CD4 Count',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
-    },
-  },
-  {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+      return getObsFromEncounter(encounter, hivCD4Count_UUID);
     },
   },
   {
@@ -80,22 +49,17 @@ const columns: EncounterListColumn[] = [
   },
 ];
 
-const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
+const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('covidLabResults', 'Lab Results');
-  const displayText = t('covidLabResults', 'Lab Results');
+
+  const headerTitle = t('labResults', 'Viral Load');
+  const displayText = t('labResults', 'Viral Load');
+
   return (
-    <EncounterList
-      patientUuid={patientUuid}
-      encounterUuid={covid_Assessment_EncounterUUID}
-      form={{ package: 'covid', name: 'covid_lab_test' }}
-      columns={columns}
-      description={displayText}
-      headerTitle={headerTitle}
-      dropdownText="Add"
-      hideFormLauncher
-    />
+    <>
+      <EmptyState displayText={displayText} headerTitle={headerTitle} />
+    </>
   );
 };
 
-export default CovidLabResults;
+export default LabResultsOverviewList;
