@@ -1,4 +1,4 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { navigate, openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +17,7 @@ export interface EncounterListColumn {
   key: string;
   header: string;
   getValue: (encounter: any) => string;
+  link?: any;
 }
 
 export interface EncounterListProps {
@@ -141,8 +142,30 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
+      encounter['launchActions'] = {
+        viewEncounter: () => viewEncounter(encounter.uuid),
+        editEncounter: editEncounter,
+      };
       columns.forEach(column => {
-        row[column.key] = column.getValue(encounter);
+        let val = column.getValue(encounter);
+        if (column.link) {
+          val = (
+            <Link
+              onClick={e => {
+                e.preventDefault();
+                if (column.link.handleNavigate) {
+                  column.link.handleNavigate(encounter);
+                  // viewEncounter(encounter.uuid);
+                } else {
+                  // implement default link navigation
+                  navigate({ to: column.link.getUrl() });
+                }
+              }}>
+              {val}
+            </Link>
+          );
+        }
+        row[column.key] = val;
       });
       row[columns[0].key] = (
         <Link
@@ -172,6 +195,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           />
         </OverflowMenu>
       );
+      row['viewEncounterLink'] = () => {};
       return row;
     });
     setTableRows(rows);
