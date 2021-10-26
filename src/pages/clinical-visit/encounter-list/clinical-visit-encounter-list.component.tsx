@@ -26,7 +26,7 @@ const columns: EncounterListColumn[] = [
     link: {
       getUrl: encounter => encounter.url,
       handleNavigate: encounter => {
-        encounter.launchActions?.viewEncounter();
+        encounter.launchFormActions?.viewEncounter();
       },
     },
   },

@@ -12,6 +12,7 @@ import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
+import { launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
 
 export interface EncounterListColumn {
   key: string;
@@ -81,21 +82,10 @@ const EncounterList: React.FC<EncounterListProps> = ({
   hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm.name,
-      screenSize: 'maximize',
-      encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: encounterForm },
-    });
+    launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
   const viewEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm.name,
-      screenSize: 'maximize',
-      encounterUuid: encounterUuid,
-      mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: encounterForm },
-    });
+    launchFormInViewMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
 
   const headers = useMemo(() => {
@@ -141,9 +131,9 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
-      encounter['launchActions'] = {
+      encounter['launchFormActions'] = {
         viewEncounter: () => viewEncounter(encounter.uuid),
-        editEncounter: editEncounter,
+        editEncounter: () => editEncounter(encounter.uuid),
       };
       columns.forEach(column => {
         let val = column.getValue(encounter);
@@ -154,9 +144,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
                 e.preventDefault();
                 if (column.link.handleNavigate) {
                   column.link.handleNavigate(encounter);
-                  // viewEncounter(encounter.uuid);
                 } else {
-                  // implement default link navigation
                   navigate({ to: column.link.getUrl() });
                 }
               }}>
