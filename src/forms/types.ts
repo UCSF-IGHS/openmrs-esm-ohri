@@ -62,6 +62,7 @@ export interface OHRIFormField {
   value?: any;
   hide?: any;
   isHidden?: boolean;
+  isParentHidden?: boolean;
   fieldDependants?: Array<string>;
   pageDependants?: Array<string>;
   sectionDependants?: Array<string>;
@@ -78,6 +79,8 @@ export interface OHRIFormFieldProps {
 export interface OHRIFormSection {
   label: string;
   isExpanded: string;
+  isHidden?: boolean;
+  isParentHidden?: boolean;
   questions: Array<OHRIFormField>;
 }
 
