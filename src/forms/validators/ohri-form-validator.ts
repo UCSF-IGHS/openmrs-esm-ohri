@@ -1,11 +1,12 @@
-import { FieldValidator, OHRIFormField } from './types';
+import { FieldValidator, OHRIFormField } from '../types';
+import { isTrue } from '../utils/boolean-utils';
 
 export const OHRIFieldValidator: FieldValidator = {
   validate: (field: OHRIFormField, value: any) => {
     if (field['submission']?.unspecified) {
       return [];
     }
-    if (field.required || field.unspecified) {
+    if (isTrue(field.required) || isTrue(field.unspecified)) {
       if (isEmpty(value)) {
         return [{ errCode: 'field.required', errMessage: 'Field is mandatory' }];
       }

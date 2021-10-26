@@ -3,6 +3,7 @@ import styles from './_section.scss';
 import { getFieldComponent, getHandler } from '../../registry/registry';
 import { OHRIUnspecified } from '../inputs/unspecified/ohri-unspecified.component';
 import { OHRIFormField } from '../../types';
+import { isTrue } from '../../utils/boolean-utils';
 
 export const getFieldControl = (question: OHRIFormField) => {
   // Check if a concept wasn't provided
@@ -17,7 +18,7 @@ export const getFieldControl = (question: OHRIFormField) => {
 
 export const supportsUnspecified = question => {
   return (
-    question.unspecified &&
+    isTrue(question.unspecified) &&
     question.questionOptions.rendering != 'toggle' &&
     question.questionOptions.rendering != 'encounter-location'
   );
