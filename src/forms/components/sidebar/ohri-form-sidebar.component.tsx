@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './ohri-form-sidebar.component.scss';
 import { scrollIntoView } from '../../../utils/ohri-sidebar';
 import { Button, Toggle } from 'carbon-components-react';
-import { isEmpty } from '../../ohri-form-validator';
+import { isEmpty } from '../../validators/ohri-form-validator';
 
 function OHRIFormSidebar({
   scrollAblePages,

@@ -6,7 +6,7 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { OHRIFieldValidator } from '../../../ohri-form-validator';
+import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 
 const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);

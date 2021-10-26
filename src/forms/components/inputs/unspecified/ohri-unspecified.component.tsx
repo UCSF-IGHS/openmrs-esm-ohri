@@ -3,7 +3,7 @@ import { useField } from 'formik';
 import React, { useCallback, useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
-import { OHRIFieldValidator } from '../../../ohri-form-validator';
+import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { OHRIFormField } from '../../../types';
 
 export const OHRIUnspecified: React.FC<{

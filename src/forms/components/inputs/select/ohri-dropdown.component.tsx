@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'carbon-components-react';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { OHRIFieldValidator } from '../../../ohri-form-validator';
+import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
