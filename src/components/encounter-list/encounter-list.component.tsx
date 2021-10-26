@@ -8,7 +8,7 @@ import { getForm } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
@@ -22,7 +22,7 @@ export interface EncounterListColumn {
 export interface EncounterListProps {
   patientUuid: string;
   encounterUuid: string;
-  form?: { package: string; name: string };
+  form?: { package: string; name: string; view?: string };
   columns: Array<any>;
   headerTitle: string;
   description: string;
@@ -87,13 +87,14 @@ const EncounterList: React.FC<EncounterListProps> = ({
       state: { updateParent: forceComponentUpdate, formJson: encounterForm },
     });
   };
+  const encounterFormView = form.view ? getForm(form.package, form.view) : undefined;
   const viewEncounter = encounterUuid => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm.name,
+      title: form.view ? encounterFormView.name : encounterForm.name,
       screenSize: 'maximize',
       encounterUuid: encounterUuid,
       mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: encounterForm },
+      state: { updateParent: forceComponentUpdate, formJson: form.view ? encounterFormView : encounterForm },
     });
   };
 
@@ -143,6 +144,16 @@ const EncounterList: React.FC<EncounterListProps> = ({
       columns.forEach(column => {
         row[column.key] = column.getValue(encounter);
       });
+      row[columns[0].key] = (
+        <Link
+          href={'#'}
+          onClick={e => {
+            e.preventDefault();
+            viewEncounter(encounter.uuid);
+          }}>
+          {columns[0].getValue(encounter)}
+        </Link>
+      );
       row['actions'] = (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
           <OverflowMenuItem
