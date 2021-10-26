@@ -23,6 +23,7 @@ import OHRIFormPage from './components/page/ohri-form-page';
 import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
 import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from './validators/ohri-form-validator';
 import { encounterRepresentation } from '../constants';
+import { cascadeVisibityToChildFields } from './utils/ohri-form-helper';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -247,9 +248,14 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       }
       if (page) {
         page.isHidden = isHidden;
+        page.sections.forEach(section => {
+          section.isParentHidden = isHidden;
+          cascadeVisibityToChildFields(isHidden, section, allFields);
+        });
       }
       if (section) {
         section.isHidden = isHidden;
+        cascadeVisibityToChildFields(isHidden, section, allFields);
       }
     } catch (error) {
       console.error(error);
@@ -297,7 +303,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     let formHasErrors = false;
     // handle field validation
     fields
-      .filter(field => !field.disabled && !field.isHidden)
+      .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden)
       .filter(field => field['submission']?.unspecified != true)
       .forEach(field => {
         const errors = OHRIFieldValidator.validate(field, values[field.id]);
@@ -316,7 +322,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     // collect observations
     fields
       .filter(field => field.value || field.type == 'obsGroup') // filter out fields with empty values except groups
-      .filter(field => !field.isHidden && (field.type == 'obs' || field.type == 'obsGroup'))
+      .filter(field => !field.isParentHidden && !field.isHidden && (field.type == 'obs' || field.type == 'obsGroup'))
       .filter(field => !field['groupId']) // filter out grouped obs
       .forEach(field => {
         if (field.type == 'obsGroup') {
