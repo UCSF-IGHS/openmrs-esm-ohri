@@ -10,7 +10,7 @@ import OHRITextArea from '../components/inputs/text-area/ohri-text-area.componen
 import OHRIText from '../components/inputs/text/ohri-text.component';
 import OHRIToggle from '../components/inputs/toggle/ohri-toggle.component';
 import { OHRIRepeat } from '../components/repeat/ohri-repeat.component';
-import { OHRIFieldValidator } from '../ohri-form-validator';
+import { OHRIFieldValidator } from '../validators/ohri-form-validator';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
 import { FieldValidator, SubmissionHandler } from '../types';
 

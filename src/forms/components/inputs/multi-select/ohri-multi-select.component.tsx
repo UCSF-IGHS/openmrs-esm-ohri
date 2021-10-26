@@ -2,7 +2,7 @@ import { FormGroup, ListItem, MultiSelect, UnorderedList } from 'carbon-componen
 import { useField } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { OHRIFieldValidator } from '../../../ohri-form-validator';
+import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
