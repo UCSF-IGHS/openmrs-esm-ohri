@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './ohri-overflow-menu.scss';
 import { useTranslation } from 'react-i18next';
 import { filterFormByIntent } from '../../utils/forms-loader';
+import { Button } from 'carbon-components-react';
 
 interface OverflowMenuProps {
   menuTitle: React.ReactNode;
@@ -43,66 +44,89 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
 
   return (
     <div className={`bx--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
-      <button
-        className={`bx--overflow-menu__trigger ${showMenu && 'bx--overflow-menu--open'}`}
-        aria-haspopup="true"
-        aria-expanded={showMenu}
-        id="custom-actions-overflow-menu-trigger"
-        aria-controls="custom-actions-overflow-menu"
-        onClick={toggleShowMenu}
-        style={{
-          width: 'auto',
-          height: 'auto',
-          padding: '1rem',
-          color: '#0f62fe',
-          outline: '2rem solid transparent',
-          boxShadow: showMenu ? '0 2px 6px 0 rgb(0 0 0 / 30%)' : 'none',
-        }}>
-        {menuTitle}
-      </button>
-      <div
-        className="bx--overflow-menu-options bx--overflow-menu--flip"
-        tabIndex={0}
-        data-floating-menu-direction="bottom"
-        role="menu"
-        aria-labelledby="custom-actions-overflow-menu-trigger"
-        id="custom-actions-overflow-menu"
-        style={{
-          display: showMenu ? 'block' : 'none',
-          top: '3.125rem',
-          minWidth: 'initial',
-          left: 'auto',
-          right: '0',
-          backgroundColor: '#f4f4f4',
-          marginRight: '0.2rem',
-          boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
-        }}>
-        <ul className="bx--overflow-menu-options__content">
-          {overflowItems.map((menuItem, index) => {
-            return (
-              <li className="bx--overflow-menu-options__option" id={'item-' + index}>
-                <button
-                  id={'menuItem-' + index}
-                  className="bx--overflow-menu-options__btn"
-                  role="menuitem"
-                  title={t('endVisit', 'End Visit')}
-                  onClick={e => {
-                    e.preventDefault();
-                    const processedForm = filterFormByIntent(menuItem.intent, formJson);
-                    launchForm(processedForm);
-                    setShowMenu(false);
-                  }}
-                  style={{
-                    maxWidth: '100vw',
-                  }}>
-                  <span className="bx--overflow-menu-options__option-content">{menuItem.display}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        <span />
-      </div>
+      {overflowItems.length > 1 ? (
+        <>
+          <button
+            className={`bx--overflow-menu__trigger ${showMenu && 'bx--overflow-menu--open'}`}
+            aria-haspopup="true"
+            aria-expanded={showMenu}
+            id="custom-actions-overflow-menu-trigger"
+            aria-controls="custom-actions-overflow-menu"
+            onClick={toggleShowMenu}
+            style={{
+              width: 'auto',
+              height: 'auto',
+              padding: '1rem',
+              color: '#0f62fe',
+              outline: '2rem solid transparent',
+              boxShadow: showMenu ? '0 2px 6px 0 rgb(0 0 0 / 30%)' : 'none',
+            }}>
+            {menuTitle}
+          </button>
+          <div
+            className="bx--overflow-menu-options bx--overflow-menu--flip"
+            tabIndex={0}
+            data-floating-menu-direction="bottom"
+            role="menu"
+            aria-labelledby="custom-actions-overflow-menu-trigger"
+            id="custom-actions-overflow-menu"
+            style={{
+              display: showMenu ? 'block' : 'none',
+              top: '3.125rem',
+              minWidth: 'initial',
+              left: 'auto',
+              right: '0',
+              backgroundColor: '#f4f4f4',
+              marginRight: '0.2rem',
+              boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
+            }}>
+            <ul className="bx--overflow-menu-options__content">
+              {overflowItems.map((menuItem, index) => {
+                return (
+                  <li className="bx--overflow-menu-options__option" id={'item-' + index}>
+                    <button
+                      id={'menuItem-' + index}
+                      className="bx--overflow-menu-options__btn"
+                      role="menuitem"
+                      title={t('endVisit', 'End Visit')}
+                      onClick={e => {
+                        e.preventDefault();
+                        const processedForm = filterFormByIntent(menuItem.intent, formJson);
+                        launchForm(processedForm);
+                        setShowMenu(false);
+                      }}
+                      style={{
+                        maxWidth: '100vw',
+                      }}>
+                      <span className="bx--overflow-menu-options__option-content">{menuItem.display}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            <span />
+          </div>
+        </>
+      ) : (
+        <Button
+          size="small"
+          kind="ghost"
+          onClick={e => {
+            e.preventDefault();
+            const processedForm = filterFormByIntent(overflowItems[0].intent, formJson);
+            launchForm(processedForm);
+          }}
+          style={{
+            width: 'auto',
+            height: 'auto',
+            padding: '1rem',
+            color: '#0f62fe',
+            outline: '2rem solid transparent',
+            boxShadow: showMenu ? '0 2px 6px 0 rgb(0 0 0 / 30%)' : 'none',
+          }}>
+          {menuTitle}
+        </Button>
+      )}
     </div>
   );
 };
