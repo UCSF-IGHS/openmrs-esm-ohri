@@ -23,6 +23,12 @@ const columns: EncounterListColumn[] = [
     getValue: encounter => {
       return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
     },
+    link: {
+      getUrl: encounter => encounter.url,
+      handleNavigate: encounter => {
+        encounter.launchFormActions?.viewEncounter();
+      },
+    },
   },
   {
     key: 'visitType',

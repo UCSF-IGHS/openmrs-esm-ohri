@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { htsRetrospectiveEncounterType, hivTestDateConceptUUID, hivTestResultConceptUUID } from '../../../constants';
+import { htsRetrospectiveEncounterType, hivTestResultConceptUUID } from '../../../constants';
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
@@ -17,6 +17,11 @@ const columns: EncounterListColumn[] = [
     header: 'Date of HIV Test',
     getValue: encounter => {
       return getEncounterValues(encounter, 'encounterDatetime', true);
+    },
+    link: {
+      handleNavigate: encounter => {
+        encounter.launchFormActions?.viewEncounter();
+      },
     },
   },
   {
