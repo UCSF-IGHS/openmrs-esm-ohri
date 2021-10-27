@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import OHRIForm from '../../../forms/ohri-form.component';
 import { SessionMode } from '../../../forms/types';
+import OHRIFormTemp from '../../../forms/ohri-form-temp.component';
 
 const OHRIFormView: React.FC<{ state: any; closeWorkspace: any; encounterUuid?: string; mode?: SessionMode }> = ({
   state,
@@ -15,13 +16,14 @@ const OHRIFormView: React.FC<{ state: any; closeWorkspace: any; encounterUuid?: 
     closeWorkspace();
   }, []);
   return (
-    <OHRIForm
-      formJson={state.formJson}
-      onCancel={closeWorkspace}
-      onSubmit={onFormSubmit}
-      encounterUuid={encounterUuid}
-      mode={mode}
-    />
+    // <OHRIForm
+    //   formJson={state.formJson}
+    //   onCancel={closeWorkspace}
+    //   onSubmit={onFormSubmit}
+    //   encounterUuid={encounterUuid}
+    //   mode={mode}
+    // />
+    <OHRIFormTemp />
   );
 };
 
