@@ -1,4 +1,4 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { navigate, openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,17 +6,19 @@ import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { getForm } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
-import styles from '../../hts/care-and-treatment/service-enrolment/service-enrolment-list.scss';
+import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
-import { Button, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
+import { launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
 
 export interface EncounterListColumn {
   key: string;
   header: string;
   getValue: (encounter: any) => string;
+  link?: any;
 }
 
 export interface EncounterListProps {
@@ -80,21 +82,10 @@ const EncounterList: React.FC<EncounterListProps> = ({
   hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm.name,
-      screenSize: 'maximize',
-      encounterUuid: encounterUuid,
-      state: { updateParent: forceComponentUpdate, formJson: encounterForm },
-    });
+    launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
   const viewEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm.name,
-      screenSize: 'maximize',
-      encounterUuid: encounterUuid,
-      mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: encounterForm },
-    });
+    launchFormInViewMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
 
   const headers = useMemo(() => {
@@ -140,8 +131,28 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
+      encounter['launchFormActions'] = {
+        viewEncounter: () => viewEncounter(encounter.uuid),
+        editEncounter: () => editEncounter(encounter.uuid),
+      };
       columns.forEach(column => {
-        row[column.key] = column.getValue(encounter);
+        let val = column.getValue(encounter);
+        if (column.link) {
+          val = (
+            <Link
+              onClick={e => {
+                e.preventDefault();
+                if (column.link.handleNavigate) {
+                  column.link.handleNavigate(encounter);
+                } else {
+                  column.link?.getUrl && navigate({ to: column.link.getUrl() });
+                }
+              }}>
+              {val}
+            </Link>
+          );
+        }
+        row[column.key] = val;
       });
       row['actions'] = (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
