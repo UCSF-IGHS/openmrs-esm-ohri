@@ -84,9 +84,12 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const editEncounter = encounterUuid => {
     launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
-  const encounterFormView = form.view ? getForm(form.package, form.view) : undefined;
   const viewEncounter = encounterUuid => {
-    launchFormInViewMode(encounterForm, encounterUuid, forceComponentUpdate);
+    launchFormInViewMode(
+      form.view ? getForm(form.package, form.view) : encounterForm,
+      encounterUuid,
+      forceComponentUpdate,
+    );
   };
 
   const headers = useMemo(() => {
@@ -146,7 +149,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
                 if (column.link.handleNavigate) {
                   column.link.handleNavigate(encounter);
                 } else {
-                  navigate({ to: column.link.getUrl() });
+                  column.link?.getUrl && navigate({ to: column.link.getUrl() });
                 }
               }}>
               {val}

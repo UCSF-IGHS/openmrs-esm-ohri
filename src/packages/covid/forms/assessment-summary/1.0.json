@@ -9,7 +9,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Reasons for testing (select all that apply)",
+              "label": "Reasons for testing",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
