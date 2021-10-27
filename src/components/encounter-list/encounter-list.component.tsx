@@ -145,7 +145,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
                 if (column.link.handleNavigate) {
                   column.link.handleNavigate(encounter);
                 } else {
-                  navigate({ to: column.link.getUrl() });
+                  column.link?.getUrl && navigate({ to: column.link.getUrl() });
                 }
               }}>
               {val}
@@ -172,7 +172,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
           />
         </OverflowMenu>
       );
-      row['viewEncounterLink'] = () => {};
       return row;
     });
     setTableRows(rows);
