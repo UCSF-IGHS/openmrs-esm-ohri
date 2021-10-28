@@ -23,7 +23,13 @@ const OHRIFormView: React.FC<{ state: any; closeWorkspace: any; encounterUuid?: 
     //   encounterUuid={encounterUuid}
     //   mode={mode}
     // />
-    <OHRIFormTemp />
+    <OHRIFormTemp
+      formJson={state.formJson}
+      onCancel={closeWorkspace}
+      onSubmit={onFormSubmit}
+      encounterUuid={encounterUuid}
+      mode={mode}
+    />
   );
 };
 
