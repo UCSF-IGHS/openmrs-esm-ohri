@@ -158,6 +158,16 @@ const EncounterList: React.FC<EncounterListProps> = ({
         }
         row[column.key] = val;
       });
+      row[columns[0].key] = (
+        <Link
+          href={'#'}
+          onClick={e => {
+            e.preventDefault();
+            viewEncounter(encounter.uuid);
+          }}>
+          {columns[0].getValue(encounter)}
+        </Link>
+      );
       row['actions'] = (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
           <OverflowMenuItem
@@ -176,6 +186,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           />
         </OverflowMenu>
       );
+      row['viewEncounterLink'] = () => {};
       return row;
     });
     setTableRows(rows);
