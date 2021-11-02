@@ -26,3 +26,6 @@
     margin: 0 $spacing-03;
   }
  
+  .tabContainer div[role='tabpanel'] {
+    padding: 0 !important;
+  }
