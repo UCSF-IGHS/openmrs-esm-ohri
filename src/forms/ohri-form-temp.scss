@@ -9,22 +9,23 @@
 }
 
 .ohriFormContainer {
-
+  display: -webkit-flex;
+  overscroll-behavior: contain;
 }
 
 .formContent {
-  //height: 100vh;
-  //margin: 0;
-  //flex-basis: 75%;
-  //flex-grow: 1;
-  //flex-shrink: 1;
-  //position: relative;
-  //overflow-y: scroll;
-  //overscroll-behavior: auto;
-  //padding: 0 0 20rem 5px;
+  height: 100vh;
+  margin: 0;
+  flex-basis: 65%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll; // scrolls whole page
+  overscroll-behavior: contain;
+  padding: 0 0 10rem 5px;
 }
 
-.mainContainer :global(.bx--label) {
+.ohriFormContainer :global(.bx--label) {
   font-size: .875rem;
 }
 
@@ -36,73 +37,32 @@
   .sidebar {
     //margin: 0;
     //padding: 0 0 0 16px;
-    //flex-grow: 0.6;
-    //flex-shrink: 1;
-    //position: relative;
-    //overflow: scroll;
-    //transform: translate3d(0, 0, 0);
     //flex-basis: 28%;
+    //flex-grow: 0.6;
   }
 
   .formContent {
-    //height: inherit;
     //margin: 0;
+    //padding: 0 0 10rem 5px;
     //flex-basis: 75%;
     //flex-grow: 1;
     //flex-shrink: 1;
-    //position: relative;
-    //overflow: scroll;
-    //overscroll-behavior: contain;
-    //padding: 0 0 10rem 5px;
   }
 }
 
 @media (max-width: 1024px) {
   .sidebar {
-    //margin: 0;
-    //padding: 0 0 0 16px;
-    //flex-grow: 0.6;
-    //flex-shrink: 1;
-    //position: relative;
-    //overflow: scroll;
-    //transform: translate3d(0, 0, 0);
-    //flex-basis: 23%;
+
   }
 
-  //.formContent {
-  //  height: inherit;
-  //  margin: 0;
-  //  flex-basis: 75%;
-  //  flex-grow: 1;
-  //  flex-shrink: 1;
-  //  position: relative;
-  //  overflow: scroll;
-  //  overscroll-behavior: contain;
-  //  padding: 0 0 10rem 5px;
-  //}
+  .formContent {
+  }
 }
 
 @media (max-width: 1440px) {
   .sidebar {
-    //margin: 0;
-    //padding: 0 0 0 16px;
-    //flex-grow: 0.6;
-    //flex-shrink: 1;
-    //position: relative;
-    //overflow: scroll;
-    //transform: translate3d(0, 0, 0);
-    //flex-basis: 35%;
   }
 
   .formContent {
-    //height: inherit;
-    //margin: 0;
-    //flex-basis: 65%;
-    //flex-grow: 1;
-    //flex-shrink: 1;
-    //position: relative;
-    //overflow: scroll;
-    //overscroll-behavior: contain;
-    //padding: 0 0 10rem 5px;
   }
 }
