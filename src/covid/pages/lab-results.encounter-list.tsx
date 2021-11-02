@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
+import { Tabs, Tab } from 'carbon-components-react';
+import EmptyState from '../../components/empty-state/empty-state.component';
 
 import {
   covidRapidTestResultDate_UUID,
@@ -92,17 +94,30 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('covidLabResults', 'Lab Results');
   const displayText = t('covidLabResults', 'Lab Results');
+  const headerTitlePending = t('covidLabResults', 'Pending Lab Orders');
+  const displayTextPending = t('covidLabResults', 'Pending Lab Orders');
+
   return (
-    <EncounterList
-      patientUuid={patientUuid}
-      encounterUuid={covid_Assessment_EncounterUUID}
-      form={{ package: 'covid', name: 'covid_lab_test' }}
-      columns={columns}
-      description={displayText}
-      headerTitle={headerTitle}
-      dropdownText="Add"
-      hideFormLauncher
-    />
+    <div className={styles.tabContainer}>
+      <Tabs>
+        <Tab label="Lab results">
+          <EncounterList
+            patientUuid={patientUuid}
+            encounterUuid={covid_Assessment_EncounterUUID}
+            form={{ package: 'covid', name: 'covid_lab_test' }}
+            columns={columns}
+            description={displayText}
+            headerTitle={headerTitle}
+            dropdownText="Add"
+            hideFormLauncher
+          />
+        </Tab>
+
+        <Tab label="Pending Lab Orders">
+          <EmptyState displayText={displayTextPending} headerTitle={headerTitlePending} />
+        </Tab>
+      </Tabs>
+    </div>
   );
 };
 
