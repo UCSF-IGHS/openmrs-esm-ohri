@@ -237,7 +237,7 @@
                   }
                 }
               ]
-            },  
+            },
             {
               "label": "Notes",
               "type": "obs",
@@ -276,6 +276,10 @@
     }
   ],
   "availableIntents": [
+    {
+      "intent": "*",
+      "display": "COVID Lab Order Default"
+    },
     {
       "intent": "COVID_LAB_ORDER_EMBED",
       "display": "COVID Lab Order Embed"

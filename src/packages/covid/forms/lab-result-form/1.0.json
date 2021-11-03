@@ -400,6 +400,25 @@
               ]
             },
             {
+              "label": "Test result date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": ""
+              },
+              "id": "testResultDate",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
               "label": "Rapid Antigen result",
               "type": "obs",
               "questionOptions": {
@@ -558,6 +577,12 @@
           ]
         }
       ]
+    }
+  ],
+  "availableIntents": [
+    {
+      "intent": "*",
+      "display": "COVID Lab Result Default"
     }
   ],
   "processor": "EncounterFormProcessor",
