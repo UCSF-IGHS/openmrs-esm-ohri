@@ -99,7 +99,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs>
+      <Tabs type="container">
         <Tab label="Lab results">
           <EncounterList
             patientUuid={patientUuid}
@@ -112,7 +112,6 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             hideFormLauncher
           />
         </Tab>
-
         <Tab label="Pending Lab Orders">
           <EmptyState displayText={displayTextPending} headerTitle={headerTitlePending} />
         </Tab>
