@@ -2,10 +2,10 @@
   "name": "COVID Lab Order Form",
   "pages": [
     {
-      "label": "Lab Order Form",
+      "label": "Lab Order",
       "sections": [
         {
-          "label": "Lab Order Form",
+          "label": "Lab Order",
           "isExpanded": "true",
           "questions": [
             {
@@ -69,7 +69,7 @@
               "label": "Reasons for testing (select all that apply)",
               "type": "obs",
               "questionOptions": {
-                "rendering": "multicheckbox",
+                "rendering": "checkbox",
                 "concept": "ae46f4b1-c15d-4bba-ab41-b9157b82b0ce",
                 "answers": [
                   {
@@ -186,6 +186,25 @@
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
                   "required": "true"
+                }
+              ]
+            },
+            {
+              "label": "Other reason for testing",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a782ce41-5499-4521-ae42-16347fe6b9e0"
+              },
+              "id": "otherReasonForTesting",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('reasonsForTesting', '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  }
                 }
               ]
             },
