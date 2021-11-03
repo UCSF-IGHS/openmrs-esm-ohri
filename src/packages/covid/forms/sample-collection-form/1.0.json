@@ -16,7 +16,19 @@
                 "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": ""
               },
-              "id": "testOrderDate"
+              "id": "testOrderDate",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "true",
+                  "read-only": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Test requested",
@@ -37,7 +49,19 @@
                   }
                 ]
               },
-              "id": "testRequested"
+              "id": "testRequested",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "true",
+                  "read-only": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
             },
             {
               "label": "Date specimen collected",
@@ -353,6 +377,6 @@
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
-  "encounterType": "",
+  "encounterType": "3ee00481-50e1-41c3-bfcb-7e6d6a8722fb",
   "allowUnspecifiedAll": true
 }

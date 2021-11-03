@@ -1,0 +1,285 @@
+{
+  "name": "Lab Order Cancellation Form",
+  "pages": [
+    {
+      "label": "Lab Order Cancellation Form",
+      "sections": [
+        {
+          "label": "Lab Order Cancellation",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Order date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": "",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "162078"
+                  }
+                ]
+              },
+              "id": "dateTestOrdered",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "true",
+                  "read-only": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Test requested",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718",
+                "answers": [
+                  {
+                    "concept": "165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Rapid Antigen Test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Diagnostic PCR Test",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "testOrdered",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "true",
+                  "read-only": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Notes",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "5",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "48767-8"
+                  },
+                  {
+                    "type": "CIEL",
+                    "value": "161011"
+                  }
+                ]
+              },
+              "id": "sampleCollectionFormNotes",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Cancellation Date",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "05ec039d-2bcb-47e5-8165-65411295fc32",
+                "weeksList": "",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "CancellationDate"
+                  }
+                ]
+              },
+              "defaultValue": "now()",
+              "id": "cancellationDate",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Cancellation Reason",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "14628774-2647-436c-b8f3-d42c6dc305ce",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "OrderCancellationReason"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "c566ca6e-1dc1-40b2-a309-f4bde03df748",
+                    "label": "Duplicate order",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "DuplicateOrder"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "bc10dec2-6c39-494b-8db1-b18ce75a21ba",
+                    "label": "No sample collected",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "NoSample"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "c1ec84ed-f9df-4ea1-b58b-2381457c3848",
+                    "label": "Sample rejected",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "SampleRejected"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "786a82a4-5b26-4d70-be0d-9931b6f47e96",
+                    "label": "Old order",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "OldOrder"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "a9357eb8-cb73-495d-9648-8d44ec3d4af7",
+                    "label": "No longer required",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "NotRequired"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "c4384456-087d-47a7-b093-3474d96fbe38",
+                    "label": "Improperly ordered",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "ImproperlyOrdered"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Wrong entry",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "165246"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "cancellationReason",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Status",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "6681366c-2174-489a-b951-13a1404935bf",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "LabOrderStatus"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Pending status",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "162866"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "307824009"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "162866"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "labOrderStatus",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": [],
+  "encounterType": "a77d3e7f-5c8f-4074-a207-77a70e197b0c",
+  "allowUnspecifiedAll": true
+}
