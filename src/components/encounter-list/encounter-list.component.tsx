@@ -24,7 +24,7 @@ export interface EncounterListColumn {
 export interface EncounterListProps {
   patientUuid: string;
   encounterUuid: string;
-  form?: { package: string; name: string };
+  form?: { package: string; name: string; view?: string };
   columns: Array<any>;
   headerTitle: string;
   description: string;
@@ -85,7 +85,11 @@ const EncounterList: React.FC<EncounterListProps> = ({
     launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
   const viewEncounter = encounterUuid => {
-    launchFormInViewMode(encounterForm, encounterUuid, forceComponentUpdate);
+    launchFormInViewMode(
+      form.view ? getForm(form.package, form.view) : encounterForm,
+      encounterUuid,
+      forceComponentUpdate,
+    );
   };
 
   const headers = useMemo(() => {
@@ -154,6 +158,16 @@ const EncounterList: React.FC<EncounterListProps> = ({
         }
         row[column.key] = val;
       });
+      row[columns[0].key] = (
+        <Link
+          href={'#'}
+          onClick={e => {
+            e.preventDefault();
+            viewEncounter(encounter.uuid);
+          }}>
+          {columns[0].getValue(encounter)}
+        </Link>
+      );
       row['actions'] = (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
           <OverflowMenuItem
@@ -172,6 +186,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           />
         </OverflowMenu>
       );
+      row['viewEncounterLink'] = () => {};
       return row;
     });
     setTableRows(rows);
