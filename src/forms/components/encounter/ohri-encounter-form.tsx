@@ -16,6 +16,7 @@ import { cascadeVisibityToChildFields } from '../../utils/ohri-form-helper';
 import { isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
+import styles from '../../ohri-form.component.scss';
 
 interface OHRIEncounterFormProps {
   formJson: OHRIFormSchema;

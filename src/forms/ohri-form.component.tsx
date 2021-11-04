@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import styles from './ohri-form.scss';
+import styles from './ohri-form.component.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
