@@ -1,11 +1,11 @@
 {
-  "name": "COVID Assessment Form",
+  "name": "COVID Assessment",
   "pages": [
     {
-      "label": "COVID Assessment Form",
+      "label": "COVID Assessment",
       "sections": [
         {
-          "label": "COVID Assessment Form",
+          "label": "COVID Assessment",
           "isExpanded": "true",
           "questions": [
             {
@@ -50,7 +50,7 @@
               "label": "Reasons for assessment",
               "type": "obs",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "checkbox",
                 "concept": "ae46f4b1-c15d-4bba-ab41-b9157b82b0ce",
                 "answers": [
                   {
@@ -1328,16 +1328,18 @@
       "sections": [],
       "isSubform": "true",
       "subform": {
-        "name": "Lab Order Form",
+        "name": "covid_lab_order",
         "package": "covid",
         "behaviours": [
           {
             "intent": "*",
-            "read-only": "false"
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "false"
           },
           {
-            "intent": "COVID_LAB_ORDER_EMBED",
-            "required": "false"
+            "intent": "COVID_LAB_ASSESSMENT_EMBED",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "true"
           }
         ]
       }
@@ -1346,11 +1348,11 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Assessment"
+      "display": "COVID Assessment Default"
     },
     {
-      "intent": "COVID_LAB_ORDER_EMBED",
-      "display": "COVID Lab Order"
+      "intent": "COVID_LAB_ASSESSMENT_EMBED",
+      "display": "COVID Assessment Embed"
     }
   ],
   "processor": "EncounterFormProcessor",

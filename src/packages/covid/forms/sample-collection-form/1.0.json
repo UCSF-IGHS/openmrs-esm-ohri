@@ -1,11 +1,11 @@
 {
-  "name": "COVID Sample Collection Form",
+  "name": "Sample Collection",
   "pages": [
     {
-      "label": "COVID Sample Collection Form",
+      "label": "Sample Collection",
       "sections": [
         {
-          "label": "COVID Sample Collection Form",
+          "label": "Lab Order",
           "isExpanded": "true",
           "questions": [
             {
@@ -22,7 +22,7 @@
                   "intent": "*",
                   "required": "false",
                   "unspecified": "true",
-                  "read-only": "true",
+                  "readonly": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -55,14 +55,20 @@
                   "intent": "*",
                   "required": "false",
                   "unspecified": "true",
-                  "read-only": "true",
+                  "readonly": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
                   "validators": []
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "label": "Sample Collection",
+          "isExpanded": "true",
+          "questions": [
             {
               "label": "Date specimen collected",
               "type": "obs",
@@ -173,36 +179,6 @@
                         "value": "74964007"
                       }
                     ]
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
                   }
                 ]
               },
@@ -216,6 +192,37 @@
                     "hideWhenExpression": "false"
                   },
                   "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Other specimen type",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "group",
+                "concept": "d07aba2e-f37d-49dd-bb65-b27e8df80399"
+              },
+              "id": "otherSpecimenTypeGroup",
+              "questions": [
+                {
+                  "label": "Other specimen type",
+                  "id": "otherSpecimenType",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "type": "obs",
+                  "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('specimenType','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": []
+                    }
+                  ]
                 }
               ]
             },
