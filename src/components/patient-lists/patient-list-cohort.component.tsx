@@ -12,7 +12,7 @@ import { OverflowMenu, OverflowMenuItem, InlineLoading } from 'carbon-components
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
-import { getForm, filterFormByIntent } from '../../utils/forms-loader';
+import { getForm, applyFormIntent } from '../../utils/forms-loader';
 import styles from './patient-list-cohort.scss';
 
 export interface PatientListColumn {
@@ -224,7 +224,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
             <LaunchableFormMenuItem
               patientUuid={patientUuid}
               launchableForm={launchableForm}
-              form={filterFormByIntent(launchableForm.intent, form)}
+              form={applyFormIntent(launchableForm.intent, form)}
               encounterType={launchableForm.encounterType || associatedEncounterType}
               key={patientUuid}
             />
