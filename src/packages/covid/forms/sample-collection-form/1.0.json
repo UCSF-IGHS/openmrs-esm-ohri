@@ -1,11 +1,11 @@
 {
-  "name": "COVID Sample Collection Form",
+  "name": "COVID Sample Collection",
   "pages": [
     {
-      "label": "COVID Sample Collection Form",
+      "label": "COVID Sample Collection",
       "sections": [
         {
-          "label": "COVID Sample Collection Form",
+          "label": "COVID Sample Collection",
           "isExpanded": "true",
           "questions": [
             {

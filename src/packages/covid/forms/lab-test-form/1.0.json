@@ -1,11 +1,11 @@
 {
-  "name": "COVID Lab Test Form",
+  "name": "COVID Lab Test",
   "pages": [
     {
-      "label": "COVID Lab Test Form",
+      "label": "COVID Lab Test",
       "sections": [
         {
-          "label": "COVID Lab Test Form",
+          "label": "COVID Lab Test",
           "isExpanded": "true",
           "questions": [
             {
@@ -48,7 +48,7 @@
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
-                    "hideWhenExpression": "true"
+                    "hideWhenExpression": "false"
                   },
                   "validators": []
                 }
@@ -76,8 +76,8 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
+                  "required": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -98,7 +98,8 @@
         "package": "covid",
         "behaviours": [
           {
-            "intent": "Embed",
+            "intent": "*",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
             "read-only": "true"
           }
         ]
@@ -113,7 +114,8 @@
         "package": "covid",
         "behaviours": [
           {
-            "intent": "Embed",
+            "intent": "*",
+            "subform_intent": "COVID_LAB_CANCELLATION_EMBED",
             "read-only": "true"
           }
         ]
@@ -128,7 +130,8 @@
         "package": "covid",
         "behaviours": [
           {
-            "intent": "Embed",
+            "intent": "*",
+            "subform_intent": "COVID_LAB_RESULT_EMBED",
             "read-only": "true"
           }
         ]

@@ -1,8 +1,8 @@
 {
-  "name": "Lab Order Cancellation Form",
+  "name": "Lab Order Cancellation",
   "pages": [
     {
-      "label": "Lab Order Cancellation Form",
+      "label": "Lab Order Cancellation",
       "sections": [
         {
           "label": "Lab Order Cancellation",
