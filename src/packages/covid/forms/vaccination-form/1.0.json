@@ -58,6 +58,16 @@
                 ],
                 "answers": [
                   {
+                    "concept": "166660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "COVID-19 booster vaccination",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "166660"
+                      }
+                    ]
+                  },
+                  {
                     "concept": "166075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Second",
                     "conceptMappings": [
@@ -82,6 +92,40 @@
                       {
                         "type": "SNOMED-CT",
                         "value": "255216001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
                       }
                     ]
                   }
