@@ -20,6 +20,7 @@ import {
   covidSymptosConcept_UUID,
   covidPresentSymptonsName_UUID,
   covidPatientStatusConcept_UUID,
+  covidOutcome,
 } from '../../constants';
 
 interface CovidOverviewListProps {
@@ -72,29 +73,15 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'testDate',
-    header: 'Comorbidity',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID, false, true);
-    },
-  },
-  {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSARS_TestResultConcept_UUID);
-    },
-  },
-  {
     key: 'outcome',
-    header: 'Status',
+    header: 'Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPatientStatusConcept_UUID);
+      return getObsFromEncounter(encounter, covidOutcome);
     },
   },
   {
     key: 'actions',
-    header: 'Actions',
+    header: 'ActionsA',
     getValue: () => {},
   },
 ];
@@ -107,7 +94,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={covid_Assessment_EncounterUUID}
-      form={{ package: 'covid', name: 'covid_assessment' }}
+      form={{ package: 'covid', name: 'covid_assessment', view: 'covid_assessment_summary' }}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
