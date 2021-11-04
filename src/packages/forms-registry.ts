@@ -9,6 +9,7 @@ import clinical_visit_v_1_0 from './hiv/forms/care-and-treatment/clinical-visit/
 import lab_results_v_1_0 from './hiv/forms/care-and-treatment/lab-results/1.0.json';
 import covid_sample_collection_form_v_1_0 from './covid/forms/sample-collection-form/1.0.json';
 import covid_lab_order_cancellation_form_v_1_0 from './covid/forms/lab-order-cancellation/1.0.json';
+import covid_assessment_summary_v_1_0 from './covid/forms/assessment-summary/1.0.json';
 
 export default {
   hiv: {
@@ -36,9 +37,6 @@ export default {
     covid_outcome_tracking: {
       '1.0': covid_outcome_tracking_form_v_1_0,
     },
-    lab_test: {
-      '1.0': covid_lab_test_form_v_1_0,
-    },
     covid_vaccination: {
       '1.0': covid_vaccination_form_v_1_0,
     },
@@ -47,6 +45,9 @@ export default {
     },
     covid_lab_order_cancellation: {
       '1.0': covid_lab_order_cancellation_form_v_1_0,
+    },
+    covid_assessment_summary: {
+      '1.0': covid_assessment_summary_v_1_0,
     },
   },
 };
