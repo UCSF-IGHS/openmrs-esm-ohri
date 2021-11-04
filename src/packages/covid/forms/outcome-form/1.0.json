@@ -1,5 +1,5 @@
 {
-  "name": "COVID-19 Outcome tracking Form",
+  "name": "COVID Outcome",
   "pages": [
     {
       "label": "COVID Assessment",
@@ -196,7 +196,10 @@
                 },
                 {
                   "intent": "COVID_OUTCOME_EMBED",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
                 }
               ]
             }
