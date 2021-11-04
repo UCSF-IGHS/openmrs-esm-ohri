@@ -100,7 +100,7 @@
           {
             "intent": "*",
             "subform_intent": "COVID_LAB_ORDER_EMBED",
-            "read-only": "true"
+            "readonly": "true"
           }
         ]
       }
@@ -116,7 +116,7 @@
           {
             "intent": "*",
             "subform_intent": "COVID_LAB_CANCELLATION_EMBED",
-            "read-only": "true"
+            "readonly": "true"
           }
         ]
       }
@@ -132,7 +132,7 @@
           {
             "intent": "*",
             "subform_intent": "COVID_LAB_RESULT_EMBED",
-            "read-only": "true"
+            "readonly": "true"
           }
         ]
       }

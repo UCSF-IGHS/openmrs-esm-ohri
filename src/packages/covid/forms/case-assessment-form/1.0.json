@@ -1334,12 +1334,12 @@
           {
             "intent": "*",
             "subform_intent": "COVID_LAB_ORDER_EMBED",
-            "read-only": "false"
+            "readonly": "false"
           },
           {
             "intent": "COVID_LAB_ASSESSMENT_EMBED",
             "subform_intent": "COVID_LAB_ORDER_EMBED",
-            "read-only": "true"
+            "readonly": "true"
           }
         ]
       }

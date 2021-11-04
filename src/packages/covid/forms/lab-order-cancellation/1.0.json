@@ -28,7 +28,7 @@
                   "intent": "*",
                   "required": "false",
                   "unspecified": "true",
-                  "read-only": "true",
+                  "readonly": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -61,7 +61,7 @@
                   "intent": "*",
                   "required": "false",
                   "unspecified": "true",
-                  "read-only": "true",
+                  "readonly": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -105,6 +105,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
+                "defaultValue": "now()",
                 "concept": "05ec039d-2bcb-47e5-8165-65411295fc32",
                 "weeksList": "",
                 "conceptMappings": [
@@ -114,7 +115,6 @@
                   }
                 ]
               },
-              "defaultValue": "now()",
               "id": "cancellationDate",
               "behaviours": [
                 {

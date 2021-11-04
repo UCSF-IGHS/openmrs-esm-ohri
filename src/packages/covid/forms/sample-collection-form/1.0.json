@@ -22,7 +22,7 @@
                   "intent": "*",
                   "required": "false",
                   "unspecified": "true",
-                  "read-only": "true",
+                  "readonly": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -55,7 +55,7 @@
                   "intent": "*",
                   "required": "false",
                   "unspecified": "true",
-                  "read-only": "true",
+                  "readonly": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
