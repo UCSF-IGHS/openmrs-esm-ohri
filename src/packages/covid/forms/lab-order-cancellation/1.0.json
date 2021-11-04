@@ -266,7 +266,7 @@
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "true"
                   },
                   "validators": []
                 }
@@ -275,6 +275,12 @@
           ]
         }
       ]
+    }
+  ],
+  "availableIntents": [
+    {
+      "intent": "*",
+      "display": "COVID Lab Order Cancellation"
     }
   ],
   "processor": "EncounterFormProcessor",
