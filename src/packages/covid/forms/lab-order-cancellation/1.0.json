@@ -277,6 +277,12 @@
       ]
     }
   ],
+  "availableIntents": [
+    {
+      "intent": "*",
+      "display": "COVID Lab Order Cancellation"
+    }
+  ],
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
