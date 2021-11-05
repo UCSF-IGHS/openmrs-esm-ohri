@@ -20,6 +20,7 @@ import {
   covidSymptosConcept_UUID,
   covidPresentSymptonsName_UUID,
   covidPatientStatusConcept_UUID,
+  covidOutcome,
 } from '../../constants';
 
 interface CovidOverviewListProps {
@@ -72,29 +73,15 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'testDate',
-    header: 'Comorbidity',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID, false, true);
-    },
-  },
-  {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSARS_TestResultConcept_UUID);
-    },
-  },
-  {
     key: 'outcome',
-    header: 'Status',
+    header: 'Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPatientStatusConcept_UUID);
+      return getObsFromEncounter(encounter, covidOutcome);
     },
   },
   {
     key: 'actions',
-    header: 'Actions',
+    header: 'ActionsA',
     getValue: () => {},
   },
 ];

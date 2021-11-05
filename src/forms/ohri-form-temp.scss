@@ -1,0 +1,68 @@
+:global(.contextWorkspaceContainer) {
+  overflow-y: auto;
+}
+
+.ohriForm {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: scroll;
+}
+
+.ohriFormContainer {
+  display: -webkit-flex;
+  overscroll-behavior: contain;
+}
+
+.formContent {
+  height: 100vh;
+  margin: 0;
+  flex-basis: 65%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow: scroll; // scrolls whole page
+  overscroll-behavior: contain;
+  padding: 0 0 10rem 5px;
+}
+
+.ohriFormContainer :global(.bx--label) {
+  font-size: .875rem;
+}
+
+@media only screen and (max-width: 640px) {
+  //
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    //margin: 0;
+    //padding: 0 0 0 16px;
+    //flex-basis: 28%;
+    //flex-grow: 0.6;
+  }
+
+  .formContent {
+    //margin: 0;
+    //padding: 0 0 10rem 5px;
+    //flex-basis: 75%;
+    //flex-grow: 1;
+    //flex-shrink: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+
+  }
+
+  .formContent {
+  }
+}
+
+@media (max-width: 1440px) {
+  .sidebar {
+  }
+
+  .formContent {
+  }
+}
