@@ -40,9 +40,6 @@ export default {
     covid_outcome_tracking: {
       '1.0': covid_outcome_tracking_form_v_1_0,
     },
-    lab_test: {
-      '1.0': covid_lab_test_form_v_1_0,
-    },
     covid_vaccination: {
       '1.0': covid_vaccination_form_v_1_0,
     },
