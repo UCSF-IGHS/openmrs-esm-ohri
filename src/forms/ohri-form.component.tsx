@@ -99,36 +99,38 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           {!patient ? (
             <LoadingIcon />
           ) : (
-            <div className={styles.ohriFormContainer}>
-              <OHRIFormSidebar
-                scrollAblePages={scrollAblePages}
-                selectedPage={selectedPage}
-                mode={mode}
-                onCancel={onCancel}
-                handleClose={handleClose}
-                values={props.values}
-                setValues={props.setValues}
-                allowUnspecifiedAll={formJson.allowUnspecifiedAll}
-                defaultPage={formJson.defaultPage}
-              />
-              <div className={styles.formContent}>
-                <OHRIEncounterForm
-                  formJson={form}
-                  patient={patient}
-                  encounterDate={encDate}
-                  provider={currentProvider}
-                  location={location}
+            <>
+              <div className={styles.mainContainer}>
+                <OHRIFormSidebar
+                  scrollAblePages={scrollAblePages}
+                  selectedPage={selectedPage}
+                  mode={mode}
+                  onCancel={onCancel}
+                  handleClose={handleClose}
                   values={props.values}
-                  isCollapsed={collapsed}
-                  sessionMode={mode}
-                  scrollablePages={scrollAblePages}
-                  setInitialValues={setInitialValues}
-                  setScrollablePages={setScrollablePages}
-                  setFieldValue={props.setFieldValue}
-                  setSelectedPage={setSelectedPage}
+                  setValues={props.setValues}
+                  allowUnspecifiedAll={formJson.allowUnspecifiedAll}
+                  defaultPage={formJson.defaultPage}
                 />
+                <div className={styles.overflowContent}>
+                  <OHRIEncounterForm
+                    formJson={form}
+                    patient={patient}
+                    encounterDate={encDate}
+                    provider={currentProvider}
+                    location={location}
+                    values={props.values}
+                    isCollapsed={collapsed}
+                    sessionMode={mode}
+                    scrollablePages={scrollAblePages}
+                    setInitialValues={setInitialValues}
+                    setScrollablePages={setScrollablePages}
+                    setFieldValue={props.setFieldValue}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </div>
               </div>
-            </div>
+            </>
           )}
         </Form>
       )}
