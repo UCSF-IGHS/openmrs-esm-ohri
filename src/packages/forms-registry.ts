@@ -13,7 +13,6 @@ import covid_assessment_summary_v_1_0 from './covid/forms/assessment-summary/1.0
 import covid_lab_order_form_v_1_0 from './covid/forms/lab-order-form/1.0.json';
 import covid_lab_result_form_v_1_0 from './covid/forms/lab-result-form/1.0.json';
 import covid_outcome_form_v_1_0 from './covid/forms/outcome-form/1.0.json';
-import covid_case_form_v_1_0 from './covid/forms/case-form/1.0.json';
 
 export default {
   hiv: {
@@ -55,6 +54,7 @@ export default {
     },
     covid_assessment_summary: {
       '1.0': covid_assessment_summary_v_1_0,
+    },
     covid_lab_order: {
       '1.0': covid_lab_order_form_v_1_0,
     },
@@ -63,9 +63,6 @@ export default {
     },
     covid_outcome: {
       '1.0': covid_outcome_form_v_1_0,
-    },
-    covid_case: {
-      '1.0': covid_case_form_v_1_0,
-    },
+    }
   },
 };
