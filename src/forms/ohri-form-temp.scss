@@ -1,28 +1,26 @@
 :global(.contextWorkspaceContainer) {
-  overflow-y: auto;
+  //overflow-y: auto;
 }
 
 .ohriForm {
   height: 100%;
-  overflow-y: auto;
-  overflow-x: scroll;
+  overflow: hidden;
 }
 
 .ohriFormContainer {
   display: -webkit-flex;
-  overscroll-behavior: contain;
+  height: 90vh;
+  overflow-y: hidden;
 }
 
 .formContent {
-  height: 100vh;
   margin: 0;
   flex-basis: 65%;
   flex-grow: 1;
   flex-shrink: 1;
   position: relative;
-  overflow: scroll; // scrolls whole page
-  overscroll-behavior: contain;
-  padding: 0 0 10rem 5px;
+  overflow-y: auto;
+  //padding: 0 0 15rem 5px;
 }
 
 .ohriFormContainer :global(.bx--label) {
@@ -35,18 +33,12 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    //margin: 0;
-    //padding: 0 0 0 16px;
-    //flex-basis: 28%;
-    //flex-grow: 0.6;
   }
 
   .formContent {
-    //margin: 0;
-    //padding: 0 0 10rem 5px;
-    //flex-basis: 75%;
-    //flex-grow: 1;
-    //flex-shrink: 1;
+  }
+  .ohriFormContainer {
+    height: 100vh;
   }
 }
 
