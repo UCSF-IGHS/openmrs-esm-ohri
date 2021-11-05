@@ -2,9 +2,8 @@
 
 .sidebar {
   width: 12rem;
-  //margin-right: 1.5rem;
-  margin: 1px 0 15px; //margin-right 6px
-  padding: 0 0 109px;
+  //padding: 0 0 109px;
+  min-height: 8rem;
   overscroll-behavior: contain;
   margin: 1px 13px 15px 0;
 }
