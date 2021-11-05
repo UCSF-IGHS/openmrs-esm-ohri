@@ -89,11 +89,15 @@ export function preprocessForm(form: OHRIFormSchema, targetIntent: string): OHRI
   // load subforms
   form.pages.forEach(page => {
     if (page.isSubform && page.subform?.name && page.subform.package) {
-      const subform = getForm(page.subform.package, page.subform.name);
-      if (!subform) {
-        console.warn(`Form with name "${page.subform.package}/${page.subform.name}" was not found in registry.`);
+      try {
+        const subform = getForm(page.subform.package, page.subform.name);
+        if (!subform) {
+          console.error(`Form with name "${page.subform.package}/${page.subform.name}" was not found in registry.`);
+        }
+        page.subform.form = subform;
+      } catch (error) {
+        console.error(error);
       }
-      page.subform.form = subform;
     }
   });
   // apply intent

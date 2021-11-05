@@ -1,6 +1,5 @@
 import { openmrsObservableFetch } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { encounterRepresentation } from '../../../constants';
 import { ConceptFalse, ConceptTrue, HTSEncounterType } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
@@ -15,8 +14,8 @@ import {
 } from '../../types';
 import { cascadeVisibityToChildFields } from '../../utils/ohri-form-helper';
 import { isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
-import styles from '../../ohri-form.component.scss';
 import OHRIFormPage from '../page/ohri-form-page';
+import { InstantEffect } from '../../utils/instant-effect';
 
 interface OHRIEncounterFormProps {
   formJson: OHRIFormSchema;
@@ -27,9 +26,9 @@ interface OHRIEncounterFormProps {
   values: Record<string, any>;
   isCollapsed: boolean;
   sessionMode: SessionMode;
-  scrollablePages: Array<OHRIFormPageProps>;
+  scrollablePages: Set<OHRIFormPageProps>;
   setInitialValues: (values: Record<string, any>) => void;
-  setSrollablePages: (pages: Array<OHRIFormPageProps>) => void;
+  setSrollablePages: (pages: Set<OHRIFormPageProps>) => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   setSelectedPage: (page: string) => void;
 }
@@ -54,10 +53,13 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const [encounter, setEncounter] = useState<EncounterDescriptor>(null);
   const [form, setForm] = useState<OHRIFormSchema>(formJson);
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
-  const { t } = useTranslation();
 
-  useEffect(() => {
-    setSrollablePages([...scrollablePages, ...formJson.pages]);
+  const addScrollablePages = useCallback(() => {
+    formJson.pages.forEach(page => {
+      if (!page.isSubform) {
+        scrollablePages.add(page);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -384,56 +386,55 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   };
 
   return (
-    <div className={styles.overflowContent}>
-      <OHRIFormContext.Provider
-        value={{
-          values: values,
-          setFieldValue: setFieldValue,
-          setEncounterLocation: setEncounterLocation,
-          setObsGroupsToVoid: setObsGroupsToVoid,
-          obsGroupsToVoid: obsGroupsToVoid,
-          fields: fields,
-          encounterContext: {
-            patient: patient,
-            encounter: encounter,
-            location: location,
-            sessionMode: sessionMode || (form?.encounter ? 'edit' : 'enter'),
-            date: encounterDate,
-          },
-        }}>
-        {form.pages.map((page, index) => {
-          if (page.isHidden) {
-            return null;
-          }
-          if (page.isSubform && page.subform?.form) {
-            return (
-              <OHRIEncounterForm
-                formJson={page.subform?.form}
-                patient={patient}
-                encounterDate={encounterDate}
-                provider={provider}
-                location={location}
-                values={values}
-                isCollapsed={isCollapsed}
-                sessionMode={sessionMode}
-                scrollablePages={scrollablePages}
-                setInitialValues={setInitialValues}
-                setSrollablePages={setSrollablePages}
-                setFieldValue={setFieldValue}
-                setSelectedPage={setSelectedPage}
-              />
-            );
-          }
+    <OHRIFormContext.Provider
+      value={{
+        values: values,
+        setFieldValue: setFieldValue,
+        setEncounterLocation: setEncounterLocation,
+        setObsGroupsToVoid: setObsGroupsToVoid,
+        obsGroupsToVoid: obsGroupsToVoid,
+        fields: fields,
+        encounterContext: {
+          patient: patient,
+          encounter: encounter,
+          location: location,
+          sessionMode: sessionMode || (form?.encounter ? 'edit' : 'enter'),
+          date: encounterDate,
+        },
+      }}>
+      <InstantEffect effect={addScrollablePages} />
+      {form.pages.map((page, index) => {
+        if (page.isHidden) {
+          return null;
+        }
+        if (page.isSubform && page.subform?.form) {
           return (
-            <OHRIFormPage
-              page={page}
-              onFieldChange={onFieldChange}
-              setSelectedPage={setSelectedPage}
+            <OHRIEncounterForm
+              formJson={page.subform?.form}
+              patient={patient}
+              encounterDate={encounterDate}
+              provider={provider}
+              location={location}
+              values={values}
               isCollapsed={isCollapsed}
+              sessionMode={sessionMode}
+              scrollablePages={scrollablePages}
+              setInitialValues={setInitialValues}
+              setSrollablePages={setSrollablePages}
+              setFieldValue={setFieldValue}
+              setSelectedPage={setSelectedPage}
             />
           );
-        })}
-      </OHRIFormContext.Provider>
-    </div>
+        }
+        return (
+          <OHRIFormPage
+            page={page}
+            onFieldChange={onFieldChange}
+            setSelectedPage={setSelectedPage}
+            isCollapsed={isCollapsed}
+          />
+        );
+      })}
+    </OHRIFormContext.Provider>
   );
 };

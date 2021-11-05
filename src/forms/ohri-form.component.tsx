@@ -13,13 +13,8 @@ import {
 } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
 import LoadingIcon from '../components/loading/loading.component';
-import { OHRIFormSchema, OHRIFormField, SessionMode } from './types';
+import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
-import OHRIFormPage from './components/page/ohri-form-page';
-import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
-import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from './validators/ohri-form-validator';
-import { encounterRepresentation } from '../constants';
-import { cascadeVisibityToChildFields } from './utils/ohri-form-helper';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
 
 interface OHRIFormProps {
@@ -47,7 +42,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const session = useSessionUser();
   const [initialValues, setInitialValues] = useState({});
   const encDate = new Date();
-  const [scrollAblePages, setScrollablePages] = useState([]);
+  const [scrollAblePages, setScrollablePages] = useState(new Set<OHRIFormPageProps>());
   const [selectedPage, setSelectedPage] = useState('');
   const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
@@ -117,21 +112,23 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                   allowUnspecifiedAll={formJson.allowUnspecifiedAll}
                   defaultPage={formJson.defaultPage}
                 />
-                <OHRIEncounterForm
-                  formJson={form}
-                  patient={patient}
-                  encounterDate={encDate}
-                  provider={currentProvider}
-                  location={location}
-                  values={props.values}
-                  isCollapsed={collapsed}
-                  sessionMode={mode}
-                  scrollablePages={scrollAblePages}
-                  setInitialValues={setInitialValues}
-                  setSrollablePages={setScrollablePages}
-                  setFieldValue={props.setFieldValue}
-                  setSelectedPage={setSelectedPage}
-                />
+                <div className={styles.overflowContent}>
+                  <OHRIEncounterForm
+                    formJson={form}
+                    patient={patient}
+                    encounterDate={encDate}
+                    provider={currentProvider}
+                    location={location}
+                    values={props.values}
+                    isCollapsed={collapsed}
+                    sessionMode={mode}
+                    scrollablePages={scrollAblePages}
+                    setInitialValues={setInitialValues}
+                    setSrollablePages={setScrollablePages}
+                    setFieldValue={props.setFieldValue}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </div>
               </div>
             </>
           )}
