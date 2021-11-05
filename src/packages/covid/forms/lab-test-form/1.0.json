@@ -94,7 +94,7 @@
       "sections": [],
       "isSubform": "true",
       "subform": {
-        "name": "COVID Lab Order Form",
+        "name": "covid_lab_order",
         "package": "covid",
         "behaviours": [
           {
@@ -110,7 +110,7 @@
       "sections": [],
       "isSubform": "true",
       "subform": {
-        "name": "COVID Lab Cancellation Form",
+        "name": "covid_lab_order_cancellation",
         "package": "covid",
         "behaviours": [
           {
@@ -126,7 +126,7 @@
       "sections": [],
       "isSubform": "true",
       "subform": {
-        "name": "COVID Lab Result Form",
+        "name": "covid_lab_result",
         "package": "covid",
         "behaviours": [
           {
@@ -141,7 +141,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Lab Order"
+      "display": "COVID Lab Test"
     }
   ],
   "processor": "EncounterFormProcessor",
