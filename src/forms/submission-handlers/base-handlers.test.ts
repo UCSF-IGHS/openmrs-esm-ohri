@@ -765,23 +765,23 @@ describe('ObsSubmissionHandler - getInitialValue', () => {
         rendering: 'fixed-value',
         concept: '13abe5c9-6de2-4970-b348-36d352ee8eeb',
       },
-      // behaviours: [
-      //   {
-      //     intent: 'HTS_RETROSPECTIVE',
-      //     required: 'true',
-      //     unspecified: 'true',
-      //     value: 'Retrospective',
-      //   },
-      //   {
-      //     intent: 'HTS_PRETEST',
-      //     required: 'true',
-      //     value: 'Community',
-      //   },
-      //   {
-      //     intent: '*',
-      //     required: false,
-      //   },
-      // ],
+      behaviours: [
+        {
+          intent: 'HTS_RETROSPECTIVE',
+          required: 'true',
+          unspecified: 'true',
+          value: 'Retrospective',
+        },
+        {
+          intent: 'HTS_PRETEST',
+          required: 'true',
+          value: 'Community',
+        },
+        {
+          intent: '*',
+          required: false,
+        },
+      ],
       id: 'testingLocation',
     };
     encounterContext.encounter['obs'].push({

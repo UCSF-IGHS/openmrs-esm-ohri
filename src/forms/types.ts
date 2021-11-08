@@ -69,6 +69,7 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
+  behaviours?: Array<Record<string, any>>;
 }
 
 export interface OHRIFormFieldProps {

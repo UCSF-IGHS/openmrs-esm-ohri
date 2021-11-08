@@ -104,7 +104,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container"> 
+      <Tabs type="container">
         <Tab label="Lab Tests">
           <EncounterList
             patientUuid={patientUuid}
