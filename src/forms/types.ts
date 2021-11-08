@@ -114,4 +114,5 @@ export type RenderType =
   | 'content-switcher'
   | 'encounter-location'
   | 'textarea'
-  | 'toggle';
+  | 'toggle'
+  | 'fixed-value';

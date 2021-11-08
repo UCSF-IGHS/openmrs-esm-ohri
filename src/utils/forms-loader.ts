@@ -83,7 +83,7 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @param {object} originalJson The original JSON form schema object
  * @returns {object} The form json
  */
-export function filterFormByIntent(intent, originalJson) {
+export function applyFormIntent(intent, originalJson) {
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
@@ -131,6 +131,7 @@ function updateQuestionRequiredBehaviour(question, intent) {
     question.unspecified = requiredIntentBehaviour.unspecified || undefined;
     question.hide = requiredIntentBehaviour.hide || undefined;
     question.validators = requiredIntentBehaviour.validators || undefined;
+    question.value = requiredIntentBehaviour.value || undefined;
   } else {
     // Attempt to retrieve default behaviours
     const defaultIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === '*');
@@ -139,6 +140,7 @@ function updateQuestionRequiredBehaviour(question, intent) {
       question.unspecified = defaultIntentBehaviour.unspecified || undefined;
       question.hide = defaultIntentBehaviour.hide || undefined;
       question.validators = defaultIntentBehaviour.validators || undefined;
+      question.value = defaultIntentBehaviour.value || undefined;
     }
   }
 
