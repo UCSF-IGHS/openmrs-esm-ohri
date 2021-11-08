@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './ohri-form.component.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -27,6 +27,11 @@ interface OHRIFormProps {
   patientUUID?: string;
 }
 
+export interface FormSubmissionHandler {
+  validate: (values) => boolean;
+  submit: (values) => Promise<any>;
+}
+
 const OHRIForm: React.FC<OHRIFormProps> = ({
   formJson,
   encounterUuid,
@@ -47,6 +52,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
   const form = useMemo(() => JSON.parse(JSON.stringify(formJson)), []);
+  const handlers = new Map<string, FormSubmissionHandler>();
 
   useEffect(() => {
     const extDetails = {
@@ -83,7 +89,40 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     }
   }, [session]);
 
-  const handleFormSubmit = (values: Record<string, any>) => {};
+  const handleFormSubmit = (values: Record<string, any>) => {
+    // validate form and it's suforms
+    let isSubmitable = true;
+    handlers.forEach(handler => {
+      const result = handler?.validate?.(values);
+      if (!result) {
+        isSubmitable = false;
+      }
+    });
+    // do submit
+    if (isSubmitable) {
+      const submissions = [...handlers].map(([key, handler]) => {
+        return handler?.submit?.(values);
+      });
+      Promise.all(submissions).then(results => {
+        if (mode == 'edit') {
+          showToast({
+            description: t('updatedRecordDescription', 'The patient encounter was updated'),
+            title: t('updatedRecord', 'Record updated'),
+            kind: 'success',
+            critical: true,
+          });
+        } else {
+          showToast({
+            description: t('createdRecordDescription', 'A new encounter was created'),
+            title: t('createdRecord', 'Record created'),
+            kind: 'success',
+            critical: true,
+          });
+          onSubmit?.();
+        }
+      });
+    }
+  };
 
   return (
     <Formik
@@ -123,10 +162,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     isCollapsed={collapsed}
                     sessionMode={mode}
                     scrollablePages={scrollAblePages}
-                    setInitialValues={setInitialValues}
+                    setAllInitialValues={setInitialValues}
+                    allInitialValues={initialValues}
                     setScrollablePages={setScrollablePages}
                     setFieldValue={props.setFieldValue}
                     setSelectedPage={setSelectedPage}
+                    handlers={handlers}
                   />
                 </div>
               </div>
