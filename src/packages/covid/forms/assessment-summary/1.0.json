@@ -479,6 +479,6 @@
   ],
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
-  "referencedForms": [  ],
+  "referencedForms": [],
   "allowUnspecifiedAll": true
 }

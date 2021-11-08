@@ -75,7 +75,7 @@ To verify that all of the tests run:
 ```sh
 npm test
 ```
-
+ 
 *Note: Run `npm i` before running tests for the first time.*
 
 ## Deployment

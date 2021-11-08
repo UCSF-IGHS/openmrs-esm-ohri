@@ -1,84 +1,31 @@
 {
-  "name": "COVID-19 Vaccination Form",
+  "name": "COVID Vaccination Form",
   "pages": [
     {
-      "label": "COVID-19 Vaccination",
+      "label": "COVID Vaccination",
       "sections": [
         {
-          "label": "COVID-19 Vaccination",
+          "label": "COVID Vaccination",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Has the client been previously vaccinated for COVID-19",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "128731bf-bbff-40c3-a6c9-0bf4c86182ac",
-                "answers": [
-                  {
-                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
-                    "label": "Fully Vaccinated",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
-                    "label": "Partially Vaccinated",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "ce649506-e95e-4a5d-b731-43c8ac452b86",
-                    "label": "Not Vaccinated",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "previouslyVaccinated",
-              "behaviours": [
-                {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Date COVID-19 Vaccination was administered",
+              "label": "Vaccination Date",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "1410"
+                  }
+                ],
                 "weeksList": ""
               },
               "id": "vaccinationDate",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -98,19 +45,25 @@
               ]
             },
             {
-              "label": "What dose is being administered?",
+              "label": "Dose",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "97bf47f9-0ba7-4d00-99bd-8939cd586072",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "COVIDDose"
+                  }
+                ],
                 "answers": [
                   {
-                    "concept": "166074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "First",
+                    "concept": "166660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "COVID-19 booster vaccination",
                     "conceptMappings": [
                       {
-                        "type": "SNOMED-CT",
-                        "value": "255216001"
+                        "type": "CIEL",
+                        "value": "166660"
                       }
                     ]
                   },
@@ -119,8 +72,60 @@
                     "label": "Second",
                     "conceptMappings": [
                       {
+                        "type": "CIEL",
+                        "value": "166075"
+                      },
+                      {
                         "type": "SNOMED-CT",
                         "value": "81170007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "First",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "166074"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255216001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
                       }
                     ]
                   }
@@ -129,7 +134,7 @@
               "id": "vaccineDose",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -140,227 +145,430 @@
               ]
             },
             {
-              "label": "COVID Vaccine Administered (1st dose)",
+              "label": "What vaccine was administered?",
               "type": "obs",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "a31d1148-bbcc-4ad6-a015-8359d66bcfdc",
+                "rendering": "radio",
+                "concept": "e41fbe17-4aee-4a44-950b-6676d6e0ede2",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "COIVD-19Vax"
+                  }
+                ],
                 "answers": [
                   {
-                    "concept": "166388AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Bharat Biotech Covaxin  COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "165923AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "COVID-19 convalescent plasma",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "165923"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "50863008"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166381AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "CanSinoBIO Convidicea COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Moderna COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "MOD"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM0GQ8"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "2470232"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166154"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119349007"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "207"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166387AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Chumakov Center CoviVac COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166155AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Pfizer-BioNtech COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "PFR"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM0GQ8"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "8468230"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "208"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119349007"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166155"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st CureVac CVnCoV COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166156AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Astrazeneca COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "210"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "ASZ"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "2471010"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166156"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Pfizer-BioNTech COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166157AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Gamaleya Sputnik v COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "166157"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "213"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Oxford University-AstraZeneca COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sinovac COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM1NL1"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "213"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166249"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Gamaleya Sputnik V COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166355AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "JNJ-78436735 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "212"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "JSN"
+                      },
+                      {
+                        "type": "RxNORM",
+                        "value": "2479830"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166355"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166251AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Sinopharm BBIBP-CorV COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166378AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Cansino Biologics Convidicea COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166378"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166392AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Novavax COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166386AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chumakov Center Kovivac COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM9QW8"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166386"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sinopharm BBIBP-CorV COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166389AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Bharat Biotech Covaxin COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM1NL1"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166389"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166394AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sinopharm-Wuhan COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166390AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Novavax NVX-COV2373 COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM5JC5"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "211"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166390"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "836369007"
+                      },
+                      {
+                        "type": "MVX",
+                        "value": "NVX"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166385AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Vector Institute EpiVacCorona COVID-19 vaccine",
-                    "conceptMappings": []
+                    "concept": "166474AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "CureVac CVnCoV COVID-19 vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-11-WHO",
+                        "value": "XM0GQ8"
+                      },
+                      {
+                        "type": "HL-7-CVX",
+                        "value": "213"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "1119305005"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "166474"
+                      }
+                    ]
                   },
                   {
-                    "concept": "166142AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "1st Moderna COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sinovac CoronaVac COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Janssen COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "0cc868bd-e9dd-4b59-b278-f923afe22d82",
-                    "label": "Other vaccine manufacturer (1st dose)",
-                    "conceptMappings": []
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other Vaccine",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
                   }
                 ]
               },
-              "id": "firstDoseVaccineAdministered",
+              "id": "vaccineAdministered",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('vaccineDose','166074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    "hideWhenExpression": "false"
                   },
                   "validators": []
                 }
               ]
             },
             {
-              "label": "Other vaccine manufacturer (1st dose)",
+              "label": "Other vaccine",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "0cc868bd-e9dd-4b59-b278-f923afe22d82"
+                "rendering": "textarea",
+                "concept": "0cc868bd-e9dd-4b59-b278-f923afe22d82",
+                "rows": "5"
               },
-              "id": "otherFirstDoseVaccineManufacturer",
+              "id": "otherVaccine",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('firstDoseVaccineAdministered','0cc868bd-e9dd-4b59-b278-f923afe22d82')"
+                    "hideWhenExpression": "!includes('vaccineAdministered','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
               ]
             },
             {
-              "label": "COVID Vaccine administered (2nd dose)",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "fc33cb72-4d15-4637-a731-7fa3189ce388",
-                "answers": [
-                  {
-                    "concept": "166477AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd CureVac CVnCoV COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166393AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Novavax COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166252AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd  Sinopharm BBIBP-CorV COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Gamaleya Sputnik V COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Oxford University-AstraZeneca Covishield vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166145AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Pfizer-BioNTech COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "2nd Moderna COVID-19 vaccine",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "a900f2c7-8922-4820-b672-676dc58dd3e9",
-                    "label": "Other vaccine manufacturer (2nd dose)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "secondDoseVaccineAdministered",
-              "behaviours": [
-                {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "!includes('vaccineDose','166075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Other vaccine manufacturer (2nd dose)",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "a900f2c7-8922-4820-b672-676dc58dd3e9"
-              },
-              "id": "otherSecondDoseVaccineManufacturer",
-              "behaviours": [
-                {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "!includes('secondDoseVaccineAdministered','a900f2c7-8922-4820-b672-676dc58dd3e9')"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "What is the vaccine's expiration date?",
+              "label": "Vaccine expiration date",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": "",
                 "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "162502"
+                  },
                   {
                     "type": "SNOMED-CT",
                     "value": "362981000"
                   }
-                ],
-                "weeksList": ""
+                ]
               },
               "id": "vaccineExpirationDate",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -376,16 +584,22 @@
               ]
             },
             {
-              "label": "What is the vaccine's lot number?",
+              "label": "Vaccine lot number",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "1420AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "1420AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "1420"
+                  }
+                ]
               },
               "id": "vaccineLotNumber",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -396,7 +610,7 @@
               ]
             },
             {
-              "label": "What is the date of the next vaccine administration",
+              "label": "Date of the next Vaccination",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -420,15 +634,19 @@
                     "value": "5096"
                   },
                   {
+                    "type": "CIEL",
+                    "value": "5096"
+                  },
+                  {
                     "type": "SNOMED-CT",
                     "value": "406543005"
                   }
                 ]
               },
-              "id": "dateOfNextVaccination",
+              "id": "nextVaccineDate",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -444,34 +662,33 @@
               ]
             },
             {
-              "label": "Date vaccination schedule completed",
+              "label": "Notes",
               "type": "obs",
               "questionOptions": {
-                "rendering": "date",
-                "concept": "162585AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "5",
                 "conceptMappings": [
                   {
-                    "type": "SNOMED-CT",
-                    "value": "171258008"
+                    "type": "LOINC",
+                    "value": "48767-8"
+                  },
+                  {
+                    "type": "CIEL",
+                    "value": "161011"
                   }
                 ]
               },
-              "id": "dateOfVaccineCompletion",
+              "id": "vaccinationNotes",
               "behaviours": [
                 {
-                  "intent": "COVID_VACCINATION_RETROSPECTIVE",
-                  "required": "true",
+                  "intent": "*",
+                  "required": "false",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             }
@@ -482,8 +699,8 @@
   ],
   "availableIntents": [
     {
-      "intent": "COVID_VACCINATION_RETROSPECTIVE",
-      "display": "COVID Vaccination Retrospective"
+      "intent": "*",
+      "display": "COVID Vaccination"
     }
   ],
   "processor": "EncounterFormProcessor",

@@ -5,10 +5,8 @@ import { Tabs, Tab } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 
 import {
-  covidRapidTestResultDate_UUID,
+  covidLabOrderDate_UUID,
   covidReasonsForTestingConcep_UUID,
-  covidSARS_TestResultConcept_UUID,
-  covidSpecimentTestDate_UUID,
   covidTestResultConcept_UUID,
   covidTestResultUUID,
   covidTestStatusConcept_UUID,
@@ -56,17 +54,17 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
+    key: 'orderDate',
+    header: 'Date of Order',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
+    },
+  },
+  {
     key: 'reasonsForTesting',
     header: 'Reason for testing',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
-    },
-  },
-  {
-    key: 'testDate',
-    header: 'Test Date',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
     },
   },
   {
@@ -84,6 +82,13 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
+    key: 'labStatus',
+    header: 'Status',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+    },
+  },
+  {
     key: 'actions',
     header: 'Actions',
     getValue: () => {},
@@ -92,15 +97,15 @@ const columns: EncounterListColumn[] = [
 
 const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('covidLabResults', 'Lab Results');
-  const displayText = t('covidLabResults', 'Lab Results');
+  const headerTitle = t('covidLabResults', 'Lab Tests');
+  const displayText = t('covidLabResults', 'Lab Tests');
   const headerTitlePending = t('covidLabResults', 'Pending Lab Orders');
   const displayTextPending = t('covidLabResults', 'Pending Lab Orders');
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container">
-        <Tab label="Lab results">
+      <Tabs type="container"> 
+        <Tab label="Lab Tests">
           <EncounterList
             patientUuid={patientUuid}
             encounterUuid={covid_Assessment_EncounterUUID}
@@ -109,7 +114,6 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             description={displayText}
             headerTitle={headerTitle}
             dropdownText="Add"
-            hideFormLauncher
           />
         </Tab>
         <Tab label="Pending Lab Orders">
