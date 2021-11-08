@@ -71,6 +71,7 @@ function OHRIFormSidebar({
               className={joinWord(page.label) === selectedPage ? styles.sidebarSectionActive : styles.sidebarSection}
               key={index}
               onClick={() => handleClick(page.label)}>
+              {/* eslint-disable-next-line no-console */}
               <div className={styles.sidebarSectionLink}>{page.label}</div>
             </div>
           )
