@@ -28,7 +28,7 @@ interface OHRIEncounterFormProps {
   sessionMode: SessionMode;
   scrollablePages: Set<OHRIFormPageProps>;
   setInitialValues: (values: Record<string, any>) => void;
-  setSrollablePages: (pages: Set<OHRIFormPageProps>) => void;
+  setScrollablePages: (pages: Set<OHRIFormPageProps>) => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   setSelectedPage: (page: string) => void;
 }
@@ -43,7 +43,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   isCollapsed,
   sessionMode,
   scrollablePages,
-  setSrollablePages,
+  setScrollablePages,
   setFieldValue,
   setSelectedPage,
 }) => {
@@ -420,7 +420,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
               sessionMode={sessionMode}
               scrollablePages={scrollablePages}
               setInitialValues={setInitialValues}
-              setSrollablePages={setSrollablePages}
+              setScrollablePages={setScrollablePages}
               setFieldValue={setFieldValue}
               setSelectedPage={setSelectedPage}
             />
