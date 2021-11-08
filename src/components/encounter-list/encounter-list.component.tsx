@@ -24,7 +24,7 @@ export interface EncounterListColumn {
 export interface EncounterListProps {
   patientUuid: string;
   encounterUuid: string;
-  form?: { package: string; name: string };
+  form?: { package: string; name: string; view?: string };
   columns: Array<any>;
   headerTitle: string;
   description: string;
@@ -85,7 +85,11 @@ const EncounterList: React.FC<EncounterListProps> = ({
     launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
   };
   const viewEncounter = encounterUuid => {
-    launchFormInViewMode(encounterForm, encounterUuid, forceComponentUpdate);
+    launchFormInViewMode(
+      form.view ? getForm(form.package, form.view) : encounterForm,
+      encounterUuid,
+      forceComponentUpdate,
+    );
   };
 
   const headers = useMemo(() => {
