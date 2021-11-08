@@ -1,7 +1,7 @@
 import { openmrsObservableFetch } from '@openmrs/esm-framework';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { encounterRepresentation } from '../../../constants';
-import { ConceptFalse, ConceptTrue, HTSEncounterType } from '../../constants';
+import { ConceptFalse, ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
 import { saveEncounter } from '../../ohri-form.resource';
 import { getHandler } from '../../registry/registry';
@@ -362,7 +362,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         patient: patient.id,
         encounterDatetime: encounterDate,
         location: encounterLocation.uuid,
-        encounterType: formJson.encounterType || HTSEncounterType,
+        encounterType: formJson.encounterType,
         encounterProviders: [
           {
             provider: provider,
@@ -373,8 +373,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       };
     }
     const ac = new AbortController();
-    // return saveEncounter(ac, encounterForSubmission, encounter?.uuid);
-    return Promise.resolve(encounterForSubmission);
+    return saveEncounter(ac, encounterForSubmission, encounter?.uuid);
   };
 
   const onFieldChange = (fieldName: string, value: any) => {
