@@ -1,7 +1,7 @@
 import { openmrsObservableFetch } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useState } from 'react';
 import { encounterRepresentation } from '../../../constants';
-import { ConceptFalse, ConceptTrue, HTSEncounterType } from '../../constants';
+import { ConceptFalse, ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
 import { saveEncounter } from '../../ohri-form.resource';
 import { getHandler } from '../../registry/registry';
@@ -16,6 +16,7 @@ import { cascadeVisibityToChildFields } from '../../utils/ohri-form-helper';
 import { isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
+import { FormSubmissionHandler } from '../../ohri-form.component';
 
 interface OHRIEncounterFormProps {
   formJson: OHRIFormSchema;
@@ -27,7 +28,9 @@ interface OHRIEncounterFormProps {
   isCollapsed: boolean;
   sessionMode: SessionMode;
   scrollablePages: Set<OHRIFormPageProps>;
-  setInitialValues: (values: Record<string, any>) => void;
+  handlers: Map<string, FormSubmissionHandler>;
+  allInitialValues: Record<string, any>;
+  setAllInitialValues: (values: Record<string, any>) => void;
   setScrollablePages: (pages: Set<OHRIFormPageProps>) => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   setSelectedPage: (page: string) => void;
@@ -46,13 +49,16 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   setScrollablePages,
   setFieldValue,
   setSelectedPage,
+  handlers,
+  allInitialValues,
+  setAllInitialValues,
 }) => {
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
-  const [encounterLocation, setEncounterLocation] = useState(location);
-  const [initialValues, setInitialValues] = useState({});
+  const [encounterLocation, setEncounterLocation] = useState(null);
   const [encounter, setEncounter] = useState<EncounterDescriptor>(null);
   const [form, setForm] = useState<OHRIFormSchema>(formJson);
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
+  const [formInitialValues, setFormInitialValues] = useState({});
 
   const addScrollablePages = useCallback(() => {
     formJson.pages.forEach(page => {
@@ -61,6 +67,12 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (!encounterLocation) {
+      setEncounterLocation(location);
+    }
+  }, [location]);
 
   useEffect(() => {
     const allFormFields: Array<OHRIFormField> = [];
@@ -94,6 +106,8 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       allFormFields.forEach(field => {
         if (field.questionOptions.rendering == 'checkbox') {
           tempInitVals[field.id] = [];
+        } else if (field.questionOptions.rendering == 'toggle') {
+          tempInitVals[field.id] = false;
         } else {
           tempInitVals[field.id] = '';
         }
@@ -121,7 +135,8 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       }
     });
     setForm(form);
-    setInitialValues(tempInitVals);
+    setFormInitialValues(tempInitVals);
+    setAllInitialValues({ ...allInitialValues, ...tempInitVals });
   }, [encounter]);
 
   useEffect(() => {
@@ -151,7 +166,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
 
     function isEmpty(value) {
       if (allFieldsKeys.includes(value)) {
-        return initialVals ? isValueEmpty(initialVals[value]) : isValueEmpty(initialValues[value]);
+        return initialVals ? isValueEmpty(initialVals[value]) : isValueEmpty(formInitialValues[value]);
       }
       return isValueEmpty(value);
     }
@@ -163,7 +178,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
           determinant.fieldDependants = new Set();
         }
         determinant.fieldDependants.add(field.id);
-        const initValues = initialVals || initialValues;
+        const initValues = initialVals || formInitialValues;
         const valueArray = determinantValue || initValues[questionId];
         return valueArray?.includes(value);
       }
@@ -194,7 +209,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
           }
           // prep eval variables
           if (determinantValue == undefined) {
-            determinantValue = initialVals ? initialVals[part] || null : initialValues[part] || null;
+            determinantValue = initialVals ? initialVals[part] || null : formInitialValues[part] || null;
             if (determinant.questionOptions.rendering == 'toggle') {
               determinantValue = determinantValue ? ConceptTrue : ConceptFalse;
             }
@@ -264,28 +279,31 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     }
   }, []);
 
+  const validate = useCallback(
+    values => {
+      let formHasErrors = false;
+      // handle field validation
+      fields
+        .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden)
+        .filter(field => field['submission']?.unspecified != true)
+        .forEach(field => {
+          const errors = OHRIFieldValidator.validate(field, values[field.id]);
+          if (errors.length) {
+            field['submission'] = {
+              ...field['submission'],
+              errors: errors,
+            };
+            formHasErrors = true;
+            return;
+          }
+        });
+      return !formHasErrors;
+    },
+    [fields],
+  );
+
   const handleFormSubmit = (values: Record<string, any>) => {
     const obsForSubmission = [];
-    let formHasErrors = false;
-    // handle field validation
-    fields
-      .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden)
-      .filter(field => field['submission']?.unspecified != true)
-      .forEach(field => {
-        const errors = OHRIFieldValidator.validate(field, values[field.id]);
-        if (errors.length) {
-          field['submission'] = {
-            ...field['submission'],
-            errors: errors,
-          };
-          formHasErrors = true;
-          return;
-        }
-      });
-    if (formHasErrors) {
-      return;
-    }
-    // collect observations
     fields
       .filter(field => field.value || field.type == 'obsGroup') // filter out fields with empty values except groups
       .filter(field => !field.isParentHidden && !field.isHidden && (field.type == 'obs' || field.type == 'obsGroup'))
@@ -344,7 +362,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         patient: patient.id,
         encounterDatetime: encounterDate,
         location: encounterLocation.uuid,
-        encounterType: formJson.encounterType || HTSEncounterType,
+        encounterType: formJson.encounterType,
         encounterProviders: [
           {
             provider: provider,
@@ -385,6 +403,9 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     }
   };
 
+  // set handler
+  handlers.set(form.name, { validate: validate, submit: handleFormSubmit });
+
   return (
     <OHRIFormContext.Provider
       value={{
@@ -419,10 +440,12 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
               isCollapsed={isCollapsed}
               sessionMode={sessionMode}
               scrollablePages={scrollablePages}
-              setInitialValues={setInitialValues}
+              setAllInitialValues={setAllInitialValues}
+              allInitialValues={allInitialValues}
               setScrollablePages={setScrollablePages}
               setFieldValue={setFieldValue}
               setSelectedPage={setSelectedPage}
+              handlers={handlers}
             />
           );
         }
