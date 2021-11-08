@@ -1,11 +1,20 @@
 import * as semver from 'semver';
-import { OHRIFormField } from '../forms/types';
+import { OHRIFormField, OHRIFormPage, OHRIFormSchema } from '../forms/types';
 import defaultFormsRegistry from '../packages/forms-registry';
 
 export interface FormJsonFile {
   version: string;
   semanticVersion?: string;
   json: any;
+}
+
+/**
+ * This is a form behaviour property applied on `page` or `section` or `question`
+ */
+interface BehaviourProperty {
+  name: string;
+  type: 'field' | 'section' | 'page' | 'all';
+  value: string;
 }
 
 /**
@@ -76,6 +85,25 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
   });
 }
 
+export function preprocessForm(form: OHRIFormSchema, targetIntent: string): OHRIFormSchema {
+  // load subforms
+  form.pages.forEach(page => {
+    if (page.isSubform && page.subform?.name && page.subform.package) {
+      try {
+        const subform = getForm(page.subform.package, page.subform.name);
+        if (!subform) {
+          console.error(`Form with name "${page.subform.package}/${page.subform.name}" was not found in registry.`);
+        }
+        page.subform.form = subform;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+  // apply intent
+  return applyFormIntent(targetIntent, form);
+}
+
 /**
  * Function parses JSON form input and filters validation behaviours according to a given intent
  *
@@ -83,13 +111,22 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @param {object} originalJson The original JSON form schema object
  * @returns {object} The form json
  */
-export function filterFormByIntent(intent, originalJson) {
+export function applyFormIntent(intent: string, originalJson) {
+  const parentOverrides: Array<BehaviourProperty> = [];
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
   jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
+    if (page.isSubform && page.subform?.form) {
+      const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent);
+      if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
+        parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
+      }
+      return preprocessForm(page.subform?.form, targetBehaviour?.subform_intent || '*');
+    }
+    // TODO: Apply parentOverrides to pages if applicable
     const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
     if (pageBehaviour) {
       page.hide = pageBehaviour?.hide;
@@ -98,6 +135,7 @@ export function filterFormByIntent(intent, originalJson) {
       page.hide = fallBackBehaviour?.hide;
     }
     page.sections.forEach(section => {
+      // TODO: Apply parentOverrides to sections if applicable
       const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent);
       if (secBehaviour) {
         section.hide = secBehaviour?.hide;
@@ -108,10 +146,20 @@ export function filterFormByIntent(intent, originalJson) {
       section.questions.forEach((question: OHRIFormField) => {
         if (question['behaviours']) {
           updateQuestionRequiredBehaviour(question, intent);
+          parentOverrides
+            .filter(override => override.type == 'all' || override.type == 'field')
+            .forEach(override => {
+              question[override.name] = override.value;
+            });
         }
         if (question.questions && question.questions.length) {
           question.questions.forEach(childQuestion => {
             updateQuestionRequiredBehaviour(childQuestion, intent);
+            parentOverrides
+              .filter(override => override.type == 'all' || override.type == 'field')
+              .forEach(override => {
+                childQuestion[override.name] = override.value;
+              });
           });
         }
       });

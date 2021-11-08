@@ -4,7 +4,7 @@ import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
-import { filterFormByIntent } from '../../utils/forms-loader';
+import { applyFormIntent } from '../../utils/forms-loader';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 
@@ -22,7 +22,7 @@ function FormRenderTest() {
 
   const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
   const [schemaOutput, setSchemaOutput] = useState('');
-  const [schemaInput, setSchemaInput] = useState('');
+  const [schemaInput, setSchemaInput] = useState(null);
   const [editorTheme, setEditorTheme] = useState('github');
 
   const availableEditorThemes = [
@@ -74,7 +74,7 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
     setOutputErrorMessage('');
 
-    const filteredSchema = filterFormByIntent(formIntentInput, schemaInput);
+    const filteredSchema = applyFormIntent(formIntentInput, schemaInput);
 
     try {
       setSchemaOutput(JSON.stringify(filteredSchema, null, '  '));

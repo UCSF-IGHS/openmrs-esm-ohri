@@ -1,4 +1,4 @@
-import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, filterFormByIntent } from './forms-loader';
+import { FormJsonFile, getForm, getFormByVersion, getLatestFormVersion, applyFormIntent } from './forms-loader';
 import formsRegistry from '../../__mocks__/packages/test-forms-registry';
 import {
   testSchemaV2,
@@ -302,22 +302,26 @@ describe('Forms loader - getFormByVersion', () => {
   });
 });
 
-describe('Forms loader - filterFormByIntent', () => {
+describe('Forms loader - applyFormIntent', () => {
   it('should return correct fields for HTS_RETROSPECTIVE intent', () => {
-    let resultingSchema = filterFormByIntent('HTS_RETROSPECTIVE', testSchemaV2);
+    let resultingSchema = applyFormIntent('HTS_RETROSPECTIVE', testSchemaV2);
 
     expect(resultingSchema).toEqual(htsRetrospectiveResultingSchemaV2);
   });
 
   it('should return correct fields for HTS_HIVTEST intent', () => {
-    let resultingSchema = filterFormByIntent('HTS_HIVTEST', testSchemaV2);
+    let resultingSchema = applyFormIntent('HTS_HIVTEST', testSchemaV2);
 
     expect(resultingSchema).toEqual(htsHivtestResultingSchemaV2);
   });
 
   it('should return correct fields for * intent', () => {
-    let resultingSchema = filterFormByIntent('*', testSchemaV2);
+    let resultingSchema = applyFormIntent('*', testSchemaV2);
 
     expect(resultingSchema).toEqual(htsWildcardResultingSchemaV2);
   });
+});
+
+describe('Forms loader - preprocessForm', () => {
+  // TODO: Add tests
 });
