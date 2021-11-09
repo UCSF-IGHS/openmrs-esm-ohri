@@ -17,7 +17,7 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   const { t } = useTranslation();
 
   //   useEffect(() => {
-  //     const processed = filterFormByIntent('*', formJson);
+  //     const processed = applyFormIntent('*', formJson);
   //     setProcessedForm(processed);
   //     onChangeIntent(processed);
   //   }, []);
