@@ -9,7 +9,7 @@ import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.compone
 
 const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, values } = React.useContext(OHRIFormContext);
 
   const handleChange = value => {
     setFieldValue(question.id, value);
@@ -21,7 +21,6 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     // The toogle input doesn't support blank values
     // by default, the value should be false
     if (!question.value && encounterContext.sessionMode == 'enter') {
-      setFieldValue(question.id, false);
       question.value = handler.handleFieldSubmission(question, false, encounterContext);
     }
   }, []);

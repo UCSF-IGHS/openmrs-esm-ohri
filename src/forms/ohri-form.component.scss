@@ -1,0 +1,115 @@
+/* a container with flex-direction column */
+.mainContainer {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  overscroll-behavior: contain;
+}
+
+/* the fixed sidebar content */
+.sidebar {
+  margin: 0;
+  padding: 0 0 0 16px;
+  width: 13rem;
+  position: relative;
+  /* Necessary to become containing block for position: fixed child */
+  transform: translate3d(0, 0, 0);
+  overscroll-behavior: contain;
+}
+
+/* the overflow content itself */
+.overflowContent {
+  height: 100vh;
+  margin: 0;
+  flex-basis: 75%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  padding: 0 0 20rem 5px;
+}
+
+.mainContainer :global(.bx--label) {
+  font-size: .875rem;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    margin: 0;
+    padding: 0 0 0 16px;
+    flex-grow: 0.6;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    /* Necessary to become containing block for position: fixed child */
+    transform: translate3d(0, 0, 0);
+    flex-basis: 23%;
+  }
+
+  .overflowContent {
+    height: inherit;
+    margin: 0;
+    flex-basis: 75%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    padding: 0 0 10rem 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    margin: 0;
+    padding: 0 0 0 16px;
+    flex-grow: 0.6;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    /* Necessary to become containing block for position: fixed child */
+    transform: translate3d(0, 0, 0);
+    flex-basis: 28%;
+  }
+
+  .overflowContent {
+    height: inherit;
+    margin: 0;
+    flex-basis: 75%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    padding: 0 0 10rem 5px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .sidebar {
+    margin: 0;
+    padding: 0 0 0 16px;
+    flex-grow: 0.6;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    /* Necessary to become containing block for position: fixed child */
+    transform: translate3d(0, 0, 0);
+    flex-basis: 35%;
+  }
+
+  .overflowContent {
+    height: inherit;
+    margin: 0;
+    flex-basis: 65%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    padding: 0 0 10rem 5px;
+  }
+}
