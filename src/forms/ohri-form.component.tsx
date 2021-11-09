@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import styles from './ohri-form.scss';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import styles from './ohri-form.component.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -27,6 +27,11 @@ interface OHRIFormProps {
   patientUUID?: string;
 }
 
+export interface FormSubmissionHandler {
+  validate: (values) => boolean;
+  submit: (values) => Promise<any>;
+}
+
 const OHRIForm: React.FC<OHRIFormProps> = ({
   formJson,
   encounterUuid,
@@ -47,6 +52,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
   const form = useMemo(() => JSON.parse(JSON.stringify(formJson)), []);
+  const handlers = new Map<string, FormSubmissionHandler>();
 
   useEffect(() => {
     const extDetails = {
@@ -83,7 +89,40 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     }
   }, [session]);
 
-  const handleFormSubmit = (values: Record<string, any>) => {};
+  const handleFormSubmit = (values: Record<string, any>) => {
+    // validate form and it's suforms
+    let isSubmitable = true;
+    handlers.forEach(handler => {
+      const result = handler?.validate?.(values);
+      if (!result) {
+        isSubmitable = false;
+      }
+    });
+    // do submit
+    if (isSubmitable) {
+      const submissions = [...handlers].map(([key, handler]) => {
+        return handler?.submit?.(values);
+      });
+      Promise.all(submissions).then(results => {
+        if (mode == 'edit') {
+          showToast({
+            description: t('updatedRecordDescription', 'The patient encounter was updated'),
+            title: t('updatedRecord', 'Record updated'),
+            kind: 'success',
+            critical: true,
+          });
+        } else {
+          showToast({
+            description: t('createdRecordDescription', 'A new encounter was created'),
+            title: t('createdRecord', 'Record created'),
+            kind: 'success',
+            critical: true,
+          });
+          onSubmit?.();
+        }
+      });
+    }
+  };
 
   return (
     <Formik
@@ -99,36 +138,40 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
           {!patient ? (
             <LoadingIcon />
           ) : (
-            <div className={styles.ohriFormContainer}>
-              <OHRIFormSidebar
-                scrollAblePages={scrollAblePages}
-                selectedPage={selectedPage}
-                mode={mode}
-                onCancel={onCancel}
-                handleClose={handleClose}
-                values={props.values}
-                setValues={props.setValues}
-                allowUnspecifiedAll={formJson.allowUnspecifiedAll}
-                defaultPage={formJson.defaultPage}
-              />
-              <div className={styles.formContent}>
-                <OHRIEncounterForm
-                  formJson={form}
-                  patient={patient}
-                  encounterDate={encDate}
-                  provider={currentProvider}
-                  location={location}
+            <>
+              <div className={styles.mainContainer}>
+                <OHRIFormSidebar
+                  scrollAblePages={scrollAblePages}
+                  selectedPage={selectedPage}
+                  mode={mode}
+                  onCancel={onCancel}
+                  handleClose={handleClose}
                   values={props.values}
-                  isCollapsed={collapsed}
-                  sessionMode={mode}
-                  scrollablePages={scrollAblePages}
-                  setInitialValues={setInitialValues}
-                  setScrollablePages={setScrollablePages}
-                  setFieldValue={props.setFieldValue}
-                  setSelectedPage={setSelectedPage}
+                  setValues={props.setValues}
+                  allowUnspecifiedAll={formJson.allowUnspecifiedAll}
+                  defaultPage={formJson.defaultPage}
                 />
+                <div className={styles.overflowContent}>
+                  <OHRIEncounterForm
+                    formJson={form}
+                    patient={patient}
+                    encounterDate={encDate}
+                    provider={currentProvider}
+                    location={location}
+                    values={props.values}
+                    isCollapsed={collapsed}
+                    sessionMode={mode}
+                    scrollablePages={scrollAblePages}
+                    setAllInitialValues={setInitialValues}
+                    allInitialValues={initialValues}
+                    setScrollablePages={setScrollablePages}
+                    setFieldValue={props.setFieldValue}
+                    setSelectedPage={setSelectedPage}
+                    handlers={handlers}
+                  />
+                </div>
               </div>
-            </div>
+            </>
           )}
         </Form>
       )}
