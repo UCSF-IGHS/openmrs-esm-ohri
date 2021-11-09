@@ -13,6 +13,7 @@ import { OHRIRepeat } from '../components/repeat/ohri-repeat.component';
 import { OHRIFieldValidator } from '../validators/ohri-form-validator';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
 import { FieldValidator, SubmissionHandler } from '../types';
+import OHRIFixedValue from '../components/inputs/fixed-value/ohri-fixed-value.component';
 
 const baseFieldComponents: Array<RegistryItem> = [
   {
@@ -74,6 +75,11 @@ const baseFieldComponents: Array<RegistryItem> = [
     id: 'OHRIRepeat',
     component: OHRIRepeat,
     type: 'repeating',
+  },
+  {
+    id: 'OHRIFixedValue',
+    component: OHRIFixedValue,
+    type: 'fixed-value',
   },
 ];
 

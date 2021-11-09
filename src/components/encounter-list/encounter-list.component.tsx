@@ -168,6 +168,34 @@ const EncounterList: React.FC<EncounterListProps> = ({
           {columns[0].getValue(encounter)}
         </Link>
       );
+
+      // TODO: Iterate the items in overflow and give right mode for form
+      // row['actionsAssessment'] = (
+      //   <OverflowMenu flipped>
+      //     <OverflowMenuItem
+      //       itemText={t('viewEncounter', 'View')}
+      //       onClick={e => {
+      //         e.preventDefault();
+      //         viewEncounter(encounter.uuid);
+      //       }}
+      //     />
+      //     <OverflowMenuItem
+      //       itemText={t('editEncounter', 'Edit Assessment')}
+      //       onClick={e => {
+      //         e.preventDefault();
+      //         editEncounter(encounter.uuid);
+      //       }}
+      //     />
+      //     <OverflowMenuItem
+      //       itemText={t('editEncounter', 'Edit Outcome')}
+      //       onClick={e => {
+      //         e.preventDefault();
+      //         editEncounter(encounter.uuid);
+      //       }}
+      //     />
+      //   </OverflowMenu>
+      // );
+
       row['actions'] = (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
           <OverflowMenuItem
@@ -186,6 +214,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           />
         </OverflowMenu>
       );
+
       row['viewEncounterLink'] = () => {};
       return row;
     });

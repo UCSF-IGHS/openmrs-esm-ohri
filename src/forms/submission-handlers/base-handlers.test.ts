@@ -755,4 +755,43 @@ describe('ObsSubmissionHandler - getInitialValue', () => {
     expect(field.value).toBeTruthy();
     expect(field.value.value).toEqual('cf82933b-3f3f-45e7-a5ab-5d31aaee3da3');
   });
+
+  it('should get initial value for fixed-value rendering', () => {
+    // setup
+    const field: OHRIFormField = {
+      label: 'In which setting was the HIV test conducted?',
+      type: 'obs',
+      questionOptions: {
+        rendering: 'fixed-value',
+        concept: '13abe5c9-6de2-4970-b348-36d352ee8eeb',
+      },
+      behaviours: [
+        {
+          intent: 'HTS_RETROSPECTIVE',
+          required: 'true',
+          unspecified: 'true',
+          value: 'Retrospective',
+        },
+        {
+          intent: 'HTS_PRETEST',
+          required: 'true',
+          value: 'Community',
+        },
+        {
+          intent: '*',
+          required: false,
+        },
+      ],
+      id: 'testingLocation',
+    };
+    encounterContext.encounter['obs'].push({
+      uuid: '6ae85e6f-134d-48c2-b89a-8293d6ea7e3d',
+      concept: {
+        uuid: '7928c3ab-4d14-471f-94a8-a12eaa59e29c',
+      },
+      value: 37,
+    });
+    // replay
+    const initialValue = ObsSubmissionHandler.getInitialValue(encounterContext.encounter, field);
+  });
 });
