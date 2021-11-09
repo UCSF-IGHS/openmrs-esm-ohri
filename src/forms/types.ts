@@ -46,6 +46,7 @@ export interface OHRIFormSchema {
   encounterType?: string;
   allowUnspecifiedAll?: boolean;
   defaultPage?: string;
+  markdown?: Array<string>;
 }
 
 export interface OHRIFormPage {

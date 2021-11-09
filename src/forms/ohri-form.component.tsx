@@ -24,6 +24,7 @@ import { ConceptFalse, ConceptTrue, HTSEncounterType } from './constants';
 import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from './validators/ohri-form-validator';
 import { encounterRepresentation } from '../constants';
 import { cascadeVisibityToChildFields } from './utils/ohri-form-helper';
+import ReactMarkdown from 'react-markdown';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -487,6 +488,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                         date: encDate,
                       },
                     }}>
+                    {form.markdown && <ReactMarkdown children={form.markdown.join('\n')} />}
                     {form.pages.map((page, index) => {
                       return (
                         !page.isHidden && (
