@@ -17,6 +17,7 @@ import { isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/oh
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
 import { FormSubmissionHandler } from '../../ohri-form.component';
+import ReactMarkdown from 'react-markdown';
 
 interface OHRIEncounterFormProps {
   formJson: OHRIFormSchema;
@@ -424,6 +425,9 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         },
       }}>
       <InstantEffect effect={addScrollablePages} />
+
+      {form.markdown && <ReactMarkdown children={form.markdown.join('\n')} />}
+
       {form.pages.map((page, index) => {
         if (page.isHidden) {
           return null;

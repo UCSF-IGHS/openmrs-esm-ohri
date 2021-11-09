@@ -61,6 +61,7 @@ export interface OHRIFormSchema {
   encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
   defaultPage?: string;
+  markdown?: Array<string>;
 }
 
 export interface OHRIFormPage {
@@ -87,6 +88,7 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
+  behaviours?: Array<Record<string, any>>;
 }
 
 export interface OHRIFormFieldProps {
@@ -132,4 +134,5 @@ export type RenderType =
   | 'content-switcher'
   | 'encounter-location'
   | 'textarea'
-  | 'toggle';
+  | 'toggle'
+  | 'fixed-value';
