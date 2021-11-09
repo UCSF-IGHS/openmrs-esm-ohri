@@ -63,6 +63,6 @@ export default {
     },
     covid_outcome: {
       '1.0': covid_outcome_form_v_1_0,
-    }
+    },
   },
 };
