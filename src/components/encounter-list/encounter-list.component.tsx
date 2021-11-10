@@ -158,24 +158,28 @@ const EncounterList: React.FC<EncounterListProps> = ({
         }
         row[column.key] = val;
       });
-      row['actions'] = (
-        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-          <OverflowMenuItem
-            itemText={t('viewEncounter', 'View')}
-            onClick={e => {
-              e.preventDefault();
-              viewEncounter(encounter.uuid);
-            }}
-          />
-          <OverflowMenuItem
-            itemText={t('editEncounter', 'Edit')}
-            onClick={e => {
-              e.preventDefault();
-              editEncounter(encounter.uuid);
-            }}
-          />
-        </OverflowMenu>
-      );
+
+      if (!row['actions']) {
+        row['actions'] = (
+          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+            <OverflowMenuItem
+              itemText={t('viewEncounter', 'View')}
+              onClick={e => {
+                e.preventDefault();
+                viewEncounter(encounter.uuid);
+              }}
+            />
+            <OverflowMenuItem
+              itemText={t('editEncounter', 'Edit')}
+              onClick={e => {
+                e.preventDefault();
+                editEncounter(encounter.uuid);
+              }}
+            />
+          </OverflowMenu>
+        );
+      }
+
       return row;
     });
     setTableRows(rows);
