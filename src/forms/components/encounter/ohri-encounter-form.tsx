@@ -28,7 +28,9 @@ interface OHRIEncounterFormProps {
   isCollapsed: boolean;
   sessionMode: SessionMode;
   scrollablePages: Set<OHRIFormPageProps>;
-  setInitialValues: (values: Record<string, any>) => void;
+  handlers: Map<string, FormSubmissionHandler>;
+  allInitialValues: Record<string, any>;
+  setAllInitialValues: (values: Record<string, any>) => void;
   setScrollablePages: (pages: Set<OHRIFormPageProps>) => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   setSelectedPage: (page: string) => void;
