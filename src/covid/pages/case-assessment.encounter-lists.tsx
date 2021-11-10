@@ -20,6 +20,7 @@ import {
   covidSymptosConcept_UUID,
   covidPresentSymptonsName_UUID,
   covidPatientStatusConcept_UUID,
+  covidOutcome,
 } from '../../constants';
 
 interface CovidOverviewListProps {
@@ -43,6 +44,7 @@ import EncounterList, {
   getObsFromEncounter,
   getEncounterValues,
 } from '../../components/encounter-list/encounter-list.component';
+import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 
 const columns: EncounterListColumn[] = [
   {
@@ -72,30 +74,43 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'testDate',
-    header: 'Comorbidity',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidUnderComorbidityConcept_UUID, false, true);
-    },
-  },
-  {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSARS_TestResultConcept_UUID);
-    },
-  },
-  {
     key: 'outcome',
-    header: 'Status',
+    header: 'Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPatientStatusConcept_UUID);
+      return getObsFromEncounter(encounter, covidOutcome);
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => {
+      return (
+        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenuItem
+            itemText={'View COVID Case Form'}
+            onClick={e => {
+              e.preventDefault();
+              //viewEncounter(encounter.uuid);
+            }}
+          />
+          <OverflowMenuItem
+            itemText={'Edit Assessment'}
+            onClick={e => {
+              e.preventDefault();
+              // editEncounter(encounter.uuid);
+              // launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
+            }}
+          />
+          <OverflowMenuItem
+            itemText={'Edit Outcome'}
+            onClick={e => {
+              e.preventDefault();
+              // editEncounter(encounter.uuid);
+            }}
+          />
+        </OverflowMenu>
+      );
+    },
   },
 ];
 

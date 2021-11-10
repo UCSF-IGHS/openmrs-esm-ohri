@@ -67,3 +67,4 @@ dist
 
 #Macfolders
 .DS_Store
+package.json
