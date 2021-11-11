@@ -52,8 +52,25 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [selectedPage, setSelectedPage] = useState('');
   const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
-  const form = useMemo(() => JSON.parse(JSON.stringify(formJson)), []);
   const handlers = new Map<string, FormSubmissionHandler>();
+  const form = useMemo(() => {
+    const copy = JSON.parse(JSON.stringify(formJson));
+    if (encounterUuid && !copy.encounter) {
+      // Assign this to the parent form
+      copy.encounter = encounterUuid;
+    }
+    return copy;
+  }, []);
+
+  const sessionMode = useMemo(() => {
+    if (mode) {
+      return mode;
+    }
+    if (encounterUuid) {
+      return 'edit';
+    }
+    return 'enter';
+  }, [mode]);
 
   useEffect(() => {
     const extDetails = {
@@ -160,7 +177,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                   location={location}
                   values={props.values}
                   isCollapsed={collapsed}
-                  sessionMode={mode}
+                  sessionMode={sessionMode}
                   scrollablePages={scrollAblePages}
                   setAllInitialValues={setInitialValues}
                   allInitialValues={initialValues}

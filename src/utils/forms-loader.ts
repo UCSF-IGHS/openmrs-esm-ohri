@@ -35,13 +35,28 @@ export function getForm(
   formsRegistry?: any,
 ) {
   const forms = lookupForms(packageName, formNamespace, formsRegistry);
+  let form = null;
   if (version) {
-    const form = getFormByVersion(forms, version, isStrict);
-    if (form) {
-      return form.json;
-    }
+    form = getFormByVersion(forms, version, isStrict);
   }
-  return getLatestFormVersion(forms).json;
+  if (!form) {
+    form = getLatestFormVersion(forms);
+  }
+  form.json.pages.forEach(page => {
+    if (page.isSubform && page.subform?.name && page.subform.package) {
+      try {
+        const subform = getForm(page.subform.package, page.subform.name);
+        if (!subform) {
+          console.error(`Form with name "${page.subform.package}/${page.subform.name}" was not found in registry.`);
+        }
+        page.subform.form = subform;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+
+  return form.json;
 }
 
 export function getLatestFormVersion(forms: FormJsonFile[]) {
@@ -85,25 +100,6 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
   });
 }
 
-export function preprocessForm(form: OHRIFormSchema, targetIntent: string): OHRIFormSchema {
-  // load subforms
-  form.pages.forEach(page => {
-    if (page.isSubform && page.subform?.name && page.subform.package) {
-      try {
-        const subform = getForm(page.subform.package, page.subform.name);
-        if (!subform) {
-          console.error(`Form with name "${page.subform.package}/${page.subform.name}" was not found in registry.`);
-        }
-        page.subform.form = subform;
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  });
-  // apply intent
-  return applyFormIntent(targetIntent, form);
-}
-
 /**
  * Function parses JSON form input and filters validation behaviours according to a given intent
  *
@@ -124,7 +120,7 @@ export function applyFormIntent(intent: string, originalJson) {
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
         parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
       }
-      return preprocessForm(page.subform?.form, targetBehaviour?.subform_intent || '*');
+      return applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
     }
     // TODO: Apply parentOverrides to pages if applicable
     const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);

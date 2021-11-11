@@ -40,6 +40,7 @@ export interface FieldValidator {
 export interface EncounterDescriptor {
   location?: any; // string | { name: string; uuid: string };
   obs?: Array<any>; // TODO: add obs descriptor
+  orders?: Array<any>;
   uuid?: string;
   encounterProviders?: Array<{ provider: any; encounterRole: string }>;
   encounterDatetime?: Date;

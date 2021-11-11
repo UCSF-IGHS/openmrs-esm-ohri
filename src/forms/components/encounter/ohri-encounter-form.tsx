@@ -67,7 +67,14 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         scrollablePages.add(page);
       }
     });
-  }, []);
+    return () => {
+      formJson.pages.forEach(page => {
+        if (!page.isSubform) {
+          scrollablePages.delete(page);
+        }
+      });
+    };
+  }, [scrollablePages, formJson]);
 
   useEffect(() => {
     if (!encounterLocation) {
@@ -373,8 +380,10 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         obs: obsForSubmission,
       };
     }
-    const ac = new AbortController();
-    return saveEncounter(ac, encounterForSubmission, encounter?.uuid);
+    if (encounterForSubmission.obs?.length || encounterForSubmission.orders?.length) {
+      const ac = new AbortController();
+      return saveEncounter(ac, encounterForSubmission, encounter?.uuid);
+    }
   };
 
   const onFieldChange = (fieldName: string, value: any) => {
@@ -433,6 +442,9 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
           return null;
         }
         if (page.isSubform && page.subform?.form) {
+          if (sessionMode != 'enter' && !page.subform?.form.encounter) {
+            return null;
+          }
           return (
             <OHRIEncounterForm
               formJson={page.subform?.form}
