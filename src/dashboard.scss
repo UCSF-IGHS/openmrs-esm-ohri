@@ -1,21 +1,22 @@
+@import "./root.scss";
+
 .noMarker {
   list-style-type: none;
 }
 
 .noMarker ul li a {
-  padding-left: 40px !important; 
+  padding-left: 40px !important;
   font: lighter  ;
-  
+
 }
 
 .currentNavItem > a {
   background-color: #cecece !important;
   color: #161616 !important;
-  border-left-color: #005d5d !important;
+  border-left-color: $brand-color-01 !important;
   font: bolder ;
 }
 
 .hide {
   display: none;
 }
-

@@ -28,5 +28,16 @@
         ]
       }
     }
+  },
+  "@openmrs/esm-login-app": {
+    "logo": {
+      "src": "https://ohri-demo.globalhealthapp.net/images/logo-transparent.png",
+      "alt": "Logo"
+    }
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "logo": {
+      "src": "https://ohri-demo.globalhealthapp.net/images/logo-white.png"
+    }
   }
 }

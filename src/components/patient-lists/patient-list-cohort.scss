@@ -4,13 +4,13 @@
 .contentSwitcherWrapper {
     padding-bottom: 50px;
   }
-  
+
   .contentSwitcherWrapper > div {
     width: 150px;
     float: right;
   }
-  
+
   .contentSwitcherWrapper button[aria-selected='true'] {
-    
-    background-color: $brand-teal-01;
+
+    background-color: $brand-color-01;
   }

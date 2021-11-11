@@ -17,7 +17,10 @@ $warning-background: #fff8e1;
 $openmrs-background-grey: #f4f4f4;
 $danger: #da1e28;
 $interactive-01: #0f62fe;
-$brand-teal-01: #007d79;
+// $brand-teal-01: #007d79;
+$brand-color-01: #1F3052;
+$brand-color-darker: #131E35;
+$brand-color-underline: #3197D9;
 $ohri-input-width: 22.313rem;
 $ohri-home-background: #ededed;
 
@@ -80,4 +83,36 @@ $ohri-home-background: #ededed;
 aside {
    background-color: $ui-02 !important;
 }
+
+:global(.bx--header) {
+    background-color: $brand-color-01;
+    border-bottom: $brand-color-darker;
+}
+
+:global(.bx--header__global) button {
+  background-color: $brand-color-01;
+}
+
+:global(.bx--header__global) button:hover {
+  background-color: $brand-color-darker;
+}
+
+.bx--btn--primary {
+  background-color: $brand-color-01 !important;
+}
+
+body :global(
+  .bx--btn,
+  .bx--btn--primary,
+  .bx--btn--primary:active,
+  .bx--btn--tertiary:active,
+  .bx--btn--tertiary:focus,
+  .bx--btn--tertiary:hover
+) {
+  background-color: $brand-color-01 !important;
+}
+button :global(.bx--btn--primary:hover) {
+  background-color: $brand-color-darker !important;
+}
+
 
