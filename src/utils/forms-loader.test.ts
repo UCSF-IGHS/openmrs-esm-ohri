@@ -321,7 +321,3 @@ describe('Forms loader - applyFormIntent', () => {
     expect(resultingSchema).toEqual(htsWildcardResultingSchemaV2);
   });
 });
-
-describe('Forms loader - preprocessForm', () => {
-  // TODO: Add tests
-});
