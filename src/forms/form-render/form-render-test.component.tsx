@@ -42,26 +42,25 @@ function FormRenderTest() {
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = jsonSchema.availableIntents || [];
 
-    if (_formIntents.length > 0) {
-      setFormIntentInput(null);
-    }
+    // if (_formIntents.length > 0) {
+    //   setFormIntentInput(null);
+    // }
 
     if (_formIntents.length > 0) {
       // setFormIntentInput(null);
       setFormIntents(_formIntents);
       setIsIntentsDropdownDisabled(false);
+      setSelectedFormIntent('');
     } else {
       setFormIntents([]);
       setIsIntentsDropdownDisabled(true);
+      setSelectedFormIntent('*');
     }
-
-    setFormIntents(_formIntents);
-    setIsIntentsDropdownDisabled(false);
   };
 
   const updateFormIntentInput = e => {
     // setFormIntentInput(e.selectedItem.intent);
-    setSelectedFormIntent(e.selectedItem);
+    setSelectedFormIntent(e.selectedItem.intent);
     setIsSchemaLoaded(false);
   };
 
@@ -137,7 +136,7 @@ function FormRenderTest() {
                       titleText="Form Intent"
                       label="--Select Form Intent"
                       items={formIntents}
-                      itemToString={item => item}
+                      itemToString={item => item.display}
                       onChange={updateFormIntentInput}
                       disabled={isIntentsDropdownDisabled}
                     />
