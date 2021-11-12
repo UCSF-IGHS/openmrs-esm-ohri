@@ -28,12 +28,12 @@ export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
 export const todayzAppointmentsCT = 'ccbcf6d8-77b7-44a5-bb43-d352478ea4e9';
 
 // COVID Cohorts
-export const clientsAssessedForCovid = 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7'; // 'a5a9e991-8dd0-4643-9156-eb363690bf1e';
-export const covidClientsWithPendingLabResults = '166aa2b1-ce55-4d16-9643-ca9d2e2694ea'; // 'dd0253db-05cd-44cb-bf44-e157bd14a3c8';
-export const clientsWithoutCovidOutcomes = 'db6c4a18-28c6-423c-9da0-58d19e364a7f'; // '5cf97790-3830-4f2a-807f-8595265c0806';
-export const allCovidAssessments = 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7'; // '3caa6d63-f268-403d-9930-268e3258c3ba';
-export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b'; // 'b5d52da9-10c2-43af-ae23-552acc5e445b';
-export const covid19PositiveClients = '1523b1e5-b6d0-44fb-bd9e-c91bfefb4d1c'; // 'adbf0411-b35c-4174-b0ff-f24a635e4da3';
+export const clientsAssessedForCovid = 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7';
+export const covidClientsWithPendingLabResults = '166aa2b1-ce55-4d16-9643-ca9d2e2694ea';
+export const clientsWithoutCovidOutcomes = 'db6c4a18-28c6-423c-9da0-58d19e364a7f';
+export const allCovidAssessments = 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7';
+export const covidVaccinatedClients = 'b5d52da9-10c2-43af-ae23-552acc5e445b';
+export const covid19PositiveClients = '1523b1e5-b6d0-44fb-bd9e-c91bfefb4d1c';
 
 // COVID Concepts
 export const dateSpecimenCollected = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
