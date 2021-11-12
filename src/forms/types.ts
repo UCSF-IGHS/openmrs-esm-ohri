@@ -61,7 +61,7 @@ export interface OHRIFormSchema {
   encounterType: string;
   encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
-  defaultPage?: string;
+  defaultPage?: string; 
   markdown?: OHRIFormMarkdown;
 }
 
@@ -90,7 +90,7 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
-  behaviours?: Array<Record<string, any>>;
+  behaviours?: Array<Record<string, any>>; 
   markdown?: OHRIFormMarkdown;
 }
 

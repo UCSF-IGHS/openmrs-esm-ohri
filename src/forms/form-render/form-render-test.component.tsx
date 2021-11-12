@@ -135,7 +135,7 @@ function FormRenderTest() {
                       titleText="Form Intent"
                       label="--Select Form Intent"
                       items={formIntents}
-                      itemToString={item => item.display}
+                      itemToString={item => item}
                       onChange={updateFormIntentInput}
                       disabled={isIntentsDropdownDisabled}
                     />

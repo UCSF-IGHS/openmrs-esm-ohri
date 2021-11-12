@@ -476,8 +476,8 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         },
       }}>
       <InstantEffect effect={addScrollablePages} />
-
-      {form.markdown && <ReactMarkdown children={form.markdown.content.join('\n')} />}
+ 
+      {form.markdown && <ReactMarkdown children={form.markdown.content.join('\n')} />} 
 
       {form.pages.map((page, index) => {
         if (isTrue(page.isHidden)) {
