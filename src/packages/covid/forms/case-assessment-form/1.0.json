@@ -1,15 +1,53 @@
 {
-  "name": "COVID Assessment Form",
+  "name": "COVID Assessment",
   "pages": [
     {
-      "label": "Assessment Form",
+      "label": "COVID Assessment",
       "sections": [
         {
-          "label": "Assessment Form",
+          "label": "Assessment Details",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Reasons for testing (select all that apply)",
+              "label": "Date of Assessment **Pick from encounter start",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "weeksList": ""
+              },
+              "id": "dateOfAssessment",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
+                    }
+                  ]
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Reasons for assessment",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -86,7 +124,7 @@
                   },
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other (specify)",
+                    "label": "Other",
                     "conceptMappings": [
                       {
                         "type": "PIH-Malawi",
@@ -95,6 +133,10 @@
                       {
                         "type": "org.openmrs.module.mdrtb",
                         "value": "OTHER"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "5622"
                       },
                       {
                         "type": "SNOMED-MVP",
@@ -116,12 +158,21 @@
                   }
                 ]
               },
-              "id": "reasonsForCovidTest",
+              "id": "reasonsForTesting",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -147,11 +198,20 @@
                   "type": "obs",
                   "behaviours": [
                     {
-                      "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                      "intent": "*",
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "!includes('reasonsForCovidTest','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                        "hideWhenExpression": "!includes('reasonsForTesting','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": []
+                    },
+                    {
+                      "intent": "COVID_LAB_ORDER_EMBED",
+                      "required": "true",
+                      "unspecified": "false",
+                      "hide": {
+                        "hideWhenExpression": "false"
                       },
                       "validators": []
                     }
@@ -161,7 +221,7 @@
               "id": "othersReasonForCovidTestGroup"
             },
             {
-              "label": "Patient status",
+              "label": "Presentation",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -200,9 +260,18 @@
               "id": "patientStatus",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -220,7 +289,7 @@
               "id": "symptomStartDate",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -236,6 +305,15 @@
                       "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
                     }
                   ]
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
                 }
               ]
             },
@@ -478,11 +556,20 @@
               "id": "presentedCovidSymptoms",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
                   },
                   "validators": []
                 }
@@ -506,11 +593,20 @@
                   "type": "obs",
                   "behaviours": [
                     {
-                      "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                      "intent": "*",
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
                         "hideWhenExpression": "!includes('presentedCovidSymptoms','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                      },
+                      "validators": []
+                    },
+                    {
+                      "intent": "COVID_LAB_ORDER_EMBED",
+                      "required": "true",
+                      "unspecified": "false",
+                      "hide": {
+                        "hideWhenExpression": "false"
                       },
                       "validators": []
                     }
@@ -586,9 +682,18 @@
               "id": "comorbidityPresent",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -597,7 +702,7 @@
               ]
             },
             {
-              "label": "Known underlying conditions or comorbidity",
+              "label": "Conditions or comorbidity",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -749,18 +854,27 @@
               "id": "underlyingComorbidityConditions",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "!includes('comorbidityPresent','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
                 }
               ]
             },
             {
-              "label": "Other known underlying conditions or comorbidity",
+              "label": "Other conditions or comorbidity",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
@@ -775,18 +889,27 @@
               "id": "otherComorbidity",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "!includes('underlyingComorbidityConditions','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
                 }
               ]
             },
             {
-              "label": "Has the client been vaccinated for COVID-19",
+              "label": "Vaccination History",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -834,9 +957,18 @@
               "id": "clientVaccinated",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -1128,11 +1260,60 @@
               "id": "vaccineAdministered",
               "behaviours": [
                 {
-                  "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f')"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
+              "label": "Notes",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "5",
+                "conceptMappings": [
+                  {
+                    "type": "LOINC",
+                    "value": "48767-8"
+                  },
+                  {
+                    "type": "CIEL",
+                    "value": "161011"
+                  }
+                ]
+              },
+              "id": "assessmentNotes",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "required": "false",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
                   },
                   "validators": []
                 }
@@ -1141,12 +1322,37 @@
           ]
         }
       ]
+    },
+    {
+      "label": "Lab Order",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_lab_order",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "false"
+          },
+          {
+            "intent": "COVID_LAB_ASSESSMENT_EMBED",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
     }
   ],
   "availableIntents": [
     {
-      "intent": "COVID_ASSESSMENT_RETROSPECTIVE",
-      "display": "COVID Assessment Retrospective"
+      "intent": "*",
+      "display": "Case Assessment"
+    },
+    {
+      "intent": "COVID_LAB_ASSESSMENT_EMBED",
+      "display": "Full Case"
     }
   ],
   "processor": "EncounterFormProcessor",

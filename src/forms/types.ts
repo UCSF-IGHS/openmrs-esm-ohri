@@ -37,21 +37,42 @@ export interface FieldValidator {
   validate(field: OHRIFormField, value: any): { errCode: string; errMessage: string }[];
 }
 
+export interface EncounterDescriptor {
+  location?: any; // string | { name: string; uuid: string };
+  obs?: Array<any>; // TODO: add obs descriptor
+  orders?: Array<any>;
+  uuid?: string;
+  encounterProviders?: Array<{ provider: any; encounterRole: string }>;
+  encounterDatetime?: Date;
+  encounterType?: string;
+  patient?: string;
+}
+
+export interface HideProps {
+  hideWhenExpression: string;
+}
+
 export interface OHRIFormSchema {
   name: string;
   pages: Array<OHRIFormPage>;
   processor: string;
   uuid: string;
   referencedForms: [];
-  encounterType?: string;
+  encounterType: string;
+  encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
-  defaultPage?: string;
+  defaultPage?: string; 
+  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormPage {
   label: string;
   isHidden?: boolean;
+  hide?: HideProps;
   sections: Array<OHRIFormSection>;
+  isSubform?: boolean;
+  subform?: { name?: string; package?: string; behaviours?: Array<any>; form: OHRIFormSchema };
+  markdown?: OHRIFormMarkdown;
 }
 export interface OHRIFormField {
   label: string;
@@ -60,7 +81,7 @@ export interface OHRIFormField {
   id: string;
   questions?: Array<OHRIFormField>;
   value?: any;
-  hide?: any;
+  hide?: HideProps;
   isHidden?: boolean;
   isParentHidden?: boolean;
   fieldDependants?: Array<string>;
@@ -69,6 +90,8 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
+  behaviours?: Array<Record<string, any>>; 
+  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormFieldProps {
@@ -82,6 +105,7 @@ export interface OHRIFormSection {
   isHidden?: boolean;
   isParentHidden?: boolean;
   questions: Array<OHRIFormField>;
+  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormQuestionOptions {
@@ -114,4 +138,11 @@ export type RenderType =
   | 'content-switcher'
   | 'encounter-location'
   | 'textarea'
-  | 'toggle';
+  | 'toggle'
+  | 'fixed-value';
+
+export interface OHRIFormMarkdown {
+  content: Array<string>;
+  hide?: any;
+  isHidden?: boolean;
+}

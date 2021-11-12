@@ -4,7 +4,7 @@ import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
-import { filterFormByIntent } from '../../utils/forms-loader';
+import { applyFormIntent } from '../../utils/forms-loader';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 
@@ -14,15 +14,16 @@ function FormRenderTest() {
   const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
-  const [formIntentInput, setFormIntentInput] = useState('Empty Intent');
+  // const [formIntentInput, setFormIntentInput] = useState('Empty Intent'); //TODO: Re-purpose
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
+  const [selectedFormIntent, setSelectedFormIntent] = useState('');
 
   const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
   const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
 
   const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
   const [schemaOutput, setSchemaOutput] = useState('');
-  const [schemaInput, setSchemaInput] = useState('');
+  const [schemaInput, setSchemaInput] = useState(null);
   const [editorTheme, setEditorTheme] = useState('github');
 
   const availableEditorThemes = [
@@ -41,11 +42,14 @@ function FormRenderTest() {
     let _formIntents = jsonSchema.availableIntents || [];
 
     if (_formIntents.length > 0) {
-      setFormIntentInput(null);
+      // setFormIntentInput(null);
+      setFormIntents(_formIntents);
+      setIsIntentsDropdownDisabled(false);
     }
 
     if (_formIntents.length > 0) {
-      setFormIntentInput(null);
+      setFormIntents([]);
+      setIsIntentsDropdownDisabled(true);
     }
 
     setFormIntents(_formIntents);
@@ -53,7 +57,9 @@ function FormRenderTest() {
   };
 
   const updateFormIntentInput = e => {
-    setFormIntentInput(e.selectedItem.intent);
+    // setFormIntentInput(e.selectedItem.intent);
+    // setFormIntentInput(e.selectedItem.intent);
+    setSelectedFormIntent(e.selectedItem);
     setIsSchemaLoaded(false);
   };
 
@@ -74,7 +80,7 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
     setOutputErrorMessage('');
 
-    const filteredSchema = filterFormByIntent(formIntentInput, schemaInput);
+    const filteredSchema = applyFormIntent(selectedFormIntent, schemaInput);
 
     try {
       setSchemaOutput(JSON.stringify(filteredSchema, null, '  '));
@@ -129,7 +135,7 @@ function FormRenderTest() {
                       titleText="Form Intent"
                       label="--Select Form Intent"
                       items={formIntents}
-                      itemToString={item => item.display}
+                      itemToString={item => item}
                       onChange={updateFormIntentInput}
                       disabled={isIntentsDropdownDisabled}
                     />
@@ -153,7 +159,7 @@ function FormRenderTest() {
                     renderIcon={Run32}
                     className="form-group"
                     style={{ marginTop: '1em' }}
-                    disabled={!formIntentInput}>
+                    disabled={!selectedFormIntent}>
                     Render
                   </Button>
                 </Form>

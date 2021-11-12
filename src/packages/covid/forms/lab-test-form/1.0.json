@@ -1,436 +1,83 @@
 {
-  "name": "COVID Lab Test Form",
+  "name": "COVID Lab Test",
   "pages": [
     {
       "label": "COVID Lab Test",
       "sections": [
         {
-          "label": "Sample",
+          "label": "COVID Lab Test",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date specimen collected",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "org.openmrs.module.mdrtb",
-                    "value": "SPUTUM COLLECTION DATE"
-                  }
-                ]
-              },
-              "id": "specimenCollectionDate",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "label": "SARS-Cov2 test requested",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718",
-                "answers": [
-                  {
-                    "concept": "165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Rapid Antigen Test",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Diagnostic PCR Test",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "sarsCovidTestType",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "label": "Specimen type",
+              "label": "Status",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "ae127f82-1861-4165-ac81-8554e5a3aac4",
+                "concept": "6681366c-2174-489a-b951-13a1404935bf",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "LabOrderStatus"
+                  }
+                ],
                 "answers": [
                   {
-                    "concept": "163364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Nasopharyngeal Swab",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "163362AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Oropharyngeal swab specimen",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Serum",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1004AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sputum",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "163367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Aspirate specimen",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
+                    "concept": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Pending status",
                     "conceptMappings": [
                       {
                         "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
+                        "value": "162866"
                       },
                       {
                         "type": "SNOMED-CT",
-                        "value": "74964007"
+                        "value": "307824009"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "162866"
                       }
                     ]
                   }
                 ]
               },
-              "id": "specimenType",
+              "id": "labOrderStatus",
               "behaviours": [
                 {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "specimenCollected !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  "validators": []
                 }
               ]
             },
             {
-              "label": "Other specimen type",
-              "type": "obsGroup",
-              "questionOptions": {
-                "rendering": "group",
-                "concept": "d07aba2e-f37d-49dd-bb65-b27e8df80399"
-              },
-              "questions": [
-                {
-                  "label": "Other specimen type",
-                  "id": "otherSpecimenType",
-                  "questionOptions": {
-                    "rendering": "text",
-                    "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                  },
-                  "type": "obs",
-                  "behaviours": [
-                    {
-                      "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                      "required": "true",
-                      "unspecified": "true",
-                      "hide": {
-                        "hideWhenExpression": "!includes('specimenType','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                      },
-                      "validators": []
-                    }
-                  ]
-                }
-              ],
-              "id": "otherSpecimenTypeGroup"
-            }
-          ]
-        },
-        {
-          "label": "Result",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Rapid Antigen result",
+              "label": "Notes",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "cbcbb029-f11f-4437-9d53-1d0f0a170433",
-                "answers": [
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "5",
+                "conceptMappings": [
                   {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "NEGATIVE"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "665"
-                      }
-                    ]
+                    "type": "LOINC",
+                    "value": "48767-8"
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
+                    "type": "CIEL",
+                    "value": "161011"
                   }
                 ]
               },
-              "id": "rapidAntigenTestResult",
+              "id": "labTestFormNotes",
               "behaviours": [
                 {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "!includes('sarsCovidTestType','165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Rapid Antigen test result date",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "af159c77-bc5d-46dd-90d9-bcbffb22267f",
-                "weeksList": ""
-              },
-              "id": "rapidAntigenResultDate",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "!includes('sarsCovidTestType','165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Diagnostic PCR result",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "3f4ee14b-b4ab-4597-9fe9-406883b63d76",
-                "answers": [
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "NEGATIVE"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "665"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "diagnosticPcrResult",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "!includes('sarsCovidTestType','165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Diagnostic PCR  test result date",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "4a77ab44-0323-490e-96be-e168c0e5c9de",
-                "weeksList": ""
-              },
-              "id": "pcrTestResultDate",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "!includes('sarsCovidTestType','165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Final COVID-19 Test Result",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "5da5c21b-969f-41bd-9091-e40d4c707544",
-                "answers": [
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "NEGATIVE"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "665"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Inconclusive",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "finalCovidTestResult",
-              "behaviours": [
-                {
-                  "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -441,17 +88,65 @@
           ]
         }
       ]
+    },
+    {
+      "label": "",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_lab_order",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
+    },
+    {
+      "label": "",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_lab_order_cancellation",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_LAB_CANCELLATION_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
+    },
+    {
+      "label": "",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_lab_result",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_LAB_RESULT_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
     }
   ],
   "availableIntents": [
     {
-      "intent": "COVID_LAB_TEST_FORM_RETROSPECTIVE",
-      "display": "COVID Lab Test Form Retrospective"
+      "intent": "*",
+      "display": "COVID Lab Test"
     }
   ],
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
-  "encounterType": "253a43d3-c99e-415c-8b78-ee7d4d3c1d54",
+  "encounterType": "a77d3e7f-5c8f-4074-a207-77a70e197b0c",
   "allowUnspecifiedAll": true
 }

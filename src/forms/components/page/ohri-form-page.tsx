@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './_page.scss';
 import OHRIFormSection from '../section/ohri-form-section.component';
 import { Waypoint } from 'react-waypoint';
-import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
+import { Accordion, AccordionItem } from 'carbon-components-react';
+import ReactMarkdown from 'react-markdown';
 
 function OHRIFormPage({ page, onFieldChange, setSelectedPage, isCollapsed }) {
   let newLabel = page.label.replace(/\s/g, '');
@@ -12,7 +13,7 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage, isCollapsed }) {
   };
 
   return (
-    <Waypoint onEnter={() => handleEnter(newLabel)} bottomOffset="95%">
+    <Waypoint onEnter={() => handleEnter(newLabel)} topOffset="50%" bottomOffset="60%">
       <div id={newLabel} className={styles.pageContent}>
         <div style={{}} className={styles.pageHeader}>
           <p className={styles.pageTitle}>{page.label}</p>

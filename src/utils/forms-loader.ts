@@ -1,11 +1,20 @@
 import * as semver from 'semver';
-import { OHRIFormField } from '../forms/types';
+import { OHRIFormField, OHRIFormPage, OHRIFormSchema } from '../forms/types';
 import defaultFormsRegistry from '../packages/forms-registry';
 
 export interface FormJsonFile {
   version: string;
   semanticVersion?: string;
   json: any;
+}
+
+/**
+ * This is a form behaviour property applied on `page` or `section` or `question`
+ */
+interface BehaviourProperty {
+  name: string;
+  type: 'field' | 'section' | 'page' | 'all';
+  value: string;
 }
 
 /**
@@ -26,13 +35,28 @@ export function getForm(
   formsRegistry?: any,
 ) {
   const forms = lookupForms(packageName, formNamespace, formsRegistry);
+  let form = null;
   if (version) {
-    const form = getFormByVersion(forms, version, isStrict);
-    if (form) {
-      return form.json;
-    }
+    form = getFormByVersion(forms, version, isStrict);
   }
-  return getLatestFormVersion(forms).json;
+  if (!form) {
+    form = getLatestFormVersion(forms);
+  }
+  form.json.pages.forEach(page => {
+    if (page.isSubform && page.subform?.name && page.subform.package) {
+      try {
+        const subform = getForm(page.subform.package, page.subform.name);
+        if (!subform) {
+          console.error(`Form with name "${page.subform.package}/${page.subform.name}" was not found in registry.`);
+        }
+        page.subform.form = subform;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+
+  return form.json;
 }
 
 export function getLatestFormVersion(forms: FormJsonFile[]) {
@@ -83,13 +107,28 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @param {object} originalJson The original JSON form schema object
  * @returns {object} The form json
  */
-export function filterFormByIntent(intent, originalJson) {
+export function applyFormIntent(intent: string, originalJson) {
+  const parentOverrides: Array<BehaviourProperty> = [];
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
   jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
+
+  // filter form-level markdown behaviour
+  if (jsonBuffer.markdown) {
+    updateMarkdownRequiredBehaviour(jsonBuffer.markdown, intent);
+  }
+
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
+    if (page.isSubform && page.subform?.form) {
+      const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent);
+      if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
+        parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
+      }
+      return applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
+    }
+    // TODO: Apply parentOverrides to pages if applicable
     const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
     if (pageBehaviour) {
       page.hide = pageBehaviour?.hide;
@@ -97,7 +136,13 @@ export function filterFormByIntent(intent, originalJson) {
       const fallBackBehaviour = page.behaviours?.find(behaviour => behaviour.intent === '*');
       page.hide = fallBackBehaviour?.hide;
     }
+
+    // filter page-level markdown behaviour
+    if (page.markdown) {
+      updateMarkdownRequiredBehaviour(page.markdown, intent);
+    }
     page.sections.forEach(section => {
+      // TODO: Apply parentOverrides to sections if applicable
       const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent);
       if (secBehaviour) {
         section.hide = secBehaviour?.hide;
@@ -105,13 +150,40 @@ export function filterFormByIntent(intent, originalJson) {
         const fallBackBehaviour = section.behaviours?.find(behaviour => behaviour.intent === '*');
         section.hide = fallBackBehaviour?.hide;
       }
+
+      // filter section-level markdown behaviour
+      if (section.markdown) {
+        updateMarkdownRequiredBehaviour(section.markdown, intent);
+      }
+
       section.questions.forEach((question: OHRIFormField) => {
         if (question['behaviours']) {
           updateQuestionRequiredBehaviour(question, intent);
+          parentOverrides
+            .filter(override => override.type == 'all' || override.type == 'field')
+            .forEach(override => {
+              question[override.name] = override.value;
+            });
         }
+
+        // filter question-level markdown behaviour
+        if (question.markdown) {
+          updateMarkdownRequiredBehaviour(question.markdown, intent);
+        }
+
         if (question.questions && question.questions.length) {
           question.questions.forEach(childQuestion => {
             updateQuestionRequiredBehaviour(childQuestion, intent);
+            // filter child-question-level markdown behaviour
+            if (childQuestion.markdown) {
+              updateMarkdownRequiredBehaviour(childQuestion.markdown, intent);
+            }
+
+            parentOverrides
+              .filter(override => override.type == 'all' || override.type == 'field')
+              .forEach(override => {
+                childQuestion[override.name] = override.value;
+              });
           });
         }
       });
@@ -125,25 +197,43 @@ export function filterFormByIntent(intent, originalJson) {
 
 function updateQuestionRequiredBehaviour(question, intent) {
   const requiredIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === intent);
-  // If required intent is present, substitute original props
-  if (requiredIntentBehaviour) {
-    question.required = requiredIntentBehaviour.required || undefined;
-    question.unspecified = requiredIntentBehaviour.unspecified || undefined;
-    question.hide = requiredIntentBehaviour.hide || undefined;
-    question.validators = requiredIntentBehaviour.validators || undefined;
-  } else {
-    // Attempt to retrieve default behaviours
-    const defaultIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === '*');
-    if (defaultIntentBehaviour) {
-      question.required = defaultIntentBehaviour.required || undefined;
-      question.unspecified = defaultIntentBehaviour.unspecified || undefined;
-      question.hide = defaultIntentBehaviour.hide || undefined;
-      question.validators = defaultIntentBehaviour.validators || undefined;
-    }
-  }
 
-  // make sure behaviours prop is always deleted
-  if (question.behaviours) {
+  const defaultIntentBehaviour = question.behaviours?.find(bevahiour => bevahiour.intent === '*');
+
+  // If both required and default intents exist, combine them and update to question
+  if (requiredIntentBehaviour && defaultIntentBehaviour) {
+    // Remove the intent name props from each object
+    delete requiredIntentBehaviour.intent;
+    delete defaultIntentBehaviour.intent;
+
+    // Combine required and default intents following the rules:
+    // 1. The default intent is applied to all other intents
+    // 2. Intent-specific behaviour overrides default behaviour
+    const combinedBehaviours = Object.assign(defaultIntentBehaviour, requiredIntentBehaviour);
+
+    // Add the combinedBehaviours data to initial question
+    question = Object.assign(question, combinedBehaviours);
+
+    // Remove behaviours list
     delete question.behaviours;
+  }
+}
+
+function updateMarkdownRequiredBehaviour(markdown, intent) {
+  const requiredIntentBehaviour = markdown.behaviours?.find(behaviour => behaviour.intent === intent);
+  const defaultIntentBehaviour = markdown.behaviours?.find(behaviour => behaviour.intent === '*');
+
+  if (requiredIntentBehaviour && defaultIntentBehaviour) {
+    delete requiredIntentBehaviour.intent;
+    delete defaultIntentBehaviour.intent;
+    const combinedBehaviours = Object.assign(defaultIntentBehaviour, requiredIntentBehaviour);
+
+    markdown = Object.assign(markdown, combinedBehaviours);
+    delete markdown.behaviours;
+  } else if (!requiredIntentBehaviour && defaultIntentBehaviour) {
+    delete defaultIntentBehaviour.intent;
+
+    markdown = Object.assign(markdown, defaultIntentBehaviour);
+    delete markdown.behaviours;
   }
 }

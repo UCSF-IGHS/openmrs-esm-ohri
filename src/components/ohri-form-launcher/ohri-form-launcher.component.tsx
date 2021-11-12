@@ -1,9 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import { Add16 } from '@carbon/icons-react';
 import styles from './launcher-with-intent.scss';
-import { filterFormByIntent } from '../../utils/forms-loader';
 import { useTranslation } from 'react-i18next';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.component';
 
 export const OHRIFormLauncherWithIntent: React.FC<{
@@ -19,7 +17,7 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   const { t } = useTranslation();
 
   //   useEffect(() => {
-  //     const processed = filterFormByIntent('*', formJson);
+  //     const processed = applyFormIntent('*', formJson);
   //     setProcessedForm(processed);
   //     onChangeIntent(processed);
   //   }, []);
