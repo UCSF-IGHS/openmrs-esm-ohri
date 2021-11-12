@@ -2,10 +2,10 @@
   "name": "Sample Collection",
   "pages": [
     {
-      "label": "Sample Collection",
+      "label": "Lab Order",
       "sections": [
         {
-          "label": "Lab Order",
+          "label": "Lab Order Details",
           "isExpanded": "true",
           "questions": [
             {
@@ -64,9 +64,14 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Sample Collection",
+      "sections": [
         {
-          "label": "Sample Collection",
+          "label": "Sample Collection Details",
           "isExpanded": "true",
           "questions": [
             {

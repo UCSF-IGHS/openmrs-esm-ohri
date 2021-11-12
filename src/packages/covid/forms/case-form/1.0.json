@@ -2,7 +2,7 @@
   "name": "COVID Case Form",
   "pages": [
     {
-      "label": "COVID Case",
+      "label": "COVID Assessment",
       "sections": [],
       "isSubform": "true",
       "subform": {
