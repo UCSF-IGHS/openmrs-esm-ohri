@@ -133,15 +133,39 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         } else {
           field.isHidden = false;
         }
+
+        //evaluate question-level markdown visibility
+        if (field.markdown?.hide) {
+          field.markdown.isHidden = eval(field.markdown.hide);
+        }
+
         return field;
       }),
     );
+
+    //prepare markdown
+    if (form.markdown && form.markdown.hide) {
+      form.markdown.isHidden = eval(form.markdown.hide);
+    }
+
     form.pages.forEach(page => {
       if (page.hide) {
         evaluateHideExpression(null, null, allFormFields, null, page, null);
       } else {
         page.isHidden = false;
       }
+
+      //evaluate page-level markdown visibility
+      if (page.markdown?.hide) {
+        page.markdown.isHidden = eval(page.markdown.hide);
+      }
+
+      //evaluate section-level markdown visibility
+      page.sections.map(section => {
+        if (section.markdown?.hide) {
+          section.markdown.isHidden = eval(section.markdown.hide);
+        }
+      });
     });
     setForm(form);
     setFormInitialValues(tempInitVals);
@@ -235,9 +259,20 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       const isHidden = eval(hideExpression);
       if (field) {
         field.isHidden = isHidden;
+
+        //evaluate markdown visibility
+        if (field.markdown?.hide) {
+          field.markdown.isHidden = eval(field.markdown.hide);
+        }
       }
       if (page) {
         page.isHidden = isHidden;
+
+        // evaluate markdown visibility
+        if (page.markdown?.hide) {
+          page.markdown.isHidden = eval(page.markdown.hide);
+        }
+
         page.sections.forEach(section => {
           section.isParentHidden = isHidden;
           cascadeVisibityToChildFields(isHidden, section, allFields);
@@ -245,6 +280,12 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       }
       if (section) {
         section.isHidden = isHidden;
+
+        //evaluate markdown visibility
+        if (section.markdown?.hide) {
+          section.markdown.isHidden = eval(section.markdown.hide);
+        }
+
         cascadeVisibityToChildFields(isHidden, section, allFields);
       }
     } catch (error) {
@@ -436,7 +477,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       }}>
       <InstantEffect effect={addScrollablePages} />
 
-      {form.markdown && <ReactMarkdown children={form.markdown.join('\n')} />}
+      {form.markdown && <ReactMarkdown children={form.markdown.content.join('\n')} />}
 
       {form.pages.map((page, index) => {
         if (isTrue(page.isHidden)) {
@@ -450,6 +491,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
           page.subform.form.pages = page.subform.form.pages.filter(page => !isTrue(page.isSubform));
           return (
             <OHRIEncounterForm
+              key={index}
               formJson={page.subform?.form}
               patient={patient}
               encounterDate={encounterDate}
