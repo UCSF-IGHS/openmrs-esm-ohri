@@ -5,7 +5,7 @@
       "label": "Lab Order",
       "sections": [
         {
-          "label": "Lab Order",
+          "label": "Lab Order Details",
           "isExpanded": "true",
           "questions": [
             {
