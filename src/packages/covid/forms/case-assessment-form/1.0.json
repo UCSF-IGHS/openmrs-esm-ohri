@@ -5,7 +5,7 @@
       "label": "COVID Assessment",
       "sections": [
         {
-          "label": "COVID Assessment",
+          "label": "Assessment Details",
           "isExpanded": "true",
           "questions": [
             {
@@ -1324,7 +1324,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "Lab Order",
       "sections": [],
       "isSubform": "true",
       "subform": {

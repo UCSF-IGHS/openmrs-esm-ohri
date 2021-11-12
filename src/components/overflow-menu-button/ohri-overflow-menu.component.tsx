@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './ohri-overflow-menu.scss';
 import { useTranslation } from 'react-i18next';
-import { preprocessForm } from '../../utils/forms-loader';
+import { applyFormIntent } from '../../utils/forms-loader';
 import { Button } from 'carbon-components-react';
 
 interface OverflowMenuProps {
@@ -91,7 +91,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                       title={menuItem.display}
                       onClick={e => {
                         e.preventDefault();
-                        const processedForm = preprocessForm(formJson, menuItem.intent);
+                        const processedForm = applyFormIntent(menuItem.intent, formJson);
                         launchForm(processedForm);
                         setShowMenu(false);
                       }}
@@ -113,7 +113,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
           kind="ghost"
           onClick={e => {
             e.preventDefault();
-            const processedForm = preprocessForm(formJson, overflowItems[0].intent);
+            const processedForm = applyFormIntent(overflowItems[0].intent, formJson);
             launchForm(processedForm);
           }}
           style={{

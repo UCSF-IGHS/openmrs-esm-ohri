@@ -4,6 +4,7 @@ export const launchForm = (form: any, onUpdateParent?: () => void) => {
   launchOHRIWorkSpace('ohri-forms-view-ext', {
     title: form?.name,
     screenSize: 'maximize',
+    mode: 'enter',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
   });
@@ -13,6 +14,7 @@ export const launchFormInEditMode = (form: any, encounterUuid: string, onUpdateP
     title: form.name,
     encounterUuid: encounterUuid,
     screenSize: 'maximize',
+    mode: 'edit',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
   });

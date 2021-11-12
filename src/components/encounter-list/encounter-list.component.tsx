@@ -186,6 +186,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
     launchOHRIWorkSpace('ohri-forms-view-ext', {
       title: encounterForm?.name,
       screenSize: 'maximize',
+      mode: 'enter',
       state: { updateParent: forceComponentUpdate, formJson: form || encounterForm },
     });
   };
@@ -240,7 +241,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
               onChange={({ page, pageSize }) => {
                 let startOffset = (page - 1) * pageSize;
                 updateTable(allRows, startOffset, pageSize);
-
                 setPage(page);
                 setPageSize(pageSize);
               }}
