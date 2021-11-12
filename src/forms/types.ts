@@ -61,8 +61,8 @@ export interface OHRIFormSchema {
   encounterType: string;
   encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
-  defaultPage?: string;
-  markdown?: Array<string>;
+  defaultPage?: string; 
+  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormPage {
@@ -72,6 +72,7 @@ export interface OHRIFormPage {
   sections: Array<OHRIFormSection>;
   isSubform?: boolean;
   subform?: { name?: string; package?: string; behaviours?: Array<any>; form: OHRIFormSchema };
+  markdown?: OHRIFormMarkdown;
 }
 export interface OHRIFormField {
   label: string;
@@ -89,7 +90,8 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
-  behaviours?: Array<Record<string, any>>;
+  behaviours?: Array<Record<string, any>>; 
+  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormFieldProps {
@@ -103,6 +105,7 @@ export interface OHRIFormSection {
   isHidden?: boolean;
   isParentHidden?: boolean;
   questions: Array<OHRIFormField>;
+  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormQuestionOptions {
@@ -137,3 +140,9 @@ export type RenderType =
   | 'textarea'
   | 'toggle'
   | 'fixed-value';
+
+export interface OHRIFormMarkdown {
+  content: Array<string>;
+  hide?: any;
+  isHidden?: boolean;
+}

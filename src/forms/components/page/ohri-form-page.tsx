@@ -3,6 +3,7 @@ import styles from './_page.scss';
 import OHRIFormSection from '../section/ohri-form-section.component';
 import { Waypoint } from 'react-waypoint';
 import { Accordion, AccordionItem } from 'carbon-components-react';
+import ReactMarkdown from 'react-markdown';
 
 function OHRIFormPage({ page, onFieldChange, setSelectedPage, isCollapsed }) {
   let newLabel = page.label.replace(/\s/g, '');
