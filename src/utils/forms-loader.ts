@@ -88,6 +88,12 @@ export function applyFormIntent(intent, originalJson) {
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
   jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
+
+  // filter form-level markdown behaviour
+  if (jsonBuffer.markdown) {
+    updateMarkdownRequiredBehaviour(jsonBuffer.markdown, intent);
+  }
+
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
@@ -97,6 +103,12 @@ export function applyFormIntent(intent, originalJson) {
       const fallBackBehaviour = page.behaviours?.find(behaviour => behaviour.intent === '*');
       page.hide = fallBackBehaviour?.hide;
     }
+
+    // filter page-level markdown behaviour
+    if (page.markdown) {
+      updateMarkdownRequiredBehaviour(page.markdown, intent);
+    }
+
     page.sections.forEach(section => {
       const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent);
       if (secBehaviour) {
@@ -105,13 +117,30 @@ export function applyFormIntent(intent, originalJson) {
         const fallBackBehaviour = section.behaviours?.find(behaviour => behaviour.intent === '*');
         section.hide = fallBackBehaviour?.hide;
       }
+
+      // filter section-level markdown behaviour
+      if (section.markdown) {
+        updateMarkdownRequiredBehaviour(section.markdown, intent);
+      }
+
       section.questions.forEach((question: OHRIFormField) => {
         if (question['behaviours']) {
           updateQuestionRequiredBehaviour(question, intent);
         }
+
+        // filter question-level markdown behaviour
+        if (question.markdown) {
+          updateMarkdownRequiredBehaviour(question.markdown, intent);
+        }
+
         if (question.questions && question.questions.length) {
           question.questions.forEach(childQuestion => {
             updateQuestionRequiredBehaviour(childQuestion, intent);
+
+            // filter child-question-level markdown behaviour
+            if (childQuestion.markdown) {
+              updateMarkdownRequiredBehaviour(childQuestion.markdown, intent);
+            }
           });
         }
       });
@@ -125,27 +154,43 @@ export function applyFormIntent(intent, originalJson) {
 
 function updateQuestionRequiredBehaviour(question, intent) {
   const requiredIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === intent);
-  // If required intent is present, substitute original props
-  if (requiredIntentBehaviour) {
-    question.required = requiredIntentBehaviour.required || undefined;
-    question.unspecified = requiredIntentBehaviour.unspecified || undefined;
-    question.hide = requiredIntentBehaviour.hide || undefined;
-    question.validators = requiredIntentBehaviour.validators || undefined;
-    question.value = requiredIntentBehaviour.value || undefined;
-  } else {
-    // Attempt to retrieve default behaviours
-    const defaultIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === '*');
-    if (defaultIntentBehaviour) {
-      question.required = defaultIntentBehaviour.required || undefined;
-      question.unspecified = defaultIntentBehaviour.unspecified || undefined;
-      question.hide = defaultIntentBehaviour.hide || undefined;
-      question.validators = defaultIntentBehaviour.validators || undefined;
-      question.value = defaultIntentBehaviour.value || undefined;
-    }
-  }
 
-  // make sure behaviours prop is always deleted
-  if (question.behaviours) {
+  const defaultIntentBehaviour = question.behaviours?.find(bevahiour => bevahiour.intent === '*');
+
+  // If both required and default intents exist, combine them and update to question
+  if (requiredIntentBehaviour && defaultIntentBehaviour) {
+    // Remove the intent name props from each object
+    delete requiredIntentBehaviour.intent;
+    delete defaultIntentBehaviour.intent;
+
+    // Combine required and default intents following the rules:
+    // 1. The default intent is applied to all other intents
+    // 2. Intent-specific behaviour overrides default behaviour
+    const combinedBehaviours = Object.assign(defaultIntentBehaviour, requiredIntentBehaviour);
+
+    // Add the combinedBehaviours data to initial question
+    question = Object.assign(question, combinedBehaviours);
+
+    // Remove behaviours list
     delete question.behaviours;
+  }
+}
+
+function updateMarkdownRequiredBehaviour(markdown, intent) {
+  const requiredIntentBehaviour = markdown.behaviours?.find(behaviour => behaviour.intent === intent);
+  const defaultIntentBehaviour = markdown.behaviours?.find(behaviour => behaviour.intent === '*');
+
+  if (requiredIntentBehaviour && defaultIntentBehaviour) {
+    delete requiredIntentBehaviour.intent;
+    delete defaultIntentBehaviour.intent;
+    const combinedBehaviours = Object.assign(defaultIntentBehaviour, requiredIntentBehaviour);
+
+    markdown = Object.assign(markdown, combinedBehaviours);
+    delete markdown.behaviours;
+  } else if (!requiredIntentBehaviour && defaultIntentBehaviour) {
+    delete defaultIntentBehaviour.intent;
+
+    markdown = Object.assign(markdown, defaultIntentBehaviour);
+    delete markdown.behaviours;
   }
 }

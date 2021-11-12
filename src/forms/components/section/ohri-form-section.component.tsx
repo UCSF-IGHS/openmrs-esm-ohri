@@ -4,6 +4,7 @@ import { getFieldComponent, getHandler } from '../../registry/registry';
 import { OHRIUnspecified } from '../inputs/unspecified/ohri-unspecified.component';
 import { OHRIFormField } from '../../types';
 import { isTrue } from '../../utils/boolean-utils';
+import ReactMarkdown from 'react-markdown';
 
 export const getFieldControl = (question: OHRIFormField) => {
   // Check if a concept wasn't provided
@@ -39,6 +40,7 @@ const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => 
 
           return supportsUnspecified(value) && value.questionOptions.rendering != 'group' ? (
             <div className={styles.questionOverrides}>
+              {!value.markdown?.isHidden && <ReactMarkdown children={value.markdown.content.join('\n')} />}
               {qnFragment}
               <OHRIUnspecified question={value} />
             </div>
