@@ -40,7 +40,7 @@ const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => 
 
           return supportsUnspecified(value) && value.questionOptions.rendering != 'group' ? (
             <div className={styles.questionOverrides}>
-              {!value.markdown?.isHidden && <ReactMarkdown children={value.markdown.content.join('\n')} />}
+              {!value.markdown?.isHidden && <ReactMarkdown children={value.markdown?.content.join('\n')} />}
               {qnFragment}
               <OHRIUnspecified question={value} />
             </div>
