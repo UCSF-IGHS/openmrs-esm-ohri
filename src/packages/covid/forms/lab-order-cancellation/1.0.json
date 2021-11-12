@@ -2,10 +2,10 @@
   "name": "Lab Order Cancellation",
   "pages": [
     {
-      "label": "Lab Order Cancellation",
+      "label": "Order Cancellation",
       "sections": [
         {
-          "label": "Lab Order Cancellation",
+          "label": "Cancellation Details",
           "isExpanded": "true",
           "questions": [
             {

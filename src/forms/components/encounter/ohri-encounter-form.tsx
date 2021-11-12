@@ -17,6 +17,8 @@ import { isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/oh
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
 import { FormSubmissionHandler } from '../../ohri-form.component';
+import ReactMarkdown from 'react-markdown';
+import { isTrue } from '../../utils/boolean-utils';
 
 interface OHRIEncounterFormProps {
   formJson: OHRIFormSchema;
@@ -66,7 +68,14 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         scrollablePages.add(page);
       }
     });
-  }, []);
+    return () => {
+      formJson.pages.forEach(page => {
+        if (!page.isSubform) {
+          scrollablePages.delete(page);
+        }
+      });
+    };
+  }, [scrollablePages, formJson]);
 
   useEffect(() => {
     if (!encounterLocation) {
@@ -372,8 +381,10 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         obs: obsForSubmission,
       };
     }
-    const ac = new AbortController();
-    return saveEncounter(ac, encounterForSubmission, encounter?.uuid);
+    if (encounterForSubmission.obs?.length || encounterForSubmission.orders?.length) {
+      const ac = new AbortController();
+      return saveEncounter(ac, encounterForSubmission, encounter?.uuid);
+    }
   };
 
   const onFieldChange = (fieldName: string, value: any) => {
@@ -424,11 +435,19 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         },
       }}>
       <InstantEffect effect={addScrollablePages} />
+
+      {form.markdown && <ReactMarkdown children={form.markdown.join('\n')} />}
+
       {form.pages.map((page, index) => {
-        if (page.isHidden) {
+        if (isTrue(page.isHidden)) {
           return null;
         }
-        if (page.isSubform && page.subform?.form) {
+        if (isTrue(page.isSubform) && page.subform?.form) {
+          if (sessionMode != 'enter' && !page.subform?.form.encounter) {
+            return null;
+          }
+          // filter out all nested subforms
+          page.subform.form.pages = page.subform.form.pages.filter(page => !isTrue(page.isSubform));
           return (
             <OHRIEncounterForm
               formJson={page.subform?.form}

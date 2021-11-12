@@ -16,6 +16,8 @@ import LoadingIcon from '../components/loading/loading.component';
 import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
+import ReactMarkdown from 'react-markdown';
+import { isTrue } from './utils/boolean-utils';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -51,8 +53,33 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [selectedPage, setSelectedPage] = useState('');
   const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
-  const form = useMemo(() => JSON.parse(JSON.stringify(formJson)), []);
   const handlers = new Map<string, FormSubmissionHandler>();
+  const form = useMemo(() => {
+    const copy: OHRIFormSchema = JSON.parse(JSON.stringify(formJson));
+    if (encounterUuid && !copy.encounter) {
+      // Assign this to the parent form
+      copy.encounter = encounterUuid;
+    }
+    let i = copy.pages.length;
+    // let's loop backwards so that we splice in the opposite direction
+    while (i--) {
+      const page = copy.pages[i];
+      if (isTrue(page.isSubform) && !isTrue(page.isHidden) && page.subform?.form?.encounterType == copy.encounterType) {
+        copy.pages.splice(i, 1, ...page.subform.form.pages.filter(page => !isTrue(page.isSubform)));
+      }
+    }
+    return copy;
+  }, [encounterUuid]);
+
+  const sessionMode = useMemo(() => {
+    if (mode) {
+      return mode;
+    }
+    if (encounterUuid) {
+      return 'edit';
+    }
+    return 'enter';
+  }, [mode]);
 
   useEffect(() => {
     const extDetails = {
@@ -118,8 +145,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             kind: 'success',
             critical: true,
           });
-          onSubmit?.();
         }
+        onSubmit?.();
       });
     }
   };
@@ -159,7 +186,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                   location={location}
                   values={props.values}
                   isCollapsed={collapsed}
-                  sessionMode={mode}
+                  sessionMode={sessionMode}
                   scrollablePages={scrollAblePages}
                   setAllInitialValues={setInitialValues}
                   allInitialValues={initialValues}

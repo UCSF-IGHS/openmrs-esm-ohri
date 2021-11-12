@@ -40,6 +40,7 @@ export interface FieldValidator {
 export interface EncounterDescriptor {
   location?: any; // string | { name: string; uuid: string };
   obs?: Array<any>; // TODO: add obs descriptor
+  orders?: Array<any>;
   uuid?: string;
   encounterProviders?: Array<{ provider: any; encounterRole: string }>;
   encounterDatetime?: Date;
@@ -61,6 +62,7 @@ export interface OHRIFormSchema {
   encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
   defaultPage?: string;
+  markdown?: Array<string>;
 }
 
 export interface OHRIFormPage {
@@ -87,6 +89,7 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
+  behaviours?: Array<Record<string, any>>;
 }
 
 export interface OHRIFormFieldProps {
@@ -132,4 +135,5 @@ export type RenderType =
   | 'content-switcher'
   | 'encounter-location'
   | 'textarea'
-  | 'toggle';
+  | 'toggle'
+  | 'fixed-value';
