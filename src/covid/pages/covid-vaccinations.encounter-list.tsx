@@ -6,6 +6,7 @@ import {
   covidVaccinationTypeConcept_UUID,
   covidVaccinationNextVacinationDateConcept_UUID,
   covidVaccinationAdministeredConcept_UUID,
+  covidVaccinationDoseAdmininstered_UUID,
 } from '../../constants';
 
 //Generic Component Import
@@ -22,18 +23,6 @@ interface CovidVaccinationsWidgetProps {
 export const covidFormSlot = 'hts-encounter-form-slot';
 
 const columns: EncounterListColumn[] = [
-  {
-    key: 'encounterDate',
-    header: 'Encounter Date',
-    getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
-    },
-  },
   //TODO: Add Vaccination Status concept
   // {
   //   key: 'covidStatus',
@@ -43,24 +32,24 @@ const columns: EncounterListColumn[] = [
   //   },
   // },
   {
-    key: 'covidVaccineType',
-    header: 'COVID Vacine Administered ',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationTypeConcept_UUID);
-    },
-  },
-  {
     key: 'vaccinationDate',
-    header: 'Vaccination Date',
+    header: 'Date of Vaccination',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidVaccinationAdministeredConcept_UUID, true);
     },
   },
   {
-    key: 'nextVisit',
-    header: 'Next Vaccination Date',
+    key: 'doseAdministered',
+    header: 'Dose Administered',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationNextVacinationDateConcept_UUID, true);
+      return getObsFromEncounter(encounter, covidVaccinationDoseAdmininstered_UUID);
+    },
+  },
+  {
+    key: 'covidVaccineType',
+    header: 'Vacine',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidVaccinationTypeConcept_UUID);
     },
   },
   {
