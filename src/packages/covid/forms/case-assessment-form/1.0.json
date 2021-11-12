@@ -1348,11 +1348,11 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Assessment Default"
+      "display": "Case Assessment"
     },
     {
       "intent": "COVID_LAB_ASSESSMENT_EMBED",
-      "display": "COVID Assessment Embed"
+      "display": "Full Case"
     }
   ],
   "processor": "EncounterFormProcessor",
