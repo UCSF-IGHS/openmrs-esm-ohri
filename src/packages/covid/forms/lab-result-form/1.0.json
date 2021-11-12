@@ -2,14 +2,26 @@
   "name": "COVID Lab Result Form",
   "pages": [
     {
-      "label": "Lab Order Form",
-      "sections": []
+      "label": "Lab Order",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_lab_order",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
     },
     {
-      "label": "Lab Result Form",
+      "label": "Lab Result",
       "sections": [
         {
-          "label": "Lab Result Form",
+          "label": "Lab Result Details",
           "isExpanded": "true",
           "questions": [
             {
@@ -582,7 +594,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Lab Result Default"
+      "display": "COVID Lab Result"
     }
   ],
   "processor": "EncounterFormProcessor",
