@@ -17,6 +17,7 @@ import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from '
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
 import ReactMarkdown from 'react-markdown';
+import { isTrue } from './utils/boolean-utils';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -63,8 +64,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     // let's loop backwards so that we splice in the opposite direction
     while (i--) {
       const page = copy.pages[i];
-      if (page.isSubform && !page.isHidden && page.subform?.form?.encounterType == copy.encounterType) {
-        copy.pages.splice(i, 1, ...page.subform.form.pages);
+      if (isTrue(page.isSubform) && !isTrue(page.isHidden) && page.subform?.form?.encounterType == copy.encounterType) {
+        copy.pages.splice(i, 1, ...page.subform.form.pages.filter(page => !isTrue(page.isSubform)));
       }
     }
     return copy;
