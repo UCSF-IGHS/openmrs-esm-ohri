@@ -144,9 +144,9 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     );
 
     //prepare markdown
-    if (form.markdown && form.markdown.hide) {
-      form.markdown.isHidden = eval(form.markdown.hide);
-    }
+    // if (form.markdown && form.markdown.hide) {
+    //   form.markdown.isHidden = eval(form.markdown.hide);
+    // }
 
     form.pages.forEach(page => {
       if (page.hide) {
@@ -156,9 +156,9 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       }
 
       //evaluate page-level markdown visibility
-      if (page.markdown?.hide) {
-        page.markdown.isHidden = eval(page.markdown.hide);
-      }
+      // if (page.markdown?.hide) {
+      //   page.markdown.isHidden = eval(page.markdown.hide);
+      // }
 
       //evaluate section-level markdown visibility
       page.sections.map(section => {
@@ -476,8 +476,6 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         },
       }}>
       <InstantEffect effect={addScrollablePages} />
- 
-      {form.markdown && <ReactMarkdown children={form.markdown.content.join('\n')} />} 
 
       {form.pages.map((page, index) => {
         if (isTrue(page.isHidden)) {
