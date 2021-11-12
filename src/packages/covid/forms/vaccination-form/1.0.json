@@ -5,7 +5,7 @@
       "label": "COVID Vaccination",
       "sections": [
         {
-          "label": "COVID Vaccination",
+          "label": "Vaccination Details",
           "isExpanded": "true",
           "questions": [
             {
