@@ -54,13 +54,21 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const { t } = useTranslation();
   const handlers = new Map<string, FormSubmissionHandler>();
   const form = useMemo(() => {
-    const copy = JSON.parse(JSON.stringify(formJson));
+    const copy: OHRIFormSchema = JSON.parse(JSON.stringify(formJson));
     if (encounterUuid && !copy.encounter) {
       // Assign this to the parent form
       copy.encounter = encounterUuid;
     }
+    let i = copy.pages.length;
+    // let's loop backwards so that we splice in the opposite direction
+    while (i--) {
+      const page = copy.pages[i];
+      if (page.isSubform && !page.isHidden && page.subform?.form?.encounterType == copy.encounterType) {
+        copy.pages.splice(i, 1, ...page.subform.form.pages);
+      }
+    }
     return copy;
-  }, []);
+  }, [encounterUuid]);
 
   const sessionMode = useMemo(() => {
     if (mode) {
@@ -136,8 +144,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             kind: 'success',
             critical: true,
           });
-          onSubmit?.();
         }
+        onSubmit?.();
       });
     }
   };
