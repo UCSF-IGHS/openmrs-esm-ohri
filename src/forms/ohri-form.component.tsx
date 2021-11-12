@@ -135,15 +135,38 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         } else {
           field.isHidden = false;
         }
+
+        //evaluate question-level markdown visibility
+        if (field.markdown?.hide) {
+          field.markdown.isHidden = eval(field.markdown.hide);
+        }
+
         return field;
       }),
     );
+    //prepare markdown
+    if (form.markdown && form.markdown.hide) {
+      form.markdown.isHidden = eval(form.markdown.hide);
+    }
+
     form.pages.forEach(page => {
       if (page.hide) {
         evaluateHideExpression(null, null, allFormFields, null, page, null);
       } else {
         page.isHidden = false;
       }
+
+      //evaluate page-level markdown visibility
+      if (page.markdown?.hide) {
+        page.markdown.isHidden = eval(page.markdown.hide);
+      }
+
+      //evaluate section-level markdown visibility
+      page.sections.map(section => {
+        if (section.markdown?.hide) {
+          section.markdown.isHidden = eval(section.markdown.hide);
+        }
+      });
     });
     setForm(form);
     setInitialValues(tempInitVals);
@@ -246,9 +269,20 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       const isHidden = eval(hideExpression);
       if (field) {
         field.isHidden = isHidden;
+
+        //evaluate markdown visibility
+        if (field.markdown?.hide) {
+          field.markdown.isHidden = eval(field.markdown.hide);
+        }
       }
       if (page) {
         page.isHidden = isHidden;
+
+        // evaluate markdown visibility
+        if (page.markdown?.hide) {
+          page.markdown.isHidden = eval(page.markdown.hide);
+        }
+
         page.sections.forEach(section => {
           section.isParentHidden = isHidden;
           cascadeVisibityToChildFields(isHidden, section, allFields);
@@ -256,6 +290,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
       }
       if (section) {
         section.isHidden = isHidden;
+
+        //evaluate markdown visibility
+        if (section.markdown?.hide) {
+          section.markdown.isHidden = eval(section.markdown.hide);
+        }
+
         cascadeVisibityToChildFields(isHidden, section, allFields);
       }
     } catch (error) {
@@ -488,11 +528,12 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                         date: encDate,
                       },
                     }}>
-                    {form.markdown && <ReactMarkdown children={form.markdown.join('\n')} />}
+                    {!form.markdown?.isHidden && <ReactMarkdown children={form.markdown.content.join('\n')} />}
                     {form.pages.map((page, index) => {
                       return (
                         !page.isHidden && (
                           <OHRIFormPage
+                            key={index}
                             page={page}
                             onFieldChange={onFieldChange}
                             setSelectedPage={setSelectedPage}
