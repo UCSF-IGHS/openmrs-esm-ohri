@@ -126,7 +126,7 @@ export function applyFormIntent(intent: string, originalJson) {
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
         parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
       }
-      return applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
+      page.subform.form = applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
     }
     // TODO: Apply parentOverrides to pages if applicable
     const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
@@ -189,7 +189,6 @@ export function applyFormIntent(intent: string, originalJson) {
       });
     });
   });
-
   return jsonBuffer;
 }
 
@@ -201,19 +200,18 @@ function updateQuestionRequiredBehaviour(question, intent) {
   const defaultIntentBehaviour = question.behaviours?.find(bevahiour => bevahiour.intent === '*');
 
   // If both required and default intents exist, combine them and update to question
-  if (requiredIntentBehaviour && defaultIntentBehaviour) {
+  if (requiredIntentBehaviour || defaultIntentBehaviour) {
     // Remove the intent name props from each object
-    delete requiredIntentBehaviour.intent;
-    delete defaultIntentBehaviour.intent;
+    delete requiredIntentBehaviour?.intent;
+    delete defaultIntentBehaviour?.intent;
 
     // Combine required and default intents following the rules:
     // 1. The default intent is applied to all other intents
     // 2. Intent-specific behaviour overrides default behaviour
-    const combinedBehaviours = Object.assign(defaultIntentBehaviour, requiredIntentBehaviour);
+    const combinedBehaviours = Object.assign(defaultIntentBehaviour || {}, requiredIntentBehaviour || {});
 
     // Add the combinedBehaviours data to initial question
     question = Object.assign(question, combinedBehaviours);
-
     // Remove behaviours list
     delete question.behaviours;
   }
