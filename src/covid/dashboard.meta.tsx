@@ -79,7 +79,7 @@ export const covidLabResults_dashboardMeta = {
   name: 'covid-lab-results',
   slot: 'covid-lab-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Lab Results',
+  title: 'Lab Test',
 };
 
 export const covidVaccinations_dashboardMeta = {
