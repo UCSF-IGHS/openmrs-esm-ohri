@@ -94,6 +94,7 @@ export const covidPatientStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646
 
 //Covid Lab Order
 export const covidLabOrderDate_UUID = '162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidLabOrderEncounterType_UUID = 'a77d3e7f-5c8f-4074-a207-77a70e197b0c';
 
 //Covid Lab Results
 export const covidSpecimenCollectionDate_UUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -103,7 +104,7 @@ export const covidTestResultConcept_UUID = 'cbcbb029-f11f-4437-9d53-1d0f0a170433
 export const covidRapidTestResultDate_UUID = 'af159c77-bc5d-46dd-90d9-bcbffb22267f';
 export const covidDiagnosticPcrResult_UUID = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
 export const covidDiagnorticPcrResultDate_UUID = '4a77ab44-0323-490e-96be-e168c0e5c9de';
-export const covidTestStatusConcept_UUID = '';
+export const covidTestStatusConcept_UUID = '6681366c-2174-489a-b951-13a1404935bf';
 
 // Covid Vaccination
 export const covidVaccinationEncounterUUID = '5b37ce7a-c55e-4226-bdc8-5af04025a6de';

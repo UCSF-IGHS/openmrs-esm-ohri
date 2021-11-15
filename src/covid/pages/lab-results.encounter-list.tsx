@@ -5,6 +5,7 @@ import { Tabs, Tab } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 
 import {
+  covidClientsWithPendingLabResults,
   covidLabOrderDate_UUID,
   covidReasonsForTestingConcep_UUID,
   covidTestResultConcept_UUID,
@@ -40,7 +41,7 @@ import EncounterList, {
   getEncounterValues,
 } from '../../components/encounter-list/encounter-list.component';
 
-const columns: EncounterListColumn[] = [
+const columnsLab: EncounterListColumn[] = [
   {
     key: 'encounterDate',
     header: 'Date of Lab Test',
@@ -95,6 +96,42 @@ const columns: EncounterListColumn[] = [
   },
 ];
 
+const columnsPending: EncounterListColumn[] = [
+  {
+    key: 'orderDate',
+    header: 'Date of Order',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
+    },
+  },
+  {
+    key: 'testType',
+    header: 'Test Type',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
+    },
+  },
+  {
+    key: 'fowardLabreference',
+    header: 'Fowarded to Reference Lab',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+    },
+  },
+  {
+    key: 'labStatus',
+    header: 'Status',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+    },
+  },
+  {
+    key: 'actions',
+    header: 'Actions',
+    getValue: () => {},
+  },
+];
+
 const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('covidLabResults', 'Lab Tests');
@@ -109,15 +146,28 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           <EncounterList
             patientUuid={patientUuid}
             encounterUuid={covid_Assessment_EncounterUUID}
-            form={{ package: 'covid', name: 'covid_lab_test' }}
-            columns={columns}
+            form={{ package: 'covid', name: 'covid_lab_order' }}
+            forms={[
+              { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
+              { package: 'covid', name: 'covid_lab_result', excludedIntents: [] },
+            ]}
+            columns={columnsLab}
             description={displayText}
             headerTitle={headerTitle}
             dropdownText="Add"
           />
         </Tab>
         <Tab label="Pending Lab Orders">
-          <EmptyState displayText={displayTextPending} headerTitle={headerTitlePending} />
+          <EncounterList
+            patientUuid={patientUuid}
+            encounterUuid={covid_Assessment_EncounterUUID}
+            form={{ package: 'covid', name: 'covid_lab_order' }}
+            columns={columnsPending}
+            description={headerTitlePending}
+            headerTitle={displayTextPending}
+            dropdownText="Add"
+            hideFormLauncher
+          />
         </Tab>
       </Tabs>
     </div>

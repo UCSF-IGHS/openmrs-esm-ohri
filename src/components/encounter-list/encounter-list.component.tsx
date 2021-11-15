@@ -30,6 +30,7 @@ export interface EncounterListProps {
   description: string;
   dropdownText?: string;
   hideFormLauncher?: boolean;
+  forms?: Array<any>;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -67,6 +68,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   description,
   dropdownText,
   hideFormLauncher,
+  forms,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
@@ -186,7 +188,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
             />
           </OverflowMenu>
         );
-      } else if (form.package == 'covid' && form.name == 'covid_lab_test') {
+      } else if (form.package == 'covid' && form.name == 'covid_lab_order') {
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
@@ -201,6 +203,17 @@ const EncounterList: React.FC<EncounterListProps> = ({
               onClick={e => {
                 e.preventDefault();
                 launchFormInEditMode(getForm('covid', 'covid_lab_result'), encounter.uuid, forceComponentUpdate);
+              }}
+            />
+            <OverflowMenuItem
+              itemText={'Cancel Lab Order'}
+              onClick={e => {
+                e.preventDefault();
+                launchFormInEditMode(
+                  getForm('covid', 'covid_lab_order_cancellation'),
+                  encounter.uuid,
+                  forceComponentUpdate,
+                );
               }}
             />
           </OverflowMenu>
@@ -244,7 +257,23 @@ const EncounterList: React.FC<EncounterListProps> = ({
   };
 
   const formLauncher = useMemo(() => {
-    if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
+    let encounterForms = [];
+    console.info('forms: ', forms);
+    if (forms && forms.length > 1) {
+      encounterForms = forms.map(formV => {
+        return getForm(formV.package, formV.name);
+      });
+      console.info('encounterForms: ', encounterForms);
+      return (
+        <OHRIFormLauncherWithIntent
+          launchForm={launchEncounterForm}
+          onChangeIntent={encounterForm}
+          dropDownText={dropdownText}
+          hideFormLauncher={hideFormLauncher}
+          formsJson={encounterForms}
+        />
+      );
+    } else if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
       return (
         <OHRIFormLauncherWithIntent
           formJson={encounterForm}

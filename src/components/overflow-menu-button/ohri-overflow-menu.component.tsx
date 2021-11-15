@@ -81,27 +81,31 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
             }}>
             <ul className="bx--overflow-menu-options__content">
-              {overflowItems.map((menuItem, index) => {
-                return (
-                  <li className="bx--overflow-menu-options__option" id={'item-' + index}>
-                    <button
-                      id={'menuItem-' + index}
-                      className="bx--overflow-menu-options__btn"
-                      role="menuitem"
-                      title={menuItem.display}
-                      onClick={e => {
-                        e.preventDefault();
-                        const processedForm = applyFormIntent(menuItem.intent, formJson);
-                        launchForm(processedForm);
-                        setShowMenu(false);
-                      }}
-                      style={{
-                        maxWidth: '100vw',
-                      }}>
-                      <span className="bx--overflow-menu-options__option-content">{menuItem.display}</span>
-                    </button>
-                  </li>
-                );
+              {overflowItems.map(item => {
+                console.info('item: ', item);
+                return item.availableIntents.map((intent, index) => {
+                  return (
+                    <li className="bx--overflow-menu-options__option" id={'item-' + index}>
+                      <button
+                        id={'menuItem-' + index}
+                        className="bx--overflow-menu-options__btn"
+                        role="menuitem"
+                        title={intent.display}
+                        onClick={e => {
+                          console.info('overflowItems: ', overflowItems);
+                          e.preventDefault();
+                          const processedForm = applyFormIntent(intent, item.formJson);
+                          launchForm(processedForm);
+                          setShowMenu(false);
+                        }}
+                        style={{
+                          maxWidth: '100vw',
+                        }}>
+                        <span className="bx--overflow-menu-options__option-content">{intent.display}</span>
+                      </button>
+                    </li>
+                  );
+                });
               })}
             </ul>
             <span />
