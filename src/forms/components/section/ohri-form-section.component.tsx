@@ -45,7 +45,10 @@ const OHRIFormSection = ({ fields, onFieldChange, sectionTitle, showTitle }) => 
               <OHRIUnspecified question={value} />
             </div>
           ) : (
-            <div className={styles.questionOverrides}>{qnFragment}</div>
+            <div className={styles.questionOverrides}>
+              {!value.markdown?.isHidden && <ReactMarkdown children={value.markdown.content.join('\n')} />}
+              {qnFragment}
+            </div>
           );
         }
       })}

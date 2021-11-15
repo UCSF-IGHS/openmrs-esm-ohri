@@ -528,7 +528,6 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                         date: encDate,
                       },
                     }}>
-                    {!form.markdown?.isHidden && <ReactMarkdown children={form.markdown.content.join('\n')} />}
                     {form.pages.map((page, index) => {
                       return (
                         !page.isHidden && (
