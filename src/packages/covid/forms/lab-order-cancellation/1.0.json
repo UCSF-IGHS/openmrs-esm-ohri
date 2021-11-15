@@ -2,104 +2,28 @@
   "name": "Lab Order Cancellation",
   "pages": [
     {
+      "label": "",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_lab_order",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
+    },
+    {
       "label": "Order Cancellation",
       "sections": [
         {
           "label": "Cancellation Details",
           "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Order date",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "CIEL",
-                    "value": "162078"
-                  }
-                ]
-              },
-              "id": "dateTestOrdered",
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
-                  "readonly": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Test requested",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718",
-                "answers": [
-                  {
-                    "concept": "165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Rapid Antigen Test",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Diagnostic PCR Test",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "id": "testOrdered",
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
-                  "readonly": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Notes",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rows": "5",
-                "conceptMappings": [
-                  {
-                    "type": "LOINC",
-                    "value": "48767-8"
-                  },
-                  {
-                    "type": "CIEL",
-                    "value": "161011"
-                  }
-                ]
-              },
-              "id": "sampleCollectionFormNotes",
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
-                }
-              ]
-            },
+          "questions": [             
             {
               "label": "Cancellation Date",
               "type": "obs",
@@ -230,7 +154,7 @@
               "label": "Status",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "fixed-value",
                 "concept": "6681366c-2174-489a-b951-13a1404935bf",
                 "conceptMappings": [
                   {
@@ -268,7 +192,8 @@
                   "hide": {
                     "hideWhenExpression": "true"
                   },
-                  "validators": []
+                  "validators": [],
+                   "value": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                 }
               ]
             }

@@ -235,3 +235,11 @@ function updateMarkdownRequiredBehaviour(markdown, intent) {
     delete markdown.behaviours;
   }
 }
+
+export function updateExcludeIntentBehaviour(excludedIntents: Array<string>, originalJson) {
+  originalJson.availableIntents = originalJson.availableIntents.filter(
+    intent => !excludedIntents.includes(intent.intent),
+  );
+
+  return originalJson;
+}

@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { getForm } from '../../utils/forms-loader';
+import { getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
@@ -30,6 +30,7 @@ export interface EncounterListProps {
   description: string;
   dropdownText?: string;
   hideFormLauncher?: boolean;
+  forms?: Array<any>;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -67,6 +68,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   description,
   dropdownText,
   hideFormLauncher,
+  forms,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
@@ -186,7 +188,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
             />
           </OverflowMenu>
         );
-      } else if (form.package == 'covid' && form.name == 'covid_lab_test') {
+      } else if (form.package == 'covid' && form.name == 'covid_lab_order') {
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
@@ -201,6 +203,17 @@ const EncounterList: React.FC<EncounterListProps> = ({
               onClick={e => {
                 e.preventDefault();
                 launchFormInEditMode(getForm('covid', 'covid_lab_result'), encounter.uuid, forceComponentUpdate);
+              }}
+            />
+            <OverflowMenuItem
+              itemText={'Cancel Lab Order'}
+              onClick={e => {
+                e.preventDefault();
+                launchFormInEditMode(
+                  getForm('covid', 'covid_lab_order_cancellation'),
+                  encounter.uuid,
+                  forceComponentUpdate,
+                );
               }}
             />
           </OverflowMenu>
@@ -244,7 +257,24 @@ const EncounterList: React.FC<EncounterListProps> = ({
   };
 
   const formLauncher = useMemo(() => {
-    if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
+    let encounterForms = [];
+    if (forms && forms.length > 1) {
+      encounterForms = forms.map(formV => {
+        let tempForm = getForm(formV.package, formV.name);
+        tempForm = updateExcludeIntentBehaviour(formV.excludedIntents, tempForm);
+        return tempForm;
+      });
+
+      return (
+        <OHRIFormLauncherWithIntent
+          launchForm={launchEncounterForm}
+          onChangeIntent={encounterForm}
+          dropDownText={dropdownText}
+          hideFormLauncher={hideFormLauncher}
+          formsJson={encounterForms}
+        />
+      );
+    } else if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
       return (
         <OHRIFormLauncherWithIntent
           formJson={encounterForm}
