@@ -17,12 +17,6 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   // const [processedForm, setProcessedForm] = useState(null);
   const { t } = useTranslation();
 
-  //   useEffect(() => {
-  //     const processed = applyFormIntent('*', formJson);
-  //     setProcessedForm(processed);
-  //     onChangeIntent(processed);
-  //   }, []);
-
   let overFlowItems = [];
   if (formsJson && formsJson.length > 1) {
     overFlowItems = formsJson.map(item => {

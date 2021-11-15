@@ -212,7 +212,7 @@
               "label": "Status",
               "type": "obs",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "fixed-value",
                 "concept": "6681366c-2174-489a-b951-13a1404935bf",
                 "conceptMappings": [
                   {
@@ -247,7 +247,8 @@
                   "intent": "*",
                   "hide": {
                     "hideWhenExpression": "false"
-                  }
+                  },
+                  "value": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
                 },
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",

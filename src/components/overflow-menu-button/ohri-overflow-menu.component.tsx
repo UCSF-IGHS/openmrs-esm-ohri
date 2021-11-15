@@ -44,7 +44,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
 
   return (
     <div className={`bx--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
-      {overflowItems.length > 1 ? (
+      {overflowItems.length > 0 ? (
         <>
           <button
             className={`bx--overflow-menu__trigger ${showMenu && 'bx--overflow-menu--open'}`}
@@ -82,7 +82,6 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
             }}>
             <ul className="bx--overflow-menu-options__content">
               {overflowItems.map(item => {
-                console.info('item: ', item);
                 return item.availableIntents.map((intent, index) => {
                   return (
                     <li className="bx--overflow-menu-options__option" id={'item-' + index}>
@@ -92,7 +91,6 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                         role="menuitem"
                         title={intent.display}
                         onClick={e => {
-                          console.info('overflowItems: ', overflowItems);
                           e.preventDefault();
                           const processedForm = applyFormIntent(intent, item.formJson);
                           launchForm(processedForm);

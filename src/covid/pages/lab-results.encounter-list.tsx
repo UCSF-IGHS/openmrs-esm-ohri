@@ -7,6 +7,7 @@ import EmptyState from '../../components/empty-state/empty-state.component';
 import {
   covidClientsWithPendingLabResults,
   covidLabOrderDate_UUID,
+  covidLabOrderEncounterType_UUID,
   covidReasonsForTestingConcep_UUID,
   covidTestResultConcept_UUID,
   covidTestResultUUID,
@@ -145,7 +146,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         <Tab label="Lab Tests">
           <EncounterList
             patientUuid={patientUuid}
-            encounterUuid={covid_Assessment_EncounterUUID}
+            encounterUuid={covidLabOrderEncounterType_UUID}
             form={{ package: 'covid', name: 'covid_lab_order' }}
             forms={[
               { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
@@ -160,13 +161,12 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         <Tab label="Pending Lab Orders">
           <EncounterList
             patientUuid={patientUuid}
-            encounterUuid={covid_Assessment_EncounterUUID}
-            form={{ package: 'covid', name: 'covid_lab_order' }}
+            encounterUuid={covidLabOrderEncounterType_UUID}
+            form={{ package: 'covid', name: 'covid_lab_test' }}
             columns={columnsPending}
             description={headerTitlePending}
             headerTitle={displayTextPending}
             dropdownText="Add"
-            hideFormLauncher
           />
         </Tab>
       </Tabs>

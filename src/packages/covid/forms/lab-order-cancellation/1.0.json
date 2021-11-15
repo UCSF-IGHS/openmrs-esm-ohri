@@ -154,7 +154,7 @@
               "label": "Status",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "fixed-value",
                 "concept": "6681366c-2174-489a-b951-13a1404935bf",
                 "conceptMappings": [
                   {
@@ -192,7 +192,8 @@
                   "hide": {
                     "hideWhenExpression": "true"
                   },
-                  "validators": []
+                  "validators": [],
+                   "value": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                 }
               ]
             }

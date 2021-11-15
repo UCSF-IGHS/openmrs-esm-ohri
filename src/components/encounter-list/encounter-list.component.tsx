@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { getForm } from '../../utils/forms-loader';
+import { getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
@@ -258,12 +258,13 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
   const formLauncher = useMemo(() => {
     let encounterForms = [];
-    console.info('forms: ', forms);
     if (forms && forms.length > 1) {
       encounterForms = forms.map(formV => {
-        return getForm(formV.package, formV.name);
+        let tempForm = getForm(formV.package, formV.name);
+        tempForm = updateExcludeIntentBehaviour(formV.excludedIntents, tempForm);
+        return tempForm;
       });
-      console.info('encounterForms: ', encounterForms);
+
       return (
         <OHRIFormLauncherWithIntent
           launchForm={launchEncounterForm}
