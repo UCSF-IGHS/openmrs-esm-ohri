@@ -189,7 +189,6 @@ export function applyFormIntent(intent: string, originalJson) {
       });
     });
   });
-
   return jsonBuffer;
 }
 
@@ -213,7 +212,6 @@ function updateQuestionRequiredBehaviour(question, intent) {
 
     // Add the combinedBehaviours data to initial question
     question = Object.assign(question, combinedBehaviours);
-
     // Remove behaviours list
     delete question.behaviours;
   }
