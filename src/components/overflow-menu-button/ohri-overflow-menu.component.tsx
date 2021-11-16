@@ -92,8 +92,10 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                         title={intent.display}
                         onClick={e => {
                           e.preventDefault();
+                          console.info('intent: ', intent);
                           const processedForm = applyFormIntent(intent, item.formJson);
                           launchForm(processedForm);
+                          console.info('processedForm: ', processedForm);
                           setShowMenu(false);
                         }}
                         style={{
