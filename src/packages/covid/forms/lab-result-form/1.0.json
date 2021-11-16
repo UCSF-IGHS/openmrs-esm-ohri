@@ -135,7 +135,10 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('specimenType','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  }
                 }
               ]
             },
