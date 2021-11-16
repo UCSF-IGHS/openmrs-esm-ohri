@@ -95,7 +95,29 @@ const columns: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => [
+      {
+        form: { name: 'covid_case', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'View Case Form',
+        mode: 'view',
+      },
+      {
+        form: { name: 'covid_case', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Case Form',
+        mode: 'edit',
+      },
+      {
+        form: { name: 'covid_outcome', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Outcome Form',
+        mode: 'edit',
+      },
+    ],
   },
 ];
 

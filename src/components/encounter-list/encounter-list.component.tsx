@@ -76,6 +76,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+  const [encounterActions, setEncounterActions] = useState();
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -161,79 +162,82 @@ const EncounterList: React.FC<EncounterListProps> = ({
         row[column.key] = val;
       });
 
-      //TODO: This 'piece of hack' SHOULD BE REMOVED once Pius is done with the Actions implementation
-      if (form.package == 'covid' && form.name == 'covid_assessment') {
-        row['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={'View Case'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInViewMode(
-                  applyFormIntent('', getForm('covid', 'covid_case')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Case'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_case')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Outcome'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_outcome')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-          </OverflowMenu>
-        );
-      } else if (form.package == 'covid' && form.name == 'covid_lab_order') {
-        row['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={'View Lab Test'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInViewMode(encounterForm, encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Lab Result'}
-              onClick={e => {
-                e.preventDefault();
-                let preprocessForm = applyFormIntent('*', getForm('covid', 'covid_lab_result'));
-                launchFormInEditMode(preprocessForm, encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Cancel Lab Order'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_lab_order_cancellation')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-          </OverflowMenu>
-        );
-      }
+      //TODO: Find better place for this code
+      // if (form.package == 'covid' && form.name == 'covid_assessment') {
+      //   row['actions'] = (
+      //     <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+      //       <OverflowMenuItem
+      //         itemText={'View Case'}
+      //         onClick={e => {
+      //           e.preventDefault();
+      //           launchFormInViewMode(getForm('covid', 'covid_case'), encounter.uuid, forceComponentUpdate);
+      //         }}
+      //       />
+      //       <OverflowMenuItem
+      //         itemText={'Edit Case'}
+      //         onClick={e => {
+      //           e.preventDefault();
+      //           launchFormInEditMode(getForm('covid', 'covid_case'), encounter.uuid, forceComponentUpdate);
+      //         }}
+      //       />
+      //       <OverflowMenuItem
+      //         itemText={'Edit Outcome'}
+      //         onClick={e => {
+      //           e.preventDefault();
+      //           launchFormInEditMode(getForm('covid', 'covid_outcome'), encounter.uuid, forceComponentUpdate);
+      //         }}
+      //       />
+      //     </OverflowMenu>
+      //   );
+      // } else if (form.package == 'covid' && form.name == 'covid_lab_test') {
+      //   row['actions'] = (
+      //     <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+      //       <OverflowMenuItem
+      //         itemText={'View Lab Test'}
+      //         onClick={e => {
+      //           e.preventDefault();
+      //           launchFormInViewMode(encounterForm, encounter.uuid, forceComponentUpdate);
+      //         }}
+      //       />
+      //       <OverflowMenuItem
+      //         itemText={'Edit Lab Result'}
+      //         onClick={e => {
+      //           e.preventDefault();
+      //           launchFormInEditMode(getForm('covid', 'covid_lab_result'), encounter.uuid, forceComponentUpdate);
+      //         }}
+      //       />
+      //     </OverflowMenu>
+      //   );
+      // }
 
-      if (!row['actions']) {
+      {
+        /* <OverflowMenuItem
+              itemText={actionItem.label}
+              onClick={e => {
+                e.preventDefault();
+                // launchFormInViewMode(
+                //   getForm(actionItem.form.package, actionItem.form.name),
+                //   actionItem.encounterUuid,
+                //   forceComponentUpdate,
+                // );
+              }}
+            /> */
+      }
+      // let actionItems = null;
+      if (row['actions']) {
+        const actionItems = (
+          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+            {row['actions'].map((actionItem, index) => {
+              // console.log('Test: ', actionItem.label);
+              <OverflowMenuItem itemText={'Test' + actionItem.label} />;
+            })}
+          </OverflowMenu>
+        );
+        // setEncounterActions(actionItems);
+        // console.log('HERE: ', row['actions']);
+        // console.log('HERE 2: ', actionItems);
+        row['actions'] = actionItems;
+      } else {
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
@@ -253,7 +257,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
           </OverflowMenu>
         );
       }
-
       return row;
     });
     setTableRows(rows);
