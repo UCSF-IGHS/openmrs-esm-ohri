@@ -69,7 +69,7 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={covid_Assessment_EncounterUUID}
-      form={{ package: 'covid', name: 'covid_outcome_tracking' }}
+      form={{ package: 'covid', name: 'covid_outcome' }}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
