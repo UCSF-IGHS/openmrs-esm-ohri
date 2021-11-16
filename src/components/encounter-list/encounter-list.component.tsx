@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
+import { applyFormIntent, getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
@@ -202,7 +202,8 @@ const EncounterList: React.FC<EncounterListProps> = ({
               itemText={'Edit Lab Result'}
               onClick={e => {
                 e.preventDefault();
-                launchFormInEditMode(getForm('covid', 'covid_lab_result'), encounter.uuid, forceComponentUpdate);
+                let preprocessForm = applyFormIntent('*', getForm('covid', 'covid_lab_result'));
+                launchFormInEditMode(preprocessForm, encounter.uuid, forceComponentUpdate);
               }}
             />
             <OverflowMenuItem

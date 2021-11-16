@@ -123,8 +123,6 @@ export function applyFormIntent(intent, originalJson) {
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     if (page.isSubform && page.subform?.form) {
-      console.info('page.subform: ', page.subform);
-      console.info('page.intent: ', intent);
       const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent.intent);
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
         parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
