@@ -57,7 +57,7 @@
               "id": "testRequested",
               "behaviours": [
                 {
-                  "intent": "*",
+                  "intent": "No",
                   "required": "true"
                 },
                 {
