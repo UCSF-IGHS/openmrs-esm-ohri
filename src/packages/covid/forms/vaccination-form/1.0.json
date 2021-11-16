@@ -683,11 +683,7 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
+                  "required": "false",                  
                   "validators": []
                 }
               ]

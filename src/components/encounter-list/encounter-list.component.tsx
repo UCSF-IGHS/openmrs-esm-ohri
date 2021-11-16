@@ -84,7 +84,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
-    launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
+    launchFormInEditMode(applyFormIntent('', encounterForm), encounterUuid, forceComponentUpdate);
   };
   const viewEncounter = encounterUuid => {
     launchFormInViewMode(
@@ -169,21 +169,33 @@ const EncounterList: React.FC<EncounterListProps> = ({
               itemText={'View Case'}
               onClick={e => {
                 e.preventDefault();
-                launchFormInViewMode(getForm('covid', 'covid_case'), encounter.uuid, forceComponentUpdate);
+                launchFormInViewMode(
+                  applyFormIntent('', getForm('covid', 'covid_case')),
+                  encounter.uuid,
+                  forceComponentUpdate,
+                );
               }}
             />
             <OverflowMenuItem
               itemText={'Edit Case'}
               onClick={e => {
                 e.preventDefault();
-                launchFormInEditMode(getForm('covid', 'covid_case'), encounter.uuid, forceComponentUpdate);
+                launchFormInEditMode(
+                  applyFormIntent('', getForm('covid', 'covid_case')),
+                  encounter.uuid,
+                  forceComponentUpdate,
+                );
               }}
             />
             <OverflowMenuItem
               itemText={'Edit Outcome'}
               onClick={e => {
                 e.preventDefault();
-                launchFormInEditMode(getForm('covid', 'covid_outcome'), encounter.uuid, forceComponentUpdate);
+                launchFormInEditMode(
+                  applyFormIntent('', getForm('covid', 'covid_outcome')),
+                  encounter.uuid,
+                  forceComponentUpdate,
+                );
               }}
             />
           </OverflowMenu>
@@ -211,7 +223,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
               onClick={e => {
                 e.preventDefault();
                 launchFormInEditMode(
-                  getForm('covid', 'covid_lab_order_cancellation'),
+                  applyFormIntent('', getForm('covid', 'covid_lab_order_cancellation')),
                   encounter.uuid,
                   forceComponentUpdate,
                 );
