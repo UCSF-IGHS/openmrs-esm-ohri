@@ -108,7 +108,6 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @returns {object} The form json
  */
 export function applyFormIntent(intent, originalJson) {
-  console.info('Original_intent: ', intent);
   const parentOverrides: Array<BehaviourProperty> = [];
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
@@ -127,7 +126,6 @@ export function applyFormIntent(intent, originalJson) {
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
         parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
       }
-      console.info('targetBehaviour: ', targetBehaviour);
 
       page.subform.form = applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
     }
