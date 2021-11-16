@@ -6,7 +6,7 @@
 }
 
 .formField > div > div > label {
-  color: #525252 !important;
+  color: #525252;
 }
 
 .ohriFormLabel {
@@ -146,8 +146,8 @@
   color: $color-gray-70;
 }
 
-.errorLegend legend, .errorLabel label {
-  color: #da1e28
+.errorLabel > div label {
+  color: #da1e28 !important;
 }
 
 .obsGroupColumn {
