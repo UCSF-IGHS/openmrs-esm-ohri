@@ -12,8 +12,12 @@
               "label": "Order Labs",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "toggle",
                 "concept": "2dbf01ab-77f6-4b35-aa2c-46dfc14b0af0",
+                "toggleOptions": {
+                  "labelTrue": "Yes",
+                  "labelFalse": "No"
+                },
                 "conceptMappings": [
                   {
                     "type": "OCT",
