@@ -107,7 +107,7 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  * @param {object} originalJson The original JSON form schema object
  * @returns {object} The form json
  */
-export function applyFormIntent(intent: string, originalJson) {
+export function applyFormIntent(intent, originalJson) {
   const parentOverrides: Array<BehaviourProperty> = [];
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
@@ -122,10 +122,11 @@ export function applyFormIntent(intent: string, originalJson) {
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     if (page.isSubform && page.subform?.form) {
-      const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent);
+      const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent.intent);
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
         parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
       }
+
       page.subform.form = applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
     }
     // TODO: Apply parentOverrides to pages if applicable

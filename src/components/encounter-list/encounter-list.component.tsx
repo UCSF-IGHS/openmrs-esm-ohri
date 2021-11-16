@@ -214,11 +214,8 @@ const EncounterList: React.FC<EncounterListProps> = ({
               itemText={'Edit Lab Result'}
               onClick={e => {
                 e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_lab_result')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
+                let preprocessForm = applyFormIntent('*', getForm('covid', 'covid_lab_result'));
+                launchFormInEditMode(preprocessForm, encounter.uuid, forceComponentUpdate);
               }}
             />
             <OverflowMenuItem
