@@ -68,7 +68,11 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         );
       }
       if (typeof obs.value == 'string' || typeof obs.value == 'number') {
-        return field.questionOptions.rendering == 'date' ? moment(obs.value).toDate() : obs.value;
+        if (field.questionOptions.rendering == 'date') {
+          field.value.value = moment(field.value.value).format('YYYY-MM-DD HH:mm');
+          return moment(obs.value).toDate();
+        }
+        return obs.value;
       }
       if (field.questionOptions.rendering == 'checkbox') {
         field.value = encounter.obs.filter(o => o.concept.uuid == field.questionOptions.concept);
