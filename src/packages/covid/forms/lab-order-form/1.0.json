@@ -57,8 +57,8 @@
               "id": "testRequested",
               "behaviours": [
                 {
-                  "intent": "No",
-                  "required": "true"
+                  "intent": "*",
+                  "required": "false"
                 },
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
