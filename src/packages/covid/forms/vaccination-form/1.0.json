@@ -145,6 +145,51 @@
               ]
             },
             {
+              "label": "Vaccination status after this dose",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "128731bf-bbff-40c3-a6c9-0bf4c86182ac",
+                "conceptMappings": [
+                  {
+                    "type": "OCT",
+                    "value": "COVID-19ImmunizationStatus"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
+                    "label": "Partially Vaccinated",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "COVID-19PartialVax"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
+                    "label": "Fully Vaccinated",
+                    "conceptMappings": [
+                      {
+                        "type": "OCT",
+                        "value": "COIVD-19Vaccinated"
+                      }                      
+                    ]
+                  }                                    
+                ]
+              },
+              "id": "vaccinationStatus",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",                  
+                  "validators": []
+                }
+              ]
+            },
+            {
               "label": "What vaccine was administered?",
               "type": "obs",
               "questionOptions": {
