@@ -42,7 +42,11 @@ export function getForm(
   if (!form) {
     form = getLatestFormVersion(forms);
   }
-  form.json.pages.forEach(page => {
+  return loadSubforms(form.json);
+}
+
+export function loadSubforms(parentForm) {
+  parentForm.pages.forEach(page => {
     if (page.isSubform && page.subform?.name && page.subform.package) {
       try {
         const subform = getForm(page.subform.package, page.subform.name);
@@ -55,8 +59,7 @@ export function getForm(
       }
     }
   });
-
-  return form.json;
+  return parentForm;
 }
 
 export function getLatestFormVersion(forms: FormJsonFile[]) {
@@ -122,7 +125,7 @@ export function applyFormIntent(intent, originalJson) {
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     if (page.isSubform && page.subform?.form) {
-      const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent.intent);
+      const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent?.intent || intent);
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
         parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
       }
@@ -239,7 +242,7 @@ function updateMarkdownRequiredBehaviour(markdown, intent) {
 
 export function updateExcludeIntentBehaviour(excludedIntents: Array<string>, originalJson) {
   originalJson.availableIntents = originalJson.availableIntents.filter(
-    intent => !excludedIntents.includes(intent.intent),
+    intent => !excludedIntents.includes(intent?.intent || intent),
   );
 
   return originalJson;
