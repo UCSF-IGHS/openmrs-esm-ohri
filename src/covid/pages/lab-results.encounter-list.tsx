@@ -129,7 +129,22 @@ const columnsPending: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => [
+      {
+        form: { name: 'covid', package: 'covid_lab_test' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'View Lab Test',
+        mode: 'view',
+      },
+      {
+        form: { name: 'covid', package: 'covid_lab_result' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Lab Result',
+        mode: 'edit',
+      },
+    ],
   },
 ];
 
