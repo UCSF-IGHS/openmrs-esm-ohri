@@ -72,3 +72,4 @@ dist
 .vscode/extensions.json
 .vscode/settings.json
 microfrontends.json
+yarn.lock
