@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab, Tag } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
-
 import {
   covidClientsWithPendingLabResults,
   covidLabOrderDate_UUID,
@@ -40,6 +39,7 @@ import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   getEncounterValues,
+  EncounterCustomAction,
 } from '../../components/encounter-list/encounter-list.component';
 
 const columnsLab: EncounterListColumn[] = [
@@ -87,7 +87,14 @@ const columnsLab: EncounterListColumn[] = [
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const tagColor = status === 'Completed' ? 'green' : status === 'Canclled' ? 'purple' : 'teal';
+      return (
+        <Tag type={tagColor} title={status}>
+          {' '}
+          {status}{' '}
+        </Tag>
+      );
     },
   },
   {
@@ -123,13 +130,50 @@ const columnsPending: EncounterListColumn[] = [
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const tagColor = status === 'Completed' ? 'green' : status === 'Canclled' ? 'purple' : 'teal';
+      return (
+        <Tag type={tagColor} title={status}>
+          {' '}
+          {status}{' '}
+        </Tag>
+      );
     },
   },
   {
     key: 'actions',
     header: 'Actions',
     getValue: () => {},
+  },
+];
+
+const customActionsPending: EncounterCustomAction[] = [
+  {
+    displayText: 'View Lab Test',
+    form: {
+      package: 'covid',
+      name: 'covid_lab_test',
+      mode: 'view',
+    },
+  },
+  {
+    displayText: 'Edit Lab Result',
+    form: {
+      package: 'covid',
+      name: 'covid_lab_result',
+      mode: 'edit',
+    },
+  },
+  {
+    displayText: 'Cancel Lab Order',
+    form: {
+      package: 'covid',
+      name: 'covid_lab_order_cancellation',
+      mode: 'edit',
+    },
+    isDisabled: encounter => {
+      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID) === 'Pending';
+    },
   },
 ];
 
@@ -167,6 +211,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             description={headerTitlePending}
             headerTitle={displayTextPending}
             dropdownText="Add"
+            customActions={customActionsPending}
           />
         </Tab>
       </Tabs>

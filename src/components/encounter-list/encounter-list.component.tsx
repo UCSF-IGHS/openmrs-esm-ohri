@@ -21,6 +21,15 @@ export interface EncounterListColumn {
   link?: any;
 }
 
+export interface EncounterCustomAction {
+  displayText: string;
+  form: {
+    package: string;
+    name: string;
+    mode: string;
+  };
+  isDisabled?: (encounter: any) => boolean;
+}
 export interface EncounterListProps {
   patientUuid: string;
   encounterUuid: string;
@@ -31,6 +40,7 @@ export interface EncounterListProps {
   dropdownText?: string;
   hideFormLauncher?: boolean;
   forms?: Array<any>;
+  customActions?: Array<EncounterCustomAction>;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -69,6 +79,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   dropdownText,
   hideFormLauncher,
   forms,
+  customActions,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
@@ -161,79 +172,33 @@ const EncounterList: React.FC<EncounterListProps> = ({
         row[column.key] = val;
       });
 
-      //TODO: This 'piece of hack' SHOULD BE REMOVED once Pius is done with the Actions implementation
-      if (form.package == 'covid' && form.name == 'covid_assessment') {
+      if (customActions) {
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={'View Case'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInViewMode(
-                  applyFormIntent('', getForm('covid', 'covid_case')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Case'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_case')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Outcome'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_outcome')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
+            {customActions.map(action => (
+              <OverflowMenuItem
+                itemText={action.displayText}
+                onClick={e => {
+                  e.preventDefault();
+                  if (action.form.mode == 'view') {
+                    launchFormInViewMode(
+                      getForm(action.form.package, action.form.name),
+                      encounter.uuid,
+                      forceComponentUpdate,
+                    );
+                  } else {
+                    launchFormInEditMode(
+                      getForm(action.form.package, action.form.name),
+                      encounter.uuid,
+                      forceComponentUpdate,
+                    );
+                  }
+                }}
+              />
+            ))}
           </OverflowMenu>
         );
-      } else if (form.package == 'covid' && form.name == 'covid_lab_order') {
-        row['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={'View Lab Test'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInViewMode(encounterForm, encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Lab Result'}
-              onClick={e => {
-                e.preventDefault();
-                let preprocessForm = applyFormIntent('*', getForm('covid', 'covid_lab_result'));
-                launchFormInEditMode(preprocessForm, encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Cancel Lab Order'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  applyFormIntent('', getForm('covid', 'covid_lab_order_cancellation')),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-          </OverflowMenu>
-        );
-      }
-
-      if (!row['actions']) {
+      } else {
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
