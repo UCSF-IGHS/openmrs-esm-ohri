@@ -108,6 +108,10 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       patientUuid={patientUuid}
       encounterUuid={covid_Assessment_EncounterUUID}
       form={{ package: 'covid', name: 'covid_assessment', view: 'covid_assessment_summary' }}
+      forms={[
+        { package: 'covid', name: 'covid_assessment', excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
+        { package: 'covid', name: 'covid_case', excludedIntents: [] },
+      ]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
