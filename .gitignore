@@ -67,3 +67,8 @@ dist
 
 #Macfolders
 .DS_Store
+
+#VS Code
+.vscode/extensions.json
+.vscode/settings.json
+microfrontends.json
