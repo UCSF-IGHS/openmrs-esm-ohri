@@ -351,6 +351,33 @@
               ]
             },
             {
+              "label": "Reference Lab sample sent to",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "5",
+                "conceptMappings": [                  
+                  {
+                    "type": "CIEL",
+                    "value": "161562"
+                  }
+                ]
+              },
+              "id": "referenceLabSampleSentTo",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "!includes('isSpecimenSentToLab', '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
               "label": "Notes",
               "type": "obs",
               "questionOptions": {
