@@ -22,14 +22,19 @@
 }
 
 .toggleButtons {
-    width: fit-content;
-    margin: 0 $spacing-03;
-  }
- 
-  .tabContainer div[role='tabpanel'] {
-    padding: 0 !important;
-    }
-   
-    .tabContainer li button {
-    width: 100% !important;
-    }
+width: fit-content;
+margin: 0 $spacing-03;
+}
+
+.tabContainer div[role='tabpanel'] {
+padding: 0 !important;
+}
+
+.tabContainer li button {
+width: 100% !important;
+}
+
+
+.statusTag {
+min-width: 80px;
+}
