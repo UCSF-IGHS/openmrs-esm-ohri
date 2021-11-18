@@ -364,7 +364,7 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
                   "hide": {
                     "hideWhenExpression": "wasTheTestPerformed !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
