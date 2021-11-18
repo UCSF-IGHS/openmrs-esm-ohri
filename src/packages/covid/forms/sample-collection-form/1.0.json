@@ -367,9 +367,7 @@
               "id": "referenceLabSampleSentTo",
               "behaviours": [
                 {
-                  "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
+                  "intent": "*",                  
                   "hide": {
                     "hideWhenExpression": "!includes('isSpecimenSentToLab', '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
