@@ -58,7 +58,7 @@
     "react-test-renderer": "^16.9.0",
     "react-waypoint": "^10.1.0",
     "semver": "^7.3.5",
-    "systemjs-webpack-interop": "^1.1.0",
+    "systemjs-webpack-interop": "2.3.2",
     "yup": "^0.29.1"
   },
   "peerDependencies": {
