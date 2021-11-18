@@ -8,6 +8,7 @@ import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
 import { useTranslation } from 'react-i18next';
 import styles from '../_input.scss';
+import { isTrue } from '../../../utils/boolean-utils';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const { t } = useTranslation();
@@ -58,7 +59,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value?.length ? (
@@ -87,6 +88,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
           titleText={question.label}
           key={counter}
           itemToString={item => (item ? item.label : ' ')}
+          disabled={question.disabled}
         />
       </div>
     )

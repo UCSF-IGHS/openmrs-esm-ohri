@@ -1,5 +1,5 @@
 import * as semver from 'semver';
-import { OHRIFormField, OHRIFormPage, OHRIFormSchema } from '../forms/types';
+import { OHRIFormField } from '../forms/types';
 import defaultFormsRegistry from '../packages/forms-registry';
 
 export interface FormJsonFile {
@@ -108,10 +108,10 @@ export function lookupForms(packageName, formNamespace, formsRegistry) {
  *
  * @param {string} intent The specified intent
  * @param {object} originalJson The original JSON form schema object
+ * @param parentOverrides An array of behaviour overrides from parent form to be applied to a subform
  * @returns {object} The form json
  */
-export function applyFormIntent(intent, originalJson) {
-  const parentOverrides: Array<BehaviourProperty> = [];
+export function applyFormIntent(intent, originalJson, parentOverrides?: Array<BehaviourProperty>) {
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
@@ -125,12 +125,17 @@ export function applyFormIntent(intent, originalJson) {
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     if (page.isSubform && page.subform?.form) {
+      const behaviourOverrides = [];
       const targetBehaviour = page.subform.behaviours?.find(behaviour => behaviour.intent == intent?.intent || intent);
       if (targetBehaviour?.readonly !== undefined || targetBehaviour?.readonly != null) {
-        parentOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
+        behaviourOverrides.push({ name: 'readonly', type: 'field', value: targetBehaviour?.readonly });
       }
 
-      page.subform.form = applyFormIntent(targetBehaviour?.subform_intent || '*', page.subform?.form);
+      page.subform.form = applyFormIntent(
+        targetBehaviour?.subform_intent || '*',
+        page.subform?.form,
+        behaviourOverrides,
+      );
     }
     // TODO: Apply parentOverrides to pages if applicable
     const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
@@ -164,8 +169,8 @@ export function applyFormIntent(intent, originalJson) {
         if (question['behaviours']) {
           updateQuestionRequiredBehaviour(question, intent);
           parentOverrides
-            .filter(override => override.type == 'all' || override.type == 'field')
-            .forEach(override => {
+            ?.filter(override => override.type == 'all' || override.type == 'field')
+            ?.forEach(override => {
               question[override.name] = override.value;
             });
         }
@@ -184,8 +189,8 @@ export function applyFormIntent(intent, originalJson) {
             }
 
             parentOverrides
-              .filter(override => override.type == 'all' || override.type == 'field')
-              .forEach(override => {
+              ?.filter(override => override.type == 'all' || override.type == 'field')
+              ?.forEach(override => {
                 childQuestion[override.name] = override.value;
               });
           });

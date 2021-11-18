@@ -17,6 +17,10 @@
   width: $ohri-input-width !important;
 }
 
+.disabledLabelOverrides label {
+  color: #525252 !important;
+}
+
 .formInputField {
   @extend .formField;
   width: auto;

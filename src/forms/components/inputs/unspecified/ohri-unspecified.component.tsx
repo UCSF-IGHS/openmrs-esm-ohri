@@ -5,6 +5,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { OHRIFormField } from '../../../types';
+import { isTrue } from '../../../utils/boolean-utils';
 
 export const OHRIUnspecified: React.FC<{
   question: OHRIFormField;
@@ -49,7 +50,8 @@ export const OHRIUnspecified: React.FC<{
   }, []);
 
   return (
-    !question.isHidden && (
+    !question.isHidden &&
+    !isTrue(question.readonly) && (
       <div className={styles.unspecified}>
         <Checkbox
           id={`${question.id}-unspcified`}
@@ -57,6 +59,7 @@ export const OHRIUnspecified: React.FC<{
           value="Unspecified"
           onChange={handleOnChange}
           checked={field.value}
+          disabled={question.disabled}
         />
       </div>
     )

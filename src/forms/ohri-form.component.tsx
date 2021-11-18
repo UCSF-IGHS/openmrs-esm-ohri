@@ -16,7 +16,6 @@ import LoadingIcon from '../components/loading/loading.component';
 import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
-import ReactMarkdown from 'react-markdown';
 import { isTrue } from './utils/boolean-utils';
 
 interface OHRIFormProps {

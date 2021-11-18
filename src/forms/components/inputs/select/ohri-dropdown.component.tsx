@@ -7,6 +7,7 @@ import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
+import { isTrue } from '../../../utils/boolean-utils';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -35,7 +36,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     setItems(question.questionOptions.answers.map(item => item.value || item.concept));
   }, [question.questionOptions.answers]);
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
@@ -52,6 +53,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
             itemToString={itemToString}
             selectedItem={field.value}
             onChange={({ selectedItem }) => handleChange(selectedItem)}
+            disabled={question.disabled}
           />
         </div>
       </div>

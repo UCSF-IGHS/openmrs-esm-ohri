@@ -7,6 +7,7 @@ import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
+import { isTrue } from '../../../utils/boolean-utils';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -26,7 +27,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
@@ -36,7 +37,8 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
       <FormGroup
         style={{ paddingBottom: '1rem' }}
         legendText={question.label}
-        className={errors.length ? styles.errorLegend : ''}>
+        className={errors.length ? styles.errorLegend : ''}
+        disabled={question.disabled}>
         <RadioButtonGroup
           defaultSelected="default-selected"
           name={question.id}
