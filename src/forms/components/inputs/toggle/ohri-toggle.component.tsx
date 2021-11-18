@@ -25,7 +25,7 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     }
   }, []);
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
@@ -40,6 +40,7 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
           labelB={question.questionOptions.toggleOptions.labelTrue}
           onToggle={handleChange}
           toggled={!!field.value}
+          disabled={question.disabled}
         />
       </div>
     )

@@ -28,7 +28,7 @@ export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; on
     }
   }, []);
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={field.value.display} /> : <OHRIValueEmpty />}
@@ -47,6 +47,7 @@ export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; on
             setFieldValue(question.id, selectedItem);
             setEncounterLocation(selectedItem);
           }}
+          disabled={question.disabled}
         />
       </div>
     )

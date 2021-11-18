@@ -59,7 +59,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
     return { placeHolder: placeHolder, carbonDateformat: carbonDateformat };
   }, []);
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? (
@@ -76,7 +76,9 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
         <DatePicker
           datePickerType="single"
           onChange={onDateChange}
-          className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''}`}
+          className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''} ${
+            question.disabled || question.readonly ? styles.disabledLabelOverrides : ''
+          }`}
           dateFormat={carbonDateformat}>
           <DatePickerInput
             id={question.id}
@@ -85,6 +87,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
             value={
               field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value
             }
+            disabled={question.disabled}
           />
         </DatePicker>
       </div>

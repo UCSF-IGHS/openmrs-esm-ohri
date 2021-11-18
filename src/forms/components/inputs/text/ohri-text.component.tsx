@@ -31,7 +31,7 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
     }
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}

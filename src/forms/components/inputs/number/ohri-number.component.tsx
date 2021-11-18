@@ -31,7 +31,7 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     }
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
@@ -52,6 +52,7 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
           allowEmpty={true}
           size="xl"
           className={errors.length ? styles.errorLabel : ''}
+          disabled={question.disabled}
         />
       </div>
     )

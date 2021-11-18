@@ -49,7 +49,8 @@ export const OHRIUnspecified: React.FC<{
   }, []);
 
   return (
-    !question.isHidden && (
+    !question.isHidden &&
+    !question.readonly && (
       <div className={styles.unspecified}>
         <Checkbox
           id={`${question.id}-unspcified`}
@@ -57,6 +58,7 @@ export const OHRIUnspecified: React.FC<{
           value="Unspecified"
           onChange={handleOnChange}
           checked={field.value}
+          disabled={question.disabled}
         />
       </div>
     )

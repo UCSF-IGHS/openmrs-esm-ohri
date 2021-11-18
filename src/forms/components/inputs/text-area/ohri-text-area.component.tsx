@@ -31,7 +31,7 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     }
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
@@ -49,6 +49,7 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
             className={styles.textInputOverrides}
             onFocus={() => setPreviousValue(field.value)}
             rows={question.questionOptions.rows || 4}
+            disabled={question.disabled}
           />
         </div>
       </div>

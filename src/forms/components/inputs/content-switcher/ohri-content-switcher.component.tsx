@@ -29,7 +29,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
     () => question.questionOptions.answers.findIndex(option => option.concept == field.value),
     [field.value],
   );
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
@@ -45,7 +45,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
                 name={option.concept || option.value}
                 text={option.label}
                 key={index}
-                disabled={encounterContext.sessionMode == 'view'}
+                disabled={question.disabled}
               />
             ))}
           </ContentSwitcher>

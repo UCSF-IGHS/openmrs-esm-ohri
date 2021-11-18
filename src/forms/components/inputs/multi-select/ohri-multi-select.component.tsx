@@ -58,7 +58,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value?.length ? (
@@ -87,6 +87,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
           titleText={question.label}
           key={counter}
           itemToString={item => (item ? item.label : ' ')}
+          disabled={question.disabled}
         />
       </div>
     )

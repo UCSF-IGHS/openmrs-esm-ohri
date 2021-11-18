@@ -90,6 +90,7 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
+  readonly?: boolean;
   behaviours?: Array<Record<string, any>>;
   markdown?: OHRIFormMarkdown;
 }

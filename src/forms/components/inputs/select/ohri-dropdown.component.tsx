@@ -35,7 +35,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     setItems(question.questionOptions.answers.map(item => item.value || item.concept));
   }, [question.questionOptions.answers]);
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || question.readonly ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
@@ -52,6 +52,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
             itemToString={itemToString}
             selectedItem={field.value}
             onChange={({ selectedItem }) => handleChange(selectedItem)}
+            disabled={question.disabled}
           />
         </div>
       </div>
