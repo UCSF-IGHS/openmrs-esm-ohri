@@ -7,6 +7,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
+import { isTrue } from '../../../utils/boolean-utils';
 
 const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -31,7 +32,7 @@ const OHRIText: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
     }
   };
 
-  return encounterContext.sessionMode == 'view' ? (
+  return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
