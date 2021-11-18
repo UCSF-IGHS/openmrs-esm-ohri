@@ -31,6 +31,7 @@ export interface EncounterListProps {
   dropdownText?: string;
   hideFormLauncher?: boolean;
   forms?: Array<any>;
+  filter?: (encounter: any) => boolean;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -69,6 +70,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   dropdownText,
   hideFormLauncher,
   forms,
+  filter,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
@@ -109,11 +111,15 @@ const EncounterList: React.FC<EncounterListProps> = ({
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
         if (data.results?.length > 0) {
-          const sortedEncounters = data.results.sort(
+          let sortedEncounters = data.results.sort(
             (firstEncounter, secondEncounter) =>
               new Date(secondEncounter.encounterDatetime).getTime() -
               new Date(firstEncounter.encounterDatetime).getTime(),
           );
+
+          if (filter) {
+            sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
+          }
 
           setAllRows(sortedEncounters);
           updateTable(sortedEncounters, 0, pageSize);
