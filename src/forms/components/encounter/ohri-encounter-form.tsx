@@ -142,24 +142,12 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         return field;
       }),
     );
-
-    //prepare markdown
-    // if (form.markdown && form.markdown.hide) {
-    //   form.markdown.isHidden = eval(form.markdown.hide);
-    // }
-
     form.pages.forEach(page => {
       if (page.hide) {
         evaluateHideExpression(null, null, allFormFields, null, page, null);
       } else {
         page.isHidden = false;
       }
-
-      //evaluate page-level markdown visibility
-      // if (page.markdown?.hide) {
-      //   page.markdown.isHidden = eval(page.markdown.hide);
-      // }
-
       //evaluate section-level markdown visibility
       page.sections.map(section => {
         if (section.markdown?.hide) {
@@ -334,7 +322,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       let formHasErrors = false;
       // handle field validation
       fields
-        .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden)
+        .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden && !isTrue(field.readonly))
         .filter(field => field['submission']?.unspecified != true)
         .forEach(field => {
           const errors = OHRIFieldValidator.validate(field, values[field.id]);
