@@ -8,6 +8,7 @@ import { getLocationsByTag } from '../../../ohri-form.resource';
 import { createErrorHandler } from '@openmrs/esm-framework';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueDisplay, OHRIValueEmpty } from '../../value/ohri-value.component';
+import { isTrue } from '../../../utils/boolean-utils';
 
 export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question }) => {
   const [field, meta] = useField(question.id);
@@ -28,7 +29,7 @@ export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; on
     }
   }, []);
 
-  return encounterContext.sessionMode == 'view' || question.readonly ? (
+  return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
       <OHRILabel value={question.label} />
       {field.value ? <OHRIValueDisplay value={field.value.display} /> : <OHRIValueEmpty />}

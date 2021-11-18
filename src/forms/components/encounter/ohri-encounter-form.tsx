@@ -322,7 +322,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       let formHasErrors = false;
       // handle field validation
       fields
-        .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden && !field.readonly)
+        .filter(field => !field.isParentHidden && !field.disabled && !field.isHidden && !isTrue(field.readonly))
         .filter(field => field['submission']?.unspecified != true)
         .forEach(field => {
           const errors = OHRIFieldValidator.validate(field, values[field.id]);
