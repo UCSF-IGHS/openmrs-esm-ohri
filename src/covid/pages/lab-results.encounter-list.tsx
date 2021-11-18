@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab, Tag } from 'carbon-components-react';
 import EmptyState from '../../components/empty-state/empty-state.component';
 
 import {
@@ -87,13 +87,46 @@ const columnsLab: EncounterListColumn[] = [
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      if (status == '--') {
+        return '--';
+      } else {
+        const tagColor = status === 'Completed' ? 'green' : status === 'Cancelled' ? 'purple' : 'teal';
+        return (
+          <Tag type={tagColor} title={status} className={styles.statusTag}>
+            {' '}
+            {status}{' '}
+          </Tag>
+        );
+      }
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => [
+      {
+        form: { name: 'covid_lab_test', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'View Lab Test',
+        mode: 'view',
+      },
+      {
+        form: { name: 'covid_lab_result', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Lab Result',
+        mode: 'edit',
+      },
+      {
+        form: { name: 'covid_lab_order_cancellation', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Cancel Lab Order',
+        mode: 'edit',
+      },
+    ],
   },
 ];
 
@@ -123,7 +156,18 @@ const columnsPending: EncounterListColumn[] = [
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      if (status == '--') {
+        return '--';
+      } else {
+        const tagColor = status === 'Completed' ? 'green' : status === 'Cancelled' ? 'purple' : 'teal';
+        return (
+          <Tag type={tagColor} title={status} className={styles.statusTag}>
+            {' '}
+            {status}{' '}
+          </Tag>
+        );
+      }
     },
   },
   {
@@ -132,6 +176,10 @@ const columnsPending: EncounterListColumn[] = [
     getValue: () => {},
   },
 ];
+
+let pendingLabOrdersFilter = encounter => {
+  return getObsFromEncounter(encounter, covidTestStatusConcept_UUID) === 'Pending';
+};
 
 const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -167,6 +215,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             description={headerTitlePending}
             headerTitle={displayTextPending}
             dropdownText="Add"
+            filter={pendingLabOrdersFilter}
           />
         </Tab>
       </Tabs>
