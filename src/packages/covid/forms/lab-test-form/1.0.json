@@ -12,76 +12,23 @@
               "label": "Status",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "fixed-value",
                 "concept": "6681366c-2174-489a-b951-13a1404935bf",
                 "conceptMappings": [
                   {
                     "type": "OCT",
                     "value": "LabOrderStatus"
                   }
-                ],
-                "answers": [
-                  {
-                    "concept": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Pending status",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "162866"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "307824009"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "162866"
-                      }
-                    ]
-                  }
                 ]
               },
-              "id": "labOrderStatus",
+              "id": "labOrderxStatus",
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
-                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Notes",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rows": "5",
-                "conceptMappings": [
-                  {
-                    "type": "LOINC",
-                    "value": "48767-8"
-                  },
-                  {
-                    "type": "CIEL",
-                    "value": "161011"
-                  }
-                ]
-              },
-              "id": "labTestFormNotes",
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "false",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  "value": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                 }
               ]
             }
@@ -90,7 +37,7 @@
       ]
     },
     {
-      "label": "",
+      "label": "Lab Order",
       "sections": [],
       "isSubform": "true",
       "subform": {
@@ -106,7 +53,23 @@
       }
     },
     {
-      "label": "",
+      "label": "Lab Sample Collection",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "covid_sample_collection",
+        "package": "covid",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "COVID_SAMPLE_COLLECTION_EMBED",
+            "readonly": "true"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Lab Cancellation",
       "sections": [],
       "isSubform": "true",
       "subform": {
@@ -122,7 +85,7 @@
       }
     },
     {
-      "label": "",
+      "label": "Lab Result",
       "sections": [],
       "isSubform": "true",
       "subform": {
@@ -145,7 +108,7 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "uuid": "xxxx",
+  "uuid": "e92fe922-4863-11ec-99cc-1fdd2d4e9d88",
   "referencedForms": [],
   "encounterType": "a77d3e7f-5c8f-4074-a207-77a70e197b0c",
   "allowUnspecifiedAll": true
