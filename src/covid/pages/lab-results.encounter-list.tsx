@@ -93,7 +93,29 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => [
+      {
+        form: { name: 'covid_lab_test', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'View Lab Test',
+        mode: 'view',
+      },
+      {
+        form: { name: 'covid_lab_result', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Lab Result',
+        mode: 'edit',
+      },
+      {
+        form: { name: 'covid_lab_order_cancellation', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Cancel Lab Order',
+        mode: 'edit',
+      },
+    ],
   },
 ];
 
@@ -129,22 +151,7 @@ const columnsPending: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => [
-      {
-        form: { name: 'covid', package: 'covid_lab_test' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Lab Test',
-        mode: 'view',
-      },
-      {
-        form: { name: 'covid', package: 'covid_lab_result' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Edit Lab Result',
-        mode: 'edit',
-      },
-    ],
+    getValue: () => {},
   },
 ];
 
