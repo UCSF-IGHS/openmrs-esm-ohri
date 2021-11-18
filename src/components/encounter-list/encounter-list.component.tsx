@@ -12,7 +12,7 @@ import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
-import { launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
+import { launchForm, launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
 
 export interface EncounterListColumn {
   key: string;
@@ -162,8 +162,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
       });
 
       if (row['actions']) {
-        let actionItems = row['actions'];
-        delete row['actions'];
+        const actionItems = row['actions'];
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             {actionItems.map((actionItem, index) => (
@@ -175,6 +174,11 @@ const EncounterList: React.FC<EncounterListProps> = ({
                     launchFormInEditMode(
                       applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
                       actionItem.encounterUuid,
+                      forceComponentUpdate,
+                    );
+                  } else if (actionItem.mode == 'enter') {
+                    launchForm(
+                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
                       forceComponentUpdate,
                     );
                   } else {
