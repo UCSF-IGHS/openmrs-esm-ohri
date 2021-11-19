@@ -1,11 +1,10 @@
 {
-  "name": "COVID Outcome",
+  "name": "COVID Outcome Form",
   "pages": [
     {
       "label": "COVID Assessment",
       "sections": [],
       "isSubform": "true",
-      "isHidden": "true",
       "subform": {
         "name": "covid_assessment",
         "package": "covid",
@@ -18,13 +17,13 @@
           {
             "intent": "COVID_OUTCOME_EMBED",
             "subform_intent": "COVID_LAB_ASSESSMENT_EMBED",
-            "required": "false"
+            "isHidden": "true"
           }
         ]
       }
     },
     {
-      "label": "COVID Outcome",
+      "label": "COVID-19 Outcome",
       "sections": [
         {
           "label": "Outcome Details",
