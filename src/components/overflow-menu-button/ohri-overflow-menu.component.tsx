@@ -59,7 +59,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               padding: '1rem',
               color: '#0f62fe',
               outline: '2rem solid transparent',
-              boxShadow: showMenu ? '0 2px 6px 0 mrgb(0 0 0 / 30%)' : 'none',
+              boxShadow: showMenu ? '0 2px 6px 0 rgb(0 0 0 / 30%)' : 'none',
             }}>
             {menuTitle}
           </button>
