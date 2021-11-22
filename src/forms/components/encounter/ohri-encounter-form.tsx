@@ -134,11 +134,6 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
           field.isHidden = false;
         }
 
-        //evaluate question-level markdown visibility
-        if (field.markdown?.hide) {
-          field.markdown.isHidden = eval(field.markdown.hide);
-        }
-
         return field;
       }),
     );
@@ -148,12 +143,6 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       } else {
         page.isHidden = false;
       }
-      //evaluate section-level markdown visibility
-      page.sections.map(section => {
-        if (section.markdown?.hide) {
-          section.markdown.isHidden = eval(section.markdown.hide);
-        }
-      });
     });
     setForm(form);
     setFormInitialValues(tempInitVals);
@@ -256,11 +245,6 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       if (page) {
         page.isHidden = isHidden;
 
-        // evaluate markdown visibility
-        if (page.markdown?.hide) {
-          page.markdown.isHidden = eval(page.markdown.hide);
-        }
-
         page.sections.forEach(section => {
           section.isParentHidden = isHidden;
           cascadeVisibityToChildFields(isHidden, section, allFields);
@@ -268,11 +252,6 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       }
       if (section) {
         section.isHidden = isHidden;
-
-        //evaluate markdown visibility
-        if (section.markdown?.hide) {
-          section.markdown.isHidden = eval(section.markdown.hide);
-        }
 
         cascadeVisibityToChildFields(isHidden, section, allFields);
       }

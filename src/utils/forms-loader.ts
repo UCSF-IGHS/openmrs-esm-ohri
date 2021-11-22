@@ -174,27 +174,6 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
               question[override.name] = override.value;
             });
         }
-
-        // filter question-level markdown behaviour
-        if (question.markdown) {
-          updateMarkdownRequiredBehaviour(question.markdown, intent);
-        }
-
-        if (question.questions && question.questions.length) {
-          question.questions.forEach(childQuestion => {
-            updateQuestionRequiredBehaviour(childQuestion, intent);
-            // filter child-question-level markdown behaviour
-            if (childQuestion.markdown) {
-              updateMarkdownRequiredBehaviour(childQuestion.markdown, intent);
-            }
-
-            parentOverrides
-              ?.filter(override => override.type == 'all' || override.type == 'field')
-              ?.forEach(override => {
-                childQuestion[override.name] = override.value;
-              });
-          });
-        }
       });
     });
   });
