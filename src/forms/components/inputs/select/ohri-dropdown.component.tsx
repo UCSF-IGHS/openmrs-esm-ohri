@@ -8,12 +8,14 @@ import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
+import { fetchConceptNameAndUUID } from '../../../../api/api';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [items, setItems] = React.useState([]);
   const [errors, setErrors] = useState([]);
+  const [conceptName, setConceptName] = useState('Loading...');
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -36,9 +38,19 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     setItems(question.questionOptions.answers.map(item => item.value || item.concept));
   }, [question.questionOptions.answers]);
 
+  useEffect(() => {
+    fetchConceptNameAndUUID(question.questionOptions.concept).then(({ data }) => {
+      if (data.results.length) {
+        const concept = data.results[data.results.length - 1];
+        setConceptName(`${concept.display} (${concept.uuid})`);
+      }
+    });
+  }, [conceptName]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
-    <div className={styles.formField}>
-      <OHRILabel value={question.label} />
+    <div className={`${styles.formField} ${styles.tooltip}`}>
+      <OHRILabel value={question.label + ' HERE'} />
+      <span className={styles.tooltipText}>Tooltip text - {conceptName}</span>
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (
