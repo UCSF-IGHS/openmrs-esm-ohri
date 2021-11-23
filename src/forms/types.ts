@@ -62,7 +62,6 @@ export interface OHRIFormSchema {
   encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
   defaultPage?: string;
-  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormPage {
@@ -72,7 +71,6 @@ export interface OHRIFormPage {
   sections: Array<OHRIFormSection>;
   isSubform?: boolean;
   subform?: { name?: string; package?: string; behaviours?: Array<any>; form: OHRIFormSchema };
-  markdown?: OHRIFormMarkdown;
 }
 export interface OHRIFormField {
   label: string;
@@ -141,9 +139,3 @@ export type RenderType =
   | 'textarea'
   | 'toggle'
   | 'fixed-value';
-
-export interface OHRIFormMarkdown {
-  content: Array<string>;
-  hide?: any;
-  isHidden?: boolean;
-}

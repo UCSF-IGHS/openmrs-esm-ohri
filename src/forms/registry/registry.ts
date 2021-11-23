@@ -14,6 +14,7 @@ import { OHRIFieldValidator } from '../validators/ohri-form-validator';
 import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../submission-handlers/base-handlers';
 import { FieldValidator, SubmissionHandler } from '../types';
 import OHRIFixedValue from '../components/inputs/fixed-value/ohri-fixed-value.component';
+import OHRIMarkdown from '../components/inputs/markdown/ohri-markdown.component';
 
 const baseFieldComponents: Array<RegistryItem> = [
   {
@@ -80,6 +81,11 @@ const baseFieldComponents: Array<RegistryItem> = [
     id: 'OHRIFixedValue',
     component: OHRIFixedValue,
     type: 'fixed-value',
+  },
+  {
+    id: 'OHRIMarkdown',
+    component: OHRIMarkdown,
+    type: 'markdown',
   },
 ];
 
