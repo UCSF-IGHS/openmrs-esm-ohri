@@ -1,5 +1,5 @@
 import { openmrsObservableFetch } from '@openmrs/esm-framework';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { encounterRepresentation } from '../../../constants';
 import { ConceptFalse, ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
@@ -12,12 +12,11 @@ import {
   OHRIFormSchema,
   SessionMode,
 } from '../../types';
-import { cascadeVisibityToChildFields } from '../../utils/ohri-form-helper';
-import { isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
+import { cascadeVisibityToChildFields, inferInitialValueFromDefaultFieldValue } from '../../utils/ohri-form-helper';
+import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
 import { FormSubmissionHandler } from '../../ohri-form.component';
-import ReactMarkdown from 'react-markdown';
 import { isTrue } from '../../utils/boolean-utils';
 
 interface OHRIEncounterFormProps {
@@ -77,6 +76,14 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     };
   }, [scrollablePages, formJson]);
 
+  const encounterContext = {
+    patient: patient,
+    encounter: encounter,
+    location: location,
+    sessionMode: sessionMode || (form?.encounter ? 'edit' : 'enter'),
+    date: encounterDate,
+  };
+
   useEffect(() => {
     if (!encounterLocation) {
       setEncounterLocation(location);
@@ -103,8 +110,11 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     // set Formik initial values
     if (encounter) {
       allFormFields.forEach(field => {
-        const existingVal = getHandler(field.type)?.getInitialValue(encounter, field, allFormFields);
-
+        const handler = getHandler(field.type);
+        let existingVal = getHandler(field.type)?.getInitialValue(encounter, field, allFormFields);
+        if (isEmpty(existingVal) && !isEmpty(field.questionOptions.defaultValue)) {
+          existingVal = inferInitialValueFromDefaultFieldValue(field, encounterContext, handler);
+        }
         tempInitVals[field.id] = existingVal === null || existingVal === undefined ? '' : existingVal;
         if (field.unspecified) {
           tempInitVals[`${field.id}-unspecified`] = !!!existingVal;
@@ -113,12 +123,20 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       setEncounterLocation(encounter.location);
     } else {
       allFormFields.forEach(field => {
-        if (field.questionOptions.rendering == 'checkbox') {
-          tempInitVals[field.id] = [];
-        } else if (field.questionOptions.rendering == 'toggle') {
-          tempInitVals[field.id] = false;
+        let value = null;
+        if (!isEmpty(field.questionOptions.defaultValue)) {
+          value = inferInitialValueFromDefaultFieldValue(field, encounterContext);
+        }
+        if (!isEmpty(value)) {
+          tempInitVals[field.id] = value;
         } else {
-          tempInitVals[field.id] = '';
+          if (field.questionOptions.rendering == 'checkbox') {
+            tempInitVals[field.id] = [];
+          } else if (field.questionOptions.rendering == 'toggle') {
+            tempInitVals[field.id] = false;
+          } else {
+            tempInitVals[field.id] = '';
+          }
         }
         if (field.unspecified) {
           tempInitVals[`${field.id}-unspecified`] = false;
@@ -434,13 +452,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         setObsGroupsToVoid: setObsGroupsToVoid,
         obsGroupsToVoid: obsGroupsToVoid,
         fields: fields,
-        encounterContext: {
-          patient: patient,
-          encounter: encounter,
-          location: location,
-          sessionMode: sessionMode || (form?.encounter ? 'edit' : 'enter'),
-          date: encounterDate,
-        },
+        encounterContext,
       }}>
       <InstantEffect effect={addScrollablePages} />
 

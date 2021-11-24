@@ -1,8 +1,11 @@
 import moment from 'moment';
-import { ConceptTrue } from '../constants';
-import { EncounterContext } from '../ohri-form-context';
+import { useContext } from 'react';
+import { ConceptFalse, ConceptTrue } from '../constants';
+import { EncounterContext, OHRIFormContext } from '../ohri-form-context';
 import { getConcept } from '../ohri-form.resource';
 import { OHRIFormField, SubmissionHandler } from '../types';
+import { OHRIDefaultFieldValueValidator } from '../validators/default-value-validator';
+import { isEmpty } from '../validators/ohri-form-validator';
 
 /**
  * Obs handler

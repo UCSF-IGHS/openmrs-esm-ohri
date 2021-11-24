@@ -120,6 +120,7 @@ export interface OHRIFormQuestionOptions {
   rows?: number;
   toggleOptions?: { labelTrue: string; labelFalse: string };
   repeatOptions?: { addText?: string };
+  defaultValue?: any;
 }
 
 export type SessionMode = 'edit' | 'enter' | 'view';
