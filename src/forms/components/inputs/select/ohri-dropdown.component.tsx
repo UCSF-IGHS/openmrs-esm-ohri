@@ -48,7 +48,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   }, [conceptName]);
 
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
-    <div className={`${styles.formField} ${styles.tooltip}`}>
+    <div className={styles.formField}>
       <OHRILabel value={question.label} tooltipText={conceptName} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
