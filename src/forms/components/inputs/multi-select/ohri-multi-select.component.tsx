@@ -9,6 +9,7 @@ import { OHRIValueEmpty } from '../../value/ohri-value.component';
 import { useTranslation } from 'react-i18next';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
+import { fetchConceptNameAndUUID } from '../../../../api/api';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   const [errors, setErrors] = useState([]);
   const [counter, setCounter] = useState(0);
   const [touched, setTouched] = useState(false);
+  const [conceptName, setConceptName] = useState('Loading...');
 
   useEffect(() => {
     // Carbon's MultiSelect has issues related to not updating the component based on the `initialSelectedItems` prop
@@ -59,9 +61,18 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
+  useEffect(() => {
+    fetchConceptNameAndUUID(question.questionOptions.concept).then(({ data }) => {
+      if (data.results.length) {
+        const concept = data.results[data.results.length - 1];
+        setConceptName(`Concept Name: ${concept.display} \n UUID: ${concept.uuid}`);
+      }
+    });
+  }, [conceptName]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} />
+      <OHRILabel value={question.label} tooltipText={conceptName} />
       {field.value?.length ? (
         <UnorderedList style={{ marginLeft: '1rem' }}>
           {handler.getDisplayValue(question, field.value).map(displayValue => (
