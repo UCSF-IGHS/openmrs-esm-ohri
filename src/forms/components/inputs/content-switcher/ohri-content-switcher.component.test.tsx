@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, cleanup, act } from '@testing-library/react';
+import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import { Form, Formik } from 'formik';
 import { EncounterContext, OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormField } from '../../../types';
@@ -75,7 +75,7 @@ describe('content-switcher input field', () => {
   });
 
   it('should record new obs', async () => {
-    // // setup
+    // setup
     renderForm({});
     const oncologyScreeningTab = screen.getByRole('tab', { name: /Oncology Screening and Diagnosis Program/i });
 
@@ -111,7 +111,7 @@ describe('content-switcher input field', () => {
       voided: false,
       value: '6ddd933a-e65c-4f35-8884-c555b50c55e1',
     };
-    act(() => {renderForm({ 'patient-past-program': question.value.value })});
+    renderForm({ 'patient-past-program': question.value.value });
     const fightMalariaTab = screen.getByRole('tab', { name: /Fight Malaria Initiative/ });
 
     // edit by selecting 'Fight Malaria Initiative'

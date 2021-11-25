@@ -90,7 +90,6 @@ export interface OHRIFormField {
   disabled?: boolean;
   readonly?: boolean;
   behaviours?: Array<Record<string, any>>;
-  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormFieldProps {
@@ -104,7 +103,6 @@ export interface OHRIFormSection {
   isHidden?: boolean;
   isParentHidden?: boolean;
   questions: Array<OHRIFormField>;
-  markdown?: OHRIFormMarkdown;
 }
 
 export interface OHRIFormQuestionOptions {
