@@ -42,15 +42,14 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     fetchConceptNameAndUUID(question.questionOptions.concept).then(({ data }) => {
       if (data.results.length) {
         const concept = data.results[data.results.length - 1];
-        setConceptName(`${concept.display} (${concept.uuid})`);
+        setConceptName(`Concept Name: ${concept.display} \n UUID: ${concept.uuid}`);
       }
     });
   }, [conceptName]);
 
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={`${styles.formField} ${styles.tooltip}`}>
-      <OHRILabel value={question.label + ' HERE'} />
-      <span className={styles.tooltipText}>Tooltip text - {conceptName}</span>
+      <OHRILabel value={question.label} tooltipText={conceptName} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (
