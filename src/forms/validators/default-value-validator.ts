@@ -3,7 +3,8 @@ import { FieldValidator, OHRIFormField } from '../types';
 
 export const OHRIDefaultFieldValueValidator: FieldValidator = {
   validate: (field: OHRIFormField, value: any) => {
-    if (['radio', 'checkbox', 'select', 'content-switcher'].includes(field.questionOptions.rendering)) {
+    const codedTypes = ['radio', 'checkbox', 'select', 'content-switcher'];
+    if (codedTypes.includes(field.questionOptions.rendering)) {
       // check whether value exists in answers
       if (!field.questionOptions.answers?.find(answer => answer.concept == value)) {
         return [{ errCode: 'invalid.defaultValue', errMessage: 'Value not found in coded answers list' }];
