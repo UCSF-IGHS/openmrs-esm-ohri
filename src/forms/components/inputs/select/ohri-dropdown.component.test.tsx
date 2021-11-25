@@ -75,8 +75,8 @@ describe('dropdown input field', () => {
   });
 
   it('should record new obs', async () => {
-    // setup
     renderForm({});
+    // setup
     const dropdownWidget = screen.getByRole('button', { name: /Patient past program./ });
 
     // assert initial values
@@ -113,9 +113,9 @@ describe('dropdown input field', () => {
       voided: false,
       value: '6ddd933a-e65c-4f35-8884-c555b50c55e1',
     };
-    act(() => {
-      renderForm({ 'patient-past-program': question.value.value })
-    });
+
+    renderForm({ 'patient-past-program': question.value.value });
+
     const dropdownWidget = screen.getByRole('button', { name: /Patient past program./ });
 
     // do some edits
