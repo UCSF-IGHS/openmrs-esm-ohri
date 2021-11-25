@@ -56,3 +56,9 @@
 .formSection :global(.bx--dropdown) button {
   background-color: #ffffff !important;
 }
+
+@media (min-width: 640px) {
+  :global(.bx--accordion__content) {
+    padding-right: 2rem !important;
+  }
+}
