@@ -180,10 +180,6 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
         if (question.questions && question.questions.length) {
           question.questions.forEach(childQuestion => {
             updateQuestionRequiredBehaviour(childQuestion, intent?.intent || intent);
-            // filter child-question-level markdown behaviour
-            if (childQuestion.markdown) {
-              updateMarkdownRequiredBehaviour(childQuestion.markdown, intent?.intent || intent);
-            }
 
             parentOverrides
               ?.filter(override => override.type == 'all' || override.type == 'field')

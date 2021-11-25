@@ -111,7 +111,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     if (encounter) {
       allFormFields.forEach(field => {
         const handler = getHandler(field.type);
-        let existingVal = getHandler(field.type)?.getInitialValue(encounter, field, allFormFields);
+        let existingVal = handler?.getInitialValue(encounter, field, allFormFields);
         if (isEmpty(existingVal) && !isEmpty(field.questionOptions.defaultValue)) {
           existingVal = inferInitialValueFromDefaultFieldValue(field, encounterContext, handler);
         }
@@ -122,21 +122,23 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       });
       setEncounterLocation(encounter.location);
     } else {
+      const emptyValues = {
+        checkbox: [],
+        toggle: false,
+        default: '',
+      };
       allFormFields.forEach(field => {
         let value = null;
         if (!isEmpty(field.questionOptions.defaultValue)) {
-          value = inferInitialValueFromDefaultFieldValue(field, encounterContext);
+          value = inferInitialValueFromDefaultFieldValue(field, encounterContext, getHandler(field.type));
         }
         if (!isEmpty(value)) {
           tempInitVals[field.id] = value;
         } else {
-          if (field.questionOptions.rendering == 'checkbox') {
-            tempInitVals[field.id] = [];
-          } else if (field.questionOptions.rendering == 'toggle') {
-            tempInitVals[field.id] = false;
-          } else {
-            tempInitVals[field.id] = '';
-          }
+          tempInitVals[field.id] =
+            emptyValues[field.questionOptions.rendering] != undefined
+              ? emptyValues[field.questionOptions.rendering]
+              : emptyValues.default;
         }
         if (field.unspecified) {
           tempInitVals[`${field.id}-unspecified`] = false;

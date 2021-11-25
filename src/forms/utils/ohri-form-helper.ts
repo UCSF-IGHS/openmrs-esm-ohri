@@ -21,24 +21,15 @@ export function cascadeVisibityToChildFields(
 export function inferInitialValueFromDefaultFieldValue(
   field: OHRIFormField,
   context: EncounterContext,
-  handler?: SubmissionHandler,
+  handler: SubmissionHandler,
 ) {
-  if (!isEmpty(field.questionOptions.defaultValue)) {
-    if (field.questionOptions.rendering == 'toggle') {
-      if (field.questionOptions.defaultValue == ConceptTrue) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    // validate default value
-    if (!OHRIDefaultFieldValueValidator.validate(field, field.questionOptions.defaultValue).length) {
-      // construct observation
-      if (!handler) {
-        handler = getHandler(field.type);
-      }
-      handler.handleFieldSubmission(field, field.questionOptions.defaultValue, context);
-      return field.questionOptions.defaultValue;
-    }
+  if (field.questionOptions.rendering == 'toggle') {
+    return field.questionOptions.defaultValue == ConceptTrue;
+  }
+  // validate default value
+  if (!OHRIDefaultFieldValueValidator.validate(field, field.questionOptions.defaultValue).length) {
+    // construct observation
+    handler.handleFieldSubmission(field, field.questionOptions.defaultValue, context);
+    return field.questionOptions.defaultValue;
   }
 }
