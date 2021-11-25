@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen, cleanup, act } from '@testing-library/react';
+import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import { Form, Formik } from 'formik';
 import { EncounterContext, OHRIFormContext } from '../../../ohri-form-context';
 import OHRIDropdown from './ohri-dropdown.component';
@@ -113,9 +113,7 @@ describe('dropdown input field', () => {
       voided: false,
       value: '6ddd933a-e65c-4f35-8884-c555b50c55e1',
     };
-
     renderForm({ 'patient-past-program': question.value.value });
-
     const dropdownWidget = screen.getByRole('button', { name: /Patient past program./ });
 
     // do some edits
