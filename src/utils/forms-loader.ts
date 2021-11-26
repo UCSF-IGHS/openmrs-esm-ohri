@@ -115,7 +115,9 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
   // Deep-copy original JSON
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
-  jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(candidate => candidate.intent === intent)?.defaultPage;
+  jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(
+    candidate => candidate.intent === intent?.intent || intent,
+  )?.defaultPage;
 
   // filter form-level markdown behaviour
   if (jsonBuffer.markdown) {
@@ -138,7 +140,7 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
       );
     }
     // TODO: Apply parentOverrides to pages if applicable
-    const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent);
+    const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent?.intent || intent);
     if (pageBehaviour) {
       page.hide = pageBehaviour?.hide;
     } else {
@@ -152,7 +154,7 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
     }
     page.sections.forEach(section => {
       // TODO: Apply parentOverrides to sections if applicable
-      const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent);
+      const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent?.intent || intent);
       if (secBehaviour) {
         section.hide = secBehaviour?.hide;
       } else {
@@ -167,12 +169,24 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
 
       section.questions.forEach((question: OHRIFormField) => {
         if (question['behaviours']) {
-          updateQuestionRequiredBehaviour(question, intent);
+          updateQuestionRequiredBehaviour(question, intent?.intent || intent);
           parentOverrides
             ?.filter(override => override.type == 'all' || override.type == 'field')
             ?.forEach(override => {
               question[override.name] = override.value;
             });
+        }
+
+        if (question.questions && question.questions.length) {
+          question.questions.forEach(childQuestion => {
+            updateQuestionRequiredBehaviour(childQuestion, intent?.intent || intent);
+
+            parentOverrides
+              ?.filter(override => override.type == 'all' || override.type == 'field')
+              ?.forEach(override => {
+                childQuestion[override.name] = override.value;
+              });
+          });
         }
       });
     });
@@ -182,11 +196,10 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
 
 // Helpers
 
-function updateQuestionRequiredBehaviour(question, intent) {
+function updateQuestionRequiredBehaviour(question, intent: string) {
   const requiredIntentBehaviour = question.behaviours?.find(behaviour => behaviour.intent === intent);
 
   const defaultIntentBehaviour = question.behaviours?.find(bevahiour => bevahiour.intent === '*');
-
   // If both required and default intents exist, combine them and update to question
   if (requiredIntentBehaviour || defaultIntentBehaviour) {
     // Remove the intent name props from each object
@@ -197,7 +210,13 @@ function updateQuestionRequiredBehaviour(question, intent) {
     // 1. The default intent is applied to all other intents
     // 2. Intent-specific behaviour overrides default behaviour
     const combinedBehaviours = Object.assign(defaultIntentBehaviour || {}, requiredIntentBehaviour || {});
-
+    const defaultValue = combinedBehaviours.defaultValue;
+    if (defaultValue != undefined) {
+      // add the default value under the question options
+      question.questionOptions.defaultValue = defaultValue;
+      // delete it so that it's not added at the root level of the question
+      delete combinedBehaviours.defaultValue;
+    }
     // Add the combinedBehaviours data to initial question
     question = Object.assign(question, combinedBehaviours);
     // Remove behaviours list
