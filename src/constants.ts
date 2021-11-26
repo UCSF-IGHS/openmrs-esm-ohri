@@ -9,7 +9,8 @@ export const basePath = '${openmrsSpaBase}/patient/';
 export const encounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
   'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,groupMembers,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
+  'obs:(uuid,obsDatetime,groupMembers,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name),' +
+  'names:(uuid,conceptNameType,name))))';
 
 // Final HIV Test Result Concepts
 export const finalHIVCodeConcept = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';

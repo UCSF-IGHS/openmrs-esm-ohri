@@ -54,15 +54,21 @@
                   }                  
                 ]
               },
-              "id": "testRequested",
+              "id": "orderLabs",
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
                 },
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
-                  "required": "true"
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
                 }
               ]
             },
@@ -88,7 +94,10 @@
                 },
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
-                  "required": "true"
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "orderLabs == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
                 }
               ]
             },
@@ -119,7 +128,10 @@
                 },
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
-                  "required": "true"
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "orderLabs == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
                 }
               ]
             },
@@ -243,7 +255,10 @@
                 },
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
-                  "required": "true"
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "orderLabs == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
                 }
               ]
             },
@@ -343,7 +358,7 @@
                 {
                   "intent": "COVID_LAB_ORDER_EMBED",
                   "hide": {
-                    "hideWhenExpression": "true"
+                    "hideWhenExpression": "true || orderLabs == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
                 }
               ]
