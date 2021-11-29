@@ -9,10 +9,11 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date of Assessment **Pick from encounter start",
+              "label": "Date of Assessment",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
+                "concept" : "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": ""
               },
               "id": "dateOfAssessment",
