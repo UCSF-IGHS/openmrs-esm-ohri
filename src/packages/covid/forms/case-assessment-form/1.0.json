@@ -9,10 +9,21 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date of Assessment **Pick from encounter start",
+              "label": "Date of Assessment",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
+                "concept" : "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "160753"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "439771001"
+                  }
+                ],
                 "weeksList": ""
               },
               "id": "dateOfAssessment",
