@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import OHRIHome from './ohri-home/ohri-home-component';
 import FormRenderTest from './forms/form-render/form-render-test.component';
+import OHRIDashboard from './ohri-dashboard/ohri-dashboard-component';
 
 export default function Root() {
   return (
@@ -14,6 +15,7 @@ export default function Root() {
         render={props => <OHRIHome programme="covid" dashboardTitle="COVID-19 Home Page" />}
       />
       <Route exact path="/form-render-test" render={props => <FormRenderTest />} />
+      <Route exact path="/ohri-dashboard" render={props => <OHRIDashboard />} />
     </BrowserRouter>
   );
 }

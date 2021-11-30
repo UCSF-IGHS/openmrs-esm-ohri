@@ -62,6 +62,10 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^form-render-test/,
       },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^ohri-dashboard/,
+      },
     ],
     extensions: [
       {
