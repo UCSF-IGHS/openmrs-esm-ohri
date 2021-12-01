@@ -8,7 +8,7 @@ import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
-import { fetchConceptNameAndUUID } from '../../../../api/api';
+import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -35,11 +35,8 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   };
 
   useEffect(() => {
-    fetchConceptNameAndUUID(question.questionOptions.concept).then(({ data }) => {
-      if (data.results.length) {
-        const concept = data.results[data.results.length - 1];
-        setConceptName(`Concept Name: ${concept.display} \n UUID: ${concept.uuid}`);
-      }
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
     });
   }, [conceptName]);
 

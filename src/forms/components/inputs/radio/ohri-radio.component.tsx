@@ -8,7 +8,7 @@ import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.compone
 import styles from '../_input.scss';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
-import { fetchConceptNameAndUUID } from '../../../../api/api';
+import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -30,11 +30,8 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
   };
 
   useEffect(() => {
-    fetchConceptNameAndUUID(question.questionOptions.concept).then(({ data }) => {
-      if (data.results.length) {
-        const concept = data.results[data.results.length - 1];
-        setConceptName(`Concept Name: ${concept.display} \n UUID: ${concept.uuid}`);
-      }
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
     });
   }, [conceptName]);
 
