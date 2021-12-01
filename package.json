@@ -105,6 +105,7 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.13.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^3.1.4",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
     "husky": "^3.0.4",

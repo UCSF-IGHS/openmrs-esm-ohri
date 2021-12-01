@@ -8,8 +8,8 @@ import {
   SideNavMenu,
   SideNavMenuItem,
 } from 'carbon-components-react/lib/components/UIShell';
-import { Home32 } from '@carbon/icons-react';
-import styles from '.ohri-dashboard.scss';
+import { Home32, ListBulleted32, Medication32, Coronavirus32, Calendar32 } from '@carbon/icons-react';
+import styles from './ohri-dashboard.scss';
 
 const StoryContent = () => {
   const content = (
@@ -47,22 +47,37 @@ const StoryContent = () => {
 const OHRIDashboard = () => (
   <div className="container">
     <>
-      <SideNav isFixedNav expanded={true} isChildOfHeader={false} aria-label="Side navigation">
+      <SideNav
+        isFixedNav
+        expanded={true}
+        isChildOfHeader={false}
+        aria-label="Side navigation"
+        className={styles.sideNav}>
         <SideNavItems>
-          <SideNavLink href="javascript:void(0)">Home</SideNavLink>
-          <SideNavLink href="javascript:void(0)">Patient Lists</SideNavLink>
+          <SideNavLink renderIcon={Home32} href="/openmrs/spa/home">
+            Home
+          </SideNavLink>
+          <SideNavLink renderIcon={ListBulleted32} href="javascript:void(0)">
+            Patient Lists
+          </SideNavLink>
+          <SideNavLink renderIcon={Calendar32} href="javascript:void(0)">
+            Appointments
+          </SideNavLink>
+          <p className={styles.dashboardText}>My Dashboards</p>
           <SideNavMenu renderIcon={Home32} title="HIV">
-            <SideNavMenuItem aria-current="page" href="javascript:void(0)">
+            <SideNavMenuItem aria-current="page" href="/openmrs/spa/ohri-home">
               HTS (HTS POC Home Screen)
             </SideNavMenuItem>
-            <SideNavMenuItem href="javascript:void(0)">Care and Treatment (C&T Home Screen)</SideNavMenuItem>
+            <SideNavMenuItem href="/openmrs/spa/ohri-ct-home">Care and Treatment (C&T Home Screen)</SideNavMenuItem>
           </SideNavMenu>
-          <SideNavMenu renderIcon={Home32} title="COVID">
-            <SideNavMenuItem aria-current="page" href="javascript:void(0)">
+          <SideNavMenu renderIcon={Coronavirus32} title="COVID">
+            <SideNavMenuItem aria-current="page" href="/openmrs/spa/ohri-covid-home">
               COVID-19 Cases (COVID Home Screen)
             </SideNavMenuItem>
           </SideNavMenu>
-          <SideNavLink href="javascript:void(0)">Pharmacy</SideNavLink>
+          <SideNavLink renderIcon={Medication32} href="javascript:void(0)">
+            Pharmacy
+          </SideNavLink>
         </SideNavItems>
       </SideNav>
       <StoryContent />
