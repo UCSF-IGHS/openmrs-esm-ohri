@@ -8,7 +8,7 @@ import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
-import { fetchConceptNameAndUUID } from '../../../../api/api';
+import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -39,11 +39,8 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   }, [question.questionOptions.answers]);
 
   useEffect(() => {
-    fetchConceptNameAndUUID(question.questionOptions.concept).then(({ data }) => {
-      if (data.results.length) {
-        const concept = data.results[data.results.length - 1];
-        setConceptName(`Concept Name: ${concept.display} \n UUID: ${concept.uuid}`);
-      }
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
     });
   }, [conceptName]);
 
