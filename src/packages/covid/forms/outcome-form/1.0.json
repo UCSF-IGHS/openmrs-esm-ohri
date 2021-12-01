@@ -194,11 +194,7 @@
                 "rendering": "textarea",
                 "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rows": "5",
-                "conceptMappings": [
-                  {
-                    "type": "LOINC",
-                    "value": "48767-8"
-                  },
+                "conceptMappings": [                  
                   {
                     "type": "CIEL",
                     "value": "161011"
@@ -213,9 +209,9 @@
                 },
                 {
                   "intent": "COVID_OUTCOME_EMBED",
-                  "required": "true",
+                  "required": "false",
                   "hide": {
-                    "hideWhenExpression": "true"
+                    "hideWhenExpression": "false"
                   }
                 }
               ]
