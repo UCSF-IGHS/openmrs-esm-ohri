@@ -82,9 +82,9 @@ export interface OHRIFormField {
   hide?: HideProps;
   isHidden?: boolean;
   isParentHidden?: boolean;
-  fieldDependants?: Array<string>;
-  pageDependants?: Array<string>;
-  sectionDependants?: Array<string>;
+  fieldDependants?: Set<string>;
+  pageDependants?: Set<string>;
+  sectionDependants?: Set<string>;
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
