@@ -20,6 +20,7 @@ import {
 } from './covid/dashboard.meta';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
+import { createOHRIDashboardLink, homeDashboardMeta } from './ohri-dashboard/ohri-dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -64,7 +65,7 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-dashboard/,
+        route: /^dashboard/,
       },
     ],
     extensions: [
@@ -247,11 +248,30 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
+      // {
+      //   id: 'patient-list-ext',
+      //   slot: 'homepage-dashboard-slot',
+      //   load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
+      //     featureName: 'patient-list',
+      //     moduleName,
+      //   }),
+      //   meta: {
+      //     columnSpan: 4,
+      //   },
+      // },
+      {
+        id: 'home-dashboard',
+        slot: 'ohri-home-dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options),
+        meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
       {
         id: 'patient-list-ext',
-        slot: 'homepage-dashboard-slot',
+        slot: 'home-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
-          featureName: 'patient-list',
+          featureName: 'home',
           moduleName,
         }),
         meta: {
@@ -276,7 +296,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
-
       {
         id: 'covid-Assessments-dashboard',
         slot: 'patient-chart-dashboard-slot',
