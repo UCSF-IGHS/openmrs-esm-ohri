@@ -20,7 +20,7 @@ import {
 } from './covid/dashboard.meta';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
-import { createOHRIDashboardLink, homeDashboardMeta } from './ohri-dashboard/ohri-dashboard.meta';
+import { createOHRIDashboardLink, tbCareDashboard, tbFolder } from './ohri-dashboard/ohri-dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -260,10 +260,18 @@ function setupOpenMRS() {
       //   },
       // },
       {
-        id: 'home-dashboard',
-        slot: 'ohri-home-dashboard-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options),
-        meta: homeDashboardMeta,
+        id: 'tb-db-items',
+        slot: 'dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(tbFolder), options),
+        meta: tbFolder,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'tb-care-dashboard',
+        slot: 'tb-links-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(tbCareDashboard), options),
+        meta: tbCareDashboard,
         online: true,
         offline: true,
       },

@@ -15,7 +15,7 @@ export default function Root() {
         render={props => <OHRIHome programme="covid" dashboardTitle="COVID-19 Home Page" />}
       />
       <Route exact path="/form-render-test" render={props => <FormRenderTest />} />
-      <Route exact path="/dashboard" render={props => <OHRIDashboard />} />
+      <Route path="/dashboard/:view?" render={props => <OHRIDashboard match={props.match} />} />
     </BrowserRouter>
   );
 }
