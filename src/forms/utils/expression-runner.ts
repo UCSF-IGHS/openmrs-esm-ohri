@@ -18,19 +18,21 @@ export function evaluateExpression(
 
   function isEmpty(value) {
     if (allFieldsKeys.includes(value)) {
-      return isValueEmpty(allFields[value]);
+      registerDependency(
+        node,
+        allFields.find(candidate => candidate.id == value),
+      );
+      return isValueEmpty(allFieldValues[value]);
     }
     return isValueEmpty(value);
   }
 
   function includes(questionId, value) {
     if (allFieldsKeys.includes(questionId)) {
-      const determinant = allFields.find(candidate => candidate.id === questionId);
-      if (!determinant.fieldDependants) {
-        determinant.fieldDependants = new Set();
-      }
-      // register dependency
-      determinant.fieldDependants.add((<OHRIFormField>node.value).id);
+      registerDependency(
+        node,
+        allFields.find(candidate => candidate.id === questionId),
+      );
       return allFieldValues[questionId]?.includes(value);
     }
     return false;
@@ -40,31 +42,13 @@ export function evaluateExpression(
     if (index % 2 == 0) {
       if (allFieldsKeys.includes(part)) {
         const determinant = allFields.find(field => field.id === part);
-        // register dependencies
-        switch (node.type) {
-          case 'page':
-            if (!determinant.pageDependants) {
-              determinant.pageDependants = new Set();
-            }
-            determinant.pageDependants.add(node.value.label);
-            break;
-          case 'section':
-            if (!determinant.sectionDependants) {
-              determinant.sectionDependants = new Set();
-            }
-            determinant.sectionDependants.add(node.value.label);
-          default:
-            if (!determinant.fieldDependants) {
-              determinant.fieldDependants = new Set();
-            }
-            determinant.fieldDependants.add((<OHRIFormField>node.value).id);
-        }
+        registerDependency(node, determinant);
         // prep eval variables
         let determinantValue = allFieldValues[part];
         if (determinant.questionOptions.rendering == 'toggle') {
           determinantValue = determinantValue ? ConceptTrue : ConceptFalse;
         }
-        if (determinantValue && typeof determinantValue == 'string') {
+        if (typeof determinantValue == 'string') {
           determinantValue = `'${determinantValue}'`;
         }
         const regx = new RegExp(part, 'g');
@@ -78,4 +62,25 @@ export function evaluateExpression(
     console.error(error);
   }
   return false;
+}
+
+function registerDependency(node: FormNode, determinant: OHRIFormField) {
+  switch (node.type) {
+    case 'page':
+      if (!determinant.pageDependants) {
+        determinant.pageDependants = new Set();
+      }
+      determinant.pageDependants.add(node.value.label);
+      break;
+    case 'section':
+      if (!determinant.sectionDependants) {
+        determinant.sectionDependants = new Set();
+      }
+      determinant.sectionDependants.add(node.value.label);
+    default:
+      if (!determinant.fieldDependants) {
+        determinant.fieldDependants = new Set();
+      }
+      determinant.fieldDependants.add((<OHRIFormField>node.value).id);
+  }
 }
