@@ -236,7 +236,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
   const launchEncounterForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm?.name,
+      title: form?.name || encounterForm?.name,
       screenSize: 'maximize',
       mode: 'enter',
       state: { updateParent: forceComponentUpdate, formJson: form || encounterForm },
