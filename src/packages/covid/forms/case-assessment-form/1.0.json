@@ -47,7 +47,7 @@
                   ]
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -181,7 +181,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -218,7 +218,7 @@
                       "validators": []
                     },
                     {
-                      "intent": "COVID_LAB_ORDER_EMBED",
+                      "intent": "COVID_LAB_ASSESSMENT_EMBED",
                       "required": "true",
                       "unspecified": "false",
                       "hide": {
@@ -280,7 +280,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -318,7 +318,7 @@
                   ]
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -576,7 +576,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -613,7 +613,7 @@
                       "validators": []
                     },
                     {
-                      "intent": "COVID_LAB_ORDER_EMBED",
+                      "intent": "COVID_LAB_ASSESSMENT_EMBED",
                       "required": "true",
                       "unspecified": "false",
                       "hide": {
@@ -702,7 +702,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -874,7 +874,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -909,7 +909,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -977,7 +977,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -1280,7 +1280,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -1312,21 +1312,13 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
-                  "unspecified": "false",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  "required": "false"
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
-                  "required": "false",
-                  "unspecified": "false",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                    "hideWhenExpression": "true"
+                  }
                 }
               ]
             }
