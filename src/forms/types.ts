@@ -88,7 +88,7 @@ export interface OHRIFormField {
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
-  readonly?: boolean;
+  readonly?: string | boolean;
   behaviours?: Array<Record<string, any>>;
 }
 

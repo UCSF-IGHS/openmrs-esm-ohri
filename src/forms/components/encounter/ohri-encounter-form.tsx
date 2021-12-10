@@ -10,6 +10,7 @@ import {
   OHRIFormField,
   OHRIFormPage as OHRIFormPageProps,
   OHRIFormSchema,
+  OHRIFormSection,
   SessionMode,
 } from '../../types';
 import { cascadeVisibityToChildFields, inferInitialValueFromDefaultFieldValue } from '../../utils/ohri-form-helper';
@@ -18,6 +19,7 @@ import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
 import { FormSubmissionHandler } from '../../ohri-form.component';
 import { isTrue } from '../../utils/boolean-utils';
+import { evaluateExpression, FormNode } from '../../utils/expression-runner';
 
 interface OHRIEncounterFormProps {
   formJson: OHRIFormSchema;
@@ -149,17 +151,29 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     setFields(
       allFormFields.map(field => {
         if (field.hide) {
-          evaluateHideExpression(field, null, allFormFields, tempInitVals);
+          evalHide({ value: field, type: 'field' }, allFormFields, tempInitVals);
         } else {
           field.isHidden = false;
         }
-
+        if (typeof field.readonly == 'string' && field.readonly?.split(' ')?.length > 1) {
+          // needed to store the expression for further evaluations
+          field['readonlyExpression'] = field.readonly;
+          field.readonly = evaluateExpression(
+            field.readonly,
+            { value: field, type: 'field' },
+            allFormFields,
+            tempInitVals,
+            {
+              mode: sessionMode,
+            },
+          );
+        }
         return field;
       }),
     );
     form.pages.forEach(page => {
       if (page.hide) {
-        evaluateHideExpression(null, null, allFormFields, null, page, null);
+        evalHide({ value: page, type: 'page' }, allFormFields, tempInitVals);
       } else {
         page.isHidden = false;
       }
@@ -181,102 +195,21 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     return () => subscription?.unsubscribe();
   }, [formJson.encounter]);
 
-  const evaluateHideExpression = (
-    field,
-    determinantValue = undefined,
-    allFields,
-    initialVals?: Record<string, any>,
-    page?,
-    section?,
-  ) => {
-    let hideExpression =
-      field?.hide?.hideWhenExpression || page?.hide?.hideWhenExpression || section?.hide?.hideWhenExpression;
-    const allFieldsKeys = allFields.map(f => f.id);
-    const parts = hideExpression.trim().split(' ');
-
-    function isEmpty(value) {
-      if (allFieldsKeys.includes(value)) {
-        return initialVals ? isValueEmpty(initialVals[value]) : isValueEmpty(formInitialValues[value]);
-      }
-      return isValueEmpty(value);
-    }
-
-    function includes(questionId, value) {
-      if (allFieldsKeys.includes(questionId)) {
-        const determinant = allFields.find(candidate => candidate.id === questionId);
-        if (!determinant.fieldDependants) {
-          determinant.fieldDependants = new Set();
-        }
-        determinant.fieldDependants.add(field.id);
-        const initValues = initialVals || formInitialValues;
-        const valueArray = determinantValue || initValues[questionId];
-        return valueArray?.includes(value);
-      }
-      return false;
-    }
-
-    parts.forEach((part, index) => {
-      if (index % 2 == 0) {
-        if (allFieldsKeys.includes(part)) {
-          const determinant = allFields.find(field => field.id === part);
-          if (field) {
-            if (!determinant.fieldDependants) {
-              determinant.fieldDependants = new Set();
-            }
-            determinant.fieldDependants.add(field.id);
-          }
-          if (page) {
-            if (!determinant.pageDependants) {
-              determinant.pageDependants = new Set();
-            }
-            determinant.pageDependants.add(page.label);
-          }
-          if (section) {
-            if (!determinant.sectionDependants) {
-              determinant.sectionDependants = new Set();
-            }
-            determinant.sectionDependants.add(section.label);
-          }
-          // prep eval variables
-          if (determinantValue == undefined) {
-            determinantValue = initialVals ? initialVals[part] || null : formInitialValues[part] || null;
-            if (determinant.questionOptions.rendering == 'toggle') {
-              determinantValue = determinantValue ? ConceptTrue : ConceptFalse;
-            }
-          }
-          if (determinantValue && typeof determinantValue == 'string') {
-            determinantValue = `'${determinantValue}'`;
-          }
-          const regx = new RegExp(part, 'g');
-          hideExpression = hideExpression.replace(regx, determinantValue);
-        }
-      }
+  const evalHide = (node, allFields: OHRIFormField[], allValues: Record<string, any>) => {
+    const { value, type } = node;
+    const isHidden = evaluateExpression(value['hide']?.hideWhenExpression, node, allFields, allValues, {
+      mode: sessionMode,
     });
-    try {
-      const isHidden = eval(hideExpression);
-      if (field) {
-        field.isHidden = isHidden;
-
-        //evaluate markdown visibility
-        if (field.markdown?.hide) {
-          field.markdown.isHidden = eval(field.markdown.hide);
-        }
-      }
-      if (page) {
-        page.isHidden = isHidden;
-
-        page.sections.forEach(section => {
-          section.isParentHidden = isHidden;
-          cascadeVisibityToChildFields(isHidden, section, allFields);
-        });
-      }
-      if (section) {
-        section.isHidden = isHidden;
-
+    node.value.isHidden = isHidden;
+    // cascade visibility
+    if (type == 'page') {
+      value['sections'].forEach(section => {
+        section.isParentHidden = isHidden;
         cascadeVisibityToChildFields(isHidden, section, allFields);
-      }
-    } catch (error) {
-      console.error(error);
+      });
+    }
+    if (type == 'section') {
+      cascadeVisibityToChildFields(isHidden, value, allFields);
     }
   };
 
@@ -423,7 +356,18 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     if (field.fieldDependants) {
       field.fieldDependants.forEach(dep => {
         const dependant = fields.find(f => f.id == dep);
-        evaluateHideExpression(dependant, value, fields);
+        evalHide({ value: dependant, type: 'field' }, fields, { ...values, [fieldName]: value });
+        if (dependant['readonlyExpression']) {
+          dependant.readonly = evaluateExpression(
+            dependant['readonlyExpression'],
+            { value: dependant, type: 'field' },
+            fields,
+            { ...values, [fieldName]: value },
+            {
+              mode: sessionMode,
+            },
+          );
+        }
         let fields_temp = [...fields];
         const index = fields_temp.findIndex(f => f.id == dep);
         fields_temp[index] = dependant;
@@ -433,7 +377,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     if (field.pageDependants) {
       field.pageDependants?.forEach(dep => {
         const dependant = form.pages.find(f => f.label == dep);
-        evaluateHideExpression(null, value, fields, null, dependant, null);
+        evalHide({ value: dependant, type: 'page' }, fields, { ...values, [fieldName]: value });
         let form_temp = form;
         const index = form_temp.pages.findIndex(page => page.label == dep);
         form_temp[index] = dependant;
@@ -457,7 +401,6 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         encounterContext,
       }}>
       <InstantEffect effect={addScrollablePages} />
-
       {form.pages.map((page, index) => {
         if (isTrue(page.isHidden)) {
           return null;

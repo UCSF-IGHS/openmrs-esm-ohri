@@ -1,7 +1,8 @@
 import { OHRIFormField } from '../types';
-import { evaluateExpression } from './expression-runner';
+import { evaluateExpression, ExpressionContext } from './expression-runner';
 
 describe('Common expression runner - evaluateExpression', () => {
+  const context: ExpressionContext = { mode: 'enter' };
   const allFields: Array<OHRIFormField> = [
     {
       label: 'Was the client linked to care and treatment in this facility?',
@@ -101,9 +102,13 @@ describe('Common expression runner - evaluateExpression', () => {
 
   it('should evaluate basic boolean strings', () => {
     // replay and verify
-    expect(evaluateExpression('true', { value: allFields[0], type: 'field' }, allFields, valuesMap)).toBeTruthy();
+    expect(
+      evaluateExpression('true', { value: allFields[0], type: 'field' }, allFields, valuesMap, context),
+    ).toBeTruthy();
     // replay and verify
-    expect(evaluateExpression('false', { value: allFields[0], type: 'field' }, allFields, valuesMap)).toBeFalsy();
+    expect(
+      evaluateExpression('false', { value: allFields[0], type: 'field' }, allFields, valuesMap, context),
+    ).toBeFalsy();
   });
 
   it('should support two dimession expressions', () => {
@@ -114,6 +119,7 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[1], type: 'field' },
         allFields,
         valuesMap,
+        context,
       ),
     ).toBeFalsy();
     // provide some values
@@ -125,6 +131,7 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[1], type: 'field' },
         allFields,
         valuesMap,
+        context,
       ),
     ).toBeTruthy();
   });
@@ -137,6 +144,7 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[1], type: 'field' },
         allFields,
         valuesMap,
+        context,
       ),
     ).toBeFalsy();
     // provide some values
@@ -150,6 +158,7 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[1], type: 'field' },
         allFields,
         valuesMap,
+        context,
       ),
     ).toBeTruthy();
   });
@@ -164,6 +173,7 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[1], type: 'field' },
         allFields,
         valuesMap,
+        context,
       ),
     ).toBeTruthy();
   });
@@ -181,6 +191,19 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[1], type: 'field' },
         allFields,
         valuesMap,
+        context,
+      ),
+    ).toBeTruthy();
+  });
+
+  it('should support session mode as a runtime', () => {
+    expect(
+      evaluateExpression(
+        'mode == `enter` && isEmpty(`htsProviderRemarks`)',
+        { value: allFields[2], type: 'field' },
+        allFields,
+        valuesMap,
+        context,
       ),
     ).toBeTruthy();
   });
@@ -199,6 +222,7 @@ describe('Common expression runner - evaluateExpression', () => {
         { value: allFields[4], type: 'field' },
         allFields,
         valuesMap,
+        context,
       ),
     ).toBeTruthy();
     expect(Array.from(referredToPreventionServices.fieldDependants)).toStrictEqual(['bodyTemperature']);

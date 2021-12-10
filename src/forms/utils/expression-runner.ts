@@ -7,14 +7,21 @@ export interface FormNode {
   type: 'field' | 'page' | 'section';
 }
 
+export interface ExpressionContext {
+  mode: 'enter' | 'edit' | 'view';
+}
+
 export function evaluateExpression(
   expression: string,
   node: FormNode,
   allFields: Array<OHRIFormField>,
   allFieldValues: Record<string, any>,
+  context: ExpressionContext,
 ): boolean {
   const allFieldsKeys = allFields.map(f => f.id);
   const parts = expression.trim().split(' ');
+  // setup runtime variables
+  const { mode } = context;
 
   function isEmpty(value) {
     if (allFieldsKeys.includes(value)) {
@@ -81,6 +88,6 @@ function registerDependency(node: FormNode, determinant: OHRIFormField) {
       if (!determinant.fieldDependants) {
         determinant.fieldDependants = new Set();
       }
-      determinant.fieldDependants.add((<OHRIFormField>node.value).id);
+      determinant.fieldDependants.add(node.value['id']);
   }
 }

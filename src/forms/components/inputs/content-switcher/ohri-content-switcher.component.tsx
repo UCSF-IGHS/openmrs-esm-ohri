@@ -12,7 +12,7 @@ import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, values } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
 
