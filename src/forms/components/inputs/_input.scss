@@ -176,3 +176,13 @@
   margin-top: 0.65rem;
   margin-bottom: 2rem;
 }
+
+.ohriLabel {
+  width: auto !important;
+}
+
+.ohriLabel :global(.bx--assistive-text) {
+  max-width: 30rem !important;
+  font-size: 0.75rem;
+  white-space: pre-line !important;
+}

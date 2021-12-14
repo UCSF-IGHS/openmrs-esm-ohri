@@ -8,11 +8,13 @@ import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.compone
 import styles from '../_input.scss';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
+import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
+  const [conceptName, setConceptName] = useState('Loading...');
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -27,9 +29,15 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
+  useEffect(() => {
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
+    });
+  }, [conceptName]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} />
+      <OHRILabel value={question.label} tooltipText={conceptName} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (

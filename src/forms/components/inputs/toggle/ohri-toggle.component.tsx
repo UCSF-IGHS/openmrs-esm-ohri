@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Toggle } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
@@ -7,10 +7,12 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { isTrue } from '../../../utils/boolean-utils';
+import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext, values } = React.useContext(OHRIFormContext);
+  const [conceptName, setConceptName] = useState('Loading...');
 
   const handleChange = value => {
     setFieldValue(question.id, value);
@@ -26,9 +28,15 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     }
   }, []);
 
+  useEffect(() => {
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
+    });
+  }, [conceptName]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} />
+      <OHRILabel value={question.label} tooltipText={conceptName} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (

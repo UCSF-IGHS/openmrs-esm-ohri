@@ -1,3 +1,4 @@
+import { fetchConceptNameByUuid } from '../../api/api';
 import { ConceptFalse, ConceptTrue } from '../constants';
 import { EncounterContext } from '../ohri-form-context';
 import { getHandler } from '../registry/registry';
@@ -32,4 +33,10 @@ export function inferInitialValueFromDefaultFieldValue(
     handler.handleFieldSubmission(field, field.questionOptions.defaultValue, context);
     return field.questionOptions.defaultValue;
   }
+}
+
+export function getConceptNameAndUUID(conceptUuid: string) {
+  return fetchConceptNameByUuid(conceptUuid).then(conceptName => {
+    return `Concept Name: ${conceptName} \n UUID: ${conceptUuid}`;
+  });
 }
