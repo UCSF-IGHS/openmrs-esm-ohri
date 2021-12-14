@@ -19,6 +19,7 @@
     },
     {
       "label": "COVID Outcome",
+      "sections": [],
       "isSubform": "true",
       "subform": {
         "name": "covid_outcome",
@@ -30,10 +31,13 @@
             "readonly": "false"
           }
         ]
-      },
+      }
+    },
+    {
+      "label": "",
       "sections": [
         {
-          "label": "COVID Outcome",
+          "label": "",
           "isExpanded": "true",
           "questions": [
             {
@@ -70,7 +74,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Case Default"
+      "display": "Full Case"
     }
   ],
   "processor": "EncounterFormProcessor",

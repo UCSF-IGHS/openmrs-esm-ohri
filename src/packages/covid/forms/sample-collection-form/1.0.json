@@ -351,6 +351,31 @@
               ]
             },
             {
+              "label": "Reference Lab sample sent to",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "5",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "161562"
+                  }
+                ]
+              },
+              "id": "referenceLabSampleSentTo",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "hide": {
+                    "hideWhenExpression": "!includes('isSpecimenSentToLab', '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators": []
+                }
+              ]
+            },
+            {
               "label": "Notes",
               "type": "obs",
               "questionOptions": {
@@ -390,10 +415,14 @@
     {
       "intent": "*",
       "display": "COVID Sample Collection"
+    },
+    {
+      "intent": "COVID_SAMPLE_COLLECTION_EMBED",
+      "display": "COVID Sample Collection Embed"
     }
   ],
   "processor": "EncounterFormProcessor",
-  "uuid": "xxx",
+  "uuid": "371d19b6-485f-11ec-99cc-1fdd2d4e9d88",
   "referencedForms": [],
   "encounterType": "3ee00481-50e1-41c3-bfcb-7e6d6a8722fb",
   "allowUnspecifiedAll": true

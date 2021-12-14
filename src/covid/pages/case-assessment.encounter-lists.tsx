@@ -95,7 +95,29 @@ const columns: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => [
+      {
+        form: { name: 'covid_case', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'View Case Form',
+        mode: 'view',
+      },
+      {
+        form: { name: 'covid_case', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Case Form',
+        mode: 'edit',
+      },
+      {
+        form: { name: 'covid_outcome', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Outcome Form',
+        mode: 'edit',
+      },
+    ],
   },
 ];
 
@@ -108,6 +130,10 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       patientUuid={patientUuid}
       encounterUuid={covid_Assessment_EncounterUUID}
       form={{ package: 'covid', name: 'covid_assessment', view: 'covid_assessment_summary' }}
+      forms={[
+        { package: 'covid', name: 'covid_assessment', excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
+        { package: 'covid', name: 'covid_case', excludedIntents: [] },
+      ]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

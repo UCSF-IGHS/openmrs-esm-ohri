@@ -7,11 +7,14 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
+import { isTrue } from '../../../utils/boolean-utils';
+import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
 export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, values } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
+  const [conceptName, setConceptName] = useState('Loading...');
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -29,9 +32,16 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
     () => question.questionOptions.answers.findIndex(option => option.concept == field.value),
     [field.value],
   );
-  return encounterContext.sessionMode == 'view' ? (
+
+  useEffect(() => {
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
+    });
+  }, [conceptName]);
+
+  return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} />
+      <OHRILabel value={question.label} tooltipText={conceptName} />
       {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
     </div>
   ) : (
@@ -45,7 +55,7 @@ export const OHRIContentSwitcher: React.FC<OHRIFormFieldProps> = ({ question, on
                 name={option.concept || option.value}
                 text={option.label}
                 key={index}
-                disabled={encounterContext.sessionMode == 'view'}
+                disabled={question.disabled}
               />
             ))}
           </ContentSwitcher>

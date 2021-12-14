@@ -6,7 +6,7 @@
 }
 
 .formField > div > div > label {
-  color: #525252 !important;
+  color: #525252;
 }
 
 .ohriFormLabel {
@@ -15,6 +15,10 @@
 
 .datePickerOverrides input {
   width: $ohri-input-width !important;
+}
+
+.disabledLabelOverrides label {
+  color: #525252 !important;
 }
 
 .formInputField {
@@ -146,8 +150,8 @@
   color: $color-gray-70;
 }
 
-.errorLegend legend, .errorLabel label {
-  color: #da1e28
+.errorLabel > div label {
+  color: #da1e28 !important;
 }
 
 .obsGroupColumn {
@@ -171,4 +175,14 @@
 .repeatContentWrapper {
   margin-top: 0.65rem;
   margin-bottom: 2rem;
+}
+
+.ohriLabel {
+  width: auto !important;
+}
+
+.ohriLabel :global(.bx--assistive-text) {
+  max-width: 30rem !important;
+  font-size: 0.75rem;
+  white-space: pre-line !important;
 }

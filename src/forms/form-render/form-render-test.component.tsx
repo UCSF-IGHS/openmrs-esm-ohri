@@ -4,7 +4,7 @@ import styles from './form-render.scss';
 import { Run32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
-import { applyFormIntent } from '../../utils/forms-loader';
+import { applyFormIntent, loadSubforms } from '../../utils/forms-loader';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 
@@ -45,21 +45,17 @@ function FormRenderTest() {
       // setFormIntentInput(null);
       setFormIntents(_formIntents);
       setIsIntentsDropdownDisabled(false);
-    }
-
-    if (_formIntents.length > 0) {
+      setSelectedFormIntent('');
+    } else {
       setFormIntents([]);
       setIsIntentsDropdownDisabled(true);
+      setSelectedFormIntent('*');
     }
-
-    setFormIntents(_formIntents);
-    setIsIntentsDropdownDisabled(false);
   };
 
   const updateFormIntentInput = e => {
     // setFormIntentInput(e.selectedItem.intent);
-    // setFormIntentInput(e.selectedItem.intent);
-    setSelectedFormIntent(e.selectedItem);
+    setSelectedFormIntent(e.selectedItem.intent);
     setIsSchemaLoaded(false);
   };
 
@@ -79,8 +75,7 @@ function FormRenderTest() {
   const handleFormSubmission = e => {
     setIsSchemaLoaded(false);
     setOutputErrorMessage('');
-
-    const filteredSchema = applyFormIntent(selectedFormIntent, schemaInput);
+    const filteredSchema = applyFormIntent(selectedFormIntent, loadSubforms(schemaInput));
 
     try {
       setSchemaOutput(JSON.stringify(filteredSchema, null, '  '));
@@ -135,7 +130,7 @@ function FormRenderTest() {
                       titleText="Form Intent"
                       label="--Select Form Intent"
                       items={formIntents}
-                      itemToString={item => item}
+                      itemToString={item => item.display}
                       onChange={updateFormIntentInput}
                       disabled={isIntentsDropdownDisabled}
                     />

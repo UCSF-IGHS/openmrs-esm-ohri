@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
 import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
+import { applyFormIntent, getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
@@ -12,7 +12,7 @@ import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
-import { launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
+import { launchForm, launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
 
 export interface EncounterListColumn {
   key: string;
@@ -31,6 +31,7 @@ export interface EncounterListProps {
   dropdownText?: string;
   hideFormLauncher?: boolean;
   forms?: Array<any>;
+  filter?: (encounter: any) => boolean;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -54,7 +55,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   }
 
   if (typeof obs.value === 'object') {
-    return obs.value.name.name;
+    return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
 }
@@ -69,6 +70,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   dropdownText,
   hideFormLauncher,
   forms,
+  filter,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
@@ -84,7 +86,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   hideFormLauncher = hideFormLauncher || false;
 
   const editEncounter = encounterUuid => {
-    launchFormInEditMode(encounterForm, encounterUuid, forceComponentUpdate);
+    launchFormInEditMode(applyFormIntent('', encounterForm), encounterUuid, forceComponentUpdate);
   };
   const viewEncounter = encounterUuid => {
     launchFormInViewMode(
@@ -109,11 +111,15 @@ const EncounterList: React.FC<EncounterListProps> = ({
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
         if (data.results?.length > 0) {
-          const sortedEncounters = data.results.sort(
+          let sortedEncounters = data.results.sort(
             (firstEncounter, secondEncounter) =>
               new Date(secondEncounter.encounterDatetime).getTime() -
               new Date(firstEncounter.encounterDatetime).getTime(),
           );
+
+          if (filter) {
+            sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
+          }
 
           setAllRows(sortedEncounters);
           updateTable(sortedEncounters, 0, pageSize);
@@ -161,66 +167,39 @@ const EncounterList: React.FC<EncounterListProps> = ({
         row[column.key] = val;
       });
 
-      //TODO: This 'piece of hack' SHOULD BE REMOVED once Pius is done with the Actions implementation
-      if (form.package == 'covid' && form.name == 'covid_assessment') {
+      if (row['actions']) {
+        const actionItems = row['actions'];
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={'View Case'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInViewMode(getForm('covid', 'covid_case'), encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Case'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(getForm('covid', 'covid_case'), encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Outcome'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(getForm('covid', 'covid_outcome'), encounter.uuid, forceComponentUpdate);
-              }}
-            />
+            {actionItems.map((actionItem, index) => (
+              <OverflowMenuItem
+                itemText={actionItem.label}
+                onClick={e => {
+                  e.preventDefault();
+                  if (actionItem.mode == 'edit') {
+                    launchFormInEditMode(
+                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      actionItem.encounterUuid,
+                      forceComponentUpdate,
+                    );
+                  } else if (actionItem.mode == 'enter') {
+                    launchForm(
+                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      forceComponentUpdate,
+                    );
+                  } else {
+                    launchFormInViewMode(
+                      getForm(actionItem.form.package, actionItem.form.name),
+                      actionItem.encounterUuid,
+                      forceComponentUpdate,
+                    );
+                  }
+                }}
+              />
+            ))}
           </OverflowMenu>
         );
-      } else if (form.package == 'covid' && form.name == 'covid_lab_order') {
-        row['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={'View Lab Test'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInViewMode(encounterForm, encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Edit Lab Result'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(getForm('covid', 'covid_lab_result'), encounter.uuid, forceComponentUpdate);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={'Cancel Lab Order'}
-              onClick={e => {
-                e.preventDefault();
-                launchFormInEditMode(
-                  getForm('covid', 'covid_lab_order_cancellation'),
-                  encounter.uuid,
-                  forceComponentUpdate,
-                );
-              }}
-            />
-          </OverflowMenu>
-        );
-      }
-
-      if (!row['actions']) {
+      } else {
         row['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
@@ -240,7 +219,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
           </OverflowMenu>
         );
       }
-
       return row;
     });
     setTableRows(rows);
@@ -249,7 +227,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
 
   const launchEncounterForm = (form?: any) => {
     launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: encounterForm?.name,
+      title: form?.name || encounterForm?.name,
       screenSize: 'maximize',
       mode: 'enter',
       state: { updateParent: forceComponentUpdate, formJson: form || encounterForm },

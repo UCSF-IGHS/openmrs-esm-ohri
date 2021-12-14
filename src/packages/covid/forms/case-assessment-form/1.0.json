@@ -1,5 +1,5 @@
 {
-  "name": "COVID Assessment",
+  "name": "COVID Assessment Form",
   "pages": [
     {
       "label": "COVID Assessment",
@@ -9,10 +9,21 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date of Assessment **Pick from encounter start",
+              "label": "Date of Assessment",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
+                "concept" : "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "160753"
+                  },
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "439771001"
+                  }
+                ],
                 "weeksList": ""
               },
               "id": "dateOfAssessment",
@@ -36,7 +47,7 @@
                   ]
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -170,7 +181,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -207,7 +218,7 @@
                       "validators": []
                     },
                     {
-                      "intent": "COVID_LAB_ORDER_EMBED",
+                      "intent": "COVID_LAB_ASSESSMENT_EMBED",
                       "required": "true",
                       "unspecified": "false",
                       "hide": {
@@ -269,7 +280,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -307,7 +318,7 @@
                   ]
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -565,7 +576,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -602,7 +613,7 @@
                       "validators": []
                     },
                     {
-                      "intent": "COVID_LAB_ORDER_EMBED",
+                      "intent": "COVID_LAB_ASSESSMENT_EMBED",
                       "required": "true",
                       "unspecified": "false",
                       "hide": {
@@ -691,7 +702,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -863,7 +874,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -898,7 +909,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -966,7 +977,7 @@
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -1264,12 +1275,12 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f')"
+                    "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f') && !includes('clientVaccinated', '9fad04c7-bdb7-4a8c-b559-672621033322')"
                   },
                   "validators": []
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
                   "unspecified": "false",
                   "hide": {
@@ -1301,21 +1312,13 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
-                  "unspecified": "false",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  "required": "false"
                 },
                 {
-                  "intent": "COVID_LAB_ORDER_EMBED",
-                  "required": "false",
-                  "unspecified": "false",
+                  "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                    "hideWhenExpression": "true"
+                  }
                 }
               ]
             }
