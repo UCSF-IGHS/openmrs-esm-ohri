@@ -141,15 +141,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
       }
     }
 
-    const generateActionLabels = (form, isEnterMode, label) => {
-      if (form === 'covid_outcome') {
-        return `${isEnterMode <= 5 ? 'Add' : 'Edit'} Outcome`;
-      } else {
-        return label;
-      }
-    };
-    console.log(currentRows);
-
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
       encounter['launchFormActions'] = {
@@ -182,7 +173,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             {actionItems.map((actionItem, index) => (
               <OverflowMenuItem
-                itemText={generateActionLabels(actionItem.form.name, encounter.obs?.length, actionItem.label)}
+                itemText={actionItem.label}
                 onClick={e => {
                   e.preventDefault();
                   if (actionItem.mode == 'edit') {

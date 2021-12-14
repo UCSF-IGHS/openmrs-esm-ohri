@@ -37,9 +37,7 @@ export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextPr
       moduleName: '@openmrs/esm-ohri-app',
     }),
     meta: {
-      title: `${props?.mode === 'enter' ? 'Create New' : props.mode?.charAt(0).toUpperCase() + props.mode?.slice(1)} ${
-        props?.title.split('Form')[0]
-      }`,
+      title: props.title,
       screenSize: props.screenSize,
       collapseSections: props.collapseSections,
     },
