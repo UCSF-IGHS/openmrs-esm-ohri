@@ -24,8 +24,7 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
 
   const handleChange = value => {
     setFieldValue(question.id, value);
-    setErrors(OHRIFieldValidator.validate(question, value));
-    onChange(question.id, value);
+    onChange(question.id, value, setErrors);
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 

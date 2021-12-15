@@ -25,8 +25,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   const onDateChange = ([date]) => {
     const refinedDate = date instanceof Date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000) : date;
     setFieldValue(question.id, refinedDate);
-    setErrors(OHRIFieldValidator.validate(question, refinedDate));
-    onChange(question.id, refinedDate);
+    onChange(question.id, refinedDate, setErrors);
     question.value = handler.handleFieldSubmission(question, refinedDate, encounterContext);
   };
   const { placeHolder, carbonDateformat } = useMemo(() => {

@@ -25,9 +25,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     if (field.value && question.unspecified) {
       setFieldValue(`${question.id}-unspecified`, false);
     }
-    setErrors(OHRIFieldValidator.validate(question, field.value));
     if (previousValue !== field.value) {
-      onChange(question.id, field.value);
+      onChange(question.id, field.value, setErrors);
       question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
     }
   };

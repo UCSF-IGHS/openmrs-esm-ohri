@@ -15,6 +15,7 @@ import { EncounterLocationSubmissionHandler, ObsSubmissionHandler } from '../sub
 import { FieldValidator, SubmissionHandler } from '../types';
 import OHRIFixedValue from '../components/inputs/fixed-value/ohri-fixed-value.component';
 import OHRIMarkdown from '../components/inputs/markdown/ohri-markdown.component';
+import { OHRIDateValidator } from '../validators/ohri-date-validator';
 
 const baseFieldComponents: Array<RegistryItem> = [
   {
@@ -109,8 +110,12 @@ const baseHandlers: Array<RegistryItem> = [
 
 const fieldValidators: Array<ValidatorRegistryItem> = [
   {
-    id: 'OHRIFieldValidator',
+    id: 'OHRIBaseValidator',
     component: OHRIFieldValidator,
+  },
+  {
+    id: 'date',
+    component: OHRIDateValidator,
   },
 ];
 
