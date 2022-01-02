@@ -17,6 +17,7 @@ import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from '
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
 import { isTrue } from './utils/boolean-utils';
+import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -177,6 +178,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                 defaultPage={formJson.defaultPage}
               />
               <div className={styles.formContent}>
+                <PatientBanner patient={patient} />
                 <OHRIEncounterForm
                   formJson={form}
                   patient={patient}
