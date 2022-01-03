@@ -655,7 +655,7 @@
               ]
             },
             {
-              "label": "Date of the next Vaccination",
+              "label": "Date of the next Vaccination (If Scheduled)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -694,9 +694,7 @@
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "vaccineDose == null"
-                  },
+                  
                   "validators": [
                     {
                       "type": "js_expression",
