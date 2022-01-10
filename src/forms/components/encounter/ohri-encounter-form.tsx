@@ -356,8 +356,15 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     if (Array.isArray(field.validators)) {
     }
     // handle validation
+    const basevalidatorConfig = {
+      expressionContext: { mode: sessionMode },
+      values: { ...values, [fieldName]: value },
+      fields,
+    };
     for (let validatorConfig of validators) {
-      const errors = getValidator(validatorConfig.type)?.validate(field, value, validatorConfig) || [];
+      const errors =
+        getValidator(validatorConfig.type)?.validate(field, value, { ...basevalidatorConfig, ...validatorConfig }) ||
+        [];
       setErrors && setErrors(errors);
       if (errors.length) {
         return;

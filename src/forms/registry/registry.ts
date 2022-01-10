@@ -16,6 +16,7 @@ import { FieldValidator, SubmissionHandler } from '../types';
 import OHRIFixedValue from '../components/inputs/fixed-value/ohri-fixed-value.component';
 import OHRIMarkdown from '../components/inputs/markdown/ohri-markdown.component';
 import { OHRIDateValidator } from '../validators/ohri-date-validator';
+import { OHRIJSExpressionValidator } from '../validators/ohri-js-expression-validator';
 
 const baseFieldComponents: Array<RegistryItem> = [
   {
@@ -116,6 +117,10 @@ const fieldValidators: Array<ValidatorRegistryItem> = [
   {
     id: 'date',
     component: OHRIDateValidator,
+  },
+  {
+    id: 'js_expression',
+    component: OHRIJSExpressionValidator,
   },
 ];
 

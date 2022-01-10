@@ -44,8 +44,8 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
       <FormGroup
         style={{ paddingBottom: '1rem' }}
         legendText={question.label}
-        className={errors.length ? styles.errorLegend : ''}
-        disabled={question.disabled}>
+        disabled={question.disabled}
+        invalid={errors.length > 0}>
         <RadioButtonGroup
           defaultSelected="default-selected"
           name={question.id}
@@ -63,6 +63,11 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
             );
           })}
         </RadioButtonGroup>
+        {errors?.length > 0 ? (
+          <div className={styles.errorLabel}>
+            <div className={`bx--form-requirement`}>{errors[0].errMessage}</div>
+          </div>
+        ) : null}
       </FormGroup>
     )
   );

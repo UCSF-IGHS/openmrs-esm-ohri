@@ -30,8 +30,9 @@ export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextPr
     return;
   }
   detachAll(OHRIWorkspaceSlot);
-  registerExtension('ohri-workspace', {
+  registerExtension({
     moduleName: '@openmrs/esm-ohri-app',
+    name: 'ohri-workspace',
     load: getAsyncLifecycle(() => import('./ohri-workspace.component'), {
       featureName: 'ohri-workspace',
       moduleName: '@openmrs/esm-ohri-app',

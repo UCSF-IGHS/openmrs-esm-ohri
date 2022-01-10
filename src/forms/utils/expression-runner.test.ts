@@ -1,83 +1,85 @@
 import { OHRIFormField } from '../types';
 import { evaluateExpression, ExpressionContext } from './expression-runner';
 
+export const testFields: Array<OHRIFormField> = [
+  {
+    label: 'Was the client linked to care and treatment in this facility?',
+    type: 'obs',
+    questionOptions: {
+      rendering: 'radio',
+      concept: 'e8e8fe71-adbb-48e7-b531-589985094d30',
+      answers: [
+        {
+          concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
+          label: 'Yes',
+        },
+        {
+          concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
+          label: 'No',
+        },
+      ],
+    },
+    id: 'linkedToCare',
+  },
+  {
+    label: 'What Identification Number was issued to the client?',
+    type: 'obs',
+    questionOptions: {
+      rendering: 'text',
+      concept: '162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+    },
+    id: 'patientIdentificationNumber',
+  },
+  {
+    label: 'Which of the following prevention services was the client referred to?',
+    type: 'obs',
+    questionOptions: {
+      rendering: 'checkbox',
+      concept: '5f394708-ca7d-4558-8d23-a73de181b02d',
+      answers: [
+        {
+          concept: '88cdde2b-753b-48ac-a51a-ae5e1ab24846',
+          label: 'Pre Exposure Prophylaxis (PEP)',
+        },
+        {
+          concept: '46da10c7-49e3-45e5-8e82-7c529d52a1a8',
+          label: 'STI Testing and Treatment',
+        },
+        {
+          concept: '1691AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+          label: 'Post-exposure prophylaxis',
+        },
+        {
+          concept: '162223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+          label: 'Voluntary male circumcision clinic',
+        },
+      ],
+    },
+    id: 'referredToPreventionServices',
+  },
+  {
+    label: 'What were the HTS provider’s remarks?',
+    type: 'obs',
+    questionOptions: {
+      rendering: 'textarea',
+      concept: '437d1e25-e7ab-481c-aabc-01f21c6cdef1',
+    },
+    id: 'htsProviderRemarks',
+  },
+  {
+    label: 'Body Temperature',
+    type: 'obs',
+    questionOptions: {
+      rendering: 'number',
+      concept: '537d1e25-e7av-481c-aabc-01f21c6cdefo',
+    },
+    id: 'bodyTemperature',
+  },
+];
+
 describe('Common expression runner - evaluateExpression', () => {
   const context: ExpressionContext = { mode: 'enter' };
-  const allFields: Array<OHRIFormField> = [
-    {
-      label: 'Was the client linked to care and treatment in this facility?',
-      type: 'obs',
-      questionOptions: {
-        rendering: 'radio',
-        concept: 'e8e8fe71-adbb-48e7-b531-589985094d30',
-        answers: [
-          {
-            concept: 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3',
-            label: 'Yes',
-          },
-          {
-            concept: '488b58ff-64f5-4f8a-8979-fa79940b1594',
-            label: 'No',
-          },
-        ],
-      },
-      id: 'linkedToCare',
-    },
-    {
-      label: 'What Identification Number was issued to the client?',
-      type: 'obs',
-      questionOptions: {
-        rendering: 'text',
-        concept: '162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      },
-      id: 'patientIdentificationNumber',
-    },
-    {
-      label: 'Which of the following prevention services was the client referred to?',
-      type: 'obs',
-      questionOptions: {
-        rendering: 'checkbox',
-        concept: '5f394708-ca7d-4558-8d23-a73de181b02d',
-        answers: [
-          {
-            concept: '88cdde2b-753b-48ac-a51a-ae5e1ab24846',
-            label: 'Pre Exposure Prophylaxis (PEP)',
-          },
-          {
-            concept: '46da10c7-49e3-45e5-8e82-7c529d52a1a8',
-            label: 'STI Testing and Treatment',
-          },
-          {
-            concept: '1691AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-            label: 'Post-exposure prophylaxis',
-          },
-          {
-            concept: '162223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-            label: 'Voluntary male circumcision clinic',
-          },
-        ],
-      },
-      id: 'referredToPreventionServices',
-    },
-    {
-      label: 'What were the HTS provider’s remarks?',
-      type: 'obs',
-      questionOptions: {
-        rendering: 'textarea',
-        concept: '437d1e25-e7ab-481c-aabc-01f21c6cdef1',
-      },
-      id: 'htsProviderRemarks',
-    },
-    {
-      label: 'Body Temperature',
-      type: 'obs',
-      questionOptions: {
-        rendering: 'number',
-        concept: '537d1e25-e7av-481c-aabc-01f21c6cdefo',
-      },
-      id: 'bodyTemperature',
-    },
-  ];
+  const allFields = JSON.parse(JSON.stringify(testFields));
   let valuesMap = {
     linkedToCare: '',
     patientIdentificationNumber: '',

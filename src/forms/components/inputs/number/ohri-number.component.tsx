@@ -6,7 +6,6 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
@@ -42,6 +41,7 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
         <NumberInput
           {...field}
           id={question.id}
+          invalid={errors.length > 0}
           invalidText="Number is not valid"
           label={question.label}
           max={question.questionOptions.max || undefined}
@@ -51,7 +51,6 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
           onFocus={() => setPreviousValue(field.value)}
           allowEmpty={true}
           size="xl"
-          className={errors.length ? styles.errorLabel : ''}
           disabled={question.disabled}
         />
       </div>

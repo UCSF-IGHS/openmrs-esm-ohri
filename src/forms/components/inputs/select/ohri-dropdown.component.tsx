@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'carbon-components-react';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
@@ -51,7 +50,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   ) : (
     !question.isHidden && (
       <div className={styles.formInputField}>
-        <div className={errors.length ? styles.errorLabel : styles.dropDownOverride}>
+        <div className={styles.dropDownOverride}>
           <Dropdown
             id={question.id}
             titleText={question.label}
@@ -61,6 +60,8 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
             selectedItem={field.value}
             onChange={({ selectedItem }) => handleChange(selectedItem)}
             disabled={question.disabled}
+            invalid={errors.length > 0}
+            invalidText={errors.length && errors[0].errMessage}
           />
         </div>
       </div>

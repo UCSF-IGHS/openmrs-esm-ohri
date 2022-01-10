@@ -97,6 +97,8 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
             key={counter}
             itemToString={item => (item ? item.label : ' ')}
             disabled={question.disabled}
+            invalid={errors.length > 0}
+            invalidText={errors[0]?.errMessage}
           />
         </div>
         <div className={styles.formField}>

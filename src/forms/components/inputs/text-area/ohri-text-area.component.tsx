@@ -47,17 +47,18 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   ) : (
     !question.isHidden && (
       <div className={styles.formField}>
-        <div className={errors.length ? styles.errorLabel : ''}>
+        <div className={styles.textInputOverrides}>
           <TextArea
             {...field}
             id={question.id}
             labelText={question.label}
             name={question.id}
             value={field.value || ''}
-            className={styles.textInputOverrides}
             onFocus={() => setPreviousValue(field.value)}
             rows={question.questionOptions.rows || 4}
             disabled={question.disabled}
+            invalid={errors.length > 0}
+            invalidText={errors.length && errors[0].errMessage}
           />
         </div>
       </div>

@@ -123,12 +123,8 @@
   margin-right: 0rem !important;
 }
 
-.textInputOverrides {
+.textInputOverrides > div > div {
   width: $ohri-input-width;
-}
-
-.textInputOverrides label {
-  font-size: 0.875rem !important;
 }
 
 .unspecified {
@@ -150,8 +146,12 @@
   color: $color-gray-70;
 }
 
-.errorLabel > div label {
-  color: #da1e28 !important;
+.errorLabel :global(.bx--form-requirement) {
+  display: block;
+  max-height: 12.5rem;
+  overflow: visible;
+  font-weight: 400;
+  color: #da1e28;
 }
 
 .obsGroupColumn {

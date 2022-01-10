@@ -2551,7 +2551,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '01/12/2021') || myValue > today()"
                     }
                   ]
                 },
