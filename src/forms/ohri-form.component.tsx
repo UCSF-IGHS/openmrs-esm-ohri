@@ -179,23 +179,25 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               />
               <div className={styles.formContent}>
                 <PatientBanner patient={patient} />
-                <OHRIEncounterForm
-                  formJson={form}
-                  patient={patient}
-                  encounterDate={encDate}
-                  provider={currentProvider}
-                  location={location}
-                  values={props.values}
-                  isCollapsed={collapsed}
-                  sessionMode={sessionMode}
-                  scrollablePages={scrollAblePages}
-                  setAllInitialValues={setInitialValues}
-                  allInitialValues={initialValues}
-                  setScrollablePages={setScrollablePages}
-                  setFieldValue={props.setFieldValue}
-                  setSelectedPage={setSelectedPage}
-                  handlers={handlers}
-                />
+                <div className={styles.formContentBody}>
+                  <OHRIEncounterForm
+                    formJson={form}
+                    patient={patient}
+                    encounterDate={encDate}
+                    provider={currentProvider}
+                    location={location}
+                    values={props.values}
+                    isCollapsed={collapsed}
+                    sessionMode={sessionMode}
+                    scrollablePages={scrollAblePages}
+                    setAllInitialValues={setInitialValues}
+                    allInitialValues={initialValues}
+                    setScrollablePages={setScrollablePages}
+                    setFieldValue={props.setFieldValue}
+                    setSelectedPage={setSelectedPage}
+                    handlers={handlers}
+                  />
+                </div>
               </div>
             </div>
           )}
