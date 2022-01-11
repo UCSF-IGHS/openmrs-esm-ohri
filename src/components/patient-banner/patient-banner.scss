@@ -2,11 +2,13 @@
 
 .patientBannerContainer {
   display: flex;
-  position:fixed;
-  flex-direction: row;
+  // position:fixed;
+  // flex-direction: row;
   align-items: baseline;
   padding: 0;
-  width: 86.6%;
+  // width: 86.6%;
+  width: inherit;
+  // z-index: 1000;
 }
 
 .patientBannerContainer > div {
@@ -15,36 +17,49 @@
 
 @media only screen and (max-width: 600px) {
   .patientBannerContainer {
-    width: 73%;
+    // width: 73%;
   }
 }
 
 @media only screen and (min-width: 600px) {
   .patientBannerContainer {
-    width: 73%;
+    // width: 73%;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .patientBannerContainer {
-    width: 78%;
+    // width: 78%;
   }
 }
 
 @media only screen and (min-width: 992px) {
   .patientBannerContainer {
-    width: 80%;
+    // width: 80%;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .patientBannerContainer {
-    width: 79%;
+    // width: 79%;
   }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1300px) {
   .patientBannerContainer {
-    width: 86.6%;
+    // width: 82.2%;
+    // width: 85.6%;
   }
 }
+
+@media only screen and (max-width: 1440px) {
+  .patientBannerContainer {
+    // width: 84.7%;
+  }
+}
+
+// @media only screen and (min-width: 1800px) {
+//   .patientBannerContainer {
+//     width: 90%;
+//   }
+// }
