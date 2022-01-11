@@ -31,56 +31,12 @@
 .formContentBody {
   overflow-y: auto;
   height: 77.5vh;
-  // margin-top: 122px;
-  // position: fixed;
-  // width: 86.6%;
   width: inherit;
+  position: sticky;
 }
 
 @media (max-width: 768px) {
   .ohriFormContainer {
     height: 100vh;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .formContentBody {
-    // width: 73%;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .formContentBody {
-    // width: 73%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .formContentBody {
-    // width: 78%;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .formContentBody {
-    // width: 80%;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .formContentBody {
-    // width: 79%;
-  }
-}
-
-@media only screen and (min-width: 1300px) {
-  .formContentBody {
-    // width: 85.6%;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  .formContentBody {
-    // width: 84.7%;
   }
 }
