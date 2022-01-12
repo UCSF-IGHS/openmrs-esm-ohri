@@ -39,17 +39,25 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 git clone https://github.com/UCSF-IGHS/openmrs-esm-ohri.git
 ```
 
-2. Install dependencies in the root directory of the repo.
+2. Install `lerna`
+```sh
+npm install lerna --global
+```
+
+3. Install dependencies for all packages
 - make sure you are using a relatively recent version of node, LTE is 14.x.x, you can type node -version to find your current version. I would recommend using n to manage your node version: see https://www.npmjs.com/package/n
 ```sh
-npm i
+lerna bootstrap --hoist
 ```
 
-3. Run the module from `localhost:8080`.
+4. Run the module from `localhost:8080`.
 
 ```sh
-npm run serve
+npm run start 
 ```
+This command start each package inside the `packages` directory with the *development* mode connected to the *https://ohri-working.globalhealthaapp.net* backend. This is the actual script:
+
+`openmrs develop --backend https://ohri-working.globalhealthapp.net --sources 'packages/esm-*-app/'`
 
 ### Setup Dev Tools
 
@@ -75,7 +83,7 @@ To verify that all of the tests run:
 ```sh
 npm test
 ```
- 
+
 *Note: Run `npm i` before running tests for the first time.*
 
 ## Deployment
