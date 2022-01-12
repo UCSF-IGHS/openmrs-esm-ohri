@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { NumberInput } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
@@ -7,12 +7,14 @@ import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { isTrue } from '../../../utils/boolean-utils';
+import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
   const [errors, setErrors] = useState([]);
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -41,8 +43,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
         <NumberInput
           {...field}
           id={question.id}
-          invalid={errors.length > 0}
-          invalidText="Number is not valid"
+          invalid={!isFieldRequiredError && errors.length > 0}
+          invalidText={errors[0]?.errMessage}
           label={question.label}
           max={question.questionOptions.max || undefined}
           min={question.questionOptions.min || undefined}
@@ -52,6 +54,7 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
           allowEmpty={true}
           size="xl"
           disabled={question.disabled}
+          className={isFieldRequiredError ? styles.errorLabel : ''}
         />
       </div>
     )

@@ -82,7 +82,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
   useEffect(() => {
     const extDetails = {
-      name: 'ohri-form-header-toggle-ext',
+      id: 'ohri-form-header-toggle-ext',
       moduleName: '@openmrs/esm-ohri-app',
       slot: 'patient-chart-workspace-header-slot',
       load: getAsyncLifecycle(
@@ -98,11 +98,11 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         },
       },
     };
-    registerExtension(extDetails);
-    attach('patient-chart-workspace-header-slot', extDetails.name);
+    registerExtension(extDetails.id, extDetails);
+    attach('patient-chart-workspace-header-slot', extDetails.id);
 
     return () => {
-      detach('patient-chart-workspace-header-slot', extDetails.name);
+      detach('patient-chart-workspace-header-slot', extDetails.id);
     };
   }, []);
 

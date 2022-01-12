@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Dropdown } from 'carbon-components-react';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
@@ -8,6 +8,7 @@ import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.compone
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
+import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
@@ -15,6 +16,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   const [items, setItems] = React.useState([]);
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -50,7 +52,10 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   ) : (
     !question.isHidden && (
       <div className={styles.formInputField}>
-        <div className={styles.dropDownOverride}>
+        <div
+          className={
+            isFieldRequiredError ? `${styles.errorLabel} ${styles.dropDownOverride}` : styles.dropDownOverride
+          }>
           <Dropdown
             id={question.id}
             titleText={question.label}
@@ -60,7 +65,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
             selectedItem={field.value}
             onChange={({ selectedItem }) => handleChange(selectedItem)}
             disabled={question.disabled}
-            invalid={errors.length > 0}
+            invalid={!isFieldRequiredError && errors.length > 0}
             invalidText={errors.length && errors[0].errMessage}
           />
         </div>

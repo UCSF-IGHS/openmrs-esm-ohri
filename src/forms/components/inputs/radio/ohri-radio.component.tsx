@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FormGroup, RadioButtonGroup, RadioButton } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
@@ -6,15 +6,16 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import styles from '../_input.scss';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
+import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -44,8 +45,9 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
       <FormGroup
         style={{ paddingBottom: '1rem' }}
         legendText={question.label}
+        className={isFieldRequiredError && styles.errorLegend}
         disabled={question.disabled}
-        invalid={errors.length > 0}>
+        invalid={!isFieldRequiredError && errors.length > 0}>
         <RadioButtonGroup
           defaultSelected="default-selected"
           name={question.id}
@@ -63,11 +65,11 @@ const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }
             );
           })}
         </RadioButtonGroup>
-        {errors?.length > 0 ? (
+        {!isFieldRequiredError && errors?.length > 0 && (
           <div className={styles.errorLabel}>
             <div className={`bx--form-requirement`}>{errors[0].errMessage}</div>
           </div>
-        ) : null}
+        )}
       </FormGroup>
     )
   );

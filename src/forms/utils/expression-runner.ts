@@ -54,7 +54,7 @@ export function evaluateExpression(
   function isDateBefore(left: Date, right: string | Date, format?: string) {
     let otherDate: any = right;
     if (typeof right == 'string') {
-      otherDate = format ? moment(right, format, true).toDate() : moment(right, 'DD/MM/YYYY', true).toDate();
+      otherDate = format ? moment(right, format, true).toDate() : moment(right, 'YYYY-MM-DD', true).toDate();
     }
     return left?.getTime() < otherDate.getTime();
   }

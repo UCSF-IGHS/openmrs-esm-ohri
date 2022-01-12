@@ -64,8 +64,8 @@ describe('OHRIJSExpressionValidator - validate', () => {
       validators: [
         {
           type: 'js_expression',
-          failsWhenExpression: "isDateBefore(myValue, '01/12/2020') || myValue > today()",
-          message: "Value cannot be before '01/12/2020' or after today",
+          failsWhenExpression: "isDateBefore(myValue, '2020-12-01') || myValue > today()",
+          message: "Value cannot be before '2020-12-01' or after today",
         },
       ],
       id: 'testDate',
@@ -73,7 +73,7 @@ describe('OHRIJSExpressionValidator - validate', () => {
     allFields.push(dateField);
 
     // replay
-    let errors = OHRIJSExpressionValidator.validate(dateField, moment('13/11/2020', 'DD/MM/YYYY', true).toDate(), {
+    let errors = OHRIJSExpressionValidator.validate(dateField, moment('2020-11-13', 'YYYY-MM-DD', true).toDate(), {
       ...dateField.validators[0],
       expressionContext,
       values,
@@ -82,7 +82,7 @@ describe('OHRIJSExpressionValidator - validate', () => {
 
     // verify
     expect(errors).toEqual([
-      { errCode: 'value.invalid', errMessage: "Value cannot be before '01/12/2020' or after today" },
+      { errCode: 'value.invalid', errMessage: "Value cannot be before '2020-12-01' or after today" },
     ]);
 
     // set & replay
@@ -97,11 +97,11 @@ describe('OHRIJSExpressionValidator - validate', () => {
 
     // verify
     expect(errors).toEqual([
-      { errCode: 'value.invalid', errMessage: "Value cannot be before '01/12/2020' or after today" },
+      { errCode: 'value.invalid', errMessage: "Value cannot be before '2020-12-01' or after today" },
     ]);
 
     // replay
-    errors = OHRIJSExpressionValidator.validate(dateField, moment('12/11/2021', 'DD/MM/YYYY', true).toDate(), {
+    errors = OHRIJSExpressionValidator.validate(dateField, moment('2021-11-12', 'YYYY-MM-DD', true).toDate(), {
       ...dateField.validators[0],
       expressionContext,
       values,
