@@ -82,23 +82,35 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     </div>
   ) : (
     !question.isHidden && (
-      <div
-        className={
-          errors.length ? `${styles.multiselectOverride} ${styles.errorLabel}` : `${styles.multiselectOverride}`
-        }>
-        <MultiSelect.Filterable
-          placeholder={t('filterItemsInMultiselect', 'Search...')}
-          onChange={handleSelectItemsChange}
-          id={question.label}
-          items={questionItems}
-          initialSelectedItems={initiallySelectedQuestionItems}
-          label={''}
-          titleText={question.label}
-          key={counter}
-          itemToString={item => (item ? item.label : ' ')}
-          disabled={question.disabled}
-        />
-      </div>
+      <>
+        <div
+          className={
+            errors.length ? `${styles.multiselectOverride} ${styles.errorLabel}` : `${styles.multiselectOverride}`
+          }>
+          <MultiSelect.Filterable
+            placeholder={t('filterItemsInMultiselect', 'Search...')}
+            onChange={handleSelectItemsChange}
+            id={question.label}
+            items={questionItems}
+            initialSelectedItems={initiallySelectedQuestionItems}
+            label={''}
+            titleText={question.label}
+            key={counter}
+            itemToString={item => (item ? item.label : ' ')}
+            disabled={question.disabled}
+          />
+        </div>
+        <div className={styles.formField}>
+          <OHRILabel value={'Selected Items'} />
+          {field.value?.length ? (
+            <UnorderedList style={{ marginLeft: '1rem' }}>
+              {handler.getDisplayValue(question, field.value)?.map(displayValue => displayValue + ', ')}
+            </UnorderedList>
+          ) : (
+            <OHRIValueEmpty />
+          )}
+        </div>
+      </>
     )
   );
 };
