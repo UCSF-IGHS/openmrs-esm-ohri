@@ -1,21 +1,43 @@
 {
-  "name": "ohri-forms-engine",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "name": "esm-forms-render-app",
+  "version": "0.1.0",
+  "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
+  "browser": "dist/forms-render-app.js",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri-forms#readme",
   "scripts": {
-    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net --sources 'packages/esm-*-app/'",
-    "ci:publish": "lerna publish from-package --yes",
-    "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
-    "ci:release": "lerna version --no-git-tag-version",
-    "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
-    "verify": "lerna run lint && lerna run test && lerna run typescript",
-    "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
-    "test": "jest --config jest.config.json --verbose false --passWithNoTests",
-    "test-watch": "jest --watch --config jest.config.json",
-    "coverage": "yarn test --coverage",
-    "extract-translations": "lerna run extract-translations"
+    "start": "openmrs develop",
+    "serve": "webpack serve --mode=development",
+    "debug": "npm run serve",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode=production --env.analyze=true",
+    "lint": "eslint src --ext tsx",
+    "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
+    "typescript": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "jest --config ./jest.config.js --passWithNoTests",
+    "coverage": "npm test -- --coverage",
+    "badges": "npm run coverage && jest-coverage-badges --output './badges' ",
+    "docker": "docker run -p 8080:8080 -p 8081:8081 histacohri/docker-openmrs-esm-ohri:1.0 npx openmrs develop --backend https://ohri-working.globalhealthapp.net",
+    "docker:dev": "docker compose up"
+  },
+  "browserslist": ["extends browserslist-config-openmrs"],
+  "keywords": ["openmrs"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && concurrently 'npm:test' 'npm:typescript' 'npm:lint'"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",
@@ -89,7 +111,6 @@
     "istanbul-badges-readme": "^1.4.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
-    "lerna": "^4.0.0",
     "node-sass": "^6.0.1",
     "openmrs": "next",
     "prettier": "^1.18.2",
