@@ -1,11 +1,11 @@
 {
-  "name": "openmrs-ohri-form-engine",
+  "name": "openmrs-ohri-form-engine-lib",
   "version": "0.1.0",
   "description": "A Forms Common Library microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
-  "browser": "dist/openmrs-ohri-form-engine.js",
+  "browser": "dist/openmrs-ohri-form-engine-lib.js",
   "main": "src/index.ts",
   "license": "MIT",
-  "homepage": "https://github.com/UCSF-IGHS/openmrs-ohri-form-engine#readme",
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-ohri-form-engine-lib#readme",
   "scripts": { 
     "lint": "eslint src --ext tsx",
     "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
