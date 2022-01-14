@@ -1,7 +1,6 @@
 import { openmrsObservableFetch } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { encounterRepresentation } from '../../../constants';
-import { ConceptFalse, ConceptTrue } from '../../constants';
+import { ConceptFalse, ConceptTrue, encounterRepresentation } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
 import { saveEncounter } from '../../ohri-form.resource';
 import { getHandler } from '../../registry/registry';

@@ -57,7 +57,8 @@
     "react-waypoint": "^10.1.0",
     "semver": "^7.3.5",
     "systemjs-webpack-interop": "^2.3.2",
-    "yup": "^0.29.1"
+    "yup": "^0.29.1",
+    "openmrs-ohri-form-engine-lib": "0.1.0"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "3.x",

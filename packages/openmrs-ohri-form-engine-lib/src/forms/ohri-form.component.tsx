@@ -12,7 +12,7 @@ import {
   detach,
 } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
-import LoadingIcon from '../components/loading/loading.component';
+import LoadingIcon from './components/loading/loading.component';
 import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from './types';
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';

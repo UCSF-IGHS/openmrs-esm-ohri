@@ -1,81 +1,218 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getForm, applyFormIntent } from '../utils/forms-loader'; // load from forms-common-lib
-import { OHRIFormSchema, SessionMode } from '../forms/types'; // load from forms-common-lib
-import OHRIForm from '../forms/ohri-form.component'; // load from forms-common-lib
-import styles from './styles.css';
+import {
+  getForm,
+  applyFormIntent,
+  OHRIForm,
+  OHRIFormSchema,
+  SessionMode,
+  loadSubforms,
+} from 'openmrs-ohri-form-engine-lib';
 
-interface URLParams {
-  packageName: string;
-  formName: string;
-  patientUUID: string;
-}
+import React, { useState } from 'react';
+import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
+import styles from './form-render.scss';
+import { Run32 } from '@carbon/icons-react';
+import AceEditor from 'react-ace';
+import 'ace-builds/webpack-resolver';
 
-/**
- * This component renders a form for a patient encounter.
- * @param {string} package Name of the form package
- * @param {string} name Name of the form inside the package
- * @param {string} patientUUID UUID of the patient whose form will be accessed
- * @param {string} [encounterUUID] UUID of the patient encounter. If not provided, form opens in enter mode
- * @param {string} [mode=view] Mode to access the form
- * @param {string} [intent=*] Form intent
- * @returns OHRIForm A form component
- */
-const FormRenderComponent = () => {
-  const [form, setForm] = useState<OHRIFormSchema>();
-  const [formMode, setFormMode] = useState<SessionMode>('enter');
-  const [formEncounter, setFormEncounter] = useState('');
-  const [isFormLoaded, setIsFormLoaded] = useState(false);
-  const { packageName, formName, patientUUID } = useParams<URLParams>();
+function FormRenderTest() {
+  const headerTitle = 'Form Render Test';
+  const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
+  const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
+  const [formInput, setFormInput] = useState<OHRIFormSchema>();
+  const [formIntents, setFormIntents] = useState([]);
+  // const [formIntentInput, setFormIntentInput] = useState('Empty Intent'); //TODO: Re-purpose
+  const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
+  const [selectedFormIntent, setSelectedFormIntent] = useState('');
 
-  // Get URL search params
-  const urlSearchParams = new URLSearchParams(window.location.search.slice(1));
-  const getURLParam = parameter => (urlSearchParams.has(parameter) ? urlSearchParams.get(parameter) : null);
+  const [inputErrorMessage, setInputErrorMessage] = useState<any>('');
+  const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
 
-  // validators for form mode
-  const validModes = ['view', 'edit', 'enter'];
+  const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
+  const [schemaOutput, setSchemaOutput] = useState('');
+  const [schemaInput, setSchemaInput] = useState(null);
+  const [editorTheme, setEditorTheme] = useState('github');
 
-  useEffect(() => {
-    let formJSON = getForm(packageName, formName);
+  const availableEditorThemes = [
+    'monokai',
+    'github',
+    'tomorrow',
+    'kuroir',
+    'twilight',
+    'xcode',
+    'solarized_dark',
+    'solarized_light',
+    'terminal',
+  ];
 
-    if (formJSON) {
-      const formIntent = getURLParam('intent') ? getURLParam('intent') : '*';
-      formJSON = applyFormIntent(formIntent, formJSON);
-      setForm(formJSON);
+  const loadIntentsFromSchema = jsonSchema => {
+    let _formIntents = jsonSchema.availableIntents || [];
 
-      const mode = getURLParam('mode');
-      if (mode) {
-        switch (mode) {
-          case 'edit':
-            setFormMode('edit');
-            break;
-          case 'view':
-            setFormMode('view');
-            break;
-          default:
-        }
-      }
-
-      const encounter = getURLParam('encounter') || '';
-      if (encounter) {
-        setFormEncounter(encounter);
-      }
-
-      setIsFormLoaded(true);
+    if (_formIntents.length > 0) {
+      // setFormIntentInput(null);
+      setFormIntents(_formIntents);
+      setIsIntentsDropdownDisabled(false);
+      setSelectedFormIntent('');
+    } else {
+      setFormIntents([]);
+      setIsIntentsDropdownDisabled(true);
+      setSelectedFormIntent('*');
     }
-  }, []);
+  };
+
+  const updateFormIntentInput = e => {
+    // setFormIntentInput(e.selectedItem.intent);
+    setSelectedFormIntent(e.selectedItem.intent);
+    setIsSchemaLoaded(false);
+  };
+
+  const updateFormJsonInput = e => {
+    setInputErrorMessage('');
+    try {
+      const parsedSchema = JSON.parse(e);
+      setSchemaInput(parsedSchema);
+      setFormInput(parsedSchema);
+      loadIntentsFromSchema(parsedSchema);
+    } catch (err) {
+      setInputErrorMessage(err.toString());
+    }
+    setIsSchemaLoaded(false);
+  };
+
+  const handleFormSubmission = e => {
+    setIsSchemaLoaded(false);
+    setOutputErrorMessage('');
+    const filteredSchema = applyFormIntent(selectedFormIntent, loadSubforms(schemaInput));
+
+    try {
+      setSchemaOutput(JSON.stringify(filteredSchema, null, '  '));
+      setFormInput(filteredSchema);
+    } catch (err) {
+      setOutputErrorMessage(err.toString());
+    }
+
+    setIsSchemaLoaded(true);
+  };
 
   return (
-    <>
-      {isFormLoaded ? (
-        <div>
-          <OHRIForm formJson={form} mode={formMode} patientUUID={patientUUID} encounterUuid={formEncounter} />
-        </div>
-      ) : (
-        <h1>There was an issue in processing your form. Please try again</h1>
-      )}
-    </>
-  );
-};
+    <div className={styles.container}>
+      <div className={styles.mainWrapper}>
+        <div className={styles.formRenderTitle}>{headerTitle}</div>
+        <Row>
+          <Column lg={5} md={5} sm={12} className={styles.renderColumn}>
+            <h4>JSON Schema</h4>
+            <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
 
-export default FormRenderComponent;
+            <Tabs type="container">
+              <Tab id="tab-form" label="JSON Input">
+                <Form
+                  onSubmit={e => {
+                    e.preventDefault();
+                    handleFormSubmission(e);
+                  }}>
+                  <AceEditor
+                    mode="json"
+                    theme={editorTheme}
+                    onChange={updateFormJsonInput}
+                    name={'jsonText'}
+                    placeholder="Enter JSON Text"
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    width="100%"
+                    className={styles.jsonEditor}
+                    setOptions={{
+                      enableBasicAutocompletion: true,
+                      enableLiveAutocompletion: true,
+                      displayIndentGuides: true,
+                      enableSnippets: false,
+                      showLineNumbers: true,
+                      tabSize: 2,
+                    }}
+                  />
+
+                  <div className={styles.renderDropdown}>
+                    <Dropdown
+                      id="default"
+                      titleText="Form Intent"
+                      label="--Select Form Intent"
+                      items={formIntents}
+                      itemToString={item => item.display}
+                      onChange={updateFormIntentInput}
+                      disabled={isIntentsDropdownDisabled}
+                    />
+                  </div>
+
+                  <div className={styles.renderDropdown}>
+                    <Dropdown
+                      id=""
+                      titleText="JSON Editor Theme"
+                      label={editorTheme}
+                      items={availableEditorThemes}
+                      itemToString={item => item}
+                      onChange={e => {
+                        setEditorTheme(e.selectedItem);
+                      }}
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    renderIcon={Run32}
+                    className="form-group"
+                    style={{ marginTop: '1em' }}
+                    disabled={!selectedFormIntent}>
+                    Render
+                  </Button>
+                </Form>
+              </Tab>
+              <Tab id="tab-json-schema" label="Final Schema">
+                <div className={styles.finalJsonSchema}>
+                  <AceEditor
+                    mode="json"
+                    theme={editorTheme}
+                    value={schemaOutput}
+                    name={'json-schema-result'}
+                    placeholder=""
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    width="100%"
+                    height="700px"
+                    readOnly={true}
+                    setOptions={{
+                      enableBasicAutocompletion: false,
+                      enableLiveAutocompletion: false,
+                      displayIndentGuides: true,
+                      enableSnippets: false,
+                      showLineNumbers: true,
+                      tabSize: 2,
+                    }}
+                  />
+                </div>
+              </Tab>
+            </Tabs>
+          </Column>
+          <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
+            <h4>Generated Form</h4>
+            <div className={styles.formRenderContent}>
+              <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
+              <Tabs type="container">
+                <Tab id="tab-form" label="Form Render" className={styles.renderTab}>
+                  {isSchemaLoaded ? (
+                    <div className={styles.formRenderDisplay}>
+                      <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />
+                    </div>
+                  ) : (
+                    <p>Please submit the form</p>
+                  )}
+                </Tab>
+              </Tabs>
+            </div>
+          </Column>
+        </Row>
+      </div>
+    </div>
+  );
+}
+
+export default FormRenderTest;
