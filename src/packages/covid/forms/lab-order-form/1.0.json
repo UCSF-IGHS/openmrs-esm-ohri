@@ -371,7 +371,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Lab Order Default"
+      "display": "COVID Lab Order"
     },
     {
       "intent": "COVID_LAB_ORDER_EMBED",

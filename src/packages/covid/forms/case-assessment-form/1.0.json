@@ -49,7 +49,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -183,7 +183,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -220,7 +220,7 @@
                     {
                       "intent": "COVID_LAB_ASSESSMENT_EMBED",
                       "required": "true",
-                      "unspecified": "false",
+                      "unspecified": "true",
                       "hide": {
                         "hideWhenExpression": "false"
                       },
@@ -282,7 +282,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -320,7 +320,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -578,7 +578,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -615,7 +615,7 @@
                     {
                       "intent": "COVID_LAB_ASSESSMENT_EMBED",
                       "required": "true",
-                      "unspecified": "false",
+                      "unspecified": "true",
                       "hide": {
                         "hideWhenExpression": "false"
                       },
@@ -704,7 +704,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -876,7 +876,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -911,7 +911,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -979,7 +979,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -1282,7 +1282,7 @@
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
