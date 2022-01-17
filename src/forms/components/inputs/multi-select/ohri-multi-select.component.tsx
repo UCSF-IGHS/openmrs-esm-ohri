@@ -1,8 +1,7 @@
-import { FormGroup, ListItem, MultiSelect, UnorderedList } from 'carbon-components-react';
+import { ListItem, MultiSelect, UnorderedList } from 'carbon-components-react';
 import { useField } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { OHRIFormFieldProps } from '../../../types';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty } from '../../value/ohri-value.component';
@@ -10,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
+import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const { t } = useTranslation();
@@ -19,6 +19,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
   const [counter, setCounter] = useState(0);
   const [touched, setTouched] = useState(false);
   const [conceptName, setConceptName] = useState('Loading...');
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     // Carbon's MultiSelect has issues related to not updating the component based on the `initialSelectedItems` prop
@@ -56,8 +57,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     setTouched(true);
     const value = selectedItems.map(selectedItem => selectedItem.concept);
     setFieldValue(question.id, value);
-    onChange(question.id, value);
-    setErrors(OHRIFieldValidator.validate(question, selectedItems));
+    onChange(question.id, value, setErrors);
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 
@@ -85,7 +85,9 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
       <>
         <div
           className={
-            errors.length ? `${styles.multiselectOverride} ${styles.errorLabel}` : `${styles.multiselectOverride}`
+            isFieldRequiredError
+              ? `${styles.multiselectOverride} ${styles.errorLabel}`
+              : `${styles.multiselectOverride}`
           }>
           <MultiSelect.Filterable
             placeholder={t('filterItemsInMultiselect', 'Search...')}
@@ -98,6 +100,8 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
             key={counter}
             itemToString={item => (item ? item.label : ' ')}
             disabled={question.disabled}
+            invalid={!isFieldRequiredError && errors.length > 0}
+            invalidText={errors[0]?.errMessage}
           />
         </div>
         <div className={styles.formField}>

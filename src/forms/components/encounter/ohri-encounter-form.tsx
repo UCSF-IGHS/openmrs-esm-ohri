@@ -4,7 +4,7 @@ import { encounterRepresentation } from '../../../constants';
 import { ConceptFalse, ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
 import { saveEncounter } from '../../ohri-form.resource';
-import { getHandler } from '../../registry/registry';
+import { getHandler, getValidator } from '../../registry/registry';
 import {
   EncounterDescriptor,
   OHRIFormField,
@@ -348,8 +348,28 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     }
   };
 
-  const onFieldChange = (fieldName: string, value: any) => {
+  const onFieldChange = (fieldName: string, value: any, setErrors) => {
     const field = fields.find(field => field.id == fieldName);
+    const validators = Array.isArray(field.validators)
+      ? [{ type: 'OHRIBaseValidator' }, ...field.validators]
+      : [{ type: 'OHRIBaseValidator' }];
+    if (Array.isArray(field.validators)) {
+    }
+    // handle validation
+    const basevalidatorConfig = {
+      expressionContext: { mode: sessionMode },
+      values: { ...values, [fieldName]: value },
+      fields,
+    };
+    for (let validatorConfig of validators) {
+      const errors =
+        getValidator(validatorConfig.type)?.validate(field, value, { ...basevalidatorConfig, ...validatorConfig }) ||
+        [];
+      setErrors && setErrors(errors);
+      if (errors.length) {
+        return;
+      }
+    }
     if (field.questionOptions.rendering == 'toggle') {
       value = value ? ConceptTrue : ConceptFalse;
     }

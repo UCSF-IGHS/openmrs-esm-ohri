@@ -16,7 +16,7 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
 
   const handleChange = value => {
     setFieldValue(question.id, value);
-    onChange(question.id, value);
+    onChange(question.id, value, null);
     question.value = handler.handleFieldSubmission(question, value, encounterContext);
   };
 

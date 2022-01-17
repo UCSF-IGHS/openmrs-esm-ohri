@@ -6,7 +6,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
+import { fieldRequiredErrCode, OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
@@ -15,6 +15,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -25,8 +26,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   const onDateChange = ([date]) => {
     const refinedDate = date instanceof Date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000) : date;
     setFieldValue(question.id, refinedDate);
-    setErrors(OHRIFieldValidator.validate(question, refinedDate));
-    onChange(question.id, refinedDate);
+    onChange(question.id, refinedDate, setErrors);
     question.value = handler.handleFieldSubmission(question, refinedDate, encounterContext);
   };
   const { placeHolder, carbonDateformat } = useMemo(() => {
@@ -85,7 +85,7 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
         <DatePicker
           datePickerType="single"
           onChange={onDateChange}
-          className={`${styles.datePickerOverrides} ${errors.length ? styles.errorLabel : ''} ${
+          className={`${styles.datePickerOverrides} ${isFieldRequiredError ? styles.errorLabel : ''} ${
             question.disabled || isTrue(question.readonly) ? styles.disabledLabelOverrides : ''
           }`}
           dateFormat={carbonDateformat}>
@@ -97,6 +97,8 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
               field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value
             }
             disabled={question.disabled}
+            invalid={!isFieldRequiredError && errors.length > 0}
+            invalidText={errors[0]?.errMessage}
           />
         </DatePicker>
       </div>
