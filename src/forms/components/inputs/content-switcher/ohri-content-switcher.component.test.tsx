@@ -75,7 +75,7 @@ describe('content-switcher input field', () => {
   });
 
   it('should record new obs', async () => {
-    // // setup
+    // setup
     renderForm({});
     const oncologyScreeningTab = screen.getByRole('tab', { name: /Oncology Screening and Diagnosis Program/i });
 

@@ -195,8 +195,17 @@ export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
 }
 
 export function fetchPatientCovidOutcome(patientUuid: string) {
-   //TODO: Continue logic to filter outcome   
+  //TODO: Continue logic to filter outcome
   // const query = `encounterType=${covidOutcomeUUID}&patient=${patientUuid}`;
   // return getObsFromEncounter(covid_Assessment_EncounterUUID, covidOutcomeUUID);
   // });
+}
+
+export function fetchConceptNameByUuid(conceptUuid: string) {
+  return openmrsFetch(`/ws/rest/v1/concept/${conceptUuid}/name?limit=1`).then(({ data }) => {
+    if (data.results.length) {
+      const concept = data.results[data.results.length - 1];
+      return concept.display;
+    }
+  });
 }

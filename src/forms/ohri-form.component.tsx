@@ -17,6 +17,7 @@ import { OHRIFormSchema, SessionMode, OHRIFormPage as OHRIFormPageProps } from '
 import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
 import { isTrue } from './utils/boolean-utils';
+import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -177,23 +178,26 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                 defaultPage={formJson.defaultPage}
               />
               <div className={styles.formContent}>
-                <OHRIEncounterForm
-                  formJson={form}
-                  patient={patient}
-                  encounterDate={encDate}
-                  provider={currentProvider}
-                  location={location}
-                  values={props.values}
-                  isCollapsed={collapsed}
-                  sessionMode={sessionMode}
-                  scrollablePages={scrollAblePages}
-                  setAllInitialValues={setInitialValues}
-                  allInitialValues={initialValues}
-                  setScrollablePages={setScrollablePages}
-                  setFieldValue={props.setFieldValue}
-                  setSelectedPage={setSelectedPage}
-                  handlers={handlers}
-                />
+                <PatientBanner patient={patient} />
+                <div className={styles.formContentBody}>
+                  <OHRIEncounterForm
+                    formJson={form}
+                    patient={patient}
+                    encounterDate={encDate}
+                    provider={currentProvider}
+                    location={location}
+                    values={props.values}
+                    isCollapsed={collapsed}
+                    sessionMode={sessionMode}
+                    scrollablePages={scrollAblePages}
+                    setAllInitialValues={setInitialValues}
+                    allInitialValues={initialValues}
+                    setScrollablePages={setScrollablePages}
+                    setFieldValue={props.setFieldValue}
+                    setSelectedPage={setSelectedPage}
+                    handlers={handlers}
+                  />
+                </div>
               </div>
             </div>
           )}

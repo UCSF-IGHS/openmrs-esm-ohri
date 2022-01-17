@@ -34,7 +34,7 @@ export interface FieldValidator {
   /**
    * Validates a field and returns validation errors
    */
-  validate(field: OHRIFormField, value: any): { errCode: string; errMessage: string }[];
+  validate(field: OHRIFormField, value: any, config?: any): { errCode: string; errMessage: string }[];
 }
 
 export interface EncounterDescriptor {
@@ -82,19 +82,20 @@ export interface OHRIFormField {
   hide?: HideProps;
   isHidden?: boolean;
   isParentHidden?: boolean;
-  fieldDependants?: Array<string>;
-  pageDependants?: Array<string>;
-  sectionDependants?: Array<string>;
+  fieldDependants?: Set<string>;
+  pageDependants?: Set<string>;
+  sectionDependants?: Set<string>;
   required?: boolean;
   unspecified?: boolean;
   disabled?: boolean;
-  readonly?: boolean;
+  readonly?: string | boolean;
+  validators?: Array<Record<string, any>>;
   behaviours?: Array<Record<string, any>>;
 }
 
 export interface OHRIFormFieldProps {
   question: OHRIFormField;
-  onChange: (fieldName: string, value: any) => {};
+  onChange: (fieldName: string, value: any, setErrors) => {};
   handler: SubmissionHandler;
 }
 export interface OHRIFormSection {
