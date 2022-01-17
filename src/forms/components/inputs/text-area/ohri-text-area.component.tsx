@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { TextArea } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
@@ -6,7 +6,7 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
+import { fieldRequiredErrCode, OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
 
@@ -16,6 +16,7 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   const [previousValue, setPreviousValue] = useState();
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -27,9 +28,8 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     if (field.value && question.unspecified) {
       setFieldValue(`${question.id}-unspecified`, false);
     }
-    setErrors(OHRIFieldValidator.validate(question, field.value));
     if (previousValue !== field.value) {
-      onChange(question.id, field.value);
+      onChange(question.id, field.value, setErrors);
       question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
     }
   };
@@ -48,17 +48,21 @@ const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
   ) : (
     !question.isHidden && (
       <div className={styles.formField}>
-        <div className={errors.length ? styles.errorLabel : ''}>
+        <div
+          className={
+            isFieldRequiredError ? `${styles.textInputOverrides} ${styles.errorLabel}` : styles.textInputOverrides
+          }>
           <TextArea
             {...field}
             id={question.id}
             labelText={question.label}
             name={question.id}
             value={field.value || ''}
-            className={styles.textInputOverrides}
             onFocus={() => setPreviousValue(field.value)}
             rows={question.questionOptions.rows || 4}
             disabled={question.disabled}
+            invalid={!isFieldRequiredError && errors.length > 0}
+            invalidText={errors.length && errors[0].errMessage}
           />
         </div>
       </div>

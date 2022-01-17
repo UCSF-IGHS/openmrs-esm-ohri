@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { NumberInput } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
@@ -6,14 +6,15 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { OHRIFieldValidator } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
+import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
   const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
   const [errors, setErrors] = useState([]);
+  const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -25,9 +26,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     if (field.value && question.unspecified) {
       setFieldValue(`${question.id}-unspecified`, false);
     }
-    setErrors(OHRIFieldValidator.validate(question, field.value));
     if (previousValue !== field.value) {
-      onChange(question.id, field.value);
+      onChange(question.id, field.value, setErrors);
       question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
     }
   };
@@ -43,7 +43,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
         <NumberInput
           {...field}
           id={question.id}
-          invalidText="Number is not valid"
+          invalid={!isFieldRequiredError && errors.length > 0}
+          invalidText={errors[0]?.errMessage}
           label={question.label}
           max={question.questionOptions.max || undefined}
           min={question.questionOptions.min || undefined}
@@ -52,8 +53,8 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
           onFocus={() => setPreviousValue(field.value)}
           allowEmpty={true}
           size="xl"
-          className={errors.length ? styles.errorLabel : ''}
           disabled={question.disabled}
+          className={isFieldRequiredError ? styles.errorLabel : ''}
         />
       </div>
     )
