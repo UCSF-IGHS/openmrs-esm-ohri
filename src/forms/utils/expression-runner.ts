@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { ConceptFalse, ConceptTrue } from '../constants';
 import { OHRIFormField, OHRIFormPage, OHRIFormSection } from '../types';
 import { isEmpty as isValueEmpty } from '../validators/ohri-form-validator';
@@ -9,6 +10,7 @@ export interface FormNode {
 
 export interface ExpressionContext {
   mode: 'enter' | 'edit' | 'view';
+  myValue?: any;
 }
 
 export function evaluateExpression(
@@ -21,7 +23,7 @@ export function evaluateExpression(
   const allFieldsKeys = allFields.map(f => f.id);
   const parts = expression.trim().split(' ');
   // setup runtime variables
-  const { mode } = context;
+  const { mode, myValue } = context;
 
   function isEmpty(value) {
     if (allFieldsKeys.includes(value)) {
@@ -34,6 +36,10 @@ export function evaluateExpression(
     return isValueEmpty(value);
   }
 
+  function today() {
+    return new Date();
+  }
+
   function includes(questionId, value) {
     if (allFieldsKeys.includes(questionId)) {
       registerDependency(
@@ -43,6 +49,14 @@ export function evaluateExpression(
       return allFieldValues[questionId]?.includes(value);
     }
     return false;
+  }
+
+  function isDateBefore(left: Date, right: string | Date, format?: string) {
+    let otherDate: any = right;
+    if (typeof right == 'string') {
+      otherDate = format ? moment(right, format, true).toDate() : moment(right, 'YYYY-MM-DD', true).toDate();
+    }
+    return left?.getTime() < otherDate.getTime();
   }
 
   parts.forEach((part, index) => {
