@@ -42,7 +42,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
+                      "failsWhenExpression": "isDateBefore(myValue, '2020-01-01')"
                     }
                   ]
                 },
@@ -53,7 +53,16 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '2020-01-01')"
+                    }
+                  ]
                 }
               ]
             },
@@ -313,7 +322,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
+                      "failsWhenExpression": "isDateBefore(myValue, '2020-01-01')"
                     }
                   ]
                 },
@@ -324,7 +333,16 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '2020-01-01')"
+                    }
+                  ]
                 }
               ]
             },
