@@ -938,25 +938,37 @@
               ]
             },
             {
-              "label": "Vaccination History",
+              "label": "Ever received a dose of COVID-19 vaccine",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "128731bf-bbff-40c3-a6c9-0bf4c86182ac",
                 "answers": [
                   {
-                    "concept": "b9f8cac0-bbad-43e1-831a-79ec20740c2f",
-                    "label": "Fully Vaccinated",
-                    "conceptMappings": []
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
-                    "concept": "9fad04c7-bdb7-4a8c-b559-672621033322",
-                    "label": "Partially Vaccinated",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "ce649506-e95e-4a5d-b731-43c8ac452b86",
-                    "label": "Not Vaccinated",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
                     "conceptMappings": []
                   },
                   {
@@ -1293,17 +1305,13 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('clientVaccinated', 'b9f8cac0-bbad-43e1-831a-79ec20740c2f') && !includes('clientVaccinated', '9fad04c7-bdb7-4a8c-b559-672621033322')"
+                    "hideWhenExpression": "!includes('clientVaccinated', '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 },
                 {
                   "intent": "COVID_LAB_ASSESSMENT_EMBED",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  },
                   "validators": []
                 }
               ]
