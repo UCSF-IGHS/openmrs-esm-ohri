@@ -7,11 +7,10 @@ import Events from '../utils/events';
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
   pathname.indexOf(covidAssessments_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(covidOutcomes_dashboardMeta.name) !== -1 ||
   pathname.indexOf(covidLabResults_dashboardMeta.name) !== -1 ||
   pathname.indexOf(covidVaccinations_dashboardMeta.name) !== -1;
 
-const menuItems = 4;
+const menuItems = 3;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -87,11 +86,4 @@ export const covidVaccinations_dashboardMeta = {
   slot: 'covid-vaccinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Vaccinations',
-};
-
-export const covidOutcomes_dashboardMeta = {
-  name: 'covid-outcomes',
-  slot: 'covid-outcomes-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Outcomes',
 };

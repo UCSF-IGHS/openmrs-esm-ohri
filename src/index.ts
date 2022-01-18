@@ -14,7 +14,6 @@ import {
   clearCovidSidenavRegistry,
   createCovidDashboardLink,
   covidAssessments_dashboardMeta,
-  covidOutcomes_dashboardMeta,
   covidLabResults_dashboardMeta,
   covidVaccinations_dashboardMeta,
 } from './covid/dashboard.meta';
@@ -298,14 +297,6 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'covid-outcomes-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCovidDashboardLink(covidOutcomes_dashboardMeta), options),
-        meta: covidOutcomes_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
         id: 'hts-service-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(serviceSummary_dashboardMeta), options),
@@ -380,17 +371,6 @@ function setupOpenMRS() {
         slot: 'covid-vaccinations-dashboard-slot',
         load: getAsyncLifecycle(() => import('./covid/pages/covid-vaccinations.encounter-list'), {
           featureName: 'covid-vaccinations',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'covid-outcomes-ext',
-        slot: 'covid-outcomes-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./covid/pages/covid-outcomes.encounter-list'), {
-          featureName: 'covid-outcomes',
           moduleName,
         }),
         meta: {
