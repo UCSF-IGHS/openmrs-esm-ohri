@@ -1,16 +1,20 @@
 @import "../../root.scss";
 
 .sideNav {
-    padding-top: 2rem;
+  width: 16rem;
+  padding-top: 2rem;
+  min-height: 8rem;
+  overscroll-behavior: contain;
+  margin: 1px 13px 15px 0;
 }
 
 .sideNavTextHeader {
-    font-size: 14px;
-    padding: 0.5rem 1rem 0.5rem;
+  font-size: 14px;
+  padding: 0.5rem 1rem 0.5rem;
 }
 
 .sideNav :global(a.bx--side-nav__link[aria-current=page]:before),
 .sideNav :global(.bx--side-nav__submenu[aria-expanded=false]:before)
 {
-    background-color: $brand-teal-01;
+  background-color: $brand-teal-01;
 }
