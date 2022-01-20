@@ -29,7 +29,6 @@ import {
   homeDashboardMeta,
   htsDashboardMeta,
 } from './ohri-dashboard/ohri-dashboard.meta';
-import OHRIHome from './ohri-home/ohri-home-component';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -272,6 +271,16 @@ function setupOpenMRS() {
           moduleName,
         }),
         meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'ohri-nav-items-ext',
+        slot: 'ohri-nav-items-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'), {
+          featureName: 'nav-items',
+          moduleName,
+        }),
         online: true,
         offline: true,
       },

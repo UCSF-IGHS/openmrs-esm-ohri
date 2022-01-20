@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import OHRIDashboardSideNav from './side-menu/ohri-dashboard-side-nav.component';
-import { ExtensionSlot, useExtensionSlot, useExtensionSlotMeta } from '@openmrs/esm-framework';
-import { homeDashboardMeta } from './ohri-dashboard.meta';
+import { ExtensionSlot, useExtensionSlotMeta } from '@openmrs/esm-framework';
 import styles from './ohri-dashboard.scss';
 
 const OHRIDashboard = ({ match }) => {
@@ -34,18 +32,17 @@ const OHRIDashboard = ({ match }) => {
           />
         );
       })}
-      <>
-        <OHRIDashboardSideNav />
-        <div className={`bx--grid ${styles.dashboardContent}`}>
-          {currentDashboard && (
-            <DashboardView
-              dashboardSlot={currentDashboard.slot}
-              title={currentDashboard.title}
-              programme={currentDashboard?.config?.programme}
-            />
-          )}
-        </div>
-      </>
+      <ExtensionSlot extensionSlotName="ohri-nav-items-slot" />
+      <div className={`bx--grid ${styles.dashboardContent}`}>
+        {currentDashboard && (
+          <DashboardView
+            dashboardSlot={currentDashboard.slot}
+            title={currentDashboard.title}
+            programme={currentDashboard?.config?.programme}
+            key={currentDashboard.slot}
+          />
+        )}
+      </div>
     </div>
   );
 };
