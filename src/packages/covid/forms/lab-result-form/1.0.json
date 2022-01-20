@@ -494,7 +494,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "testRequested !== '165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !=== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "testRequested !== '165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -559,7 +559,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "testRequested !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !=== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "testRequested !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
