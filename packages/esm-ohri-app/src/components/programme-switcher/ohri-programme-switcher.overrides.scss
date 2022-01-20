@@ -1,0 +1,18 @@
+.headerMenuOverrides {
+  position: relative;
+  z-index: 7000 !important;
+  list-style-type: none;
+  height: 48px;
+}
+
+.headerMenuOverrides a:hover,
+.headerMenuOverrides a[aria-expanded='true'],
+.headerMenuOverrides ul {
+  background-color: #004144 !important;
+}
+
+.headerMenuOverrides ul li a:hover {
+  background-color: #005d5d !important;
+}
+
+

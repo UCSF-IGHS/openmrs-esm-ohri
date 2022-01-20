@@ -2,43 +2,40 @@
   "name": "esm-forms-render-app",
   "version": "0.1.0",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
-  "browser": "dist/forms-render-app.js",
-  "main": "src/index.ts",
-  "license": "MIT",
-  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri-forms#readme",
-  "scripts": {
-    "start": "openmrs develop",
-    "serve": "webpack serve --mode=development",
-    "debug": "npm run serve",
-    "build": "webpack --mode production",
-    "analyze": "webpack --mode=production --env.analyze=true",
-    "lint": "eslint src --ext tsx",
-    "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
-    "typescript": "tsc",
-    "prepublishOnly": "npm run build",
-    "test": "jest --config ./jest.config.js --passWithNoTests",
-    "coverage": "npm test -- --coverage",
-    "badges": "npm run coverage && jest-coverage-badges --output './badges' ",
-    "docker": "docker run -p 8080:8080 -p 8081:8081 histacohri/docker-openmrs-esm-ohri:1.0 npx openmrs develop --backend https://ohri-working.globalhealthapp.net",
-    "docker:dev": "docker compose up"
-  },
-  "browserslist": ["extends browserslist-config-openmrs"],
   "keywords": ["openmrs"],
-  "publishConfig": {
-    "access": "public"
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri-forms#readme",
+  "bugs": {
+    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
+  },
+  "license": "MIT",
+  "main": "src/index.ts",
+  "browser": "dist/forms-render-app.js",
+  "scripts": {
+    "analyze": "webpack --mode=production --env.analyze=true",
+    "badges": "npm run coverage && jest-coverage-badges --output './badges' ",
+    "build": "webpack --mode production",
+    "coverage": "npm test -- --coverage",
+    "debug": "npm run serve",
+    "docker": "docker run -p 8080:8080 -p 8081:8081 histacohri/docker-openmrs-esm-ohri:1.0 npx openmrs develop --backend https://ohri-working.globalhealthapp.net",
+    "docker:dev": "docker compose up",
+    "lint": "eslint src --ext tsx",
+    "prepublishOnly": "npm run build",
+    "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
+    "serve": "webpack serve --mode=development",
+    "start": "openmrs develop",
+    "test": "jest --config ./jest.config.js --passWithNoTests",
+    "typescript": "tsc"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged && concurrently 'npm:test' 'npm:typescript' 'npm:lint'"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
-  },
-  "bugs": {
-    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
-  },
+  "browserslist": ["extends browserslist-config-openmrs"],
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",
     "ace-builds": "^1.4.12",
@@ -49,6 +46,7 @@
     "jest-coverage-badges": "^1.0.0",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
+    "openmrs-ohri-form-engine-lib": "0.1.2",
     "react-ace": "^9.4.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-markdown": "^7.1.0",
@@ -57,16 +55,7 @@
     "react-waypoint": "^10.1.0",
     "semver": "^7.3.5",
     "systemjs-webpack-interop": "^2.3.2",
-    "yup": "^0.29.1",
-    "openmrs-ohri-form-engine-lib": "0.1.0"
-  },
-  "peerDependencies": {
-    "@openmrs/esm-framework": "3.x",
-    "carbon-components": "^10.19.0",
-    "carbon-icons": "^7.0.7",
-    "dayjs": "^1.8.16",
-    "react": "^16.9.0",
-    "react-i18next": "^11.3.4"
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -94,7 +83,6 @@
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "file-loader": "^6.2.0",
     "browserslist-config-openmrs": "^1.0.0",
     "carbon-components": "^10.19.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -105,6 +93,7 @@
     "eslint-config-prettier": "^6.13.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
     "husky": "^3.0.4",
     "i18next": "^19.4.2",
@@ -130,5 +119,16 @@
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^4.2.1"
+  },
+  "peerDependencies": {
+    "@openmrs/esm-framework": "3.x",
+    "carbon-components": "^10.19.0",
+    "carbon-icons": "^7.0.7",
+    "dayjs": "^1.8.16",
+    "react": "^16.9.0",
+    "react-i18next": "^11.3.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,0 +1,26 @@
+.noMarker {
+  list-style-type: none;
+}
+
+.noMarker button {
+  margin-top: 2px;
+  padding-top: 2px ; 
+  padding-bottom: 2px ; 
+  font: lighter  ;
+}
+
+.noMarker ul li a {
+  padding-left: 40px !important;
+}
+
+.currentNavItem > a {
+  background-color: #cecece !important;
+  color: #161616 !important;
+  border-left-color: #005d5d !important;
+  font: bolder ;
+}
+
+.hide {
+  display: none;
+}
+

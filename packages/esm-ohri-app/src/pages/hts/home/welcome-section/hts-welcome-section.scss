@@ -1,0 +1,53 @@
+.welcome {
+    font-size: 16px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    color: #525252;
+    font-weight: 400;
+    padding-bottom: 4px;
+  
+  }
+  
+  .welcomeDetails{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  
+  .userWelcome {
+    font-size: 28px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: #161616;
+    margin-bottom: 16px;
+  }
+  
+  .currentDate {
+    display: flex;
+    flex-direction: row;
+    padding-left: 30%;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: right;
+    color: #525252;
+  }
+  
+  .calendarIcon{
+      width: 25px;
+      height: 25px;
+      padding-right: 1px;
+  }
+  
+  .bx--tab-content{
+    background-color: ivory !important;
+  }
+  

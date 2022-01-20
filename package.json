@@ -5,17 +5,17 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net --sources 'packages/esm-*-app/'",
-    "ci:publish": "lerna publish from-package --yes",
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
-    "ci:release": "lerna version --no-git-tag-version",
     "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
-    "verify": "lerna run lint && lerna run test && lerna run typescript",
+    "ci:publish": "lerna publish from-package --yes",
+    "ci:release": "lerna version --no-git-tag-version",
+    "coverage": "yarn test --coverage",
+    "extract-translations": "lerna run extract-translations",
     "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
+    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net --sources 'packages/esm-*-app/'",
     "test": "jest --config jest.config.json --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.json",
-    "coverage": "yarn test --coverage",
-    "extract-translations": "lerna run extract-translations"
+    "verify": "lerna run lint && lerna run test && lerna run typescript"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.18.0",
@@ -27,6 +27,7 @@
     "jest-coverage-badges": "^1.0.0",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
+    "openmrs-ohri-form-engine-lib": "^0.1.2",
     "react-ace": "^9.4.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-markdown": "^7.1.0",
@@ -36,14 +37,6 @@
     "semver": "^7.3.5",
     "systemjs-webpack-interop": "^2.3.2",
     "yup": "^0.29.1"
-  },
-  "peerDependencies": {
-    "@openmrs/esm-framework": "3.x",
-    "carbon-components": "^10.19.0",
-    "carbon-icons": "^7.0.7",
-    "dayjs": "^1.8.16",
-    "react": "^16.9.0",
-    "react-i18next": "^11.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -71,7 +64,6 @@
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "file-loader": "^6.2.0",
     "browserslist-config-openmrs": "^1.0.0",
     "carbon-components": "^10.19.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -82,6 +74,7 @@
     "eslint-config-prettier": "^6.13.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
     "husky": "^3.0.4",
     "i18next": "^19.4.2",

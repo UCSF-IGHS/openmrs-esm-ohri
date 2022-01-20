@@ -1,0 +1,32 @@
+{
+  "@openmrs/esm-patient-chart-app": {
+    "extensions": {
+      "patient-chart-dashboard-slot": {
+        "remove": [
+          "allergies-summary-dashboard",
+          "appointments-summary-dashboard",
+          "attachments-results-summary-dashboard",
+          "charts-summary-dashboard",
+          "clinical-view-summary-dashboard",
+          "conditions-summary-dashboard",
+          "forms-summary-dashboard",
+          "immunization-summary-dashboard",
+          "medications-summary-dashboard",
+          "notes-summary-dashboard",
+          "programs-summary-dashboard",
+          "results-summary-dashboard",
+          "test-results-summary-dashboard"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-patient-banner-app": {
+    "extensions": {
+      "patient-actions-slot": {
+        "remove": [
+          "add-patient-to-patient-list-button"
+        ]
+      }
+    }
+  }
+}
