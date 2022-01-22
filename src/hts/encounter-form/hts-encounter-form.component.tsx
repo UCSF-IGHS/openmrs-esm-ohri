@@ -21,7 +21,7 @@ import {
   openmrsObservableFetch,
   toDateObjectStrict,
   useConfig,
-  useCurrentPatient,
+  usePatient,
 } from '@openmrs/esm-framework';
 import { getConcept, getHTSLocations, saveHTSEncounter } from './hts-encounter-form.resource';
 import { Concept, HSTEncounter } from '../../api/types';
@@ -54,7 +54,7 @@ const HtsEncounterForm: React.FC<{
   // const config = useConfig();
   // TODO: Configure all metadata through the config
   // const { encounterType, concepts } = config['htsEntryFormConfig'];
-  const { patient } = useCurrentPatient();
+  const { patient } = usePatient();
   const [isLoading, setIsLoading] = useState(true);
   const [encounter, setEncounter] = useState(null);
   const [patientConsent, setPatientConsent] = useState(false);

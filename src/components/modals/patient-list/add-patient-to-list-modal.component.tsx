@@ -1,4 +1,4 @@
-import { showToast, useCurrentPatient } from '@openmrs/esm-framework';
+import { showToast, usePatient } from '@openmrs/esm-framework';
 import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -8,7 +8,7 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; displayT
   patientUuid,
   displayText,
 }) => {
-  const { patient } = useCurrentPatient(patientUuid);
+  const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
     return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
