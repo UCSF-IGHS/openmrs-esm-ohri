@@ -54,7 +54,7 @@ const HtsEncounterForm: React.FC<{
   // const config = useConfig();
   // TODO: Configure all metadata through the config
   // const { encounterType, concepts } = config['htsEntryFormConfig'];
-  const [, patient] = useCurrentPatient();
+  const { patient } = useCurrentPatient();
   const [isLoading, setIsLoading] = useState(true);
   const [encounter, setEncounter] = useState(null);
   const [patientConsent, setPatientConsent] = useState(false);

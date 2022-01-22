@@ -8,7 +8,7 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; displayT
   patientUuid,
   displayText,
 }) => {
-  const [, patient] = useCurrentPatient(patientUuid);
+  const { patient } = useCurrentPatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
     return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
