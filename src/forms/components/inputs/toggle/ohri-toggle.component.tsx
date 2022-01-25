@@ -24,7 +24,7 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     // The toogle input doesn't support blank values
     // by default, the value should be false
     if (!question.value && encounterContext.sessionMode == 'enter') {
-      question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
+      question.value = handler.handleFieldSubmission(question, field.value ?? false, encounterContext);
     }
   }, []);
 
