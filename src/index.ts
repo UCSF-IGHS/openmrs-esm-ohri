@@ -245,10 +245,10 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'patient-list-ext',
-        slot: 'homepage-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
-          featureName: 'patient-list',
+        id: 'redirect-to-ohri-db-ext',
+        slot: 'homepage-widgets-slot',
+        load: getAsyncLifecycle(() => import('./components/redirect-dashboard/redirect-ohri-db.component'), {
+          featureName: 'redirect-to-ohri-db',
           moduleName,
         }),
         meta: {

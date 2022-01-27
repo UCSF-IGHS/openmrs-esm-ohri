@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ExtensionSlot, useExtensionSlotMeta } from '@openmrs/esm-framework';
+import { attach, detach, ExtensionSlot, useExtensionSlotMeta, useLayoutType } from '@openmrs/esm-framework';
 import styles from './ohri-dashboard.scss';
 
 const OHRIDashboard = ({ match }) => {
@@ -12,6 +12,7 @@ const OHRIDashboard = ({ match }) => {
   const meta = { ...metaLinks, ...metaFolders };
   const folders = Object.values(meta);
   const [currentDashboard, setCurrentDashboard] = useState(dashboards[0]);
+  const layout = useLayoutType();
 
   useEffect(() => {
     if (view) {
@@ -20,6 +21,14 @@ const OHRIDashboard = ({ match }) => {
       setCurrentDashboard(dashboards[0]);
     }
   }, [view, dashboards]);
+
+  useEffect(() => {
+    if (layout != 'desktop') {
+      attach('nav-menu-slot', 'ohri-nav-items-ext');
+    }
+    return () => detach('nav-menu-slot', 'ohri-nav-items-ext');
+  }, [layout]);
+
   return (
     <div className={styles.dashboardContainer}>
       {folders.map((f, index) => {
@@ -32,7 +41,7 @@ const OHRIDashboard = ({ match }) => {
           />
         );
       })}
-      <ExtensionSlot extensionSlotName="ohri-nav-items-slot" />
+      {layout === 'desktop' && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
       <div className={`bx--grid ${styles.dashboardContent}`}>
         {currentDashboard && (
           <DashboardView
