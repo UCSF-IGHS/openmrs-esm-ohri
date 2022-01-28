@@ -6,7 +6,7 @@
   min-height: 8rem;
   overscroll-behavior: contain;
   margin: 1px 13px 15px 0;
-  z-index: 1;
+  border-right: 1px #e0e0e0;
 }
 
 .sideNavTextHeader {
@@ -18,4 +18,8 @@
 .sideNav :global(.bx--side-nav__submenu[aria-expanded=false]:before)
 {
   background-color: $brand-teal-01;
+}
+
+:global(.bx--side-nav) {
+  z-index: -100;
 }

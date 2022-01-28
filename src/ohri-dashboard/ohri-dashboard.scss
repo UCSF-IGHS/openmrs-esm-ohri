@@ -14,7 +14,9 @@
   flex-shrink: 1;
   position: relative;
   overflow-y: auto;
-  margin-left: 15.5rem;
+  margin-left: 16rem;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .noMarker {
@@ -35,4 +37,11 @@
 
 .hide {
   display: none;
+}
+
+// @media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .dashboardContent {
+    margin-left: 0;
+  }
 }
