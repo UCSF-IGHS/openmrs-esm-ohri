@@ -3,8 +3,6 @@ import { Home32, ListBulleted32, Medication32, Coronavirus32, Calendar32 } from 
 import { SideNavLink, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { ExtensionSlot, navigate } from '@openmrs/esm-framework';
 
-export const clearDashboardSidenavRegistry = () => localStorage.removeItem('ohri-dashboard-sidenav-items');
-
 export const createOHRIDashboardLink = meta => {
   const NavItem: React.FC<{}> = props => {
     if (meta.isFolder) {
