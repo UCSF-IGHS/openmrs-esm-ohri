@@ -12,7 +12,7 @@ function OHRIFormPage({ page, onFieldChange, setSelectedPage, isCollapsed }) {
   };
 
   return (
-    <Waypoint onEnter={() => handleEnter(newLabel)} topOffset="10%" bottomOffset="60%">
+    <Waypoint onEnter={() => handleEnter(newLabel)} topOffset="50%" bottomOffset="60%">
       <div id={newLabel} className={styles.pageContent}>
         <div style={{}} className={styles.pageHeader}>
           <p className={styles.pageTitle}>{page.label}</p>

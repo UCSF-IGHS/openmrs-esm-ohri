@@ -20,6 +20,15 @@ import {
 } from './covid/dashboard.meta';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
+import {
+  careAndTreatmentDashboardMeta,
+  covid19CasesDashboardMeta,
+  covidFolderDashboardMeta,
+  createOHRIDashboardLink,
+  hivFolderDashboardMeta,
+  homeDashboardMeta,
+  htsDashboardMeta,
+} from './ohri-dashboard/ohri-dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -48,19 +57,11 @@ function setupOpenMRS() {
       },
       {
         load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-home/,
-      },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-ct-home/,
-      },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^ohri-covid-home/,
-      },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
         route: /^form-render-test/,
+      },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^dashboard/,
       },
     ],
     extensions: [
@@ -244,15 +245,117 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'patient-list-ext',
-        slot: 'homepage-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
-          featureName: 'patient-list',
+        id: 'redirect-to-ohri-db-ext',
+        slot: 'homepage-widgets-slot',
+        load: getAsyncLifecycle(() => import('./components/redirect-dashboard/redirect-ohri-db.component'), {
+          featureName: 'redirect-to-ohri-db',
           moduleName,
         }),
         meta: {
           columnSpan: 4,
         },
+      },
+      {
+        id: 'home-dashboard-ext',
+        slot: 'dashboard-links-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options),
+        meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'home-dashboard',
+        slot: 'home-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
+          featureName: 'home',
+          moduleName,
+        }),
+        meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'ohri-nav-items-ext',
+        slot: 'ohri-nav-items-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'), {
+          featureName: 'nav-items',
+          moduleName,
+        }),
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-dashboard-items',
+        slot: 'dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(covidFolderDashboardMeta), options),
+        meta: covidFolderDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'hiv-dashboard-items',
+        slot: 'dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(hivFolderDashboardMeta), options),
+        meta: hivFolderDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-cases-dashboard-ext',
+        slot: 'covid-dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(covid19CasesDashboardMeta), options),
+        meta: covid19CasesDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'covid-cases-dashboard',
+        slot: 'covid-cases-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/ohri-home-component'), {
+          featureName: 'covid cases dashboard',
+          moduleName,
+        }),
+        meta: covid19CasesDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'care-and-treatment-dashboard-ext',
+        slot: 'hiv-dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(careAndTreatmentDashboardMeta), options),
+        meta: careAndTreatmentDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'care-and-treatment-dashboard',
+        slot: 'care-and-treatment-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/ohri-home-component'), {
+          featureName: 'care and treatment dashboard',
+          moduleName,
+        }),
+        meta: careAndTreatmentDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'hts-dashboard-ext',
+        slot: 'hiv-dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(htsDashboardMeta), options),
+        meta: htsDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'hts-dashboard',
+        slot: 'hts-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-home/ohri-home-component'), {
+          featureName: 'hts dashboard',
+          moduleName,
+        }),
+        meta: htsDashboardMeta,
+        online: true,
+        offline: true,
       },
       {
         id: 'patient-list-modal',
@@ -262,17 +365,6 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
-      {
-        id: 'hiv-hts-programme-switcher',
-        slot: 'top-nav-info-slot',
-        load: getAsyncLifecycle(
-          () => import('./components/programme-switcher/ohri-programme-switcher.component'),
-          options,
-        ),
-        online: true,
-        offline: true,
-      },
-
       {
         id: 'covid-Assessments-dashboard',
         slot: 'patient-chart-dashboard-slot',
