@@ -1,0 +1,47 @@
+@import "../root.scss";
+
+.dashboardContainer {
+  display: -webkit-flex;
+  height: 90vh;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.dashboardContent {
+  margin: 0;
+  flex-basis: 75%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow-y: auto;
+  margin-left: 16rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.noMarker {
+  list-style-type: none;
+}
+
+.noMarker ul li a {
+  padding-left: 40px !important;
+  font: lighter;
+}
+
+.currentNavItem > a {
+  background-color: #cecece !important;
+  color: #161616 !important;
+  border-left-color: #005d5d !important;
+  font: bolder;
+}
+
+.hide {
+  display: none;
+}
+
+// @media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .dashboardContent {
+    margin-left: 0;
+  }
+}
