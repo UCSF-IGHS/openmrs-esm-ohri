@@ -4,15 +4,16 @@ import { OHRIFormFieldProps } from '../../../types';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
-import { OHRILabel } from '../../label/ohri-label.component';
-import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { isTrue } from '../../../utils/boolean-utils';
 import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
+import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
 
 const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, layoutType, workspaceLayout } = React.useContext(OHRIFormContext);
   const [previousValue, setPreviousValue] = useState();
+  const [conceptName, setConceptName] = useState('Loading...');
   const [errors, setErrors] = useState([]);
   const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
 
@@ -32,10 +33,27 @@ const OHRINumber: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     }
   };
 
+  useEffect(() => {
+    getConceptNameAndUUID(question.questionOptions.concept).then(conceptTooltip => {
+      setConceptName(conceptTooltip);
+    });
+  }, [conceptName]);
+
+  const isInline = useMemo(() => {
+    if (encounterContext.sessionMode == 'view' || isTrue(question.readonly)) {
+      return isInlineView(question.inlineRendering, layoutType, workspaceLayout);
+    }
+    return false;
+  }, [encounterContext.sessionMode, question.readonly, question.inlineRendering, layoutType, workspaceLayout]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} />
-      {field.value ? <OHRIValueDisplay value={field.value} /> : <OHRIValueEmpty />}
+      <OHRIFieldValueView
+        label={question.label}
+        value={field.value ? handler.getDisplayValue(question, field.value) : field.value}
+        conceptName={conceptName}
+        isInline={isInline}
+      />
     </div>
   ) : (
     !question.isHidden && (

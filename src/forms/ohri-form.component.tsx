@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './ohri-form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -18,6 +18,7 @@ import OHRIFormSidebar from './components/sidebar/ohri-form-sidebar.component';
 import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
 import { isTrue } from './utils/boolean-utils';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
+import { useWorkspaceLayout } from './utils/useWorkspaceLayout';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -53,6 +54,8 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
   const [selectedPage, setSelectedPage] = useState('');
   const [collapsed, setCollapsed] = useState(true);
   const { t } = useTranslation();
+  const ref = useRef(null);
+  const workspaceLayout = useWorkspaceLayout(ref);
   const handlers = new Map<string, FormSubmissionHandler>();
   const form = useMemo(() => {
     const copy: OHRIFormSchema = JSON.parse(JSON.stringify(formJson));
@@ -161,7 +164,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         setSubmitting(false);
       }}>
       {props => (
-        <Form className={`bx--form no-padding ng-untouched ng-pristine ng-invalid ${styles.ohriForm}`}>
+        <Form className={`bx--form no-padding ng-untouched ng-pristine ng-invalid ${styles.ohriForm}`} ref={ref}>
           {!patient ? (
             <LoadingIcon />
           ) : (
@@ -179,23 +182,26 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               />
               <div className={styles.formContent}>
                 <PatientBanner patient={patient} />
-                <OHRIEncounterForm
-                  formJson={form}
-                  patient={patient}
-                  encounterDate={encDate}
-                  provider={currentProvider}
-                  location={location}
-                  values={props.values}
-                  isCollapsed={collapsed}
-                  sessionMode={sessionMode}
-                  scrollablePages={scrollAblePages}
-                  setAllInitialValues={setInitialValues}
-                  allInitialValues={initialValues}
-                  setScrollablePages={setScrollablePages}
-                  setFieldValue={props.setFieldValue}
-                  setSelectedPage={setSelectedPage}
-                  handlers={handlers}
-                />
+                <div className={styles.formContentBody}>
+                  <OHRIEncounterForm
+                    formJson={form}
+                    patient={patient}
+                    encounterDate={encDate}
+                    provider={currentProvider}
+                    location={location}
+                    values={props.values}
+                    isCollapsed={collapsed}
+                    sessionMode={sessionMode}
+                    scrollablePages={scrollAblePages}
+                    setAllInitialValues={setInitialValues}
+                    allInitialValues={initialValues}
+                    setScrollablePages={setScrollablePages}
+                    setFieldValue={props.setFieldValue}
+                    setSelectedPage={setSelectedPage}
+                    handlers={handlers}
+                    workspaceLayout={workspaceLayout}
+                  />
+                </div>
               </div>
             </div>
           )}
