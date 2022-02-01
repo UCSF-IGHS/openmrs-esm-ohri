@@ -17,9 +17,14 @@ $warning-background: #fff8e1;
 $openmrs-background-grey: #f4f4f4;
 $danger: #da1e28;
 $interactive-01: #0f62fe;
-$brand-teal-01: #007d79;
+$brand-teal-01: #3197D9;
 $ohri-input-width: 22.313rem;
 $ohri-home-background: #ededed;
+$button-primary: #0078A6;
+
+:global(.bx--btn--primary) {
+  // background-color: $button-primary !important;
+}
 
 .productiveHeading01 {
   @include carbon--type-style("productive-heading-01");
