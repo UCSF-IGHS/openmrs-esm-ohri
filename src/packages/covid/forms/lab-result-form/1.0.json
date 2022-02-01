@@ -12,7 +12,7 @@
           {
             "intent": "*",
             "subform_intent": "COVID_LAB_ORDER_EMBED",
-            "readonly": "true"
+            "readonly": "false"
           }
         ]
       }
