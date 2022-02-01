@@ -4,15 +4,14 @@ import { DatePicker, DatePickerInput } from 'carbon-components-react';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
-import { OHRILabel } from '../../label/ohri-label.component';
-import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
-import { fieldRequiredErrCode, OHRIFieldValidator } from '../../../validators/ohri-form-validator';
+import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
-import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
+import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
+import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
 
 const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, layoutType, workspaceLayout } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
   const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
@@ -22,6 +21,13 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
       setErrors(question['submission']?.errors);
     }
   }, [question['submission']]);
+
+  const isInline = useMemo(() => {
+    if (encounterContext.sessionMode == 'view' || isTrue(question.readonly)) {
+      return isInlineView(question.inlineRendering, layoutType, workspaceLayout);
+    }
+    return false;
+  }, [encounterContext.sessionMode, question.readonly, question.inlineRendering, layoutType, workspaceLayout]);
 
   const onDateChange = ([date]) => {
     const refinedDate = date instanceof Date ? new Date(date.getTime() - date.getTimezoneOffset() * 60000) : date;
@@ -69,16 +75,12 @@ const OHRIDate: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler })
   }, [conceptName]);
 
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
-    <div className={styles.formField}>
-      <OHRILabel value={question.label} tooltipText={conceptName} />
-      {field.value ? (
-        <OHRIValueDisplay
-          value={field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value}
-        />
-      ) : (
-        <OHRIValueEmpty />
-      )}
-    </div>
+    <OHRIFieldValueView
+      label={question.label}
+      value={field.value instanceof Date ? field.value.toLocaleDateString(window.navigator.language) : field.value}
+      conceptName={conceptName}
+      isInline={isInline}
+    />
   ) : (
     !question.isHidden && (
       <div className={styles.formField}>

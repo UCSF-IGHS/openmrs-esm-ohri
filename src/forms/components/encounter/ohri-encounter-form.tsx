@@ -1,4 +1,4 @@
-import { openmrsObservableFetch } from '@openmrs/esm-framework';
+import { openmrsObservableFetch, useLayoutType } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { encounterRepresentation } from '../../../constants';
 import { ConceptFalse, ConceptTrue } from '../../constants';
@@ -10,10 +10,13 @@ import {
   OHRIFormField,
   OHRIFormPage as OHRIFormPageProps,
   OHRIFormSchema,
-  OHRIFormSection,
   SessionMode,
 } from '../../types';
-import { cascadeVisibityToChildFields, inferInitialValueFromDefaultFieldValue } from '../../utils/ohri-form-helper';
+import {
+  cascadeVisibityToChildFields,
+  evaluateFieldReadonlyProp,
+  inferInitialValueFromDefaultFieldValue,
+} from '../../utils/ohri-form-helper';
 import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
@@ -33,6 +36,7 @@ interface OHRIEncounterFormProps {
   scrollablePages: Set<OHRIFormPageProps>;
   handlers: Map<string, FormSubmissionHandler>;
   allInitialValues: Record<string, any>;
+  workspaceLayout: 'minimized' | 'maximized';
   setAllInitialValues: (values: Record<string, any>) => void;
   setScrollablePages: (pages: Set<OHRIFormPageProps>) => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
@@ -49,6 +53,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   isCollapsed,
   sessionMode,
   scrollablePages,
+  workspaceLayout,
   setScrollablePages,
   setFieldValue,
   setSelectedPage,
@@ -62,6 +67,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const [form, setForm] = useState<OHRIFormSchema>(formJson);
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
   const [formInitialValues, setFormInitialValues] = useState({});
+  const layoutType = useLayoutType();
 
   const addScrollablePages = useCallback(() => {
     formJson.pages.forEach(page => {
@@ -98,6 +104,13 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     form.pages.forEach(page =>
       page.sections.forEach(section => {
         section.questions.forEach(question => {
+          // explicitly set blank values to null
+          // TODO: shouldn't we be setting to the default behaviour?
+          section.inlineRendering = isEmpty(section.inlineRendering) ? null : section.inlineRendering;
+          page.inlineRendering = isEmpty(page.inlineRendering) ? null : page.inlineRendering;
+          form.inlineRendering = isEmpty(form.inlineRendering) ? null : form.inlineRendering;
+          question.inlineRendering = section.inlineRendering ?? page.inlineRendering ?? form.inlineRendering;
+          evaluateFieldReadonlyProp(question, section.readonly, page.readonly, form.readonly);
           allFormFields.push(question);
           if (question.type == 'obsGroup') {
             question.questions.forEach(groupedField => {
@@ -419,6 +432,8 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         obsGroupsToVoid: obsGroupsToVoid,
         fields: fields,
         encounterContext,
+        layoutType,
+        workspaceLayout,
       }}>
       <InstantEffect effect={addScrollablePages} />
       {form.pages.map((page, index) => {
@@ -449,6 +464,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
               setFieldValue={setFieldValue}
               setSelectedPage={setSelectedPage}
               handlers={handlers}
+              workspaceLayout={workspaceLayout}
             />
           );
         }
