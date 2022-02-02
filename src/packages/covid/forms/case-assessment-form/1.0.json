@@ -231,7 +231,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('reasonsForTesting','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
                       "validators": []
                     }
@@ -331,7 +331,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": [
                     {
@@ -584,7 +584,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
@@ -621,7 +621,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('presentedCovidSymptoms','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
                       "validators": []
                     }
@@ -882,7 +882,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('comorbidityPresent','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
@@ -917,7 +917,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('underlyingComorbidityConditions','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
