@@ -39,6 +39,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
   },
   getInitialValue: (encounter: any, field: OHRIFormField, allFormFields: Array<OHRIFormField>) => {
     let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
+    const rendering = field.questionOptions.rendering;
     let parentField = null;
     let obsGroup = null;
     // If this field is a group member and the obs was picked from the encounters's top obs leaves,
@@ -56,7 +57,6 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       }
     }
     if (obs) {
-      const rendering = field.questionOptions.rendering;
       field.value = obs;
       if (rendering == 'radio' || rendering == 'content-switcher') {
         getConcept(field.questionOptions.concept, 'custom:(uuid,display,datatype:(uuid,display,name))').subscribe(
@@ -86,6 +86,8 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         return obs.value == ConceptTrue;
       }
       return obs.value?.uuid;
+    } else if (rendering == 'fixed-value') {
+      return field.value;
     }
     return '';
   },

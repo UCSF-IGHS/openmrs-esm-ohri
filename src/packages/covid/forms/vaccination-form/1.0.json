@@ -653,7 +653,7 @@
                   "validators": [
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "failsWhenExpression": "isDateBefore(myValue,'2020-01-01') || myValue <= useFieldValue('vaccinationDate')"
                     }
                   ]
                 }
