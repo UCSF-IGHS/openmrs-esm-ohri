@@ -59,6 +59,13 @@ export function evaluateExpression(
     return left?.getTime() < otherDate.getTime();
   }
 
+  function useFieldValue(questionId: string) {
+    if (allFieldsKeys.includes(questionId)) {
+      return allFieldValues[questionId];
+    }
+    return null;
+  }
+
   parts.forEach((part, index) => {
     if (index % 2 == 0) {
       if (allFieldsKeys.includes(part)) {
