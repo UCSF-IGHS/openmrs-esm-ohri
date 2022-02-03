@@ -36,13 +36,13 @@
   },
   "@openmrs/esm-login-app": {
     "logo": {
-      "src": "https://ohri-demo.globalhealthapp.net/images/logo-transparent.png",
+      "src": "https://ohri-demo.globalhealthapp.net/openmrs/images/logos/ohri_logo_lightbg.svg",
       "alt": "Logo"
     }
   },
   "@openmrs/esm-primary-navigation-app": {
     "logo": {
-      "src": "https://ohri-demo.globalhealthapp.net/images/logo-white.png"
+      "src": "https://ohri-demo.globalhealthapp.net/openmrs/images/logos/ohri_logo_darkbg.svg"
     }
   }
 }

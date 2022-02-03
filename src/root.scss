@@ -26,10 +26,6 @@ $brand-color-02: #131E35; // darker
 $brand-color-03: #3197D9; // underline - 3197D9
 $button-primary: #0078A6;
 
-:global(.bx--btn--primary) {
-  // background-color: $button-primary !important;
-}
-
 .productiveHeading01 {
   @include carbon--type-style("productive-heading-01");
 }
@@ -90,3 +86,12 @@ aside {
    background-color: $ui-02 !important;
 }
 
+// Login Overrides
+
+:global(.-esm-login__styles__center___1ICpH) {
+  text-align: left;
+}
+
+:global(.-esm-login__styles__center___1ICpH) > img {
+  max-width: 60%;
+}
