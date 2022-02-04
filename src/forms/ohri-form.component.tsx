@@ -3,7 +3,7 @@ import styles from './ohri-form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  useCurrentPatient,
+  usePatient,
   useSessionUser,
   showToast,
   attach,
@@ -46,7 +46,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 }) => {
   const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
-  const [, patient] = useCurrentPatient(patientUUID);
+  const { patient } = usePatient(patientUUID);
   const session = useSessionUser();
   const [initialValues, setInitialValues] = useState({});
   const encDate = new Date();
