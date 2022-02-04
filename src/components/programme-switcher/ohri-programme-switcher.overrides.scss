@@ -1,3 +1,5 @@
+@import '../../root.scss';
+
 .headerMenuOverrides {
   position: relative;
   z-index: 7000 !important;
@@ -8,11 +10,11 @@
 .headerMenuOverrides a:hover,
 .headerMenuOverrides a[aria-expanded='true'],
 .headerMenuOverrides ul {
-  background-color: #004144 !important;
+  background-color: $brand-color-01 !important;
 }
 
 .headerMenuOverrides ul li a:hover {
-  background-color: #005d5d !important;
+  background-color: $brand-color-02 !important;
 }
 
 
