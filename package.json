@@ -1,9 +1,7 @@
 {
   "name": "ohri-forms-engine",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
     "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
@@ -13,6 +11,9 @@
     "extract-translations": "lerna run extract-translations",
     "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net --sources 'packages/esm-*-app/'",
+    "start:covid": "openmrs develop --sources packages/esm-covid-app --backend https://ohri-working.globalhealthapp.net",
+    "start:hiv": "openmrs develop --sources packages/esm-hiv-app --backend https://ohri-working.globalhealthapp.net",
+    "start:forms": "openmrs develop --sources packages/esm-form-render-app --backend https://ohri-working.globalhealthapp.net",
     "test": "jest --config jest.config.json --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.json",
     "verify": "lerna run lint && lerna run test && lerna run typescript"
@@ -28,6 +29,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
     "openmrs-ohri-form-engine-lib": "^0.1.2",
+    "engine-lib": "0.1.5",
     "react-ace": "^9.4.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-markdown": "^7.1.0",

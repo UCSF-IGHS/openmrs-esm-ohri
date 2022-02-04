@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import FormRenderComponent from './render/forms-render-test.component';
+import FormRenderComponent from './render/forms-render.component';
 import FormRenderTest from './render/forms-render-test.component';
 
 export default function Root () {

@@ -1,12 +1,4 @@
-import {
-  getForm,
-  applyFormIntent,
-  OHRIForm,
-  OHRIFormSchema,
-  SessionMode,
-  loadSubforms,
-} from 'openmrs-ohri-form-engine-lib';
-
+import { getForm, applyFormIntent, OHRIForm, OHRIFormSchema, SessionMode, loadSubforms } from 'engine-lib';
 import React, { useState } from 'react';
 import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
 import styles from './form-render.scss';
@@ -14,7 +6,9 @@ import { Run32 } from '@carbon/icons-react';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 
-function FormRenderTest() {
+function FormRenderTest () {
+  console.log(getForm('hiv', 'hts'));
+
   const headerTitle = 'Form Render Test';
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
   const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
@@ -102,23 +96,23 @@ function FormRenderTest() {
             <h4>JSON Schema</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
 
-            <Tabs type="container">
-              <Tab id="tab-form" label="JSON Input">
+            <Tabs type='container'>
+              <Tab id='tab-form' label='JSON Input'>
                 <Form
                   onSubmit={e => {
                     e.preventDefault();
                     handleFormSubmission(e);
                   }}>
                   <AceEditor
-                    mode="json"
+                    mode='json'
                     theme={editorTheme}
                     onChange={updateFormJsonInput}
                     name={'jsonText'}
-                    placeholder="Enter JSON Text"
+                    placeholder='Enter JSON Text'
                     showPrintMargin={true}
                     showGutter={true}
                     highlightActiveLine={true}
-                    width="100%"
+                    width='100%'
                     className={styles.jsonEditor}
                     setOptions={{
                       enableBasicAutocompletion: true,
@@ -132,9 +126,9 @@ function FormRenderTest() {
 
                   <div className={styles.renderDropdown}>
                     <Dropdown
-                      id="default"
-                      titleText="Form Intent"
-                      label="--Select Form Intent"
+                      id='default'
+                      titleText='Form Intent'
+                      label='--Select Form Intent'
                       items={formIntents}
                       itemToString={item => item.display}
                       onChange={updateFormIntentInput}
@@ -144,8 +138,8 @@ function FormRenderTest() {
 
                   <div className={styles.renderDropdown}>
                     <Dropdown
-                      id=""
-                      titleText="JSON Editor Theme"
+                      id=''
+                      titleText='JSON Editor Theme'
                       label={editorTheme}
                       items={availableEditorThemes}
                       itemToString={item => item}
@@ -156,28 +150,28 @@ function FormRenderTest() {
                   </div>
 
                   <Button
-                    type="submit"
+                    type='submit'
                     renderIcon={Run32}
-                    className="form-group"
+                    className='form-group'
                     style={{ marginTop: '1em' }}
                     disabled={!selectedFormIntent}>
                     Render
                   </Button>
                 </Form>
               </Tab>
-              <Tab id="tab-json-schema" label="Final Schema">
+              <Tab id='tab-json-schema' label='Final Schema'>
                 <div className={styles.finalJsonSchema}>
                   <AceEditor
-                    mode="json"
+                    mode='json'
                     theme={editorTheme}
                     value={schemaOutput}
                     name={'json-schema-result'}
-                    placeholder=""
+                    placeholder=''
                     showPrintMargin={true}
                     showGutter={true}
                     highlightActiveLine={true}
-                    width="100%"
-                    height="700px"
+                    width='100%'
+                    height='700px'
                     readOnly={true}
                     setOptions={{
                       enableBasicAutocompletion: false,
@@ -196,8 +190,8 @@ function FormRenderTest() {
             <h4>Generated Form</h4>
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
-              <Tabs type="container">
-                <Tab id="tab-form" label="Form Render" className={styles.renderTab}>
+              <Tabs type='container'>
+                <Tab id='tab-form' label='Form Render' className={styles.renderTab}>
                   {isSchemaLoaded ? (
                     <div className={styles.formRenderDisplay}>
                       <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />

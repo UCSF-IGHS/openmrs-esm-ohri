@@ -3,7 +3,7 @@ import { backendDependencies } from './openmrs-backend-dependencies';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
-function setupOpenMRS() {
+function setupOpenMRS () {
   const moduleName = 'esm-forms-render-app';
 
   const options = {
@@ -18,6 +18,10 @@ function setupOpenMRS() {
       {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^form-render-test/,
+      },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^forms/,
       },
     ],
     extensions: [
