@@ -26,7 +26,7 @@
                 ],
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Yes",
                     "conceptMappings": [
                       {
@@ -327,7 +327,8 @@
                   "intent": "COVID_LAB_ORDER_EMBED",
                   "hide": {
                     "hideWhenExpression": "true"
-                  }
+                  },
+                  "value": "165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
                 }
               ]
             },

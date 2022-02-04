@@ -1,3 +1,4 @@
+import { LayoutType } from '@openmrs/esm-framework';
 import React from 'react';
 import { SessionMode } from './types';
 
@@ -9,6 +10,8 @@ type OHRIFormContextProps = {
   setObsGroupsToVoid: (value: any) => void;
   encounterContext: EncounterContext;
   fields: any;
+  layoutType?: LayoutType;
+  workspaceLayout?: 'minimized' | 'maximized';
 };
 
 export interface EncounterContext {

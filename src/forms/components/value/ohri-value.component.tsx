@@ -9,9 +9,22 @@ export const OHRIValueEmpty = () => {
 };
 
 export const OHRIValueDisplay = ({ value }) => {
+  if (Array.isArray(value)) {
+    return <OHRIListDisplay valueArray={value} />;
+  }
   return (
     <div>
       <span style={{ fontSize: '.875rem' }}>{value}</span>
     </div>
+  );
+};
+
+const OHRIListDisplay = ({ valueArray }) => {
+  return (
+    <ul>
+      {valueArray.map(item => (
+        <li style={{ fontSize: '.875rem', marginBottom: '.4rem' }}>{item}</li>
+      ))}
+    </ul>
   );
 };
