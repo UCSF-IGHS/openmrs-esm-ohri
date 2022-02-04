@@ -108,8 +108,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
             invalidText={errors[0]?.errMessage}
           />
         </div>
-        <div className={styles.formField}>
-          <OHRILabel value={'Selected Items'} />
+        <div className={styles.formField} style={{ marginTop: '0.125rem' }}>
           {field.value?.length ? (
             <UnorderedList style={{ marginLeft: '1rem' }}>
               {handler.getDisplayValue(question, field.value)?.map(displayValue => displayValue + ', ')}

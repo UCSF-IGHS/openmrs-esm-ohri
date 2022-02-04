@@ -17,6 +17,7 @@
   margin-left: 16rem;
   padding-left: 0;
   padding-right: 0;
+  max-width: 100% !important;
 }
 
 .noMarker {
@@ -31,7 +32,7 @@
 .currentNavItem > a {
   background-color: #cecece !important;
   color: #161616 !important;
-  border-left-color: #005d5d !important;
+  border-left-color: $brand-color-01 !important;
   font: bolder;
 }
 

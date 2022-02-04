@@ -231,7 +231,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('reasonsForTesting','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
                       "validators": []
                     }
@@ -331,7 +331,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": [
                     {
@@ -535,21 +535,7 @@
                         "value": "22166009"
                       }
                     ]
-                  },
-                  {
-                    "concept": "5006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Asymptomatic",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "5006"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "84387000"
-                      }
-                    ]
-                  },
+                  },                  
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other",
@@ -598,7 +584,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('patientStatus','1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
@@ -635,7 +621,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "false"
+                        "hideWhenExpression": "!includes('presentedCovidSymptoms','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                       },
                       "validators": []
                     }
@@ -896,7 +882,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('comorbidityPresent','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
@@ -931,7 +917,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('underlyingComorbidityConditions','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
                 }
