@@ -327,7 +327,8 @@
                   "intent": "COVID_LAB_ORDER_EMBED",
                   "hide": {
                     "hideWhenExpression": "true"
-                  }
+                  },
+                  "value": "165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
                 }
               ]
             },
