@@ -1,0 +1,42 @@
+:global(.contextWorkspaceContainer) {
+  //overflow-y: auto;
+}
+
+.ohriForm {
+  height: 100%;
+  overflow: hidden;
+}
+
+.ohriFormContainer {
+  display: -webkit-flex;
+  height: 90vh;
+  overflow-y: hidden;
+}
+
+.ohriFormContainer :global(.bx--label) {
+  font-size: .875rem;
+}
+
+.formContent {
+  margin: 0;
+  flex-basis: 65%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.formContentBody {
+  overflow-y: auto;
+  height: 77.5vh;
+  width: inherit;
+  position: sticky;
+}
+
+@media (max-width: 768px) {
+  .ohriFormContainer {
+    height: 100vh;
+  }
+}

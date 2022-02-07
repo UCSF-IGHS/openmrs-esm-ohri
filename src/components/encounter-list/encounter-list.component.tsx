@@ -12,7 +12,12 @@ import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
-import { launchForm, launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
+import {
+  launchForm,
+  launchFormInEditMode,
+  launchFormInViewMode,
+  launchFormWithCustomTitle,
+} from '../../utils/ohri-forms-commons';
 
 export interface EncounterListColumn {
   key: string;
@@ -177,10 +182,9 @@ const EncounterList: React.FC<EncounterListProps> = ({
                 onClick={e => {
                   e.preventDefault();
                   if (actionItem.mode == 'edit') {
-                    launchFormInEditMode(
+                    launchEncounterForm(
                       applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
                       actionItem.encounterUuid,
-                      forceComponentUpdate,
                     );
                   } else if (actionItem.mode == 'enter') {
                     launchForm(
@@ -188,10 +192,11 @@ const EncounterList: React.FC<EncounterListProps> = ({
                       forceComponentUpdate,
                     );
                   } else {
-                    launchFormInViewMode(
-                      getForm(actionItem.form.package, actionItem.form.name),
+                    launchEncounterForm(
+                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      actionItem.intent,
+                      'view',
                       actionItem.encounterUuid,
-                      forceComponentUpdate,
                     );
                   }
                 }}
@@ -206,14 +211,24 @@ const EncounterList: React.FC<EncounterListProps> = ({
               itemText={t('viewEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewEncounter(encounter.uuid);
+                launchEncounterForm(
+                  form.view ? getForm(form.package, form.view) : encounterForm,
+                  '*',
+                  'view',
+                  encounter.uuid,
+                );
               }}
             />
             <OverflowMenuItem
               itemText={t('editEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editEncounter(encounter.uuid);
+                launchEncounterForm(
+                  form.view ? getForm(form.package, form.view) : encounterForm,
+                  '*',
+                  'edit',
+                  encounter.uuid,
+                );
               }}
             />
           </OverflowMenu>
@@ -225,13 +240,18 @@ const EncounterList: React.FC<EncounterListProps> = ({
   };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
-  const launchEncounterForm = (form?: any) => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: form?.name || encounterForm?.name,
-      screenSize: 'maximize',
-      mode: 'enter',
-      state: { updateParent: forceComponentUpdate, formJson: form || encounterForm },
-    });
+  const capitalize = word => word[0].toUpperCase() + word.substr(1);
+
+  const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
+    const launcherTitle = `[${capitalize(action)}] ` + (form?.name || encounterForm?.name) + ` (${intent})`;
+
+    if (action === 'view') {
+      launchFormWithCustomTitle(form, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
+    } else if (action === 'edit') {
+      launchFormWithCustomTitle(form, launcherTitle, 'edit', encounterUuid, forceComponentUpdate);
+    } else {
+      launchFormWithCustomTitle(form, launcherTitle, 'enter', '', forceComponentUpdate);
+    }
   };
 
   const formLauncher = useMemo(() => {

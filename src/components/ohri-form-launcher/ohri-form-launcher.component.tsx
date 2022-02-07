@@ -6,7 +6,7 @@ import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.com
 
 export const OHRIFormLauncherWithIntent: React.FC<{
   formJson?: any;
-  launchForm: (formJson?: any) => void;
+  launchForm: (formJson?: any, intent?: string) => void;
   onChangeIntent: (formJson: any) => void;
   dropDownText?: string;
   hideFormLauncher?: boolean;
