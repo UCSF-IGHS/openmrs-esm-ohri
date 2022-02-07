@@ -1367,7 +1367,7 @@
     },
     {
       "intent": "COVID_LAB_ASSESSMENT_EMBED",
-      "display": "Covid Case Report"
+      "display": "Covid Case Form"
     }
   ],
   "processor": "EncounterFormProcessor",
