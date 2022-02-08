@@ -184,6 +184,8 @@ const EncounterList: React.FC<EncounterListProps> = ({
                   if (actionItem.mode == 'edit') {
                     launchEncounterForm(
                       applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      actionItem.intent,
+                      'edit',
                       actionItem.encounterUuid,
                     );
                   } else if (actionItem.mode == 'enter') {
