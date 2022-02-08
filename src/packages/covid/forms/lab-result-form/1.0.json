@@ -11,7 +11,7 @@
         "behaviours": [
           {
             "intent": "*",
-            "subform_intent": "COVID_LAB_ORDER_EMBED",
+            "subform_intent": "COVID_LAB_ORDER_RESULT_EMBED",
             "readonly": "false"
           }
         ]
