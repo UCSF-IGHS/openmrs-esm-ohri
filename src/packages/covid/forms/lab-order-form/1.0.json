@@ -69,6 +69,13 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   }
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_RESULT_EMBED",
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
                 }
               ]
             },
