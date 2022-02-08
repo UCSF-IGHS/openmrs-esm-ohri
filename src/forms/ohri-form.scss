@@ -40,3 +40,25 @@
     height: 100vh;
   }
 }
+
+@media(max-width: 1000px) {
+  .pageHeader {
+    margin-left: 15px;
+  }
+}
+
+.minifiedFormContentBody > div > div p {
+  padding-left: 1rem !important;
+}
+
+.minifiedButtons {
+  width: 100%;
+}
+
+.minifiedButtons :global(.bx--btn) {
+  max-width: 50%;
+}
+
+.minifiedButtons > button {
+  width: 50%;
+}

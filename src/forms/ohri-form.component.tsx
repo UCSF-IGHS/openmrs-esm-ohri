@@ -186,7 +186,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
               <div className={styles.formContent}>
                 <PatientBanner patient={patient} />
-                <div className={styles.formContentBody}>
+                <div
+                  className={`${styles.formContentBody}
+                    ${workspaceLayout == 'minimized' ? `${styles.minifiedFormContentBody}` : ''}
+                  `}>
                   <OHRIEncounterForm
                     formJson={form}
                     patient={patient}
@@ -207,21 +210,16 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                   />
                 </div>
                 {workspaceLayout == 'minimized' && (
-                  <div className={''}>
+                  <div className={styles.minifiedButtons}>
                     <Button
-                      style={{ width: '11rem' }}
-                      kind="tertiary"
+                      kind="secondary"
                       onClick={() => {
                         onCancel && onCancel();
                         handleClose && handleClose();
                       }}>
                       {mode == 'view' ? 'Close' : 'Cancel'}
                     </Button>
-                    {mode != 'view' && (
-                      <Button style={{ marginBottom: '0.625rem', width: '11rem' }} type="submit">
-                        Save
-                      </Button>
-                    )}
+                    {mode != 'view' && <Button type="submit">Save</Button>}
                   </div>
                 )}
               </div>
