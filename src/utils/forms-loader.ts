@@ -1,5 +1,5 @@
 import * as semver from 'semver';
-import { OHRIFormField } from '../forms/types';
+import { OHRIFormField, OHRIFormSchema } from '../forms/types';
 import defaultFormsRegistry from '../packages/forms-registry';
 
 export interface FormJsonFile {
@@ -46,6 +46,7 @@ export function getForm(
 }
 
 export function loadSubforms(parentForm) {
+  parentForm.pages = parentForm.pages || [];
   parentForm.pages.forEach(page => {
     if (page.isSubform && page.subform?.name && page.subform.package) {
       try {
@@ -124,6 +125,9 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
     updateMarkdownRequiredBehaviour(jsonBuffer.markdown, intent);
   }
 
+  // Before starting traversal, ensure nodes exist, at least as empty-arrays
+  jsonBuffer.pages = jsonBuffer.pages || [];
+
   // Traverse the property tree with items of interest for validation
   jsonBuffer.pages.forEach(page => {
     if (page.isSubform && page.subform?.form) {
@@ -152,6 +156,9 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
     if (page.markdown) {
       updateMarkdownRequiredBehaviour(page.markdown, intent);
     }
+    // Before starting traversal, ensure nodes exist, at least as empty-arrays
+    page.sections = page.sections || [];
+
     page.sections.forEach(section => {
       // TODO: Apply parentOverrides to sections if applicable
       const secBehaviour = section.behaviours?.find(behaviour => behaviour.intent === intent?.intent || intent);
@@ -166,6 +173,9 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
       if (section.markdown) {
         updateMarkdownRequiredBehaviour(section.markdown, intent);
       }
+
+      // Before starting traversal, ensure nodes exist, at least as empty-arrays
+      section.questions = section.questions || [];
 
       section.questions.forEach((question: OHRIFormField) => {
         if (question['behaviours']) {
