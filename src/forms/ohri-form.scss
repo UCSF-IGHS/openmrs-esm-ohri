@@ -14,7 +14,7 @@
 }
 
 .ohriFormContainer :global(.bx--label) {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .formContent {
@@ -61,4 +61,8 @@
 
 .minifiedButtons > button {
   width: 50%;
+}
+
+.markdownContainer {
+  padding: 1rem;
 }

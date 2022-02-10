@@ -20,6 +20,7 @@ import { isTrue } from './utils/boolean-utils';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import { useWorkspaceLayout } from './utils/useWorkspaceLayout';
 import { Button } from 'carbon-components-react';
+import ReactMarkdown from 'react-markdown';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -186,6 +187,11 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 
               <div className={styles.formContent}>
                 <PatientBanner patient={patient} />
+                {form.markdown && (
+                  <div className={styles.markdownContainer}>
+                    <ReactMarkdown children={form.markdown.join('\n')} />
+                  </div>
+                )}
                 <div
                   className={`${styles.formContentBody}
                     ${workspaceLayout == 'minimized' ? `${styles.minifiedFormContentBody}` : ''}
