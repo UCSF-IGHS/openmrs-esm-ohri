@@ -64,6 +64,7 @@ export interface OHRIFormSchema {
   defaultPage?: string;
   readonly?: string | boolean;
   inlineRendering?: 'single-line' | 'multiline' | 'automatic';
+  markdown?: any;
 }
 
 export interface OHRIFormPage {
