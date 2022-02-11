@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getReportingCohort } from '../../../api/api';
 import OHRIProgrammeSummaryTiles from '../../../components/tile/ohri-programme-summary-tiles.component';
 import { covid19PositiveClients, covidVaccinatedClients } from '../../../constants';
+import { Vaccinations } from './vaccination-tile-list.component';
 
 function CcoivdSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
@@ -36,6 +37,13 @@ function CcoivdSummaryTiles({ launchWorkSpace }) {
       linkAddress: '#',
       subTitle: t('peopleVaccinated', 'People vaccinated'),
       value: covidVaccinatedClientsCount,
+      onClick: () => {
+        launchWorkSpace('Covid Vaccination', <Vaccinations />, {
+          numberOfClients: covidVaccinatedClientsCount,
+          subTitle: 'Clients vaccinated against Covid',
+          dateLastUpdated: '--',
+        });
+      },
     },
   ];
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
