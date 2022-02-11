@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
 import styles from './form-render.scss';
-import { Run32 } from '@carbon/icons-react';
+import { Run32, Maximize32 } from '@carbon/icons-react';
 import { OHRIFormSchema, SessionMode } from '../types';
 import OHRIForm from '../ohri-form.component';
 import { applyFormIntent, loadSubforms } from '../../utils/forms-loader';
@@ -87,12 +87,26 @@ function FormRenderTest() {
     setIsSchemaLoaded(true);
   };
 
+  const [viewActionText, setViewActionText] = useState('Fullscreen');
+  const toggleViewMode = () => {
+    if (viewActionText === 'Fullscreen') {
+      setViewActionText('Split-screen');
+    } else {
+      setViewActionText('Fullscreen');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.mainWrapper}>
         <div className={styles.formRenderTitle}>{headerTitle}</div>
         <Row>
-          <Column lg={5} md={5} sm={12} className={styles.renderColumn}>
+          <Column
+            lg={5}
+            md={5}
+            sm={12}
+            style={{ paddingRight: '0' }}
+            className={styles.renderColumn + ' ' + (viewActionText === 'Split-screen' ? styles.hide : '')}>
             <h4>JSON Schema</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
 
@@ -186,8 +200,15 @@ function FormRenderTest() {
               </Tab>
             </Tabs>
           </Column>
-          <Column lg={7} md={7} sm={12} style={{ paddingLeft: '0' }}>
-            <h4>Generated Form</h4>
+
+          <Column lg={viewActionText === 'Split-screen' ? 12 : 7} md={7} sm={12}>
+            <div className={styles.viewMode}>
+              <h4>Generated Form</h4>
+              <Button renderIcon={Maximize32} className={isSchemaLoaded ? styles.show : ''} onClick={toggleViewMode}>
+                {viewActionText}
+              </Button>
+            </div>
+
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs type="container">
