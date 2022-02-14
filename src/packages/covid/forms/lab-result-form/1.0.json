@@ -598,7 +598,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Lab Result"
+      "display": "Lab Result"
     }
   ],
   "processor": "EncounterFormProcessor",
