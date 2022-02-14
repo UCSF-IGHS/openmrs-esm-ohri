@@ -29,25 +29,25 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const forceComponentUpdate = () => setCounter(counter + 1);
 
   const launchHTSForm = (form?: any) => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
+    launchOHRIWorkSpace({
       title: htsForm?.name,
-      screenSize: 'maximize',
+      screenSize: 'maximized',
       state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
     });
   };
   const editHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
+    launchOHRIWorkSpace({
       title: htsForm?.name,
       encounterUuid: encounterUuid,
-      screenSize: 'maximize',
+      screenSize: 'maximized',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
   };
   const viewHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
+    launchOHRIWorkSpace({
       title: htsForm?.name,
       encounterUuid: encounterUuid,
-      screenSize: 'maximize',
+      screenSize: 'maximized',
       mode: 'view',
       state: { updateParent: forceComponentUpdate, formJson: htsForm },
     });
