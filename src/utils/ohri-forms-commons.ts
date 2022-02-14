@@ -1,29 +1,29 @@
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
 export const launchForm = (form: any, onUpdateParent?: () => void, title?: string) => {
-  launchOHRIWorkSpace('ohri-forms-view-ext', {
+  launchOHRIWorkSpace({
     title: title || form?.name,
-    screenSize: 'maximize',
+    screenSize: 'maximized',
     mode: 'enter',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
   });
 };
 export const launchFormInEditMode = (form: any, encounterUuid: string, onUpdateParent?: () => void, title?: string) => {
-  launchOHRIWorkSpace('ohri-forms-view-ext', {
+  launchOHRIWorkSpace({
     title: title || form.name,
     encounterUuid: encounterUuid,
-    screenSize: 'maximize',
+    screenSize: 'maximized',
     mode: 'edit',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
   });
 };
 export const launchFormInViewMode = (form: any, encounterUuid: string, onUpdateParent?: () => void, title?: string) => {
-  launchOHRIWorkSpace('ohri-forms-view-ext', {
+  launchOHRIWorkSpace({
     title: title || form.name,
     encounterUuid: encounterUuid,
-    screenSize: 'maximize',
+    screenSize: 'maximized',
     mode: 'view',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,

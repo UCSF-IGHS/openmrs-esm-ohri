@@ -230,13 +230,6 @@ function setupOpenMRS() {
         }),
       },
       {
-        id: 'ohri-forms-view-ext',
-        load: getAsyncLifecycle(() => import('./pages/hts/encounters-list/ohri-form-view.component'), {
-          featureName: 'ohri-forms',
-          moduleName,
-        }),
-      },
-      {
         id: 'patient-hiv-status-tag',
         slot: 'patient-banner-tags-slot',
         load: getAsyncLifecycle(() => import('./components/banner-tags/patient-status-tag.component'), options),

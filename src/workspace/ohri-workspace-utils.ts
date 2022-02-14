@@ -1,16 +1,7 @@
-import {
-  attach,
-  detach,
-  detachAll,
-  getAsyncLifecycle,
-  registerExtension,
-  showToast,
-  useAssignedExtensionIds,
-} from '@openmrs/esm-framework';
+import { getAsyncLifecycle } from '@openmrs/esm-framework';
 import { BehaviorSubject } from 'rxjs';
 import { SessionMode } from '../forms/types';
-import { OHRIWorkspaceSlot, workspaceInUse } from './ohri-workspace.component';
-
+import { closeWorkspace, launchPatientWorkspace, registerWorkspace } from '@openmrs/esm-patient-common-lib';
 export interface WorkspaceContextProps {
   title: string;
   encounterUuid?: string;
@@ -19,32 +10,37 @@ export interface WorkspaceContextProps {
   screenSize?: string;
   collapseSections?: Boolean;
 }
+const workspaceMeta = {
+  featureName: 'ohri-forms-workspace-item',
+  moduleName: '@openmrs/esm-ohri-app',
+};
 
-export const launchOHRIWorkSpace = (extension: string, props: WorkspaceContextProps) => {
-  if (workspaceInUse) {
-    showToast({
-      kind: 'info',
-      critical: true,
-      description: `Workspace in use`,
-    });
-    return;
-  }
-  detachAll(OHRIWorkspaceSlot);
-  registerExtension('ohri-workspace', {
-    moduleName: '@openmrs/esm-ohri-app',
-    load: getAsyncLifecycle(() => import('./ohri-workspace.component'), {
-      featureName: 'ohri-workspace',
-      moduleName: '@openmrs/esm-ohri-app',
-    }),
-    meta: {
-      title: props.title,
-      screenSize: props.screenSize,
-      collapseSections: props.collapseSections,
-    },
+let counter = 0;
+
+export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
+  const workspaceName = 'ohri-forms-' + counter++;
+
+  const close = () => {
+    return closeWorkspace(workspaceName);
+  };
+  const onFormSubmit = () => {
+    props.state?.updateParent?.();
+    close();
+  };
+  registerWorkspace({
+    name: workspaceName,
+    title: props.title,
+    preferredWindowSize: <any>props.screenSize,
+    load: getAsyncLifecycle(() => import('./../forms/ohri-form.component'), workspaceMeta),
   });
-  workspaceContext.next(props);
-  attach('patient-chart-workspace-slot', 'ohri-workspace');
-  attach(OHRIWorkspaceSlot, extension);
+
+  launchPatientWorkspace(workspaceName, {
+    ...props.state,
+    mode: props.mode,
+    encounterUuid: props.encounterUuid,
+    onCancel: close,
+    onSubmit: onFormSubmit,
+  });
 };
 
 export const workspaceContext = new BehaviorSubject<WorkspaceContextProps | null>(null);
