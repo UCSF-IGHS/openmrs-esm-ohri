@@ -157,7 +157,7 @@
                 "answers": [
                   {
                     "label": "yes",
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
                   },
                   {
                     "label": "no",
@@ -429,7 +429,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -494,7 +494,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "testRequested !== '165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "testRequested !== '165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -559,7 +559,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "testRequested !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "testRequested !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
