@@ -160,8 +160,7 @@ jobs:
       - uses: garygrossgarten/github-action-ssh@release
         name: Run the Update MicroFronEnd Script
         with:
-          command: cd /usr/share/tomcat/microfrontends/test && sh update_microfrontends.sh
+          command: cd /usr/share/tomcat/microfrontends/ && /bin/bash update_microfrontends.sh
           host: ${{ secrets.SANDBOX_HOST }}
           username: ${{ secrets.SANDBOX_USERNAME }}
           privateKey: ${{ secrets.SANDBOX_KEY}}
-          port: ${{ secrets.SANDBOX_PORT }}
