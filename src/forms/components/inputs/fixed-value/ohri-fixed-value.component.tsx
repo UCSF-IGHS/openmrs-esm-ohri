@@ -1,24 +1,28 @@
-import React, { useEffect } from 'react';
+import { useField } from 'formik';
+import React, { useEffect, useMemo } from 'react';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormFieldProps } from '../../../types';
 
 const OHRIFixedValue: React.FC<OHRIFormFieldProps> = ({ question, handler }) => {
-  const { encounterContext } = React.useContext(OHRIFormContext);
+  const { encounterContext, setFieldValue, isFieldInitializationComplete } = React.useContext(OHRIFormContext);
+  const [field] = useField(question.id);
+  const currentFixedValue = useMemo(() => question.value, []);
+
   useEffect(() => {
-    if (question.value && typeof question.value == 'string') {
-      const value = question.value;
-      delete question.value;
-      question.value = handler.handleFieldSubmission(question, value, encounterContext);
+    if (!field.value) {
+      setFieldValue(question.id, currentFixedValue);
     }
-  }, []);
-  // return (
-  //   !question.isHidden && (
-  //     <div className={styles.formFields}>
-  //       <OHRILabel value={question.label} />
-  //       {question.value ? <OHRIValueDisplay value={question.value?.value} /> : <OHRIValueEmpty />}
-  //     </div>
-  //   )
-  // );
+  }, [field.value]);
+
+  useEffect(() => {
+    if (question.value && typeof question.value == 'string' && isFieldInitializationComplete) {
+      delete question.value;
+      question.value = handler.handleFieldSubmission(question, currentFixedValue, encounterContext);
+    } else if (typeof question.value == 'object' && question.value.value?.uuid != currentFixedValue) {
+      // edit obs
+      question.value = handler.handleFieldSubmission(question, currentFixedValue, encounterContext);
+    }
+  }, [question.value, isFieldInitializationComplete]);
   return <></>;
 };
 
