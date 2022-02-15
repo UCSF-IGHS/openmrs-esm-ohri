@@ -90,55 +90,6 @@ function CovidHomePatientTabs() {
         },
       ],
     },
-    {
-      label: t('undocumentedOutcomes', 'Undocumented Outcomes'),
-      cohortId: clientsWithoutCovidOutcomes,
-      isReportingCohort: true,
-      cohortSlotName: 'undocumented-outcomes-slot',
-      associatedEncounterType: covidCaseAssessmentEncType,
-      launchableForm: {
-        package: 'covid',
-        name: 'covid_outcome_tracking',
-        editActionText: 'Enter COVID-19 outcome',
-        editLatestEncounter: true,
-        targetDashboard: 'covid-outcomes',
-      },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
-      otherColumns: [
-        {
-          key: 'covidAssessmentDate',
-          header: 'COVID Assessment Date',
-          getValue: ({ latestEncounter }) => {
-            return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
-          },
-        },
-        {
-          key: 'covidDiagnosisDate',
-          header: 'COVID-19 Diagnosis Date',
-          getValue: ({ latestEncounter }) => {
-            const obs = latestEncounter?.obs?.find(observation => observation.concept.uuid === covidTestType);
-            const rapidAntigen = '6cd82734-3ba5-4165-b839-0750099d72bd';
-            if (obs) {
-              if (obs.value.name.uuid == rapidAntigen) {
-                // lookup Rapid test result date
-                return getObsFromEncounter(latestEncounter, rapidAntigenResultDate, true);
-              } else {
-                // loockup PCR test result date
-                return getObsFromEncounter(latestEncounter, pcrTestResultDate, true);
-              }
-            }
-            return '--';
-          },
-        },
-        {
-          key: 'covidOutcome',
-          header: 'COVID-19 Outcome',
-          getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, covidOutcome);
-          },
-        },
-      ],
-    },
   ];
   return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
 }
