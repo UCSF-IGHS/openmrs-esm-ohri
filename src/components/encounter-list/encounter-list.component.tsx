@@ -3,7 +3,6 @@ import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableS
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { applyFormIntent, getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
@@ -44,21 +43,30 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   else return encounter[param] ? encounter[param] : '--';
 }
 
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
-  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
+export function formatDateTime(dateString: string): any {
+  const format = 'YYYY-MM-DDTHH:mm:ss';
+  if (dateString.includes('.')) {
+    dateString = dateString.split('.')[0];
+  }
+  return moment(dateString, format, true).toDate();
+}
 
+function obsArrayDateComparator(left, right) {
+  return formatDateTime(right.obsDatetime) - formatDateTime(left.obsDatetime);
+}
+
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+  const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
+  const obs = allObs.length == 1 ? allObs[0] : allObs.sort(obsArrayDateComparator)[0];
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
-
   if (!obs) {
     return '--';
   }
-
   if (isDate) {
     return moment(obs.value).format('DD-MMM-YYYY');
   }
-
   if (typeof obs.value === 'object') {
     return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
