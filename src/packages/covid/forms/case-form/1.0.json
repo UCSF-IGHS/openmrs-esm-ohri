@@ -74,7 +74,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Case Form"
+      "display": "COVID Case"
     }
   ],
   "processor": "EncounterFormProcessor",
