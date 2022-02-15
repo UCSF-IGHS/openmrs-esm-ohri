@@ -60,6 +60,7 @@ const renderForm = intialValues =>
               setObsGroupsToVoid: jest.fn(),
               encounterContext: encounterContext,
               fields: [question],
+              isFieldInitializationComplete: true,
             }}>
             <OHRIDropdown question={question} onChange={jest.fn()} handler={ObsSubmissionHandler} />
           </OHRIFormContext.Provider>

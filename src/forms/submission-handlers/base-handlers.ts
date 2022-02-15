@@ -85,9 +85,10 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         field.value.value = obs.value.uuid;
         return obs.value == ConceptTrue;
       }
+      if (rendering == 'fixed-value') {
+        return '';
+      }
       return obs.value?.uuid;
-    } else if (rendering == 'fixed-value') {
-      return field.value;
     }
     return '';
   },

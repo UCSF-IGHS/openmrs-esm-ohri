@@ -10,6 +10,7 @@ type OHRIFormContextProps = {
   setObsGroupsToVoid: (value: any) => void;
   encounterContext: EncounterContext;
   fields: any;
+  isFieldInitializationComplete: boolean;
   layoutType?: LayoutType;
   workspaceLayout?: 'minimized' | 'maximized';
 };

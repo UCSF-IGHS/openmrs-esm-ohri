@@ -67,6 +67,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const [form, setForm] = useState<OHRIFormSchema>(formJson);
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
   const [formInitialValues, setFormInitialValues] = useState({});
+  const [isFieldInitializationComplete, setIsFieldInitializationComplete] = useState(false);
   const layoutType = useLayoutType();
 
   const addScrollablePages = useCallback(() => {
@@ -101,6 +102,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   useEffect(() => {
     const allFormFields: Array<OHRIFormField> = [];
     const tempInitVals = {};
+    let isFieldEncounterBindingComplete = false;
     form.pages.forEach(page =>
       page.sections.forEach(section => {
         section.questions.forEach(question => {
@@ -136,6 +138,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         }
       });
       setEncounterLocation(encounter.location);
+      isFieldEncounterBindingComplete = true;
     } else {
       const emptyValues = {
         checkbox: [],
@@ -194,6 +197,11 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     setForm(form);
     setFormInitialValues(tempInitVals);
     setAllInitialValues({ ...allInitialValues, ...tempInitVals });
+    if (sessionMode == 'enter') {
+      setIsFieldInitializationComplete(true);
+    } else if (isFieldEncounterBindingComplete) {
+      setIsFieldInitializationComplete(true);
+    }
   }, [encounter]);
 
   useEffect(() => {
@@ -434,6 +442,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         encounterContext,
         layoutType,
         workspaceLayout,
+        isFieldInitializationComplete,
       }}>
       <InstantEffect effect={addScrollablePages} />
       {form.pages.map((page, index) => {
