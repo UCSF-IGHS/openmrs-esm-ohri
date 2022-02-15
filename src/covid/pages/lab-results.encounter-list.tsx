@@ -237,6 +237,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             description={headerTitlePending}
             headerTitle={displayTextPending}
             dropdownText="Add"
+            hideFormLauncher={true}
             filter={pendingLabOrdersFilter}
           />
         </Tab>
