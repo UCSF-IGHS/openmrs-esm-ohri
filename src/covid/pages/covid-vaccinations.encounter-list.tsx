@@ -7,6 +7,7 @@ import {
   covidVaccinationNextVacinationDateConcept_UUID,
   covidVaccinationAdministeredConcept_UUID,
   covidVaccinationDoseAdmininstered_UUID,
+  covidVaccineAdministeredConcept_UUID,
 } from '../../constants';
 
 //Generic Component Import
@@ -47,9 +48,9 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'covidVaccineType',
-    header: 'Vacine',
+    header: 'Vaccine',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationTypeConcept_UUID);
+      return getObsFromEncounter(encounter, covidVaccineAdministeredConcept_UUID);
     },
   },
   {
