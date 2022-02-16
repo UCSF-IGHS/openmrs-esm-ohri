@@ -57,7 +57,7 @@ function obsArrayDateComparator(left, right) {
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
-  const obs = allObs.length == 1 ? allObs[0] : allObs.sort(obsArrayDateComparator)[0];
+  const obs = allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
