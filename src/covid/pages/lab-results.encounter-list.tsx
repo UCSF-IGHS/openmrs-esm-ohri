@@ -10,6 +10,7 @@ import {
   covidLabOrderEncounterType_UUID,
   covidReasonsForTestingConcep_UUID,
   covidTestResultConcept_UUID,
+  covidTestResultDate_UUID,
   covidTestResultUUID,
   covidTestStatusConcept_UUID,
   covidTestTypeUUID,
@@ -44,18 +45,6 @@ import EncounterList, {
 
 const columnsLab: EncounterListColumn[] = [
   {
-    key: 'encounterDate',
-    header: 'Date of Lab Test',
-    getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
-    },
-  },
-  {
     key: 'orderDate',
     header: 'Date of Order',
     getValue: encounter => {
@@ -77,13 +66,6 @@ const columnsLab: EncounterListColumn[] = [
     },
   },
   {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
-    },
-  },
-  {
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
@@ -99,6 +81,20 @@ const columnsLab: EncounterListColumn[] = [
           </Tag>
         );
       }
+    },
+  },
+  {
+    key: 'lastTestResult',
+    header: 'Test Result',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+    },
+  },
+  {
+    key: 'orderDate',
+    header: 'Date of Test Result',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
     },
   },
   {
