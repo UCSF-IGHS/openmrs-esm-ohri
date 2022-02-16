@@ -4,26 +4,21 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { OHRIFormFieldProps } from '../../../types';
 
 const OHRIFixedValue: React.FC<OHRIFormFieldProps> = ({ question, handler }) => {
-  const { encounterContext, setFieldValue, isFieldInitializationComplete } = React.useContext(OHRIFormContext);
-  const [field] = useField(question.id);
-  const currentFixedValue = useMemo(() => question.value, []);
-
-  useEffect(() => {
-    if (!field.value) {
-      setFieldValue(question.id, currentFixedValue);
-    }
-  }, [field.value]);
+  const { encounterContext, isFieldInitializationComplete } = React.useContext(OHRIFormContext);
 
   useEffect(() => {
     if (question.value && typeof question.value == 'string' && isFieldInitializationComplete) {
       delete question.value;
-      question.value = handler.handleFieldSubmission(question, currentFixedValue, encounterContext);
-    } else if (typeof question.value == 'object' && question.value.value?.uuid != currentFixedValue) {
+      handler.handleFieldSubmission(question, question['fixedValue'], encounterContext);
+    } else if (typeof question.value == 'object' && !obsValueEqualTo(question['fixedValue'], question.value)) {
       // edit obs
-      question.value = handler.handleFieldSubmission(question, currentFixedValue, encounterContext);
+      handler.handleFieldSubmission(question, question['fixedValue'], encounterContext);
     }
   }, [question.value, isFieldInitializationComplete]);
   return <></>;
 };
 
+function obsValueEqualTo(value: string, obs: any) {
+  return typeof obs.value == 'object' ? obs.value?.uuid == value : obs.value == value;
+}
 export default OHRIFixedValue;
