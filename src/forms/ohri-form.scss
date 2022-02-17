@@ -30,10 +30,17 @@
 
 .formContentBody {
   overflow-y: auto;
-  // height: 77.5vh;
+  // padding-bottom: 100px;
   margin-bottom: 100px;
   width: inherit;
   position: sticky;
+}
+
+.minifiedFormContentBody {
+  // padding-bottom: 34px !important;
+  // height: 77.5vh;
+  margin-bottom: 0px !important;
+  height: 72.5vh;
 }
 
 @media (max-width: 768px) {
@@ -47,13 +54,15 @@
 }
 
 :global(.patientChartWrapper) aside,
-:global(.patientChartWrapper) :global(.omrs-breakpoint-gt-tablet) {
+:global(.omrs-breakpoint-gt-tablet) {
   border-left: 1px solid #8d8d8d !important;
 }
 
-// aside {
-//   border-left: 1px solid #8d8d8d !important;
-// }
+:global(.patientChartWrapper) {
+  :global(.omrs-breakpoint-gt-tablet) {
+    border-left: 1px solid #8d8d8d !important;
+  }
+}
 
 .minifiedButtons {
   width: 100%;
