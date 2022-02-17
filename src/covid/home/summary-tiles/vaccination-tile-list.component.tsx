@@ -3,7 +3,11 @@ import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFromObservationCodeConcept } from '../../../api/api';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import { basePath, covidVaccinatedClients, covidVaccinationDoseAdmininstered_UUID } from '../../../constants';
+import {
+  basePath,
+  covidVaccinationDoseAdmininstered_UUID,
+  covidVaccineAdministeredConcept_UUID,
+} from '../../../constants';
 import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
 import { filterFHIRPatientsByName } from '../../../hts/home/summary-tiles/utils';
 
@@ -60,13 +64,15 @@ export const Vaccinations: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchPatientsFromObservationCodeConcept(covidVaccinatedClients, covidVaccinationDoseAdmininstered_UUID, 14).then(
-      (response: Array<any>) => {
-        setPatients(response.map(pat => pat.data));
-        setTotalPatientCount(response.length);
-        setIsLoading(false);
-      },
-    );
+    fetchPatientsFromObservationCodeConcept(
+      covidVaccineAdministeredConcept_UUID,
+      covidVaccinationDoseAdmininstered_UUID,
+      14,
+    ).then((response: Array<any>) => {
+      setPatients(response.map(pat => pat.data));
+      setTotalPatientCount(response.length);
+      setIsLoading(false);
+    });
   }, [pageSize, currentPage]);
 
   useEffect(() => {
