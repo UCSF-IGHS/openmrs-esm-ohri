@@ -46,7 +46,7 @@ import EncounterList, {
 const columnsLab: EncounterListColumn[] = [
   {
     key: 'orderDate',
-    header: 'Date of Order',
+    header: 'Order Date',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
     },
@@ -92,7 +92,7 @@ const columnsLab: EncounterListColumn[] = [
   },
   {
     key: 'orderDate',
-    header: 'Date of Test Result',
+    header: 'Test Result Date',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
     },
