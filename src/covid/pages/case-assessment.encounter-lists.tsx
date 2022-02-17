@@ -51,7 +51,7 @@ const columns: EncounterListColumn[] = [
     key: 'encounterDate',
     header: 'Date of Assessment',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidEncounterDateTime_UUID);
+      return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
     },
     link: {
       handleNavigate: encounter => {

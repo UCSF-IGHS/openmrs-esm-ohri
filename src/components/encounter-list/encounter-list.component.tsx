@@ -253,7 +253,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const capitalize = word => word[0].toUpperCase() + word.substr(1);
 
   const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
-    const launcherTitle = `[${capitalize(action)}] ` + (form?.name || encounterForm?.name) + ` (${intent})`;
+    const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name) + ` (${intent})`;
 
     if (action === 'view') {
       launchFormWithCustomTitle(form, launcherTitle, 'view', encounterUuid, forceComponentUpdate);

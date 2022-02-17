@@ -9,7 +9,7 @@
 
 .ohriFormContainer {
   display: -webkit-flex;
-  height: 90vh;
+  height: 100vh;
   overflow-y: hidden;
 }
 
@@ -30,9 +30,17 @@
 
 .formContentBody {
   overflow-y: auto;
-  height: 77.5vh;
+  // padding-bottom: 100px;
+  margin-bottom: 100px;
   width: inherit;
   position: sticky;
+}
+
+.minifiedFormContentBody {
+  // padding-bottom: 34px !important;
+  // height: 77.5vh;
+  margin-bottom: 0px !important;
+  height: 72.5vh;
 }
 
 @media (max-width: 768px) {
@@ -42,13 +50,18 @@
 }
 
 @media(max-width: 1000px) {
-  .pageHeader {
-    margin-left: 15px;
-  }
+
 }
 
-.minifiedFormContentBody > div > div p {
-  padding-left: 1rem !important;
+:global(.patientChartWrapper) aside,
+:global(.omrs-breakpoint-gt-tablet) {
+  border-left: 1px solid #8d8d8d !important;
+}
+
+:global(.patientChartWrapper) {
+  :global(.omrs-breakpoint-gt-tablet) {
+    border-left: 1px solid #8d8d8d !important;
+  }
 }
 
 .minifiedButtons {
@@ -57,6 +70,7 @@
 
 .minifiedButtons :global(.bx--btn) {
   max-width: 50%;
+  height: 3.9rem;
 }
 
 .minifiedButtons > button {

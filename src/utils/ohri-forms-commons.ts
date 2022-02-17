@@ -3,7 +3,7 @@ import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 export const launchForm = (form: any, onUpdateParent?: () => void, title?: string) => {
   launchOHRIWorkSpace({
     title: title || form?.name,
-    screenSize: 'maximized',
+    screenSize: 'minimized',
     mode: 'enter',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
