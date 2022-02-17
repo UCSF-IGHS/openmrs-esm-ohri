@@ -91,7 +91,7 @@ const columnsLab: EncounterListColumn[] = [
     },
   },
   {
-    key: 'orderDate',
+    key: 'testResultDate',
     header: 'Date of Test Result',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
