@@ -17,6 +17,7 @@ function CTHomePatientTabs() {
         name: 'clinical_visit',
         actionText: 'Start Follow Up Visit',
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+        targetDashboard: 'hts-summary',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
       otherColumns: [
@@ -54,6 +55,7 @@ function CTHomePatientTabs() {
         name: 'clinical_visit',
         actionText: 'Start Follow Up Visit',
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
+        targetDashboard: 'hts-summary',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
       queryParams: [`value1=${new Date().toISOString().split('T')[0]}`],
