@@ -9,12 +9,12 @@
 
 .ohriFormContainer {
   display: -webkit-flex;
-  height: 90vh;
+  height: 100vh;
   overflow-y: hidden;
 }
 
 .ohriFormContainer :global(.bx--label) {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .formContent {
@@ -30,13 +30,53 @@
 
 .formContentBody {
   overflow-y: auto;
-  height: 77.5vh;
+  // padding-bottom: 100px;
+  margin-bottom: 100px;
   width: inherit;
   position: sticky;
+}
+
+.minifiedFormContentBody {
+  // padding-bottom: 34px !important;
+  // height: 77.5vh;
+  margin-bottom: 0px !important;
+  height: 72.5vh;
 }
 
 @media (max-width: 768px) {
   .ohriFormContainer {
     height: 100vh;
   }
+}
+
+@media(max-width: 1000px) {
+
+}
+
+:global(.patientChartWrapper) aside,
+:global(.omrs-breakpoint-gt-tablet) {
+  border-left: 1px solid #8d8d8d !important;
+}
+
+:global(.patientChartWrapper) {
+  :global(.omrs-breakpoint-gt-tablet) {
+    border-left: 1px solid #8d8d8d !important;
+  }
+}
+
+.minifiedButtons {
+  width: 100%;
+}
+
+.minifiedButtons :global(.bx--btn) {
+  max-width: 50%;
+  height: 3.9rem;
+}
+
+.minifiedButtons > button {
+  width: 50%;
+}
+
+.markdownContainer {
+  padding: 1rem;
 }

@@ -63,11 +63,13 @@
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "3.x",
+    "@openmrs/esm-patient-common-lib": "3.x",
     "carbon-components": "^10.19.0",
     "carbon-icons": "^7.0.7",
     "dayjs": "^1.8.16",
     "react": "^16.9.0",
-    "react-i18next": "^11.3.4"
+    "react-i18next": "^11.3.4",
+    "swr": "^1.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -95,6 +97,7 @@
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "babel-preset-minify": "^0.5.1",
     "browserslist-config-openmrs": "^1.0.0",
     "carbon-components": "^10.19.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -132,6 +135,8 @@
     "webpack": "^5.37.0",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^4.2.1"
+    "webpack-dev-server": "^4.2.1",
+    "swr": "^1.1.2",
+    "@openmrs/esm-patient-common-lib": "next"
   }
 }

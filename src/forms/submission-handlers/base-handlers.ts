@@ -57,7 +57,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       }
     }
     if (obs) {
-      field.value = obs;
+      field.value = JSON.parse(JSON.stringify(obs));
       if (rendering == 'radio' || rendering == 'content-switcher') {
         getConcept(field.questionOptions.concept, 'custom:(uuid,display,datatype:(uuid,display,name))').subscribe(
           result => {
@@ -85,9 +85,10 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         field.value.value = obs.value.uuid;
         return obs.value == ConceptTrue;
       }
+      if (rendering == 'fixed-value') {
+        return field['fixedValue'];
+      }
       return obs.value?.uuid;
-    } else if (rendering == 'fixed-value') {
-      return field.value;
     }
     return '';
   },

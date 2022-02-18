@@ -96,7 +96,7 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType }) => {
+const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType, patientUrl }) => {
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -130,7 +130,7 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
             } else {
               launchForm(form);
             }
-            navigate({ to: `${basePath}${patientUuid}/chart/hts-summary` });
+            navigate({ to: patientUrl });
           }}
         />
       )}
@@ -227,6 +227,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
               form={applyFormIntent(launchableForm.intent, form)}
               encounterType={launchableForm.encounterType || associatedEncounterType}
               key={patientUuid}
+              patientUrl={patientWithMeta.patientUrl}
             />
           ) : (
             <></>
@@ -252,10 +253,14 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   useEffect(() => {
     if (!isReportingCohort) {
       getCohort(cohortId, 'full').then(results => {
-        const patients = results.cohortMembers.map(member => ({
-          ...constructPatient(member),
-          ...setListMeta(member, results.location),
-        }));
+        const patients = results.cohortMembers.map(member => {
+          let patient = constructPatient(member);
+          member['patientUrl'] = patient.url;
+          return {
+            ...patient,
+            ...setListMeta(member, results.location),
+          };
+        });
 
         //Fix to enable pagination
         setAllPatients(patients);
@@ -267,8 +272,10 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     } else {
       getReportingCohortMembers(cohortId, queryParams).then(results => {
         const patients = results.map(({ data }) => {
+          let patient = constructPatient(data);
+          data['patientUrl'] = patient.url;
           return {
-            ...constructPatient(data),
+            ...patient,
             ...setListMeta(data, null),
           };
         });

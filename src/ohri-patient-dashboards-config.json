@@ -15,7 +15,8 @@
           "notes-summary-dashboard",
           "programs-summary-dashboard",
           "results-summary-dashboard",
-          "test-results-summary-dashboard"
+          "test-results-summary-dashboard",
+          "encounters-summary-dashboard"
         ]
       }
     }

@@ -11,8 +11,8 @@
         "behaviours": [
           {
             "intent": "*",
-            "subform_intent": "COVID_LAB_ORDER_EMBED",
-            "readonly": "false"
+            "subform_intent": "COVID_LAB_ORDER_RESULT_EMBED",
+            "readonly": "true"
           }
         ]
       }
@@ -157,7 +157,7 @@
                 "answers": [
                   {
                     "label": "yes",
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
                   },
                   {
                     "label": "no",
@@ -372,46 +372,20 @@
               ]
             },
             {
-              "label": "Status",
+              "label": "Status Completed",
               "type": "obs",
               "questionOptions": {
                 "rendering": "fixed-value",
-                "concept": "6681366c-2174-489a-b951-13a1404935bf",
-                "conceptMappings": [
-                  {
-                    "type": "OCT",
-                    "value": "LabOrderStatus"
-                  }
-                ],
-                "answers": [
-                  {
-                    "concept": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Pending status",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "162866"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "307824009"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "162866"
-                      }
-                    ]
-                  }
-                ]
+                "concept": "6681366c-2174-489a-b951-13a1404935bf"
               },
-              "id": "status",
+              "id": "statusCompleted",
               "behaviours": [
                 {
                   "intent": "*",
                   "hide": {
-                    "hideWhenExpression": "wasTheTestPerformed !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                    "hideWhenExpression": "wasTheTestPerformed === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   },
-                  "value": "165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  "value": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                 }
               ]
             },
@@ -429,8 +403,26 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
+                }
+              ]
+            },
+            {
+              "label": "Status Not Performed",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "fixed-value",
+                "concept": "6681366c-2174-489a-b951-13a1404935bf"
+              },
+              "id": "statusNotPerformed",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "hide": {
+                    "hideWhenExpression": "wasTheTestPerformed === 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "value": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                 }
               ]
             },
@@ -494,7 +486,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "testRequested !== '165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "testRequested !== '165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -559,7 +551,7 @@
                   "intent": "*",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "testRequested !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "testRequested !== '165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -598,7 +590,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Lab Result"
+      "display": "Lab Result"
     }
   ],
   "processor": "EncounterFormProcessor",

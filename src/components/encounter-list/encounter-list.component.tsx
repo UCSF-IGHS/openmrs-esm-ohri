@@ -3,7 +3,6 @@ import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableS
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../empty-state/empty-state.component';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
 import { applyFormIntent, getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
@@ -12,7 +11,12 @@ import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
-import { launchForm, launchFormInEditMode, launchFormInViewMode } from '../../utils/ohri-forms-commons';
+import {
+  launchForm,
+  launchFormInEditMode,
+  launchFormInViewMode,
+  launchFormWithCustomTitle,
+} from '../../utils/ohri-forms-commons';
 
 export interface EncounterListColumn {
   key: string;
@@ -39,21 +43,30 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   else return encounter[param] ? encounter[param] : '--';
 }
 
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
-  const obs = encounter?.obs.find(observation => observation.concept.uuid === obsConcept);
+export function formatDateTime(dateString: string): any {
+  const format = 'YYYY-MM-DDTHH:mm:ss';
+  if (dateString.includes('.')) {
+    dateString = dateString.split('.')[0];
+  }
+  return moment(dateString, format, true).toDate();
+}
 
+function obsArrayDateComparator(left, right) {
+  return formatDateTime(right.obsDatetime) - formatDateTime(left.obsDatetime);
+}
+
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+  const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
+  const obs = allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
-
   if (!obs) {
     return '--';
   }
-
   if (isDate) {
     return moment(obs.value).format('DD-MMM-YYYY');
   }
-
   if (typeof obs.value === 'object') {
     return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
@@ -177,10 +190,11 @@ const EncounterList: React.FC<EncounterListProps> = ({
                 onClick={e => {
                   e.preventDefault();
                   if (actionItem.mode == 'edit') {
-                    launchFormInEditMode(
+                    launchEncounterForm(
                       applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      actionItem.intent,
+                      'edit',
                       actionItem.encounterUuid,
-                      forceComponentUpdate,
                     );
                   } else if (actionItem.mode == 'enter') {
                     launchForm(
@@ -188,10 +202,11 @@ const EncounterList: React.FC<EncounterListProps> = ({
                       forceComponentUpdate,
                     );
                   } else {
-                    launchFormInViewMode(
-                      getForm(actionItem.form.package, actionItem.form.name),
+                    launchEncounterForm(
+                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      actionItem.intent,
+                      'view',
                       actionItem.encounterUuid,
-                      forceComponentUpdate,
                     );
                   }
                 }}
@@ -206,14 +221,24 @@ const EncounterList: React.FC<EncounterListProps> = ({
               itemText={t('viewEncounter', 'View')}
               onClick={e => {
                 e.preventDefault();
-                viewEncounter(encounter.uuid);
+                launchEncounterForm(
+                  form.view ? getForm(form.package, form.view) : encounterForm,
+                  '*',
+                  'view',
+                  encounter.uuid,
+                );
               }}
             />
             <OverflowMenuItem
               itemText={t('editEncounter', 'Edit')}
               onClick={e => {
                 e.preventDefault();
-                editEncounter(encounter.uuid);
+                launchEncounterForm(
+                  form.view ? getForm(form.package, form.view) : encounterForm,
+                  '*',
+                  'edit',
+                  encounter.uuid,
+                );
               }}
             />
           </OverflowMenu>
@@ -225,13 +250,18 @@ const EncounterList: React.FC<EncounterListProps> = ({
   };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
-  const launchEncounterForm = (form?: any) => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
-      title: form?.name || encounterForm?.name,
-      screenSize: 'maximize',
-      mode: 'enter',
-      state: { updateParent: forceComponentUpdate, formJson: form || encounterForm },
-    });
+  const capitalize = word => word[0].toUpperCase() + word.substr(1);
+
+  const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
+    const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name) + ` (${intent})`;
+
+    if (action === 'view') {
+      launchFormWithCustomTitle(form, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
+    } else if (action === 'edit') {
+      launchFormWithCustomTitle(form, launcherTitle, 'edit', encounterUuid, forceComponentUpdate);
+    } else {
+      launchFormWithCustomTitle(form, launcherTitle, 'enter', '', forceComponentUpdate);
+    }
   };
 
   const formLauncher = useMemo(() => {

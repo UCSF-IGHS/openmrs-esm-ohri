@@ -5,10 +5,10 @@ on:
     tags:
       - '*'
     branches:
-      - '*'  
+      - '*'
 
   pull_request:
-    branches: 
+    branches:
       - '*'
     types: [opened, synchronize]
   release:
@@ -28,7 +28,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "16.x"
       - run: npm install
       - run: npm run lint
       - run: npm run build --if-present
@@ -44,13 +44,13 @@ jobs:
 
     needs: pre_release
 
-    if: ${{ github.ref == 'refs/heads/dev' }} 
+    if: ${{ github.ref == 'refs/heads/dev' }}
 
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
       - name: Compute Timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV      
+        run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - name: Prepare Directory
         shell: bash
         run: |
@@ -65,15 +65,15 @@ jobs:
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
 
-            port: ${{ secrets.HISTAC_PORT }} 
+            port: ${{ secrets.HISTAC_PORT }}
 
   pre_release:
     runs-on: ubuntu-latest
 
     needs: build
-    
-    if: ${{ github.event.pull_request.merged }}
-     
+
+    if: ${{ github.event_name == 'push' }}
+
     steps:
       - uses: actions/checkout@v2
       - name: Download Artifacts
@@ -81,7 +81,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "16.x"
           registry-url: "https://registry.npmjs.org"
       - run: npm install
       - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
@@ -94,7 +94,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: build
-    
+
     if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
@@ -104,7 +104,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "16.x"
           registry-url: "https://registry.npmjs.org"
       - run: npm install
       - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
@@ -115,10 +115,10 @@ jobs:
   working:
     runs-on: ubuntu-latest
 
-    needs: pre_release 
-    
-    if: ${{ github.ref == 'refs/heads/working' }} 
-    
+    needs: pre_release
+
+    if: ${{ github.ref == 'refs/heads/working' }}
+
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
       - uses: garygrossgarten/github-action-ssh@release
@@ -133,10 +133,10 @@ jobs:
   demo:
     runs-on: ubuntu-latest
 
-    needs: pre_demo 
-    
+    needs: pre_demo
+
     if: startsWith(github.ref, 'refs/tags/v')
-    
+
     steps:
       # Update the Microfrontends to reflect what we have in the Working branch
       - uses: garygrossgarten/github-action-ssh@release
@@ -146,5 +146,21 @@ jobs:
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
-            port: ${{ secrets.HISTAC_PORT }} 
-  
+            port: ${{ secrets.HISTAC_PORT }}
+
+  sandbox_demo:
+    runs-on: ubuntu-latest
+
+    needs: pre_demo
+
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      # Update the Microfrontends to reflect what we have in the Working branch
+      - uses: garygrossgarten/github-action-ssh@release
+        name: Run the Update MicroFronEnd Script
+        with:
+          command: cd /usr/share/tomcat/microfrontends/ && /bin/bash update_microfrontends.sh
+          host: ${{ secrets.SANDBOX_HOST }}
+          username: ${{ secrets.SANDBOX_USERNAME }}
+          privateKey: ${{ secrets.SANDBOX_KEY}}

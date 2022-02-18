@@ -26,6 +26,7 @@ function OHRIPatientTabs() {
             actionText: 'Start Pre-test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
+            targetDashboard: 'hts-summary',
           }}
         />
       </Tab>
@@ -40,6 +41,7 @@ function OHRIPatientTabs() {
             actionText: 'Start HIV Test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
+            targetDashboard: 'hts-summary',
           }}
         />
       </Tab>
@@ -54,6 +56,7 @@ function OHRIPatientTabs() {
             actionText: 'Start Post-test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
+            targetDashboard: 'hts-summary',
           }}
         />
       </Tab>

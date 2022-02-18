@@ -21,6 +21,7 @@ import {
   covidPresentSymptonsName_UUID,
   covidPatientStatusConcept_UUID,
   covidOutcomeUUID,
+  covidEncounterDateTime_UUID,
 } from '../../constants';
 
 interface CovidOverviewListProps {
@@ -50,7 +51,7 @@ const columns: EncounterListColumn[] = [
     key: 'encounterDate',
     header: 'Date of Assessment',
     getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
+      return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
     },
     link: {
       handleNavigate: encounter => {
@@ -67,7 +68,7 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'symptomatic',
-    header: 'Symptomatic',
+    header: 'Presentation',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID, false, true);
     },
@@ -87,21 +88,35 @@ const columns: EncounterListColumn[] = [
         form: { name: 'covid_case', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'View Case Form',
+        label: 'View Assessment',
         mode: 'view',
+      },
+      {
+        form: { name: 'covid_assessment', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'View Case',
+        mode: 'view',
+      },
+      {
+        form: { name: 'covid_assessment', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Edit Assessment',
+        mode: 'edit',
       },
       {
         form: { name: 'covid_case', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'Edit Case Form',
+        label: 'Edit Case',
         mode: 'edit',
       },
       {
         form: { name: 'covid_outcome', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'Edit Outcome Form',
+        label: 'Add/Edit Outcome',
         mode: 'edit',
       },
     ],

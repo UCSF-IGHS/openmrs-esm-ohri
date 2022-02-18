@@ -3,7 +3,7 @@ import styles from './ohri-form.scss';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  useCurrentPatient,
+  usePatient,
   useSessionUser,
   showToast,
   attach,
@@ -19,6 +19,8 @@ import { OHRIEncounterForm } from './components/encounter/ohri-encounter-form';
 import { isTrue } from './utils/boolean-utils';
 import { PatientBanner } from '../components/patient-banner/patient-banner.component';
 import { useWorkspaceLayout } from './utils/useWorkspaceLayout';
+import { Button } from 'carbon-components-react';
+import ReactMarkdown from 'react-markdown';
 
 interface OHRIFormProps {
   formJson: OHRIFormSchema;
@@ -46,7 +48,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
 }) => {
   const [currentProvider, setCurrentProvider] = useState(null);
   const [location, setEncounterLocation] = useState(null);
-  const [, patient] = useCurrentPatient(patientUUID);
+  const { patient } = usePatient(patientUUID);
   const session = useSessionUser();
   const [initialValues, setInitialValues] = useState({});
   const encDate = new Date();
@@ -169,20 +171,31 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             <LoadingIcon />
           ) : (
             <div className={styles.ohriFormContainer}>
-              <OHRIFormSidebar
-                scrollAblePages={scrollAblePages}
-                selectedPage={selectedPage}
-                mode={mode}
-                onCancel={onCancel}
-                handleClose={handleClose}
-                values={props.values}
-                setValues={props.setValues}
-                allowUnspecifiedAll={formJson.allowUnspecifiedAll}
-                defaultPage={formJson.defaultPage}
-              />
+              {workspaceLayout != 'minimized' && (
+                <OHRIFormSidebar
+                  scrollAblePages={scrollAblePages}
+                  selectedPage={selectedPage}
+                  mode={mode}
+                  onCancel={onCancel}
+                  handleClose={handleClose}
+                  values={props.values}
+                  setValues={props.setValues}
+                  allowUnspecifiedAll={formJson.allowUnspecifiedAll}
+                  defaultPage={formJson.defaultPage}
+                />
+              )}
+
               <div className={styles.formContent}>
                 <PatientBanner patient={patient} />
-                <div className={styles.formContentBody}>
+                {form.markdown && (
+                  <div className={styles.markdownContainer}>
+                    <ReactMarkdown children={form.markdown.join('\n')} />
+                  </div>
+                )}
+                <div
+                  className={`${styles.formContentBody}
+                    ${workspaceLayout == 'minimized' ? `${styles.minifiedFormContentBody}` : ''}
+                  `}>
                   <OHRIEncounterForm
                     formJson={form}
                     patient={patient}
@@ -202,6 +215,19 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
                     workspaceLayout={workspaceLayout}
                   />
                 </div>
+                {workspaceLayout == 'minimized' && (
+                  <div className={styles.minifiedButtons}>
+                    <Button
+                      kind="secondary"
+                      onClick={() => {
+                        onCancel && onCancel();
+                        handleClose && handleClose();
+                      }}>
+                      {mode == 'view' ? 'Close' : 'Cancel'}
+                    </Button>
+                    {mode != 'view' && <Button type="submit">Save</Button>}
+                  </div>
+                )}
               </div>
             </div>
           )}

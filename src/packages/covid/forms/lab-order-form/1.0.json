@@ -69,6 +69,13 @@
                   "hide": {
                     "hideWhenExpression": "false"
                   }
+                },
+                {
+                  "intent": "COVID_LAB_ORDER_RESULT_EMBED",
+                  "required": "false",                
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
                 }
               ]
             },
@@ -247,7 +254,7 @@
                   }
                 ]
               },
-              "id": "reasonsForTesting",
+              "id": "labOrderReasonsForTesting",
               "behaviours": [
                 {
                   "intent": "*",
@@ -276,7 +283,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('reasonsForTesting', '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    "hideWhenExpression": "!includes('labOrderReasonsForTesting', '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   }
                 }
               ]
@@ -319,16 +326,9 @@
                 {
                   "intent": "*",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty('testRequested')"
                   },
                   "value": "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
-                },
-                {
-                  "intent": "COVID_LAB_ORDER_EMBED",
-                  "hide": {
-                    "hideWhenExpression": "true"
-                  },
-                  "value": "165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
                 }
               ]
             },
@@ -372,7 +372,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "COVID Lab Order"
+      "display": "Lab Order"
     },
     {
       "intent": "COVID_LAB_ORDER_EMBED",

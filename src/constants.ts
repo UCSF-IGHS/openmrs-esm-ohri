@@ -9,7 +9,7 @@ export const basePath = '${openmrsSpaBase}/patient/';
 export const encounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
   'encounterProviders:(uuid,provider:(uuid,name)),' +
-  'obs:(uuid,obsDatetime,groupMembers,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name),' +
+  'obs:(uuid,obsDatetime,voided,groupMembers,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name),' +
   'names:(uuid,conceptNameType,name))))';
 
 // Final HIV Test Result Concepts
@@ -92,6 +92,7 @@ export const covidComorbidityPresentConcept_UUID = '166020AAAAAAAAAAAAAAAAAAAAAA
 export const covidUnderComorbidityConcept_UUID = '0651869c-6e90-48d6-b25c-406270c76bee';
 export const covidPresentSymptonsName_UUID = '12568215-ae1c-42ec-b7e8-8818d2761f46';
 export const covidPatientStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
+export const covidEncounterDateTime_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Covid Lab Order
 export const covidLabOrderDate_UUID = '162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -106,6 +107,7 @@ export const covidRapidTestResultDate_UUID = 'af159c77-bc5d-46dd-90d9-bcbffb2226
 export const covidDiagnosticPcrResult_UUID = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
 export const covidDiagnorticPcrResultDate_UUID = '4a77ab44-0323-490e-96be-e168c0e5c9de';
 export const covidTestStatusConcept_UUID = '6681366c-2174-489a-b951-13a1404935bf';
+export const covidTestResultDate_UUID = '163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // Covid Vaccination
 export const covidVaccinationEncounterUUID = '5b37ce7a-c55e-4226-bdc8-5af04025a6de';
@@ -117,6 +119,7 @@ export const covidVaccinationTypeConcept_UUID = 'a31d1148-bbcc-4ad6-a015-8359d66
 export const covidVaccinationAdministeredConcept_UUID = '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Which date COVID-19 vaccine was administered?
 export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const covidVaccinationDoseAdmininstered_UUID = '97bf47f9-0ba7-4d00-99bd-8939cd586072';
+export const covidVaccineAdministeredConcept_UUID = 'e41fbe17-4aee-4a44-950b-6676d6e0ede2';
 
 // HTS HIV
 export const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';

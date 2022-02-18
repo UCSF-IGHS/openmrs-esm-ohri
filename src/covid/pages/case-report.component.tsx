@@ -42,7 +42,7 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
 
   //TODO: Obtain clarity on best approach to launch form
   const launchCaseReportForm = (form?: any) => {
-    launchOHRIWorkSpace('ohri-forms-view-ext', {
+    launchOHRIWorkSpace({
       title: covidCaseReportForm?.name,
       state: { updateParent: forceComponentUpdate, formJson: form || covidCaseReportForm },
     });

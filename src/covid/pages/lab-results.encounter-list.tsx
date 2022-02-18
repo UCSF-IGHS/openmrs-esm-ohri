@@ -10,6 +10,7 @@ import {
   covidLabOrderEncounterType_UUID,
   covidReasonsForTestingConcep_UUID,
   covidTestResultConcept_UUID,
+  covidTestResultDate_UUID,
   covidTestResultUUID,
   covidTestStatusConcept_UUID,
   covidTestTypeUUID,
@@ -44,18 +45,6 @@ import EncounterList, {
 
 const columnsLab: EncounterListColumn[] = [
   {
-    key: 'encounterDate',
-    header: 'Date of Lab Test',
-    getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
-    },
-  },
-  {
     key: 'orderDate',
     header: 'Date of Order',
     getValue: encounter => {
@@ -77,13 +66,6 @@ const columnsLab: EncounterListColumn[] = [
     },
   },
   {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
-    },
-  },
-  {
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
@@ -102,6 +84,20 @@ const columnsLab: EncounterListColumn[] = [
     },
   },
   {
+    key: 'lastTestResult',
+    header: 'Test Result',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+    },
+  },
+  {
+    key: 'testResultDate',
+    header: 'Date of Test Result',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
+    },
+  },
+  {
     key: 'actions',
     header: 'Actions',
     getValue: encounter => [
@@ -109,14 +105,14 @@ const columnsLab: EncounterListColumn[] = [
         form: { name: 'covid_lab_test', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'View Lab Test',
+        label: 'View Details',
         mode: 'view',
       },
       {
         form: { name: 'covid_lab_result', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'Edit Lab Result',
+        label: 'Add/Edit Lab Result',
         mode: 'edit',
       },
       {
@@ -178,21 +174,21 @@ const columnsPending: EncounterListColumn[] = [
         form: { name: 'covid_lab_test', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'View Lab Test',
+        label: 'View Details',
         mode: 'view',
+      },
+      {
+        form: { name: 'covid_sample_collection', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Collect Sample',
+        mode: 'edit',
       },
       {
         form: { name: 'covid_lab_result', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'Edit Lab Result',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_lab_order_cancellation', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Cancel Lab Order',
+        label: 'Add/Edit Lab Result',
         mode: 'edit',
       },
     ],
@@ -237,6 +233,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             description={headerTitlePending}
             headerTitle={displayTextPending}
             dropdownText="Add"
+            hideFormLauncher={true}
             filter={pendingLabOrdersFilter}
           />
         </Tab>
