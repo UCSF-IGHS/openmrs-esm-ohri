@@ -49,21 +49,6 @@
   }
 }
 
-@media(max-width: 1000px) {
-
-}
-
-:global(.patientChartWrapper) aside,
-:global(.omrs-breakpoint-gt-tablet) {
-  border-left: 1px solid #8d8d8d !important;
-}
-
-:global(.patientChartWrapper) {
-  :global(.omrs-breakpoint-gt-tablet) {
-    border-left: 1px solid #8d8d8d !important;
-  }
-}
-
 .minifiedButtons {
   width: 100%;
 }
@@ -79,4 +64,8 @@
 
 .markdownContainer {
   padding: 1rem;
+}
+
+aside[class*='-esm-patient-chart__workspace-window__container__'] {
+  border-left: 1px solid #8d8d8d !important;
 }
