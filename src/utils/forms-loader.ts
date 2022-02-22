@@ -117,7 +117,7 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
   const jsonBuffer = JSON.parse(JSON.stringify(originalJson));
   // Set the default page based on the current intent
   jsonBuffer.defaultPage = jsonBuffer.availableIntents?.find(
-    candidate => candidate.intent === intent?.intent || intent,
+    candidate => candidate.intent === (intent?.intent || intent),
   )?.defaultPage;
 
   // filter form-level markdown behaviour
@@ -144,12 +144,14 @@ export function applyFormIntent(intent, originalJson, parentOverrides?: Array<Be
       );
     }
     // TODO: Apply parentOverrides to pages if applicable
-    const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === intent?.intent || intent);
+    const pageBehaviour = page.behaviours?.find(behaviour => behaviour.intent === (intent?.intent || intent));
     if (pageBehaviour) {
       page.hide = pageBehaviour?.hide;
+      page.readonly = pageBehaviour?.readonly;
     } else {
       const fallBackBehaviour = page.behaviours?.find(behaviour => behaviour.intent === '*');
       page.hide = fallBackBehaviour?.hide;
+      page.readonly = fallBackBehaviour?.readonly;
     }
 
     // filter page-level markdown behaviour
