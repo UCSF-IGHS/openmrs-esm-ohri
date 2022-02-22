@@ -126,9 +126,9 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
           itemText={actionText}
           onClick={() => {
             if (encounterUuid) {
-              launchFormInEditMode(form, encounterUuid);
+              launchFormInEditMode(form, encounterUuid, null, null, 'ohri-forms');
             } else {
-              launchForm(form);
+              launchForm(form, null, null, 'ohri-forms');
             }
             navigate({ to: patientUrl });
           }}

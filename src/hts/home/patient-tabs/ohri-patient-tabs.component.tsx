@@ -13,7 +13,7 @@ function HTSHomePatientTabs() {
 
   const tabsConfigs = [
     {
-      label: t('waitingForPreTestCounseling', 'Waiting for pre-test counselling'),
+      label: t('waitingForPreTestCounseling', 'Waiting for pre-test counselling-'),
       cohortId: preTestCounsellingCohort,
       cohortSlotName: 'pre-test-counseling-slot',
       associatedEncounterType: htsRetrospectiveEncounterType,
