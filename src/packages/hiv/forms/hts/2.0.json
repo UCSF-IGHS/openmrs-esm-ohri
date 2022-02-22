@@ -3,6 +3,16 @@
   "pages": [
     {
       "label": "Eligibility Screening",
+      "behaviours": [
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        }
+      ],
       "sections": [
         {
           "label": "Testing history",
@@ -747,6 +757,16 @@
     },
     {
       "label": "Approach",
+      "behaviours": [
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        }
+      ],
       "sections": [
         {
           "label": "Approach",
@@ -1117,6 +1137,16 @@
     },
     {
       "label": "Pretest Counselling",
+      "behaviours": [
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        }
+      ],
       "sections": [
         {
           "label": "Pretest Counselling",
@@ -1298,10 +1328,24 @@
           }
         },
         {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        },
+        {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
           "intent": "*",
           "hide": {
             "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
+        },
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
         }
       ],
       "sections": [
@@ -1512,6 +1556,16 @@
           "hide": {
             "hideWhenExpression": "false"
           }
+        },
+        {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
         },
         {
           "intent": "*",
@@ -2593,6 +2647,16 @@
           }
         },
         {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        },
+        {
           "intent": "*",
           "hide": {
             "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
@@ -2806,10 +2870,24 @@
           }
         },
         {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        },
+        {
           "intent": "*",
           "hide": {
             "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
+        },
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
         }
       ],
       "sections": [
@@ -2894,10 +2972,20 @@
           }
         },
         {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
           "intent": "*",
           "hide": {
             "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
           }
+        },
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
         }
       ],
       "sections": [
@@ -3261,10 +3349,20 @@
           }
         },
         {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
           "intent": "*",
           "hide": {
             "hideWhenExpression": "finalHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
           }
+        },
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
         }
       ],
       "sections": [
@@ -3431,7 +3529,7 @@
     {
       "intent": "HTS_POSTTEST",
       "display": "HTS Post Test",
-      "defaultPage": "Post Test Counselling"
+      "defaultPage": "Referrals"
     }
   ],
   "processor": "EncounterFormProcessor",
