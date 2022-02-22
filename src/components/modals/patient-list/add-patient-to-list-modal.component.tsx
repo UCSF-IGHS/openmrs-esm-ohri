@@ -4,10 +4,11 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
-const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; displayText?: string }> = ({
-  patientUuid,
-  displayText,
-}) => {
+const AddPatientToListOverflowMenuItem: React.FC<{
+  patientUuid: string;
+  displayText?: string;
+  excludeCohorts?: Array<string>;
+}> = ({ patientUuid, displayText, excludeCohorts }) => {
   const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
@@ -22,6 +23,7 @@ const AddPatientToListOverflowMenuItem: React.FC<{ patientUuid: string; displayT
           close={() => setIsOpen(false)}
           patientUuid={patientUuid}
           title={`Add ${patientDisplay} to list`}
+          excludeCohorts={excludeCohorts}
         />
       )}
       <li className="bx--overflow-menu-options__option">
@@ -47,7 +49,8 @@ export const AddPatientToListModal: React.FC<{
   patientUuid: string;
   title?: string;
   cohortType?: string;
-}> = ({ isOpen, close, patientUuid, cohortType, title }) => {
+  excludeCohorts?: Array<string>;
+}> = ({ isOpen, close, patientUuid, cohortType, title, excludeCohorts }) => {
   const [cohorts, setCohorts] = useState<Array<{ uuid: string; name: string }>>([]);
   const [alreadySubscribedCohorts, setAlreadySubscribedCohorts] = useState([]);
   const [currentMemberships, setCurrentMemberships] = useState([]);
@@ -59,9 +62,12 @@ export const AddPatientToListModal: React.FC<{
     Promise.all([getCohorts(cohortType), getPatientListsForPatient(patientUuid)]).then(
       ([allCohortsRes, currentCohortMemberships]) => {
         // filter out cohorts in which this patient is already a member
-        const filteredCohorts = allCohortsRes.filter(
+        let filteredCohorts = allCohortsRes.filter(
           cohort => !currentCohortMemberships.some(membership => cohort.uuid == membership.cohort.uuid),
         );
+        if (excludeCohorts && excludeCohorts.length) {
+          filteredCohorts = filteredCohorts.filter(cohort => !excludeCohorts.includes(cohort.name));
+        }
         setCohorts(filteredCohorts);
         setCurrentMemberships(currentCohortMemberships);
         setAlreadySubscribedCohorts(currentCohortMemberships.map(membership => membership.cohort));

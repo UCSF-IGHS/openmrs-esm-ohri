@@ -146,6 +146,9 @@ interface CohortPatientListProps {
   excludeColumns?: Array<string>;
   queryParams?: Array<string>;
   associatedEncounterType?: string;
+  addPatientToListOptions?: {
+    excludeCohorts?: Array<string>;
+  };
   launchableForm?: {
     package: string;
     name: string;
@@ -170,6 +173,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   queryParams,
   associatedEncounterType,
   launchableForm,
+  addPatientToListOptions,
 }) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -232,7 +236,11 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ) : (
             <></>
           )}
-          <AddPatientToListOverflowMenuItem patientUuid={patientUuid} displayText="Move to list" />
+          <AddPatientToListOverflowMenuItem
+            patientUuid={patientUuid}
+            displayText="Move to list"
+            excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
+          />
         </OverflowMenu>
       ),
     };
