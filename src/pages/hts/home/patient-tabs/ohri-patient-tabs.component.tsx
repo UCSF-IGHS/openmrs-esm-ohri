@@ -25,7 +25,7 @@ function OHRIPatientTabs() {
           launchableForm={{
             package: formPackage,
             name: formName,
-            intent: 'HTS_RETROSPECTIVE',
+            intent: 'HTS_PRETEST',
             actionText: 'Start Pre-test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,

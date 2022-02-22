@@ -1,15 +1,22 @@
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
-export const launchForm = (form: any, onUpdateParent?: () => void, title?: string) => {
+export const launchForm = (form: any, onUpdateParent?: () => void, title?: string, workspaceName?: string) => {
   launchOHRIWorkSpace({
     title: title || form?.name,
     screenSize: 'minimized',
     mode: 'enter',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
+    workspaceName,
   });
 };
-export const launchFormInEditMode = (form: any, encounterUuid: string, onUpdateParent?: () => void, title?: string) => {
+export const launchFormInEditMode = (
+  form: any,
+  encounterUuid: string,
+  onUpdateParent?: () => void,
+  title?: string,
+  workspaceName?: string,
+) => {
   launchOHRIWorkSpace({
     title: title || form.name,
     encounterUuid: encounterUuid,
@@ -17,9 +24,16 @@ export const launchFormInEditMode = (form: any, encounterUuid: string, onUpdateP
     mode: 'edit',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
+    workspaceName,
   });
 };
-export const launchFormInViewMode = (form: any, encounterUuid: string, onUpdateParent?: () => void, title?: string) => {
+export const launchFormInViewMode = (
+  form: any,
+  encounterUuid: string,
+  onUpdateParent?: () => void,
+  title?: string,
+  workspaceName?: string,
+) => {
   launchOHRIWorkSpace({
     title: title || form.name,
     encounterUuid: encounterUuid,
@@ -27,6 +41,7 @@ export const launchFormInViewMode = (form: any, encounterUuid: string, onUpdateP
     mode: 'view',
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
+    workspaceName,
   });
 };
 
