@@ -157,7 +157,7 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
     if (data.entry?.length) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
     }
-    return '--';
+    return '';
   });
 }
 
@@ -178,7 +178,7 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
     if (data.entry?.length) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
     }
-    return '--';
+    return '';
   });
 }
 
