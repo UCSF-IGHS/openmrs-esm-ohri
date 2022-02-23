@@ -186,7 +186,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               )}
 
               <div className={styles.formContent}>
-                <PatientBanner patient={patient} />
+                {workspaceLayout != 'minimized' && <PatientBanner patient={patient} />}
                 {form.markdown && (
                   <div className={styles.markdownContainer}>
                     <ReactMarkdown children={form.markdown.join('\n')} />

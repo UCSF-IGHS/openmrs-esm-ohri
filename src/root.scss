@@ -88,11 +88,6 @@ aside {
 
 // Login Overrides
 
-:global(.-esm-login__styles__center___1ICpH) {
-  text-align: left;
-}
-
-:global(.-esm-login__styles__center___1ICpH) > img {
-  width: 120px;
-  max-width: 60%;
+div[class*='-esm-login__styles__center'] > img {
+  width: 140px; // design has 120px
 }
