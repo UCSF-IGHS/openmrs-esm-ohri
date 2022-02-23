@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Home32, ListBulleted32, Medication32, Coronavirus32, Calendar32 } from '@carbon/icons-react';
 import { SideNavLink, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { ExtensionSlot, navigate } from '@openmrs/esm-framework';
+import styles from '../utils/sidenav-links.scss';
 
 export const createOHRIDashboardLink = meta => {
   const NavItem: React.FC<{}> = props => {
+    const [isSelected, setIsSelected] = useState(false);
+
+    const toggleHighlightedItem = useCallback(evt => {
+      if (!meta.isFolder) {
+        setIsSelected(evt['detail'].newUrl.includes(`${window.spaBase}/dashboard/${meta.name}`));
+      }
+    }, []);
+
+    useEffect(() => {
+      setIsSelected(location.href.includes(`${window.spaBase}/dashboard/${meta.name}`));
+      window.addEventListener('single-spa:before-routing-event', toggleHighlightedItem);
+      return () => window.removeEventListener('single-spa:before-routing-event', toggleHighlightedItem);
+    }, []);
+
     if (meta.isFolder) {
       return (
         <SideNavMenu renderIcon={meta.config.icon} title={meta.title}>
@@ -19,7 +34,8 @@ export const createOHRIDashboardLink = meta => {
           onClick={e => {
             e.preventDefault();
             navigate({ to: `${window.spaBase}/dashboard/${meta.name}` });
-          }}>
+          }}
+          className={isSelected ? styles.currentNavItem : ''}>
           {meta.title}
         </SideNavLink>
       );
@@ -30,7 +46,8 @@ export const createOHRIDashboardLink = meta => {
           onClick={e => {
             e.preventDefault();
             navigate({ to: `${window.spaBase}/dashboard/${meta.name}` });
-          }}>
+          }}
+          className={isSelected ? styles.currentNavItem : ''}>
           {meta.title}
         </SideNavMenuItem>
       );
@@ -70,7 +87,7 @@ export const pharmacyDashboardMeta = {
 
 export const hivFolderDashboardMeta = {
   name: 'hiv',
-  slot: 'hiv-dashboard-slot',
+  slot: 'ohri-hiv-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home32 },
   isFolder: true,
   title: 'HIV',

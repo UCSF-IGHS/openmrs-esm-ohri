@@ -313,7 +313,7 @@ function setupOpenMRS() {
       },
       {
         id: 'care-and-treatment-dashboard-ext',
-        slot: 'hiv-dashboard-slot',
+        slot: 'ohri-hiv-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(careAndTreatmentDashboardMeta), options),
         meta: careAndTreatmentDashboardMeta,
         online: true,
@@ -332,7 +332,7 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-dashboard-ext',
-        slot: 'hiv-dashboard-slot',
+        slot: 'ohri-hiv-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(htsDashboardMeta), options),
         meta: htsDashboardMeta,
         online: true,
