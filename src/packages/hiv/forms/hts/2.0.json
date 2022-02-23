@@ -3518,8 +3518,7 @@
     },
     {
       "intent": "HTS_PRETEST",
-      "display": "HTS Pretest",
-      "defaultPage": "Pretest Counselling"
+      "display": "HTS Pretest"
     },
     {
       "intent": "HTS_HIVTEST",
