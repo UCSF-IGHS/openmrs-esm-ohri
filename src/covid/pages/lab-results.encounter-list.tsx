@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
 import { Tabs, Tab, Tag } from 'carbon-components-react';
-import EmptyState from '../../components/empty-state/empty-state.component';
 
 import {
-  covidClientsWithPendingLabResults,
   covidLabOrderDate_UUID,
   covidLabOrderEncounterType_UUID,
   covidReasonsForTestingConcep_UUID,
   covidTestResultConcept_UUID,
   covidTestResultDate_UUID,
-  covidTestResultUUID,
   covidTestStatusConcept_UUID,
-  covidTestTypeUUID,
   covidTypeofTestConcept_UUID,
-  covid_Assessment_EncounterUUID,
 } from '../../constants';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-interface CovidOverviewListProps {
-  patientUuid: string;
-}
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
@@ -35,13 +27,6 @@ export const covidEncounterRepresentation =
 interface CovidLabWidgetProps {
   patientUuid: string;
 }
-
-//Generic Component Import
-import EncounterList, {
-  EncounterListColumn,
-  getObsFromEncounter,
-  getEncounterValues,
-} from '../../components/encounter-list/encounter-list.component';
 
 const columnsLab: EncounterListColumn[] = [
   {
@@ -100,29 +85,35 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => [
-      {
-        form: { name: 'covid_lab_test', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Details',
-        mode: 'view',
-      },
-      {
-        form: { name: 'covid_lab_result', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Add/Edit Lab Result',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_lab_order_cancellation', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Cancel Lab Order',
-        mode: 'edit',
-      },
-    ],
+    getValue: encounter => {
+      const baseActions = [
+        {
+          form: { name: 'covid_lab_test', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'covid_lab_result', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Add/Edit Lab Result',
+          mode: 'edit',
+        },
+      ];
+      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      if (status.includes('Pending')) {
+        baseActions.push({
+          form: { name: 'covid_lab_order_cancellation', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Cancel Lab Order',
+          mode: 'edit',
+        });
+      }
+      return baseActions;
+    },
   },
 ];
 
