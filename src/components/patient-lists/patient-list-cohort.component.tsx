@@ -100,7 +100,7 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const continueEncounterActionText = launchableForm.editActionText || 'Continue encounter';
+  const continueEncounterActionText = launchableForm.actionText || 'Continue encounter';
 
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
@@ -146,9 +146,7 @@ interface CohortPatientListProps {
   excludeColumns?: Array<string>;
   queryParams?: Array<string>;
   associatedEncounterType?: string;
-  addPatientToListOptions?: {
-    excludeCohorts?: Array<string>;
-  };
+  addPatientToListOptions?: { excludeCohorts?: Array<string> };
   launchableForm?: {
     package: string;
     name: string;

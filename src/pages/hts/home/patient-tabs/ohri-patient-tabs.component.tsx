@@ -56,7 +56,7 @@ function OHRIPatientTabs() {
             package: formPackage,
             name: formName,
             intent: 'HTS_POSTTEST',
-            actionText: 'Start Post-test',
+            actionText: 'Start Post-test counselling',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
             targetDashboard: 'hts-summary',
