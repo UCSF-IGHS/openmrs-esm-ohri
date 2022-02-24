@@ -146,9 +146,7 @@ interface CohortPatientListProps {
   excludeColumns?: Array<string>;
   queryParams?: Array<string>;
   associatedEncounterType?: string;
-  addPatientToListOptions?: {
-    excludeCohorts?: Array<string>;
-  };
+  addPatientToListOptions?: { excludeCohorts?: Array<string> };
   launchableForm?: {
     package: string;
     name: string;
