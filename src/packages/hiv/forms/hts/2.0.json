@@ -2616,9 +2616,6 @@
                 {
                   "intent": "*",
                   "required": "false",
-                  "hide": {
-                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  },
                   "validators": [
                     {
                       "type": "date",
