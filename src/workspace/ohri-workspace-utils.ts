@@ -9,6 +9,7 @@ export interface WorkspaceContextProps {
   mode?: SessionMode;
   screenSize?: string;
   collapseSections?: Boolean;
+  workspaceName?: string;
 }
 const workspaceMeta = {
   featureName: 'ohri-forms-workspace-item',
@@ -18,7 +19,7 @@ const workspaceMeta = {
 let counter = 0;
 
 export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
-  const workspaceName = 'ohri-forms-' + counter++;
+  const workspaceName = props.workspaceName || 'ohri-forms-' + counter++;
 
   const close = () => {
     return closeWorkspace(workspaceName);

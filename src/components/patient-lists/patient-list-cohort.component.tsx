@@ -100,7 +100,7 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const continueEncounterActionText = launchableForm.editActionText || 'Continue encounter';
+  const continueEncounterActionText = launchableForm.actionText || 'Continue encounter ';
 
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
@@ -126,9 +126,9 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
           itemText={actionText}
           onClick={() => {
             if (encounterUuid) {
-              launchFormInEditMode(form, encounterUuid);
+              launchFormInEditMode(form, encounterUuid, null, null, 'ohri-forms');
             } else {
-              launchForm(form);
+              launchForm(form, null, null, 'ohri-forms');
             }
             navigate({ to: patientUrl });
           }}
@@ -146,6 +146,7 @@ interface CohortPatientListProps {
   excludeColumns?: Array<string>;
   queryParams?: Array<string>;
   associatedEncounterType?: string;
+  addPatientToListOptions?: { excludeCohorts?: Array<string> };
   launchableForm?: {
     package: string;
     name: string;
@@ -170,6 +171,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   queryParams,
   associatedEncounterType,
   launchableForm,
+  addPatientToListOptions,
 }) => {
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -232,7 +234,11 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ) : (
             <></>
           )}
-          <AddPatientToListOverflowMenuItem patientUuid={patientUuid} displayText="Move to list" />
+          <AddPatientToListOverflowMenuItem
+            patientUuid={patientUuid}
+            displayText="Move to list"
+            excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
+          />
         </OverflowMenu>
       ),
     };

@@ -313,7 +313,7 @@ function setupOpenMRS() {
       },
       {
         id: 'care-and-treatment-dashboard-ext',
-        slot: 'hiv-dashboard-slot',
+        slot: 'ohri-hiv-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(careAndTreatmentDashboardMeta), options),
         meta: careAndTreatmentDashboardMeta,
         online: true,
@@ -332,7 +332,7 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-dashboard-ext',
-        slot: 'hiv-dashboard-slot',
+        slot: 'ohri-hiv-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(htsDashboardMeta), options),
         meta: htsDashboardMeta,
         online: true,
@@ -461,6 +461,13 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
+      },
+      {
+        name: 'form-render-link',
+        slot: 'app-menu-slot',
+        load: getAsyncLifecycle(() => import('./links/form-render-app-menu-link.component'), options),
+        online: true,
+        offline: true,
       },
     ],
   };

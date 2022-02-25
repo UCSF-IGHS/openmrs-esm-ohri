@@ -9,3 +9,11 @@
   width: 150px;
   float: right;
 }
+
+:global(.bx--overflow-menu-options__btn) {
+  max-width: 15rem !important;
+}
+
+:global(.bx--overflow-menu--flip.bx--overflow-menu-options) {
+  min-width: 13rem !important;
+}

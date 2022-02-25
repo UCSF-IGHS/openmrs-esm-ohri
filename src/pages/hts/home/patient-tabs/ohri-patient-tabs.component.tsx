@@ -19,10 +19,13 @@ function OHRIPatientTabs() {
           cohortId={preTestCounsellingCohort}
           cohortSlotName="pre-test-counseling-slot"
           associatedEncounterType={htsRetrospectiveEncounterType}
+          addPatientToListOptions={{
+            excludeCohorts: ['Post-Test Counselling'],
+          }}
           launchableForm={{
             package: formPackage,
             name: formName,
-            intent: 'HTS_RETROSPECTIVE',
+            intent: 'HTS_PRETEST',
             actionText: 'Start Pre-test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
@@ -53,7 +56,7 @@ function OHRIPatientTabs() {
             package: formPackage,
             name: formName,
             intent: 'HTS_POSTTEST',
-            actionText: 'Start Post-test',
+            actionText: 'Start Post-test counselling',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
             targetDashboard: 'hts-summary',
