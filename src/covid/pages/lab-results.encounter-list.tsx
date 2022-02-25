@@ -24,6 +24,8 @@ export const covidEncounterRepresentation =
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
+const pcrTestResult = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
+const rapidTestResult = 'cbcbb029-f11f-4437-9d53-1d0f0a170433';
 interface CovidLabWidgetProps {
   patientUuid: string;
 }
@@ -72,7 +74,8 @@ const columnsLab: EncounterListColumn[] = [
     key: 'lastTestResult',
     header: 'Test Result',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+      const pcrResult = getObsFromEncounter(encounter, pcrTestResult);
+      return pcrResult && pcrResult != '--' ? pcrResult : getObsFromEncounter(encounter, rapidTestResult);
     },
   },
   {

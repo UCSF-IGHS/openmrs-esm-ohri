@@ -462,6 +462,13 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
+      {
+        name: 'form-render-link',
+        slot: 'app-menu-slot',
+        load: getAsyncLifecycle(() => import('./links/form-render-app-menu-link.component'), options),
+        online: true,
+        offline: true,
+      },
     ],
   };
 }
