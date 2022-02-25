@@ -41,7 +41,7 @@ function OHRIPatientTabs() {
             package: formPackage,
             name: formName,
             intent: 'HIV_TEST',
-            actionText: 'Start HIV Test',
+            actionText: 'Start HIV Test ',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
             targetDashboard: 'hts-summary',
