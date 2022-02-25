@@ -1,15 +1,12 @@
-:global(.contextWorkspaceContainer) {
-  //overflow-y: auto;
-}
-
 .ohriForm {
   height: 100%;
   overflow: hidden;
+  flex-grow: 1;
 }
 
 .ohriFormContainer {
   display: -webkit-flex;
-  height: 100vh;
+  height: 100%;
   overflow-y: hidden;
 }
 
@@ -26,22 +23,16 @@
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
-  flex-grow: 0.65;
 }
 
 .formContentBody {
   overflow-y: auto;
-  // padding-bottom: 100px;
-  margin-bottom: 100px;
   width: inherit;
   position: sticky;
 }
 
 .minifiedFormContentBody {
-  // padding-bottom: 34px !important;
-  // height: 77.5vh;
   margin-bottom: 0px !important;
-  height: 72.5vh;
 }
 
 @media (max-width: 768px) {
@@ -52,6 +43,7 @@
 
 .minifiedButtons {
   width: 100%;
+  height: 63.5px;
 }
 
 .minifiedButtons :global(.bx--btn) {
@@ -69,4 +61,13 @@
 
 aside[class*='-esm-patient-chart__workspace-window__container__'] {
   border-left: 1px solid #8d8d8d !important;
+}
+
+aside[class*='-esm-patient-chart__workspace-window__container__'] > div {
+    display: flex;
+    bottom: 0;
+}
+
+aside[class*='-esm-patient-chart__workspace-window__container__'] > div > div {
+    flex-grow: 1;
 }
