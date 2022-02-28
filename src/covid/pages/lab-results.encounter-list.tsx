@@ -115,6 +115,15 @@ const columnsLab: EncounterListColumn[] = [
           mode: 'edit',
         });
       }
+      if (status.includes('Pending')) {
+        baseActions.push({
+          form: { name: 'covid_sample_collection', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Collect Sample',
+          mode: 'edit',
+        });
+      }
       return baseActions;
     },
   },
