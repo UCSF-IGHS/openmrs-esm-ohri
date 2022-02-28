@@ -28,7 +28,7 @@ function FormRenderTest() {
   const jsonUrl = useMemo(() => new URLSearchParams(window.location.search).get('json'), []);
   const [key, setKey] = useState(0);
   const [defaultJson, setDefaultJson] = useState(null);
-  // This is required because of the enforced CORS policy
+  // This is required because of the enforced CORS policy, see: https://github.com/Rob--W/cors-anywhere
   const corsProxy = 'https://cors-anywhere.herokuapp.com/';
   const availableEditorThemes = [
     'monokai',
