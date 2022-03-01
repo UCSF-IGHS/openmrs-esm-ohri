@@ -21,7 +21,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
 
   const tiles = [
     {
-      title: "Today's Clients",
+      title: "Today'ss Clients",
       linkAddress: '#',
       subTitle: 'Active Visits',
       value: todayPatientCount,

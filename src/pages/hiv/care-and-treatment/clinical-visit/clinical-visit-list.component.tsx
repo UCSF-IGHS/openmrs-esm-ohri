@@ -2,11 +2,11 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../../../components/empty-state/empty-state.component';
-import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
-import { clinicalVisitEncounterType, encounterRepresentation } from '../../../constants';
-import { getForm } from '../../../utils/forms-loader';
-import { launchForm } from '../../../utils/ohri-forms-commons';
+import EmptyState from '../../../../components/empty-state/empty-state.component';
+import { OHRIFormLauncherEmpty } from '../../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+import { clinicalVisitEncounterType, encounterRepresentation } from '../../../../constants';
+import { getForm } from '../../../../utils/forms-loader';
+import { launchForm } from '../../../../utils/ohri-forms-commons';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;

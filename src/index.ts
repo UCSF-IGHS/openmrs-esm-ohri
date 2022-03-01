@@ -51,7 +51,7 @@ function setupOpenMRS() {
   return {
     pages: [
       {
-        load: getAsyncLifecycle(() => import('./pages/hts/summary-page/hts-summary-page'), options),
+        load: getAsyncLifecycle(() => import('./pages/hiv/summary-page/hts-summary-page'), options),
         route: /^ohri\/.+\/hts/,
       },
       {
@@ -67,7 +67,7 @@ function setupOpenMRS() {
       {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/encounters-list/hts-overview-list.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hiv/encounters-list/hts-overview-list.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
@@ -147,7 +147,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-header-ext',
         slot: 'hts-home-header-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/home/welcome-section/hts-welcome-section.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hiv/hts/welcome-section/hts-welcome-section.component'), {
           featureName: 'hts-home-header',
           moduleName,
         }),
@@ -155,7 +155,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-tile-ext',
         slot: 'hts-home-tiles-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/home/summary-tiles/hts-summary-tiles.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hiv/hts/summary-tiles/hts-summary-tiles.component'), {
           featureName: 'hts-home-tiles',
           moduleName,
         }),
@@ -163,7 +163,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-tabs-ext',
         slot: 'hts-home-tabs-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/home/patient-tabs/ohri-patient-tabs.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hiv/hts/patient-tabs/ohri-patient-tabs.component'), {
           featureName: 'hts-home-tabs',
           moduleName,
         }),
@@ -180,7 +180,7 @@ function setupOpenMRS() {
         id: 'ct-home-tile-ext',
         slot: 'ct-home-tiles-slot',
         load: getAsyncLifecycle(
-          () => import('./hts/care-and-treatment/home/summary-tiles/ct-summary-tiles.component'),
+          () => import('./pages/hiv/care-and-treatment/home/summary-tiles/ct-summary-tiles.component'),
           {
             featureName: 'ct-home-tiles',
             moduleName,
@@ -190,13 +190,10 @@ function setupOpenMRS() {
       {
         id: 'ct-home-tabs-ext',
         slot: 'ct-home-tabs-slot',
-        load: getAsyncLifecycle(
-          () => import('./hts/care-and-treatment/home/patient-list-tabs/ct-patient-list-tabs.component'),
-          {
-            featureName: 'ct-home-tabs',
-            moduleName,
-          },
-        ),
+        load: getAsyncLifecycle(() => import('./pages/hiv/patient-list-tabs/ct-patient-list-tabs.component'), {
+          featureName: 'ct-home-tabs',
+          moduleName,
+        }),
       },
       {
         id: 'covid-home-header-ext',
@@ -224,7 +221,7 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-encounter-form-ext',
-        load: getAsyncLifecycle(() => import('./pages/hts/encounter-form/hts-encounter-form.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hiv/encounter-form/hts-encounter-form.component'), {
           featureName: 'hts-encounter-form',
           moduleName,
         }),
@@ -258,7 +255,7 @@ function setupOpenMRS() {
       {
         id: 'home-dashboard',
         slot: 'home-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/hts/patient-list/patient-list.component'), {
+        load: getAsyncLifecycle(() => import('./pages/hiv/patient-list/patient-list.component'), {
           featureName: 'home',
           moduleName,
         }),
