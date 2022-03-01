@@ -28,8 +28,8 @@ function FormRenderTest() {
   const jsonUrl = useMemo(() => new URLSearchParams(window.location.search).get('json'), []);
   const [key, setKey] = useState(0);
   const [defaultJson, setDefaultJson] = useState(null);
-  // This is required because of the enforced CORS policy, see: https://github.com/Rob--W/cors-anywhere
-  const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+  // This is required because of the enforced CORS policy
+  const corsProxy = 'ohri-form-render.globalhealthapp.net';
   const availableEditorThemes = [
     'monokai',
     'github',
@@ -103,8 +103,9 @@ function FormRenderTest() {
   useEffect(() => {
     if (jsonUrl) {
       const dropboxURLSuffix = '?dl=1';
-      const url = jsonUrl.split('?')[0] + dropboxURLSuffix;
-      fetch(corsProxy + url)
+      let url = jsonUrl.split('?')[0] + dropboxURLSuffix;
+      url = url.replace('www.dropbox.com', corsProxy);
+      fetch(url)
         .then(response => response.json())
         .then(data => {
           if (data) {
@@ -112,6 +113,9 @@ function FormRenderTest() {
             updateFormJsonInput(data);
             setKey(key + 1);
           }
+        })
+        .catch(err => {
+          console.error(err);
         });
     }
   }, [jsonUrl]);
