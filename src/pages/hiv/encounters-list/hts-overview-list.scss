@@ -1,4 +1,4 @@
-@import '../../../root.scss';
+@import "../../../root.scss";
 
 .widgetContainer {
   background-color: $ui-background;
@@ -12,7 +12,7 @@
 }
 
 .widgetHeaderContainer > h4:after {
-  content: '';
+  content: "";
   display: block;
   width: 2rem;
   padding-top: 0.188rem;
