@@ -170,7 +170,7 @@
               "id": "everTestedForHIV"
             },
             {
-              "label": "How recently has the client been tested for HIV within any of the following periods?",
+              "label": "Period when the client tested for HIV",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -226,12 +226,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
                   "intent": "HTS_PRETEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -244,7 +247,7 @@
               "id": "durationSinceLastHIVTest"
             },
             {
-              "label": "What was the result of the last HIV test?",
+              "label": "Last HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -316,12 +319,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
                   "intent": "HTS_PRETEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -334,7 +340,7 @@
               "id": "lastHIVTestResult"
             },
             {
-              "label": "What is the client’s population type?",
+              "label": "Client’s population type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -386,7 +392,7 @@
               "id": "populationType"
             },
             {
-              "label": "Is the client part of any of the following key populations?",
+              "label": "Client’s key populations type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -475,7 +481,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
@@ -572,7 +578,7 @@
               "id": "clientSexualActivity"
             },
             {
-              "label": "Has the client had unprotected sex with a partner of unknown or positive HIV status in the past 12 months?",
+              "label": "Client had unprotected sex with a partner of unknown or positive HIV status in the past 12 months",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -648,7 +654,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
@@ -773,7 +779,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "In which setting was the HIV test conducted?",
+              "label": "HIV test setting",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -850,7 +856,7 @@
               "id": "hts-approach"
             },
             {
-              "label": "What was the specific community service delivery point?",
+              "label": "Community service delivery point",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -1206,7 +1212,7 @@
               "id": "preTestCounsellingConducted"
             },
             {
-              "label": "Which type of pretest counselling was conducted?",
+              "label": "Pre-test counselling type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1235,12 +1241,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
                   "intent": "HTS_PRETEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -1633,7 +1642,7 @@
               "id": "hivTestConducted"
             },
             {
-              "label": "When was the HIV test conducted?",
+              "label": "Date HIV test conducted",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -1646,7 +1655,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
                   "validators": [
                     {
@@ -1655,13 +1664,26 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue > today()"
                     }
                   ]
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue > today()"
+                    }
+                  ]
                 },
                 {
                   "intent": "*",
@@ -1676,7 +1698,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue > today()"
                     }
                   ]
                 }
@@ -1684,7 +1706,7 @@
               "id": "dateTestPerformed"
             },
             {
-              "label": "What was the initial HIV test kit name?",
+              "label": "Initial HIV test kit name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1738,12 +1760,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -1833,7 +1858,7 @@
               "id": "initialHIVTestResult"
             },
             {
-              "label": "What was the syphillis test result?",
+              "label": "Syphilis test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1892,12 +1917,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -1910,7 +1938,7 @@
               "id": "syphilisTestResult"
             },
             {
-              "label": "Was a confirmatory HIV test done?",
+              "label": "Confirmatory HIV test done",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1951,12 +1979,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -1969,7 +2000,7 @@
               "id": "confirmatoryHIVTestDone"
             },
             {
-              "label": "What was the confirmatory HIV test kit name?",
+              "label": "Confirmatory HIV test kit name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2023,12 +2054,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -2041,7 +2075,7 @@
               "id": "confirmatoryHIVTestKitName"
             },
             {
-              "label": "What was the confirmatory HIV test result?",
+              "label": "Confirmatory HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2100,12 +2134,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -2118,7 +2155,7 @@
               "id": "confirmatoryHIVTestResult"
             },
             {
-              "label": "Was a tiebreaker HIV test done?",
+              "label": "Tiebreaker HIV test done",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2159,12 +2196,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
+                  }
                 },
                 {
                   "intent": "*",
@@ -2177,7 +2217,7 @@
               "id": "tiebreakerHIVTestDone"
             },
             {
-              "label": "What was the tiebreaker HIV test kit name?",
+              "label": "Tiebreaker HIV test kit name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2226,13 +2266,16 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -2245,7 +2288,7 @@
               "id": "tieBreakerHIVTestKitName"
             },
             {
-              "label": "What was the tiebreaker HIV test result?",
+              "label": "Tiebreaker HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2304,25 +2347,28 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult) || confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult) || confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
                 },
                 {
                   "intent": "*",
                   "required": "false",
                   "hide": {
-                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult)"
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult) || confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
                   }
                 }
               ],
               "id": "tieBreakerHIVTestResult"
             },
             {
-              "label": "What was the final HIV test result?",
+              "label": "Final HIV test result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2396,7 +2442,7 @@
               "id": "finalHIVTestResult"
             },
             {
-              "label": "Was the client given the HIV test results?",
+              "label": "Client given HIV test results",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2471,7 +2517,7 @@
               "id": "receivedHIVTestResult"
             },
             {
-              "label": "Were the results received as a couple?",
+              "label": "HIV test results received as a couple",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2512,12 +2558,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -2530,7 +2579,7 @@
               "id": "resultReceivedCouple"
             },
             {
-              "label": "What were the couple results?",
+              "label": "Couple HIV test results",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2559,12 +2608,15 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
                 },
                 {
                   "intent": "*",
@@ -2577,7 +2629,7 @@
               "id": "coupleResults"
             },
             {
-              "label": "When did the client receive the HIV test results?",
+              "label": "Date the client received HIV test results",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -2596,7 +2648,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -2605,17 +2657,16 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '2021-12-01') || myValue > today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 },
                 {
                   "intent": "HTS_HIVTEST",
-                  "required": "true"
-                },
-                {
-                  "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
                   "validators": [
                     {
                       "type": "date",
@@ -2623,7 +2674,24 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1/1/1980' || myValue > today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 }
@@ -2666,7 +2734,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Was consent provided?",
+              "label": "Recency testing consent",
               "type": "obs",
               "questionOptions": {
                 "rendering": "toggle",
