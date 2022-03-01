@@ -55,9 +55,13 @@ function obsArrayDateComparator(left, right) {
   return formatDateTime(right.obsDatetime) - formatDateTime(left.obsDatetime);
 }
 
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+export function findObs(encounter, obsConcept): Record<string, any> {
   const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
-  const obs = allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
+  return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
+}
+
+export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
+  const obs = findObs(encounter, obsConcept);
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
