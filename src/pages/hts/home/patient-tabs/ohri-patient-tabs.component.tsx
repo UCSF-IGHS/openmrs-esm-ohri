@@ -45,7 +45,7 @@ function OHRIPatientTabs() {
           launchableForm={{
             package: formPackage,
             name: formName,
-            intent: 'HIV_TEST',
+            intent: 'HTS_HIVTEST',
             actionText: 'Start HIV Test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
