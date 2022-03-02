@@ -1117,24 +1117,9 @@
               "id": "reasonForTesting"
             }
           ]
-        }
-      ]
-    },
-    {
-      "label": "Pre-test Counselling",
-      "behaviours": [
-        {
-          "intent": "HTS_HIVTEST",
-          "readonly": "true"
         },
         {
-          "intent": "HTS_POSTTEST",
-          "readonly": "true"
-        }
-      ],
-      "sections": [
-        {
-          "label": "Pre-test Counselling",
+          "label": "Pre-Test Info",
           "isExpanded": "true",
           "questions": [
             {
@@ -1436,7 +1421,7 @@
       ]
     },
     {
-      "label": "Testing",
+      "label": "HIV Testing",
       "behaviours": [
         {
           "intent": "HTS_RETROSPECTIVE",
@@ -1463,7 +1448,7 @@
       ],
       "sections": [
         {
-          "label": "HIV Testing",
+          "label": "General Information",
           "isExpanded": "true",
           "questions": [
             {
@@ -2579,6 +2564,1141 @@
           ]
         },
         {
+          "label": "Initial Test",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Initial HIV test kit name",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "afa64df8-50af-4bc3-8135-6e6603f62068",
+                "answers": [
+                  {
+                    "concept": "5e318e60-3108-4468-90cd-7f2dc1c596a6",
+                    "label": "HIV Determine Kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "59ec348a-14a8-4e88-9b9e-72fa24b949fa",
+                    "label": "HIV-Syphillis Duo Kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other HIV Test Kit",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
+              "id": "initialHIVTestKitName"
+            },
+            {
+              "label": "Initial HIV test result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e767ba5d-7560-43ba-a746-2b0ff0a2a513",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1138"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
+                }
+              ],
+              "id": "initialHIVTestResult"
+            },
+            {
+              "label": "Syphilis test result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "165303AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1138"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestKitName !== '59ec348a-14a8-4e88-9b9e-72fa24b949fa'"
+                  }
+                }
+              ],
+              "id": "syphilisTestResult"
+            }
+          ]
+        },
+        {
+          "label": "Confirmatory Test",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Confirmatory HIV test done",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1201b688-45f8-4e56-b089-0b31138a19dd",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ],
+              "id": "confirmatoryHIVTestDone"
+            },
+            {
+              "label": "Confirmatory HIV test kit name",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b78d89e7-08aa-484f-befb-1e3e70cd6985",
+                "answers": [
+                  {
+                    "concept": "a099ce71-d75e-433d-a782-0b9ad4f4f655",
+                    "label": "HIV First Response Kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "0d64d0d0-8dcb-4a56-819c-999d52f04db8",
+                    "label": "HIV Stat Pack Kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other HIV Test Kit",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
+              "id": "confirmatoryHIVTestKitName"
+            },
+            {
+              "label": "Confirmatory HIV test result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dbc4f8e9-7098-4585-9509-e2f84a4d8c6e",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1138"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "confirmatoryHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
+              "id": "confirmatoryHIVTestResult"
+            }
+          ]
+        },
+        {
+          "label": "Tie Breaker",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Tiebreaker HIV test done",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b221ce19-9292-4117-bdff-0adcf13f82d6",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryHIVTestResult)"
+                  }
+                }
+              ],
+              "id": "tiebreakerHIVTestDone"
+            },
+            {
+              "label": "Tiebreaker HIV test kit name",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "73434a78-e4fc-42f7-a812-f30f3b3cabe3",
+                "answers": [
+                  {
+                    "concept": "780c8ff2-5e11-48f8-ad3d-efa36a0413f6",
+                    "label": "HIV SD Bioline Kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other HIV Test Kit",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "74964007"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "tiebreakerHIVTestDone === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
+              "id": "tieBreakerHIVTestKitName"
+            },
+            {
+              "label": "Tiebreaker HIV test result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "bfc5fbb9-2b23-422e-a741-329bb2597032",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Indeterminate",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1138"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "82334004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult) || confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult) || confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "initialHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || !isEmpty(confirmatoryHIVTestResult) || confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ],
+              "id": "tieBreakerHIVTestResult"
+            },
+            {
+              "label": "Final HIV test result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e16b0068-b6a2-46b7-aba9-e3be00a7b4ab",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
+                    "label": "Inconclusive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerHIVTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerHIVTestResult) && myValue !== tieBreakerHIVTestResult)"
+                    }
+                  ]
+                }
+              ],
+              "id": "finalHIVTestResult"
+            }
+          ]
+        },
+        {
+          "label": "HIV Results",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Client given HIV test results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "164848AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true"
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true"
+                },
+                {
+                  "intent": "*",
+                  "required": "false"
+                }
+              ],
+              "id": "receivedHIVTestResult"
+            },
+            {
+              "label": "Date the client received HIV test results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "160082AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "weeksList": "",
+                "conceptMappings": [
+                  {
+                    "type": "SNOMED-CT",
+                    "value": "439771001"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ],
+              "id": "hIVTestResultsReceivedDate"
+            },
+            {
+              "label": "HIV test results received as a couple",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "445846e9-b929-4519-bc83-d51c051918f5",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                }
+              ],
+              "id": "resultReceivedCouple"
+            },
+            {
+              "label": "Couple HIV test results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5f38bc97-d6ca-43f8-a019-b9a9647d0c6a",
+                "answers": [
+                  {
+                    "concept": "3a27187f-da7a-4f6b-986d-6521f343326d",
+                    "label": "Concordant Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c1504c2b-a8bf-44bf-ab1e-1d342ba051ae",
+                    "label": "Concordant Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c2d2bea8-2db5-4730-86b1-592c9408f567",
+                    "label": "Discordant",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "coupleResults"
+            }
+          ]
+        },
+        {
+          "label": "Couple Testing",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV test results received as a couple",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "445846e9-b929-4519-bc83-d51c051918f5",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                  }
+                }
+              ],
+              "id": "resultReceivedCouple"
+            },
+            {
+              "label": "Couple HIV test results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "5f38bc97-d6ca-43f8-a019-b9a9647d0c6a",
+                "answers": [
+                  {
+                    "concept": "3a27187f-da7a-4f6b-986d-6521f343326d",
+                    "label": "Concordant Positive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c1504c2b-a8bf-44bf-ab1e-1d342ba051ae",
+                    "label": "Concordant Negative",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "c2d2bea8-2db5-4730-86b1-592c9408f567",
+                    "label": "Discordant",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "intent": "HTS_HIVTEST",
+                  "required": "true",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "hide": {
+                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "coupleResults"
+            }
+          ]
+        },
+        {
           "label": "Recency Testing",
           "isExpanded": "true",
           "questions": [
@@ -2945,9 +4065,42 @@
               "id": "postTestCounsellingDone"
             }
           ]
+        }
+      ]
+    },
+    {
+      "label": "TB/STI Screening",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
         },
         {
-          "label": "TB/STI Screening",
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+          }
+        },
+        {
+          "intent": "HTS_HIVTEST",
+          "readonly": "true"
+        }
+      ],
+      "sections": [
+        {
+          "label": "Tuberculosis",
           "isExpanded": "true",
           "questions": [
             {
@@ -3088,7 +4241,13 @@
                 }
               ],
               "id": "tbSymptoms"
-            },
+            }
+          ]
+        },
+        {
+          "label": "STI Screening",
+          "isExpanded": "true",
+          "questions": [
             {
               "label": "STI symptoms",
               "type": "obs",
