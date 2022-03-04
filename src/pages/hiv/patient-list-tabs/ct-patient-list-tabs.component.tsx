@@ -1,6 +1,6 @@
 import React from 'react';
-import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../../constants';
-import OHRIPatientListTabs from '../../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
+import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../constants';
+import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
 
 function CTHomePatientTabs() {

@@ -15,7 +15,7 @@ import {
   covidPatientStatusUUID,
   covidPresentSymptonsConcept_UUID,
 } from '../../../constants';
-import { filterFHIRPatientsByName } from '../../../hts/home/summary-tiles/utils';
+import { filterFHIRPatientsByName } from '../../../pages/hiv/hts/summary-tiles/utils';
 
 export const columns = [
   {

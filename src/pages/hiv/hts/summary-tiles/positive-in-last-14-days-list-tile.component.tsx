@@ -1,11 +1,10 @@
-import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchTodayClients } from '../../../../api/api';
-import EmptyState from '../../../../components/empty-state/empty-state.component';
-import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
-import { basePath } from '../../../../constants';
+import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../../api/api';
 import { filterFHIRPatientsByName } from './utils';
+import { basePath, finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../../constants';
+import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
 
 export const columns = [
   {
@@ -54,13 +53,6 @@ export const columns = [
     },
   },
   {
-    key: 'provider',
-    header: 'Provider',
-    getValue: patient => {
-      return '--';
-    },
-  },
-  {
     key: 'finalHivResult',
     header: 'Final HIV Result',
     getValue: patient => {
@@ -68,10 +60,10 @@ export const columns = [
     },
   },
   {
-    key: 'currentWaitingList',
-    header: 'Current Waiting List',
+    key: 'linkedToCare',
+    header: 'Linked To Care',
     getValue: patient => {
-      return '--';
+      return 'Yes/No';
     },
   },
   {
@@ -82,7 +74,7 @@ export const columns = [
     },
   },
 ];
-export const TodaysClientList: React.FC<{}> = () => {
+export const PositiveInLast14Days: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
   const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -94,15 +86,20 @@ export const TodaysClientList: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchTodayClients().then((response: Array<any>) => {
-      setPatients(response.map(pat => pat.data));
-      setTotalPatientCount(response.length);
-      setIsLoading(false);
-    });
+    fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
+      (response: Array<any>) => {
+        setPatients(response.map(pat => pat.data));
+        setTotalPatientCount(response.length);
+        setIsLoading(false);
+      },
+    );
   }, [pageSize, currentPage]);
 
   useEffect(() => {
-    attach('today-clients-table-slot', 'patient-table');
+    attach('positive-in-last-14-days-table-slot', 'patient-table');
+    return () => {
+      detach('positive-in-last-14-days-table-slot', 'patient-table');
+    };
   }, []);
 
   const pagination = useMemo(() => {
@@ -151,7 +148,7 @@ export const TodaysClientList: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="positive-in-last-14-days-table-slot" state={state} key={counter} />
       )}
     </div>
   );
