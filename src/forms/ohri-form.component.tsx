@@ -86,6 +86,10 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
     return 'enter';
   }, [mode]);
 
+  const showSideBar = useMemo(() => {
+    return workspaceLayout != 'minimized' && scrollAblePages.size > 0;
+  }, [workspaceLayout, scrollAblePages.size]);
+
   useEffect(() => {
     const extDetails = {
       id: 'ohri-form-header-toggle-ext',
@@ -171,7 +175,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
             <LoadingIcon />
           ) : (
             <div className={styles.ohriFormContainer}>
-              {workspaceLayout != 'minimized' && (
+              {showSideBar && (
                 <OHRIFormSidebar
                   scrollAblePages={scrollAblePages}
                   selectedPage={selectedPage}

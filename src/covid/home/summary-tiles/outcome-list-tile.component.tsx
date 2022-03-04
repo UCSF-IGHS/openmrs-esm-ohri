@@ -1,11 +1,21 @@
 import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
+import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchTodayClients } from '../../../../api/api';
-import EmptyState from '../../../../components/empty-state/empty-state.component';
-import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
-import { basePath } from '../../../../constants';
-import { filterFHIRPatientsByName } from './utils';
+import { fetchPatientCovidOutcome } from '../../../api/api';
+import EmptyState from '../../../components/empty-state/empty-state.component';
+import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
+import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import {
+  basePath,
+  covidEncounterDateTime_UUID,
+  covidOutcome,
+  covidOutcomesCohortUUID,
+  covidOutcomeUUID,
+  covidPatientStatusUUID,
+  covidPresentSymptonsConcept_UUID,
+} from '../../../constants';
+import { filterFHIRPatientsByName } from '../../../pages/hiv/hts/summary-tiles/utils';
 
 export const columns = [
   {
@@ -33,56 +43,35 @@ export const columns = [
     },
   },
   {
-    key: 'phoneNumber',
-    header: 'Phone Number',
-    getValue: patient => {
-      return '--';
+    key: 'assessmentDate',
+    header: 'Assessment Date',
+    getValue: ({ latestEncounter }) => {
+      return getObsFromEncounter(latestEncounter, covidEncounterDateTime_UUID, true);
     },
   },
   {
-    key: 'dateOfEncounter',
-    header: 'Date Of Encounter',
-    getValue: patient => {
-      return '--';
+    key: 'presentation',
+    header: 'Presentation',
+    getValue: ({ latestEncounter }) => {
+      return getObsFromEncounter(latestEncounter, covidPresentSymptonsConcept_UUID, false, true);
     },
   },
   {
-    key: 'location',
-    header: 'Location',
-    getValue: patient => {
-      return '--';
+    key: 'outcome',
+    header: 'Outcome',
+    getValue: ({ latestEncounter }) => {
+      return getObsFromEncounter(latestEncounter, covidOutcomeUUID);
     },
   },
   {
-    key: 'provider',
-    header: 'Provider',
-    getValue: patient => {
-      return '--';
-    },
-  },
-  {
-    key: 'finalHivResult',
-    header: 'Final HIV Result',
-    getValue: patient => {
-      return '--';
-    },
-  },
-  {
-    key: 'currentWaitingList',
-    header: 'Current Waiting List',
-    getValue: patient => {
-      return '--';
-    },
-  },
-  {
-    key: 'id',
-    header: 'Patient ID',
-    getValue: patient => {
-      return patient.identifier[0].value;
+    key: 'outcomeDate',
+    header: 'Outcome Date',
+    getValue: ({ latestEncounter }) => {
+      return getObsFromEncounter(latestEncounter, covidOutcome);
     },
   },
 ];
-export const TodaysClientList: React.FC<{}> = () => {
+export const Outcomes: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
   const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -94,7 +83,7 @@ export const TodaysClientList: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchTodayClients().then((response: Array<any>) => {
+    fetchPatientCovidOutcome().then((response: Array<any>) => {
       setPatients(response.map(pat => pat.data));
       setTotalPatientCount(response.length);
       setIsLoading(false);
@@ -102,7 +91,7 @@ export const TodaysClientList: React.FC<{}> = () => {
   }, [pageSize, currentPage]);
 
   useEffect(() => {
-    attach('today-clients-table-slot', 'patient-table');
+    attach('outcomes-table-slot', 'patient-table');
   }, []);
 
   const pagination = useMemo(() => {
@@ -151,7 +140,7 @@ export const TodaysClientList: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="outcomes-table-slot" state={state} key={counter} />
       )}
     </div>
   );

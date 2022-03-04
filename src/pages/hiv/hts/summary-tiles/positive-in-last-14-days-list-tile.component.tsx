@@ -1,11 +1,10 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../api/api';
-import EmptyState from '../../../components/empty-state/empty-state.component';
+import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../../api/api';
 import { filterFHIRPatientsByName } from './utils';
-import { basePath, linkedToCareCodeConcept, linkedToCareYesValueConcept } from '../../../constants';
-import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
+import { basePath, finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../../constants';
+import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
 
 export const columns = [
   {
@@ -64,7 +63,7 @@ export const columns = [
     key: 'linkedToCare',
     header: 'Linked To Care',
     getValue: patient => {
-      return 'Yes';
+      return 'Yes/No';
     },
   },
   {
@@ -75,7 +74,7 @@ export const columns = [
     },
   },
 ];
-export const LinkedToCareInLast14Days: React.FC<{}> = () => {
+export const PositiveInLast14Days: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
   const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -87,7 +86,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
+    fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
       (response: Array<any>) => {
         setPatients(response.map(pat => pat.data));
         setTotalPatientCount(response.length);
@@ -97,9 +96,9 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   }, [pageSize, currentPage]);
 
   useEffect(() => {
-    attach('linked-to-care-last-14-days-table-slot', 'patient-table');
+    attach('positive-in-last-14-days-table-slot', 'patient-table');
     return () => {
-      detach('linked-to-care-last-14-days-table-slot', 'patient-table');
+      detach('positive-in-last-14-days-table-slot', 'patient-table');
     };
   }, []);
 
@@ -149,7 +148,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName="linked-to-care-last-14-days-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="positive-in-last-14-days-table-slot" state={state} key={counter} />
       )}
     </div>
   );

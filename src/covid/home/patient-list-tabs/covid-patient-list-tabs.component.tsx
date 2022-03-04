@@ -6,10 +6,15 @@ import {
   covidClientsWithPendingLabResults,
   covidOutcome,
   covidTestType,
+  covidVaccinatedClients,
+  covidVaccinationDoseAdmininstered_UUID,
+  covidVaccinationEncType,
+  covidVaccineAdministeredConcept_UUID,
   dateSpecimenCollected,
   finalCovid19Result,
   pcrTestResultDate,
   rapidAntigenResultDate,
+  returnVisitDateConcept,
 } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
@@ -86,6 +91,44 @@ function CovidHomePatientTabs() {
           header: 'Test Type',
           getValue: ({ latestEncounter }) => {
             return getObsFromEncounter(latestEncounter, covidTestType);
+          },
+        },
+      ],
+    },
+    {
+      label: t('scheduledVaccination', 'Scheduled Vaccination'),
+      cohortId: covidVaccinatedClients,
+      isReportingCohort: true,
+      cohortSlotName: 'clients-vaccinated-for-covid-slot',
+      launchableForm: {
+        package: 'covid',
+        name: 'covid_vaccination',
+        editActionText: 'Edit covid vaccination form',
+        editLatestEncounter: true,
+        targetDashboard: 'covid_vaccination',
+      },
+      associatedEncounterType: covidVaccinationEncType,
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
+      otherColumns: [
+        {
+          key: 'lastDoseAdministered',
+          header: 'Last Dose Administered',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, covidVaccinationDoseAdmininstered_UUID);
+          },
+        },
+        {
+          key: 'vaccine',
+          header: 'Vaccine',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, covidVaccineAdministeredConcept_UUID);
+          },
+        },
+        {
+          key: 'returnVisitDate',
+          header: 'Return Visit Date',
+          getValue: ({ latestEncounter }) => {
+            return getObsFromEncounter(latestEncounter, returnVisitDateConcept, true);
           },
         },
       ],

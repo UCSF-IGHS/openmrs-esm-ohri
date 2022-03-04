@@ -1,8 +1,7 @@
 @import "../../root.scss";
 
 .mainWrapper {
-  //max-width: 1440px;
-  min-height: 100vh;
+  // height: 95vh;
   background-color: $ui-background;
   padding: 16px !important;
   margin: auto;
@@ -53,7 +52,8 @@
 }
 
 .formRenderContent {
-  min-height: 780px;
+  // min-height: 780px;
+  height: 84vh;
 }
 
 .formRenderContent > div {
@@ -70,6 +70,7 @@
 }
 
 .formRenderDisplay {
+  height: 75vh;
   padding: 0;
   border: 0.01rem dotted #6f6f6f !important;
   margin-top: 0.5rem;

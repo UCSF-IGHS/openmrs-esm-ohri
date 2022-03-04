@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
 import styles from './form-render.scss';
 import { Run32, Maximize32 } from '@carbon/icons-react';
@@ -25,7 +25,11 @@ function FormRenderTest() {
   const [schemaOutput, setSchemaOutput] = useState('');
   const [schemaInput, setSchemaInput] = useState(null);
   const [editorTheme, setEditorTheme] = useState('github');
-
+  const jsonUrl = useMemo(() => new URLSearchParams(window.location.search).get('json'), []);
+  const [key, setKey] = useState(0);
+  const [defaultJson, setDefaultJson] = useState(null);
+  // This is required because of the enforced CORS policy
+  const corsProxy = 'ohri-form-render.globalhealthapp.net';
   const availableEditorThemes = [
     'monokai',
     'github',
@@ -59,10 +63,10 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
   };
 
-  const updateFormJsonInput = e => {
+  const updateFormJsonInput = json => {
     setInputErrorMessage('');
     try {
-      const parsedSchema = JSON.parse(e);
+      const parsedSchema = typeof json == 'string' ? JSON.parse(json) : json;
       setSchemaInput(parsedSchema);
       setFormInput(parsedSchema);
       loadIntentsFromSchema(parsedSchema);
@@ -96,6 +100,26 @@ function FormRenderTest() {
     }
   };
 
+  useEffect(() => {
+    if (jsonUrl) {
+      const dropboxURLSuffix = '?dl=1';
+      let url = jsonUrl.split('?')[0] + dropboxURLSuffix;
+      url = url.replace('www.dropbox.com', corsProxy);
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            setDefaultJson(JSON.stringify(data, null, 2));
+            updateFormJsonInput(data);
+            setKey(key + 1);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  }, [jsonUrl]);
+
   return (
     <div className={styles.container}>
       <div className={styles.mainWrapper}>
@@ -118,6 +142,7 @@ function FormRenderTest() {
                     handleFormSubmission(e);
                   }}>
                   <AceEditor
+                    key={key}
                     mode="json"
                     theme={editorTheme}
                     onChange={updateFormJsonInput}
@@ -136,6 +161,7 @@ function FormRenderTest() {
                       showLineNumbers: true,
                       tabSize: 2,
                     }}
+                    defaultValue={defaultJson}
                   />
 
                   <div className={styles.renderDropdown}>

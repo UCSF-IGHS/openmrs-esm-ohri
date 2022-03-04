@@ -14,6 +14,7 @@ import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
 import { getForm, applyFormIntent } from '../../utils/forms-loader';
 import styles from './patient-list-cohort.scss';
+import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
 
 export interface PatientListColumn {
   key: string;
@@ -21,6 +22,30 @@ export interface PatientListColumn {
   getValue: (patient: any) => string;
   link?: any;
   index?: number;
+}
+
+interface CohortPatientListProps {
+  cohortId: string;
+  cohortSlotName: string;
+  isReportingCohort?: boolean;
+  otherColumns?: Array<PatientListColumn>;
+  excludeColumns?: Array<string>;
+  queryParams?: Array<string>;
+  associatedEncounterType?: string;
+  addPatientToListOptions?: { isEnabled: boolean; excludeCohorts?: Array<string> };
+  launchableForm?: {
+    package: string;
+    name: string;
+    intent: string;
+    actionText: string;
+    // if true, the form will be opened in edit mode if an encounter is found
+    editLatestEncounter?: boolean;
+    // if provided, the latest encounter of this type will be edited
+    // if value is not provided and `editLatestEncounter` is true, the `associatedEncounterType` will be used
+    encounterType?: string;
+    editActionText?: string;
+    targetDashboard?: string;
+  };
 }
 
 export const columns: PatientListColumn[] = [
@@ -126,8 +151,10 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
           itemText={actionText}
           onClick={() => {
             if (encounterUuid) {
+              changeWorkspaceContext(patientUuid);
               launchFormInEditMode(form, encounterUuid, null, null, 'ohri-forms');
             } else {
+              changeWorkspaceContext(patientUuid);
               launchForm(form, null, null, 'ohri-forms');
             }
             navigate({ to: patientUrl });
@@ -137,30 +164,6 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
     </>
   );
 };
-
-interface CohortPatientListProps {
-  cohortId: string;
-  cohortSlotName: string;
-  isReportingCohort?: boolean;
-  otherColumns?: Array<PatientListColumn>;
-  excludeColumns?: Array<string>;
-  queryParams?: Array<string>;
-  associatedEncounterType?: string;
-  addPatientToListOptions?: { excludeCohorts?: Array<string> };
-  launchableForm?: {
-    package: string;
-    name: string;
-    intent: string;
-    actionText: string;
-    // if true, the form will be opened in edit mode if an encounter is found
-    editLatestEncounter?: boolean;
-    // if provided, the latest encounter of this type will be edited
-    // if value is not provided and `editLatestEncounter` is true, the `associatedEncounterType` will be used
-    encounterType?: string;
-    editActionText?: string;
-    targetDashboard?: string;
-  };
-}
 
 const CohortPatientList: React.FC<CohortPatientListProps> = ({
   cohortId,
@@ -234,11 +237,13 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
           ) : (
             <></>
           )}
-          <AddPatientToListOverflowMenuItem
-            patientUuid={patientUuid}
-            displayText="Move to list"
-            excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
-          />
+          {addPatientToListOptions?.isEnabled && (
+            <AddPatientToListOverflowMenuItem
+              patientUuid={patientUuid}
+              displayText="Move to list"
+              excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
+            />
+          )}
         </OverflowMenu>
       ),
     };

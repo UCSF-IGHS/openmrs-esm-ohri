@@ -16,6 +16,7 @@ import {
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
+  findObs,
 } from '../../components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
@@ -26,6 +27,12 @@ export const covidEncounterRepresentation =
 
 const pcrTestResult = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
 const rapidTestResult = 'cbcbb029-f11f-4437-9d53-1d0f0a170433';
+const statusColorMap = {
+  '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'green', // not done
+  '1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'green', // completed
+  '165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'purple', // cancelled
+  '162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'blue', // pending
+};
 interface CovidLabWidgetProps {
   patientUuid: string;
 }
@@ -57,14 +64,13 @@ const columnsLab: EncounterListColumn[] = [
     header: 'Status',
     getValue: encounter => {
       const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
       if (status == '--') {
         return '--';
       } else {
-        const tagColor = status === 'Completed' ? 'green' : status === 'Cancelled' ? 'purple' : 'teal';
         return (
-          <Tag type={tagColor} title={status} className={styles.statusTag}>
-            {' '}
-            {status}{' '}
+          <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
+            {status}
           </Tag>
         );
       }
@@ -115,6 +121,15 @@ const columnsLab: EncounterListColumn[] = [
           mode: 'edit',
         });
       }
+      if (status.includes('Pending')) {
+        baseActions.push({
+          form: { name: 'covid_sample_collection', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Collect Sample',
+          mode: 'edit',
+        });
+      }
       return baseActions;
     },
   },
@@ -147,14 +162,13 @@ const columnsPending: EncounterListColumn[] = [
     header: 'Status',
     getValue: encounter => {
       const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
       if (status == '--') {
         return '--';
       } else {
-        const tagColor = status === 'Completed' ? 'green' : status === 'Cancelled' ? 'purple' : 'teal';
         return (
-          <Tag type={tagColor} title={status} className={styles.statusTag}>
-            {' '}
-            {status}{' '}
+          <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
+            {status}
           </Tag>
         );
       }

@@ -1,11 +1,10 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../api/api';
-import EmptyState from '../../../components/empty-state/empty-state.component';
+import { fetchTodayClients } from '../../../../api/api';
+import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
+import { basePath } from '../../../../constants';
 import { filterFHIRPatientsByName } from './utils';
-import { basePath, finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../constants';
-import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
 
 export const columns = [
   {
@@ -54,6 +53,13 @@ export const columns = [
     },
   },
   {
+    key: 'provider',
+    header: 'Provider',
+    getValue: patient => {
+      return '--';
+    },
+  },
+  {
     key: 'finalHivResult',
     header: 'Final HIV Result',
     getValue: patient => {
@@ -61,10 +67,10 @@ export const columns = [
     },
   },
   {
-    key: 'linkedToCare',
-    header: 'Linked To Care',
+    key: 'currentWaitingList',
+    header: 'Current Waiting List',
     getValue: patient => {
-      return 'Yes/No';
+      return '--';
     },
   },
   {
@@ -75,7 +81,7 @@ export const columns = [
     },
   },
 ];
-export const PositiveInLast14Days: React.FC<{}> = () => {
+export const TodaysClientList: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
   const [totalPatientCount, setTotalPatientCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -87,19 +93,17 @@ export const PositiveInLast14Days: React.FC<{}> = () => {
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
 
   useEffect(() => {
-    fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
-      (response: Array<any>) => {
-        setPatients(response.map(pat => pat.data));
-        setTotalPatientCount(response.length);
-        setIsLoading(false);
-      },
-    );
+    fetchTodayClients().then((response: Array<any>) => {
+      setPatients(response.map(pat => pat.data));
+      setTotalPatientCount(response.length);
+      setIsLoading(false);
+    });
   }, [pageSize, currentPage]);
 
   useEffect(() => {
-    attach('positive-in-last-14-days-table-slot', 'patient-table');
+    attach('today-clients-table-slot', 'patient-table');
     return () => {
-      detach('positive-in-last-14-days-table-slot', 'patient-table');
+      detach('today-clients-table-slot', 'patient-table');
     };
   }, []);
 
@@ -149,7 +153,7 @@ export const PositiveInLast14Days: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName="positive-in-last-14-days-table-slot" state={state} key={counter} />
+        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
       )}
     </div>
   );

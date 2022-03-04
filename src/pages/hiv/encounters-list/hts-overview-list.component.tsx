@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styles from './hts-overview-list.scss';
 import { useTranslation } from 'react-i18next';
-import OTable from '../../components/data-table/o-table.component';
+import OTable from '../../../components/data-table/o-table.component';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import EmptyState from '../../../components/empty-state/empty-state.component';
 import moment from 'moment';
-import { getForm } from '../../utils/forms-loader';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
-import { encounterRepresentation } from '../../constants';
+import { getForm } from '../../../utils/forms-loader';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
+import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-launcher.component';
+import { encounterRepresentation } from '../../../constants';
 
 interface HtsOverviewListProps {
   patientUuid: string;
