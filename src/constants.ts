@@ -43,6 +43,7 @@ export const covidOutcome = 'a845f3e6-4432-4de4-9fff-37fa270b1a06';
 export const rapidAntigenResultDate = 'af159c77-bc5d-46dd-90d9-bcbffb22267f';
 export const pcrTestResultDate = '4a77ab44-0323-490e-96be-e168c0e5c9de';
 export const finalCovid19Result = '5da5c21b-969f-41bd-9091-e40d4c707544';
+export const covidOutcomesCohortUUID = 'afb0d950-48fd-44d7-ae2c-79615cd125f0';
 
 // Service Enrollment Concepts
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';

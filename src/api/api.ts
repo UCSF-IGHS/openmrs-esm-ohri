@@ -8,6 +8,7 @@ import {
   encounterRepresentation,
   covidOutcomeUUID,
   covid_Assessment_EncounterUUID,
+  covidOutcomesCohortUUID,
 } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
@@ -194,11 +195,22 @@ export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
   });
 }
 
-export function fetchPatientCovidOutcome(patientUuid: string) {
-  //TODO: Continue logic to filter outcome
-  // const query = `encounterType=${covidOutcomeUUID}&patient=${patientUuid}`;
-  // return getObsFromEncounter(covid_Assessment_EncounterUUID, covidOutcomeUUID);
-  // });
+export function fetchPatientCovidOutcome() {
+  return openmrsFetch(`/ws/rest/v1/reportingrest/cohort/${covidOutcomesCohortUUID}`).then(({ data }) => {
+    if (data.members?.length) {
+      let patientRefs = data.members.map(member => {
+        return member.uuid;
+      });
+      patientRefs = new Set([...patientRefs]);
+      patientRefs = Array.from(patientRefs);
+      return Promise.all(
+        patientRefs.map(ref => {
+          return openmrsFetch(BASE_FHIR_API_URL + '/Person/' + ref);
+        }),
+      );
+    }
+    return [];
+  });
 }
 
 export function fetchConceptNameByUuid(conceptUuid: string) {
