@@ -1,18 +1,14 @@
-import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
-import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientCovidOutcome } from '../../../api/api';
-import EmptyState from '../../../components/empty-state/empty-state.component';
 import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
 import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
 import {
   basePath,
   covidEncounterDateTime_UUID,
   covidOutcome,
-  covidOutcomesCohortUUID,
   covidOutcomeUUID,
-  covidPatientStatusUUID,
   covidPresentSymptonsConcept_UUID,
 } from '../../../constants';
 import { filterFHIRPatientsByName } from '../../../hts/home/summary-tiles/utils';
@@ -92,6 +88,7 @@ export const Outcomes: React.FC<{}> = () => {
 
   useEffect(() => {
     attach('outcomes-table-slot', 'patient-table');
+    return () => detach('outcomes-table-slot', 'patient-table');
   }, []);
 
   const pagination = useMemo(() => {
