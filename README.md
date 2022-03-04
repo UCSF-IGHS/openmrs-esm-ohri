@@ -51,6 +51,12 @@ npm i
 npm run serve
 ```
 
+4. Run the OHRI App  `localhost:8080`.
+
+```sh
+npm run npx openmrs develop --backend https://ohri-demo.globalhealthapp.net
+```
+
 ### Setup Dev Tools
 
 1. Click `Add new module` in the dev tools window.
@@ -74,6 +80,14 @@ To verify that all of the tests run:
 
 ```sh
 npm test
+```
+
+## To Override Import Map
+
+To verify that all of the tests run:
+
+```sh
+npx openmrs develop  --backend https://ohri-demo.globalhealthapp.net --importmap https://ohri-demo.globalhealthapp.net/openmrs/spa/importmap.json --port 8080
 ```
  
 *Note: Run `npm i` before running tests for the first time.*
