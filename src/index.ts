@@ -9,6 +9,7 @@ import {
   clinicalVisit_dashboardMeta,
   labResults_dashboardMeta,
   drugOrders_dashboardMeta,
+  programManagement_dashboardMeta,
 } from './dashboard.meta';
 import {
   clearCovidSidenavRegistry,
@@ -90,7 +91,6 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
-      ,
       {
         id: 'hts-service-summary-list-ext',
         slot: 'hts-service-summary-dashboard-slot',
@@ -465,6 +465,22 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./links/form-render-app-menu-link.component'), options),
         online: true,
         offline: true,
+      },
+      {
+        id: 'program-management-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(programManagement_dashboardMeta), options),
+        meta: programManagement_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'program-management-summary-ext',
+        slot: 'program-management-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/program-management/program-management-summary.component'), {
+          featureName: 'program-management-summary',
+          moduleName,
+        }),
       },
     ],
   };
