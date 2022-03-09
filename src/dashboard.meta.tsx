@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
@@ -9,11 +9,13 @@ const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
   pathname.indexOf(serviceEnrolment_dashboardMeta.name) !== -1 ||
   pathname.indexOf(hts_dashboardMeta.name) !== -1 ||
   pathname.indexOf(serviceSummary_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(programManagement_dashboardMeta.name) !== -1 ||
   pathname.indexOf(clinicalVisit_dashboardMeta.name) !== -1 ||
   pathname.indexOf(labResults_dashboardMeta.name) !== -1 ||
   pathname.indexOf(drugOrders_dashboardMeta.name) !== -1;
 
-const menuItems = 6;
+// TODO This needs to be refactored to automatically get the length/size
+const menuItems = 7;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -109,4 +111,11 @@ export const drugOrders_dashboardMeta = {
   slot: 'hts-drug-orders-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Drug Orders',
+};
+
+export const programManagement_dashboardMeta = {
+  name: 'program-management',
+  slot: 'program-management-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Program Management',
 };
