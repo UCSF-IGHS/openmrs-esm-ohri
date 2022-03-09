@@ -216,7 +216,7 @@
               "id": "hasPresentingComplaints"
             },
             {
-              "label": "Presenting Complaints Notes/Other Complaints",
+              "label": "Presenting Complaints Notes/Other Complaints ",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
