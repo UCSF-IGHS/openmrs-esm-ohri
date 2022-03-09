@@ -2308,5 +2308,16 @@
 				}
 			]
 		}
-    ]
+    ],
+	"availableIntents": [
+		{
+		  "intent": "*",
+		  "display": "Art Therapy Form"
+		}
+	  ],
+	  "processor": "EncounterFormProcessor",
+	  "uuid": "xxxx",
+	  "referencedForms": [],
+	  "encounterType": "779d3f30-4b5a-45eb-948e-16c1b32c04d0",
+	  "allowUnspecifiedAll": true
 }
