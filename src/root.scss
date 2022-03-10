@@ -91,3 +91,15 @@ aside {
 div[class*='-esm-login__styles__center'] > img {
   width: 140px; // design has 120px
 }
+
+:global(.tab-12rem) > button {
+  width: 12rem !important;
+}
+
+:global(.tab-14rem) > button {
+  width: 14rem !important;
+}
+
+:global(.tab-16rem) > button {
+  width: 16rem !important;
+}
