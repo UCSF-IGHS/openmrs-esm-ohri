@@ -3,8 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../program-management-summary.scss';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import EncounterList, { EncounterListColumn, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
-import { causeOFDeath_UUID, deathFormEncounterType_UUID, deathSpecific_UUID, hivDeathDate_UUID } from '../../../constants';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
+import {
+  causeOFDeath_UUID,
+  deathFormEncounterType_UUID,
+  deathSpecific_UUID,
+  hivDeathDate_UUID,
+} from '../../../constants';
 
 interface DeathTabListProps {
   patientUuid: string;
@@ -52,7 +60,7 @@ const columnsLab: EncounterListColumn[] = [
           label: 'Edit Death Form',
           mode: 'edit',
         },
-      ];            
+      ];
       return baseActions;
     },
   },
@@ -66,7 +74,7 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={deathFormEncounterType_UUID}
-      form={{ package: 'hiv', name: 'death_form' }}          
+      form={{ package: 'hiv', name: 'death_form' }}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
