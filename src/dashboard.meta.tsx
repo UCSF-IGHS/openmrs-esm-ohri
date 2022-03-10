@@ -9,13 +9,20 @@ const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
   pathname.indexOf(serviceEnrolment_dashboardMeta.name) !== -1 ||
   pathname.indexOf(hts_dashboardMeta.name) !== -1 ||
   pathname.indexOf(serviceSummary_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(programManagement_dashboardMeta.name) !== -1 ||
   pathname.indexOf(clinicalVisit_dashboardMeta.name) !== -1 ||
   pathname.indexOf(labResults_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(drugOrders_dashboardMeta.name) !== -1;
+  pathname.indexOf(drugOrders_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(programManagement_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(visits_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(generalCounselling_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(adherenceCounselling_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(partnerNotificationServices_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(labs_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(medications_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(appointments_dashboardMeta.name) !== -1;
 
 // TODO This needs to be refactored to automatically get the length/size
-const menuItems = 7;
+const menuItems = 14;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -118,4 +125,53 @@ export const programManagement_dashboardMeta = {
   slot: 'program-management-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Program Management',
+};
+
+export const visits_dashboardMeta = {
+  name: 'visits',
+  slot: 'visits-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Visits',
+};
+
+export const generalCounselling_dashboardMeta = {
+  name: 'general-counselling',
+  slot: 'general-counselling-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'General Counselling',
+};
+
+export const adherenceCounselling_dashboardMeta = {
+  name: 'adherence-counselling',
+  slot: 'adherence-counselling-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Adherence Counselling',
+};
+
+export const partnerNotificationServices_dashboardMeta = {
+  name: 'partner-notification-services',
+  slot: 'partner-notification-services-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Partner Notification Services',
+};
+
+export const labs_dashboardMeta = {
+  name: 'labs',
+  slot: 'labs-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Labs',
+};
+
+export const medications_dashboardMeta = {
+  name: 'medications',
+  slot: 'medications-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Medications',
+};
+
+export const appointments_dashboardMeta = {
+  name: 'appointments',
+  slot: 'appointments-summary-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Appointments',
 };
