@@ -127,6 +127,12 @@ export const covidVaccineAdministeredConcept_UUID = 'e41fbe17-4aee-4a44-950b-667
 export const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 
+//HIV Art Therapy
+export const art_Therapy_EncounterUUID = '779d3f30-4b5a-45eb-948e-16c1b32c04d0';
+export const artTherapyDateTime_UUID = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const regimenLine_UUID = '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const refusedTreatment_UUID = 'ac4f3fd1-8a2a-4c5e-a335-3f675b82dd78';
+
 // HIV Lab Results
 export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
 export const hivLabTestResultConcept_UUID = '';
