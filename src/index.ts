@@ -10,6 +10,13 @@ import {
   labResults_dashboardMeta,
   drugOrders_dashboardMeta,
   programManagement_dashboardMeta,
+  visits_dashboardMeta,
+  generalCounselling_dashboardMeta,
+  adherenceCounselling_dashboardMeta,
+  partnerNotificationServices_dashboardMeta,
+  labs_dashboardMeta,
+  medications_dashboardMeta,
+  appointments_dashboardMeta,
 } from './dashboard.meta';
 import {
   clearCovidSidenavRegistry,
@@ -479,6 +486,121 @@ function setupOpenMRS() {
         slot: 'program-management-summary-slot',
         load: getAsyncLifecycle(() => import('./pages/program-management/program-management-summary.component'), {
           featureName: 'program-management-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'visits-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(visits_dashboardMeta), options),
+        meta: visits_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'visits-summary-ext',
+        slot: 'visits-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/visits/visits-summary.component'), {
+          featureName: 'visits-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'general-counselling-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(generalCounselling_dashboardMeta), options),
+        meta: generalCounselling_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'general-counselling-summary-ext',
+        slot: 'general-counselling-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/general-counselling/general-counselling-summary.component'), {
+          featureName: 'general-counselling-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'adherence-counselling-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(adherenceCounselling_dashboardMeta), options),
+        meta: adherenceCounselling_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'adherence-counselling-summary-ext',
+        slot: 'adherence-counselling-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/adherence-counselling/adherence-counselling-summary.component'), {
+          featureName: 'adherence-counselling-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'partner-notification-services',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(partnerNotificationServices_dashboardMeta), options),
+        meta: partnerNotificationServices_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'partner-notification-services-ext',
+        slot: 'partner-notification-services-slot',
+        load: getAsyncLifecycle(
+          () => import('./pages/partner-notification-services/partner-notification-services.component'),
+          {
+            featureName: 'partner-notification-services',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'labs-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(labs_dashboardMeta), options),
+        meta: labs_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'labs-summary-ext',
+        slot: 'labs-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/labs/labs-summary.component'), {
+          featureName: 'labs-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'medications-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(medications_dashboardMeta), options),
+        meta: medications_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'medications-summary-ext',
+        slot: 'medications-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/medications/medications.component'), {
+          featureName: 'medications-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'appointments-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(appointments_dashboardMeta), options),
+        meta: appointments_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'appointments-summary-ext',
+        slot: 'appointments-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/appointments/appointments.component'), {
+          featureName: 'appointments-summary',
           moduleName,
         }),
       },

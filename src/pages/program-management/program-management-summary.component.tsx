@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Tabs, Tab } from 'carbon-components-react';
-import { useTranslation } from 'react-i18next';
-import styles from './program-management-summary.scss';
-import EmptyStateComingSoon from '../../components/empty-state/empty-state-comingsoon.component';
+import styles from '../common.scss';
 import HIVEnrolmentTabList from './tabs/hiv-enrolment-tab.component';
 import ServiceDeliveryTabList from './tabs/service-delivery-tab.component';
 import ArtTherapyTabList from './tabs/art-therapy-tab.component';
@@ -19,7 +17,7 @@ const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) 
       <Tab label="HIV Enrolment">
         <HIVEnrolmentTabList patientUuid={patientUuid} />
       </Tab>
-      <Tab label="Service Delivery " style={{ padding: 0 }}>
+      <Tab label="Service Delivery" style={{ padding: 0 }}>
         <ServiceDeliveryTabList patientUuid={patientUuid} />
       </Tab>
       <Tab label="ART Therapy" style={{ padding: 0 }}>
@@ -28,7 +26,7 @@ const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) 
       <Tab label="Death" style={{ padding: 0 }}>
         <DeathTabList patientUuid={patientUuid} />
       </Tab>
-      <Tab label="Transfer - Out " style={{ padding: 0 }}>
+      <Tab label="Transfer - Out" style={{ padding: 0 }}>
         <TransferOutTabList patientUuid={patientUuid} />
       </Tab>
     </Tabs>
