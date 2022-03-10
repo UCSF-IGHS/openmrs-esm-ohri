@@ -108,7 +108,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         },
       },
     };
-    registerExtension(extDetails.id, extDetails);
+    // registerExtension(extDetails.id, extDetails);
     // attach('patient-chart-workspace-header-slot', extDetails.id);
 
     return () => {

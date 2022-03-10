@@ -13,13 +13,13 @@ interface OverviewListProps {
 const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
   <div className={styles.tabContainer}>
     <Tabs type="container">
-      <Tab label="Mental Health Assessment">
+      <Tab label="Mental Health Assessment" className="tab-14rem">
         <MentalHealthAssessmentList patientUuid={patientUuid} />
       </Tab>
-      <Tab label="Drugs and Alcohol Use" style={{ padding: 0 }}>
+      <Tab label="Drugs and Alcohol Use" className="tab-12rem" style={{ padding: 0 }}>
         <DrugsAndAlcoholUseList patientUuid={patientUuid} />
       </Tab>
-      <Tab label="Intimate Partner Violence" style={{ padding: 0 }}>
+      <Tab label="Intimate Partner Violence" className="tab-14rem" style={{ padding: 0 }}>
         <IntimatePartnerViolenceList patientUuid={patientUuid} />
       </Tab>
       <Tab label="Disclosure" style={{ padding: 0 }}>

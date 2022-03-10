@@ -11,10 +11,10 @@ interface OverviewListProps {
 const AdherenceCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
   <div className={styles.tabContainer}>
     <Tabs type="container">
-      <Tab label="Adherence Counselling">
+      <Tab label="Adherence Counselling" className="tab-12rem">
         <AdherenceCounsellingList patientUuid={patientUuid} />
       </Tab>
-      <Tab label="Enhanced Adherence Counselling" style={{ padding: 0 }}>
+      <Tab label="Enhanced Adherence Counselling" className="tab-16rem" style={{ padding: 0 }}>
         <EnhancedAdherenceCounsellingList patientUuid={patientUuid} />
       </Tab>
     </Tabs>

@@ -11,7 +11,7 @@ interface OverviewListProps {
 const PartnerNotificationServices: React.FC<OverviewListProps> = ({ patientUuid }) => (
   <div className={styles.tabContainer}>
     <Tabs type="container">
-      <Tab label="Partner Notification">
+      <Tab label="Partner Notification" className="tab-12rem">
         <PartnerNotificationList patientUuid={patientUuid} />
       </Tab>
       <Tab label="Contact Tracing" style={{ padding: 0 }}>
