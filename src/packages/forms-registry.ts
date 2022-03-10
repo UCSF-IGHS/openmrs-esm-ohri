@@ -14,6 +14,7 @@ import covid_lab_order_form_v_1_0 from './covid/forms/lab-order-form/1.0.json';
 import covid_lab_result_form_v_1_0 from './covid/forms/lab-result-form/1.0.json';
 import covid_outcome_form_v_1_0 from './covid/forms/outcome-form/1.0.json';
 import covid_case_form_v_1_0 from './covid/forms/case-form/1.0.json';
+import death_form_v_1_0 from './hiv/forms/care-and-treatment/death-form/1.0.json';
 
 export default {
   hiv: {
@@ -29,6 +30,9 @@ export default {
     },
     lab_results: {
       '1.0': lab_results_v_1_0,
+    },
+    death_form: {
+      '1.0': death_form_v_1_0,
     },
   },
   covid: {
