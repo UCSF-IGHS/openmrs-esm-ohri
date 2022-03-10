@@ -142,4 +142,4 @@ export const hivCD4Count_UUID = '5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivDeathDate_UUID = '1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const causeOFDeath_UUID = 'ef973f1f-557f-4620-acf5-9c4c18bf1eda';
 export const deathSpecific_UUID = 'e329cdf4-4eeb-4821-85ec-80ec4b503de0';
-export const deathFormEncounterType_UUID = '1e68fcc5-a4be-4301-ae14-4e1fb5c0315f';
+export const deathFormEncounterType_UUID = '111c2104-991d-4b58-a30e-ce84bb275534';

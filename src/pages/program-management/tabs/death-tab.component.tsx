@@ -39,14 +39,14 @@ const columnsLab: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: 'death_form', package: 'covid' },
+          form: { name: 'death_form', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: 'death_form', package: 'covid' },
+          form: { name: 'death_form', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit Death Form',
