@@ -259,6 +259,5 @@ export function updateExcludeIntentBehaviour(excludedIntents: Array<string>, ori
   originalJson.availableIntents = originalJson.availableIntents.filter(
     intent => !excludedIntents.includes(intent?.intent || intent),
   );
-
   return originalJson;
 }

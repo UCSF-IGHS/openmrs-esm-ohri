@@ -3432,6 +3432,10 @@
   ],
   "availableIntents": [
     {
+      "intent": "*",
+      "display": "HTS Classic"
+    },
+    {
       "intent": "HTS_RETROSPECTIVE",
       "display": "HTS Restrospective"
     },
