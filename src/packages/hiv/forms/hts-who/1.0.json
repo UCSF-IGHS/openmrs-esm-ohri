@@ -3090,6 +3090,10 @@
   ],
   "availableIntents": [
     {
+      "intent": "*",
+      "display": "HTS 3 Test Strategy"
+    },
+    {
       "intent": "HTS_RETROSPECTIVE",
       "display": "HTS Restrospective"
     }

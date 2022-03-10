@@ -1,146 +1,116 @@
-import React, { useEffect, useState } from 'react';
-import styles from './hts-overview-list.scss';
-import { useTranslation } from 'react-i18next';
-import OTable from '../../../components/data-table/o-table.component';
-import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import EmptyState from '../../../components/empty-state/empty-state.component';
+import React, { useState } from 'react';
+
 import moment from 'moment';
-import { getForm } from '../../../utils/forms-loader';
-import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
-import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-launcher.component';
-import { encounterRepresentation } from '../../../constants';
+import EncounterList, {
+  EncounterListColumn,
+  findObs,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
 
 interface HtsOverviewListProps {
   patientUuid: string;
 }
 
+const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; // HIV Result
+const htsStrategy = 'f0d85da0-c235-4540-a0d1-63640594f98b';
+
+const columns: EncounterListColumn[] = [
+  {
+    key: 'date',
+    header: 'Date of HIV Test',
+    getValue: encounter => {
+      return moment(encounter.encounterDatetime).format('DD-MMM-YYYY');
+    },
+  },
+  {
+    key: 'location',
+    header: 'Location',
+    getValue: encounter => {
+      return encounter.location.name;
+    },
+  },
+  {
+    key: 'hivTestResult',
+    header: 'HIV Test result',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, hivTestResultConceptUUID);
+    },
+  },
+  {
+    key: 'provider',
+    header: 'HTS Provider',
+    getValue: encounter => {
+      return encounter.encounterProviders.map(p => p.provider.name).join(' | ');
+    },
+  },
+  {
+    key: 'actions',
+    header: 'Actions',
+    getValue: encounter => {
+      const strategies = {
+        '9de587b2-564d-4d86-bf72-e76da924018e': 'WHO',
+        '43105ef4-afde-4f33-89bd-fb318d3f07a3': 'Classic',
+      };
+      const strategyObs = findObs(encounter, htsStrategy);
+      const strategy = strategyObs ? strategies[strategyObs.value.uuid] : 'Classic';
+      if (strategy == 'WHO') {
+        return [
+          {
+            form: { package: 'hiv', name: 'hts_who' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: 'View',
+            mode: 'view',
+          },
+          {
+            form: { package: 'hiv', name: 'hts_who' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: 'Edit',
+            mode: 'edit',
+          },
+        ];
+      }
+      return [
+        {
+          form: { package: 'hiv', name: 'hts' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View',
+          mode: 'view',
+        },
+        {
+          form: { package: 'hiv', name: 'hts' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Edit',
+          mode: 'edit',
+        },
+      ];
+    },
+  },
+];
+
 const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
-  const [tableRows, setTableRows] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const rowCount = 5;
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
-  const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab'; // HIV Result
-  const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
-  const [htsForm, setHTSForm] = useState(getForm('hiv', 'hts'));
-
   const forceComponentUpdate = () => setCounter(counter + 1);
-
-  const launchHTSForm = (form?: any) => {
-    launchOHRIWorkSpace({
-      title: htsForm?.name,
-      screenSize: 'maximized',
-      state: { updateParent: forceComponentUpdate, formJson: form || htsForm },
-    });
-  };
-  const editHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace({
-      title: htsForm?.name,
-      encounterUuid: encounterUuid,
-      screenSize: 'maximized',
-      state: { updateParent: forceComponentUpdate, formJson: htsForm },
-    });
-  };
-  const viewHTSEncounter = encounterUuid => {
-    launchOHRIWorkSpace({
-      title: htsForm?.name,
-      encounterUuid: encounterUuid,
-      screenSize: 'maximized',
-      mode: 'view',
-      state: { updateParent: forceComponentUpdate, formJson: htsForm },
-    });
-  };
-
-  const tableHeaders = [
-    { key: 'date', header: 'Date of HIV Test', isSortable: true },
-    { key: 'location', header: 'Location' },
-    { key: 'result', header: 'HIV Test result' },
-    { key: 'provider', header: 'HTS Provider' },
-    { key: 'action', header: 'Action' },
-  ];
-
-  function getHtsEncounters(query: string, customRepresentation: string, encounterType: string) {
-    return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${customRepresentation}`).then(({ data }) => {
-      let rows = [];
-
-      const sortedEncounters = data.results.sort(
-        (firstEncounter, secondEncounter) =>
-          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
-      );
-      sortedEncounters.map(encounter => {
-        const htsResult = encounter.obs.find(observation => observation.concept.uuid === hivTestResultConceptUUID);
-        const htsProvider = encounter.encounterProviders.map(p => p.provider.name).join(' | ');
-        const HIVTestDate = encounter.obs.find(observation => observation.concept.name.uuid === hivTestDateConceptUUID);
-
-        const encounterActionOverflowMenu = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={t('viewHTSEncounter', 'View')}
-              onClick={e => {
-                e.preventDefault();
-                viewHTSEncounter(encounter.uuid);
-              }}
-            />
-            <OverflowMenuItem
-              itemText={t('editHTSEncounter', 'Edit')}
-              onClick={e => {
-                e.preventDefault();
-                editHTSEncounter(encounter.uuid);
-              }}
-            />
-          </OverflowMenu>
-        );
-
-        rows.push({
-          id: encounter.uuid,
-          date: moment(encounter.encounterDatetime).format('DD-MMM-YYYY'),
-          dateOfTest: HIVTestDate ? moment(HIVTestDate.obsDatetime).format('DD-MMM-YYYY') : 'None',
-          location: encounter.location.name,
-          result: htsResult?.value?.name?.name || 'None',
-          encounter_type: encounterType,
-          provider: htsProvider,
-          action: encounterActionOverflowMenu,
-        });
-      });
-      setTableRows(rows);
-      setIsLoading(false);
-    });
-  }
-
-  useEffect(() => {
-    let query = `encounterType=${htsRetrospectiveTypeUUID}&patient=${patientUuid}`;
-    getHtsEncounters(query, encounterRepresentation, 'HTS Retrospective');
-  }, [counter]);
-
   const headerTitle = 'HTS Sessions';
 
   return (
-    <>
-      {isLoading ? (
-        <DataTableSkeleton rowCount={rowCount} />
-      ) : tableRows.length > 0 ? (
-        <>
-          <div className={styles.widgetContainer}>
-            <div className={styles.widgetHeaderContainer}>
-              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
-            </div>
-            <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
-          </div>
-        </>
-      ) : (
-        <EmptyState
-          displayText={t('htsEncounters', 'hts encounters')}
-          headerTitle={headerTitle}
-          launchForm={launchHTSForm}
-          launchFormComponent={
-            <OHRIFormLauncherWithIntent formJson={htsForm} launchForm={launchHTSForm} onChangeIntent={setHTSForm} />
-          }
-        />
-      )}
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={htsRetrospectiveTypeUUID}
+      form={{ package: 'hiv', name: 'hts' }}
+      forms={[
+        { package: 'hiv', name: 'hts', fixedIntent: '*', excludedIntents: [] },
+        { package: 'hiv', name: 'hts_who', fixedIntent: '*', excludedIntents: [] },
+      ]}
+      columns={columns}
+      description={headerTitle}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 
