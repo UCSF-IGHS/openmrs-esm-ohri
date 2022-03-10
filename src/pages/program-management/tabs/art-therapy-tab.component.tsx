@@ -35,13 +35,13 @@ const columns: EncounterListColumn[] = [
       return getObsFromEncounter(encounter, regimenLine_UUID);
     },
   },
-  {
-    key: 'StopRx',
-    header: 'Refused (Stopped) Treatment',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, refusedTreatment_UUID);
-    },
-  },
+  // {
+  //   key: 'StopRx',
+  //   header: 'Refused (Stopped) Treatment',
+  //   getValue: encounter => {
+  //     return getObsFromEncounter(encounter, refusedTreatment_UUID);
+  //   },
+  // },
   {
     key: 'actions',
     header: 'Actions',

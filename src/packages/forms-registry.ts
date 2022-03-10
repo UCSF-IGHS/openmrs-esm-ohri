@@ -34,6 +34,7 @@ export default {
     },
     death_form: {
       '1.0': death_form_v_1_0,
+    },
     art_therapy: {
       '1.0': hiv_art_therapy_v_1_0,
     },
