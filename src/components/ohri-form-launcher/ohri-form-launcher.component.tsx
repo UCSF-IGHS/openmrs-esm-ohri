@@ -7,16 +7,11 @@ import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.com
 export const OHRIFormLauncherWithIntent: React.FC<{
   formJson?: any;
   launchForm: (formJson?: any, intent?: string) => void;
-  onChangeIntent: (formJson: any) => void;
   dropDownText?: string;
   hideFormLauncher?: boolean;
   formsJson?: Array<any>;
-}> = ({ formJson, launchForm, onChangeIntent, dropDownText, hideFormLauncher, formsJson }) => {
-  // Keeping this here for now, we need to figure out how to enforce users to select an intent when launching a form in edit mode
-  // This should be thrown away after the above is resolved
-  // const [processedForm, setProcessedForm] = useState(null);
+}> = ({ formJson, launchForm, dropDownText, hideFormLauncher, formsJson }) => {
   const { t } = useTranslation();
-
   let overFlowItems = [];
   if (formsJson && formsJson.length > 1) {
     overFlowItems = formsJson.map(item => {

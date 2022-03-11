@@ -10,6 +10,7 @@ import {
   covidVaccinationDoseAdmininstered_UUID,
   covidVaccinationEncType,
   covidVaccineAdministeredConcept_UUID,
+  covidVaccineConcept_UUID,
   dateSpecimenCollected,
   finalCovid19Result,
   pcrTestResultDate,
@@ -18,7 +19,7 @@ import {
 } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
-import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import { findObs, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
 import moment from 'moment';
 
 function CovidHomePatientTabs() {
@@ -121,6 +122,15 @@ function CovidHomePatientTabs() {
           key: 'vaccine',
           header: 'Vaccine',
           getValue: ({ latestEncounter }) => {
+            const obs = findObs(latestEncounter, covidVaccineAdministeredConcept_UUID);
+            if (typeof obs.value === 'object') {
+              const vaccineNAME =
+                obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+                obs.value.name.name;
+              if (vaccineNAME === 'Other non-coded') {
+                return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
+              }
+            }
             return getObsFromEncounter(latestEncounter, covidVaccineAdministeredConcept_UUID);
           },
         },
