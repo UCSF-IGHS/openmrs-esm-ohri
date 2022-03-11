@@ -127,6 +127,7 @@ export const covidVaccineConcept_UUID = '0cc868bd-e9dd-4b59-b278-f923afe22d82';
 // HTS HIV
 export const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+export const htsStrategyUUID = 'f0d85da0-c235-4540-a0d1-63640594f98b';
 
 // HIV Lab Results
 export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
