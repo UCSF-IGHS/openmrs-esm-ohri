@@ -6,6 +6,7 @@ import EncounterList, {
   findObs,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
+import { htsStrategyUUID } from '../../../constants';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -20,6 +21,13 @@ const columns: EncounterListColumn[] = [
     header: 'Date of HIV Test',
     getValue: encounter => {
       return moment(encounter.encounterDatetime).format('DD-MMM-YYYY');
+    },
+  },
+  {
+    key: 'htsFormStrategy',
+    header: 'HTS Strategy',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, htsStrategyUUID);
     },
   },
   {
