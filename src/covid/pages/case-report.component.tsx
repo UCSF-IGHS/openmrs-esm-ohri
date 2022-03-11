@@ -120,11 +120,7 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              <OHRIFormLauncherWithIntent
-                formJson={covidCaseReportForm}
-                launchForm={launchCaseReportForm}
-                onChangeIntent={setCovidCaseReportForm}
-              />
+              <OHRIFormLauncherWithIntent formJson={covidCaseReportForm} launchForm={launchCaseReportForm} />
             </div>
             <OTable tableHeaders={tableHeaders} tableRows={tableRows} />
           </div>
@@ -134,11 +130,7 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
           displayText={displayText}
           headerTitle={headerTitle}
           launchFormComponent={
-            <OHRIFormLauncherWithIntent
-              formJson={covidCaseReportForm}
-              launchForm={launchCaseReportForm}
-              onChangeIntent={setCovidCaseReportForm}
-            />
+            <OHRIFormLauncherWithIntent formJson={covidCaseReportForm} launchForm={launchCaseReportForm} />
           }
         />
       )}

@@ -34,7 +34,13 @@ export interface EncounterListProps {
   description: string;
   dropdownText?: string;
   hideFormLauncher?: boolean;
-  forms?: Array<any>;
+  forms?: Array<{
+    package: string;
+    name: string;
+    view?: string;
+    excludedIntents?: Array<string>;
+    fixedIntent?: string;
+  }>;
   filter?: (encounter: any) => boolean;
 }
 
@@ -273,14 +279,17 @@ const EncounterList: React.FC<EncounterListProps> = ({
     if (forms && forms.length > 1) {
       encounterForms = forms.map(formV => {
         let tempForm = getForm(formV.package, formV.name);
-        tempForm = updateExcludeIntentBehaviour(formV.excludedIntents, tempForm);
-        return tempForm;
+        const excludedIntents = formV.fixedIntent
+          ? tempForm.availableIntents
+              .filter(candidate => candidate.intent != formV.fixedIntent)
+              .map(intent => intent.intent)
+          : formV.excludedIntents;
+        return excludedIntents.length ? updateExcludeIntentBehaviour(excludedIntents, tempForm) : tempForm;
       });
 
       return (
         <OHRIFormLauncherWithIntent
           launchForm={launchEncounterForm}
-          onChangeIntent={encounterForm}
           dropDownText={dropdownText}
           hideFormLauncher={hideFormLauncher}
           formsJson={encounterForms}
@@ -291,7 +300,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
         <OHRIFormLauncherWithIntent
           formJson={encounterForm}
           launchForm={launchEncounterForm}
-          onChangeIntent={encounterForm}
           dropDownText={dropdownText}
           hideFormLauncher={hideFormLauncher}
         />

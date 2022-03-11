@@ -4,11 +4,15 @@ import {
   clearSidenavRegistry,
   createDashboardLink,
   hts_dashboardMeta,
-  serviceEnrolment_dashboardMeta,
   serviceSummary_dashboardMeta,
-  clinicalVisit_dashboardMeta,
   labResults_dashboardMeta,
-  drugOrders_dashboardMeta,
+  programManagement_dashboardMeta,
+  visits_dashboardMeta,
+  generalCounselling_dashboardMeta,
+  adherenceCounselling_dashboardMeta,
+  partnerNotificationServices_dashboardMeta,
+  medications_dashboardMeta,
+  appointments_dashboardMeta,
 } from './dashboard.meta';
 import {
   clearCovidSidenavRegistry,
@@ -76,22 +80,6 @@ function setupOpenMRS() {
         },
       },
       {
-        id: 'hts-clinical-visit-list-ext',
-        slot: 'hts-clinical-visit-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/clinical-visit/encounter-list/clinical-visit-encounter-list.component'),
-          {
-            featureName: 'hts-clinical-visit-list',
-            moduleName,
-          },
-        ),
-        order: 2,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      ,
-      {
         id: 'hts-service-summary-list-ext',
         slot: 'hts-service-summary-dashboard-slot',
         load: getAsyncLifecycle(
@@ -103,21 +91,6 @@ function setupOpenMRS() {
         ),
       },
       {
-        id: 'hts-service-enrolment-list-ext',
-        slot: 'hts-service-enrolment-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/service-enrolment/encounter-list/service-enrolment-encounter-list.component'),
-          {
-            featureName: 'hts-service-enrolment-list',
-            moduleName,
-          },
-        ),
-        order: 3,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
         id: 'hts-lab-results-list-ext',
         slot: 'hts-lab-results-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/lab-results/overview/lab-results-overview.component'), {
@@ -125,21 +98,6 @@ function setupOpenMRS() {
           moduleName,
         }),
         order: 7,
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'hts-drug-orders-list-ext',
-        slot: 'hts-drug-orders-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/drug-orders/encounter-list/drug-orders-encounter-list.component'),
-          {
-            featureName: 'hts-drug-orders-list',
-            moduleName,
-          },
-        ),
-        order: 5,
         meta: {
           columnSpan: 4,
         },
@@ -395,34 +353,10 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'service-enrolment-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(serviceEnrolment_dashboardMeta), options),
-        meta: serviceEnrolment_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'clinical-visit-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(clinicalVisit_dashboardMeta), options),
-        meta: clinicalVisit_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
         id: 'lab-results-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
         load: getSyncLifecycle(createDashboardLink(labResults_dashboardMeta), options),
         meta: labResults_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'drug-orders-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(drugOrders_dashboardMeta), options),
-        meta: drugOrders_dashboardMeta,
         online: true,
         offline: true,
       },
@@ -465,6 +399,121 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./links/form-render-app-menu-link.component'), options),
         online: true,
         offline: true,
+      },
+      {
+        id: 'program-management-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(programManagement_dashboardMeta), options),
+        meta: programManagement_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'program-management-summary-ext',
+        slot: 'program-management-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/program-management/program-management-summary.component'), {
+          featureName: 'program-management-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'visits-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(visits_dashboardMeta), options),
+        meta: visits_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'visits-summary-ext',
+        slot: 'visits-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/visits/visits-summary.component'), {
+          featureName: 'visits-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'general-counselling-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(generalCounselling_dashboardMeta), options),
+        meta: generalCounselling_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'general-counselling-summary-ext',
+        slot: 'general-counselling-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/general-counselling/general-counselling-summary.component'), {
+          featureName: 'general-counselling-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'adherence-counselling-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(adherenceCounselling_dashboardMeta), options),
+        meta: adherenceCounselling_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'adherence-counselling-summary-ext',
+        slot: 'adherence-counselling-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/adherence-counselling/adherence-counselling-summary.component'), {
+          featureName: 'adherence-counselling-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'partner-notification-services',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(partnerNotificationServices_dashboardMeta), options),
+        meta: partnerNotificationServices_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'partner-notification-services-ext',
+        slot: 'partner-notification-services-slot',
+        load: getAsyncLifecycle(
+          () => import('./pages/partner-notification-services/partner-notification-services.component'),
+          {
+            featureName: 'partner-notification-services',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'medications-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(medications_dashboardMeta), options),
+        meta: medications_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'medications-summary-ext',
+        slot: 'medications-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/medications/medications.component'), {
+          featureName: 'medications-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'appointments-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createDashboardLink(appointments_dashboardMeta), options),
+        meta: appointments_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'appointments-summary-ext',
+        slot: 'appointments-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/appointments/appointments.component'), {
+          featureName: 'appointments-summary',
+          moduleName,
+        }),
       },
     ],
   };

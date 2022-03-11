@@ -108,7 +108,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
         },
       },
     };
-    registerExtension(extDetails.id, extDetails);
+    // registerExtension(extDetails.id, extDetails);
     // attach('patient-chart-workspace-header-slot', extDetails.id);
 
     return () => {
@@ -190,7 +190,7 @@ const OHRIForm: React.FC<OHRIFormProps> = ({
               )}
 
               <div className={styles.formContent}>
-                {workspaceLayout != 'minimized' && <PatientBanner patient={patient} />}
+                {workspaceLayout != 'minimized' && <PatientBanner patient={patient} hideActionsOverflow={true} />}
                 {form.markdown && (
                   <div className={styles.markdownContainer}>
                     <ReactMarkdown children={form.markdown.join('\n')} />

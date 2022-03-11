@@ -122,10 +122,18 @@ export const covidVaccinationAdministeredConcept_UUID = '1410AAAAAAAAAAAAAAAAAAA
 export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const covidVaccinationDoseAdmininstered_UUID = '97bf47f9-0ba7-4d00-99bd-8939cd586072';
 export const covidVaccineAdministeredConcept_UUID = 'e41fbe17-4aee-4a44-950b-6676d6e0ede2';
+export const covidVaccineConcept_UUID = '0cc868bd-e9dd-4b59-b278-f923afe22d82';
 
 // HTS HIV
 export const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+export const htsStrategyUUID = 'f0d85da0-c235-4540-a0d1-63640594f98b';
+
+//HIV Art Therapy
+export const art_Therapy_EncounterUUID = '779d3f30-4b5a-45eb-948e-16c1b32c04d0';
+export const artTherapyDateTime_UUID = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const regimenLine_UUID = '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const refusedTreatment_UUID = 'ac4f3fd1-8a2a-4c5e-a335-3f675b82dd78';
 
 // HIV Lab Results
 export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
@@ -137,3 +145,9 @@ export const hivDateViralLoadInterpretation_UUID = '686dc1b2-68b5-4024-b311-bd2f
 export const hivDateCD4Result_UUID = '159376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivCD4Result_UUID = '657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivCD4Count_UUID = '5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+//HIV Death
+export const hivDeathDate_UUID = '1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const causeOFDeath_UUID = 'ef973f1f-557f-4620-acf5-9c4c18bf1eda';
+export const deathSpecific_UUID = 'e329cdf4-4eeb-4821-85ec-80ec4b503de0';
+export const deathFormEncounterType_UUID = '111c2104-991d-4b58-a30e-ce84bb275534';

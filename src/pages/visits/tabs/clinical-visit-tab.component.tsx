@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
 import {
   clinicalVisitEncounterType,
   dateOfEncounterConcept,
@@ -7,12 +12,8 @@ import {
   returnVisitDateConcept,
   visitTypeConcept,
 } from '../../../constants';
-import EncounterList, {
-  EncounterListColumn,
-  getObsFromEncounter,
-} from '../../../components/encounter-list/encounter-list.component';
 
-interface ClinicalVisitWidgetProps {
+interface ClinicalVisitListProps {
   patientUuid: string;
 }
 
@@ -67,8 +68,12 @@ const columns: EncounterListColumn[] = [
   },
 ];
 
-//TODO: Use translation for values
-const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }) => {
+const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) => {
+  const { t } = useTranslation();
+
+  const headerTitle = t('clinicalVisit', 'Clinical Visit');
+  const displayText = t('clinicalVisit', 'Clinical Visit');
+
   return (
     <EncounterList
       patientUuid={patientUuid}
@@ -81,4 +86,4 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   );
 };
 
-export default ClinicalVisitWidget;
+export default ClinicalVisitList;

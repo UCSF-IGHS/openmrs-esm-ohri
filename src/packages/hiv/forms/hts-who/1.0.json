@@ -1,5 +1,5 @@
 {
-  "name": "HTS Form - Classic",
+  "name": "HTS Form - WHO",
   "pages": [
     {
       "label": "Introduction",
@@ -81,15 +81,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -122,15 +113,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -252,18 +234,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '42dd1e18-00cb-471c-911c-cb254d5b01a5'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -272,7 +242,7 @@
                   }
                 }
               ],
-              "id": "serviceDeliveryPoint"
+              "id": "communityServiceDeliveryPoint"
             },
             {
               "label": "Facility service delivery point",
@@ -401,7 +371,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -409,13 +379,8 @@
                   }
                 },
                 {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
+                  "required": "false",
                   "hide": {
                     "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
                   }
@@ -495,15 +460,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -570,11 +526,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -634,21 +585,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -729,21 +665,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -790,15 +711,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -893,14 +805,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -975,11 +879,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -1060,14 +959,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -1152,14 +1043,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -1173,7 +1056,7 @@
           ]
         },
         {
-          "label": "Pre-Test Information",
+          "label": "Pre-Test",
           "isExpanded": "true",
           "questions": [
             {
@@ -1214,15 +1097,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -1256,24 +1130,9 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -1317,15 +1176,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -1468,16 +1318,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -1522,7 +1362,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 },
@@ -1533,8 +1373,7 @@
                 },
                 {
                   "intent": "*",
-                  "required": "true",
-                  "unspecified": "true"
+                  "required": "false"
                 }
               ],
               "id": "stiSymptoms"
@@ -1545,30 +1384,6 @@
     },
     {
       "label": "HIV Testing",
-      "behaviours": [
-        {
-          "intent": "HTS_RETROSPECTIVE",
-          "hide": {
-            "hideWhenExpression": "false"
-          }
-        },
-        {
-          "intent": "HTS_PRETEST",
-          "hide": {
-            "hideWhenExpression": "true"
-          }
-        },
-        {
-          "intent": "HTS_POSTTEST",
-          "readonly": "true"
-        },
-        {
-          "intent": "*",
-          "hide": {
-            "hideWhenExpression": "false"
-          }
-        }
-      ],
       "sections": [
         {
           "label": "General Information",
@@ -1612,15 +1427,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -1637,41 +1443,6 @@
                 "weeksList": ""
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue > today()"
-                    }
-                  ]
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue > today()"
-                    }
-                  ]
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -1696,15 +1467,15 @@
           ]
         },
         {
-          "label": "Initial HIV Test",
+          "label": "Assay 1 (first test)",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Initial HIV Test RDT",
+              "label": "Assay 1 (first test) RDT",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "afa64df8-50af-4bc3-8135-6e6603f62068",
+                "concept": "359473bd-0d21-4f2c-bcd6-03923633a468",
                 "answers": [
                   {
                     "concept": "166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1730,18 +1501,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -1750,42 +1509,42 @@
                   }
                 }
               ],
-              "id": "initialTestRdt"
+              "id": "firstHivTestRDT"
             },
             {
-              "label": "Initial (first test) result",
+              "label": "Assay 1 (first test) result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "dbc4f8e9-7098-4585-9509-e2f84a4d8c6e",
+                "concept": "52afc863-c026-49d8-9a69-5e807c33f717",
                 "answers": [
                   {
                     "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Negative",
                     "conceptMappings": [
                       {
-                        "type": "AMPATH",
-                        "value": "665"
-                      },
-                      {
                         "type": "org.openmrs.module.mdrtb",
                         "value": "NEGATIVE"
                       },
                       {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
                         "type": "AMPATH",
-                        "value": "664"
+                        "value": "665"
                       },
                       {
                         "type": "CIEL",
                         "value": "664"
                       },
                       {
-                        "type": "PIH",
+                        "type": "AMPATH",
                         "value": "664"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
+                        "type": "PIH",
+                        "value": "664"
                       }
                     ]
                   },
@@ -1798,27 +1557,12 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
+                  "unspecified": "true"
                 }
               ],
-              "id": "initialFirstTestResult"
+              "id": "firstHivTestRDTResult"
             },
             {
               "label": "RDT syphilis test result",
@@ -1826,6 +1570,227 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "165303AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "664"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "firstHivTestRDT !== '166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "syphilisResult"
+            }
+          ]
+        },
+        {
+          "label": "Assay 2 (Second test)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Assay 2 (second HIV test) done",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7704e02d-fe35-48b0-99a3-b577971faacb",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not done",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "385660001"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1118"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "firstHivTestRDTResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ],
+              "id": "secondHivTestDone"
+            },
+            {
+              "label": "Assay 2 (second test) RDT",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5749ec67-750c-43aa-ad45-50597f38e156",
+                "answers": [
+                  {
+                    "concept": "166451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abbott Determine(R) test kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Premier First Response(R) test kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abbott SD Bioline HIV/Syphilis Duo test kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166454AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Human immunodeficiency virus testing kit type (text)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "secondHivTestRDT",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Assay 2 (second test) result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "986964ab-f71d-4a58-bd04-57dbb1080989",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings": [
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NEGATIVE"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "665"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "664"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "664"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "664"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
+              "id": "secondHivTestResult"
+            },
+            {
+              "label": "Intermediate A1 & A2 HIV result",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7792a28b-f680-4dab-971e-750fb77c78d0",
                 "answers": [
                   {
                     "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1846,6 +1811,144 @@
                     ]
                   },
                   {
+                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "label": "Positive",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "intermediateA1andA2HivResults",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "firstHivTestRDTResult === '6378487b-584d-4422-a6a6-56c8830873ff' && secondHivTestDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && secondHivTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Repeat Assay 1 (Indeterminate A & A2 Results)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Repeat Assay 1 Done",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d3255752-dcd5-4e23-953a-676079f7fec1",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not done",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "385660001"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1118"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "firstHivTestRDTRepeatDone",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Repeat Assay 1 RDT",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3b105e1e-f99f-46a3-ac47-0815616411d9",
+                "answers": [
+                  {
+                    "concept": "166451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abbott Determine(R) test kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Premier First Response(R) test kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abbott SD Bioline HIV/Syphilis Duo test kit",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "166454AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Human immunodeficiency virus testing kit type (text)",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "firstHivTestRDTRepeat"
+            },
+            {
+              "label": "Repeat Assay 1 Results",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "bbcf7028-1b32-48d6-a462-61e42b21677d",
+                "answers": [
+                  {
                     "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Negative",
                     "conceptMappings": [
@@ -1876,48 +1979,36 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
+                    "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
+                    "label": "Inconclusive HIV Result",
                     "conceptMappings": []
                   }
                 ]
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "initialTestRdt !== '166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "false"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialTestRdt !== '166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
-              "id": "syphilisResult"
+              "id": "firstHivTestRepeatResult"
             }
           ]
         },
         {
-          "label": "Confirmatory (second) Test",
+          "label": "Assay 3",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Confirmatory (second HIV test) done",
+              "label": "Assay 3 (third HIV test) done",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1201b688-45f8-4e56-b089-0b31138a19dd",
+                "concept": "1e254484-28bd-453e-81e8-a8035fb734f2",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1967,40 +2058,23 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "false"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    "hideWhenExpression": "firstHivTestRDTResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
                   }
                 }
               ],
-              "id": "confirmatoryTest"
+              "id": "thirdHivTestDone"
             },
             {
-              "label": "Confirmatory (second test) RDT",
+              "label": "Assay 3 (third test) RDT",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "b78d89e7-08aa-484f-befb-1e3e70cd6985",
+                "concept": "04fe3874-f5f3-4621-b0e8-e3d092a32dc0",
                 "answers": [
-                  {
-                    "concept": "166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Abbott SD Bioline HIV/Syphilis Duo test kit",
-                    "conceptMappings": []
-                  },
                   {
                     "concept": "166451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Abbott Determine(R) test kit",
@@ -2012,6 +2086,11 @@
                     "conceptMappings": []
                   },
                   {
+                    "concept": "166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abbott SD Bioline HIV/Syphilis Duo test kit",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "166454AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Human immunodeficiency virus testing kit type (text)",
                     "conceptMappings": []
@@ -2020,62 +2099,50 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "confirmatoryTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "false"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "confirmatoryTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
-              "id": "confirmatoryTestRdt"
+              "id": "thirdHivTestRDT"
             },
             {
-              "label": "Confirmatory (second test) result",
+              "label": "Assay 3 (third HIV test) result",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "dbc4f8e9-7098-4585-9509-e2f84a4d8c6e",
+                "concept": "066a446a-720a-462b-83f2-d86885127663",
                 "answers": [
                   {
                     "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Negative",
                     "conceptMappings": [
                       {
-                        "type": "AMPATH",
-                        "value": "665"
-                      },
-                      {
                         "type": "org.openmrs.module.mdrtb",
                         "value": "NEGATIVE"
                       },
                       {
+                        "type": "SNOMED-CT",
+                        "value": "260385009"
+                      },
+                      {
                         "type": "AMPATH",
-                        "value": "664"
+                        "value": "665"
                       },
                       {
                         "type": "CIEL",
                         "value": "664"
                       },
                       {
-                        "type": "PIH",
+                        "type": "AMPATH",
                         "value": "664"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
+                        "type": "PIH",
+                        "value": "664"
                       }
                     ]
                   },
@@ -2088,234 +2155,15 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "confirmatoryTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "false"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "confirmatoryTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
-              "id": "confirmatoryTestResult"
-            }
-          ]
-        },
-        {
-          "label": "Tie-breaker",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Tie-breaker Done",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "b221ce19-9292-4117-bdff-0adcf13f82d6",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not done",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "1118"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "1118"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385660001"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1118"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "false"
-                },
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
-                }
-              ],
-              "id": "tiebreakerHIVTestDone"
-            },
-            {
-              "label": "Tie-breaker RDT",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "73434a78-e4fc-42f7-a812-f30f3b3cabe3",
-                "answers": [
-                  {
-                    "concept": "166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Abbott SD Bioline HIV/Syphilis Duo test kit",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Abbott Determine(R) test kit",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166452AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Premier First Response(R) test kit",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "166454AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Human immunodeficiency virus testing kit type (text)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "tiebreakerHIVTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "false"
-                },
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "tiebreakerHIVTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                }
-              ],
-              "id": "tieBreakerRdt"
-            },
-            {
-              "label": "Tie-breaker Results",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "bfc5fbb9-2b23-422e-a741-329bb2597032",
-                "answers": [
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "665"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "NEGATIVE"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "664"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "664"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "260385009"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
-                  }
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
-                  }
-                },
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
-                  }
-                }
-              ],
-              "id": "tieBreakerTestResult"
+              "id": "thirdHivTestResult"
             }
           ]
         },
@@ -2374,24 +2222,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "false"
-                    }
-                  ]
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -2401,7 +2231,7 @@
                   "validators": [
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "false"
+                      "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerTestResult) && myValue !== tieBreakerTestResult)"
                     }
                   ]
                 }
@@ -2468,15 +2298,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -2490,50 +2311,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "160082AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "439771001"
-                  }
-                ]
+                "weeksList": ""
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
-                    }
-                  ]
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    },
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
-                    }
-                  ]
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -2553,7 +2333,7 @@
                   ]
                 }
               ],
-              "id": "hIVTestResultsReceivedDate"
+              "id": "hiVTestResultsReceivedDate"
             }
           ]
         },
@@ -2621,21 +2401,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
-                  }
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -2672,21 +2437,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "hide": {
-                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -2695,7 +2445,7 @@
                   }
                 }
               ],
-              "id": "coupleResults"
+              "id": "CoupleResults"
             }
           ]
         }
@@ -2725,11 +2475,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -2776,20 +2521,9 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "recencyTestConducted"
@@ -2857,14 +2591,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
@@ -2874,160 +2600,6 @@
                 }
               ],
               "id": "recencyTestResult"
-            },
-            {
-              "label": "Viral Load for RTRI recent done",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "364712009"
-                  },
-                  {
-                    "type": "CIEL",
-                    "value": "163310"
-                  }
-                ],
-                "answers": [
-                  {
-                    "concept": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Completed",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1267"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1267"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "255594003"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not done",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "1118"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "1118"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "2475"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1118"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385660001"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385660001"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1118"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 261665006"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "261665006"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "UNKNOWN"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "id": "viralLoadForRtri"
-            },
-            {
-              "label": "VL recency test result",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "04c32f8c-7070-4cad-976b-1a6bb45fa85b",
-                "answers": [
-                  {
-                    "concept": "076f6417-7e18-44ea-a1aa-382a792fabd1",
-                    "label": "VL <1000 copies/ml (RITA longterm)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "a0d39eef-490f-47c0-8921-97fc810d9929",
-                    "label": "VL >=1000 copies/ml (RITA Recent)",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "false",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                },
-                {
-                  "intent": "HTS_POSTTEST",
-                  "required": "false"
-                },
-                {
-                  "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                }
-              ],
-              "id": "vlRecencyTestResult"
             }
           ]
         }
@@ -3088,15 +2660,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_POSTTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -3120,11 +2683,6 @@
                   {
                     "concept": "88cdde2b-753b-48ac-a51a-ae5e1ab24846",
                     "label": "Pre Exposure Prophylaxis (PEP)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "46da10c7-49e3-45e5-8e82-7c529d52a1a8",
-                    "label": "STI Testing and Treatment",
                     "conceptMappings": []
                   },
                   {
@@ -3190,11 +2748,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -3279,11 +2832,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -3356,11 +2904,6 @@
                 ]
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
@@ -3444,11 +2987,6 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
@@ -3500,58 +3038,12 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_POSTTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
               ],
               "id": "linkedToCare"
-            },
-            {
-              "label": "Facility where the client was referred for care and treatment",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "CIEL",
-                    "value": "161562"
-                  },
-                  {
-                    "type": "CIEL",
-                    "value": "161562"
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
-                  }
-                },
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
-                  }
-                }
-              ],
-              "id": "facilityClientReferredTo"
             },
             {
               "label": "Service Identification Number",
@@ -3562,19 +3054,11 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                },
-                {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
                 }
               ],
@@ -3595,23 +3079,9 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                },
-                {
-                  "intent": "HTS_POSTTEST",
-                  "required": "true"
-                },
-                {
                   "intent": "*",
-                  "required": "false",
-                  "hide": {
-                    "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "htsProviderName"
@@ -3628,26 +3098,21 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "HTS provider comments",
+              "label": "HTS Provider Comments",
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "437d1e25-e7ab-481c-aabc-01f21c6cdef1",
-                "rows": "5"
+                "rows": ""
               },
               "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
                 {
                   "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
               ],
-              "id": "htsProviderRemarks"
+              "id": "notes"
             }
           ]
         }
@@ -3657,25 +3122,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "HTS Classic"
-    },
-    {
-      "intent": "HTS_RETROSPECTIVE",
-      "display": "HTS Restrospective"
-    },
-    {
-      "intent": "HTS_PRETEST",
-      "display": "HTS Pretest"
-    },
-    {
-      "intent": "HTS_HIVTEST",
-      "display": "HIV Test",
-      "defaultPage": "HIV Testing"
-    },
-    {
-      "intent": "HTS_POSTTEST",
-      "display": "HTS Post Test",
-      "defaultPage": "Referrals"
+      "display": "HTS 3 Test Strategy"
     }
   ],
   "processor": "EncounterFormProcessor",

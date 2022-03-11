@@ -1,6 +1,6 @@
 {
   "@openmrs/esm-patient-chart-app": {
-    "extensions": {
+    "extensionSlots": {
       "patient-chart-dashboard-slot": {
         "remove": [
           "allergies-summary-dashboard",
@@ -22,7 +22,7 @@
     }
   },
   "@openmrs/esm-patient-banner-app": {
-    "extensions": {
+    "extensionSlots": {
       "patient-actions-slot": {
         "remove": [
           "add-patient-to-patient-list-button"
