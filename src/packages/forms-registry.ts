@@ -2,6 +2,7 @@ import hts_v_1_0 from './hiv/forms/hts/1.0.json';
 import hts_v_2_0 from './hiv/forms/hts/2.0.json';
 import hts_who_v_1_0 from './hiv/forms/hts-who/1.0.json';
 import hiv_service_enrolment_v_1_0 from './hiv/forms/care-and-treatment/service-enrolment/1.0.json';
+import hiv_art_therapy_v_1_0 from './hiv/forms/care-and-treatment/art-therapy/1.0.json';
 import covid_assessment_form_v_1_0 from './covid/forms/case-assessment-form/1.0.json';
 import covid_lab_test_form_v_1_0 from './covid/forms/lab-test-form/1.0.json';
 import covid_outcome_tracking_form_v_1_0 from './covid/forms/outcome-tracking-form/1.0.json';
@@ -37,6 +38,9 @@ export default {
     },
     death_form: {
       '1.0': death_form_v_1_0,
+    },
+    art_therapy: {
+      '1.0': hiv_art_therapy_v_1_0,
     },
   },
   covid: {
