@@ -81,7 +81,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -114,7 +114,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -234,7 +234,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -371,7 +371,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -460,7 +460,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -526,7 +526,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -586,7 +586,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -665,7 +665,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -712,7 +712,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -805,7 +805,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -880,7 +880,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -960,7 +960,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1043,7 +1043,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1097,7 +1097,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1130,7 +1130,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1177,7 +1177,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1318,7 +1318,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1362,7 +1362,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 },
@@ -1427,7 +1427,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1444,7 +1444,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1501,7 +1501,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1557,7 +1557,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1610,7 +1610,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1681,7 +1681,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1723,7 +1723,7 @@
               "id": "secondHivTestRDT",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1778,7 +1778,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -1820,7 +1820,7 @@
               "id": "intermediateA1andA2HivResults",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1891,7 +1891,7 @@
               "id": "firstHivTestRDTRepeatDone",
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1931,7 +1931,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1987,7 +1987,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2058,7 +2058,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2099,7 +2099,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2155,7 +2155,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2222,7 +2222,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2298,7 +2298,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2315,7 +2315,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2401,7 +2401,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2437,7 +2437,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2476,7 +2476,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2521,7 +2521,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2591,7 +2591,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -2660,7 +2660,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2749,7 +2749,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2832,7 +2832,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2905,7 +2905,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -2987,7 +2987,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -3038,7 +3038,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -3054,7 +3054,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -3079,7 +3079,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -3107,7 +3107,7 @@
               },
               "behaviours": [
                 {
-                  "intent": "HTS_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true"
                 }
@@ -3123,10 +3123,6 @@
     {
       "intent": "*",
       "display": "HTS 3 Test Strategy"
-    },
-    {
-      "intent": "HTS_RETROSPECTIVE",
-      "display": "HTS Restrospective"
     }
   ],
   "processor": "EncounterFormProcessor",

@@ -91,7 +91,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "testingLocation"
@@ -132,7 +133,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "htsApproach"
@@ -263,7 +265,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '42dd1e18-00cb-471c-911c-cb254d5b01a5'"
                   }
@@ -411,7 +414,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
                   }
@@ -501,7 +505,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "reasonForTesting"
@@ -571,7 +576,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "true"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "everTestedForHIV"
@@ -645,7 +651,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -738,7 +745,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -793,7 +801,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "populationType"
@@ -973,7 +982,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "true"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "clientSexualActivity"
@@ -1061,6 +1071,7 @@
                 {
                   "intent": "*",
                   "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -1151,6 +1162,7 @@
                 {
                   "intent": "*",
                   "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -1212,7 +1224,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "preTestCounsellingConducted"
@@ -1253,6 +1266,7 @@
                 {
                   "intent": "HTS_PRETEST",
                   "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -1314,7 +1328,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "preTestCounselingConsent"
@@ -1464,7 +1479,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "tbSymptoms"
@@ -1517,7 +1533,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "stiSymptoms"
@@ -1605,7 +1622,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "hivTestConducted"
@@ -1656,7 +1674,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
@@ -1724,7 +1743,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -1791,7 +1811,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -1876,7 +1897,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "initialTestRdt !== '166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -1958,7 +1980,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
                   }
@@ -2010,7 +2033,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "confirmatoryTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -2077,7 +2101,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "confirmatoryTest !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -2159,7 +2184,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
                   }
@@ -2211,7 +2237,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "tiebreakerHIVTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -2281,7 +2308,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
                   }
@@ -2350,8 +2378,14 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
-                  }
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "false"
+                    }
+                  ]
                 },
                 {
                   "intent": "HTS_HIVTEST",
@@ -2359,14 +2393,15 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
                   "validators": [
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerTestResult) && myValue !== tieBreakerTestResult)"
+                      "failsWhenExpression": "false"
                     }
                   ]
                 }
@@ -2443,7 +2478,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "receivedHIVTestResult"
@@ -2500,7 +2536,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
@@ -2600,7 +2637,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
                   }
@@ -2650,7 +2688,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -2693,7 +2732,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "recencyTestingConsent"
@@ -2745,7 +2785,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -2825,7 +2866,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
@@ -2979,6 +3021,7 @@
                 {
                   "intent": "*",
                   "required": "false",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   }
@@ -3055,7 +3098,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "postTestCounsellingDone"
@@ -3153,7 +3197,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "referredToPreventionServices"
@@ -3240,7 +3285,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "referredToSRHServices"
@@ -3317,7 +3363,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "referredToClinicalServices"
@@ -3403,7 +3450,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "referredToOtherServices"
@@ -3462,10 +3510,48 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "linkedToCare"
+            },
+            {
+              "label": "Facility where the client was referred for care and treatment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "161562"
+                  },
+                  {
+                    "type": "CIEL",
+                    "value": "161562"
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
+              "id": "facilityClientReferredTo"
             },
             {
               "label": "Service Identification Number",
@@ -3485,9 +3571,10 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                    "hideWhenExpression": "false"
                   }
                 }
               ],
@@ -3556,7 +3643,8 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false"
+                  "required": "true",
+                  "unspecified": "true"
                 }
               ],
               "id": "htsProviderRemarks"
