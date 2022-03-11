@@ -17,6 +17,37 @@
               "value": [
                 "Use this form to perform HIV Testing Services"
               ]
+            },
+            {
+              "label": "HTS Form Strategy",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "74062673-31cb-4ced-a3a1-2d43e06e15f7",
+                "answers": [
+                  {
+                    "concept": "43105ef4-afde-4f33-89bd-fb318d3f07a3",
+                    "label": "HTS Classic Form",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9de587b2-564d-4d86-bf72-e76da924018e",
+                    "label": "HTS WHO Form",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "true"
+                  }
+                }
+              ],
+              "id": "htsFormStrategy"
             }
           ]
         }
