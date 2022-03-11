@@ -6,23 +6,19 @@ import Events from './utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(serviceEnrolment_dashboardMeta.name) !== -1 ||
   pathname.indexOf(hts_dashboardMeta.name) !== -1 ||
   pathname.indexOf(serviceSummary_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(clinicalVisit_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(labResults_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(drugOrders_dashboardMeta.name) !== -1 ||
   pathname.indexOf(programManagement_dashboardMeta.name) !== -1 ||
   pathname.indexOf(visits_dashboardMeta.name) !== -1 ||
+  pathname.indexOf(labResults_dashboardMeta.name) !== -1 ||
   pathname.indexOf(generalCounselling_dashboardMeta.name) !== -1 ||
   pathname.indexOf(adherenceCounselling_dashboardMeta.name) !== -1 ||
   pathname.indexOf(partnerNotificationServices_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(labs_dashboardMeta.name) !== -1 ||
   pathname.indexOf(medications_dashboardMeta.name) !== -1 ||
   pathname.indexOf(appointments_dashboardMeta.name) !== -1;
 
 // TODO This needs to be refactored to automatically get the length/size
-const menuItems = 14;
+const menuItems = 10;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -99,25 +95,11 @@ export const serviceSummary_dashboardMeta = {
   title: 'Service Summary',
 };
 
-export const clinicalVisit_dashboardMeta = {
-  name: 'hts-clinical-visit',
-  slot: 'hts-clinical-visit-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Clinical Visit',
-};
-
 export const labResults_dashboardMeta = {
   name: 'hts-lab-results',
   slot: 'hts-lab-results-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Lab Results',
-};
-
-export const drugOrders_dashboardMeta = {
-  name: 'hts-drug-orders',
-  slot: 'hts-drug-orders-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Drug Orders',
+  title: 'Labs',
 };
 
 export const programManagement_dashboardMeta = {
@@ -153,13 +135,6 @@ export const partnerNotificationServices_dashboardMeta = {
   slot: 'partner-notification-services-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Partner Notification Services',
-};
-
-export const labs_dashboardMeta = {
-  name: 'labs',
-  slot: 'labs-summary-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Labs',
 };
 
 export const medications_dashboardMeta = {
