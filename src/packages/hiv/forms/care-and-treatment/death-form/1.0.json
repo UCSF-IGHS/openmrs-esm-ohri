@@ -18,7 +18,7 @@
             "id":"fooMarkdown",
             "value":
                 [
-                    "**Use this form to:** Record a HIV patient cause of death"
+                    "**Use this form to:** Document the cause of death of a HIV patient."
                 ]
         }
     ]
@@ -55,7 +55,27 @@
 									}
 								]
 							},
-							"id": "Deathdate"
+							"id": "Deathdate",
+							"behaviours": [
+								{
+								  "intent": "*",
+								  "required": "true",
+								  "unspecified": "false",
+								  "hide": {
+									"hideWhenExpression": "false"
+								  },
+								  "validators": [
+									{
+									  "type": "date",
+									  "allowFutureDates": "false"
+									},
+									{
+									  "type": "js_expression",
+									  "failsWhenExpression": "myValue > today() || myValue <= '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+									}
+								  ]
+								}
+							  ]
 						},
 						{
 							"label": "Cause of Death",
@@ -172,7 +192,18 @@
 									}
 								]
 							},
-							"id": "Deathreason"
+							"id": "Deathreason",
+							"behaviours": [
+								{
+								  "intent": "*",
+								  "required": "true",
+								  "unspecified": "false",
+								  "hide": {
+									"hideWhenExpression": "false"
+								  },
+								  "validators": []
+								}
+							  ]
 						},
 						{
 							"label": "Specific Cause of Death",
@@ -377,7 +408,18 @@
 									}
 								]
 							},
-							"id": "SpecificCauseOfDeath"
+							"id": "SpecificCauseOfDeath",
+							"behaviours": [
+								{
+								  "intent": "*",
+								  "required": "true",
+								  "unspecified": "true",
+								  "hide": {
+									"hideWhenExpression": "isEmpty(Deathreason) || Deathreason !=='160159AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && Deathreason !== '160160AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
+								  },
+								  "validators": []
+								}
+							  ]
 						},
 						{
 							"label": "Notes",
