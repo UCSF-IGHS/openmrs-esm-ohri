@@ -1,10 +1,67 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
+import EncounterList, { EncounterListColumn, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import { receivingFacility_UUID, TransferOutDate_UUID, transferOutEncounterType_UUID, verified_UUID, visitDate_UUID } from '../../../constants';
 
 interface TransferOutTabListProps {
   patientUuid: string;
 }
+
+const columnsLab: EncounterListColumn[] = [
+  {
+    key: 'visitDate',
+    header: 'Visit Date',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, visitDate_UUID, true);
+    },
+  },
+  {
+    key: 'reasonsForTesting',
+    header: 'Receiving Facility',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, receivingFacility_UUID);
+    },
+  },
+  {
+    key: 'tranferOutDate',
+    header: 'Transfer-Out Date',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, TransferOutDate_UUID, true);
+    },
+  },
+  {
+    key: 'verified',
+    header: 'Verified',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, verified_UUID);
+    },
+  },
+
+  {
+    key: 'actions',
+    header: 'Actions',
+    getValue: encounter => {
+      const baseActions = [
+        {
+          form: { name: 'transfer_out', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'transfer_out', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Edit Transfer Out Form',
+          mode: 'edit',
+        },
+      ];
+      return baseActions;
+    },
+  },
+];
 
 const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -13,9 +70,15 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
   const displayText = t('transferOut', 'Transfer Out');
 
   return (
-    <>
-      <EmptyState displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={transferOutEncounterType_UUID}
+      form={{ package: 'hiv', name: 'transfer_out' }}
+      columns={columnsLab}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 

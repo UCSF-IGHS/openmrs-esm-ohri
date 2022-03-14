@@ -151,3 +151,10 @@ export const hivDeathDate_UUID = '1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const causeOFDeath_UUID = 'ef973f1f-557f-4620-acf5-9c4c18bf1eda';
 export const deathSpecific_UUID = 'e329cdf4-4eeb-4821-85ec-80ec4b503de0';
 export const deathFormEncounterType_UUID = '111c2104-991d-4b58-a30e-ce84bb275534';
+
+//Transfer Out
+export const transferOutEncounterType_UUID = '3044916a-7e5f-478b-9091-803233f27f91';
+export const visitDate_UUID = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const receivingFacility_UUID = '162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const TransferOutDate_UUID = '160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const verified_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
