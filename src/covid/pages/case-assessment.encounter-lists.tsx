@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../../components/empty-state/empty-state.component';
-import styles from '../covid.scss';
-import { openmrsFetch } from '@openmrs/esm-framework';
-import { getForm } from '../../utils/forms-loader';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
-import moment from 'moment';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
-import OTable from '../../components/data-table/o-table.component';
 import {
   covid_Assessment_EncounterUUID,
   covidReasonsForTestingConcep_UUID,
-  covidSARS_TestResultConcept_UUID,
-  covidTreatementOutConcept_UUID,
-  covidSpecimentTestDate_UUID,
-  covidPresentSymptonsConcept_UUID,
-  covidUnderComorbidityConcept_UUID,
-  covidSymptosConcept_UUID,
-  covidPresentSymptonsName_UUID,
-  covidPatientStatusConcept_UUID,
   covidOutcomeUUID,
   covidEncounterDateTime_UUID,
+  covidSymptomsPresentation,
 } from '../../constants';
 
-interface CovidOverviewListProps {
-  patientUuid: string;
-}
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
@@ -37,14 +22,6 @@ export const covidEncounterRepresentation =
 interface CovidAssessmentWidgetProps {
   patientUuid: string;
 }
-
-//Generic Component Import
-
-import EncounterList, {
-  EncounterListColumn,
-  getObsFromEncounter,
-  getEncounterValues,
-} from '../../components/encounter-list/encounter-list.component';
 
 const columns: EncounterListColumn[] = [
   {
@@ -70,7 +47,7 @@ const columns: EncounterListColumn[] = [
     key: 'symptomatic',
     header: 'Presentation',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID, false);
+      return getObsFromEncounter(encounter, covidSymptomsPresentation, false);
     },
   },
   {
