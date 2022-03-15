@@ -45,14 +45,7 @@ const columnsLab: EncounterListColumn[] = [
     header: 'Verified',
     getValue: encounter => {
       const obs = findObs(encounter, verified_UUID);
-        if (!obs) {
-          return '--'
-        }
-        if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
-            return 'Yes';
-        } else {
-          return 'No'
-        }
+      return obs?.value?.name?.name === 'FALSE' ? 'No' : obs?.value?.name?.name;
     },
   },
 
