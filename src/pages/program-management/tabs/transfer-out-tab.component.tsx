@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import EncounterList, { EncounterListColumn, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
-import { receivingFacility_UUID, TransferOutDate_UUID, transferOutEncounterType_UUID, verified_UUID, visitDate_UUID } from '../../../constants';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
+import {
+  receivingFacility_UUID,
+  TransferOutDate_UUID,
+  transferOutEncounterType_UUID,
+  verified_UUID,
+  visitDate_UUID,
+} from '../../../constants';
 
 interface TransferOutTabListProps {
   patientUuid: string;
