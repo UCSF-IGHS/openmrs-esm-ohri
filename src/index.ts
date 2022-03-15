@@ -32,6 +32,10 @@ import {
   homeDashboardMeta,
   htsDashboardMeta,
 } from './ohri-dashboard/ohri-dashboard.meta';
+import {
+  createOHRIPatientChartSideNavLink,
+  patientChartDivider_dashboardMeta,
+} from './components/patient-chart/ohri-patient-chart-sidenav.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -514,6 +518,15 @@ function setupOpenMRS() {
           featureName: 'appointments-summary',
           moduleName,
         }),
+      },
+      {
+        id: 'clinical-views-divider',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta), options),
+        meta: patientChartDivider_dashboardMeta,
+        online: true,
+        offline: true,
+        order: 100,
       },
     ],
   };
