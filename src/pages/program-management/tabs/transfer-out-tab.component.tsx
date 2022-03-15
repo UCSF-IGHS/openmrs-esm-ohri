@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import EncounterList, {
   EncounterListColumn,
+  findObs,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
 import {
@@ -43,7 +44,15 @@ const columnsLab: EncounterListColumn[] = [
     key: 'verified',
     header: 'Verified',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, verified_UUID);
+      const obs = findObs(encounter, verified_UUID);
+        if (!obs) {
+          return '--'
+        }
+        if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
+            return 'Yes';
+        } else {
+          return 'No'
+        }
     },
   },
 

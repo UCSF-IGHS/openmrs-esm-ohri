@@ -43,12 +43,11 @@
 								  "validators": [
 									{
 									  "type": "date",
-									  "allowFutureDates": "true"
+									  "allowFutureDates": "false"
 									},
 									{
 									  "type": "js_expression",
-									  "failsWhenExpression": "myValue <= today() || myValue <= '1/1/1980'"
-									}
+									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"									}
 								  ]
 								}
 							  ]
@@ -99,11 +98,11 @@
 								  "validators": [
 									{
 									  "type": "date",
-									  "allowFutureDates": "true"
+									  "allowFutureDates": "false"
 									},
 									{
 									  "type": "js_expression",
-									  "failsWhenExpression": "myValue <= today() || myValue <= '1/1/1980'"
+									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
 									}
 								  ]
 								}
@@ -206,11 +205,11 @@
 								  "validators": [
 									{
 									  "type": "date",
-									  "allowFutureDates": "true"
+									  "allowFutureDates": "false"
 									},
 									{
 									  "type": "js_expression",
-									  "failsWhenExpression": "myValue <= today() || myValue <= '1/1/1980'"
+									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
 									}
 								  ]
 								}
