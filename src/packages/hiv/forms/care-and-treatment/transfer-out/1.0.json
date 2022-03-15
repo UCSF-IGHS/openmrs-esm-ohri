@@ -120,39 +120,83 @@
 							"type": "obs",
 							"questionOptions": {
 								"rendering": "radio",
-								"concept": "1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+								"concept": "797e0073-1f3f-46b1-8b1a-8cdad134d2b3",
 								"answers": [
 									{
-										"label": "Yes",
-										"concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+									  "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+									  "label": "Yes",
+									  "conceptMappings": [
+										{
+										  "type": "CIEL",
+										  "value": "1065"
+										},
+										{
+										  "type": "AMPATH",
+										  "value": "1065"
+										},
+										{
+										  "type": "PIH",
+										  "value": "1065"
+										},
+										{
+										  "type": "SNOMED CT",
+										  "value": "373066001"
+										},
+										{
+											"type": "PIH-Malawi",
+											"value": "1065"
+										  }
+									  ]
 									},
 									{
-										"label": "No",
-										"concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+									  "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+									  "label": "No",
+									  "conceptMappings": [										
+										  {
+											"type": "AMPATH",
+											"value": "1066"
+										  },
+										  {
+											"type": "PIH",
+											"value": "1066"
+										  },
+										  {
+											"type": "SNOMED CT",
+											"value": "373067005"
+										  },
+										  {
+											  "type": "PIH-Malawi",
+											  "value": "1066"
+											}
+									  ]
 									},
 									{
-										"label": "Unknown",
-										"concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+									  "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+									  "label": "Unknown",
+									  "conceptMappings": [
+										{
+										  "type": "CIEL",
+										  "value": "1067"
+										},
+										{
+										  "type": "AMPATH",
+										  "value": "1067"
+										},
+										{
+										  "type": "SNOMED CT",
+										  "value": "261665006"
+										},
+										{
+										  "type": "PIH",
+										  "value": "1067"
+										},
+										{
+											"type": "org.openmrs.module.mdrtb",
+											"value": "UNKNOWN"
+										  }
+									  ]
 									}
-								],
-								"conceptMappings": [
-									{
-										"type": "OCT",
-										"value": "StatusVerified"
-									},
-									{
-										"type": "SNOMED-CT",
-										"value": "416151008"
-									},
-									{
-										"type": "PIH",
-										"value": "1246"
-									},
-									{
-										"type": "SNOMED-MVP",
-										"value": "12461000105003"
-									}
-								]
+								  ]
 							},
 							"id": "isTransferOutVerified",
 							"behaviours": [
