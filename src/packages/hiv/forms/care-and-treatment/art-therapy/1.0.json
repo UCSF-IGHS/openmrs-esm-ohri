@@ -23,7 +23,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1255AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "7557d77c-172b-4673-9335-67a38657dd01",
                 "conceptMappings": [
                   {
                     "type": "AMPATH",
@@ -102,6 +102,11 @@
                         "value": "1260"
                       }
                     ]
+                  },
+                  {
+                    "concept": "3e69cb60-2943-410f-83d4-b359ae83fefd",
+                    "label": "Restart ART therapy",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -1920,63 +1925,52 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Refused (stopped) treatment",
-              "type": "obsGroup",
+              "label": "Date patient refused HIV care/treatment",
               "questionOptions": {
-                "rendering": "group",
-                "concept": "ac4f3fd1-8a2a-4c5e-a335-3f675b82dd78"
+                "rendering": "date",
+                "concept": "162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "questions": [
+              "type": "obs",
+              "behaviours": [
                 {
-                  "label": "Date patient refused HIV care/treatment",
-                  "questionOptions": {
-                    "rendering": "date",
-                    "concept": "162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
                   },
-                  "type": "obs",
-                  "behaviours": [
+                  "validators": [
                     {
-                      "intent": "*",
-                      "required": "true",
-                      "unspecified": "true",
-                      "hide": {
-                        "hideWhenExpression": "false"
-                      },
-                      "validators": [
-                        {
-                          "type": "date",
-                          "allowFutureDates": "false"
-                        },
-                        {
-                          "type": "js_expression",
-                          "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
-                        }
-                      ]
-                    }
-                  ],
-                  "id": "datePatientRefusedTreatment"
-                },
-                {
-                  "label": "Reason for discontinuing service (text)",
-                  "questionOptions": {
-                    "rendering": "textarea",
-                    "concept": "163513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                  },
-                  "type": "obs",
-                  "behaviours": [
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
                     {
-                      "intent": "*",
-                      "required": "true",
-                      "unspecified": "true",
-                      "hide": {
-                        "hideWhenExpression": "false"
-                      }
+                      "type": "js_expression",
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
-                  ],
-                  "id": "reasonForDiscontinuing"
+                  ]
                 }
               ],
-              "id": "StopRx"
+              "id": "datePatientRefusedTreatment"
+            },
+            {
+              "label": "Reason for discontinuing service (text)",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "163513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "type": "obs",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                }
+              ],
+              "id": "reasonForDiscontinuing"
             }
           ]
         }
@@ -2513,7 +2507,7 @@
         {
           "intent": "*",
           "hide": {
-            "hideWhenExpression": "isEmpty(therapyPlan) || therapyPlan !== '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+            "hideWhenExpression": "isEmpty(therapyPlan) || therapyPlan !== '3e69cb60-2943-410f-83d4-b359ae83fefd'"
           }
         }
       ]
