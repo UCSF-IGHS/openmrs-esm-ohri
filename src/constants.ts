@@ -96,6 +96,7 @@ export const covidUnderComorbidityConcept_UUID = '0651869c-6e90-48d6-b25c-406270
 export const covidPresentSymptonsName_UUID = '12568215-ae1c-42ec-b7e8-8818d2761f46';
 export const covidPatientStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
 export const covidEncounterDateTime_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidSymptomsPresentation = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
 
 //Covid Lab Order
 export const covidLabOrderDate_UUID = '162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
