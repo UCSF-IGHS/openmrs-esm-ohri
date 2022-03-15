@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
-import EncounterList, { EncounterListColumn, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
 import { deathFormEncounterType_UUID } from '../../../constants';
 
 interface ContactTracingListProps {
@@ -13,21 +16,21 @@ const columnsLab: EncounterListColumn[] = [
     key: 'contactDate',
     header: 'Contact Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter,  true);
+      return getObsFromEncounter(encounter, true);
     },
   },
   {
     key: 'contactMethod',
     header: 'Contact Method',
     getValue: encounter => {
-      return getObsFromEncounter(encounter,  true);
+      return getObsFromEncounter(encounter, true);
     },
   },
   {
     key: 'contactOutcome',
     header: 'Contact Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter,  true);
+      return getObsFromEncounter(encounter, true);
     },
   },
 
@@ -62,7 +65,7 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
   const headerTitle = t('contactTracing', 'Contact Tracing');
   const displayText = t('contactTracing', 'Contact Tracing');
 
-  return  (
+  return (
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={deathFormEncounterType_UUID}
