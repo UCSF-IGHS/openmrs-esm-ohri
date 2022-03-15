@@ -12,7 +12,7 @@ import {
   finalPositiveHIVValueConcept,
 } from '../../../constants';
 import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
-import { filterFHIRPatientsByName } from '../../../hts/home/summary-tiles/utils';
+import { filterFHIRPatientsByName } from '../../../pages/hiv/hts/summary-tiles/utils';
 
 export const columns = [
   {
