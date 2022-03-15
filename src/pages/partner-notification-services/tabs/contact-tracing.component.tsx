@@ -17,7 +17,7 @@ const columnsLab: EncounterListColumn[] = [
     },
   },
   {
-    key: 'contactmethod',
+    key: 'contactMethod',
     header: 'Contact Method',
     getValue: encounter => {
       return getObsFromEncounter(encounter,  true);
