@@ -70,7 +70,7 @@ const columns: EncounterListColumn[] = [
     key: 'symptomatic',
     header: 'Presentation',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID, false, true);
+      return getObsFromEncounter(encounter, covidPresentSymptonsConcept_UUID, false);
     },
   },
   {
