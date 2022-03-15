@@ -4256,11 +4256,7 @@
   "availableIntents": [
     {
       "intent": "*",
-      "display": "Initial Visit"
-    },
-    {
-      "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-      "display": "Follow Up Visit "
+      "display": "Clinical Visit"
     }
   ],
   "processor": "EncounterFormProcessor",
