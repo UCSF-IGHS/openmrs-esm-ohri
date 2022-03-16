@@ -157,4 +157,4 @@ export const transferOutEncounterType_UUID = '3044916a-7e5f-478b-9091-803233f27f
 export const visitDate_UUID = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const receivingFacility_UUID = '162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const TransferOutDate_UUID = '160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-export const verified_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const verified_UUID = '797e0073-1f3f-46b1-8b1a-8cdad134d2b3';
