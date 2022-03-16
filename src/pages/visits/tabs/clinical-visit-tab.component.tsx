@@ -10,6 +10,7 @@ import {
   expressCareProgramStatusConcept,
   regimenConcept,
   returnVisitDateConcept,
+  tbScreeningOutcome,
   visitTypeConcept,
 } from '../../../constants';
 
@@ -39,17 +40,10 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'regimen',
-    header: 'Regimen',
+    key: 'screeningOutcome',
+    header: 'Screening Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, regimenConcept);
-    },
-  },
-  {
-    key: 'differentiatedCareService',
-    header: 'Differentiated Care Service',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, expressCareProgramStatusConcept);
+      return getObsFromEncounter(encounter, tbScreeningOutcome);
     },
   },
   {
