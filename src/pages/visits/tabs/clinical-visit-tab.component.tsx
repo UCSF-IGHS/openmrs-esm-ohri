@@ -54,6 +54,13 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
+    key: 'appointmentReason',
+    header: 'Appointment Reason',
+    getValue: encounter => {
+      return '--';
+    },
+  },
+  {
     key: 'actions',
     header: 'Actions',
     getValue: encounter => {
