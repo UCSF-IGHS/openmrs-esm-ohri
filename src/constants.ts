@@ -59,6 +59,7 @@ export const visitTypeConcept = '8a9809e9-8a0b-4e0e-b1f6-80b0cbbe361b';
 export const regimenConcept = 'dfbe256e-30ba-4033-837a-2e8477f2e7cd';
 export const expressCareProgramStatusConcept = '159832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // differentiated Care Services
 export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Next Appointment Date
+export const tbScreeningOutcome = 'c0661c0f-348b-4941-812b-c531a0a67f2e';
 
 // Encounter types
 export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
