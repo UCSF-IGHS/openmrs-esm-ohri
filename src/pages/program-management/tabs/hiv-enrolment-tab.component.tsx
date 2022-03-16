@@ -10,6 +10,9 @@ import {
   studyPopulationTypeConcept,
   dateOfHIVDiagnosisConcept,
   careAndTreatmentEncounterType,
+  entryPointConcept,
+  patientTypeEnrollmentConcept,
+  re_enrolmentDateConcept,
 } from '../../../constants';
 
 interface HIVEnrolmentTabListProps {
@@ -19,23 +22,39 @@ interface HIVEnrolmentTabListProps {
 const columns: EncounterListColumn[] = [
   {
     key: 'date',
-    header: 'Date of Service Enrolment',
+    header: 'Enrollment/Re-enrollment Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, dateOfServiceEnrollmentConcept, true);
+      return getObsFromEncounter(encounter, re_enrolmentDateConcept, true) !== '--'
+        ? getObsFromEncounter(encounter, re_enrolmentDateConcept, true)
+        : getObsFromEncounter(encounter, dateOfServiceEnrollmentConcept, true);
     },
   },
   {
-    key: 'clientPopulationCategory',
-    header: 'Population Category',
+    key: 'clientDescription',
+    header: 'Patient Type at Enrollment',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, studyPopulationTypeConcept);
+      return getObsFromEncounter(encounter, patientTypeEnrollmentConcept);
     },
   },
   {
-    key: 'diagnosticHivTestType',
-    header: 'Date Confirmed Positive',
+    key: 'dateConfirmedPositive',
+    header: 'Date Confirmed HIV Positive',
     getValue: encounter => {
       return getObsFromEncounter(encounter, dateOfHIVDiagnosisConcept, true);
+    },
+  },
+  {
+    key: 'entryPoint',
+    header: 'Entry Point',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, entryPointConcept);
+    },
+  },
+  {
+    key: 'populationType',
+    header: 'Population Type',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, studyPopulationTypeConcept);
     },
   },
   {

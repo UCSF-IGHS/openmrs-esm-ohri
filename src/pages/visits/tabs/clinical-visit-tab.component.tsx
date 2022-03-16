@@ -12,6 +12,7 @@ import {
   returnVisitDateConcept,
   tbScreeningOutcome,
   visitTypeConcept,
+  //screeningOutcomeConcept
 } from '../../../constants';
 
 interface ClinicalVisitListProps {
