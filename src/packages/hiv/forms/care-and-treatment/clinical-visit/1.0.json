@@ -18,12 +18,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -67,12 +67,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -118,12 +118,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -548,12 +548,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -727,12 +727,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -748,12 +748,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -1350,12 +1350,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -1372,12 +1372,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -1393,12 +1393,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -1415,12 +1415,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -1577,12 +1577,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ]
@@ -1963,12 +1963,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -2164,12 +2164,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -2185,12 +2185,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -2223,12 +2223,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -2259,12 +2259,12 @@
                   "behaviours": [
                     {
                       "intent": "*",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     },
                     {
                       "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                      "required": "true",
+                      "required": "false",
                       "unspecified": "true"
                     }
                   ],
@@ -2282,12 +2282,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -2328,12 +2328,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -2413,12 +2413,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3171,12 +3171,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3456,12 +3456,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3513,12 +3513,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3534,12 +3534,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3555,12 +3555,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3576,12 +3576,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3597,12 +3597,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3619,12 +3619,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3641,12 +3641,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3867,12 +3867,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3889,12 +3889,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3916,12 +3916,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3937,12 +3937,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -3977,12 +3977,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -4004,12 +4004,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
@@ -4228,12 +4228,12 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 },
                 {
                   "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
-                  "required": "true",
+                  "required": "false",
                   "unspecified": "true"
                 }
               ],
