@@ -98,11 +98,11 @@
 								  "validators": [
 									{
 									  "type": "date",
-									  "allowFutureDates": "false"
+									  "allowFutureDates": "true"
 									},
 									{
 									  "type": "js_expression",
-									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01')"
 									}
 								  ]
 								}
