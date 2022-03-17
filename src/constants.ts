@@ -137,11 +137,11 @@ export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 export const htsStrategyUUID = 'f0d85da0-c235-4540-a0d1-63640594f98b';
 
 //HIV Art Therapy
-export const art_Therapy_EncounterUUID = '779d3f30-4b5a-45eb-948e-16c1b32c04d0';
+export const art_Therapy_EncounterUUID = '74bf4fe6-8fdb-4228-be39-680a93a9cf6d';
 export const artTherapyDateTime_UUID = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const regimenLine_UUID = '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const refusedTreatment_UUID = 'ac4f3fd1-8a2a-4c5e-a335-3f675b82dd78';
-export const therapyPlanConcept = '1255AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const therapyPlanConcept = '7557d77c-172b-4673-9335-67a38657dd01';
 export const artStopDateUUID = '162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const switchDateUUID = '164516AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const substitutionDateUUID = '164431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
