@@ -428,8 +428,8 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [state]);
 
   useEffect(() => {
-    if (patients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {
-      patients.forEach(patient => {
+    if (allPatients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {
+      allPatients.forEach(patient => {
         extraAssociatedEncounterTypes.forEach(encType => {
           extraEncounters.push(fetchPatientLastEncounter(patient.uuid, encType));
         });
@@ -437,9 +437,11 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
       Promise.all(extraEncounters).then(results => {
         results.forEach((encounter, index) => {
-          const idx = patients.findIndex(patient => patient.uuid === encounter?.patient.uuid);
+          const idx = allPatients.findIndex(patient => patient.uuid === encounter?.patient.uuid);
           if (idx !== -1) {
-            patients[idx].latestExtraEncounters = patients[idx].latestExtraEncounters?.concat(encounter) ?? [encounter];
+            allPatients[idx].latestExtraEncounters = allPatients[idx].latestExtraEncounters?.concat(encounter) ?? [
+              encounter,
+            ];
           }
         });
         setLoadedExtraEncounters(true);

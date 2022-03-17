@@ -74,7 +74,7 @@ export function findObs(encounter, obsConcept): Record<string, any> {
 }
 
 export function getObsFromEncounters(encounters, obsConcept) {
-  const filteredEnc = encounters?.find(enc => enc.obs.find(ob => ob.concept.uuid === obsConcept));
+  const filteredEnc = encounters?.find(enc => enc.obs.find(obs => obs.concept.uuid === obsConcept));
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
