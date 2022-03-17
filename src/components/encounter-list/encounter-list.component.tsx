@@ -73,6 +73,11 @@ export function findObs(encounter, obsConcept): Record<string, any> {
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
 }
 
+export function getObsFromEncounters(encounters, obsConcept) {
+  const filteredEnc = encounters?.find(enc => enc.obs.find(obs => obs.concept.uuid === obsConcept));
+  return getObsFromEncounter(filteredEnc, obsConcept);
+}
+
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = findObs(encounter, obsConcept);
   if (isTrueFalseConcept) {

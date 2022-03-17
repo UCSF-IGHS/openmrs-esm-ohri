@@ -4,6 +4,7 @@ import {
   clientsWithoutCovidOutcomes,
   covidCaseAssessmentEncType,
   covidClientsWithPendingLabResults,
+  covidLabTestEncType,
   covidOutcome,
   covidTestType,
   covidVaccinatedClients,
@@ -13,13 +14,19 @@ import {
   covidVaccineConcept_UUID,
   dateSpecimenCollected,
   finalCovid19Result,
+  pcrTestResult,
   pcrTestResultDate,
   rapidAntigenResultDate,
+  rapidTestResult,
   returnVisitDateConcept,
 } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
-import { findObs, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import {
+  findObs,
+  getObsFromEncounter,
+  getObsFromEncounters,
+} from '../../../components/encounter-list/encounter-list.component';
 import moment from 'moment';
 
 function CovidHomePatientTabs() {
@@ -52,8 +59,11 @@ function CovidHomePatientTabs() {
         {
           key: 'finalAssessment',
           header: 'Final result',
-          getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, finalCovid19Result);
+          getValue: ({ latestExtraEncounters }) => {
+            const pcrResult = getObsFromEncounters(latestExtraEncounters, pcrTestResult);
+            return pcrResult && pcrResult != '--'
+              ? pcrResult
+              : getObsFromEncounters(latestExtraEncounters, rapidTestResult);
           },
         },
         {
@@ -64,6 +74,7 @@ function CovidHomePatientTabs() {
           },
         },
       ],
+      extraAssociatedEncounterTypes: [covidLabTestEncType],
     },
     {
       label: t('pendingLabResults', 'Pending lab results'),
