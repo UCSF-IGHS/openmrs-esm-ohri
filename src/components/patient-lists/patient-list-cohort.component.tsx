@@ -46,6 +46,7 @@ interface CohortPatientListProps {
     editActionText?: string;
     targetDashboard?: string;
   };
+  extraAssociatedEncounterTypes?: Array<string>;
 }
 
 export const columns: PatientListColumn[] = [
@@ -175,6 +176,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   associatedEncounterType,
   launchableForm,
   addPatientToListOptions,
+  extraAssociatedEncounterTypes,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPatients, setLoadedPatients] = useState(false);
@@ -186,6 +188,9 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [loadedExtraEncounters, setLoadedExtraEncounters] = useState(false);
+  const [extraEncounters, setExtraEncounters] = useState([]);
+
   const [paginatedPatients, setPaginatedPatients] = useState([]);
   const [allPatients, setAllPatients] = useState([]);
 
@@ -421,6 +426,26 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   useEffect(() => {
     setCounter(counter + 1);
   }, [state]);
+
+  useEffect(() => {
+    if (patients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {
+      patients.forEach(patient => {
+        extraAssociatedEncounterTypes.forEach(encType => {
+          extraEncounters.push(fetchPatientLastEncounter(patient.uuid, encType));
+        });
+      });
+
+      Promise.all(extraEncounters).then(results => {
+        results.forEach((encounter, index) => {
+          const idx = patients.findIndex(patient => patient.uuid === encounter?.patient.uuid);
+          if (idx !== -1) {
+            patients[idx].latestExtraEncounters = patients[idx].latestExtraEncounters?.concat(encounter) ?? [encounter];
+          }
+        });
+        setLoadedExtraEncounters(true);
+      });
+    }
+  }, [loadedPatients]);
 
   return (
     <div className={styles.table1}>
