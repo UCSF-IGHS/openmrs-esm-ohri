@@ -123,12 +123,14 @@ function CovidHomePatientTabs() {
           header: 'Vaccine',
           getValue: ({ latestEncounter }) => {
             const obs = findObs(latestEncounter, covidVaccineAdministeredConcept_UUID);
-            if (typeof obs.value === 'object') {
-              const vaccineNAME =
-                obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
-                obs.value.name.name;
-              if (vaccineNAME === 'Other non-coded') {
-                return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
+            if (typeof obs !== undefined && obs) {
+              if (typeof obs.value === 'object') {
+                const vaccineNAME =
+                  obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+                  obs.value.name.name;
+                if (vaccineNAME === 'Other non-coded') {
+                  return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
+                }
               }
             }
             return getObsFromEncounter(latestEncounter, covidVaccineAdministeredConcept_UUID);
