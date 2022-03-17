@@ -279,6 +279,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
         setAllPatients(patients);
         updatePatientTable(patients, 0, pageSize);
         setLoadedPatients(true);
+        setIsLoading(patients.length > 0);
       });
     } else {
       getReportingCohortMembers(cohortId, queryParams).then(results => {
@@ -294,6 +295,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
         setAllPatients(patients);
         updatePatientTable(patients, 0, pageSize);
         setLoadedPatients(true);
+        setIsLoading(patients.length > 0);
       });
     }
   }, [cohortId]);
