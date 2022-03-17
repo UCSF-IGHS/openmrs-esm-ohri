@@ -20,22 +20,22 @@ interface DeathTabListProps {
 
 const columnsLab: EncounterListColumn[] = [
   {
-    key: 'orderDate',
-    header: 'Date of Death',
+    key: 'deathDate',
+    header: 'Death Date',
     getValue: encounter => {
       return getObsFromEncounter(encounter, hivDeathDate_UUID, true);
     },
   },
   {
-    key: 'reasonsForTesting',
+    key: 'deathCause',
     header: 'Cause of Death',
     getValue: encounter => {
       return getObsFromEncounter(encounter, causeOFDeath_UUID);
     },
   },
   {
-    key: 'testType',
-    header: 'Death Specific',
+    key: 'specificDeathCause',
+    header: 'Specific cause of Death',
     getValue: encounter => {
       return getObsFromEncounter(encounter, deathSpecific_UUID);
     },
