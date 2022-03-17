@@ -8,7 +8,7 @@ export const daysDurationUnit = {
 export const basePath = '${openmrsSpaBase}/patient/';
 export const encounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
+  'patient:(uuid,display),encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,voided,groupMembers,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name),' +
   'names:(uuid,conceptNameType,name))))';
 
@@ -64,6 +64,7 @@ export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; //
 export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
 export const covidVaccinationEncType = '5b37ce7a-c55e-4226-bdc8-5af04025a6de';
+export const covidLabTestEncType = 'a77d3e7f-5c8f-4074-a207-77a70e197b0c';
 
 // HTS Retrospective
 export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
@@ -100,6 +101,8 @@ export const covidSymptomsPresentation = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
 //Covid Lab Order
 export const covidLabOrderDate_UUID = '162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const covidLabOrderEncounterType_UUID = 'a77d3e7f-5c8f-4074-a207-77a70e197b0c';
+export const pcrTestResult = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
+export const rapidTestResult = 'cbcbb029-f11f-4437-9d53-1d0f0a170433';
 
 //Covid Lab Results
 export const covidSpecimenCollectionDate_UUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
