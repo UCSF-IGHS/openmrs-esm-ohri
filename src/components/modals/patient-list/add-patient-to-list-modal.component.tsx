@@ -31,7 +31,6 @@ const AddPatientToListOverflowMenuItem: React.FC<{
           className="bx--overflow-menu-options__btn"
           role="menuitem"
           title="Add to list"
-          data-floating-menu-primary-focus
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',

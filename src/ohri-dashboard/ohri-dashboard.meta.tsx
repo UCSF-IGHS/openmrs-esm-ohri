@@ -78,13 +78,6 @@ export const appointmentsDashboardMeta = {
   title: 'Appointments',
 };
 
-export const pharmacyDashboardMeta = {
-  name: 'pharmacy',
-  slot: 'pharmacy-dashboard-slot',
-  config: { columns: 1, type: 'grid', icon: Medication32 },
-  title: 'Pharmacy',
-};
-
 export const hivFolderDashboardMeta = {
   name: 'hiv',
   slot: 'ohri-hiv-dashboard-slot',
