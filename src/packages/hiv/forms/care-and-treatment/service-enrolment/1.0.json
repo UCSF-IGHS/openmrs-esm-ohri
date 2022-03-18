@@ -51,7 +51,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue <= today()"
+                      "failsWhenExpression": "myValue > today()"
                     }
                   ]
                 }
