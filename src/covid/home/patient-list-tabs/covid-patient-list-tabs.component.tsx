@@ -4,6 +4,7 @@ import {
   clientsWithoutCovidOutcomes,
   covidCaseAssessmentEncType,
   covidClientsWithPendingLabResults,
+  covidLabTestEncType,
   covidOutcome,
   covidTestType,
   covidVaccinatedClients,
@@ -13,13 +14,19 @@ import {
   covidVaccineConcept_UUID,
   dateSpecimenCollected,
   finalCovid19Result,
+  pcrTestResult,
   pcrTestResultDate,
   rapidAntigenResultDate,
+  rapidTestResult,
   returnVisitDateConcept,
 } from '../../../constants';
 import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
-import { findObs, getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import {
+  findObs,
+  getObsFromEncounter,
+  getObsFromEncounters,
+} from '../../../components/encounter-list/encounter-list.component';
 import moment from 'moment';
 
 function CovidHomePatientTabs() {
@@ -52,8 +59,11 @@ function CovidHomePatientTabs() {
         {
           key: 'finalAssessment',
           header: 'Final result',
-          getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, finalCovid19Result);
+          getValue: ({ latestExtraEncounters }) => {
+            const pcrResult = getObsFromEncounters(latestExtraEncounters, pcrTestResult);
+            return pcrResult && pcrResult != '--'
+              ? pcrResult
+              : getObsFromEncounters(latestExtraEncounters, rapidTestResult);
           },
         },
         {
@@ -64,6 +74,7 @@ function CovidHomePatientTabs() {
           },
         },
       ],
+      extraAssociatedEncounterTypes: [covidLabTestEncType],
     },
     {
       label: t('pendingLabResults', 'Pending lab results'),
@@ -123,12 +134,14 @@ function CovidHomePatientTabs() {
           header: 'Vaccine',
           getValue: ({ latestEncounter }) => {
             const obs = findObs(latestEncounter, covidVaccineAdministeredConcept_UUID);
-            if (typeof obs.value === 'object') {
-              const vaccineNAME =
-                obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
-                obs.value.name.name;
-              if (vaccineNAME === 'Other non-coded') {
-                return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
+            if (typeof obs !== undefined && obs) {
+              if (typeof obs.value === 'object') {
+                const vaccineNAME =
+                  obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+                  obs.value.name.name;
+                if (vaccineNAME === 'Other non-coded') {
+                  return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
+                }
               }
             }
             return getObsFromEncounter(latestEncounter, covidVaccineAdministeredConcept_UUID);

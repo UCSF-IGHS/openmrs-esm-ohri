@@ -8,7 +8,7 @@ export const daysDurationUnit = {
 export const basePath = '${openmrsSpaBase}/patient/';
 export const encounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
-  'encounterProviders:(uuid,provider:(uuid,name)),' +
+  'patient:(uuid,display),encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,voided,groupMembers,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name),' +
   'names:(uuid,conceptNameType,name))))';
 
@@ -49,8 +49,10 @@ export const covidOutcomesCohortUUID = 'afb0d950-48fd-44d7-ae2c-79615cd125f0';
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';
 export const dateOfServiceEnrollmentConcept = '160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const patientTypeEnrollmentConcept = '83e40f2c-c316-43e6-a12e-20a338100281';
-export const studyPopulationTypeConcept = '166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const studyPopulationTypeConcept = 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3';
 export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const entryPointConcept = '160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const re_enrolmentDateConcept = '20efadf9-86d3-4498-b3ab-7da4dad9c429';
 
 // Clinical visit
 export const clinicalVisitEncounterType = 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4';
@@ -59,11 +61,13 @@ export const visitTypeConcept = '8a9809e9-8a0b-4e0e-b1f6-80b0cbbe361b';
 export const regimenConcept = 'dfbe256e-30ba-4033-837a-2e8477f2e7cd';
 export const expressCareProgramStatusConcept = '159832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // differentiated Care Services
 export const returnVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Next Appointment Date
+export const tbScreeningOutcome = 'c0661c0f-348b-4941-812b-c531a0a67f2e';
 
 // Encounter types
 export const htsRetrospectiveEncounterType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
 export const covidCaseAssessmentEncType = '253a43d3-c99e-415c-8b78-ee7d4d3c1d54';
 export const covidVaccinationEncType = '5b37ce7a-c55e-4226-bdc8-5af04025a6de';
+export const covidLabTestEncType = 'a77d3e7f-5c8f-4074-a207-77a70e197b0c';
 
 // HTS Retrospective
 export const htsRetrospectiveType = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
@@ -95,10 +99,13 @@ export const covidUnderComorbidityConcept_UUID = '0651869c-6e90-48d6-b25c-406270
 export const covidPresentSymptonsName_UUID = '12568215-ae1c-42ec-b7e8-8818d2761f46';
 export const covidPatientStatusConcept_UUID = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
 export const covidEncounterDateTime_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const covidSymptomsPresentation = 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f';
 
 //Covid Lab Order
 export const covidLabOrderDate_UUID = '162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const covidLabOrderEncounterType_UUID = 'a77d3e7f-5c8f-4074-a207-77a70e197b0c';
+export const pcrTestResult = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
+export const rapidTestResult = 'cbcbb029-f11f-4437-9d53-1d0f0a170433';
 
 //Covid Lab Results
 export const covidSpecimenCollectionDate_UUID = '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -130,10 +137,17 @@ export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 export const htsStrategyUUID = 'f0d85da0-c235-4540-a0d1-63640594f98b';
 
 //HIV Art Therapy
-export const art_Therapy_EncounterUUID = '779d3f30-4b5a-45eb-948e-16c1b32c04d0';
+export const art_Therapy_EncounterUUID = '74bf4fe6-8fdb-4228-be39-680a93a9cf6d';
 export const artTherapyDateTime_UUID = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const regimenLine_UUID = '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const refusedTreatment_UUID = 'ac4f3fd1-8a2a-4c5e-a335-3f675b82dd78';
+export const therapyPlanConcept = '7557d77c-172b-4673-9335-67a38657dd01';
+export const artStopDateUUID = '162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const switchDateUUID = '164516AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const substitutionDateUUID = '164431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const switchReasonUUID = '160568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const substituteReasonUUID = '160562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const stopReasonUUID = '163513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // HIV Lab Results
 export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
@@ -151,3 +165,10 @@ export const hivDeathDate_UUID = '1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const causeOFDeath_UUID = 'ef973f1f-557f-4620-acf5-9c4c18bf1eda';
 export const deathSpecific_UUID = 'e329cdf4-4eeb-4821-85ec-80ec4b503de0';
 export const deathFormEncounterType_UUID = '111c2104-991d-4b58-a30e-ce84bb275534';
+
+//Transfer Out
+export const transferOutEncounterType_UUID = '3044916a-7e5f-478b-9091-803233f27f91';
+export const visitDate_UUID = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const receivingFacility_UUID = '162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const TransferOutDate_UUID = '160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const verified_UUID = '797e0073-1f3f-46b1-8b1a-8cdad134d2b3';

@@ -8,24 +8,55 @@ import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   getEncounterValues,
+  getLatestARTDateConcept,
+  getARTReasonConcept,
 } from '../../../components/encounter-list/encounter-list.component';
 import {
   artTherapyDateTime_UUID,
   art_Therapy_EncounterUUID,
-  refusedTreatment_UUID,
+  therapyPlanConcept,
   regimenLine_UUID,
+  regimenConcept,
+  artStopDateUUID,
+  substitutionDateUUID,
+  switchDateUUID,
 } from '../../../constants';
 
 interface ArtTherapyTabListProps {
   patientUuid: string;
 }
 
+const ARTDates: string[] = [artTherapyDateTime_UUID, switchDateUUID, substitutionDateUUID, artStopDateUUID];
+
 const columns: EncounterListColumn[] = [
   {
     key: 'initiationDate',
-    header: 'Date of ART initiation',
+    header: 'Date(ART Start, Stopped, Switched, Change)',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, artTherapyDateTime_UUID, true);
+      return getObsFromEncounter(
+        encounter,
+        getLatestARTDateConcept(encounter, {
+          artTherapyDateTime_UUID,
+          switchDateUUID,
+          substitutionDateUUID,
+          artStopDateUUID,
+        }),
+        true,
+      );
+    },
+  },
+  {
+    key: 'therapyPlan',
+    header: 'Therapy Plan',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, therapyPlanConcept);
+    },
+  },
+  {
+    key: 'regimen',
+    header: 'Regimen',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, regimenConcept);
     },
   },
   {
@@ -35,13 +66,21 @@ const columns: EncounterListColumn[] = [
       return getObsFromEncounter(encounter, regimenLine_UUID);
     },
   },
-  // {
-  //   key: 'StopRx',
-  //   header: 'Refused (Stopped) Treatment',
-  //   getValue: encounter => {
-  //     return getObsFromEncounter(encounter, refusedTreatment_UUID);
-  //   },
-  // },
+  {
+    key: 'reason',
+    header: 'Reason',
+    getValue: encounter => {
+      return getObsFromEncounter(
+        encounter,
+        getARTReasonConcept(encounter, {
+          artTherapyDateTime_UUID,
+          switchDateUUID,
+          substitutionDateUUID,
+          artStopDateUUID,
+        }),
+      );
+    },
+  },
   {
     key: 'actions',
     header: 'Actions',

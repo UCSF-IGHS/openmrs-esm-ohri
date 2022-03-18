@@ -17,3 +17,7 @@
 :global(.bx--overflow-menu--flip.bx--overflow-menu-options) {
   min-width: 13rem !important;
 }
+
+:global(.bx--overflow-menu-options__btn):focus {
+  outline: none;
+}
