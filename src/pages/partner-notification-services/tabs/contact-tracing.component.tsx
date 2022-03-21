@@ -69,7 +69,7 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={deathFormEncounterType_UUID}
-      form={{ package: 'hiv', name: 'death_form' }}
+      form={{ package: 'hiv', name: 'patient_tracing' }}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
