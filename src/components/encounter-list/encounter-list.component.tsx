@@ -165,7 +165,6 @@ export function getARTReasonConcept(encounter, dateConcepts: ARTDateConcepts): s
     default:
       artReaseonConcept = '';
   }
-  console.log(latestDateConcept + ' - ' + artReaseonConcept);
   return artReaseonConcept;
 }
 
