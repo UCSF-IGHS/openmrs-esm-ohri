@@ -8,13 +8,7 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laun
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
-import {
-  encounterRepresentation,
-  stopReasonUUID,
-  substituteReasonUUID,
-  switchReasonUUID,
-  restartReasonUUID,
-} from '../../constants';
+import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 import {
@@ -29,14 +23,6 @@ export interface EncounterListColumn {
   header: string;
   getValue: (encounter: any) => string;
   link?: any;
-}
-//
-export interface ARTDateConcepts {
-  artTherapyDateTime_UUID: string;
-  switchDateUUID: string;
-  substitutionDateUUID: string;
-  artStopDateUUID: string;
-  dateRestartedUUID: string;
 }
 
 export interface EncounterListProps {
@@ -101,63 +87,6 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
-}
-
-export function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts): string {
-  let artStartDate = findObs(encounter, dateConcepts.artTherapyDateTime_UUID);
-  let artSubstitutionDate = findObs(encounter, dateConcepts.substitutionDateUUID);
-  let artSwitchDate = findObs(encounter, dateConcepts.switchDateUUID);
-  let artStopDate = findObs(encounter, dateConcepts.artStopDateUUID);
-  let artRestartDate = findObs(encounter, dateConcepts.dateRestartedUUID);
-
-  artStartDate = artStartDate ? artStartDate.value : null;
-  artSubstitutionDate = artSubstitutionDate ? artSubstitutionDate.value : null;
-  artSwitchDate = artSwitchDate ? artSwitchDate.value : null;
-  artStopDate = artStopDate ? artStopDate.value : null;
-  artRestartDate = artRestartDate ? artRestartDate.value : null;
-
-  let latestDateConcept: string = dateConcepts.artTherapyDateTime_UUID;
-  let latestDate = artStartDate;
-  if (artSubstitutionDate > latestDate) {
-    latestDateConcept = dateConcepts.substitutionDateUUID;
-    latestDate = artSubstitutionDate;
-  }
-  if (artSwitchDate > latestDate) {
-    latestDate = artSwitchDate;
-    latestDateConcept = dateConcepts.switchDateUUID;
-  }
-  if (artStopDate > latestDate) {
-    latestDate = artStopDate;
-    latestDateConcept = dateConcepts.artStopDateUUID;
-  }
-  if (artRestartDate > latestDate) {
-    latestDate = artRestartDate;
-    latestDateConcept = dateConcepts.dateRestartedUUID;
-  }
-
-  return latestDateConcept;
-}
-
-export function getARTReasonConcept(encounter, dateConcepts: ARTDateConcepts): string {
-  const latestDateConcept: string = getLatestARTDateConcept(encounter, dateConcepts);
-  let artReaseonConcept = '';
-  switch (latestDateConcept) {
-    case dateConcepts.artStopDateUUID:
-      artReaseonConcept = stopReasonUUID;
-      break;
-    case dateConcepts.substitutionDateUUID:
-      artReaseonConcept = substituteReasonUUID;
-      break;
-    case dateConcepts.switchDateUUID:
-      artReaseonConcept = switchReasonUUID;
-      break;
-    case dateConcepts.dateRestartedUUID:
-      artReaseonConcept = restartReasonUUID;
-      break;
-    default:
-      artReaseonConcept = '';
-  }
-  return artReaseonConcept;
 }
 
 const EncounterList: React.FC<EncounterListProps> = ({
