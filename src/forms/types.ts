@@ -105,6 +105,7 @@ export interface OHRIFormFieldProps {
   handler: SubmissionHandler;
 }
 export interface OHRIFormSection {
+  hide?: HideProps;
   label: string;
   isExpanded: string;
   isHidden?: boolean;
