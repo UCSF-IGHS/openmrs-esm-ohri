@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import EncounterList, {
   EncounterListColumn,
+  findObs,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
 import {
@@ -13,6 +14,7 @@ import {
   entryPointConcept,
   patientTypeEnrollmentConcept,
   re_enrolmentDateConcept,
+  otherEntryPoint,
 } from '../../../constants';
 
 interface HIVEnrolmentTabListProps {
@@ -47,6 +49,19 @@ const columns: EncounterListColumn[] = [
     key: 'entryPoint',
     header: 'Entry Point',
     getValue: encounter => {
+      const obs = findObs(encounter, entryPointConcept);
+      if (typeof obs !== undefined && obs) {
+        if (typeof obs.value === 'object') {
+          if (obs !== undefined) {
+            const EntryPoint =
+              obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+              obs.value.name.name;
+            if (EntryPoint === 'Other non-coded') {
+              return getObsFromEncounter(encounter, otherEntryPoint);
+            }
+          }
+        }
+      }
       return getObsFromEncounter(encounter, entryPointConcept);
     },
   },
