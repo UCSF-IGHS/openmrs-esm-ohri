@@ -8,7 +8,13 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laun
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
-import { encounterRepresentation, stopReasonUUID, substituteReasonUUID, switchReasonUUID } from '../../constants';
+import {
+  encounterRepresentation,
+  stopReasonUUID,
+  substituteReasonUUID,
+  switchReasonUUID,
+  restartReasonUUID,
+} from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 import {
@@ -30,6 +36,7 @@ export interface ARTDateConcepts {
   switchDateUUID: string;
   substitutionDateUUID: string;
   artStopDateUUID: string;
+  dateRestartedUUID: string;
 }
 
 export interface EncounterListProps {
@@ -80,6 +87,7 @@ export function getObsFromEncounters(encounters, obsConcept) {
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = findObs(encounter, obsConcept);
+
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
@@ -100,11 +108,13 @@ export function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts
   let artSubstitutionDate = findObs(encounter, dateConcepts.substitutionDateUUID);
   let artSwitchDate = findObs(encounter, dateConcepts.switchDateUUID);
   let artStopDate = findObs(encounter, dateConcepts.artStopDateUUID);
+  let artRestartDate = findObs(encounter, dateConcepts.dateRestartedUUID);
 
   artStartDate = artStartDate ? artStartDate.value : null;
   artSubstitutionDate = artSubstitutionDate ? artSubstitutionDate.value : null;
   artSwitchDate = artSwitchDate ? artSwitchDate.value : null;
   artStopDate = artStopDate ? artStopDate.value : null;
+  artRestartDate = artRestartDate ? artRestartDate.value : null;
 
   let latestDateConcept: string = dateConcepts.artTherapyDateTime_UUID;
   let latestDate = artStartDate;
@@ -119,6 +129,10 @@ export function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts
   if (artStopDate > latestDate) {
     latestDate = artStopDate;
     latestDateConcept = dateConcepts.artStopDateUUID;
+  }
+  if (artRestartDate > latestDate) {
+    latestDate = artRestartDate;
+    latestDateConcept = dateConcepts.dateRestartedUUID;
   }
 
   return latestDateConcept;
@@ -137,10 +151,12 @@ export function getARTReasonConcept(encounter, dateConcepts: ARTDateConcepts): s
     case dateConcepts.switchDateUUID:
       artReaseonConcept = switchReasonUUID;
       break;
+    case dateConcepts.dateRestartedUUID:
+      artReaseonConcept = restartReasonUUID;
+      break;
     default:
       artReaseonConcept = '';
   }
-
   return artReaseonConcept;
 }
 

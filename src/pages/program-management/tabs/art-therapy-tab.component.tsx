@@ -10,6 +10,7 @@ import EncounterList, {
   getEncounterValues,
   getLatestARTDateConcept,
   getARTReasonConcept,
+  findObs,
 } from '../../../components/encounter-list/encounter-list.component';
 import {
   artTherapyDateTime_UUID,
@@ -20,18 +21,25 @@ import {
   artStopDateUUID,
   substitutionDateUUID,
   switchDateUUID,
+  dateRestartedUUID,
 } from '../../../constants';
 
 interface ArtTherapyTabListProps {
   patientUuid: string;
 }
 
-const ARTDates: string[] = [artTherapyDateTime_UUID, switchDateUUID, substitutionDateUUID, artStopDateUUID];
+const artConcepts = new Map([
+  ['1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Start ART'],
+  ['1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Substitute ART Regimen'],
+  ['1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Switch ART Regimen Line'],
+  ['1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Stop ART'],
+  ['3e69cb60-2943-410f-83d4-b359ae83fefd', 'Restart ART therapy'],
+]);
 
 const columns: EncounterListColumn[] = [
   {
     key: 'initiationDate',
-    header: 'Date(ART Start, Stopped, Switched, Change)',
+    header: 'Date(ART Start, Stopped, Switched, Changed, Restarted)',
     getValue: encounter => {
       return getObsFromEncounter(
         encounter,
@@ -40,6 +48,7 @@ const columns: EncounterListColumn[] = [
           switchDateUUID,
           substitutionDateUUID,
           artStopDateUUID,
+          dateRestartedUUID,
         }),
         true,
       );
@@ -49,7 +58,8 @@ const columns: EncounterListColumn[] = [
     key: 'therapyPlan',
     header: 'Therapy Plan',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, therapyPlanConcept);
+      const therapyPlanObs = findObs(encounter, therapyPlanConcept);
+      return therapyPlanObs ? artConcepts.get(therapyPlanObs.value.uuid) : '--';
     },
   },
   {
@@ -77,6 +87,7 @@ const columns: EncounterListColumn[] = [
           switchDateUUID,
           substitutionDateUUID,
           artStopDateUUID,
+          dateRestartedUUID,
         }),
       );
     },
