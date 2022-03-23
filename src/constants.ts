@@ -172,3 +172,9 @@ export const visitDate_UUID = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const receivingFacility_UUID = '162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const TransferOutDate_UUID = '160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const verified_UUID = '797e0073-1f3f-46b1-8b1a-8cdad134d2b3';
+
+//Patient Tracing
+export const ContactDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ContactMethod_UUID = '59c023dd-eed2-4b11-8c34-b88e9439db3c';
+export const ContactOutcome_UUID = 'bc45edbd-11e7-4888-ad7d-4ec3dd8cdcf6';
+export const PatientTracingEncounterType_UUID = '0cd5d4cb-204e-419a-9dd7-1e18e939ce4c';

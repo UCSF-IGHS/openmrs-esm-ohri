@@ -1,10 +1,68 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyState from '../../../components/empty-state/empty-state.component';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
+import {
+  ContactDate_UUID,
+  ContactMethod_UUID,
+  ContactOutcome_UUID,
+  PatientTracingEncounterType_UUID,
+} from '../../../constants';
 
 interface PatientTracingListProps {
   patientUuid: string;
 }
+
+const columnsLab: EncounterListColumn[] = [
+  {
+    key: 'contactDate',
+    header: 'Contact Date',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, ContactDate_UUID, true);
+    },
+  },
+  {
+    key: 'contactMethod',
+    header: 'Contact Method',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, ContactMethod_UUID);
+    },
+  },
+  {
+    key: 'contactOutcome',
+    header: 'Contact Outcome',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, ContactOutcome_UUID);
+    },
+  },
+
+  {
+    key: 'actions',
+    header: 'Actions',
+    getValue: encounter => {
+      const baseActions = [
+        {
+          form: { name: 'patient_tracing', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'patient_tracing', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Edit Details',
+          mode: 'edit',
+        },
+      ];
+      return baseActions;
+    },
+  },
+];
 
 const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -13,9 +71,15 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
   const displayText = t('patientTracing', 'Patient Tracing');
 
   return (
-    <>
-      <EmptyState displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={PatientTracingEncounterType_UUID}
+      form={{ package: 'hiv', name: 'patient_tracing' }}
+      columns={columnsLab}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 
