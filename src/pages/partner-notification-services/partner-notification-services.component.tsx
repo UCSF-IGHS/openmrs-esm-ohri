@@ -3,6 +3,7 @@ import { Tabs, Tab } from 'carbon-components-react';
 import styles from '../common.scss';
 import PartnerNotificationList from './tabs/partner-notification.component';
 import ContactTracingList from './tabs/contact-tracing.component';
+import PatientTracingList from './tabs/patient-tracing.component';
 
 interface OverviewListProps {
   patientUuid: string;
@@ -16,6 +17,9 @@ const PartnerNotificationServices: React.FC<OverviewListProps> = ({ patientUuid 
       </Tab>
       <Tab label="Contact Tracing" style={{ padding: 0 }}>
         <ContactTracingList patientUuid={patientUuid} />
+      </Tab>
+      <Tab label="Patient Tracing" style={{ padding: 0 }}>
+        <PatientTracingList patientUuid={patientUuid} />
       </Tab>
     </Tabs>
   </div>
