@@ -8,8 +8,6 @@ import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   getEncounterValues,
-  getLatestARTDateConcept,
-  getARTReasonConcept,
   findObs,
 } from '../../../components/encounter-list/encounter-list.component';
 import {
@@ -22,6 +20,10 @@ import {
   substitutionDateUUID,
   switchDateUUID,
   dateRestartedUUID,
+  restartReasonUUID,
+  stopReasonUUID,
+  substituteReasonUUID,
+  switchReasonUUID,
 } from '../../../constants';
 
 interface ArtTherapyTabListProps {
@@ -35,6 +37,71 @@ const artConcepts = new Map([
   ['1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Stop ART'],
   ['3e69cb60-2943-410f-83d4-b359ae83fefd', 'Restart ART therapy'],
 ]);
+
+interface ARTDateConcepts {
+  artTherapyDateTime_UUID: string;
+  switchDateUUID: string;
+  substitutionDateUUID: string;
+  artStopDateUUID: string;
+  dateRestartedUUID: string;
+}
+
+function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts): string {
+  let artStartDate = findObs(encounter, dateConcepts.artTherapyDateTime_UUID);
+  let artSubstitutionDate = findObs(encounter, dateConcepts.substitutionDateUUID);
+  let artSwitchDate = findObs(encounter, dateConcepts.switchDateUUID);
+  let artStopDate = findObs(encounter, dateConcepts.artStopDateUUID);
+  let artRestartDate = findObs(encounter, dateConcepts.dateRestartedUUID);
+
+  artStartDate = artStartDate ? artStartDate.value : null;
+  artSubstitutionDate = artSubstitutionDate ? artSubstitutionDate.value : null;
+  artSwitchDate = artSwitchDate ? artSwitchDate.value : null;
+  artStopDate = artStopDate ? artStopDate.value : null;
+  artRestartDate = artRestartDate ? artRestartDate.value : null;
+
+  let latestDateConcept: string = dateConcepts.artTherapyDateTime_UUID;
+  let latestDate = artStartDate;
+  if (artSubstitutionDate > latestDate) {
+    latestDateConcept = dateConcepts.substitutionDateUUID;
+    latestDate = artSubstitutionDate;
+  }
+  if (artSwitchDate > latestDate) {
+    latestDate = artSwitchDate;
+    latestDateConcept = dateConcepts.switchDateUUID;
+  }
+  if (artStopDate > latestDate) {
+    latestDate = artStopDate;
+    latestDateConcept = dateConcepts.artStopDateUUID;
+  }
+  if (artRestartDate > latestDate) {
+    latestDate = artRestartDate;
+    latestDateConcept = dateConcepts.dateRestartedUUID;
+  }
+
+  return latestDateConcept;
+}
+
+function getARTReasonConcept(encounter, dateConcepts: ARTDateConcepts): string {
+  const latestDateConcept: string = getLatestARTDateConcept(encounter, dateConcepts);
+  let artReaseonConcept = '';
+  switch (latestDateConcept) {
+    case dateConcepts.artStopDateUUID:
+      artReaseonConcept = stopReasonUUID;
+      break;
+    case dateConcepts.substitutionDateUUID:
+      artReaseonConcept = substituteReasonUUID;
+      break;
+    case dateConcepts.switchDateUUID:
+      artReaseonConcept = switchReasonUUID;
+      break;
+    case dateConcepts.dateRestartedUUID:
+      artReaseonConcept = restartReasonUUID;
+      break;
+    default:
+      artReaseonConcept = '';
+  }
+  return artReaseonConcept;
+}
 
 const columns: EncounterListColumn[] = [
   {
