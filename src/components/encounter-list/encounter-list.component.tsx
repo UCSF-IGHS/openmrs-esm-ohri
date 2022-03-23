@@ -23,7 +23,6 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
-import { artConcepts } from '../../pages/program-management/tabs/art-therapy-tab.component';
 
 export interface EncounterListColumn {
   key: string;
@@ -76,10 +75,6 @@ function obsArrayDateComparator(left, right) {
   return formatDateTime(right.obsDatetime) - formatDateTime(left.obsDatetime);
 }
 
-export function getTherapyPlan(uuid: string) {
-  return artConcepts.get(uuid);
-}
-
 export function findObs(encounter, obsConcept): Record<string, any> {
   const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
@@ -103,9 +98,6 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return moment(obs.value).format('DD-MMM-YYYY');
   }
   if (typeof obs.value === 'object') {
-    if (obsConcept === '7557d77c-172b-4673-9335-67a38657dd01') {
-      return getTherapyPlan(obs.value.uuid);
-    }
     return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
