@@ -8,7 +8,13 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laun
 import styles from './encounter-list.scss';
 import OTable from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
-import { encounterRepresentation, stopReasonUUID, substituteReasonUUID, switchReasonUUID } from '../../constants';
+import {
+  encounterRepresentation,
+  stopReasonUUID,
+  substituteReasonUUID,
+  switchReasonUUID,
+  restartReasonUUID,
+} from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
 import {
@@ -17,6 +23,7 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
+import { artConcepts } from '../../utils/art-concepts';
 
 export interface EncounterListColumn {
   key: string;
@@ -30,6 +37,7 @@ export interface ARTDateConcepts {
   switchDateUUID: string;
   substitutionDateUUID: string;
   artStopDateUUID: string;
+  dateRestartedUUID: string;
 }
 
 export interface EncounterListProps {
@@ -68,6 +76,10 @@ function obsArrayDateComparator(left, right) {
   return formatDateTime(right.obsDatetime) - formatDateTime(left.obsDatetime);
 }
 
+export function getTherapyPlan(uuid: string) {
+  return artConcepts.get(uuid);
+}
+
 export function findObs(encounter, obsConcept): Record<string, any> {
   const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
@@ -80,6 +92,7 @@ export function getObsFromEncounters(encounters, obsConcept) {
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = findObs(encounter, obsConcept);
+
   if (isTrueFalseConcept) {
     return obs ? 'Yes' : 'No';
   }
@@ -90,6 +103,9 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return moment(obs.value).format('DD-MMM-YYYY');
   }
   if (typeof obs.value === 'object') {
+    if (obsConcept === '7557d77c-172b-4673-9335-67a38657dd01') {
+      return getTherapyPlan(obs.value.uuid);
+    }
     return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
@@ -100,11 +116,13 @@ export function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts
   let artSubstitutionDate = findObs(encounter, dateConcepts.substitutionDateUUID);
   let artSwitchDate = findObs(encounter, dateConcepts.switchDateUUID);
   let artStopDate = findObs(encounter, dateConcepts.artStopDateUUID);
+  let artRestartDate = findObs(encounter, dateConcepts.dateRestartedUUID);
 
   artStartDate = artStartDate ? artStartDate.value : null;
   artSubstitutionDate = artSubstitutionDate ? artSubstitutionDate.value : null;
   artSwitchDate = artSwitchDate ? artSwitchDate.value : null;
   artStopDate = artStopDate ? artStopDate.value : null;
+  artRestartDate = artRestartDate ? artRestartDate.value : null;
 
   let latestDateConcept: string = dateConcepts.artTherapyDateTime_UUID;
   let latestDate = artStartDate;
@@ -119,6 +137,10 @@ export function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts
   if (artStopDate > latestDate) {
     latestDate = artStopDate;
     latestDateConcept = dateConcepts.artStopDateUUID;
+  }
+  if (artRestartDate > latestDate) {
+    latestDate = artRestartDate;
+    latestDateConcept = dateConcepts.dateRestartedUUID;
   }
 
   return latestDateConcept;
@@ -137,10 +159,12 @@ export function getARTReasonConcept(encounter, dateConcepts: ARTDateConcepts): s
     case dateConcepts.switchDateUUID:
       artReaseonConcept = switchReasonUUID;
       break;
+    case dateConcepts.dateRestartedUUID:
+      artReaseonConcept = restartReasonUUID;
+      break;
     default:
       artReaseonConcept = '';
   }
-
   return artReaseonConcept;
 }
 

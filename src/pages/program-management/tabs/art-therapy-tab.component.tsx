@@ -20,6 +20,7 @@ import {
   artStopDateUUID,
   substitutionDateUUID,
   switchDateUUID,
+  dateRestartedUUID,
 } from '../../../constants';
 
 interface ArtTherapyTabListProps {
@@ -31,7 +32,7 @@ const ARTDates: string[] = [artTherapyDateTime_UUID, switchDateUUID, substitutio
 const columns: EncounterListColumn[] = [
   {
     key: 'initiationDate',
-    header: 'Date(ART Start, Stopped, Switched, Change)',
+    header: 'Date(ART Start, Stopped, Switched, Changed, Restarted)',
     getValue: encounter => {
       return getObsFromEncounter(
         encounter,
@@ -40,6 +41,7 @@ const columns: EncounterListColumn[] = [
           switchDateUUID,
           substitutionDateUUID,
           artStopDateUUID,
+          dateRestartedUUID,
         }),
         true,
       );
@@ -77,6 +79,7 @@ const columns: EncounterListColumn[] = [
           switchDateUUID,
           substitutionDateUUID,
           artStopDateUUID,
+          dateRestartedUUID,
         }),
       );
     },
