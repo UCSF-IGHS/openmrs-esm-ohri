@@ -53,6 +53,7 @@ export const studyPopulationTypeConcept = 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3'
 export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const entryPointConcept = '160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const re_enrolmentDateConcept = '20efadf9-86d3-4498-b3ab-7da4dad9c429';
+export const otherEntryPoint = '161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // Clinical visit
 export const clinicalVisitEncounterType = 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4';
@@ -145,9 +146,11 @@ export const therapyPlanConcept = '7557d77c-172b-4673-9335-67a38657dd01';
 export const artStopDateUUID = '162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const switchDateUUID = '164516AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const substitutionDateUUID = '164431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const dateRestartedUUID = '160738AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const switchReasonUUID = '160568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const substituteReasonUUID = '160562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const stopReasonUUID = '163513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const restartReasonUUID = '161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // HIV Lab Results
 export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
