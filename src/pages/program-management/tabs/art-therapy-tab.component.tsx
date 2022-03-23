@@ -27,7 +27,13 @@ interface ArtTherapyTabListProps {
   patientUuid: string;
 }
 
-const ARTDates: string[] = [artTherapyDateTime_UUID, switchDateUUID, substitutionDateUUID, artStopDateUUID];
+export const artConcepts = new Map([
+  ['1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Start ART'],
+  ['1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Substitute ART Regimen'],
+  ['1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Switch ART Regimen Line'],
+  ['1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Stop ART'],
+  ['3e69cb60-2943-410f-83d4-b359ae83fefd', 'Restart ART therapy'],
+]);
 
 const columns: EncounterListColumn[] = [
   {

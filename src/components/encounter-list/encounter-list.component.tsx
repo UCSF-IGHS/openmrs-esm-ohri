@@ -23,7 +23,7 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
-import { artConcepts } from '../../utils/art-concepts';
+import { artConcepts } from '../../pages/program-management/tabs/art-therapy-tab.component';
 
 export interface EncounterListColumn {
   key: string;
