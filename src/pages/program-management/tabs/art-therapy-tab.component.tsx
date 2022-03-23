@@ -10,6 +10,7 @@ import EncounterList, {
   getEncounterValues,
   getLatestARTDateConcept,
   getARTReasonConcept,
+  findObs,
 } from '../../../components/encounter-list/encounter-list.component';
 import {
   artTherapyDateTime_UUID,
@@ -27,7 +28,7 @@ interface ArtTherapyTabListProps {
   patientUuid: string;
 }
 
-export const artConcepts = new Map([
+const artConcepts = new Map([
   ['1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Start ART'],
   ['1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Substitute ART Regimen'],
   ['1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Switch ART Regimen Line'],
@@ -57,7 +58,8 @@ const columns: EncounterListColumn[] = [
     key: 'therapyPlan',
     header: 'Therapy Plan',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, therapyPlanConcept);
+      const therapyPlanObs = findObs(encounter, therapyPlanConcept);
+      return therapyPlanObs ? artConcepts.get(therapyPlanObs.value.uuid) : '--';
     },
   },
   {
