@@ -377,13 +377,6 @@
                   "hide": {
                     "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
                   }
-                },
-                {
-                  "intent": "*",
-                  "required": "false",
-                  "hide": {
-                    "hideWhenExpression": "isEmpty(testingLocation) || testingLocation !== '5995ebd5-11ae-47ca-ac12-bcb8c0117aec'"
-                  }
                 }
               ],
               "id": "facilityServiceDeliveryPoint"
@@ -590,7 +583,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "isEmpty(everTestedForHIV) || everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
@@ -669,8 +662,18 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
+                    "hideWhenExpression": "isEmpty(everTestedForHIV) || everTestedForHIV !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "lastHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    }
+                  ]
                 }
               ],
               "id": "lastHIVTestResult"
@@ -809,11 +812,11 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(populationType) || populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
-              "id": "patientPopulationType"
+              "id": "keyPopulationType"
             },
             {
               "label": "Sexually active",
@@ -964,7 +967,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "isEmpty(clientSexualActivity) || clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
@@ -1047,7 +1050,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "isEmpty(clientSexualActivity) || clientSexualActivity !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
@@ -1059,51 +1062,6 @@
           "label": "Pre-Test Information",
           "isExpanded": "true",
           "questions": [
-            {
-              "label": "Pretest counselling  done",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "de32152d-93b0-412a-908a-20af0c46f215",
-                "answers": [
-                  {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
-                    "label": "Yes",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1065"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "CT: 373066001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "preTestCounsellingConducted"
-            },
             {
               "label": "Eligible for HIV Testing",
               "type": "obs",
@@ -1230,6 +1188,54 @@
               "id": "eligibleHIVTesting"
             },
             {
+              "label": "Pretest counselling  done",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "de32152d-93b0-412a-908a-20af0c46f215",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(eligibleHIVTesting) || eligibleHIVTesting !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "preTestCounsellingConducted"
+            },
+            {
               "label": "Counseled as",
               "type": "obs",
               "questionOptions": {
@@ -1259,7 +1265,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "isEmpty(preTestCounsellingConducted) || preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
@@ -1304,7 +1310,10 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(eligibleHIVTesting) || eligibleHIVTesting !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
                 }
               ],
               "id": "preTestCounselingConsent"
@@ -1486,6 +1495,13 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "tbSymptoms"
             }
           ]
@@ -1706,9 +1722,26 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "stiSymptoms"
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "required": "true",
+          "unspecified": "false",
+          "hide": {
+            "hideWhenExpression": "isEmpty(preTestCounselingConsent) || preTestCounselingConsent !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+          }
         }
       ]
     },
@@ -1778,7 +1811,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "isEmpty(hivTestConducted) || hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
                   "validators": [
                     {
@@ -1787,7 +1820,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue > today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 }
@@ -1833,10 +1866,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "firstHivTestRDT"
@@ -1889,7 +1919,10 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
                 }
               ],
               "id": "firstHivTestRDTResult"
@@ -1944,11 +1977,21 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "firstHivTestRDT !== '166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(firstHivTestRDT) || firstHivTestRDT !== '166453AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
               "id": "syphilisResult"
+            }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "required": "true",
+              "unspecified": "true",
+              "hide": {
+                "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+              }
             }
           ]
         },
@@ -2013,10 +2056,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "firstHivTestRDTResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "secondHivTestDone"
@@ -2057,7 +2097,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -2110,7 +2150,10 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
                 }
               ],
               "id": "secondHivTestResult"
@@ -2152,12 +2195,19 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "firstHivTestRDTResult === '6378487b-584d-4422-a6a6-56c8830873ff' && secondHivTestDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && secondHivTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
+                  "unspecified": "true"
                 }
               ]
+            }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "required": "true",
+              "unspecified": "true",
+              "hide": {
+                "hideWhenExpression": "isEmpty(firstHivTestRDTResult) || firstHivTestRDTResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+              }
             }
           ]
         },
@@ -2223,10 +2273,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
+                  "unspecified": "true"
                 }
               ]
             },
@@ -2265,7 +2312,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(firstHivTestRDTRepeatDone) || firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -2321,11 +2368,21 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(firstHivTestRDTRepeatDone) || firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
               "id": "firstHivTestRepeatResult"
+            }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "required": "true",
+              "unspecified": "true",
+              "hide": {
+                "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults !== '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
         },
@@ -2390,10 +2447,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "firstHivTestRDTResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
-                  }
+                  "unspecified": "true"
                 }
               ],
               "id": "thirdHivTestDone"
@@ -2433,7 +2487,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(thirdHivTestDone) || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -2489,11 +2543,21 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(thirdHivTestDone) || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
               "id": "thirdHivTestResult"
+            }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "required": "true",
+              "unspecified": "true",
+              "hide": {
+                "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+              }
             }
           ]
         },
@@ -2567,6 +2631,13 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true"
+                }
+              ],
               "id": "statusTestingAlgorithm"
             }
           ]
@@ -2628,16 +2699,7 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "(initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '6378487b-584d-4422-a6a6-56c8830873ff') || (initialHIVTestResult === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && myValue !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || (isEmpty(tieBreakerTestResult) && initialHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' && confirmatoryHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' && myValue !== '7398c91a-8db8-480d-8130-1a92cc208ded') || (!isEmpty(tieBreakerTestResult) && myValue !== tieBreakerTestResult)"
-                    }
-                  ]
+                  "unspecified": "true"
                 }
               ],
               "id": "finalHIVTestResult"
@@ -2809,7 +2871,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                    "hideWhenExpression": "isEmpty(receivedHIVTestResult) || receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
                   }
                 }
               ],
@@ -2845,13 +2907,33 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(resultReceivedCouple) || resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
               "id": "CoupleResults"
             }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "required": "true",
+              "unspecified": "true",
+              "hide": {
+                "hideWhenExpression": "isEmpty(counselingSessionType) || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+              }
+            }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "required": "true",
+          "unspecified": "false",
+          "hide": {
+            "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+          }
         }
       ]
     },
@@ -2870,11 +2952,31 @@
                 "concept": "976ca997-fb2b-4bef-a299-f7c9e16b50a8",
                 "answers": [
                   {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Yes",
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      }
+                    ]
                   },
                   {
-                    "label": "No"
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -2888,7 +2990,7 @@
               "id": "recencyTestingConsent"
             },
             {
-              "label": "Recency conducted",
+              "label": "Recency test conducted",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -2927,7 +3029,10 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(recencyTestingConsent) || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                  }
                 }
               ],
               "id": "recencyTestConducted"
@@ -2999,13 +3104,33 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "isEmpty(recencyTestConducted) || recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
               "id": "recencyTestResult"
             }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "required": "true",
+              "unspecified": "true",
+              "hide": {
+                "hideWhenExpression": "isEmpty(finalHIVTestResult) || finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+              }
+            }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "required": "true",
+          "unspecified": "false",
+          "hide": {
+            "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+          }
         }
       ]
     },
@@ -3462,7 +3587,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                    "hideWhenExpression": "isEmpty(linkedToCare) || linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
                   }
                 }
               ],
@@ -3485,6 +3610,16 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(linkedToCare) || linkedToCare !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                  }
+                }
+              ],
               "id": "facilityLinkedTo"
             },
             {
@@ -3510,6 +3645,16 @@
               "id": "htsProviderName"
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "required": "true",
+          "unspecified": "false",
+          "hide": {
+            "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+          }
         }
       ]
     },
@@ -3538,6 +3683,16 @@
               "id": "notes"
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "required": "true",
+          "unspecified": "false",
+          "hide": {
+            "hideWhenExpression": "preTestCounselingConsent !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+          }
         }
       ]
     }
