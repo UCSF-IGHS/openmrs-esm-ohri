@@ -5,7 +5,12 @@ import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
-import { deathFormEncounterType_UUID } from '../../../constants';
+import {
+  ContactTracingDate_UUID,
+  ContactTracingEncounterType_UUID,
+  ContactTracingMethod_UUID,
+  ContactTracingOutcome_UUID,
+} from '../../../constants';
 
 interface ContactTracingListProps {
   patientUuid: string;
@@ -16,21 +21,21 @@ const columnsLab: EncounterListColumn[] = [
     key: 'contactDate',
     header: 'Contact Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, ContactTracingDate_UUID, true);
     },
   },
   {
     key: 'contactMethod',
     header: 'Contact Method',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, ContactTracingMethod_UUID);
     },
   },
   {
     key: 'contactOutcome',
     header: 'Contact Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, ContactTracingOutcome_UUID);
     },
   },
 
@@ -40,14 +45,14 @@ const columnsLab: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: 'death_form', package: 'hiv' },
+          form: { name: 'contact_tracing', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: 'death_form', package: 'hiv' },
+          form: { name: 'contact_tracing', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit Details',
@@ -68,8 +73,8 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={deathFormEncounterType_UUID}
-      form={{ package: 'hiv', name: 'patient_tracing' }}
+      encounterUuid={ContactTracingEncounterType_UUID}
+      form={{ package: 'hiv', name: 'contact_tracing' }}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
