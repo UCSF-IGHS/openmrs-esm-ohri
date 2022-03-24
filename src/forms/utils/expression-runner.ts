@@ -105,6 +105,7 @@ function registerDependency(node: FormNode, determinant: OHRIFormField) {
         determinant.sectionDependants = new Set();
       }
       determinant.sectionDependants.add(node.value.label);
+      break;
     default:
       if (!determinant.fieldDependants) {
         determinant.fieldDependants = new Set();
