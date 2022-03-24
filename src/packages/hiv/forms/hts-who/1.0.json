@@ -15,7 +15,7 @@
               },
               "id": "fooMarkdown",
               "value": [
-                "Use this form to perform HIV Testing Services"
+                "**Use this form to:** perform HIV Testing Services using a three test algorithm"
               ]
             },
             {
@@ -1056,7 +1056,7 @@
           ]
         },
         {
-          "label": "Pre-Test",
+          "label": "Pre-Test Information",
           "isExpanded": "true",
           "questions": [
             {
@@ -1103,6 +1103,131 @@
                 }
               ],
               "id": "preTestCounsellingConducted"
+            },
+            {
+              "label": "Eligible for HIV Testing",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "cea67984-d790-4185-b7b4-67736810d365",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 373066001"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373066001"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1065"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1065"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "1066"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1066"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373067005"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1066"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1066"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1066"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "373067005"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1066"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "261665006"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "UNKNOWN"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1067"
+                      },
+                      {
+                        "type": "SNOMED CT",
+                        "value": "CT: 261665006"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "eligibleHIVTesting"
             },
             {
               "label": "Counseled as",
@@ -1200,11 +1325,46 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
-                "concept": "159800AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "12a22a0b-f0ed-4f1a-8d70-7c6acda5ae78",
                 "answers": [
                   {
+                    "concept": "150796AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abnormal Weight Loss",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "159799AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "cough lasting more than 2 weeks",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "2573"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "49727002"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "1597991000105004"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "1597991000105004"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "6171"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "2573"
+                      }
+                    ]
+                  },
+                  {
                     "concept": "1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fever lasting more than 3 weeks",
+                    "label": "Fever lasting more than three weeks",
                     "conceptMappings": [
                       {
                         "type": "AMPATH",
@@ -1221,72 +1381,36 @@
                     ]
                   },
                   {
-                    "concept": "159799AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Cough lasting more than 2 weeks",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH",
-                        "value": "2573"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "49727002"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "1597991000105004"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "6171"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "138905AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Hemoptysis",
-                    "conceptMappings": [
-                      {
-                        "type": "3BT",
-                        "value": "10040493"
-                      },
-                      {
-                        "type": "ICD-10-WHO",
-                        "value": "R04.2"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "970"
-                      },
-                      {
-                        "type": "ICPC2",
-                        "value": "R24"
-                      },
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "27441"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "6172"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "66857006"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "967"
-                      }
-                    ]
-                  },
-                  {
                     "concept": "133027AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Night sweats",
                     "conceptMappings": [
                       {
+                        "type": "SNOMED-CT",
+                        "value": "42984000"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "6029"
+                      },
+                      {
+                        "type": "3BT",
+                        "value": "10063085"
+                      },
+                      {
                         "type": "ICPC2",
                         "value": "A09"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "42984000"
+                      },
+                      {
+                        "type": "ICPC2",
+                        "value": "A09"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "50760"
                       },
                       {
                         "type": "ICD-10-WHO",
@@ -1297,8 +1421,8 @@
                         "value": "6029"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "42984000"
+                        "type": "AMPATH",
+                        "value": "6029"
                       },
                       {
                         "type": "PIH",
@@ -1313,16 +1437,55 @@
                         "value": "10063085"
                       }
                     ]
+                  },
+                  {
+                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "None",
+                    "conceptMappings": [
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NONE"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1107"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1107"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260413007"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NONE"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1107"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "260413007"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1107"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1107"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1107"
+                      }
+                    ]
                   }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
               "id": "tbSymptoms"
             }
           ]
@@ -1339,43 +1502,210 @@
                 "concept": "c4f81292-61a3-4561-a4ae-78be7d16d928",
                 "answers": [
                   {
-                    "concept": "d8e46cc0-4d08-45d9-a46d-bd083db63057",
-                    "label": "Scrotal swelling and pain (Male)",
+                    "concept": "118990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Genital Sore",
+                    "conceptMappings": [
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "N50.8"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "118990"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "300420"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "N94.8"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "118990"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "300420"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "157544AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Lower abdominal pain",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "711325"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "R10.3"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "157544"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "54586004"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "711325"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "R10.3"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "157544"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "54586004"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "113122AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Scrotal Mass",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "12350"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "53929009"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "113122"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "53929009"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "12350"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "N50.8"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "113122"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Vaginal discharge",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "27625"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5993"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "271939006"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "N89.8"
+                      },
+                      {
+                        "type": "ICPC2",
+                        "value": "X14"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "32928273"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "123396"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5993"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "27625"
+                      },
+                      {
+                        "type": "3BT",
+                        "value": "10102961"
+                      },
+                      {
+                        "type": "3BT",
+                        "value": "10102961"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "32928273"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "21649296"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "271939006"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "123396"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "21649296"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "c795654c-bcd8-4074-9fc7-e5f762e58f36",
+                    "label": "Urethral Discharge",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "60817acb-90f1-4d46-be87-2c47e150770b",
-                    "label": "Urethral discharge/burning when urinating",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "06be8996-ef55-438b-bbb9-5bebeb18e779",
-                    "label": "Lower abdominal pain +/- vaginal discharge (Female)",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "faf06026-fce9-4d2c-9ef2-24fb45343804",
-                    "label": "Genital sores/swollen inguinal lymph nodes with or without pain",
-                    "conceptMappings": []
+                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Normal",
+                    "conceptMappings": [
+                      {
+                        "type": "AMPATH",
+                        "value": "1115"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1115"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1115"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "17621005"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "17621005"
+                      }
+                    ]
                   }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_HIVTEST",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "*",
-                  "required": "false"
-                }
-              ],
               "id": "stiSymptoms"
             }
           ]
@@ -2168,6 +2498,80 @@
           ]
         },
         {
+          "label": "HIV Testing Status",
+          "isExpanded": "false",
+          "questions": [
+            {
+              "label": "State of testing algorithm",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "ec8b1fb4-fad1-47ae-859e-b70ecb8c5533",
+                "answers": [
+                  {
+                    "concept": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Completed",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "255594003"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "1267"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1267"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "163339AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Incomplete",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not done",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "2475"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "385660001"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "385660001"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "1118"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "1118"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "id": "statusTestingAlgorithm"
+            }
+          ]
+        },
+        {
           "label": "HIV Results",
           "isExpanded": "true",
           "questions": [
@@ -2467,11 +2871,10 @@
                 "answers": [
                   {
                     "label": "Yes",
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3"
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   {
-                    "label": "No",
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                    "label": "No"
                   }
                 ]
               },
@@ -2631,7 +3034,7 @@
                 ],
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Yes",
                     "conceptMappings": [
                       {
@@ -2647,70 +3050,15 @@
                         "value": "1065"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "373066001"
-                      },
-                      {
                         "type": "SNOMED CT",
-                        "value": "373066001"
-                      },
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "1065"
+                        "value": "CT: 373066001"
                       }
                     ]
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1066"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1066"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1066"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "373067005"
-                      },
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "1066"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "261665006"
-                      },
-                      {
-                        "type": "SNOMED CT",
-                        "value": "261665006"
-                      }
-                    ]
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -3119,6 +3467,25 @@
                 }
               ],
               "id": "patientIdentificationNumber"
+            },
+            {
+              "label": "Facility Linked to",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "161562"
+                  },
+                  {
+                    "type": "CIEL",
+                    "value": "161562"
+                  }
+                ]
+              },
+              "id": "facilityLinkedTo"
             },
             {
               "label": "HTS provider’s name",
