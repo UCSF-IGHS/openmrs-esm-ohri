@@ -2647,16 +2647,8 @@
                         "value": "1065"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "373066001"
-                      },
-                      {
                         "type": "SNOMED CT",
                         "value": "373066001"
-                      },
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "1065"
                       }
                     ]
                   },
@@ -2679,10 +2671,6 @@
                       {
                         "type": "SNOMED-CT",
                         "value": "373067005"
-                      },
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "1066"
                       }
                     ]
                   },
@@ -2701,11 +2689,7 @@
                       {
                         "type": "PIH",
                         "value": "1067"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "261665006"
-                      },
+                      },                      
                       {
                         "type": "SNOMED CT",
                         "value": "261665006"
