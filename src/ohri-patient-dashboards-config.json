@@ -9,11 +9,11 @@
            "programs-summary-dashboard",
            "allergies-summary-dashboard",
            "attachments-results-summary-dashboard",
-           "drug-orders-summary-dashboard",
-           "encounters-summary-dashboard"
+           "drug-orders-summary-dashboard"
         ]
       }
-    }
+    },
+    "notesConceptUuids": ["161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
   },
   "@openmrs/esm-patient-banner-app": {
     "extensionSlots": {
