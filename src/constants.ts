@@ -188,3 +188,9 @@ export const ThreatenedToHurt_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
 export const SexuallyMolested_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const howOftenThreatened_UUID = '953f6271-57ef-414e-bdba-fe9e0246db58';
 export const howOftenSexuallyMolested_UUID = '1dd53a22-2e8f-425b-8ba4-59172ed3fafe';
+
+//Contact Tracing
+export const ContactTracingEncounterType_UUID = '570e9e42-4306-41dc-9bf8-634bbc70a524';
+export const ContactTracingDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ContactTracingMethod_UUID = '59c023dd-eed2-4b11-8c34-b88e9439db3c';
+export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389';
