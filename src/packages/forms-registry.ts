@@ -19,6 +19,7 @@ import covid_case_form_v_1_0 from './covid/forms/case-form/1.0.json';
 import death_form_v_1_0 from './hiv/forms/care-and-treatment/death-form/1.0.json';
 import transfer_out_v_1_0 from './hiv/forms/care-and-treatment/transfer-out/1.0.json';
 import patient_tracing_v_1_0 from './hiv/forms/care-and-treatment/patient-tracing/1.0.json';
+import intimate_partner_v_1_0 from './hiv/forms/care-and-treatment/intimate-partner/1.0.json';
 
 export default {
   hiv: {
@@ -49,6 +50,9 @@ export default {
     },
     patient_tracing: {
       '1.0': patient_tracing_v_1_0,
+    },
+    intimate_partner: {
+      '1.0': intimate_partner_v_1_0,
     },
   },
   covid: {

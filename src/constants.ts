@@ -178,3 +178,10 @@ export const ContactDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ContactMethod_UUID = '59c023dd-eed2-4b11-8c34-b88e9439db3c';
 export const ContactOutcome_UUID = 'bc45edbd-11e7-4888-ad7d-4ec3dd8cdcf6';
 export const PatientTracingEncounterType_UUID = '0cd5d4cb-204e-419a-9dd7-1e18e939ce4c';
+
+//Intimate Partner
+export const IntimatePartnerEncounterType_UUID = '881fff34-b4a9-4d11-b2f5-a8a23a9f402b';
+export const ThreatenedToHurt_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
+export const SexuallyMolested_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const howOftenThreatened_UUID = '953f6271-57ef-414e-bdba-fe9e0246db58';
+export const howOftenSexuallyMolested_UUID = '1dd53a22-2e8f-425b-8ba4-59172ed3fafe';
