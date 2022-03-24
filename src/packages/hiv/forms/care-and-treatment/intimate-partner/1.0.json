@@ -15,7 +15,7 @@
                 },
                 "id":"fooMarkdown",
                 "value":[
-                  "**This form is used to:** Document intimate partner abuse or aggression that occurs in a romantic relationship."
+                  "**Introduction:** Use this form to Document intimate partner abuse or aggression that occurs in a romantic relationship."
                 ]
               }
             ]
@@ -41,7 +41,18 @@
                     }
                   ]
                 },
-                "id":"everBeenAssaulted"
+                "id":"everBeenAssaulted",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": []
+                    }
+                  ]            
               },
               {
                 "label":"By who",
@@ -92,7 +103,18 @@
                     }
                   ]
                 },
-                "id":"byWhoAssaulted"
+                "id":"byWhoAssaulted",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('everBeenAssaulted','cf82933b-3f3f-45e7-a5ab-5d31aaee3da3')"
+                      },
+                      "validators": []
+                    }
+                  ]            
               },
               {
                 "label":"How often?",
@@ -104,7 +126,18 @@
                   "min":"0",
                   "showDate":"false"
                 },
-                "id":"howOftenAssaulted"
+                "id":"howOftenAssaulted",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('everBeenAssaulted','cf82933b-3f3f-45e7-a5ab-5d31aaee3da3')"
+                      },
+                      "validators": []
+                    }
+                  ] 
               },
               {
                 "label":"Has someone ever threatened to hurt you?",
@@ -126,7 +159,18 @@
                     
                   ]
                 },
-                "id":"everBeenThreatened"
+                "id":"everBeenThreatened",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": []
+                    }
+                  ] 
               },
               {
                 "label":"By who?",
@@ -176,11 +220,19 @@
                       ]
                     }
                   ]
-                },
-                "behaviours":[
-                  
-                ],
-                "id":"threatenedByWho"
+                },                
+                "id":"threatenedByWho",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('everBeenThreatened','cf82933b-3f3f-45e7-a5ab-5d31aaee3da3')"
+                      },
+                      "validators": []
+                    }
+                  ] 
               },
               {
                 "label":"How often?",
@@ -192,7 +244,18 @@
                   "min":"0",
                   "showDate":"false"
                 },
-                "id":"howOftenThreatened"
+                "id":"howOftenThreatened",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('everBeenThreatened','cf82933b-3f3f-45e7-a5ab-5d31aaee3da3')"
+                      },
+                      "validators": []
+                    }
+                  ] 
               },
               {
                 "label":"Has someone ever forced you to do something sexually that made you feel uncomfortable?",
@@ -214,7 +277,18 @@
                     
                   ]
                 },
-                "id":"everForcedSexually"
+                "id":"everForcedSexually",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": []
+                    }
+                  ] 
               },
               {
                 "label":"By who?",
@@ -265,10 +339,18 @@
                     }
                   ]
                 },
-                "behaviours":[
-                  
-                ],
-                "id":"SexuallyMolestedbyWho"
+                "id":"SexuallyMolestedbyWho",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('everForcedSexually','cf82933b-3f3f-45e7-a5ab-5d31aaee3da3')"
+                      },
+                      "validators": []
+                    }
+                  ] 
               },
               {
                 "label":"How often?",
@@ -280,7 +362,18 @@
                   "min":"0",
                   "showDate":"false"
                 },
-                "id":"howOftenSexuallyMolested"
+                "id":"howOftenSexuallyMolested",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "!includes('everForcedSexually','cf82933b-3f3f-45e7-a5ab-5d31aaee3da3')"
+                      },
+                      "validators": []
+                    }
+                  ]
               }
             ]
           },
