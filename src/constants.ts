@@ -53,6 +53,7 @@ export const studyPopulationTypeConcept = 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3'
 export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const entryPointConcept = '160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const re_enrolmentDateConcept = '20efadf9-86d3-4498-b3ab-7da4dad9c429';
+export const otherEntryPoint = '161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // Clinical visit
 export const clinicalVisitEncounterType = 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4';
@@ -145,9 +146,11 @@ export const therapyPlanConcept = '7557d77c-172b-4673-9335-67a38657dd01';
 export const artStopDateUUID = '162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const switchDateUUID = '164516AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const substitutionDateUUID = '164431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const dateRestartedUUID = '160738AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const switchReasonUUID = '160568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const substituteReasonUUID = '160562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const stopReasonUUID = '163513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const restartReasonUUID = '161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // HIV Lab Results
 export const hivLabResultsEncounterType_UUID = ' 15272be5-ae9c-4278-a303-4b8907eae73b';
@@ -172,3 +175,22 @@ export const visitDate_UUID = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const receivingFacility_UUID = '162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const TransferOutDate_UUID = '160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const verified_UUID = '797e0073-1f3f-46b1-8b1a-8cdad134d2b3';
+
+//Patient Tracing
+export const ContactDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ContactMethod_UUID = '59c023dd-eed2-4b11-8c34-b88e9439db3c';
+export const ContactOutcome_UUID = 'bc45edbd-11e7-4888-ad7d-4ec3dd8cdcf6';
+export const PatientTracingEncounterType_UUID = '0cd5d4cb-204e-419a-9dd7-1e18e939ce4c';
+
+//Intimate Partner
+export const IntimatePartnerEncounterType_UUID = '881fff34-b4a9-4d11-b2f5-a8a23a9f402b';
+export const ThreatenedToHurt_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
+export const SexuallyMolested_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const howOftenThreatened_UUID = '953f6271-57ef-414e-bdba-fe9e0246db58';
+export const howOftenSexuallyMolested_UUID = '1dd53a22-2e8f-425b-8ba4-59172ed3fafe';
+
+//Contact Tracing
+export const ContactTracingEncounterType_UUID = '570e9e42-4306-41dc-9bf8-634bbc70a524';
+export const ContactTracingDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ContactTracingMethod_UUID = '59c023dd-eed2-4b11-8c34-b88e9439db3c';
+export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389';

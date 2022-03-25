@@ -196,6 +196,13 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       } else {
         page.isHidden = false;
       }
+      page.sections.forEach(section => {
+        if (section.hide) {
+          evalHide({ value: section, type: 'section' }, allFormFields, tempInitVals);
+        } else {
+          section.isHidden = false;
+        }
+      });
     });
     setForm(form);
     setFormInitialValues(tempInitVals);
@@ -416,6 +423,17 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         const index = fields_temp.findIndex(f => f.id == dep);
         fields_temp[index] = dependant;
         setFields(fields_temp);
+      });
+    }
+    if (field.sectionDependants) {
+      field.sectionDependants.forEach(dependant => {
+        for (let i = 0; i < form.pages.length; i++) {
+          const section = form.pages[i].sections.find((section, _sectionIndex) => section.label == dependant);
+          if (section) {
+            evalHide({ value: section, type: 'section' }, fields, { ...values, [fieldName]: value });
+            break;
+          }
+        }
       });
     }
     if (field.pageDependants) {

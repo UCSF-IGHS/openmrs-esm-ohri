@@ -5,46 +5,37 @@ import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
-import { deathFormEncounterType_UUID } from '../../../constants';
+import {
+  ContactDate_UUID,
+  ContactMethod_UUID,
+  ContactOutcome_UUID,
+  PatientTracingEncounterType_UUID,
+} from '../../../constants';
 
-interface PartnerNotificationListProps {
+interface PatientTracingListProps {
   patientUuid: string;
 }
 
 const columnsLab: EncounterListColumn[] = [
   {
-    key: 'Date',
-    header: 'Date',
+    key: 'contactDate',
+    header: 'Contact Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
-    },
-  },
-  {
-    key: 'relationshipToIndex',
-    header: 'Relationship to Index',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
-    },
-  },
-  {
-    key: 'indexType',
-    header: 'Index Type',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, ContactDate_UUID, true);
     },
   },
   {
     key: 'contactMethod',
     header: 'Contact Method',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, ContactMethod_UUID);
     },
   },
   {
     key: 'contactOutcome',
     header: 'Contact Outcome',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, ContactOutcome_UUID);
     },
   },
 
@@ -54,14 +45,14 @@ const columnsLab: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: '', package: '' },
+          form: { name: 'patient_tracing', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: '', package: '' },
+          form: { name: 'patient_tracing', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit Details',
@@ -73,16 +64,16 @@ const columnsLab: EncounterListColumn[] = [
   },
 ];
 
-const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patientUuid }) => {
+const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('partnerNotification', 'Partner Notification');
-  const displayText = t('partnerNotification', 'Partner Notification');
+  const headerTitle = t('patientTracing', 'Patient Tracing');
+  const displayText = t('patientTracing', 'Patient Tracing');
 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={deathFormEncounterType_UUID}
+      encounterUuid={PatientTracingEncounterType_UUID}
       form={{ package: 'hiv', name: 'patient_tracing' }}
       columns={columnsLab}
       description={displayText}
@@ -92,4 +83,4 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
   );
 };
 
-export default PartnerNotificationList;
+export default PatientTracingList;
