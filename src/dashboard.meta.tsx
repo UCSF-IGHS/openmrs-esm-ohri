@@ -110,7 +110,7 @@ export const programManagement_dashboardMeta = {
 };
 
 export const visits_dashboardMeta = {
-  name: 'visits',
+  name: 'visits-summary',
   slot: 'visits-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Visits',
