@@ -22,31 +22,10 @@
               "label": "HTS Form Strategy",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "f0d85da0-c235-4540-a0d1-63640594f98b",
-                "answers": [
-                  {
-                    "concept": "43105ef4-afde-4f33-89bd-fb318d3f07a3",
-                    "label": "HTS Classic Form",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "9de587b2-564d-4d86-bf72-e76da924018e",
-                    "label": "HTS WHO Form",
-                    "conceptMappings": []
-                  }
-                ]
+                "rendering": "fixed-value",
+                "concept": "f0d85da0-c235-4540-a0d1-63640594f98b"
               },
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "false",
-                  "hide": {
-                    "hideWhenExpression": "true"
-                  }
-                }
-              ],
+              "value": "9de587b2-564d-4d86-bf72-e76da924018e",
               "id": "htsFormStrategy"
             }
           ]
@@ -667,7 +646,8 @@
                   "validators": [
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "lastHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'"
+                      "failsWhenExpression": "lastHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'",
+                      "message": "This client may not be eligible for HIV testing"
                     }
                   ]
                 }
@@ -2568,7 +2548,7 @@
               "label": "State of testing algorithm",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "radio",
                 "concept": "ec8b1fb4-fad1-47ae-859e-b70ecb8c5533",
                 "answers": [
                   {
