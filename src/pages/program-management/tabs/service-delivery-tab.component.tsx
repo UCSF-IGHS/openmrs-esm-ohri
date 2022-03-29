@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import EmptyStateComingSoon from '../../../components/empty-state/empty-state-comingsoon.component';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import EncounterList, { EncounterListColumn } from '../../../components/encounter-list/encounter-list.component';
 
@@ -76,15 +77,9 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   const displayText = t('serviceDelivery', 'Service Delivery Model');
 
   return (
-    <EncounterList
-      patientUuid={patientUuid}
-      encounterUuid={''}
-      form={{ package: 'hiv', name: 'death_form' }}
-      columns={columnsLab}
-      description={displayText}
-      headerTitle={headerTitle}
-      dropdownText="Add"
-    />
+    <>
+      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+    </>
   );
 };
 
