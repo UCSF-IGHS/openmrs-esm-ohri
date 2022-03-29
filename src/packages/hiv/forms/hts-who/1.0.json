@@ -2548,7 +2548,7 @@
               "label": "State of testing algorithm",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "radio",
                 "concept": "ec8b1fb4-fad1-47ae-859e-b70ecb8c5533",
                 "answers": [
                   {
