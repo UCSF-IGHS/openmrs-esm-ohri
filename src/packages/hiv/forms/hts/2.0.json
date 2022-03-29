@@ -22,31 +22,10 @@
               "label": "HTS Form Strategy",
               "type": "obs",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "f0d85da0-c235-4540-a0d1-63640594f98b",
-                "answers": [
-                  {
-                    "concept": "43105ef4-afde-4f33-89bd-fb318d3f07a3",
-                    "label": "HTS Classic Form",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "9de587b2-564d-4d86-bf72-e76da924018e",
-                    "label": "HTS WHO Form",
-                    "conceptMappings": []
-                  }
-                ]
+                "rendering": "fixed-value",
+                "concept": "f0d85da0-c235-4540-a0d1-63640594f98b"
               },
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "false",
-                  "hide": {
-                    "hideWhenExpression": "true"
-                  }
-                }
-              ],
+              "value": "43105ef4-afde-4f33-89bd-fb318d3f07a3",
               "id": "htsFormStrategy"
             }
           ]
