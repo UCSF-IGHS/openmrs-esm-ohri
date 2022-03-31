@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyStateComingSoon from '../../../components/empty-state/empty-state-comingsoon.component';
-import EmptyState from '../../../components/empty-state/empty-state.component';
-import EncounterList, { EncounterListColumn } from '../../../components/encounter-list/encounter-list.component';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
+import { CommunityDSDModel_UUID, ServiceDeliveryEncounterType_UUID } from '../../../constants';
+import styles from '../program-management.scss';
 
 interface ServiceDeliveryTabListProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
+const columns: EncounterListColumn[] = [
   {
     key: 'mostRecentVLResults',
     header: 'Most recent VL results ',
@@ -41,7 +44,7 @@ const columnsLab: EncounterListColumn[] = [
     key: 'dsdModel',
     header: 'DSD Model',
     getValue: encounter => {
-      return null;
+      return getObsFromEncounter(encounter, CommunityDSDModel_UUID);
     },
   },
 
@@ -51,14 +54,14 @@ const columnsLab: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: '', package: '' },
+          form: { name: 'service_delivery', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: '', package: '' },
+          form: { name: 'service_delivery', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit',
@@ -77,9 +80,15 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   const displayText = t('serviceDelivery', 'Service Delivery Model');
 
   return (
-    <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={ServiceDeliveryEncounterType_UUID}
+      form={{ package: 'hiv', name: 'service_delivery' }}
+      columns={columns}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 
