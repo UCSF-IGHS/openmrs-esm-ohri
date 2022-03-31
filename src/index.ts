@@ -1,9 +1,8 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
-  clearSidenavRegistry,
-  createDashboardLink,
-  hts_dashboardMeta,
+  clearCareAndTreatmentSidenavRegistry,
+  createCareAndTreatmentDashboardLink,
   serviceSummary_dashboardMeta,
   labResults_dashboardMeta,
   programManagement_dashboardMeta,
@@ -13,7 +12,7 @@ import {
   partnerNotificationServices_dashboardMeta,
   medications_dashboardMeta,
   appointments_dashboardMeta,
-} from './dashboard.meta';
+} from './hiv/care-and-treatment/dashboard.meta';
 import {
   clearCovidSidenavRegistry,
   createCovidDashboardLink,
@@ -36,6 +35,12 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
 } from './components/patient-chart/ohri-patient-chart-sidenav.meta';
+import {
+  clearHivPreventionSidenavRegistry,
+  createHIVPreventionDashboardLink,
+  hts_dashboardMeta,
+  preExposureProphylaxis_dashboardMeta,
+} from './hiv/hiv-prevention/dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -53,8 +58,9 @@ function setupOpenMRS() {
   provide(patientDashboardsConfig);
 
   //Clear sidenav items to avoid duplicates
-  clearSidenavRegistry();
+  clearCareAndTreatmentSidenavRegistry();
   clearCovidSidenavRegistry();
+  clearHivPreventionSidenavRegistry();
 
   return {
     pages: [
@@ -341,28 +347,159 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'hts-service-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(serviceSummary_dashboardMeta), options),
-        meta: serviceSummary_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
         id: 'hts-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
+        load: getSyncLifecycle(createHIVPreventionDashboardLink(hts_dashboardMeta), options),
         meta: hts_dashboardMeta,
         online: true,
         offline: true,
       },
       {
+        id: 'pre-exposure-prophylaxis',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createHIVPreventionDashboardLink(preExposureProphylaxis_dashboardMeta), options),
+        meta: preExposureProphylaxis_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'pre-exposure-prophylaxis-ext',
+        slot: 'pre-exposure-prophylaxis-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./pages/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component'), {
+          featureName: 'pre-exposure-prophylaxis',
+          moduleName,
+        }),
+      },
+      {
+        id: 'hts-service-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(serviceSummary_dashboardMeta), options),
+        meta: serviceSummary_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'program-management-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(programManagement_dashboardMeta), options),
+        meta: programManagement_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'program-management-summary-ext',
+        slot: 'program-management-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/program-management/program-management-summary.component'), {
+          featureName: 'program-management-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'visits-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(visits_dashboardMeta), options),
+        meta: visits_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'visits-summary-ext',
+        slot: 'visits-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/visits/visits-summary.component'), {
+          featureName: 'visits-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'general-counselling-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(generalCounselling_dashboardMeta), options),
+        meta: generalCounselling_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'general-counselling-summary-ext',
+        slot: 'general-counselling-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/general-counselling/general-counselling-summary.component'), {
+          featureName: 'general-counselling-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'adherence-counselling-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(adherenceCounselling_dashboardMeta), options),
+        meta: adherenceCounselling_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'adherence-counselling-summary-ext',
+        slot: 'adherence-counselling-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/adherence-counselling/adherence-counselling-summary.component'), {
+          featureName: 'adherence-counselling-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'partner-notification-services',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(partnerNotificationServices_dashboardMeta), options),
+        meta: partnerNotificationServices_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'partner-notification-services-ext',
+        slot: 'partner-notification-services-slot',
+        load: getAsyncLifecycle(
+          () => import('./pages/partner-notification-services/partner-notification-services.component'),
+          {
+            featureName: 'partner-notification-services',
+            moduleName,
+          },
+        ),
+      },
+      {
         id: 'lab-results-summary-dashboard',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(labResults_dashboardMeta), options),
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(labResults_dashboardMeta), options),
         meta: labResults_dashboardMeta,
         online: true,
         offline: true,
+      },
+      {
+        id: 'medications-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(medications_dashboardMeta), options),
+        meta: medications_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'medications-summary-ext',
+        slot: 'medications-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/medications/medications.component'), {
+          featureName: 'medications-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'appointments-summary',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(appointments_dashboardMeta), options),
+        meta: appointments_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'appointments-summary-ext',
+        slot: 'appointments-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/appointments/appointments.component'), {
+          featureName: 'appointments-summary',
+          moduleName,
+        }),
       },
       {
         id: 'covid-assessments-ext',
@@ -403,121 +540,6 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./links/form-render-app-menu-link.component'), options),
         online: true,
         offline: true,
-      },
-      {
-        id: 'program-management-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(programManagement_dashboardMeta), options),
-        meta: programManagement_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'program-management-summary-ext',
-        slot: 'program-management-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/program-management/program-management-summary.component'), {
-          featureName: 'program-management-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'visits-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(visits_dashboardMeta), options),
-        meta: visits_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'visits-summary-ext',
-        slot: 'visits-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/visits/visits-summary.component'), {
-          featureName: 'visits-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'general-counselling-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(generalCounselling_dashboardMeta), options),
-        meta: generalCounselling_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'general-counselling-summary-ext',
-        slot: 'general-counselling-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/general-counselling/general-counselling-summary.component'), {
-          featureName: 'general-counselling-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'adherence-counselling-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(adherenceCounselling_dashboardMeta), options),
-        meta: adherenceCounselling_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'adherence-counselling-summary-ext',
-        slot: 'adherence-counselling-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/adherence-counselling/adherence-counselling-summary.component'), {
-          featureName: 'adherence-counselling-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'partner-notification-services',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(partnerNotificationServices_dashboardMeta), options),
-        meta: partnerNotificationServices_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'partner-notification-services-ext',
-        slot: 'partner-notification-services-slot',
-        load: getAsyncLifecycle(
-          () => import('./pages/partner-notification-services/partner-notification-services.component'),
-          {
-            featureName: 'partner-notification-services',
-            moduleName,
-          },
-        ),
-      },
-      {
-        id: 'medications-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(medications_dashboardMeta), options),
-        meta: medications_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'medications-summary-ext',
-        slot: 'medications-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/medications/medications.component'), {
-          featureName: 'medications-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'appointments-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardLink(appointments_dashboardMeta), options),
-        meta: appointments_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'appointments-summary-ext',
-        slot: 'appointments-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/appointments/appointments.component'), {
-          featureName: 'appointments-summary',
-          moduleName,
-        }),
       },
       {
         id: 'clinical-views-divider',
