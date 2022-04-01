@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import EmptyStateComingSoon from '../../../components/empty-state/empty-state-comingsoon.component';
 import EmptyState from '../../../components/empty-state/empty-state.component';
 import EncounterList, {
   EncounterListColumn,
@@ -58,15 +59,9 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
   const displayText = t('disclosure', 'Disclosure');
 
   return (
-    <EncounterList
-      patientUuid={patientUuid}
-      encounterUuid={deathFormEncounterType_UUID}
-      form={{ package: 'hiv', name: 'death_form' }}
-      columns={columnsLab}
-      description={displayText}
-      headerTitle={headerTitle}
-      dropdownText="Add"
-    />
+    <>
+      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+    </>
   );
 };
 

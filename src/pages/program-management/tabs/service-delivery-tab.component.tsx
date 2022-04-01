@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../../../components/empty-state/empty-state.component';
-import EncounterList, { EncounterListColumn } from '../../../components/encounter-list/encounter-list.component';
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+} from '../../../components/encounter-list/encounter-list.component';
+import { CommunityDSDModel_UUID, ServiceDeliveryEncounterType_UUID } from '../../../constants';
 
 interface ServiceDeliveryTabListProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
+const columns: EncounterListColumn[] = [
   {
     key: 'mostRecentVLResults',
     header: 'Most recent VL results ',
@@ -40,7 +43,7 @@ const columnsLab: EncounterListColumn[] = [
     key: 'dsdModel',
     header: 'DSD Model',
     getValue: encounter => {
-      return null;
+      return getObsFromEncounter(encounter, CommunityDSDModel_UUID);
     },
   },
 
@@ -50,14 +53,14 @@ const columnsLab: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: '', package: '' },
+          form: { name: 'service_delivery', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: '', package: '' },
+          form: { name: 'service_delivery', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit',
@@ -78,9 +81,9 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={''}
-      form={{ package: 'hiv', name: 'death_form' }}
-      columns={columnsLab}
+      encounterUuid={ServiceDeliveryEncounterType_UUID}
+      form={{ package: 'hiv', name: 'service_delivery' }}
+      columns={columns}
       description={displayText}
       headerTitle={headerTitle}
       dropdownText="Add"

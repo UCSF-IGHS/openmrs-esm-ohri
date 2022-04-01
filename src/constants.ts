@@ -194,3 +194,7 @@ export const ContactTracingEncounterType_UUID = '570e9e42-4306-41dc-9bf8-634bbc7
 export const ContactTracingDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ContactTracingMethod_UUID = '59c023dd-eed2-4b11-8c34-b88e9439db3c';
 export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389';
+
+//Service Delivery
+export const ServiceDeliveryEncounterType_UUID = '62ee5922-a229-48d3-a1da-875c1ffa9436';
+export const CommunityDSDModel_UUID = '52824cbe-0e4d-4c18-8179-80b5799f34ed';

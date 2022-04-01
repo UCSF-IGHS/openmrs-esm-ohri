@@ -103,3 +103,7 @@ div[class*='-esm-login__styles__center'] > img {
 :global(.tab-16rem) > button {
   width: 16rem !important;
 }
+
+:global(.bx--overflow-menu) > div {
+  width: 15rem !important;
+}

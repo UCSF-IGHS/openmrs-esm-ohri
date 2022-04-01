@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
-import styles from './dashboard.scss';
-import Events from './utils/events';
+import styles from '../dashboard.scss';
+import Events from '../../utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(hts_dashboardMeta.name) !== -1 ||
   pathname.indexOf(serviceSummary_dashboardMeta.name) !== -1 ||
   pathname.indexOf(programManagement_dashboardMeta.name) !== -1 ||
   pathname.indexOf(visits_dashboardMeta.name) !== -1 ||
@@ -18,24 +17,25 @@ const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
   pathname.indexOf(appointments_dashboardMeta.name) !== -1;
 
 // TODO This needs to be refactored to automatically get the length/size
-const menuItems = 10;
+const menuItems = 9;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
-  const registry = JSON.parse(localStorage.getItem('sidenavItems'));
+  const registry = JSON.parse(localStorage.getItem('hiv-care-and-treatment-sidenavItems'));
 
   //check if List exists, if not initialize it
   buffer = registry ? registry : [];
   buffer.push(sidenavItem);
 
-  localStorage.setItem('sidenavItems', JSON.stringify(buffer));
+  localStorage.setItem('hiv-care-and-treatment-sidenavItems', JSON.stringify(buffer));
 
   return buffer;
 };
 
-export const clearSidenavRegistry = () => localStorage.removeItem('sidenavItems');
+export const clearCareAndTreatmentSidenavRegistry = () =>
+  localStorage.removeItem('hiv-care-and-treatment-sidenavItems');
 
-export const createDashboardLink = db => {
+export const createCareAndTreatmentDashboardLink = db => {
   const navItems = registerSidenavItem(db);
   const styling = navItems.length === menuItems ? styles.noMarker : styles.hide;
 
@@ -49,7 +49,7 @@ export const createDashboardLink = db => {
     });
 
     return (
-      <SideNavMenu title="HIV" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+      <SideNavMenu title="HIV Care and Treatment" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
@@ -73,13 +73,6 @@ export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
-
-export const hts_dashboardMeta = {
-  name: 'hts-summary',
-  slot: 'hts-summary-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'HTS ',
-};
 
 export const serviceEnrolment_dashboardMeta = {
   name: 'hts-service-enrolment',
@@ -110,7 +103,7 @@ export const programManagement_dashboardMeta = {
 };
 
 export const visits_dashboardMeta = {
-  name: 'visits',
+  name: 'visits-summary',
   slot: 'visits-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Visits',
