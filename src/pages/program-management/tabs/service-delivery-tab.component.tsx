@@ -5,7 +5,6 @@ import EncounterList, {
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
 import { CommunityDSDModel_UUID, ServiceDeliveryEncounterType_UUID } from '../../../constants';
-import styles from '../program-management.scss';
 
 interface ServiceDeliveryTabListProps {
   patientUuid: string;
