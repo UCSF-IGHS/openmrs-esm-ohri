@@ -13,7 +13,7 @@
         ]
       }
     },
-    "notesConceptUuids": ["161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"]
+    "notesConceptUuids": ["161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "437d1e25-e7ab-481c-aabc-01f21c6cdef1"]
   },
   "@openmrs/esm-patient-banner-app": {
     "extensionSlots": {
