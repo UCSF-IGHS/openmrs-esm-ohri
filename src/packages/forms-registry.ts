@@ -22,6 +22,7 @@ import patient_tracing_v_1_0 from './hiv/forms/care-and-treatment/patient-tracin
 import intimate_partner_v_1_0 from './hiv/forms/care-and-treatment/intimate-partner/1.0.json';
 import contact_tracing_v_1_0 from './hiv/forms/care-and-treatment/contact-tracing/1.0.json';
 import service_delivery_v_1_0 from './hiv/forms/care-and-treatment/service-delivery/1.0.json';
+import peads_disclosure_v_1_0 from './hiv/forms/care-and-treatment/Pead-Dislosure/1.0.json';
 
 export default {
   hiv: {
@@ -61,6 +62,9 @@ export default {
     },
     service_delivery: {
       '1.0': service_delivery_v_1_0,
+    },
+    peads_disclosure: {
+      '1.0': peads_disclosure_v_1_0,
     },
   },
   covid: {
