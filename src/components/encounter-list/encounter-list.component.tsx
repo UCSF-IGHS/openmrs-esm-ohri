@@ -149,7 +149,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
           if (filter) {
             sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
           }
-
           setAllRows(sortedEncounters);
           updateTable(sortedEncounters, 0, pageSize);
         } else {
