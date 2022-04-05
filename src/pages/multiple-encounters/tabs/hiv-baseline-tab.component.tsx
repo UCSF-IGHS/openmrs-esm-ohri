@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import EmptyStateComingSoon from '../../../components/empty-state/empty-state-comingsoon.component';
-import { EncounterListColumn } from '../../../components/encounter-list/encounter-list.component';
+//import { EncounterListColumn } from '../../../components/encounter-list/encounter-list.component';
 import MultipleEncounterList, {
   getObsFromMultipleEncounters,
+  MultipleEncounterListColumn,
 } from '../../../components/encounter-list/multiple-encounter-list.component';
 import {
   artTherapyDateTime_UUID,
@@ -19,7 +20,7 @@ interface HivBaselineTabListProps {
   patientUuid: string;
 }
 
-const columns: EncounterListColumn[] = [
+const columns: MultipleEncounterListColumn[] = [
   {
     key: 'hivDiagnosisDate',
     header: 'HIV Diagnosis Date',
@@ -68,7 +69,7 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
     // </>
     <MultipleEncounterList
       patientUuid={patientUuid}
-      encounterUuids={encounters}
+      encounterTypeUuids={encounters}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

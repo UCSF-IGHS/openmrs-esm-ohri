@@ -16,9 +16,16 @@ import OTable from '../data-table/o-table.component';
 import { getObsFromEncounter } from './encounter-list.component';
 
 /* eslint-disable no-debugger, no-console */
+export interface MultipleEncounterListColumn {
+  key: string;
+  header: string;
+  getValue: (encounter: any) => string;
+  link?: any;
+}
+
 export interface MultipleEncounterListProps {
   patientUuid: string;
-  encounterUuids: Array<string>;
+  encounterTypeUuids: Array<string>;
   columns: Array<any>;
   headerTitle: string;
   description: string;
@@ -26,18 +33,18 @@ export interface MultipleEncounterListProps {
 }
 
 export function getObsFromMultipleEncounters(
-  encounters,
+  encounter,
   obsConcept,
   isDate?: Boolean,
   isTrueFalseConcept?: Boolean,
   encounterIndex?: number,
 ) {
-  return getObsFromEncounter(encounters[encounterIndex], obsConcept, isDate, isTrueFalseConcept);
+  return getObsFromEncounter(encounter, obsConcept, isDate, isTrueFalseConcept);
 }
 
 const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
   patientUuid,
-  encounterUuids,
+  encounterTypeUuids,
   columns,
   headerTitle,
   description,
@@ -62,11 +69,15 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
 
   const loadRows = useCallback(
     encounterTypes => {
-      const rowData = [];
+      let rowData = [];
+      let encountersMap: Record<string, any> = {};
       setIsLoading(true);
-      encounterTypes.forEach(encounterType => {
+      const encounterPromises = encounterTypes.map(encounterType => {
         const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-        openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+        return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+      });
+      Promise.all(encounterPromises).then(values => {
+        values.forEach(({ data }) => {
           if (data.results?.length > 0) {
             let sortedEncounters = data.results.sort(
               (firstEncounter, secondEncounter) =>
@@ -75,13 +86,13 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
             );
             let lastEncounter = sortedEncounters[sortedEncounters.length - 1];
             rowData.push(sortedEncounters[sortedEncounters.length - 1]);
-          } else {
-            rowData.push(null);
+            encountersMap[lastEncounter.encounterType.uuid] = lastEncounter;
           }
         });
+        updateTable(encountersMap, 0, pageSize);
       });
       setAllRows(rowData);
-      updateTable(rowData, 0, pageSize);
+
       setIsLoading(false);
     },
     [patientUuid],
@@ -89,17 +100,21 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
 
   const updateTable = (fullDataset, start, itemCount) => {
     let currentRows = [];
+    console.log({ encounters: Object.values(fullDataset) });
 
-    for (let i = start; i < start + itemCount; i++) {
-      if (i < fullDataset.length) {
-        currentRows.push(fullDataset[i]);
-      }
-    }
-
-    const rows = currentRows.map(encounter => {
+    // for (let i = start; i < start + itemCount; i++) {
+    //   if (i < fullDataset.length) {
+    //     currentRows.push(fullDataset[i]);
+    //   }
+    // }
+    const rows = Object.values(fullDataset).map(item => {
+      const encounter: any = item;
+      console.log('here');
+      console.log(`Here -> ${encounter}`);
       const row = { id: encounter.uuid };
-      columns.forEach((column, index) => {
-        let val = column.getValue(encounter, index);
+      columns.forEach(column => {
+        let val = column.getValue(encounter);
+        console.log(val);
         if (column.link) {
           val = (
             <Link
@@ -125,7 +140,7 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
   const forceComponentUpdate = () => setCounter(counter + 1);
 
   useEffect(() => {
-    loadRows(encounterUuids);
+    loadRows(encounterTypeUuids);
   }, [counter]);
 
   return (

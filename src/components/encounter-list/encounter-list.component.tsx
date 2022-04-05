@@ -17,6 +17,7 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
+/* eslint-disable no-debugger, no-console */
 
 export interface EncounterListColumn {
   key: string;
@@ -168,7 +169,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
         currentRows.push(fullDataset[i]);
       }
     }
-
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
       encounter['launchFormActions'] = {

@@ -552,7 +552,7 @@ function setupOpenMRS() {
       },
       {
         id: 'multiple-encounters-ext',
-        slot: 'patient-chart-summary-dashboard-slot',
+        slot: 'hts-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/multiple-encounters/multiple-encounter-summary.component'), {
           featureName: 'multiple-encounters-summary',
           moduleName,
