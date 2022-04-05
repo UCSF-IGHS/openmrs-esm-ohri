@@ -63,7 +63,7 @@ function obsArrayDateComparator(left, right) {
 }
 
 export function findObs(encounter, obsConcept): Record<string, any> {
-  const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
+  const allObs = encounter?.obs?.filter(observation => observation.concept.uuid === obsConcept) || [];
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
 }
 

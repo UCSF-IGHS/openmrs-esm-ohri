@@ -57,7 +57,8 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-
+  const [baseEncounterType, setBaseEncounterType] = useState<string>(null);
+  const [encountersMap, setEncountersMap] = useState<Record<any, Array<any>>>(null);
   const headers = useMemo(() => {
     if (columns) {
       return columns.map(column => {
@@ -69,74 +70,85 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
 
   const loadRows = useCallback(
     encounterTypes => {
-      let rowData = [];
-      let encountersMap: Record<string, any> = {};
+      const rowData = [];
+      const encountersToTypeMap: Record<string, Array<any>> = {};
+
       setIsLoading(true);
       const encounterPromises = encounterTypes.map(encounterType => {
         const query = `encounterType=${encounterType}&patient=${patientUuid}`;
         return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
       });
       Promise.all(encounterPromises).then(values => {
+        console.log({ values });
         values.forEach(({ data }) => {
           if (data.results?.length > 0) {
-            let sortedEncounters = data.results.sort(
+            const sortedEncounters = data.results.sort(
               (firstEncounter, secondEncounter) =>
                 new Date(secondEncounter.encounterDatetime).getTime() -
                 new Date(firstEncounter.encounterDatetime).getTime(),
             );
-            let lastEncounter = sortedEncounters[sortedEncounters.length - 1];
+            encountersToTypeMap[sortedEncounters[0].encounterType.uuid] = sortedEncounters;
             rowData.push(sortedEncounters[sortedEncounters.length - 1]);
-            encountersMap[lastEncounter.encounterType.uuid] = lastEncounter;
           }
         });
-        updateTable(encountersMap, 0, pageSize);
+        let baseType = null;
+        let currentArrayWeight = 0;
+        Object.entries(encountersToTypeMap).forEach(([key, value]) => {
+          if (value.length > currentArrayWeight) {
+            baseType = key;
+          }
+        });
+        setBaseEncounterType(baseType);
+        setEncountersMap(encountersToTypeMap);
+        setIsLoading(false);
+        setAllRows(rowData);
       });
-      setAllRows(rowData);
-
-      setIsLoading(false);
     },
     [patientUuid],
   );
 
-  const updateTable = (fullDataset, start, itemCount) => {
-    let currentRows = [];
-    console.log({ encounters: Object.values(fullDataset) });
-
-    // for (let i = start; i < start + itemCount; i++) {
-    //   if (i < fullDataset.length) {
-    //     currentRows.push(fullDataset[i]);
-    //   }
-    // }
-    const rows = Object.values(fullDataset).map(item => {
-      const encounter: any = item;
-      console.log('here');
-      console.log(`Here -> ${encounter}`);
-      const row = { id: encounter.uuid };
-      columns.forEach(column => {
-        let val = column.getValue(encounter);
-        console.log(val);
-        if (column.link) {
-          val = (
-            <Link
-              onClick={e => {
-                e.preventDefault();
-                if (column.link.handleNavigate) {
-                  column.link.handleNavigate(encounter);
-                } else {
-                  column.link?.getUrl && navigate({ to: column.link.getUrl() });
-                }
-              }}>
-              {val}
-            </Link>
-          );
-        }
-        row[column.key] = val;
+  useEffect(() => {
+    if (baseEncounterType && encountersMap) {
+      const baseEncounterArray = encountersMap[baseEncounterType];
+      const otherTypes = Object.keys(encountersMap).filter(encounterType => encounterType != baseEncounterType);
+      const encountersChunck: any[] = baseEncounterArray.map((encounter, index) => {
+        const encountersPerRow = {};
+        encountersPerRow[baseEncounterType] = encounter;
+        otherTypes.forEach(type => {
+          const otherEncounters = encountersMap[type];
+          encountersPerRow[type] = otherEncounters[index];
+        });
+        return encountersPerRow;
       });
+      const rows = encountersChunck.map(encountersRow => {
+        const row = { id: Object.values(encountersRow)[0]['uuid'] };
+        columns.forEach(column => {
+          let val = column.getValue(encountersRow);
+          console.log(val);
+          if (column.link) {
+            val = (
+              <Link
+                onClick={e => {
+                  e.preventDefault();
+                  if (column.link.handleNavigate) {
+                    column.link.handleNavigate(encountersRow);
+                  } else {
+                    column.link?.getUrl && navigate({ to: column.link.getUrl() });
+                  }
+                }}>
+                {val}
+              </Link>
+            );
+          }
+          row[column.key] = val;
+        });
+        return row;
+      });
+      setTableRows(rows);
+      console.log({ encountersChunck });
+    }
+  }, [baseEncounterType, encountersMap, columns]);
 
-      return row;
-    });
-    setTableRows(rows);
-  };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
   useEffect(() => {
