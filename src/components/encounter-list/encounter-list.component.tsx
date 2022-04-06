@@ -17,6 +17,7 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
+/* eslint-disable no-debugger, no-console */
 
 export interface EncounterListColumn {
   key: string;
@@ -133,6 +134,14 @@ const EncounterList: React.FC<EncounterListProps> = ({
     }
     return [];
   }, [columns]);
+
+  useEffect(() => {
+    console.log('here');
+    openmrsFetch(`/ws/rest/v1/person/${patientUuid}`).then(({ data }) => {
+      console.log(patientUuid);
+      console.log(data.results);
+    });
+  });
 
   const loadRows = useCallback(
     encounterType => {
