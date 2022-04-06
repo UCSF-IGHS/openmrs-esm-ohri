@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, Tab } from 'carbon-components-react';
 import styles from '../common.scss';
-import PartnerNotificationList from './tabs/partner-notification.component';
+import PartnerNotificationList from './partner-notification.component';
 import ContactTracingList from './tabs/contact-tracing.component';
 
 interface OverviewListProps {

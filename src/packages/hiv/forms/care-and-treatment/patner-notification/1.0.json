@@ -55,7 +55,17 @@
                       "type":"obs",
                       "questionOptions":{
                          "rendering":"text",
-                         "concept":"166574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         "concept":"166102AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                         "conceptMappings":[
+                            {
+                                "type":"PIH",
+                                "value":"2725"
+                              },
+                            {
+                              "type":"SNOMED-CT",
+                              "value":"408677003"
+                            }
+                          ]
                       },
                       "id":"firstOfContact",
                       "behaviours": [
@@ -98,14 +108,6 @@
                             {
                                "type":"PIH",
                                "value":"2724"
-                            },
-                            {
-                               "type":"PIH",
-                               "value":"2724"
-                            },
-                            {
-                               "type":"SNOMED-CT",
-                               "value":"397678008"
                             },
                             {
                                "type":"SNOMED-CT",
@@ -242,7 +244,7 @@
                       "type":"obs",
                       "questionOptions":{
                          "rendering":"number",
-                         "concept":"166458AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                         "concept":"159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "max":"00112233445566778899",
                          "min":"0",
                          "showDate":""
@@ -367,43 +369,16 @@
                                "value":"3082"
                             },
                             {
-                               "type":"PIH",
-                               "value":"3082"
-                            },
-                            {
-                               "type":"SNOMED-MVP",
-                               "value":"14361000105003"
-                            },
-                            {
                                "type":"CIEL",
                                "value":"1436"
                             }
                          ],
                          "answers":[
                             {
-                               "concept":"703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                               "concept":"6378487b-584d-4422-a6a6-56c8830873ff",
                                "label":"Positive",
                                "conceptMappings":[
-                                  {
-                                     "type":"PIH",
-                                     "value":"703"
-                                  },
-                                  {
-                                     "type":"AMPATH",
-                                     "value":"704"
-                                  },
-                                  {
-                                     "type":"AMPATH",
-                                     "value":"703"
-                                  },
-                                  {
-                                     "type":"SNOMED-CT",
-                                     "value":"10828004"
-                                  },
-                                  {
-                                     "type":"org.openmrs.module.mdrtb",
-                                     "value":"POSITIVE"
-                                  }
+                                  
                                ]
                             },
                             {
@@ -429,30 +404,6 @@
                                   {
                                      "type":"SNOMED-CT",
                                      "value":"260385009"
-                                  },
-                                  {
-                                     "type":"AMPATH",
-                                     "value":"664"
-                                  },
-                                  {
-                                     "type":"CIEL",
-                                     "value":"664"
-                                  },
-                                  {
-                                     "type":"SNOMED-CT",
-                                     "value":"260385009"
-                                  },
-                                  {
-                                     "type":"PIH",
-                                     "value":"664"
-                                  },
-                                  {
-                                     "type":"org.openmrs.module.mdrtb",
-                                     "value":"NEGATIVE"
-                                  },
-                                  {
-                                     "type":"AMPATH",
-                                     "value":"665"
                                   },
                                   {
                                      "type":"AMPATH",
@@ -483,18 +434,6 @@
                                   {
                                      "type":"org.openmrs.module.mdrtb",
                                      "value":"UNKNOWN"
-                                  },
-                                  {
-                                     "type":"AMPATH",
-                                     "value":"1067"
-                                  },
-                                  {
-                                     "type":"PIH",
-                                     "value":"1067"
-                                  },
-                                  {
-                                     "type":"SNOMED CT",
-                                     "value":"CT: 261665006"
                                   }
                                ]
                             }
@@ -555,7 +494,7 @@
                       "type":"obs",
                       "questionOptions":{
                          "rendering":"radio",
-                         "concept":"2a228c6a-1575-43d7-9d42-9b68d0629f46",
+                         "concept":"bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb",
                          "answers":[
                             {
                                "label":"Yes",
@@ -587,7 +526,7 @@
                       "type":"obs",
                       "questionOptions":{
                          "rendering":"radio",
-                         "concept":"2a228c6a-1575-43d7-9d42-9b68d0629f46",
+                         "concept":"aad380bb-ddc2-43de-bd24-6a123f6b2486",
                          "answers":[
                             {
                                "label":"Yes",
@@ -621,7 +560,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "!includes('indexHIVStatus','703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                        "hideWhenExpression": "!includes('indexHIVStatus','6378487b-584d-4422-a6a6-56c8830873ff')"
                       },
                       "validators": []
                     }
@@ -655,9 +594,7 @@
                                "concept":"0564d564-a45d-4e1b-a3ce-7b19d012c5a7"
                             }
                          ],
-                         "conceptMappings":[
-                            
-                         ]
+                         "conceptMappings":[]
                       },
                       "id":"refferalApproach",
                       "behaviours":[
@@ -710,9 +647,15 @@
                       "questionOptions":{
                          "rendering":"textarea",
                          "concept":"165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                         "rows":""
+                         "rows":"",
+                         "conceptMappings":[
+                           {
+                             "type":"CIEL",
+                             "value":"165095"
+                           }
+                         ]
                       },
-                      "id":"Note"
+                      "id":"patnerNotes"
                    }
                 ]
              }
