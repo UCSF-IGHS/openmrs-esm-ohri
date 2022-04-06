@@ -198,3 +198,10 @@ export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389'
 //Service Delivery
 export const ServiceDeliveryEncounterType_UUID = '62ee5922-a229-48d3-a1da-875c1ffa9436';
 export const CommunityDSDModel_UUID = '52824cbe-0e4d-4c18-8179-80b5799f34ed';
+
+//Patner Notification
+export const PatnerNotificationEncounterType_UUID = '4dd0ee63-805f-43e9-833c-6386ba97fdc1';
+export const IndexHIVStatus_UUID = '1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const PatnerNotificationContactDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const FirstName_UUID = '166102AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const Relationship_UUID = '85d3b4fe-c1a9-4e27-a86b-dcc1e30c8a93';
