@@ -17,7 +17,6 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
-/* eslint-disable no-debugger, no-console */
 
 export interface EncounterListColumn {
   key: string;

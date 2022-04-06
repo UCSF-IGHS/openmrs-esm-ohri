@@ -1,6 +1,7 @@
 import { Tabs, Tab } from 'carbon-components-react';
 import React from 'react';
 import styles from '../common.scss';
+import styles2 from './multiple-encounters.scss';
 import HivBaselineTabList from './tabs/hiv-baseline-tab.component';
 
 interface OverviewListProps {
@@ -8,7 +9,7 @@ interface OverviewListProps {
 }
 
 const MultipleEncountersSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
-  <div className={styles.tabContainer}>
+  <div className={styles.tabContainer} style={{ position: 'relative', width: '1800px' }}>
     <Tabs type="container">
       <Tab label="HIV Baseline">
         <HivBaselineTabList patientUuid={patientUuid} />

@@ -3,19 +3,11 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './encounter-list.scss';
 import { encounterRepresentation } from '../../constants';
-import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
 import EmptyState from '../empty-state/empty-state.component';
-import {
-  launchFormInEditMode,
-  launchFormInViewMode,
-  launchForm,
-  launchFormWithCustomTitle,
-} from '../../utils/ohri-forms-commons';
-import { DataTableSkeleton, Link, OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
 import OTable from '../data-table/o-table.component';
 import { getObsFromEncounter } from './encounter-list.component';
 
-/* eslint-disable no-debugger, no-console */
 export interface MultipleEncounterListColumn {
   key: string;
   header: string;
@@ -70,7 +62,6 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
 
   const loadRows = useCallback(
     encounterTypes => {
-      const rowData = [];
       const encountersToTypeMap: Record<string, Array<any>> = {};
 
       setIsLoading(true);
@@ -79,7 +70,6 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
         return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
       });
       Promise.all(encounterPromises).then(values => {
-        console.log({ values });
         values.forEach(({ data }) => {
           if (data.results?.length > 0) {
             const sortedEncounters = data.results.sort(
@@ -88,7 +78,6 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
                 new Date(firstEncounter.encounterDatetime).getTime(),
             );
             encountersToTypeMap[sortedEncounters[0].encounterType.uuid] = sortedEncounters;
-            rowData.push(sortedEncounters[sortedEncounters.length - 1]);
           }
         });
         let baseType = null;
@@ -101,7 +90,6 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
         setBaseEncounterType(baseType);
         setEncountersMap(encountersToTypeMap);
         setIsLoading(false);
-        setAllRows(rowData);
       });
     },
     [patientUuid],
@@ -124,7 +112,6 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
         const row = { id: Object.values(encountersRow)[0]['uuid'] };
         columns.forEach(column => {
           let val = column.getValue(encountersRow);
-          console.log(val);
           if (column.link) {
             val = (
               <Link
@@ -144,12 +131,21 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
         });
         return row;
       });
-      setTableRows(rows);
-      console.log({ encountersChunck });
+      setAllRows(rows);
+      updateTable(rows, 0, pageSize);
     }
   }, [baseEncounterType, encountersMap, columns]);
 
-  const forceComponentUpdate = () => setCounter(counter + 1);
+  const updateTable = (fullDataSet, start, itemCount) => {
+    let currentRows = [];
+
+    for (let i = start; i < start + itemCount; i++) {
+      if (i < fullDataSet.length) {
+        currentRows.push(fullDataSet[i]);
+      }
+    }
+    setTableRows(currentRows);
+  };
 
   useEffect(() => {
     loadRows(encounterTypeUuids);
@@ -166,7 +162,7 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
-            {/* <Pagination
+            <Pagination
               page={page}
               pageSize={pageSize}
               pageSizes={[10, 20, 30, 40, 50]}
@@ -177,7 +173,7 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
                 setPage(page);
                 setPageSize(pageSize);
               }}
-            /> */}
+            />
           </div>
         </>
       ) : (

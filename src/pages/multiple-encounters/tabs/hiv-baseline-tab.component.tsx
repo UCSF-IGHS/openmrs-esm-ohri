@@ -23,32 +23,28 @@ const columns: MultipleEncounterListColumn[] = [
     key: 'hivDiagnosisDate',
     header: 'HIV Diagnosis Date',
     getValue: encounters => {
-      return getObsFromEncounter(encounters['7e54cd64-f9c3-11eb-8e6a-57478ce139b0'], dateOfHIVDiagnosisConcept, true);
+      return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfHIVDiagnosisConcept, true);
     },
   },
   {
     key: 'enrollmentDate',
     header: 'Enrollment Date',
-    getValue: encounter => {
-      return getObsFromEncounter(
-        encounter['7e54cd64-f9c3-11eb-8e6a-57478ce139b0'],
-        dateOfServiceEnrollmentConcept,
-        true,
-      );
+    getValue: encounters => {
+      return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfServiceEnrollmentConcept, true);
     },
   },
   {
     key: 'artStartDate',
     header: 'ART Start Date',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter['74bf4fe6-8fdb-4228-be39-680a93a9cf6d'], artTherapyDateTime_UUID, true);
+    getValue: encounters => {
+      return getObsFromEncounter(encounters[art_Therapy_EncounterUUID], artTherapyDateTime_UUID, true);
     },
   },
   {
     key: 'tbScreening',
     header: 'Current TB Screening',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter['cb0a65a7-0587-477e-89b9-cf2fd144f1d4'], tbScreeningOutcome, true);
+    getValue: encounters => {
+      return getObsFromEncounter(encounters[clinicalVisitEncounterType], tbScreeningOutcome);
     },
   },
 ];
