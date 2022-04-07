@@ -6,16 +6,18 @@ import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
-import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
+import { fieldRequiredErrCode, isEmpty } from '../../../validators/ohri-form-validator';
 import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { PreviousValueReview } from '../../previous-value-review/previous-value-review.component';
 
 const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext, layoutType, workspaceLayout } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, layoutType, workspaceLayout, fields } = React.useContext(OHRIFormContext);
   const [items, setItems] = React.useState([]);
   const [errors, setErrors] = useState([]);
   const [conceptName, setConceptName] = useState('Loading...');
   const isFieldRequiredError = useMemo(() => errors[0]?.errCode == fieldRequiredErrCode, [errors]);
+  const [previousValueForReview, setPreviousValueForReview] = useState(null);
 
   useEffect(() => {
     if (question['submission']?.errors) {
@@ -43,6 +45,15 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     });
   }, [conceptName]);
 
+  useEffect(() => {
+    if (encounterContext?.previousEncounter) {
+      const prevValue = handler.getPreviousValue(question, encounterContext?.previousEncounter, fields);
+      if (!isEmpty(prevValue?.value)) {
+        setPreviousValueForReview(prevValue);
+      }
+    }
+  }, [encounterContext?.previousEncounter]);
+
   const isInline = useMemo(() => {
     if (encounterContext.sessionMode == 'view' || isTrue(question.readonly)) {
       return isInlineView(question.inlineRendering, layoutType, workspaceLayout);
@@ -59,7 +70,7 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
     />
   ) : (
     !question.isHidden && (
-      <div className={styles.formInputField}>
+      <div className={`${styles.formInputField} ${styles.row}`}>
         <div
           className={
             isFieldRequiredError ? `${styles.errorLabel} ${styles.dropDownOverride}` : styles.dropDownOverride
@@ -77,6 +88,15 @@ const OHRIDropdown: React.FC<OHRIFormFieldProps> = ({ question, onChange, handle
             invalidText={errors.length && errors[0].errMessage}
           />
         </div>
+        {previousValueForReview && (
+          <div>
+            <PreviousValueReview
+              value={previousValueForReview.value}
+              displayText={previousValueForReview.display}
+              setValue={handleChange}
+            />
+          </div>
+        )}
       </div>
     )
   );

@@ -186,3 +186,13 @@
   font-size: 0.75rem;
   white-space: pre-line !important;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.reviewPreviousValueRadioOverrides div {
+  width: auto !important;
+}
