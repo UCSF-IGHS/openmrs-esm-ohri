@@ -560,7 +560,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "!includes('indexHIVStatus','6378487b-584d-4422-a6a6-56c8830873ff')"
+                        "hideWhenExpression": " indexHIVStatus === '6378487b-584d-4422-a6a6-56c8830873ff'"
                       },
                       "validators": []
                     }
