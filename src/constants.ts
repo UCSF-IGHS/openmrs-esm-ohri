@@ -199,6 +199,11 @@ export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389'
 export const ServiceDeliveryEncounterType_UUID = '62ee5922-a229-48d3-a1da-875c1ffa9436';
 export const CommunityDSDModel_UUID = '52824cbe-0e4d-4c18-8179-80b5799f34ed';
 
+//Peads Disclosure
+export const PeadsDisclosureEncounterType_UUID = '390c2f21-c1c4-4246-94ca-a026157cd1db';
+export const DisclosureDate_UUID = '85fbdcc8-8dbc-40a9-b85f-5d1bfe1ab63d';
+export const DisclosureStage_UUID = '573f93e2-12f6-483e-aa6e-14e9b76b311a';
+
 //Patner Notification
 export const PatnerNotificationEncounterType_UUID = '4dd0ee63-805f-43e9-833c-6386ba97fdc1';
 export const IndexHIVStatus_UUID = '1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';

@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyStateComingSoon from '../../../components/empty-state/empty-state-comingsoon.component';
-import EmptyState from '../../../components/empty-state/empty-state.component';
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
 } from '../../../components/encounter-list/encounter-list.component';
-import { deathFormEncounterType_UUID } from '../../../constants';
+import { DisclosureDate_UUID, DisclosureStage_UUID, PeadsDisclosureEncounterType_UUID } from '../../../constants';
 
 interface DisclosureListProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
+const columns: EncounterListColumn[] = [
   {
-    key: 'contactDate',
+    key: 'disclosureDate',
     header: 'Disclosure Date',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, DisclosureDate_UUID, true);
     },
   },
   {
-    key: 'contactMethod',
+    key: 'disclosureStage',
     header: 'Disclosure Stage',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, true);
+      return getObsFromEncounter(encounter, DisclosureStage_UUID);
     },
   },
   {
@@ -33,14 +31,14 @@ const columnsLab: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: 'death_form', package: 'hiv' },
+          form: { name: 'peads_disclosure', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: 'death_form', package: 'hiv' },
+          form: { name: 'peads_disclosure', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit Details',
@@ -59,9 +57,15 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
   const displayText = t('disclosure', 'Disclosure');
 
   return (
-    <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={PeadsDisclosureEncounterType_UUID}
+      form={{ package: 'hiv', name: 'peads_disclosure' }}
+      columns={columns}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 
