@@ -108,12 +108,17 @@ const EncounterList: React.FC<EncounterListProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+  const [isDead, setIsDead] = useState(false);
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
   dropdownText = dropdownText ? 'Add' : 'New';
   hideFormLauncher = hideFormLauncher || false;
+
+  if (isDead) {
+    hideFormLauncher = isDead;
+  }
 
   const editEncounter = encounterUuid => {
     launchFormInEditMode(applyFormIntent('', encounterForm), encounterUuid, forceComponentUpdate);
@@ -126,6 +131,14 @@ const EncounterList: React.FC<EncounterListProps> = ({
     );
   };
 
+  const checkDeathStatus = () => {
+    openmrsFetch(`/ws/rest/v1/person/${patientUuid}`).then(({ data }) => {
+      if (data.dead) {
+        setIsDead(true);
+      }
+    });
+  };
+
   const headers = useMemo(() => {
     if (columns) {
       return columns.map(column => {
@@ -136,11 +149,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
   }, [columns]);
 
   useEffect(() => {
-    console.log('here');
-    openmrsFetch(`/ws/rest/v1/person/${patientUuid}`).then(({ data }) => {
-      console.log(patientUuid);
-      console.log(data.results);
-    });
+    checkDeathStatus();
   });
 
   const loadRows = useCallback(
@@ -270,6 +279,7 @@ const EncounterList: React.FC<EncounterListProps> = ({
       return row;
     });
     setTableRows(rows);
+    checkDeathStatus();
   };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
