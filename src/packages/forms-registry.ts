@@ -66,6 +66,7 @@ export default {
     },
     peads_disclosure: {
       '1.0': peads_disclosure_v_1_0,
+    },
     patner_notification: {
       '1.0': patner_notification_v_1_0,
     },
