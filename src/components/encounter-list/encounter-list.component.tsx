@@ -278,7 +278,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
       return row;
     });
     setTableRows(rows);
-    checkDeathStatus();
   };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
