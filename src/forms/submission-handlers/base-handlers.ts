@@ -111,6 +111,39 @@ export const ObsSubmissionHandler: SubmissionHandler = {
     }
     return value;
   },
+  getPreviousValue: (field: OHRIFormField, encounter: any, allFormFields: Array<OHRIFormField>) => {
+    let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
+    const rendering = field.questionOptions.rendering;
+    let parentField = null;
+    let obsGroup = null;
+    // If this field is a group member and the obs was picked from the encounters's top obs leaves,
+    // chances are high this obs wasn't captured as part of the obs group. return empty.
+    // this should be solved by tracking obs through `formFieldNamespace`.
+    if (obs && field['groupId']) {
+      return '';
+    }
+    if (!obs && field['groupId']) {
+      parentField = allFormFields.find(f => f.id == field['groupId']);
+      obsGroup = encounter.obs.find(o => o.concept.uuid == parentField.questionOptions.concept);
+      if (obsGroup) {
+        parentField.value = obsGroup;
+        obs = obsGroup.groupMembers?.find(o => o.concept.uuid == field.questionOptions.concept);
+      }
+    }
+    if (obs) {
+      if (typeof obs.value == 'string' || typeof obs.value == 'number') {
+        if (rendering == 'date') {
+          return { value: moment(obs.value).toDate(), display: moment(obs.value).format('YYYY-MM-DD HH:mm') };
+        }
+        return { value: obs.value, display: obs.value };
+      }
+      return {
+        value: obs.value?.uuid,
+        display: field.questionOptions.answers.find(option => option.concept == obs.value?.uuid)?.label,
+      };
+    }
+    return null;
+  },
 };
 
 /**

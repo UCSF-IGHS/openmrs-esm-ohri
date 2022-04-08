@@ -25,6 +25,11 @@ export interface SubmissionHandler {
    * @returns the `displayValue`
    */
   getDisplayValue: (field: OHRIFormField, value: any) => any;
+
+  /**
+   * Fetches the previous value for a formfield
+   */
+  getPreviousValue?: (field: OHRIFormField, encounter: any, allFormFields: Array<OHRIFormField>) => any;
 }
 
 /**

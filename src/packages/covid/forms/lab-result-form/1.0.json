@@ -404,7 +404,17 @@
                   "required": "true",
                   "hide": {
                     "hideWhenExpression": "wasTheTestPerformed !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
-                  }
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue > today() || isDateBefore(myValue, '2020-01-01') || myValue < useFieldValue('orderDate')"
+                    }
+                  ]
                 }
               ]
             },

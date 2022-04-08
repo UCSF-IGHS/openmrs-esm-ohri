@@ -188,7 +188,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('dateOfFirstVisit')"
                     }
                   ]
                 }
@@ -660,7 +660,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('initiationDate')"
                     }
                   ]
                 }
@@ -1229,7 +1229,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('initiationDate')"
                     }
                   ]
                 }
@@ -1946,7 +1946,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('initiationDate')"
                     }
                   ]
                 }
@@ -2545,16 +2545,6 @@
                   }
                 ]
               },
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "false",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "false"
-                  }
-                }
-              ],
               "id": "addNotes"
             }
           ]

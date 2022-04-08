@@ -62,7 +62,7 @@ function obsArrayDateComparator(left, right) {
 }
 
 export function findObs(encounter, obsConcept): Record<string, any> {
-  const allObs = encounter?.obs.filter(observation => observation.concept.uuid === obsConcept);
+  const allObs = encounter?.obs?.filter(observation => observation.concept.uuid === obsConcept) || [];
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
 }
 
@@ -149,7 +149,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
           if (filter) {
             sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
           }
-
           setAllRows(sortedEncounters);
           updateTable(sortedEncounters, 0, pageSize);
         } else {
@@ -169,7 +168,6 @@ const EncounterList: React.FC<EncounterListProps> = ({
         currentRows.push(fullDataset[i]);
       }
     }
-
     const rows = currentRows.map(encounter => {
       const row = { id: encounter.uuid };
       encounter['launchFormActions'] = {
