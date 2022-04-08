@@ -45,34 +45,24 @@ git clone https://github.com/UCSF-IGHS/openmrs-esm-ohri.git
 npm i
 ```
 
-3. Run the module from `localhost:8080`.
+3. Run SPA module from `localhost:8080`.
 
 ```sh
-npm run serve
+npx openmrs  
 ```
 
 4. Run the OHRI App  `localhost:8080`.
 
 ```sh
-npm run npx openmrs develop --backend https://ohri-demo.globalhealthapp.net
+npx openmrs develop
 ```
 
 ### Setup Dev Tools
 
-1. Click `Add new module` in the dev tools window.
-2. Type in the `Module Name:` `@openmrs/esm-ohri-app`.
-3. Type in the `Override URL:` `8080`.
-4. Go to the browser's development tools (e.g. via `Inspect`).
-5. Go to the `Application` tab.
-6. Go to `Local Storage`.
-7. Find the key: `import-map-override:@openmrs/esm-ohri-app`
-8. Update the corresponding value to: `//localhost:8080/openmrs-esm-ohri.js`.
-9. Click on the padlock/warning message next to the URL in the browser.
-10. Select the `Allow` option from the `Insecure content` dropdown in the browser settings page.
-11. Refresh the page.
 
 Optional Steps:
-To enable Devtools (a gray or red rectangular button near the bottom right of the screen): Open cosole of Developer Tools -> In console enter: ```localStorage.setItem('openmrs:devtools', true)```
+To Open Devtools click on the Dev Tools button (a gray or red rectangular button near the bottom right of the screen): 
+Open cosole of Developer Tools -> In console enter: ```localStorage.setItem('openmrs:devtools', true)```
 
 ## Tests
 
@@ -83,8 +73,6 @@ npm test
 ```
 
 ## To Override Import Map
-
-To verify that all of the tests run:
 
 ```sh
 npx openmrs develop  --backend https://ohri-demo.globalhealthapp.net --importmap https://ohri-demo.globalhealthapp.net/openmrs/spa/importmap.json --port 8080
