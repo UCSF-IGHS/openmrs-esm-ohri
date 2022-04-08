@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { encounterRepresentation } from '../../../constants';
 import { ConceptFalse, ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
-import { saveEncounter } from '../../ohri-form.resource';
+import { getPreviousEncounter, saveEncounter } from '../../ohri-form.resource';
 import { getHandler, getValidator } from '../../registry/registry';
 import {
   EncounterDescriptor,
@@ -64,6 +64,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
   const [encounterLocation, setEncounterLocation] = useState(null);
   const [encounter, setEncounter] = useState<EncounterDescriptor>(null);
+  const [previousEncounter, setPreviousEncounter] = useState<EncounterDescriptor>(null);
   const [form, setForm] = useState<OHRIFormSchema>(formJson);
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
   const [formInitialValues, setFormInitialValues] = useState({});
@@ -88,6 +89,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const encounterContext = {
     patient: patient,
     encounter: encounter,
+    previousEncounter,
     location: location,
     sessionMode: sessionMode || (form?.encounter ? 'edit' : 'enter'),
     date: encounterDate,
@@ -225,6 +227,14 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     }
     return () => subscription?.unsubscribe();
   }, [formJson.encounter]);
+
+  useEffect(() => {
+    if (sessionMode == 'enter') {
+      getPreviousEncounter(patient.id, formJson.encounterType).then(data => {
+        setPreviousEncounter(data);
+      });
+    }
+  }, [sessionMode]);
 
   const evalHide = (node, allFields: OHRIFormField[], allValues: Record<string, any>) => {
     const { value, type } = node;
