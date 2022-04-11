@@ -1,7 +1,7 @@
 @import "../../../root.scss";
 
 .formField {
-  padding-bottom: 18px;
+  // padding-bottom: 18px;
   margin-top: 10px;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .unspecified {
-  margin-top: -13px;
+  // margin-top: -13px;
 }
 
 .unspecified > div label {
@@ -185,4 +185,14 @@
   max-width: 30rem !important;
   font-size: 0.75rem;
   white-space: pre-line !important;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.reviewPreviousValueRadioOverrides div {
+  width: auto !important;
 }

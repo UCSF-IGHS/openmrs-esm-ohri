@@ -2,17 +2,22 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   covidVaccinationEncounterUUID,
+  covidVaccination1stDoseDateConcept_UUID,
   covidVaccinationTypeConcept_UUID,
+  covidVaccinationNextVacinationDateConcept_UUID,
   covidVaccinationAdministeredConcept_UUID,
   covidVaccinationDoseAdmininstered_UUID,
-} from '../constants';
+  covidVaccineAdministeredConcept_UUID,
+  covidVaccineConcept_UUID,
+} from '../../constants';
 
 //Generic Component Import
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   getEncounterValues,
-} from '../components/encounter-list/encounter-list.component';
+  findObs,
+} from '../../components/encounter-list/encounter-list.component';
 
 interface CovidVaccinationsWidgetProps {
   patientUuid: string;
@@ -45,9 +50,22 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'covidVaccineType',
-    header: 'Vacine',
+    header: 'Vaccine',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, covidVaccinationTypeConcept_UUID);
+      const obs = findObs(encounter, covidVaccineAdministeredConcept_UUID);
+      if (typeof obs !== undefined && obs) {
+        if (typeof obs.value === 'object') {
+          if (obs !== undefined) {
+            const vaccineNAME =
+              obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+              obs.value.name.name;
+            if (vaccineNAME === 'Other non-coded') {
+              return getObsFromEncounter(encounter, covidVaccineConcept_UUID);
+            }
+          }
+        }
+      }
+      return getObsFromEncounter(encounter, covidVaccineAdministeredConcept_UUID);
     },
   },
   {
@@ -69,7 +87,7 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText='Add'
+      dropdownText="Add"
     />
   );
 };

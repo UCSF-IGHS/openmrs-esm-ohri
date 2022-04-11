@@ -5,7 +5,7 @@
  *  'true' => true
  * ```
  */
-export function isTrue(value: string | boolean): boolean {
+ export function isTrue(value: string | boolean): boolean {
   if (typeof value == 'boolean') {
     return value;
   }

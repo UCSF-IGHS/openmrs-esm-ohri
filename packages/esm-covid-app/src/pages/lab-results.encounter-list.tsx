@@ -1,28 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './covid.scss';
+import styles from '../covid.scss';
 import { Tabs, Tab, Tag } from 'carbon-components-react';
 
 import {
-  covidClientsWithPendingLabResults,
   covidLabOrderDate_UUID,
   covidLabOrderEncounterType_UUID,
   covidReasonsForTestingConcep_UUID,
   covidTestResultConcept_UUID,
-  covidTestResultUUID,
+  covidTestResultDate_UUID,
   covidTestStatusConcept_UUID,
-  covidTestTypeUUID,
   covidTypeofTestConcept_UUID,
-  covid_Assessment_EncounterUUID,
-} from '../constants';
+} from '../../constants';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-interface CovidOverviewListProps {
-  patientUuid: string;
-}
+import EncounterList, {
+  EncounterListColumn,
+  getObsFromEncounter,
+  findObs,
+} from '../../components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
@@ -30,30 +25,19 @@ export const covidEncounterRepresentation =
   'encounterProviders:(uuid,provider:(uuid,name)),' +
   'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
 
+const pcrTestResult = '3f4ee14b-b4ab-4597-9fe9-406883b63d76';
+const rapidTestResult = 'cbcbb029-f11f-4437-9d53-1d0f0a170433';
+const statusColorMap = {
+  '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'green', // not done
+  '1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'green', // completed
+  '165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'purple', // cancelled
+  '162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'blue', // pending
+};
 interface CovidLabWidgetProps {
   patientUuid: string;
 }
 
-//Generic Component Import
-import EncounterList, {
-  EncounterListColumn,
-  getObsFromEncounter,
-  getEncounterValues,
-} from '../components/encounter-list/encounter-list.component';
-
 const columnsLab: EncounterListColumn[] = [
-  {
-    key: 'encounterDate',
-    header: 'Date of Lab Test',
-    getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
-    },
-  },
   {
     key: 'orderDate',
     header: 'Date of Order',
@@ -76,56 +60,78 @@ const columnsLab: EncounterListColumn[] = [
     },
   },
   {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
-    },
-  },
-  {
     key: 'labStatus',
     header: 'Status',
     getValue: encounter => {
       const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
       if (status == '--') {
         return '--';
       } else {
-        const tagColor = status === 'Completed' ? 'green' : status === 'Cancelled' ? 'purple' : 'teal';
         return (
-          <Tag type={tagColor} title={status} className={styles.statusTag}>
-            {' '}
-            {status}{' '}
+          <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
+            {status}
           </Tag>
         );
       }
     },
   },
   {
+    key: 'lastTestResult',
+    header: 'Test Result',
+    getValue: encounter => {
+      const pcrResult = getObsFromEncounter(encounter, pcrTestResult);
+      return pcrResult && pcrResult != '--' ? pcrResult : getObsFromEncounter(encounter, rapidTestResult);
+    },
+  },
+  {
+    key: 'testResultDate',
+    header: 'Date of Test Result',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
+    },
+  },
+  {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => [
-      {
-        form: { name: 'covid_lab_test', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Lab Test',
-        mode: 'view',
-      },
-      {
-        form: { name: 'covid_lab_result', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Edit Lab Result',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_lab_order_cancellation', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Cancel Lab Order',
-        mode: 'edit',
-      },
-    ],
+    getValue: encounter => {
+      const baseActions = [
+        {
+          form: { name: 'covid_lab_test', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'covid_lab_result', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Add/Edit Lab Result',
+          mode: 'edit',
+        },
+      ];
+      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      if (status.includes('Pending')) {
+        baseActions.push({
+          form: { name: 'covid_lab_order_cancellation', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Cancel Lab Order',
+          mode: 'edit',
+        });
+      }
+      if (status.includes('Pending')) {
+        baseActions.push({
+          form: { name: 'covid_sample_collection', package: 'covid' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Collect Sample',
+          mode: 'edit',
+        });
+      }
+      return baseActions;
+    },
   },
 ];
 
@@ -156,14 +162,13 @@ const columnsPending: EncounterListColumn[] = [
     header: 'Status',
     getValue: encounter => {
       const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+      const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
       if (status == '--') {
         return '--';
       } else {
-        const tagColor = status === 'Completed' ? 'green' : status === 'Cancelled' ? 'purple' : 'teal';
         return (
-          <Tag type={tagColor} title={status} className={styles.statusTag}>
-            {' '}
-            {status}{' '}
+          <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
+            {status}
           </Tag>
         );
       }
@@ -177,21 +182,21 @@ const columnsPending: EncounterListColumn[] = [
         form: { name: 'covid_lab_test', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'View Lab Test',
+        label: 'View Details',
         mode: 'view',
+      },
+      {
+        form: { name: 'covid_sample_collection', package: 'covid' },
+        encounterUuid: encounter.uuid,
+        intent: '*',
+        label: 'Collect Sample',
+        mode: 'edit',
       },
       {
         form: { name: 'covid_lab_result', package: 'covid' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'Edit Lab Result',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_lab_order_cancellation', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Cancel Lab Order',
+        label: 'Add/Edit Lab Result',
         mode: 'edit',
       },
     ],
@@ -211,8 +216,8 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type='container'>
-        <Tab label='Lab Tests'>
+      <Tabs type="container">
+        <Tab label="Lab Tests">
           <EncounterList
             patientUuid={patientUuid}
             encounterUuid={covidLabOrderEncounterType_UUID}
@@ -224,10 +229,10 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             columns={columnsLab}
             description={displayText}
             headerTitle={headerTitle}
-            dropdownText='Add'
+            dropdownText="Add"
           />
         </Tab>
-        <Tab label='Pending Lab Orders'>
+        <Tab label="Pending Lab Orders">
           <EncounterList
             patientUuid={patientUuid}
             encounterUuid={covidLabOrderEncounterType_UUID}
@@ -235,7 +240,8 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             columns={columnsPending}
             description={headerTitlePending}
             headerTitle={displayTextPending}
-            dropdownText='Add'
+            dropdownText="Add"
+            hideFormLauncher={true}
             filter={pendingLabOrdersFilter}
           />
         </Tab>

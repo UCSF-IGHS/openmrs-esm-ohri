@@ -1,11 +1,8 @@
 import moment from 'moment';
-import { useContext } from 'react';
-import { ConceptFalse, ConceptTrue } from '../constants';
-import { EncounterContext, OHRIFormContext } from '../ohri-form-context';
+import { ConceptTrue } from '../constants';
+import { EncounterContext } from '../ohri-form-context';
 import { getConcept } from '../ohri-form.resource';
 import { OHRIFormField, SubmissionHandler } from '../types';
-import { OHRIDefaultFieldValueValidator } from '../validators/default-value-validator';
-import { isEmpty } from '../validators/ohri-form-validator';
 
 /**
  * Obs handler
@@ -42,6 +39,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
   },
   getInitialValue: (encounter: any, field: OHRIFormField, allFormFields: Array<OHRIFormField>) => {
     let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
+    const rendering = field.questionOptions.rendering;
     let parentField = null;
     let obsGroup = null;
     // If this field is a group member and the obs was picked from the encounters's top obs leaves,
@@ -59,8 +57,7 @@ export const ObsSubmissionHandler: SubmissionHandler = {
       }
     }
     if (obs) {
-      const rendering = field.questionOptions.rendering;
-      field.value = obs;
+      field.value = JSON.parse(JSON.stringify(obs));
       if (rendering == 'radio' || rendering == 'content-switcher') {
         getConcept(field.questionOptions.concept, 'custom:(uuid,display,datatype:(uuid,display,name))').subscribe(
           result => {
@@ -88,6 +85,9 @@ export const ObsSubmissionHandler: SubmissionHandler = {
         field.value.value = obs.value.uuid;
         return obs.value == ConceptTrue;
       }
+      if (rendering == 'fixed-value') {
+        return field['fixedValue'];
+      }
       return obs.value?.uuid;
     }
     return '';
@@ -99,17 +99,50 @@ export const ObsSubmissionHandler: SubmissionHandler = {
     }
     if (field.questionOptions.rendering == 'checkbox') {
       return value.map(
-        chosenOption => field.questionOptions.answers.find(option => option.concept == chosenOption).label,
+        chosenOption => field.questionOptions.answers.find(option => option.concept == chosenOption)?.label,
       );
     }
     if (rendering == 'content-switcher' || rendering == 'select' || rendering == 'toggle') {
       const concept = typeof field.value.value === 'object' ? field.value.value.uuid : field.value.value;
-      return field.questionOptions.answers.find(option => option.concept == concept).label;
+      return field.questionOptions.answers.find(option => option.concept == concept)?.label;
     }
     if (rendering == 'radio') {
-      return field.questionOptions.answers.find(option => option.concept == value).label;
+      return field.questionOptions.answers.find(option => option.concept == value)?.label;
     }
     return value;
+  },
+  getPreviousValue: (field: OHRIFormField, encounter: any, allFormFields: Array<OHRIFormField>) => {
+    let obs = encounter.obs.find(o => o.concept.uuid == field.questionOptions.concept);
+    const rendering = field.questionOptions.rendering;
+    let parentField = null;
+    let obsGroup = null;
+    // If this field is a group member and the obs was picked from the encounters's top obs leaves,
+    // chances are high this obs wasn't captured as part of the obs group. return empty.
+    // this should be solved by tracking obs through `formFieldNamespace`.
+    if (obs && field['groupId']) {
+      return '';
+    }
+    if (!obs && field['groupId']) {
+      parentField = allFormFields.find(f => f.id == field['groupId']);
+      obsGroup = encounter.obs.find(o => o.concept.uuid == parentField.questionOptions.concept);
+      if (obsGroup) {
+        parentField.value = obsGroup;
+        obs = obsGroup.groupMembers?.find(o => o.concept.uuid == field.questionOptions.concept);
+      }
+    }
+    if (obs) {
+      if (typeof obs.value == 'string' || typeof obs.value == 'number') {
+        if (rendering == 'date') {
+          return { value: moment(obs.value).toDate(), display: moment(obs.value).format('YYYY-MM-DD HH:mm') };
+        }
+        return { value: obs.value, display: obs.value };
+      }
+      return {
+        value: obs.value?.uuid,
+        display: field.questionOptions.answers.find(option => option.concept == obs.value?.uuid)?.label,
+      };
+    }
+    return null;
   },
 };
 

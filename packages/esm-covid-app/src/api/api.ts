@@ -8,6 +8,7 @@ import {
   encounterRepresentation,
   covidOutcomeUUID,
   covid_Assessment_EncounterUUID,
+  covidOutcomesCohortUUID,
 } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
@@ -157,7 +158,7 @@ export function fetchPatientsFinalHIVStatus(patientUUID: string) {
     if (data.entry?.length) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
     }
-    return 'Negative';
+    return '';
   });
 }
 
@@ -178,11 +179,14 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
     if (data.entry?.length) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
     }
-    return 'Negative';
+    return '';
   });
 }
 
-// TODO: the WS/REST Encounter resource doesn't support sorting, figure out a better approach ie. FHIR or Reporting
+// TODO: The WS/REST Encounter resource doesn't support sorting, figure out a better approach ie. FHIR or Reporting
+//       This implementation has issues, the WS/REST returns paginated results, and what this function does is get the
+//       last item in the payload(paginated results). This doesn't gurrantee that it's the most recent encounter.
+//       We should think of a better approach
 export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
   const query = `encounterType=${encounterType}&patient=${patientUuid}`;
   return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
@@ -194,11 +198,22 @@ export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
   });
 }
 
-export function fetchPatientCovidOutcome(patientUuid: string) {
-  //TODO: Continue logic to filter outcome
-  // const query = `encounterType=${covidOutcomeUUID}&patient=${patientUuid}`;
-  // return getObsFromEncounter(covid_Assessment_EncounterUUID, covidOutcomeUUID);
-  // });
+export function fetchPatientCovidOutcome() {
+  return openmrsFetch(`/ws/rest/v1/reportingrest/cohort/${covidOutcomesCohortUUID}`).then(({ data }) => {
+    if (data.members?.length) {
+      let patientRefs = data.members.map(member => {
+        return member.uuid;
+      });
+      patientRefs = new Set([...patientRefs]);
+      patientRefs = Array.from(patientRefs);
+      return Promise.all(
+        patientRefs.map(ref => {
+          return openmrsFetch(BASE_FHIR_API_URL + '/Person/' + ref);
+        }),
+      );
+    }
+    return [];
+  });
 }
 
 export function fetchConceptNameByUuid(conceptUuid: string) {

@@ -96,7 +96,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
+                      "failsWhenExpression": "myValue > today() || isDateBefore(myValue, '2020-01-01') || myValue < useFieldValue('dateOfAssessment')"
                     }
                   ]
                 },
@@ -144,7 +144,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() || myValue <= '1/1/2020'"
+                      "failsWhenExpression": "myValue > today() || isDateBefore(myValue, '2020-01-01') || myValue < useFieldValue('dateOfAssessment')"
                     }
                   ]
                 },

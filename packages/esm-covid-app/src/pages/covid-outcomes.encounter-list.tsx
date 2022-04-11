@@ -3,14 +3,15 @@ import { useTranslation } from 'react-i18next';
 import {
   covid_Assessment_EncounterUUID,
   covidTestTypeUUID,
+  covidVaccinationStatusUUID,
   covidSpecimentTestDate_UUID,
   covidOutcomeUUID,
-} from '../constants';
+} from '../../constants';
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   getEncounterValues,
-} from '../components/encounter-list/encounter-list.component';
+} from '../../components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 
@@ -72,7 +73,7 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText='Add'
+      dropdownText="Add"
       hideFormLauncher
     />
   );
