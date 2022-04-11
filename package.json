@@ -1,7 +1,9 @@
 {
   "name": "ohri-forms-engine",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
     "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
