@@ -25,6 +25,11 @@ export interface SubmissionHandler {
    * @returns the `displayValue`
    */
   getDisplayValue: (field: OHRIFormField, value: any) => any;
+
+  /**
+   * Fetches the previous value for a formfield
+   */
+  getPreviousValue?: (field: OHRIFormField, encounter: any, allFormFields: Array<OHRIFormField>) => any;
 }
 
 /**
@@ -62,6 +67,9 @@ export interface OHRIFormSchema {
   encounter?: string | EncounterDescriptor;
   allowUnspecifiedAll?: boolean;
   defaultPage?: string;
+  readonly?: string | boolean;
+  inlineRendering?: 'single-line' | 'multiline' | 'automatic';
+  markdown?: any;
 }
 
 export interface OHRIFormPage {
@@ -70,6 +78,8 @@ export interface OHRIFormPage {
   hide?: HideProps;
   sections: Array<OHRIFormSection>;
   isSubform?: boolean;
+  inlineRendering?: 'single-line' | 'multiline' | 'automatic';
+  readonly?: string | boolean;
   subform?: { name?: string; package?: string; behaviours?: Array<any>; form: OHRIFormSchema };
 }
 export interface OHRIFormField {
@@ -89,6 +99,7 @@ export interface OHRIFormField {
   unspecified?: boolean;
   disabled?: boolean;
   readonly?: string | boolean;
+  inlineRendering?: 'single-line' | 'multiline' | 'automatic';
   validators?: Array<Record<string, any>>;
   behaviours?: Array<Record<string, any>>;
 }
@@ -99,11 +110,14 @@ export interface OHRIFormFieldProps {
   handler: SubmissionHandler;
 }
 export interface OHRIFormSection {
+  hide?: HideProps;
   label: string;
   isExpanded: string;
   isHidden?: boolean;
   isParentHidden?: boolean;
   questions: Array<OHRIFormField>;
+  inlineRendering?: 'single-line' | 'multiline' | 'automatic';
+  readonly?: string | boolean;
 }
 
 export interface OHRIFormQuestionOptions {

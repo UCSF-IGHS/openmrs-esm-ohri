@@ -32,19 +32,7 @@ const Overflow: React.FC<{
   meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
 }> = ({ close, children, header, meta }) => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100vw',
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        zIndex: 9001,
-        backgroundColor: '#e0e0e0',
-        color: '#ededed',
-        padding: '1rem 2rem',
-        marginTop: '48px',
-      }}>
+    <div className={styles.patientListWorkspaceContainer}>
       <Header>
         <Button style={{ backgroundColor: 'transparent', padding: '15px' }} onClick={close}>
           <ArrowLeft16 onClick={close} />
@@ -55,8 +43,14 @@ const Overflow: React.FC<{
         <div className={styles.listBanner}>
           <div className={styles.listInfo}>
             <div
-              className={styles.row}
-              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem', paddingLeft: '16px' }}>
+              className={styles.patientListRow}
+              style={{
+                borderBottom: '1px solid #e0e0e0',
+                marginTop: '0.4rem',
+                paddingTop: '11px',
+                paddingBottom: '11px',
+                paddingLeft: '16px',
+              }}>
               <Breadcrumb>
                 <BreadcrumbItem className={''}>
                   <a
@@ -78,8 +72,8 @@ const Overflow: React.FC<{
               </Breadcrumb>
             </div>
             <div
-              className={styles.row}
-              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '1rem', paddingRight: '1rem' }}>
+              className={styles.patientListRow}
+              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '4px', paddingRight: '1rem' }}>
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>
@@ -88,7 +82,7 @@ const Overflow: React.FC<{
                 Actions <OverflowMenuVertical32 style={{ height: '20px' }} />
               </Button>
             </div>
-            <div className={styles.row}>
+            <div className={styles.patientListRow}>
               <div className={styles.demographics}>
                 <span>{meta.numberOfClients} Clients</span> &middot; <span>Last Updated {moment().format('l')}</span>
               </div>
