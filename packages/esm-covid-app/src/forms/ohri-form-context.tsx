@@ -1,5 +1,6 @@
+import { LayoutType } from '@openmrs/esm-framework';
 import React from 'react';
-import { SessionMode } from './types';
+import { OHRIFormField, SessionMode } from './types';
 
 type OHRIFormContextProps = {
   values: Record<string, any>;
@@ -8,12 +9,16 @@ type OHRIFormContextProps = {
   obsGroupsToVoid: Array<any>;
   setObsGroupsToVoid: (value: any) => void;
   encounterContext: EncounterContext;
-  fields: any;
+  fields: OHRIFormField[];
+  isFieldInitializationComplete: boolean;
+  layoutType?: LayoutType;
+  workspaceLayout?: 'minimized' | 'maximized';
 };
 
 export interface EncounterContext {
   patient: any;
   encounter: any;
+  previousEncounter?: any;
   location: any;
   sessionMode: SessionMode;
   date: Date;

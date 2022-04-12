@@ -1,24 +1,44 @@
 {
-  "name": "Service Enrollment Form",
+  "name": "Service Enrolment Form",
   "pages": [
+    {
+      "label": "Introduction",
+      "sections": [
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "markdown",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "id": "fooMarkdown",
+              "value": [
+                "**Use this form to:** Enrolment/Re-enrol a client for HIV Care"
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "label": "Client Profile",
       "sections": [
         {
-          "label": "Client Profile",
+          "label": "Client Details",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date of enrolment into HIV Care",
+              "label": "Enrolment Date",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "hivEnrolmentDate",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -31,66 +51,59 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today()'"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('hivDiagnosisDate')"
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "hivEnrolmentDate"
             },
             {
-              "label": "Unique number as assigned at the HIV clinic:",
+              "label": "Unique ID",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "422549004"
-                  }
-                ]
+                "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "patientIdentifier",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "isEmpty(patientIdentifier)"
+                    }
+                  ]
                 }
-              ]
+              ],
+              "id": "patientIdentifier"
             },
             {
-              "label": "Other Unique patient number assigned:",
+              "label": "Other Unique ID",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "422549004"
-                  }
-                ]
+                "concept": "162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "otherUniquePatientIdentifier",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "otherUniquePatientIdentifier"
             },
             {
-              "label": "Description of the client at the point of enrolment:",
+              "label": "Patient Type at Enrolment",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -98,55 +111,52 @@
                 "answers": [
                   {
                     "concept": "163532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Mother enrolled in prevention of maternal to child transmission (PMTCT) program",
-                    "conceptMappings": []
+                    "label": "Mother enrolled in PMTCT program",
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "re-enroll",
-                    "conceptMappings": []
+                    "label": "Re-enroll",
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Transfer in",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "164144AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "New client",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "clientDescription",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
-                  "unspecified": "true",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "clientDescription"
             },
             {
-              "label": "What is the client's population category?",
+              "label": "Population Category",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "363787002"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Target population",
+                    "label": "Key population",
                     "conceptMappings": [
                       {
                         "type": "SNOMED-CT",
@@ -166,21 +176,20 @@
                   }
                 ]
               },
-              "id": "clientPopulationCategory",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "clientPopulationCategory"
             },
             {
-              "label": "What is the client's Key/Priority Population Type?",
+              "label": "Key/Priority Population Type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -189,37 +198,44 @@
                   {
                     "concept": "63ea75cb-205f-4e7b-9ede-5f9b8a4dda9f",
                     "label": "Migrant Workers",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "b282bb08-62a7-42c2-9bea-8751c267d13e",
                     "label": "Uniformed Forces",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "22b202fc-67de-4af9-8c88-46e22559d4b2",
                     "label": "Transgender Persons",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "678f3144-302f-493e-ba22-7ec60a84732a",
                     "label": "Adolescent Girls & Young Women",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "def00c73-f6d5-42fb-bcec-0b192b5be22d",
                     "label": "Fisher Folk",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "8da9bf92-22f6-40be-b468-1ad08de7d457",
                     "label": "Prisoners",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "dc1058ea-4edd-4780-aeaa-a474f7f3a437",
                     "label": "Refugees",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "160578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -254,53 +270,37 @@
                   {
                     "concept": "c038bff0-8e33-408c-b51f-7fb6448d2f6c",
                     "label": "People Who Inject Drugs",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "365371fd-0106-4a53-abc4-575e3d65d372",
                     "label": "People With Disability",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "keyPopulationType",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(clientPopulationCategory) || clientPopulationCategory !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientPopulationCategory !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
                   ]
                 }
-              ]
+              ],
+              "id": "keyPopulationType"
             },
             {
-              "label": "What was the service point where the client was first diagnosed with HIV?",
+              "label": "Entry Point",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "PIH",
-                    "value": "1650"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "305056002"
-                  },
-                  {
-                    "type": "LOINC",
-                    "value": "45252-4"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "162223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -562,60 +562,39 @@
                   }
                 ]
               },
-              "id": "enrollmentMethod",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "enrollmentMethod"
             },
             {
               "label": "Entry Point - Other",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
-                    "type": "PIH-Malawi",
-                    "value": "6408"
-                  },
-                  {
-                    "type": "org.openmrs.module.mdrtb",
-                    "value": "OTHER"
-                  },
-                  {
-                    "type": "SNOMED-MVP",
-                    "value": "56221000105001"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "5622"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "5622"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "74964007"
+                    "type": "CIEL",
+                    "value": "161011"
                   }
                 ]
               },
               "id": "otherEntryPoint",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "!includes('enrollmentMethod','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   }
                 }
               ]
@@ -632,90 +611,45 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "From which facility did the client transfer-in from?",
+              "label": "Transferring Facility",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "160535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "309037001"
-                  }
-                ]
+                "concept": "160535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "locationTransferedFrom",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  }
                 }
-              ]
+              ],
+              "id": "locationTransferedFrom"
             },
             {
-              "label": "Which date did the client started ART at transferring Facility?",
+              "label": "Start ART Date",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "AMPATH",
-                    "value": "5869"
-                  },
-                  {
-                    "type": "AMPATH",
-                    "value": "1499"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "2516"
-                  },
-                  {
-                    "type": "PIH-Malawi",
-                    "value": "2516"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "413946009"
-                  },
-                  {
-                    "type": "SNOMED-MVP",
-                    "value": "1595991000105005"
-                  }
-                ]
+                "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "artStartDate",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  }
                 }
-              ]
+              ],
+              "id": "artStartDate"
             },
             {
-              "label": "What regimen was the client on at the time of referral?",
+              "label": "Current ART Regimen",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
@@ -724,117 +658,140 @@
                   {
                     "concept": "d8051638-0123-4322-a094-4a48adffdc37",
                     "label": "d4T + 3TC + NVP",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "67701961-f6c1-4ebf-a7f5-c2c5d25021a0",
                     "label": "TDF + FTC + EFV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "083d46c5-dea7-49de-abd5-e16f252255a7",
                     "label": "TDF + FTC + DTG",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "36685ad3-a223-4c3c-b6ee-d8358432a600",
                     "label": "TDF + 3TC + NVP",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "380e5e7c-7c2f-4ba8-a93c-90b1e638dc2c",
                     "label": "TDF + 3TC + LPV/r",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "5f123dc8-c697-47f6-bc67-007322a9bb48",
                     "label": "TDF + 3TC + EFV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "5679c813-cfed-4fb2-b252-d6149297e013",
                     "label": "TDF + 3TC + DTG + ETR + DRV + RTV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "907d304b-ebc4-4387-8af8-2d2c92f82910",
                     "label": "TDF + 3TC + DTG + DRV + RTV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "5a4587e2-de9e-4b99-9ea0-00717fa5605a",
                     "label": "TAF + 3TC + LPV/r",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "5f7da36e-1a83-4ede-ae6f-41aaa5304601",
                     "label": "TAF + 3TC + DTG",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "6b7cd8a1-77b3-4853-bbe7-ff6bf51c41c3",
                     "label": "TAF + 3TC + DRV/r",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "0fd8a042-81a3-4106-8470-63d29380d7d5",
                     "label": "RAL + 3TC + DRV + RTV + TDF",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "3ae355dd-fc83-43c6-9312-ebbb30b51bf7",
                     "label": "RAL + 3TC + DRV + RTV + AZT",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1431d032-9eeb-46b3-84e5-79f0c19354d8",
                     "label": "RAL + 3TC + DRV + RTV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "9e82e55d-dbbf-49a6-900c-d8ead9985b0a",
                     "label": "ETV + 3TC + DRV + RTV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "e9540e20-1ba4-4573-b189-088f5fd9dc57",
                     "label": "AZT + 3TC + RAL",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "bafb40ca-b0c7-4366-bd8e-9eb923237c94",
                     "label": "AZT + 3TC + NVP",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "d2b1d784-a880-42a9-b0a6-19de2db7afd6",
                     "label": "AZT + 3TC + LPV/r",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "b1336ea0-3a87-4018-9fce-3a7a22d95d7d",
                     "label": "AZT + 3TC + EFV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "f2247788-6d05-490d-ad04-64544c8020b7",
                     "label": "AZT + 3TC + DTG",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "60bec021-c05c-4ae9-93fe-b798c0bf82d2",
                     "label": "AZT + 3TC + DRV + RTV + RAL",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "62243dfe-6284-48a9-afcc-63149ac6d709",
                     "label": "AZT + 3TC + ATV/r",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "dc25af21-7816-44d8-92d2-3332c7db113a",
                     "label": "ABC + 3TC + RAL",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "98bec34c-608a-46ce-8f1a-3ee3b8b6f92b",
@@ -879,40 +836,37 @@
                   {
                     "concept": "396d668b-b1e6-4997-b9b9-2d57f53c2321",
                     "label": "ABC + 3TC + DRVr",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "5bb0348b-fc27-460e-b6cd-df7a4a253372",
                     "label": "ABC + 3TC + DRV+RTV+RAL",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "f827ed18-f816-4cd0-b77c-28a0209c96c0",
                     "label": "ABC + 3TC + ATVr",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "patientIdentifier",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  }
                 }
-              ]
+              ],
+              "id": "patientIdentifier"
             },
             {
-              "label": "What documentation did the client have at the time of transferring in?",
+              "label": "Transfer Documents",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -921,71 +875,73 @@
                   {
                     "concept": "163532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Mother enrolled in prevention of maternal to child transmission (PMTCT) program",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "71a489e5-e393-4859-a2df-a3b14ea6b4bf",
                     "label": "Transfer-in with Records",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "a484d55e-dfc7-4791-82a4-eff8f21e26de",
                     "label": "Transfer-in without records",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "transferInDoc",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                  }
                 }
-              ]
+              ],
+              "id": "transferInDoc"
             },
             {
-              "label": "When was the Transfer-in client first enrolled into HIV Care?",
+              "label": "Date of Enrolment into HIV Care",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "406543005"
-                  }
-                ]
+                "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "dateOfFirstVisit",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
+                    "hideWhenExpression": "false",
+                    "validators": [
+                      {
+                        "type": "date",
+                        "allowFutureDates": "false"
+                      },
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('hivDiagnosisDate')"
+                      }
+                    ]
+                  }
                 }
-              ]
+              ],
+              "id": "dateOfFirstVisit"
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "isEmpty(clientDescription) || clientDescription !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+          }
         }
       ]
     },
@@ -997,31 +953,15 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "When was the client confirmed HIV positive?",
+              "label": "Date Confirmed HIV Positive",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "432213005"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "86406008"
-                  },
-                  {
-                    "type": "PIH",
-                    "value": "2515"
-                  }
-                ]
+                "concept": "160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "hivDiagnosisDate",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
@@ -1034,14 +974,15 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue < useFieldValue('dateOfFirstVisit')"
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "hivDiagnosisDate"
             },
             {
-              "label": "What type of test was used to confirm HIV diagnosis?",
+              "label": "Test Type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1050,40 +991,35 @@
                   {
                     "concept": "163722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Rapid test for HIV",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "844AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "HIV DNA polymerase chain reaction",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "diagnosticHivTestType",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "diagnosticHivTestType"
             },
             {
-              "label": "Where was the client diagnosed as HIV positive?",
+              "label": "Test Location",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "161549AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "246267002"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1207,20 +1143,27 @@
                   }
                 ]
               },
-              "id": "diagnosisLocation",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "diagnosisLocation"
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+          }
         }
       ]
     },
@@ -1232,7 +1175,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Has the client used Pre exposure prophylaxis (PrEP)?",
+              "label": "Use of Pre Exposure Prophylaxis (PrEP)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1263,7 +1206,8 @@
                   {
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1289,34 +1233,32 @@
                   }
                 ]
               },
-              "id": "previousUseOfPrep",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   }
                 }
-              ]
+              ],
+              "id": "previousUseOfPrep"
             },
             {
-              "label": "When was PrEP last used?",
+              "label": "Date Last Used",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "5af829e9-2427-4ed7-bb55-de4381610364",
-                "weeksList": ""
+                "concept": "5af829e9-2427-4ed7-bb55-de4381610364"
               },
-              "id": "datePrepLastUsed",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(previousUseOfPrep) || previousUseOfPrep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -1325,14 +1267,15 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "datePrepLastUsed"
             },
             {
-              "label": "Has the client used Post exposure prophylaxis (PEP)?",
+              "label": "Use of Post exposure prophylaxis (PEP)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1363,7 +1306,8 @@
                   {
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1389,35 +1333,32 @@
                   }
                 ]
               },
-              "id": "previousUseOfPep",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "previousUseOfPep"
             },
             {
-              "label": "When was PEP last used?",
+              "label": "Date Last Used",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "fbe937b6-a4ad-4ce5-9c43-002222fbabfb",
-                "weeksList": ""
+                "concept": "fbe937b6-a4ad-4ce5-9c43-002222fbabfb"
               },
-              "id": "datePepLastUsed",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(previousUseOfPep) || previousUseOfPep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -1426,14 +1367,15 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "datePepLastUsed"
             },
             {
-              "label": "Has the client used ARVs for the management of Hepatitis?",
+              "label": "ARV Use for Management of Hepatitis",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1464,7 +1406,8 @@
                   {
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1490,35 +1433,32 @@
                   }
                 ]
               },
-              "id": "useOfArvs",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "useOfArvs"
             },
             {
-              "label": "When was the Hep-B Regimen last used?",
+              "label": "Date Last Used",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "6a6cbda5-b155-4144-9ff9-ec3d1d1cd509",
-                "weeksList": ""
+                "concept": "6a6cbda5-b155-4144-9ff9-ec3d1d1cd509"
               },
-              "id": "dateHepBLastUsed",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(useOfArvs) || useOfArvs !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -1527,14 +1467,15 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 }
-              ]
+              ],
+              "id": "dateHepBLastUsed"
             },
             {
-              "label": "Has the client had ART for Prevention of mother to child Transmission of HIV?",
+              "label": "ART Use for Prevention of Mother to Child Transmission of HIV",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1565,7 +1506,8 @@
                   {
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1591,35 +1533,32 @@
                   }
                 ]
               },
-              "id": "previousUseOfArt",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                  }
                 }
-              ]
+              ],
+              "id": "previousUseOfArt"
             },
             {
-              "label": "When was the PMTCT Regimen Last Used?",
+              "label": "Date Last Used",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "163782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": ""
+                "concept": "163782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "datePmtctLastUsed",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(previousUseOfArt) || previousUseOfArt !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -1628,14 +1567,21 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue <= today() && myValue >= '1/1/1980'"
+                      "failsWhenExpression": "isDateBefore(myValue, '1980-01-01') || myValue >= today()"
                     }
                   ]
                 }
-              ]
-            },
+              ],
+              "id": "datePmtctLastUsed"
+            }
+          ]
+        },
+        {
+          "label": "Previous ARV/HAART Drugs",
+          "isExpanded": "false",
+          "questions": [
             {
-              "label": "List of drugs used for PrEP, PEP, PMTCT and Hepatitis B (Nucleoside Reverse Transcriptase Inhibitors (NRTIS))",
+              "label": "Nucleoside Reverse Transcriptase Inhibitors (NRTIS)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
@@ -1644,47 +1590,54 @@
                   {
                     "concept": "5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other antiretroviral drug",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "86663AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Zidovudine",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "84795AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Tenofovir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "78643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Lamivudine",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "75628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Emtricitabine",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "70056AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Abacavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "nrtisDrugsUsed",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
-                  },
-                  "validators": []
+                    "hideWhenExpression": "false",
+                    "validators": [
+                    ]
+                  }
                 }
-              ]
+              ],
+              "id": "nrtisDrugsUsed"
             },
             {
               "label": "Non-Nucleoside Reverse Transcriptase Inhibitors (NNRTIS)",
@@ -1696,17 +1649,20 @@
                   {
                     "concept": "159810AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Etravirine",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "80586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Nevirapine",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "75523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Efavirenz",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1733,22 +1689,24 @@
                   {
                     "concept": "5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other antiretroviral drug",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "nnrtisDrugsUsed",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "nnrtisDrugsUsed"
             },
             {
               "label": "Protease Inhibitors (PIS)",
@@ -1760,47 +1718,54 @@
                   {
                     "concept": "85160AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Tipranavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "83690AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Saquinavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "83412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Ritonavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "76658AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Fosamprenavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "74258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Darunavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "71647AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Atazanavir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "proteaseInhibitors",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "proteaseInhibitors"
             },
             {
               "label": "Other HIV Drug Classes",
@@ -1812,27 +1777,32 @@
                   {
                     "concept": "154378AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Raltegravir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "165085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Dolutegravir",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "154376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "maraviroc",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "75676AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Enfuvirtide",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other antiretroviral drug",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   },
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1858,20 +1828,37 @@
                   }
                 ]
               },
-              "id": "otherArvDrugClasses",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "otherArvDrugClasses"
+            }
+          ],
+          "behaviours": [
+            {
+              "intent": "*",
+              "hide": {
+                "hideWhenExpression": "isEmpty(previousUseOfArt) || isEmpty(previousUseOfPep) || isEmpty(useOfArvs) || previousUseOfArt !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || previousUseOfPep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || useOfArvs !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+          }
         }
       ]
     },
@@ -1883,7 +1870,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Does the client have  a treatment supporter?",
+              "label": "Treatment Supporter Available",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -1914,87 +1901,73 @@
                   {
                     "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                    ]
                   }
                 ]
               },
-              "id": "hasTreatmentSupporter",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "hasTreatmentSupporter"
             },
             {
-              "label": "Indicate the name of the clients treatment supporter",
+              "label": "Treatment Supporter Name",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "444018008"
-                  }
-                ]
+                "concept": "160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "treatmentSupporter",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(hasTreatmentSupporter) || hasTreatmentSupporter !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "treatmentSupporter"
             },
             {
-              "label": "What is the treatment supporters phone number",
+              "label": "Treatment Supporter Phone Number",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "444018008"
-                  }
-                ]
+                "concept": "160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "id": "treatmentSupporterPhoneNumber",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "isEmpty(hasTreatmentSupporter) || hasTreatmentSupporter !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "treatmentSupporterPhoneNumber"
             },
             {
-              "label": "What is the clients relationship to the treatment supporter",
+              "label": "Treatment Supporter Relationship",
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "160640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "444018008"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -2102,33 +2075,104 @@
                   }
                 ]
               },
-              "id": "relationToTreatmentSupporter",
               "behaviours": [
                 {
-                  "intent": "CT_SE_RETROSPECTIVE",
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(hasTreatmentSupporter) || hasTreatmentSupporter !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                  ]
+                }
+              ],
+              "id": "relationToTreatmentSupporter"
+            }
+          ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Re-enrollment",
+      "sections": [
+        {
+          "label": "Re-enrollment Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of Re-enrolment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "20efadf9-86d3-4498-b3ab-7da4dad9c429"
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": [
+                  ]
+                }
+              ],
+              "id": "Reenrolment"
+            },
+            {
+              "label": "Reason For Re-enrolment",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "14ae2dc9-5964-425a-87e8-9ca525cf055e",
+                "rows": ""
+              },
+              "behaviours": [
+                {
+                  "intent": "*",
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
-                  "validators": []
+                  "validators": [
+                  ]
                 }
-              ]
+              ],
+              "id": "ReasonReenrolment"
             }
           ]
+        }
+      ],
+      "behaviours": [
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+          }
         }
       ]
     }
   ],
   "availableIntents": [
     {
-      "intent": "CT_SE_RETROSPECTIVE",
-      "display": "HIV CT Retrospective"
+      "intent": "*",
+      "display": "Service Enrolment Form"
     }
   ],
   "processor": "EncounterFormProcessor",
   "uuid": "xxxx",
   "referencedForms": [],
-  "encounterType":"7e54cd64-f9c3-11eb-8e6a-57478ce139b0",
+  "encounterType": "7e54cd64-f9c3-11eb-8e6a-57478ce139b0",
   "allowUnspecifiedAll": true
 }

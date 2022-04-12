@@ -1,19 +1,22 @@
-import { openmrsObservableFetch } from '@openmrs/esm-framework';
+import { openmrsObservableFetch, useLayoutType } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { encounterRepresentation } from '../../../constants';
 import { ConceptFalse, ConceptTrue } from '../../constants';
 import { OHRIFormContext } from '../../ohri-form-context';
-import { saveEncounter } from '../../ohri-form.resource';
+import { getPreviousEncounter, saveEncounter } from '../../ohri-form.resource';
 import { getHandler, getValidator } from '../../registry/registry';
 import {
   EncounterDescriptor,
   OHRIFormField,
   OHRIFormPage as OHRIFormPageProps,
   OHRIFormSchema,
-  OHRIFormSection,
   SessionMode,
 } from '../../types';
-import { cascadeVisibityToChildFields, inferInitialValueFromDefaultFieldValue } from '../../utils/ohri-form-helper';
+import {
+  cascadeVisibityToChildFields,
+  evaluateFieldReadonlyProp,
+  inferInitialValueFromDefaultFieldValue,
+} from '../../utils/ohri-form-helper';
 import { isEmpty, isEmpty as isValueEmpty, OHRIFieldValidator } from '../../validators/ohri-form-validator';
 import OHRIFormPage from '../page/ohri-form-page';
 import { InstantEffect } from '../../utils/instant-effect';
@@ -33,6 +36,7 @@ interface OHRIEncounterFormProps {
   scrollablePages: Set<OHRIFormPageProps>;
   handlers: Map<string, FormSubmissionHandler>;
   allInitialValues: Record<string, any>;
+  workspaceLayout: 'minimized' | 'maximized';
   setAllInitialValues: (values: Record<string, any>) => void;
   setScrollablePages: (pages: Set<OHRIFormPageProps>) => void;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
@@ -49,6 +53,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   isCollapsed,
   sessionMode,
   scrollablePages,
+  workspaceLayout,
   setScrollablePages,
   setFieldValue,
   setSelectedPage,
@@ -59,9 +64,12 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const [fields, setFields] = useState<Array<OHRIFormField>>([]);
   const [encounterLocation, setEncounterLocation] = useState(null);
   const [encounter, setEncounter] = useState<EncounterDescriptor>(null);
+  const [previousEncounter, setPreviousEncounter] = useState<EncounterDescriptor>(null);
   const [form, setForm] = useState<OHRIFormSchema>(formJson);
   const [obsGroupsToVoid, setObsGroupsToVoid] = useState([]);
   const [formInitialValues, setFormInitialValues] = useState({});
+  const [isFieldInitializationComplete, setIsFieldInitializationComplete] = useState(false);
+  const layoutType = useLayoutType();
 
   const addScrollablePages = useCallback(() => {
     formJson.pages.forEach(page => {
@@ -81,6 +89,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   const encounterContext = {
     patient: patient,
     encounter: encounter,
+    previousEncounter,
     location: location,
     sessionMode: sessionMode || (form?.encounter ? 'edit' : 'enter'),
     date: encounterDate,
@@ -95,9 +104,20 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
   useEffect(() => {
     const allFormFields: Array<OHRIFormField> = [];
     const tempInitVals = {};
+    let isFieldEncounterBindingComplete = false;
     form.pages.forEach(page =>
       page.sections.forEach(section => {
         section.questions.forEach(question => {
+          // explicitly set blank values to null
+          // TODO: shouldn't we be setting to the default behaviour?
+          section.inlineRendering = isEmpty(section.inlineRendering) ? null : section.inlineRendering;
+          page.inlineRendering = isEmpty(page.inlineRendering) ? null : page.inlineRendering;
+          form.inlineRendering = isEmpty(form.inlineRendering) ? null : form.inlineRendering;
+          question.inlineRendering = section.inlineRendering ?? page.inlineRendering ?? form.inlineRendering;
+          evaluateFieldReadonlyProp(question, section.readonly, page.readonly, form.readonly);
+          if (question.questionOptions.rendering == 'fixed-value' && !question['fixedValue']) {
+            question['fixedValue'] = question.value;
+          }
           allFormFields.push(question);
           if (question.type == 'obsGroup') {
             question.questions.forEach(groupedField => {
@@ -123,6 +143,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         }
       });
       setEncounterLocation(encounter.location);
+      isFieldEncounterBindingComplete = true;
     } else {
       const emptyValues = {
         checkbox: [],
@@ -177,10 +198,22 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
       } else {
         page.isHidden = false;
       }
+      page.sections.forEach(section => {
+        if (section.hide) {
+          evalHide({ value: section, type: 'section' }, allFormFields, tempInitVals);
+        } else {
+          section.isHidden = false;
+        }
+      });
     });
     setForm(form);
     setFormInitialValues(tempInitVals);
     setAllInitialValues({ ...allInitialValues, ...tempInitVals });
+    if (sessionMode == 'enter') {
+      setIsFieldInitializationComplete(true);
+    } else if (isFieldEncounterBindingComplete) {
+      setIsFieldInitializationComplete(true);
+    }
   }, [encounter]);
 
   useEffect(() => {
@@ -194,6 +227,14 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
     }
     return () => subscription?.unsubscribe();
   }, [formJson.encounter]);
+
+  useEffect(() => {
+    if (sessionMode == 'enter') {
+      getPreviousEncounter(patient.id, formJson.encounterType).then(data => {
+        setPreviousEncounter(data);
+      });
+    }
+  }, [sessionMode]);
 
   const evalHide = (node, allFields: OHRIFormField[], allValues: Record<string, any>) => {
     const { value, type } = node;
@@ -394,6 +435,17 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         setFields(fields_temp);
       });
     }
+    if (field.sectionDependants) {
+      field.sectionDependants.forEach(dependant => {
+        for (let i = 0; i < form.pages.length; i++) {
+          const section = form.pages[i].sections.find((section, _sectionIndex) => section.label == dependant);
+          if (section) {
+            evalHide({ value: section, type: 'section' }, fields, { ...values, [fieldName]: value });
+            break;
+          }
+        }
+      });
+    }
     if (field.pageDependants) {
       field.pageDependants?.forEach(dep => {
         const dependant = form.pages.find(f => f.label == dep);
@@ -419,6 +471,9 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
         obsGroupsToVoid: obsGroupsToVoid,
         fields: fields,
         encounterContext,
+        layoutType,
+        workspaceLayout,
+        isFieldInitializationComplete,
       }}>
       <InstantEffect effect={addScrollablePages} />
       {form.pages.map((page, index) => {
@@ -449,6 +504,7 @@ export const OHRIEncounterForm: React.FC<OHRIEncounterFormProps> = ({
               setFieldValue={setFieldValue}
               setSelectedPage={setSelectedPage}
               handlers={handlers}
+              workspaceLayout={workspaceLayout}
             />
           );
         }

@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
-import Events from './utils/events';
+import Events from '../utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
   pathname.indexOf(covidAssessments_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(covidOutcomes_dashboardMeta.name) !== -1 ||
   pathname.indexOf(covidLabResults_dashboardMeta.name) !== -1 ||
   pathname.indexOf(covidVaccinations_dashboardMeta.name) !== -1;
 
-const menuItems = 4;
+const menuItems = 3;
 
 const registerSidenavItem = sidenavItem => {
   let buffer;
@@ -41,8 +40,8 @@ export const createCovidDashboardLink = db => {
     });
 
     return (
-      <div id='sidenav-menu-covid'>
-        <SideNavMenu title='COVID' className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
+      <div id="sidenav-menu-covid">
+        <SideNavMenu title="COVID" className={styling} defaultExpanded={shouldSidemenuBeExpanded()}>
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
@@ -63,7 +62,7 @@ export const createCovidDashboardLink = db => {
   return DashboardLink;
 };
 
-export function handleLinkClick (event: any, to: string) {
+export function handleLinkClick(event: any, to: string) {
   event.preventDefault();
   navigate({ to });
 }
@@ -87,11 +86,4 @@ export const covidVaccinations_dashboardMeta = {
   slot: 'covid-vaccinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Vaccinations',
-};
-
-export const covidOutcomes_dashboardMeta = {
-  name: 'covid-outcomes',
-  slot: 'covid-outcomes-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Outcomes',
 };

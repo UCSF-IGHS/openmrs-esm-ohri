@@ -28,3 +28,7 @@
 .sectionContainer > div {
   margin-bottom: 1rem;
 }
+
+.sectionContainer :global(.bx--label) {
+  text-align: left;
+}
