@@ -2,7 +2,6 @@ import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFromObservationCodeConcept, fetchTodayClients } from '../../../../api/api';
-import EmptyState from '../../../../components/empty-state/empty-state.component';
 import { filterFHIRPatientsByName } from './utils';
 import { basePath, finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../../constants';
 import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';

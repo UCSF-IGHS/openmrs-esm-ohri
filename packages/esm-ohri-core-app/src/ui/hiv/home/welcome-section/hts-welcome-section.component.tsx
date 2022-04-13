@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './hts-welcome-section.scss';
 import { Calendar32 } from '@carbon/icons-react';
 import { useSessionUser } from '@openmrs/esm-framework';
 
-function HtsWelcomeSection () {
+function HtsWelcomeSection() {
   const userSession = useSessionUser();
 
   return (

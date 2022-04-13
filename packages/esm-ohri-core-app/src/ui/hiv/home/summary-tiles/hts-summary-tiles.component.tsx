@@ -1,4 +1,4 @@
-import { Row } from 'carbon-components-react';
+import { Column, Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
 import OHRISummaryTile from '../../../../components/tile/ohri-summary-tile.component';
 import { fetchTodayClients, fetchPatientsFromObservationCodeConcept } from '../../../../api/api';
@@ -14,7 +14,7 @@ import { TodaysClientList } from './today-client-list-tile.component';
 import { PositiveInLast14Days } from './positive-in-last-14-days-list-tile.component';
 import { LinkedToCareInLast14Days } from './linked-to-care-in-last-14-days-list-tile.component';
 
-function HTSSummaryTiles ({ launchWorkSpace }) {
+function HTSSummaryTiles({ launchWorkSpace }) {
   const [todayPatientCount, setTodayPatientCount] = useState(0);
   const [positiveInLast14Days, setPositiveInLast14Days] = useState(0);
   const [linkedToCareInLast14Days, setLinkedToCareInLast14Days] = useState(0);
@@ -67,13 +67,13 @@ function HTSSummaryTiles ({ launchWorkSpace }) {
     getLinkedToCareInLast14days();
   });
 
-  function getTodayClientCount () {
+  function getTodayClientCount() {
     return fetchTodayClients().then(response => {
       setTodayPatientCount(response.length);
     });
   }
 
-  function getPositiveInLast14days () {
+  function getPositiveInLast14days() {
     return fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
       response => {
         setPositiveInLast14Days(response.length);
@@ -81,7 +81,7 @@ function HTSSummaryTiles ({ launchWorkSpace }) {
     );
   }
 
-  function getLinkedToCareInLast14days () {
+  function getLinkedToCareInLast14days() {
     return fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
       response => {
         setLinkedToCareInLast14Days(response.length);
