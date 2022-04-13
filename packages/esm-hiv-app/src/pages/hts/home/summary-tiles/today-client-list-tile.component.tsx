@@ -1,8 +1,7 @@
-import { age, attach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchTodayClients } from '../../../../api/api';
-import EmptyState from '../../../../components/empty-state/empty-state.component';
 import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
 import { basePath } from '../../../../constants';
 import { filterFHIRPatientsByName } from './utils';
@@ -103,6 +102,9 @@ export const TodaysClientList: React.FC<{}> = () => {
 
   useEffect(() => {
     attach('today-clients-table-slot', 'patient-table');
+    return () => {
+      detach('today-clients-table-slot', 'patient-table');
+    };
   }, []);
 
   const pagination = useMemo(() => {

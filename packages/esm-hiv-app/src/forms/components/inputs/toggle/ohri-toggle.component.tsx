@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Toggle } from 'carbon-components-react';
 import { OHRIFormFieldProps } from '../../../types';
 import styles from '../_input.scss';
 import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
-import { OHRILabel } from '../../label/ohri-label.component';
-import { OHRIValueEmpty, OHRIValueDisplay } from '../../value/ohri-value.component';
 import { isTrue } from '../../../utils/boolean-utils';
-import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
+import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
+import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { isEmpty } from '../../../validators/ohri-form-validator';
 
 const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext, values } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, layoutType, workspaceLayout } = React.useContext(OHRIFormContext);
   const [conceptName, setConceptName] = useState('Loading...');
-
   const handleChange = value => {
     setFieldValue(question.id, value);
     onChange(question.id, value, null);
@@ -24,7 +23,7 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     // The toogle input doesn't support blank values
     // by default, the value should be false
     if (!question.value && encounterContext.sessionMode == 'enter') {
-      question.value = handler.handleFieldSubmission(question, field.value, encounterContext);
+      question.value = handler.handleFieldSubmission(question, field.value ?? false, encounterContext);
     }
   }, []);
 
@@ -34,10 +33,21 @@ const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler 
     });
   }, [conceptName]);
 
+  const isInline = useMemo(() => {
+    if (encounterContext.sessionMode == 'view' || isTrue(question.readonly)) {
+      return isInlineView(question.inlineRendering, layoutType, workspaceLayout);
+    }
+    return false;
+  }, [encounterContext.sessionMode, question.readonly, question.inlineRendering, layoutType, workspaceLayout]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} tooltipText={conceptName} />
-      {field.value ? <OHRIValueDisplay value={handler.getDisplayValue(question, field.value)} /> : <OHRIValueEmpty />}
+      <OHRIFieldValueView
+        label={question.label}
+        value={!isEmpty(field.value) ? handler.getDisplayValue(question, field.value) : field.value}
+        conceptName={conceptName}
+        isInline={isInline}
+      />
     </div>
   ) : (
     !question.isHidden && (

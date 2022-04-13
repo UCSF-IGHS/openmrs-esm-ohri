@@ -19,13 +19,18 @@ function OHRIPatientTabs() {
           cohortId={preTestCounsellingCohort}
           cohortSlotName="pre-test-counseling-slot"
           associatedEncounterType={htsRetrospectiveEncounterType}
+          addPatientToListOptions={{
+            isEnabled: true,
+            excludeCohorts: ['Post-Test Counselling'],
+          }}
           launchableForm={{
             package: formPackage,
             name: formName,
-            intent: 'HTS_RETROSPECTIVE',
+            intent: 'HTS_PRETEST',
             actionText: 'Start Pre-test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
+            targetDashboard: 'hts-summary',
           }}
         />
       </Tab>
@@ -33,13 +38,18 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={waitingForHIVTestCohort}
           cohortSlotName="waiting-for-hiv-testing-slot"
+          addPatientToListOptions={{
+            isEnabled: true,
+            excludeCohorts: [],
+          }}
           launchableForm={{
             package: formPackage,
             name: formName,
-            intent: 'HIV_TEST',
+            intent: 'HTS_HIVTEST',
             actionText: 'Start HIV Test',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
+            targetDashboard: 'hts-summary',
           }}
         />
       </Tab>
@@ -47,13 +57,18 @@ function OHRIPatientTabs() {
         <CohortPatientList
           cohortId={postTestCounsellingCohort}
           cohortSlotName="post-test-counseling-slot"
+          addPatientToListOptions={{
+            isEnabled: true,
+            excludeCohorts: [],
+          }}
           launchableForm={{
             package: formPackage,
             name: formName,
             intent: 'HTS_POSTTEST',
-            actionText: 'Start Post-test',
+            actionText: 'Start Post-test counselling',
             editLatestEncounter: true,
             encounterType: htsRetrospectiveEncounterType,
+            targetDashboard: 'hts-summary',
           }}
         />
       </Tab>

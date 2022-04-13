@@ -5,6 +5,7 @@ import {
   dateOfHIVDiagnosisConcept,
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
+  entryPointConcept,
 } from '../../../constants';
 import EncounterList, {
   EncounterListColumn,
@@ -31,23 +32,30 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'clientDescription',
-    header: 'Description of client',
+    header: 'Patient Type at Enrollment',
     getValue: encounter => {
       return getObsFromEncounter(encounter, patientTypeEnrollmentConcept);
     },
   },
   {
-    key: 'populationCategory',
-    header: 'Population category',
+    key: 'dateConfirmedPositive',
+    header: 'Date Confirmed HIV Positive',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, studyPopulationTypeConcept);
+      return getObsFromEncounter(encounter, dateOfHIVDiagnosisConcept, true);
     },
   },
   {
-    key: 'dateConfirmedPositive',
-    header: 'Date confirmed positive',
+    key: 'entryPoint',
+    header: 'Entry Point',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, dateOfHIVDiagnosisConcept, true);
+      return getObsFromEncounter(encounter, entryPointConcept);
+    },
+  },
+  {
+    key: 'populationType',
+    header: 'Population Type',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, studyPopulationTypeConcept);
     },
   },
   {

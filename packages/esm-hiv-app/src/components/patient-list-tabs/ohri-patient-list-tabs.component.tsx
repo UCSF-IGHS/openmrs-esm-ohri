@@ -18,6 +18,7 @@ function OHRIPatientListTabs({ patientListConfigs }) {
               queryParams={config.queryParams}
               associatedEncounterType={config.associatedEncounterType}
               launchableForm={config.launchableForm}
+              extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
             />
           </Tab>
         );

@@ -8,13 +8,14 @@ import { OHRIValueEmpty } from '../../value/ohri-value.component';
 import { useTranslation } from 'react-i18next';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
-import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
+import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
 import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
+import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
 
 export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const { t } = useTranslation();
   const [field, meta] = useField(question.id);
-  const { setFieldValue, encounterContext } = React.useContext(OHRIFormContext);
+  const { setFieldValue, encounterContext, layoutType, workspaceLayout } = React.useContext(OHRIFormContext);
   const [errors, setErrors] = useState([]);
   const [counter, setCounter] = useState(0);
   const [touched, setTouched] = useState(false);
@@ -67,18 +68,21 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
     });
   }, [conceptName]);
 
+  const isInline = useMemo(() => {
+    if (encounterContext.sessionMode == 'view' || isTrue(question.readonly)) {
+      return isInlineView(question.inlineRendering, layoutType, workspaceLayout);
+    }
+    return false;
+  }, [encounterContext.sessionMode, question.readonly, question.inlineRendering, layoutType, workspaceLayout]);
+
   return encounterContext.sessionMode == 'view' || isTrue(question.readonly) ? (
     <div className={styles.formField}>
-      <OHRILabel value={question.label} tooltipText={conceptName} />
-      {field.value?.length ? (
-        <UnorderedList style={{ marginLeft: '1rem' }}>
-          {handler.getDisplayValue(question, field.value).map(displayValue => (
-            <ListItem>{displayValue}</ListItem>
-          ))}
-        </UnorderedList>
-      ) : (
-        <OHRIValueEmpty />
-      )}
+      <OHRIFieldValueView
+        label={question.label}
+        value={field.value ? handler.getDisplayValue(question, field.value) : field.value}
+        conceptName={conceptName}
+        isInline={isInline}
+      />
     </div>
   ) : (
     !question.isHidden && (
@@ -104,8 +108,7 @@ export const OHRIMultiSelect: React.FC<OHRIFormFieldProps> = ({ question, onChan
             invalidText={errors[0]?.errMessage}
           />
         </div>
-        <div className={styles.formField}>
-          <OHRILabel value={'Selected Items'} />
+        <div className={styles.formField} style={{ marginTop: '0.125rem' }}>
           {field.value?.length ? (
             <UnorderedList style={{ marginLeft: '1rem' }}>
               {handler.getDisplayValue(question, field.value)?.map(displayValue => displayValue + ', ')}
