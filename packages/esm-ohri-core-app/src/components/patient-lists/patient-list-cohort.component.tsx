@@ -8,12 +8,13 @@ import {
 } from '../../api/api';
 import moment from 'moment';
 import TableEmptyState from '../empty-state/table-empty-state.component';
-import { OverflowMenu, OverflowMenuItem, InlineLoading } from 'carbon-components-react';
+import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from 'carbon-components-react';
 import AddPatientToListOverflowMenuItem from '../modals/patient-list/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
 import { getForm, applyFormIntent } from '../../utils/forms-loader';
 import styles from './patient-list-cohort.scss';
+import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
 
 export interface PatientListColumn {
   key: string;
@@ -21,6 +22,31 @@ export interface PatientListColumn {
   getValue: (patient: any) => string;
   link?: any;
   index?: number;
+}
+
+interface CohortPatientListProps {
+  cohortId: string;
+  cohortSlotName: string;
+  isReportingCohort?: boolean;
+  otherColumns?: Array<PatientListColumn>;
+  excludeColumns?: Array<string>;
+  queryParams?: Array<string>;
+  associatedEncounterType?: string;
+  addPatientToListOptions?: { isEnabled: boolean; excludeCohorts?: Array<string> };
+  launchableForm?: {
+    package: string;
+    name: string;
+    intent: string;
+    actionText: string;
+    // if true, the form will be opened in edit mode if an encounter is found
+    editLatestEncounter?: boolean;
+    // if provided, the latest encounter of this type will be edited
+    // if value is not provided and `editLatestEncounter` is true, the `associatedEncounterType` will be used
+    encounterType?: string;
+    editActionText?: string;
+    targetDashboard?: string;
+  };
+  extraAssociatedEncounterTypes?: Array<string>;
 }
 
 export const columns: PatientListColumn[] = [
@@ -96,11 +122,11 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType }) => {
+const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType, patientUrl }) => {
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const continueEncounterActionText = launchableForm.editActionText || 'Continue encounter';
+  const continueEncounterActionText = launchableForm.actionText || 'Continue encounter ';
 
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
@@ -126,40 +152,19 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
           itemText={actionText}
           onClick={() => {
             if (encounterUuid) {
-              launchFormInEditMode(form, encounterUuid);
+              changeWorkspaceContext(patientUuid);
+              launchFormInEditMode(form, encounterUuid, null, null, 'ohri-forms');
             } else {
-              launchForm(form);
+              changeWorkspaceContext(patientUuid);
+              launchForm(form, null, null, 'ohri-forms');
             }
-            navigate({ to: `${basePath}${patientUuid}/chart/hts-summary` });
+            navigate({ to: patientUrl });
           }}
         />
       )}
     </>
   );
 };
-
-interface CohortPatientListProps {
-  cohortId: string;
-  cohortSlotName: string;
-  isReportingCohort?: boolean;
-  otherColumns?: Array<PatientListColumn>;
-  excludeColumns?: Array<string>;
-  queryParams?: Array<string>;
-  associatedEncounterType?: string;
-  launchableForm?: {
-    package: string;
-    name: string;
-    intent: string;
-    actionText: string;
-    // if true, the form will be opened in edit mode if an encounter is found
-    editLatestEncounter?: boolean;
-    // if provided, the latest encounter of this type will be edited
-    // if value is not provided and `editLatestEncounter` is true, the `associatedEncounterType` will be used
-    encounterType?: string;
-    editActionText?: string;
-    targetDashboard?: string;
-  };
-}
 
 const CohortPatientList: React.FC<CohortPatientListProps> = ({
   cohortId,
@@ -170,8 +175,9 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   queryParams,
   associatedEncounterType,
   launchableForm,
+  addPatientToListOptions,
+  extraAssociatedEncounterTypes,
 }) => {
-  const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPatients, setLoadedPatients] = useState(false);
   const [loadedEncounters, setLoadedEncounters] = useState(false);
@@ -182,11 +188,15 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [searchTerm, setSearchTerm] = useState(null);
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [loadedExtraEncounters, setLoadedExtraEncounters] = useState(false);
+  const [extraEncounters, setExtraEncounters] = useState([]);
 
+  const [paginatedPatients, setPaginatedPatients] = useState([]);
   const [allPatients, setAllPatients] = useState([]);
 
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
+
   const constructPatient = rawPatient => {
     const patientUuid = isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid;
     const dashboard = launchableForm?.targetDashboard ? `/${launchableForm?.targetDashboard}` : '';
@@ -227,11 +237,18 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
               form={applyFormIntent(launchableForm.intent, form)}
               encounterType={launchableForm.encounterType || associatedEncounterType}
               key={patientUuid}
+              patientUrl={patientWithMeta.patientUrl}
             />
           ) : (
             <></>
           )}
-          <AddPatientToListOverflowMenuItem patientUuid={patientUuid} displayText="Move to list" />
+          {addPatientToListOptions?.isEnabled && (
+            <AddPatientToListOverflowMenuItem
+              patientUuid={patientUuid}
+              displayText="Move to list"
+              excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
+            />
+          )}
         </OverflowMenu>
       ),
     };
@@ -245,53 +262,54 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
         currentRows.push(fullDataset[i]);
       }
     }
-
-    setPatients(currentRows);
+    setPaginatedPatients(currentRows);
   };
 
   useEffect(() => {
     if (!isReportingCohort) {
       getCohort(cohortId, 'full').then(results => {
-        const patients = results.cohortMembers.map(member => ({
-          ...constructPatient(member),
-          ...setListMeta(member, results.location),
-        }));
-
-        //Fix to enable pagination
+        const patients = results.cohortMembers.map(member => {
+          let patient = constructPatient(member);
+          member['patientUrl'] = patient.url;
+          return {
+            ...patient,
+            ...setListMeta(member, results.location),
+          };
+        });
         setAllPatients(patients);
         updatePatientTable(patients, 0, pageSize);
-
-        setIsLoading(false);
         setLoadedPatients(true);
+        setIsLoading(patients.length > 0);
       });
     } else {
       getReportingCohortMembers(cohortId, queryParams).then(results => {
         const patients = results.map(({ data }) => {
+          let patient = constructPatient(data);
+          data['patientUrl'] = patient.url;
           return {
-            ...constructPatient(data),
+            ...patient,
             ...setListMeta(data, null),
           };
         });
 
-        //Fix to enable Pagination
         setAllPatients(patients);
         updatePatientTable(patients, 0, pageSize);
-
-        setIsLoading(false);
         setLoadedPatients(true);
+        setIsLoading(patients.length > 0);
       });
     }
   }, [cohortId]);
 
   useEffect(() => {
-    if (patients.length && associatedEncounterType && !loadedEncounters) {
-      Promise.all(patients.map(patient => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
+    if (loadedPatients && allPatients.length) {
+      Promise.all(allPatients.map(patient => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
         results => {
           results.forEach((encounter, index) => {
-            patients[index].latestEncounter = encounter;
-            if (index == patients.length - 1) {
-              setPatients([...patients]);
+            allPatients[index].latestEncounter = encounter;
+            if (index == allPatients.length - 1) {
+              setAllPatients([...allPatients]);
               setLoadedEncounters(true);
+              setIsLoading(false);
             }
           });
         },
@@ -303,17 +321,17 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
   useEffect(() => {
     const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
     if ((loadedEncounters || !associatedEncounterType) && !loadedHIVStatuses && fetchHivResults) {
-      Promise.all(patients.map(patient => fetchPatientsFinalHIVStatus(patient.uuid))).then(results => {
+      Promise.all(allPatients.map(patient => fetchPatientsFinalHIVStatus(patient.uuid))).then(results => {
         results.forEach((hivResult, index) => {
-          patients[index].hivResult = hivResult;
-          if (index == patients.length - 1) {
-            setPatients([...patients]);
+          allPatients[index].hivResult = hivResult;
+          if (index == allPatients.length - 1) {
+            setAllPatients([...allPatients]);
             setLoadedHIVStatuses(true);
           }
         });
       });
     }
-  }, [patients, loadedEncounters]);
+  }, [allPatients, loadedEncounters]);
 
   const pagination = useMemo(() => {
     return {
@@ -330,16 +348,16 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
       pageSize: pageSize,
       totalItems: patientsCount,
     };
-  }, [currentPage, pageSize, patientsCount]);
+  }, [currentPage, pageSize, patientsCount, loadedEncounters]);
 
   const handleSearch = useCallback(
     searchTerm => {
       setSearchTerm(searchTerm);
-      const filtrate = filterPatientsByName(searchTerm, patients);
+      const filtrate = filterPatientsByName(searchTerm, paginatedPatients);
       setFilteredResults(filtrate);
       return true;
     },
-    [patients],
+    [paginatedPatients],
   );
 
   useEffect(() => {
@@ -372,7 +390,7 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     }
 
     return {
-      patients: searchTerm ? filteredResults : patients,
+      patients: searchTerm ? filteredResults : paginatedPatients,
       columns: filteredColumns,
       isLoading,
       search: {
@@ -396,20 +414,51 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
       pagination: pagination,
       autoFocus: true,
     };
-  }, [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading, excludeColumns, otherColumns]);
+  }, [
+    searchTerm,
+    filteredResults,
+    paginatedPatients,
+    handleSearch,
+    pagination,
+    isLoading,
+    excludeColumns,
+    otherColumns,
+  ]);
 
   useEffect(() => {
     setCounter(counter + 1);
   }, [state]);
 
+  useEffect(() => {
+    if (allPatients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {
+      allPatients.forEach(patient => {
+        extraAssociatedEncounterTypes.forEach(encType => {
+          extraEncounters.push(fetchPatientLastEncounter(patient.uuid, encType));
+        });
+      });
+
+      Promise.all(extraEncounters).then(results => {
+        results.forEach((encounter, index) => {
+          const idx = allPatients.findIndex(patient => patient.uuid === encounter?.patient.uuid);
+          if (idx !== -1) {
+            allPatients[idx].latestExtraEncounters = allPatients[idx].latestExtraEncounters?.concat(encounter) ?? [
+              encounter,
+            ];
+          }
+        });
+        setLoadedExtraEncounters(true);
+      });
+    }
+  }, [loadedPatients]);
+
   return (
     <div className={styles.table1}>
-      {!isLoading && !patients.length ? (
+      {isLoading ? (
+        <DataTableSkeleton rowCount={5} />
+      ) : !paginatedPatients.length ? (
         <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
       ) : (
-        <>
-          <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
-        </>
+        <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
       )}
     </div>
   );
