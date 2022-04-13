@@ -8,7 +8,7 @@ interface OverflowMenuProps {
   menuTitle: React.ReactNode;
   overflowItems: Array<any>;
   overflowIcon?: any;
-  launchForm?: (formJson?: any) => void;
+  launchForm?: (formJson?: any, intent?: string) => void;
   formJson?: any;
 }
 
@@ -85,7 +85,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               {overflowItems.map(item => {
                 return item.availableIntents.map((intent, index) => {
                   return (
-                    <li className="bx--overflow-menu-options__option" id={'item-' + index}>
+                    <li className="bx--overflow-menu-options__option" id={'item-' + index} key={index}>
                       <button
                         id={'menuItem-' + index}
                         className="bx--overflow-menu-options__btn"
@@ -94,7 +94,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                         onClick={e => {
                           e.preventDefault();
                           const processedForm = applyFormIntent(intent, item.formJson);
-                          launchForm(processedForm);
+                          launchForm(processedForm, intent.display);
                           setShowMenu(false);
                         }}
                         style={{

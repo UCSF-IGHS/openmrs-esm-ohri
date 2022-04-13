@@ -5,8 +5,8 @@ import PatientListWorkspace from '../workspace/patient-list-workspace';
 import styles from './ohri-home.scss';
 
 interface HomeProps {
-  programme: string;
-  dashboardTitle: string;
+  programme?: string;
+  dashboardTitle?: string;
 }
 
 function OHRIHome(HomeProps) {

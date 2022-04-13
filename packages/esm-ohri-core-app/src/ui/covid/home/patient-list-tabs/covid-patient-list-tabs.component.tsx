@@ -4,19 +4,32 @@ import {
   clientsWithoutCovidOutcomes,
   covidCaseAssessmentEncType,
   covidClientsWithPendingLabResults,
+  covidLabTestEncType,
   covidOutcome,
   covidTestType,
+  covidVaccinatedClients,
+  covidVaccinationDoseAdmininstered_UUID,
+  covidVaccinationEncType,
+  covidVaccineAdministeredConcept_UUID,
+  covidVaccineConcept_UUID,
   dateSpecimenCollected,
   finalCovid19Result,
+  pcrTestResult,
   pcrTestResultDate,
   rapidAntigenResultDate,
-} from '../../../../constants';
-import OHRIPatientListTabs from '../../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
+  rapidTestResult,
+  returnVisitDateConcept,
+} from '../../../constants';
+import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
-import { getObsFromEncounter } from '../../../../components/encounter-list/encounter-list.component';
+import {
+  findObs,
+  getObsFromEncounter,
+  getObsFromEncounters,
+} from '../../../components/encounter-list/encounter-list.component';
 import moment from 'moment';
 
-function CovidHomePatientTabs () {
+function CovidHomePatientTabs() {
   const { t } = useTranslation();
 
   const tabsConfigs = [
@@ -46,8 +59,11 @@ function CovidHomePatientTabs () {
         {
           key: 'finalAssessment',
           header: 'Final result',
-          getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, finalCovid19Result);
+          getValue: ({ latestExtraEncounters }) => {
+            const pcrResult = getObsFromEncounters(latestExtraEncounters, pcrTestResult);
+            return pcrResult && pcrResult != '--'
+              ? pcrResult
+              : getObsFromEncounters(latestExtraEncounters, rapidTestResult);
           },
         },
         {
@@ -58,6 +74,7 @@ function CovidHomePatientTabs () {
           },
         },
       ],
+      extraAssociatedEncounterTypes: [covidLabTestEncType],
     },
     {
       label: t('pendingLabResults', 'Pending lab results'),
@@ -91,50 +108,50 @@ function CovidHomePatientTabs () {
       ],
     },
     {
-      label: t('undocumentedOutcomes', 'Undocumented Outcomes'),
-      cohortId: clientsWithoutCovidOutcomes,
+      label: t('scheduledVaccination', 'Scheduled Vaccination'),
+      cohortId: covidVaccinatedClients,
       isReportingCohort: true,
-      cohortSlotName: 'undocumented-outcomes-slot',
-      associatedEncounterType: covidCaseAssessmentEncType,
+      cohortSlotName: 'clients-vaccinated-for-covid-slot',
       launchableForm: {
         package: 'covid',
-        name: 'covid_outcome_tracking',
-        editActionText: 'Enter COVID-19 outcome',
+        name: 'covid_vaccination',
+        editActionText: 'Edit covid vaccination form',
         editLatestEncounter: true,
-        targetDashboard: 'covid-outcomes',
+        targetDashboard: 'covid_vaccination',
       },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'hivResult', 'phoneNumber'],
+      associatedEncounterType: covidVaccinationEncType,
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       otherColumns: [
         {
-          key: 'covidAssessmentDate',
-          header: 'COVID Assessment Date',
+          key: 'lastDoseAdministered',
+          header: 'Last Dose Administered',
           getValue: ({ latestEncounter }) => {
-            return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
+            return getObsFromEncounter(latestEncounter, covidVaccinationDoseAdmininstered_UUID);
           },
         },
         {
-          key: 'covidDiagnosisDate',
-          header: 'COVID-19 Diagnosis Date',
+          key: 'vaccine',
+          header: 'Vaccine',
           getValue: ({ latestEncounter }) => {
-            const obs = latestEncounter?.obs?.find(observation => observation.concept.uuid === covidTestType);
-            const rapidAntigen = '6cd82734-3ba5-4165-b839-0750099d72bd';
-            if (obs) {
-              if (obs.value.name.uuid == rapidAntigen) {
-                // lookup Rapid test result date
-                return getObsFromEncounter(latestEncounter, rapidAntigenResultDate, true);
-              } else {
-                // loockup PCR test result date
-                return getObsFromEncounter(latestEncounter, pcrTestResultDate, true);
+            const obs = findObs(latestEncounter, covidVaccineAdministeredConcept_UUID);
+            if (typeof obs !== undefined && obs) {
+              if (typeof obs.value === 'object') {
+                const vaccineNAME =
+                  obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+                  obs.value.name.name;
+                if (vaccineNAME === 'Other non-coded') {
+                  return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
+                }
               }
             }
-            return '--';
+            return getObsFromEncounter(latestEncounter, covidVaccineAdministeredConcept_UUID);
           },
         },
         {
-          key: 'covidOutcome',
-          header: 'COVID-19 Outcome',
+          key: 'returnVisitDate',
+          header: 'Return Visit Date',
           getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, covidOutcome);
+            return getObsFromEncounter(latestEncounter, returnVisitDateConcept, true);
           },
         },
       ],

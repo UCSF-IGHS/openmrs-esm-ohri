@@ -1,7 +1,7 @@
+import { LayoutType } from '@openmrs/esm-framework';
 import { fetchConceptNameByUuid } from '../../api/api';
-import { ConceptFalse, ConceptTrue } from '../constants';
+import { ConceptTrue } from '../constants';
 import { EncounterContext } from '../ohri-form-context';
-import { getHandler } from '../registry/registry';
 import { OHRIFormField, OHRIFormSection, SubmissionHandler } from '../types';
 import { OHRIDefaultFieldValueValidator } from '../validators/default-value-validator';
 import { isEmpty } from '../validators/ohri-form-validator';
@@ -39,4 +39,27 @@ export function getConceptNameAndUUID(conceptUuid: string) {
   return fetchConceptNameByUuid(conceptUuid).then(conceptName => {
     return `Concept Name: ${conceptName} \n UUID: ${conceptUuid}`;
   });
+}
+
+export function isInlineView(
+  renderingType: 'single-line' | 'multiline' | 'automatic',
+  layoutType: LayoutType,
+  workspaceLayout: 'minimized' | 'maximized',
+) {
+  if (renderingType == 'automatic') {
+    return workspaceLayout == 'maximized' && layoutType == 'desktop';
+  }
+  return renderingType == 'single-line';
+}
+
+export function evaluateFieldReadonlyProp(
+  field: OHRIFormField,
+  sectionReadonly: string | boolean,
+  pageReadonly: string | boolean,
+  formReadonly: string | boolean,
+) {
+  if (!isEmpty(field.readonly)) {
+    return;
+  }
+  field.readonly = !isEmpty(sectionReadonly) || !isEmpty(pageReadonly) || formReadonly;
 }
