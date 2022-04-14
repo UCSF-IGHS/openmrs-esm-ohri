@@ -1,0 +1,36 @@
+@import "../../root.scss";
+
+.sideNav {
+  width: 16rem;
+  // padding-top: 2rem;
+  min-height: 8rem;
+  overscroll-behavior: contain;
+  margin: 48px 13px 15px 0;
+  border-right: 1px #e0e0e0;
+}
+
+.sideNavTextHeader {
+  font-size: 14px;
+  padding: 0.5rem 1rem 0.5rem;
+}
+
+.sideNav :global(a.bx--side-nav__link[aria-current=page]:before),
+.sideNav :global(.bx--side-nav__submenu[aria-expanded=false]:before)
+{
+  // background-color: $brand-teal-01;
+}
+
+.sideNav :global(ul.bx--side-nav__items) {
+  border-style: solid !important;
+  border-right: 1px #e0e0e0;
+}
+
+@media (max-width: 1200px) {
+  .sideNav :global(.bx--side-nav) {
+    z-index: -100 !important;
+  }
+
+  .sideNav :global(.bx--side-nav__items) {
+    padding: 0 !important;
+  }
+}

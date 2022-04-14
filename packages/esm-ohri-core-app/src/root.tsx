@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import FormRenderTest from './forms/form-render/form-render-test.component';
-import OHRIDashboard from './ohri-dashboard/ohri-dashboard.component';
+import OHRIDashboard from './ui/ohri-dashboard/ohri-dashboard.component';
 
 export default function Root() {
   return (

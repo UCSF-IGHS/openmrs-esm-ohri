@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getReportingCohort } from '../../../api/api';
-import OHRIProgrammeSummaryTiles from '../../../components/tile/ohri-programme-summary-tiles.component';
-import { covid19PositiveClients, covidOutcomesCohortUUID, covidVaccinatedClients } from '../../../constants';
+import { getReportingCohort } from '../../../../api/api';
+import OHRIProgrammeSummaryTiles from '../../../../components/tile/ohri-programme-summary-tiles.component';
+import { covid19PositiveClients, covidOutcomesCohortUUID, covidVaccinatedClients } from '../../../../constants';
 import { Outcomes } from './outcome-list-tile.component';
 
 function CcoivdSummaryTiles({ launchWorkSpace }) {

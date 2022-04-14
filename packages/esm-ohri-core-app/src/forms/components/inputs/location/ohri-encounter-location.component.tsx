@@ -10,7 +10,7 @@ import { OHRILabel } from '../../label/ohri-label.component';
 import { OHRIValueDisplay, OHRIValueEmpty } from '../../value/ohri-value.component';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID } from '../../../utils/ohri-form-helper';
-import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { OHRIFieldValueView } from '../../value/ohri-field-value-view.component';
 
 export const OHRIEncounterLocationPicker: React.FC<{ question: OHRIFormField; onChange: any }> = ({ question }) => {
   const [field, meta] = useField(question.id);

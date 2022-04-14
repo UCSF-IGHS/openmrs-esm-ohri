@@ -1,17 +1,17 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientCovidOutcome } from '../../../api/api';
-import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
-import { getObsFromEncounter } from '../../../components/encounter-list/encounter-list.component';
+import { fetchPatientCovidOutcome } from '../../../../api/api';
+import TableEmptyState from '../../../../components/empty-state/table-empty-state.component';
+import { getObsFromEncounter } from '../../../../components/encounter-list/encounter-list.component';
 import {
   basePath,
   covidEncounterDateTime_UUID,
   covidOutcome,
   covidOutcomeUUID,
   covidPresentSymptonsConcept_UUID,
-} from '../../../constants';
-import { filterFHIRPatientsByName } from '../../../pages/hiv/hts/summary-tiles/utils';
+} from '../../../../constants';
+import { filterFHIRPatientsByName } from '../../../../ui/hiv/home/summary-tiles/utils';
 
 export const columns = [
   {
