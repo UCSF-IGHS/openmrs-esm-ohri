@@ -210,3 +210,10 @@ export const IndexHIVStatus_UUID = '1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PatnerNotificationContactDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const FirstName_UUID = '166102AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const Relationship_UUID = '85d3b4fe-c1a9-4e27-a86b-dcc1e30c8a93';
+
+//Mental Health
+export const MentalHealthAssessmentEncounter_UUID = '36db5123-0ad5-41c0-9037-625b46e0ceef';
+export const LittleInterestConcept_UUID = '167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const DepressionConcept_UUID = '167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const PoorAppetiteConcept_UUID = '167070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const PoorConcentrationConcept_UUID = '167072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
