@@ -57,7 +57,7 @@ const columnsLab: EncounterListColumn[] = [
           form: { name: 'death_form', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
-          label: 'Edit Death Form',
+          label: 'Edit Form',
           mode: 'edit',
         },
       ];
