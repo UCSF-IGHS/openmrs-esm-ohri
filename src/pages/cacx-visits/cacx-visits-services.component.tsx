@@ -12,7 +12,7 @@ interface OverviewListProps {
 const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }) => (
   <div className={styles.tabContainer}>
     <Tabs type="container">
-      <Tab label="Cacx Registration" className="tab-12rem">
+      <Tab label="CaCx Registration" className="tab-12rem">
         <CaCxRegistrationList patientUuid={patientUuid} />
       </Tab>
       <Tab label="CaCx Screening" style={{ padding: 0 }}>
