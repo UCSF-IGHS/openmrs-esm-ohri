@@ -47,7 +47,7 @@ import {
   CaCxVisits_dashboardMeta,
   clearCervicalCancerSidenavRegistry,
   createCervicalCancerDashboardLink,
-} from './hiv/Cervical Cancer/dashboard.meta';
+} from './hiv/cervical-cancer/dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
