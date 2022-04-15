@@ -54,7 +54,7 @@ npm run serve
 4. Run the OHRI App  `localhost:8080`.
 
 ```sh
-npm run npx openmrs develop --backend https://ohri-demo.globalhealthapp.net
+npx openmrs develop --backend https://ohri-demo.globalhealthapp.net
 ```
 
 ### Setup Dev Tools
