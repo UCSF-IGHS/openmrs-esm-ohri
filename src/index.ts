@@ -41,6 +41,13 @@ import {
   hts_dashboardMeta,
   preExposureProphylaxis_dashboardMeta,
 } from './hiv/hiv-prevention/dashboard.meta';
+import {
+  CaCxAppointments_dashboardMeta,
+  CaCxSummary_dashboardMeta,
+  CaCxVisits_dashboardMeta,
+  clearCervicalCancerSidenavRegistry,
+  createCervicalCancerDashboardLink,
+} from './hiv/cervical-cancer/dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -61,6 +68,7 @@ function setupOpenMRS() {
   clearCareAndTreatmentSidenavRegistry();
   clearCovidSidenavRegistry();
   clearHivPreventionSidenavRegistry();
+  clearCervicalCancerSidenavRegistry();
 
   return {
     pages: [
@@ -555,6 +563,54 @@ function setupOpenMRS() {
         slot: 'patient-chart-summary-dashboard-slot',
         load: getAsyncLifecycle(() => import('./pages/multiple-encounters/multiple-encounter-summary.component'), {
           featureName: 'multiple-encounters-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'cacx-summary-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCervicalCancerDashboardLink(CaCxSummary_dashboardMeta), options),
+        meta: CaCxSummary_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'cacx-summary-ext',
+        slot: 'cacx-summary-slot',
+        load: getAsyncLifecycle(() => import('./pages/cacx-summary/cacx-summary.component'), {
+          featureName: 'cacx-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'cacx-visits-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCervicalCancerDashboardLink(CaCxVisits_dashboardMeta), options),
+        meta: CaCxVisits_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'cacx-visits-ext',
+        slot: 'cacx-visits-slot',
+        load: getAsyncLifecycle(() => import('./pages/cacx-visits/cacx-visits-services.component'), {
+          featureName: 'cacx-visits',
+          moduleName,
+        }),
+      },
+      {
+        id: 'cacx-appointments-dashboard',
+        slot: 'patient-chart-dashboard-slot',
+        load: getSyncLifecycle(createCervicalCancerDashboardLink(CaCxAppointments_dashboardMeta), options),
+        meta: CaCxAppointments_dashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'cacx-appointments-ext',
+        slot: 'cacx-appointments-slot',
+        load: getAsyncLifecycle(() => import('./pages/cacx-appointment/cacx-appointments.component'), {
+          featureName: 'cacx-appointments',
           moduleName,
         }),
       },

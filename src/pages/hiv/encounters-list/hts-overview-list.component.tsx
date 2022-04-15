@@ -67,14 +67,14 @@ const columns: EncounterListColumn[] = [
             form: { package: 'hiv', name: 'hts_who' },
             encounterUuid: encounter.uuid,
             intent: '*',
-            label: 'View',
+            label: 'View Details',
             mode: 'view',
           },
           {
             form: { package: 'hiv', name: 'hts_who' },
             encounterUuid: encounter.uuid,
             intent: '*',
-            label: 'Edit',
+            label: 'Edit Form',
             mode: 'edit',
           },
         ];
@@ -84,14 +84,14 @@ const columns: EncounterListColumn[] = [
           form: { package: 'hiv', name: 'hts' },
           encounterUuid: encounter.uuid,
           intent: '*',
-          label: 'View',
+          label: 'View Details',
           mode: 'view',
         },
         {
           form: { package: 'hiv', name: 'hts' },
           encounterUuid: encounter.uuid,
           intent: '*',
-          label: 'Edit',
+          label: 'Edit Form',
           mode: 'edit',
         },
       ];
