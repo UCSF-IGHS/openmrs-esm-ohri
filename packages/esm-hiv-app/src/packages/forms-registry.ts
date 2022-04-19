@@ -71,39 +71,4 @@ export default {
       '1.0': patner_notification_v_1_0,
     },
   },
-  covid: {
-    covid_assessment: {
-      '1.0': covid_assessment_form_v_1_0,
-    },
-    covid_lab_test: {
-      '1.0': covid_lab_test_form_v_1_0,
-    },
-    covid_outcome_tracking: {
-      '1.0': covid_outcome_tracking_form_v_1_0,
-    },
-    covid_vaccination: {
-      '1.0': covid_vaccination_form_v_1_0,
-    },
-    covid_sample_collection: {
-      '1.0': covid_sample_collection_form_v_1_0,
-    },
-    covid_lab_order_cancellation: {
-      '1.0': covid_lab_order_cancellation_form_v_1_0,
-    },
-    covid_assessment_summary: {
-      '1.0': covid_assessment_summary_v_1_0,
-    },
-    covid_lab_order: {
-      '1.0': covid_lab_order_form_v_1_0,
-    },
-    covid_lab_result: {
-      '1.0': covid_lab_result_form_v_1_0,
-    },
-    covid_outcome: {
-      '1.0': covid_outcome_form_v_1_0,
-    },
-    covid_case: {
-      '1.0': covid_case_form_v_1_0,
-    },
-  },
 };
