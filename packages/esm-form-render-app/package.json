@@ -1,5 +1,5 @@
 {
-  "name": "esm-forms-render-app",
+  "name": "openmrs-esm-ohri-form-render-app",
   "version": "0.1.0",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "keywords": ["openmrs"],

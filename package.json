@@ -1,6 +1,7 @@
 {
-  "name": "ohri-forms-engine",
+  "name": "openmrs-ohri-app",
   "private": true,
+  "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": [
     "packages/*"
   ],
