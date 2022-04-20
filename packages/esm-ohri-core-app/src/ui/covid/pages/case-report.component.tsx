@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../../components/empty-state/empty-state.component';
+import EmptyState from '../../../components/empty-state/empty-state.component';
 import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
-import { getForm } from '../../utils/forms-loader';
-import { OHRIFormLauncherEmpty } from '../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
-import { launchOHRIWorkSpace } from '../../workspace/ohri-workspace-utils';
-import { launchForm } from '../../utils/ohri-forms-commons';
-import { OHRIFormLauncherWithIntent } from '../../components/ohri-form-launcher/ohri-form-launcher.component';
-import OTable from '../../components/data-table/o-table.component';
+import { getForm } from '../../../utils/forms-loader';
+import { OHRIFormLauncherEmpty } from '../../../components/ohri-form-launcher/ohri-form-empty-launcher.component';
+import { launchOHRIWorkSpace } from '../../../workspace/ohri-workspace-utils';
+import { launchForm } from '../../../utils/ohri-forms-commons';
+import { OHRIFormLauncherWithIntent } from '../../../components/ohri-form-launcher/ohri-form-launcher.component';
+import OTable from '../../../components/data-table/o-table.component';
 import moment from 'moment';
 
 interface CovidOverviewListProps {

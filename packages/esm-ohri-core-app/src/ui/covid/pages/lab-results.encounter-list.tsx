@@ -11,13 +11,13 @@ import {
   covidTestResultDate_UUID,
   covidTestStatusConcept_UUID,
   covidTypeofTestConcept_UUID,
-} from '../../constants';
+} from '../../../constants';
 
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   findObs,
-} from '../../components/encounter-list/encounter-list.component';
+} from '../../../components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =

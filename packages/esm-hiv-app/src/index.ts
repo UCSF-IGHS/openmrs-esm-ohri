@@ -20,7 +20,7 @@ import {
   hivFolderDashboardMeta,
   homeDashboardMeta,
   htsDashboardMeta,
-} from './ohri-dashboard/ohri-dashboard.meta';
+} from '../../../packages/esm-ohri-core-app/src/ui/ohri-dashboard/ohri-dashboard.meta';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
@@ -30,7 +30,7 @@ import {
   createHIVPreventionDashboardLink,
   hts_dashboardMeta,
   preExposureProphylaxis_dashboardMeta,
-} from './hiv/hiv-prevention/dashboard.meta';
+} from './hiv-prevention/dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -54,7 +54,7 @@ function setupOpenMRS() {
   return {
     pages: [
       {
-        load: getAsyncLifecycle(() => import('./pages/hiv/summary-page/hts-summary-page'), options),
+        load: getAsyncLifecycle(() => import('./pages/hts/summary-page/hts-summary-page'), options),
         route: /^ohri\/.+\/hts/,
       },
       {

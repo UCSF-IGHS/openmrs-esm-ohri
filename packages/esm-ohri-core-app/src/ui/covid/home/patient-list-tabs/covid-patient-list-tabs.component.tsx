@@ -19,14 +19,14 @@ import {
   rapidAntigenResultDate,
   rapidTestResult,
   returnVisitDateConcept,
-} from '../../../constants';
-import OHRIPatientListTabs from '../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
+} from '../../../../constants';
+import OHRIPatientListTabs from '../../../../components/patient-list-tabs/ohri-patient-list-tabs.component';
 import { useTranslation } from 'react-i18next';
 import {
   findObs,
   getObsFromEncounter,
   getObsFromEncounters,
-} from '../../../components/encounter-list/encounter-list.component';
+} from '../../../../components/encounter-list/encounter-list.component';
 import moment from 'moment';
 
 function CovidHomePatientTabs() {

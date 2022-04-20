@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
-import Events from '../utils/events';
+import Events from '../../esm-ohri-core-app/src/utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>

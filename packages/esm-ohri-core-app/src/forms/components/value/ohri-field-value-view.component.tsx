@@ -1,10 +1,10 @@
 import React from 'react';
-import { OHRILabel } from '../../label/ohri-label.component';
-import { OHRIValueDisplay, OHRIValueEmpty } from '../ohri-value.component';
+import { OHRILabel } from '../../../forms/components/label/ohri-label.component';
+import { OHRIValueDisplay, OHRIValueEmpty } from '../../../forms/components/value/ohri-value.component';
 import inputControlStyles from '../../inputs/_input.scss';
 import { Column, Row } from 'carbon-components-react';
 import styles from './ohri-field-value-view.scss';
-import { isEmpty } from '../../../validators/ohri-form-validator';
+import { isEmpty } from '../../../forms/validators/ohri-form-validator';
 
 interface OHRIFieldValueViewProps {
   isInline: boolean;

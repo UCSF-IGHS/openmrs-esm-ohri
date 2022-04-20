@@ -9,7 +9,7 @@ import {
   covidVaccinationDoseAdmininstered_UUID,
   covidVaccineAdministeredConcept_UUID,
   covidVaccineConcept_UUID,
-} from '../../constants';
+} from '../constants';
 
 //Generic Component Import
 import EncounterList, {
@@ -17,7 +17,7 @@ import EncounterList, {
   getObsFromEncounter,
   getEncounterValues,
   findObs,
-} from '../../components/encounter-list/encounter-list.component';
+} from '../../../esm-ohri-core-app/src/components/encounter-list/encounter-list.component';
 
 interface CovidVaccinationsWidgetProps {
   patientUuid: string;

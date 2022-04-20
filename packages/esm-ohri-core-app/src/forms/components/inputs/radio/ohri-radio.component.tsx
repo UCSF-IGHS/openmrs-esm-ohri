@@ -7,7 +7,7 @@ import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
 import { fieldRequiredErrCode, isEmpty } from '../../../validators/ohri-form-validator';
-import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { OHRIFieldValueView } from '../../value/ohri-field-value-view.component';
 import { PreviousValueReview } from '../../previous-value-review/previous-value-review.component';
 
 const OHRIRadio: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {

@@ -6,7 +6,7 @@ import { useField } from 'formik';
 import { OHRIFormContext } from '../../../ohri-form-context';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
-import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { OHRIFieldValueView } from '../../value/ohri-field-value-view.component';
 import { isEmpty } from '../../../validators/ohri-form-validator';
 
 const OHRIToggle: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {

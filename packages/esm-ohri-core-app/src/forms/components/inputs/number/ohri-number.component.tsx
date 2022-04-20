@@ -6,7 +6,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import styles from '../_input.scss';
 import { isTrue } from '../../../utils/boolean-utils';
 import { fieldRequiredErrCode, isEmpty } from '../../../validators/ohri-form-validator';
-import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { OHRIFieldValueView } from '../../value/ohri-field-value-view.component';
 import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
 import { PreviousValueReview } from '../../previous-value-review/previous-value-review.component';
 

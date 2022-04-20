@@ -7,7 +7,7 @@ import { OHRIFormContext } from '../../../ohri-form-context';
 import { fieldRequiredErrCode } from '../../../validators/ohri-form-validator';
 import { isTrue } from '../../../utils/boolean-utils';
 import { getConceptNameAndUUID, isInlineView } from '../../../utils/ohri-form-helper';
-import { OHRIFieldValueView } from '../../value/view/ohri-field-value-view.component';
+import { OHRIFieldValueView } from '../../value/ohri-field-value-view.component';
 
 const OHRITextArea: React.FC<OHRIFormFieldProps> = ({ question, onChange, handler }) => {
   const [field, meta] = useField(question.id);

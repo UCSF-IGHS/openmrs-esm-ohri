@@ -6,12 +6,12 @@ import {
   covidVaccinationStatusUUID,
   covidSpecimentTestDate_UUID,
   covidOutcomeUUID,
-} from '../../constants';
+} from '../constants';
 import EncounterList, {
   EncounterListColumn,
   getObsFromEncounter,
   getEncounterValues,
-} from '../../components/encounter-list/encounter-list.component';
+} from '../../../esm-ohri-core-app/src/components/encounter-list/encounter-list.component';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 
