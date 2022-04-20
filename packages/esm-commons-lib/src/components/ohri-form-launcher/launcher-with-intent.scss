@@ -1,0 +1,20 @@
+@import "../../root.scss";
+
+.launchButtonWrapper {
+  width: fit-content;
+  margin: 0 $spacing-03;
+}
+
+.toggleButtons {
+  width: fit-content;
+  margin: 0 $spacing-03;
+}
+
+.actionsButtonText {
+  @include carbon--type-style("body-short-01");
+  color: $interactive-01;
+}
+
+:global(.bx--tooltip--definition .bx--tooltip__trigger) {
+  border-bottom: none;
+}
