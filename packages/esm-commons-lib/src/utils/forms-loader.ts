@@ -1,6 +1,6 @@
 import * as semver from 'semver';
-import { OHRIFormField, OHRIFormSchema } from '../forms/types';
 import defaultFormsRegistry from '../packages/forms-registry';
+import { OHRIFormField } from 'openmrs-ohri-form-engine-lib';
 
 export interface FormJsonFile {
   version: string;
