@@ -5,7 +5,7 @@ import { OverflowMenuVertical32 } from '@carbon/icons-react';
 import moment from 'moment';
 import styles from './patient-list-workspace.scss';
 
-const PatientListWorkspace: React.FC<{
+export const PatientListWorkspace: React.FC<{
   header: string;
   onClose?: () => void;
   isVisible?: boolean;
@@ -94,5 +94,3 @@ const Overflow: React.FC<{
     </div>
   );
 };
-
-export default PatientListWorkspace;

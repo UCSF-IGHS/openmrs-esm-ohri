@@ -1,31 +1,9 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
-import { backendDependencies } from './openmrs-backend-dependencies';
-
-const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
-
-function setupOpenMRS() {
-  const moduleName = '@openmrs/esm-ohri-app';
-
-  const options = {
-    featureName: 'ohri',
-    moduleName,
-  };
-
-  defineConfigSchema(moduleName, {});
-
-  return {
-    pages: [],
-    extensions: [
-      {
-        id: 'patient-list-modal',
-        slot: 'patient-actions-slot',
-        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
-          featureName: 'patient-list-modal',
-          moduleName,
-        }),
-      },
-    ],
-  };
-}
-
-export { backendDependencies, importTranslation, setupOpenMRS };
+export * from './workspace/patient-list-workspace';
+export * from './components/patient-chart/ohri-patient-chart-sidenav.meta';
+export * from './components/banner-tags/patient-status-tag.component';
+export * from './components/data-table/o-table.component';
+export * from './components/modals/patient-list/add-patient-to-list-modal.component';
+export * from './components/empty-state/empty-state.component';
+export * from './components/encounter-list/multiple-encounter-list.component';
+export * from './components/encounter-list/encounter-list.component';
+export * from './api/api';

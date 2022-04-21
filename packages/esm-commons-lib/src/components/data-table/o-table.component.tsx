@@ -15,7 +15,7 @@ interface TableProps {
   tableRows: any;
 }
 
-const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
+export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
   return (
     <TableContainer>
       <DataTable rows={tableRows} headers={tableHeaders} isSortable={true} size="short">
@@ -50,5 +50,3 @@ const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
     </TableContainer>
   );
 };
-
-export default OTable;
