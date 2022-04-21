@@ -2,7 +2,7 @@ import { navigate, openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../empty-state/empty-state.component';
+import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
