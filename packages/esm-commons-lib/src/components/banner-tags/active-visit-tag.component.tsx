@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import styles from './active-visit-tag.scss';
 
-function ActiveVisitBannerTag({ patientUuid }) {
+export function ActiveVisitBannerTag({ patientUuid }) {
   const { currentVisit } = useVisit(patientUuid);
   const { t } = useTranslation();
   return (
@@ -29,5 +29,3 @@ function ActiveVisitBannerTag({ patientUuid }) {
     )
   );
 }
-
-export default ActiveVisitBannerTag;

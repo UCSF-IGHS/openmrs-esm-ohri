@@ -7,3 +7,4 @@ export * from './components/empty-state/empty-state.component';
 export * from './components/encounter-list/multiple-encounter-list.component';
 export * from './components/encounter-list/encounter-list.component';
 export * from './api/api';
+export * from './components/banner-tags/active-visit-tag.component';
