@@ -55,7 +55,7 @@ const columnsLab: EncounterListColumn[] = [
           form: { name: 'contact_tracing', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
-          label: 'Edit Details',
+          label: 'Edit Form',
           mode: 'edit',
         },
       ];

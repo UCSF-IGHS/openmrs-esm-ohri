@@ -79,7 +79,7 @@ const columns: EncounterListColumn[] = [
           form: { name: 'patner_notification', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
-          label: 'Edit Details',
+          label: 'Edit Form',
           mode: 'edit',
         },
       ];
