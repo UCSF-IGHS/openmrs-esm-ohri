@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './ohri-overflow-menu.scss';
 import { useTranslation } from 'react-i18next';
-import { applyFormIntent } from '../../utils/forms-loader';
+import { applyFormIntent } from 'openmrs-ohri-form-engine-lib';
 import { Button } from 'carbon-components-react';
 
 interface OverflowMenuProps {

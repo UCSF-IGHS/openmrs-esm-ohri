@@ -5,7 +5,9 @@ import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
-} from './components/patient-chart/ohri-patient-chart-sidenav.meta';
+  MultipleEncounterList,
+} from 'openmrs-esm-ohri-commons-lib';
+import { createOHRIDashboardLink, homeDashboardMeta } from './ohri-dashboard/ohri-dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -31,13 +33,6 @@ function setupOpenMRS() {
     ],
     extensions: [
       {
-        id: 'patient-hiv-status-tag',
-        slot: 'patient-banner-tags-slot',
-        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-status-tag.component'), options),
-        online: true,
-        offline: true,
-      },
-      {
         id: 'redirect-to-ohri-db-ext',
         slot: 'homepage-widgets-slot',
         load: getAsyncLifecycle(() => import('./components/redirect-dashboard/redirect-ohri-db.component'), {
@@ -48,27 +43,35 @@ function setupOpenMRS() {
           columnSpan: 4,
         },
       },
-      // {
-      //   id: 'home-dashboard',
-      //   slot: 'home-dashboard-slot',
-      //   load: getAsyncLifecycle(() => import('./pages/hiv/patient-list/patient-list.component'), {
-      //     featureName: 'home',
-      //     moduleName,
-      //   }),
-      //   meta: homeDashboardMeta,
-      //   online: true,
-      //   offline: true,
-      // },
-      // {
-      //   id: 'ohri-nav-items-ext',
-      //   slot: 'ohri-nav-items-slot',
-      //   load: getAsyncLifecycle(() => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'), {
-      //     featureName: 'nav-items',
-      //     moduleName,
-      //   }),
-      //   online: true,
-      //   offline: true,
-      // },
+      {
+        id: 'home-dashboard-ext',
+        slot: 'dashboard-links-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options),
+        meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'home-dashboard',
+        slot: 'home-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./components/all-patients-list/patient-list.component'), {
+          featureName: 'home',
+          moduleName,
+        }),
+        meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'ohri-nav-items-ext',
+        slot: 'ohri-nav-items-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'), {
+          featureName: 'nav-items',
+          moduleName,
+        }),
+        online: true,
+        offline: true,
+      },
       {
         id: 'patient-list-modal',
         slot: 'patient-actions-slot',
@@ -86,14 +89,14 @@ function setupOpenMRS() {
         offline: true,
         order: 100,
       },
-      // {
-      //   id: 'multiple-encounters-ext',
-      //   slot: 'patient-chart-summary-dashboard-slot',
-      //   load: getAsyncLifecycle(() => import('./pages/multiple-encounters/multiple-encounter-summary.component'), {
-      //     featureName: 'multiple-encounters-summary',
-      //     moduleName,
-      //   }),
-      // },
+      {
+        id: 'multiple-encounters-ext',
+        slot: 'patient-chart-summary-dashboard-slot',
+        load: getSyncLifecycle(MultipleEncounterList, {
+          featureName: 'multiple-encounters-summary',
+          moduleName,
+        }),
+      },
     ],
   };
 }

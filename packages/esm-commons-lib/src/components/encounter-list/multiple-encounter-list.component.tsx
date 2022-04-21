@@ -3,9 +3,9 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './encounter-list.scss';
 import { encounterRepresentation } from '../../constants';
-import EmptyState from '../empty-state/empty-state.component';
+import { EmptyState } from '../empty-state/empty-state.component';
 import { DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
-import OTable from '../data-table/o-table.component';
+import { OTable } from '../data-table/o-table.component';
 import { getObsFromEncounter } from './encounter-list.component';
 
 export interface MultipleEncounterListColumn {
@@ -34,7 +34,7 @@ export function getObsFromMultipleEncounters(
   return getObsFromEncounter(encounter, obsConcept, isDate, isTrueFalseConcept);
 }
 
-const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
+export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
   patientUuid,
   encounterTypeUuids,
   columns,
@@ -182,5 +182,3 @@ const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
     </>
   );
 };
-
-export default MultipleEncounterList;
