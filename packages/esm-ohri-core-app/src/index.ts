@@ -6,16 +6,17 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
   MultipleEncounterList,
+  createOHRIDashboardLink,
 } from 'openmrs-esm-ohri-commons-lib';
-import { createOHRIDashboardLink, homeDashboardMeta } from './ohri-dashboard/ohri-dashboard.meta';
+import { homeDashboardMeta } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
-  const moduleName = '@openmrs/esm-ohri-app';
+  const moduleName = 'openmrs-esm-ohri-core-app';
 
   const options = {
-    featureName: 'ohri',
+    featureName: 'ohri-core',
     moduleName,
   };
 

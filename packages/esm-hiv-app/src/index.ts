@@ -12,65 +12,48 @@ import {
   partnerNotificationServices_dashboardMeta,
   medications_dashboardMeta,
   appointments_dashboardMeta,
-} from './hiv/care-and-treatment/dashboard.meta';
-import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
-import {
-  careAndTreatmentDashboardMeta,
-  createOHRIDashboardLink,
-  hivFolderDashboardMeta,
-  homeDashboardMeta,
-  htsDashboardMeta,
-} from '../../esm-ohri-core-app/src/ui/ohri-dashboard/ohri-dashboard.meta';
+} from './care-and-treatment/dashboard.meta';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
-} from './components/patient-chart/ohri-patient-chart-sidenav.meta';
+  createOHRIDashboardLink,
+  PatientStatusBannerTag,
+  OHRIHome,
+  OHRIWelcomeSection,
+} from 'openmrs-esm-ohri-commons-lib';
 import {
+  hivFolderDashboardMeta,
+  careAndTreatmentDashboardMeta,
+  htsDashboardMeta,
   clearHivPreventionSidenavRegistry,
   createHIVPreventionDashboardLink,
   hts_dashboardMeta,
   preExposureProphylaxis_dashboardMeta,
-} from './hiv-prevention/dashboard.meta';
+} from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
-  const moduleName = '@openmrs/esm-ohri-app';
+  const moduleName = 'openmrs-esm-ohri-hiv-app';
 
   const options = {
-    featureName: 'ohri',
+    featureName: 'ohri-hiv',
     moduleName,
   };
 
   defineConfigSchema(moduleName, {});
-
-  // Load configurations
-  provide(patientDashboardsConfig);
 
   //Clear sidenav items to avoid duplicates
   clearCareAndTreatmentSidenavRegistry();
   clearHivPreventionSidenavRegistry();
 
   return {
-    pages: [
-      {
-        load: getAsyncLifecycle(() => import('./pages/hts/summary-page/hts-summary-page'), options),
-        route: /^ohri\/.+\/hts/,
-      },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^form-render-test/,
-      },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^dashboard/,
-      },
-    ],
+    pages: [],
     extensions: [
       {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/hiv/encounters-list/hts-overview-list.component'), {
+        load: getAsyncLifecycle(() => import('./views/hts/encounters-list/hts-overview-list.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
@@ -82,7 +65,7 @@ function setupOpenMRS() {
         id: 'hts-service-summary-list-ext',
         slot: 'hts-service-summary-dashboard-slot',
         load: getAsyncLifecycle(
-          () => import('./pages/service-summary/encounter-list/service-summary-encounter-list.component'),
+          () => import('./views/service-summary/encounter-list/service-summary-encounter-list.component'),
           {
             featureName: 'hts-service-summary-list',
             moduleName,
@@ -92,7 +75,7 @@ function setupOpenMRS() {
       {
         id: 'hts-lab-results-list-ext',
         slot: 'hts-lab-results-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/lab-results/overview/lab-results-overview.component'), {
+        load: getAsyncLifecycle(() => import('./views/lab-results/overview/lab-results-overview.component'), {
           featureName: 'hts-lab-results-list',
           moduleName,
         }),
@@ -104,7 +87,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-header-ext',
         slot: 'hts-home-header-slot',
-        load: getAsyncLifecycle(() => import('./pages/hiv/hts/welcome-section/hts-welcome-section.component'), {
+        load: getSyncLifecycle(OHRIWelcomeSection, {
           featureName: 'hts-home-header',
           moduleName,
         }),
@@ -112,7 +95,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-tile-ext',
         slot: 'hts-home-tiles-slot',
-        load: getAsyncLifecycle(() => import('./pages/hiv/hts/summary-tiles/hts-summary-tiles.component'), {
+        load: getAsyncLifecycle(() => import('./views/hts/home/summary-tiles/hts-summary-tiles.component'), {
           featureName: 'hts-home-tiles',
           moduleName,
         }),
@@ -120,7 +103,7 @@ function setupOpenMRS() {
       {
         id: 'hts-home-tabs-ext',
         slot: 'hts-home-tabs-slot',
-        load: getAsyncLifecycle(() => import('./pages/hiv/hts/patient-tabs/ohri-patient-tabs.component'), {
+        load: getAsyncLifecycle(() => import('./views//hts/home/patient-tabs/ohri-patient-tabs.component'), {
           featureName: 'hts-home-tabs',
           moduleName,
         }),
@@ -128,7 +111,7 @@ function setupOpenMRS() {
       {
         id: 'ct-home-header-ext',
         slot: 'ct-home-header-slot',
-        load: getAsyncLifecycle(() => import('./ohri-home/welcome-section/ohri-welcome-section.component'), {
+        load: getSyncLifecycle(OHRIWelcomeSection, {
           featureName: 'ct-home-header',
           moduleName,
         }),
@@ -137,7 +120,7 @@ function setupOpenMRS() {
         id: 'ct-home-tile-ext',
         slot: 'ct-home-tiles-slot',
         load: getAsyncLifecycle(
-          () => import('./pages/hiv/care-and-treatment/home/summary-tiles/ct-summary-tiles.component'),
+          () => import('./views/hts/care-and-treatment/home/summary-tiles/ct-summary-tiles.component'),
           {
             featureName: 'ct-home-tiles',
             moduleName,
@@ -147,62 +130,15 @@ function setupOpenMRS() {
       {
         id: 'ct-home-tabs-ext',
         slot: 'ct-home-tabs-slot',
-        load: getAsyncLifecycle(() => import('./pages/hiv/patient-list-tabs/ct-patient-list-tabs.component'), {
+        load: getAsyncLifecycle(() => import('./views/hts/patient-list-tabs/ct-patient-list-tabs.component'), {
           featureName: 'ct-home-tabs',
-          moduleName,
-        }),
-      },
-      {
-        id: 'hts-encounter-form-ext',
-        load: getAsyncLifecycle(() => import('./pages/hiv/encounter-form/hts-encounter-form.component'), {
-          featureName: 'hts-encounter-form',
           moduleName,
         }),
       },
       {
         id: 'patient-hiv-status-tag',
         slot: 'patient-banner-tags-slot',
-        load: getAsyncLifecycle(() => import('./components/banner-tags/patient-status-tag.component'), options),
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'redirect-to-ohri-db-ext',
-        slot: 'homepage-widgets-slot',
-        load: getAsyncLifecycle(() => import('./components/redirect-dashboard/redirect-ohri-db.component'), {
-          featureName: 'redirect-to-ohri-db',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },
-      {
-        id: 'home-dashboard-ext',
-        slot: 'dashboard-links-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options),
-        meta: homeDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'home-dashboard',
-        slot: 'home-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/hiv/patient-list/patient-list.component'), {
-          featureName: 'home',
-          moduleName,
-        }),
-        meta: homeDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'ohri-nav-items-ext',
-        slot: 'ohri-nav-items-slot',
-        load: getAsyncLifecycle(() => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'), {
-          featureName: 'nav-items',
-          moduleName,
-        }),
+        load: getSyncLifecycle(PatientStatusBannerTag, options),
         online: true,
         offline: true,
       },
@@ -225,7 +161,7 @@ function setupOpenMRS() {
       {
         id: 'care-and-treatment-dashboard',
         slot: 'care-and-treatment-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./ohri-home/ohri-home-component'), {
+        load: getSyncLifecycle(OHRIHome, {
           featureName: 'care and treatment dashboard',
           moduleName,
         }),
@@ -244,21 +180,13 @@ function setupOpenMRS() {
       {
         id: 'hts-dashboard',
         slot: 'hts-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./ohri-home/ohri-home-component'), {
+        load: getSyncLifecycle(OHRIHome, {
           featureName: 'hts dashboard',
           moduleName,
         }),
         meta: htsDashboardMeta,
         online: true,
         offline: true,
-      },
-      {
-        id: 'patient-list-modal',
-        slot: 'patient-actions-slot',
-        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
-          featureName: 'patient-list-modal',
-          moduleName,
-        }),
       },
       {
         id: 'hts-summary-dashboard',
@@ -279,7 +207,7 @@ function setupOpenMRS() {
       {
         id: 'pre-exposure-prophylaxis-ext',
         slot: 'pre-exposure-prophylaxis-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component'), {
+        load: getAsyncLifecycle(() => import('./views/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component'), {
           featureName: 'pre-exposure-prophylaxis',
           moduleName,
         }),
@@ -303,7 +231,7 @@ function setupOpenMRS() {
       {
         id: 'program-management-summary-ext',
         slot: 'program-management-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/program-management/program-management-summary.component'), {
+        load: getAsyncLifecycle(() => import('./views/program-management/program-management-summary.component'), {
           featureName: 'program-management-summary',
           moduleName,
         }),
@@ -319,7 +247,7 @@ function setupOpenMRS() {
       {
         id: 'visits-summary-ext',
         slot: 'visits-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/visits/visits-summary.component'), {
+        load: getAsyncLifecycle(() => import('./views/visits/visits-summary.component'), {
           featureName: 'visits-summary',
           moduleName,
         }),
@@ -335,7 +263,7 @@ function setupOpenMRS() {
       {
         id: 'general-counselling-summary-ext',
         slot: 'general-counselling-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/general-counselling/general-counselling-summary.component'), {
+        load: getAsyncLifecycle(() => import('./views/general-counselling/general-counselling-summary.component'), {
           featureName: 'general-counselling-summary',
           moduleName,
         }),
@@ -351,7 +279,7 @@ function setupOpenMRS() {
       {
         id: 'adherence-counselling-summary-ext',
         slot: 'adherence-counselling-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/adherence-counselling/adherence-counselling-summary.component'), {
+        load: getAsyncLifecycle(() => import('./views/adherence-counselling/adherence-counselling-summary.component'), {
           featureName: 'adherence-counselling-summary',
           moduleName,
         }),
@@ -368,7 +296,7 @@ function setupOpenMRS() {
         id: 'partner-notification-services-ext',
         slot: 'partner-notification-services-slot',
         load: getAsyncLifecycle(
-          () => import('./pages/partner-notification-services/partner-notification-services.component'),
+          () => import('./views/partner-notification-services/partner-notification-services.component'),
           {
             featureName: 'partner-notification-services',
             moduleName,
@@ -394,7 +322,7 @@ function setupOpenMRS() {
       {
         id: 'medications-summary-ext',
         slot: 'medications-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/medications/medications.component'), {
+        load: getAsyncLifecycle(() => import('./views/medications/medications.component'), {
           featureName: 'medications-summary',
           moduleName,
         }),
@@ -410,17 +338,10 @@ function setupOpenMRS() {
       {
         id: 'appointments-summary-ext',
         slot: 'appointments-summary-slot',
-        load: getAsyncLifecycle(() => import('./pages/appointments/appointments.component'), {
+        load: getAsyncLifecycle(() => import('./views/appointments/appointments.component'), {
           featureName: 'appointments-summary',
           moduleName,
         }),
-      },
-      {
-        name: 'form-render-link',
-        slot: 'app-menu-slot',
-        load: getAsyncLifecycle(() => import('./links/form-render-app-menu-link.component'), options),
-        online: true,
-        offline: true,
       },
       {
         id: 'clinical-views-divider',
@@ -430,14 +351,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
         order: 100,
-      },
-      {
-        id: 'multiple-encounters-ext',
-        slot: 'patient-chart-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./pages/multiple-encounters/multiple-encounter-summary.component'), {
-          featureName: 'multiple-encounters-summary',
-          moduleName,
-        }),
       },
     ],
   };

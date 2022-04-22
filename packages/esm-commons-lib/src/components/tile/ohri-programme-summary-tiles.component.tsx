@@ -1,8 +1,8 @@
 import { Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
-import OHRISummaryTileTablet from './ohri-summary-tile-tablet.component';
+import { OHRISummaryTileTablet } from './ohri-summary-tile-tablet.component';
 import styles from './ohri-programme-summary-tiles.scss';
-import OHRISummaryTile from './ohri-summary-tile.component';
+import { OHRISummaryTile } from './ohri-summary-tile.component';
 
 export interface SummaryTile {
   title: string;
@@ -16,7 +16,7 @@ interface Props {
   tiles: Array<SummaryTile>;
 }
 
-function OHRIProgrammeSummaryTiles(Props) {
+export function OHRIProgrammeSummaryTiles(Props) {
   return (
     <>
       <Row className={styles.desktopView}>
@@ -39,5 +39,3 @@ function OHRIProgrammeSummaryTiles(Props) {
     </>
   );
 }
-
-export default OHRIProgrammeSummaryTiles;
