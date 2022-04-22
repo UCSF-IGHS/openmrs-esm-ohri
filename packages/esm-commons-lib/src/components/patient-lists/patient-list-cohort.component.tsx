@@ -7,7 +7,7 @@ import {
   getReportingCohortMembers,
 } from '../../api/api';
 import moment from 'moment';
-import TableEmptyState from '../empty-state/table-empty-state.component';
+import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from 'carbon-components-react';
 import { AddPatientToListOverflowMenuItem } from '../modals/patient-list/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
@@ -166,7 +166,7 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
   );
 };
 
-const CohortPatientList: React.FC<CohortPatientListProps> = ({
+export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   cohortId,
   cohortSlotName,
   isReportingCohort,
@@ -463,5 +463,3 @@ const CohortPatientList: React.FC<CohortPatientListProps> = ({
     </div>
   );
 };
-
-export default CohortPatientList;

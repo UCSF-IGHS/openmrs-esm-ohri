@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tabs, Tab } from 'carbon-components-react';
 import styles from './ohri-patient-list-tabs.scss';
-import CohortPatientList from '../patient-lists/patient-list-cohort.component';
+import { CohortPatientList } from '../patient-lists/patient-list-cohort.component';
 
-function OHRIPatientListTabs({ patientListConfigs }) {
+export function OHRIPatientListTabs({ patientListConfigs }) {
   return (
     <Tabs type="container" className={styles.tabContainer}>
       {patientListConfigs.map((config, index) => {
@@ -26,5 +26,3 @@ function OHRIPatientListTabs({ patientListConfigs }) {
     </Tabs>
   );
 }
-
-export default OHRIPatientListTabs;
