@@ -2,9 +2,7 @@
   "name": "openmrs-ohri-app",
   "private": true,
   "description": "OHRI MicroFrontend for OpenMRS SPA",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
     "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
@@ -14,6 +12,7 @@
     "extract-translations": "lerna run extract-translations",
     "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "start": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources 'packages/esm-*-app/'",
+    "start:core": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources 'packages/esm-ohri-core-app/'",
     "start:covid": "openmrs develop --sources packages/esm-covid-app --backend https://ohri-demo.globalhealthapp.net",
     "start:hiv": "openmrs develop --sources packages/esm-hiv-app --backend https://ohri-demo.globalhealthapp.net",
     "start:forms": "openmrs develop --sources packages/esm-form-render-app --backend https://ohri-demo.globalhealthapp.net",
