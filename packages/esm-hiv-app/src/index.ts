@@ -13,6 +13,7 @@ import {
   medications_dashboardMeta,
   appointments_dashboardMeta,
 } from './care-and-treatment/dashboard.meta';
+
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
@@ -21,6 +22,10 @@ import {
   OHRIHome,
   OHRIWelcomeSection,
 } from 'openmrs-esm-ohri-commons-lib';
+
+import { addToBaseFormsRegistry } from 'openmrs-ohri-form-engine-lib';
+import hivForms from './forms/forms-registry';
+
 import {
   hivFolderDashboardMeta,
   careAndTreatmentDashboardMeta,
@@ -47,6 +52,7 @@ function setupOpenMRS() {
   clearCareAndTreatmentSidenavRegistry();
   clearHivPreventionSidenavRegistry();
 
+  addToBaseFormsRegistry(hivForms);
   return {
     pages: [],
     extensions: [
