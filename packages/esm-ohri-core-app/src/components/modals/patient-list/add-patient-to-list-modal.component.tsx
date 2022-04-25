@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
 const AddPatientToListOverflowMenuItem: React.FC<{
-  patientUuid: string;
-  displayText?: string;
-  excludeCohorts?: Array<string>;
+  patientUuid: string,
+  displayText?: string,
+  excludeCohorts?: Array<string>,
 }> = ({ patientUuid, displayText, excludeCohorts }) => {
   const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
@@ -43,14 +43,14 @@ const AddPatientToListOverflowMenuItem: React.FC<{
 };
 
 export const AddPatientToListModal: React.FC<{
-  isOpen: boolean;
-  close: () => void;
-  patientUuid: string;
-  title?: string;
-  cohortType?: string;
-  excludeCohorts?: Array<string>;
+  isOpen: boolean,
+  close: () => void,
+  patientUuid: string,
+  title?: string,
+  cohortType?: string,
+  excludeCohorts?: Array<string>,
 }> = ({ isOpen, close, patientUuid, cohortType, title, excludeCohorts }) => {
-  const [cohorts, setCohorts] = useState<Array<{ uuid: string; name: string }>>([]);
+  const [cohorts, setCohorts] = useState<Array<{ uuid: string, name: string }>>([]);
   const [alreadySubscribedCohorts, setAlreadySubscribedCohorts] = useState([]);
   const [currentMemberships, setCurrentMemberships] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
