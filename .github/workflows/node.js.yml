@@ -1,10 +1,16 @@
-name: Node.js CI
+name: working CI
 
 on:
   push:
-    branches: [master]
+    tags:
+      - '*'
+    branches:
+      - '*'
+
   pull_request:
-    branches: [master]
+    branches:
+      - '*'
+    types: [opened, synchronize]
   release:
     types:
       - created
