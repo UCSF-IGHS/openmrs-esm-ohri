@@ -1,14 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
-  createOHRIPatientChartSideNavLink,
-  patientChartDivider_dashboardMeta,
-  createOHRIDashboardLink,
-  PatientStatusBannerTag,
-  OHRIHome,
-  OHRIWelcomeSection,
-} from 'openmrs-esm-ohri-commons-lib';
-import {
   CaCxAppointments_dashboardMeta,
   CaCxSummary_dashboardMeta,
   CaCxVisits_dashboardMeta,
