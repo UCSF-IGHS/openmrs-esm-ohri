@@ -26,8 +26,8 @@ jobs:
         with:
           node-version: '16.x'
       - run: npx lerna bootstrap
-      - run: npm run lint
-      - run: npm run build
+      - run: npx lerna run lint -- --fix
+      - run: npx lerna run build --if-exists
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -78,6 +78,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
+  
   deploy_ohri_core_app:
     runs-on: ubuntu-latest
 
@@ -251,3 +252,22 @@ jobs:
             privateKey: ${{ secrets.HISTAC_KEY}}
 
             port: ${{ secrets.HISTAC_PORT }}
+  
+  working:
+      runs-on: ubuntu-latest
+
+      needs: release
+
+      if: ${{ github.ref == 'refs/heads/working' }}
+
+      steps:
+        # Update the Microfrontends to reflect what we have in the Working branch
+        - uses: garygrossgarten/github-action-ssh@release
+          name: Run the Update MicroFronEnd Script
+          with:
+              command: cd /usr/share/tomcat/microfrontends/working && sh update_microfrontends.sh
+              host: ${{ secrets.HISTAC_HOST }}
+              username: ${{ secrets.HISTAC_USERNAME }}
+              privateKey: ${{ secrets.HISTAC_KEY}}
+              port: ${{ secrets.HISTAC_PORT }}
+    
