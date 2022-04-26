@@ -15,16 +15,13 @@
     "start:core": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources 'packages/esm-ohri-core-app/'",
     "start:covid": "openmrs develop --sources packages/esm-covid-app --backend https://ohri-demo.globalhealthapp.net",
     "start:hiv": "openmrs develop --sources packages/esm-hiv-app --backend https://ohri-demo.globalhealthapp.net",
-    "start:forms": "openmrs develop --sources packages/esm-form-render-app --backend https://ohri-demo.globalhealthapp.net",
+    "start:form-render": "openmrs develop --sources packages/esm-form-render-app --backend https://ohri-demo.globalhealthapp.net",
     "test": "jest --config jest.config.json --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.json",
     "verify": "lerna run lint && lerna run test && lerna run typescript",
-    
-    "run:omrs": "openmrs",
-    "run:shell": "turbo run watch --filter=@openmrs/esm-app-shell --parallel --no-cache",
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes", 
     "release": "lerna version --no-git-tag-version",
-    "setup": "lerna bootstrap && npx run build && lerna clean --yes && lerna bootstrap"
+    "setup": "lerna clean --yes && lerna bootstrap && npx lerna run build"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",
