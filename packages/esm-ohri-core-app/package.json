@@ -1,6 +1,6 @@
 {
   "name": "openmrs-esm-ohri-core-app",
-  "version": "0.6.32",
+  "version": "0.6.32-alpha.0",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-core-app.js",
   "main": "src/index.ts",
@@ -63,8 +63,8 @@
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "3.x",
-    "carbon-components": "^10.19.0",
     "@openmrs/esm-patient-common-lib": "3.x",
+    "carbon-components": "^10.19.0",
     "carbon-icons": "^7.0.7",
     "dayjs": "^1.8.16",
     "react": "^16.9.0",
