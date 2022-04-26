@@ -1,12 +1,12 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { filterFHIRPatientsByName } from './utils';
 import { basePath, finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../../constants';
 import {
   fetchPatientsFromObservationCodeConcept,
   fetchTodayClients,
   TableEmptyState,
+  filterFHIRPatientsByName,
 } from 'openmrs-esm-ohri-commons-lib';
 
 export const columns = [

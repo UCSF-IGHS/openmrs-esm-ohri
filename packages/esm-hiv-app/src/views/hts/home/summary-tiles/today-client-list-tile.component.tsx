@@ -1,9 +1,8 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { TableEmptyState, fetchTodayClients } from 'openmrs-esm-ohri-commons-lib';
+import { TableEmptyState, fetchTodayClients, filterFHIRPatientsByName } from 'openmrs-esm-ohri-commons-lib';
 import { basePath } from '../../../../constants';
-import { filterFHIRPatientsByName } from './utils';
 
 export const columns = [
   {
