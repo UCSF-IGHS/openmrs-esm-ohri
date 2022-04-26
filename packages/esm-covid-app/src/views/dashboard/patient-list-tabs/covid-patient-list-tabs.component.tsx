@@ -24,10 +24,10 @@ import {
   findObs,
   getObsFromEncounter,
   getObsFromEncounters,
-} from '../../../components/encounter-list/encounter-list.component';
+  OHRIPatientListTabs,
+  returnVisitDateConcept,
+} from 'openmrs-esm-ohri-commons-lib';
 import moment from 'moment';
-import { OHRIPatientListTabs } from 'openmrs-esm-ohri-commons-lib';
-import { returnVisitDateConcept } from 'openmrs-esm-ohri-commons-lib/src/constants';
 
 function CovidHomePatientTabs() {
   const { t } = useTranslation();

@@ -5,8 +5,8 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import moment from 'moment';
 import { getForm } from 'openmrs-ohri-form-engine-lib';
-import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 import { EmptyState, OHRIFormLauncherWithIntent, OTable } from 'openmrs-esm-ohri-commons-lib';
+import { launchOHRIWorkSpace } from 'openmrs-esm-ohri-commons-lib/src/workspace/ohri-workspace-utils';
 
 interface CovidOverviewListProps {
   patientUuid: string;

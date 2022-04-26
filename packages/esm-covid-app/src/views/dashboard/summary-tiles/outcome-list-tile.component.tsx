@@ -9,8 +9,7 @@ import {
   covidPresentSymptonsConcept_UUID,
 } from '../../../constants';
 
-import { getObsFromEncounter, filterFHIRPatientsByName } from 'openmrs-esm-ohri-commons-lib';
-import { basePath } from 'openmrs-esm-ohri-commons-lib/src/constants';
+import { getObsFromEncounter, filterFHIRPatientsByName, TableEmptyState, basePath } from 'openmrs-esm-ohri-commons-lib';
 
 export const columns = [
   {

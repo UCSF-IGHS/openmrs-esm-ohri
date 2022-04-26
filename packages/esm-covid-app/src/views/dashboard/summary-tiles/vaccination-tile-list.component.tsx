@@ -2,14 +2,17 @@ import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFromObservationCodeConcept, getReportingCohort } from '../../../api/api';
-import EmptyState from '../../../components/empty-state/empty-state.component';
 import {
   covidVaccinatedClients,
   covidVaccinationAdministeredConcept_UUID,
   covidVaccinationDoseAdmininstered_UUID,
 } from '../../../constants';
-import TableEmptyState from '../../../components/empty-state/table-empty-state.component';
-import { basePath } from 'openmrs-esm-ohri-commons-lib/src/constants';
+import {
+  basePath,
+  finalHIVCodeConcept,
+  finalPositiveHIVValueConcept,
+} from 'openmrs-esm-ohri-commons-lib/src/constants';
+import { filterFHIRPatientsByName, TableEmptyState } from 'openmrs-esm-ohri-commons-lib';
 
 export const columns = [
   {

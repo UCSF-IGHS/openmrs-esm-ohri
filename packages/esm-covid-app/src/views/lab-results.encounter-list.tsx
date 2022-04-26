@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from '../covid.scss';
+import styles from './covid.scss';
 import { Tabs, Tab, Tag } from 'carbon-components-react';
 import {
   covidLabOrderDate_UUID,
