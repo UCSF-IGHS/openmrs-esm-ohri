@@ -1,6 +1,6 @@
 {
   "name": "openmrs-esm-ohri-core-app",
-  "version": "0.6.31",
+  "version": "0.6.32",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-core-app.js",
   "main": "src/index.ts",
@@ -20,8 +20,12 @@
     "coverage": "npm test -- --coverage",
     "badges": "npm run coverage && jest-coverage-badges --output './badges' "
   },
-  "browserslist": ["extends browserslist-config-openmrs"],
-  "keywords": ["openmrs"],
+  "browserslist": [
+    "extends browserslist-config-openmrs"
+  ],
+  "keywords": [
+    "openmrs"
+  ],
   "publishConfig": {
     "access": "public"
   },
