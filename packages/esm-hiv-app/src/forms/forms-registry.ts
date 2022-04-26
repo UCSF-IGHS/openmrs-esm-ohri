@@ -60,5 +60,8 @@ export default {
     patner_notification: {
       '1.0': patner_notification_v_1_0,
     },
+    mental_health_assessment: {
+      '1.0': mental_health_assessment_v_1_0,
+    },
   },
 };

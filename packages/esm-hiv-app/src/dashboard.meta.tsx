@@ -7,7 +7,8 @@ import Events from '../../esm-ohri-core-app/src/utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(hts_dashboardMeta.name) !== -1 || pathname.indexOf(preExposureProphylaxis_dashboardMeta.name) !== -1;
+  pathname.indexOf(encodeURIComponent(hts_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(preExposureProphylaxis_dashboardMeta.title)) !== -1;
 
 // TODO This needs to be refactored to automatically get the length/size
 const menuItems = 2;
@@ -45,10 +46,10 @@ export const createHIVPreventionDashboardLink = db => {
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
-            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}
+            className={isActiveLink(encodeURIComponent(navItem.title)) ? styles.currentNavItem : ''}
+            href={`${basePath}/${encodeURIComponent(navItem.title)}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              handleLinkClick(e, `${basePath}/${encodeURIComponent(navItem.title)} `);
               forceRerender();
               Events.dispatch('navigation-from-hiv');
             }}>
@@ -78,13 +79,6 @@ export const preExposureProphylaxis_dashboardMeta = {
   slot: 'pre-exposure-prophylaxis-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Pre-exposure Prophylaxis',
-};
-
-export const appointmentsDashboardMeta = {
-  name: 'appointments',
-  slot: 'appointments-dashboard-slot',
-  config: { columns: 1, type: 'grid', icon: Calendar32 },
-  title: 'Appointments',
 };
 
 export const hivFolderDashboardMeta = {
