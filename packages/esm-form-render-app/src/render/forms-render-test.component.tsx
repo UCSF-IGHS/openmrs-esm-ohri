@@ -2,11 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
 import styles from './form-render.scss';
 import { Run32, Maximize32 } from '@carbon/icons-react';
-import { OHRIFormSchema, SessionMode } from '../types';
-import OHRIForm from '../ohri-form.component';
-import { applyFormIntent, loadSubforms } from '../../utils/forms-loader';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
+import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema, SessionMode } from 'openmrs-ohri-form-engine-lib';
 
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';
