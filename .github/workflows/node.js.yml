@@ -57,7 +57,7 @@ jobs:
           git config user.email "<>"
       - name: commit
         run: |
-          git add date.log
+          git add .
           git commit -m "Prerelease version" --no-verify  
       - run: yarn run ci:publish-next
         env:
