@@ -1,4 +1,4 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
+import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
   clearCareAndTreatmentSidenavRegistry,
@@ -15,8 +15,6 @@ import {
 } from './care-and-treatment/dashboard.meta';
 
 import {
-  createOHRIPatientChartSideNavLink,
-  patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
   PatientStatusBannerTag,
   OHRIHome,
@@ -348,15 +346,6 @@ function setupOpenMRS() {
           featureName: 'appointments-summary',
           moduleName,
         }),
-      },
-      {
-        id: 'clinical-views-divider',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta), options),
-        meta: patientChartDivider_dashboardMeta,
-        online: true,
-        offline: true,
-        order: 100,
       },
     ],
   };
