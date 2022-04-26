@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './active-visit-tag.scss';
 import { isPatientHivPositive } from './patientHivStatus';
 
-function PatientStatusBannerTag({ patientUuid }) {
+export function PatientStatusBannerTag({ patientUuid }) {
   const { currentVisit } = useVisit(patientUuid);
   const { t } = useTranslation();
   const [hivPositive, setHivPositive] = useState(false);
@@ -26,5 +26,3 @@ function PatientStatusBannerTag({ patientUuid }) {
 
   return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
 }
-
-export default PatientStatusBannerTag;

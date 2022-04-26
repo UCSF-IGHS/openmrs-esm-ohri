@@ -14,7 +14,7 @@ interface EmptyStateProps {
   showLaunchLink?: boolean;
 }
 
-const EmptyStateComingSoon: React.FC<EmptyStateProps> = ({ headerTitle, displayText }) => {
+export const EmptyStateComingSoon: React.FC<EmptyStateProps> = ({ headerTitle, displayText }) => {
   const { t } = useTranslation();
   return (
     <Tile light>
@@ -34,5 +34,3 @@ const EmptyStateComingSoon: React.FC<EmptyStateProps> = ({ headerTitle, displayT
     </Tile>
   );
 };
-
-export default EmptyStateComingSoon;

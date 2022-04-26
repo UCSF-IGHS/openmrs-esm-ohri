@@ -14,7 +14,7 @@ interface EmptyStateProps {
   hideFormLauncher?: boolean;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({
+export const EmptyState: React.FC<EmptyStateProps> = ({
   headerTitle,
   displayText,
   launchFormComponent,
@@ -49,5 +49,3 @@ const EmptyState: React.FC<EmptyStateProps> = ({
     </Tile>
   );
 };
-
-export default EmptyState;

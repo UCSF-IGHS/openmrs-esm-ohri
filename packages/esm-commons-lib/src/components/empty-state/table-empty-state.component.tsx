@@ -10,7 +10,7 @@ import {
 } from 'carbon-components-react';
 import React from 'react';
 
-const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: string }>; message: string }> = ({
+export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: string }>; message: string }> = ({
   tableHeaders,
   message,
 }) => {
@@ -45,5 +45,3 @@ const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: str
     </div>
   );
 };
-
-export default TableEmptyState;

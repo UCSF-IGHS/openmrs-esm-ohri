@@ -32,7 +32,7 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
     name: workspaceName,
     title: props.title,
     preferredWindowSize: <any>props.screenSize,
-    load: getAsyncLifecycle(() => import('./../forms/ohri-form.component'), workspaceMeta),
+    load: getAsyncLifecycle(() => import('../forms/ohri-form.component'), workspaceMeta),
   });
 
   launchPatientWorkspace(workspaceName, {

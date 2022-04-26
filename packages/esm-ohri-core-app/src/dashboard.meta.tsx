@@ -3,6 +3,7 @@ import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
 import Events from './utils/events';
+import { Home32 } from '@carbon/icons-react';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
@@ -109,4 +110,12 @@ export const drugOrders_dashboardMeta = {
   slot: 'hts-drug-orders-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Drug Orders',
+};
+
+export const homeDashboardMeta = {
+  name: 'home',
+  slot: 'home-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: Home32 },
+  isLink: true,
+  title: 'Home',
 };

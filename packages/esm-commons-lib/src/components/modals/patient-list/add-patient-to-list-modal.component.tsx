@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
-const AddPatientToListOverflowMenuItem: React.FC<{
+export const AddPatientToListOverflowMenuItem: React.FC<{
   patientUuid: string;
   displayText?: string;
   excludeCohorts?: Array<string>;
@@ -181,5 +181,3 @@ export const AddPatientToListModal: React.FC<{
     </>
   );
 };
-
-export default AddPatientToListOverflowMenuItem;

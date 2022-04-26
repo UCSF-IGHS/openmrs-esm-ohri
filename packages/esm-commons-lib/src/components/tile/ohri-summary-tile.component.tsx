@@ -3,7 +3,7 @@ import { Button, Tile } from 'carbon-components-react';
 import { ArrowRight32 } from '@carbon/icons-react';
 import styles from './ohri-summary-tile.scss';
 
-const OHRISummaryTile: React.FC<OHRISummaryTileProps> = ({ title, subTitle, value, onClickView }) => {
+export const OHRISummaryTile: React.FC<OHRISummaryTileProps> = ({ title, subTitle, value, onClickView }) => {
   return (
     <Tile className={styles.tile}>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -33,5 +33,3 @@ export interface OHRISummaryTileProps {
   value: number;
   onClickView: () => void;
 }
-
-export default OHRISummaryTile;

@@ -1,8 +1,8 @@
 {
   "name": "openmrs-esm-ohri-hiv-app",
-  "version": "0.6.29",
+  "version": "0.6.31",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
-  "browser": "dist/openmrs-ohri-app.js",
+  "browser": "dist/openmrs-esm-ohri-hiv-app.js",
   "main": "src/index.ts",
   "license": "MIT",
   "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",

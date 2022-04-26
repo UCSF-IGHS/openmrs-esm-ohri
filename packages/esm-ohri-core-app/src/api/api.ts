@@ -1,6 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import moment from 'moment';
-import { getObsFromEncounter } from '../components/encounter-list/encounter-list.component';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,

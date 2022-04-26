@@ -2,11 +2,10 @@ import { navigate, openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import EmptyState from '../empty-state/empty-state.component';
-import { applyFormIntent, getForm, updateExcludeIntentBehaviour } from '../../utils/forms-loader';
+import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
-import OTable from '../data-table/o-table.component';
+import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
@@ -17,6 +16,7 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
+import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from 'openmrs-ohri-form-engine-lib';
 
 export interface EncounterListColumn {
   key: string;
@@ -89,7 +89,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   return obs.value;
 }
 
-const EncounterList: React.FC<EncounterListProps> = ({
+export const EncounterList: React.FC<EncounterListProps> = ({
   patientUuid,
   encounterUuid,
   form,
@@ -382,5 +382,3 @@ const EncounterList: React.FC<EncounterListProps> = ({
     </>
   );
 };
-
-export default EncounterList;

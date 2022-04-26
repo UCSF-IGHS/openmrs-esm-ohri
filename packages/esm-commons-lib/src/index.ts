@@ -1,31 +1,23 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
-import { backendDependencies } from './openmrs-backend-dependencies';
-
-const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
-
-function setupOpenMRS() {
-  const moduleName = '@openmrs/esm-ohri-app';
-
-  const options = {
-    featureName: 'ohri',
-    moduleName,
-  };
-
-  defineConfigSchema(moduleName, {});
-
-  return {
-    pages: [],
-    extensions: [
-      {
-        id: 'patient-list-modal',
-        slot: 'patient-actions-slot',
-        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
-          featureName: 'patient-list-modal',
-          moduleName,
-        }),
-      },
-    ],
-  };
-}
-
-export { backendDependencies, importTranslation, setupOpenMRS };
+export * from './workspace/patient-list-workspace';
+export * from './components/patient-chart/ohri-patient-chart-sidenav.meta';
+export * from './components/banner-tags/patient-status-tag.component';
+export * from './components/data-table/o-table.component';
+export * from './components/modals/patient-list/add-patient-to-list-modal.component';
+export * from './components/empty-state/empty-state.component';
+export * from './components/empty-state/table-empty-state.component';
+export * from './components/encounter-list/multiple-encounter-list.component';
+export * from './components/encounter-list/encounter-list.component';
+export * from './api/api';
+export * from './components/banner-tags/active-visit-tag.component';
+export * from './utils/createOHRIDashboardLink';
+export * from './components/empty-state/empty-state-comingsoon.component';
+export * from './components/tile/ohri-summary-tile.component';
+export * from './components/tile/ohri-summary-tile-tablet.component';
+export * from './components/tile/ohri-programme-summary-tiles.component';
+export * from './components/patient-lists/patient-list-cohort.component';
+export * from './components/patient-list-tabs/ohri-patient-list-tabs.component';
+export * from './components/ohri-home/ohri-home-component';
+export * from './components/ohri-home/welcome-section/ohri-welcome-section.component';
+export * from './components/ohri-form-launcher/ohri-form-empty-launcher.component';
+export * from './components/ohri-form-launcher/ohri-form-launcher.component';
+export * from './utils/ohri-forms-commons';
