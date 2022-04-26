@@ -24,8 +24,7 @@
     "run:shell": "turbo run watch --filter=@openmrs/esm-app-shell --parallel --no-cache",
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes", 
     "release": "lerna version --no-git-tag-version",
-    "prepare": "husky install",
-    "setup": "lerna bootstrap && turbo run build && lerna clean --yes && lerna bootstrap"
+    "setup": "lerna bootstrap && npx run build && lerna clean --yes && lerna bootstrap"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",
