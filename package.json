@@ -18,7 +18,14 @@
     "start:forms": "openmrs develop --sources packages/esm-form-render-app --backend https://ohri-demo.globalhealthapp.net",
     "test": "jest --config jest.config.json --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.json",
-    "verify": "lerna run lint && lerna run test && lerna run typescript"
+    "verify": "lerna run lint && lerna run test && lerna run typescript",
+    
+    "run:omrs": "openmrs",
+    "run:shell": "turbo run watch --filter=@openmrs/esm-app-shell --parallel --no-cache",
+    "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes", 
+    "release": "lerna version --no-git-tag-version",
+    "prepare": "husky install",
+    "setup": "lerna bootstrap && turbo run build && lerna clean --yes && lerna bootstrap"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",
