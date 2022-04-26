@@ -6,15 +6,15 @@ import Events from '../../../esm-ohri-core-app/src/utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(serviceSummary_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(programManagement_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(visits_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(labResults_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(generalCounselling_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(adherenceCounselling_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(partnerNotificationServices_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(medications_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(appointments_dashboardMeta.name) !== -1;
+  pathname.indexOf(encodeURIComponent(serviceSummary_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(programManagement_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(visits_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(labResults_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(generalCounselling_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(adherenceCounselling_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(partnerNotificationServices_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(medications_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(appointments_dashboardMeta.title)) !== -1;
 
 // TODO This needs to be refactored to automatically get the length/size
 const menuItems = 9;
@@ -53,10 +53,10 @@ export const createCareAndTreatmentDashboardLink = db => {
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
-            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}
+            className={isActiveLink(encodeURIComponent(navItem.title)) ? styles.currentNavItem : ''}
+            href={`${basePath}/${encodeURIComponent(navItem.title)}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              handleLinkClick(e, `${basePath}/${encodeURIComponent(navItem.title)} `);
               forceRerender();
               Events.dispatch('navigation-from-hiv');
             }}>
@@ -74,71 +74,55 @@ export function handleLinkClick(event: any, to: string) {
   navigate({ to });
 }
 
-export const serviceEnrolment_dashboardMeta = {
-  name: 'hts-service-enrolment',
-  slot: 'hts-service-enrolment-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Service Enrolment',
-};
-
 export const serviceSummary_dashboardMeta = {
-  name: 'hts-service-summary',
   slot: 'hts-service-summary-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Service Summary',
 };
 
 export const labResults_dashboardMeta = {
-  name: 'hts-lab-results',
   slot: 'hts-lab-results-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Labs',
 };
 
 export const programManagement_dashboardMeta = {
-  name: 'program-management',
   slot: 'program-management-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Program Management',
 };
 
 export const visits_dashboardMeta = {
-  name: 'visits-summary',
   slot: 'visits-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Visits',
 };
 
 export const generalCounselling_dashboardMeta = {
-  name: 'general-counselling',
   slot: 'general-counselling-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'General Counselling',
 };
 
 export const adherenceCounselling_dashboardMeta = {
-  name: 'adherence-counselling',
   slot: 'adherence-counselling-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Adherence Counselling',
 };
 
 export const partnerNotificationServices_dashboardMeta = {
-  name: 'partner-notification-services',
   slot: 'partner-notification-services-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Partner Notification Services',
 };
 
 export const medications_dashboardMeta = {
-  name: 'medications',
   slot: 'medications-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Medications',
 };
 
 export const appointments_dashboardMeta = {
-  name: 'appointments',
   slot: 'appointments-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Appointments',
