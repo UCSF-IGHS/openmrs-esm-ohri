@@ -21,3 +21,5 @@ export * from './components/ohri-home/welcome-section/ohri-welcome-section.compo
 export * from './components/ohri-form-launcher/ohri-form-empty-launcher.component';
 export * from './components/ohri-form-launcher/ohri-form-launcher.component';
 export * from './utils/ohri-forms-commons';
+export * from './utils/helpers';
+export * from './constants';

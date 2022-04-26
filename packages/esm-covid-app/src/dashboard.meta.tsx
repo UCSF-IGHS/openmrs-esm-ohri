@@ -3,6 +3,7 @@ import { SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
 import { navigate } from '@openmrs/esm-framework';
 import styles from './dashboard.scss';
 import Events from '../../esm-ohri-core-app/src/utils/events';
+import { Coronavirus32 } from '@carbon/icons-react';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
@@ -86,4 +87,19 @@ export const covidVaccinations_dashboardMeta = {
   slot: 'covid-vaccinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Vaccinations',
+};
+
+export const covidFolderDashboardMeta = {
+  name: 'covid',
+  slot: 'covid-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: Coronavirus32 },
+  isFolder: true,
+  title: 'COVID',
+};
+
+export const covid19CasesDashboardMeta = {
+  name: 'covid-cases',
+  slot: 'covid-cases-dashboard-slot',
+  config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'COVID-19 Home Page' },
+  title: 'COVID-19 Cases',
 };
