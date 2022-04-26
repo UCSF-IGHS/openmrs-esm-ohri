@@ -29,7 +29,7 @@ jobs:
       - run: npx lerna run lint -- --fix
       - run: npx lerna run build 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2x
         with:
           name: packages
           path: |
@@ -133,26 +133,17 @@ jobs:
         shell: bash
         run: |
           mkdir -p dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}
-          mv packages/${{ env.DIR_NAME }}/dist/*.* dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/
-      - name: Publish to Digital Ocean
-        uses: jakejarvis/s3-sync-action@master
+          mv dist/*.* dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/
+          # Runs a set of commands using the runners shell
+      - uses: garygrossgarten/github-action-ssh@release
+        name: Run the Update MicroFronEnd Script
         with:
-          args: --acl public-read --follow-symlinks --cache-control "max-age=31536000"
-        env:
-          AWS_S3_BUCKET: ${{ secrets.DIGITAL_OCEAN_SPACES_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.DIGITAL_OCEAN_SPACES_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.DIGITAL_OCEAN_SPACES_ACCESS_KEY }}
-          AWS_S3_ENDPOINT: ${{ secrets.DIGITAL_OCEAN_SPACES_ENDPOINT }}
-          SOURCE_DIR: 'dist'
-      - name: Update Importmap
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: http://${{ secrets.DEPLOYER_HOST }}/services?env=prod
-          method: 'PATCH'
-          username: ${{ secrets.DEPLOYER_USERNAME }}
-          password: ${{ secrets.DEPLOYER_PASSWORD }}
-          data: '{ "service":"${{ env.ESM_NAME }}","url":"https://spa-modules.nyc3.digitaloceanspaces.com/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/${{ env.JS_NAME }}" }'
-          customHeaders: '{ "Accept": "application/json", "Content-Type": "application/json" }'
+            command: cd /usr/share/tomcat/microfrontends/dev && /bin/bash update_microfrontends.sh
+            host: ${{ secrets.HISTAC_HOST }}
+            username: ${{ secrets.HISTAC_USERNAME }}
+            privateKey: ${{ secrets.HISTAC_KEY}}
+
+            port: ${{ secrets.HISTAC_PORT }}
 
   deploy_ohri_covid_app:
     runs-on: ubuntu-latest
