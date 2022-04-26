@@ -5,7 +5,6 @@ import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
-  MultipleEncounterList,
   createOHRIDashboardLink,
 } from 'openmrs-esm-ohri-commons-lib';
 import { homeDashboardMeta } from './dashboard.meta';
@@ -89,14 +88,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
         order: 100,
-      },
-      {
-        id: 'multiple-encounters-ext',
-        slot: 'patient-chart-summary-dashboard-slot',
-        load: getSyncLifecycle(MultipleEncounterList, {
-          featureName: 'multiple-encounters-summary',
-          moduleName,
-        }),
       },
     ],
   };
