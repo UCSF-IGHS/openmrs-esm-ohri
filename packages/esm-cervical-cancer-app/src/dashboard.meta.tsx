@@ -7,9 +7,9 @@ import Events from '../../esm-ohri-core-app/src/utils/events';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(CaCxSummary_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(CaCxVisits_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(CaCxAppointments_dashboardMeta.name) !== -1;
+  pathname.indexOf(encodeURIComponent(CaCxSummary_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(CaCxVisits_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(CaCxAppointments_dashboardMeta.title)) !== -1;
 
 // TODO This needs to be refactored to automatically get the length/size
 const menuItems = 3;
@@ -47,10 +47,10 @@ export const createCervicalCancerDashboardLink = db => {
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
-            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}
+            className={isActiveLink(encodeURIComponent(navItem.title)) ? styles.currentNavItem : ''}
+            href={`${basePath}/${encodeURIComponent(navItem.title)}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              handleLinkClick(e, `${basePath}/${encodeURIComponent(navItem.title)} `);
               forceRerender();
               Events.dispatch('navigation-from-hiv');
             }}>
@@ -69,21 +69,18 @@ export function handleLinkClick(event: any, to: string) {
 }
 
 export const CaCxSummary_dashboardMeta = {
-  name: 'cacx-summary',
   slot: 'cacx-summary-slot',
   config: { columns: 1, type: 'grid' },
   title: 'CaCx Summary',
 };
 
 export const CaCxVisits_dashboardMeta = {
-  name: 'cacx-visits',
   slot: 'cacx-visits-slot',
   config: { columns: 1, type: 'grid' },
   title: 'CaCx Visits',
 };
 
 export const CaCxAppointments_dashboardMeta = {
-  name: 'cacx-appointments',
   slot: 'cacx-appointments-slot',
   config: { columns: 1, type: 'grid' },
   title: 'CaCx Appointments',
