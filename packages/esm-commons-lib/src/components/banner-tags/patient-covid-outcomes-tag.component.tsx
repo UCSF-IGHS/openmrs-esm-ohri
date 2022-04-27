@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchPatientCovidOutcome } from '../../api/api';
 
-const PatientCovidOutcomesBannerTag = ({ patientUuid }) => {
+export const PatientCovidOutcomesBannerTag = ({ patientUuid }) => {
   // const { currentVisit } = useVisit(patientUuid);
   const { t } = useTranslation();
   const [isCovidOutComeLoaded, setIsCovidOutcomeLoaded] = useState(false);
@@ -27,5 +27,3 @@ const PatientCovidOutcomesBannerTag = ({ patientUuid }) => {
 
   return <>{isCovidOutComeLoaded && <Tag type="purple"> {t('covidOutcomeUnknown', 'Unknown Covid Statuts')} </Tag>}</>;
 };
-
-export default PatientCovidOutcomesBannerTag;
