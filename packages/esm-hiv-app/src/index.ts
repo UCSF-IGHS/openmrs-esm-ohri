@@ -347,6 +347,14 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
+      {
+        id: 'multiple-encounters-ext',
+        slot: 'patient-chart-summary-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./views/multiple-encounters/multiple-encounter-summary.component'), {
+          featureName: 'multiple-encounters-summary',
+          moduleName,
+        }),
+      },
     ],
   };
 }

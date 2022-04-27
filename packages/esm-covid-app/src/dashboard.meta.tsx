@@ -7,9 +7,9 @@ import { Coronavirus32 } from '@carbon/icons-react';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(covidAssessments_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(covidLabResults_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(covidVaccinations_dashboardMeta.name) !== -1;
+  pathname.indexOf(encodeURIComponent(covidAssessments_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(covidLabResults_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(covidVaccinations_dashboardMeta.title)) !== -1;
 
 const menuItems = 3;
 
@@ -46,10 +46,10 @@ export const createCovidDashboardLink = db => {
           {navItems.map(navItem => (
             <SideNavMenuItem
               key={navItem.title}
-              className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-              href={`${basePath}/${navItem.name}`}
+              className={isActiveLink(encodeURIComponent(navItem.title)) ? styles.currentNavItem : ''}
+              href={`${basePath}/${encodeURIComponent(navItem.title)}`}
               onClick={e => {
-                handleLinkClick(e, `${basePath}/${navItem.name} `);
+                handleLinkClick(e, `${basePath}/${encodeURIComponent(navItem.title)} `);
                 forceRerender();
                 Events.dispatch('navigation-from-covid');
               }}>
@@ -69,28 +69,24 @@ export function handleLinkClick(event: any, to: string) {
 }
 
 export const covidAssessments_dashboardMeta = {
-  name: 'covid-assessments',
   slot: 'covid-assessments-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Assessments',
+  title: 'Covid Assessments',
 };
 
 export const covidLabResults_dashboardMeta = {
-  name: 'covid-lab-results',
   slot: 'covid-lab-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Lab Test',
 };
 
 export const covidVaccinations_dashboardMeta = {
-  name: 'covid-vaccinations',
   slot: 'covid-vaccinations-dashboard-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Vaccinations',
+  title: 'Covid Vaccinations',
 };
 
 export const covidFolderDashboardMeta = {
-  name: 'covid',
   slot: 'covid-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Coronavirus32 },
   isFolder: true,
@@ -98,7 +94,6 @@ export const covidFolderDashboardMeta = {
 };
 
 export const covid19CasesDashboardMeta = {
-  name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'COVID-19 Home Page' },
   title: 'COVID-19 Cases',
