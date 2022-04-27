@@ -7,12 +7,12 @@ import { Home32 } from '@carbon/icons-react';
 
 const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
 const shouldSidemenuBeExpanded = (pathname = window.location.pathname) =>
-  pathname.indexOf(serviceEnrolment_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(hts_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(serviceSummary_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(clinicalVisit_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(labResults_dashboardMeta.name) !== -1 ||
-  pathname.indexOf(drugOrders_dashboardMeta.name) !== -1;
+  pathname.indexOf(encodeURIComponent(serviceEnrolment_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(hts_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(serviceSummary_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(clinicalVisit_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(labResults_dashboardMeta.title)) !== -1 ||
+  pathname.indexOf(encodeURIComponent(drugOrders_dashboardMeta.title)) !== -1;
 
 const menuItems = 6;
 
@@ -49,10 +49,10 @@ export const createDashboardLink = db => {
         {navItems.map(navItem => (
           <SideNavMenuItem
             key={navItem.title}
-            className={isActiveLink(navItem.name) ? styles.currentNavItem : ''}
-            href={`${basePath}/${navItem.name}`}
+            className={isActiveLink(encodeURIComponent(navItem.title)) ? styles.currentNavItem : ''}
+            href={`${basePath}/${encodeURIComponent(navItem.title)}`}
             onClick={e => {
-              handleLinkClick(e, `${basePath}/${navItem.name} `);
+              handleLinkClick(e, `${basePath}/${encodeURIComponent(navItem.title)} `);
               forceRerender();
               Events.dispatch('navigation-from-hiv');
             }}>
@@ -71,49 +71,42 @@ export function handleLinkClick(event: any, to: string) {
 }
 
 export const hts_dashboardMeta = {
-  name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'HTS ',
 };
 
 export const serviceEnrolment_dashboardMeta = {
-  name: 'hts-service-enrolment',
   slot: 'hts-service-enrolment-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Service Enrolment',
 };
 
 export const serviceSummary_dashboardMeta = {
-  name: 'hts-service-summary',
   slot: 'hts-service-summary-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Service Summary',
 };
 
 export const clinicalVisit_dashboardMeta = {
-  name: 'hts-clinical-visit',
   slot: 'hts-clinical-visit-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Clinical Visit',
 };
 
 export const labResults_dashboardMeta = {
-  name: 'hts-lab-results',
   slot: 'hts-lab-results-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Lab Results',
 };
 
 export const drugOrders_dashboardMeta = {
-  name: 'hts-drug-orders',
   slot: 'hts-drug-orders-dashboard-slot',
   config: { columns: 1, type: 'grid' },
   title: 'Drug Orders',
 };
 
 export const homeDashboardMeta = {
-  name: 'home',
   slot: 'home-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home32 },
   isLink: true,
