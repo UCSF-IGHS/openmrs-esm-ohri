@@ -107,7 +107,8 @@ export const drugOrders_dashboardMeta = {
 };
 
 export const homeDashboardMeta = {
-  slot: 'home-dashboard-slot',
+  name: 'home',
+  slot: 'ohri-home-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home32 },
   isLink: true,
   title: 'Home',
