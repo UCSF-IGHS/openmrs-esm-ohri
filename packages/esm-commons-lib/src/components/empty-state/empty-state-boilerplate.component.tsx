@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tile } from 'carbon-components-react/es/components/Tile';
-import EmptyDataIllustration from './empty-data-illustration.component';
+import { EmptyDataIllustration } from './empty-data-illustration.component';
 import styles from './empty-state.scss';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -10,7 +10,7 @@ interface EmptyStateProps {
   launchForm?: () => void;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = props => {
+export const EmptyState: React.FC<EmptyStateProps> = props => {
   const { t } = useTranslation();
 
   return (
@@ -25,5 +25,3 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
     </Tile>
   );
 };
-
-export default EmptyState;

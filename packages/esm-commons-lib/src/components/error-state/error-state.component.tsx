@@ -8,7 +8,7 @@ interface ErrorStateProps {
   headerTitle: string;
 }
 
-const EmptyState: React.FC<ErrorStateProps> = ({ error, headerTitle }) => {
+export const ErrorState: React.FC<ErrorStateProps> = ({ error, headerTitle }) => {
   const { t } = useTranslation();
 
   return (
@@ -27,5 +27,3 @@ const EmptyState: React.FC<ErrorStateProps> = ({ error, headerTitle }) => {
     </Tile>
   );
 };
-
-export default EmptyState;

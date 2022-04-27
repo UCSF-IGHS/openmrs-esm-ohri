@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const EmptyDataIllustration = ({ width = '61', height = '59' }) => {
+export const EmptyDataIllustration = ({ width = '61', height = '59' }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 61 59">
       <title>Empty data illustration</title>
@@ -37,5 +37,3 @@ const EmptyDataIllustration = ({ width = '61', height = '59' }) => {
     </svg>
   );
 };
-
-export default EmptyDataIllustration;
