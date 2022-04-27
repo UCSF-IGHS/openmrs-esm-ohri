@@ -52,8 +52,8 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'home-dashboard',
-        slot: 'home-dashboard-slot',
+        id: 'ohri-all-patients-list',
+        slot: 'ohri-home-dashboard-slot',
         load: getAsyncLifecycle(() => import('./components/all-patients-list/patient-list.component'), {
           featureName: 'home',
           moduleName,
