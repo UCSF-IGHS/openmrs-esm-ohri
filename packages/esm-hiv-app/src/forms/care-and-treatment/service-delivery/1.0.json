@@ -1,8 +1,8 @@
 {
-    "name":"Differentiated Service Delivery Form",
+    "name":"Service Delivery Model Form",
     "pages":[
       {
-        "label":"Differentiated Service Delivery",
+        "label":"Service Delivery Model",
         "sections":[
           {
             "label":"Introduction",
@@ -24,7 +24,7 @@
             "label":"Enrolment criteria **Coming Soon**",
             "isExpanded":"true",
             "questions":[
-              
+
             ]
           },
           {
@@ -187,7 +187,7 @@
                         {
                           "type":"SNOMED-CT",
                           "value":"373784005"
-                        }                        
+                        }
                       ]
                     },
                     {
@@ -205,7 +205,7 @@
                         {
                           "type":"SNOMED-CT",
                           "value":"373784005"
-                        }                        
+                        }
                       ]
                     }
                   ]
@@ -245,7 +245,7 @@
                         {
                           "type":"CIEL",
                           "value":"166443"
-                        }                       
+                        }
                       ]
                     },
                     {
@@ -263,7 +263,7 @@
                         {
                           "type":"CIEL",
                           "value":"166444"
-                        }                       
+                        }
                       ]
                     },
                     {
@@ -326,7 +326,7 @@
 	"availableIntents":[
 	  {
 		"intent":"*",
-		"display":"Differentiated Service Delivery"
+		"display":"Service Delivery Model"
 	  }
 	],
     "processor":"EncounterFormProcessor",
