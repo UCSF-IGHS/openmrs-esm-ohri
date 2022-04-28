@@ -43,6 +43,26 @@
 									}
 								]
 							},
+							"behaviours": [
+								{
+								  "intent": "*",
+								  "required": "true",
+								  "unspecified": "true",
+								  "hide": {
+									"hideWhenExpression": "false"
+								  },
+								  "validators": [
+									{
+									  "type": "date",
+									  "allowFutureDates": "false"
+									},
+									{
+									  "type": "js_expression",
+									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01')"
+									}
+								  ]
+								}
+							  ],
 							"id": "pHQ9Date"
 						},
 						{
@@ -73,6 +93,17 @@
 									}
 								]
 							},
+							"behaviours": [
+								{
+									"intent": "*",
+									"required": "true",
+									"unspecified": "true",
+									"hide": {
+										"hideWhenExpression": "false"
+									  }
+								}
+								
+							],
 							"id": "pHQ2_1"
 						},
 						{
@@ -112,6 +143,17 @@
 									}
 								]
 							},
+							"behaviours": [
+								{
+									"intent": "*",
+									"required": "true",
+									"unspecified": "true",
+									"hide": {
+										"hideWhenExpression": "false"
+									  }
+								}
+								
+							],
 							"id": "pHQ2_2"
 						}
 					]
@@ -160,6 +202,17 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
 						"id": "pHQ9_3"
 					},
 					{
@@ -199,6 +252,17 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
 						"id": "pHQ9_4"
 					},
 					{
@@ -238,6 +302,17 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
 						"id": "pHQ9_5"
 					},
 					{
@@ -277,8 +352,20 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
 						"id": "pHQ9_6"
 					},
+					
 					{
 						"label": "7. Trouble concentrating on things, such as reading the newspaper or watching television",
 						"type": "obs",
@@ -316,6 +403,17 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
 						"id": "pHQ9_7"
 					},
 					{
@@ -355,6 +453,18 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+
+							}
+							
+						],
 						"id": "pHQ9_8"
 					},
 					{
@@ -394,10 +504,29 @@
 								}
 							]
 						},
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
 						"id": "pHQ9_9"
 					}
 				]
-			}]
+			}],
+			"behaviours": [
+                {
+					"intent": "*",
+					"hide": {
+                    	"hideWhenExpression": "pHQ2_1 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && pHQ2_2 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
 		},
 		{
 			"label": "PHQ-9 score",
@@ -410,8 +539,8 @@
 					"questionOptions": {
 						"rendering": "number",
 						"concept": "165137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-						"max": "0",
-						"min": "27",
+						"max": "27",
+						"min": "0",
 						"showDate": "",
 						"conceptMappings": [{
 								"type": "SNOMED-CT",
