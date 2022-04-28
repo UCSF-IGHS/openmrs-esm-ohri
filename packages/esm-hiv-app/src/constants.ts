@@ -33,6 +33,7 @@ export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139
 export const dateOfServiceEnrollmentConcept = '160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const patientTypeEnrollmentConcept = '83e40f2c-c316-43e6-a12e-20a338100281';
 export const studyPopulationTypeConcept = 'd3d4ae96-8c8a-43db-a9dc-dac951f5dcb3';
+export const populationCategoryConcept = '166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const entryPointConcept = '160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const re_enrolmentDateConcept = '20efadf9-86d3-4498-b3ab-7da4dad9c429';
