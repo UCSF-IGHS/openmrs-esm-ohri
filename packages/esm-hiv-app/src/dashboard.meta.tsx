@@ -82,7 +82,6 @@ export const preExposureProphylaxis_dashboardMeta = {
 };
 
 export const hivFolderDashboardMeta = {
-  name: 'hiv',
   slot: 'ohri-hiv-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home32 },
   isFolder: true,
