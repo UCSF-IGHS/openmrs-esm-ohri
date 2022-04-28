@@ -1847,7 +1847,7 @@
             {
               "intent": "*",
               "hide": {
-                "hideWhenExpression": "isEmpty(previousUseOfArt) || isEmpty(previousUseOfPep) || isEmpty(useOfArvs) || previousUseOfArt !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || previousUseOfPep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || useOfArvs !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "previousUseOfPrep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && previousUseOfArt !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && previousUseOfPep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && useOfArvs !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -2160,6 +2160,56 @@
           "hide": {
             "hideWhenExpression": "isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
           }
+        }
+      ]
+    },
+    {
+      "label": "Notes",
+      "sections": [
+        {
+          "label": "Enrollment notes",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "General notes",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": "",
+                "conceptMappings": [
+                  {
+                    "type": "AMPATH",
+                    "value": "1915"
+                  },
+                  {
+                    "type": "AMPATH",
+                    "value": "1915"
+                  },
+                  {
+                    "type": "LOINC",
+                    "value": "48767-8"
+                  },
+                  {
+                    "type": "CIEL",
+                    "value": "160632"
+                  }
+                ]
+              },
+              "id": "generalNotes",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "false",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  },
+                  "validators": []
+                }
+              ]
+            }
+          ]
         }
       ]
     }
