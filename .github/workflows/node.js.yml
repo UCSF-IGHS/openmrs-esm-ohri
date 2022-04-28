@@ -112,12 +112,6 @@ jobs:
         uses: actions/download-artifact@v2
       - name: Compute Timestamp
         run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-      - name: Prepare Directory
-        shell: bash
-        run: |
-          mkdir -p dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}
-          mv dist/*.* dist/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/
-          # Runs a set of commands using the runners shell
       - uses: garygrossgarten/github-action-ssh@release
         name: Run the Update MicroFronEnd Script
         with:
