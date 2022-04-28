@@ -20,6 +20,7 @@
     "test-watch": "jest --watch --config jest.config.json",
     "verify": "lerna run lint && lerna run test && lerna run typescript",
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes", 
+    "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes", 
     "release": "lerna version --no-git-tag-version",
     "setup": "lerna clean --yes && lerna bootstrap && npx lerna run build"
   },
