@@ -67,7 +67,7 @@ function setupOpenMRS() {
       },
       {
         id: 'covid-cases-dashboard-ext',
-        slot: 'covid-dashboard-slot',
+        slot: 'ohri-covid-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(covid19CasesDashboardMeta), options),
         meta: covid19CasesDashboardMeta,
         online: true,
