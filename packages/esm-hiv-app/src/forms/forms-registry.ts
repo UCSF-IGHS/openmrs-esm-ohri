@@ -1,19 +1,19 @@
-import hts_v_1_0 from './hiv/forms/hts/1.0.json';
-import hts_v_2_0 from './hiv/forms/hts/2.0.json';
-import hts_who_v_1_0 from './hiv/forms/hts-who/1.0.json';
-import hiv_service_enrolment_v_1_0 from './hiv/forms/care-and-treatment/service-enrolment/1.0.json';
-import hiv_art_therapy_v_1_0 from './hiv/forms/care-and-treatment/art-therapy/1.0.json';
-import clinical_visit_v_1_0 from './hiv/forms/care-and-treatment/clinical-visit/1.0.json';
-import lab_results_v_1_0 from './hiv/forms/care-and-treatment/lab-results/1.0.json';
-import death_form_v_1_0 from './hiv/forms/care-and-treatment/death-form/1.0.json';
-import transfer_out_v_1_0 from './hiv/forms/care-and-treatment/transfer-out/1.0.json';
-import patient_tracing_v_1_0 from './hiv/forms/care-and-treatment/patient-tracing/1.0.json';
-import intimate_partner_v_1_0 from './hiv/forms/care-and-treatment/intimate-partner/1.0.json';
-import contact_tracing_v_1_0 from './hiv/forms/care-and-treatment/contact-tracing/1.0.json';
-import service_delivery_v_1_0 from './hiv/forms/care-and-treatment/service-delivery/1.0.json';
-import peads_disclosure_v_1_0 from './hiv/forms/care-and-treatment/Pead-Dislosure/1.0.json';
-import patner_notification_v_1_0 from './hiv/forms/care-and-treatment/patner-notification/1.0.json';
-import mental_health_assessment_v_1_0 from './hiv/forms/care-and-treatment/mental-health/1.0.json';
+import hts_v_1_0 from './hts/1.0.json';
+import hts_v_2_0 from './hts/2.0.json';
+import hts_who_v_1_0 from './hts-who/1.0.json';
+import hiv_service_enrolment_v_1_0 from './care-and-treatment/service-enrolment/1.0.json';
+import hiv_art_therapy_v_1_0 from './care-and-treatment/art-therapy/1.0.json';
+import clinical_visit_v_1_0 from './care-and-treatment/clinical-visit/1.0.json';
+import lab_results_v_1_0 from './care-and-treatment/lab-results/1.0.json';
+import death_form_v_1_0 from './care-and-treatment/death-form/1.0.json';
+import transfer_out_v_1_0 from './care-and-treatment/transfer-out/1.0.json';
+import patient_tracing_v_1_0 from './care-and-treatment/patient-tracing/1.0.json';
+import intimate_partner_v_1_0 from './care-and-treatment/intimate-partner/1.0.json';
+import contact_tracing_v_1_0 from './care-and-treatment/contact-tracing/1.0.json';
+import service_delivery_v_1_0 from './care-and-treatment/service-delivery/1.0.json';
+import peads_disclosure_v_1_0 from './care-and-treatment/Pead-Dislosure/1.0.json';
+import patner_notification_v_1_0 from './care-and-treatment/partner-notification/1.0.json';
+import mental_health_assessment_v_1_0 from './care-and-treatment/mental-health/1.0.json';
 
 export default {
   hiv: {

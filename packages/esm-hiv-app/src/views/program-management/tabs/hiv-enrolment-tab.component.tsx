@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  EmptyState,
-  EncounterListColumn,
-  findObs,
-  getObsFromEncounter,
-  EncounterList,
-} from 'openmrs-esm-ohri-commons-lib';
-
+import { EncounterListColumn, findObs, getObsFromEncounter, EncounterList } from 'openmrs-esm-ohri-commons-lib';
 import {
   dateOfServiceEnrollmentConcept,
-  studyPopulationTypeConcept,
   dateOfHIVDiagnosisConcept,
   careAndTreatmentEncounterType,
   entryPointConcept,
   patientTypeEnrollmentConcept,
   re_enrolmentDateConcept,
   otherEntryPoint,
+  populationCategoryConcept,
 } from '../../../constants';
 
 interface HIVEnrolmentTabListProps {
@@ -68,10 +61,10 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'populationType',
-    header: 'Population Type',
+    key: 'populationCategory',
+    header: 'Population Category',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, studyPopulationTypeConcept);
+      return getObsFromEncounter(encounter, populationCategoryConcept);
     },
   },
   {

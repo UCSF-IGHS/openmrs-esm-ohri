@@ -21,7 +21,7 @@ const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) 
       <Tab label="ART Therapy" style={{ padding: 0 }}>
         <ArtTherapyTabList patientUuid={patientUuid} />
       </Tab>
-      <Tab label="Service Delivery" style={{ padding: 0 }}>
+      <Tab label="Service Delivery Model" style={{ padding: 0 }}>
         <ServiceDeliveryTabList patientUuid={patientUuid} />
       </Tab>
       <Tab label="Transfer - Out" style={{ padding: 0 }}>

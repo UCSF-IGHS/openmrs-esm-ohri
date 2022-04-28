@@ -87,7 +87,7 @@ export const covidVaccinations_dashboardMeta = {
 };
 
 export const covidFolderDashboardMeta = {
-  slot: 'covid-dashboard-slot',
+  slot: 'ohri-covid-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Coronavirus32 },
   isFolder: true,
   title: 'COVID',
