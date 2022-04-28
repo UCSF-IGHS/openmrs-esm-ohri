@@ -31,12 +31,7 @@ function setupOpenMRS() {
   addToBaseFormsRegistry(covidForms);
 
   return {
-    pages: [
-      {
-        load: getAsyncLifecycle(() => import('../../esm-ohri-core-app/src/root'), options),
-        route: /^dashboard/,
-      },
-    ],
+    pages: [],
     extensions: [
       {
         id: 'covid-home-header-ext',

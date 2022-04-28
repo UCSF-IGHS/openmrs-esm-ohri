@@ -94,6 +94,7 @@ export const covidFolderDashboardMeta = {
 };
 
 export const covid19CasesDashboardMeta = {
+  name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'COVID-19 Home Page' },
   title: 'COVID-19 Cases',

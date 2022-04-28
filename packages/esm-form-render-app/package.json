@@ -1,6 +1,6 @@
 {
   "name": "openmrs-esm-ohri-form-render-app",
-  "version": "0.1.4",
+  "version": "0.6.32-alpha.0",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-form-render-app.js",
   "main": "src/index.ts",
@@ -114,5 +114,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "66652cc24f8cee9ba0c1fd0a88c26c98e8c35442"
+  "gitHead": "cf9cc18c4a6a45514cda7b932119b52f4637f62a"
 }

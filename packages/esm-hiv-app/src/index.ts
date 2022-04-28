@@ -163,7 +163,7 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'care-and-treatment-dashboard',
+        id: 'ohri-care-and-treatment-dashboard',
         slot: 'care-and-treatment-dashboard-slot',
         load: getSyncLifecycle(OHRIHome, {
           featureName: 'care and treatment dashboard',
