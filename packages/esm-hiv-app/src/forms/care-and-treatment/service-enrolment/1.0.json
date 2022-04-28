@@ -1847,7 +1847,7 @@
             {
               "intent": "*",
               "hide": {
-                "hideWhenExpression": "isEmpty(previousUseOfArt) || isEmpty(previousUseOfPep) || isEmpty(useOfArvs) || previousUseOfArt !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || previousUseOfPep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || useOfArvs !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "previousUseOfPrep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && previousUseOfArt !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && previousUseOfPep !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && useOfArvs !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
