@@ -43,7 +43,27 @@
 									}
 								]
 							},
-							"id": "pHQ9Date"
+							"behaviours": [
+								{
+								  "intent": "*",
+								  "required": "true",
+								  "unspecified": "true",
+								  "hide": {
+									"hideWhenExpression": "false"
+								  },
+								  "validators": [
+									{
+									  "type": "date",
+									  "allowFutureDates": "false"
+									},
+									{
+									  "type": "js_expression",
+									  "failsWhenExpression": "isDateBefore(myValue, '1980-01-01')"
+									}
+								  ]
+								}
+							  ],
+							"id": "phq9Date"
 						},
 						{
 							"label": "1. Little interest or pleasure in doing things",
@@ -73,7 +93,18 @@
 									}
 								]
 							},
-							"id": "pHQ2_1"
+							"behaviours": [
+								{
+									"intent": "*",
+									"required": "true",
+									"unspecified": "true",
+									"hide": {
+										"hideWhenExpression": "false"
+									  }
+								}
+								
+							],
+							"id": "phq2_1"
 						},
 						{
 							"label": "2. Feeling down, depressed or hopeless",
@@ -112,7 +143,18 @@
 									}
 								]
 							},
-							"id": "pHQ2_2"
+							"behaviours": [
+								{
+									"intent": "*",
+									"required": "true",
+									"unspecified": "true",
+									"hide": {
+										"hideWhenExpression": "false"
+									  }
+								}
+								
+							],
+							"id": "phq2_2"
 						}
 					]
 				}
@@ -160,7 +202,18 @@
 								}
 							]
 						},
-						"id": "pHQ9_3"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
+						"id": "phq9_3"
 					},
 					{
 						"label": "4. Feeling tired or having little energy",
@@ -199,7 +252,18 @@
 								}
 							]
 						},
-						"id": "pHQ9_4"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
+						"id": "phq9_4"
 					},
 					{
 						"label": "5. Poor appetite or overeating",
@@ -238,7 +302,18 @@
 								}
 							]
 						},
-						"id": "pHQ9_5"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
+						"id": "phq9_5"
 					},
 					{
 						"label": "6. Feeling bad about yourself - or that you’re a failure or have let yourself or your family down",
@@ -277,8 +352,20 @@
 								}
 							]
 						},
-						"id": "pHQ9_6"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
+						"id": "phq9_6"
 					},
+					
 					{
 						"label": "7. Trouble concentrating on things, such as reading the newspaper or watching television",
 						"type": "obs",
@@ -316,7 +403,18 @@
 								}
 							]
 						},
-						"id": "pHQ9_7"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
+						"id": "phq9_7"
 					},
 					{
 						"label": "8. Moving or speaking so slowly that other people could have noticed. Or, the opposite - being so fidgety or restless that you have been moving around a lot more than usual",
@@ -355,7 +453,19 @@
 								}
 							]
 						},
-						"id": "pHQ9_8"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+
+							}
+							
+						],
+						"id": "phq9_8"
 					},
 					{
 						"label": "9. Thoughts that you would be better off dead or of hurting yourself in some way",
@@ -394,10 +504,29 @@
 								}
 							]
 						},
-						"id": "pHQ9_9"
+						"behaviours": [
+							{
+								"intent": "*",
+								"required": "true",
+								"unspecified": "true",
+								"hide": {
+									"hideWhenExpression": "false"
+								  }
+							}
+							
+						],
+						"id": "phq9_9"
 					}
 				]
-			}]
+			}],
+			"behaviours": [
+                {
+					"intent": "*",
+					"hide": {
+                    	"hideWhenExpression": "phq2_1 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && phq2_2 === '160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
 		},
 		{
 			"label": "PHQ-9 score",
@@ -410,8 +539,8 @@
 					"questionOptions": {
 						"rendering": "number",
 						"concept": "165137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-						"max": "0",
-						"min": "27",
+						"max": "27",
+						"min": "0",
 						"showDate": "",
 						"conceptMappings": [{
 								"type": "SNOMED-CT",
@@ -423,7 +552,7 @@
 							}
 						]
 					},
-					"id": "pHQ9Score"
+					"id": "phq9Score"
 				}]
 			}]
 		},
@@ -457,7 +586,7 @@
 							}
 						]
 					},
-					"id": "pHQ9Notes"
+					"id": "phq9Notes"
 				}]
 			}]
 		}
