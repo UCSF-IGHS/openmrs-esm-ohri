@@ -23,7 +23,7 @@
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
     "release": "lerna version --no-git-tag-version",
-    "setup": "lerna clean --yes && lerna bootstrap && npx lerna run build"
+    "setup": "npx lerna clean --yes && npx lerna bootstrap && npx lerna run build"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",
