@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import styles from './hts-welcome-section.scss';
 import { Calendar32 } from '@carbon/icons-react';
-import { useSessionUser } from '@openmrs/esm-framework';
+import { useSession } from '@openmrs/esm-framework';
 
 function HtsWelcomeSection() {
-  const userSession = useSessionUser();
+  const userSession = useSession();
 
   return (
     <div className={styles.container}>
