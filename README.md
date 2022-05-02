@@ -2,26 +2,23 @@
 
 A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 ## Badges
-[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg?branch=working)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg?branch=dev)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/UCSF-IGHS/openmrs-esm-ohri/actions/workflows/node.js.yml)
 
-![Badges](badges/badge-branches.svg) ![Badges](badges/badge-functions.svg) ![Badges](badges/badge-lines.svg)
 ## Overview
 
-(tbd)
+This is a Lerna project containing the OHRI packages built on top of OpenMRS Frontend.
 
-## Built With
+[🌍DEMO](https://ohri-demo.globalhealthapp.net/openmrs/spa)
 
-* [React](https://reactjs.org/) ([TypeScript](https://www.typescriptlang.org)) - Front-end JS library
-* [Formik](https://formik.org/docs/overview) - Form builder JS library
-* [Day.js](https://day.js.org/) - Date library
-* [Jest](https://jestjs.io/) - JS testing framework
-* [React Testing Library](https://testing-library.com/) - JS testing library for React components
-* [npm](https://www.npmjs.com/) - Node package manager
-* [webpack](https://webpack.js.org/) - JS module bundler
-* [ESLint](https://eslint.org/) - JS linter
-* [Prettier](https://prettier.io/) - Code formatter
-* [Babel](https://babeljs.io/) - JS compiler
-* [Travis CI](https://travis-ci.org/) - CI service
+### Available Packages
+
+- [esm-ohri-core-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-ohri-core-app) (OHRI Core App)
+- [esm-commons-lib](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-commons-lib) (Common Libraries)
+- [esm-form-render-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-form-render-app) (Form Render App)
+- [esm-hiv-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-hiv-app) (HIV App)
+- [esm-covid-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-covid-app) (COVID-19 App)
+- [esm-cervical-cancer-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-cervical-cancer-app) (Cervical Cancer App)
 
 ## Installation
 
@@ -29,7 +26,6 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 
 * [Node](https://nodejs.org/en/download/)
 * [Git](https://git-scm.com/downloads)
-* [openmrs-esm-ohri](https://github.com/UCSF-IGHS/openmrs-esm-ohri)
 
 ### Setup OHRI Module
 
@@ -39,57 +35,54 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 git clone https://github.com/UCSF-IGHS/openmrs-esm-ohri.git
 ```
 
-2. Install `lerna`
+2. Setup repository
 ```sh
-npm install lerna --global
+yarn run setup
 ```
 
-3. Install dependencies for all packages
-- make sure you are using a relatively recent version of node, LTE is 14.x.x, you can type node -version to find your current version. I would recommend using n to manage your node version: see https://www.npmjs.com/package/n
-```sh
-lerna bootstrap --hoist
-```
-
-4. Run the module from `localhost:8080`.
+3. Start all packages on `localhost:8080`.
 
 ```sh
-npm run start 
+yarn start
 ```
-This command start each package inside the `packages` directory with the *development* mode connected to the *https://ohri-working.globalhealthaapp.net* backend. This is the actual script:
+This command start each package inside the `packages` directory with the *development* mode connected to the *https://ohri-demo.globalhealthapp.net* backend. This is the actual script:
 
-`openmrs develop --backend https://ohri-working.globalhealthapp.net --sources 'packages/esm-*-app/'`
+If you would like to run individual packages, you can use the following command:
 
-### Setup Dev Tools
+```sh
+yarn start:<package-name>
 
-1. Click `Add new module` in the dev tools window.
-2. Type in the `Module Name:` `@openmrs/esm-ohri-app`.
-3. Type in the `Override URL:` `8080`.
-4. Go to the browser's development tools (e.g. via `Inspect`).
-5. Go to the `Application` tab.
-6. Go to `Local Storage`.
-7. Find the key: `import-map-override:@openmrs/esm-ohri-app`
-8. Update the corresponding value to: `//localhost:8080/openmrs-esm-ohri.js`.
-9. Click on the padlock/warning message next to the URL in the browser.
-10. Select the `Allow` option from the `Insecure content` dropdown in the browser settings page.
-11. Refresh the page.
+# for example
 
-Optional Steps:
-To enable Devtools (a gray or red rectangular button near the bottom right of the screen): Open cosole of Developer Tools -> In console enter: ```localStorage.setItem('openmrs:devtools', true)```
+# To start ohri core
+yarn start:core
+
+# To start covid esm
+yarn start:covid
+
+# To start hiv esm
+yarn start:hiv
+
+# To start cervical-cancer esm
+yarn start:cervical-cancer
+
+# To start form-render esm
+yarn start:form-render
+```
 
 ## Tests
 
 To verify that all of the tests run:
 
 ```sh
-npm test
+yarn test
 ```
 
 *Note: Run `npm i` before running tests for the first time.*
 
 ## Deployment
 
-Currently, available releases for this module:
-- [![DEMO](https://ohri-demo.globalhealthapp.net/)] 
+TBD
 
 ## Configuration
 
@@ -99,7 +92,7 @@ This module is designed to be driven by configuration files. These files define 
 
 ## Resources
 Optional Steps:
-To run against a deployment server (to reflect local changes that will be on server upon Deployment): 
+To run against a deployment server (to reflect local changes that will be on server upon Deployment):
 On terminal run ->  ```npx openmrs develop --backend https://{server-address}```
 
 (tbd)
