@@ -10627,35 +10627,10 @@ opener@^1.5.2:
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
-openmrs-ohri-form-engine-lib@^0.1.3, openmrs-ohri-form-engine-lib@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/openmrs-ohri-form-engine-lib/-/openmrs-ohri-form-engine-lib-0.1.4.tgz#4e0b26cf0abab6f981335ca04177dd44ce6d8691"
-  integrity sha512-FhHqeSeffL+C5P+Vfn488Fm0Eh56JES/693iIa3CtqDEX0qdOitypeNSaxe4PAiPyQEY49MXYY9cAE3oOnQeaQ==
-  dependencies:
-    "@carbon/icons-react" "^10.18.0"
-    "@openmrs/esm-framework" next
-    ace-builds "^1.4.12"
-    carbon-components-react "^7.25.0"
-    enzyme "^3.11.0"
-    enzyme-adapter-react-16 "^1.15.6"
-    formik "^2.2.6"
-    jest-coverage-badges "^1.0.0"
-    lodash-es "^4.17.15"
-    moment "^2.29.1"
-    react-ace "^9.4.4"
-    react-anchor-link-smooth-scroll "^1.0.12"
-    react-markdown "^7.1.0"
-    react-scroll "^1.8.2"
-    react-test-renderer "^16.9.0"
-    react-waypoint "^10.1.0"
-    semver "^7.3.5"
-    systemjs-webpack-interop "^2.3.2"
-    yup "^0.29.1"
-
-openmrs-ohri-form-engine-lib@next:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/openmrs-ohri-form-engine-lib/-/openmrs-ohri-form-engine-lib-0.1.6.tgz#63e05488b07a723d395fe85588cc270c18753524"
-  integrity sha512-PIbtxHI5llqdjBrY438svZXRAo/ytk0bT8KqP/XxsaxqdQTm71WVu0nKKjrR9PQahdk4c1omjv2J5v/0YZplzg==
+openmrs-ohri-form-engine-lib@0.1.7, openmrs-ohri-form-engine-lib@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/openmrs-ohri-form-engine-lib/-/openmrs-ohri-form-engine-lib-0.1.7.tgz#ae5811bf07cfd1761162238dc1755cbbfdfd66db"
+  integrity sha512-K10O70NsdYT2xz6XImOfLTeR3lwUWyamoe9MMqFXg7ywz+a9ylGNxfISVjqUzbGVQ4KVYZdHRNQC4Dc71YTrqw==
   dependencies:
     "@carbon/icons-react" "^10.18.0"
     "@openmrs/esm-framework" next
