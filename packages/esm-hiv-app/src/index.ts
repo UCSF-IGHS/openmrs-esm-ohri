@@ -32,6 +32,7 @@ import {
   createHIVPreventionDashboardLink,
   hts_dashboardMeta,
   preExposureProphylaxis_dashboardMeta,
+  labResultsDashboardMeta,
 } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -189,6 +190,25 @@ function setupOpenMRS() {
           moduleName,
         }),
         meta: htsDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'lab-results-dashboard-ext',
+        slot: 'ohri-hiv-dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(labResultsDashboardMeta), options),
+        meta: labResultsDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'lab-results-dashboard',
+        slot: 'lab-results-dashboard-slot',
+        load: getSyncLifecycle(OHRIHome, {
+          featureName: 'lab results dashboard',
+          moduleName,
+        }),
+        meta: labResultsDashboardMeta,
         online: true,
         offline: true,
       },
