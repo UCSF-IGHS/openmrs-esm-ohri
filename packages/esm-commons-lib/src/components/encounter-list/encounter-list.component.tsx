@@ -108,7 +108,6 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const [counter, setCounter] = useState(0);
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
   const [isDead, setIsDead] = useState(false);
-
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -287,11 +286,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
 
     if (action === 'view') {
-      launchFormWithCustomTitle(form, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
+      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
     } else if (action === 'edit') {
-      launchFormWithCustomTitle(form, launcherTitle, 'edit', encounterUuid, forceComponentUpdate);
+      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'edit', encounterUuid, forceComponentUpdate);
     } else {
-      launchFormWithCustomTitle(form, launcherTitle, 'enter', '', forceComponentUpdate);
+      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'enter', '', forceComponentUpdate);
     }
   };
 
