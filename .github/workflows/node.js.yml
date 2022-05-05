@@ -59,7 +59,7 @@ jobs:
         run: |
           git add .
           git commit -m "Prerelease version" --no-verify  
-      - run: npx run ci:publish-next
+      - run: npm run ci:publish-next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
@@ -139,7 +139,7 @@ jobs:
           node-version: "16.x"
           registry-url: "https://registry.npmjs.org"
       - run: npx lerna bootstrap
-      - run: npx run ci:publish
+      - run: npm run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
