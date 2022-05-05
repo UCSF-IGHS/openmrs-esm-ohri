@@ -73,5 +73,5 @@
   "devDependencies": {
     "@openmrs/esm-patient-common-lib": "^3.1.1-pre.1346"
   },
-  "gitHead": "2f68c59e3e4c2f94681f9c8512fc2424f1e6f4fc"
+  "gitHead": "5ed64ae2cb73eb5d3f1251afb9aa75f7e0e7eb9c"
 }
