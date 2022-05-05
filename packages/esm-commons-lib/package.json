@@ -57,6 +57,7 @@
     "react-waypoint": "^10.1.0",
     "semver": "^7.3.7",
     "systemjs-webpack-interop": "^2.3.2",
+    "user": "^0.0.0",
     "yup": "^0.29.1"
   },
   "peerDependencies": {
