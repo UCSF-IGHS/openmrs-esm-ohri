@@ -4,10 +4,15 @@ import {
   EncounterListColumn,
   getEncounterValues,
   getObsFromEncounter,
-  EmptyState,
-  EmptyStateComingSoon,
+  EncounterList,
 } from 'openmrs-esm-ohri-commons-lib';
-import { hivCD4Count_UUID, hivCD4Result_UUID } from '../../../constants';
+import {
+  ReasonForViralLoad_UUID,
+  ViralLoadCopies_UUID,
+  ViralLoadResultDate_UUID,
+  ViralLoadResultsEncounter_UUID,
+  ViralLoadResult_UUID,
+} from '../../../constants';
 
 interface LabResultsOverviewListProps {
   patientUuid: string;
@@ -18,33 +23,28 @@ const columns: EncounterListColumn[] = [
     key: 'testResultDate',
     header: 'Test Result Date',
     getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDateTime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
+      return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
     },
   },
   {
     key: 'reasonForViralLoad',
     header: 'Reason for Viral Load',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Result_UUID);
+      return getObsFromEncounter(encounter, ReasonForViralLoad_UUID);
     },
   },
   {
     key: 'viralLoadResult',
     header: 'Viral Load Result',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Result_UUID);
+      return getObsFromEncounter(encounter, ViralLoadResult_UUID);
     },
   },
   {
     key: 'viralLoadCopies',
     header: 'Viral Load Copies',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Count_UUID);
+      return getObsFromEncounter(encounter, ViralLoadCopies_UUID);
     },
   },
   {
@@ -53,14 +53,14 @@ const columns: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: '', package: '' },
+          form: { name: 'viral_load_results', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: '', package: '' },
+          form: { name: 'viral_load_results', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit form',
@@ -79,9 +79,15 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
   const displayText = t('labResults', 'Viral Load');
 
   return (
-    <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={ViralLoadResultsEncounter_UUID}
+      form={{ package: 'hiv', name: 'viral_load_results' }}
+      columns={columns}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 
