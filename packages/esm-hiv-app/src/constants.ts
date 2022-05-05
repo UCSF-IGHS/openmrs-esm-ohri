@@ -139,3 +139,8 @@ export const LittleInterestConcept_UUID = '167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
 export const DepressionConcept_UUID = '167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PoorAppetiteConcept_UUID = '167070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PoorConcentrationConcept_UUID = '167072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+//CD4 Lab Results
+export const CD4LabResultsEncounter_UUID = '96adb28e-e417-43a3-8f7d-682f8af5e912';
+export const Cd4LabResultDate_UUID = '163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const Cd4LabResultCountPercentage_UUID = '730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
