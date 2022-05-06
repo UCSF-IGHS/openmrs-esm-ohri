@@ -4251,6 +4251,38 @@
           ]
         }
       ]
+    },
+    {
+      "label": "CD4 Lab results",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "cd4_lab_results",
+        "package": "hiv",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "CD4_LAB_RESULTS_EMBED",
+            "readonly": "false"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Viral Load Lab results",
+      "sections": [],
+      "isSubform": "true",
+      "subform": {
+        "name": "viral_load_results",
+        "package": "hiv",
+        "behaviours": [
+          {
+            "intent": "*",
+            "subform_intent": "VIRAL_LOAD_LAB_RESULTS_EMBED",
+            "readonly": "false"
+          }
+        ]
+      }
     }
   ],
   "availableIntents": [
