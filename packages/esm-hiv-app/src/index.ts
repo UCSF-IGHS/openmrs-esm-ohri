@@ -194,7 +194,7 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'lab-results-dashboard-ext',
+        id: 'lab-results-summary',
         slot: 'ohri-hiv-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(labResultsDashboardMeta), options),
         meta: labResultsDashboardMeta,
@@ -202,12 +202,15 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'lab-results-dashboard',
+        id: 'lab-results-summary-ext',
         slot: 'lab-results-dashboard-slot',
-        load: getSyncLifecycle(OHRIHome, {
-          featureName: 'lab results dashboard',
-          moduleName,
-        }),
+        load: getAsyncLifecycle(
+          () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary.component'),
+          {
+            featureName: 'lab-results-summary',
+            moduleName,
+          },
+        ),
         meta: labResultsDashboardMeta,
         online: true,
         offline: true,

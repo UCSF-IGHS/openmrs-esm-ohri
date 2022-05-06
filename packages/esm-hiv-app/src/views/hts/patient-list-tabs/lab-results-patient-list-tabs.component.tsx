@@ -11,7 +11,7 @@ function LabResultsPatientTabs() {
       label: t('cd4LabResults', 'CD4 Lab Results'),
       cohortId: clientsEnrolledToCare,
       isReportingCohort: true,
-      cohortSlotName: 'all-ct-clients-slot',
+      cohortSlotName: 'cd4-lab-results-slot',
       launchableForm: {
         package: 'hiv',
         name: 'clinical_visit',
@@ -49,7 +49,7 @@ function LabResultsPatientTabs() {
       label: t('viralLoadResults', 'Viral Load Results'),
       cohortId: todayzAppointmentsCT,
       isReportingCohort: true,
-      cohortSlotName: 'ct-todays-appointments',
+      cohortSlotName: 'viral-load-results-slot',
       launchableForm: {
         package: 'hiv',
         name: 'clinical_visit',
