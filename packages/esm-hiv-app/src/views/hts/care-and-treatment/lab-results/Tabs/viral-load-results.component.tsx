@@ -7,7 +7,7 @@ import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Link, Pagination, OverflowMenu } from 'carbon-components-react';
-import { capitalize } from 'lodash';
+import { capitalize, values } from 'lodash';
 import moment from 'moment';
 import {
   AddPatientToListOverflowMenuItem,
@@ -16,10 +16,18 @@ import {
   fetchLastVisit,
   fetchPatientList,
   encounterRepresentation,
+  findObs,
+  getObsFromEncounter,
 } from 'openmrs-esm-ohri-commons-lib';
+import { ViralLoadResultDate_UUID, ViralLoadResultsEncounter_UUID, ViralLoadResult_UUID } from '../../../../../constants';
 
 interface ViralLoadResultsListProps {
   patientUuid: string;
+}
+interface ViralLoadValues {
+    LastViralLoadResult: string;
+    LastViralLoadResultDate: string;
+
 }
 
 const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
@@ -31,13 +39,13 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
-  const headerTitle = 'Patient List';
+  const headerTitle = 'Viral Load Results';
   const tableHeaders = [
     { key: 'name', header: 'Patient Name', isSortable: true },
     { key: 'age', header: 'Age' },
     { key: 'gender', header: 'Sex' },
-    { key: 'cd4Result', header: 'Most Recent CD4 Results' },
-    { key: 'cd4ResultDate', header: 'CD4 Results Date' },
+    { key: 'viralLoadResult', header: 'Most Recent Viral Load Results' },
+    { key: 'viralLoadResultDate', header: 'Viral Load Results Date' },
     { key: 'actions', header: '' },
   ];
 
@@ -46,6 +54,28 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     loadPatients(nextOffSet, pageSize);
   }, [page, pageSize]);
 
+  const fetchPatientLastViralEncounterValues = (patientUuid: string) => {
+    const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
+    openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+        if(data.results?.length > 0){
+            Promise.all(data).then(values => console.log({values}))
+            let sortedEncounters = data.results.sort(
+                (firstEncounter, secondEncounter) => 
+                new Date(secondEncounter.encounterDatetime).getTime() -
+                new Date(firstEncounter.encounterDatetime).getTime()
+            );
+            let lastEncounter = sortedEncounters[0];
+            const result = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);             
+            const date = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID,true);
+            const results = {result: result, date: date}
+            console.log(results);
+
+            return results;
+        }
+    });
+    return {};
+  }
+  
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const navigateToPatientDB = patientUuid =>
     navigate({ to: '${openmrsSpaBase}/patient/' + `${patientUuid}/chart/hts-summary` });
@@ -54,12 +84,45 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     const { data: patients } = await fetchPatientList(offSet, pageSize);
 
     setPatientCount(patients.total);
+    let lastViralLoadResult: string;
+    let lastViralLoadResultDate: any;
     for (let patient of patients.entry) {
       const { data } = await fetchLastVisit(patient.resource.id);
       const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
-      console.log(patient);
-      const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-      openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {});
+      let patientIdArray: string[] = [patient.resource.id];
+      const patientViralLoadPromises = patientIdArray.map(patientId => {
+        const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patientId}`;
+        return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+      });
+      Promise.all(patientViralLoadPromises).then(values => {
+          values.forEach(({data}) => {
+              if(data.results?.length > 0){
+                const sortedEncounters = data.results.sort(
+                    (firstEncounter, secondEncounter) =>
+                      new Date(secondEncounter.encounterDatetime).getTime() -
+                      new Date(firstEncounter.encounterDatetime).getTime(),
+                  );
+                const lastEncounter = sortedEncounters[0];
+                lastViralLoadResult = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);             
+                lastViralLoadResultDate = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID,true);
+              }
+          });
+      });
+
+    //   const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patient.resource.id}`;
+    //   openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+    //       if(data.results?.length > 0){
+    //           Promise.all(data).then(values => console.log({values}))
+    //           let sortedEncounters = data.results.sort(
+    //               (firstEncounter, secondEncounter) => 
+    //               new Date(secondEncounter.encounterDatetime).getTime() -
+    //               new Date(firstEncounter.encounterDatetime).getTime()
+    //           );
+    //           let lastEncounter = sortedEncounters[0];
+    //           LastViralLoadResult = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);             
+    //           LastViralLoadResultDate = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID,true);
+    //       }
+    //   });
 
       const patientActions = (
         <OverflowMenu flipped>
@@ -80,8 +143,8 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         ),
         age: age(patient.resource.birthDate),
         gender: capitalize(patient.resource.gender),
-        cd4Result: '__',
-        cd4ResultDate: lastVisit ? moment(lastVisit).format('DD-MMM-YYYY') : '__',
+        viralLoadResult: lastViralLoadResult ? lastViralLoadResult : '__',
+        viralLoadResultDate: lastViralLoadResultDate ? lastViralLoadResultDate : '__',
         actions: patientActions,
       });
     }
