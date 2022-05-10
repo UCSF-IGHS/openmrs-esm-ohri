@@ -6,26 +6,32 @@
     "packages/*"
   ],
   "scripts": {
+
+    "setup": "npx lerna clean --yes && npx lerna bootstrap && npx lerna run build",
+
+    "start": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources 'packages/esm-*-app/'",
+    "start:core": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
+    "start:covid": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-covid-app",
+    "start:hiv": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-hiv-app",
+    "start:cervical-cancer": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
+    "start:form-render": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-form-render-app",
+
+    "test": "jest --config jest.config.json --verbose false --passWithNoTests",
+    "test-watch": "jest --watch --config jest.config.json",
+
+    "coverage": "yarn test --coverage",
+    "extract-translations": "lerna run extract-translations",
+    "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",    
+    "verify": "lerna run lint && lerna run test && lerna run typescript",
+
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
     "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
     "ci:publish": "lerna publish from-package --yes",
     "ci:release": "lerna version --no-git-tag-version",
-    "coverage": "yarn test --coverage",
-    "extract-translations": "lerna run extract-translations",
-    "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
-    "start": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources 'packages/esm-*-app/'",
-    "start:core": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-ohri-core-app",
-    "start:covid": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-covid-app",
-    "start:hiv": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-hiv-app",
-    "start:cervical-cancer": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
-    "start:form-render": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-form-render-app",
-    "test": "jest --config jest.config.json --verbose false --passWithNoTests",
-    "test-watch": "jest --watch --config jest.config.json",
-    "verify": "lerna run lint && lerna run test && lerna run typescript",
-    "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
+
+    "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --no-verify-access --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
-    "release": "lerna version --no-git-tag-version",
-    "setup": "npx lerna clean --yes && npx lerna bootstrap && npx lerna run build"
+    "release": "lerna version --no-git-tag-version"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",

@@ -57,7 +57,7 @@ const columns: EncounterListColumn[] = [
         form: { name: 'mental_health_assessment', package: 'hiv' },
         encounterUuid: encounter.uuid,
         intent: '*',
-        label: 'Edit',
+        label: 'Edit Form',
         mode: 'edit',
       },
     ],
