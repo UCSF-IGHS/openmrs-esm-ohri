@@ -29,7 +29,7 @@ jobs:
       - name: restore lerna cache
         uses: actions/cache@v3
         with:
-          path: **/node_modules
+          path: '**/node_modules'
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: npx lerna bootstrap
       - run: npx lerna run lint -- --fix
@@ -51,7 +51,7 @@ jobs:
       - name: restore lerna cache
         uses: actions/cache@v3
         with:
-          path: **/node_modules
+          path: '**/node_modules'
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
