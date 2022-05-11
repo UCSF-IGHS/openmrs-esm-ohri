@@ -8,7 +8,7 @@ interface OverviewListProps {
   patientUuid: string;
 }
 
-const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
+const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
   <div className={styles.tabContainer}>
     <Tabs type="container">
       <Tab label="CD4 Lab Results" className="tab-14rem">
@@ -21,4 +21,4 @@ const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid })
   </div>
 );
 
-export default GeneralCounsellingSummary;
+export default LabResultsSummary;
