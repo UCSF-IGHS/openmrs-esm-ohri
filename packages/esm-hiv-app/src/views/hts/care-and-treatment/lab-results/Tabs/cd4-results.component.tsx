@@ -1,10 +1,16 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
-import { EmptyState, encounterRepresentation, fetchLastVisit, fetchPatientList, getObsFromEncounter, OTable } from 'openmrs-esm-ohri-commons-lib';
+import {
+  EmptyState,
+  encounterRepresentation,
+  fetchLastVisit,
+  fetchPatientList,
+  getObsFromEncounter,
+  OTable,
+} from 'openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
-import { Cd4LabResultCountPercentage_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
+import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
 import { DataTableSkeleton, Pagination } from 'carbon-components-react';
 import { capitalize } from 'lodash';
 
@@ -26,7 +32,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     { key: 'name', header: 'Patient Name', isSortable: true },
     { key: 'age', header: 'Age' },
     { key: 'gender', header: 'Sex' },
-    { key: 'cd4Result', header: 'Most Recent CD4 Results' },
+    { key: 'cd4Result', header: 'Most Recent CD4 Count' },
     { key: 'cd4ResultDate', header: 'CD4 Results Date' },
     { key: 'actions', header: '' },
   ];
@@ -38,6 +44,26 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
 
+  async function fetchPatientLastCd4Encounters(patientUuid: string) {
+    let latestCd4Encounter = {
+      result: '--',
+      date: '--',
+    };
+    const query = `encounterType=${CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
+    const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+    if (viralResults.data.results?.length > 0) {
+      const sortedEncounters = viralResults.data.results.sort(
+        (firstEncounter, secondEncounter) =>
+          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+      );
+      const lastEncounter = sortedEncounters[0];
+
+      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, hivCD4Count_UUID);
+      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
+    }
+    return latestCd4Encounter;
+  }
+
   async function loadPatients(offSet: number, pageSize: number) {
     let rows = [];
     const { data: patients } = await fetchPatientList(offSet, pageSize);
@@ -45,36 +71,19 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     setPatientCount(patients.total);
     let lastCd4Result: string;
     let lastCd4ResultDate: any;
+
     for (let patient of patients.entry) {
-        const { data } = await fetchLastVisit(patient.resource.id);
-        let patientIdArray: string[] = [patient.resource.id];
-        const patientViralLoadPromises = patientIdArray.map(patientId => {
-        const query = `encounterType=${CD4LabResultsEncounter_UUID}&patient=${patientId}`;
-        return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
-      });
-      Promise.all(patientViralLoadPromises).then(values => {
-        values.forEach(({ data }, index) => {
-          if (data.results?.length > 0) {
-            const sortedEncounters = data.results.sort(
-              (firstEncounter, secondEncounter) =>
-                new Date(secondEncounter.encounterDatetime).getTime() -
-                new Date(firstEncounter.encounterDatetime).getTime(),
-            );
-            const lastEncounter = sortedEncounters[0];
-            lastCd4Result = getObsFromEncounter(lastEncounter, Cd4LabResultCountPercentage_UUID);
-            lastCd4ResultDate = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
-            console.log(`CD4: ${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}.. ${lastCd4Result}`);
-          }
-        });
-      });
+      const patientLastViralEncounter = await await fetchPatientLastCd4Encounters(patient.resource.id);
+      lastCd4Result = patientLastViralEncounter.result;
+      lastCd4ResultDate = patientLastViralEncounter.date;
 
       rows.push({
         id: patient.resource.id,
         name: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
         age: age(patient.resource.birthDate),
         gender: capitalize(patient.resource.gender),
-        cd4Result: lastCd4Result ? lastCd4Result : '__',
-        cd4ResultDate: lastCd4ResultDate ? lastCd4ResultDate : '__',
+        cd4Result: lastCd4Result,
+        cd4ResultDate: lastCd4ResultDate,
       });
     }
     setTableRows(rows);
