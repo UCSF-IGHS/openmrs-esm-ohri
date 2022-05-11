@@ -316,8 +316,8 @@
                 "questionOptions":{
                   "rendering":"number",
                   "concept":"856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                  "max":"51",
-                  "min":"",
+                  "max":"",
+                  "min":"51",
                   "showDate":"",
                   "conceptMappings":[
                     {
@@ -396,8 +396,8 @@
                 "behaviours": [
                   {
                     "intent": "*",
-                    "required": "true",
-                    "unspecified": "true",
+                    "required": "false",
+                    "unspecified": "false",
                     "hide": {
                       "hideWhenExpression": "false"
                     },
