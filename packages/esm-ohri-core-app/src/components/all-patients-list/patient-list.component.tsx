@@ -5,7 +5,7 @@ import Button from 'carbon-components-react/es/components/Button';
 import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { age, navigate } from '@openmrs/esm-framework';
-import { DataTableSkeleton, Link, Pagination, OverflowMenu } from 'carbon-components-react';
+import { DataTableSkeleton, Pagination, OverflowMenu } from 'carbon-components-react';
 import { capitalize } from 'lodash';
 import moment from 'moment';
 import {
@@ -15,6 +15,7 @@ import {
   fetchLastVisit,
   fetchPatientList,
 } from 'openmrs-esm-ohri-commons-lib';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 interface PatientListProps {
   patientUuid: string;
@@ -44,8 +45,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   }, [page, pageSize]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const navigateToPatientDB = patientUuid =>
-    navigate({ to: '${openmrsSpaBase}/patient/' + `${patientUuid}/chart/hts-summary` });
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
   async function loadPatients(offSet: number, pageSize: number) {
     let rows = [];
     const { data: patients } = await fetchPatientList(offSet, pageSize);
@@ -64,13 +64,11 @@ const PatientList: React.FC<PatientListProps> = () => {
       rows.push({
         id: patient.resource.id,
         name: (
-          <Link
-            onClick={e => {
-              e.preventDefault();
-              navigateToPatientDB(patient.resource.id);
-            }}>
-            {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
-          </Link>
+          <Router>
+            <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
+              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
+            </Link>
+          </Router>
         ),
         gender: capitalize(patient.resource.gender),
         age: age(patient.resource.birthDate),
