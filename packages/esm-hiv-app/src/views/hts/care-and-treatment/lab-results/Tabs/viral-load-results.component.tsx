@@ -18,13 +18,10 @@ import {
   ViralLoadResultsEncounter_UUID,
   ViralLoadResult_UUID,
 } from '../../../../../constants';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 interface ViralLoadResultsListProps {
   patientUuid: string;
-}
-interface ViralLoadValues {
-  LastViralLoadResult: string;
-  LastViralLoadResultDate: string;
 }
 
 const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
@@ -52,6 +49,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   }, [page, pageSize]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
 
   async function fetchPatientLastViralEncounters(patientUuid: string) {
     let latestViralEncounter = {
@@ -88,7 +86,13 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
 
       rows.push({
         id: patient.resource.id,
-        name: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
+        name: (
+            <Router>
+              <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
+                {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
+              </Link>
+            </Router>
+          ),
         age: age(patient.resource.birthDate),
         gender: capitalize(patient.resource.gender),
         viralLoadResult: lastViralLoadResult,

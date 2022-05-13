@@ -13,6 +13,7 @@ import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
 import { DataTableSkeleton, Pagination } from 'carbon-components-react';
 import { capitalize } from 'lodash';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 interface CD4ResultsListProps {
   patientUuid: string;
@@ -43,6 +44,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   }, [page, pageSize]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
 
   async function fetchPatientLastCd4Encounters(patientUuid: string) {
     let latestCd4Encounter = {
@@ -79,7 +81,13 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
 
       rows.push({
         id: patient.resource.id,
-        name: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
+        name: (
+          <Router>
+            <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
+              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
+            </Link>
+          </Router>
+        ),
         age: age(patient.resource.birthDate),
         gender: capitalize(patient.resource.gender),
         cd4Result: lastCd4Result,
