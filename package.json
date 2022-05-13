@@ -3,6 +3,14 @@
   "private": true,
   "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": ["packages/*"],
+  "version": "0.6.45",
+  "license": "MPL-2.0",
+  "keywords": [
+    "openmrs","ohri","hiv","covid"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
     "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
@@ -19,7 +27,7 @@
     "start:form-render": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-form-render-app",
     "test": "jest --config jest.config.json --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.json",
-    "verify": "lerna run lint && lerna run test && lerna run typescript",
+    "verify": "lerna run lint -- -- --fix && lerna run test && lerna run typescript",
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
     "release": "lerna version --no-git-tag-version",
