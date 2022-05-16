@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, EncounterList, findObs, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
 import {
-  howOftenSexuallyMolested_UUID,
-  howOftenThreatened_UUID,
+  EmotionalAbuse_UUID,
   IntimatePartnerEncounterType_UUID,
-  SexuallyMolested_UUID,
-  ThreatenedToHurt_UUID,
+  PhysicalAbuse_UUID,
+  SexualAbuse_UUID,
 } from '../../../constants';
 
 interface IntimatePartnerViolenceListProps {
@@ -15,10 +14,10 @@ interface IntimatePartnerViolenceListProps {
 
 const columns: EncounterListColumn[] = [
   {
-    key: 'threatenedToHurt',
-    header: 'Threatened to Hurt',
+    key: 'physicalAbuse',
+    header: 'Physical Abuse',
     getValue: encounter => {
-      const obs = findObs(encounter, ThreatenedToHurt_UUID);
+      const obs = findObs(encounter, PhysicalAbuse_UUID);
       if (!obs) {
         return '--';
       }
@@ -30,17 +29,10 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'howOftenThreatenedToHurt',
-    header: 'How Often Threatened to Hurt',
+    key: 'EmotionalAbuse',
+    header: 'Emotional Abuse',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, howOftenThreatened_UUID);
-    },
-  },
-  {
-    key: 'sexuallyMolested',
-    header: 'Sexually Molested',
-    getValue: encounter => {
-      const obs = findObs(encounter, SexuallyMolested_UUID);
+      const obs = findObs(encounter, EmotionalAbuse_UUID);
       if (!obs) {
         return '--';
       }
@@ -52,10 +44,18 @@ const columns: EncounterListColumn[] = [
     },
   },
   {
-    key: 'howOftenSexuallyMolested',
-    header: 'How Often Sexually Molested',
+    key: 'sexualAbuse',
+    header: 'Sexual Abuse',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, howOftenSexuallyMolested_UUID);
+      const obs = findObs(encounter, SexualAbuse_UUID);
+      if (!obs) {
+        return '--';
+      }
+      if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
+        return 'Yes';
+      } else {
+        return 'No';
+      }
     },
   },
   {

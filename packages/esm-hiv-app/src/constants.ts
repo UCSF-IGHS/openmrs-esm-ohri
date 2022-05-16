@@ -106,10 +106,9 @@ export const PatientTracingEncounterType_UUID = '0cd5d4cb-204e-419a-9dd7-1e18e93
 
 //Intimate Partner
 export const IntimatePartnerEncounterType_UUID = '881fff34-b4a9-4d11-b2f5-a8a23a9f402b';
-export const ThreatenedToHurt_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
-export const SexuallyMolested_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-export const howOftenThreatened_UUID = '953f6271-57ef-414e-bdba-fe9e0246db58';
-export const howOftenSexuallyMolested_UUID = '1dd53a22-2e8f-425b-8ba4-59172ed3fafe';
+export const PhysicalAbuse_UUID = '2a228c6a-1575-43d7-9d42-9b68d0629f46';
+export const EmotionalAbuse_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
+export const SexualAbuse_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Contact Tracing
 export const ContactTracingEncounterType_UUID = '570e9e42-4306-41dc-9bf8-634bbc70a524';
