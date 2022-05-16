@@ -62,7 +62,23 @@ const columns: EncounterListColumn[] = [
     key: 'actions',
     header: 'Actions',
     getValue: encounter => {
-      return encounter.actions;
+      const baseActions = [
+        {
+          form: { name: 'clinical_visit', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'clinical_visit', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Edit Form',
+          mode: 'edit',
+        },
+      ];
+      return baseActions;
     },
   },
 ];

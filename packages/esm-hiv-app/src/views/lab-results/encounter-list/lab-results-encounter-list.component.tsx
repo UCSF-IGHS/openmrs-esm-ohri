@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterListColumn, getEncounterValues, getObsFromEncounter, EmptyState } from 'openmrs-esm-ohri-commons-lib';
-import { hivLabResultsEncounterType_UUID, hivCD4Count_UUID, hivCD4Result_UUID } from '../../../constants';
+import {
+  EncounterListColumn,
+  getEncounterValues,
+  getObsFromEncounter,
+  EncounterList,
+} from 'openmrs-esm-ohri-commons-lib';
+import {
+  ReasonForViralLoad_UUID,
+  ViralLoadCopies_UUID,
+  ViralLoadResultDate_UUID,
+  ViralLoadResultsEncounter_UUID,
+  ViralLoadResult_UUID,
+} from '../../../constants';
 
 interface LabResultsOverviewListProps {
   patientUuid: string;
@@ -9,42 +20,55 @@ interface LabResultsOverviewListProps {
 
 const columns: EncounterListColumn[] = [
   {
-    key: 'encounterDate',
-    header: 'Date of Test ordered',
+    key: 'testResultDate',
+    header: 'Test Result Date',
     getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDateTime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
+      return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
     },
   },
   {
-    key: 'location',
-    header: 'Location',
+    key: 'reasonForViralLoad',
+    header: 'Reason for Viral Load',
     getValue: encounter => {
-      return encounter.location.name || 'None';
+      return getObsFromEncounter(encounter, ReasonForViralLoad_UUID);
     },
   },
   {
-    key: 'hivLabResult',
-    header: 'CD4 Date Result',
+    key: 'viralLoadResult',
+    header: 'Viral Load Result',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Result_UUID);
+      return getObsFromEncounter(encounter, ViralLoadResult_UUID);
     },
   },
   {
-    key: 'hivCD4Count',
-    header: 'CD4 Count',
+    key: 'viralLoadCopies',
+    header: 'Viral Load Copies',
     getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Count_UUID);
+      return getObsFromEncounter(encounter, ViralLoadCopies_UUID);
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => {
+      const baseActions = [
+        {
+          form: { name: 'viral_load_results', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'viral_load_results', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Edit form',
+          mode: 'edit',
+        },
+      ];
+      return baseActions;
+    },
   },
 ];
 
@@ -55,9 +79,15 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
   const displayText = t('labResults', 'Viral Load');
 
   return (
-    <>
-      <EmptyState displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={ViralLoadResultsEncounter_UUID}
+      form={{ package: 'hiv', name: 'viral_load_results' }}
+      columns={columns}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 

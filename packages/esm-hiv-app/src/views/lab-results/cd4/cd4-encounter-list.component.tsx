@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
 import {
-  EncounterList,
-  EncounterListColumn,
-  getEncounterValues,
-  getObsFromEncounter,
-} from 'openmrs-esm-ohri-commons-lib';
-import { hivLabResultsEncounterType_UUID, hivCD4Count_UUID, hivCD4Result_UUID } from '../../../constants';
+  Cd4LabResultCountPercentage_UUID,
+  Cd4LabResultDate_UUID,
+  CD4LabResultsEncounter_UUID,
+  hivCD4Result_UUID,
+} from '../../../constants';
 
 interface CD4OverviewListProps {
   patientUuid: string;
@@ -15,42 +15,41 @@ interface CD4OverviewListProps {
 
 const columns: EncounterListColumn[] = [
   {
-    key: 'encounterDate',
-    header: 'Date of Test ordered',
+    key: 'testResultDate',
+    header: 'Test Result Date',
     getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDateTime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
+      return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
     },
   },
   {
-    key: 'location',
-    header: 'Location',
+    key: 'CD4Count',
+    header: 'CD4 Count %',
     getValue: encounter => {
-      return encounter.location.name || 'None';
-    },
-  },
-  {
-    key: 'hivLabResult',
-    header: 'CD4 Date Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Result_UUID);
-    },
-  },
-  {
-    key: 'hivCD4Count',
-    header: 'CD4 Count',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, hivCD4Count_UUID);
+      return getObsFromEncounter(encounter, Cd4LabResultCountPercentage_UUID);
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: () => {},
+    getValue: encounter => {
+      const baseActions = [
+        {
+          form: { name: 'cd4_lab_results', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'View Details',
+          mode: 'view',
+        },
+        {
+          form: { name: 'cd4_lab_results', package: 'hiv' },
+          encounterUuid: encounter.uuid,
+          intent: '*',
+          label: 'Edit form',
+          mode: 'edit',
+        },
+      ];
+      return baseActions;
+    },
   },
 ];
 
@@ -61,16 +60,15 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
   const displayText = t('cd4', 'CD4');
 
   return (
-    <>
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterUuid={hivLabResultsEncounterType_UUID}
-        form={{ package: 'hiv', name: 'lab_results' }}
-        columns={columns}
-        description={displayText}
-        headerTitle={headerTitle}
-      />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterUuid={CD4LabResultsEncounter_UUID}
+      form={{ package: 'hiv', name: 'cd4_lab_results' }}
+      columns={columns}
+      description={displayText}
+      headerTitle={headerTitle}
+      dropdownText="Add"
+    />
   );
 };
 

@@ -14,6 +14,8 @@ import service_delivery_v_1_0 from './care-and-treatment/service-delivery/1.0.js
 import peads_disclosure_v_1_0 from './care-and-treatment/Pead-Dislosure/1.0.json';
 import patner_notification_v_1_0 from './care-and-treatment/partner-notification/1.0.json';
 import mental_health_assessment_v_1_0 from './care-and-treatment/mental-health/1.0.json';
+import cd4_lab_results_v_1_0 from './care-and-treatment/cd4-lab-results/1.0.json';
+import viral_load_results_v_1_0 from './care-and-treatment/viral-load-results/1.0.json';
 
 export default {
   hiv: {
@@ -62,6 +64,12 @@ export default {
     },
     mental_health_assessment: {
       '1.0': mental_health_assessment_v_1_0,
+    },
+    cd4_lab_results: {
+      '1.0': cd4_lab_results_v_1_0,
+    },
+    viral_load_results: {
+      '1.0': viral_load_results_v_1_0,
     },
   },
 };

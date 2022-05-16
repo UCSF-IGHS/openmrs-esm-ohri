@@ -1,27 +1,25 @@
-import React, { useEffect, useState, useMemo } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import styles from './patient-list.scss';
-import Button from 'carbon-components-react/es/components/Button';
-import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
-import { age, navigate } from '@openmrs/esm-framework';
-import { DataTableSkeleton, Pagination, OverflowMenu } from 'carbon-components-react';
-import { capitalize } from 'lodash';
-import moment from 'moment';
 import {
-  AddPatientToListOverflowMenuItem,
   EmptyState,
-  OTable,
+  encounterRepresentation,
   fetchLastVisit,
   fetchPatientList,
+  getObsFromEncounter,
+  OTable,
 } from 'openmrs-esm-ohri-commons-lib';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
+import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
+import { DataTableSkeleton, Pagination } from 'carbon-components-react';
+import { capitalize } from 'lodash';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
-interface PatientListProps {
+interface CD4ResultsListProps {
   patientUuid: string;
 }
 
-const PatientList: React.FC<PatientListProps> = () => {
+const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const [patients, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,12 +28,13 @@ const PatientList: React.FC<PatientListProps> = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
-  const headerTitle = 'Patient List';
+  const headerTitle = 'CD4 Results';
   const tableHeaders = [
-    { key: 'name', header: 'Name', isSortable: true },
-    { key: 'gender', header: 'Gender' },
+    { key: 'name', header: 'Patient Name', isSortable: true },
     { key: 'age', header: 'Age' },
-    { key: 'last_visit', header: 'Last Visit' },
+    { key: 'gender', header: 'Sex' },
+    { key: 'cd4Result', header: 'Most Recent CD4 Count' },
+    { key: 'cd4ResultDate', header: 'CD4 Results Date' },
     { key: 'actions', header: '' },
   ];
 
@@ -46,20 +45,39 @@ const PatientList: React.FC<PatientListProps> = () => {
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
+
+  async function fetchPatientLastCd4Encounters(patientUuid: string) {
+    let latestCd4Encounter = {
+      result: '--',
+      date: '--',
+    };
+    const query = `encounterType=${CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
+    const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+    if (viralResults.data.results?.length > 0) {
+      const sortedEncounters = viralResults.data.results.sort(
+        (firstEncounter, secondEncounter) =>
+          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+      );
+      const lastEncounter = sortedEncounters[0];
+
+      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, hivCD4Count_UUID);
+      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
+    }
+    return latestCd4Encounter;
+  }
+
   async function loadPatients(offSet: number, pageSize: number) {
     let rows = [];
     const { data: patients } = await fetchPatientList(offSet, pageSize);
 
     setPatientCount(patients.total);
-    for (let patient of patients.entry) {
-      const { data } = await fetchLastVisit(patient.resource.id);
-      const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
+    let lastCd4Result: string;
+    let lastCd4ResultDate: any;
 
-      const patientActions = (
-        <OverflowMenu flipped>
-          <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={[]} />
-        </OverflowMenu>
-      );
+    for (let patient of patients.entry) {
+      const patientLastViralEncounter = await await fetchPatientLastCd4Encounters(patient.resource.id);
+      lastCd4Result = patientLastViralEncounter.result;
+      lastCd4ResultDate = patientLastViralEncounter.date;
 
       rows.push({
         id: patient.resource.id,
@@ -70,15 +88,16 @@ const PatientList: React.FC<PatientListProps> = () => {
             </Link>
           </Router>
         ),
-        gender: capitalize(patient.resource.gender),
         age: age(patient.resource.birthDate),
-        last_visit: lastVisit ? moment(lastVisit).format('DD-MMM-YYYY') : '__',
-        actions: patientActions,
+        gender: capitalize(patient.resource.gender),
+        cd4Result: lastCd4Result,
+        cd4ResultDate: lastCd4ResultDate,
       });
     }
     setTableRows(rows);
     setIsLoading(false);
   }
+
   return (
     <>
       {isLoading ? (
@@ -87,18 +106,6 @@ const PatientList: React.FC<PatientListProps> = () => {
         <div className={styles.widgetContainer}>
           <div className={styles.widgetHeaderContainer}>
             <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-            <div className={styles.toggleButtons}>
-              <Button
-                kind="ghost"
-                renderIcon={Add16}
-                iconDescription="New"
-                onClick={e => {
-                  e.preventDefault();
-                  addNewPatient();
-                }}>
-                {t('add', 'Add')}
-              </Button>
-            </div>
           </div>
           <OTable tableHeaders={tableHeaders} tableRows={patients} />
           <div style={{ width: '800px' }}>
@@ -126,4 +133,4 @@ const PatientList: React.FC<PatientListProps> = () => {
   );
 };
 
-export default PatientList;
+export default CD4ResultsList;
