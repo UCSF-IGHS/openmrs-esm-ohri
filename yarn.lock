@@ -10652,10 +10652,35 @@ openmrs-esm-ohri-commons-lib@next:
     systemjs-webpack-interop "^2.3.2"
     yup "^0.29.1"
 
-openmrs-ohri-form-engine-lib@0.1.7, openmrs-ohri-form-engine-lib@^0.1.7:
+openmrs-ohri-form-engine-lib@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/openmrs-ohri-form-engine-lib/-/openmrs-ohri-form-engine-lib-0.1.7.tgz#ae5811bf07cfd1761162238dc1755cbbfdfd66db"
   integrity sha512-K10O70NsdYT2xz6XImOfLTeR3lwUWyamoe9MMqFXg7ywz+a9ylGNxfISVjqUzbGVQ4KVYZdHRNQC4Dc71YTrqw==
+  dependencies:
+    "@carbon/icons-react" "^10.18.0"
+    "@openmrs/esm-framework" next
+    ace-builds "^1.4.12"
+    carbon-components-react "^7.25.0"
+    enzyme "^3.11.0"
+    enzyme-adapter-react-16 "^1.15.6"
+    formik "^2.2.6"
+    jest-coverage-badges "^1.0.0"
+    lodash-es "^4.17.15"
+    moment "^2.29.1"
+    react-ace "^9.4.4"
+    react-anchor-link-smooth-scroll "^1.0.12"
+    react-markdown "^7.1.0"
+    react-scroll "^1.8.2"
+    react-test-renderer "^16.9.0"
+    react-waypoint "^10.1.0"
+    semver "^7.3.5"
+    systemjs-webpack-interop "^2.3.2"
+    yup "^0.29.1"
+
+openmrs-ohri-form-engine-lib@next:
+  version "0.1.9-0"
+  resolved "https://registry.yarnpkg.com/openmrs-ohri-form-engine-lib/-/openmrs-ohri-form-engine-lib-0.1.9-0.tgz#fe756ad7709f9753cca249dc20a46e30d87769b8"
+  integrity sha512-XrYaAaHV6SUwLCjxkka+wHjzzJ02/E5WIYvTXwYh/fevs2aOtB2Gyk0dKagoXxfx13jB9N/ImHfIpwS5xFE7Wg==
   dependencies:
     "@carbon/icons-react" "^10.18.0"
     "@openmrs/esm-framework" next
