@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, EncounterList, findObs, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
 import {
@@ -17,45 +17,21 @@ const columns: EncounterListColumn[] = [
     key: 'physicalAbuse',
     header: 'Physical Abuse',
     getValue: encounter => {
-      const obs = findObs(encounter, PhysicalAbuse_UUID);
-      if (!obs) {
-        return '--';
-      }
-      if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
-        return 'Yes';
-      } else {
-        return 'No';
-      }
+      return getObsFromEncounter(encounter, PhysicalAbuse_UUID, false, true);
     },
   },
   {
     key: 'EmotionalAbuse',
     header: 'Emotional Abuse',
     getValue: encounter => {
-      const obs = findObs(encounter, EmotionalAbuse_UUID);
-      if (!obs) {
-        return '--';
-      }
-      if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
-        return 'Yes';
-      } else {
-        return 'No';
-      }
+      return getObsFromEncounter(encounter, EmotionalAbuse_UUID, false, true);
     },
   },
   {
     key: 'sexualAbuse',
     header: 'Sexual Abuse',
     getValue: encounter => {
-      const obs = findObs(encounter, SexualAbuse_UUID);
-      if (!obs) {
-        return '--';
-      }
-      if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
-        return 'Yes';
-      } else {
-        return 'No';
-      }
+      return getObsFromEncounter(encounter, SexualAbuse_UUID, false, true);
     },
   },
   {
