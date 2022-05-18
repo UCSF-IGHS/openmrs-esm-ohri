@@ -1,5 +1,5 @@
 {
-  "name": "openmrs-ohri-app",
+  "name": "@ohri/openmrs-esm-ohri",
   "private": true,
   "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": ["packages/*"],
