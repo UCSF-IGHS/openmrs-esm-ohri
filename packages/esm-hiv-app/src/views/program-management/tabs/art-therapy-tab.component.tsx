@@ -30,20 +30,12 @@ const artConcepts = new Map([
   ['3e69cb60-2943-410f-83d4-b359ae83fefd', 'Restart ART therapy'],
 ]);
 
-interface ARTDateConcepts {
-  artTherapyDateTime_UUID: string;
-  switchDateUUID: string;
-  substitutionDateUUID: string;
-  artStopDateUUID: string;
-  dateRestartedUUID: string;
-}
-
-function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts): string {
-  let artStartDate = findObs(encounter, dateConcepts.artTherapyDateTime_UUID);
-  let artSubstitutionDate = findObs(encounter, dateConcepts.substitutionDateUUID);
-  let artSwitchDate = findObs(encounter, dateConcepts.switchDateUUID);
-  let artStopDate = findObs(encounter, dateConcepts.artStopDateUUID);
-  let artRestartDate = findObs(encounter, dateConcepts.dateRestartedUUID);
+function getARTDateConcept(encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string {
+  let artStartDate = findObs(encounter, startDate);
+  let artSwitchDate = findObs(encounter, switchDate);
+  let artSubstitutionDate = findObs(encounter, substitutionDate);
+  let artStopDate = findObs(encounter, stopDate);
+  let artRestartDate = findObs(encounter, restartDate);
 
   artStartDate = artStartDate ? artStartDate.value : null;
   artSubstitutionDate = artSubstitutionDate ? artSubstitutionDate.value : null;
@@ -51,64 +43,75 @@ function getLatestARTDateConcept(encounter, dateConcepts: ARTDateConcepts): stri
   artStopDate = artStopDate ? artStopDate.value : null;
   artRestartDate = artRestartDate ? artRestartDate.value : null;
 
-  let latestDateConcept: string = dateConcepts.artTherapyDateTime_UUID;
+  let latestDateConcept: string = startDate;
   let latestDate = artStartDate;
-  if (artSubstitutionDate > latestDate) {
-    latestDateConcept = dateConcepts.substitutionDateUUID;
+  if (artSubstitutionDate != null) {
+    latestDateConcept = substitutionDate;
     latestDate = artSubstitutionDate;
   }
-  if (artSwitchDate > latestDate) {
+  if (artSwitchDate != null) {
     latestDate = artSwitchDate;
-    latestDateConcept = dateConcepts.switchDateUUID;
+    latestDateConcept = switchDate;
   }
-  if (artStopDate > latestDate) {
+  if (artStopDate != null) {
     latestDate = artStopDate;
-    latestDateConcept = dateConcepts.artStopDateUUID;
+    latestDateConcept = stopDate;
   }
-  if (artRestartDate > latestDate) {
+  if (artRestartDate != null) {
     latestDate = artRestartDate;
-    latestDateConcept = dateConcepts.dateRestartedUUID;
+    latestDateConcept = restartDate;
   }
 
   return latestDateConcept;
 }
 
-function getARTReasonConcept(encounter, dateConcepts: ARTDateConcepts): string {
-  const latestDateConcept: string = getLatestARTDateConcept(encounter, dateConcepts);
+function getARTReasonConcept(encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string {
+  const latestDateConcept: string = getARTDateConcept(
+    encounter,
+    startDate,
+    switchDate,
+    substitutionDate,
+    stopDate,
+    restartDate,
+  );
   let artReaseonConcept = '';
   switch (latestDateConcept) {
-    case dateConcepts.artStopDateUUID:
+    case startDate:
       artReaseonConcept = stopReasonUUID;
       break;
-    case dateConcepts.substitutionDateUUID:
+    case substitutionDate:
       artReaseonConcept = substituteReasonUUID;
       break;
-    case dateConcepts.switchDateUUID:
+    case switchDate:
       artReaseonConcept = switchReasonUUID;
       break;
-    case dateConcepts.dateRestartedUUID:
+    case restartDate:
       artReaseonConcept = restartReasonUUID;
       break;
+    case stopDate:
+      artReaseonConcept = stopReasonUUID;
     default:
       artReaseonConcept = '';
   }
+
   return artReaseonConcept;
 }
 
 const columns: EncounterListColumn[] = [
   {
     key: 'initiationDate',
-    header: 'Date(ART Start, Stopped, Switched, Changed, Restarted)',
+    header: 'Date',
     getValue: encounter => {
       return getObsFromEncounter(
         encounter,
-        getLatestARTDateConcept(encounter, {
+        getARTDateConcept(
+          encounter,
           artTherapyDateTime_UUID,
           switchDateUUID,
           substitutionDateUUID,
           artStopDateUUID,
           dateRestartedUUID,
-        }),
+        ),
         true,
       );
     },
@@ -141,13 +144,14 @@ const columns: EncounterListColumn[] = [
     getValue: encounter => {
       return getObsFromEncounter(
         encounter,
-        getARTReasonConcept(encounter, {
+        getARTReasonConcept(
+          encounter,
           artTherapyDateTime_UUID,
           switchDateUUID,
           substitutionDateUUID,
           artStopDateUUID,
           dateRestartedUUID,
-        }),
+        ),
       );
     },
   },
