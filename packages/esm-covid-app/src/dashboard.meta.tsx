@@ -25,7 +25,7 @@ export const covidVaccinations_dashboardMeta = {
   title: 'Covid Vaccinations',
 };
 
-// Clinical View Dashboards
+// Clinical Dashboards
 export const covidClinicalViewDashboardMeta = {
   slot: 'ohri-covid-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Coronavirus32 },
