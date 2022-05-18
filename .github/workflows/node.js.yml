@@ -59,7 +59,7 @@ jobs:
         run: |
           git add .
           git commit -m "Prerelease version" --no-verify  
-      - run: npm run prepublish
+      - run: npm run ci:prepublish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
