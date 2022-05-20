@@ -2,6 +2,7 @@ import hts_v_1_0 from './hts/1.0.json';
 import hts_v_2_0 from './hts/2.0.json';
 import hts_who_v_1_0 from './hts-who/1.0.json';
 import hiv_service_enrolment_v_1_0 from './care-and-treatment/service-enrolment/1.0.json';
+import hiv_service_enrolment_v_1_1 from './care-and-treatment/service-enrolment/1.1.json';
 import hiv_art_therapy_v_1_0 from './care-and-treatment/art-therapy/1.0.json';
 import clinical_visit_v_1_0 from './care-and-treatment/clinical-visit/1.0.json';
 import lab_results_v_1_0 from './care-and-treatment/lab-results/1.0.json';
@@ -28,6 +29,7 @@ export default {
     },
     service_enrolment: {
       '1.0': hiv_service_enrolment_v_1_0,
+      '1.1': hiv_service_enrolment_v_1_1,
     },
     clinical_visit: {
       '1.0': clinical_visit_v_1_0,
