@@ -6,7 +6,15 @@ import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
-import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import {
+  Button,
+  ComposedModal,
+  Link,
+  ModalWrapper,
+  OverflowMenu,
+  OverflowMenuItem,
+  Pagination,
+} from 'carbon-components-react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
 import { Add16 } from '@carbon/icons-react';
@@ -17,6 +25,8 @@ import {
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
 import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from 'openmrs-ohri-form-engine-lib';
+import ReactDOM from 'react-dom';
+import { AddPatientToListOverflowMenuItem } from '../modals/add-form/prevent-add-form.component';
 
 export interface EncounterListColumn {
   key: string;
@@ -114,6 +124,8 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const [isDead, setIsDead] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [isFormExisting, setIsFormExisting] = useState(true);
+  const [isClicked, setIsClicked] = useState(true);
 
   dropdownText = dropdownText ? 'Add' : 'New';
   hideFormLauncher = hideFormLauncher || false;
@@ -283,6 +295,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     setTableRows(rows);
   };
   const forceComponentUpdate = () => setCounter(counter + 1);
+  const [open, setOpen] = useState(false);
 
   const capitalize = word => word[0].toUpperCase() + word.substr(1);
 
@@ -310,7 +323,6 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           : formV.excludedIntents;
         return excludedIntents.length ? updateExcludeIntentBehaviour(excludedIntents, tempForm) : tempForm;
       });
-
       return (
         <OHRIFormLauncherWithIntent
           launchForm={launchEncounterForm}
@@ -320,14 +332,28 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         />
       );
     } else if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
+      // console.log('encounter form', encounterForm);
+      // if (encounterForms) {
       return (
-        <OHRIFormLauncherWithIntent
-          formJson={encounterForm}
+        <AddPatientToListOverflowMenuItem
+          displayText="Add +"
+          patientUuid={patientUuid}
           launchForm={launchEncounterForm}
-          dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
+          formJson={encounterForm}
         />
       );
+      // } else {
+      // return (
+      //   <>
+      //     <OHRIFormLauncherWithIntent
+      //       formJson={encounterForm}
+      //       launchForm={launchEncounterForm}
+      //       dropDownText={dropdownText}
+      //       hideFormLauncher={hideFormLauncher}
+      //     />
+      //   </>
+      // );
+      // }
     }
     return (
       <Button
@@ -336,7 +362,9 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         iconDescription="Add "
         onClick={e => {
           e.preventDefault();
-          launchEncounterForm();
+          setIsClicked(false);
+          setOpen(false);
+          // launchEncounterForm();
         }}>
         {dropdownText}
       </Button>
