@@ -3,12 +3,13 @@ import { Modal, SkeletonText } from 'carbon-components-react';
 import { applyFormIntent } from 'openmrs-ohri-form-engine-lib';
 import React, { useCallback, useMemo, useState } from 'react';
 
-export const AddPatientToListOverflowMenuItem: React.FC<{
+export const PromotBeforeOpening: React.FC<{
   patientUuid: string;
   displayText?: string;
+  dropDownText?: string;
   launchForm: (formJson?: any, intent?: string) => void;
   formJson?: Array<any>;
-}> = ({ patientUuid, displayText, launchForm, formJson }) => {
+}> = ({ patientUuid, dropDownText, displayText, launchForm, formJson }) => {
   const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
@@ -33,9 +34,13 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
           role="menuitem"
           onClick={() => setIsOpen(true)}
           style={{
-            maxWidth: '100vw',
+            maxWidth: '120vw',
+            marginLeft: '0.5rem',
+            paddingTop: '.1rem',
+            paddingRight: '.7rem',
+            width: '6rem',
           }}>
-          <span className="bx--overflow-menu-options__option-content">{displayText || 'Add '}</span>
+          <span className="bx--overflow-menu-options__option-content">{displayText || 'Add +'}</span>
         </button>
       </li>
     </>
@@ -60,7 +65,7 @@ export const AddPatientToListModal: React.FC<{
     continueFormLaunch(processedForm);
     close();
     // console.log(launchFormJson);
-  }, [selectedList]);
+  }, [close, continueFormLaunch, launchFormJson]);
 
   return (
     <>

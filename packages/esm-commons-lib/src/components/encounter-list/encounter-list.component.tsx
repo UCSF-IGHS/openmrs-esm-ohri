@@ -26,7 +26,7 @@ import {
 } from '../../utils/ohri-forms-commons';
 import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from 'openmrs-ohri-form-engine-lib';
 import ReactDOM from 'react-dom';
-import { AddPatientToListOverflowMenuItem } from '../modals/add-form/prevent-add-form.component';
+import { PromotBeforeOpening } from '../modals/add-form/prevent-add-form.component';
 
 export interface EncounterListColumn {
   key: string;
@@ -335,12 +335,15 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       // console.log('encounter form', encounterForm);
       // if (encounterForms) {
       return (
-        <AddPatientToListOverflowMenuItem
-          displayText="Add +"
-          patientUuid={patientUuid}
-          launchForm={launchEncounterForm}
-          formJson={encounterForm}
-        />
+        <>
+          <PromotBeforeOpening
+            displayText="Add +"
+            patientUuid={patientUuid}
+            dropDownText={dropdownText}
+            launchForm={launchEncounterForm}
+            formJson={encounterForm}
+          />
+        </>
       );
       // } else {
       // return (
