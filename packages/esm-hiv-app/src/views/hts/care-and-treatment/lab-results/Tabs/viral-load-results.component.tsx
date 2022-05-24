@@ -87,12 +87,12 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       rows.push({
         id: patient.resource.id,
         name: (
-            <Router>
-              <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
-                {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
-              </Link>
-            </Router>
-          ),
+          <Router>
+            <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
+              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
+            </Link>
+          </Router>
+        ),
         age: age(patient.resource.birthDate),
         gender: capitalize(patient.resource.gender),
         viralLoadResult: lastViralLoadResult,
