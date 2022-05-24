@@ -61,7 +61,7 @@ jobs:
           git commit -m "Prerelease version" --no-verify  
       - run: npm run ci:prepublish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
   release:
     runs-on: ubuntu-latest
@@ -80,7 +80,7 @@ jobs:
       - run: npx lerna bootstrap
       - run: npm run ci:publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
   working:
       runs-on: ubuntu-latest
@@ -141,7 +141,7 @@ jobs:
       - run: npx lerna bootstrap
       - run: npm run ci:publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
   pre_demo_export_concepts:
       runs-on: ubuntu-latest

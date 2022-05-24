@@ -1,6 +1,6 @@
 {
   "name": "openmrs-esm-ohri-commons-lib",
-  "version": "0.6.42-pre.67-pre.1567",
+  "version": "0.6.44-pre.0",
   "description": "Commons library for shared assets for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-commons-lib.js",
   "main": "src/index.ts",
@@ -72,5 +72,5 @@
   "devDependencies": {
     "@openmrs/esm-patient-common-lib": "^3.1.1-pre.1346"
   },
-  "gitHead": "bfe87ac395026f934703454cc8b483dfbc483e02"
+  "gitHead": "5028fd4428bcee71b898cfbaee1acb7e7d0acb15"
 }
