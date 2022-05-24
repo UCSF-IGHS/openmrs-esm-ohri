@@ -51,6 +51,14 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npx lerna bootstrap
       - run: npx lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
+      - name: setup git config
+        run: |
+           git config user.name "GitHub Actions Bot"
+           git config user.email "<>"
+      - name: commit
+        run: |
+           git add .
+           git commit -m "Prerelease version" --no-verify 
       - run: npm run ci:prepublish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
