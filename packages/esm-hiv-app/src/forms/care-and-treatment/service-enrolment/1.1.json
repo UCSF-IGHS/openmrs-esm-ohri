@@ -1184,7 +1184,7 @@
 		  {
 			"intent":"*",
 			"hide":{
-			  "hideWhenExpression":"isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+			  "hideWhenExpression":"isEmpty(clientDescription) || clientDescription === '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 			}
 		  }
 		]
@@ -1908,7 +1908,7 @@
 		  {
 			"intent":"*",
 			"hide":{
-			  "hideWhenExpression":"isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+			  "hideWhenExpression":"isEmpty(clientDescription) || clientDescription === '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 			}
 		  }
 		]
@@ -2152,7 +2152,7 @@
 		  {
 			"intent":"*",
 			"hide":{
-			  "hideWhenExpression":"isEmpty(clientDescription) || clientDescription !== '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+			  "hideWhenExpression":"isEmpty(clientDescription) || clientDescription === '159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 			}
 		  }
 		]
