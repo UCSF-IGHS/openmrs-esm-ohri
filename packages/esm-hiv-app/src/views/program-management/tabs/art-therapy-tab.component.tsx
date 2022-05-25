@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger, no-console */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -74,10 +75,11 @@ function getARTReasonConcept(encounter, startDate, switchDate, substitutionDate,
     stopDate,
     restartDate,
   );
-  let artReaseonConcept = '';
+
+  let artReaseonConcept;
   switch (latestDateConcept) {
     case startDate:
-      artReaseonConcept = stopReasonUUID;
+      artReaseonConcept = '';
       break;
     case substitutionDate:
       artReaseonConcept = substituteReasonUUID;
@@ -88,10 +90,8 @@ function getARTReasonConcept(encounter, startDate, switchDate, substitutionDate,
     case restartDate:
       artReaseonConcept = restartReasonUUID;
       break;
-    case stopDate:
-      artReaseonConcept = stopReasonUUID;
     default:
-      artReaseonConcept = '';
+      artReaseonConcept = stopReasonUUID;
   }
 
   return artReaseonConcept;
@@ -142,17 +142,15 @@ const columns: EncounterListColumn[] = [
     key: 'reason',
     header: 'Reason',
     getValue: encounter => {
-      return getObsFromEncounter(
+      const reasonConcept = getARTReasonConcept(
         encounter,
-        getARTReasonConcept(
-          encounter,
-          artTherapyDateTime_UUID,
-          switchDateUUID,
-          substitutionDateUUID,
-          artStopDateUUID,
-          dateRestartedUUID,
-        ),
+        artTherapyDateTime_UUID,
+        switchDateUUID,
+        substitutionDateUUID,
+        artStopDateUUID,
+        dateRestartedUUID,
       );
+      return getObsFromEncounter(encounter, reasonConcept);
     },
   },
   {
@@ -184,9 +182,6 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
   const displayText = t('artTherapy', 'ART Therapy');
 
   return (
-    // <>
-    //   <EmptyState displayText={displayText} headerTitle={headerTitle} />
-    // </>
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={art_Therapy_EncounterUUID}
