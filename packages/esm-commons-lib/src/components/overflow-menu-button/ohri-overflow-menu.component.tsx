@@ -3,6 +3,7 @@ import styles from './ohri-overflow-menu.scss';
 import { useTranslation } from 'react-i18next';
 import { applyFormIntent } from 'openmrs-ohri-form-engine-lib';
 import { Button } from 'carbon-components-react';
+import { AddPatientToListModal } from '../modals/add-form/prevent-add-form.component';
 
 interface OverflowMenuProps {
   menuTitle: React.ReactNode;
@@ -10,6 +11,8 @@ interface OverflowMenuProps {
   overflowIcon?: any;
   launchForm?: (formJson?: any, intent?: string) => void;
   formJson?: any;
+  patientUuid?: string;
+  rows?: any;
 }
 
 export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
@@ -18,9 +21,13 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
   overflowItems,
   launchForm,
   formJson,
+  patientUuid,
+  rows,
 }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [intentTitle, setIntentTitle] = useState('');
   const wrapperRef = useRef(null);
   const toggleShowMenu = useCallback(() => setShowMenu(state => !state), []);
 
@@ -41,6 +48,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [wrapperRef]);
+  console.log('before', openModal);
 
   return (
     <div className={`bx--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
@@ -81,28 +89,45 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
               width: '13rem',
             }}>
+            <AddPatientToListModal
+              isOpen={openModal}
+              close={() => setOpenModal(false)}
+              patientUuid={patientUuid}
+              title={intentTitle}
+              launchForm1={launchForm}
+              formJson1={formJson}
+            />
             <ul className="bx--overflow-menu-options__content">
               {overflowItems.map(item => {
                 return item.availableIntents.map((intent, index) => {
                   return (
-                    <li className="bx--overflow-menu-options__option" id={'item-' + index} key={index}>
-                      <button
-                        id={'menuItem-' + index}
-                        className="bx--overflow-menu-options__btn"
-                        role="menuitem"
-                        title={intent.display}
-                        onClick={e => {
-                          e.preventDefault();
-                          const processedForm = applyFormIntent(intent, item.formJson);
-                          launchForm(processedForm, intent.display);
-                          setShowMenu(false);
-                        }}
-                        style={{
-                          maxWidth: '100vw',
-                        }}>
-                        <span className="bx--overflow-menu-options__option-content">{intent.display}</span>
-                      </button>
-                    </li>
+                    <>
+                      <li className="bx--overflow-menu-options__option" id={'item-' + index} key={index}>
+                        <button
+                          id={'menuItem-' + index}
+                          className="bx--overflow-menu-options__btn"
+                          role="menuitem"
+                          title={intent.display}
+                          onClick={e => {
+                            e.preventDefault();
+                            // const processedForm = applyFormIntent(intent, item.formJson);
+                            // console.log(rows);
+                            // if (rows.length) {
+                            //console.log(openModal)
+                            setIntentTitle(intent.display);
+                            setOpenModal(true);
+                            // } else {
+                            //   launchForm(processedForm, intent.display);
+                            //   setShowMenu(false);
+                            // }
+                          }}
+                          style={{
+                            maxWidth: '100vw',
+                          }}>
+                          <span className="bx--overflow-menu-options__option-content">{intent.display}</span>
+                        </button>
+                      </li>
+                    </>
                   );
                 });
               })}

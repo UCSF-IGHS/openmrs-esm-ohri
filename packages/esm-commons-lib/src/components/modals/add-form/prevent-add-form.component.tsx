@@ -1,15 +1,14 @@
 import { usePatient } from '@openmrs/esm-framework';
-import { Modal, SkeletonText } from 'carbon-components-react';
+import { Modal, RadioButton, SkeletonText } from 'carbon-components-react';
 import { applyFormIntent } from 'openmrs-ohri-form-engine-lib';
 import React, { useCallback, useMemo, useState } from 'react';
 
-export const PromotBeforeOpening: React.FC<{
+export const AddPatientToListOverflowMenuItem: React.FC<{
   patientUuid: string;
   displayText?: string;
-  dropDownText?: string;
   launchForm: (formJson?: any, intent?: string) => void;
   formJson?: Array<any>;
-}> = ({ patientUuid, dropDownText, displayText, launchForm, formJson }) => {
+}> = ({ patientUuid, displayText, launchForm, formJson }) => {
   const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
   const patientDisplay = useMemo(() => {
@@ -23,22 +22,19 @@ export const PromotBeforeOpening: React.FC<{
           isOpen={isOpen}
           close={() => setIsOpen(false)}
           patientUuid={patientUuid}
-          title={`A Form for ${patientDisplay} Already exists`}
-          continueFormLaunch={launchForm}
-          launchFormJson={formJson}
+          title={`An Encounter for ${patientDisplay} Already exists`}
+          launchForm1={launchForm}
+          formJson1={formJson}
         />
       )}
       <li className="bx--overflow-menu-options__option">
         <button
           className="bx--overflow-menu-options__btn"
           role="menuitem"
+          title="Add +"
           onClick={() => setIsOpen(true)}
           style={{
-            maxWidth: '120vw',
-            marginLeft: '0.5rem',
-            paddingTop: '.1rem',
-            paddingRight: '.7rem',
-            width: '6rem',
+            maxWidth: '100vw',
           }}>
           <span className="bx--overflow-menu-options__option-content">{displayText || 'Add +'}</span>
         </button>
@@ -52,27 +48,20 @@ export const AddPatientToListModal: React.FC<{
   close: () => void;
   patientUuid: string;
   title?: string;
-  cohortType?: string;
-  continueFormLaunch: (launchFormJson?: any, intent?: string) => void;
-  launchFormJson?: any;
-}> = ({ isOpen, close, title, continueFormLaunch, launchFormJson }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedList, setSelectedList] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
+  launchForm1: (formJson1?: any, intent?: string) => void;
+  formJson1?: any;
+}> = ({ isOpen, close, title, launchForm1, formJson1 }) => {
   const handleSubmit = useCallback(() => {
-    const processedForm = applyFormIntent(launchFormJson.availableIntents[0], launchFormJson);
-    continueFormLaunch(processedForm);
+    const processedForm = applyFormIntent(formJson1.availableIntents[0], formJson1);
+    launchForm1(processedForm);
     close();
-    // console.log(launchFormJson);
-  }, [close, continueFormLaunch, launchFormJson]);
+  }, [close, formJson1, launchForm1]);
 
   return (
     <>
       <Modal
-        style={{ zIndex: 99999 }}
         open={isOpen}
-        modalHeading={title || 'Encounter Form already Exists!'}
+        modalHeading={title || 'Form Already Exists'}
         modalLabel=""
         onRequestClose={close}
         passiveModal={false}

@@ -26,7 +26,7 @@ import {
 } from '../../utils/ohri-forms-commons';
 import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from 'openmrs-ohri-form-engine-lib';
 import ReactDOM from 'react-dom';
-import { PromotBeforeOpening } from '../modals/add-form/prevent-add-form.component';
+import { AddPatientToListOverflowMenuItem } from '../modals/add-form/prevent-add-form.component';
 
 export interface EncounterListColumn {
   key: string;
@@ -332,31 +332,16 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         />
       );
     } else if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
-      // console.log('encounter form', encounterForm);
-      // if (encounterForms) {
       return (
-        <>
-          <PromotBeforeOpening
-            displayText="Add +"
-            patientUuid={patientUuid}
-            dropDownText={dropdownText}
-            launchForm={launchEncounterForm}
-            formJson={encounterForm}
-          />
-        </>
+        <OHRIFormLauncherWithIntent
+          formJson={encounterForm}
+          launchForm={launchEncounterForm}
+          dropDownText={dropdownText}
+          hideFormLauncher={hideFormLauncher}
+          patientUuid={patientUuid}
+          rows={tableRows}
+        />
       );
-      // } else {
-      // return (
-      //   <>
-      //     <OHRIFormLauncherWithIntent
-      //       formJson={encounterForm}
-      //       launchForm={launchEncounterForm}
-      //       dropDownText={dropdownText}
-      //       hideFormLauncher={hideFormLauncher}
-      //     />
-      //   </>
-      // );
-      // }
     }
     return (
       <Button
@@ -377,7 +362,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   useEffect(() => {
     loadRows(encounterUuid);
   }, [counter]);
-
+  console.log(tableRows);
   return (
     <>
       {isLoading ? (
