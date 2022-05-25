@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger, no-console */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
