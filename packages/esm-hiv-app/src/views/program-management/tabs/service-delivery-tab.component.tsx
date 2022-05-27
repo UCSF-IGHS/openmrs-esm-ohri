@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from 'openmrs-esm-ohri-commons-lib';
-import { CommunityDSDModel_UUID, ServiceDeliveryEncounterType_UUID } from '../../../constants';
+import { CommunityDSDModel_UUID, EnrollmentDate_UUID, ServiceDeliveryEncounterType_UUID } from '../../../constants';
 
 interface ServiceDeliveryTabListProps {
   patientUuid: string;
@@ -9,31 +9,10 @@ interface ServiceDeliveryTabListProps {
 
 const columns: EncounterListColumn[] = [
   {
-    key: 'mostRecentVLResults',
-    header: 'Most recent VL results ',
-    getValue: encounter => {
-      return null;
-    },
-  },
-  {
     key: 'vlDate',
-    header: 'Date VL done',
+    header: 'Date Enrolled/Dis-enrolled',
     getValue: encounter => {
-      return null;
-    },
-  },
-  {
-    key: 'currentRegimenDuration',
-    header: 'Duration of current Regimen',
-    getValue: encounter => {
-      return null;
-    },
-  },
-  {
-    key: 'adherenceLevel',
-    header: 'Good Adherence in the Last 6 months',
-    getValue: encounter => {
-      return null;
+      return getObsFromEncounter(encounter, EnrollmentDate_UUID, true);
     },
   },
   {

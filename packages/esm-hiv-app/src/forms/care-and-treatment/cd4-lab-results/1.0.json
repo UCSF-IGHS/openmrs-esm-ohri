@@ -104,7 +104,7 @@
                       "required": "true",
                       "unspecified": "true",                
                       "hide": {
-                        "hideWhenExpression": "cd4Lab == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                        "hideWhenExpression": "!includes('cd4Lab', 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3', '488b58ff-64f5-4f8a-8979-fa79940b1594')"
                       }
                     }
                   ]
@@ -158,7 +158,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "cd4Lab == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                       "hideWhenExpression": "!includes('cd4Lab', 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3', '488b58ff-64f5-4f8a-8979-fa79940b1594')"
                       }
                     }
                   ]
@@ -186,7 +186,7 @@
                       "required": "true",
                       "unspecified": "true",
                       "hide": {
-                        "hideWhenExpression": "cd4Lab == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                       "hideWhenExpression": "!includes('cd4Lab', 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3', '488b58ff-64f5-4f8a-8979-fa79940b1594')"
                       }
                     }
                   ]
@@ -221,7 +221,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "cd4Lab == '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                     "hideWhenExpression": "!includes('cd4Lab', 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3', '488b58ff-64f5-4f8a-8979-fa79940b1594')"
                     }
                   }
                 ]

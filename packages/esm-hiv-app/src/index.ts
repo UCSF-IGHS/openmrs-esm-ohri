@@ -1,8 +1,24 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
-  clearCareAndTreatmentSidenavRegistry,
-  createCareAndTreatmentDashboardLink,
+  createOHRIDashboardLink,
+  PatientStatusBannerTag,
+  OHRIHome,
+  OHRIWelcomeSection,
+} from 'openmrs-esm-ohri-commons-lib';
+import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { addToBaseFormsRegistry } from 'openmrs-ohri-form-engine-lib';
+import hivForms from './forms/forms-registry';
+
+import {
+  hivFolderDashboardMeta,
+  careAndTreatmentDashboardMeta,
+  htsDashboardMeta,
+  hts_dashboardMeta,
+  hivPreventionDashboardDMeta,
+  preExposureProphylaxis_dashboardMeta,
+  labResultsDashboardMeta,
+  hivCareAndTreatmentDashboardDMeta,
   serviceSummary_dashboardMeta,
   labResults_dashboardMeta,
   programManagement_dashboardMeta,
@@ -12,30 +28,11 @@ import {
   partnerNotificationServices_dashboardMeta,
   medications_dashboardMeta,
   appointments_dashboardMeta,
-} from './care-and-treatment/dashboard.meta';
-
-import {
-  createOHRIDashboardLink,
-  PatientStatusBannerTag,
-  OHRIHome,
-  OHRIWelcomeSection,
-} from 'openmrs-esm-ohri-commons-lib';
-
-import { addToBaseFormsRegistry } from 'openmrs-ohri-form-engine-lib';
-import hivForms from './forms/forms-registry';
-
-import {
-  hivFolderDashboardMeta,
-  careAndTreatmentDashboardMeta,
-  htsDashboardMeta,
-  clearHivPreventionSidenavRegistry,
-  createHIVPreventionDashboardLink,
-  hts_dashboardMeta,
-  preExposureProphylaxis_dashboardMeta,
-  labResultsDashboardMeta,
 } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
+
+require('./root.scss');
 
 function setupOpenMRS() {
   const moduleName = 'openmrs-esm-ohri-hiv-app';
@@ -46,10 +43,6 @@ function setupOpenMRS() {
   };
 
   defineConfigSchema(moduleName, {});
-
-  //Clear sidenav items to avoid duplicates
-  clearCareAndTreatmentSidenavRegistry();
-  clearHivPreventionSidenavRegistry();
 
   addToBaseFormsRegistry(hivForms);
   return {
@@ -216,17 +209,25 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'hts-summary-dashboard',
+        id: 'ohri-hiv-prevention',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createHIVPreventionDashboardLink(hts_dashboardMeta), options),
+        load: getSyncLifecycle(createDashboardGroup(hivPreventionDashboardDMeta), options),
+        meta: hivPreventionDashboardDMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'hts-summary-dashboard',
+        slot: 'ohri-hiv-prevention-slot',
+        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
         meta: hts_dashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'pre-exposure-prophylaxis',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createHIVPreventionDashboardLink(preExposureProphylaxis_dashboardMeta), options),
+        slot: 'ohri-hiv-prevention-slot',
+        load: getSyncLifecycle(createDashboardLink(preExposureProphylaxis_dashboardMeta), options),
         meta: preExposureProphylaxis_dashboardMeta,
         online: true,
         offline: true,
@@ -240,17 +241,25 @@ function setupOpenMRS() {
         }),
       },
       {
-        id: 'hts-service-summary-dashboard',
+        id: 'ohri-hiv-care-and-treatment',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(serviceSummary_dashboardMeta), options),
+        load: getSyncLifecycle(createDashboardGroup(hivCareAndTreatmentDashboardDMeta), options),
+        meta: hivCareAndTreatmentDashboardDMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'hts-service-summary-dashboard',
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(serviceSummary_dashboardMeta), options),
         meta: serviceSummary_dashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'program-management-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(programManagement_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(programManagement_dashboardMeta), options),
         meta: programManagement_dashboardMeta,
         online: true,
         offline: true,
@@ -265,8 +274,8 @@ function setupOpenMRS() {
       },
       {
         id: 'visits-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(visits_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(visits_dashboardMeta), options),
         meta: visits_dashboardMeta,
         online: true,
         offline: true,
@@ -281,8 +290,8 @@ function setupOpenMRS() {
       },
       {
         id: 'general-counselling-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(generalCounselling_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(generalCounselling_dashboardMeta), options),
         meta: generalCounselling_dashboardMeta,
         online: true,
         offline: true,
@@ -297,8 +306,8 @@ function setupOpenMRS() {
       },
       {
         id: 'adherence-counselling-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(adherenceCounselling_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(adherenceCounselling_dashboardMeta), options),
         meta: adherenceCounselling_dashboardMeta,
         online: true,
         offline: true,
@@ -313,8 +322,8 @@ function setupOpenMRS() {
       },
       {
         id: 'partner-notification-services',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(partnerNotificationServices_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(partnerNotificationServices_dashboardMeta), options),
         meta: partnerNotificationServices_dashboardMeta,
         online: true,
         offline: true,
@@ -332,16 +341,16 @@ function setupOpenMRS() {
       },
       {
         id: 'lab-results-summary-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(labResults_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(labResults_dashboardMeta), options),
         meta: labResults_dashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'medications-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(medications_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(medications_dashboardMeta), options),
         meta: medications_dashboardMeta,
         online: true,
         offline: true,
@@ -356,8 +365,8 @@ function setupOpenMRS() {
       },
       {
         id: 'appointments-summary',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCareAndTreatmentDashboardLink(appointments_dashboardMeta), options),
+        slot: 'ohri-hiv-care-and-treatment-slot',
+        load: getSyncLifecycle(createDashboardLink(appointments_dashboardMeta), options),
         meta: appointments_dashboardMeta,
         online: true,
         offline: true,

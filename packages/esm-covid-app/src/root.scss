@@ -107,3 +107,20 @@ div[class*='-esm-login__styles__center'] > img {
 :global(.bx--overflow-menu) > div {
   width: 15rem !important;
 }
+
+nav :global(.bx--accordion__title) {
+  color: #525252;
+  font-weight: 600 !important;
+}
+
+nav :global(.bx--accordion__content) {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+nav :global(.bx--accordion__content)>a {
+  background-color: #cecece !important;
+  color: #161616 !important;
+  border-left-color: $brand-color-01  !important;
+  font: bolder;
+}
