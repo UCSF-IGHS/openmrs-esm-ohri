@@ -30,7 +30,7 @@ const artConcepts = new Map([
   ['3e69cb60-2943-410f-83d4-b359ae83fefd', 'Restart ART therapy'],
 ]);
 
-function getARTDateConcept(encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string {
+const getARTDateConcept = (encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string => {
   let artStartDate = findObs(encounter, startDate);
   let artSwitchDate = findObs(encounter, switchDate);
   let artSubstitutionDate = findObs(encounter, substitutionDate);
@@ -63,9 +63,9 @@ function getARTDateConcept(encounter, startDate, switchDate, substitutionDate, s
   }
 
   return latestDateConcept;
-}
+};
 
-function getARTReasonConcept(encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string {
+const getARTReasonConcept = (encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string => {
   const latestDateConcept: string = getARTDateConcept(
     encounter,
     startDate,
@@ -89,12 +89,14 @@ function getARTReasonConcept(encounter, startDate, switchDate, substitutionDate,
     case restartDate:
       artReaseonConcept = restartReasonUUID;
       break;
+    case stopDate:
+      artReaseonConcept = stopReasonUUID;
     default:
       artReaseonConcept = stopReasonUUID;
   }
 
   return artReaseonConcept;
-}
+};
 
 const columns: EncounterListColumn[] = [
   {
