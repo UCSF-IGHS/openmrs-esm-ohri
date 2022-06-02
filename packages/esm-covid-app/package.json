@@ -1,5 +1,5 @@
 {
-  "name": "openmrs-esm-ohri-covid-app",
+  "name": "@ohri/openmrs-esm-ohri-covid-app",
   "version": "0.6.45",
   "description": "COVID Microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-covid-app.js",

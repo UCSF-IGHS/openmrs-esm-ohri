@@ -1,5 +1,5 @@
 {
-  "name": "openmrs-esm-ohri-form-render-app",
+  "name": "@ohri/openmrs-esm-ohri-form-render-app",
   "version": "0.6.45",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-form-render-app.js",
