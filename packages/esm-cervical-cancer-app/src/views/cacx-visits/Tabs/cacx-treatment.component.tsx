@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyStateComingSoon, EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
-import { cacxEncounterDateConcept, screeningMethodConcept, cacxTreatmentConcept, cacxTreatmentEncounterType_UUID } from '../../../constants';
+import { cacxEncounterDateConcept, screeningMethodConcept, cacxTreatmentConcept, cacxTreatmentEncounterType_UUID, colopsyResultsConcept } from '../../../constants';
 
 interface CacxTreatmentListProps {
   patientUuid: string;
@@ -20,6 +20,13 @@ const columnsLab: EncounterListColumn[] = [
     header: 'Screening Method',
     getValue: encounter => {
       return getObsFromEncounter(encounter, screeningMethodConcept);
+    },
+  },
+  {
+    key: 'colopsyResult',
+    header: 'Screening Results',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, colopsyResultsConcept);
     },
   },
   {

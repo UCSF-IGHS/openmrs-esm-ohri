@@ -9,3 +9,4 @@ export const cacxTreatmentEncounterType_UUID = '60c80941-c3dc-45c6-9b78-c150e047
 export const cacxEncounterDateConcept = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const screeningMethodConcept = '53ff5cd0-0f37-4190-87b1-9eb439a15e94';
 export const cacxTreatmentConcept = '3a8bb4b4-7496-415d-a327-57ae3711d4eb';
+export const colopsyResultsConcept = '9096a18e-c009-4f4c-b0ba-0605e0f16578';
