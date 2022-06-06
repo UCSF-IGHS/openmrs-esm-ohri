@@ -71,7 +71,7 @@
     "react-i18next": "^11.3.4"
   },
   "devDependencies": {
-    "@openmrs/esm-patient-common-lib": "next"
+    "@openmrs/esm-patient-common-lib": "^3.1.1-pre.53"
   },
   "gitHead": "5028fd4428bcee71b898cfbaee1acb7e7d0acb15"
 }
