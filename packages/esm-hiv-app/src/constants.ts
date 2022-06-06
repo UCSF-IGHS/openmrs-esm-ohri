@@ -144,6 +144,7 @@ export const PoorConcentrationConcept_UUID = '167072AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 export const CD4LabResultsEncounter_UUID = '96adb28e-e417-43a3-8f7d-682f8af5e912';
 export const Cd4LabResultDate_UUID = '163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const Cd4LabResultCountPercentage_UUID = '730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const Cd4Count_UUID = '5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Viral Load Results
 export const ViralLoadResultsEncounter_UUID = '41af1931-184e-45f8-86ca-d42e0db0b8a1';
