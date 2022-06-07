@@ -77,7 +77,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.17.8",
     "@openmrs/esm-framework": "^3.2.1-pre.1055",
-    "@openmrs/esm-patient-common-lib": "^3.1.1-pre.53",
+    "@openmrs/esm-patient-common-lib": "3.1.1-pre.57",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^10.4.3",
