@@ -1081,129 +1081,7 @@
 				"type":"obs",
 				"questionOptions":{
 				  "rendering":"text",
-				  "concept":"161549AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-				  "answers":[
-					{
-					  "concept":"5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Other",
-					  "conceptMappings":[
-						{
-						  "type":"PIH-Malawi",
-						  "value":"6408"
-						},
-						{
-						  "type":"org.openmrs.module.mdrtb",
-						  "value":"OTHER"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"56221000105001"
-						},
-						{
-						  "type":"PIH",
-						  "value":"5622"
-						},
-						{
-						  "type":"AMPATH",
-						  "value":"5622"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"74964007"
-						}
-					  ]
-					},
-					{
-					  "concept":"159671AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Provincial hospital",
-					  "conceptMappings":[
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"1596711000105007"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"AMPATH",
-						  "value":"6438"
-						}
-					  ]
-					},
-					{
-					  "concept":"159670AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"sub-district hospital",
-					  "conceptMappings":[
-						{
-						  "type":"AMPATH",
-						  "value":"6439"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"1596701000105009"
-						}
-					  ]
-					},
-					{
-					  "concept":"1274AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Moi teaching and referral hospital",
-					  "conceptMappings":[
-						{
-						  "type":"AMPATH",
-						  "value":"1274"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"405608006"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"12741000105009"
-						}
-					  ]
-					},
-					{
-					  "concept":"159662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"district hospital",
-					  "conceptMappings":[
-						{
-						  "type":"AMPATH",
-						  "value":"6437"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"1596621000105007"
-						}
-					  ]
-					},
-					{
-					  "concept":"1275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Health center hospital",
-					  "conceptMappings":[
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"12751000105006"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"AMPATH",
-						  "value":"1275"
-						}
-					  ]
-					}
-				  ]
+				  "concept":"c4768674-0c26-4353-8a3f-608e7b40ac57"
 				},
 				"behaviours":[
 				  {
@@ -2306,17 +2184,6 @@
 					}
 				  ]
 				},
-				"behaviours": [
-				  {
-					"intent": "*",
-					"required": "false",
-					"unspecified": "true",
-					"hide": {
-					  "hideWhenExpression": "false"
-					},
-            "validators": []
-				  }
-				],
 				"id": "addNotes"
 			  }
 			]
