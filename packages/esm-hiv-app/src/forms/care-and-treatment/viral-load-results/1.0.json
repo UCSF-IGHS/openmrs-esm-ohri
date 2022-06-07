@@ -132,6 +132,16 @@
                       ]
                     },
                     {
+                      "concept":"be5d6a4a-4018-49dd-869f-273c9f5fec9e",
+                      "label":"Routine Viral Load",
+                      "conceptMappings":[
+                        {
+                          "type":"OCT",
+                          "value":"RoutineViralLoad"
+                        }
+                      ]
+                    },
+                    {
                       "concept":"1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label":"Change regimen",
                       "conceptMappings":[
@@ -148,6 +158,43 @@
                           "value":"1259"
                         }
                       ]
+                    },
+                    {
+                      "concept":"843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "label":"Regimen failure",
+                      "conceptMappings":[
+                        {
+                          "type":"org.openmrs.module.mdrtb",
+                          "value":"FAILED"
+                        },
+                        {
+                          "type":"PIH",
+                          "value":"843"
+                        },
+                        {
+                          "type":"AMPATH",
+                          "value":"1259"
+                        },
+                        {
+                          "type":"SNOMED-CT",
+                          "value":"266721009"
+                        }
+                      ]
+                    },
+                    {
+                      "concept":"857e08cb-1ca7-4b4e-9698-38cdb76df59b",
+                      "label":"Confirmation of Persistent Low-Level Viremia",
+                      "conceptMappings":[
+                        {
+                          "type":"OCT",
+                          "value":"BaselineVL"
+                        }
+                      ]
+                    },
+                    {
+                      "concept":"4fe5857e-c804-41cf-b3c9-0acc1f516ab7",
+                      "label":"Recency testing",
+                      "conceptMappings":[]
                     },
                     {
                       "concept":"5d4e13af-92ec-4b91-a8e4-97818810e577",
@@ -206,36 +253,6 @@
                     }
                   ],
                   "answers":[
-                    {
-                      "concept":"1304AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                      "label":"Poor sample quality",
-                      "conceptMappings":[
-                        {
-                          "type":"SNOMED-MVP",
-                          "value":"13041000105002"
-                        },
-                        {
-                          "type":"SNOMED-MVP",
-                          "value":"13041000105002"
-                        },
-                        {
-                          "type":"AMPATH",
-                          "value":"1304"
-                        },
-                        {
-                          "type":"CIEL",
-                          "value":"1304"
-                        },
-                        {
-                          "type":"SNOMED-CT",
-                          "value":"123038009"
-                        },
-                        {
-                          "type":"AMPATH",
-                          "value":"1304"
-                        }
-                      ]
-                    },
                     {
                       "concept":"1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label":"Detected",
