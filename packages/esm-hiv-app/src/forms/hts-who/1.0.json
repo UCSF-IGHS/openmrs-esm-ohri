@@ -367,7 +367,7 @@
             "isExpanded": "true",
             "questions": [
               {
-                "label": "Reason for this HIV test?",
+                "label": "Reason for this HIV test",
                 "type": "obs",
                 "questionOptions": {
                   "rendering": "select",
@@ -1336,7 +1336,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(preTestCounsellingConducted) || preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                      "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ],
@@ -1833,7 +1833,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "preTestCounselingConsent !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+              "hideWhenExpression": "preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
             }
           }
         ]
@@ -2281,7 +2281,7 @@
                   "answers": [
                     {
                       "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                      "label": "Indeterminate",
+                      "label": "Indeterminate (Inconclusive)",
                       "conceptMappings": [
                         {
                           "type": "AMPATH",
@@ -2429,7 +2429,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2485,7 +2485,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2673,7 +2673,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff' ||  secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -3048,7 +3048,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(receivedHIVTestResult) || receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                      "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
                     }
                   }
                 ],
@@ -3082,10 +3082,7 @@
                   {
                     "intent": "*",
                     "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "isEmpty(resultReceivedCouple) || resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
+                    "unspecified": "true"
                   }
                 ],
                 "id": "CoupleResults"
@@ -3097,7 +3094,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(counselingSessionType) || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -3952,7 +3949,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "preTestCounselingConsent !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || hivTestConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+              "hideWhenExpression": "false"
             }
           }
         ]

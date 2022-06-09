@@ -45,7 +45,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   }, [page, pageSize]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart`;
   async function loadPatients(offSet: number, pageSize: number) {
     let rows = [];
     const { data: patients } = await fetchPatientList(offSet, pageSize);

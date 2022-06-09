@@ -75,7 +75,11 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   const obs = findObs(encounter, obsConcept);
 
   if (isTrueFalseConcept) {
-    return obs ? 'Yes' : 'No';
+    if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
+      return 'Yes';
+    } else {
+      return 'No';
+    }
   }
   if (!obs) {
     return '--';

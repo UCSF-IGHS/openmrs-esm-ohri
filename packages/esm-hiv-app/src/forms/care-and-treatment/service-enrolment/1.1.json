@@ -35,7 +35,7 @@
 					  "concept":"160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Transfer in a client",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -48,7 +48,7 @@
 					  "concept":"159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Re-enrol a client",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -190,49 +190,49 @@
 					  "concept":"63ea75cb-205f-4e7b-9ede-5f9b8a4dda9f",
 					  "label":"Migrant Workers",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"b282bb08-62a7-42c2-9bea-8751c267d13e",
 					  "label":"Uniformed Forces",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"22b202fc-67de-4af9-8c88-46e22559d4b2",
 					  "label":"Transgender Persons",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"678f3144-302f-493e-ba22-7ec60a84732a",
 					  "label":"Adolescent Girls & Young Women",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"def00c73-f6d5-42fb-bcec-0b192b5be22d",
 					  "label":"Fisher Folk",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"8da9bf92-22f6-40be-b468-1ad08de7d457",
 					  "label":"Prisoners",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"dc1058ea-4edd-4780-aeaa-a474f7f3a437",
 					  "label":"Refugees",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -269,14 +269,14 @@
 					  "concept":"c038bff0-8e33-408c-b51f-7fb6448d2f6c",
 					  "label":"People Who Inject Drugs",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"365371fd-0106-4a53-abc4-575e3d65d372",
 					  "label":"People With Disability",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -290,7 +290,7 @@
 					  "hideWhenExpression":"isEmpty(clientPopulationCategory) || clientPopulationCategory !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -660,161 +660,161 @@
 					  "concept":"d8051638-0123-4322-a094-4a48adffdc37",
 					  "label":"d4T + 3TC + NVP",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"67701961-f6c1-4ebf-a7f5-c2c5d25021a0",
 					  "label":"TDF + FTC + EFV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"083d46c5-dea7-49de-abd5-e16f252255a7",
 					  "label":"TDF + FTC + DTG",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"36685ad3-a223-4c3c-b6ee-d8358432a600",
 					  "label":"TDF + 3TC + NVP",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"380e5e7c-7c2f-4ba8-a93c-90b1e638dc2c",
 					  "label":"TDF + 3TC + LPV/r",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"5f123dc8-c697-47f6-bc67-007322a9bb48",
 					  "label":"TDF + 3TC + EFV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"5679c813-cfed-4fb2-b252-d6149297e013",
 					  "label":"TDF + 3TC + DTG + ETR + DRV + RTV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"907d304b-ebc4-4387-8af8-2d2c92f82910",
 					  "label":"TDF + 3TC + DTG + DRV + RTV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"5a4587e2-de9e-4b99-9ea0-00717fa5605a",
 					  "label":"TAF + 3TC + LPV/r",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"5f7da36e-1a83-4ede-ae6f-41aaa5304601",
 					  "label":"TAF + 3TC + DTG",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"6b7cd8a1-77b3-4853-bbe7-ff6bf51c41c3",
 					  "label":"TAF + 3TC + DRV/r",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"0fd8a042-81a3-4106-8470-63d29380d7d5",
 					  "label":"RAL + 3TC + DRV + RTV + TDF",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"3ae355dd-fc83-43c6-9312-ebbb30b51bf7",
 					  "label":"RAL + 3TC + DRV + RTV + AZT",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"1431d032-9eeb-46b3-84e5-79f0c19354d8",
 					  "label":"RAL + 3TC + DRV + RTV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"9e82e55d-dbbf-49a6-900c-d8ead9985b0a",
 					  "label":"ETV + 3TC + DRV + RTV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"e9540e20-1ba4-4573-b189-088f5fd9dc57",
 					  "label":"AZT + 3TC + RAL",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"bafb40ca-b0c7-4366-bd8e-9eb923237c94",
 					  "label":"AZT + 3TC + NVP",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"d2b1d784-a880-42a9-b0a6-19de2db7afd6",
 					  "label":"AZT + 3TC + LPV/r",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"b1336ea0-3a87-4018-9fce-3a7a22d95d7d",
 					  "label":"AZT + 3TC + EFV",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"f2247788-6d05-490d-ad04-64544c8020b7",
 					  "label":"AZT + 3TC + DTG",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"60bec021-c05c-4ae9-93fe-b798c0bf82d2",
 					  "label":"AZT + 3TC + DRV + RTV + RAL",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"62243dfe-6284-48a9-afcc-63149ac6d709",
 					  "label":"AZT + 3TC + ATV/r",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"dc25af21-7816-44d8-92d2-3332c7db113a",
 					  "label":"ABC + 3TC + RAL",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -861,21 +861,21 @@
 					  "concept":"396d668b-b1e6-4997-b9b9-2d57f53c2321",
 					  "label":"ABC + 3TC + DRVr",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"5bb0348b-fc27-460e-b6cd-df7a4a253372",
 					  "label":"ABC + 3TC + DRV+RTV+RAL",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"f827ed18-f816-4cd0-b77c-28a0209c96c0",
 					  "label":"ABC + 3TC + ATVr",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -903,21 +903,21 @@
 					  "concept":"163532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Mother enrolled in prevention of maternal to child transmission (PMTCT) program",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"71a489e5-e393-4859-a2df-a3b14ea6b4bf",
 					  "label":"Transfer-in with Records",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"a484d55e-dfc7-4791-82a4-eff8f21e26de",
 					  "label":"Transfer-in without records",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -1012,16 +1012,56 @@
 					  "concept":"163722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Rapid test for HIV",
 					  "conceptMappings":[
-						
+              {
+                "type":"CIEL",
+                "value":"163722"
+              },
+              {
+                "type":"SNOMED-CT",
+                "value":"165813002"
+              }
 					  ]
 					},
 					{
 					  "concept":"844AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"HIV DNA polymerase chain reaction",
 					  "conceptMappings":[
-						
+              {
+                "type":"CIEL",
+                "value":"844"
+              },
+              {
+                "type":"SNOMED-CT",
+                "value":"399256002"
+              },
+              {
+                "type":"AMPATH",
+                "value":"844"
+              }
 					  ]
-					}
+					},
+            {
+              "concept":"1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "label":"Unknown",
+              "conceptMappings":[
+                {
+                  "type":"CIEL",
+                  "value":"1067"
+                },
+                {
+                  "type":"AMPATH",
+                  "value":"1067"
+                },
+                {
+                  "type":"SNOMED CT",
+                  "value":"CT: 261665006"
+                },
+                {
+                  "type":"PIH",
+                  "value":"1067"
+                }
+              ]
+            }
 				  ]
 				},
 				"behaviours":[
@@ -1041,129 +1081,7 @@
 				"type":"obs",
 				"questionOptions":{
 				  "rendering":"text",
-				  "concept":"161549AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-				  "answers":[
-					{
-					  "concept":"5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Other",
-					  "conceptMappings":[
-						{
-						  "type":"PIH-Malawi",
-						  "value":"6408"
-						},
-						{
-						  "type":"org.openmrs.module.mdrtb",
-						  "value":"OTHER"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"56221000105001"
-						},
-						{
-						  "type":"PIH",
-						  "value":"5622"
-						},
-						{
-						  "type":"AMPATH",
-						  "value":"5622"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"74964007"
-						}
-					  ]
-					},
-					{
-					  "concept":"159671AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Provincial hospital",
-					  "conceptMappings":[
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"1596711000105007"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"AMPATH",
-						  "value":"6438"
-						}
-					  ]
-					},
-					{
-					  "concept":"159670AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"sub-district hospital",
-					  "conceptMappings":[
-						{
-						  "type":"AMPATH",
-						  "value":"6439"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"1596701000105009"
-						}
-					  ]
-					},
-					{
-					  "concept":"1274AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Moi teaching and referral hospital",
-					  "conceptMappings":[
-						{
-						  "type":"AMPATH",
-						  "value":"1274"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"405608006"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"12741000105009"
-						}
-					  ]
-					},
-					{
-					  "concept":"159662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"district hospital",
-					  "conceptMappings":[
-						{
-						  "type":"AMPATH",
-						  "value":"6437"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"1596621000105007"
-						}
-					  ]
-					},
-					{
-					  "concept":"1275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-					  "label":"Health center hospital",
-					  "conceptMappings":[
-						{
-						  "type":"SNOMED-MVP",
-						  "value":"12751000105006"
-						},
-						{
-						  "type":"SNOMED-CT",
-						  "value":"22232009"
-						},
-						{
-						  "type":"AMPATH",
-						  "value":"1275"
-						}
-					  ]
-					}
-				  ]
+				  "concept":"c4768674-0c26-4353-8a3f-608e7b40ac57"
 				},
 				"behaviours":[
 				  {
@@ -1226,10 +1144,22 @@
 					  ]
 					},
 					{
-					  "concept":"488b58ff-64f5-4f8a-8979-fa79940b1594",
+					  "concept":"1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"No",
 					  "conceptMappings":[
-						
+              {
+                "type":"AMPATH",
+                "value":"1066"
+              },
+              {
+                "type":"SNOMED CT",
+                "value":"373067005"
+              },
+              {
+                "type":"PIH",
+                "value":"1067"
+              }
+
 					  ]
 					},
 					{
@@ -1330,7 +1260,7 @@
 					  "concept":"488b58ff-64f5-4f8a-8979-fa79940b1594",
 					  "label":"No",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -1431,7 +1361,7 @@
 					  "concept":"488b58ff-64f5-4f8a-8979-fa79940b1594",
 					  "label":"No",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -1532,7 +1462,7 @@
 					  "concept":"488b58ff-64f5-4f8a-8979-fa79940b1594",
 					  "label":"No",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -1617,42 +1547,42 @@
 					  "concept":"5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Other antiretroviral drug",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"86663AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Zidovudine",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"84795AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Tenofovir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"78643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Lamivudine",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"75628AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Emtricitabine",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"70056AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Abacavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -1665,7 +1595,7 @@
 					"hide":{
 					  "hideWhenExpression":"false",
 					  "validators":[
-						
+
 					  ]
 					}
 				  }
@@ -1683,21 +1613,21 @@
 					  "concept":"159810AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Etravirine",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"80586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Nevirapine",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"75523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Efavirenz",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -1726,7 +1656,7 @@
 					  "concept":"5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Other antiretroviral drug",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -1740,7 +1670,7 @@
 					  "hideWhenExpression":"false"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -1757,42 +1687,42 @@
 					  "concept":"85160AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Tipranavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"83690AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Saquinavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"83412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Ritonavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"76658AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Fosamprenavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"74258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Darunavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"71647AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Atazanavir",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -1806,7 +1736,7 @@
 					  "hideWhenExpression":"false"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -1823,35 +1753,35 @@
 					  "concept":"154378AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Raltegravir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"165085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Dolutegravir",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"154376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"maraviroc",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"75676AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Enfuvirtide",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
 					  "concept":"5424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 					  "label":"Other antiretroviral drug",
 					  "conceptMappings":[
-						
+
 					  ]
 					},
 					{
@@ -1887,7 +1817,7 @@
 					  "hideWhenExpression":"false"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -1953,7 +1883,7 @@
 					  "concept":"488b58ff-64f5-4f8a-8979-fa79940b1594",
 					  "label":"No",
 					  "conceptMappings":[
-						
+
 					  ]
 					}
 				  ]
@@ -1967,7 +1897,7 @@
 					  "hideWhenExpression":"false"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -1989,7 +1919,7 @@
 					  "hideWhenExpression":"isEmpty(hasTreatmentSupporter) || hasTreatmentSupporter !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -2011,7 +1941,7 @@
 					  "hideWhenExpression":"isEmpty(hasTreatmentSupporter) || hasTreatmentSupporter !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -2139,7 +2069,7 @@
 					  "hideWhenExpression":"isEmpty(hasTreatmentSupporter) || hasTreatmentSupporter !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -2180,7 +2110,7 @@
 					  "hideWhenExpression":"false"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -2203,7 +2133,7 @@
 					  "hideWhenExpression":"false"
 					},
 					"validators":[
-					  
+
 					]
 				  }
 				],
@@ -2254,16 +2184,6 @@
 					}
 				  ]
 				},
-				"behaviours": [
-				  {
-					"intent": "*",
-					"required": "false",
-					"unspecified": "true",
-					"hide": {
-					  "hideWhenExpression": "false"
-					}
-				  }
-				],
 				"id": "addNotes"
 			  }
 			]
