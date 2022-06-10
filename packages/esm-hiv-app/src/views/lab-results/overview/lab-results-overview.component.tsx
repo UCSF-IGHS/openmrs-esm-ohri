@@ -12,11 +12,11 @@ interface OverviewListProps {
 const LabResultsOverview: React.FC<OverviewListProps> = ({ patientUuid }) => (
   <div className={styles.tabContainer}>
     <Tabs type="container">
-      <Tab label="Viral Load results">
-        <LabResultsOverviewList patientUuid={patientUuid} />
-      </Tab>
       <Tab label="CD4 Lab results" style={{ padding: 0 }}>
         <CD4OverviewList patientUuid={patientUuid} />
+      </Tab>
+      <Tab label="Viral Load results">
+        <LabResultsOverviewList patientUuid={patientUuid} />
       </Tab>
       <Tab label="Lab Tests" style={{ padding: 0 }}>
         <LabTestOverviewList patientUuid={patientUuid} />
