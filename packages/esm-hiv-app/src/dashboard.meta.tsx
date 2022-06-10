@@ -47,7 +47,7 @@ export const programManagement_dashboardMeta = {
 export const visits_dashboardMeta = {
   slot: 'visits-summary-slot',
   config: { columns: 1, type: 'grid' },
-  title: 'Visits Summary',
+  title: 'Clinical Visits',
 };
 
 export const generalCounselling_dashboardMeta = {

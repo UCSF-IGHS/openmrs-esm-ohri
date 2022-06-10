@@ -7,6 +7,8 @@ import {
   cervicalCancerFolderMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { addToBaseFormsRegistry } from 'openmrs-ohri-form-engine-lib';
+import cacxForms from './forms/forms-registry';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -21,6 +23,8 @@ function setupOpenMRS() {
   };
 
   defineConfigSchema(moduleName, {});
+
+  addToBaseFormsRegistry(cacxForms);
 
   return {
     pages: [],
