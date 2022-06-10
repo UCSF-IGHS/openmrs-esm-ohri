@@ -2429,7 +2429,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2485,7 +2485,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -3934,23 +3934,13 @@
                 "behaviours": [
                   {
                     "intent": "*",
-                    "required": "true",
+                    "required": "false",
                     "unspecified": "true"
                   }
                 ],
                 "id": "notes"
               }
             ]
-          }
-        ],
-        "behaviours": [
-          {
-            "intent": "*",
-            "required": "true",
-            "unspecified": "false",
-            "hide": {
-              "hideWhenExpression": "false"
-            }
           }
         ]
       }
