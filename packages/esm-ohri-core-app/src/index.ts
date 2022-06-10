@@ -2,6 +2,7 @@ import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from
 import { backendDependencies } from './openmrs-backend-dependencies';
 
 import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
+import ohriDashboardsConfig from './ohri-patient-dashboards-config';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
@@ -23,6 +24,7 @@ function setupOpenMRS() {
 
   // Load configurations
   provide(patientDashboardsConfig);
+  provide(ohriDashboardsConfig);
 
   return {
     pages: [
