@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyStateComingSoon, EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
-import { cacxEncounterDateConcept, screeningMethodConcept, cacxTreatmentConcept, cacxTreatmentEncounterType_UUID, colopsyResultsConcept } from '../../../constants';
+import {
+  EmptyStateComingSoon,
+  EncounterList,
+  EncounterListColumn,
+  getObsFromEncounter,
+} from 'openmrs-esm-ohri-commons-lib';
+import {
+  cacxEncounterDateConcept,
+  screeningMethodConcept,
+  cacxTreatmentConcept,
+  cacxTreatmentEncounterType_UUID,
+  colopsyResultsConcept,
+} from '../../../constants';
 
 interface CacxTreatmentListProps {
   patientUuid: string;

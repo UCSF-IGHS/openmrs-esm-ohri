@@ -5,6 +5,7 @@ import { Home32, Calendar32 } from '@carbon/icons-react';
 export const hivPreventionDashboardDMeta = {
   title: 'HIV Prevention',
   slotName: 'ohri-hiv-prevention-slot',
+  isExpanded: false,
 };
 
 export const hts_dashboardMeta = {
@@ -24,6 +25,7 @@ export const preExposureProphylaxis_dashboardMeta = {
 export const hivCareAndTreatmentDashboardDMeta = {
   title: 'HIV Care and Treatment',
   slotName: 'ohri-hiv-care-and-treatment-slot',
+  isExpanded: false,
 };
 
 export const serviceSummary_dashboardMeta = {
