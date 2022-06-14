@@ -75,7 +75,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date specimen collected",
+              "label": "Date Sample collected",
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
@@ -102,7 +102,7 @@
               ]
             },
             {
-              "label": "Specimen type",
+              "label": "Sample type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -201,7 +201,7 @@
               ]
             },
             {
-              "label": "Other specimen type",
+              "label": "Other sample type",
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
@@ -210,7 +210,7 @@
               "id": "otherSpecimenTypeGroup",
               "questions": [
                 {
-                  "label": "Other specimen type",
+                  "label": "Other sample type",
                   "id": "otherSpecimenType",
                   "questionOptions": {
                     "rendering": "text",

@@ -25,7 +25,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Specimen type",
+              "label": "Sample type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -124,7 +124,7 @@
               ]
             },
             {
-              "label": "Other specimen type",
+              "label": "Other sample type",
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
@@ -232,7 +232,7 @@
                   },
                   {
                     "concept": "165568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Specimen not labeled",
+                    "label": "Sample not labeled",
                     "conceptMappings": [
                       {
                         "type": "CIEL",
@@ -284,7 +284,7 @@
                   },
                   {
                     "concept": "160008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Contaminated specimen",
+                    "label": "Contaminated sample",
                     "conceptMappings": [
                       {
                         "type": "SNOMED-CT",
