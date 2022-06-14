@@ -744,6 +744,56 @@
                     ]
                   },
                   {
+                    "concept": "54181d28-ff4d-40d3-b835-a813db07eb0e",
+                    "label": "HIV /AIDS",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "138405"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hypertension",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "38341003"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "86491"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "I10"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "117399"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "903"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "156753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Immunodeficiency",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "802369"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "370388006"
+                      }
+                    ]
+                  },
+                  {
                     "concept": "155600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "cigarette smoker",
                     "conceptMappings": [
