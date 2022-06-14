@@ -117,7 +117,7 @@
                   },
                   {
                     "concept": "159833AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Re-enroll",
+                    "label": "Re-enrol",
                     "conceptMappings": [
                     ]
                   },
@@ -874,7 +874,7 @@
                 "answers": [
                   {
                     "concept": "163532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Mother enrolled in prevention of maternal to child transmission (PMTCT) program",
+                    "label": "Mother enrolled in PMTCT",
                     "conceptMappings": [
                     ]
                   },
