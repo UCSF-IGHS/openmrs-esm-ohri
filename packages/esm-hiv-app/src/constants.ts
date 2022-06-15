@@ -120,6 +120,7 @@ export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389'
 export const ServiceDeliveryEncounterType_UUID = '62ee5922-a229-48d3-a1da-875c1ffa9436';
 export const CommunityDSDModel_UUID = '52824cbe-0e4d-4c18-8179-80b5799f34ed';
 export const EnrollmentDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const DSDStatus_UUID = '8742967d-8107-4cbb-a17e-9a8c7f624673';
 
 //Peads Disclosure
 export const PeadsDisclosureEncounterType_UUID = '390c2f21-c1c4-4246-94ca-a026157cd1db';
@@ -139,6 +140,7 @@ export const LittleInterestConcept_UUID = '167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
 export const DepressionConcept_UUID = '167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PoorAppetiteConcept_UUID = '167070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PoorConcentrationConcept_UUID = '167072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const screeningDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //CD4 Lab Results
 export const CD4LabResultsEncounter_UUID = '96adb28e-e417-43a3-8f7d-682f8af5e912';
