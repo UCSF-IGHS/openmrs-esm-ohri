@@ -1,7 +1,7 @@
 import { getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { BehaviorSubject } from 'rxjs';
 import { closeWorkspace, launchPatientWorkspace, registerWorkspace } from '@openmrs/esm-patient-common-lib';
-import { OHRIForm, SessionMode } from 'openmrs-ohri-form-engine-lib';
+import { OHRIForm, SessionMode } from '@ohri/openmrs-ohri-form-engine-lib';
 export interface WorkspaceContextProps {
   title: string;
   encounterUuid?: string;

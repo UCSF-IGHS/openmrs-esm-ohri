@@ -2503,6 +2503,30 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@ohri/openmrs-ohri-form-engine-lib@next":
+  version "0.1.11-pre.35-1"
+  resolved "https://registry.yarnpkg.com/@ohri/openmrs-ohri-form-engine-lib/-/openmrs-ohri-form-engine-lib-0.1.11-pre.35-1.tgz#fec3eec31498ccb240c05327e1bef4281c775c38"
+  integrity sha512-uNNkq5U5QF1y4Fym7szpRsMxYxvnQviHiSpj1f8K2nPv865sY0CxSMWbkgtf11CcWB3IJ/htPR5VGCM5xiUQAg==
+  dependencies:
+    "@carbon/icons-react" "^10.18.0"
+    ace-builds "^1.4.12"
+    carbon-components-react "^7.25.0"
+    enzyme "^3.11.0"
+    enzyme-adapter-react-16 "^1.15.6"
+    formik "^2.2.6"
+    jest-coverage-badges "^1.0.0"
+    lodash-es "^4.17.15"
+    moment "^2.29.1"
+    react-ace "^9.4.4"
+    react-anchor-link-smooth-scroll "^1.0.12"
+    react-markdown "^7.1.0"
+    react-scroll "^1.8.2"
+    react-test-renderer "^16.9.0"
+    react-waypoint "^10.1.0"
+    semver "^7.3.5"
+    systemjs-webpack-interop "^2.3.2"
+    yup "^0.29.1"
+
 "@openmrs/esm-api@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@openmrs/esm-api/-/esm-api-3.3.1.tgz#c437abc912d13b83c7b1de32cd57d9f047a0e90c"
