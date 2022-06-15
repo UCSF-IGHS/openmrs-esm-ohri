@@ -25,6 +25,35 @@
             "isExpanded":"true",
             "questions":[
               {
+                "label": "Screening Date",
+                "type": "obs",
+                "questionOptions": {
+                  "rendering": "date",
+                  "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                },
+                "id": "screeningdate",
+                "behaviours": [
+                  {
+                    "intent": "*",
+                    "required": "true",
+                    "unspecified": "ture",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    },
+                    "validators": [
+                      {
+                        "type": "date",
+                        "allowFutureDates": "false"
+                      },
+                      {
+                        "type": "js_expression",
+                        "failsWhenExpression": "isDateBefore(myValue, '1980-01-01')"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "label":"Within the past year, has someone ever hit, kicked, slapped, or otherwise physically hurt you?",
                 "type":"obs",
                 "questionOptions":{
