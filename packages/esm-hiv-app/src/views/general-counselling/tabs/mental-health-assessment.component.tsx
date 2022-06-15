@@ -7,6 +7,7 @@ import {
   PoorAppetiteConcept_UUID,
   PoorConcentrationConcept_UUID,
   MentalHealthAssessmentEncounter_UUID,
+  screeningDate_UUID,
 } from '../../../constants';
 
 interface MentalHealthAssessmentListProps {
@@ -14,6 +15,13 @@ interface MentalHealthAssessmentListProps {
 }
 
 const columns: EncounterListColumn[] = [
+  {
+    key: 'screeningDate',
+    header: 'Screening Date',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, screeningDate_UUID, true);
+    },
+  },
   {
     key: 'littleInterest',
     header: 'Disinterested in Things',

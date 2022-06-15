@@ -35,7 +35,7 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'dateConfirmedPositive',
-    header: 'Date Confirmed HIV Positive',
+    header: 'Date Confirmed HIV+',
     getValue: encounter => {
       return getObsFromEncounter(encounter, dateOfHIVDiagnosisConcept, true);
     },
