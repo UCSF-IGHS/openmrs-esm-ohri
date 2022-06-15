@@ -29,7 +29,7 @@
     "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
     "serve": "webpack serve --mode=development",
     "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net",
-    "test": "jest --config ./jest.config.js --passWithNoTests",
+    "test": "jest --config ../../jest.config.js --passWithNoTests",
     "typescript": "tsc"
   },
   "husky": {
