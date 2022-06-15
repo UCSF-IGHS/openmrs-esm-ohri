@@ -4,6 +4,7 @@ import { EncounterListColumn, EncounterList, findObs, getObsFromEncounter } from
 import {
   EmotionalAbuse_UUID,
   IntimatePartnerEncounterType_UUID,
+  IpvScreeningDate_UUID,
   PhysicalAbuse_UUID,
   SexualAbuse_UUID,
 } from '../../../constants';
@@ -13,6 +14,13 @@ interface IntimatePartnerViolenceListProps {
 }
 
 const columns: EncounterListColumn[] = [
+  {
+    key: 'screeningdate',
+    header: 'Screening Date',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, IpvScreeningDate_UUID, true);
+    },
+  },
   {
     key: 'physicalAbuse',
     header: 'Physical Abuse',
