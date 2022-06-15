@@ -39,7 +39,7 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'screeningOutcome',
-    header: 'Screening Outcome',
+    header: 'TB Screening Outcome',
     getValue: encounter => {
       return getObsFromEncounter(encounter, tbScreeningOutcome);
     },
