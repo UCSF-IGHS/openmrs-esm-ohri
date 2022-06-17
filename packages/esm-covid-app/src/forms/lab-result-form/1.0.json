@@ -25,6 +25,7 @@
           "isExpanded": "true",
           "questions": [
             {
+
               "label": "Sample type",
               "type": "obs",
               "questionOptions": {
@@ -143,6 +144,7 @@
               ]
             },
             {
+
               "label": "Was the test performed?",
               "type": "obs",
               "questionOptions": {
