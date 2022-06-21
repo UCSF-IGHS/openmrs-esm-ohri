@@ -193,6 +193,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
             pageSizes={[10, 20, 30, 40, 50]}
             totalItems={totalPatientCount}
             onChange={({ page, pageSize }) => {
+              let startOffset = (page - 1) * pageSize;
+              updateTable(allRows, startOffset, pageSize);
               setNextOffSet(page * pageSize + 1);
               setPage(page);
               setPageSize(pageSize);
