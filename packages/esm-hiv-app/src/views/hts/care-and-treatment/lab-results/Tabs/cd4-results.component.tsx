@@ -22,12 +22,11 @@ interface CD4ResultsListProps {
 
 const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const [patients, setPatients] = useState([]);
+  const [patientToCd4Map, setPatientToCd4Map] = useState([]);
   const [allRows, setAllRows] = useState([]);
-  const [patients, setTableRows] = useState([]);
-  const [patientsOptimized, setTableRowsOptimized] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;
-  const [counter, setCounter] = useState(0);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
@@ -43,13 +42,50 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   ];
 
   useEffect(() => {
-    if (!page) setIsLoading(true);
-    loadPatients(nextOffSet, pageSize);
+    setIsLoading(true);
+    fetchPatientList(nextOffSet, pageSize).then(({ data }) => {
+      setPatients(data.entry);
+      setPatientCount(data.total);
+      setIsLoading(false);
+    });
   }, [page, pageSize]);
 
   useEffect(() => {
-    loadRows();
-  }, [counter]);
+    let rows = [];
+    for (let patient of patients) {
+      const lastCd4Result = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4Result;
+      const lastCd4ResultDate = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4ResultDate;
+
+      rows.push({
+        id: patient.resource.id,
+        name: (
+          <Router>
+            <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
+              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
+            </Link>
+          </Router>
+        ),
+        gender: capitalize(patient.resource.gender),
+        age: age(patient.resource.birthDate),
+        cd4Result: lastCd4Result ? lastCd4Result : '--',
+        cd4ResultDate: lastCd4ResultDate ? lastCd4ResultDate : '--',
+      });
+    }
+    setAllRows(rows);
+  }, [patients, patientToCd4Map]);
+
+  useEffect(() => {
+    const patientToCd4ResultsPromises = patients.map(patient => fetchPatientLastCd4Encounters(patient.resource.id));
+    Promise.all(patientToCd4ResultsPromises).then(values => {
+      setPatientToCd4Map(
+        values.map((value, index) => ({
+          cd4Result: value.result,
+          cd4ResultDate: value.date,
+          patientId: patients[index].resource.id,
+        })),
+      );
+    });
+  }, [patients]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
@@ -74,133 +110,29 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     return latestCd4Encounter;
   }
 
-  const loadRows = useCallback(() => {
-    setIsLoading(true);
-    fetchPatientList().then(({ data }) => {
-      if (data.entry.length > 0) {
-        let patientList = data.entry;
-        //console.log(patientList);
-        setAllRows(patientList);
-        updateTable(patientList, 0, pageSize);
-      } else {
-        setAllRows([]);
-      }
-      setIsLoading(false);
-    });
-  }, [pageSize]);
-
-  const updateTable = async (dataset, start, itemCount) => {
-    let lastCd4Result: string;
-    let lastCd4ResultDate: any;
-    let currentRows = [];
-    for (let i = start; i < start + itemCount; i++) {
-      if (i < dataset.length) {
-        currentRows.push(dataset[i]);
-      }
-      console.log({ currentRows });
-    }
-    //const rows = currentRows.map(patient => {
-    // const patientLastViralEncounter = fetchPatientLastCd4Encounters(patient.resource.id);
-    // lastCd4Result = patientLastViralEncounter.result;
-    // lastCd4ResultDate = patientLastViralEncounter.date;
-    // const row = { id: patient.resource.uuid };
-    // row['name'] = patient.resource.name;
-    //(
-    //   <Router>
-    //     <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
-    //       {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
-    //     </Link>
-    //   </Router>
-    // );
-    // row['age'] = age(patient.resource.birthDate);
-    // row['gender'] = capitalize(patient.resource.gender);
-    // row['cd4Result'] = lastCd4Result;
-    // row['cd4ResultDate'] = lastCd4ResultDate;
-
-    //   return row;
-    // });
-    let rows = [];
-    for (let patient of currentRows) {
-      const patientLastViralEncounter = await fetchPatientLastCd4Encounters(patient.resource.id);
-      lastCd4Result = patientLastViralEncounter.result;
-      lastCd4ResultDate = patientLastViralEncounter.date;
-
-      rows.push({
-        id: patient.resource.id,
-        name: (
-          <Router>
-            <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
-              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
-            </Link>
-          </Router>
-        ),
-        age: age(patient.resource.birthDate),
-        gender: capitalize(patient.resource.gender),
-        cd4Result: lastCd4Result,
-        cd4ResultDate: lastCd4ResultDate,
-      });
-    }
-    setTableRowsOptimized(rows);
-  };
-
-  async function loadPatients(offSet: number, pageSize: number) {
-    let rows = [];
-    const { data: patients } = await fetchPatientList(offSet, pageSize);
-
-    setPatientCount(patients.total);
-    let lastCd4Result: string;
-    let lastCd4ResultDate: any;
-
-    for (let patient of patients.entry) {
-      const patientLastViralEncounter = await fetchPatientLastCd4Encounters(patient.resource.id);
-      lastCd4Result = patientLastViralEncounter.result;
-      lastCd4ResultDate = patientLastViralEncounter.date;
-
-      rows.push({
-        id: patient.resource.id,
-        name: (
-          <Router>
-            <Link style={{ textDecoration: 'inherit' }} to={getPatientURL(patient.resource.id)}>
-              {`${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`}
-            </Link>
-          </Router>
-        ),
-        age: age(patient.resource.birthDate),
-        gender: capitalize(patient.resource.gender),
-        cd4Result: lastCd4Result,
-        cd4ResultDate: lastCd4ResultDate,
-      });
-    }
-    console.log(rows[0].name);
-    setTableRows(rows);
-    setIsLoading(false);
-  }
-
   return (
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
-      ) : patients.length > 0 ? (
+      ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
           <div className={styles.widgetHeaderContainer}>
             <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={patientsOptimized} />
-          {/* <div style={{ width: '800px' }}> */}
-          <Pagination
-            page={page}
-            pageSize={pageSize}
-            pageSizes={[10, 20, 30, 40, 50]}
-            totalItems={totalPatientCount}
-            onChange={({ page, pageSize }) => {
-              let startOffset = (page - 1) * pageSize;
-              updateTable(allRows, startOffset, pageSize);
-              setNextOffSet(page * pageSize + 1);
-              setPage(page);
-              setPageSize(pageSize);
-            }}
-          />
-          {/* </div> */}
+          <OTable tableHeaders={tableHeaders} tableRows={allRows} />
+          <div style={{ width: '800px' }}>
+            <Pagination
+              page={page}
+              pageSize={pageSize}
+              pageSizes={[10, 20, 30, 40, 50]}
+              totalItems={totalPatientCount}
+              onChange={({ page, pageSize }) => {
+                setPage(page);
+                setNextOffSet((page - 1) * pageSize);
+                setPageSize(pageSize);
+              }}
+            />
+          </div>
         </div>
       ) : (
         <EmptyState
