@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger, no-console */
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
 import styles from './patient-list.scss';
