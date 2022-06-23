@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
 import {
+  Cd4Count_UUID,
   Cd4LabResultCountPercentage_UUID,
   Cd4LabResultDate_UUID,
   CD4LabResultsEncounter_UUID,
@@ -23,7 +24,14 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'CD4Count',
-    header: 'CD4 Count %',
+    header: 'CD4 Count',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, Cd4Count_UUID);
+    },
+  },
+  {
+    key: 'CD4CountPercentage',
+    header: 'CD4 %',
     getValue: encounter => {
       return getObsFromEncounter(encounter, Cd4LabResultCountPercentage_UUID);
     },

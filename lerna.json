@@ -3,8 +3,8 @@
     "packages/*"
   ],
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "version": "0.6.43",
+  "useWorkspaces": true, 
+  "version": "0.6.48",
   "command": {
     "publish": {
       "verifyAccess": false

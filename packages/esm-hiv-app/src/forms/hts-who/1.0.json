@@ -367,7 +367,7 @@
             "isExpanded": "true",
             "questions": [
               {
-                "label": "Reason for this HIV test?",
+                "label": "Reason for this HIV test",
                 "type": "obs",
                 "questionOptions": {
                   "rendering": "select",
@@ -447,8 +447,8 @@
                   "concept": "1492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "answers": [
                     {
-                      "label": "Yes",
                       "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
                       "conceptMappings": [
                         {
                           "type": "CIEL",
@@ -460,6 +460,10 @@
                         },
                         {
                           "type": "PIH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH-Malawi",
                           "value": "1065"
                         },
                         {
@@ -469,28 +473,50 @@
                       ]
                     },
                     {
+                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     },
                     {
                       "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Unknown",
                       "conceptMappings": [
                         {
-                          "type": "CIEL",
-                          "value": "1067"
-                        },
-                        {
                           "type": "AMPATH",
                           "value": "1067"
                         },
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
+                          "type": "CIEL",
+                          "value": "1067"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "261665006"
                         },
                         {
                           "type": "PIH",
                           "value": "1067"
+                        },
+                        {
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "UNKNOWN"
                         }
                       ]
                     }
@@ -808,8 +834,8 @@
                   ],
                   "answers": [
                     {
-                      "label": "Yes",
                       "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
                       "conceptMappings": [
                         {
                           "type": "CIEL",
@@ -821,6 +847,10 @@
                         },
                         {
                           "type": "PIH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH-Malawi",
                           "value": "1065"
                         },
                         {
@@ -830,28 +860,50 @@
                       ]
                     },
                     {
+                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     },
                     {
                       "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Unknown",
                       "conceptMappings": [
                         {
-                          "type": "CIEL",
-                          "value": "1067"
-                        },
-                        {
                           "type": "AMPATH",
                           "value": "1067"
                         },
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
+                          "type": "CIEL",
+                          "value": "1067"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "261665006"
                         },
                         {
                           "type": "PIH",
                           "value": "1067"
+                        },
+                        {
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "UNKNOWN"
                         }
                       ]
                     }
@@ -888,8 +940,8 @@
                   ],
                   "answers": [
                     {
-                      "label": "Yes",
                       "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
                       "conceptMappings": [
                         {
                           "type": "CIEL",
@@ -901,6 +953,10 @@
                         },
                         {
                           "type": "PIH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH-Malawi",
                           "value": "1065"
                         },
                         {
@@ -910,28 +966,50 @@
                       ]
                     },
                     {
+                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     },
                     {
                       "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Unknown",
                       "conceptMappings": [
                         {
-                          "type": "CIEL",
-                          "value": "1067"
-                        },
-                        {
                           "type": "AMPATH",
                           "value": "1067"
                         },
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
+                          "type": "CIEL",
+                          "value": "1067"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "261665006"
                         },
                         {
                           "type": "PIH",
                           "value": "1067"
+                        },
+                        {
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "UNKNOWN"
                         }
                       ]
                     }
@@ -957,8 +1035,8 @@
                   "concept": "156660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "answers": [
                     {
-                      "label": "Yes",
                       "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
                       "conceptMappings": [
                         {
                           "type": "CIEL",
@@ -970,6 +1048,10 @@
                         },
                         {
                           "type": "PIH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH-Malawi",
                           "value": "1065"
                         },
                         {
@@ -979,28 +1061,50 @@
                       ]
                     },
                     {
+                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     },
                     {
                       "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Unknown",
                       "conceptMappings": [
                         {
-                          "type": "CIEL",
-                          "value": "1067"
-                        },
-                        {
                           "type": "AMPATH",
                           "value": "1067"
                         },
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
+                          "type": "CIEL",
+                          "value": "1067"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "261665006"
                         },
                         {
                           "type": "PIH",
                           "value": "1067"
+                        },
+                        {
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "UNKNOWN"
                         }
                       ]
                     }
@@ -1046,45 +1150,33 @@
                   "concept": "cea67984-d790-4185-b7b4-67736810d365",
                   "answers": [
                     {
-                      "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                       "label": "Yes",
                       "conceptMappings": [
-                        {
-                          "type": "AMPATH",
-                          "value": "1065"
-                        },
-                        {
-                          "type": "SNOMED CT",
-                          "value": "CT: 373066001"
-                        },
-                        {
-                          "type": "PIH",
-                          "value": "1065"
-                        },
                         {
                           "type": "CIEL",
                           "value": "1065"
                         },
                         {
-                          "type": "PIH",
+                          "type": "AMPATH",
                           "value": "1065"
                         },
                         {
-                          "type": "SNOMED-CT",
-                          "value": "373066001"
+                          "type": "PIH",
+                          "value": "1065"
                         },
                         {
                           "type": "PIH-Malawi",
                           "value": "1065"
                         },
                         {
-                          "type": "AMPATH",
-                          "value": "1065"
+                          "type": "SNOMED CT",
+                          "value": "CT: 373066001"
                         }
                       ]
                     },
                     {
-                      "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
                       "conceptMappings": [
                         {
@@ -1101,22 +1193,6 @@
                         },
                         {
                           "type": "AMPATH",
-                          "value": "1066"
-                        },
-                        {
-                          "type": "PIH-Malawi",
-                          "value": "1066"
-                        },
-                        {
-                          "type": "AMPATH",
-                          "value": "1066"
-                        },
-                        {
-                          "type": "SNOMED-CT",
-                          "value": "373067005"
-                        },
-                        {
-                          "type": "PIH",
                           "value": "1066"
                         }
                       ]
@@ -1144,23 +1220,21 @@
                         {
                           "type": "org.openmrs.module.mdrtb",
                           "value": "UNKNOWN"
-                        },
-                        {
-                          "type": "AMPATH",
-                          "value": "1067"
-                        },
-                        {
-                          "type": "PIH",
-                          "value": "1067"
-                        },
-                        {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
                         }
                       ]
                     }
                   ]
                 },
+                "behaviours": [
+                  {
+                    "intent": "*",
+                    "required": "true",
+                    "unspecified": "true",
+                    "hide": {
+                      "hideWhenExpression": "false"
+                    }
+                  }
+                ],
                 "id": "eligibleHIVTesting"
               },
               {
@@ -1187,6 +1261,10 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
@@ -1195,7 +1273,24 @@
                     {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -1205,7 +1300,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(eligibleHIVTesting) || eligibleHIVTesting !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "isEmpty(eligibleHIVTesting) || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ],
@@ -1241,7 +1336,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(preTestCounsellingConducted) || preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                      "hideWhenExpression": "preTestCounsellingConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ],
@@ -1255,8 +1350,8 @@
                   "concept": "1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "answers": [
                     {
-                      "label": "Yes",
                       "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
                       "conceptMappings": [
                         {
                           "type": "CIEL",
@@ -1271,14 +1366,36 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
                       ]
                     },
                     {
+                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594"
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -1288,7 +1405,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(eligibleHIVTesting) || eligibleHIVTesting !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "isEmpty(eligibleHIVTesting) || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ],
@@ -1716,7 +1833,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "isEmpty(preTestCounselingConsent) || preTestCounselingConsent !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+              "hideWhenExpression": "preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594'"
             }
           }
         ]
@@ -1752,6 +1869,10 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
@@ -1760,7 +1881,24 @@
                     {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -2073,7 +2211,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ]
@@ -2128,7 +2266,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2143,7 +2281,7 @@
                   "answers": [
                     {
                       "concept": "1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                      "label": "Indeterminate",
+                      "label": "Indeterminate (Inconclusive)",
                       "conceptMappings": [
                         {
                           "type": "AMPATH",
@@ -2173,7 +2311,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "isEmpty(secondHivTestDone) || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ]
@@ -2291,7 +2429,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2347,7 +2485,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2535,7 +2673,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff' ||  secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -2691,51 +2829,76 @@
                   "concept": "164848AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "answers": [
                     {
+                      "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
+                      "conceptMappings": [
+                        {
+                          "type": "CIEL",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "SNOMED CT",
+                          "value": "CT: 373066001"
+                        }
+                      ]
+                    },
+                    {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     },
                     {
                       "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Unknown",
                       "conceptMappings": [
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
-                        },
-                        {
-                          "type": "PIH",
-                          "value": "1067"
-                        },
-                        {
                           "type": "AMPATH",
                           "value": "1067"
                         },
                         {
                           "type": "CIEL",
                           "value": "1067"
-                        }
-                      ]
-                    },
-                    {
-                      "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                      "label": "Yes",
-                      "conceptMappings": [
+                        },
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 373066001"
+                          "type": "SNOMED-CT",
+                          "value": "261665006"
                         },
                         {
                           "type": "PIH",
-                          "value": "1065"
+                          "value": "1067"
                         },
                         {
-                          "type": "CIEL",
-                          "value": "1065"
-                        },
-                        {
-                          "type": "AMPATH",
-                          "value": "1065"
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "UNKNOWN"
                         }
                       ]
                     }
@@ -2804,51 +2967,76 @@
                   "concept": "445846e9-b929-4519-bc83-d51c051918f5",
                   "answers": [
                     {
+                      "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                      "label": "Yes",
+                      "conceptMappings": [
+                        {
+                          "type": "CIEL",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
+                          "type": "SNOMED CT",
+                          "value": "CT: 373066001"
+                        }
+                      ]
+                    },
+                    {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     },
                     {
                       "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Unknown",
                       "conceptMappings": [
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 261665006"
-                        },
-                        {
-                          "type": "PIH",
-                          "value": "1067"
-                        },
-                        {
                           "type": "AMPATH",
                           "value": "1067"
                         },
                         {
                           "type": "CIEL",
                           "value": "1067"
-                        }
-                      ]
-                    },
-                    {
-                      "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                      "label": "Yes",
-                      "conceptMappings": [
+                        },
                         {
-                          "type": "SNOMED CT",
-                          "value": "CT: 373066001"
+                          "type": "SNOMED-CT",
+                          "value": "261665006"
                         },
                         {
                           "type": "PIH",
-                          "value": "1065"
+                          "value": "1067"
                         },
                         {
-                          "type": "CIEL",
-                          "value": "1065"
-                        },
-                        {
-                          "type": "AMPATH",
-                          "value": "1065"
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "UNKNOWN"
                         }
                       ]
                     }
@@ -2860,7 +3048,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(receivedHIVTestResult) || receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
+                      "hideWhenExpression": "receivedHIVTestResult !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed'"
                     }
                   }
                 ],
@@ -2894,10 +3082,7 @@
                   {
                     "intent": "*",
                     "required": "true",
-                    "unspecified": "true",
-                    "hide": {
-                      "hideWhenExpression": "isEmpty(resultReceivedCouple) || resultReceivedCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
+                    "unspecified": "true"
                   }
                 ],
                 "id": "CoupleResults"
@@ -2909,7 +3094,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(counselingSessionType) || counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "counselingSessionType !== '09472f39-6030-4f71-a8f2-30b2fdc734ed' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -2921,7 +3106,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+              "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
             }
           }
         ]
@@ -2957,6 +3142,10 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
@@ -2965,7 +3154,24 @@
                     {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3002,6 +3208,10 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
@@ -3010,7 +3220,24 @@
                     {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3118,7 +3345,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
             }
           }
         ]
@@ -3164,6 +3391,10 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
@@ -3172,7 +3403,24 @@
                     {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3542,6 +3790,10 @@
                           "value": "1065"
                         },
                         {
+                          "type": "PIH-Malawi",
+                          "value": "1065"
+                        },
+                        {
                           "type": "SNOMED CT",
                           "value": "CT: 373066001"
                         }
@@ -3550,7 +3802,24 @@
                     {
                       "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                       "label": "No",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                          "type": "PIH",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "PIH-Malawi",
+                          "value": "1066"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "373067005"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1066"
+                        }
+                      ]
                     }
                   ]
                 },
@@ -3642,7 +3911,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
             }
           }
         ]
@@ -3665,23 +3934,13 @@
                 "behaviours": [
                   {
                     "intent": "*",
-                    "required": "true",
+                    "required": "false",
                     "unspecified": "true"
                   }
                 ],
                 "id": "notes"
               }
             ]
-          }
-        ],
-        "behaviours": [
-          {
-            "intent": "*",
-            "required": "true",
-            "unspecified": "false",
-            "hide": {
-              "hideWhenExpression": "preTestCounselingConsent !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted !== '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-            }
           }
         ]
       }
@@ -3698,4 +3957,3 @@
     "encounterType": "79c1f50f-f77d-42e2-ad2a-d29304dde2fe",
     "allowUnspecifiedAll": true
   }
-  

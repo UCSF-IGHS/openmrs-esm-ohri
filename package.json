@@ -1,37 +1,31 @@
 {
-  "name": "@ohri/openmrs-ohri-app",
+  "name": "@ohri/openmrs-esm-ohri",
   "private": true,
   "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {
-
-    "setup": "npx lerna clean --yes && npx lerna bootstrap && npx lerna run build",
-
+  "scripts": { 
+    "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
+    "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
+    "ci:publish": "lerna publish from-package --yes",
+    "ci:release": "lerna version --no-git-tag-version",
+    "coverage": "yarn test --coverage",
+    "extract-translations": "lerna run extract-translations",
+    "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "start": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources 'packages/esm-*-app/'",
     "start:core": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
     "start:covid": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-covid-app",
     "start:hiv": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-hiv-app",
     "start:cervical-cancer": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
     "start:form-render": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-form-render-app",
-
-    "test": "jest --config jest.config.json --verbose false --passWithNoTests",
-    "test-watch": "jest --watch --config jest.config.json",
-
-    "coverage": "yarn test --coverage",
-    "extract-translations": "lerna run extract-translations",
-    "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",    
-    "verify": "lerna run lint && lerna run test && lerna run typescript",
-
-    "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
-    "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
-    "ci:publish": "lerna publish from-package --yes",
-    "ci:release": "lerna version --no-git-tag-version",
-
-    "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --no-verify-access --yes",
+    "test": "jest --config jest.config.js --verbose false --passWithNoTests",
+    "test-watch": "jest --watch --config jest.config.js",
+    "verify": "lerna run lint -- --fix && lerna run test && lerna run typescript",
+    "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
-    "release": "lerna version --no-git-tag-version"
+    "release": "lerna version --no-git-tag-version",
+    "setup": "npx lerna clean --yes && npx lerna bootstrap && npx lerna run build"
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",
@@ -43,7 +37,7 @@
     "jest-coverage-badges": "^1.0.0",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.3",
-    "openmrs-ohri-form-engine-lib": "0.1.7",
+    "@ohri/openmrs-ohri-form-engine-lib": "next",
     "react-ace": "^9.4.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-markdown": "^7.1.0",
@@ -61,7 +55,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.17.9",
-    "@openmrs/esm-framework": "^3.2.1-pre.1143",
+    "@openmrs/esm-framework": "^3.4.1-pre.77",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^10.4.3",
@@ -100,7 +94,7 @@
     "jest-cli": "^24.9.0",
     "lerna": "^4.0.0",
     "node-sass": "^6.0.1",
-    "openmrs": "^3.2.1-pre.1143",
+    "openmrs": "^3.4.1-pre.77",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "react": "^16.9.0",
@@ -117,5 +111,20 @@
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
+  },
+  "keywords": [
+    "openmrs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && concurrently 'npm:verify'"
+    }
   }
 }

@@ -106,10 +106,10 @@ export const PatientTracingEncounterType_UUID = '0cd5d4cb-204e-419a-9dd7-1e18e93
 
 //Intimate Partner
 export const IntimatePartnerEncounterType_UUID = '881fff34-b4a9-4d11-b2f5-a8a23a9f402b';
-export const ThreatenedToHurt_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
-export const SexuallyMolested_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-export const howOftenThreatened_UUID = '953f6271-57ef-414e-bdba-fe9e0246db58';
-export const howOftenSexuallyMolested_UUID = '1dd53a22-2e8f-425b-8ba4-59172ed3fafe';
+export const PhysicalAbuse_UUID = '2a228c6a-1575-43d7-9d42-9b68d0629f46';
+export const EmotionalAbuse_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
+export const SexualAbuse_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const IpvScreeningDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Contact Tracing
 export const ContactTracingEncounterType_UUID = '570e9e42-4306-41dc-9bf8-634bbc70a524';
@@ -120,6 +120,8 @@ export const ContactTracingOutcome_UUID = '36a3e671-9d60-4109-b41f-046f44f4b389'
 //Service Delivery
 export const ServiceDeliveryEncounterType_UUID = '62ee5922-a229-48d3-a1da-875c1ffa9436';
 export const CommunityDSDModel_UUID = '52824cbe-0e4d-4c18-8179-80b5799f34ed';
+export const EnrollmentDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const DSDStatus_UUID = '8742967d-8107-4cbb-a17e-9a8c7f624673';
 
 //Peads Disclosure
 export const PeadsDisclosureEncounterType_UUID = '390c2f21-c1c4-4246-94ca-a026157cd1db';
@@ -139,11 +141,13 @@ export const LittleInterestConcept_UUID = '167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
 export const DepressionConcept_UUID = '167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PoorAppetiteConcept_UUID = '167070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PoorConcentrationConcept_UUID = '167072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const screeningDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //CD4 Lab Results
 export const CD4LabResultsEncounter_UUID = '96adb28e-e417-43a3-8f7d-682f8af5e912';
 export const Cd4LabResultDate_UUID = '163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const Cd4LabResultCountPercentage_UUID = '730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const Cd4Count_UUID = '5497AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Viral Load Results
 export const ViralLoadResultsEncounter_UUID = '41af1931-184e-45f8-86ca-d42e0db0b8a1';

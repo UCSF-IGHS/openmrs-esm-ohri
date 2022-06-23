@@ -4,11 +4,15 @@ import {
   CaCxAppointments_dashboardMeta,
   CaCxSummary_dashboardMeta,
   CaCxVisits_dashboardMeta,
-  clearCervicalCancerSidenavRegistry,
-  createCervicalCancerDashboardLink,
+  cervicalCancerFolderMeta,
 } from './dashboard.meta';
+import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
+import cacxForms from './forms/forms-registry';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
+
+require('./root.scss');
 
 function setupOpenMRS() {
   const moduleName = 'openmrs-esm-ohri-cervical-cancer-app';
@@ -20,16 +24,23 @@ function setupOpenMRS() {
 
   defineConfigSchema(moduleName, {});
 
-  //Clear sidenav items to avoid duplicates
-  clearCervicalCancerSidenavRegistry();
+  addToBaseFormsRegistry(cacxForms);
 
   return {
     pages: [],
     extensions: [
       {
-        id: 'cacx-summary-dashboard',
+        id: 'cervical-cancer',
         slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCervicalCancerDashboardLink(CaCxSummary_dashboardMeta), options),
+        load: getSyncLifecycle(createDashboardGroup(cervicalCancerFolderMeta), options),
+        meta: cervicalCancerFolderMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'cacx-summary-dashboard',
+        slot: 'cervical-cancer-slot',
+        load: getSyncLifecycle(createDashboardLink(CaCxSummary_dashboardMeta), options),
         meta: CaCxSummary_dashboardMeta,
         online: true,
         offline: true,
@@ -44,8 +55,8 @@ function setupOpenMRS() {
       },
       {
         id: 'cacx-visits-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCervicalCancerDashboardLink(CaCxVisits_dashboardMeta), options),
+        slot: 'cervical-cancer-slot',
+        load: getSyncLifecycle(createDashboardLink(CaCxVisits_dashboardMeta), options),
         meta: CaCxVisits_dashboardMeta,
         online: true,
         offline: true,
@@ -60,8 +71,8 @@ function setupOpenMRS() {
       },
       {
         id: 'cacx-appointments-dashboard',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createCervicalCancerDashboardLink(CaCxAppointments_dashboardMeta), options),
+        slot: 'cervical-cancer-slot',
+        load: getSyncLifecycle(createDashboardLink(CaCxAppointments_dashboardMeta), options),
         meta: CaCxAppointments_dashboardMeta,
         online: true,
         offline: true,

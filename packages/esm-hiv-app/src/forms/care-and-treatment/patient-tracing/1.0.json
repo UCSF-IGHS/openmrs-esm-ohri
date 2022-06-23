@@ -308,7 +308,7 @@
                   ]
 			  },
 			  {
-				"label":"Reasons for missing an appointment - coded",
+				"label":"Reasons for missing an appointment",
 				"type":"obs",
 				"questionOptions":{
 				  "rendering":"select",
@@ -410,49 +410,64 @@
 					  "conceptMappings":[
 						
 					  ]
+					},
+					{
+					"concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+					"label": "Other",
+					"conceptMappings": [
+						{
+							"type": "PIH-Malawi",
+							"value": "6408"
+						},
+						{
+							"type": "org.openmrs.module.mdrtb",
+							"value": "OTHER"
+						},
+						{
+							"type": "PIH",
+							"value": "5622"
+						},
+						{
+							"type": "org.openmrs.module.mdrtb",
+							"value": "OTHER"
+						},
+						{
+							"type": "PIH-Malawi",
+							"value": "6408"
+						},
+						{
+							"type": "SNOMED-MVP",
+							"value": "56221000105001"
+						},
+						{
+							"type": "AMPATH",
+							"value": "5622"
+						},
+						{
+							"type": "PIH",
+							"value": "5622"
+						},
+						{
+							"type": "SNOMED-MVP",
+							"value": "56221000105001"
+						},
+						{
+							"type": "CIEL",
+							"value": "5622"
+						},
+						{
+							"type": "AMPATH",
+							"value": "5622"
+						},
+						{
+							"type": "SNOMED-CT",
+							"value": "74964007"
+						}
+					]
 					}
 				  ]
 				},
 				"id":"missAppCoded",
-                "behaviours": [
-                    {
-                      "intent": "*",
-                      "required": "true",
-                      "unspecified": "true",
-                      "hide": {
-                        "hideWhenExpression": "!includes('patientContacted','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                      },
-                      "validators": []
-                    }
-                  ]
-			  },
-			  {
-				"label":"Reason for Missing appointment",
-				"type":"obs",
-				"questionOptions":{
-				  "rendering":"textarea",
-				  "concept":"159796AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-				  "rows":"",
-				  "conceptMappings":[
-					{
-					  "type":"CIEL",
-					  "value":"159796"
-					},
-					{
-					  "type":"SNOMED-MVP",
-					  "value":"1597961000105005"
-					},
-					{
-					  "type":"SNOMED-CT",
-					  "value":"281399006"
-					},
-					{
-					  "type":"AMPATH",
-					  "value":"6187"
-					}
-				  ]
-				},
-				"id":"reasonMissedApp",
                 "behaviours": [
                     {
                       "intent": "*",
@@ -540,7 +555,7 @@
 			"isExpanded":"true",
 			"questions":[
 			  {
-				"label":"Final Outcome reached (After successful or multiple unsuccessful tracing attempts)",
+				"label":"Final Tracing Outcome reached (After successful or multiple unsuccessful tracing attempts)",
 				"type":"obs",
 				"questionOptions":{
 				  "rendering":"radio",
