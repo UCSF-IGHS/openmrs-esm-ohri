@@ -16,7 +16,7 @@ import {
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '../../utils/ohri-forms-commons';
-import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from 'openmrs-ohri-form-engine-lib';
+import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from '@ohri/openmrs-ohri-form-engine-lib';
 
 export interface EncounterListColumn {
   key: string;

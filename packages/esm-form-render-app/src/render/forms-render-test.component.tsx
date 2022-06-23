@@ -4,7 +4,13 @@ import styles from './form-render.scss';
 import { Run32, Maximize32 } from '@carbon/icons-react';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
-import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema, SessionMode } from 'openmrs-ohri-form-engine-lib';
+import {
+  applyFormIntent,
+  loadSubforms,
+  OHRIForm,
+  OHRIFormSchema,
+  SessionMode,
+} from '@ohri/openmrs-ohri-form-engine-lib';
 
 function FormRenderTest() {
   const headerTitle = 'Form Render Test';

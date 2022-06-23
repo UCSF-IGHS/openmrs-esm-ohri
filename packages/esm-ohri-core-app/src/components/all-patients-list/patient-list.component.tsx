@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
 import styles from './patient-list.scss';
 import Button from 'carbon-components-react/es/components/Button';
@@ -23,7 +23,9 @@ interface PatientListProps {
 
 const PatientList: React.FC<PatientListProps> = () => {
   const { t } = useTranslation();
-  const [patients, setTableRows] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [patientsToLastVisitMap, setPatientsToLastVisitMap] = useState([]);
+  const [allRows, setAllRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;
   const [page, setPage] = useState(1);
@@ -40,21 +42,18 @@ const PatientList: React.FC<PatientListProps> = () => {
   ];
 
   useEffect(() => {
-    if (!page) setIsLoading(true);
-    loadPatients(nextOffSet, pageSize);
+    setIsLoading(true);
+    fetchPatientList(nextOffSet, pageSize).then(({ data }) => {
+      setPatients(data.entry);
+      setPatientCount(data.total);
+      setIsLoading(false);
+    });
   }, [page, pageSize]);
 
-  const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart`;
-  async function loadPatients(offSet: number, pageSize: number) {
+  useEffect(() => {
     let rows = [];
-    const { data: patients } = await fetchPatientList(offSet, pageSize);
-
-    setPatientCount(patients.total);
-    for (let patient of patients.entry) {
-      const { data } = await fetchLastVisit(patient.resource.id);
-      const lastVisit = data?.entry?.length ? data?.entry[0]?.resource?.period?.start : '';
-
+    for (let patient of patients) {
+      const lastVisit = patientsToLastVisitMap.find(entry => entry.patientId === patient.resource.id)?.lastVisit;
       const patientActions = (
         <OverflowMenu flipped>
           <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={[]} />
@@ -76,14 +75,29 @@ const PatientList: React.FC<PatientListProps> = () => {
         actions: patientActions,
       });
     }
-    setTableRows(rows);
-    setIsLoading(false);
-  }
+    setAllRows(rows);
+  }, [patients, patientsToLastVisitMap]);
+
+  useEffect(() => {
+    const patientToLastVisitPromises = patients.map(patient => fetchLastVisit(patient.resource.id));
+    Promise.all(patientToLastVisitPromises).then(values => {
+      setPatientsToLastVisitMap(
+        values.map((value, index) => ({
+          lastVisit: value.data?.entry?.length ? value.data?.entry[0]?.resource?.period?.start : '',
+          patientId: patients[index].resource.id,
+        })),
+      );
+    });
+  }, [patients]);
+
+  const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart`;
+
   return (
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
-      ) : patients.length > 0 ? (
+      ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
           <div className={styles.widgetHeaderContainer}>
             <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
@@ -100,7 +114,7 @@ const PatientList: React.FC<PatientListProps> = () => {
               </Button>
             </div>
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={patients} />
+          <OTable tableHeaders={tableHeaders} tableRows={allRows} />
           <div style={{ width: '800px' }}>
             <Pagination
               page={page}
@@ -108,8 +122,8 @@ const PatientList: React.FC<PatientListProps> = () => {
               pageSizes={[10, 20, 30, 40, 50]}
               totalItems={totalPatientCount}
               onChange={({ page, pageSize }) => {
-                setNextOffSet(page * pageSize + 1);
                 setPage(page);
+                setNextOffSet((page - 1) * pageSize);
                 setPageSize(pageSize);
               }}
             />

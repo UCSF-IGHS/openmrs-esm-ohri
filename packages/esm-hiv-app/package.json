@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-hiv-app",
-  "version": "0.6.47",
+  "version": "0.6.48",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-hiv-app.js",
   "main": "src/index.ts",
@@ -78,8 +78,8 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.17.8",
-    "@openmrs/esm-framework": "^3.2.1-pre.1055",
-    "@openmrs/esm-patient-common-lib": "3.1.1-pre.57",
+    "@openmrs/esm-framework": "3.3.1",
+    "@openmrs/esm-patient-common-lib": "3.2.1-pre.85",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^10.4.3",

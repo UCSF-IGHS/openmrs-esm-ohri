@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState, OHRIFormLauncherEmpty, launchForm } from 'openmrs-esm-ohri-commons-lib';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../../constants';
-import { getForm } from 'openmrs-ohri-form-engine-lib';
+import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;

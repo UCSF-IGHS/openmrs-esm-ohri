@@ -37,7 +37,7 @@ git clone https://github.com/UCSF-IGHS/openmrs-esm-ohri.git
 
 2. Setup repository
 ```sh
-yarn run setup
+yarn setup
 ```
 
 3. Start all packages on `localhost:8080`.

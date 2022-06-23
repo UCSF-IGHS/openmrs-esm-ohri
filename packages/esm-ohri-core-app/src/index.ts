@@ -1,8 +1,8 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 
-import patientDashboardsConfig from './ohri-patient-dashboards-config.json';
-import ohriDashboardsConfig from './ohri-patient-dashboards-config';
+import patientDashboardsConfig from './ohri-esm-and-dashboards-config.json';
+import ohriDashboardsConfig from './ohri-core-config';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
