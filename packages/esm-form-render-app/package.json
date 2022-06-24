@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-form-render-app",
-  "version": "0.6.48",
+  "version": "0.6.49",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-form-render-app.js",
   "main": "src/index.ts",
@@ -61,6 +61,7 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
+    "@ohri/openmrs-ohri-form-engine-lib": "next",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
@@ -84,7 +85,6 @@
     "jest-cli": "^24.9.0",
     "node-sass": "^6.0.1",
     "openmrs": "next",
-    "@ohri/openmrs-ohri-form-engine-lib": "next",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "react": "^16.9.0",
