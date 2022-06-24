@@ -806,21 +806,7 @@
                         "value": "65568007"
                       }
                     ]
-                  },
-                  {
-                    "concept": "156753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "immunocompromised state",
-                    "conceptMappings": [
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "802369"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "370388006"
-                      }
-                    ]
-                  },
+                  },                  
                   {
                     "concept": "139201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "H/O: Liver Disease",
