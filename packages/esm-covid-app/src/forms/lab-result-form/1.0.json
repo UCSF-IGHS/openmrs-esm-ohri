@@ -302,7 +302,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue > today() || isDateBefore(myValue, '2020-01-01') || myValue < useFieldValue('orderDate')"
+                      "failsWhenExpression": "isDateBefore(myValue, '2020-01-01')"
                     }
                   ]
                 }
