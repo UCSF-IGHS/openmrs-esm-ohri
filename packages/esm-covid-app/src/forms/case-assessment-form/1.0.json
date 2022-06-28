@@ -729,9 +729,57 @@
                   }
                 ],
                 "answers": [
+                  { 
+                    "concept": "9a40049b-4875-4a1f-8969-d9231b807ec7",
+                    "label": "Cardiovascular disease",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "145270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chronic Lung Disease",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "37180002"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "76407"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "165646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Chronic neurological or neuromuscular disease",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "118940003"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "155600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current smoker",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "709745"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "65568007"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "e3ea3c4b-df5f-4659-b357-93e3de325660",
+                    "label": "Diabetes",
+                    "conceptMappings": []
+                  },
                   {
                     "concept": "156358AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "former cigarette smoker",
+                    "label": "Former smoker",
                     "conceptMappings": [
                       {
                         "type": "SNOMED-CT",
@@ -745,7 +793,7 @@
                   },
                   {
                     "concept": "54181d28-ff4d-40d3-b835-a813db07eb0e",
-                    "label": "HIV /AIDS",
+                    "label": "HIV Disease",
                     "conceptMappings": [
                       {
                         "type": "CIEL",
@@ -792,24 +840,10 @@
                         "value": "370388006"
                       }
                     ]
-                  },
-                  {
-                    "concept": "155600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "cigarette smoker",
-                    "conceptMappings": [
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "709745"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "65568007"
-                      }
-                    ]
                   },                  
                   {
                     "concept": "139201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "H/O: Liver Disease",
+                    "label": "Liver Disease",
                     "conceptMappings": [
                       {
                         "type": "IMO-ProblemIT",
@@ -822,35 +856,6 @@
                     ]
                   },
                   {
-                    "concept": "145270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Chronic Nonspecific Lung Disease",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "37180002"
-                      },
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "76407"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "165646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Chronic neurological or neuromuscular disease",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "118940003"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "e3ea3c4b-df5f-4659-b357-93e3de325660",
-                    "label": "Diabetes",
-                    "conceptMappings": []
-                  },
-                  {
                     "concept": "c4879004-17d7-4eee-b5fc-942e855e2027",
                     "label": "Malignancy",
                     "conceptMappings": []
@@ -861,18 +866,13 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "9a40049b-4875-4a1f-8969-d9231b807ec7",
-                    "label": "Cardiovascular disease",
-                    "conceptMappings": []
-                  },
-                  {
                     "concept": "1a0ce98b-3fc0-4a07-b813-9dad49d8347e",
                     "label": "Tuberculosis",
                     "conceptMappings": []
                   },
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
+                    "label": "Other non-coded",
                     "conceptMappings": [
                       {
                         "type": "PIH-Malawi",
