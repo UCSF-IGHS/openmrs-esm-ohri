@@ -2429,7 +2429,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2485,7 +2485,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2498,7 +2498,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults !== '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults === '6378487b-584d-4422-a6a6-56c8830873ff' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -2673,7 +2673,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "intermediateA1andA2HivResults === '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -3247,7 +3247,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(recencyTestingConsent) || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                      "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ],
