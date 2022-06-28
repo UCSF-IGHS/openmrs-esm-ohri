@@ -109,6 +109,7 @@ export const IntimatePartnerEncounterType_UUID = '881fff34-b4a9-4d11-b2f5-a8a23a
 export const PhysicalAbuse_UUID = '2a228c6a-1575-43d7-9d42-9b68d0629f46';
 export const EmotionalAbuse_UUID = 'bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb';
 export const SexualAbuse_UUID = '1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const IpvScreeningDate_UUID = '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Contact Tracing
 export const ContactTracingEncounterType_UUID = '570e9e42-4306-41dc-9bf8-634bbc70a524';

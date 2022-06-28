@@ -729,65 +729,14 @@
                   }
                 ],
                 "answers": [
-                  {
-                    "concept": "156358AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "former cigarette smoker",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "281018007"
-                      },
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "709842"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "155600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "cigarette smoker",
-                    "conceptMappings": [
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "709745"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "65568007"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "156753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "immunocompromised state",
-                    "conceptMappings": [
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "802369"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "370388006"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "139201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "H/O: Liver Disease",
-                    "conceptMappings": [
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "360531"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "161535005"
-                      }
-                    ]
+                  { 
+                    "concept": "9a40049b-4875-4a1f-8969-d9231b807ec7",
+                    "label": "Cardiovascular disease",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "145270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Chronic Nonspecific Lung Disease",
+                    "label": "Chronic Lung Disease",
                     "conceptMappings": [
                       {
                         "type": "SNOMED-CT",
@@ -810,9 +759,101 @@
                     ]
                   },
                   {
+                    "concept": "155600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current smoker",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "709745"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "65568007"
+                      }
+                    ]
+                  },
+                  {
                     "concept": "e3ea3c4b-df5f-4659-b357-93e3de325660",
                     "label": "Diabetes",
                     "conceptMappings": []
+                  },
+                  {
+                    "concept": "156358AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Former smoker",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "281018007"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "709842"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "54181d28-ff4d-40d3-b835-a813db07eb0e",
+                    "label": "HIV Disease",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "138405"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Hypertension",
+                    "conceptMappings": [
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "38341003"
+                      },
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "86491"
+                      },
+                      {
+                        "type": "ICD-10-WHO",
+                        "value": "I10"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "117399"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "903"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "156753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Immunodeficiency",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "802369"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "370388006"
+                      }
+                    ]
+                  },                  
+                  {
+                    "concept": "139201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Liver Disease",
+                    "conceptMappings": [
+                      {
+                        "type": "IMO-ProblemIT",
+                        "value": "360531"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "161535005"
+                      }
+                    ]
                   },
                   {
                     "concept": "c4879004-17d7-4eee-b5fc-942e855e2027",
@@ -825,18 +866,13 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "9a40049b-4875-4a1f-8969-d9231b807ec7",
-                    "label": "Cardiovascular disease",
-                    "conceptMappings": []
-                  },
-                  {
                     "concept": "1a0ce98b-3fc0-4a07-b813-9dad49d8347e",
                     "label": "Tuberculosis",
                     "conceptMappings": []
                   },
                   {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
+                    "label": "Other non-coded",
                     "conceptMappings": [
                       {
                         "type": "PIH-Malawi",

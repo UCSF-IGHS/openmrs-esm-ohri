@@ -11,7 +11,7 @@ config.overrides.resolve = {
   alias: {
     '@openmrs/esm-framework': '@openmrs/esm-framework/src/internal',
     'openmrs-esm-ohri-commons-lib': path.resolve(__dirname, '../esm-commons-lib/src/index'),
-    'openmrs-ohri-form-engine-lib': 'openmrs-ohri-form-engine-lib/src/index',
+    '@ohri/openmrs-ohri-form-engine-lib': '@ohri/openmrs-ohri-form-engine-lib/src/index',
   },
 };
 module.exports = config;

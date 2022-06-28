@@ -22,4 +22,5 @@ export const CaCxAppointments_dashboardMeta = {
 export const cervicalCancerFolderMeta = {
   title: 'Cervical Cancer',
   slotName: 'cervical-cancer-slot',
+  isExpanded: false,
 };

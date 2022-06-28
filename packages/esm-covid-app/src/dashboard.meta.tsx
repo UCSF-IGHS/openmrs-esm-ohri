@@ -5,6 +5,7 @@ import { Coronavirus32 } from '@carbon/icons-react';
 export const covidPatientChartMeta = {
   title: 'COVID',
   slotName: 'ohri-covid-patient-chart-slot',
+  isExpanded: false,
 };
 
 export const covidAssessments_dashboardMeta = {
