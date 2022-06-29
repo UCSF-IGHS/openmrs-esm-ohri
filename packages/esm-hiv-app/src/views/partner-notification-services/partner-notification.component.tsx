@@ -11,7 +11,7 @@ import {
 } from '../../constants';
 import styles from '../common.scss';
 const statusColorMap = {
-  '6378487b-584d-4422-a6a6-56c8830873ff': 'red', // positive
+  '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'red', // positive
   '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'gray', // negative
   '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'purple', // unknown
 };
