@@ -1145,9 +1145,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1222,9 +1243,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1299,9 +1341,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1355,9 +1418,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
