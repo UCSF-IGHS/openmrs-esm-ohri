@@ -1,10 +1,7 @@
 /* eslint-disable no-debugger, no-console */
 import React, { useState } from 'react';
-import {
-  launchFormInViewMode,
-  launchFormWithCustomTitle,
-} from '../../../../../../esm-commons-lib/src/utils/ohri-forms-commons';
-import { getForm, applyFormIntent } from 'openmrs-ohri-form-engine-lib';
+import { launchFormInViewMode, launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 
 export interface LabresultsFormViewerProps {
   patientUuid: string;

@@ -198,7 +198,7 @@ function setupOpenMRS() {
         id: 'lab-results-summary-ext',
         slot: 'lab-results-dashboard-slot',
         load: getAsyncLifecycle(
-          () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary.component'),
+          () => import('./views/hts/care-and-treatment/lab-results/lab-results-patient-list-tabs.component'),
           {
             featureName: 'lab-results-summary',
             moduleName,
