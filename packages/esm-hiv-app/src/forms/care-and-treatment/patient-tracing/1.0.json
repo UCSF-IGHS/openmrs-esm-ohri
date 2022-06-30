@@ -168,7 +168,7 @@
 			]
 		  },
 		  {
-			"label":"Outcome Patient",
+			"label":"Tracing Outcome",
 			"isExpanded":"true",
 			"questions":[
 			  {
@@ -551,7 +551,7 @@
 		"label":"Outcome",
 		"sections":[
 		  {
-			"label":"Final Outcome Patient",
+			"label":"Final Tracing Outcome",
 			"isExpanded":"true",
 			"questions":[
 			  {
