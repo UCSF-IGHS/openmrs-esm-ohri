@@ -16,6 +16,8 @@ import { DataTableSkeleton, OverflowMenu, OverflowMenuItem, Pagination, Search }
 import { capitalize } from 'lodash';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
+import { applyFormIntent, getForm } from '@ohri/openmrs-ohri-form-engine-lib';
+import { launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib/src/utils/ohri-forms-commons';
 
 interface CD4ResultsListProps {
   patientUuid: string;
@@ -39,6 +41,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
   const headerTitle = '';
+
   const tableHeaders = [
     { key: 'name', header: 'Patient Name', isSortable: true },
     { key: 'gender', header: 'Sex' },
@@ -62,11 +65,13 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     for (let patient of patients) {
       const lastCd4Result = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4Result;
       const lastCd4ResultDate = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4ResultDate;
-      const lastCd4EncounterUuid = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4EncounterUuid;
+      const lastCd4EncounterUuid = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)
+        ?.cd4EncounterUuid;
       const patientActions = (
-        <LabresultsFormViewer form={{package: 'hiv', name:'cd4_lab_results'}} patientUuid={patient.resource.id} encounterUuid={lastCd4EncounterUuid}>
-          
-        </LabresultsFormViewer>
+        <LabresultsFormViewer
+          form={{ package: 'hiv', name: 'cd4_lab_results' }}
+          patientUuid={patient.resource.id}
+          encounterUuid={lastCd4EncounterUuid}></LabresultsFormViewer>
       );
 
       rows.push({
@@ -130,7 +135,6 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
       const lastEncounter = sortedEncounters[0];
-      console.log(lastEncounter.uuid);
 
       latestCd4Encounter.result = getObsFromEncounter(lastEncounter, hivCD4Count_UUID);
       latestCd4Encounter.date = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
@@ -146,11 +150,16 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
           <div className={styles.searchField}>
-            <Search className={styles.searchField} style={{width:'15%', background:'#fff', border: '1px solid', margin:'5px 0px'}} 
-            labelText="Search" placeHolderText="Search Client list" size='sm' 
-            onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)} />
+            <Search
+              className={styles.searchField}
+              style={{ width: '15%', background: '#fff', border: '1px solid', margin: '5px 0px' }}
+              labelText="Search"
+              placeHolderText="Search Client list"
+              size="sm"
+              onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)}
+            />
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults: allRows} />
+          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
           <div style={{ width: '800px' }}>
             <Pagination
               page={page}

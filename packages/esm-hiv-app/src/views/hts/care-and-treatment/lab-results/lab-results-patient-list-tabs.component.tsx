@@ -1,15 +1,19 @@
-import { getObsFromEncounter, OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
+/* eslint-disable no-debugger, no-console */
+import { getObsFromEncounter, OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib/src/index';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   allPatientsCohort,
   Cd4LabResultDate_UUID,
   CD4LabResultsEncounter_UUID,
+  hivCD4Count_UUID,
   ViralLoadResultDate_UUID,
   ViralLoadResultsEncounter_UUID,
+  ViralLoadResult_UUID,
 } from '../../../../constants';
 
 function LabResultsPatientTabs() {
+  console.log('here');
   const { t } = useTranslation();
 
   const tabsConfigs = [
@@ -21,8 +25,8 @@ function LabResultsPatientTabs() {
       launchableForm: {
         package: 'hiv',
         name: 'cd4_lab_results',
-        actionText: 'View Result',
-        intent: '*',
+        editActionText: 'View Result',
+        editLatestEncounter: true,
         targetDashboard: 'lab-results',
       },
       excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
@@ -31,9 +35,8 @@ function LabResultsPatientTabs() {
           key: 'cd4Result',
           header: t('cd4Result', 'Recent CD4'),
           getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, CD4LabResultsEncounter_UUID);
+            return getObsFromEncounter(latestEncounter, hivCD4Count_UUID);
           },
-          index: 1,
         },
         {
           key: 'cd4ResultDate',
@@ -52,19 +55,18 @@ function LabResultsPatientTabs() {
       launchableForm: {
         package: 'hiv',
         name: 'viral_load_results',
-        actionText: 'View Result',
-        intent: '*',
+        editActionText: 'View Result',
+        editLatestEncounter: true,
         targetDashboard: 'lab-results',
       },
-      excludeColumns: ['timeAddedToList', 'waitingTime', 'location'],
+      excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
       otherColumns: [
         {
           key: 'vlResult',
           header: t('vlResult', 'Recent VL'),
           getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, ViralLoadResultsEncounter_UUID);
+            return getObsFromEncounter(latestEncounter, ViralLoadResult_UUID);
           },
-          index: 1,
         },
         {
           key: 'vlDate',

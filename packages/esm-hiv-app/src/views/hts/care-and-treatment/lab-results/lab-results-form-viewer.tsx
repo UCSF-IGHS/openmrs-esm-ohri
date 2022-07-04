@@ -1,6 +1,9 @@
 /* eslint-disable no-debugger, no-console */
 import React, { useState } from 'react';
-import { launchFormInViewMode, launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  launchFormInViewMode,
+  launchFormWithCustomTitle,
+} from '@ohri/openmrs-esm-ohri-commons-lib/src/utils/ohri-forms-commons';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 
 export interface LabresultsFormViewerProps {
@@ -8,7 +11,7 @@ export interface LabresultsFormViewerProps {
   encounterUuid: string;
   form?: { package: string; name: string; view?: string };
 }
-import styles from '../../../../../../esm-ohri-core-app/src/components/all-patients-list/patient-list.scss';
+import styles from './Tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 
 export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({ patientUuid, encounterUuid, form }) => {
@@ -28,7 +31,6 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({ pati
         <OverflowMenuItem
           itemText="View Result"
           onClick={e => {
-            console.log(`form name - ${form.name}, package - ${form.package}, encounter uuid - ${encounterUuid}`);
             e.preventDefault();
             launchEncounterForm(applyFormIntent('*', getForm(form.package, form.name)), '*', 'view', encounterUuid);
           }}
