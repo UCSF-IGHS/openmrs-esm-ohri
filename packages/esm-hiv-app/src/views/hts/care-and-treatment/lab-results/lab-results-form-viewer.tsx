@@ -13,6 +13,7 @@ export interface LabresultsFormViewerProps {
 }
 import styles from './Tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
 
 export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({ patientUuid, encounterUuid, form }) => {
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
@@ -33,6 +34,7 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({ pati
           itemText="View Result"
           onClick={e => {
             e.preventDefault();
+            changeWorkspaceContext(patientUuid);
             launchEncounterForm(applyFormIntent('*', getForm(form.package, form.name)), '*', 'view', encounterUuid);
           }}
         />
