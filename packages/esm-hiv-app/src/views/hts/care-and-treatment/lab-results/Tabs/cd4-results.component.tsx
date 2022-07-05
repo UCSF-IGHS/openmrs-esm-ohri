@@ -71,7 +71,9 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         <LabresultsFormViewer
           form={{ package: 'hiv', name: 'cd4_lab_results' }}
           patientUuid={patient.resource.id}
-          encounterUuid={lastCd4EncounterUuid}></LabresultsFormViewer>
+          encounterUuid={lastCd4EncounterUuid}>
+            
+          </LabresultsFormViewer>
       );
 
       rows.push({
