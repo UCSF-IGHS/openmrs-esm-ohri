@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
-import styles from '../../../../../../../esm-ohri-core-app/src/components/all-patients-list/patient-list.scss';
+import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton, OverflowMenu, Pagination, Search } from 'carbon-components-react';
@@ -20,6 +20,7 @@ import {
 } from '../../../../../constants';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { filterPatientsByName } from './cd4-results.component';
+import { LabresultsFormViewer } from '../lab-results-form-viewer';
 
 interface ViralLoadResultsListProps {
   patientUuid: string;
@@ -64,10 +65,14 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         ?.viralLoadResult;
       const lastviralLoadResultDate = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
         ?.viralLoadResultDate;
+      const lastViralLoadEncounterUuid = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
+        ?.viralEncounterUuid;
       const patientActions = (
-        <OverflowMenu flipped>
-          {/* <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={[]} /> */}
-        </OverflowMenu>
+        <LabresultsFormViewer
+          form={{ package: 'hiv', name: 'viral_load_results' }}
+          patientUuid={patient.resource.id}
+          encounterUuid={lastViralLoadEncounterUuid}
+          patientUrl={getPatientURL(patient.resource.id)}></LabresultsFormViewer>
       );
 
       rows.push({
@@ -100,6 +105,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
           viralLoadResult: value.result,
           viralLoadResultDate: value.date,
           patientId: patients[index].resource.id,
+          viralEncounterUuid: value.encounterUuid,
         })),
       );
     });
@@ -122,6 +128,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     let latestViralEncounter = {
       result: '--',
       date: '--',
+      encounterUuid: '',
     };
     const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
@@ -134,6 +141,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
 
       latestViralEncounter.result = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);
       latestViralEncounter.date = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID, true);
+      latestViralEncounter.encounterUuid = lastEncounter.uuid;
     }
     return latestViralEncounter;
   }
@@ -144,10 +152,18 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
-          <div className={styles.searchField}>
-            <Search labelText="Search" placeHolderText="Search" size='sm' onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)} />
+          <div className={styles.searchBox}>
+            <Search
+              className={styles.searchField}
+              labelText="Search"
+              placeHolderText="Search client list"
+              size="sm"
+              onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)}
+            />
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults: allRows} />
+          {/* <Search className={styles.searchField}
+          labelText="Search" placeHolderText="Search client list" size='sm' onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)} /> */}
+          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
           <div style={{ width: '800px' }}>
             <Pagination
               page={page}

@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger, no-console */
 import { getObsFromEncounter, OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib/src/index';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +12,6 @@ import {
 } from '../../../../constants';
 
 function LabResultsPatientTabs() {
-  console.log('here');
   const { t } = useTranslation();
 
   const tabsConfigs = [

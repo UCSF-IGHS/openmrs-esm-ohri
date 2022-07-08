@@ -190,7 +190,6 @@ function setupOpenMRS() {
         id: 'lab-results-summary-ext',
         slot: 'lab-results-dashboard-slot',
         load: getAsyncLifecycle(
-          // () => import('./views/hts/care-and-treatment/lab-results/lab-results-patient-list-tabs.component'),
           () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary.component'),
           {
             featureName: 'lab-results-summary',
@@ -201,14 +200,6 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
-      // {
-      //   id: 'lab-results-summary-ext',
-      //   slot: 'lab-results-dashboard-slot',
-      //   load: getSyncLifecycle(createOHRIDashboardLink(labResultsDashboardMeta), options),
-      //   meta: labResultsDashboardMeta,
-      //   online: true,
-      //   offline: true,
-      // },
       {
         id: 'lab-results-summary',
         slot: 'ohri-hiv-dashboard-slot',

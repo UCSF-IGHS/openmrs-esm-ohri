@@ -1,21 +1,28 @@
-/* eslint-disable no-debugger, no-console */
 import React, { useState } from 'react';
 import {
+  launchFormInEditMode,
   launchFormInViewMode,
   launchFormWithCustomTitle,
 } from '@ohri/openmrs-esm-ohri-commons-lib/src/utils/ohri-forms-commons';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
+import styles from './Tabs/patient-list.scss';
+import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { changeWorkspaceContext, closeAllWorkspaces, resetWorkspaceStore } from '@openmrs/esm-patient-common-lib';
+import { navigate } from '@openmrs/esm-framework';
 
 export interface LabresultsFormViewerProps {
   patientUuid: string;
   encounterUuid: string;
   form?: { package: string; name: string; view?: string };
+  patientUrl: string;
 }
-import styles from './Tabs/patient-list.scss';
-import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
 
-export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({ patientUuid, encounterUuid, form }) => {
+export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
+  patientUuid,
+  encounterUuid,
+  form,
+  patientUrl,
+}) => {
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
   const [counter, setCounter] = useState(0);
 
@@ -23,22 +30,26 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({ pati
   const capitalize = word => word[0].toUpperCase() + word.substr(1);
 
   const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
-    console.log('line 25*');
     const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
     launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
   };
   return (
     <>
-      <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-        <OverflowMenuItem
-          itemText="View Result"
-          onClick={e => {
-            e.preventDefault();
-            changeWorkspaceContext(patientUuid);
-            launchEncounterForm(applyFormIntent('*', getForm(form.package, form.name)), '*', 'view', encounterUuid);
-          }}
-        />
-      </OverflowMenu>
+      {encounterUuid ? (
+        <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenuItem
+            itemText="View Result"
+            onClick={e => {
+              e.preventDefault();
+              changeWorkspaceContext(patientUuid);
+              launchEncounterForm(applyFormIntent('*', getForm(form.package, form.name)), '*', 'view', encounterUuid);
+              navigate({ to: patientUrl });
+            }}
+          />
+        </OverflowMenu>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

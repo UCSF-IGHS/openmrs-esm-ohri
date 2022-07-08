@@ -1,6 +1,5 @@
-/* eslint-disable no-debugger, no-console */
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import styles from '../../../../../../../esm-ohri-core-app/src/components/all-patients-list/patient-list.scss';
+import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import {
   EmptyState,
@@ -71,9 +70,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         <LabresultsFormViewer
           form={{ package: 'hiv', name: 'cd4_lab_results' }}
           patientUuid={patient.resource.id}
-          encounterUuid={lastCd4EncounterUuid}>
-            
-          </LabresultsFormViewer>
+          encounterUuid={lastCd4EncounterUuid}
+          patientUrl={getPatientURL(patient.resource.id)}></LabresultsFormViewer>
       );
 
       rows.push({
@@ -151,10 +149,9 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
-          <div className={styles.searchField}>
+          <div className={styles.searchBox}>
             <Search
               className={styles.searchField}
-              style={{ width: '15%', background: '#fff', border: '1px solid', margin: '5px 0px' }}
               labelText="Search"
               placeHolderText="Search Client list"
               size="sm"

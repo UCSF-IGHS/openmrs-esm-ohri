@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger, no-console */
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
 export const launchForm = (form: any, onUpdateParent?: () => void, title?: string, workspaceName?: string) => {
@@ -35,7 +34,6 @@ export const launchFormInViewMode = (
   title?: string,
   workspaceName?: string,
 ) => {
-  console.log('Commons launch form in view mode');
   launchOHRIWorkSpace({
     title: title || form.name,
     encounterUuid: encounterUuid,
@@ -54,7 +52,6 @@ export const launchFormWithCustomTitle = (
   encounterUuid: string,
   onUpdateParent?: () => void,
 ) => {
-  console.log('commons - launchformwithcustomtitle');
   switch (mode) {
     case 'edit':
       launchFormInEditMode(form, encounterUuid, onUpdateParent, title);

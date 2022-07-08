@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger, no-console */
 import { getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { BehaviorSubject } from 'rxjs';
 import { closeWorkspace, launchPatientWorkspace, registerWorkspace } from '@openmrs/esm-patient-common-lib';
@@ -20,8 +19,6 @@ const workspaceMeta = {
 let counter = 0;
 
 export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
-  console.log('Workspace dede!');
-  console.log({ props });
   const workspaceName = props.workspaceName || 'ohri-forms-' + counter++;
 
   const close = () => {
