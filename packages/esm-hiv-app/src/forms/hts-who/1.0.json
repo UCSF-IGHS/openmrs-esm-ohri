@@ -602,9 +602,30 @@
                   "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "answers": [
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     },
                     {
                       "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -672,7 +693,7 @@
                     "validators": [
                       {
                         "type": "js_expression",
-                        "failsWhenExpression": "lastHIVTestResult === '6378487b-584d-4422-a6a6-56c8830873ff'",
+                        "failsWhenExpression": "lastHIVTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
                         "message": "This client may not be eligible for HIV testing"
                       }
                     ]
@@ -2023,9 +2044,30 @@
                       ]
                     },
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     }
                   ]
                 },
@@ -2079,9 +2121,30 @@
                       ]
                     },
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     }
                   ]
                 },
@@ -2254,9 +2317,30 @@
                       ]
                     },
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     }
                   ]
                 },
@@ -2298,9 +2382,30 @@
                       ]
                     },
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     }
                   ]
                 },
@@ -2323,7 +2428,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(firstHivTestRDTResult) || firstHivTestRDTResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  "hideWhenExpression": "isEmpty(firstHivTestRDTResult) || firstHivTestRDTResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -2429,7 +2534,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2485,7 +2590,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "firstHivTestRDTRepeatDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      "hideWhenExpression": "firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   }
                 ],
@@ -2498,7 +2603,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults !== '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "isEmpty(intermediateA1andA2HivResults) || intermediateA1andA2HivResults === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -2648,9 +2753,30 @@
                       ]
                     },
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     }
                   ]
                 },
@@ -2673,7 +2799,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "intermediateA1andA2HivResults !== '6378487b-584d-4422-a6a6-56c8830873ff' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression": "intermediateA1andA2HivResults === '1138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -2801,9 +2927,30 @@
                       ]
                     },
                     {
-                      "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                      "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                       "label": "Positive",
-                      "conceptMappings": []
+                      "conceptMappings": [
+                        {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                      ]
                     },
                     {
                       "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
@@ -3247,7 +3394,7 @@
                     "required": "true",
                     "unspecified": "true",
                     "hide": {
-                      "hideWhenExpression": "isEmpty(recencyTestingConsent) || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                      "hideWhenExpression": "recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                     }
                   }
                 ],
@@ -3333,7 +3480,7 @@
                 "required": "true",
                 "unspecified": "true",
                 "hide": {
-                  "hideWhenExpression": "isEmpty(finalHIVTestResult) || finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                  "hideWhenExpression": "isEmpty(finalHIVTestResult) || finalHIVTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 }
               }
             ]
@@ -3345,7 +3492,7 @@
             "required": "true",
             "unspecified": "false",
             "hide": {
-              "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+              "hideWhenExpression": "finalHIVTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || secondHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || firstHivTestRDTRepeatDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || thirdHivTestDone === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
             }
           }
         ]

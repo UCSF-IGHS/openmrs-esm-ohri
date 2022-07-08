@@ -647,9 +647,30 @@
                 "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   },
                   {
                     "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1769,9 +1790,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1855,9 +1897,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1950,7 +2013,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
@@ -1962,7 +2025,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -2059,9 +2122,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -2154,7 +2238,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
@@ -2166,7 +2250,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -2263,9 +2347,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   }
                 ]
               },
@@ -2275,14 +2380,14 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
                   }
                 },
                 {
@@ -2290,7 +2395,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff' || confirmatoryTestResult === '6378487b-584d-4422-a6a6-56c8830873ff' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
                   }
                 }
               ],
@@ -2340,9 +2445,30 @@
                     ]
                   },
                   {
-                    "concept": "6378487b-584d-4422-a6a6-56c8830873ff",
+                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive",
-                    "conceptMappings": []
+                    "conceptMappings": [
+                      {
+                        "type": "PIH",
+                        "value": "703"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "704"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "10828004"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "703"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "POSITIVE"
+                      }
+                    ]
                   },
                   {
                     "concept": "7398c91a-8db8-480d-8130-1a92cc208ded",
@@ -3590,7 +3716,7 @@
                   "intent": "*",
                   "required": "false",
                   "hide": {
-                    "hideWhenExpression": "finalHIVTestResult !== '6378487b-584d-4422-a6a6-56c8830873ff'"
+                    "hideWhenExpression": "finalHIVTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
