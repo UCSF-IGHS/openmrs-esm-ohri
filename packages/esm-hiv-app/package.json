@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-hiv-app",
-  "version": "0.6.48",
+  "version": "0.6.50",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-hiv-app.js",
   "main": "src/index.ts",
