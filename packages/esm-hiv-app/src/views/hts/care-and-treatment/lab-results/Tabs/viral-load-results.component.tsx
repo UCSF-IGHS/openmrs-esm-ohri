@@ -158,7 +158,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
               labelText="Search"
               placeHolderText="Search client list"
               size="sm"
-              onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)}
+              onKeyDown={({ target }) => handleSearch(target['value'])}
             />
           </div>
           {/* <Search className={styles.searchField}

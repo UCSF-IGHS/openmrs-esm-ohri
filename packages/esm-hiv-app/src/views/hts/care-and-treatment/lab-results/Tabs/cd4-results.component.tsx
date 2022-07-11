@@ -152,7 +152,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
               labelText="Search"
               placeHolderText="Search Client list"
               size="sm"
-              onKeyDown= {e => handleSearch((e.target as HTMLInputElement).value)}
+              onKeyDown={({ target }) => handleSearch(target['value'])}
             />
           </div>
           <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
