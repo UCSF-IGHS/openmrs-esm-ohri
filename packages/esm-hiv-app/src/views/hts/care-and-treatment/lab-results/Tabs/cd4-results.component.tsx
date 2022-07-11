@@ -1,22 +1,19 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import {
   EmptyState,
   encounterRepresentation,
-  fetchLastVisit,
   fetchPatientList,
   getObsFromEncounter,
   OTable,
 } from 'openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
-import { DataTableSkeleton, OverflowMenu, OverflowMenuItem, Pagination, Search } from 'carbon-components-react';
+import { DataTableSkeleton, Pagination, Search } from 'carbon-components-react';
 import { capitalize } from 'lodash';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
-import { applyFormIntent, getForm } from '@ohri/openmrs-ohri-form-engine-lib';
-import { launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib/src/utils/ohri-forms-commons';
 
 interface CD4ResultsListProps {
   patientUuid: string;
@@ -155,7 +152,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
               labelText="Search"
               placeHolderText="Search Client list"
               size="sm"
-              onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)}
+              onKeyDown= {e => handleSearch((e.target as HTMLInputElement).value)}
             />
           </div>
           <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
