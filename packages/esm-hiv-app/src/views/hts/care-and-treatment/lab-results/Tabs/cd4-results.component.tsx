@@ -4,40 +4,47 @@ import { useTranslation } from 'react-i18next';
 import {
   EmptyState,
   encounterRepresentation,
-  fetchLastVisit,
   fetchPatientList,
   getObsFromEncounter,
   OTable,
 } from 'openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
-import { DataTableSkeleton, Pagination } from 'carbon-components-react';
+import { DataTableSkeleton, Pagination, Search } from 'carbon-components-react';
 import { capitalize } from 'lodash';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { LabresultsFormViewer } from '../lab-results-form-viewer';
 
 interface CD4ResultsListProps {
   patientUuid: string;
 }
+
+export const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
+  return patients.filter(patient => patient.patientSearchName.toLowerCase().includes(searchTerm.toLowerCase()));
+};
 
 const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const [patients, setPatients] = useState([]);
   const [patientToCd4Map, setPatientToCd4Map] = useState([]);
   const [allRows, setAllRows] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
-  const headerTitle = 'CD4 Results';
+  const headerTitle = '';
+
   const tableHeaders = [
     { key: 'name', header: 'Patient Name', isSortable: true },
-    { key: 'age', header: 'Age' },
     { key: 'gender', header: 'Sex' },
-    { key: 'cd4Result', header: 'Most Recent CD4 Count' },
-    { key: 'cd4ResultDate', header: 'CD4 Results Date' },
-    { key: 'actions', header: '' },
+    { key: 'age', header: 'Age' },
+    { key: 'cd4Result', header: 'Recent CD4' },
+    { key: 'cd4ResultDate', header: 'Recent CD4 Date' },
+    { key: 'actions', header: 'Actions' },
   ];
 
   useEffect(() => {
@@ -54,6 +61,15 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     for (let patient of patients) {
       const lastCd4Result = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4Result;
       const lastCd4ResultDate = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4ResultDate;
+      const lastCd4EncounterUuid = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)
+        ?.cd4EncounterUuid;
+      const patientActions = (
+        <LabresultsFormViewer
+          form={{ package: 'hiv', name: 'cd4_lab_results' }}
+          patientUuid={patient.resource.id}
+          encounterUuid={lastCd4EncounterUuid}
+          patientUrl={getPatientURL(patient.resource.id)}></LabresultsFormViewer>
+      );
 
       rows.push({
         id: patient.resource.id,
@@ -68,6 +84,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         age: age(patient.resource.birthDate),
         cd4Result: lastCd4Result ? lastCd4Result : '--',
         cd4ResultDate: lastCd4ResultDate ? lastCd4ResultDate : '--',
+        actions: patientActions,
+        patientSearchName: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
       });
     }
     setAllRows(rows);
@@ -81,10 +99,21 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
           cd4Result: value.result,
           cd4ResultDate: value.date,
           patientId: patients[index].resource.id,
+          cd4EncounterUuid: value.encounterUuid,
         })),
       );
     });
   }, [patients]);
+
+  const handleSearch = useCallback(
+    searchTerm => {
+      setSearchTerm(searchTerm);
+      const filtrate = filterPatientsByName(searchTerm, allRows);
+      setFilteredResults(filtrate);
+      return true;
+    },
+    [searchTerm],
+  );
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
@@ -93,6 +122,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     let latestCd4Encounter = {
       result: '--',
       date: '--',
+      encounterUuid: '',
     };
     const query = `encounterType=${CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
@@ -105,6 +135,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
 
       latestCd4Encounter.result = getObsFromEncounter(lastEncounter, hivCD4Count_UUID);
       latestCd4Encounter.date = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
+      latestCd4Encounter.encounterUuid = lastEncounter.uuid;
     }
     return latestCd4Encounter;
   }
@@ -115,10 +146,16 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
-          <div className={styles.widgetHeaderContainer}>
-            <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+          <div className={styles.searchBox}>
+            <Search
+              className={styles.searchField}
+              labelText="Search"
+              placeHolderText="Search Client list"
+              size="sm"
+              onKeyDown={({ target }) => handleSearch(target['value'])}
+            />
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={allRows} />
+          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
           <div style={{ width: '800px' }}>
             <Pagination
               page={page}
@@ -126,6 +163,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
               pageSizes={[10, 20, 30, 40, 50]}
               totalItems={totalPatientCount}
               onChange={({ page, pageSize }) => {
+                setSearchTerm(null);
                 setPage(page);
                 setNextOffSet((page - 1) * pageSize);
                 setPageSize(pageSize);
@@ -134,11 +172,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
           </div>
         </div>
       ) : (
-        <EmptyState
-          displayText={t('patientList', 'patient list')}
-          headerTitle={headerTitle}
-          launchForm={addNewPatient}
-        />
+        <EmptyState displayText={t('cd4Results', 'CD4 Results')} headerTitle={headerTitle} launchForm={addNewPatient} />
       )}
     </>
   );
