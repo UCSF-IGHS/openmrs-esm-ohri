@@ -8,7 +8,7 @@ import {
   covidOutcome,
   covidTestType,
   covidVaccinatedClients,
-  covidVaccinationDoseAdmininstered_UUID,
+  covidVaccinationDose_UUID,
   covidVaccinationEncType,
   covidVaccineAdministeredConcept_UUID,
   covidVaccineConcept_UUID,
@@ -126,7 +126,7 @@ function CovidHomePatientTabs() {
           key: 'lastDoseAdministered',
           header: 'Last Dose Administered',
           getValue: ({ latestEncounter }) => {
-            return getObsFromEncounter(latestEncounter, covidVaccinationDoseAdmininstered_UUID);
+            return getObsFromEncounter(latestEncounter, covidVaccinationDose_UUID);
           },
         },
         {

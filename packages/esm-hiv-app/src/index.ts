@@ -187,14 +187,6 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'lab-results-summary',
-        slot: 'ohri-hiv-dashboard-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(labResultsDashboardMeta), options),
-        meta: labResultsDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
         id: 'lab-results-summary-ext',
         slot: 'lab-results-dashboard-slot',
         load: getAsyncLifecycle(
@@ -208,6 +200,15 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
+      {
+        id: 'lab-results-summary',
+        slot: 'ohri-hiv-dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(labResultsDashboardMeta), options),
+        meta: labResultsDashboardMeta,
+        online: true,
+        offline: true,
+      },
+
       {
         id: 'ohri-hiv-prevention',
         slot: 'patient-chart-dashboard-slot',

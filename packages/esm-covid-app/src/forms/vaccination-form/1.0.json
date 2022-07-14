@@ -44,99 +44,55 @@
                 }
               ]
             },
-            {
-              "label": "Dose",
+             {
+                "label":"Vaccine Dose",
+                "type":"obs",
+                "questionOptions":{
+                  "rendering":"number",
+                  "concept":"6ec64cb3-e710-4d3e-9db4-38c135966a45",
+                  "max":"9",
+                  "min":"1",
+                  "showDate":""
+                },
+                "id":"vaccineDose",
+                "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": []
+                    }
+                  ] 
+              },
+               {
+              "label": "Vaccine Series",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "97bf47f9-0ba7-4d00-99bd-8939cd586072",
-                "conceptMappings": [
-                  {
-                    "type": "OCT",
-                    "value": "COVIDDose"
-                  }
-                ],
+                "concept": "45b3959d-f897-4e01-b6e5-16ef6ae0a687",
+                "conceptMappings": [],
                 "answers": [
                   {
+                    "concept": "fdef4623-6b7e-4ab0-a5f0-22b440b630dd",
+                    "label": "Primary Vaccine",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "166660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "COVID-19 booster vaccination",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "166660"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "166075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Second",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "166075"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "81170007"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "166074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "First",
-                    "conceptMappings": [
-                      {
-                        "type": "CIEL",
-                        "value": "166074"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "255216001"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Other",
-                    "conceptMappings": [
-                      {
-                        "type": "PIH-Malawi",
-                        "value": "6408"
-                      },
-                      {
-                        "type": "org.openmrs.module.mdrtb",
-                        "value": "OTHER"
-                      },
-                      {
-                        "type": "CIEL",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-MVP",
-                        "value": "56221000105001"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
-                      }
-                    ]
+                    "label": "Booster Vaccine",
+                    "conceptMappings": []
                   }
                 ]
               },
-              "id": "vaccineDose",
+              "id": "vaccineSeries",
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
+                  "required": "false",
+                  "unspecified": "false",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
@@ -478,6 +434,11 @@
                     ]
                   },
                   {
+                    "concept": "166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intramuscular administration of Sinopharm BBIBP-CorV",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Other Vaccine",
                     "conceptMappings": [
@@ -544,42 +505,6 @@
                     "hideWhenExpression": "!includes('vaccineAdministered','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                   },
                   "validators": []
-                }
-              ]
-            },
-            {
-              "label": "Vaccine expiration date",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "weeksList": "",
-                "conceptMappings": [
-                  {
-                    "type": "CIEL",
-                    "value": "162502"
-                  },
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "362981000"
-                  }
-                ]
-              },
-              "id": "vaccineExpirationDate",
-              "behaviours": [
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "vaccineDose == null"
-                  },
-                  "validators": [
-                    {
-                      "type": "js_expression",
-                      "failsWhenExpression": "myValue < '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                    }
-                  ]
                 }
               ]
             },

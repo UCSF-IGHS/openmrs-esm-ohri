@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, Pagination } from 'carbon-components-react';
+import { DataTableSkeleton, OverflowMenu, Pagination, Search } from 'carbon-components-react';
 import { capitalize } from 'lodash';
 import {
   EmptyState,
@@ -19,6 +19,8 @@ import {
   ViralLoadResult_UUID,
 } from '../../../../../constants';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { filterPatientsByName } from './cd4-results.component';
+import { LabresultsFormViewer } from '../lab-results-form-viewer';
 
 interface ViralLoadResultsListProps {
   patientUuid: string;
@@ -29,20 +31,22 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   const [patients, setPatients] = useState([]);
   const [patientToViralLoadMap, setPatientToViralLoadMap] = useState([]);
   const [allRows, setAllRows] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
-  const headerTitle = 'Viral Load Results';
+  const headerTitle = '';
   const tableHeaders = [
     { key: 'name', header: 'Patient Name', isSortable: true },
-    { key: 'age', header: 'Age' },
     { key: 'gender', header: 'Sex' },
-    { key: 'viralLoadResult', header: 'Most Recent Viral Load Results' },
-    { key: 'viralLoadResultDate', header: 'Viral Load Results Date' },
-    { key: 'actions', header: '' },
+    { key: 'age', header: 'Age' },
+    { key: 'viralLoadResult', header: 'Recent VL' },
+    { key: 'viralLoadResultDate', header: 'Recent VL Date' },
+    { key: 'actions', header: 'Actions' },
   ];
 
   useEffect(() => {
@@ -61,6 +65,15 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         ?.viralLoadResult;
       const lastviralLoadResultDate = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
         ?.viralLoadResultDate;
+      const lastViralLoadEncounterUuid = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
+        ?.viralEncounterUuid;
+      const patientActions = (
+        <LabresultsFormViewer
+          form={{ package: 'hiv', name: 'viral_load_results' }}
+          patientUuid={patient.resource.id}
+          encounterUuid={lastViralLoadEncounterUuid}
+          patientUrl={getPatientURL(patient.resource.id)}></LabresultsFormViewer>
+      );
 
       rows.push({
         id: patient.resource.id,
@@ -75,6 +88,8 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         age: age(patient.resource.birthDate),
         viralLoadResult: lastviralLoadResult ? lastviralLoadResult : '--',
         viralLoadResultDate: lastviralLoadResultDate ? lastviralLoadResultDate : '--',
+        actions: patientActions,
+        patientSearchName: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
       });
     }
     setAllRows(rows);
@@ -90,10 +105,21 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
           viralLoadResult: value.result,
           viralLoadResultDate: value.date,
           patientId: patients[index].resource.id,
+          viralEncounterUuid: value.encounterUuid,
         })),
       );
     });
   }, [patients]);
+
+  const handleSearch = useCallback(
+    searchTerm => {
+      setSearchTerm(searchTerm);
+      const filtrate = filterPatientsByName(searchTerm, allRows);
+      setFilteredResults(filtrate);
+      return true;
+    },
+    [searchTerm],
+  );
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
@@ -102,6 +128,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     let latestViralEncounter = {
       result: '--',
       date: '--',
+      encounterUuid: '',
     };
     const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
@@ -114,6 +141,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
 
       latestViralEncounter.result = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);
       latestViralEncounter.date = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID, true);
+      latestViralEncounter.encounterUuid = lastEncounter.uuid;
     }
     return latestViralEncounter;
   }
@@ -124,10 +152,18 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
         <div className={styles.widgetContainer}>
-          <div className={styles.widgetHeaderContainer}>
-            <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+          <div className={styles.searchBox}>
+            <Search
+              className={styles.searchField}
+              labelText="Search"
+              placeHolderText="Search client list"
+              size="sm"
+              onKeyDown={({ target }) => handleSearch(target['value'])}
+            />
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={allRows} />
+          {/* <Search className={styles.searchField}
+          labelText="Search" placeHolderText="Search client list" size='sm' onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)} /> */}
+          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
           <div style={{ width: '800px' }}>
             <Pagination
               page={page}
@@ -135,6 +171,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
               pageSizes={[10, 20, 30, 40, 50]}
               totalItems={totalPatientCount}
               onChange={({ page, pageSize }) => {
+                setSearchTerm(null);
                 setPage(page);
                 setNextOffSet((page - 1) * pageSize);
                 setPageSize(pageSize);

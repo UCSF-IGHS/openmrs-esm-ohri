@@ -5,7 +5,7 @@ import { fetchPatientsFromObservationCodeConcept, getReportingCohort } from '../
 import {
   covidVaccinatedClients,
   covidVaccinationAdministeredConcept_UUID,
-  covidVaccinationDoseAdmininstered_UUID,
+  covidVaccinationDose_UUID,
 } from '../../../constants';
 import {
   basePath,
