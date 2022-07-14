@@ -128,7 +128,7 @@ export const covidVaccination2ndDoseDateConcept_UUID = '42ee7f5c-fdd3-48c1-8d3a-
 export const covidVaccinationTypeConcept_UUID = 'a31d1148-bbcc-4ad6-a015-8359d66bcfdc'; // What COVID-19 vaccine was administered?
 export const covidVaccinationAdministeredConcept_UUID = '1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; // Which date COVID-19 vaccine was administered?
 export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-export const covidVaccinationDose_UUID = 'e41fbe17-4aee-4a44-950b-6676d6e0ede2';
+export const covidVaccinationDose_UUID = '6ec64cb3-e710-4d3e-9db4-38c135966a45';
 export const covidVaccineConcept_UUID = '0cc868bd-e9dd-4b59-b278-f923afe22d82';
 
 // HTS HIV
