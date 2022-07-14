@@ -1352,6 +1352,17 @@
                 "rendering": "repeating",
                 "concept": "8acba1d1-67cc-422c-961e-86d6b47bc45b"
               },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"!includes('clientVaccinated', '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                  },
+                  "validators":[]
+                }
+              ],
               "questions": [         
             {
                 "label":"Vaccine Dose",
