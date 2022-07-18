@@ -240,12 +240,12 @@
                 "answers": [
                   {
                     "concept": "165852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Rapid Antigen Test",
+                    "label": "Ag-RDTs (Rapid Antigen Test)",
                     "conceptMappings": []
                   },
                   {
                     "concept": "165840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Diagnostic PCR Test",
+                    "label": "NAAT (Diagnostic PCR Test)",
                     "conceptMappings": []
                   }
                 ]
