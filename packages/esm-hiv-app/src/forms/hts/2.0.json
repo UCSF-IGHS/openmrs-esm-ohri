@@ -3744,13 +3744,13 @@
               "behaviours": [
                 {
                   "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
+                  "required": "false",
+                  "unspecified": "false"
                 },
                 {
                   "intent": "*",
-                  "required": "true",
-                  "unspecified": "true"
+                  "required": "false",
+                  "unspecified": "false"
                 }
               ],
               "id": "htsProviderRemarks"
