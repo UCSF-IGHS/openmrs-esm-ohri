@@ -1977,7 +1977,7 @@
   "availableIntents":[
     {
       "intent":"*",
-      "display":"Case Assessment"
+      "display":"COVID Assessment"
     },
     {
       "intent":"COVID_LAB_ASSESSMENT_EMBED",
