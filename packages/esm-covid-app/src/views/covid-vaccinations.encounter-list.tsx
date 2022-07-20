@@ -9,6 +9,7 @@ import {
   covidVaccineAdministeredConcept_UUID,
   covidVaccineConcept_UUID,
   covidVaccinationDose_UUID,
+  covidVaccineSeriesConcept_UUID,
 } from '../constants';
 import {
   EncounterList,
@@ -42,14 +43,21 @@ const columns: EncounterListColumn[] = [
   },
   {
     key: 'doseAdministered',
-    header: 'Dose Administered',
+    header: 'Vaccine Dose',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidVaccinationDose_UUID);
     },
   },
   {
+    key: 'vaccineSeries',
+    header: 'Vaccine Series',
+    getValue: encounter => {
+      return getObsFromEncounter(encounter, covidVaccineSeriesConcept_UUID);
+    },
+  },
+  {
     key: 'covidVaccineType',
-    header: 'Vaccine',
+    header: 'Vaccine Administered',
     getValue: encounter => {
       const obs = findObs(encounter, covidVaccineAdministeredConcept_UUID);
       if (typeof obs !== undefined && obs) {
