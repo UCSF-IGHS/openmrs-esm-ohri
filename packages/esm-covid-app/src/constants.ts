@@ -82,3 +82,4 @@ export const covidVaccinationNextVacinationDateConcept_UUID = '5096AAAAAAAAAAAAA
 export const covidVaccinationDose_UUID = '6ec64cb3-e710-4d3e-9db4-38c135966a45';
 export const covidVaccineAdministeredConcept_UUID = 'e41fbe17-4aee-4a44-950b-6676d6e0ede2';
 export const covidVaccineConcept_UUID = '0cc868bd-e9dd-4b59-b278-f923afe22d82';
+export const covidVaccineSeriesConcept_UUID = '45b3959d-f897-4e01-b6e5-16ef6ae0a687';
