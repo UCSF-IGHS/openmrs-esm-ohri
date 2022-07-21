@@ -36,7 +36,7 @@ const columns: EncounterListColumn[] = [
   // },
   {
     key: 'vaccinationDate',
-    header: 'Date of Vaccination',
+    header: 'Vaccination Date',
     getValue: encounter => {
       return getObsFromEncounter(encounter, covidVaccinationAdministeredConcept_UUID, true);
     },
