@@ -1345,7 +1345,7 @@
               ]
             }, 
             {
-              "id": "patientConditionsGroup",
+              "id": "vaccineInformation",
               "label": "Vaccine Information",
               "type": "obsGroup",
               "questionOptions": {
@@ -1355,15 +1355,15 @@
               "behaviours":[
                 {
                   "intent":"*",
-                  "required":"true",
-                  "unspecified":"true",
+                  "required":"false",
+                  "unspecified":"false",
                   "hide":{
-                    "hideWhenExpression":"!includes('clientVaccinated', '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    "hideWhenExpression":"clientVaccinated !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators":[]
                 }
               ],
-              "questions": [         
+              "questions": [
             {
                 "label":"Vaccine Dose",
                 "type":"obs",
@@ -1663,7 +1663,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "!includes('vaccineAdministered','5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                    "hideWhenExpression": "vaccineAdministered !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": []
                 }
@@ -1693,8 +1693,8 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
-                  "unspecified": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
