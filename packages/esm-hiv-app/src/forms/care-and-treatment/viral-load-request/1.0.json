@@ -1,0 +1,281 @@
+{
+    "name": "Viral Load request Form",
+    "pages": [
+      {
+        "label": "Viral Load Request",
+        "sections": [
+          {
+            "label": "Order details",
+            "isExpanded": "true",
+            "questions": [
+              {
+                "label": "Date Ordered",
+                "type": "obs",
+                "questionOptions": {
+                  "rendering": "date",
+                  "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "weeksList": "",
+                  "conceptMappings": [
+                    {
+                      "type": "CIEL",
+                      "value": "162078"
+                    }
+                  ]
+                },
+                "id": "labOrderDate"
+              },
+              {
+                "label": "Reason for Viral Load",
+                "type": "obs",
+                "questionOptions": {
+                  "rendering": "select",
+                  "concept": "86cc0cfe-bace-4969-94b6-d139f4971d13",
+                  "answers": [
+                    {
+                      "concept": "5d4e13af-92ec-4b91-a8e4-97818810e577",
+                      "label": "Baseline Viral Load",
+                      "conceptMappings": [
+                        {
+                          "type": "OCT",
+                          "value": "BaselineVL"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "163523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "label": "Clinical failure",
+                      "conceptMappings": [
+                        {
+                          "type": "CIEL",
+                          "value": "163523"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "label": "Change regimen",
+                      "conceptMappings": [
+                        {
+                          "type": "AMPATH",
+                          "value": "1259"
+                        },
+                        {
+                          "type": "CIEL",
+                          "value": "1259"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1259"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "67143af5-c443-4a4f-a678-f3981b4fcb0f",
+                      "label": "Confirmation of treatment failure",
+                      "conceptMappings": []
+                    },
+                    {
+                      "concept": "5632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "label": "Currently breastfeeding child",
+                      "conceptMappings": [
+                        {
+                          "type": "AMPATH",
+                          "value": "5632"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "413712001"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "2056"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "413712001"
+                        },
+                        {
+                          "type": "CIEL",
+                          "value": "5632"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "5632"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "label": "Currently pregnant",
+                      "conceptMappings": [
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "77386006"
+                        },
+                        {
+                          "type": "CIEL",
+                          "value": "1434"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "77386006"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1484"
+                        },
+                        {
+                          "type": "ICD-10-WHO",
+                          "value": "Z33"
+                        },
+                        {
+                          "type": "IMO-ProblemIT",
+                          "value": "52609"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "1484"
+                        },
+                        {
+                          "type": "IMO-ProblemIT",
+                          "value": "52609"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "c2aed192-73fc-405f-8cc2-776a4da81d59",
+                      "label": "Recency Assay",
+                      "conceptMappings": []
+                    },
+                    {
+                      "concept": "843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "label": "Regimen failure",
+                      "conceptMappings": [
+                        {
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "FAILED"
+                        },
+                        {
+                          "type": "PIH",
+                          "value": "843"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "843"
+                        },
+                        {
+                          "type": "CIEL",
+                          "value": "843"
+                        },
+                        {
+                          "type": "org.openmrs.module.mdrtb",
+                          "value": "FAILED"
+                        },
+                        {
+                          "type": "PIH",
+                          "value": "843"
+                        },
+                        {
+                          "type": "AMPATH",
+                          "value": "843"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "266721009"
+                        },
+                        {
+                          "type": "SNOMED-CT",
+                          "value": "266721009"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "be5d6a4a-4018-49dd-869f-273c9f5fec9e",
+                      "label": "Routine Viral Load",
+                      "conceptMappings": [
+                        {
+                          "type": "OCT",
+                          "value": "RoutineViralLoad"
+                        }
+                      ]
+                    },
+                    {
+                      "concept": "e185de1e-a9b3-4b10-86df-2300bf4476bb",
+                      "label": "Persistent low-Level viremia",
+                      "conceptMappings": []
+                    }
+                  ],
+                  "conceptMappings": [
+                    {
+                      "type": "OCT",
+                      "value": "ViralLoadRequest"
+                    }
+                  ]
+                },
+                "id": "vlReason"
+              },
+              {
+                "label": "Requested by",
+                "type": "obs",
+                "questionOptions": {
+                  "rendering": "text",
+                  "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "conceptMappings": [
+                    {
+                      "type": "PIH",
+                      "value": "1392"
+                    },
+                    {
+                      "type": "PIH",
+                      "value": "1392"
+                    },
+                    {
+                      "type": "CIEL",
+                      "value": "1473"
+                    }
+                  ]
+                },
+                "id": "requestedBy"
+              },
+              {
+                "label": "Notes",
+                "type": "obs",
+                "questionOptions": {
+                  "rendering": "textarea",
+                  "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "rows": "5",
+                  "conceptMappings": [
+                    {
+                      "type": "LOINC",
+                      "value": "48767-8"
+                    },
+                    {
+                      "type": "CIEL",
+                      "value": "161011"
+                    }
+                  ]
+                },
+                "id": "notes",
+                "behaviours": [
+                  {
+                    "intent": "*",
+                    "required": "false"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "availableIntents": [
+      {
+        "intent": "*",
+        "display": "Viral Load request"
+      }
+    ],
+    "processor": "EncounterFormProcessor",
+    "uuid": "xxxx",
+    "encounterType": "41af1931-184e-45f8-86ca-d42e0db0b8a1",
+    "referencedForms": []
+  }

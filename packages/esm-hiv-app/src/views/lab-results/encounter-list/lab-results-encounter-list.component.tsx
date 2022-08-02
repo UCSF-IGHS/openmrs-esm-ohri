@@ -53,14 +53,14 @@ const columns: EncounterListColumn[] = [
     getValue: encounter => {
       const baseActions = [
         {
-          form: { name: 'viral_load_results', package: 'hiv' },
+          form: { name: 'viral_load_request', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'View Details',
           mode: 'view',
         },
         {
-          form: { name: 'viral_load_results', package: 'hiv' },
+          form: { name: 'viral_load_request', package: 'hiv' },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: 'Edit form',
@@ -82,7 +82,7 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={ViralLoadResultsEncounter_UUID}
-      form={{ package: 'hiv', name: 'viral_load_results' }}
+      form={{ package: 'hiv', name: 'viral_load_request' }}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
