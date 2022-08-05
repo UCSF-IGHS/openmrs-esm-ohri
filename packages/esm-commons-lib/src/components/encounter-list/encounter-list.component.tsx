@@ -87,8 +87,8 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   if (isDate) {
     return moment(obs.value).format('DD-MMM-YYYY');
   }
-  if (typeof obs.value === 'object') {
-    return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
+  if (typeof obs.value === 'object' && obs.value?.names) {
+    return obs.value?.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
 }

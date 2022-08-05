@@ -9,8 +9,8 @@ interface OverviewListProps {
 const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('serviceSummary', 'Service Summary');
-  const displayText = t('serviceSummary', 'Service Summary');
+  const headerTitle = t('serviceSummary', 'HIV C&T Patient Summary');
+  const displayText = t('serviceSummary', 'HIV C&T Patient Summary');
 
   return (
     <>
