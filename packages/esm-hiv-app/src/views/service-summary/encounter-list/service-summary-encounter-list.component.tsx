@@ -1,17 +1,30 @@
 import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterTile } from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
 import {
-  EncounterList,
-  EncounterListColumn,
+  EncounterTile,
+  EncounterTileColumn,
   findObs,
+  getEncounterValues,
   getObsFromEncounter,
-} from '../../../../../esm-commons-lib/src/components/encounter-list/encounter-list.component';
+} from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
+
+// import {
+//   EncounterList,
+//   EncounterListColumn,
+//   findObs,
+//   getEncounterValues,
+//   getObsFromEncounter,
+// } from '../../../../../esm-commons-lib/src/components/encounter-list/encounter-list.component';
 
 import {
+  artTherapyDateTime_UUID,
+  art_Therapy_EncounterUUID,
   careAndTreatmentEncounterType,
+  Cd4Count_UUID,
   Cd4LabResultDate_UUID,
+  dateOfARtIniation,
+  enrolmentDate,
   hivCD4Count_UUID,
   ViralLoadResultDate_UUID,
   ViralLoadResult_UUID,
@@ -23,68 +36,103 @@ interface OverviewListProps {
 const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('serviceSummary', 'HIV C&T Patient Summary');
-  const displayText = t('serviceSummary', 'HIV C&T Patient Summary');
-
   const headerHIV = t('hivStatus', 'HIV Status');
   const displayTextHIV = t('hivStatus', 'HIV Status');
 
-  const headerHIVPending = t('hivStatus', 'Pending Lab Orders');
-  const displayTextPending = t('hivStatus', 'Pending Lab Orders');
+  const headerARvRegiment = t('currentARV', 'Current ARV Regimen');
+  const displayARvRegiment = t('currentARV', 'Current ARV Regimen');
 
-  const columnsHIV: EncounterListColumn[] = [
+  const columnsHIV: EncounterTileColumn[] = [
     {
       key: 'lastViralLoad',
       header: t('vlResult', 'Last viral Load'),
-      getValue: ({ latestEncounter }) => {
-        return getObsFromEncounter(latestEncounter, ViralLoadResult_UUID);
+      getValue: encounter => {
+        return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
       },
     },
     {
       key: 'vlDate',
       header: t('vlDate', 'Recent VL Date'),
+      getValue: encounter => {
+        return getObsFromEncounter(encounter, ViralLoadResult_UUID);
+      },
+    },
+    {
+      key: 'lastCD4Count',
+      header: t('lastCD4Count', 'Last CD4 Count'),
+      getValue: encounter => {
+        return getObsFromEncounter(encounter, Cd4Count_UUID);
+      },
+    },
+    {
+      key: 'cd4ResultDate',
+      header: t('cd4ResultDate', 'Recent CD4 Date'),
+      getValue: encounter => {
+        return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
+      },
+    },
+    {
+      key: 'enrolledInCare',
+      header: 'Enrolled in care',
+      getValue: latestEncounter => {
+        return getObsFromEncounter(latestEncounter, enrolmentDate, true);
+      },
+    },
+    {
+      key: 'currentWHO',
+      header: 'Current WHO stage',
+      getValue: encounter => {
+        return getObsFromEncounter(encounter, dateOfARtIniation, true);
+      },
+    },
+  ];
+
+  const columnsARV: EncounterTileColumn[] = [
+    {
+      key: 'regimen',
+      header: t('arvRegimen', 'ARV Regimen'),
       getValue: ({ latestEncounter }) => {
         return getObsFromEncounter(latestEncounter, ViralLoadResultDate_UUID, true);
       },
     },
     {
       key: 'lastCD4Count',
-      header: t('lastCD4Count', 'Last CD4 Count'),
+      header: t('drugAllergies', 'Drug Allergies'),
       getValue: ({ latestEncounter }) => {
         return getObsFromEncounter(latestEncounter, hivCD4Count_UUID);
       },
     },
     {
-      key: 'cd4ResultDate',
-      header: t('cd4ResultDate', 'Recent CD4 Date'),
+      key: 'eacSession',
+      header: t('EAC', 'EAC Session'),
       getValue: ({ latestEncounter }) => {
         return getObsFromEncounter(latestEncounter, Cd4LabResultDate_UUID, true);
       },
     },
-    // {
-    //   key: 'enrolledInCare',
-    //   header: 'Enrolled in care',
-    //   getValue: encounter => {
-    //     return ' ';
-    //   },
-    // },
-    // {
-    //   key: 'currentWHO',
-    //   header: 'Current WHO stage',
-    //   getValue: encounter => {
-    //     return ' ';
-    //   },
-    // },
+    {
+      key: 'currentARV',
+      header: 'ARV Initiation Date',
+      getValue: latestEncounter => {
+        return getObsFromEncounter(latestEncounter, artTherapyDateTime_UUID, true);
+      },
+    },
   ];
   return (
     <>
       <EncounterTile
         patientUuid={patientUuid}
         encounterUuid={careAndTreatmentEncounterType}
-        form={{ package: 'hiv', name: 'cd4_lab_results' }}
         columns={columnsHIV}
         description={displayTextHIV}
         headerTitle={headerHIV}
+      />
+
+      <EncounterTile
+        patientUuid={patientUuid}
+        encounterUuid={art_Therapy_EncounterUUID}
+        columns={columnsARV}
+        description={headerARvRegiment}
+        headerTitle={displayARvRegiment}
         dropdownText="Change "
       />
     </>

@@ -156,3 +156,7 @@ export const ViralLoadResultDate_UUID = '163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ReasonForViralLoad_UUID = '86cc0cfe-bace-4969-94b6-d139f4971d13';
 export const ViralLoadResult_UUID = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ViralLoadCopies_UUID = '856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+//Care and Treatement
+export const enrolmentDate = '160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const dateOfARtIniation = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';

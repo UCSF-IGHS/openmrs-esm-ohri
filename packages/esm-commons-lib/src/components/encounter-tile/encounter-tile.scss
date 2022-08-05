@@ -1,23 +1,10 @@
 @import "../../root";
 
+@import "../../root.scss";
+
 .widgetContainer {
     background-color: $ui-background;
 }
-
-// .widgetHeaderContainer {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: $spacing-04 0 $spacing-04 $spacing-05;
-// }
-
-// .widgetHeaderContainer > h4:after {
-//   content: "";
-//   display: block;
-//   width: 2rem;
-//   padding-top: 0.188rem;
-//   border-bottom: 0.375rem solid $brand-color-01;
-// }
 
 .newServiceEnrolmentBtn {
     margin-bottom: 0.5em;
@@ -32,61 +19,51 @@
     height: unset !important;
 }
 
-.tileBackground {
+/**  Tile Styles */
+
+.currentARvRegimenContainer {
     display: flex;
-    width: 788px;
-    height: 236px;
-    margin: 10 10 8px;
-    padding: 10  20px  ;
-    border: solid 1px #ffffff;
-    background-color: #ffffff;
+    // justify-content: space-between;
+    background-color: $ui-background;
+    flex-direction: column;
 }
 
-.tileItemTextLabel {
-    width: 100px;
-    height: 88px;
-    padding: 10 5px  ;
+.currentARvRegimenHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-04 0 $spacing-04 $spacing-05;
+}
+
+.currentARvRegimenHeader>h4:after {
+    content: "";
     display: block;
-//   width: 2rem;
-//   padding-top: 0.188rem;
-//   border-bottom: 0.375rem solid $brand-color-01;
+    width: 2rem;
+    padding-top: 0.188rem;
+    border-bottom: 0.375rem solid $brand-teal-01;
 }
 
-.tileItemTextLabelHorizantal {
-    width: 98px;
+.background {
+    width: 200px;
+    height: 78px;
+    margin: 0 0 8px;
+    padding: 0 1px 20px 0;
+    border: solid 1px #e0e0e0;
+    background-color: var(--white);
+}
+
+.title {
+    @extend .productiveHeading03;
+}
+
+/** HIV Tile Styles */
+
+.hivTileItemTextLabel {
+    width: 18px;
     height: 52px;
-    padding: 10 5px  ;
+    padding: 0 5px 0 0;
 }
 
-.tileTitle {
-    width: 479px;
-    height: 220px;
-    margin: 0 591px 2px 0;
-    font-family: IBMPlexSans;
-    font-size: 16px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.38;
-    letter-spacing: normal;
-    color: var(--gray-gray-70);
-}
-
-.labelTile {
-    width: 119px;
-    height: 16px;
-    margin: 0 136px 4px 0;
-    font-family: IBMPlexSans;
-    font-size: 12px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.33;
-    letter-spacing: 0.32px;
-    color: var(--gray-gray-70);
-}
-
-.tileNumber {
+.hivNumber {
     width: 68px;
     height: 36px;
     margin: 16px 25px 0 0;
@@ -100,24 +77,10 @@
     color: var(--gray-gray-100);
 }
 
-.tileText {
-    width: 255px;
-    height: 22px;
-    margin: 4px 0 0;
-    font-family: IBMPlexSans;
-    font-size: 16px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.38;
-    letter-spacing: normal;
-    color: #161616;
-}
-
-.tileDate {
+.hivDate {
     width: 76px;
     height: 16px;
-    margin: 52px 28px 0 0;
+    margin: 52px 22px 0 0;
     font-family: IBMPlexSans;
     font-size: 12px;
     font-weight: normal;
@@ -126,4 +89,41 @@
     line-height: 1.33;
     letter-spacing: 0.32px;
     color: var(--gray-gray-60);
+}
+
+/** ARV Regimen  Styles */
+
+.labelARV {
+    width: 106px;
+    height: 16px;
+    margin: 0 0 4px;
+    font-family: IBMPlexSans;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: 0.32px;
+    color: var(--gray-gray-70);
+}
+
+.textARV {
+    width: 101px;
+    height: 22px;
+    margin: 4px 5px 0 0;
+    font-family: IBMPlexSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    color: #161616;
+
+}
+
+.tileItemTextLabelHorizantal {
+    width: 98px;
+    height: 52px;
+    padding: 10 5px;
 }
