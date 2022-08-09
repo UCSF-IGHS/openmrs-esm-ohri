@@ -9,14 +9,6 @@ import {
   getObsFromEncounter,
 } from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
 
-// import {
-//   EncounterList,
-//   EncounterListColumn,
-//   findObs,
-//   getEncounterValues,
-//   getObsFromEncounter,
-// } from '../../../../../esm-commons-lib/src/components/encounter-list/encounter-list.component';
-
 import {
   artTherapyDateTime_UUID,
   art_Therapy_EncounterUUID,
