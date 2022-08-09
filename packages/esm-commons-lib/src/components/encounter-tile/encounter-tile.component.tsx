@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { CodeSnippetSkeleton, Tile } from 'carbon-components-react';
+import { CodeSnippetSkeleton, Tile, Row } from 'carbon-components-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
@@ -150,20 +150,21 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
       {isLoading ? (
         <CodeSnippetSkeleton type="multi" />
       ) : allRows.length > 0 ? (
-        <Tile>
-          <div className={styles.currentARvRegimenContainer}>
-            <div className={styles.currentARvRegimenHeader}>
-              <h4 className={styles.title}> {headerTitle} </h4>
-            </div>
-
+        <Tile className={styles.tile}>
+          <div className={styles.cardTitle}>
+            <h4 className={styles.title}> {headerTitle} </h4>
+          </div>
+          <Row className={styles.tabletTileTitle}>
             {columns.map(column => (
-              <div className={styles.background}>
-                <span className={styles.hivTileItemTextLabel}> {column.header} </span>
-                <span className={styles.hivNumber}> -- </span>
-                <span className={styles.tileDate}> 12-Jan-2022 </span>
+              <div className={styles.tileBox}>
+                <div className={styles.tileBoxColumn}>
+                  <span className={styles.tileTitle}> {column.header} </span>
+                  <span className={styles.tileValue}> 2000 </span>
+                  <span className={styles.tileSubTitle}> 12-Jan-2022 </span>
+                </div>
               </div>
             ))}
-          </div>
+          </Row>
         </Tile>
       ) : (
         <EmptyState displayText={description} headerTitle={headerTitle} hideFormLauncher />
