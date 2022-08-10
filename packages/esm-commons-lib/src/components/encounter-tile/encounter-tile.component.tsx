@@ -1,5 +1,6 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { CodeSnippetSkeleton, Tile, Row } from 'carbon-components-react';
+import { CodeSnippetSkeleton, Tile, Row, Button } from 'carbon-components-react';
+import { ArrowRight32 } from '@carbon/icons-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
@@ -30,6 +31,7 @@ export interface EncounterTileProps {
     fixedIntent?: string;
   }>;
   filter?: (encounter: any) => boolean;
+  tileStyle: string;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -87,6 +89,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   hideFormLauncher,
   forms,
   filter,
+  tileStyle,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
@@ -153,21 +156,41 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
         <Tile className={styles.tile}>
           <div className={styles.cardTitle}>
             <h4 className={styles.title}> {headerTitle} </h4>
+            {tileStyle == 'ARV' ? (
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Button size="small" kind="ghost">
+                  Change <ArrowRight32 style={{ width: '12px', height: '10px' }} />
+                </Button>
+              </div>
+            ) : (
+              <span> </span>
+            )}
           </div>
-          <Row className={styles.tabletTileTitle}>
-            {columns.map(column => (
-              <div className={styles.tileBox}>
-                <div className={styles.tileBoxColumn}>
+          {tileStyle == 'ARV' ? (
+            <Row className={styles.tabletTileTitleARV}>
+              {columns.map(column => (
+                <div className={styles.tileBoxARV}>
+                  <div className={styles.tileBoxColumnARV}>
+                    <span className={styles.tileTitleARV}> {column.header} </span>
+                    <span className={styles.tileValueARV}> Lamivudine, Tenofivir, Dolutegravir </span>
+                  </div>
+                </div>
+              ))}
+            </Row>
+          ) : (
+            <Row className={styles.tabletTileTitle}>
+              {columns.map(column => (
+                <div className={styles.tileBox}>
                   <span className={styles.tileTitle}> {column.header} </span>
                   <span className={styles.tileValue}> 2000 </span>
                   <span className={styles.tileSubTitle}> 12-Jan-2022 </span>
                 </div>
-              </div>
-            ))}
-          </Row>
+              ))}
+            </Row>
+          )}
         </Tile>
       ) : (
-        <EmptyState displayText={description} headerTitle={headerTitle} hideFormLauncher />
+        <EmptyState displayText={description} headerTitle={headerTitle} />
       )}
     </>
   );

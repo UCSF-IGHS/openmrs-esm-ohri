@@ -42,13 +42,14 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
       },
     },
-    {
-      key: 'vlDate',
-      header: t('vlDate', 'Recent VL Date'),
-      getValue: encounter => {
-        return getObsFromEncounter(encounter, ViralLoadResult_UUID);
-      },
-    },
+    //TODO: Refactor to include in within VL above
+    // {
+    //   key: 'vlDate',
+    //   header: t('vlDate', 'Recent VL Date'),
+    //   getValue: encounter => {
+    //     return getObsFromEncounter(encounter, ViralLoadResult_UUID);
+    //   },
+    // },
     {
       key: 'lastCD4Count',
       header: t('lastCD4Count', 'Last CD4 Count'),
@@ -56,13 +57,14 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         return getObsFromEncounter(encounter, Cd4Count_UUID);
       },
     },
-    {
-      key: 'cd4ResultDate',
-      header: t('cd4ResultDate', 'Recent CD4 Date'),
-      getValue: encounter => {
-        return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
-      },
-    },
+    //TODO: Refactor to include in within CD4 above
+    // {
+    //   key: 'cd4ResultDate',
+    //   header: t('cd4ResultDate', 'Recent CD4 Date'),
+    //   getValue: encounter => {
+    //     return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
+    //   },
+    // },
     {
       key: 'enrolledInCare',
       header: 'Enrolled in care',
@@ -82,7 +84,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
   const columnsARV: EncounterTileColumn[] = [
     {
       key: 'regimen',
-      header: t('arvRegimen', 'ARV Regimen'),
+      header: t('arvRegimen', 'Current ARV regimen'),
       getValue: ({ latestEncounter }) => {
         return getObsFromEncounter(latestEncounter, ViralLoadResultDate_UUID, true);
       },
@@ -117,6 +119,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         columns={columnsHIV}
         description={displayTextHIV}
         headerTitle={headerHIV}
+        tileStyle=""
       />
 
       <EncounterTile
@@ -126,6 +129,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         description={headerARvRegiment}
         headerTitle={displayARvRegiment}
         dropdownText="Change "
+        tileStyle="ARV"
       />
     </>
   );
