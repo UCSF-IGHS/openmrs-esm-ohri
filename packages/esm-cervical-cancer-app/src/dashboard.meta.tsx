@@ -3,19 +3,19 @@ import styles from './dashboard.scss';
 
 export const CaCxSummary_dashboardMeta = {
   slot: 'cacx-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'CaCx Summary',
 };
 
 export const CaCxVisits_dashboardMeta = {
   slot: 'cacx-visits-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'CaCx Visits',
 };
 
 export const CaCxAppointments_dashboardMeta = {
   slot: 'cacx-appointments-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'CaCx Appointments',
 };
 
