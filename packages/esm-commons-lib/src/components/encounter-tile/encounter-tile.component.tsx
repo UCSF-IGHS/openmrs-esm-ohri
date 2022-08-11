@@ -148,7 +148,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   const mockData_HIV_Status = [
     { field: 'Last Viral Load', value: 2000, date: '12-Jan-2022' },
     { field: 'Last CD4 Count', value: 132, date: '12-Jan-2022' },
-    { field: 'Enrolled in care', value: '10-Jan-2006', date: 'AMPATH UZIMA Eldoret' },
+    { field: 'Enrolled in care', value: '10-Jan-2006', date: '' },
     { field: 'Current WHO stage', value: '1', date: '' },
   ];
 
