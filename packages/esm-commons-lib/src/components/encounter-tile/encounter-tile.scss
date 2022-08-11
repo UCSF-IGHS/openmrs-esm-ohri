@@ -1,0 +1,149 @@
+@import "../../root";
+
+@import "../../root.scss";
+
+.widgetContainer {
+    background-color: $ui-background;
+}
+
+.newServiceEnrolmentBtn {
+    margin-bottom: 0.5em;
+    text-align: right;
+}
+
+.newServiceEnrolmentBtn>button {
+    background-color: $ui-background;
+}
+
+.widgetContainer :global(.bx--data-table) thead th button span {
+    height: unset !important;
+}
+
+
+.title {
+    @extend .productiveHeading03;
+}
+
+/* OHRI Tile Styles*/
+.cardTitle {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-04 0 $spacing-04 $spacing-05;
+}
+
+.cardTitle>h4:after {
+    content: "";
+    display: block;
+    width: 2rem;
+    padding-top: 0.188rem;
+    border-bottom: 0.375rem solid $brand-teal-01;
+}
+
+/** HIV Tile Styles */
+.tile {
+    height: 100%;
+    padding: 1px 0 16px 16px;
+    margin: 20px 20px;
+    border: solid 1px #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+.tileTitle {
+    height: 18px;
+    margin: 15px 65px 24px 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.29;
+    letter-spacing: 0.16px;
+    color: #525252;
+    display: block;
+}
+.tileSubTitle {
+    height: 16px;
+    font-size: 16px;
+    line-height: 1.33;
+    letter-spacing: 0.32px;
+    color: #525252;
+    display: block;
+}
+.tileValue {
+    display: block;
+    font-size: 28px;
+    line-height: 1.29;
+    color: #161616;
+}
+.tabletTileTitle {
+    margin: 0px 0px 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: 0.16px;
+    color: #525252;
+}
+.tileBox {
+    width: 25%;
+    display: 'flex';
+    flex-direction: 'row';
+}
+.tileBoxColumn {
+    width: 100%;
+    display: 'flex';
+    flex-direction: 'row';
+}
+
+/** ARV Tile Styles */
+ .tileARV {
+    height: 100px;
+    padding: 1px 0 16px 16px;
+    margin: 20px 20px;
+    border: solid 1px #e0e0e0; 
+    flex-direction: column;
+    background-color: #ffffff;
+
+}
+.tileTitleARV {
+    height: 18px;
+    margin: 30px 60px 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: 0.16px;
+    color: #525252;
+    display: block;
+}
+
+.tileSubTitleARV {
+    height: 16px;
+    font-size: 16px;
+    line-height: 1.33;
+    letter-spacing: 0.32px;
+    color: #525252;
+    display: block;
+}
+
+.tileValueARV {
+    display: block; 
+    font-size: 20px;
+    line-height: 1.29; 
+    color: #161616;
+}
+.tabletTileTitleARV { 
+    margin: 4px 4px;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: 0.16px;
+    color: #525252; 
+}
+.tileBoxARV {
+    display: flex;   
+    margin: 1px 21rem 1px 1rem; 
+}
+.tileBoxColumnARV {
+    width: 100%;      
+}
