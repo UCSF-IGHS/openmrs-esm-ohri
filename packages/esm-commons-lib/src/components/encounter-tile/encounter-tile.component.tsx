@@ -145,6 +145,19 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
     return row;
   });
 
+  const mockData_HIV_Status = [
+    { field: 'Last Viral Load', value: 2000, date: '12-Jan-2022' },
+    { field: 'Last CD4 Count', value: 132, date: '12-Jan-2022' },
+    { field: 'Enrolled in care', value: '10-Jan-2006', date: 'AMPATH UZIMA Eldoret' },
+    { field: 'Current WHO stage', value: '1', date: '' },
+  ];
+
+  const mockData_Current_ARV = [
+    { field: 'Current ARV regimen', value: 'Lamivudine, Tenofovir, Dolutegravir' },
+    { field: 'Drug allergies', value: 'NSAIDs, Heparins' },
+    { field: 'ARV initiation date', value: '09-Feb-2006' },
+  ];
+
   const updateRowTiles = () => {
     let currentRows = [];
   };
@@ -168,22 +181,24 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
           </div>
           {tileStyle == 'ARV' ? (
             <Row className={styles.tabletTileTitleARV}>
-              {columns.map(column => (
+              {mockData_Current_ARV.map(column => (
                 <div className={styles.tileBoxARV}>
                   <div className={styles.tileBoxColumnARV}>
-                    <span className={styles.tileTitleARV}> {column.header} </span>
-                    <span className={styles.tileValueARV}> Lamivudine, Tenofivir, Dolutegravir </span>
+                    <span className={styles.tileTitleARV}> {column.field} </span>
+                    <span className={styles.tileValueARV}> {column.value} </span>
                   </div>
                 </div>
               ))}
             </Row>
           ) : (
             <Row className={styles.tabletTileTitle}>
-              {columns.map(column => (
+              {mockData_HIV_Status.map(column => (
                 <div className={styles.tileBox}>
-                  <span className={styles.tileTitle}> {column.header} </span>
-                  <span className={styles.tileValue}> 2000 </span>
-                  <span className={styles.tileSubTitle}> 12-Jan-2022 </span>
+                  <div className={styles.tileBoxColumn}>
+                    <span className={styles.tileTitle}> {column.field} </span>
+                    <span className={styles.tileValue}> {column.value} </span>
+                    <span className={styles.tileTitle}> {column.date} </span>
+                  </div>
                 </div>
               ))}
             </Row>
