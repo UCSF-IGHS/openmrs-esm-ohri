@@ -25,7 +25,14 @@ jobs:
       # Setup .npmrc file to publish to npm
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: "16.x"
+      #     cache: 'npm'
+      #     cache-dependency-path: subdir/package-lock.json 
+      # - name: restore lerna cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: npx lerna bootstrap
       - run: npx lerna run lint -- --fix
       - name: Upload Artifacts
@@ -49,6 +56,18 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
+      # Cache to be implemented on next CI change
+      # - name: restore lerna cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          # cache: 'npm'
+          # cache-dependency-path: subdir/package-lock.json
       - run: npx lerna bootstrap
       - run: npx lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
       - name: setup git config
