@@ -15,7 +15,7 @@ import {
   careAndTreatmentEncounterType,
   Cd4Count_UUID,
   Cd4LabResultDate_UUID,
-  dateOfARtIniation,
+  dateOfARTInitiation,
   enrolmentDate,
   hivCD4Count_UUID,
   ViralLoadResultDate_UUID,
@@ -76,7 +76,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       key: 'currentWHO',
       header: 'Current WHO stage',
       getValue: encounter => {
-        return getObsFromEncounter(encounter, dateOfARtIniation, true);
+        return getObsFromEncounter(encounter, dateOfARTInitiation, true);
       },
     },
   ];
