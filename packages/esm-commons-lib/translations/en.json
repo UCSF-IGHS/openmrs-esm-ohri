@@ -117,6 +117,12 @@
 
   "covidOutcomeActive": "COVID: Active",
   "covidOutcomeUnknown": "COVID: Unknown Status",
-  "covidOutcomeRecovered": "COVID: Recovered"
+  "covidOutcomeRecovered": "COVID: Recovered",
+
+  "currentARvRegimen": "Current ARV Regimen",
+  "hivStatus": "HIV Status",
+  "drugAllergies": "Drug Allergies",
+  "vlResult": "Last viral Load",
+  "vlDate": "Recent VL Date"
 
 }

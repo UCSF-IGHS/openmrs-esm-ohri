@@ -28,7 +28,7 @@ const LabResultsOverview: React.FC<OverviewListProps> = ({ patientUuid }) => {
         <Tab label="CD4 Lab results" style={{ padding: 0 }}>
           <CD4OverviewList patientUuid={patientUuid} />
         </Tab>
-        <Tab label="Viral Load results">
+        <Tab label="Viral Load">
           <LabResultsOverviewList patientUuid={patientUuid} />
         </Tab>
         <Tab label="Lab Tests" style={{ padding: 0 }}>
