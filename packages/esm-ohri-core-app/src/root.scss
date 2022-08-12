@@ -107,3 +107,32 @@ div[class*='-esm-login__styles__center'] > img {
 :global(.bx--overflow-menu) > div {
   width: 15rem !important;
 }
+
+//Vitals and Biometrics Overrides
+
+div[class*='-esm-patient-vitals__vitals-header__default-border'] {
+  display: flex !important;
+  background-color: white !important;
+}
+
+div[class*='-esm-patient-vitals__vitals-header__warning-border'] {
+  display: flex !important;
+  background-color: white !important;
+  border-color: #d5cfcf;
+}
+
+div[class*='-esm-patient-vitals__vitals-header__vitals-header'] {
+  background-color: white !important;
+}
+
+div[class*='-esm-patient-vitals__vitals-header__warning-background'] {
+  border-left: #949492 !important;
+}
+
+div[class*='-esm-patient-vitals__vitals-header__warning-icon___GHya2'] {
+display: none !important;
+}
+
+div[class*='-esm-patient-vitals__vitals-header__row'] {
+  flex: 1 !important;
+  }

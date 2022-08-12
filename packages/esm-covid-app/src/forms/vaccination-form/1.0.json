@@ -91,8 +91,8 @@
               "behaviours": [
                 {
                   "intent": "*",
-                  "required": "false",
-                  "unspecified": "false",
+                  "required": "true",
+                  "unspecified": "true",
                   "hide": {
                     "hideWhenExpression": "false"
                   },
