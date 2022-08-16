@@ -1,4 +1,4 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
+import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
   covidAssessments_dashboardMeta,
@@ -21,12 +21,11 @@ function setupOpenMRS() {
   const moduleName = 'openmrs-esm-ohri-covid-app';
 
   const options = {
-    featureName: 'ohri-hiv',
+    featureName: 'ohri-covid',
     moduleName,
   };
 
   defineConfigSchema(moduleName, {});
-
   addToBaseFormsRegistry(covidForms);
 
   return {
