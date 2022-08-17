@@ -11,14 +11,14 @@ export const hivPreventionDashboardDMeta = {
 export const hts_dashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'HIV Testing Services (HTS)',
 };
 
 export const preExposureProphylaxis_dashboardMeta = {
   name: 'pre-exposure-prophylaxis',
   slot: 'pre-exposure-prophylaxis-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Pre-exposure Prophylaxis',
 };
 
@@ -30,55 +30,55 @@ export const hivCareAndTreatmentDashboardDMeta = {
 
 export const serviceSummary_dashboardMeta = {
   slot: 'hts-service-summary-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Patient Summary',
 };
 
 export const labResults_dashboardMeta = {
   slot: 'hts-lab-results-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Labs',
 };
 
 export const programManagement_dashboardMeta = {
   slot: 'program-management-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Program Management',
 };
 
 export const visits_dashboardMeta = {
   slot: 'visits-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Clinical Visits',
 };
 
 export const generalCounselling_dashboardMeta = {
   slot: 'general-counselling-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'General Counselling',
 };
 
 export const adherenceCounselling_dashboardMeta = {
   slot: 'adherence-counselling-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Adherence Counselling',
 };
 
 export const partnerNotificationServices_dashboardMeta = {
   slot: 'partner-notification-services-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Partner Notification Services',
 };
 
 export const medications_dashboardMeta = {
   slot: 'medications-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Medications',
 };
 
 export const appointments_dashboardMeta = {
   slot: 'appointments-summary-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Appointments Summary',
 };
 
@@ -106,6 +106,6 @@ export const careAndTreatmentDashboardMeta = {
 export const labResultsDashboardMeta = {
   name: 'lab-results',
   slot: 'lab-results-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Lab Results',
 };

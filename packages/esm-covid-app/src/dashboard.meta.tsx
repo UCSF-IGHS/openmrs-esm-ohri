@@ -10,19 +10,19 @@ export const covidPatientChartMeta = {
 
 export const covidAssessments_dashboardMeta = {
   slot: 'covid-assessments-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Covid Assessments',
 };
 
 export const covidLabResults_dashboardMeta = {
   slot: 'covid-lab-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Lab Test',
 };
 
 export const covidVaccinations_dashboardMeta = {
   slot: 'covid-vaccinations-dashboard-slot',
-  config: { columns: 1, type: 'grid' },
+  columns: 1,
   title: 'Covid Vaccinations',
 };
 
