@@ -4,7 +4,7 @@
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "0.6.52",
+  "version": "0.6.53",
   "command": {
     "publish": {
       "verifyAccess": false
