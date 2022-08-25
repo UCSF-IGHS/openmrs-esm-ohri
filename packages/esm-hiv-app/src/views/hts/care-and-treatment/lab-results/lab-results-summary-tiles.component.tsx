@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
-import styles from '../../../../views/common.scss';
-import CD4ResultsList from './Tabs/cd4-results.component';
-import ViralLoadResultsList from './Tabs/viral-load-results.component';
 import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+export default function LabResultsSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [missingCd4Count, setMissingCd4Count] = useState(0);
   const [dueForVlCount, setDueForVlCount] = useState(0);
@@ -37,22 +29,5 @@ const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
     },
   ];
 
-  return (
-    <div className={styles.tabContainer}>
-      <div>
-        <h4 style={{ margin: '5px' }}>Lab Results</h4>
-      </div>
-      <OHRIProgrammeSummaryTiles tiles={tiles} />
-      <Tabs type="container">
-        <Tab label="CD4 Lab Results" className="tab-14rem">
-          <CD4ResultsList patientUuid={patientUuid} />
-        </Tab>
-        <Tab label="Viral Load Results" className="tab-12rem" style={{ padding: 0 }}>
-          <ViralLoadResultsList patientUuid={patientUuid} />
-        </Tab>
-      </Tabs>
-    </div>
-  );
-};
-
-export default LabResultsSummary;
+  return <OHRIProgrammeSummaryTiles tiles={tiles} />;
+}
