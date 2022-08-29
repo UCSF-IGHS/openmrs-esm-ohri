@@ -334,7 +334,7 @@
             },
 
             {
-              "label": "Rapid Antigen result",
+              "label": "Ag-RDTs (SARS-COV-2 Rapid Antigen Test)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
@@ -399,7 +399,7 @@
               ]
             },
             {
-              "label": "Diagnostic PCR result",
+              "label": "NAAT (SARS-COV-2 Diagnostic PCR Test)",
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
