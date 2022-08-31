@@ -126,14 +126,6 @@ function setupOpenMRS() {
         ),
       },
       {
-        id: 'ct-home-tabs-ext',
-        slot: 'ct-home-tabs-slot',
-        load: getAsyncLifecycle(() => import('./views/hts/patient-list-tabs/ct-patient-list-tabs.component'), {
-          featureName: 'ct-home-tabs',
-          moduleName,
-        }),
-      },
-      {
         id: 'patient-hiv-status-tag',
         slot: 'patient-banner-tags-slot',
         load: getSyncLifecycle(PatientStatusBannerTag, options),
@@ -168,6 +160,14 @@ function setupOpenMRS() {
         offline: true,
       },
       {
+        id: 'ct-home-tabs-ext',
+        slot: 'ct-home-tabs-slot',
+        load: getAsyncLifecycle(() => import('./views/hts/patient-list-tabs/ct-patient-list-tabs.component'), {
+          featureName: 'ct-home-tabs',
+          moduleName,
+        }),
+      },
+      {
         id: 'hts-dashboard-ext',
         slot: 'ohri-hiv-dashboard-slot',
         load: getSyncLifecycle(createOHRIDashboardLink(htsDashboardMeta), options),
@@ -187,18 +187,45 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'lab-results-summary-ext',
+        id: 'lab-results-dashboard',
         slot: 'lab-results-dashboard-slot',
-        load: getAsyncLifecycle(
-          () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary.component'),
-          {
-            featureName: 'lab-results-summary',
-            moduleName,
-          },
-        ),
+        load: getSyncLifecycle(OHRIHome, {
+          featureName: 'lab results dashboard',
+          moduleName,
+        }),
         meta: labResultsDashboardMeta,
         online: true,
         offline: true,
+      },
+      {
+        id: 'lab-results-home-header-ext',
+        slot: 'lab-results-home-header-slot',
+        load: getSyncLifecycle(OHRIWelcomeSection, {
+          featureName: 'lab-results-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'lab-results-home-tile-ext',
+        slot: 'lab-results-home-tiles-slot',
+        load: getAsyncLifecycle(
+          () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary-tiles.component'),
+          {
+            featureName: 'lab-results-home-tiles',
+            moduleName,
+          },
+        ),
+      },
+      {
+        id: 'lab-results-tabs-ext',
+        slot: 'lab-results-home-tabs-slot',
+        load: getAsyncLifecycle(
+          () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary.component'),
+          {
+            featureName: 'lab-results-tabs',
+            moduleName,
+          },
+        ),
       },
       {
         id: 'lab-results-summary',

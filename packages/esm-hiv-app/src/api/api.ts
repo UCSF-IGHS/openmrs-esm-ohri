@@ -1,5 +1,8 @@
+/* eslint-disable no-debugger, no-console */
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { finalHIVCodeConcept, finalPositiveHIVValueConcept, computedHIV_StatusConcept } from '../constants';
+
+const BASE_WS_API_URL = '/ws/rest/v1/';
 
 export function fetchPatientsFinalHIVStatus(patientUUID: string) {
   return openmrsFetch(
@@ -21,4 +24,11 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
     }
     return '';
   });
+}
+
+export async function getReportingCohort(cohortUuid: string, queryParams?: string[]) {
+  const params = queryParams ? queryParams.join('&') : '';
+  const url = params ? `reportingrest/cohort/${cohortUuid}?${params}` : `reportingrest/cohort/${cohortUuid}`;
+  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+  return data;
 }

@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles } from 'openmrs-esm-ohri-commons-lib';
+import { missingCd4Cohort, highVlCohort } from '../../../../constants';
+import { getReportingCohort } from '../../../../api/api';
 
-export default function LabResultsSummaryTiles({ launchWorkSpace }) {
+function LabResultsSummaryTiles() {
   const { t } = useTranslation();
   const [missingCd4Count, setMissingCd4Count] = useState(0);
   const [dueForVlCount, setDueForVlCount] = useState(0);
   const [highVlCount, setHighVlCount] = useState(0);
+
+  useEffect(() => {
+    getReportingCohort(missingCd4Cohort).then(data => {
+      setMissingCd4Count(data.members.length);
+    });
+
+    getReportingCohort(highVlCohort).then(results => {
+      setHighVlCount(results.members.length);
+    });
+  }, []);
 
   const tiles = [
     {
@@ -31,3 +43,5 @@ export default function LabResultsSummaryTiles({ launchWorkSpace }) {
 
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
+
+export default LabResultsSummaryTiles;
