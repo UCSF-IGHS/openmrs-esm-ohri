@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs, Tab } from 'carbon-components-react';
-import styles from '../../../../views/common.scss';
+import styles from '../lab-results/Tabs/patient-list.scss';
 import CD4ResultsList from './Tabs/cd4-results.component';
 import ViralLoadResultsList from './Tabs/viral-load-results.component';
+import LabResultsSummaryTiles from './lab-results-summary-tiles.component';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
-const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
-  <div className={styles.tabContainer}>
-    <div>
-      <h4 style={{ margin: '5px' }}>Lab Results</h4>
-    </div>
-    <Tabs type="container">
+const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+  return (
+    // <div className={styles.tabContainer}>
+    <Tabs type="container" className={styles.tabContainer}>
       <Tab label="CD4 Lab Results" className="tab-14rem">
         <CD4ResultsList patientUuid={patientUuid} />
       </Tab>
@@ -21,7 +20,8 @@ const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => (
         <ViralLoadResultsList patientUuid={patientUuid} />
       </Tab>
     </Tabs>
-  </div>
-);
+    // </div>
+  );
+};
 
 export default LabResultsSummary;

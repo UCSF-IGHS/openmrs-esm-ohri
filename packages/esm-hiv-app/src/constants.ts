@@ -28,6 +28,8 @@ export const postTestCounsellingCohort = '01af2130-e472-11eb-8212-7d7156e00a1f';
 export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
 export const todayzAppointmentsCT = 'ccbcf6d8-77b7-44a5-bb43-d352478ea4e9';
 export const allPatientsCohort = '895d0025-84e2-4306-bdd9-66acc150ec21';
+export const missingCd4Cohort = '874b5fa2-0368-49ae-a756-5bfc6a14fc29';
+export const highVlCohort = '5accbc54-1a6c-4789-8104-3ade8f92d3a7';
 
 // Service Enrollment Concepts
 export const careAndTreatmentEncounterType = '7e54cd64-f9c3-11eb-8e6a-57478ce139b0';

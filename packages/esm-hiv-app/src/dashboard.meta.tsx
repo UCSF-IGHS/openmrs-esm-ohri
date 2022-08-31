@@ -106,6 +106,6 @@ export const careAndTreatmentDashboardMeta = {
 export const labResultsDashboardMeta = {
   name: 'lab-results',
   slot: 'lab-results-dashboard-slot',
-  columns: 1,
+  config: { columns: 1, type: 'grid', programme: 'lab-results', dashboardTitle: 'Lab Results Home Page' },
   title: 'Lab Results',
 };
