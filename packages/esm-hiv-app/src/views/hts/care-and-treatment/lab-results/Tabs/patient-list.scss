@@ -25,11 +25,9 @@
 }
 
 .searchField {
-  width: 20%;
-  background: #fff;
-  border-bottom: 1px;
-  margin: 5px 0px 0px 0px;
-  margin-right: auto;
+  width: 100%;
+  max-width: 250px;
+  border: 0px !important;
 }
 
 .searchBox {
