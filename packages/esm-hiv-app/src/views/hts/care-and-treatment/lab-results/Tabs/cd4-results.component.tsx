@@ -145,32 +145,35 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
-        <div className={styles.widgetContainer}>
+        <>
           <div className={styles.searchBox}>
             <Search
               className={styles.searchField}
               labelText="Search"
               placeHolderText="Search Client list"
               size="sm"
+              light
               onKeyDown={({ target }) => handleSearch(target['value'])}
             />
           </div>
-          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
-          <div style={{ width: '800px' }}>
-            <Pagination
-              page={page}
-              pageSize={pageSize}
-              pageSizes={[10, 20, 30, 40, 50]}
-              totalItems={totalPatientCount}
-              onChange={({ page, pageSize }) => {
-                setSearchTerm(null);
-                setPage(page);
-                setNextOffSet((page - 1) * pageSize);
-                setPageSize(pageSize);
-              }}
-            />
+          <div className={styles.widgetContainer}>
+            <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
+            <div style={{ width: '800px' }}>
+              <Pagination
+                page={page}
+                pageSize={pageSize}
+                pageSizes={[10, 20, 30, 40, 50]}
+                totalItems={totalPatientCount}
+                onChange={({ page, pageSize }) => {
+                  setSearchTerm(null);
+                  setPage(page);
+                  setNextOffSet((page - 1) * pageSize);
+                  setPageSize(pageSize);
+                }}
+              />
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <EmptyState displayText={t('cd4Results', 'CD4 Results')} headerTitle={headerTitle} launchForm={addNewPatient} />
       )}

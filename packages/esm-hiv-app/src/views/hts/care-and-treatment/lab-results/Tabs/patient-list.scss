@@ -25,15 +25,31 @@
 }
 
 .searchField {
-  width: 20%;
-  background: #fff;
-  border-bottom: 1px;
-  margin: 5px 0px 0px 0px;
-  margin-right: auto;
+  width: 100%;
+  max-width: 250px;
+  border: 0px !important;
 }
 
 .searchBox {
   width: 100%;
   display: flex;
   justify-content: right;
+}
+
+.container {
+  margin-top: 16px;
+  margin-left: inherit;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.tabContainer{
+margin-top: 16px;
+padding-left: 1rem;
+background-color: #ffffff;
+
+}
+
+.tabContainer li button{
+width: 100% !important;
 }

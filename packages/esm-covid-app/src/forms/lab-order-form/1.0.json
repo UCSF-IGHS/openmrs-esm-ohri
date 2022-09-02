@@ -454,6 +454,25 @@
               ]
             },
             {
+              "label": "Requested by",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "healthcareprovider",
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                }
+              ]
+            },
+            {
               "label": "Notes",
               "type": "obs",
               "questionOptions": {

@@ -158,6 +158,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
               labelText="Search"
               placeHolderText="Search client list"
               size="sm"
+              light
               onKeyDown={({ target }) => handleSearch(target['value'])}
             />
           </div>

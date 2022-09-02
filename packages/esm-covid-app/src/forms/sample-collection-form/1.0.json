@@ -178,7 +178,7 @@
               "label": "Sample ID",
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "159968AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
