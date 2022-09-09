@@ -1458,63 +1458,17 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "checkbox",
-                "concept": "159800AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "12a22a0b-f0ed-4f1a-8d70-7c6acda5ae78",
                 "answers": [
                   {
                     "concept": "1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Fever lasting more than 3 weeks",
-                    "conceptMappings": [
-                      {
-                        "type": "AMPATH",
-                        "value": "6173"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "386661006"
-                      },
-                      {
-                        "type": "ICD-10-WHO",
-                        "value": "R50.9"
-                      }
-                    ]
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fever",
-                    "conceptMappings": [
-                      {
-                        "type": "ICD-10-WHO",
-                        "value": "R50.9"
-                      },
-                      {
-                        "type": "ICPC2",
-                        "value": "A03"
-                      },
-                      {
-                        "type": "PIH",
-                        "value": "3722"
-                      },
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "27348"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "386661006"
-                      },
-                      {
-                        "type": "3BT",
-                        "value": "10049305"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "5945"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "157"
-                      }
-                    ]
+                    "concept": "150796AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Abnormal Weight Loss",
+                    "conceptMappings": []
                   },
                   {
                     "concept": "159799AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1525,54 +1479,38 @@
                         "value": "2573"
                       },
                       {
-                        "type": "SNOMED-CT",
-                        "value": "49727002"
-                      },
-                      {
                         "type": "SNOMED-MVP",
                         "value": "1597991000105004"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "6171"
                       }
                     ]
                   },
                   {
-                    "concept": "138905AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Hemoptysis",
+                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "None",
                     "conceptMappings": [
                       {
-                        "type": "3BT",
-                        "value": "10040493"
-                      },
-                      {
-                        "type": "ICD-10-WHO",
-                        "value": "R04.2"
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "NONE"
                       },
                       {
                         "type": "PIH",
-                        "value": "970"
+                        "value": "1107"
                       },
                       {
-                        "type": "ICPC2",
-                        "value": "R24"
-                      },
-                      {
-                        "type": "IMO-ProblemIT",
-                        "value": "27441"
-                      },
-                      {
-                        "type": "AMPATH",
-                        "value": "6172"
+                        "type": "CIEL",
+                        "value": "1107"
                       },
                       {
                         "type": "SNOMED-CT",
-                        "value": "66857006"
+                        "value": "260413007"
                       },
                       {
                         "type": "AMPATH",
-                        "value": "967"
+                        "value": "1107"
+                      },
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "1107"
                       }
                     ]
                   },
@@ -1609,6 +1547,11 @@
                         "value": "10063085"
                       }
                     ]
+                  },
+                  {
+                    "concept": "12a22a0b-f0ed-4f1a-8d70-7c6acda5ae78",
+                    "label": "Weight Loss (Abnormal weight loss)",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -2514,7 +2457,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult == '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -3364,6 +3307,16 @@
                   }
                 ]
               },
+              "behaviours": [
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestResult !== '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
               "id": "viralLoadForRtri"
             },
             {
@@ -3400,10 +3353,10 @@
                 },
                 {
                   "intent": "*",
-                  "required": "false",
+                  "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "false"
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestResult !== '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -3418,7 +3371,7 @@
           "required": "true",
           "unspecified": "false",
           "hide": {
-            "hideWhenExpression": "preTestCounselingConsent === '488b58ff-64f5-4f8a-8979-fa79940b1594' || preTestCounsellingConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594' || eligibleHIVTesting !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || hivTestConducted === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+            "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || finalHIVTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
           }
         }
       ]
