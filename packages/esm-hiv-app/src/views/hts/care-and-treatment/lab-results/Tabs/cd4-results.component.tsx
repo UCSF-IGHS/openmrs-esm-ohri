@@ -175,7 +175,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
           </div>
         </>
       ) : (
-        <EmptyState displayText={t('cd4Results', 'CD4 Results')} headerTitle={headerTitle} launchForm={addNewPatient} />
+        <EmptyState displayText={t('cd4Results', 'CD4 Results')} headerTitle={headerTitle} />
       )}
     </>
   );

@@ -151,41 +151,37 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
-        <div className={styles.widgetContainer}>
+        <>
           <div className={styles.searchBox}>
             <Search
               className={styles.searchField}
               labelText="Search"
-              placeHolderText="Search client list"
+              placeHolderText="Search Client list"
               size="sm"
               light
               onKeyDown={({ target }) => handleSearch(target['value'])}
             />
           </div>
-          {/* <Search className={styles.searchField}
-          labelText="Search" placeHolderText="Search client list" size='sm' onKeyDown={e => handleSearch((e.target as HTMLInputElement).value)} /> */}
-          <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
-          <div style={{ width: '800px' }}>
-            <Pagination
-              page={page}
-              pageSize={pageSize}
-              pageSizes={[10, 20, 30, 40, 50]}
-              totalItems={totalPatientCount}
-              onChange={({ page, pageSize }) => {
-                setSearchTerm(null);
-                setPage(page);
-                setNextOffSet((page - 1) * pageSize);
-                setPageSize(pageSize);
-              }}
-            />
+          <div className={styles.widgetContainer}>
+            <OTable tableHeaders={tableHeaders} tableRows={searchTerm ? filteredResults : allRows} />
+            <div style={{ width: '800px' }}>
+              <Pagination
+                page={page}
+                pageSize={pageSize}
+                pageSizes={[10, 20, 30, 40, 50]}
+                totalItems={totalPatientCount}
+                onChange={({ page, pageSize }) => {
+                  setSearchTerm(null);
+                  setPage(page);
+                  setNextOffSet((page - 1) * pageSize);
+                  setPageSize(pageSize);
+                }}
+              />
+            </div>
           </div>
-        </div>
+        </>
       ) : (
-        <EmptyState
-          displayText={t('patientList', 'patient list')}
-          headerTitle={headerTitle}
-          launchForm={addNewPatient}
-        />
+        <EmptyState displayText={t('viralLoadResults', 'Viral Load Results')} headerTitle={headerTitle} />
       )}
     </>
   );
