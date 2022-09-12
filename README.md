@@ -75,7 +75,7 @@ yarn start:form-render
 To verify that all of the tests run:
 
 ```sh
-yarn test
+yarn test 
 ```
 
 *Note: Run `npm i` before running tests for the first time.*
