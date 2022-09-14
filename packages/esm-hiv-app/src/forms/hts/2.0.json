@@ -2457,7 +2457,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult == '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || confirmatoryTestResult == '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -2587,14 +2587,14 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "confirmatoryTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "confirmatoryTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
                   }
                 },
                 {
@@ -2602,7 +2602,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "confirmatoryTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
                   }
                 }
               ],
@@ -3025,6 +3025,30 @@
     },
     {
       "label": "Recency Testing",
+      "behaviours": [
+        {
+          "intent": "HTS_RETROSPECTIVE",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        },
+        {
+          "intent": "HTS_PRETEST",
+          "hide": {
+            "hideWhenExpression": "true"
+          }
+        },
+        {
+          "intent": "HTS_POSTTEST",
+          "readonly": "true"
+        },
+        {
+          "intent": "*",
+          "hide": {
+            "hideWhenExpression": "false"
+          }
+        }
+      ],
       "sections": [
         {
           "label": "Recency Details",
@@ -3056,7 +3080,10 @@
                 {
                   "intent": "*",
                   "required": "true",
-                  "unspecified": "true"
+                  "unspecified": "false",
+                  "hide": {
+                    "hideWhenExpression": "hivTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' && finalHIVTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
                 }
               ],
               "id": "recencyTestingConsent"
@@ -3184,7 +3211,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
@@ -3192,7 +3219,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
@@ -3313,7 +3340,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestResult !== '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestResult !== '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
@@ -3356,7 +3383,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestResult !== '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "recencyTestConducted !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' || recencyTestResult !== '165090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || recencyTestingConsent !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ],
