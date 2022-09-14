@@ -5,6 +5,7 @@ import hiv_service_enrolment_v_1_0 from './care-and-treatment/service-enrolment/
 import hiv_service_enrolment_v_1_1 from './care-and-treatment/service-enrolment/1.1.json';
 import hiv_art_therapy_v_1_0 from './care-and-treatment/art-therapy/1.0.json';
 import clinical_visit_v_1_0 from './care-and-treatment/clinical-visit/1.0.json';
+import clinical_visit_v_2_0 from './care-and-treatment/clinical-visit/2.0.json';
 import lab_results_v_1_0 from './care-and-treatment/lab-results/1.0.json';
 import death_form_v_1_0 from './care-and-treatment/death-form/1.0.json';
 import transfer_out_v_1_0 from './care-and-treatment/transfer-out/1.0.json';
@@ -35,6 +36,7 @@ export default {
     },
     clinical_visit: {
       '1.0': clinical_visit_v_1_0,
+      '2.0': clinical_visit_v_2_0,
     },
     lab_results: {
       '1.0': lab_results_v_1_0,
