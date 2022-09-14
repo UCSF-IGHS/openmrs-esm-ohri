@@ -2445,7 +2445,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
@@ -2457,7 +2457,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "isEmpty(confirmatoryTestResult) || confirmatoryTestResult == '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "initialFirstTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || confirmatoryTestResult !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
@@ -2587,14 +2587,14 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "confirmatoryTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "tiebreakerHIVTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
                   "intent": "HTS_HIVTEST",
                   "required": "true",
                   "hide": {
-                    "hideWhenExpression": "confirmatoryTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "tiebreakerHIVTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 },
                 {
@@ -2602,7 +2602,7 @@
                   "required": "true",
                   "unspecified": "true",
                   "hide": {
-                    "hideWhenExpression": "confirmatoryTestResult !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty(confirmatoryTestResult)"
+                    "hideWhenExpression": "tiebreakerHIVTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ],
