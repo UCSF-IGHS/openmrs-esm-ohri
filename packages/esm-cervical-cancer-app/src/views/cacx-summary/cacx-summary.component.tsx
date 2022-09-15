@@ -9,8 +9,8 @@ interface CacxSummaryListProps {
 const CacxSummaryList: React.FC<CacxSummaryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('cacx', 'CaCx Summary');
-  const displayText = t('cacx', 'CaCx Summary');
+  const headerTitle = t('cacx_summary_header', 'CaCx Summary');
+  const displayText = t('cacx_summary_display', 'CaCx Summary');
 
   return (
     <>
