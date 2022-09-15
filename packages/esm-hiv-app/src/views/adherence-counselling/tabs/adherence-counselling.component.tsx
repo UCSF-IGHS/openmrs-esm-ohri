@@ -9,8 +9,8 @@ interface AdherenceCounsellingListProps {
 const AdherenceCounsellingList: React.FC<AdherenceCounsellingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('adherenceCounselling', 'Adherence Counselling');
-  const displayText = t('adherenceCounselling', 'Adherence Counselling');
+  const headerTitle = t('adherenceCounsellingTitle', 'Adherence Counselling');
+  const displayText = t('adherenceCounsellingDisplay', 'Adherence Counselling');
 
   return (
     <>
