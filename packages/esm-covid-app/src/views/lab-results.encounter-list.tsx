@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './covid.scss';
 import { Tabs, Tab, Tag } from 'carbon-components-react';
@@ -30,178 +30,185 @@ interface CovidLabWidgetProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
-  {
-    key: 'orderDate',
-    header: 'Date of Order',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
-    },
-  },
-  {
-    key: 'reasonsForTesting',
-    header: 'Reason for testing',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
-    },
-  },
-  {
-    key: 'testType',
-    header: 'Test Type',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
-    },
-  },
-  {
-    key: 'labStatus',
-    header: 'Status',
-    getValue: encounter => {
-      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
-      const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
-      if (status == '--') {
-        return '--';
-      } else {
-        return (
-          <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
-            {status}
-          </Tag>
-        );
-      }
-    },
-  },
-  {
-    key: 'lastTestResult',
-    header: 'Test Result',
-    getValue: encounter => {
-      const pcrResult = getObsFromEncounter(encounter, pcrTestResult);
-      return pcrResult && pcrResult != '--' ? pcrResult : getObsFromEncounter(encounter, rapidTestResult);
-    },
-  },
-  {
-    key: 'testResultDate',
-    header: 'Date of Test Result',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
-    },
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: encounter => {
-      const baseActions = [
-        {
-          form: { name: 'covid_lab_test', package: 'covid' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'View Details',
-          mode: 'view',
-        },
-        {
-          form: { name: 'covid_lab_result', package: 'covid' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'Add/Edit Lab Result',
-          mode: 'edit',
-        },
-      ];
-      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
-      if (status.includes('Pending')) {
-        baseActions.push({
-          form: { name: 'covid_lab_order_cancellation', package: 'covid' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'Cancel Lab Order',
-          mode: 'edit',
-        });
-      }
-      if (status.includes('Pending')) {
-        baseActions.push({
-          form: { name: 'covid_sample_collection', package: 'covid' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'Collect Sample',
-          mode: 'edit',
-        });
-      }
-      return baseActions;
-    },
-  },
-];
-
-const columnsPending: EncounterListColumn[] = [
-  {
-    key: 'orderDate',
-    header: 'Date of Order',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
-    },
-  },
-  {
-    key: 'testType',
-    header: 'Test Type',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
-    },
-  },
-  {
-    key: 'fowardLabreference',
-    header: 'Fowarded to Reference Lab',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
-    },
-  },
-  {
-    key: 'labStatus',
-    header: 'Status',
-    getValue: encounter => {
-      const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
-      const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
-      if (status == '--') {
-        return '--';
-      } else {
-        return (
-          <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
-            {status}
-          </Tag>
-        );
-      }
-    },
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: encounter => [
-      {
-        form: { name: 'covid_lab_test', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Details',
-        mode: 'view',
-      },
-      {
-        form: { name: 'covid_sample_collection', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Collect Sample',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_lab_result', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Add/Edit Lab Result',
-        mode: 'edit',
-      },
-    ],
-  },
-];
-
-let pendingLabOrdersFilter = encounter => {
-  return getObsFromEncounter(encounter, covidTestStatusConcept_UUID) === 'Pending';
-};
-
 const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+
+  const columnsLab: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'orderDate',
+        header: t('dateOfOrder', 'Date of Order'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
+        },
+      },
+      {
+        key: 'reasonsForTesting',
+        header: t('reasonsForTesting', 'Reason for testing'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
+        },
+      },
+      {
+        key: 'testType',
+        header: t('testType', 'Test Type'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
+        },
+      },
+      {
+        key: 'labStatus',
+        header: t('status', 'Status'),
+        getValue: encounter => {
+          const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+          const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
+          if (status == '--') {
+            return '--';
+          } else {
+            return (
+              <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
+                {status}
+              </Tag>
+            );
+          }
+        },
+      },
+      {
+        key: 'lastTestResult',
+        header: t('testResult', 'Test Result'),
+        getValue: encounter => {
+          const pcrResult = getObsFromEncounter(encounter, pcrTestResult);
+          return pcrResult && pcrResult != '--' ? pcrResult : getObsFromEncounter(encounter, rapidTestResult);
+        },
+      },
+      {
+        key: 'testResultDate',
+        header: t('dateOfTestResult', 'Date of Test Result'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: encounter => {
+          const baseActions = [
+            {
+              form: { name: 'covid_lab_test', package: 'covid' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('viewDetails', 'View Details'),
+              mode: 'view',
+            },
+            {
+              form: { name: 'covid_lab_result', package: 'covid' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('addEditResult', 'Add/Edit Lab Result'),
+              mode: 'edit',
+            },
+          ];
+          const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+          if (status.includes('Pending')) {
+            baseActions.push({
+              form: { name: 'covid_lab_order_cancellation', package: 'covid' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('cancelLabOrder', 'Cancel Lab Order'),
+              mode: 'edit',
+            });
+          }
+          if (status.includes('Pending')) {
+            baseActions.push({
+              form: { name: 'covid_sample_collection', package: 'covid' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('collectSample', 'Collect Sample'),
+              mode: 'edit',
+            });
+          }
+          return baseActions;
+        },
+      },
+    ],
+    [],
+  );
+
+  const columnsPending: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'orderDate',
+        header: t('dateOfOrder', 'Date of Order'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
+        },
+      },
+      {
+        key: 'testType',
+        header: t('testType', 'Test Type'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
+        },
+      },
+      {
+        key: 'fowardLabreference',
+        header: t('fowardLabreference', 'Fowarded to Reference Lab'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
+        },
+      },
+      {
+        key: 'labStatus',
+        header: t('status', 'Status'),
+        getValue: encounter => {
+          const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
+          const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
+          if (status == '--') {
+            return '--';
+          } else {
+            return (
+              <Tag type={statusColorMap[statusObs?.value?.uuid]} title={status} className={styles.statusTag}>
+                {status}
+              </Tag>
+            );
+          }
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: encounter => [
+          {
+            form: { name: 'covid_lab_test', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View Details'),
+            mode: 'view',
+          },
+          {
+            form: { name: 'covid_sample_collection', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('collectSample', 'Collect Sample'),
+            mode: 'edit',
+          },
+          {
+            form: { name: 'covid_lab_result', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('addEditResult', 'Add/Edit Lab Result'),
+            mode: 'edit',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  let pendingLabOrdersFilter = encounter => {
+    return getObsFromEncounter(encounter, covidTestStatusConcept_UUID) === 'Pending';
+  };
+
   const headerTitle = t('covidLabResults', 'Lab Tests');
   const displayText = t('covidLabResults', 'Lab Tests');
   const headerTitlePending = t('covidLabResults', 'Pending Lab Orders');

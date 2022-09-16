@@ -47,13 +47,13 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   const forceComponentUpdate = () => setCounter(counter + 1);
 
   const tableHeaders = [
-    { key: 'encounterDate', header: 'Encounter Date', isSortable: true },
-    { key: 'cov2TestType', header: 'SARS-Cov2 test type' },
-    { key: 'lastTestDate', header: 'Date of last test' },
-    { key: 'lastTestResult', header: 'Result' },
-    { key: 'reasonsForTesting', header: 'Reasons for testing' },
-    { key: 'vaccinationStatus', header: 'Vaccination Status' },
-    { key: 'patientStatus', header: 'Patient status' },
+    { key: 'encounterDate', header: t('encounterDate', 'Encounter Date'), isSortable: true },
+    { key: 'cov2TestType', header: t('sarsCovidTestType', 'SARS-Cov2 test type') },
+    { key: 'lastTestDate', header: t('dateOfLastTest', 'Date of last test') },
+    { key: 'lastTestResult', header: t('result', 'Result') },
+    { key: 'reasonsForTesting', header: t('reasonsForTesting', 'Reasons for testing') },
+    { key: 'vaccinationStatus', header: t('vaccinationStatus', 'Vaccination Status') },
+    { key: 'patientStatus', header: t('patientStatus', 'Patient status') },
   ];
 
   function getCovidEncounters(query: string, customRepresentation: string) {

@@ -1,5 +1,5 @@
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   covid_Assessment_EncounterUUID,
@@ -18,87 +18,91 @@ interface CovidAssessmentWidgetProps {
   patientUuid: string;
 }
 
-const columns: EncounterListColumn[] = [
-  {
-    key: 'encounterDate',
-    header: 'Date of Assessment',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
-    },
-  },
-  {
-    key: 'reasonsForTesting',
-    header: 'Reason for testing',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
-    },
-  },
-  {
-    key: 'symptomatic',
-    header: 'Presentation',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSymptomsPresentation, false);
-    },
-  },
-  {
-    key: 'outcome',
-    header: 'Outcome',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidOutcomeUUID);
-    },
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: encounter => [
-      {
-        form: { name: 'covid_case', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Assessment',
-        mode: 'view',
-      },
-      {
-        form: { name: 'covid_assessment', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Case',
-        mode: 'view',
-      },
-      {
-        form: { name: 'covid_assessment', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Edit Assessment',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_case', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Edit Case',
-        mode: 'edit',
-      },
-      {
-        form: { name: 'covid_outcome', package: 'covid' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Add/Edit Outcome',
-        mode: 'edit',
-      },
-    ],
-  },
-];
-
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('covidAssessments', 'COVID Assessment');
-  const displayText = t('covidAssessments', 'COVID Assessment');
+
+  const columns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'encounterDate',
+        header: t('encounterDate', 'Date of Assessment'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
+        },
+        link: {
+          handleNavigate: encounter => {
+            encounter.launchFormActions?.viewEncounter();
+          },
+        },
+      },
+      {
+        key: 'reasonsForTesting',
+        header: t('reasonsForTesting', 'Reason for testing'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
+        },
+      },
+      {
+        key: 'symptomatic',
+        header: t('symptomatic', 'Presentation'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidSymptomsPresentation, false);
+        },
+      },
+      {
+        key: 'outcome',
+        header: t('outcome', 'Outcome'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidOutcomeUUID);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: encounter => [
+          {
+            form: { name: 'covid_case', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewAssessment', 'View Assessment'),
+            mode: 'view',
+          },
+          {
+            form: { name: 'covid_assessment', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewAssessmentcase', 'View Case'),
+            mode: 'view',
+          },
+          {
+            form: { name: 'covid_assessment', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('editAssessmentForm', 'Edit Assessment'),
+            mode: 'edit',
+          },
+          {
+            form: { name: 'covid_case', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('editassessmentCase', 'Edit Case'),
+            mode: 'edit',
+          },
+          {
+            form: { name: 'covid_outcome', package: 'covid' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('addEditOutcome', 'Add/Edit Outcome'),
+            mode: 'edit',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const headerTitle = t('covid_Assessments_Header', 'COVID Assessment');
+  const displayText = t('covid_Assessments_Display', 'COVID Assessment');
   return (
     <EncounterList
       patientUuid={patientUuid}
