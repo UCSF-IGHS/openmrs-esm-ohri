@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   EmptyStateComingSoon,
@@ -18,66 +18,69 @@ interface CacxTreatmentListProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
-  {
-    key: 'encounterDate',
-    header: 'Visit Date',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, cacxEncounterDateConcept, true);
-    },
-  },
-  {
-    key: 'screeningMethod',
-    header: 'Screening Method',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, screeningMethodConcept);
-    },
-  },
-  {
-    key: 'colopsyResult',
-    header: 'Screening Results',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, colopsyResultsConcept);
-    },
-  },
-  {
-    key: 'cacxTreatment',
-    header: 'Cacx Treatment',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, cacxTreatmentConcept);
-    },
-  },
-
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: encounter => {
-      const baseActions = [
-        {
-          form: { name: 'cacx_treatment_form', package: 'cacx' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'View Details',
-          mode: 'view',
-        },
-        {
-          form: { name: 'cacx_treatment_form', package: 'cacx' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'Edit Form',
-          mode: 'edit',
-        },
-      ];
-      return baseActions;
-    },
-  },
-];
-
 const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('cacx treatment', 'CaCx Treatment');
-  const displayText = t('cacx treatment', 'CaCx Treatment');
+  const columnsLab: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'encounterDate',
+        header: t('encounterDate', 'Visit Date'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, cacxEncounterDateConcept, true);
+        },
+      },
+      {
+        key: 'screeningMethod',
+        header: t('screeningMethod', 'Screening Method'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, screeningMethodConcept);
+        },
+      },
+      {
+        key: 'colopsyResult',
+        header: t('colopsyResult', 'Screening Results'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, colopsyResultsConcept);
+        },
+      },
+      {
+        key: 'cacxTreatment',
+        header: t('cacxTreatment', 'Cacx Treatment'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, cacxTreatmentConcept);
+        },
+      },
+
+      {
+        key: 'actions',
+        header: 'Actions',
+        getValue: encounter => {
+          const baseActions = [
+            {
+              form: { name: 'cacx_treatment_form', package: 'cacx' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('viewDetails', 'View Details'),
+              mode: 'view',
+            },
+            {
+              form: { name: 'cacx_treatment_form', package: 'cacx' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('editForm', 'Edit Form'),
+              mode: 'edit',
+            },
+          ];
+          return baseActions;
+        },
+      },
+    ],
+    [],
+  );
+
+  const headerTitle = t('cacx_treatment_header', 'CaCx Treatment');
+  const displayText = t('cacx_treatment_display', 'CaCx Treatment');
 
   return (
     <EncounterList
