@@ -4,7 +4,7 @@ import {
   getEncounterValues,
   getObsFromEncounter,
 } from 'openmrs-esm-ohri-commons-lib';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   covid_Assessment_EncounterUUID,
@@ -20,52 +20,55 @@ interface CovidOutcomesWidgetProps {
   patientUuid: string;
 }
 
-const columns: EncounterListColumn[] = [
-  {
-    key: 'encounterDate',
-    header: 'Date of Assessment',
-    getValue: encounter => {
-      return getEncounterValues(encounter, 'encounterDatetime', true);
-    },
-    link: {
-      handleNavigate: encounter => {
-        encounter.launchFormActions?.viewEncounter();
-      },
-    },
-  },
-  {
-    key: 'testType',
-    header: 'Test type',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidTestTypeUUID);
-    },
-  },
-  {
-    key: 'testDate',
-    header: 'Test date',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
-    },
-  },
-  {
-    key: 'outcome',
-    header: 'Outcome status',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, covidOutcomeUUID);
-    },
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: () => {},
-  },
-];
-
 const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('covidOutcomes', 'COVID Outcomes');
-  const displayText = t('covidOutcomes', 'COVID Outcomes');
+  const columns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'encounterDate',
+        header: t('dateOfAssessment', 'Date of Assessment'),
+        getValue: encounter => {
+          return getEncounterValues(encounter, 'encounterDatetime', true);
+        },
+        link: {
+          handleNavigate: encounter => {
+            encounter.launchFormActions?.viewEncounter();
+          },
+        },
+      },
+      {
+        key: 'testType',
+        header: t('testType', 'Test type'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidTestTypeUUID);
+        },
+      },
+      {
+        key: 'testDate',
+        header: t('testDate', 'Test date'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
+        },
+      },
+      {
+        key: 'outcome',
+        header: t('outcomeStatus', 'Outcome status'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, covidOutcomeUUID);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: () => {},
+      },
+    ],
+    [],
+  );
+
+  const headerTitle = t('covid_Outcomes_header', 'COVID Outcomes');
+  const displayText = t('covid_Outcomes_display', 'COVID Outcomes');
   return (
     <EncounterList
       patientUuid={patientUuid}

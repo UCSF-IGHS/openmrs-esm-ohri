@@ -1,5 +1,5 @@
 import { OHRIProgrammeSummaryTiles } from 'openmrs-esm-ohri-commons-lib';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getReportingCohort } from '../../../api/api';
 import { covid19PositiveClients, covidOutcomesCohortUUID, covidVaccinatedClients } from '../../../constants';
@@ -23,39 +23,42 @@ function CcoivdSummaryTiles({ launchWorkSpace }) {
       setPeopleWithCovidOutcome(data.members.length);
     });
   }, []);
-  const tiles = [
-    {
-      title: t('assessments', 'Assessments'),
-      linkAddress: '#',
-      subTitle: t('testsConducted', 'Completed assessments'),
-      value: activeClientsCount,
-    },
-    {
-      title: t('cases', 'Cases'),
-      linkAddress: '#',
-      subTitle: t('peopleTestedPositive', 'People tested positive'),
-      value: covid19PositiveClientsCount,
-    },
-    {
-      title: t('vaccinations', 'Vaccinations'),
-      linkAddress: '#',
-      subTitle: t('peopleVaccinated', 'People vaccinated'),
-      value: covidVaccinatedClientsCount,
-    },
-    {
-      title: t('outcomes', 'Outcomes'),
-      linkAddress: '#',
-      subTitle: t('PeopleWithCovidOutcome', 'People with covid outcome'),
-      value: PeopleWithCovidOutcome,
-      onClick: () => {
-        launchWorkSpace('Covid Outcome', <Outcomes />, {
-          numberOfClients: PeopleWithCovidOutcome,
-          subTitle: 'Covid Outcome',
-          dateLastUpdated: '--',
-        });
+  const tiles = useMemo(
+    () => [
+      {
+        title: t('assessments', 'Assessments'),
+        linkAddress: '#',
+        subTitle: t('testsConducted', 'Completed assessments'),
+        value: activeClientsCount,
       },
-    },
-  ];
+      {
+        title: t('cases', 'Cases'),
+        linkAddress: '#',
+        subTitle: t('peopleTestedPositive', 'People tested positive'),
+        value: covid19PositiveClientsCount,
+      },
+      {
+        title: t('vaccinations', 'Vaccinations'),
+        linkAddress: '#',
+        subTitle: t('peopleVaccinated', 'People vaccinated'),
+        value: covidVaccinatedClientsCount,
+      },
+      {
+        title: t('outcomes', 'Outcomes'),
+        linkAddress: '#',
+        subTitle: t('PeopleWithCovidOutcome', 'People with covid outcome'),
+        value: PeopleWithCovidOutcome,
+        onClick: () => {
+          launchWorkSpace('Covid Outcome', <Outcomes />, {
+            numberOfClients: PeopleWithCovidOutcome,
+            subTitle: 'Covid Outcome',
+            dateLastUpdated: '--',
+          });
+        },
+      },
+    ],
+    [],
+  );
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
