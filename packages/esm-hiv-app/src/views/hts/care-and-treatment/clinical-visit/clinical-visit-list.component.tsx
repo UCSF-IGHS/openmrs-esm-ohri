@@ -44,7 +44,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
         </>
       ) : (
         <EmptyState
-          displayText={t('clinicalVisitEncounters', 'clinical visit encounters')}
+          displayText={t('clinicalVisitDisplay', 'clinical visit encounters')}
           headerTitle={t('clinicalVisitTitle', 'Clinical Visits')}
           launchFormComponent={
             <OHRIFormLauncherEmpty launchForm={() => launchForm(clinicalVisitForm, forceComponentUpdate)} />

@@ -10,18 +10,19 @@ interface OverviewListProps {
 
 const ServiceExitOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = 'Service Exit';
+  const headerTitle = t('serviceExitTitle', 'Service Exit');
+  const displayText = t('serviceExitDisplay', 'Service Exit');
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;
 
   const tableHeaders = [
-    { key: 'date', header: 'Date of enrolment', isSortable: true },
-    { key: 'description', header: 'Client Description' },
-    { key: 'populationType', header: 'Population Type' },
-    { key: 'diagnosisType', header: 'HIV Diagnosis Date' },
-    { key: 'status', header: 'Status' },
-    { key: 'action', header: 'Action' },
+    { key: 'date', header: t('enrollDate', 'Date of enrollment'), isSortable: true },
+    { key: 'description', header: t('clientDescription', 'Client Description') },
+    { key: 'populationType', header: t('populationType', 'Population Type') },
+    { key: 'diagnosisType', header: t('hivDiagnosisDate', 'HIV Diagnosis Date') },
+    { key: 'status', header: t('status', 'Status') },
+    { key: 'action', header: t('action', 'Action') },
   ];
 
   const launchHTSForm = (form?: any) => {};
@@ -47,7 +48,7 @@ const ServiceExitOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) =
           </div>
         </>
       ) : (
-        <EmptyState displayText="Service Exit" headerTitle={headerTitle} launchForm={launchHTSForm} />
+        <EmptyState displayText={displayText} headerTitle={headerTitle} launchForm={launchHTSForm} />
       )}
     </>
   );

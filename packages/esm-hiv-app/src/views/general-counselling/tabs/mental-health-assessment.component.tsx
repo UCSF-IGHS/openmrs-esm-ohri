@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from 'openmrs-esm-ohri-commons-lib';
 import {
@@ -75,8 +75,69 @@ const columns: EncounterListColumn[] = [
 const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('mentalHealthAssessment', 'Mental Health Assessment');
-  const displayText = t('mentalHealthAssessment', 'Mental Health Assessment');
+  const columns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'screeningDate',
+        header: t('screeningDate', 'Screening Date'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, screeningDate_UUID, true);
+        },
+      },
+      {
+        key: 'littleInterest',
+        header: t('littleInterest', 'Disinterested in Things'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, LittleInterestConcept_UUID);
+        },
+      },
+      {
+        key: 'depressed',
+        header: t('depressed', 'Depressed'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, DepressionConcept_UUID);
+        },
+      },
+      {
+        key: 'appetite',
+        header: t('appetite', 'Poor Appetite'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, PoorAppetiteConcept_UUID);
+        },
+      },
+      {
+        key: 'concentration',
+        header: t('concentration', 'Concentration Problems'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, PoorConcentrationConcept_UUID);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: encounter => [
+          {
+            form: { name: 'mental_health_assessment', package: 'hiv' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: 'View Details',
+            mode: 'view',
+          },
+          {
+            form: { name: 'mental_health_assessment', package: 'hiv' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: 'Edit Form',
+            mode: 'edit',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const headerTitle = t('mentalHealthAssessmentTitle', 'Mental Health Assessment');
+  const displayText = t('mentalHealthAssessmentDisplay', 'Mental Health Assessment');
 
   return (
     <EncounterList

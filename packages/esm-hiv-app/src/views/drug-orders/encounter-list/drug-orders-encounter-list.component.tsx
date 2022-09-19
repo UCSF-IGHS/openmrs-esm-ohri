@@ -10,8 +10,8 @@ const DrugOrdersOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) =>
   const { t } = useTranslation();
 
   const launchHTSForm = (form?: any) => {};
-  const headerTitle = t('serviceSummary', 'Drug Orders');
-  const displayText = t('serviceSummary', 'Drug Orders');
+  const headerTitle = t('serviceSummaryTitle', 'Drug Orders');
+  const displayText = t('serviceSummaryDisplay', 'Drug Orders');
 
   return (
     <>
