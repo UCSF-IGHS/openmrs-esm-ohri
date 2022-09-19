@@ -15,7 +15,7 @@ function CTHomePatientTabs() {
       launchableForm: {
         package: 'hiv',
         name: 'clinical_visit',
-        actionText: 'Start Follow Up Visit',
+        actionText: t('startFollowUpVisit', 'Start Follow Up Visit'),
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
         targetDashboard: 'hts-summary',
       },
@@ -31,14 +31,14 @@ function CTHomePatientTabs() {
         },
         {
           key: 'lastAppointment',
-          header: 'Last Appointment',
+          header: t('lastAppointment', 'Last Appointment'),
           getValue: patient => {
             return '13/01/2021';
           },
         },
         {
           key: 'appointmentDate',
-          header: 'Appointment Date',
+          header: t('appointmentDate', 'Appointment Date'),
           getValue: patient => {
             return '03/03/2021';
           },
@@ -53,7 +53,7 @@ function CTHomePatientTabs() {
       launchableForm: {
         package: 'hiv',
         name: 'clinical_visit',
-        actionText: 'Start Follow Up Visit',
+        actionText: t('followUpVisit', 'Start Follow Up Visit'),
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
         targetDashboard: 'hts-summary',
       },
@@ -62,7 +62,7 @@ function CTHomePatientTabs() {
       otherColumns: [
         {
           key: 'clientId',
-          header: 'Client ID',
+          header: t('clientId', 'Client ID'),
           getValue: patient => {
             return patient.id;
           },
@@ -70,14 +70,14 @@ function CTHomePatientTabs() {
         },
         {
           key: 'lastAppointment',
-          header: 'Last Appointment',
+          header: t('lastAppointment', 'Last Appointment'),
           getValue: patient => {
             return '13/01/2021';
           },
         },
         {
           key: 'appointmentDate',
-          header: 'Appointment Date',
+          header: t('appointmentDate', 'Appointment Date'),
           getValue: patient => {
             return '03/03/2021';
           },

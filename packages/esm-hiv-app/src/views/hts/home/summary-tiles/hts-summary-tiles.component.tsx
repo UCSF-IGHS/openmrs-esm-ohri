@@ -16,48 +16,50 @@ import styles from './summary-tile.scss';
 import { TodaysClientList } from './today-client-list-tile.component';
 import { PositiveInLast14Days } from './positive-in-last-14-days-list-tile.component';
 import { LinkedToCareInLast14Days } from './linked-to-care-in-last-14-days-list-tile.component';
+import { useTranslation } from 'react-i18next';
 
 function HTSSummaryTiles({ launchWorkSpace }) {
+  const { t } = useTranslation();
   const [todayPatientCount, setTodayPatientCount] = useState(0);
   const [positiveInLast14Days, setPositiveInLast14Days] = useState(0);
   const [linkedToCareInLast14Days, setLinkedToCareInLast14Days] = useState(0);
 
   const tiles = [
     {
-      title: "Today's Clients",
+      title: t('todaysClients', "Today's Clients"),
       linkAddress: '#',
-      subTitle: 'Active Visits',
+      subTitle: t('activeVisits', 'Active Visits'),
       value: todayPatientCount,
       onClick: () => {
         launchWorkSpace("Today's clients", <TodaysClientList />, {
           numberOfClients: todayPatientCount,
-          subTitle: "Today's clients",
+          subTitle: t('todaysClients', "Today's clients"),
           dateLastUpdated: '--',
         });
       },
     },
     {
-      title: 'Positive in last 14 days',
+      title: t('lastPositive', 'Positive in last 14 days'),
       linkAddress: '#',
-      subTitle: 'Clients',
+      subTitle: t('clients', 'Clients'),
       value: positiveInLast14Days,
       onClick: () => {
         launchWorkSpace('Positive in last 14 days', <PositiveInLast14Days />, {
           numberOfClients: positiveInLast14Days,
-          subTitle: 'Clients who tested positive in the last 14 days',
+          subTitle: t('positiveInLast14Days', 'Clients who tested positive in the last 14 days'),
           dateLastUpdated: '--',
         });
       },
     },
     {
-      title: 'Linked to care in last 14 days',
+      title: t('linkedToCare', 'Linked to care in last 14 days'),
       linkAddress: '#',
-      subTitle: 'Last 14 days',
+      subTitle: t('last14Days', 'Last 14 days'),
       value: linkedToCareInLast14Days,
       onClick: () => {
         launchWorkSpace('Linked to care in last 14 days', <LinkedToCareInLast14Days />, {
           numberOfClients: linkedToCareInLast14Days,
-          subTitle: 'Clients linked to care in the last 14 days',
+          subTitle: t('clientsLinkedToCare', 'Clients linked to care in the last 14 days'),
           dateLastUpdated: '--',
         });
       },

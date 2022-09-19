@@ -9,8 +9,8 @@ interface PreExposureProphylaxisListProps {
 const PreExposureProphylaxisList: React.FC<PreExposureProphylaxisListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('preExposureProphylaxis', 'Pre-exposure Prophylaxis');
-  const displayText = t('preExposureProphylaxis', 'Pre-exposure Prophylaxis (PrEP)');
+  const headerTitle = t('preExposureProphylaxisTitle', 'Pre-exposure Prophylaxis');
+  const displayText = t('preExposureProphylaxisHeader', 'Pre-exposure Prophylaxis (PrEP)');
 
   return (
     <>

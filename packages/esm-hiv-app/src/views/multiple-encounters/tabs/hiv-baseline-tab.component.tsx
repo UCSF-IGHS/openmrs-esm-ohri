@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getObsFromEncounter, MultipleEncounterList, MultipleEncounterListColumn } from 'openmrs-esm-ohri-commons-lib';
 import {
@@ -15,37 +15,6 @@ interface HivBaselineTabListProps {
   patientUuid: string;
 }
 
-const columns: MultipleEncounterListColumn[] = [
-  {
-    key: 'hivDiagnosisDate',
-    header: 'HIV Diagnosis Date',
-    getValue: encounters => {
-      return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfHIVDiagnosisConcept, true);
-    },
-  },
-  {
-    key: 'enrollmentDate',
-    header: 'Enrollment Date',
-    getValue: encounters => {
-      return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfServiceEnrollmentConcept, true);
-    },
-  },
-  {
-    key: 'artStartDate',
-    header: 'ART Start Date',
-    getValue: encounters => {
-      return getObsFromEncounter(encounters[art_Therapy_EncounterUUID], artTherapyDateTime_UUID, true);
-    },
-  },
-  {
-    key: 'tbScreening',
-    header: 'Current TB Screening',
-    getValue: encounters => {
-      return getObsFromEncounter(encounters[clinicalVisitEncounterType], tbScreeningOutcome);
-    },
-  },
-];
-
 const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) => {
   const encounters: Array<string> = [
     careAndTreatmentEncounterType,
@@ -55,8 +24,42 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
 
   const { t } = useTranslation();
 
-  const headerTitle = t('hivBaseline', 'HIV Baseline');
-  const displayText = t('hivBaseline', 'HIV Baseline');
+  const columns: MultipleEncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'hivDiagnosisDate',
+        header: t('hivDiagnosisDate', 'HIV Diagnosis Date'),
+        getValue: encounters => {
+          return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfHIVDiagnosisConcept, true);
+        },
+      },
+      {
+        key: 'enrollmentDate',
+        header: t('enrollmentDate', 'Enrollment Date'),
+        getValue: encounters => {
+          return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfServiceEnrollmentConcept, true);
+        },
+      },
+      {
+        key: 'artStartDate',
+        header: t('artStartDate', 'ART Start Date'),
+        getValue: encounters => {
+          return getObsFromEncounter(encounters[art_Therapy_EncounterUUID], artTherapyDateTime_UUID, true);
+        },
+      },
+      {
+        key: 'tbScreening',
+        header: t('tbScreening', 'Current TB Screening'),
+        getValue: encounters => {
+          return getObsFromEncounter(encounters[clinicalVisitEncounterType], tbScreeningOutcome);
+        },
+      },
+    ],
+    [],
+  );
+
+  const headerTitle = t('hivBaselineTitle', 'HIV Baseline');
+  const displayText = t('hivBaselineHeader', 'HIV Baseline');
 
   return (
     <MultipleEncounterList

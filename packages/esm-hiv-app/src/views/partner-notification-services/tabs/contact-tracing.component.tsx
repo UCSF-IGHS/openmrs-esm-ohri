@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
 import {
@@ -12,59 +12,62 @@ interface ContactTracingListProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
-  {
-    key: 'contactDate',
-    header: 'Contact Date',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, ContactTracingDate_UUID, true);
-    },
-  },
-  {
-    key: 'contactMethod',
-    header: 'Contact Method',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, ContactTracingMethod_UUID);
-    },
-  },
-  {
-    key: 'contactOutcome',
-    header: 'Contact Outcome',
-    getValue: encounter => {
-      return getObsFromEncounter(encounter, ContactTracingOutcome_UUID);
-    },
-  },
-
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: encounter => {
-      const baseActions = [
-        {
-          form: { name: 'contact_tracing', package: 'hiv' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'View Details',
-          mode: 'view',
-        },
-        {
-          form: { name: 'contact_tracing', package: 'hiv' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'Edit Form',
-          mode: 'edit',
-        },
-      ];
-      return baseActions;
-    },
-  },
-];
-
 const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('contactTracing', 'Contact Tracing');
-  const displayText = t('contactTracing', 'Contact Tracing');
+  const columnsLab: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'contactDate',
+        header: t('contactDate', 'Contact Date'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, ContactTracingDate_UUID, true);
+        },
+      },
+      {
+        key: 'contactMethod',
+        header: t('contactMethod', 'Contact Method'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, ContactTracingMethod_UUID);
+        },
+      },
+      {
+        key: 'contactOutcome',
+        header: t('contactOutcome', 'Contact Outcome'),
+        getValue: encounter => {
+          return getObsFromEncounter(encounter, ContactTracingOutcome_UUID);
+        },
+      },
+
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: encounter => {
+          const baseActions = [
+            {
+              form: { name: 'contact_tracing', package: 'hiv' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: 'View Details',
+              mode: 'view',
+            },
+            {
+              form: { name: 'contact_tracing', package: 'hiv' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: 'Edit Form',
+              mode: 'edit',
+            },
+          ];
+          return baseActions;
+        },
+      },
+    ],
+    [],
+  );
+
+  const headerTitle = t('contactTracingTitle', 'Contact Tracing');
+  const displayText = t('contactTracingDisplay', 'Contact Tracing');
 
   return (
     <EncounterList

@@ -39,12 +39,12 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const headerTitle = '';
 
   const tableHeaders = [
-    { key: 'name', header: 'Patient Name', isSortable: true },
-    { key: 'gender', header: 'Sex' },
-    { key: 'age', header: 'Age' },
-    { key: 'cd4Result', header: 'Recent CD4' },
-    { key: 'cd4ResultDate', header: 'Recent CD4 Date' },
-    { key: 'actions', header: 'Actions' },
+    { key: 'name', header: t('patientName', 'Patient Name'), isSortable: true },
+    { key: 'gender', header: t('sex', 'Sex') },
+    { key: 'age', header: t('age', 'Age') },
+    { key: 'cd4Result', header: t('recentCd4', 'Recent CD4') },
+    { key: 'cd4ResultDate', header: t('recentCd4Date', 'Recent CD4 Date') },
+    { key: 'actions', header: t('actions', 'Actions') },
   ];
 
   useEffect(() => {
