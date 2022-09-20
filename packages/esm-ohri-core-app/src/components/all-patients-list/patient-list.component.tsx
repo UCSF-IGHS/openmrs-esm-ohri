@@ -32,12 +32,12 @@ const PatientList: React.FC<PatientListProps> = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
-  const headerTitle = 'Patient List';
+  const headerTitle = t('patientList', 'Patient List');
   const tableHeaders = [
-    { key: 'name', header: 'Name', isSortable: true },
-    { key: 'gender', header: 'Gender' },
-    { key: 'age', header: 'Age' },
-    { key: 'last_visit', header: 'Last Visit' },
+    { key: 'name', header: t('name', 'Name'), isSortable: true },
+    { key: 'gender', header: t('gender', 'Gender') },
+    { key: 'age', header: t('age', 'Age') },
+    { key: 'last_visit', header: t('lastVisit', 'Last Visit') },
     { key: 'actions', header: '' },
   ];
 
