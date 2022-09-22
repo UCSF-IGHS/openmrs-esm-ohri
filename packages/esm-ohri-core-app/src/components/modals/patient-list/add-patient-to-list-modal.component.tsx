@@ -2,6 +2,7 @@ import { showToast, usePatient } from '@openmrs/esm-framework';
 import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
 const AddPatientToListOverflowMenuItem: React.FC<{
@@ -50,6 +51,7 @@ export const AddPatientToListModal: React.FC<{
   cohortType?: string,
   excludeCohorts?: Array<string>,
 }> = ({ isOpen, close, patientUuid, cohortType, title, excludeCohorts }) => {
+  const { t } = useTranslation();
   const [cohorts, setCohorts] = useState<Array<{ uuid: string, name: string }>>([]);
   const [alreadySubscribedCohorts, setAlreadySubscribedCohorts] = useState([]);
   const [currentMemberships, setCurrentMemberships] = useState([]);
@@ -120,7 +122,7 @@ export const AddPatientToListModal: React.FC<{
           showToast({
             kind: 'success',
             critical: true,
-            description: `Patient was successfully removed from all lists`,
+            description: t('patientSuccessfullyRemoved', `Patient was successfully removed from all lists`),
           });
           close();
         })
@@ -133,7 +135,10 @@ export const AddPatientToListModal: React.FC<{
           showToast({
             kind: 'success',
             critical: true,
-            description: `Patient was successfully added to ${response.data.cohort.display}`,
+            description: t(
+              'patientSuccessfullyAdded',
+              `Patient was successfully added to ${response.data.cohort.display}`,
+            ),
           });
           close();
         } else {
@@ -161,9 +166,9 @@ export const AddPatientToListModal: React.FC<{
           (selectedList == 'none' && currentMemberships.length == 0)
         }>
         <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
-          <p style={{ marginBottom: '1rem' }}>Currently added to the list(s) below</p>
+          <p style={{ marginBottom: '1rem' }}>{t('addedToList', 'Currently added to the list(s) below')}</p>
           {isLoading ? loader : alreadySubscribedLists}
-          <p style={{ marginBottom: '1rem' }}>Select the list where to add the client</p>
+          <p style={{ marginBottom: '1rem' }}>{t('selectList', 'Select the list where to add the client')}</p>
 
           {isLoading ? (
             loader

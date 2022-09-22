@@ -3,8 +3,10 @@ import { SideNav, SideNavItems, SideNavLink } from 'carbon-components-react/lib/
 import styles from './ohri-dashboard-side-nav.scss';
 import { ListBulleted32, Calendar32 } from '@carbon/icons-react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
+import { useTranslation } from 'react-i18next';
 
 const OHRIDashboardSideNav = () => {
+  const { t } = useTranslation();
   return (
     <SideNav isFixedNav expanded={true} isChildOfHeader={false} aria-label="Side navigation" className={styles.sideNav}>
       <SideNavItems>
@@ -13,14 +15,14 @@ const OHRIDashboardSideNav = () => {
         {/* Remove once we have dashboards */}
         <div>
           <SideNavLink renderIcon={ListBulleted32} href="javascript:void(0)">
-            Patient Lists
+            {t('patientLists', 'Patient Lists')}
           </SideNavLink>
           <SideNavLink renderIcon={Calendar32} href="javascript:void(0)">
-            Appointments
+            {t('appointments', 'Appointments')}
           </SideNavLink>
         </div>
 
-        <p className={styles.sideNavTextHeader}>My Dashboards</p>
+        <p className={styles.sideNavTextHeader}>{t('myDashboards', 'My Dashboards')}</p>
 
         <ExtensionSlot extensionSlotName="dashboard-slot" />
       </SideNavItems>
