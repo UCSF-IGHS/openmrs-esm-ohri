@@ -34,7 +34,7 @@ export const Outcomes: React.FC<{}> = () => {
     () => [
       {
         key: 'name',
-        header: t('name', 'Name'),
+        header: t('outcomeName', 'Name'),
         getValue: patient => {
           return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
         },
@@ -44,35 +44,35 @@ export const Outcomes: React.FC<{}> = () => {
       },
       {
         key: 'gender',
-        header: t('sex', 'Sex'),
+        header: t('outcomeSex', 'Sex'),
         getValue: patient => {
           return capitalize(patient.gender);
         },
       },
       {
         key: 'age',
-        header: t('age', 'Age'),
+        header: t('outcomeAge', 'Age'),
         getValue: patient => {
           return age(patient.birthDate);
         },
       },
       {
         key: 'assessmentDate',
-        header: t('assessmentDate', 'AssessmentDate Date'),
+        header: t('outcomeAssessmentDate', 'AssessmentDate Date'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidEncounterDateTime_UUID, true);
         },
       },
       {
         key: 'presentation',
-        header: t('presentation', 'Presentation'),
+        header: t('outcomePresentation', 'Presentation'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidPresentSymptonsConcept_UUID);
         },
       },
       {
         key: 'outcome',
-        header: t('outcome', 'Outcome'),
+        header: t('outcomeOutcome', 'Outcome'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidOutcomeUUID);
         },
@@ -149,7 +149,7 @@ export const Outcomes: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
+        <TableEmptyState tableHeaders={columns} message={t('noPatientList', 'There are no patients in this list.')} />
       ) : (
         <ExtensionSlot extensionSlotName="outcomes-table-slot" state={state} key={counter} />
       )}

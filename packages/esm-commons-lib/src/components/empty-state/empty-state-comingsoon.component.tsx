@@ -30,7 +30,7 @@ export const EmptyStateComingSoon: React.FC<EmptyStateProps> = ({ headerTitle, d
         </p>
       </div>
       {/* @ts-ignore */}
-      <Button kind="ghost" displayText={t('add', 'Add')} id="choose-intent" label="Add +"></Button>
+      <Button kind="ghost" displayText={t('add', 'Add')} id="choose-intent" label={t('add', 'Add +')}></Button>
     </Tile>
   );
 };
