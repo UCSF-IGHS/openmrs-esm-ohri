@@ -12,6 +12,7 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
 }> = ({ patientUuid, displayText, excludeCohorts }) => {
   const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
   const patientDisplay = useMemo(() => {
     return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
   }, [patient]);
@@ -31,12 +32,14 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
         <button
           className="bx--overflow-menu-options__btn"
           role="menuitem"
-          title="Add to list"
+          title={t('addToListModal', 'Add to list')}
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">{displayText || 'Add to list'}</span>
+          <span className="bx--overflow-menu-options__option-content">
+            {displayText || t('addList', 'Add to list')}
+          </span>
         </button>
       </li>
     </>

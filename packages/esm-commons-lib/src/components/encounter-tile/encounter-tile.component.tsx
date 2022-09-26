@@ -145,18 +145,24 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
     return row;
   });
 
-  const mockData_HIV_Status = [
-    { field: 'Last Viral Load', value: 2000, date: '12-Jan-2022' },
-    { field: 'Last CD4 Count', value: 132, date: '12-Jan-2022' },
-    { field: 'Enrolled in care', value: '10-Jan-2006', date: '' },
-    { field: 'Current WHO stage', value: '1', date: '' },
-  ];
+  const mockData_HIV_Status = useMemo(
+    () => [
+      { field: t('lastViralLaod', 'Last Viral Load'), value: 2000, date: '12-Jan-2022' },
+      { field: t('lastCD4', 'Last CD4 Count'), value: 132, date: '12-Jan-2022' },
+      { field: t('enrolledInCare', 'Enrolled in care'), value: '10-Jan-2006', date: '' },
+      { field: t('currentWHOStage', 'Current WHO stage'), value: '1', date: '' },
+    ],
+    [],
+  );
 
-  const mockData_Current_ARV = [
-    { field: 'Current ARV regimen', value: 'Lamivudine, Tenofovir, Dolutegravir' },
-    { field: 'Drug allergies', value: 'NSAIDs, Heparins' },
-    { field: 'ARV initiation date', value: '09-Feb-2006' },
-  ];
+  const mockData_Current_ARV = useMemo(
+    () => [
+      { field: t('CurrentARVRegimen', 'Current ARV regimen'), value: 'Lamivudine, Tenofovir, Dolutegravir' },
+      { field: t('drugAllergies', 'Drug allergies'), value: 'NSAIDs, Heparins' },
+      { field: t('arvInitiationDate', 'ARV initiation date'), value: '09-Feb-2006' },
+    ],
+    [],
+  );
 
   const updateRowTiles = () => {
     let currentRows = [];
