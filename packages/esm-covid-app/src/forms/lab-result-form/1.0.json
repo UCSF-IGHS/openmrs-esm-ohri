@@ -283,7 +283,7 @@
               "label": "Test result date",
               "type": "obs",
               "questionOptions": {
-                "rendering": "date",
+                "rendering": "datetime",
                 "concept": "163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": ""
               },
