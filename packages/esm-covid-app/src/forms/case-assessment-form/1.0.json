@@ -1399,24 +1399,12 @@
                     "label":"Astrazeneca",
                     "conceptMappings":[
                       {
-                        "type":"HL-7-CVX",
-                        "value":"210"
-                      },
-                      {
                         "type":"RxNORM",
-                        "value":"m2471010"
-                      },
-                      {
-                        "type":"SNOMED-CT",
-                        "value":"836369007"
-                      },
-                      {
-                        "type":"MVX",
-                        "value":"ASZ"
+                        "value":"2471010"
                       },
                       {
                         "type":"ICD-11-WHO",
-                        "value":"XM9QW8"
+                        "value":"XM4YL8"
                       },
                       {
                         "type":"CIEL",
@@ -1429,12 +1417,8 @@
                     "label":"Covaxin",
                     "conceptMappings":[
                       {
-                        "type":"SNOMED-CT",
-                        "value":"836369007"
-                      },
-                      {
                         "type":"ICD-11-WHO",
-                        "value":"XM1NL1"
+                        "value":"XM1G90"
                       },
                       {
                         "type":"CIEL",
@@ -1465,28 +1449,12 @@
                     "label":"Johnson and Johnson",
                     "conceptMappings":[
                       {
-                        "type":"SNOMED-CT",
-                        "value":"1119305005"
+                        "type":"ICD-11-WHO",
+                        "value":"XM1AG7"
                       },
                       {
                         "type":"CIEL",
-                        "value":"166355"
-                      },
-                      {
-                        "type":"ICD-11-WHO",
-                        "value":"XM9QW8"
-                      },
-                      {
-                        "type":"HL-7-CVX",
-                        "value":"212"
-                      },
-                      {
-                        "type":"MVX",
-                        "value":"JSN"
-                      },
-                      {
-                        "type":"RxNORM",
-                        "value":"2479830"
+                        "value":"166378"
                       }
                     ]
                   },
@@ -1495,12 +1463,8 @@
                     "label":"Moderna",
                     "conceptMappings":[
                       {
-                        "type":"SNOMED-CT",
-                        "value":"836369007"
-                      },
-                      {
-                        "type":"MVX",
-                        "value":"MOD"
+                        "type":"RxNORM",
+                        "value":"2470232"
                       },
                       {
                         "type":"CIEL",
@@ -1508,11 +1472,7 @@
                       },
                       {
                         "type":"ICD-11-WHO",
-                        "value":"XM0GQ8"
-                      },
-                      {
-                        "type":"RxNORM",
-                        "value":"2470232"
+                        "value":"XM3DT5"
                       }
                     ]
                   },
@@ -1521,24 +1481,12 @@
                     "label":"Novavax",
                     "conceptMappings":[
                       {
-                        "type":"ICD-11-WHO",
-                        "value":"XM5JC5"
-                      },
-                      {
-                        "type":"SNOMED-CT",
-                        "value":"1119305005"
-                      },
-                      {
                         "type":"CIEL",
                         "value":"166390"
                       },
                       {
-                        "type":"HL-7-CVX",
-                        "value":"211"
-                      },
-                      {
-                        "type":"MVX",
-                        "value":"NVX"
+                        "type":"ICD-11-WHO",
+                        "value":"XM5JC5"
                       }
                     ]
                   },
@@ -1547,24 +1495,12 @@
                     "label":"Pfizer-BioNtech",
                     "conceptMappings":[
                       {
-                        "type":"SNOMED-CT",
-                        "value":"836369007"
-                      },
-                      {
-                        "type":"MVX",
-                        "value":"PFR"
-                      },
-                      {
                         "type":"ICD-11-WHO",
-                        "value":"XM0GQ8"
+                        "value":"XM8NQ0"
                       },
                       {
                         "type":"RxNORM",
                         "value":"8468230"
-                      },
-                      {
-                        "type":"HL-7-CVX",
-                        "value":"208"
                       },
                       {
                         "type":"CIEL",
@@ -1575,27 +1511,24 @@
                   {
                     "concept":"166253AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label":"Sinopharm",
-                    "conceptMappings":[]
+                    "conceptMappings":[
+                      {
+                        "type":"ICD-11-WHO",
+                        "value":"XM8866"
+                      }
+                    ]
                   },
                   {
                     "concept":"166249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label":"Sinovac",
                     "conceptMappings":[
                       {
-                        "type":"ICD-11-WHO",
-                        "value":"XM9QW8"
-                      },
-                      {
-                        "type":"SNOMED-CT",
-                        "value":"836369007"
-                      },
-                      {
-                        "type":"HL-7-CVX",
-                        "value":"213"
-                      },
-                      {
                         "type":"CIEL",
                         "value":"166249"
+                      },
+                      {
+                        "type":"ICD-11-WHO",
+                        "value":"XM7HT3"
                       }
                     ]
                   },
@@ -1626,10 +1559,6 @@
                       {
                         "type": "AMPATH",
                         "value": "5622"
-                      },
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "74964007"
                       }
                     ]
                   }
