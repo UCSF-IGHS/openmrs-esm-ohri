@@ -83,7 +83,7 @@
               "label": "Order date",
               "type": "obs",
               "questionOptions": {
-                "rendering": "date",
+                "rendering": "datetime",
                 "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": "",
                 "conceptMappings": [

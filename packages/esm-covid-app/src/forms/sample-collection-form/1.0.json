@@ -78,7 +78,7 @@
               "label": "Date Sample collected",
               "type": "obs",
               "questionOptions": {
-                "rendering": "date",
+                "rendering": "datetime",
                 "concept": "159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "weeksList": "",
                 "conceptMappings": [
