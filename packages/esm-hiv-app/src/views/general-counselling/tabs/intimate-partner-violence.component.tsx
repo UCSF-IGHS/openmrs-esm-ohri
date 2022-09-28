@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterListColumn, EncounterList, findObs, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterListColumn, EncounterList, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   EmotionalAbuse_UUID,
   IntimatePartnerEncounterType_UUID,

@@ -7,7 +7,7 @@ import {
   returnVisitDateConcept,
   visitTypeConcept,
 } from '../../../constants';
-import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 
 interface ClinicalVisitWidgetProps {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../common.scss';
 import { DataTableSkeleton } from 'carbon-components-react';
-import { EmptyState, OTable } from 'openmrs-esm-ohri-commons-lib';
+import { EmptyState, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 interface OverviewListProps {
   patientUuid: string;

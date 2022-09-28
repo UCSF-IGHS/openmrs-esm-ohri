@@ -5,7 +5,7 @@ import {
   getEncounterValues,
   getObsFromEncounter,
   EncounterList,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ReasonForViralLoad_UUID,
   ViralLoadCopies_UUID,

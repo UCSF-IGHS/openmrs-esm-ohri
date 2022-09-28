@@ -11,7 +11,7 @@ import {
   covidTestStatusConcept_UUID,
   covidTypeofTestConcept_UUID,
 } from '../constants';
-import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +

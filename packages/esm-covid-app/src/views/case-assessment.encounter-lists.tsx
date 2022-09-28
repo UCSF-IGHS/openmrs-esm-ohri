@@ -1,4 +1,4 @@
-import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {

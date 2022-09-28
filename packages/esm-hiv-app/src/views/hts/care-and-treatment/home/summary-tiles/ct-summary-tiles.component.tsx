@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OHRIProgrammeSummaryTiles, getReportingCohort } from 'openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clientsEnrolledToCare } from '../../../../../constants';
 
 function CTSummaryTiles({ launchWorkSpace }) {

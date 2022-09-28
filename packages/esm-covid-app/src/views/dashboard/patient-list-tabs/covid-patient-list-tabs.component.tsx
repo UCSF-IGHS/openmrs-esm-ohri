@@ -26,7 +26,7 @@ import {
   getObsFromEncounters,
   OHRIPatientListTabs,
   returnVisitDateConcept,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import moment from 'moment';
 
 function CovidHomePatientTabs() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { EncounterList, EncounterListColumn, getObsFromEncounter, findObs } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter, findObs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   artTherapyDateTime_UUID,
   art_Therapy_EncounterUUID,

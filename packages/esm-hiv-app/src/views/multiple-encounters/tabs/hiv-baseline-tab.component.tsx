@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getObsFromEncounter, MultipleEncounterList, MultipleEncounterListColumn } from 'openmrs-esm-ohri-commons-lib';
+import {
+  getObsFromEncounter,
+  MultipleEncounterList,
+  MultipleEncounterListColumn,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   artTherapyDateTime_UUID,
   art_Therapy_EncounterUUID,

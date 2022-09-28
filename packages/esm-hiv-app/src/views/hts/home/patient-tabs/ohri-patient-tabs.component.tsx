@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Tabs, Tab, Row, Column } from 'carbon-components-react';
 import styles from './ohri-patient-tabs.scss';
-import { CohortPatientList } from 'openmrs-esm-ohri-commons-lib';
+import { CohortPatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   htsRetrospectiveEncounterType,
   postTestCounsellingCohort,

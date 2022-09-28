@@ -2,7 +2,7 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyState, OHRIFormLauncherEmpty, launchForm } from 'openmrs-esm-ohri-commons-lib';
+import { EmptyState, OHRIFormLauncherEmpty, launchForm } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../../constants';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
 

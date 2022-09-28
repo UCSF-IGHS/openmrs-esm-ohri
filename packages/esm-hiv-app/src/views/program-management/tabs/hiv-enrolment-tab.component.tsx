@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterListColumn, findObs, getObsFromEncounter, EncounterList } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterListColumn, findObs, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   dateOfServiceEnrollmentConcept,
   dateOfHIVDiagnosisConcept,

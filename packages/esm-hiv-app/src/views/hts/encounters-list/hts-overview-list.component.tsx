@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import moment from 'moment';
-import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { htsStrategyUUID } from '../../../constants';
 import { useTranslation } from 'react-i18next';
 
