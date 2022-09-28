@@ -15,7 +15,7 @@ import {
   EncounterListColumn,
   TableEmptyState,
   basePath,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 
 export const Outcomes: React.FC<{}> = () => {

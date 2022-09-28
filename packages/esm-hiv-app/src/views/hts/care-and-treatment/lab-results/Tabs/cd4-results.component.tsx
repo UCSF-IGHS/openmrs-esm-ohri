@@ -7,7 +7,7 @@ import {
   fetchPatientList,
   getObsFromEncounter,
   OTable,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
 import { DataTableSkeleton, Pagination, Search } from 'carbon-components-react';

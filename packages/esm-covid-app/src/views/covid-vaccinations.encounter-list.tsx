@@ -17,7 +17,7 @@ import {
   findObs,
   getEncounterValues,
   getObsFromEncounter,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 
 interface CovidVaccinationsWidgetProps {
   patientUuid: string;

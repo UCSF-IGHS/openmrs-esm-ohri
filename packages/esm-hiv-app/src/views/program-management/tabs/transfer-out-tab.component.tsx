@@ -6,7 +6,7 @@ import {
   findObs,
   getObsFromEncounter,
   EncounterList,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 
 import {
   receivingFacility_UUID,

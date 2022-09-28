@@ -5,7 +5,7 @@ import {
   OHRISummaryTileTablet,
   fetchPatientsFromObservationCodeConcept,
   fetchTodayClients,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,

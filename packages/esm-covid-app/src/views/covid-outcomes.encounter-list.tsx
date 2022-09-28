@@ -3,7 +3,7 @@ import {
   EncounterListColumn,
   getEncounterValues,
   getObsFromEncounter,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {

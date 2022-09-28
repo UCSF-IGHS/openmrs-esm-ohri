@@ -5,7 +5,7 @@ import {
   PatientStatusBannerTag,
   OHRIHome,
   OHRIWelcomeSection,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
 import hivForms from './forms/forms-registry';

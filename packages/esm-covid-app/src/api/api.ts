@@ -5,7 +5,7 @@ import {
   encounterRepresentation,
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { covidOutcomesCohortUUID } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';

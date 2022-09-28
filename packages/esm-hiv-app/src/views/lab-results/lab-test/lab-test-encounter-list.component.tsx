@@ -6,7 +6,7 @@ import {
   EncounterListColumn,
   getObsFromEncounter,
   MultipleEncounterList,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   Cd4Count_UUID,
   Cd4LabResultCountPercentage_UUID,

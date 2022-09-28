@@ -14,7 +14,7 @@ import {
   OTable,
   fetchLastVisit,
   fetchPatientList,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 interface PatientListProps {

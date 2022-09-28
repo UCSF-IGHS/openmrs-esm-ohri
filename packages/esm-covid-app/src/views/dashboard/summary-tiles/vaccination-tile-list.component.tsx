@@ -11,8 +11,8 @@ import {
   basePath,
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
-} from 'openmrs-esm-ohri-commons-lib/src/constants';
-import { filterFHIRPatientsByName, TableEmptyState } from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib/src/constants';
+import { filterFHIRPatientsByName, TableEmptyState } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 
 export const Vaccinations: React.FC<{}> = () => {

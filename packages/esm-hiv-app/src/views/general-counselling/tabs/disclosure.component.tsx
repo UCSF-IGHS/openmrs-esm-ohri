@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterList, EncounterListColumn, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { DisclosureDate_UUID, DisclosureStage_UUID, PeadsDisclosureEncounterType_UUID } from '../../../constants';
 
 interface DisclosureListProps {

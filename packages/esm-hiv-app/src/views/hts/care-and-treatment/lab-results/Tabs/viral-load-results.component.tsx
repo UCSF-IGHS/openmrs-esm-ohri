@@ -12,7 +12,7 @@ import {
   encounterRepresentation,
   getObsFromEncounter,
   fetchLastVisit,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ViralLoadResultDate_UUID,
   ViralLoadResultsEncounter_UUID,

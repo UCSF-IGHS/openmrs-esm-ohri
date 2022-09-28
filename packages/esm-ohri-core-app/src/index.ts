@@ -7,7 +7,7 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { homeDashboardMeta } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');

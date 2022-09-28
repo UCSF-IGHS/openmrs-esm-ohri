@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterListColumn, getObsFromEncounter, EncounterList } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   CommunityDSDModel_UUID,
   DSDStatus_UUID,

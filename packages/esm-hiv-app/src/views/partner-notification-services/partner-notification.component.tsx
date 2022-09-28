@@ -1,7 +1,7 @@
 import { Tag } from 'carbon-components-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   FirstName_UUID,
   IndexHIVStatus_UUID,

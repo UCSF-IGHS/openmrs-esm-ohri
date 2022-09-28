@@ -6,7 +6,7 @@ import {
   fetchTodayClients,
   TableEmptyState,
   filterFHIRPatientsByName,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { basePath, linkedToCareCodeConcept, linkedToCareYesValueConcept } from '../../../../constants';
 
 export const columns = [

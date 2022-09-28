@@ -1,6 +1,6 @@
 import React from 'react';
 import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../constants';
-import { OHRIPatientListTabs } from 'openmrs-esm-ohri-commons-lib';
+import { OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 
 function CTHomePatientTabs() {
