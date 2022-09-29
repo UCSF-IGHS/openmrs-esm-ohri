@@ -3,7 +3,7 @@ import {
   launchFormInEditMode,
   launchFormInViewMode,
   launchFormWithCustomTitle,
-} from '@ohri/openmrs-esm-ohri-commons-lib/src/utils/ohri-forms-commons';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 import styles from './Tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
