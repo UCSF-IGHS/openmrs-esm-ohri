@@ -65,7 +65,7 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
-    "@ohri/openmrs-ohri-form-engine-lib": "1.x",
+    "@ohri/openmrs-ohri-form-engine-lib": "^1.0.0-pre.118",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
