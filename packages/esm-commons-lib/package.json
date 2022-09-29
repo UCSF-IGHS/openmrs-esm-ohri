@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@carbon/icons-react": "^10.49.0",
-    "@ohri/openmrs-ohri-form-engine-lib": "next",
+    "@ohri/openmrs-ohri-form-engine-lib": "1.x",
     "ace-builds": "^1.4.14",
     "carbon-components-react": "^7.56.0",
     "enzyme": "^3.11.0",
