@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import styles from '../common.scss';
 import HIVEnrolmentTabList from './tabs/hiv-enrolment-tab.component';
 import ServiceDeliveryTabList from './tabs/service-delivery-tab.component';

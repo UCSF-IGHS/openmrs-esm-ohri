@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import CD4OverviewList from '../cd4/cd4-encounter-list.component';
 import styles from './lab-results-overview.scss';
 import LabResultsOverviewList from '../encounter-list/lab-results-encounter-list.component';

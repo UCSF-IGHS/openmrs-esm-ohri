@@ -1,4 +1,4 @@
-import { Tag } from 'carbon-components-react';
+import { Tag } from '@carbon/react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';

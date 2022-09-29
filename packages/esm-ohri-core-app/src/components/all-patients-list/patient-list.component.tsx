@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
 import styles from './patient-list.scss';
-import Button from 'carbon-components-react/es/components/Button';
-import { Add16 } from '@carbon/icons-react';
+import { Add } from '@carbon/react/icons';
 import { useTranslation } from 'react-i18next';
 import { age, navigate } from '@openmrs/esm-framework';
-import { DataTableSkeleton, Pagination, OverflowMenu } from 'carbon-components-react';
+import { DataTableSkeleton, Pagination, OverflowMenu, Button } from '@carbon/react';
 import { capitalize } from 'lodash';
 import moment from 'moment';
 import {
@@ -104,7 +103,7 @@ const PatientList: React.FC<PatientListProps> = () => {
             <div className={styles.toggleButtons}>
               <Button
                 kind="ghost"
-                renderIcon={Add16}
+                renderIcon={<Add size={16} />}
                 iconDescription="New"
                 onClick={e => {
                   e.preventDefault();

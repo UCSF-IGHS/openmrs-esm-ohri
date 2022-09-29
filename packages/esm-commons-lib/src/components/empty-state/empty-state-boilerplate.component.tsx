@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tile } from 'carbon-components-react/es/components/Tile';
+import { Tile } from '@carbon/react';
 import { EmptyDataIllustration } from './empty-data-illustration.component';
 import styles from './empty-state.scss';
 import { Trans, useTranslation } from 'react-i18next';

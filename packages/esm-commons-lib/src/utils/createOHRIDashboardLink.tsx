@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { SideNavLink, SideNavMenu, SideNavMenuItem } from 'carbon-components-react';
+import { SideNavLink, SideNavMenu, SideNavMenuItem } from '@carbon/react';
 import { ExtensionSlot, navigate } from '@openmrs/esm-framework';
 import styles from './sidenav-links.scss';
 

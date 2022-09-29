@@ -1,4 +1,4 @@
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../common.scss';

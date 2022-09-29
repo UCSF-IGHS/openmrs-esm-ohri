@@ -1,5 +1,5 @@
 import { showToast, usePatient } from '@openmrs/esm-framework';
-import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
+import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from '@carbon/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -28,16 +28,16 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
           excludeCohorts={excludeCohorts}
         />
       )}
-      <li className="bx--overflow-menu-options__option">
+      <li className="cds--overflow-menu-options__option">
         <button
-          className="bx--overflow-menu-options__btn"
+          className="cds--overflow-menu-options__btn"
           role="menuitem"
           title={t('addToListModal', 'Add to list')}
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">
+          <span className="cds--overflow-menu-options__option-content">
             {displayText || t('addList', 'Add to list')}
           </span>
         </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Add16 } from '@carbon/icons-react';
+import { Add } from '@carbon/react/icons';
 import styles from './launcher-with-intent.scss';
 import { useTranslation } from 'react-i18next';
 import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.component';
@@ -28,7 +28,7 @@ export const OHRIFormLauncherWithIntent: React.FC<{
           menuTitle={
             <>
               <span className={styles.actionsButtonText}>{t('add', 'Add')}</span>{' '}
-              <Add16 style={{ marginLeft: '0.5rem' }} />
+              <Add size={16} style={{ marginLeft: '0.5rem' }} />
             </>
           }
           overflowItems={overFlowItems}

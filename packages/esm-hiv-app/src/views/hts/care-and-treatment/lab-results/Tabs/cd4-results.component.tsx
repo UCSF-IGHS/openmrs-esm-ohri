@@ -10,7 +10,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
-import { DataTableSkeleton, Pagination, Search } from 'carbon-components-react';
+import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
 import { capitalize } from 'lodash';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';

@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './ohri-overflow-menu.scss';
 import { useTranslation } from 'react-i18next';
 import { applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
-import { Button } from 'carbon-components-react';
+import { Button } from '@carbon/react';
 
 interface OverflowMenuProps {
   menuTitle: React.ReactNode;
@@ -43,11 +43,11 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
   }, [wrapperRef]);
 
   return (
-    <div className={`bx--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
+    <div className={`cds--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
       {overflowItems.length > 0 ? (
         <>
           <button
-            className={`bx--overflow-menu__trigger ${showMenu && 'bx--overflow-menu--open'}`}
+            className={`cds--overflow-menu__trigger ${showMenu && 'cds--overflow-menu--open'}`}
             aria-haspopup="true"
             aria-expanded={showMenu}
             id="custom-actions-overflow-menu-trigger"
@@ -64,7 +64,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
             {menuTitle}
           </button>
           <div
-            className="bx--overflow-menu-options bx--overflow-menu--flip"
+            className="cds--overflow-menu-options cds--overflow-menu--flip"
             tabIndex={0}
             data-floating-menu-direction="bottom"
             role="menu"
@@ -81,14 +81,14 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
               width: '13rem',
             }}>
-            <ul className="bx--overflow-menu-options__content">
+            <ul className="cds--overflow-menu-options__content">
               {overflowItems.map(item => {
                 return item.availableIntents.map((intent, index) => {
                   return (
-                    <li className="bx--overflow-menu-options__option" id={'item-' + index} key={index}>
+                    <li className="cds--overflow-menu-options__option" id={'item-' + index} key={index}>
                       <button
                         id={'menuItem-' + index}
-                        className="bx--overflow-menu-options__btn"
+                        className="cds--overflow-menu-options__btn"
                         role="menuitem"
                         title={intent.display}
                         onClick={e => {
@@ -100,7 +100,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                         style={{
                           maxWidth: '100vw',
                         }}>
-                        <span className="bx--overflow-menu-options__option-content">{intent.display}</span>
+                        <span className="cds--overflow-menu-options__option-content">{intent.display}</span>
                       </button>
                     </li>
                   );

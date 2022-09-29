@@ -6,7 +6,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 import styles from './Tabs/patient-list.scss';
-import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
+import { OverflowMenu, OverflowMenuItem } from '@carbon/react';
 import { changeWorkspaceContext, closeAllWorkspaces, resetWorkspaceStore } from '@openmrs/esm-patient-common-lib';
 import { navigate } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import styles from '../common.scss';
 import CaCxRegistrationList from './Tabs/cacx-registration.component';
 import CacxScreeningList from './Tabs/cacx-screening.component';

@@ -1,16 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Header } from 'carbon-components-react';
-import ArrowLeft16 from '@carbon/icons-react/lib/arrow--left/16';
-import { OverflowMenuVertical32 } from '@carbon/icons-react';
+import { Breadcrumb, BreadcrumbItem, Button, Header } from '@carbon/react';
+import { ArrowLeft, OverflowMenuVertical } from '@carbon/react/icons';
 import moment from 'moment';
 import styles from './patient-list-workspace.scss';
 
-export const PatientListWorkspace: React.FC<{
+export const PatientListWorkspace: React.FC<React.PropsWithChildren<{
   header: string;
   onClose?: () => void;
   isVisible?: boolean;
   meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
-}> = ({ header, children, isVisible, onClose, meta }) => {
+}>> = ({ header, children, isVisible, onClose, meta }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -26,16 +25,16 @@ export const PatientListWorkspace: React.FC<{
   return <>{isOpen && <Overflow header={header} close={close} children={children} meta={meta} />}</>;
 };
 
-const Overflow: React.FC<{
+const Overflow: React.FC<React.PropsWithChildren<{
   close: () => void;
   header: string;
   meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
-}> = ({ close, children, header, meta }) => {
+}>> = ({ close, children, header, meta }) => {
   return (
     <div className={styles.patientListWorkspaceContainer}>
       <Header>
         <Button style={{ backgroundColor: 'transparent', padding: '15px' }} onClick={close}>
-          <ArrowLeft16 onClick={close} />
+          <ArrowLeft size={16} onClick={close} />
         </Button>
         <div>{header}</div>
       </Header>
@@ -79,7 +78,7 @@ const Overflow: React.FC<{
               </div>
               {/* @ts-ignore */}
               <Button size="small" kind="ghost" onClick="#">
-                Actions <OverflowMenuVertical32 style={{ height: '20px' }} />
+                Actions <OverflowMenuVertical size={32} style={{ height: '20px' }} />
               </Button>
             </div>
             <div className={styles.patientListRow}>

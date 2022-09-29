@@ -15,7 +15,7 @@
     background-color: $ui-background;
 }
 
-.widgetContainer :global(.bx--data-table) thead th button span {
+.widgetContainer :global(.cds--data-table) thead th button span {
     height: unset !important;
 }
 
@@ -99,7 +99,7 @@
     height: 100px;
     padding: 1px 0 16px 16px;
     margin: 20px 20px;
-    border: solid 1px #e0e0e0; 
+    border: solid 1px #e0e0e0;
     flex-direction: column;
     background-color: #ffffff;
 
@@ -125,12 +125,12 @@
 }
 
 .tileValueARV {
-    display: block; 
+    display: block;
     font-size: 20px;
-    line-height: 1.29; 
+    line-height: 1.29;
     color: #161616;
 }
-.tabletTileTitleARV { 
+.tabletTileTitleARV {
     margin: 4px 4px;
     font-size: 14px;
     font-weight: 500;
@@ -138,12 +138,12 @@
     font-style: normal;
     line-height: 1.29;
     letter-spacing: 0.16px;
-    color: #525252; 
+    color: #525252;
 }
 .tileBoxARV {
-    display: flex;   
-    margin: 1px 21rem 1px 1rem; 
+    display: flex;
+    margin: 1px 21rem 1px 1rem;
 }
 .tileBoxColumnARV {
-    width: 100%;      
+    width: 100%;
 }

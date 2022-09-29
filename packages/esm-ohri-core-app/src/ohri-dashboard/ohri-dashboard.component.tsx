@@ -42,7 +42,7 @@ const OHRIDashboard = ({ match }) => {
         );
       })}
       {layout === 'desktop' && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
-      <div className={`bx--grid ${styles.dashboardContent}`}>
+      <div className={`cds--grid ${styles.dashboardContent}`}>
         {currentDashboard && (
           <DashboardView
             dashboardSlot={currentDashboard.slot}

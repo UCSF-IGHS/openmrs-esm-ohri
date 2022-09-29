@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from 'carbon-components-react';
+import { Button, Column, Dropdown, Form, Row, Tabs, Tab } from '@carbon/react';
 import styles from './form-render.scss';
-import { Run32, Maximize32 } from '@carbon/icons-react';
+import { Run, Maximize } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 import {
@@ -20,7 +20,6 @@ function FormRenderTest() {
   const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
-  // const [formIntentInput, setFormIntentInput] = useState('Empty Intent'); //TODO: Re-purpose
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
   const [selectedFormIntent, setSelectedFormIntent] = useState('');
 
@@ -197,7 +196,7 @@ function FormRenderTest() {
 
                   <Button
                     type="submit"
-                    renderIcon={Run32}
+                    renderIcon={<Run size={32} />}
                     className="form-group"
                     style={{ marginTop: '1em' }}
                     disabled={!selectedFormIntent}>
@@ -236,7 +235,10 @@ function FormRenderTest() {
           <Column lg={viewActionText === 'Split-screen' ? 12 : 7} md={7} sm={12}>
             <div className={styles.viewMode}>
               <h4>{t('generatedForm', 'Generated Form')}</h4>
-              <Button renderIcon={Maximize32} className={isSchemaLoaded ? styles.show : ''} onClick={toggleViewMode}>
+              <Button
+                renderIcon={<Maximize size={32} />}
+                className={isSchemaLoaded ? styles.show : ''}
+                onClick={toggleViewMode}>
                 {t('viewActionText', viewActionText)}
               </Button>
             </div>

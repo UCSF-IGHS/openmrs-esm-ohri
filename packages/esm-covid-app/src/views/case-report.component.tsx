@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
+import DataTableSkeleton from '@carbon/react';
 import moment from 'moment';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
 import { EmptyState, OHRIFormLauncherWithIntent, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';

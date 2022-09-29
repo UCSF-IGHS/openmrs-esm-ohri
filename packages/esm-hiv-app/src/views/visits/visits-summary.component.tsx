@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import styles from '../common.scss';
 import ClinicalVisitList from './tabs/clinical-visit-tab.component';
 import ExpressVisitList from './tabs/express-visit-tab.component';

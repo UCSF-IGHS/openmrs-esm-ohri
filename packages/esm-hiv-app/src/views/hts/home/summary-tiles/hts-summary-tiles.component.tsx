@@ -1,4 +1,4 @@
-import { Column, Row } from 'carbon-components-react';
+import { Column, Row } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
 import {
   OHRISummaryTile,

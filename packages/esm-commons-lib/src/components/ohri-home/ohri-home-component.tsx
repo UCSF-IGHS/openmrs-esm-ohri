@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
-import { Grid } from 'carbon-components-react';
+import { Grid } from '@carbon/react';
 import styles from './ohri-home.scss';
 import { PatientListWorkspace } from '../../workspace/patient-list-workspace';
 

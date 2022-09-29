@@ -1,15 +1,14 @@
 import { navigate, openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
-import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
-import { Add16 } from '@carbon/icons-react';
+import { Add } from '@carbon/react/icons';
 import {
   launchForm,
   launchFormInEditMode,
@@ -332,7 +331,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     return (
       <Button
         kind="ghost"
-        renderIcon={Add16}
+        renderIcon={<Add size={16} />}
         iconDescription="Add "
         onClick={e => {
           e.preventDefault();

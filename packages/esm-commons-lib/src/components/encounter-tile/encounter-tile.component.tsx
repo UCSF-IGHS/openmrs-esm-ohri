@@ -1,6 +1,6 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { CodeSnippetSkeleton, Tile, Row, Button } from 'carbon-components-react';
-import { ArrowRight32 } from '@carbon/icons-react';
+import { CodeSnippetSkeleton, Tile, Row, Button } from '@carbon/react';
+import { ArrowRight } from '@carbon/react/icons';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
@@ -81,13 +81,9 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
 export const EncounterTile: React.FC<EncounterTileProps> = ({
   patientUuid,
   encounterUuid,
-  form,
   columns,
   headerTitle,
   description,
-  dropdownText,
-  hideFormLauncher,
-  forms,
   filter,
   tileStyle,
 }) => {
@@ -95,15 +91,6 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   const [allRows, setAllRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-
-  const headers = useMemo(() => {
-    if (columns) {
-      return columns.map(column => {
-        return { key: column.keys, header: column.header };
-      });
-    }
-    return [];
-  }, [columns]);
 
   const loadRows = useCallback(
     encounterType => {
@@ -133,18 +120,6 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
     loadRows(encounterUuid);
   }, [counter]);
 
-  const rows = allRows.map(encounter => {
-    const row = { id: encounter.uuid };
-
-    columns.forEach(column => {
-      let val = column.getValue(encounter);
-
-      row[column.key] = val;
-      row[column.header] = column.header;
-    });
-    return row;
-  });
-
   const mockData_HIV_Status = useMemo(
     () => [
       { field: t('lastViralLaod', 'Last Viral Load'), value: 2000, date: '12-Jan-2022' },
@@ -164,9 +139,6 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
     [],
   );
 
-  const updateRowTiles = () => {
-    let currentRows = [];
-  };
   return (
     <>
       {isLoading ? (
@@ -178,7 +150,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
             {tileStyle == 'ARV' ? (
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Button size="small" kind="ghost">
-                  Change <ArrowRight32 style={{ width: '12px', height: '10px' }} />
+                  Change <ArrowRight size={32} style={{ width: '12px', height: '10px' }} />
                 </Button>
               </div>
             ) : (

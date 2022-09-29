@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import styles from '../lab-results/Tabs/patient-list.scss';
 import CD4ResultsList from './Tabs/cd4-results.component';
 import ViralLoadResultsList from './Tabs/viral-load-results.component';

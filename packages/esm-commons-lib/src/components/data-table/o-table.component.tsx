@@ -7,7 +7,7 @@ import DataTable, {
   TableHead,
   TableHeader,
   TableRow,
-} from 'carbon-components-react/es/components/DataTable';
+} from '@carbon/react';
 import styles from './o-table.scss';
 
 interface TableProps {

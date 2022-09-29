@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import styles from '../common.scss';
 import MentalHealthAssessmentList from './tabs/mental-health-assessment.component';
 import DrugsAndAlcoholUseList from './tabs/drugs-and-alcohol-use.component';

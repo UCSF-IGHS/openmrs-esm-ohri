@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab } from '@carbon/react';
 import styles from './ohri-patient-list-tabs.scss';
 import { CohortPatientList } from '../patient-lists/patient-list-cohort.component';
 

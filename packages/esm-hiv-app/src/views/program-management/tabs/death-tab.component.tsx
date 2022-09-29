@@ -1,4 +1,4 @@
-import { Tab } from 'carbon-components-react';
+import { Tab } from '@carbon/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';

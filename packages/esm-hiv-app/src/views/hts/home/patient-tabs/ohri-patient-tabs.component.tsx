@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Tabs, Tab, Row, Column } from 'carbon-components-react';
+import { Tabs, Tab, Row, Column } from '@carbon/react';
 import styles from './ohri-patient-tabs.scss';
 import { CohortPatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {

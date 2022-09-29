@@ -3,7 +3,7 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, Pagination, Search } from 'carbon-components-react';
+import { DataTableSkeleton, OverflowMenu, Pagination, Search } from '@carbon/react';
 import { capitalize } from 'lodash';
 import {
   EmptyState,

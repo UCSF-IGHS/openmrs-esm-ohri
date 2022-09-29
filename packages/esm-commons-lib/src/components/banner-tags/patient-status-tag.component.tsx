@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Tag from 'carbon-components-react/es/components/Tag';
-import TooltipDefinition from 'carbon-components-react/es/components/TooltipDefinition';
+import { Tag } from '@carbon/react';
 import { useVisit } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
