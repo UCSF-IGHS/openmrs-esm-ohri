@@ -3028,8 +3028,34 @@
 							   "conceptMappings":[
 
 							   ]
-							}
-						 ]
+							},
+               {
+                 "concept":"1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "label":"None",
+                 "conceptMappings":[
+                   {
+                     "type":"SNOMED-CT",
+                     "value":"260413007"
+                   },
+                   {
+                     "type":"AMPATH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"CIEL",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH-Malawi",
+                     "value":"1107"
+                   }
+                 ]
+               }
+             ]
 					  },
 					  "behaviours":[
 						 {
@@ -3111,7 +3137,33 @@
 									 "value":"2573"
 								  }
 							   ]
-							}
+							},
+               {
+                 "concept":"1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "label":"None",
+                 "conceptMappings":[
+                   {
+                     "type":"SNOMED-CT",
+                     "value":"260413007"
+                   },
+                   {
+                     "type":"AMPATH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"CIEL",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH-Malawi",
+                     "value":"1107"
+                   }
+                 ]
+               }
 						 ]
 					  },
 					  "behaviours":[
@@ -4095,7 +4147,15 @@
 					  ],
 					  "id":"tbRxEndDate"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"onTBRx !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Presumptive TB",
@@ -6785,7 +6845,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"nutritionalStatus !== '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && nutritionalStatus !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -6949,7 +7009,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"nutritionalStatus !== '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && nutritionalStatus !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalInterventions !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -6968,7 +7028,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"nutritionalStatus !== '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && nutritionalStatus !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalInterventions !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -8153,7 +8213,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"pcpProphylaxis !== '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"cryptoProphylaxis !== '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -8178,7 +8238,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"pcpProphylaxis !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"cryptoProphylaxis !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
