@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { attach, detach, ExtensionSlot, useExtensionSlotMeta, useLayoutType } from '@openmrs/esm-framework';
+import { attach, detach, ExtensionSlot, isDesktop, useExtensionSlotMeta, useLayoutType } from '@openmrs/esm-framework';
 import styles from './ohri-dashboard.scss';
+import { useParams } from 'react-router';
 
-const OHRIDashboard = ({ match }) => {
-  const {
-    params: { view },
-  } = match;
+const OHRIDashboard = () => {
+  // const {
+  //   params: { view },
+  // } = useParams();
+
+  const params = useParams();
+
+  console.log('view', params);
+
   const [dashboards, setDashboards] = useState([]);
   const metaLinks = useExtensionSlotMeta('dashboard-links-slot');
   const metaFolders = useExtensionSlotMeta('dashboard-slot');
@@ -14,16 +20,16 @@ const OHRIDashboard = ({ match }) => {
   const [currentDashboard, setCurrentDashboard] = useState(dashboards[0]);
   const layout = useLayoutType();
 
-  useEffect(() => {
-    if (view) {
-      setCurrentDashboard(dashboards.find(db => db.name == view));
-    } else {
-      setCurrentDashboard(dashboards[0]);
-    }
-  }, [view, dashboards]);
+  // useEffect(() => {
+  //   if (view) {
+  //     setCurrentDashboard(dashboards.find(db => db.name == view));
+  //   } else {
+  //     setCurrentDashboard(dashboards[0]);
+  //   }
+  // }, [view, dashboards]);
 
   useEffect(() => {
-    if (layout != 'desktop') {
+    if (!isDesktop(layout)) {
       attach('nav-menu-slot', 'ohri-nav-items-ext');
     }
     return () => detach('nav-menu-slot', 'ohri-nav-items-ext');
@@ -41,7 +47,7 @@ const OHRIDashboard = ({ match }) => {
           />
         );
       })}
-      {layout === 'desktop' && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
+      {isDesktop(layout) && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
       <div className={`cds--grid ${styles.dashboardContent}`}>
         {currentDashboard && (
           <DashboardView

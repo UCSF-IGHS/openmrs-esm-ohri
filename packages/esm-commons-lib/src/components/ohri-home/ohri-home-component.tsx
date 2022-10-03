@@ -31,7 +31,7 @@ export function OHRIHome(HomeProps) {
       <PatientListWorkspace
         isVisible={isWorkSpaceVisible}
         header={workSpaceProps?.header}
-        children={workSpaceProps?.children}
+        // children={workSpaceProps?.children}
         onClose={() => setIsWorkSpaceVisible(false)}
         meta={workSpaceProps?.meta}
       />

@@ -1,3 +1,5 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
 @import "../../root.scss";
 
 .rotate {
@@ -24,7 +26,7 @@
 }
 
 .idLabel {
-    @include carbon--type-style("label-01");
+    @include type.type-style("label-01");
     color: #525252;
     font-size: 1.1rem;
 }

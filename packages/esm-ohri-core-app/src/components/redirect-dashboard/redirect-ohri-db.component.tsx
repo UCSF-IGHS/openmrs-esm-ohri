@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 const RedirectToDashboard: React.FC<{}> = () => {
@@ -11,10 +11,11 @@ const RedirectToDashboard: React.FC<{}> = () => {
     <>
       {shouldRedirect && (
         <BrowserRouter>
-          <Redirect
+          <Navigate
             to={{
               pathname: `${openmrsSpaBase}dashboard`,
             }}
+            replace
           />
         </BrowserRouter>
       )}

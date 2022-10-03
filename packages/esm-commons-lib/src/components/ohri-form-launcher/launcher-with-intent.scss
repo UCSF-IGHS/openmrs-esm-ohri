@@ -1,17 +1,19 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
 @import "../../root.scss";
 
 .launchButtonWrapper {
   width: fit-content;
-  margin: 0 $spacing-03;
+  margin: 0 spacing.$spacing-03;
 }
 
 .toggleButtons {
   width: fit-content;
-  margin: 0 $spacing-03;
+  margin: 0 spacing.$spacing-03;
 }
 
 .actionsButtonText {
-  @include carbon--type-style("body-short-01");
+  @include type.type-style("body-compact-01");
   color: $interactive-01;
 }
 

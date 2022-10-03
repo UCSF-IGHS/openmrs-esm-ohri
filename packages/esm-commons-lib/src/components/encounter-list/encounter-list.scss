@@ -1,4 +1,6 @@
-@import "../../root";
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "../../root.scss";
 
 .widgetContainer {
   background-color: $ui-background;
@@ -8,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $spacing-04 0 $spacing-04 $spacing-05;
+  padding: spacing.$spacing-04 0 spacing.$spacing-04 spacing.$spacing-05;
 }
 
 .widgetHeaderContainer > h4:after {
