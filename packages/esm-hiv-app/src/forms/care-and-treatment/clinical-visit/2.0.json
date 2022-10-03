@@ -887,7 +887,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"menstruationStatus === '148989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"menstruationStatus !== '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -964,7 +964,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"menstruationStatus === '5989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"menstruationStatus === '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -1047,10 +1047,7 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
-							"hide":{
-							   "hideWhenExpression":"menstruationStatus === '148989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-							}
+							"unspecified":"true"
 						 }
 					  ],
 					  "id":"isBreastFeeding"
@@ -1879,7 +1876,15 @@
 					  ],
 					  "id":"reasonNotOnFP"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"menstruationStatus === '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Current Pregnancy",
@@ -3414,15 +3419,6 @@
 							}
 						 ]
 					  },
-					  "behaviours":[
-						 {
-							"intent":"*",
-							"unspecified":"true",
-							"hide":{
-							   "hideWhenExpression":"tbScreeningOutcome === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || currentTPT === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
-							}
-						 }
-					  ],
 					  "id":"evaluateForTPT"
 				   },
 				   {
@@ -3591,7 +3587,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"tbScreeningOutcome === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || currentTPT === '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || evaluateForTPT !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
+							   "hideWhenExpression":"evaluateForTPT !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
 							}
 						 }
 					  ],
@@ -3784,7 +3780,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"tptProphylaxisPlan !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"tptProphylaxisPlan !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -3927,7 +3923,15 @@
 					  ],
 					  "id":"reasonTptStopped"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"tbScreeningOutcome !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Treatment of TB",
@@ -4324,7 +4328,7 @@
            {
              "intent":"*",
              "hide":{
-               "hideWhenExpression":"tbScreeningOutcome === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+               "hideWhenExpression":"tbScreeningOutcome !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
              }
            }
          ]
