@@ -11,49 +11,9 @@ import {
   basePath,
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
-} from 'openmrs-esm-ohri-commons-lib/src/constants';
-import { filterFHIRPatientsByName, TableEmptyState } from 'openmrs-esm-ohri-commons-lib';
-
-export const columns = [
-  {
-    key: 'name',
-    header: 'Name',
-    getValue: patient => {
-      return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
-    },
-    link: {
-      getUrl: patient => `${basePath}${patient.id}/chart`,
-    },
-  },
-  {
-    key: 'gender',
-    header: 'Sex',
-    getValue: patient => {
-      return capitalize(patient.gender);
-    },
-  },
-  {
-    key: 'age',
-    header: 'Age',
-    getValue: patient => {
-      return age(patient.birthDate);
-    },
-  },
-  {
-    key: 'lastVaccineAdministered',
-    header: 'Last Vaccine Administered',
-    getValue: patient => {
-      return '--';
-    },
-  },
-  {
-    key: 'lastVaccineDoseAdministered',
-    header: 'Last Vaccine Dose Administered',
-    getValue: patient => {
-      return '--';
-    },
-  },
-];
+} from '@ohri/openmrs-esm-ohri-commons-lib/src/constants';
+import { filterFHIRPatientsByName, TableEmptyState } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { useTranslation } from 'react-i18next';
 
 export const Vaccinations: React.FC<{}> = () => {
   const [patients, setPatients] = useState([]);
@@ -65,6 +25,51 @@ export const Vaccinations: React.FC<{}> = () => {
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
+  const { t } = useTranslation();
+
+  const columns = useMemo(
+    () => [
+      {
+        key: 'name',
+        header: t('vaccinationName', 'Name'),
+        getValue: patient => {
+          return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
+        },
+        link: {
+          getUrl: patient => `${basePath}${patient.id}/chart`,
+        },
+      },
+      {
+        key: 'gender',
+        header: t('vaccinationsex', 'Sex'),
+        getValue: patient => {
+          return capitalize(patient.gender);
+        },
+      },
+      {
+        key: 'age',
+        header: t('vaccinationAge', 'Age'),
+        getValue: patient => {
+          return age(patient.birthDate);
+        },
+      },
+      {
+        key: 'lastVaccineAdministered',
+        header: t('vaccinationLastVaccineAdmin', 'Last Vaccine Administered'),
+        getValue: patient => {
+          return '--';
+        },
+      },
+      {
+        key: 'lastVaccineDoseAdministered',
+        header: t('vaccinationLastVaccineDoseAdmin', 'Last Vaccine Dose Administered'),
+        getValue: patient => {
+          return '--';
+        },
+      },
+    ],
+    [],
+  );
 
   useEffect(() => {
     getReportingCohort(covidVaccinatedClients).then(data => {
@@ -115,7 +120,11 @@ export const Vaccinations: React.FC<{}> = () => {
     () => ({
       patients: searchTerm ? filteredResults : patients,
       columns,
-      search: { placeHolder: 'Search client list', onSearch: handleSearch, currentSearchTerm: searchTerm },
+      search: {
+        placeHolder: t('vaccinationSearchList', 'Search client list'),
+        onSearch: handleSearch,
+        currentSearchTerm: searchTerm,
+      },
       pagination,
       isLoading,
       autoFocus: true,
@@ -130,7 +139,7 @@ export const Vaccinations: React.FC<{}> = () => {
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>
       {!isLoading && !patients.length ? (
-        <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
+        <TableEmptyState tableHeaders={columns} message={t('noPatientList', 'There are no patients in this list.')} />
       ) : (
         <ExtensionSlot extensionSlotName="covid-vaccination-table-slot" state={state} key={counter} />
       )}

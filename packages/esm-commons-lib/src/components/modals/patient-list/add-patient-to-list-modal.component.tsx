@@ -2,6 +2,7 @@ import { showToast, usePatient } from '@openmrs/esm-framework';
 import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
 
 export const AddPatientToListOverflowMenuItem: React.FC<{
@@ -11,6 +12,7 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
 }> = ({ patientUuid, displayText, excludeCohorts }) => {
   const { patient } = usePatient(patientUuid);
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
   const patientDisplay = useMemo(() => {
     return patient ? `${patient.name[0].given.join(' ')} ${patient.name[0].family}` : 'Patient';
   }, [patient]);
@@ -30,12 +32,14 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
         <button
           className="bx--overflow-menu-options__btn"
           role="menuitem"
-          title="Add to list"
+          title={t('addToListModal', 'Add to list')}
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">{displayText || 'Add to list'}</span>
+          <span className="bx--overflow-menu-options__option-content">
+            {displayText || t('addList', 'Add to list')}
+          </span>
         </button>
       </li>
     </>
@@ -56,6 +60,7 @@ export const AddPatientToListModal: React.FC<{
   const [isLoading, setIsLoading] = useState(true);
   const [selectedList, setSelectedList] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     Promise.all([getCohorts(cohortType), getPatientListsForPatient(patientUuid)]).then(
@@ -120,7 +125,7 @@ export const AddPatientToListModal: React.FC<{
           showToast({
             kind: 'success',
             critical: true,
-            description: `Patient was successfully removed from all lists`,
+            description: t('patientAddedSuccess', `Patient was successfully removed from all lists`),
           });
           close();
         })
@@ -133,7 +138,10 @@ export const AddPatientToListModal: React.FC<{
           showToast({
             kind: 'success',
             critical: true,
-            description: `Patient was successfully added to ${response.data.cohort.display}`,
+            description: t(
+              'patientAddedToCohortSuccess',
+              `Patient was successfully added to ${response.data.cohort.display}`,
+            ),
           });
           close();
         } else {
@@ -147,7 +155,7 @@ export const AddPatientToListModal: React.FC<{
       <Modal
         style={{ zIndex: 99999 }}
         open={isOpen}
-        modalHeading={title || 'Add Patient to list'}
+        modalHeading={title || t('addPatientToListOption', 'Add Patient to list')}
         modalLabel=""
         onRequestClose={close}
         passiveModal={false}

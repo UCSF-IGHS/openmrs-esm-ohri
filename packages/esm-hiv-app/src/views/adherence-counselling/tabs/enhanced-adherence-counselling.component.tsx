@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyState } from 'openmrs-esm-ohri-commons-lib';
+import { EmptyState } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 interface EnhancedAdherenceCounsellingListProps {
   patientUuid: string;
@@ -9,8 +9,8 @@ interface EnhancedAdherenceCounsellingListProps {
 const EnhancedAdherenceCounsellingList: React.FC<EnhancedAdherenceCounsellingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('enhancedAdherenceCounselling', 'Enhanced Adherence Counselling');
-  const displayText = t('enhancedAdherenceCounselling', 'Enhanced Adherence Counselling');
+  const headerTitle = t('enhancedAdherenceCounsellingTitle', 'Enhanced Adherence Counselling');
+  const displayText = t('enhancedAdherenceCounsellingDisplay', 'Enhanced Adherence Counselling');
 
   return (
     <>

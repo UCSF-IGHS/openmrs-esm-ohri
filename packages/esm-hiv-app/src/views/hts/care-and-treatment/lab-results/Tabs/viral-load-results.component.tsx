@@ -12,7 +12,7 @@ import {
   encounterRepresentation,
   getObsFromEncounter,
   fetchLastVisit,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ViralLoadResultDate_UUID,
   ViralLoadResultsEncounter_UUID,
@@ -41,12 +41,12 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   const [nextOffSet, setNextOffSet] = useState(0);
   const headerTitle = '';
   const tableHeaders = [
-    { key: 'name', header: 'Patient Name', isSortable: true },
-    { key: 'gender', header: 'Sex' },
-    { key: 'age', header: 'Age' },
-    { key: 'viralLoadResult', header: 'Recent VL' },
-    { key: 'viralLoadResultDate', header: 'Recent VL Date' },
-    { key: 'actions', header: 'Actions' },
+    { key: 'name', header: t('patientName', 'Patient Name'), isSortable: true },
+    { key: 'gender', header: t('sex', 'Sex') },
+    { key: 'age', header: t('age', 'Age') },
+    { key: 'viralLoadResult', header: t('recentVL', 'Recent VL') },
+    { key: 'viralLoadResultDate', header: t('recentVLDate', 'Recent VL Date') },
+    { key: 'actions', header: t('actions', 'Actions') },
   ];
 
   useEffect(() => {

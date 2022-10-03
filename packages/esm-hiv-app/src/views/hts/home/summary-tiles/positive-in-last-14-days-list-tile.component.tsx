@@ -7,7 +7,7 @@ import {
   fetchTodayClients,
   TableEmptyState,
   filterFHIRPatientsByName,
-} from 'openmrs-esm-ohri-commons-lib';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 
 export const columns = [
   {

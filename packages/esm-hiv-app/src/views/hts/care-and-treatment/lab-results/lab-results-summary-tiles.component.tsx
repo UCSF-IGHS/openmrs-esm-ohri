@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OHRIProgrammeSummaryTiles } from 'openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { missingCd4Cohort, highVlCohort } from '../../../../constants';
 import { getReportingCohort } from '../../../../api/api';
 

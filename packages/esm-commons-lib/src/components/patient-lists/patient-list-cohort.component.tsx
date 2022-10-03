@@ -15,6 +15,7 @@ import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 import styles from './patient-list-cohort.scss';
 import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
+import { useTranslation } from 'react-i18next';
 
 export interface PatientListColumn {
   key: string;
@@ -219,6 +220,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       url: `${basePath}${patientUuid}/chart${dashboard}`,
     };
   };
+  const { t } = useTranslation();
 
   const setListMeta = (patientWithMeta, location) => {
     const patientUuid = !isReportingCohort ? patientWithMeta.patient.uuid : patientWithMeta.person.uuid;
@@ -245,7 +247,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
           {addPatientToListOptions?.isEnabled && (
             <AddPatientToListOverflowMenuItem
               patientUuid={patientUuid}
-              displayText="Move to list"
+              displayText={t('moveToListSideNav', 'Move to list')}
               excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
             />
           )}
@@ -394,7 +396,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       columns: filteredColumns,
       isLoading,
       search: {
-        placeHolder: 'Search client list',
+        placeHolder: t('searchClientList', 'Search client list'),
         onSearch: searchTerm => {
           if (!searchTerm) {
             // clear value
@@ -421,6 +423,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     handleSearch,
     pagination,
     isLoading,
+    t,
     excludeColumns,
     otherColumns,
   ]);
@@ -456,7 +459,10 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       {isLoading ? (
         <DataTableSkeleton rowCount={5} />
       ) : !paginatedPatients.length ? (
-        <TableEmptyState tableHeaders={state.columns} message="There are no patients in this list." />
+        <TableEmptyState
+          tableHeaders={state.columns}
+          message={t('noPatientSidenav', 'There are no patients in this list.')}
+        />
       ) : (
         <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
       )}

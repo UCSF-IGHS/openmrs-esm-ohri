@@ -11,9 +11,11 @@ import {
   OHRIFormSchema,
   SessionMode,
 } from '@ohri/openmrs-ohri-form-engine-lib';
+import { useTranslation } from 'react-i18next';
 
 function FormRenderTest() {
-  const headerTitle = 'Form Render Test';
+  const { t } = useTranslation();
+  const headerTitle = t('formRenderTestTitle', 'Form Render Test');
   const patientUUID = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';
   const [currentFormMode, setCurrentFormMode] = useState<SessionMode>('enter');
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
@@ -135,11 +137,11 @@ function FormRenderTest() {
             sm={12}
             style={{ paddingRight: '0' }}
             className={styles.renderColumn + ' ' + (viewActionText === 'Split-screen' ? styles.hide : '')}>
-            <h4>JSON Schema</h4>
+            <h4>{t('jsonSchemaHeader', 'JSON Schema')}</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
 
             <Tabs type="container">
-              <Tab id="tab-form" label="JSON Input">
+              <Tab id="tab-form" label={t('jsonInput', 'JSON Input')}>
                 <Form
                   onSubmit={e => {
                     e.preventDefault();
@@ -151,7 +153,7 @@ function FormRenderTest() {
                     theme={editorTheme}
                     onChange={updateFormJsonInput}
                     name={'jsonText'}
-                    placeholder="Enter JSON Text"
+                    placeholder={t('jsonText', 'Enter JSON Text')}
                     showPrintMargin={true}
                     showGutter={true}
                     highlightActiveLine={true}
@@ -171,8 +173,8 @@ function FormRenderTest() {
                   <div className={styles.renderDropdown}>
                     <Dropdown
                       id="default"
-                      titleText="Form Intent"
-                      label="--Select Form Intent"
+                      titleText={t('formIntent', 'Form Intent')}
+                      label={t('selectForm', '--Select Form Intent')}
                       items={formIntents}
                       itemToString={item => item.display}
                       onChange={updateFormIntentInput}
@@ -183,7 +185,7 @@ function FormRenderTest() {
                   <div className={styles.renderDropdown}>
                     <Dropdown
                       id=""
-                      titleText="JSON Editor Theme"
+                      titleText={t('jsonEditorThe', 'JSON Editor Theme')}
                       label={editorTheme}
                       items={availableEditorThemes}
                       itemToString={item => item}
@@ -199,11 +201,11 @@ function FormRenderTest() {
                     className="form-group"
                     style={{ marginTop: '1em' }}
                     disabled={!selectedFormIntent}>
-                    Render
+                    {t('render', 'Render')}
                   </Button>
                 </Form>
               </Tab>
-              <Tab id="tab-json-schema" label="Final Schema">
+              <Tab id="tab-json-schema" label={t('finalSchema', 'Final Schema')}>
                 <div className={styles.finalJsonSchema}>
                   <AceEditor
                     mode="json"
@@ -233,22 +235,22 @@ function FormRenderTest() {
 
           <Column lg={viewActionText === 'Split-screen' ? 12 : 7} md={7} sm={12}>
             <div className={styles.viewMode}>
-              <h4>Generated Form</h4>
+              <h4>{t('generatedForm', 'Generated Form')}</h4>
               <Button renderIcon={Maximize32} className={isSchemaLoaded ? styles.show : ''} onClick={toggleViewMode}>
-                {viewActionText}
+                {t('viewActionText', viewActionText)}
               </Button>
             </div>
 
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs type="container">
-                <Tab id="tab-form" label="Form Render" className={styles.renderTab}>
+                <Tab id="tab-form" label={t('formRender', 'Form Render')} className={styles.renderTab}>
                   {isSchemaLoaded ? (
                     <div className={styles.formRenderDisplay}>
                       <OHRIForm formJson={formInput} patientUUID={patientUUID} mode={currentFormMode} />
                     </div>
                   ) : (
-                    <p>Please submit the form</p>
+                    <p>{t('submitForm', 'Please submit the form')}</p>
                   )}
                 </Tab>
               </Tabs>

@@ -1,4 +1,4 @@
-import { OHRIProgrammeSummaryTiles } from 'openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getReportingCohort } from '../../../api/api';
@@ -26,25 +26,25 @@ function CcoivdSummaryTiles({ launchWorkSpace }) {
   const tiles = useMemo(
     () => [
       {
-        title: t('assessments', 'Assessments'),
+        title: t('summaryAssessments', 'Assessments'),
         linkAddress: '#',
         subTitle: t('testsConducted', 'Completed assessments'),
         value: activeClientsCount,
       },
       {
-        title: t('cases', 'Cases'),
+        title: t('summaryCases', 'Cases'),
         linkAddress: '#',
         subTitle: t('peopleTestedPositive', 'People tested positive'),
         value: covid19PositiveClientsCount,
       },
       {
-        title: t('vaccinations', 'Vaccinations'),
+        title: t('summaryVaccinations', 'Vaccinations'),
         linkAddress: '#',
         subTitle: t('peopleVaccinated', 'People vaccinated'),
         value: covidVaccinatedClientsCount,
       },
       {
-        title: t('outcomes', 'Outcomes'),
+        title: t('summaryOutcomes', 'Outcomes'),
         linkAddress: '#',
         subTitle: t('PeopleWithCovidOutcome', 'People with covid outcome'),
         value: PeopleWithCovidOutcome,

@@ -1,7 +1,7 @@
 import { Tab } from 'carbon-components-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterListColumn, getObsFromEncounter, EncounterList } from 'openmrs-esm-ohri-commons-lib';
+import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   causeOFDeath_UUID,
   deathFormEncounterType_UUID,

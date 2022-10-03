@@ -161,49 +161,49 @@
 							   "concept":"151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Abdominal pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"148035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Back pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"120749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Chest pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Cough",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Chills",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Confusion",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"113054AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Convulsions",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -268,49 +268,49 @@
 							   "concept":"142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Diarrhea",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"142247AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Discharge from Penis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Dizziness and Giddiness",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"141585AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Ear Problem",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"141128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Epigastric pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"140941AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Excessive Sweating",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"114399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Facial Pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -359,63 +359,63 @@
 							   "concept":"140070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Flank Pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Headache",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Hearing Loss",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"136455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Itching",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"114395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Leg Pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"135595AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Loss of Appetite",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"121657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Memory Loss",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"116334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Lethargy",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"111721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Mouth ulceration",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -440,14 +440,14 @@
 							   "concept":"5978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Nausea",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"133469AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Neck Pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -484,56 +484,56 @@
 							   "concept":"132653AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Numbness of Foot",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pain in Eye",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"116558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pain in Joint",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"131034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pain in pelvis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"131032AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pain in Scrotum",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"131021AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pain of Breast",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"131015AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Painful Mouth",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Rash",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -558,35 +558,35 @@
 							   "concept":"154311AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"rectal discharge",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"113224AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Rhinitis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"206AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Seizure",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"141600AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Shortness of breath",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"126535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Shoulder Pain",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -615,35 +615,35 @@
 							   "concept":"125225AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Swallowing Painful",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"125198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Swollen Feet",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"112200AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Tremor",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"160208AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Urinary symptoms",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"147232AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Vaginal bleeding",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -720,21 +720,21 @@
 							   "concept":"5953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Vision difficulties",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"122983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Vomiting",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Weight loss",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -862,7 +862,7 @@
 							   "concept":"5989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Menstruating",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -932,7 +932,7 @@
 							   "concept":"1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"No",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -1017,7 +1017,7 @@
 							   "concept":"1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"No",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -1980,7 +1980,7 @@
 							   "concept":"1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"No",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -1997,7 +1997,15 @@
 					  ],
 					  "id":"antenatalProfileDone"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"menstruationStatus !== '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Cervical Cancer Screeening",
@@ -2100,7 +2108,7 @@
 							   "concept":"9580690a-0e84-451a-ada9-c4478d999dc2",
 							   "label":"Human Papillomavirus test",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -2153,14 +2161,14 @@
 							   "concept":"8304ffef-ac7b-425c-af3b-6ddc4d052ca8",
 							   "label":"Visual Inspection of the Cervix with Acetic Acid (VIA)",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"46184e00-3417-4b88-9ef5-9990a0979b1a",
 							   "label":"Visual Inspection of the Cervix with Lugol’s Iodine (VILI)",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -2194,14 +2202,14 @@
 							   "concept":"82fdc4f5-338e-4c22-8856-65ca9cb53fa3",
 							   "label":"Cold knife cone biopsy of cervix",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"162812AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Cryosurgery of lesion of cervix",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -2238,14 +2246,14 @@
 							   "concept":"165084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Loop electrosurgical excision procedure of cervix",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"166706AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Thermocauterization of cervix",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -2997,7 +3005,7 @@
 							   "concept":"1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Fever lasting more than three weeks",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -3018,10 +3026,36 @@
 							   "concept":"b52ffe16-b482-4f61-9bb9-9787320beef5",
 							   "label":"Weight Loss (Abnormal weight loss)",
 							   "conceptMappings":[
-								  
+
 							   ]
-							}
-						 ]
+							},
+               {
+                 "concept":"1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "label":"None",
+                 "conceptMappings":[
+                   {
+                     "type":"SNOMED-CT",
+                     "value":"260413007"
+                   },
+                   {
+                     "type":"AMPATH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"CIEL",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH-Malawi",
+                     "value":"1107"
+                   }
+                 ]
+               }
+             ]
 					  },
 					  "behaviours":[
 						 {
@@ -3046,7 +3080,7 @@
 							   "concept":"7becaa8c-8028-4fb7-8f5f-a450fc3e3f8b",
 							   "label":"history of contact with a person with TB",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -3087,7 +3121,7 @@
 							   "concept":"1494AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Fever lasting more than three weeks",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -3103,7 +3137,33 @@
 									 "value":"2573"
 								  }
 							   ]
-							}
+							},
+               {
+                 "concept":"1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "label":"None",
+                 "conceptMappings":[
+                   {
+                     "type":"SNOMED-CT",
+                     "value":"260413007"
+                   },
+                   {
+                     "type":"AMPATH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"CIEL",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH",
+                     "value":"1107"
+                   },
+                   {
+                     "type":"PIH-Malawi",
+                     "value":"1107"
+                   }
+                 ]
+               }
 						 ]
 					  },
 					  "behaviours":[
@@ -3229,8 +3289,16 @@
 					  ],
 					  "id":"tbScreeningOutcome"
 				   }
-				]
-			 },
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
+       },
 			 {
 				"label":"Tuberculosis Preventive Treatment (TPT)",
 				"isExpanded":"true",
@@ -3540,42 +3608,42 @@
 							   "concept":"69653fcf-37e4-4a61-96d6-58bbd079ad77",
 							   "label":"1 HP Isoniazide + Rifapentine prophylaxis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"4df2a7d8-eb98-4d15-8bed-1b408891ee75",
 							   "label":"3HP Rifapentine + Isoniazid",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"bbdf46fb-f941-4075-a2ae-985163accce1",
 							   "label":"3HR Isoniazid+Rifampicin prophylaxis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"65889206-ebc7-4aea-afd3-dc3641ba8cad",
 							   "label":"4R Rifampicin Monotherapy prophylaxis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"107f0b45-869c-4ddb-b56b-13994a486523",
 							   "label":"6H Isoniazid prophylaxis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"a27faf7e-8be5-4c8b-84de-be6c0967acc6",
 							   "label":"9H Isoniazid prophylaxis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -3598,6 +3666,15 @@
 						 "rendering":"date",
 						 "concept":"162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 					  },
+             "behaviours": [
+               {
+                 "intent": "*",
+                 "unspecified": "true",
+                 "hide": {
+                   "hideWhenExpression": "tptProphylaxisPlan !== '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                 }
+               }
+             ],
 					  "id":"dateTPTStart"
 				   },
 				   {
@@ -3707,7 +3784,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"tptProphylaxisPlan !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"tptProphylaxisPlan !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -3780,7 +3857,7 @@
 							   "concept":"112141AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Tuberculosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -3863,7 +3940,7 @@
 						 "rendering":"radio",
 						 "concept":"1268AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 						 "conceptMappings":[
-							
+
 						 ],
 						 "answers":[
 							{
@@ -4070,7 +4147,15 @@
 					  ],
 					  "id":"tbRxEndDate"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"onTBRx !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Presumptive TB",
@@ -4101,7 +4186,7 @@
 							   "concept":"307AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Sputum for acid fast bacilli ordered",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -4234,7 +4319,15 @@
 					  ],
 					  "id":"tbNotes"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"tbScreeningOutcome === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 }
 		  ]
 	   },
@@ -4760,7 +4853,7 @@
 							   "concept":"116334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Lethargy",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -4809,7 +4902,7 @@
 							   "concept":"164131AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Severely wasted",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -4842,7 +4935,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -4930,35 +5023,35 @@
 							   "concept":"504AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Submandibular",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Cervical",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Supraclavicular",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"5112AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Axillary",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"506AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Inguinal",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ],
@@ -5077,7 +5170,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5183,7 +5276,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5289,7 +5382,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5391,7 +5484,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5497,7 +5590,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5599,7 +5692,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5701,7 +5794,7 @@
 							   "concept":"160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Not assessed",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ]
@@ -5982,7 +6075,7 @@
 							   "concept":"c795654c-bcd8-4074-9fc7-e5f762e58f36",
 							   "label":"Urethral Discharge",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -6752,7 +6845,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"nutritionalStatus !== '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && nutritionalStatus !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -6916,7 +7009,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"nutritionalStatus !== '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && nutritionalStatus !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalInterventions !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -6935,7 +7028,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"nutritionalStatus !== '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && nutritionalStatus !== '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalInterventions !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -7201,161 +7294,161 @@
 							   "concept":"145872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Cerebral Cryptococcosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"120781AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Cervical Intraepithelial Neoplasm",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"120330AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Coccidioidomycosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"142963AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Cytomegalovirus infection",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"119288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Encephalopathy",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"111759AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Hepatitis B",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"156590AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"hepatitis C virus infection",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"153466AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"herpes simplex type 2",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"117543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Herpes zoster",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"117514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Histoplasmosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"137480AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Infection due to Candida Albicans",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Kaposi sarcoma oral",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"116322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Leukoencephalopathy",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"116104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Malignant Lymphoma",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"1294AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Meningitis, cryptococcal",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"160007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Mycobacterium tuberculosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"882AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pneumocystis carinii pneumonia",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"114100AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pneumonia",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"128139AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Pulmonary Cryptococcosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"127784AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Recurrent Upper Respiratory Tract Infection",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"127198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Salmonella Septicaemia",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"5355AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Toxoplasmosis",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"823AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Wasting syndrome",
 							   "conceptMappings":[
-								  
+
 							   ]
 							}
 						 ],
@@ -7810,7 +7903,7 @@
 							   "concept":"1254AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"CD4 count greater than 200",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -8120,7 +8213,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"pcpProphylaxis !== '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"cryptoProphylaxis !== '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -8145,7 +8238,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"pcpProphylaxis !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"cryptoProphylaxis !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -8916,7 +9009,7 @@
 							   "concept":"5490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Psychosocial counseling",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -9007,14 +9100,14 @@
 							   "concept":"1609AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Referral for imaging study",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
 							   "concept":"160456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"Obstetrics and gynecology department",
 							   "conceptMappings":[
-								  
+
 							   ]
 							},
 							{
@@ -9210,7 +9303,7 @@
 	   {
 		  "label":"Lab results - CD4",
 		  "sections":[
-			 
+
 		  ],
 		  "isSubform":"true",
 		  "subform":{
@@ -9228,7 +9321,7 @@
 	   {
 		  "label":"Lab results - Viral Load",
 		  "sections":[
-			 
+
 		  ],
 		  "isSubform":"true",
 		  "subform":{
@@ -9253,7 +9346,7 @@
 	"processor":"EncounterFormProcessor",
 	"uuid":"xxxx",
 	"referencedForms":[
-	   
+
 	],
 	"encounterType":"cb0a65a7-0587-477e-89b9-cf2fd144f1d4",
 	"allowUnspecifiedAll":true

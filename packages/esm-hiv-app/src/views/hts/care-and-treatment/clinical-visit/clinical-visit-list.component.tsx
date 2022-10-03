@@ -2,7 +2,7 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton } from 'carbon-components-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyState, OHRIFormLauncherEmpty, launchForm } from 'openmrs-esm-ohri-commons-lib';
+import { EmptyState, OHRIFormLauncherEmpty, launchForm } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../../constants';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
 
@@ -44,7 +44,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
         </>
       ) : (
         <EmptyState
-          displayText={t('clinicalVisitEncounters', 'clinical visit encounters')}
+          displayText={t('clinicalVisitDisplay', 'clinical visit encounters')}
           headerTitle={t('clinicalVisitTitle', 'Clinical Visits')}
           launchFormComponent={
             <OHRIFormLauncherEmpty launchForm={() => launchForm(clinicalVisitForm, forceComponentUpdate)} />

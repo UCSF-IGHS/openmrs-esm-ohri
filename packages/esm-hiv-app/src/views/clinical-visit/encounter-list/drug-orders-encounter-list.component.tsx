@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyState } from 'openmrs-esm-ohri-commons-lib';
+import { EmptyState } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 interface OverviewListProps {
   patientUuid: string;
@@ -8,13 +8,14 @@ interface OverviewListProps {
 
 const DrugOrdersOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = 'Drug Orders';
+  const headerTitle = t('drugOrdersTitle', 'Drug Orders');
+  const displayText = t('drugOrdersDisplay', 'Drug Orders');
 
   const launchHTSForm = (form?: any) => {};
 
   return (
     <>
-      <EmptyState displayText="Drug Orders" headerTitle={headerTitle} launchForm={launchHTSForm} />
+      <EmptyState displayText={displayText} headerTitle={headerTitle} launchForm={launchHTSForm} />
     </>
   );
 };

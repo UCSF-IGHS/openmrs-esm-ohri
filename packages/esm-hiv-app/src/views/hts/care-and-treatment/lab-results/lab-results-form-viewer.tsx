@@ -3,12 +3,13 @@ import {
   launchFormInEditMode,
   launchFormInViewMode,
   launchFormWithCustomTitle,
-} from '@ohri/openmrs-esm-ohri-commons-lib/src/utils/ohri-forms-commons';
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 import styles from './Tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import { changeWorkspaceContext, closeAllWorkspaces, resetWorkspaceStore } from '@openmrs/esm-patient-common-lib';
 import { navigate } from '@openmrs/esm-framework';
+import { useTranslation } from 'react-i18next';
 
 export interface LabresultsFormViewerProps {
   patientUuid: string;
@@ -23,6 +24,7 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
   form,
   patientUrl,
 }) => {
+  const { t } = useTranslation();
   const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
   const [counter, setCounter] = useState(0);
 
@@ -38,7 +40,7 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
       {encounterUuid ? (
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
           <OverflowMenuItem
-            itemText="View Result"
+            itemText={t('viewResult', 'View Result')}
             onClick={e => {
               e.preventDefault();
               changeWorkspaceContext(patientUuid);

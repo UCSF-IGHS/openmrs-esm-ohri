@@ -5,12 +5,14 @@ import styles from './lab-results-overview.scss';
 import LabResultsOverviewList from '../encounter-list/lab-results-encounter-list.component';
 import { attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { ExternalOverviewProps } from '@openmrs/esm-patient-common-lib';
+import { useTranslation } from 'react-i18next';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const LabResultsOverview: React.FC<OverviewListProps> = ({ patientUuid }) => {
+  const { t } = useTranslation();
   const filter = React.useMemo<ExternalOverviewProps['filter']>(() => {
     return () => true;
   }, []);
@@ -25,13 +27,13 @@ const LabResultsOverview: React.FC<OverviewListProps> = ({ patientUuid }) => {
   return (
     <div className={styles.tabContainer}>
       <Tabs type="container">
-        <Tab label="CD4 Lab results" style={{ padding: 0 }}>
+        <Tab label={t('cd4LabResults', 'CD4 Lab results')} style={{ padding: 0 }}>
           <CD4OverviewList patientUuid={patientUuid} />
         </Tab>
-        <Tab label="Viral Load">
+        <Tab label={t('viralLoad', 'Viral Load')}>
           <LabResultsOverviewList patientUuid={patientUuid} />
         </Tab>
-        <Tab label="Lab Tests" style={{ padding: 0 }}>
+        <Tab label={t('labTests', 'Lab Tests')} style={{ padding: 0 }}>
           <div className={styles.padding}>
             <ExtensionSlot
               extensionSlotName="ohri-lab-test-result-filtered-overview-slot"

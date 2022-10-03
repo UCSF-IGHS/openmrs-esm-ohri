@@ -8,7 +8,7 @@ import {
   covid19CasesDashboardMeta,
   covidPatientChartMeta,
 } from './dashboard.meta';
-import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from 'openmrs-esm-ohri-commons-lib';
+import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
 import covidForms from './forms/forms-registry';
