@@ -50,7 +50,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.29.3",
     "semver": "^7.3.7",
-    "systemjs-webpack-interop": "^2.3.2",
+    "systemjs-webpack-interop": "^2.3.7",
     "user": "^0.0.0",
     "yup": "^0.29.1"
   },

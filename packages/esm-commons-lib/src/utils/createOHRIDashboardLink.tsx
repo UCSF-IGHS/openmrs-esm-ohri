@@ -17,6 +17,7 @@ export const createOHRIDashboardLink = meta => {
       setIsSelected(location.href.includes(`${window.spaBase}/dashboard/${meta.name}`));
       window.addEventListener('single-spa:before-routing-event', toggleHighlightedItem);
       return () => window.removeEventListener('single-spa:before-routing-event', toggleHighlightedItem);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (meta.isFolder) {

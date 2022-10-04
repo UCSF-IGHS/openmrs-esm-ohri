@@ -53,7 +53,7 @@
     "moment": "^2.29.1",
     "react-test-renderer": "^16.9.0",
     "semver": "^7.3.5",
-    "systemjs-webpack-interop": "^2.3.2",
+    "systemjs-webpack-interop": "^2.3.7",
     "yup": "^0.29.1"
   },
   "peerDependencies": {
