@@ -1,5 +1,5 @@
 import React from 'react';
-import Loading from '@carbon/react';
+import { Loading } from '@carbon/react';
 import styles from './loading.component.scss';
 import { useTranslation } from 'react-i18next';
 

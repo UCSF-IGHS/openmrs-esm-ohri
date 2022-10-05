@@ -1,4 +1,4 @@
-name: working CI
+name: OHRI CI
 
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
       - name: commit
         run: |
            git add .
-           git commit -m "Prerelease version" --no-verify 
+           git commit -m "Prerelease version" --no-verify
       - run: npm run ci:prepublish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

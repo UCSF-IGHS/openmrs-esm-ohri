@@ -10,7 +10,7 @@ const OHRIDashboard = () => {
 
   const params = useParams();
 
-  console.log('view', params);
+  // console.log('view', params);
 
   const [dashboards, setDashboards] = useState([]);
   const metaLinks = useExtensionSlotMeta('dashboard-links-slot');

@@ -1,5 +1,6 @@
 import React from 'react';
-import DataTable, {
+import {
+  DataTable,
   Table,
   TableCell,
   TableContainer,
@@ -23,7 +24,7 @@ export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
           <Table {...getTableProps()}>
             <TableHead>
               <TableRow>
-                {headers.map(header => (
+                {headers.map((header) => (
                   <TableHeader
                     className={`${styles.productiveHeading01} ${styles.text02}`}
                     {...getHeaderProps({
@@ -36,9 +37,9 @@ export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
+              {rows.map((row) => (
                 <TableRow key={row.id}>
-                  {row.cells.map(cell => (
+                  {row.cells.map((cell) => (
                     <TableCell key={cell.id}>{cell.value?.content ?? cell.value}</TableCell>
                   ))}
                 </TableRow>
