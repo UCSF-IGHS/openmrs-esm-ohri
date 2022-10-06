@@ -13,7 +13,7 @@ const config = {
   coverageReporters: ['json-summary', 'lcov'],
   collectCoverageFrom: ['./src/forms/**', '!./src/components/**/*.snap'],
   transform: {
-    '^.+\\.tsx?$': 'babel-jest',
+    '^.+\\.tsx?$': '@swc/jest',
   },
   transformIgnorePatterns: ['/node_modules/(?!@openmrs)'],
   moduleNameMapper: {

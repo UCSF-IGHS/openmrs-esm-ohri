@@ -13,12 +13,8 @@
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env.analyze=true",
     "lint": "eslint src --ext tsx",
-    "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
     "typescript": "tsc",
-    "prepublishOnly": "npm run build",
-    "test": "jest --config ./jest.config.js --passWithNoTests",
-    "coverage": "npm test -- --coverage",
-    "badges": "npm run coverage && jest-coverage-badges --output './badges' "
+    "prepublishOnly": "npm run build"
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
@@ -29,12 +25,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently 'npm:test' 'npm:typescript' 'npm:lint'"
-    }
-  },
-  "gitHead": "5028fd4428bcee71b898cfbaee1acb7e7d0acb15",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
@@ -45,9 +35,7 @@
   "dependencies": {
     "@carbon/react": "^1.13.0",
     "lodash-es": "^4.17.15",
-    "moment": "^2.29.1",
-    "systemjs-webpack-interop": "^2.3.7",
-    "yup": "^0.29.1"
+    "moment": "^2.29.1"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "4.x",
@@ -55,8 +43,5 @@
     "dayjs": "^1.8.16",
     "react": "^18.2.0",
     "react-i18next": "^11.7.0"
-  },
-  "devDependencies": {
-    "@openmrs/esm-patient-common-lib": "4.x"
   }
 }

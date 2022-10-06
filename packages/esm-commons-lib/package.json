@@ -1,7 +1,7 @@
 {
   "name": "@ohri/openmrs-esm-ohri-commons-lib",
   "version": "1.0.0",
-  "description": "Commons library for shared assets for OpenMRS HIV Reference Implementation (OHRI)",
+  "description": "Commons library microfrontend of shared assets for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-commons-lib.js",
   "main": "src/index.ts",
   "license": "MIT",
@@ -10,12 +10,8 @@
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env.analyze=true",
     "lint": "eslint src --ext tsx",
-    "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
     "typescript": "tsc",
-    "prepublishOnly": "npm run build",
-    "test": "jest --config ./jest.config.js --passWithNoTests",
-    "coverage": "npm test -- --coverage",
-    "badges": "npm run coverage && jest-coverage-badges --output './badges' "
+    "prepublishOnly": "npm run build"
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
@@ -26,12 +22,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently 'npm:test' 'npm:typescript' 'npm:lint'"
-    }
-  },
-  "gitHead": "5028fd4428bcee71b898cfbaee1acb7e7d0acb15",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
