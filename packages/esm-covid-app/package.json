@@ -50,6 +50,7 @@
   "devDependencies": {
     "browserslist-config-openmrs": "^1.0.0",
     "clean-webpack-plugin": "^3.0.0",
-    "i18next": "^19.4.2"
+    "i18next": "^19.4.2",
+    "webpack": "^5.74.0"
   }
 }

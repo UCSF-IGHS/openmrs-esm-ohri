@@ -13,7 +13,7 @@ import { homeDashboardMeta } from './dashboard.meta';
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
-  const moduleName = 'openmrs-esm-ohri-core-app';
+  const moduleName = '@ohri/openmrs-esm-ohri-core-app';
 
   const options = {
     featureName: 'ohri-core',

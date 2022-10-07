@@ -15,7 +15,7 @@ const importTranslation = require.context('../translations', false, /.json$/, 'l
 require('./root.scss');
 
 function setupOpenMRS() {
-  const moduleName = 'openmrs-esm-ohri-cervical-cancer-app';
+  const moduleName = '@ohri/openmrs-esm-ohri-cervical-cancer-app';
 
   const options = {
     featureName: 'ohri-cervical-cancer',

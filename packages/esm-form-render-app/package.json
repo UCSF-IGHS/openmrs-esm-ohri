@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net",
-    "serve": "webpack serve --mode=development",
+    "serve": "webpack serve --mode development",
     "debug": "npm run serve",
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env.analyze=true",
@@ -35,38 +35,23 @@
     "access": "public"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0",
     "ace-builds": "^1.4.12",
-    "formik": "^2.2.6",
-    "lodash-es": "^4.17.15",
-    "moment": "^2.29.1",
-    "react-ace": "^9.4.4",
-    "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-markdown": "^7.1.0",
-    "react-scroll": "^1.8.2",
-    "react-test-renderer": "^16.9.0",
-    "react-waypoint": "^10.1.0",
-    "yup": "^0.29.1"
+    "react-ace": "^9.4.4"
   },
   "peerDependencies": {
+    "@carbon/react": "1.x",
+    "@ohri/openmrs-ohri-form-engine-lib": "1.x",
     "@openmrs/esm-framework": "4.x",
-    "dayjs": "^1.8.16",
     "react": "^18.2.0",
     "react-i18next": "^11.18.6"
   },
   "devDependencies": {
     "@ohri/openmrs-ohri-form-engine-lib": "^1.0.0-pre.118",
     "browserslist-config-openmrs": "^1.0.0",
-    "file-loader": "^6.2.0",
     "i18next": "^19.4.2",
-    "identity-obj-proxy": "^3.0.0",
-    "istanbul-badges-readme": "^1.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-i18next": "^11.18.6",
-    "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "rxjs": "^6.6.2",
-    "unistore": "^3.5.2"
+    "webpack": "^5.74.0"
   }
 }
