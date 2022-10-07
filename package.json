@@ -30,8 +30,7 @@
     "verify": "lerna run lint -- --fix && lerna run test && lerna run typescript",
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
-    "release": "lerna version --no-git-tag-version",
-    "setup": "npx lerna clean --yes && npx lerna bootstrap && npx lerna run build"
+    "release": "lerna version --no-git-tag-version"
   },
   "husky": {
     "hooks": {
@@ -57,13 +56,10 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
-    "@babel/runtime": "^7.17.9",
     "@openmrs/esm-framework": "^4.0.2",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.165",
+    "@swc/jest": "^0.2.20",
     "@testing-library/dom": "^8.16.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -77,10 +73,7 @@
     "@types/single-spa-react": "^2.12.0",
     "@types/webpack-env": "^1.16.4",
     "@types/yup": "^0.29.3",
-    "@typescript-eslint/parser": "^4.26.0",
-    "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.2.5",
+    "@typescript-eslint/parser": "^5.18.0",
     "browserslist-config-openmrs": "^1.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^6.3.0",
@@ -112,6 +105,7 @@
     "react-i18next": "^11.18.6",
     "rxjs": "^6.6.3",
     "sass": "^1.54.3",
+    "swc-loader": "^0.1.15",
     "swr": "^1.1.2",
     "systemjs-webpack-interop": "^2.3.7",
     "typescript": "^4.6.3",

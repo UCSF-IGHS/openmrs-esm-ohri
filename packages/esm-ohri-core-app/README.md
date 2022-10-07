@@ -20,7 +20,7 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 * [webpack](https://webpack.js.org/) - JS module bundler
 * [ESLint](https://eslint.org/) - JS linter
 * [Prettier](https://prettier.io/) - Code formatter
-* [Babel](https://babeljs.io/) - JS compiler
+* [SWC](https://swc.rs/) - JS compiler
 * [Travis CI](https://travis-ci.org/) - CI service
 
 ## Installation
@@ -75,13 +75,13 @@ To verify that all of the tests run:
 ```sh
 npm test
 ```
- 
+
 *Note: Run `npm i` before running tests for the first time.*
 
 ## Deployment
 
 Currently, available releases for this module:
-- [![DEMO](https://ohri-demo.globalhealthapp.net/)] 
+- [![DEMO](https://ohri-demo.globalhealthapp.net/)]
 
 ## Configuration
 
@@ -91,7 +91,7 @@ This module is designed to be driven by configuration files. These files define 
 
 ## Resources
 Optional Steps:
-To run against a deployment server (to reflect local changes that will be on server upon Deployment): 
+To run against a deployment server (to reflect local changes that will be on server upon Deployment):
 On terminal run ->  ```npx openmrs develop --backend https://{server-address}```
 
 (tbd)
