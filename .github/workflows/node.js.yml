@@ -22,12 +22,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
-      # Setup .npmrc file to publish to npm
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
-      - run: npx lerna bootstrap
-      - run: npx lerna run lint -- --fix
+          node-version: '16'
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      - name: Run tests
+        run: yarn run test
+
+      - name: Run lint and typecheck
+        run: yarn turbo run lint typescript --color --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
+
+      - name: Run build
+        run: yarn turbo run build --color --concurrency=5 --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
+
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -47,7 +66,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '16'
           registry-url: 'https://registry.npmjs.org'
       - run: npx lerna bootstrap
       - run: npx lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
@@ -75,7 +94,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '16'
           registry-url: 'https://registry.npmjs.org'
       - run: npx lerna bootstrap
       - run: npm run ci:publish
@@ -136,7 +155,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: "16"
           registry-url: "https://registry.npmjs.org"
       - run: npx lerna bootstrap
       - run: npm run ci:publish

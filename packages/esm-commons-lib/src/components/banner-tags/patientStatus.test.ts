@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { isPatientHivPositive } from './patientHivStatus';
 
 describe('Patient HIV Status', () => {

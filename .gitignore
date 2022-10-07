@@ -29,9 +29,6 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
-
 # Dependency directories
 node_modules/
 jspm_packages/
@@ -57,16 +54,11 @@ typings/
 # dotenv environment variables file
 .env
 
-# next.js build output
-.next
-dist
-
 # Intellij integration
 *.iml
 .idea/
 
-.DS_Store
-.turbo
+**/*.DS_Store
 
 # ignores for Yarn v3 w/o PNP
 .pnp.*
@@ -76,3 +68,9 @@ dist
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Turbo/Vercel output
+.turbo
+.next/**
+build/**
+**/*dist

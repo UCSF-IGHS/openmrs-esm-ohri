@@ -1,5 +1,5 @@
-import hiv_retro_v_1_0 from './hiv/forms/hts_poc/1.0.json';
-import hiv_retro_v_1_1 from './hiv/forms/hts_poc/1.1.json';
+import hiv_retro_v_1_0 from './forms/hts_poc/1.0.json';
+import hiv_retro_v_1_1 from './forms/hts_poc/1.1.json';
 
 export default {
   hiv: {
