@@ -48,8 +48,7 @@ function FormRenderTest() {
   const loadIntentsFromSchema = jsonSchema => {
     let _formIntents = jsonSchema.availableIntents || [];
 
-    if (_formIntents.length > 0) {
-      // setFormIntentInput(null);
+    if (_formIntents.length) {
       setFormIntents(_formIntents);
       setIsIntentsDropdownDisabled(false);
       setSelectedFormIntent('');
@@ -116,8 +115,6 @@ function FormRenderTest() {
     }
   }, [defaultJson]);
 
-  console.log({formInput})
-
   useEffect(() => {
     if (jsonUrl) {
       const dropboxURLSuffix = '?dl=1';
@@ -183,7 +180,6 @@ function FormRenderTest() {
 
                   <div className={styles.renderDropdown}>
                     <Dropdown
-                      id="_default"
                       titleText={t('formIntent', 'Form Intent')}
                       label={t('selectForm', '--Select Form Intent')}
                       items={formIntents}
@@ -195,7 +191,6 @@ function FormRenderTest() {
 
                   <div className={styles.renderDropdown}>
                     <Dropdown
-                      id=""
                       titleText={t('jsonEditorThe', 'JSON Editor Theme')}
                       label={editorTheme}
                       items={availableEditorThemes}
