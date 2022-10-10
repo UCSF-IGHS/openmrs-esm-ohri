@@ -45,5 +45,8 @@
     "react-i18next": "^11.7.0",
     "swr": "^1.1.2",
     "webpack": "^5.74.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.74.0"
   }
 }
