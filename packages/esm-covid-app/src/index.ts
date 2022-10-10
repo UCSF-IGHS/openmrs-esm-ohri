@@ -18,7 +18,7 @@ const importTranslation = require.context('../translations', false, /.json$/, 'l
 require('./root.scss');
 
 function setupOpenMRS() {
-  const moduleName = 'openmrs-esm-ohri-covid-app';
+  const moduleName = '@ohri/openmrs-esm-ohri-covid-app';
 
   const options = {
     featureName: 'ohri-covid',
