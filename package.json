@@ -18,7 +18,7 @@
     "start:hiv": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-hiv-app",
     "start:cervical-cancer": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
     "start:form-render": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-form-render-app",
-    "prettier": "prettier --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
+    "prettier": "prettier --fix --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "test": "jest --config jest.config.js --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.js",
