@@ -3463,6 +3463,7 @@ __metadata:
     "@carbon/react": ^1.13.0
     lodash-es: ^4.17.15
     moment: ^2.29.1
+    webpack: ^5.74.0
   peerDependencies:
     "@openmrs/esm-framework": 4.x
     "@openmrs/esm-patient-common-lib": 4.x
@@ -3525,6 +3526,7 @@ __metadata:
     "@carbon/react": ^1.13.0
     lodash-es: ^4.17.15
     moment: ^2.29.1
+    webpack: ^5.74.0
   peerDependencies:
     "@openmrs/esm-framework": 4.x
     "@openmrs/esm-patient-common-lib": 4.x
