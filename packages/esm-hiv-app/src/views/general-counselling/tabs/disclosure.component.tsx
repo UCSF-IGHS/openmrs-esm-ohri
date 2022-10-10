@@ -15,21 +15,21 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
       {
         key: 'disclosureDate',
         header: t('disclosureDate', 'Disclosure Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, DisclosureDate_UUID, true);
         },
       },
       {
         key: 'disclosureStage',
         header: t('disclosureStage', 'Disclosure Stage'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, DisclosureStage_UUID);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'peads_disclosure', package: 'hiv' },

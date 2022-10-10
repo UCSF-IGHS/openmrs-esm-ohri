@@ -18,7 +18,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   const [clinicalVisitForm, setClinicalVisitForm] = useState(getForm('hiv', 'clinical_visit'));
 
   const loadRows = useCallback(
-    encounterType => {
+    (encounterType) => {
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
 
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {

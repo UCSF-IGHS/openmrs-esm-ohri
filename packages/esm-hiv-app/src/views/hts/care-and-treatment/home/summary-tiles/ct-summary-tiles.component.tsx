@@ -8,7 +8,7 @@ function CTSummaryTiles({ launchWorkSpace }) {
   const [activeClientsCount, setActiveClientsCount] = useState(0);
 
   useEffect(() => {
-    getReportingCohort(clientsEnrolledToCare).then(data => {
+    getReportingCohort(clientsEnrolledToCare).then((data) => {
       setActiveClientsCount(data.members.length);
     });
   }, []);

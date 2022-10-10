@@ -26,35 +26,35 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
       {
         key: 'testResultDate',
         header: t('testResultDate', 'Test Result Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
         },
       },
       {
         key: 'reasonForViralLoad',
         header: t('viralLoadReason', 'Reason for Viral Load'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ReasonForViralLoad_UUID);
         },
       },
       {
         key: 'viralLoadResult',
         header: t('viralLoadResult', 'Viral Load Result'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ViralLoadResult_UUID);
         },
       },
       {
         key: 'viralLoadCopies',
         header: t('viralLoadCopies', 'Viral Load Copies'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ViralLoadCopies_UUID);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'viral_load_request', package: 'hiv' },

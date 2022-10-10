@@ -67,14 +67,14 @@ export const AddPatientToListModal: React.FC<{
       ([allCohortsRes, currentCohortMemberships]) => {
         // filter out cohorts in which this patient is already a member
         let filteredCohorts = allCohortsRes.filter(
-          cohort => !currentCohortMemberships.some(membership => cohort.uuid == membership.cohort.uuid),
+          (cohort) => !currentCohortMemberships.some((membership) => cohort.uuid == membership.cohort.uuid),
         );
         if (excludeCohorts && excludeCohorts.length) {
-          filteredCohorts = filteredCohorts.filter(cohort => !excludeCohorts.includes(cohort.name));
+          filteredCohorts = filteredCohorts.filter((cohort) => !excludeCohorts.includes(cohort.name));
         }
         setCohorts(filteredCohorts);
         setCurrentMemberships(currentCohortMemberships);
-        setAlreadySubscribedCohorts(currentCohortMemberships.map(membership => membership.cohort));
+        setAlreadySubscribedCohorts(currentCohortMemberships.map((membership) => membership.cohort));
         setIsLoading(false);
       },
     );
@@ -120,8 +120,8 @@ export const AddPatientToListModal: React.FC<{
       // evict all the patient's memberships
       // according to our usecases, there is a high chance that the current memberships will always be one
       // but we can't be sure
-      Promise.all(currentMemberships.map(membership => evictCohortMembership(membership.uuid)))
-        .then(results => {
+      Promise.all(currentMemberships.map((membership) => evictCohortMembership(membership.uuid)))
+        .then((results) => {
           showToast({
             kind: 'success',
             critical: true,
@@ -129,11 +129,11 @@ export const AddPatientToListModal: React.FC<{
           });
           close();
         })
-        .catch(error => {
+        .catch((error) => {
           setIsSubmitting(false);
         });
     } else {
-      addPatientToCohort(patientUuid, selectedList).then(response => {
+      addPatientToCohort(patientUuid, selectedList).then((response) => {
         if (response.ok) {
           showToast({
             kind: 'success',
@@ -180,7 +180,7 @@ export const AddPatientToListModal: React.FC<{
               legendText=""
               name="patient-lists"
               orientation="vertical"
-              onChange={selected => setSelectedList(selected.toString())}>
+              onChange={(selected) => setSelectedList(selected.toString())}>
               {availableLists}
             </RadioButtonGroup>
           )}

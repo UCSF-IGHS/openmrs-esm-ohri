@@ -5,7 +5,7 @@ import { Add } from '@carbon/react/icons';
 import { useTranslation } from 'react-i18next';
 import { age, navigate } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Pagination, OverflowMenu, Button } from '@carbon/react';
-import { capitalize } from 'lodash';
+import { capitalize } from 'lodash-es/capitalize';
 import moment from 'moment';
 import {
   AddPatientToListOverflowMenuItem,
@@ -52,7 +52,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   useEffect(() => {
     let rows = [];
     for (let patient of patients) {
-      const lastVisit = patientsToLastVisitMap.find(entry => entry.patientId === patient.resource.id)?.lastVisit;
+      const lastVisit = patientsToLastVisitMap.find((entry) => entry.patientId === patient.resource.id)?.lastVisit;
       const patientActions = (
         <OverflowMenu flipped>
           <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={[]} />
@@ -78,8 +78,8 @@ const PatientList: React.FC<PatientListProps> = () => {
   }, [patients, patientsToLastVisitMap]);
 
   useEffect(() => {
-    const patientToLastVisitPromises = patients.map(patient => fetchLastVisit(patient.resource.id));
-    Promise.all(patientToLastVisitPromises).then(values => {
+    const patientToLastVisitPromises = patients.map((patient) => fetchLastVisit(patient.resource.id));
+    Promise.all(patientToLastVisitPromises).then((values) => {
       setPatientsToLastVisitMap(
         values.map((value, index) => ({
           lastVisit: value.data?.entry?.length ? value.data?.entry[0]?.resource?.period?.start : '',
@@ -90,7 +90,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   }, [patients]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart`;
+  const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart`;
 
   return (
     <>
@@ -105,7 +105,7 @@ const PatientList: React.FC<PatientListProps> = () => {
                 kind="ghost"
                 renderIcon={<Add size={16} />}
                 iconDescription="New"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   addNewPatient();
                 }}>

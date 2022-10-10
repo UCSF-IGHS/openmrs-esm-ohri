@@ -22,12 +22,12 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
       {
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
         },
         link: {
-          getUrl: encounter => encounter.url,
-          handleNavigate: encounter => {
+          getUrl: (encounter) => encounter.url,
+          handleNavigate: (encounter) => {
             encounter.launchFormActions?.viewEncounter();
           },
         },
@@ -35,35 +35,35 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
       {
         key: 'visitType',
         header: t('visitType', 'Visit Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, visitTypeConcept);
         },
       },
       {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, regimenConcept);
         },
       },
       {
         key: 'differentiatedCareService',
         header: t('differentiatedCareService', 'Differentiated Care Service'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, expressCareProgramStatusConcept);
         },
       },
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, returnVisitDateConcept, true);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return encounter.actions;
         },
       },

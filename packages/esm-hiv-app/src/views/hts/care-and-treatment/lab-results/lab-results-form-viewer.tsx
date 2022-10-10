@@ -29,7 +29,7 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
   const [counter, setCounter] = useState(0);
 
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const capitalize = word => word[0].toUpperCase() + word.substr(1);
+  const capitalize = (word) => word[0].toUpperCase() + word.substr(1);
 
   const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
     const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
@@ -41,7 +41,7 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
         <OverflowMenu flipped className={styles.flippedOverflowMenu}>
           <OverflowMenuItem
             itemText={t('viewResult', 'View Result')}
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               changeWorkspaceContext(patientUuid);
               launchEncounterForm(applyFormIntent('*', getForm(form.package, form.name)), '*', 'view', encounterUuid);

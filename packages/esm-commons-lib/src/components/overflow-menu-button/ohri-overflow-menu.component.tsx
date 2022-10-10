@@ -22,7 +22,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);
-  const toggleShowMenu = useCallback(() => setShowMenu(state => !state), []);
+  const toggleShowMenu = useCallback(() => setShowMenu((state) => !state), []);
 
   useEffect(() => {
     /**
@@ -82,7 +82,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               width: '13rem',
             }}>
             <ul className="cds--overflow-menu-options__content">
-              {overflowItems.map(item => {
+              {overflowItems.map((item) => {
                 return item.availableIntents.map((intent, index) => {
                   return (
                     <li className="cds--overflow-menu-options__option" id={'item-' + index} key={index}>
@@ -91,7 +91,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                         className="cds--overflow-menu-options__btn"
                         role="menuitem"
                         title={intent.display}
-                        onClick={e => {
+                        onClick={(e) => {
                           e.preventDefault();
                           const processedForm = applyFormIntent(intent, item.formJson);
                           launchForm(processedForm, intent.display);
@@ -114,7 +114,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
         <Button
           size="small"
           kind="ghost"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             const processedForm = applyFormIntent(overflowItems[0].intent, formJson);
             launchForm(processedForm);

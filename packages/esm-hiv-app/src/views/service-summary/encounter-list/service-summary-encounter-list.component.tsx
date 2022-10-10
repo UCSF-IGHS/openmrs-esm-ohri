@@ -39,7 +39,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'lastViralLoad',
         header: t('vlResult', 'Last viral Load'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
         },
       },
@@ -54,7 +54,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'lastCD4Count',
         header: t('lastCD4Count', 'Last CD4 Count'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, Cd4Count_UUID);
         },
       },
@@ -69,14 +69,14 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'enrolledInCare',
         header: 'Enrolled in care',
-        getValue: latestEncounter => {
+        getValue: (latestEncounter) => {
           return getObsFromEncounter(latestEncounter, enrolmentDate, true);
         },
       },
       {
         key: 'currentWHO',
         header: 'Current WHO stage',
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, dateOfARTInitiation, true);
         },
       },
@@ -110,7 +110,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'currentARV',
         header: 'ARV Initiation Date',
-        getValue: latestEncounter => {
+        getValue: (latestEncounter) => {
           return getObsFromEncounter(latestEncounter, artTherapyDateTime_UUID, true);
         },
       },

@@ -17,35 +17,35 @@ const columns: EncounterListColumn[] = [
   {
     key: 'screeningdate',
     header: 'Screening Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, IpvScreeningDate_UUID, true);
     },
   },
   {
     key: 'physicalAbuse',
     header: 'Physical Abuse',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, PhysicalAbuse_UUID, false, true);
     },
   },
   {
     key: 'EmotionalAbuse',
     header: 'Emotional Abuse',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, EmotionalAbuse_UUID, false, true);
     },
   },
   {
     key: 'sexualAbuse',
     header: 'Sexual Abuse',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, SexualAbuse_UUID, false, true);
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => [
+    getValue: (encounter) => [
       {
         form: { name: 'intimate_partner', package: 'hiv' },
         encounterUuid: encounter.uuid,
@@ -72,35 +72,35 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
       {
         key: 'screeningdate',
         header: t('screeningdate', 'Screening Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, IpvScreeningDate_UUID, true);
         },
       },
       {
         key: 'physicalAbuse',
         header: t('physicalAbuse', 'Physical Abuse'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, PhysicalAbuse_UUID, false, true);
         },
       },
       {
         key: 'EmotionalAbuse',
         header: t('EmotionalAbuse', 'Emotional Abuse'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, EmotionalAbuse_UUID, false, true);
         },
       },
       {
         key: 'sexualAbuse',
         header: t('sexualAbuse', 'Sexual Abuse'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, SexualAbuse_UUID, false, true);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => [
+        getValue: (encounter) => [
           {
             form: { name: 'intimate_partner', package: 'hiv' },
             encounterUuid: encounter.uuid,

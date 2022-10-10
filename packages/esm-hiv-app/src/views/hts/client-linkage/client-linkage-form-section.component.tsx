@@ -21,7 +21,7 @@ const ClientLinkage = () => {
                 kind="ghost"
                 renderIcon={<Add size={16} />}
                 iconDescription="New"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                 }}>
                 {t('add', 'Add')}

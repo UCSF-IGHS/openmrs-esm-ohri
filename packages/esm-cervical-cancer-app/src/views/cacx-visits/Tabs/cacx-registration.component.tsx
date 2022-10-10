@@ -20,21 +20,21 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
       {
         key: 'screeningDate',
         header: t('visitDate', 'Visit Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, cervicalCancerScreeningDateConcept, true);
         },
       },
       {
         key: 'previouslyScreened',
         header: t('previouslyScreened', 'Previously Screened for CaCx'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, previouslyScreenedConcept);
         },
       },
       {
         key: 'eligibleforScreening',
         header: t('eligibleforScreening', 'Eligible for CaCx Screening'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, eligibleForScreeningConcept);
         },
       },
@@ -42,7 +42,7 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'cacx_registration_form', package: 'cacx' },

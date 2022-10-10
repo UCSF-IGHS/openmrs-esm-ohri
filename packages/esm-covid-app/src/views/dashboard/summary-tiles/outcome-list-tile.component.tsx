@@ -1,5 +1,5 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
-import { capitalize } from 'lodash';
+import { capitalize } from 'lodash-es/capitalize';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientCovidOutcome } from '../../../api/api';
 import {
@@ -12,7 +12,6 @@ import {
 import {
   getObsFromEncounter,
   filterFHIRPatientsByName,
-  EncounterListColumn,
   TableEmptyState,
   basePath,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -35,24 +34,24 @@ export const Outcomes: React.FC<{}> = () => {
       {
         key: 'name',
         header: t('outcomeName', 'Name'),
-        getValue: patient => {
+        getValue: (patient) => {
           return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
         },
         link: {
-          getUrl: patient => `${basePath}${patient.id}/chart`,
+          getUrl: (patient) => `${basePath}${patient.id}/chart`,
         },
       },
       {
         key: 'gender',
         header: t('outcomeSex', 'Sex'),
-        getValue: patient => {
+        getValue: (patient) => {
           return capitalize(patient.gender);
         },
       },
       {
         key: 'age',
         header: t('outcomeAge', 'Age'),
-        getValue: patient => {
+        getValue: (patient) => {
           return age(patient.birthDate);
         },
       },
@@ -90,7 +89,7 @@ export const Outcomes: React.FC<{}> = () => {
 
   useEffect(() => {
     fetchPatientCovidOutcome().then((response: Array<any>) => {
-      setPatients(response.map(pat => pat.data));
+      setPatients(response.map((pat) => pat.data));
       setTotalPatientCount(response.length);
       setIsLoading(false);
     });
@@ -105,7 +104,7 @@ export const Outcomes: React.FC<{}> = () => {
     return {
       usePagination: false,
       currentPage: currentPage,
-      onChange: props => {
+      onChange: (props) => {
         setCurrentPage(props.page);
         setPageSize(props.pageSize);
       },
@@ -115,7 +114,7 @@ export const Outcomes: React.FC<{}> = () => {
   }, [currentPage, filteredResultsCounts, pageSize, totalPatientCount, searchTerm]);
 
   const handleSearch = useCallback(
-    searchTerm => {
+    (searchTerm) => {
       setSearchTerm(searchTerm);
       if (searchTerm) {
         const filtrate = filterFHIRPatientsByName(searchTerm, patients);

@@ -4,12 +4,14 @@ import { ArrowLeft, OverflowMenuVertical } from '@carbon/react/icons';
 import moment from 'moment';
 import styles from './patient-list-workspace.scss';
 
-export const PatientListWorkspace: React.FC<React.PropsWithChildren<{
-  header: string;
-  onClose?: () => void;
-  isVisible?: boolean;
-  meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
-}>> = ({ header, children, isVisible, onClose, meta }) => {
+export const PatientListWorkspace: React.FC<
+  React.PropsWithChildren<{
+    header: string;
+    onClose?: () => void;
+    isVisible?: boolean;
+    meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
+  }>
+> = ({ header, children, isVisible, onClose, meta }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -25,11 +27,13 @@ export const PatientListWorkspace: React.FC<React.PropsWithChildren<{
   return <>{isOpen && <Overflow header={header} close={close} children={children} meta={meta} />}</>;
 };
 
-const Overflow: React.FC<React.PropsWithChildren<{
-  close: () => void;
-  header: string;
-  meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
-}>> = ({ close, children, header, meta }) => {
+const Overflow: React.FC<
+  React.PropsWithChildren<{
+    close: () => void;
+    header: string;
+    meta: { numberOfClients: number; subTitle: string; dateLastUpdated: string };
+  }>
+> = ({ close, children, header, meta }) => {
   return (
     <div className={styles.patientListWorkspaceContainer}>
       <Header>
@@ -54,7 +58,7 @@ const Overflow: React.FC<React.PropsWithChildren<{
                 <BreadcrumbItem className={''}>
                   <a
                     href="/#"
-                    onClick={event => {
+                    onClick={(event) => {
                       event.preventDefault();
                     }}>
                     Patient Lists
@@ -62,7 +66,7 @@ const Overflow: React.FC<React.PropsWithChildren<{
                 </BreadcrumbItem>
                 <BreadcrumbItem
                   href="#"
-                  onClick={event => {
+                  onClick={(event) => {
                     event.preventDefault();
                   }}
                   isCurrentPage>

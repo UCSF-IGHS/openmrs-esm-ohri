@@ -52,7 +52,7 @@ function obsArrayDateComparator(left, right) {
 }
 
 export function findObs(encounter, obsConcept): Record<string, any> {
-  const allObs = encounter?.obs?.filter(observation => observation.concept.uuid === obsConcept) || [];
+  const allObs = encounter?.obs?.filter((observation) => observation.concept.uuid === obsConcept) || [];
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
 }
 
@@ -73,7 +73,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return moment(obs.value).format('DD-MMM-YYYY');
   }
   if (typeof obs.value === 'object') {
-    return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
+    return obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
 }
@@ -93,7 +93,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   const [counter, setCounter] = useState(0);
 
   const loadRows = useCallback(
-    encounterType => {
+    (encounterType) => {
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
         if (data.results?.length > 0) {
@@ -104,7 +104,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
           );
 
           if (filter) {
-            sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
+            sortedEncounters = sortedEncounters.filter((encounter) => filter(encounter));
           }
           setAllRows(sortedEncounters);
         } else {
@@ -159,7 +159,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
           </div>
           {tileStyle == 'ARV' ? (
             <Row className={styles.tabletTileTitleARV}>
-              {mockData_Current_ARV.map(column => (
+              {mockData_Current_ARV.map((column) => (
                 <div className={styles.tileBoxARV}>
                   <div className={styles.tileBoxColumnARV}>
                     <span className={styles.tileTitleARV}> {column.field} </span>
@@ -170,7 +170,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
             </Row>
           ) : (
             <Row className={styles.tabletTileTitle}>
-              {mockData_HIV_Status.map(column => (
+              {mockData_HIV_Status.map((column) => (
                 <div className={styles.tileBox}>
                   <div className={styles.tileBoxColumn}>
                     <span className={styles.tileTitle}> {column.field} </span>

@@ -74,7 +74,7 @@ const GroupAbleMenuItem = ({ groupSlot, dashboards, setDashboards, updateDashboa
   return <></>;
 };
 
-const DashboardView: React.FC<{ dashboardSlot: string, title: string, programme?: string }> = ({
+const DashboardView: React.FC<{ dashboardSlot: string; title: string; programme?: string }> = ({
   dashboardSlot,
   title,
   programme,

@@ -65,22 +65,22 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
 
-      sortedEncounters.map(encounter => {
-        const covidTestType = encounter.obs.find(observation => observation.concept.name.uuid === covidTestTypeUUID);
+      sortedEncounters.map((encounter) => {
+        const covidTestType = encounter.obs.find((observation) => observation.concept.name.uuid === covidTestTypeUUID);
         const lastCovidTestDate = encounter.obs.find(
-          observation => observation.concept.name.uuid === covidTestDateUUID,
+          (observation) => observation.concept.name.uuid === covidTestDateUUID,
         );
         const lastCovidTestResult = encounter.obs.find(
-          observation => observation.concept.name.uuid === covidTestResultUUID,
+          (observation) => observation.concept.name.uuid === covidTestResultUUID,
         );
         const covidReasonsForTesting = encounter.obs.find(
-          observation => observation.concept.name.uuid === covidReasonsForTestingUUID,
+          (observation) => observation.concept.name.uuid === covidReasonsForTestingUUID,
         );
         const covidVaccinationStatus = encounter.obs.find(
-          observation => observation.concept.name.uuid === covidVaccinationStatusUUID,
+          (observation) => observation.concept.name.uuid === covidVaccinationStatusUUID,
         );
         const covidPatientStatus = encounter.obs.find(
-          observation => observation.concept.name.uuid === covidPatientStatusUUID,
+          (observation) => observation.concept.name.uuid === covidPatientStatusUUID,
         );
 
         rows.push({

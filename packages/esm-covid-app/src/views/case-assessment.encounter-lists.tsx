@@ -26,11 +26,11 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       {
         key: 'encounterDate',
         header: t('encounterDate', 'Date of Assessment'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
         },
         link: {
-          handleNavigate: encounter => {
+          handleNavigate: (encounter) => {
             encounter.launchFormActions?.viewEncounter();
           },
         },
@@ -38,28 +38,28 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       {
         key: 'reasonsForTesting',
         header: t('reasonsForTesting', 'Reason for testing'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
         },
       },
       {
         key: 'symptomatic',
         header: t('symptomatic', 'Presentation'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidSymptomsPresentation, false);
         },
       },
       {
         key: 'outcome',
         header: t('outcome', 'Outcome'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidOutcomeUUID);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => [
+        getValue: (encounter) => [
           {
             form: { name: 'covid_case', package: 'covid' },
             encounterUuid: encounter.uuid,

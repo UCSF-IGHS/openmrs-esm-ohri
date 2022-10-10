@@ -18,42 +18,42 @@ const columns: EncounterListColumn[] = [
   {
     key: 'screeningDate',
     header: 'Screening Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, screeningDate_UUID, true);
     },
   },
   {
     key: 'littleInterest',
     header: 'Disinterested in Things',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, LittleInterestConcept_UUID);
     },
   },
   {
     key: 'depressed',
     header: 'Depressed',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, DepressionConcept_UUID);
     },
   },
   {
     key: 'appetite',
     header: 'Poor Appetite',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, PoorAppetiteConcept_UUID);
     },
   },
   {
     key: 'concentration',
     header: 'Concentration Problems',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, PoorConcentrationConcept_UUID);
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => [
+    getValue: (encounter) => [
       {
         form: { name: 'mental_health_assessment', package: 'hiv' },
         encounterUuid: encounter.uuid,
@@ -80,42 +80,42 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
       {
         key: 'screeningDate',
         header: t('screeningDate', 'Screening Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, screeningDate_UUID, true);
         },
       },
       {
         key: 'littleInterest',
         header: t('littleInterest', 'Disinterested in Things'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, LittleInterestConcept_UUID);
         },
       },
       {
         key: 'depressed',
         header: t('depressed', 'Depressed'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, DepressionConcept_UUID);
         },
       },
       {
         key: 'appetite',
         header: t('appetite', 'Poor Appetite'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, PoorAppetiteConcept_UUID);
         },
       },
       {
         key: 'concentration',
         header: t('concentration', 'Concentration Problems'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, PoorConcentrationConcept_UUID);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => [
+        getValue: (encounter) => [
           {
             form: { name: 'mental_health_assessment', package: 'hiv' },
             encounterUuid: encounter.uuid,

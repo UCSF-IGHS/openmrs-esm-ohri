@@ -24,42 +24,42 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       {
         key: 'date',
         header: t('hivTestDate', 'Date of HIV Test'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return moment(encounter.encounterDatetime).format('DD-MMM-YYYY');
         },
       },
       {
         key: 'htsFormStrategy',
         header: t('htsStrategy', 'HTS Strategy'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, htsStrategyUUID);
         },
       },
       {
         key: 'location',
         header: t('location', 'Location'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return encounter.location.name;
         },
       },
       {
         key: 'hivTestResult',
         header: t('hivTestResult', 'HIV Test result'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, hivTestResultConceptUUID);
         },
       },
       {
         key: 'provider',
         header: t('htsProvider', 'HTS Provider'),
-        getValue: encounter => {
-          return encounter.encounterProviders.map(p => p.provider.name).join(' | ');
+        getValue: (encounter) => {
+          return encounter.encounterProviders.map((p) => p.provider.name).join(' | ');
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const strategies = {
             '9de587b2-564d-4d86-bf72-e76da924018e': 'WHO',
             '43105ef4-afde-4f33-89bd-fb318d3f07a3': 'Classic',

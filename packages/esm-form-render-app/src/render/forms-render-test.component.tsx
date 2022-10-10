@@ -4,12 +4,7 @@ import styles from './form-render.scss';
 import { Run, Maximize } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
-import {
-  applyFormIntent,
-  loadSubforms,
-  OHRIForm,
-  OHRIFormSchema,
-} from '@ohri/openmrs-ohri-form-engine-lib';
+import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@ohri/openmrs-ohri-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig } from '@openmrs/esm-framework';
 
@@ -45,7 +40,7 @@ function FormRenderTest() {
     'terminal',
   ];
 
-  const loadIntentsFromSchema = jsonSchema => {
+  const loadIntentsFromSchema = (jsonSchema) => {
     let _formIntents = jsonSchema.availableIntents || [];
 
     if (_formIntents.length) {
@@ -59,13 +54,13 @@ function FormRenderTest() {
     }
   };
 
-  const updateFormIntentInput = e => {
+  const updateFormIntentInput = (e) => {
     // setFormIntentInput(e.selectedItem.intent);
     setSelectedFormIntent(e.selectedItem.intent);
     setIsSchemaLoaded(false);
   };
 
-  const updateFormJsonInput = json => {
+  const updateFormJsonInput = (json) => {
     setInputErrorMessage('');
     try {
       const parsedSchema = typeof json == 'string' ? JSON.parse(json) : json;
@@ -73,14 +68,13 @@ function FormRenderTest() {
       setFormInput(parsedSchema);
       loadIntentsFromSchema(parsedSchema);
       localStorage.setItem('forms-render-test:draft-form', typeof json == 'string' ? json : JSON.stringify(json));
-
     } catch (err) {
       setInputErrorMessage(err.toString());
     }
     setIsSchemaLoaded(false);
   };
 
-  const handleFormSubmission = e => {
+  const handleFormSubmission = (e) => {
     setIsSchemaLoaded(false);
     setOutputErrorMessage('');
     const filteredSchema = applyFormIntent(selectedFormIntent, loadSubforms(schemaInput));
@@ -98,11 +92,11 @@ function FormRenderTest() {
   const [windowSizeMode, setWindowSizeMode] = useState('minimized');
 
   const toggleViewMode = useCallback(() => {
-      if (windowSizeMode === 'minimized') {
-        setWindowSizeMode('maximized');
-      } else {
-        setWindowSizeMode('minimized');
-      }
+    if (windowSizeMode === 'minimized') {
+      setWindowSizeMode('maximized');
+    } else {
+      setWindowSizeMode('minimized');
+    }
   }, [windowSizeMode]);
 
   useEffect(() => {
@@ -111,7 +105,7 @@ function FormRenderTest() {
         const jsonObject = typeof defaultJson === 'string' ? JSON.parse(defaultJson) : defaultJson;
         loadIntentsFromSchema(jsonObject);
         setSchemaInput(jsonObject);
-      } catch (err) {} 
+      } catch (err) {}
     }
   }, [defaultJson]);
 
@@ -121,15 +115,15 @@ function FormRenderTest() {
       let url = jsonUrl.split('?')[0] + dropboxURLSuffix;
       url = url.replace('www.dropbox.com', corsProxy);
       fetch(url)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           if (data) {
             setDefaultJson(JSON.stringify(data, null, 2));
             updateFormJsonInput(data);
             setKey(key + 1);
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
         });
     }
@@ -150,123 +144,120 @@ function FormRenderTest() {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                <Form
-                  onSubmit={e => {
-                    e.preventDefault();
-                    handleFormSubmission(e);
-                  }}>
-                  <AceEditor
-                    key={key}
-                    mode="json"
-                    theme={editorTheme}
-                    onChange={updateFormJsonInput}
-                    name={'jsonText'}
-                    placeholder={t('jsonText', 'Enter JSON Text')}
-                    showPrintMargin={true}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    width="100%"
-                    className={styles.jsonEditor}
-                    setOptions={{
-                      enableBasicAutocompletion: true,
-                      enableLiveAutocompletion: true,
-                      displayIndentGuides: true,
-                      enableSnippets: false,
-                      showLineNumbers: true,
-                      tabSize: 2,
-                    }}
-                    defaultValue={defaultJson}
-                  />
-
-                  <div className={styles.renderDropdown}>
-                    <Dropdown
-                      titleText={t('formIntent', 'Form Intent')}
-                      label={t('selectForm', '--Select Form Intent')}
-                      items={formIntents}
-                      itemToString={item => item.display}
-                      onChange={updateFormIntentInput}
-                      disabled={isIntentsDropdownDisabled}
+                  <Form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleFormSubmission(e);
+                    }}>
+                    <AceEditor
+                      key={key}
+                      mode="json"
+                      theme={editorTheme}
+                      onChange={updateFormJsonInput}
+                      name={'jsonText'}
+                      placeholder={t('jsonText', 'Enter JSON Text')}
+                      showPrintMargin={true}
+                      showGutter={true}
+                      highlightActiveLine={true}
+                      width="100%"
+                      className={styles.jsonEditor}
+                      setOptions={{
+                        enableBasicAutocompletion: true,
+                        enableLiveAutocompletion: true,
+                        displayIndentGuides: true,
+                        enableSnippets: false,
+                        showLineNumbers: true,
+                        tabSize: 2,
+                      }}
+                      defaultValue={defaultJson}
                     />
-                  </div>
 
-                  <div className={styles.renderDropdown}>
-                    <Dropdown
-                      titleText={t('jsonEditorThe', 'JSON Editor Theme')}
-                      label={editorTheme}
-                      items={availableEditorThemes}
-                      itemToString={item => item}
-                      onChange={e => {
-                        setEditorTheme(e.selectedItem);
+                    <div className={styles.renderDropdown}>
+                      <Dropdown
+                        titleText={t('formIntent', 'Form Intent')}
+                        label={t('selectForm', '--Select Form Intent')}
+                        items={formIntents}
+                        itemToString={(item) => item.display}
+                        onChange={updateFormIntentInput}
+                        disabled={isIntentsDropdownDisabled}
+                      />
+                    </div>
+
+                    <div className={styles.renderDropdown}>
+                      <Dropdown
+                        titleText={t('jsonEditorThe', 'JSON Editor Theme')}
+                        label={editorTheme}
+                        items={availableEditorThemes}
+                        itemToString={(item) => item}
+                        onChange={(e) => {
+                          setEditorTheme(e.selectedItem);
+                        }}
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      renderIcon={Run}
+                      className="form-group"
+                      style={{ marginTop: '1em' }}
+                      disabled={!selectedFormIntent}>
+                      {t('render', 'Render')}
+                    </Button>
+                  </Form>
+                </TabPanel>
+                <TabPanel>
+                  <div className={styles.finalJsonSchema}>
+                    <AceEditor
+                      mode="json"
+                      theme={editorTheme}
+                      value={schemaOutput}
+                      name={'json-schema-result'}
+                      placeholder=""
+                      showPrintMargin={true}
+                      showGutter={true}
+                      highlightActiveLine={true}
+                      width="100%"
+                      height="700px"
+                      readOnly={true}
+                      setOptions={{
+                        enableBasicAutocompletion: false,
+                        enableLiveAutocompletion: false,
+                        displayIndentGuides: true,
+                        enableSnippets: false,
+                        showLineNumbers: true,
+                        tabSize: 2,
                       }}
                     />
                   </div>
-
-                  <Button
-                    type="submit"
-                    renderIcon={Run}
-                    className="form-group"
-                    style={{ marginTop: '1em' }}
-                    disabled={!selectedFormIntent}>
-                    {t('render', 'Render')}
-                  </Button>
-                </Form>
-                </TabPanel>
-                <TabPanel>
-                <div className={styles.finalJsonSchema}>
-                  <AceEditor
-                    mode="json"
-                    theme={editorTheme}
-                    value={schemaOutput}
-                    name={'json-schema-result'}
-                    placeholder=""
-                    showPrintMargin={true}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    width="100%"
-                    height="700px"
-                    readOnly={true}
-                    setOptions={{
-                      enableBasicAutocompletion: false,
-                      enableLiveAutocompletion: false,
-                      displayIndentGuides: true,
-                      enableSnippets: false,
-                      showLineNumbers: true,
-                      tabSize: 2,
-                    }}
-                  />
-                </div>
                 </TabPanel>
               </TabPanels>
             </Tabs>
           </div>
-          <div style={{ width: windowSizeMode == 'maximized' ? '100%' : '50%'}}>
-          <div className={styles.viewMode}>
+          <div style={{ width: windowSizeMode == 'maximized' ? '100%' : '50%' }}>
+            <div className={styles.viewMode}>
               <h4>{t('generatedForm', 'Generated Form')}</h4>
-              <Button
-                renderIcon={Maximize}
-                className={isSchemaLoaded ? styles.show : ''}
-                onClick={toggleViewMode}>
+              <Button renderIcon={Maximize} className={isSchemaLoaded ? styles.show : ''} onClick={toggleViewMode}>
                 {windowSizeMode == 'minimized' ? 'Maximize' : 'Minimize'}
               </Button>
             </div>
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs>
-              <TabList>
-                <Tab>{t('formRender', 'Form Render')}</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel className={styles.renderTab}>
-                {isSchemaLoaded ? (
-                    <div className={styles.formRenderDisplay}>
-                      <OHRIForm formJson={formInput} patientUUID={patientUuid} mode={'edit'} />
-                    </div>
-                  ) : (
-                    <p>{t('submitForm', 'Please submit the form')}</p>
-                  )}
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
+                <TabList>
+                  <Tab>{t('formRender', 'Form Render')}</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel className={styles.renderTab}>
+                    {isSchemaLoaded ? (
+                      <div className={styles.formRenderDisplay}>
+                        <OHRIForm formJson={formInput} patientUUID={patientUuid} mode={'edit'} />
+                      </div>
+                    ) : (
+                      <p>{t('submitForm', 'Please submit the form')}</p>
+                    )}
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
             </div>
           </div>
         </div>

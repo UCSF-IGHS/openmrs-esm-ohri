@@ -22,7 +22,7 @@ export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; head
             <Table {...getTableProps()}>
               <TableHead>
                 <TableRow>
-                  {headers.map(header => (
+                  {headers.map((header) => (
                     <TableHeader
                       {...getHeaderProps({
                         header,

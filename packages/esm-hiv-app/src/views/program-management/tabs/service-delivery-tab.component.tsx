@@ -16,21 +16,21 @@ const columns: EncounterListColumn[] = [
   {
     key: 'vlDate',
     header: 'Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, EnrollmentDate_UUID, true);
     },
   },
   {
     key: 'dsdstatus',
     header: 'Status',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, DSDStatus_UUID);
     },
   },
   {
     key: 'dsdModel',
     header: 'SD Model',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, CommunityDSDModel_UUID);
     },
   },
@@ -38,7 +38,7 @@ const columns: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const baseActions = [
         {
           form: { name: 'service_delivery', package: 'hiv' },

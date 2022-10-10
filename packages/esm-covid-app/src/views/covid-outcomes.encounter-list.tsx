@@ -28,11 +28,11 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
       {
         key: 'encounterDate',
         header: t('dateOfAssessment', 'Date of Assessment'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getEncounterValues(encounter, 'encounterDatetime', true);
         },
         link: {
-          handleNavigate: encounter => {
+          handleNavigate: (encounter) => {
             encounter.launchFormActions?.viewEncounter();
           },
         },
@@ -40,21 +40,21 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
       {
         key: 'testType',
         header: t('testType', 'Test type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTestTypeUUID);
         },
       },
       {
         key: 'testDate',
         header: t('testDate', 'Test date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
         },
       },
       {
         key: 'outcome',
         header: t('outcomeStatus', 'Outcome status'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidOutcomeUUID);
         },
       },

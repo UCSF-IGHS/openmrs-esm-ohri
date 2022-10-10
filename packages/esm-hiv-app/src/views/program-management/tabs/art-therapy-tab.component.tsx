@@ -102,7 +102,7 @@ const columns: EncounterListColumn[] = [
   {
     key: 'initiationDate',
     header: 'Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(
         encounter,
         getARTDateConcept(
@@ -120,7 +120,7 @@ const columns: EncounterListColumn[] = [
   {
     key: 'therapyPlan',
     header: 'Therapy Plan',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const therapyPlanObs = findObs(encounter, therapyPlanConcept);
       return therapyPlanObs ? artConcepts.get(therapyPlanObs.value.uuid) : '--';
     },
@@ -128,21 +128,21 @@ const columns: EncounterListColumn[] = [
   {
     key: 'regimen',
     header: 'Regimen',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, regimenConcept);
     },
   },
   {
     key: 'regimenInitiated',
     header: 'Regimen line',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, regimenLine_UUID);
     },
   },
   {
     key: 'reason',
     header: 'Reason',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const reasonConcept = getARTReasonConcept(
         encounter,
         artTherapyDateTime_UUID,
@@ -157,7 +157,7 @@ const columns: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => [
+    getValue: (encounter) => [
       {
         form: { name: 'art_therapy', package: 'hiv' },
         encounterUuid: encounter.uuid,

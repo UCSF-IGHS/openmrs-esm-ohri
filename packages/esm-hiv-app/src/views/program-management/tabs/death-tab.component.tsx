@@ -17,21 +17,21 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'deathDate',
     header: 'Death Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, hivDeathDate_UUID, true);
     },
   },
   {
     key: 'deathCause',
     header: 'Cause of Death',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, causeOFDeath_UUID);
     },
   },
   {
     key: 'specificDeathCause',
     header: 'Specific cause of Death',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, deathSpecific_UUID);
     },
   },
@@ -39,7 +39,7 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const baseActions = [
         {
           form: { name: 'death_form', package: 'hiv' },

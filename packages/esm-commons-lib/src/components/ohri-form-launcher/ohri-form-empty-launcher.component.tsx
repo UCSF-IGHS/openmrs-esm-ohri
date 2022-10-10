@@ -12,7 +12,7 @@ export const OHRIFormLauncherEmpty: React.FC<{
       <Button
         kind="ghost"
         renderIcon={<Add size={16} />}
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
           launchForm();
         }}>

@@ -10,11 +10,11 @@ export const OHRIFormLauncherWithIntent: React.FC<{
   dropDownText?: string;
   hideFormLauncher?: boolean;
   formsJson?: Array<any>;
-}> = ({ formJson, launchForm, dropDownText, hideFormLauncher, formsJson }) => {
+}> = ({ formJson, launchForm, hideFormLauncher, formsJson }) => {
   const { t } = useTranslation();
   let overFlowItems = [];
   if (formsJson && formsJson.length > 1) {
-    overFlowItems = formsJson.map(item => {
+    overFlowItems = formsJson.map((item) => {
       return { formJson: item, availableIntents: item.availableIntents };
     });
   } else {

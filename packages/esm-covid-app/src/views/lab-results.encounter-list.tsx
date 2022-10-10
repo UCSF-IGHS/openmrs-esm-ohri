@@ -38,28 +38,28 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'orderDate',
         header: t('dateOfOrder', 'Date of Order'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
         },
       },
       {
         key: 'reasonsForTesting',
         header: t('reasonsForTesting', 'Reason for testing'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
         },
       },
       {
         key: 'testType',
         header: t('testType', 'Test Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
         },
       },
       {
         key: 'labStatus',
         header: t('status', 'Status'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
           const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
           if (status == '--') {
@@ -76,7 +76,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'lastTestResult',
         header: t('testResult', 'Test Result'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const pcrResult = getObsFromEncounter(encounter, pcrTestResult);
           return pcrResult && pcrResult != '--' ? pcrResult : getObsFromEncounter(encounter, rapidTestResult);
         },
@@ -84,14 +84,14 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'testResultDate',
         header: t('dateOfTestResult', 'Date of Test Result'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'covid_lab_test', package: 'covid' },
@@ -139,28 +139,28 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'orderDate',
         header: t('dateOfOrder', 'Date of Order'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
         },
       },
       {
         key: 'testType',
         header: t('testType', 'Test Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
         },
       },
       {
         key: 'fowardLabreference',
         header: t('fowardLabreference', 'Fowarded to Reference Lab'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
         },
       },
       {
         key: 'labStatus',
         header: t('status', 'Status'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
           const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
           if (status == '--') {
@@ -177,7 +177,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => [
+        getValue: (encounter) => [
           {
             form: { name: 'covid_lab_test', package: 'covid' },
             encounterUuid: encounter.uuid,
@@ -205,7 +205,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
     [],
   );
 
-  let pendingLabOrdersFilter = encounter => {
+  let pendingLabOrdersFilter = (encounter) => {
     return getObsFromEncounter(encounter, covidTestStatusConcept_UUID) === 'Pending';
   };
 

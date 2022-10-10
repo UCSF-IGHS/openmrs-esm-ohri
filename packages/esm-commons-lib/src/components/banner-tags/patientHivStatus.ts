@@ -18,9 +18,9 @@ const isPatientHivPositive = async (patientUuid: string) => {
   let isHivPositive = false;
   let htsTestResult;
 
-  await fetchPatientHtsEncounters(patientUuid).then(encounters => {
-    encounters.data.results.forEach(encounter => {
-      htsTestResult = encounter.obs.find(observation => observation.concept.name.uuid === hivTestResultConceptUUID);
+  await fetchPatientHtsEncounters(patientUuid).then((encounters) => {
+    encounters.data.results.forEach((encounter) => {
+      htsTestResult = encounter.obs.find((observation) => observation.concept.name.uuid === hivTestResultConceptUUID);
 
       if (htsTestResult && htsTestResult.value.name.uuid === 'ade5ba3f-3c7f-42b1-96d1-cfeb9b446980') {
         isHivPositive = true;

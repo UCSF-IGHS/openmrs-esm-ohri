@@ -24,7 +24,7 @@ function CTHomePatientTabs() {
         {
           key: 'clientId',
           header: 'Client ID',
-          getValue: patient => {
+          getValue: (patient) => {
             return patient.id;
           },
           index: 1,
@@ -32,14 +32,14 @@ function CTHomePatientTabs() {
         {
           key: 'lastAppointment',
           header: t('lastAppointment', 'Last Appointment'),
-          getValue: patient => {
+          getValue: (patient) => {
             return '13/01/2021';
           },
         },
         {
           key: 'appointmentDate',
           header: t('appointmentDate', 'Appointment Date'),
-          getValue: patient => {
+          getValue: (patient) => {
             return '03/03/2021';
           },
         },
@@ -63,7 +63,7 @@ function CTHomePatientTabs() {
         {
           key: 'clientId',
           header: t('clientId', 'Client ID'),
-          getValue: patient => {
+          getValue: (patient) => {
             return patient.id;
           },
           index: 1,
@@ -71,14 +71,14 @@ function CTHomePatientTabs() {
         {
           key: 'lastAppointment',
           header: t('lastAppointment', 'Last Appointment'),
-          getValue: patient => {
+          getValue: (patient) => {
             return '13/01/2021';
           },
         },
         {
           key: 'appointmentDate',
           header: t('appointmentDate', 'Appointment Date'),
-          getValue: patient => {
+          getValue: (patient) => {
             return '03/03/2021';
           },
         },

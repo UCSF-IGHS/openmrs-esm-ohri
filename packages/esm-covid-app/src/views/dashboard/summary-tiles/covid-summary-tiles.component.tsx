@@ -13,13 +13,13 @@ function CcoivdSummaryTiles({ launchWorkSpace }) {
   const [PeopleWithCovidOutcome, setPeopleWithCovidOutcome] = useState(0);
 
   useEffect(() => {
-    getReportingCohort(covidVaccinatedClients).then(data => {
+    getReportingCohort(covidVaccinatedClients).then((data) => {
       setCovidVaccinatedClients(data.members.length);
     });
-    getReportingCohort(covid19PositiveClients).then(data => {
+    getReportingCohort(covid19PositiveClients).then((data) => {
       setCovid19PositiveClientsCount(data.members.length);
     });
-    getReportingCohort(covidOutcomesCohortUUID).then(data => {
+    getReportingCohort(covidOutcomesCohortUUID).then((data) => {
       setPeopleWithCovidOutcome(data.members.length);
     });
   }, []);
