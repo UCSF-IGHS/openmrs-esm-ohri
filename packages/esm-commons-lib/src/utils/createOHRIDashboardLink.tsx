@@ -35,8 +35,7 @@ export const createOHRIDashboardLink = (meta) => {
             e.preventDefault();
             navigate({ to: `${window.spaBase}/dashboard/${meta.name}` });
           }}
-          className={isSelected ? styles.currentNavItem : ''}
-        >
+          className={isSelected ? styles.currentNavItem : ''}>
           {meta.title}
         </SideNavLink>
       );
@@ -48,8 +47,7 @@ export const createOHRIDashboardLink = (meta) => {
             e.preventDefault();
             navigate({ to: `${window.spaBase}/dashboard/${meta.name}` });
           }}
-          className={isSelected ? styles.currentNavItem : ''}
-        >
+          className={isSelected ? styles.currentNavItem : ''}>
           {meta.title}
         </SideNavMenuItem>
       );

@@ -26,8 +26,7 @@ const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid })
         <Tab
           label={t('intimatePartnerViolence', 'Intimate Partner Violence')}
           className="tab-14rem"
-          style={{ padding: 0 }}
-        >
+          style={{ padding: 0 }}>
           <IntimatePartnerViolenceList patientUuid={patientUuid} />
         </Tab>
         <Tab label={t('disclosure', 'Disclosure')} style={{ padding: 0 }}>

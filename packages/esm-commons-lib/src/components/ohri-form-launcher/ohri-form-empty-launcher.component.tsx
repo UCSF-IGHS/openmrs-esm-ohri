@@ -15,8 +15,7 @@ export const OHRIFormLauncherEmpty: React.FC<{
         onClick={(e) => {
           e.preventDefault();
           launchForm();
-        }}
-      >
+        }}>
         {t('add', 'New')}
       </Button>
     </div>

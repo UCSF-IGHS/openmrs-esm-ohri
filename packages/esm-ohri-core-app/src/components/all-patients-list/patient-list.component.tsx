@@ -107,8 +107,7 @@ const PatientList: React.FC<PatientListProps> = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   addNewPatient();
-                }}
-              >
+                }}>
                 {t('add', 'Add')}
               </Button>
             </div>

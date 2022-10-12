@@ -23,8 +23,7 @@ const ClientLinkage = () => {
                 iconDescription="New"
                 onClick={(e) => {
                   e.preventDefault();
-                }}
-              >
+                }}>
                 {t('add', 'Add')}
               </Button>
             </div>

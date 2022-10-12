@@ -75,8 +75,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
           form={{ package: 'hiv', name: 'viral_load_results' }}
           patientUuid={patient.resource.id}
           encounterUuid={lastViralLoadEncounterUuid}
-          patientUrl={getPatientURL(patient.resource.id)}
-        ></LabresultsFormViewer>
+          patientUrl={getPatientURL(patient.resource.id)}></LabresultsFormViewer>
       );
 
       rows.push({

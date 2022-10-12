@@ -22,8 +22,7 @@ export function ActiveVisitBannerTag({ patientUuid }) {
               <span>{dayjs(currentVisit && currentVisit.startDatetime).format('DD - MMM - YYYY @ HH:mm')}</span>
             </span>
           </div>
-        }
-      >
+        }>
         <Tag type="blue">{t('activeVisit', 'Active Visit')}</Tag>
       </Tooltip>
     )

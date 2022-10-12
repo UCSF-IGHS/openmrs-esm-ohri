@@ -53,16 +53,14 @@ const Overflow: React.FC<
                 paddingTop: '11px',
                 paddingBottom: '11px',
                 paddingLeft: '16px',
-              }}
-            >
+              }}>
               <Breadcrumb>
                 <BreadcrumbItem className={''}>
                   <a
                     href="/#"
                     onClick={(event) => {
                       event.preventDefault();
-                    }}
-                  >
+                    }}>
                     Patient Lists
                   </a>
                 </BreadcrumbItem>
@@ -71,16 +69,14 @@ const Overflow: React.FC<
                   onClick={(event) => {
                     event.preventDefault();
                   }}
-                  isCurrentPage
-                >
+                  isCurrentPage>
                   {header}
                 </BreadcrumbItem>
               </Breadcrumb>
             </div>
             <div
               className={styles.patientListRow}
-              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '4px', paddingRight: '1rem' }}
-            >
+              style={{ borderBottom: '1px solid #e0e0e0', paddingBottom: '4px', paddingRight: '1rem' }}>
               <div className={styles.flexRow}>
                 <span className={styles.bannerTitle}>{meta.subTitle}</span>
               </div>

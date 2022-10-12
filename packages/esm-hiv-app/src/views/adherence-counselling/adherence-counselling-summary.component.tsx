@@ -21,8 +21,7 @@ const AdherenceCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid 
         <Tab
           label={t('enhancedAdherenceCounselling', 'Enhanced Adherence Counselling')}
           className="tab-16rem"
-          style={{ padding: 0 }}
-        >
+          style={{ padding: 0 }}>
           <EnhancedAdherenceCounsellingList patientUuid={patientUuid} />
         </Tab>
       </Tabs>
