@@ -162,3 +162,10 @@ export const ViralLoadCopies_UUID = '856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 //Care and Treatement
 export const enrolmentDate = '160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const dateOfARTInitiation = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+//Express Visit
+export const ExpressVisitEncounterType = 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4';
+export const ExpressEncounterDate = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ExpressVisitType = '8a9809e9-8a0b-4e0e-b1f6-80b0cbbe361b';
+export const ExpressTBOutcome = '160108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ExpressRefferalReason = '1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
