@@ -15,11 +15,11 @@ import covidForms from './forms/forms-registry';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
+export const moduleName = '@ohri/openmrs-esm-ohri-covid-app';
+
 require('./root.scss');
 
 function setupOpenMRS() {
-  const moduleName = '@ohri/openmrs-esm-ohri-covid-app';
-
   const options = {
     featureName: 'ohri-covid',
     moduleName,
