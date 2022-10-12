@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@carbon/react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../common.scss';
@@ -12,10 +12,15 @@ const MultipleEncountersSummary: React.FC<OverviewListProps> = ({ patientUuid })
   const { t } = useTranslation();
   return (
     <div className={styles.tabContainer} style={{ position: 'relative', width: '1800px' }}>
-      <Tabs type="container">
-        <Tab label={t('hivBaseline', 'HIV Baseline')}>
-          <HivBaselineTabList patientUuid={patientUuid} />
-        </Tab>
+      <Tabs>
+        <TabList>
+          <Tab>{t('hivBaseline', 'HIV Baseline')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <HivBaselineTabList patientUuid={patientUuid} />
+          </TabPanel>
+        </TabPanels>
       </Tabs>
     </div>
   );
