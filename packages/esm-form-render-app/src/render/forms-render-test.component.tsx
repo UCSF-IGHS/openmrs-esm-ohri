@@ -148,7 +148,8 @@ function FormRenderTest() {
                     onSubmit={(e) => {
                       e.preventDefault();
                       handleFormSubmission(e);
-                    }}>
+                    }}
+                  >
                     <AceEditor
                       key={key}
                       mode="json"
@@ -200,7 +201,8 @@ function FormRenderTest() {
                       renderIcon={Run}
                       className="form-group"
                       style={{ marginTop: '1em' }}
-                      disabled={!selectedFormIntent}>
+                      disabled={!selectedFormIntent}
+                    >
                       {t('render', 'Render')}
                     </Button>
                   </Form>
@@ -243,21 +245,21 @@ function FormRenderTest() {
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs>
-              <TabList contained>
-                <Tab>{t('formRender', 'Form Render')}</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel className={styles.renderTab}>
-                {isSchemaLoaded ? (
-                    <div className={styles.formRenderDisplay}>
-                      <OHRIForm formJson={formInput} patientUUID={patientUuid} mode={'edit'} />
-                    </div>
-                  ) : (
-                    <p>{t('submitForm', 'Please submit the form')}</p>
-                  )}
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
+                <TabList contained>
+                  <Tab>{t('formRender', 'Form Render')}</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel className={styles.renderTab}>
+                    {isSchemaLoaded ? (
+                      <div className={styles.formRenderDisplay}>
+                        <OHRIForm formJson={formInput} patientUUID={patientUuid} mode={'edit'} />
+                      </div>
+                    ) : (
+                      <p>{t('submitForm', 'Please submit the form')}</p>
+                    )}
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
             </div>
           </div>
         </div>

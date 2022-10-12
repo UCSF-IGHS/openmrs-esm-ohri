@@ -18,8 +18,12 @@ const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
         <Tab>{t('viralLoadResults', 'Viral Load Results')}</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel><CD4ResultsList patientUuid={patientUuid} /></TabPanel>
-        <TabPanel><ViralLoadResultsList patientUuid={patientUuid} /></TabPanel>
+        <TabPanel>
+          <CD4ResultsList patientUuid={patientUuid} />
+        </TabPanel>
+        <TabPanel>
+          <ViralLoadResultsList patientUuid={patientUuid} />
+        </TabPanel>
       </TabPanels>
     </Tabs>
   );

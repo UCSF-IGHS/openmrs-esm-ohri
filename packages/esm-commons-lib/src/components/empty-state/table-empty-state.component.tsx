@@ -27,7 +27,8 @@ export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; head
                       {...getHeaderProps({
                         header,
                         isSortable: header.isSortable,
-                      })}>
+                      })}
+                    >
                       {header.header?.content ?? header.header}
                     </TableHeader>
                   ))}

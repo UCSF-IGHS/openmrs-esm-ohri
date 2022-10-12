@@ -23,62 +23,62 @@ function OHRIPatientTabs() {
       </TabList>
       <TabPanels>
         <TabPanel>
-        <CohortPatientList
-          cohortId={preTestCounsellingCohort}
-          cohortSlotName="pre-test-counseling-slot"
-          associatedEncounterType={htsRetrospectiveEncounterType}
-          addPatientToListOptions={{
-            isEnabled: true,
-            excludeCohorts: ['Post-Test Counselling'],
-          }}
-          launchableForm={{
-            package: formPackage,
-            name: formName,
-            intent: 'HTS_PRETEST',
-            actionText: t('startPretest', 'Start Pre-test'),
-            editLatestEncounter: true,
-            encounterType: htsRetrospectiveEncounterType,
-            targetDashboard: 'hts-summary',
-          }}
-        />
+          <CohortPatientList
+            cohortId={preTestCounsellingCohort}
+            cohortSlotName="pre-test-counseling-slot"
+            associatedEncounterType={htsRetrospectiveEncounterType}
+            addPatientToListOptions={{
+              isEnabled: true,
+              excludeCohorts: ['Post-Test Counselling'],
+            }}
+            launchableForm={{
+              package: formPackage,
+              name: formName,
+              intent: 'HTS_PRETEST',
+              actionText: t('startPretest', 'Start Pre-test'),
+              editLatestEncounter: true,
+              encounterType: htsRetrospectiveEncounterType,
+              targetDashboard: 'hts-summary',
+            }}
+          />
         </TabPanel>
         <TabPanel>
-        <CohortPatientList
-          cohortId={waitingForHIVTestCohort}
-          cohortSlotName="waiting-for-hiv-testing-slot"
-          addPatientToListOptions={{
-            isEnabled: true,
-            excludeCohorts: [],
-          }}
-          launchableForm={{
-            package: formPackage,
-            name: formName,
-            intent: 'HTS_HIVTEST',
-            actionText: t('startHIVTest', 'Start HIV Test'),
-            editLatestEncounter: true,
-            encounterType: htsRetrospectiveEncounterType,
-            targetDashboard: 'hts-summary',
-          }}
-        />
+          <CohortPatientList
+            cohortId={waitingForHIVTestCohort}
+            cohortSlotName="waiting-for-hiv-testing-slot"
+            addPatientToListOptions={{
+              isEnabled: true,
+              excludeCohorts: [],
+            }}
+            launchableForm={{
+              package: formPackage,
+              name: formName,
+              intent: 'HTS_HIVTEST',
+              actionText: t('startHIVTest', 'Start HIV Test'),
+              editLatestEncounter: true,
+              encounterType: htsRetrospectiveEncounterType,
+              targetDashboard: 'hts-summary',
+            }}
+          />
         </TabPanel>
         <TabPanel>
-        <CohortPatientList
-          cohortId={postTestCounsellingCohort}
-          cohortSlotName="post-test-counseling-slot"
-          addPatientToListOptions={{
-            isEnabled: true,
-            excludeCohorts: [],
-          }}
-          launchableForm={{
-            package: formPackage,
-            name: formName,
-            intent: 'HTS_POSTTEST',
-            actionText: t('startPostTestCounselling', 'Start Post-test counselling'),
-            editLatestEncounter: true,
-            encounterType: htsRetrospectiveEncounterType,
-            targetDashboard: 'hts-summary',
-          }}
-        />
+          <CohortPatientList
+            cohortId={postTestCounsellingCohort}
+            cohortSlotName="post-test-counseling-slot"
+            addPatientToListOptions={{
+              isEnabled: true,
+              excludeCohorts: [],
+            }}
+            launchableForm={{
+              package: formPackage,
+              name: formName,
+              intent: 'HTS_POSTTEST',
+              actionText: t('startPostTestCounselling', 'Start Post-test counselling'),
+              editLatestEncounter: true,
+              encounterType: htsRetrospectiveEncounterType,
+              targetDashboard: 'hts-summary',
+            }}
+          />
         </TabPanel>
       </TabPanels>
     </Tabs>

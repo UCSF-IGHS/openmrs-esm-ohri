@@ -60,7 +60,8 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               color: '#0f62fe',
               outline: '2rem solid transparent',
               boxShadow: showMenu ? '0 2px 6px 0 rgb(0 0 0 / 30%)' : 'none',
-            }}>
+            }}
+          >
             {menuTitle}
           </button>
           <div
@@ -80,7 +81,8 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
               marginRight: '0.2rem',
               boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
               width: '13rem',
-            }}>
+            }}
+          >
             <ul className="cds--overflow-menu-options__content">
               {overflowItems.map((item) => {
                 return item.availableIntents.map((intent, index) => {
@@ -99,7 +101,8 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
                         }}
                         style={{
                           maxWidth: '100vw',
-                        }}>
+                        }}
+                      >
                         <span className="cds--overflow-menu-options__option-content">{intent.display}</span>
                       </button>
                     </li>
@@ -126,7 +129,8 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
             color: '#0f62fe',
             outline: '2rem solid transparent',
             boxShadow: showMenu ? '0 2px 6px 0 rgb(0 0 0 / 30%)' : 'none',
-          }}>
+          }}
+        >
           {menuTitle}
         </Button>
       )}

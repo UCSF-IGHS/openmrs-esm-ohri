@@ -35,7 +35,8 @@ const AddPatientToListOverflowMenuItem: React.FC<{
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
-          }}>
+          }}
+        >
           <span className="cds--overflow-menu-options__option-content">{displayText || 'Add to list'}</span>
         </button>
       </li>
@@ -164,7 +165,8 @@ export const AddPatientToListModal: React.FC<{
           selectedList == null ||
           isSubmitting ||
           (selectedList == 'none' && currentMemberships.length == 0)
-        }>
+        }
+      >
         <div style={{ paddingLeft: '1rem', marginBottom: '2rem' }}>
           <p style={{ marginBottom: '1rem' }}>{t('addedToList', 'Currently added to the list(s) below')}</p>
           {isLoading ? loader : alreadySubscribedLists}
@@ -177,7 +179,8 @@ export const AddPatientToListModal: React.FC<{
               legendText=""
               name="patient-lists"
               orientation="vertical"
-              onChange={(selected) => setSelectedList(selected.toString())}>
+              onChange={(selected) => setSelectedList(selected.toString())}
+            >
               {availableLists}
             </RadioButtonGroup>
           )}

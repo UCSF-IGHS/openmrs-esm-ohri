@@ -4,9 +4,7 @@ import styles from './ohri-dashboard.scss';
 import { useParams } from 'react-router-dom';
 
 const OHRIDashboard = () => {
-  const {
-    view
-  } = useParams();
+  const { view } = useParams();
   const [dashboards, setDashboards] = useState([]);
   const metaLinks = useExtensionSlotMeta('dashboard-links-slot');
   const metaFolders = useExtensionSlotMeta('dashboard-slot');
@@ -14,13 +12,13 @@ const OHRIDashboard = () => {
   const layout = useLayoutType();
 
   const folders = useMemo(() => {
-    return Object.values({ ...metaLinks, ...metaFolders })
+    return Object.values({ ...metaLinks, ...metaFolders });
   }, [metaLinks, metaFolders]);
-  
+
   useEffect(() => {
     if (view) {
-      setCurrentDashboard(dashboards.find(db => db.name == view));
-    } else if (!currentDashboard){
+      setCurrentDashboard(dashboards.find((db) => db.name == view));
+    } else if (!currentDashboard) {
       setCurrentDashboard(dashboards[0]);
     }
   }, [view, dashboards]);
@@ -34,7 +32,7 @@ const OHRIDashboard = () => {
 
   const state = useMemo(() => {
     if (currentDashboard) {
-      return ({ programme: currentDashboard?.config?.programme, dashboardTitle: currentDashboard.title });
+      return { programme: currentDashboard?.config?.programme, dashboardTitle: currentDashboard.title };
     }
     return null;
   }, [currentDashboard]);
@@ -54,7 +52,7 @@ const OHRIDashboard = () => {
       })}
       {isDesktop(layout) && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
       <div className={` ${styles.dashboardContent}`}>
-        {currentDashboard && (<ExtensionSlot extensionSlotName={currentDashboard.slot} state={state} />)}
+        {currentDashboard && <ExtensionSlot extensionSlotName={currentDashboard.slot} state={state} />}
       </div>
     </div>
   );

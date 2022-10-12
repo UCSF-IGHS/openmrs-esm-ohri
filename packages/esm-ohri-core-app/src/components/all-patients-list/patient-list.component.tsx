@@ -91,7 +91,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart`;
 
-   return (
+  return (
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
@@ -107,7 +107,8 @@ const PatientList: React.FC<PatientListProps> = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   addNewPatient();
-                }}>
+                }}
+              >
                 {t('add', 'Add')}
               </Button>
             </div>

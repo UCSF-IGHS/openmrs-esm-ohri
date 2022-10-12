@@ -7,34 +7,29 @@ export function OHRIPatientListTabs({ patientListConfigs }) {
   return (
     <Tabs type="container" className={styles.tabContainer}>
       <TabList contained>
-      {patientListConfigs.map((config, index) => {
-        return (
-          <Tab key={index}>
-            {config.label}
-          </Tab>
-        );
-      })}
+        {patientListConfigs.map((config, index) => {
+          return <Tab key={index}>{config.label}</Tab>;
+        })}
       </TabList>
       <TabPanels>
-      {patientListConfigs.map((config, index) => {
-        return (
-          <TabPanel key={index}>
-            <CohortPatientList
-              cohortId={config.cohortId}
-              cohortSlotName={config.cohortSlotName}
-              isReportingCohort={config.isReportingCohort}
-              excludeColumns={config.excludeColumns}
-              otherColumns={config.otherColumns}
-              queryParams={config.queryParams}
-              associatedEncounterType={config.associatedEncounterType}
-              launchableForm={config.launchableForm}
-              extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
-            />
-          </TabPanel>
-        );
-      })}
+        {patientListConfigs.map((config, index) => {
+          return (
+            <TabPanel key={index}>
+              <CohortPatientList
+                cohortId={config.cohortId}
+                cohortSlotName={config.cohortSlotName}
+                isReportingCohort={config.isReportingCohort}
+                excludeColumns={config.excludeColumns}
+                otherColumns={config.otherColumns}
+                queryParams={config.queryParams}
+                associatedEncounterType={config.associatedEncounterType}
+                launchableForm={config.launchableForm}
+                extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
+              />
+            </TabPanel>
+          );
+        })}
       </TabPanels>
-      
     </Tabs>
   );
 }

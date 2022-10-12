@@ -52,7 +52,8 @@ export function OHRIHome(HomeProps) {
             marginRight: '-16px',
             marginBottom: '-16px',
             marginTop: '2rem',
-          }}>
+          }}
+        >
           <ExtensionSlot
             extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTabSlot)}
             state={{ launchWorkSpace }}
