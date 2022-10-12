@@ -14,10 +14,10 @@ const OHRIDashboardSideNav = () => {
 
         {/* Remove once we have dashboards */}
         <div>
-          <SideNavLink renderIcon={<ListBulleted size={32} />} href="javascript:void(0)">
+          <SideNavLink renderIcon={ListBulleted} href="javascript:void(0)">
             {t('patientLists', 'Patient Lists')}
           </SideNavLink>
-          <SideNavLink renderIcon={<Calendar size={32} />} href="javascript:void(0)">
+          <SideNavLink renderIcon={Calendar} href="javascript:void(0)">
             {t('appointments', 'Appointments')}
           </SideNavLink>
         </div>
