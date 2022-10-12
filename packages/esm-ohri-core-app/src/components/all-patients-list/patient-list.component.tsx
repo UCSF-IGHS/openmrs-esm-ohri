@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import styles from './patient-list.scss';
 import { Add } from '@carbon/react/icons';
 import { useTranslation } from 'react-i18next';
@@ -92,7 +91,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart`;
 
-  return (
+   return (
     <>
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
@@ -103,7 +102,7 @@ const PatientList: React.FC<PatientListProps> = () => {
             <div className={styles.toggleButtons}>
               <Button
                 kind="ghost"
-                renderIcon={<Add size={16} />}
+                renderIcon={Add}
                 iconDescription="New"
                 onClick={(e) => {
                   e.preventDefault();

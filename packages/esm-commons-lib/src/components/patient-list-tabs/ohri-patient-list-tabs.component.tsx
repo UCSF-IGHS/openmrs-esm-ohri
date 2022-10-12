@@ -1,14 +1,24 @@
 import React from 'react';
-import { Tabs, Tab } from '@carbon/react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './ohri-patient-list-tabs.scss';
 import { CohortPatientList } from '../patient-lists/patient-list-cohort.component';
 
 export function OHRIPatientListTabs({ patientListConfigs }) {
   return (
     <Tabs type="container" className={styles.tabContainer}>
+      <TabList contained>
       {patientListConfigs.map((config, index) => {
         return (
-          <Tab id={index} label={config.label}>
+          <Tab key={index}>
+            {config.label}
+          </Tab>
+        );
+      })}
+      </TabList>
+      <TabPanels>
+      {patientListConfigs.map((config, index) => {
+        return (
+          <TabPanel key={index}>
             <CohortPatientList
               cohortId={config.cohortId}
               cohortSlotName={config.cohortSlotName}
@@ -20,9 +30,11 @@ export function OHRIPatientListTabs({ patientListConfigs }) {
               launchableForm={config.launchableForm}
               extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
             />
-          </Tab>
+          </TabPanel>
         );
       })}
+      </TabPanels>
+      
     </Tabs>
   );
 }

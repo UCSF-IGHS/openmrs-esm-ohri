@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Tabs, Tab, Row, Column } from '@carbon/react';
+import { Tabs, Tab, Row, Column, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './ohri-patient-tabs.scss';
 import { CohortPatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
@@ -16,7 +16,13 @@ function OHRIPatientTabs() {
   const formName = 'hts';
   return (
     <Tabs type="container" className={styles.tabContainer}>
-      <Tab id="tab-1" label={t('waitingForPretestCounselling', 'Waiting for pre-test counselling')}>
+      <TabList contained>
+        <Tab>{t('waitingForPretestCounselling', 'Waiting for pre-test counselling')}</Tab>
+        <Tab>{t('wiatingForHivTest', 'Waiting for HIV test')}</Tab>
+        <Tab>{t('waitingForPostTest', 'Waiting for post-test counselling')}</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
         <CohortPatientList
           cohortId={preTestCounsellingCohort}
           cohortSlotName="pre-test-counseling-slot"
@@ -35,8 +41,8 @@ function OHRIPatientTabs() {
             targetDashboard: 'hts-summary',
           }}
         />
-      </Tab>
-      <Tab id="tab-2" label={t('wiatingForHivTest', 'Waiting for HIV test')}>
+        </TabPanel>
+        <TabPanel>
         <CohortPatientList
           cohortId={waitingForHIVTestCohort}
           cohortSlotName="waiting-for-hiv-testing-slot"
@@ -54,8 +60,8 @@ function OHRIPatientTabs() {
             targetDashboard: 'hts-summary',
           }}
         />
-      </Tab>
-      <Tab id="tab-3" label={t('waitingForPostTest', 'Waiting for post-test counselling')}>
+        </TabPanel>
+        <TabPanel>
         <CohortPatientList
           cohortId={postTestCounsellingCohort}
           cohortSlotName="post-test-counseling-slot"
@@ -73,7 +79,8 @@ function OHRIPatientTabs() {
             targetDashboard: 'hts-summary',
           }}
         />
-      </Tab>
+        </TabPanel>
+      </TabPanels>
     </Tabs>
   );
 }

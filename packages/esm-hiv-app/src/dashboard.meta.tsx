@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Home } from '@carbon/react/icons';
 
 // Patient Chart Dashboards
@@ -85,7 +84,7 @@ export const appointments_dashboardMeta = {
 // Clinical Dashboards
 export const hivFolderDashboardMeta = {
   slot: 'ohri-hiv-dashboard-slot',
-  config: { columns: 1, type: 'grid', icon: <Home size={32} /> },
+  config: { columns: 1, type: 'grid', icon: Home },
   isFolder: true,
   title: 'HIV',
 };
