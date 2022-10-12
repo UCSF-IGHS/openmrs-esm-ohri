@@ -4,7 +4,7 @@ import { Add } from '@carbon/react/icons';
 import { useTranslation } from 'react-i18next';
 import { age, navigate } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Pagination, OverflowMenu, Button } from '@carbon/react';
-import { capitalize } from 'lodash-es/capitalize';
+import { capitalize } from 'lodash-es';
 import moment from 'moment';
 import {
   AddPatientToListOverflowMenuItem,
