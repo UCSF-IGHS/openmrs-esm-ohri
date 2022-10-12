@@ -11,9 +11,9 @@ interface OverviewListProps {
 const MultipleEncountersSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   return (
-    <div className={styles.tabContainer} style={{ position: 'relative', width: '1800px' }}>
+    <div className={styles.tabContainer} style={{ position: 'relative', width: '90rem' }}>
       <Tabs>
-        <TabList>
+        <TabList contained>
           <Tab>{t('hivBaseline', 'HIV Baseline')}</Tab>
         </TabList>
         <TabPanels>
