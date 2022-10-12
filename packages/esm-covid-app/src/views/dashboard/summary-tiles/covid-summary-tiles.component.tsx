@@ -48,13 +48,13 @@ function CcoivdSummaryTiles({ launchWorkSpace }) {
         linkAddress: '#',
         subTitle: t('PeopleWithCovidOutcome', 'People with covid outcome'),
         value: PeopleWithCovidOutcome,
-        onClick: () => {
-          launchWorkSpace('Covid Outcome', <Outcomes />, {
-            numberOfClients: PeopleWithCovidOutcome,
-            subTitle: 'Covid Outcome',
-            dateLastUpdated: '--',
-          });
-        },
+        // onClick: () => {
+        //   launchWorkSpace('Covid Outcome', <Outcomes />, {
+        //     numberOfClients: PeopleWithCovidOutcome,
+        //     subTitle: 'Covid Outcome',
+        //     dateLastUpdated: '--',
+        //   });
+        // },
       },
     ],
     [],
