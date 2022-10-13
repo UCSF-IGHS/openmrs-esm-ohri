@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   clinicalVisitEncounterType,
   dateOfEncounterConcept,
-  expressCareProgramStatusConcept,
-  regimenConcept,
   returnVisitDateConcept,
   tbScreeningOutcome,
   visitTypeConcept,
-  //screeningOutcomeConcept
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ClinicalVisitListProps {
   patientUuid: string;
@@ -96,7 +94,10 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
       form={{ package: 'hiv', name: 'clinical_visit' }}
       columns={columns}
       description="clinical visit encounters"
-      headerTitle="Clinical Visits"
+      headerTitle={headerTitle}
+      launchOptions={{
+        moduleName: moduleName,
+      }}
     />
   );
 };

@@ -7,6 +7,7 @@ import moment from 'moment';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
 import { EmptyState, OHRIFormLauncherWithIntent, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { launchOHRIWorkSpace } from '@ohri/openmrs-esm-ohri-commons-lib/src/workspace/ohri-workspace-utils';
+import { moduleName } from '../index';
 
 interface CovidOverviewListProps {
   patientUuid: string;
@@ -40,6 +41,7 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   const launchCaseReportForm = (form?: any) => {
     launchOHRIWorkSpace({
       title: covidCaseReportForm?.name,
+      moduleName,
       state: { updateParent: forceComponentUpdate, formJson: form || covidCaseReportForm },
     });
   };

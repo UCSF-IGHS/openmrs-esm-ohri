@@ -12,6 +12,7 @@ import {
   covidTypeofTestConcept_UUID,
 } from '../constants';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../index';
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
@@ -234,7 +235,10 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               columns={columnsLab}
               description={displayText}
               headerTitle={headerTitle}
-              dropdownText="Add"
+              launchOptions={{
+                displayText: 'Add',
+                moduleName: moduleName,
+              }}
             />
           </TabPanel>
           <TabPanel>
@@ -245,8 +249,11 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               columns={columnsPending}
               description={headerTitlePending}
               headerTitle={displayTextPending}
-              dropdownText="Add"
-              hideFormLauncher={true}
+              launchOptions={{
+                displayText: 'Add',
+                moduleName: moduleName,
+                hideFormLauncher: true,
+              }}
               filter={pendingLabOrdersFilter}
             />
           </TabPanel>

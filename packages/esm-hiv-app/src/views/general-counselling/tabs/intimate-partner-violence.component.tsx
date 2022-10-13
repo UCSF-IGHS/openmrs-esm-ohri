@@ -8,6 +8,7 @@ import {
   PhysicalAbuse_UUID,
   SexualAbuse_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface IntimatePartnerViolenceListProps {
   patientUuid: string;
@@ -130,7 +131,10 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

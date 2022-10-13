@@ -10,6 +10,7 @@ import {
   Relationship_UUID,
 } from '../../constants';
 import styles from '../common.scss';
+import { moduleName } from '../../index';
 const statusColorMap = {
   '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'red', // positive
   '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'gray', // negative
@@ -101,7 +102,10 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
       columns={columns}
       description={headerTitle}
       headerTitle={displayText}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

@@ -48,6 +48,7 @@ interface CohortPatientListProps {
     targetDashboard?: string;
   };
   extraAssociatedEncounterTypes?: Array<string>;
+  moduleName: string;
 }
 
 export const columns: PatientListColumn[] = [
@@ -123,7 +124,7 @@ const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter((patient) => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType, patientUrl }) => {
+const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType, patientUrl, moduleName }) => {
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -154,10 +155,10 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
           onClick={() => {
             if (encounterUuid) {
               changeWorkspaceContext(patientUuid);
-              launchFormInEditMode(form, encounterUuid, null, null, 'ohri-forms');
+              launchFormInEditMode(form, moduleName, encounterUuid, null, null, 'ohri-forms');
             } else {
               changeWorkspaceContext(patientUuid);
-              launchForm(form, null, null, 'ohri-forms');
+              launchForm(form, moduleName, null, null, 'ohri-forms');
             }
             navigate({ to: patientUrl });
           }}
@@ -178,6 +179,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   launchableForm,
   addPatientToListOptions,
   extraAssociatedEncounterTypes,
+  moduleName,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPatients, setLoadedPatients] = useState(false);
@@ -240,6 +242,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
               encounterType={launchableForm.encounterType || associatedEncounterType}
               key={patientUuid}
               patientUrl={patientWithMeta.patientUrl}
+              moduleName={moduleName}
             />
           ) : (
             <></>

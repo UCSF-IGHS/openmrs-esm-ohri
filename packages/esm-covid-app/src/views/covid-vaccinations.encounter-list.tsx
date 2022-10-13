@@ -9,6 +9,7 @@ import {
   covidVaccineSeriesConcept_UUID,
 } from '../constants';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../index';
 
 interface CovidVaccinationsWidgetProps {
   patientUuid: string;
@@ -89,7 +90,10 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

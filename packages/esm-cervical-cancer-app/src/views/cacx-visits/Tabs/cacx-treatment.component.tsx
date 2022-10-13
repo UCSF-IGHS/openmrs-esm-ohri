@@ -1,11 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  EmptyStateComingSoon,
-  EncounterList,
-  EncounterListColumn,
-  getObsFromEncounter,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   cacxEncounterDateConcept,
   screeningMethodConcept,
@@ -13,6 +8,7 @@ import {
   cacxTreatmentEncounterType_UUID,
   colopsyResultsConcept,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface CacxTreatmentListProps {
   patientUuid: string;
@@ -90,7 +86,10 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

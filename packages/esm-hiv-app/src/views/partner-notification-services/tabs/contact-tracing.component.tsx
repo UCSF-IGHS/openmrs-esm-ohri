@@ -7,6 +7,7 @@ import {
   ContactTracingMethod_UUID,
   ContactTracingOutcome_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ContactTracingListProps {
   patientUuid: string;
@@ -77,7 +78,10 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

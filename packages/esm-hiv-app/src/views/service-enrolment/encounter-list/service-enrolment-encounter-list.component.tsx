@@ -13,6 +13,7 @@ import {
   getEncounterValues,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../../../index';
 
 interface ServiceEnrolmentProps {
   patientUuid: string;
@@ -83,6 +84,9 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      launchOptions={{
+        moduleName: moduleName,
+      }}
     />
   );
 };

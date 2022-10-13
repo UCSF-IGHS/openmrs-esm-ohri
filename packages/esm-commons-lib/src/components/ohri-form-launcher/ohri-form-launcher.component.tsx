@@ -7,10 +7,10 @@ import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.com
 export const OHRIFormLauncherWithIntent: React.FC<{
   formJson?: any;
   launchForm: (formJson?: any, intent?: string) => void;
-  dropDownText?: string;
+  title?: string;
   hideFormLauncher?: boolean;
   formsJson?: Array<any>;
-}> = ({ formJson, launchForm, hideFormLauncher, formsJson }) => {
+}> = ({ formJson, launchForm, hideFormLauncher, formsJson, title }) => {
   const { t } = useTranslation();
   let overFlowItems = [];
   if (formsJson && formsJson.length > 1) {
@@ -27,7 +27,7 @@ export const OHRIFormLauncherWithIntent: React.FC<{
         <OHRIOverflowMenu
           menuTitle={
             <>
-              <span className={styles.actionsButtonText}>{t('add', 'Add')}</span>{' '}
+              <span className={styles.actionsButtonText}>{title || t('add', 'Add')}</span>{' '}
               <Add size={16} style={{ marginLeft: '0.5rem' }} />
             </>
           }

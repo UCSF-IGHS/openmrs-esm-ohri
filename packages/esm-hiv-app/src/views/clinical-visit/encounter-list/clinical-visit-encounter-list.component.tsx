@@ -9,6 +9,7 @@ import {
 } from '../../../constants';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../../../index';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;
@@ -78,6 +79,9 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
       columns={columns}
       description="clinical visit encounters"
       headerTitle="Clinical Visits"
+      launchOptions={{
+        moduleName: moduleName,
+      }}
     />
   );
 };

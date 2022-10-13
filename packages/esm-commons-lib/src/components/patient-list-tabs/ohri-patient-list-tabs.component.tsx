@@ -3,7 +3,7 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './ohri-patient-list-tabs.scss';
 import { CohortPatientList } from '../patient-lists/patient-list-cohort.component';
 
-export function OHRIPatientListTabs({ patientListConfigs }) {
+export function OHRIPatientListTabs({ patientListConfigs, moduleName }) {
   return (
     <Tabs type="container" className={styles.tabContainer}>
       <TabList contained>
@@ -25,6 +25,7 @@ export function OHRIPatientListTabs({ patientListConfigs }) {
                 associatedEncounterType={config.associatedEncounterType}
                 launchableForm={config.launchableForm}
                 extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
+                moduleName={moduleName}
               />
             </TabPanel>
           );

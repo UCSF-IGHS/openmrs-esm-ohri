@@ -9,6 +9,7 @@ import {
   waitingForHIVTestCohort,
 } from '../../../../constants';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../../../../index';
 
 function OHRIPatientTabs() {
   const { t } = useTranslation();
@@ -40,6 +41,7 @@ function OHRIPatientTabs() {
               encounterType: htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
             }}
+            moduleName={moduleName}
           />
         </TabPanel>
         <TabPanel>
@@ -59,6 +61,7 @@ function OHRIPatientTabs() {
               encounterType: htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
             }}
+            moduleName={moduleName}
           />
         </TabPanel>
         <TabPanel>
@@ -78,6 +81,7 @@ function OHRIPatientTabs() {
               encounterType: htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
             }}
+            moduleName={moduleName}
           />
         </TabPanel>
       </TabPanels>

@@ -2,6 +2,7 @@ import React from 'react';
 import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../constants';
 import { OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../../../index';
 
 function CTHomePatientTabs() {
   const { t } = useTranslation();
@@ -85,7 +86,7 @@ function CTHomePatientTabs() {
       ],
     },
   ];
-  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
+  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
 }
 
 export default CTHomePatientTabs;

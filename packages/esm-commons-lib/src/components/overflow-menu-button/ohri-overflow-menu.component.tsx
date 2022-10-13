@@ -7,18 +7,11 @@ import { Button } from '@carbon/react';
 interface OverflowMenuProps {
   menuTitle: React.ReactNode;
   overflowItems: Array<any>;
-  overflowIcon?: any;
   launchForm?: (formJson?: any, intent?: string) => void;
   formJson?: any;
 }
 
-export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
-  menuTitle,
-  overflowIcon,
-  overflowItems,
-  launchForm,
-  formJson,
-}) => {
+export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overflowItems, launchForm, formJson }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);

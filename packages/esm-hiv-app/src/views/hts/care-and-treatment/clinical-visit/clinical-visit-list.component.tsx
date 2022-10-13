@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { EmptyState, OHRIFormLauncherEmpty, launchForm } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../../constants';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
+import { moduleName } from '../../../../index';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;
@@ -47,7 +48,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
           displayText={t('clinicalVisitDisplay', 'clinical visit encounters')}
           headerTitle={t('clinicalVisitTitle', 'Clinical Visits')}
           launchFormComponent={
-            <OHRIFormLauncherEmpty launchForm={() => launchForm(clinicalVisitForm, forceComponentUpdate)} />
+            <OHRIFormLauncherEmpty launchForm={() => launchForm(clinicalVisitForm, moduleName, forceComponentUpdate)} />
           }
         />
       )}

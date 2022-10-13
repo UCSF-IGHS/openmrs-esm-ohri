@@ -15,6 +15,7 @@ import {
   verified_UUID,
   visitDate_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface TransferOutTabListProps {
   patientUuid: string;
@@ -90,7 +91,10 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };
