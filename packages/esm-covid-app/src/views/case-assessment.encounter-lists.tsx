@@ -1,6 +1,7 @@
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../index';
 import {
   covid_Assessment_EncounterUUID,
   covidReasonsForTestingConcep_UUID,
@@ -115,7 +116,10 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

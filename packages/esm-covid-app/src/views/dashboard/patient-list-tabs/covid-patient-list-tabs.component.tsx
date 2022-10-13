@@ -24,6 +24,7 @@ import {
   returnVisitDateConcept,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import moment from 'moment';
+import { moduleName } from '../../../index';
 
 function CovidHomePatientTabs() {
   const { t } = useTranslation();
@@ -156,7 +157,7 @@ function CovidHomePatientTabs() {
     ],
     [],
   );
-  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
+  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
 }
 
 export default CovidHomePatientTabs;

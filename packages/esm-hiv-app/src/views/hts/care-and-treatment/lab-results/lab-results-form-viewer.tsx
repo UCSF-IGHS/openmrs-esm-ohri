@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import {
-  launchFormInEditMode,
-  launchFormInViewMode,
-  launchFormWithCustomTitle,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
 import styles from './Tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from '@carbon/react';
 import { changeWorkspaceContext, closeAllWorkspaces, resetWorkspaceStore } from '@openmrs/esm-patient-common-lib';
 import { navigate } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../../../../index';
 
 export interface LabresultsFormViewerProps {
   patientUuid: string;
@@ -33,7 +30,14 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
 
   const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
     const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
-    launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
+    launchFormWithCustomTitle(
+      form || encounterForm,
+      moduleName,
+      launcherTitle,
+      'view',
+      encounterUuid,
+      forceComponentUpdate,
+    );
   };
   return (
     <>

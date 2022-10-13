@@ -11,6 +11,7 @@ import {
   otherEntryPoint,
   populationCategoryConcept,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface HIVEnrolmentTabListProps {
   patientUuid: string;
@@ -103,7 +104,10 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

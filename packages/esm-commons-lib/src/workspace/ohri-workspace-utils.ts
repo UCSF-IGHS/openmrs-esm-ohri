@@ -10,8 +10,7 @@ export interface WorkspaceContextProps {
   screenSize?: string;
   collapseSections?: Boolean;
   workspaceName?: string;
-  // TODO: this should be a required property
-  moduleName?: string;
+  moduleName: string;
 }
 
 let counter = 0;
@@ -32,9 +31,7 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
     preferredWindowSize: <any>props.screenSize,
     load: getSyncLifecycle(OHRIForm, {
       featureName: 'ohri-forms-workspace-item',
-      // FIXME: This is a temporary solution, this is supposed to be a dynamic value
-      // see: https://ohri.atlassian.net/browse/OHRI-1070
-      moduleName: '@ohri/openmrs-esm-ohri-core-app', // props.moduleName,
+      moduleName: props.moduleName,
     }),
   });
 

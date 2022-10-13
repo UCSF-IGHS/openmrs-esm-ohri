@@ -9,6 +9,7 @@ import {
   MentalHealthAssessmentEncounter_UUID,
   screeningDate_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface MentalHealthAssessmentListProps {
   patientUuid: string;
@@ -147,7 +148,10 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

@@ -4,6 +4,7 @@ import moment from 'moment';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { htsStrategyUUID } from '../../../constants';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../../../index';
 
 interface HtsOverviewListProps {
   patientUuid: string;
@@ -118,7 +119,10 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

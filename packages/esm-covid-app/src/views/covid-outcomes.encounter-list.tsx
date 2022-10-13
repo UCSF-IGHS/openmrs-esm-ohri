@@ -6,6 +6,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../index';
 import {
   covid_Assessment_EncounterUUID,
   covidTestTypeUUID,
@@ -77,8 +78,11 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
-      hideFormLauncher
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+        hideFormLauncher: true,
+      }}
     />
   );
 };

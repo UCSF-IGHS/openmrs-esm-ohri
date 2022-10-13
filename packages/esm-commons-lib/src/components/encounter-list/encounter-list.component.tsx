@@ -31,7 +31,13 @@ export interface EncounterListProps {
   columns: Array<any>;
   headerTitle: string;
   description: string;
+  /**
+   * @deprecated Use `launchOptions.displayText`
+   */
   dropdownText?: string;
+  /**
+   * @deprecated Use `launchOptions.hideFormLauncher`
+   */
   hideFormLauncher?: boolean;
   forms?: Array<{
     package: string;
@@ -41,6 +47,11 @@ export interface EncounterListProps {
     fixedIntent?: string;
   }>;
   filter?: (encounter: any) => boolean;
+  launchOptions: {
+    hideFormLauncher?: boolean;
+    moduleName: string;
+    displayText?: string;
+  };
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -101,34 +112,42 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   columns,
   headerTitle,
   description,
-  dropdownText,
-  hideFormLauncher,
   forms,
   filter,
+  launchOptions,
+  dropdownText,
+  hideFormLauncher,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+  const [encounterForm, _] = useState(getForm(form.package, form.name));
   const [isDead, setIsDead] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
-  dropdownText = dropdownText ? 'Add' : 'New';
-  hideFormLauncher = hideFormLauncher || false;
+  const launchDisplayText = useMemo(() => {
+    return launchOptions.displayText ?? dropdownText ?? t('new', 'New');
+  }, [launchOptions.displayText, t, dropdownText]);
 
-  if (isDead) {
-    hideFormLauncher = isDead;
-  }
+  const launcherIsMarkedAsHidden = useMemo(() => {
+    return isDead ? true : launchOptions.hideFormLauncher ?? hideFormLauncher ?? false;
+  }, [isDead, launchOptions, hideFormLauncher]);
 
   const editEncounter = (encounterUuid) => {
-    launchFormInEditMode(applyFormIntent('', encounterForm), encounterUuid, forceComponentUpdate);
+    launchFormInEditMode(
+      applyFormIntent('', encounterForm),
+      launchOptions.moduleName,
+      encounterUuid,
+      forceComponentUpdate,
+    );
   };
   const viewEncounter = (encounterUuid) => {
     launchFormInViewMode(
       form.view ? getForm(form.package, form.view) : encounterForm,
+      launchOptions.moduleName,
       encounterUuid,
       forceComponentUpdate,
     );
@@ -234,6 +253,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   } else if (actionItem.mode == 'enter') {
                     launchForm(
                       applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      launchOptions.moduleName,
                       forceComponentUpdate,
                     );
                   } else {
@@ -291,11 +311,32 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
 
     if (action === 'view') {
-      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
+      launchFormWithCustomTitle(
+        form || encounterForm,
+        launchOptions.moduleName,
+        launcherTitle,
+        'view',
+        encounterUuid,
+        forceComponentUpdate,
+      );
     } else if (action === 'edit') {
-      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'edit', encounterUuid, forceComponentUpdate);
+      launchFormWithCustomTitle(
+        form || encounterForm,
+        launchOptions.moduleName,
+        launcherTitle,
+        'edit',
+        encounterUuid,
+        forceComponentUpdate,
+      );
     } else {
-      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'enter', '', forceComponentUpdate);
+      launchFormWithCustomTitle(
+        form || encounterForm,
+        launchOptions.moduleName,
+        launcherTitle,
+        'enter',
+        '',
+        forceComponentUpdate,
+      );
     }
   };
 
@@ -315,8 +356,8 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       return (
         <OHRIFormLauncherWithIntent
           launchForm={launchEncounterForm}
-          dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
+          title={launchDisplayText}
+          hideFormLauncher={launcherIsMarkedAsHidden}
           formsJson={encounterForms}
         />
       );
@@ -325,8 +366,8 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <OHRIFormLauncherWithIntent
           formJson={encounterForm}
           launchForm={launchEncounterForm}
-          dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
+          title={launchDisplayText}
+          hideFormLauncher={launcherIsMarkedAsHidden}
         />
       );
     }
@@ -339,10 +380,10 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           e.preventDefault();
           launchEncounterForm();
         }}>
-        {dropdownText}
+        {launchDisplayText}
       </Button>
     );
-  }, [encounterForm, launchEncounterForm]);
+  }, [encounterForm, launchEncounterForm, launchDisplayText]);
 
   useEffect(() => {
     loadRows(encounterUuid);
@@ -357,7 +398,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
+              {!launcherIsMarkedAsHidden && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
             <Pagination
@@ -380,7 +421,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           headerTitle={headerTitle}
           launchForm={launchEncounterForm}
           launchFormComponent={formLauncher}
-          hideFormLauncher
+          hideFormLauncher={launcherIsMarkedAsHidden}
         />
       )}
     </>

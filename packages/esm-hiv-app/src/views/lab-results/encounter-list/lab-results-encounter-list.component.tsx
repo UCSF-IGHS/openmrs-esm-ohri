@@ -13,6 +13,7 @@ import {
   ViralLoadResultsEncounter_UUID,
   ViralLoadResult_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface LabResultsOverviewListProps {
   patientUuid: string;
@@ -89,7 +90,10 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

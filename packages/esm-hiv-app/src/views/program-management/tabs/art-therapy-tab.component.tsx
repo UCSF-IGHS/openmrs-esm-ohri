@@ -17,6 +17,7 @@ import {
   substituteReasonUUID,
   switchReasonUUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ArtTherapyTabListProps {
   patientUuid: string;
@@ -191,6 +192,10 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
       description={displayText}
       headerTitle={headerTitle}
       dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

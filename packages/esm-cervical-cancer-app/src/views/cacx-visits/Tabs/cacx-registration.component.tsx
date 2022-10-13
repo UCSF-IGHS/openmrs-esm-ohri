@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
@@ -7,6 +7,7 @@ import {
   eligibleForScreeningConcept,
   previouslyScreenedConcept,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface CacxRegistrationListProps {
   patientUuid: string;
@@ -78,6 +79,10 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
       description={displayText}
       headerTitle={headerTitle}
       dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

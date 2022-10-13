@@ -31,6 +31,10 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^dashboard/,
       },
+      {
+        load: getAsyncLifecycle(() => import('./root'), options),
+        route: /^home/,
+      },
     ],
     extensions: [
       {

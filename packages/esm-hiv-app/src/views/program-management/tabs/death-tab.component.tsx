@@ -8,6 +8,7 @@ import {
   deathSpecific_UUID,
   hivDeathDate_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface DeathTabListProps {
   patientUuid: string;
@@ -73,7 +74,10 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

@@ -7,6 +7,7 @@ import {
   EnrollmentDate_UUID,
   ServiceDeliveryEncounterType_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ServiceDeliveryTabListProps {
   patientUuid: string;
@@ -74,7 +75,10 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

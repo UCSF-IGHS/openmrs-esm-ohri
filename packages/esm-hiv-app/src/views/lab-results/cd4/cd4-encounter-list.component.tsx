@@ -9,6 +9,7 @@ import {
   CD4LabResultsEncounter_UUID,
   hivCD4Result_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface CD4OverviewListProps {
   patientUuid: string;
@@ -78,7 +79,10 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };
