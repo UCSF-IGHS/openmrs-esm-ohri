@@ -81,6 +81,8 @@
     line-height: 1.29;
     letter-spacing: 0.16px;
     color: #525252;
+    display: flex;
+    flex-direction: row;
 }
 .tileBox {
     width: 25%;
@@ -138,6 +140,8 @@
     line-height: 1.29;
     letter-spacing: 0.16px;
     color: #525252;
+    display: flex;
+    flex-direction: column;
 }
 .tileBoxARV {
     display: flex;

@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { CodeSnippetSkeleton, Tile, Row, Button } from '@carbon/react';
+import { CodeSnippetSkeleton, Tile, Button, Column } from '@carbon/react';
 import { ArrowRight } from '@carbon/react/icons';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -158,7 +158,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
             )}
           </div>
           {tileStyle == 'ARV' ? (
-            <Row className={styles.tabletTileTitleARV}>
+            <Column className={styles.tabletTileTitle}>
               {mockData_Current_ARV.map((column) => (
                 <div className={styles.tileBoxARV}>
                   <div className={styles.tileBoxColumnARV}>
@@ -167,9 +167,9 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
                   </div>
                 </div>
               ))}
-            </Row>
+            </Column>
           ) : (
-            <Row className={styles.tabletTileTitle}>
+            <Column className={styles.tabletTileTitle}>
               {mockData_HIV_Status.map((column) => (
                 <div className={styles.tileBox}>
                   <div className={styles.tileBoxColumn}>
@@ -179,7 +179,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
                   </div>
                 </div>
               ))}
-            </Row>
+            </Column>
           )}
         </Tile>
       ) : (
