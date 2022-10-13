@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from '@carbon/react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import AdherenceCounsellingList from './tabs/adherence-counselling.component';
 import EnhancedAdherenceCounsellingList from './tabs/enhanced-adherence-counselling.component';
@@ -14,16 +14,19 @@ const AdherenceCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid 
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container">
-        <Tab label={t('adherenceCounselling', 'Adherence Counselling')} className="tab-12rem">
-          <AdherenceCounsellingList patientUuid={patientUuid} />
-        </Tab>
-        <Tab
-          label={t('enhancedAdherenceCounselling', 'Enhanced Adherence Counselling')}
-          className="tab-16rem"
-          style={{ padding: 0 }}>
-          <EnhancedAdherenceCounsellingList patientUuid={patientUuid} />
-        </Tab>
+      <Tabs>
+        <TabList contained>
+          <Tab className="tab-12rem">{t('adherenceCounselling', 'Adherence Counselling')}</Tab>
+          <Tab className="tab-16rem">{t('enhancedAdherenceCounselling', 'Enhanced Adherence Counselling')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <AdherenceCounsellingList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <EnhancedAdherenceCounsellingList patientUuid={patientUuid} />
+          </TabPanel>
+        </TabPanels>
       </Tabs>
     </div>
   );

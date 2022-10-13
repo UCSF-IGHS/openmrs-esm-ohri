@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Tabs, Tab } from '@carbon/react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import CD4OverviewList from '../cd4/cd4-encounter-list.component';
 import styles from './lab-results-overview.scss';
 import LabResultsOverviewList from '../encounter-list/lab-results-encounter-list.component';
@@ -26,21 +26,28 @@ const LabResultsOverview: React.FC<OverviewListProps> = ({ patientUuid }) => {
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container">
-        <Tab label={t('cd4LabResults', 'CD4 Lab results')} style={{ padding: 0 }}>
-          <CD4OverviewList patientUuid={patientUuid} />
-        </Tab>
-        <Tab label={t('viralLoad', 'Viral Load')}>
-          <LabResultsOverviewList patientUuid={patientUuid} />
-        </Tab>
-        <Tab label={t('labTests', 'Lab Tests')} style={{ padding: 0 }}>
-          <div className={styles.padding}>
-            <ExtensionSlot
-              extensionSlotName="ohri-lab-test-result-filtered-overview-slot"
-              state={{ patientUuid, filter }}
-            />
-          </div>
-        </Tab>
+      <Tabs>
+        <TabList contained>
+          <Tab>{t('cd4LabResults', 'CD4 Lab results')}</Tab>
+          <Tab>{t('viralLoad', 'Viral Load')}</Tab>
+          <Tab>{t('labTests', 'Lab Tests')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <CD4OverviewList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <LabResultsOverviewList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <div className={styles.padding}>
+              <ExtensionSlot
+                extensionSlotName="ohri-lab-test-result-filtered-overview-slot"
+                state={{ patientUuid, filter }}
+              />
+            </div>
+          </TabPanel>
+        </TabPanels>
       </Tabs>
     </div>
   );

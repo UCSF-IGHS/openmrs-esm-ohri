@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Coronavirus } from '@carbon/react/icons';
 
 // Patient Chart Dashboards
@@ -29,7 +28,7 @@ export const covidVaccinations_dashboardMeta = {
 // Clinical Dashboards
 export const covidClinicalViewDashboardMeta = {
   slot: 'ohri-covid-dashboard-slot',
-  config: { columns: 1, type: 'grid', icon: <Coronavirus size={32} /> },
+  config: { columns: 1, type: 'grid', icon: Coronavirus },
   isFolder: true,
   title: 'COVID',
 };

@@ -1,5 +1,5 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
-import { capitalize } from 'lodash-es/capitalize';
+import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   fetchPatientsFromObservationCodeConcept,

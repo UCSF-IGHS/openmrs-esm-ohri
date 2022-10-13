@@ -4,7 +4,7 @@ import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { DataTableSkeleton, OverflowMenu, Pagination, Search } from '@carbon/react';
-import { capitalize } from 'lodash-es/capitalize';
+import { capitalize } from 'lodash-es';
 import {
   EmptyState,
   OTable,

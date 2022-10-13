@@ -5,6 +5,19 @@
 .action {
   margin-bottom: spacing.$spacing-03;
 }
+.desktopHeading {
+  h4 {
+    @include type.type-style('heading-compact-02');
+    color: $text-02;
+  }
+}
+
+.tabletHeading {
+  h4 {
+    @include type.type-style('heading-03');
+    color: $text-02;
+  }
+}
 
 .content {
   @include type.type-style("heading-compact-01");
@@ -38,4 +51,8 @@
 .headerWrapper {
   display: flex;
   justify-content: space-between;
+}
+.tile {
+  text-align: center;
+  border: 1px solid $ui-03;
 }

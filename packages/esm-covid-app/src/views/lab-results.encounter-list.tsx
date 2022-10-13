@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './covid.scss';
-import { Tabs, Tab, Tag } from '@carbon/react';
+import { Tabs, Tab, Tag, TabList, TabPanels, TabPanel } from '@carbon/react';
 import {
   covidLabOrderDate_UUID,
   covidLabOrderEncounterType_UUID,
@@ -216,35 +216,41 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container">
-        <Tab label="Lab Tests">
-          <EncounterList
-            patientUuid={patientUuid}
-            encounterUuid={covidLabOrderEncounterType_UUID}
-            form={{ package: 'covid', name: 'covid_lab_order' }}
-            forms={[
-              { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
-              { package: 'covid', name: 'covid_lab_result', excludedIntents: [] },
-            ]}
-            columns={columnsLab}
-            description={displayText}
-            headerTitle={headerTitle}
-            dropdownText="Add"
-          />
-        </Tab>
-        <Tab label="Pending Lab Orders">
-          <EncounterList
-            patientUuid={patientUuid}
-            encounterUuid={covidLabOrderEncounterType_UUID}
-            form={{ package: 'covid', name: 'covid_lab_test' }}
-            columns={columnsPending}
-            description={headerTitlePending}
-            headerTitle={displayTextPending}
-            dropdownText="Add"
-            hideFormLauncher={true}
-            filter={pendingLabOrdersFilter}
-          />
-        </Tab>
+      <Tabs>
+        <TabList contained>
+          <Tab>{t('labTests', 'Lab Tests')}</Tab>
+          <Tab>{t('pendingLabOrders', 'Pending Lab Orders')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <EncounterList
+              patientUuid={patientUuid}
+              encounterUuid={covidLabOrderEncounterType_UUID}
+              form={{ package: 'covid', name: 'covid_lab_order' }}
+              forms={[
+                { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
+                { package: 'covid', name: 'covid_lab_result', excludedIntents: [] },
+              ]}
+              columns={columnsLab}
+              description={displayText}
+              headerTitle={headerTitle}
+              dropdownText="Add"
+            />
+          </TabPanel>
+          <TabPanel>
+            <EncounterList
+              patientUuid={patientUuid}
+              encounterUuid={covidLabOrderEncounterType_UUID}
+              form={{ package: 'covid', name: 'covid_lab_test' }}
+              columns={columnsPending}
+              description={headerTitlePending}
+              headerTitle={displayTextPending}
+              dropdownText="Add"
+              hideFormLauncher={true}
+              filter={pendingLabOrdersFilter}
+            />
+          </TabPanel>
+        </TabPanels>
       </Tabs>
     </div>
   );

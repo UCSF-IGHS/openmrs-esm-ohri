@@ -138,7 +138,7 @@ function FormRenderTest() {
             <h4>{t('jsonSchemaHeader', 'JSON Schema')}</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
             <Tabs>
-              <TabList>
+              <TabList contained>
                 <Tab>{t('jsonInput', 'JSON Input')}</Tab>
                 <Tab>{t('finalSchema', 'Final Schema')}</Tab>
               </TabList>
@@ -243,7 +243,7 @@ function FormRenderTest() {
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs>
-                <TabList>
+                <TabList contained>
                   <Tab>{t('formRender', 'Form Render')}</Tab>
                 </TabList>
                 <TabPanels>
