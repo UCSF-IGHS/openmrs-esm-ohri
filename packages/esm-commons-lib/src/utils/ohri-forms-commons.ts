@@ -1,12 +1,6 @@
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
-export const launchForm = (
-  form: any,
-  moduleName: string,
-  onUpdateParent?: () => void,
-  title?: string,
-  workspaceName?: string,
-) => {
+export const launchForm = (form: any, onUpdateParent?: () => void, title?: string, workspaceName?: string) => {
   launchOHRIWorkSpace({
     title: title || form?.name,
     screenSize: 'maximized',
@@ -14,12 +8,10 @@ export const launchForm = (
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
     workspaceName,
-    moduleName,
   });
 };
 export const launchFormInEditMode = (
   form: any,
-  moduleName: string,
   encounterUuid: string,
   onUpdateParent?: () => void,
   title?: string,
@@ -33,12 +25,10 @@ export const launchFormInEditMode = (
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
     workspaceName,
-    moduleName,
   });
 };
 export const launchFormInViewMode = (
   form: any,
-  moduleName: string,
   encounterUuid: string,
   onUpdateParent?: () => void,
   title?: string,
@@ -52,13 +42,11 @@ export const launchFormInViewMode = (
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
     workspaceName,
-    moduleName,
   });
 };
 
 export const launchFormWithCustomTitle = (
   form: any,
-  moduleName: string,
   title: string,
   mode: string,
   encounterUuid: string,
@@ -66,12 +54,12 @@ export const launchFormWithCustomTitle = (
 ) => {
   switch (mode) {
     case 'edit':
-      launchFormInEditMode(form, moduleName, encounterUuid, onUpdateParent, title);
+      launchFormInEditMode(form, encounterUuid, onUpdateParent, title);
       break;
     case 'view':
-      launchFormInViewMode(form, moduleName, encounterUuid, onUpdateParent, title);
+      launchFormInViewMode(form, encounterUuid, onUpdateParent, title);
       break;
     default:
-      launchForm(form, moduleName, onUpdateParent, title);
+      launchForm(form, onUpdateParent, title);
   }
 };

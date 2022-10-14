@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { Tabs, Tab } from 'carbon-components-react';
 import styles from '../common.scss';
 import HIVEnrolmentTabList from './tabs/hiv-enrolment-tab.component';
 import ServiceDeliveryTabList from './tabs/service-delivery-tab.component';
@@ -17,35 +17,25 @@ const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) 
   const { t } = useTranslation();
   return (
     <div className={styles.tabContainer}>
-      <Tabs>
-        <TabList contained>
-          <Tab>{t('hivEnrollment', 'HIV Enrolment')}</Tab>
-          <Tab>{t('artTherapy', 'ART Therapy')}</Tab>
-          <Tab>{t('serviceDeliveryModel', 'Service Delivery Model')}</Tab>
-          <Tab>{t('transferOut', 'Transfer - Out')}</Tab>
-          <Tab>{t('patientTracing', 'Patient Tracing')}</Tab>
-          <Tab>{t('death', 'Death')}</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <HIVEnrolmentTabList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <ArtTherapyTabList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <ServiceDeliveryTabList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <TransferOutTabList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <PatientTracingList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <DeathTabList patientUuid={patientUuid} />
-          </TabPanel>
-        </TabPanels>
+      <Tabs type="container">
+        <Tab label={t('hivEnrollment', 'HIV Enrolment')}>
+          <HIVEnrolmentTabList patientUuid={patientUuid} />
+        </Tab>
+        <Tab label={t('artTherapy', 'ART Therapy')} style={{ padding: 0 }}>
+          <ArtTherapyTabList patientUuid={patientUuid} />
+        </Tab>
+        <Tab label={t('serviceDeliveryModel', 'Service Delivery Model')} style={{ padding: 0 }}>
+          <ServiceDeliveryTabList patientUuid={patientUuid} />
+        </Tab>
+        <Tab label={t('transferOut', 'Transfer - Out')} style={{ padding: 0 }}>
+          <TransferOutTabList patientUuid={patientUuid} />
+        </Tab>
+        <Tab label={t('patientTracing', 'Patient Tracing')} style={{ padding: 0 }}>
+          <PatientTracingList patientUuid={patientUuid} />
+        </Tab>
+        <Tab label={t('death', 'Death')} style={{ padding: 0 }}>
+          <DeathTabList patientUuid={patientUuid} />
+        </Tab>
       </Tabs>
     </div>
   );

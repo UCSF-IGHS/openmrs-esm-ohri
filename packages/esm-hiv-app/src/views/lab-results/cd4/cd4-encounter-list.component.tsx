@@ -9,7 +9,6 @@ import {
   CD4LabResultsEncounter_UUID,
   hivCD4Result_UUID,
 } from '../../../constants';
-import { moduleName } from '../../../index';
 
 interface CD4OverviewListProps {
   patientUuid: string;
@@ -23,28 +22,28 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
       {
         key: 'testResultDate',
         header: t('testResultDate', 'Test Result Date'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
         },
       },
       {
         key: 'CD4Count',
         header: t('cd4Count', 'CD4 Count'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           return getObsFromEncounter(encounter, Cd4Count_UUID);
         },
       },
       {
         key: 'CD4CountPercentage',
         header: t('cd4ountPercentage', 'CD4 %'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           return getObsFromEncounter(encounter, Cd4LabResultCountPercentage_UUID);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           const baseActions = [
             {
               form: { name: 'cd4_lab_results', package: 'hiv' },
@@ -79,10 +78,7 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      launchOptions={{
-        displayText: 'Add',
-        moduleName: moduleName,
-      }}
+      dropdownText="Add"
     />
   );
 };

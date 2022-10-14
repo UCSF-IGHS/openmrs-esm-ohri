@@ -1,5 +1,5 @@
 import { useVisit } from '@openmrs/esm-framework';
-import { Tag } from '@carbon/react';
+import { Tag } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fetchPatientCovidOutcome } from '../../api/api';

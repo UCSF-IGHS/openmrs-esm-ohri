@@ -1,4 +1,4 @@
-import { Tab } from '@carbon/react';
+import { Tab } from 'carbon-components-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -8,7 +8,6 @@ import {
   deathSpecific_UUID,
   hivDeathDate_UUID,
 } from '../../../constants';
-import { moduleName } from '../../../index';
 
 interface DeathTabListProps {
   patientUuid: string;
@@ -18,21 +17,21 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'deathDate',
     header: 'Death Date',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, hivDeathDate_UUID, true);
     },
   },
   {
     key: 'deathCause',
     header: 'Cause of Death',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, causeOFDeath_UUID);
     },
   },
   {
     key: 'specificDeathCause',
     header: 'Specific cause of Death',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, deathSpecific_UUID);
     },
   },
@@ -40,7 +39,7 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: (encounter) => {
+    getValue: encounter => {
       const baseActions = [
         {
           form: { name: 'death_form', package: 'hiv' },
@@ -74,10 +73,7 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      launchOptions={{
-        displayText: 'Add',
-        moduleName: moduleName,
-      }}
+      dropdownText="Add"
     />
   );
 };

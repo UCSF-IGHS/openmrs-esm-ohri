@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
+
 import styles from './patient-list.scss';
-import { Add } from '@carbon/react/icons';
+import Button from 'carbon-components-react/es/components/Button';
+import { Add16 } from '@carbon/icons-react';
 import { useTranslation } from 'react-i18next';
 import { age, navigate } from '@openmrs/esm-framework';
-import { DataTableSkeleton, Pagination, OverflowMenu, Button } from '@carbon/react';
-import { capitalize } from 'lodash-es';
+import { DataTableSkeleton, Pagination, OverflowMenu } from 'carbon-components-react';
+import { capitalize } from 'lodash';
 import moment from 'moment';
 import {
   AddPatientToListOverflowMenuItem,
@@ -51,7 +53,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   useEffect(() => {
     let rows = [];
     for (let patient of patients) {
-      const lastVisit = patientsToLastVisitMap.find((entry) => entry.patientId === patient.resource.id)?.lastVisit;
+      const lastVisit = patientsToLastVisitMap.find(entry => entry.patientId === patient.resource.id)?.lastVisit;
       const patientActions = (
         <OverflowMenu flipped>
           <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={[]} />
@@ -77,8 +79,8 @@ const PatientList: React.FC<PatientListProps> = () => {
   }, [patients, patientsToLastVisitMap]);
 
   useEffect(() => {
-    const patientToLastVisitPromises = patients.map((patient) => fetchLastVisit(patient.resource.id));
-    Promise.all(patientToLastVisitPromises).then((values) => {
+    const patientToLastVisitPromises = patients.map(patient => fetchLastVisit(patient.resource.id));
+    Promise.all(patientToLastVisitPromises).then(values => {
       setPatientsToLastVisitMap(
         values.map((value, index) => ({
           lastVisit: value.data?.entry?.length ? value.data?.entry[0]?.resource?.period?.start : '',
@@ -89,7 +91,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   }, [patients]);
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart`;
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart`;
 
   return (
     <>
@@ -102,9 +104,9 @@ const PatientList: React.FC<PatientListProps> = () => {
             <div className={styles.toggleButtons}>
               <Button
                 kind="ghost"
-                renderIcon={Add}
+                renderIcon={Add16}
                 iconDescription="New"
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   addNewPatient();
                 }}>

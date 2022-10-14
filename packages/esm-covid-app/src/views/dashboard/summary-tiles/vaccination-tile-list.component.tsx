@@ -1,8 +1,12 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
-import { capitalize } from 'lodash-es';
+import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientsFromObservationCodeConcept, getReportingCohort } from '../../../api/api';
-import { covidVaccinatedClients } from '../../../constants';
+import {
+  covidVaccinatedClients,
+  covidVaccinationAdministeredConcept_UUID,
+  covidVaccinationDose_UUID,
+} from '../../../constants';
 import {
   basePath,
   finalHIVCodeConcept,
@@ -28,38 +32,38 @@ export const Vaccinations: React.FC<{}> = () => {
       {
         key: 'name',
         header: t('vaccinationName', 'Name'),
-        getValue: (patient) => {
+        getValue: patient => {
           return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
         },
         link: {
-          getUrl: (patient) => `${basePath}${patient.id}/chart`,
+          getUrl: patient => `${basePath}${patient.id}/chart`,
         },
       },
       {
         key: 'gender',
         header: t('vaccinationsex', 'Sex'),
-        getValue: (patient) => {
+        getValue: patient => {
           return capitalize(patient.gender);
         },
       },
       {
         key: 'age',
         header: t('vaccinationAge', 'Age'),
-        getValue: (patient) => {
+        getValue: patient => {
           return age(patient.birthDate);
         },
       },
       {
         key: 'lastVaccineAdministered',
         header: t('vaccinationLastVaccineAdmin', 'Last Vaccine Administered'),
-        getValue: (patient) => {
+        getValue: patient => {
           return '--';
         },
       },
       {
         key: 'lastVaccineDoseAdministered',
         header: t('vaccinationLastVaccineDoseAdmin', 'Last Vaccine Dose Administered'),
-        getValue: (patient) => {
+        getValue: patient => {
           return '--';
         },
       },
@@ -68,12 +72,12 @@ export const Vaccinations: React.FC<{}> = () => {
   );
 
   useEffect(() => {
-    getReportingCohort(covidVaccinatedClients).then((data) => {
+    getReportingCohort(covidVaccinatedClients).then(data => {
       setCovidVaccinatedClients(data.members.length);
     });
     fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
       (response: Array<any>) => {
-        setPatients(response.map((pat) => pat.data));
+        setPatients(response.map(pat => pat.data));
         setTotalPatientCount(response.length);
         setIsLoading(false);
       },
@@ -91,7 +95,7 @@ export const Vaccinations: React.FC<{}> = () => {
     return {
       usePagination: false,
       currentPage: currentPage,
-      onChange: (props) => {
+      onChange: props => {
         setCurrentPage(props.page);
         setPageSize(props.pageSize);
       },
@@ -101,7 +105,7 @@ export const Vaccinations: React.FC<{}> = () => {
   }, [currentPage, filteredResultsCounts, pageSize, totalPatientCount, searchTerm]);
 
   const handleSearch = useCallback(
-    (searchTerm) => {
+    searchTerm => {
       setSearchTerm(searchTerm);
       if (searchTerm) {
         const filtrate = filterFHIRPatientsByName(searchTerm, patients);

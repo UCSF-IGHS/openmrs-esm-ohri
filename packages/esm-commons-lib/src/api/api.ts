@@ -38,7 +38,9 @@ export function fetchPatientsFromObservationCodeConcept(
   cutOffDays?: number,
 ) {
   let endDate = moment().format('YYYY-MM-DD');
-  let startDate = moment().subtract(cutOffDays, 'days').format('YYYY-MM-DD');
+  let startDate = moment()
+    .subtract(cutOffDays, 'days')
+    .format('YYYY-MM-DD');
 
   return openmrsFetch(
     `/ws/fhir2/R4/Observation?code=${codeConcept}${valueConcept ? `&value-concept=${valueConcept}` : ''}${
@@ -53,13 +55,13 @@ export function fetchPatientsFromObservationCodeConcept(
 }
 
 function cleanDuplicatePatientReferences(data) {
-  let patientRefs = data.entry.map((enc) => {
+  let patientRefs = data.entry.map(enc => {
     return enc.resource.subject.reference;
   });
   patientRefs = new Set([...patientRefs]);
   patientRefs = Array.from(patientRefs);
   return Promise.all(
-    patientRefs.map((ref) => {
+    patientRefs.map(ref => {
       return openmrsFetch(BASE_FHIR_API_URL + ref);
     }),
   );
@@ -86,7 +88,7 @@ export async function getCohort(cohortUuid: string, version?: string) {
   const { data } = await openmrsFetch(
     BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`,
   );
-  data.cohortMembers = data.cohortMembers.filter((member) => !member.voided);
+  data.cohortMembers = data.cohortMembers.filter(member => !member.voided);
   return data;
 }
 
@@ -102,7 +104,7 @@ export async function getReportingCohortMembers(cohortUuid: string, queryParams?
   const url = params ? `reportingrest/cohort/${cohortUuid}?${params}` : `reportingrest/cohort/${cohortUuid}`;
   const { data } = await openmrsFetch(BASE_WS_API_URL + url);
   return Promise.all(
-    data.members.map((member) => {
+    data.members.map(member => {
       return openmrsFetch(BASE_WS_API_URL + `patient/${member.uuid}?v=full`);
     }),
   );
@@ -118,7 +120,7 @@ export async function getCohorts(cohortTypeUuid?: string) {
   if (error) {
     throw error;
   }
-  return results.filter((cohort) => !cohort.voided);
+  return results.filter(cohort => !cohort.voided);
 }
 
 export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
@@ -146,7 +148,7 @@ export async function getPatientListsForPatient(patientUuid: string) {
   if (error) {
     throw error;
   }
-  return results.filter((membership) => !membership.voided);
+  return results.filter(membership => !membership.voided);
 }
 
 export function fetchPatientsFinalHIVStatus(patientUUID: string) {
@@ -199,13 +201,13 @@ export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
 export function fetchPatientCovidOutcome() {
   return openmrsFetch(`/ws/rest/v1/reportingrest/cohort/${covidOutcomesCohortUUID}`).then(({ data }) => {
     if (data.members?.length) {
-      let patientRefs = data.members.map((member) => {
+      let patientRefs = data.members.map(member => {
         return member.uuid;
       });
       patientRefs = new Set([...patientRefs]);
       patientRefs = Array.from(patientRefs);
       return Promise.all(
-        patientRefs.map((ref) => {
+        patientRefs.map(ref => {
           return openmrsFetch(BASE_FHIR_API_URL + '/Person/' + ref);
         }),
       );

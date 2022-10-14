@@ -2,7 +2,6 @@ import React from 'react';
 import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../constants';
 import { OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
-import { moduleName } from '../../../index';
 
 function CTHomePatientTabs() {
   const { t } = useTranslation();
@@ -25,7 +24,7 @@ function CTHomePatientTabs() {
         {
           key: 'clientId',
           header: 'Client ID',
-          getValue: (patient) => {
+          getValue: patient => {
             return patient.id;
           },
           index: 1,
@@ -33,14 +32,14 @@ function CTHomePatientTabs() {
         {
           key: 'lastAppointment',
           header: t('lastAppointment', 'Last Appointment'),
-          getValue: (patient) => {
+          getValue: patient => {
             return '13/01/2021';
           },
         },
         {
           key: 'appointmentDate',
           header: t('appointmentDate', 'Appointment Date'),
-          getValue: (patient) => {
+          getValue: patient => {
             return '03/03/2021';
           },
         },
@@ -64,7 +63,7 @@ function CTHomePatientTabs() {
         {
           key: 'clientId',
           header: t('clientId', 'Client ID'),
-          getValue: (patient) => {
+          getValue: patient => {
             return patient.id;
           },
           index: 1,
@@ -72,21 +71,21 @@ function CTHomePatientTabs() {
         {
           key: 'lastAppointment',
           header: t('lastAppointment', 'Last Appointment'),
-          getValue: (patient) => {
+          getValue: patient => {
             return '13/01/2021';
           },
         },
         {
           key: 'appointmentDate',
           header: t('appointmentDate', 'Appointment Date'),
-          getValue: (patient) => {
+          getValue: patient => {
             return '03/03/2021';
           },
         },
       ],
     },
   ];
-  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
+  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
 }
 
 export default CTHomePatientTabs;

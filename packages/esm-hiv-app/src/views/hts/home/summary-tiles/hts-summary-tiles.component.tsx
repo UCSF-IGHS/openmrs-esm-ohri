@@ -1,4 +1,4 @@
-import { Column, Row } from '@carbon/react';
+import { Column, Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
 import {
   OHRISummaryTile,
@@ -73,14 +73,14 @@ function HTSSummaryTiles({ launchWorkSpace }) {
   });
 
   function getTodayClientCount() {
-    return fetchTodayClients().then((response) => {
+    return fetchTodayClients().then(response => {
       setTodayPatientCount(response.length);
     });
   }
 
   function getPositiveInLast14days() {
     return fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
-      (response) => {
+      response => {
         setPositiveInLast14Days(response.length);
       },
     );
@@ -88,7 +88,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
 
   function getLinkedToCareInLast14days() {
     return fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
-      (response) => {
+      response => {
         setLinkedToCareInLast14Days(response.length);
       },
     );

@@ -4,7 +4,7 @@ const htsPages = [];
 const moduleName = '@openmrs/esm-ohri-app';
 
 export const loadHtsPages = () => {
-  return htsPages.map((htsPage) => ({
+  return htsPages.map(htsPage => ({
     id: `hts-${htsPage.name}-list-ext`,
     slot: `hts-${htsPage.name}-dashboard-slot`,
     load: getAsyncLifecycle(

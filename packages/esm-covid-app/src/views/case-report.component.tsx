@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from '@carbon/react';
+import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import moment from 'moment';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
 import { EmptyState, OHRIFormLauncherWithIntent, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { launchOHRIWorkSpace } from '@ohri/openmrs-esm-ohri-commons-lib/src/workspace/ohri-workspace-utils';
-import { moduleName } from '../index';
 
 interface CovidOverviewListProps {
   patientUuid: string;
@@ -41,7 +40,6 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
   const launchCaseReportForm = (form?: any) => {
     launchOHRIWorkSpace({
       title: covidCaseReportForm?.name,
-      moduleName,
       state: { updateParent: forceComponentUpdate, formJson: form || covidCaseReportForm },
     });
   };
@@ -67,22 +65,22 @@ const CovidCaseReport: React.FC<CovidOverviewListProps> = ({ patientUuid }) => {
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
 
-      sortedEncounters.map((encounter) => {
-        const covidTestType = encounter.obs.find((observation) => observation.concept.name.uuid === covidTestTypeUUID);
+      sortedEncounters.map(encounter => {
+        const covidTestType = encounter.obs.find(observation => observation.concept.name.uuid === covidTestTypeUUID);
         const lastCovidTestDate = encounter.obs.find(
-          (observation) => observation.concept.name.uuid === covidTestDateUUID,
+          observation => observation.concept.name.uuid === covidTestDateUUID,
         );
         const lastCovidTestResult = encounter.obs.find(
-          (observation) => observation.concept.name.uuid === covidTestResultUUID,
+          observation => observation.concept.name.uuid === covidTestResultUUID,
         );
         const covidReasonsForTesting = encounter.obs.find(
-          (observation) => observation.concept.name.uuid === covidReasonsForTestingUUID,
+          observation => observation.concept.name.uuid === covidReasonsForTestingUUID,
         );
         const covidVaccinationStatus = encounter.obs.find(
-          (observation) => observation.concept.name.uuid === covidVaccinationStatusUUID,
+          observation => observation.concept.name.uuid === covidVaccinationStatusUUID,
         );
         const covidPatientStatus = encounter.obs.find(
-          (observation) => observation.concept.name.uuid === covidPatientStatusUUID,
+          observation => observation.concept.name.uuid === covidPatientStatusUUID,
         );
 
         rows.push({

@@ -11,7 +11,6 @@ import {
   otherEntryPoint,
   populationCategoryConcept,
 } from '../../../constants';
-import { moduleName } from '../../../index';
 
 interface HIVEnrolmentTabListProps {
   patientUuid: string;
@@ -21,7 +20,7 @@ const columns: EncounterListColumn[] = [
   {
     key: 'date',
     header: 'Enrollment/Re-enrollment Date',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, re_enrolmentDateConcept, true) !== '--'
         ? getObsFromEncounter(encounter, re_enrolmentDateConcept, true)
         : getObsFromEncounter(encounter, dateOfServiceEnrollmentConcept, true);
@@ -30,27 +29,27 @@ const columns: EncounterListColumn[] = [
   {
     key: 'clientDescription',
     header: 'Patient Type at Enrollment',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, patientTypeEnrollmentConcept);
     },
   },
   {
     key: 'dateConfirmedPositive',
     header: 'Date Confirmed HIV+',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, dateOfHIVDiagnosisConcept, true);
     },
   },
   {
     key: 'entryPoint',
     header: 'Entry Point',
-    getValue: (encounter) => {
+    getValue: encounter => {
       const obs = findObs(encounter, entryPointConcept);
       if (typeof obs !== undefined && obs) {
         if (typeof obs.value === 'object') {
           if (obs !== undefined) {
             const EntryPoint =
-              obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
+              obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
               obs.value.name.name;
             if (EntryPoint === 'Other non-coded') {
               return getObsFromEncounter(encounter, otherEntryPoint);
@@ -64,14 +63,14 @@ const columns: EncounterListColumn[] = [
   {
     key: 'populationCategory',
     header: 'Population Category',
-    getValue: (encounter) => {
+    getValue: encounter => {
       return getObsFromEncounter(encounter, populationCategoryConcept);
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: (encounter) => [
+    getValue: encounter => [
       {
         form: { name: 'service_enrolment', package: 'hiv' },
         encounterUuid: encounter.uuid,
@@ -104,10 +103,7 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      launchOptions={{
-        displayText: 'Add',
-        moduleName: moduleName,
-      }}
+      dropdownText="Add"
     />
   );
 };

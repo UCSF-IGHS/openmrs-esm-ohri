@@ -1,13 +1,11 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
 @import "../../root.scss";
 
 .actionsButtonText {
-  @include type.type-style("body-compact-01");
+  @include carbon--type-style("body-short-01");
   color: $interactive-01;
 }
 
-:global(.cds--tooltip--definition .cds--tooltip__trigger) {
+:global(.bx--tooltip--definition .bx--tooltip__trigger) {
   border-bottom: none;
 }
 

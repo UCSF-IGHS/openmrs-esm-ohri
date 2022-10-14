@@ -1,5 +1,5 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
-import { capitalize } from 'lodash-es';
+import { capitalize } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { TableEmptyState, fetchTodayClients, filterFHIRPatientsByName } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { basePath } from '../../../../constants';
@@ -8,73 +8,73 @@ export const columns = [
   {
     key: 'name',
     header: 'Name',
-    getValue: (patient) => {
+    getValue: patient => {
       return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
     },
     link: {
-      getUrl: (patient) => `${basePath}${patient.id}/chart`,
+      getUrl: patient => `${basePath}${patient.id}/chart`,
     },
   },
   {
     key: 'gender',
     header: 'Sex',
-    getValue: (patient) => {
+    getValue: patient => {
       return capitalize(patient.gender);
     },
   },
   {
     key: 'age',
     header: 'Age',
-    getValue: (patient) => {
+    getValue: patient => {
       return age(patient.birthDate);
     },
   },
   {
     key: 'phoneNumber',
     header: 'Phone Number',
-    getValue: (patient) => {
+    getValue: patient => {
       return '--';
     },
   },
   {
     key: 'dateOfEncounter',
     header: 'Date Of Encounter',
-    getValue: (patient) => {
+    getValue: patient => {
       return '--';
     },
   },
   {
     key: 'location',
     header: 'Location',
-    getValue: (patient) => {
+    getValue: patient => {
       return '--';
     },
   },
   {
     key: 'provider',
     header: 'Provider',
-    getValue: (patient) => {
+    getValue: patient => {
       return '--';
     },
   },
   {
     key: 'finalHivResult',
     header: 'Final HIV Result',
-    getValue: (patient) => {
+    getValue: patient => {
       return '--';
     },
   },
   {
     key: 'currentWaitingList',
     header: 'Current Waiting List',
-    getValue: (patient) => {
+    getValue: patient => {
       return '--';
     },
   },
   {
     key: 'id',
     header: 'Patient ID',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.identifier[0].value;
     },
   },
@@ -92,7 +92,7 @@ export const TodaysClientList: React.FC<{}> = () => {
 
   useEffect(() => {
     fetchTodayClients().then((response: Array<any>) => {
-      setPatients(response.map((pat) => pat.data));
+      setPatients(response.map(pat => pat.data));
       setTotalPatientCount(response.length);
       setIsLoading(false);
     });
@@ -109,7 +109,7 @@ export const TodaysClientList: React.FC<{}> = () => {
     return {
       usePagination: false,
       currentPage: currentPage,
-      onChange: (props) => {
+      onChange: props => {
         setCurrentPage(props.page);
         setPageSize(props.pageSize);
       },
@@ -119,7 +119,7 @@ export const TodaysClientList: React.FC<{}> = () => {
   }, [currentPage, filteredResultsCounts, pageSize, totalPatientCount, searchTerm]);
 
   const handleSearch = useCallback(
-    (searchTerm) => {
+    searchTerm => {
       setSearchTerm(searchTerm);
       if (searchTerm) {
         const filtrate = filterFHIRPatientsByName(searchTerm, patients);
