@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import MentalHealthAssessmentList from './tabs/mental-health-assessment.component';
 import DrugsAndAlcoholUseList from './tabs/drugs-and-alcohol-use.component';
@@ -16,22 +16,27 @@ const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid })
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container">
-        <Tab label={t('mentalHealthAssessment', 'Mental Health Assessment')} className="tab-14rem">
-          <MentalHealthAssessmentList patientUuid={patientUuid} />
-        </Tab>
-        <Tab label={t('drugsAndAlcoholUse', 'Drugs and Alcohol Use')} className="tab-12rem" style={{ padding: 0 }}>
-          <DrugsAndAlcoholUseList patientUuid={patientUuid} />
-        </Tab>
-        <Tab
-          label={t('intimatePartnerViolence', 'Intimate Partner Violence')}
-          className="tab-14rem"
-          style={{ padding: 0 }}>
-          <IntimatePartnerViolenceList patientUuid={patientUuid} />
-        </Tab>
-        <Tab label={t('disclosure', 'Disclosure')} style={{ padding: 0 }}>
-          <DisclosureList patientUuid={patientUuid} />
-        </Tab>
+      <Tabs>
+        <TabList contained>
+          <Tab className="tab-14rem">{t('mentalHealthAssessment', 'Mental Health Assessment')}</Tab>
+          <Tab className="tab-12rem">{t('drugsAndAlcoholUse', 'Drugs and Alcohol Use')}</Tab>
+          <Tab className="tab-14rem">{t('intimatePartnerViolence', 'Intimate Partner Violence')}</Tab>
+          <Tab>{t('disclosure', 'Disclosure')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <MentalHealthAssessmentList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <DrugsAndAlcoholUseList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <IntimatePartnerViolenceList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <DisclosureList patientUuid={patientUuid} />
+          </TabPanel>
+        </TabPanels>
       </Tabs>
     </div>
   );

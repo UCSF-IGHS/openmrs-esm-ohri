@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { DisclosureDate_UUID, DisclosureStage_UUID, PeadsDisclosureEncounterType_UUID } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface DisclosureListProps {
   patientUuid: string;
@@ -15,21 +16,21 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
       {
         key: 'disclosureDate',
         header: t('disclosureDate', 'Disclosure Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, DisclosureDate_UUID, true);
         },
       },
       {
         key: 'disclosureStage',
         header: t('disclosureStage', 'Disclosure Stage'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, DisclosureStage_UUID);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'peads_disclosure', package: 'hiv' },
@@ -64,7 +65,10 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

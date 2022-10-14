@@ -1,4 +1,4 @@
-import { getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { getSyncLifecycle } from '@openmrs/esm-framework';
 import { BehaviorSubject } from 'rxjs';
 import { closeWorkspace, launchPatientWorkspace, registerWorkspace } from '@openmrs/esm-patient-common-lib';
 import { OHRIForm, SessionMode } from '@ohri/openmrs-ohri-form-engine-lib';
@@ -10,11 +10,8 @@ export interface WorkspaceContextProps {
   screenSize?: string;
   collapseSections?: Boolean;
   workspaceName?: string;
+  moduleName: string;
 }
-const workspaceMeta = {
-  featureName: 'ohri-forms-workspace-item',
-  moduleName: '@openmrs/esm-ohri-app',
-};
 
 let counter = 0;
 
@@ -32,7 +29,10 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
     name: workspaceName,
     title: props.title,
     preferredWindowSize: <any>props.screenSize,
-    load: getSyncLifecycle(OHRIForm, workspaceMeta),
+    load: getSyncLifecycle(OHRIForm, {
+      featureName: 'ohri-forms-workspace-item',
+      moduleName: props.moduleName,
+    }),
   });
 
   launchPatientWorkspace(workspaceName, {

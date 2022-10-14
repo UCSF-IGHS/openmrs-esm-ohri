@@ -7,6 +7,7 @@ import {
   ContactTracingMethod_UUID,
   ContactTracingOutcome_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ContactTracingListProps {
   patientUuid: string;
@@ -20,21 +21,21 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
       {
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ContactTracingDate_UUID, true);
         },
       },
       {
         key: 'contactMethod',
         header: t('contactMethod', 'Contact Method'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ContactTracingMethod_UUID);
         },
       },
       {
         key: 'contactOutcome',
         header: t('contactOutcome', 'Contact Outcome'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ContactTracingOutcome_UUID);
         },
       },
@@ -42,7 +43,7 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'contact_tracing', package: 'hiv' },
@@ -77,7 +78,10 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

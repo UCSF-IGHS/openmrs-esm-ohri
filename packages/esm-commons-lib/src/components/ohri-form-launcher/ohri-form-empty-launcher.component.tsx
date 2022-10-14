@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'carbon-components-react';
-import { Add16 } from '@carbon/icons-react';
+import { Button } from '@carbon/react';
+import { Add } from '@carbon/react/icons';
 import { useTranslation } from 'react-i18next';
 
 export const OHRIFormLauncherEmpty: React.FC<{
@@ -11,8 +11,8 @@ export const OHRIFormLauncherEmpty: React.FC<{
     <div style={{ paddingTop: '.1rem', paddingRight: '.9rem', width: '6rem' }}>
       <Button
         kind="ghost"
-        renderIcon={Add16}
-        onClick={e => {
+        renderIcon={<Add size={16} />}
+        onClick={(e) => {
           e.preventDefault();
           launchForm();
         }}>

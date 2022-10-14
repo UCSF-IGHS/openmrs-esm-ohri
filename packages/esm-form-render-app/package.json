@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-form-render-app",
-  "version": "0.6.54",
+  "version": "1.0.0",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-form-render-app.js",
   "main": "src/index.ts",
@@ -17,101 +17,41 @@
     "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
   },
   "scripts": {
-    "analyze": "webpack --mode=production --env.analyze=true",
-    "badges": "npm run coverage && jest-coverage-badges --output './badges' ",
-    "build": "webpack --mode production",
-    "coverage": "npm test -- --coverage",
+    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net",
+    "serve": "webpack serve --mode development",
     "debug": "npm run serve",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode=production --env.analyze=true",
     "docker": "docker run -p 8080:8080 -p 8081:8081 histacohri/docker-openmrs-esm-ohri:1.0 npx openmrs develop --backend https://ohri-working.globalhealthapp.net",
     "docker:dev": "docker compose up",
     "lint": "eslint src --ext tsx",
-    "prepublishOnly": "npm run build",
-    "prettier": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
-    "serve": "webpack serve --mode=development",
-    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net",
-    "test": "jest --config ../../jest.config.js --passWithNoTests",
-    "typescript": "tsc"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently 'npm:test' 'npm:typescript' 'npm:lint'"
-    }
+    "typescript": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "browserslist": [
     "extends browserslist-config-openmrs"
   ],
-  "dependencies": {
-    "@carbon/icons-react": "^10.18.0",
-    "ace-builds": "^1.4.12",
-    "carbon-components-react": "^7.25.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
-    "formik": "^2.2.6",
-    "jest-coverage-badges": "^1.0.0",
-    "lodash-es": "^4.17.15",
-    "moment": "^2.29.1",
-    "react-ace": "^9.4.4",
-    "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-markdown": "^7.1.0",
-    "react-scroll": "^1.8.2",
-    "react-test-renderer": "^16.9.0",
-    "react-waypoint": "^10.1.0",
-    "semver": "^7.3.5",
-    "systemjs-webpack-interop": "^2.3.2",
-    "yup": "^0.29.1"
-  },
-  "devDependencies": {
-    "@ohri/openmrs-ohri-form-engine-lib": "next",
-    "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.0.6",
-    "browserslist-config-openmrs": "^1.0.0",
-    "carbon-components": "^10.19.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "concurrently": "^6.3.0",
-    "css-loader": "^3.2.0",
-    "dayjs": "^1.8.16",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.13.0",
-    "eslint-config-ts-react-important-stuff": "^3.0.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "file-loader": "^6.2.0",
-    "fork-ts-checker-webpack-plugin": "^6.3.3",
-    "husky": "^3.0.4",
-    "i18next": "^19.4.2",
-    "identity-obj-proxy": "^3.0.0",
-    "istanbul-badges-readme": "^1.4.0",
-    "jest": "^24.9.0",
-    "jest-cli": "^24.9.0",
-    "node-sass": "^6.0.1",
-    "openmrs": "3.4.1-pre.189",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-i18next": "^11.3.4",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.2.0",
-    "rxjs": "^6.6.2",
-    "sass-loader": "^10.0.2",
-    "style-loader": "^1.0.0",
-    "typescript": "^4.0.3",
-    "unistore": "^3.5.2",
-    "webpack": "^5.37.0",
-    "webpack-bundle-analyzer": "^4.4.0",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^4.2.1"
-  },
-  "peerDependencies": {
-    "@openmrs/esm-framework": "3.x",
-    "carbon-components": "^10.19.0",
-    "carbon-icons": "^7.0.7",
-    "dayjs": "^1.8.16",
-    "react": "^16.9.0",
-    "react-i18next": "^11.3.4"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "5028fd4428bcee71b898cfbaee1acb7e7d0acb15"
+  "dependencies": {
+    "ace-builds": "^1.4.12",
+    "react-ace": "^9.4.4"
+  },
+  "peerDependencies": {
+    "@carbon/react": "1.x",
+    "@ohri/openmrs-ohri-form-engine-lib": "1.x",
+    "@openmrs/esm-framework": "4.x",
+    "react": "^18.2.0",
+    "react-i18next": "^11.18.6"
+  },
+  "devDependencies": {
+    "@ohri/openmrs-ohri-form-engine-lib": "^1.0.0-pre.118",
+    "browserslist-config-openmrs": "^1.0.0",
+    "i18next": "^19.4.2",
+    "react": "^18.2.0",
+    "react-i18next": "^11.18.6",
+    "react-router-dom": "^6.3.0",
+    "webpack": "^5.74.0"
+  }
 }

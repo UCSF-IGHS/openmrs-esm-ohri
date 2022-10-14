@@ -1,11 +1,11 @@
 @import "../../root.scss";
 
 .actionsButtonText {
-  @include carbon--type-style("body-short-01");
+  @include type.type-style("body-compact-01");
   color: $interactive-01;
 }
 
-:global(.bx--tooltip--definition .bx--tooltip__trigger) {
+:global(.cds--tooltip--definition .cds--tooltip__trigger) {
   border-bottom: none;
 }
 

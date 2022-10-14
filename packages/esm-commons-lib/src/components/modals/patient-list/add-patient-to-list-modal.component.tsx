@@ -1,5 +1,5 @@
 import { showToast, usePatient } from '@openmrs/esm-framework';
-import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from 'carbon-components-react';
+import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from '@carbon/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -28,16 +28,16 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
           excludeCohorts={excludeCohorts}
         />
       )}
-      <li className="bx--overflow-menu-options__option">
+      <li className="cds--overflow-menu-options__option">
         <button
-          className="bx--overflow-menu-options__btn"
+          className="cds--overflow-menu-options__btn"
           role="menuitem"
           title={t('addToListModal', 'Add to list')}
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
           }}>
-          <span className="bx--overflow-menu-options__option-content">
+          <span className="cds--overflow-menu-options__option-content">
             {displayText || t('addList', 'Add to list')}
           </span>
         </button>
@@ -67,14 +67,14 @@ export const AddPatientToListModal: React.FC<{
       ([allCohortsRes, currentCohortMemberships]) => {
         // filter out cohorts in which this patient is already a member
         let filteredCohorts = allCohortsRes.filter(
-          cohort => !currentCohortMemberships.some(membership => cohort.uuid == membership.cohort.uuid),
+          (cohort) => !currentCohortMemberships.some((membership) => cohort.uuid == membership.cohort.uuid),
         );
         if (excludeCohorts && excludeCohorts.length) {
-          filteredCohorts = filteredCohorts.filter(cohort => !excludeCohorts.includes(cohort.name));
+          filteredCohorts = filteredCohorts.filter((cohort) => !excludeCohorts.includes(cohort.name));
         }
         setCohorts(filteredCohorts);
         setCurrentMemberships(currentCohortMemberships);
-        setAlreadySubscribedCohorts(currentCohortMemberships.map(membership => membership.cohort));
+        setAlreadySubscribedCohorts(currentCohortMemberships.map((membership) => membership.cohort));
         setIsLoading(false);
       },
     );
@@ -120,8 +120,8 @@ export const AddPatientToListModal: React.FC<{
       // evict all the patient's memberships
       // according to our usecases, there is a high chance that the current memberships will always be one
       // but we can't be sure
-      Promise.all(currentMemberships.map(membership => evictCohortMembership(membership.uuid)))
-        .then(results => {
+      Promise.all(currentMemberships.map((membership) => evictCohortMembership(membership.uuid)))
+        .then((results) => {
           showToast({
             kind: 'success',
             critical: true,
@@ -129,11 +129,11 @@ export const AddPatientToListModal: React.FC<{
           });
           close();
         })
-        .catch(error => {
+        .catch((error) => {
           setIsSubmitting(false);
         });
     } else {
-      addPatientToCohort(patientUuid, selectedList).then(response => {
+      addPatientToCohort(patientUuid, selectedList).then((response) => {
         if (response.ok) {
           showToast({
             kind: 'success',
@@ -180,7 +180,7 @@ export const AddPatientToListModal: React.FC<{
               legendText=""
               name="patient-lists"
               orientation="vertical"
-              onChange={selected => setSelectedList(selected.toString())}>
+              onChange={(selected) => setSelectedList(selected.toString())}>
               {availableLists}
             </RadioButtonGroup>
           )}

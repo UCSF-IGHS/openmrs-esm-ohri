@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   clinicalVisitEncounterType,
   dateOfEncounterConcept,
-  expressCareProgramStatusConcept,
-  regimenConcept,
   returnVisitDateConcept,
   tbScreeningOutcome,
   visitTypeConcept,
-  //screeningOutcomeConcept
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ClinicalVisitListProps {
   patientUuid: string;
@@ -20,12 +18,12 @@ const columns: EncounterListColumn[] = [
   {
     key: 'visitDate',
     header: 'Visit Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
     },
     link: {
-      getUrl: encounter => encounter.url,
-      handleNavigate: encounter => {
+      getUrl: (encounter) => encounter.url,
+      handleNavigate: (encounter) => {
         encounter.launchFormActions?.viewEncounter();
       },
     },
@@ -33,35 +31,35 @@ const columns: EncounterListColumn[] = [
   {
     key: 'visitType',
     header: 'Visit Type',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, visitTypeConcept);
     },
   },
   {
     key: 'screeningOutcome',
     header: 'TB Screening Outcome',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, tbScreeningOutcome);
     },
   },
   {
     key: 'nextAppointmentDate',
     header: 'Next Appointment Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, returnVisitDateConcept, true);
     },
   },
   {
     key: 'appointmentReason',
     header: 'Appointment Reason',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return '--';
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const baseActions = [
         {
           form: { name: 'clinical_visit', package: 'hiv' },
@@ -96,7 +94,10 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
       form={{ package: 'hiv', name: 'clinical_visit' }}
       columns={columns}
       description="clinical visit encounters"
-      headerTitle="Clinical Visits"
+      headerTitle={headerTitle}
+      launchOptions={{
+        moduleName: moduleName,
+      }}
     />
   );
 };

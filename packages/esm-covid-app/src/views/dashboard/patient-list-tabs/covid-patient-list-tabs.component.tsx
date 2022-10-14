@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import {
   clientsAssessedForCovid,
-  clientsWithoutCovidOutcomes,
   covidCaseAssessmentEncType,
   covidClientsWithPendingLabResults,
   covidLabTestEncType,
@@ -13,10 +12,7 @@ import {
   covidVaccineAdministeredConcept_UUID,
   covidVaccineConcept_UUID,
   dateSpecimenCollected,
-  finalCovid19Result,
   pcrTestResult,
-  pcrTestResultDate,
-  rapidAntigenResultDate,
   rapidTestResult,
 } from '../../../constants';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +24,7 @@ import {
   returnVisitDateConcept,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import moment from 'moment';
+import { moduleName } from '../../../index';
 
 function CovidHomePatientTabs() {
   const { t } = useTranslation();
@@ -138,7 +135,7 @@ function CovidHomePatientTabs() {
               if (typeof obs !== undefined && obs) {
                 if (typeof obs.value === 'object') {
                   const vaccineNAME =
-                    obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name ||
+                    obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
                     obs.value.name.name;
                   if (vaccineNAME === 'Other non-coded') {
                     return getObsFromEncounter(latestEncounter, covidVaccineConcept_UUID);
@@ -160,7 +157,7 @@ function CovidHomePatientTabs() {
     ],
     [],
   );
-  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} />;
+  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
 }
 
 export default CovidHomePatientTabs;

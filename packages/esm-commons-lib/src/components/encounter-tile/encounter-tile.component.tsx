@@ -1,6 +1,6 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { CodeSnippetSkeleton, Tile, Row, Button } from 'carbon-components-react';
-import { ArrowRight32 } from '@carbon/icons-react';
+import { CodeSnippetSkeleton, Tile, Row, Button, Column } from '@carbon/react';
+import { ArrowRight } from '@carbon/react/icons';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
@@ -52,7 +52,7 @@ function obsArrayDateComparator(left, right) {
 }
 
 export function findObs(encounter, obsConcept): Record<string, any> {
-  const allObs = encounter?.obs?.filter(observation => observation.concept.uuid === obsConcept) || [];
+  const allObs = encounter?.obs?.filter((observation) => observation.concept.uuid === obsConcept) || [];
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
 }
 
@@ -73,7 +73,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return moment(obs.value).format('DD-MMM-YYYY');
   }
   if (typeof obs.value === 'object') {
-    return obs.value.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
+    return obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
   }
   return obs.value;
 }
@@ -81,13 +81,9 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
 export const EncounterTile: React.FC<EncounterTileProps> = ({
   patientUuid,
   encounterUuid,
-  form,
   columns,
   headerTitle,
   description,
-  dropdownText,
-  hideFormLauncher,
-  forms,
   filter,
   tileStyle,
 }) => {
@@ -96,17 +92,8 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
 
-  const headers = useMemo(() => {
-    if (columns) {
-      return columns.map(column => {
-        return { key: column.keys, header: column.header };
-      });
-    }
-    return [];
-  }, [columns]);
-
   const loadRows = useCallback(
-    encounterType => {
+    (encounterType) => {
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
         if (data.results?.length > 0) {
@@ -117,7 +104,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
           );
 
           if (filter) {
-            sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
+            sortedEncounters = sortedEncounters.filter((encounter) => filter(encounter));
           }
           setAllRows(sortedEncounters);
         } else {
@@ -132,18 +119,6 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   useEffect(() => {
     loadRows(encounterUuid);
   }, [counter]);
-
-  const rows = allRows.map(encounter => {
-    const row = { id: encounter.uuid };
-
-    columns.forEach(column => {
-      let val = column.getValue(encounter);
-
-      row[column.key] = val;
-      row[column.header] = column.header;
-    });
-    return row;
-  });
 
   const mockData_HIV_Status = useMemo(
     () => [
@@ -164,9 +139,6 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
     [],
   );
 
-  const updateRowTiles = () => {
-    let currentRows = [];
-  };
   return (
     <>
       {isLoading ? (
@@ -178,7 +150,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
             {tileStyle == 'ARV' ? (
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Button size="small" kind="ghost">
-                  Change <ArrowRight32 style={{ width: '12px', height: '10px' }} />
+                  Change <ArrowRight size={32} style={{ width: '12px', height: '10px' }} />
                 </Button>
               </div>
             ) : (
@@ -186,28 +158,27 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
             )}
           </div>
           {tileStyle == 'ARV' ? (
-            <Row className={styles.tabletTileTitleARV}>
-              {mockData_Current_ARV.map(column => (
-                <div className={styles.tileBoxARV}>
-                  <div className={styles.tileBoxColumnARV}>
-                    <span className={styles.tileTitleARV}> {column.field} </span>
-                    <span className={styles.tileValueARV}> {column.value} </span>
-                  </div>
-                </div>
-              ))}
-            </Row>
-          ) : (
-            <Row className={styles.tabletTileTitle}>
-              {mockData_HIV_Status.map(column => (
+            <Column className={styles.tabletTileTitleARV}>
+              {mockData_Current_ARV.map((column) => (
                 <div className={styles.tileBox}>
                   <div className={styles.tileBoxColumn}>
                     <span className={styles.tileTitle}> {column.field} </span>
                     <span className={styles.tileValue}> {column.value} </span>
-                    <span className={styles.tileTitle}> {column.date} </span>
                   </div>
                 </div>
               ))}
-            </Row>
+            </Column>
+          ) : (
+            <Column className={styles.tabletTileTitle}>
+              {mockData_HIV_Status.map((column) => (
+                <div className={styles.tileBox}>
+                  <div className={styles.tileBoxColumn}>
+                    <span className={styles.tileTitle}> {column.field} </span>
+                    <span className={styles.tileValue}> {column.value} </span>
+                  </div>
+                </div>
+              ))}
+            </Column>
           )}
         </Tile>
       ) : (

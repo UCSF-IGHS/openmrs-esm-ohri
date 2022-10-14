@@ -34,9 +34,9 @@ const importTranslation = require.context('../translations', false, /.json$/, 'l
 
 require('./root.scss');
 
-function setupOpenMRS() {
-  const moduleName = 'openmrs-esm-ohri-hiv-app';
+export const moduleName = '@ohri/openmrs-esm-ohri-hiv-app';
 
+function setupOpenMRS() {
   const options = {
     featureName: 'ohri-hiv',
     moduleName,

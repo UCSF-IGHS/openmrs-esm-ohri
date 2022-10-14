@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from '../encounters-list/hts-overview-list.scss';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { Button } from 'carbon-components-react';
-import { Add16 } from '@carbon/icons-react';
+import { Button } from '@carbon/react';
+import { Add } from '@carbon/react/icons';
 
 const ClientLinkage = () => {
   const { t } = useTranslation();
@@ -19,9 +19,9 @@ const ClientLinkage = () => {
             <div className={styles.toggleButtons}>
               <Button
                 kind="ghost"
-                renderIcon={Add16}
+                renderIcon={<Add size={16} />}
                 iconDescription="New"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                 }}>
                 {t('add', 'Add')}

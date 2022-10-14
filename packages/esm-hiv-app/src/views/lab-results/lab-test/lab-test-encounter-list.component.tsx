@@ -27,21 +27,21 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
       {
         key: 'testResultDate',
         header: t('testName', 'Test Name'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter[CD4LabResultsEncounter_UUID], Cd4LabResultDate_UUID, true);
         },
       },
       {
         key: 'CD4Count',
         header: t('value', 'Value'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, Cd4Count_UUID);
         },
       },
       {
         key: 'CD4Count',
         header: t('referenceRange', 'Reference Range'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, Cd4LabResultCountPercentage_UUID);
         },
       },

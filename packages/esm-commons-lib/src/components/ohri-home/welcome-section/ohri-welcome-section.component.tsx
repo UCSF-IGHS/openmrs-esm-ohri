@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './ohri-welcome-section.scss';
-import { Calendar32 } from '@carbon/icons-react';
+import { Calendar } from '@carbon/react/icons';
 import { useSession } from '@openmrs/esm-framework';
 
 export function OHRIWelcomeSection({ title }) {
@@ -11,7 +11,7 @@ export function OHRIWelcomeSection({ title }) {
       <div className={styles.welcomeDetails}>
         <div className={styles.userWelcome}>Welcome back {userSession?.user['person'].display}</div>
         <div className={styles.currentDate}>
-          <Calendar32 className={styles.calendarIcon} />
+          <Calendar size={32} className={styles.calendarIcon} />
           {new Date().toLocaleDateString() + ''}
         </div>
       </div>

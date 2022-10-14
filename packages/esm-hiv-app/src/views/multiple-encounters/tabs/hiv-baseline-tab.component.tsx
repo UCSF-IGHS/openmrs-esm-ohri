@@ -33,28 +33,28 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
       {
         key: 'hivDiagnosisDate',
         header: t('hivDiagnosisDate', 'HIV Diagnosis Date'),
-        getValue: encounters => {
+        getValue: (encounters) => {
           return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfHIVDiagnosisConcept, true);
         },
       },
       {
         key: 'enrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
-        getValue: encounters => {
+        getValue: (encounters) => {
           return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfServiceEnrollmentConcept, true);
         },
       },
       {
         key: 'artStartDate',
         header: t('artStartDate', 'ART Start Date'),
-        getValue: encounters => {
+        getValue: (encounters) => {
           return getObsFromEncounter(encounters[art_Therapy_EncounterUUID], artTherapyDateTime_UUID, true);
         },
       },
       {
         key: 'tbScreening',
         header: t('tbScreening', 'Current TB Screening'),
-        getValue: encounters => {
+        getValue: (encounters) => {
           return getObsFromEncounter(encounters[clinicalVisitEncounterType], tbScreeningOutcome);
         },
       },

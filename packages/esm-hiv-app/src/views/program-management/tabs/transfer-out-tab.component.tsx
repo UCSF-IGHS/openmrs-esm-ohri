@@ -15,6 +15,7 @@ import {
   verified_UUID,
   visitDate_UUID,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface TransferOutTabListProps {
   patientUuid: string;
@@ -24,28 +25,28 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'visitDate',
     header: 'Visit Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, visitDate_UUID, true);
     },
   },
   {
     key: 'reasonsForTesting',
     header: 'Receiving Facility',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, receivingFacility_UUID);
     },
   },
   {
     key: 'tranferOutDate',
     header: 'Transfer-Out Date',
-    getValue: encounter => {
+    getValue: (encounter) => {
       return getObsFromEncounter(encounter, TransferOutDate_UUID, true);
     },
   },
   {
     key: 'verified',
     header: 'Verified',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const obs = findObs(encounter, verified_UUID);
       return obs?.value?.name?.name === 'FALSE' ? 'No' : obs?.value?.name?.name;
     },
@@ -54,7 +55,7 @@ const columnsLab: EncounterListColumn[] = [
   {
     key: 'actions',
     header: 'Actions',
-    getValue: encounter => {
+    getValue: (encounter) => {
       const baseActions = [
         {
           form: { name: 'transfer_out', package: 'hiv' },
@@ -90,7 +91,10 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

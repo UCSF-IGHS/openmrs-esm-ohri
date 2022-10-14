@@ -1,4 +1,4 @@
-import { Tag } from 'carbon-components-react';
+import { Tag } from '@carbon/react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -10,6 +10,7 @@ import {
   Relationship_UUID,
 } from '../../constants';
 import styles from '../common.scss';
+import { moduleName } from '../../index';
 const statusColorMap = {
   '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'red', // positive
   '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'gray', // negative
@@ -28,28 +29,28 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
       {
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, PatnerNotificationContactDate_UUID, true);
         },
       },
       {
         key: 'name',
         header: t('name', 'Name'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, FirstName_UUID);
         },
       },
       {
         key: 'relationship',
         header: t('relationship', 'Relationship'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, Relationship_UUID);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'Status'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const hivStatus = getObsFromEncounter(encounter, IndexHIVStatus_UUID);
           const hivStatusObs = findObs(encounter, IndexHIVStatus_UUID);
           if (hivStatus == '--') {
@@ -66,7 +67,7 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'patner_notification', package: 'hiv' },
@@ -101,7 +102,10 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
       columns={columns}
       description={headerTitle}
       headerTitle={displayText}
-      dropdownText="Add"
+      launchOptions={{
+        displayText: 'Add',
+        moduleName: moduleName,
+      }}
     />
   );
 };

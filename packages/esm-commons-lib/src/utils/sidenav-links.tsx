@@ -1,10 +1,10 @@
 import React from 'react';
-import { SideNavMenuItem, SideNavMenu } from 'carbon-components-react';
+import { SideNavMenuItem, SideNavMenu } from '@carbon/react';
 import styles from './sidenav-links.scss';
 
-const isActiveLink = urlFragment => window.location.pathname.indexOf(urlFragment) !== -1;
+const isActiveLink = (urlFragment) => window.location.pathname.indexOf(urlFragment) !== -1;
 
-export const createDashboardLink = db => {
+export const createDashboardLink = (db) => {
   const DashboardLink: React.FC<{ basePath: string }> = ({ basePath }) => {
     return (
       <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>

@@ -3,8 +3,8 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton, OverflowMenu, Pagination, Search } from 'carbon-components-react';
-import { capitalize } from 'lodash';
+import { DataTableSkeleton, OverflowMenu, Pagination, Search } from '@carbon/react';
+import { capitalize } from 'lodash-es';
 import {
   EmptyState,
   OTable,
@@ -61,12 +61,15 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   useEffect(() => {
     let rows = [];
     for (let patient of patients) {
-      const lastviralLoadResult = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
-        ?.viralLoadResult;
-      const lastviralLoadResultDate = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
-        ?.viralLoadResultDate;
-      const lastViralLoadEncounterUuid = patientToViralLoadMap.find(entry => entry.patientId === patient.resource.id)
-        ?.viralEncounterUuid;
+      const lastviralLoadResult = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralLoadResult;
+      const lastviralLoadResultDate = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralLoadResultDate;
+      const lastViralLoadEncounterUuid = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralEncounterUuid;
       const patientActions = (
         <LabresultsFormViewer
           form={{ package: 'hiv', name: 'viral_load_results' }}
@@ -96,10 +99,10 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   }, [patients, patientToViralLoadMap]);
 
   useEffect(() => {
-    const patientToviralLoadResultsPromises = patients.map(patient =>
+    const patientToviralLoadResultsPromises = patients.map((patient) =>
       fetchPatientLastViralEncounters(patient.resource.id),
     );
-    Promise.all(patientToviralLoadResultsPromises).then(values => {
+    Promise.all(patientToviralLoadResultsPromises).then((values) => {
       setPatientToViralLoadMap(
         values.map((value, index) => ({
           viralLoadResult: value.result,
@@ -112,7 +115,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   }, [patients]);
 
   const handleSearch = useCallback(
-    searchTerm => {
+    (searchTerm) => {
       setSearchTerm(searchTerm);
       const filtrate = filterPatientsByName(searchTerm, allRows);
       setFilteredResults(filtrate);
@@ -122,7 +125,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   );
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
+  const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
 
   async function fetchPatientLastViralEncounters(patientUuid: string) {
     let latestViralEncounter = {

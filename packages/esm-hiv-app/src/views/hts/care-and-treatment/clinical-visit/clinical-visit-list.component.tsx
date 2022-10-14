@@ -1,10 +1,11 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { DataTableSkeleton } from 'carbon-components-react';
+import { DataTableSkeleton } from '@carbon/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState, OHRIFormLauncherEmpty, launchForm } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clinicalVisitEncounterType, encounterRepresentation } from '../../../../constants';
 import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
+import { moduleName } from '../../../../index';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;
@@ -18,7 +19,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   const [clinicalVisitForm, setClinicalVisitForm] = useState(getForm('hiv', 'clinical_visit'));
 
   const loadRows = useCallback(
-    encounterType => {
+    (encounterType) => {
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
 
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
@@ -47,7 +48,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
           displayText={t('clinicalVisitDisplay', 'clinical visit encounters')}
           headerTitle={t('clinicalVisitTitle', 'Clinical Visits')}
           launchFormComponent={
-            <OHRIFormLauncherEmpty launchForm={() => launchForm(clinicalVisitForm, forceComponentUpdate)} />
+            <OHRIFormLauncherEmpty launchForm={() => launchForm(clinicalVisitForm, moduleName, forceComponentUpdate)} />
           }
         />
       )}

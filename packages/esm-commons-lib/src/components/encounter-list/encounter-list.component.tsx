@@ -1,15 +1,14 @@
 import { navigate, openmrsFetch } from '@openmrs/esm-framework';
-import DataTableSkeleton from 'carbon-components-react/lib/components/DataTableSkeleton';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
-import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination } from 'carbon-components-react';
+import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { encounterRepresentation } from '../../constants';
 import moment from 'moment';
-import { Add16 } from '@carbon/icons-react';
+import { Add } from '@carbon/react/icons';
 import {
   launchForm,
   launchFormInEditMode,
@@ -32,7 +31,13 @@ export interface EncounterListProps {
   columns: Array<any>;
   headerTitle: string;
   description: string;
+  /**
+   * @deprecated Use `launchOptions.displayText`
+   */
   dropdownText?: string;
+  /**
+   * @deprecated Use `launchOptions.hideFormLauncher`
+   */
   hideFormLauncher?: boolean;
   forms?: Array<{
     package: string;
@@ -42,6 +47,11 @@ export interface EncounterListProps {
     fixedIntent?: string;
   }>;
   filter?: (encounter: any) => boolean;
+  launchOptions: {
+    hideFormLauncher?: boolean;
+    moduleName: string;
+    displayText?: string;
+  };
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -62,12 +72,12 @@ function obsArrayDateComparator(left, right) {
 }
 
 export function findObs(encounter, obsConcept): Record<string, any> {
-  const allObs = encounter?.obs?.filter(observation => observation.concept.uuid === obsConcept) || [];
+  const allObs = encounter?.obs?.filter((observation) => observation.concept.uuid === obsConcept) || [];
   return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
 }
 
 export function getObsFromEncounters(encounters, obsConcept) {
-  const filteredEnc = encounters?.find(enc => enc.obs.find(obs => obs.concept.uuid === obsConcept));
+  const filteredEnc = encounters?.find((enc) => enc.obs.find((obs) => obs.concept.uuid === obsConcept));
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
@@ -88,7 +98,9 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return moment(obs.value).format('DD-MMM-YYYY');
   }
   if (typeof obs.value === 'object' && obs.value?.names) {
-    return obs.value?.names?.find(conceptName => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
+    return (
+      obs.value?.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name
+    );
   }
   return obs.value;
 }
@@ -100,34 +112,42 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   columns,
   headerTitle,
   description,
-  dropdownText,
-  hideFormLauncher,
   forms,
   filter,
+  launchOptions,
+  dropdownText,
+  hideFormLauncher,
 }) => {
   const { t } = useTranslation();
   const [allRows, setAllRows] = useState([]);
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const [encounterForm, setEncounterForm] = useState(getForm(form.package, form.name));
+  const [encounterForm, _] = useState(getForm(form.package, form.name));
   const [isDead, setIsDead] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
-  dropdownText = dropdownText ? 'Add' : 'New';
-  hideFormLauncher = hideFormLauncher || false;
+  const launchDisplayText = useMemo(() => {
+    return launchOptions.displayText ?? dropdownText ?? t('new', 'New');
+  }, [launchOptions.displayText, t, dropdownText]);
 
-  if (isDead) {
-    hideFormLauncher = isDead;
-  }
+  const launcherIsMarkedAsHidden = useMemo(() => {
+    return isDead ? true : launchOptions.hideFormLauncher ?? hideFormLauncher ?? false;
+  }, [isDead, launchOptions, hideFormLauncher]);
 
-  const editEncounter = encounterUuid => {
-    launchFormInEditMode(applyFormIntent('', encounterForm), encounterUuid, forceComponentUpdate);
+  const editEncounter = (encounterUuid) => {
+    launchFormInEditMode(
+      applyFormIntent('', encounterForm),
+      launchOptions.moduleName,
+      encounterUuid,
+      forceComponentUpdate,
+    );
   };
-  const viewEncounter = encounterUuid => {
+  const viewEncounter = (encounterUuid) => {
     launchFormInViewMode(
       form.view ? getForm(form.package, form.view) : encounterForm,
+      launchOptions.moduleName,
       encounterUuid,
       forceComponentUpdate,
     );
@@ -143,7 +163,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 
   const headers = useMemo(() => {
     if (columns) {
-      return columns.map(column => {
+      return columns.map((column) => {
         return { key: column.key, header: column.header };
       });
     }
@@ -155,7 +175,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   });
 
   const loadRows = useCallback(
-    encounterType => {
+    (encounterType) => {
       setIsLoading(true);
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
@@ -167,7 +187,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           );
 
           if (filter) {
-            sortedEncounters = sortedEncounters.filter(encounter => filter(encounter));
+            sortedEncounters = sortedEncounters.filter((encounter) => filter(encounter));
           }
           setAllRows(sortedEncounters);
           updateTable(sortedEncounters, 0, pageSize);
@@ -188,18 +208,18 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         currentRows.push(fullDataset[i]);
       }
     }
-    const rows = currentRows.map(encounter => {
+    const rows = currentRows.map((encounter) => {
       const row = { id: encounter.uuid };
       encounter['launchFormActions'] = {
         viewEncounter: () => viewEncounter(encounter.uuid),
         editEncounter: () => editEncounter(encounter.uuid),
       };
-      columns.forEach(column => {
+      columns.forEach((column) => {
         let val = column.getValue(encounter);
         if (column.link) {
           val = (
             <Link
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 if (column.link.handleNavigate) {
                   column.link.handleNavigate(encounter);
@@ -221,7 +241,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
             {actionItems.map((actionItem, index) => (
               <OverflowMenuItem
                 itemText={actionItem.label}
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   if (actionItem.mode == 'edit') {
                     launchEncounterForm(
@@ -233,6 +253,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   } else if (actionItem.mode == 'enter') {
                     launchForm(
                       applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
+                      launchOptions.moduleName,
                       forceComponentUpdate,
                     );
                   } else {
@@ -253,7 +274,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             <OverflowMenuItem
               itemText={t('viewEncounter', 'View')}
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 launchEncounterForm(
                   form.view ? getForm(form.package, form.view) : encounterForm,
@@ -265,7 +286,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
             />
             <OverflowMenuItem
               itemText={t('editEncounter', 'Edit')}
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 launchEncounterForm(
                   form.view ? getForm(form.package, form.view) : encounterForm,
@@ -284,29 +305,50 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   };
   const forceComponentUpdate = () => setCounter(counter + 1);
 
-  const capitalize = word => word[0].toUpperCase() + word.substr(1);
+  const capitalize = (word) => word[0].toUpperCase() + word.substr(1);
 
   const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
     const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
 
     if (action === 'view') {
-      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'view', encounterUuid, forceComponentUpdate);
+      launchFormWithCustomTitle(
+        form || encounterForm,
+        launchOptions.moduleName,
+        launcherTitle,
+        'view',
+        encounterUuid,
+        forceComponentUpdate,
+      );
     } else if (action === 'edit') {
-      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'edit', encounterUuid, forceComponentUpdate);
+      launchFormWithCustomTitle(
+        form || encounterForm,
+        launchOptions.moduleName,
+        launcherTitle,
+        'edit',
+        encounterUuid,
+        forceComponentUpdate,
+      );
     } else {
-      launchFormWithCustomTitle(form || encounterForm, launcherTitle, 'enter', '', forceComponentUpdate);
+      launchFormWithCustomTitle(
+        form || encounterForm,
+        launchOptions.moduleName,
+        launcherTitle,
+        'enter',
+        '',
+        forceComponentUpdate,
+      );
     }
   };
 
   const formLauncher = useMemo(() => {
     let encounterForms = [];
     if (forms && forms.length > 1) {
-      encounterForms = forms.map(formV => {
+      encounterForms = forms.map((formV) => {
         let tempForm = getForm(formV.package, formV.name);
         const excludedIntents = formV.fixedIntent
           ? tempForm.availableIntents
-              .filter(candidate => candidate.intent != formV.fixedIntent)
-              .map(intent => intent.intent)
+              .filter((candidate) => candidate.intent != formV.fixedIntent)
+              .map((intent) => intent.intent)
           : formV.excludedIntents;
         return excludedIntents.length ? updateExcludeIntentBehaviour(excludedIntents, tempForm) : tempForm;
       });
@@ -314,8 +356,8 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       return (
         <OHRIFormLauncherWithIntent
           launchForm={launchEncounterForm}
-          dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
+          title={launchDisplayText}
+          hideFormLauncher={launcherIsMarkedAsHidden}
           formsJson={encounterForms}
         />
       );
@@ -324,24 +366,24 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <OHRIFormLauncherWithIntent
           formJson={encounterForm}
           launchForm={launchEncounterForm}
-          dropDownText={dropdownText}
-          hideFormLauncher={hideFormLauncher}
+          title={launchDisplayText}
+          hideFormLauncher={launcherIsMarkedAsHidden}
         />
       );
     }
     return (
       <Button
         kind="ghost"
-        renderIcon={Add16}
+        renderIcon={<Add size={16} />}
         iconDescription="Add "
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
           launchEncounterForm();
         }}>
-        {dropdownText}
+        {launchDisplayText}
       </Button>
     );
-  }, [encounterForm, launchEncounterForm]);
+  }, [encounterForm, launchEncounterForm, launchDisplayText]);
 
   useEffect(() => {
     loadRows(encounterUuid);
@@ -356,7 +398,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              {!hideFormLauncher && <div className={styles.toggleButtons}>{formLauncher}</div>}
+              {!launcherIsMarkedAsHidden && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={tableRows} />
             <Pagination
@@ -379,7 +421,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           headerTitle={headerTitle}
           launchForm={launchEncounterForm}
           launchFormComponent={formLauncher}
-          hideFormLauncher
+          hideFormLauncher={launcherIsMarkedAsHidden}
         />
       )}
     </>

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Tabs, Tab } from 'carbon-components-react';
+import React from 'react';
+import { Tabs, Tab, TabPanels, TabPanel, TabList } from '@carbon/react';
 import styles from '../lab-results/Tabs/patient-list.scss';
 import CD4ResultsList from './Tabs/cd4-results.component';
 import ViralLoadResultsList from './Tabs/viral-load-results.component';
-import LabResultsSummaryTiles from './lab-results-summary-tiles.component';
 import { useTranslation } from 'react-i18next';
 
 interface OverviewListProps {
@@ -13,16 +12,20 @@ interface OverviewListProps {
 const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   return (
-    // <div className={styles.tabContainer}>
     <Tabs type="container" className={styles.tabContainer}>
-      <Tab label={t('cd4LabResults', 'CD4 Lab Results')} className="tab-14rem">
-        <CD4ResultsList patientUuid={patientUuid} />
-      </Tab>
-      <Tab label={t('viralLoadResults', 'Viral Load Results')} className="tab-12rem" style={{ padding: 0 }}>
-        <ViralLoadResultsList patientUuid={patientUuid} />
-      </Tab>
+      <TabList contained>
+        <Tab>{t('cd4LabResults', 'CD4 Lab Results')}</Tab>
+        <Tab>{t('viralLoadResults', 'Viral Load Results')}</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <CD4ResultsList patientUuid={patientUuid} />
+        </TabPanel>
+        <TabPanel>
+          <ViralLoadResultsList patientUuid={patientUuid} />
+        </TabPanel>
+      </TabPanels>
     </Tabs>
-    // </div>
   );
 };
 

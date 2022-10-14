@@ -13,6 +13,7 @@ import {
   getEncounterValues,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../../../index';
 
 interface ServiceEnrolmentProps {
   patientUuid: string;
@@ -26,11 +27,11 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
       {
         key: 'date',
         header: t('enrolmentDate', 'Date of service enrollment'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getEncounterValues(encounter, 'encounterDatetime', true);
         },
         link: {
-          handleNavigate: encounter => {
+          handleNavigate: (encounter) => {
             encounter.launchFormActions?.viewEncounter();
           },
         },
@@ -38,28 +39,28 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
       {
         key: 'patientType',
         header: t('patientType', 'Patient Type at Enrollment'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, patientTypeEnrollmentConcept);
         },
       },
       {
         key: 'dateConfirmedPositive',
         header: t('dateConfirmedPositive', 'Date Confirmed HIV Positive'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, dateOfHIVDiagnosisConcept, true);
         },
       },
       {
         key: 'entryPoint',
         header: t('entryPoint', 'Entry Point'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, entryPointConcept);
         },
       },
       {
         key: 'populationType',
         header: t('populationType', 'Population Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, studyPopulationTypeConcept);
         },
       },
@@ -83,6 +84,9 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      launchOptions={{
+        moduleName: moduleName,
+      }}
     />
   );
 };

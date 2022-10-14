@@ -1,6 +1,5 @@
 import React from 'react';
-import Tag from 'carbon-components-react/es/components/Tag';
-import TooltipDefinition from 'carbon-components-react/es/components/TooltipDefinition';
+import { Tag, Tooltip } from '@carbon/react';
 import { useVisit } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +10,7 @@ export function ActiveVisitBannerTag({ patientUuid }) {
   const { t } = useTranslation();
   return (
     currentVisit && (
-      <TooltipDefinition
+      <Tooltip
         align="end"
         tooltipText={
           <div className={styles.tooltipPadding}>
@@ -25,7 +24,7 @@ export function ActiveVisitBannerTag({ patientUuid }) {
           </div>
         }>
         <Tag type="blue">{t('activeVisit', 'Active Visit')}</Tag>
-      </TooltipDefinition>
+      </Tooltip>
     )
   );
 }

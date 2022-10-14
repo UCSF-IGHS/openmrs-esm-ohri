@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './covid.scss';
-import { Tabs, Tab, Tag } from 'carbon-components-react';
+import { Tabs, Tab, Tag, TabList, TabPanels, TabPanel } from '@carbon/react';
 import {
   covidLabOrderDate_UUID,
   covidLabOrderEncounterType_UUID,
@@ -12,6 +12,7 @@ import {
   covidTypeofTestConcept_UUID,
 } from '../constants';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../index';
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
@@ -38,28 +39,28 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'orderDate',
         header: t('dateOfOrder', 'Date of Order'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
         },
       },
       {
         key: 'reasonsForTesting',
         header: t('reasonsForTesting', 'Reason for testing'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
         },
       },
       {
         key: 'testType',
         header: t('testType', 'Test Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
         },
       },
       {
         key: 'labStatus',
         header: t('status', 'Status'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
           const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
           if (status == '--') {
@@ -76,7 +77,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'lastTestResult',
         header: t('testResult', 'Test Result'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const pcrResult = getObsFromEncounter(encounter, pcrTestResult);
           return pcrResult && pcrResult != '--' ? pcrResult : getObsFromEncounter(encounter, rapidTestResult);
         },
@@ -84,14 +85,14 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'testResultDate',
         header: t('dateOfTestResult', 'Date of Test Result'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTestResultDate_UUID, true);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'covid_lab_test', package: 'covid' },
@@ -139,28 +140,28 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'orderDate',
         header: t('dateOfOrder', 'Date of Order'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidLabOrderDate_UUID, true);
         },
       },
       {
         key: 'testType',
         header: t('testType', 'Test Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTypeofTestConcept_UUID);
         },
       },
       {
         key: 'fowardLabreference',
         header: t('fowardLabreference', 'Fowarded to Reference Lab'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidTestResultConcept_UUID);
         },
       },
       {
         key: 'labStatus',
         header: t('status', 'Status'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
           const statusObs = findObs(encounter, covidTestStatusConcept_UUID);
           if (status == '--') {
@@ -177,7 +178,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => [
+        getValue: (encounter) => [
           {
             form: { name: 'covid_lab_test', package: 'covid' },
             encounterUuid: encounter.uuid,
@@ -205,7 +206,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
     [],
   );
 
-  let pendingLabOrdersFilter = encounter => {
+  let pendingLabOrdersFilter = (encounter) => {
     return getObsFromEncounter(encounter, covidTestStatusConcept_UUID) === 'Pending';
   };
 
@@ -216,35 +217,47 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
 
   return (
     <div className={styles.tabContainer}>
-      <Tabs type="container">
-        <Tab label="Lab Tests">
-          <EncounterList
-            patientUuid={patientUuid}
-            encounterUuid={covidLabOrderEncounterType_UUID}
-            form={{ package: 'covid', name: 'covid_lab_order' }}
-            forms={[
-              { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
-              { package: 'covid', name: 'covid_lab_result', excludedIntents: [] },
-            ]}
-            columns={columnsLab}
-            description={displayText}
-            headerTitle={headerTitle}
-            dropdownText="Add"
-          />
-        </Tab>
-        <Tab label="Pending Lab Orders">
-          <EncounterList
-            patientUuid={patientUuid}
-            encounterUuid={covidLabOrderEncounterType_UUID}
-            form={{ package: 'covid', name: 'covid_lab_test' }}
-            columns={columnsPending}
-            description={headerTitlePending}
-            headerTitle={displayTextPending}
-            dropdownText="Add"
-            hideFormLauncher={true}
-            filter={pendingLabOrdersFilter}
-          />
-        </Tab>
+      <Tabs>
+        <TabList contained>
+          <Tab>{t('labTests', 'Lab Tests')}</Tab>
+          <Tab>{t('pendingLabOrders', 'Pending Lab Orders')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <EncounterList
+              patientUuid={patientUuid}
+              encounterUuid={covidLabOrderEncounterType_UUID}
+              form={{ package: 'covid', name: 'covid_lab_order' }}
+              forms={[
+                { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
+                { package: 'covid', name: 'covid_lab_result', excludedIntents: [] },
+              ]}
+              columns={columnsLab}
+              description={displayText}
+              headerTitle={headerTitle}
+              launchOptions={{
+                displayText: 'Add',
+                moduleName: moduleName,
+              }}
+            />
+          </TabPanel>
+          <TabPanel>
+            <EncounterList
+              patientUuid={patientUuid}
+              encounterUuid={covidLabOrderEncounterType_UUID}
+              form={{ package: 'covid', name: 'covid_lab_test' }}
+              columns={columnsPending}
+              description={headerTitlePending}
+              headerTitle={displayTextPending}
+              launchOptions={{
+                displayText: 'Add',
+                moduleName: moduleName,
+                hideFormLauncher: true,
+              }}
+              filter={pendingLabOrdersFilter}
+            />
+          </TabPanel>
+        </TabPanels>
       </Tabs>
     </div>
   );
