@@ -1,41 +1,33 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { attach, detach, ExtensionSlot, isDesktop, useExtensionSlotMeta, useLayoutType } from '@openmrs/esm-framework';
+import React, { useEffect, useState } from 'react';
+import { attach, detach, ExtensionSlot, useExtensionSlotMeta, useLayoutType } from '@openmrs/esm-framework';
 import styles from './ohri-dashboard.scss';
-import { useParams } from 'react-router-dom';
 
-const OHRIDashboard = () => {
-  const { view } = useParams();
+const OHRIDashboard = ({ match }) => {
+  const {
+    params: { view },
+  } = match;
   const [dashboards, setDashboards] = useState([]);
   const metaLinks = useExtensionSlotMeta('dashboard-links-slot');
   const metaFolders = useExtensionSlotMeta('dashboard-slot');
-  const [currentDashboard, setCurrentDashboard] = useState(null);
+  const meta = { ...metaLinks, ...metaFolders };
+  const folders = Object.values(meta);
+  const [currentDashboard, setCurrentDashboard] = useState(dashboards[0]);
   const layout = useLayoutType();
-
-  const folders = useMemo(() => {
-    return Object.values({ ...metaLinks, ...metaFolders });
-  }, [metaLinks, metaFolders]);
 
   useEffect(() => {
     if (view) {
-      setCurrentDashboard(dashboards.find((db) => db.name == view));
-    } else if (!currentDashboard) {
+      setCurrentDashboard(dashboards.find(db => db.name == view));
+    } else {
       setCurrentDashboard(dashboards[0]);
     }
   }, [view, dashboards]);
 
   useEffect(() => {
-    if (!isDesktop(layout)) {
+    if (layout != 'desktop') {
       attach('nav-menu-slot', 'ohri-nav-items-ext');
     }
     return () => detach('nav-menu-slot', 'ohri-nav-items-ext');
   }, [layout]);
-
-  const state = useMemo(() => {
-    if (currentDashboard) {
-      return { programme: currentDashboard?.config?.programme, dashboardTitle: currentDashboard.title };
-    }
-    return null;
-  }, [currentDashboard]);
 
   return (
     <div className={styles.dashboardContainer}>
@@ -46,13 +38,19 @@ const OHRIDashboard = () => {
             dashboards={dashboards}
             setDashboards={setDashboards}
             updateDashboardState={index == folders.length - 1}
-            key={index}
           />
         );
       })}
-      {isDesktop(layout) && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
-      <div className={` ${styles.dashboardContent}`}>
-        {currentDashboard && <ExtensionSlot extensionSlotName={currentDashboard.slot} state={state} />}
+      {layout === 'desktop' && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
+      <div className={`bx--grid ${styles.dashboardContent}`}>
+        {currentDashboard && (
+          <DashboardView
+            dashboardSlot={currentDashboard.slot}
+            title={currentDashboard.title}
+            programme={currentDashboard?.config?.programme}
+            key={currentDashboard.slot}
+          />
+        )}
       </div>
     </div>
   );
@@ -68,6 +66,18 @@ const GroupAbleMenuItem = ({ groupSlot, dashboards, setDashboards, updateDashboa
   }, [meta]);
 
   return <></>;
+};
+
+const DashboardView: React.FC<{ dashboardSlot: string, title: string, programme?: string }> = ({
+  dashboardSlot,
+  title,
+  programme,
+}) => {
+  return (
+    <div>
+      <ExtensionSlot extensionSlotName={dashboardSlot} state={{ programme: programme, dashboardTitle: title }} />
+    </div>
+  );
 };
 
 export default OHRIDashboard;

@@ -9,14 +9,14 @@
   float: right;
 }
 
-:global(.cds--overflow-menu-options__btn) {
+:global(.bx--overflow-menu-options__btn) {
   max-width: 15rem !important;
 }
 
-:global(.cds--overflow-menu--flip.cds--overflow-menu-options) {
+:global(.bx--overflow-menu--flip.bx--overflow-menu-options) {
   min-width: 13rem !important;
 }
 
-:global(.cds--overflow-menu-options__btn):focus {
+:global(.bx--overflow-menu-options__btn):focus {
   outline: none;
 }

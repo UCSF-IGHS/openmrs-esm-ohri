@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './encounter-list.scss';
 import { encounterRepresentation } from '../../constants';
 import { EmptyState } from '../empty-state/empty-state.component';
-import { DataTableSkeleton, Link, Pagination } from '@carbon/react';
+import { DataTableSkeleton, Link, Pagination } from 'carbon-components-react';
 import { OTable } from '../data-table/o-table.component';
 import { getObsFromEncounter } from './encounter-list.component';
 
@@ -53,7 +53,7 @@ export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
   const [encountersMap, setEncountersMap] = useState<Record<any, Array<any>>>(null);
   const headers = useMemo(() => {
     if (columns) {
-      return columns.map((column) => {
+      return columns.map(column => {
         return { key: column.key, header: column.header };
       });
     }
@@ -61,15 +61,15 @@ export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
   }, [columns]);
 
   const loadRows = useCallback(
-    (encounterTypes) => {
+    encounterTypes => {
       const encountersToTypeMap: Record<string, Array<any>> = {};
 
       setIsLoading(true);
-      const encounterPromises = encounterTypes.map((encounterType) => {
+      const encounterPromises = encounterTypes.map(encounterType => {
         const query = `encounterType=${encounterType}&patient=${patientUuid}`;
         return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
       });
-      Promise.all(encounterPromises).then((values) => {
+      Promise.all(encounterPromises).then(values => {
         values.forEach(({ data }) => {
           if (data.results?.length > 0) {
             const sortedEncounters = data.results.sort(
@@ -98,24 +98,24 @@ export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
   useEffect(() => {
     if (baseEncounterType && encountersMap) {
       const baseEncounterArray = encountersMap[baseEncounterType];
-      const otherTypes = Object.keys(encountersMap).filter((encounterType) => encounterType != baseEncounterType);
+      const otherTypes = Object.keys(encountersMap).filter(encounterType => encounterType != baseEncounterType);
       const encountersChunck: any[] = baseEncounterArray.map((encounter, index) => {
         const encountersPerRow = {};
         encountersPerRow[baseEncounterType] = encounter;
-        otherTypes.forEach((type) => {
+        otherTypes.forEach(type => {
           const otherEncounters = encountersMap[type];
           encountersPerRow[type] = otherEncounters[index];
         });
         return encountersPerRow;
       });
-      const rows = encountersChunck.map((encountersRow) => {
+      const rows = encountersChunck.map(encountersRow => {
         const row = { id: Object.values(encountersRow)[0]['uuid'] };
-        columns.forEach((column) => {
+        columns.forEach(column => {
           let val = column.getValue(encountersRow);
           if (column.link) {
             val = (
               <Link
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   if (column.link.handleNavigate) {
                     column.link.handleNavigate(encountersRow);

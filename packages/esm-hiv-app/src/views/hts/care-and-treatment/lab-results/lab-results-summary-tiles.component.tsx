@@ -11,11 +11,11 @@ function LabResultsSummaryTiles() {
   const [highVlCount, setHighVlCount] = useState(0);
 
   useEffect(() => {
-    getReportingCohort(missingCd4Cohort).then((data) => {
+    getReportingCohort(missingCd4Cohort).then(data => {
       setMissingCd4Count(data.members.length);
     });
 
-    getReportingCohort(highVlCohort).then((results) => {
+    getReportingCohort(highVlCohort).then(results => {
       setHighVlCount(results.members.length);
     });
   }, []);

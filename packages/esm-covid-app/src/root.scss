@@ -1,5 +1,7 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
+@import "~carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/type/styles";
+@import "~carbon-components/src/globals/scss/vendor/@carbon/layout/scss/generated/spacing";
+@import "~carbon-components/src/globals/scss/vendor/@carbon/layout/scss/generated/layout";
+@import "carbon-components/scss/globals/scss/typography.scss";
 @import "~@openmrs/esm-styleguide/src/vars";
 
 $ui-01: #f4f4f4;
@@ -25,51 +27,55 @@ $brand-color-03: #3197D9; // underline - 3197D9
 $button-primary: #0078A6;
 
 .productiveHeading01 {
-  @include type.type-style("heading-compact-01");
+  @include carbon--type-style("productive-heading-01");
 }
 
 .productiveHeading02 {
-  @include type.type-style("heading-compact-02");
+  @include carbon--type-style("productive-heading-02");
 }
 
 .productiveHeading03 {
-  @include type.type-style("heading-03");
+  @include carbon--type-style("productive-heading-03");
 }
 
 .productiveHeading04 {
-  @include type.type-style("heading-04");
+  @include carbon--type-style("productive-heading-04");
 }
 
 .productiveHeading05 {
-  @include type.type-style("heading-05");
+  @include carbon--type-style("productive-heading-05");
 }
 
 .productiveHeading06 {
-  @include type.type-style("heading-06");
+  @include carbon--type-style("productive-heading-06");
 }
 
 .bodyShort01 {
-  @include type.type-style("body-compact-01");
+  @include carbon--type-style("body-short-01");
 }
 
 .helperText01 {
-  @include type.type-style("helper-text-01");
+  @include carbon--type-style("helper-text-01");
 }
 
 .bodyShort02 {
-  @include type.type-style("body-compact-02");
+  @include carbon--type-style("body-short-02");
 }
 
 .bodyLong01 {
-  @include type.type-style("body-01");
+  @include carbon--type-style("body-long-01");
 }
 
 .bodyLong02 {
-  @include type.type-style("body-02");
+  @include carbon--type-style("body-long-02");
 }
 
 .label01 {
-  @include type.type-style("label-01");
+  @include carbon--type-style("label-01");
+}
+
+.text01 {
+  color: $text-01;
 }
 
 .text02 {
@@ -98,21 +104,21 @@ div[class*='-esm-login__styles__center'] > img {
   width: 16rem !important;
 }
 
-:global(.cds--overflow-menu) > div {
+:global(.bx--overflow-menu) > div {
   width: 15rem !important;
 }
 
-nav :global(.cds--accordion__title) {
+nav :global(.bx--accordion__title) {
   color: #525252;
   font-weight: 600 !important;
 }
 
-nav :global(.cds--accordion__content) {
+nav :global(.bx--accordion__content) {
   padding-bottom: 0 !important;
   padding-top: 0 !important;
 }
 
-nav :global(.cds--accordion__content)>a {
+nav :global(.bx--accordion__content)>a {
   background-color: #cecece !important;
   color: #161616 !important;
   border-left-color: $brand-color-01  !important;

@@ -1,24 +1,23 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
 @import "../../root.scss";
 
 .errorMessage {
-  @include type.type-style("heading-compact-02");
+  @include carbon--type-style("productive-heading-02");
+  color: $text-01;
   margin-top: 2.25rem;
-  margin-bottom: spacing.$spacing-03;
+  margin-bottom: $spacing-03;
 }
 
 .errorCopy {
-  margin-bottom: spacing.$spacing-03;
-  @include type.type-style("body-01");
+  margin-bottom: $spacing-03;
+  @include carbon--type-style("body-long-01");
   color: $text-02;
 }
 
 .heading {
   text-align: left;
   text-transform: capitalize;
-  margin-bottom: spacing.$spacing-05;
-  @include type.type-style("heading-03");
+  margin-bottom: $spacing-05;
+  @include carbon--type-style("productive-heading-03");
   color: $text-02;
 }
 

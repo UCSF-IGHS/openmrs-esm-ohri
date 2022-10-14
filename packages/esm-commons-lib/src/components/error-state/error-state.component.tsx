@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tile } from '@carbon/react';
+import { Tile } from 'carbon-components-react/es/components/Tile';
 import { useTranslation } from 'react-i18next';
 import styles from './error-state.scss';
 

@@ -8,7 +8,7 @@ import {
 } from '../../api/api';
 import moment from 'moment';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
-import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from '@carbon/react';
+import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from 'carbon-components-react';
 import { AddPatientToListOverflowMenuItem } from '../modals/patient-list/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
@@ -48,83 +48,82 @@ interface CohortPatientListProps {
     targetDashboard?: string;
   };
   extraAssociatedEncounterTypes?: Array<string>;
-  moduleName: string;
 }
 
 export const columns: PatientListColumn[] = [
   {
     key: 'name',
     header: 'Name',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.name;
     },
     link: {
-      getUrl: (patient) => patient.url,
+      getUrl: patient => patient.url,
     },
   },
   {
     key: 'timeAddedToList',
     header: 'Time Added To List',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.timeAddedToList;
     },
   },
   {
     key: 'waitingTime',
     header: 'Waiting Time',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.waitingTime;
     },
   },
   {
     key: 'gender',
     header: 'Sex',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.gender;
     },
   },
   {
     key: 'location',
     header: 'Location',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.location;
     },
   },
   {
     key: 'age',
     header: 'Age',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.age;
     },
   },
   {
     key: 'phoneNumber',
     header: 'Phone Number',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.phoneNumber;
     },
   },
   {
     key: 'hivResult',
     header: 'HIV Result',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.hivResult;
     },
   },
   {
     key: 'actions',
     header: 'Actions',
-    getValue: (patient) => {
+    getValue: patient => {
       return patient.actions;
     },
   },
 ];
 
 const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
-  return patients.filter((patient) => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
+  return patients.filter(patient => patient.name.toLowerCase().search(searchTerm.toLowerCase()) !== -1);
 };
 
-const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType, patientUrl, moduleName }) => {
+const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterType, patientUrl }) => {
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -133,7 +132,7 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
       setIsLoading(true);
-      fetchPatientLastEncounter(patientUuid, encounterType).then((lastHtsEncounter) => {
+      fetchPatientLastEncounter(patientUuid, encounterType).then(lastHtsEncounter => {
         if (lastHtsEncounter) {
           setActionText(continueEncounterActionText);
           setEncounterUuid(lastHtsEncounter.uuid);
@@ -155,10 +154,10 @@ const LaunchableFormMenuItem = ({ patientUuid, launchableForm, form, encounterTy
           onClick={() => {
             if (encounterUuid) {
               changeWorkspaceContext(patientUuid);
-              launchFormInEditMode(form, moduleName, encounterUuid, null, null, 'ohri-forms');
+              launchFormInEditMode(form, encounterUuid, null, null, 'ohri-forms');
             } else {
               changeWorkspaceContext(patientUuid);
-              launchForm(form, moduleName, null, null, 'ohri-forms');
+              launchForm(form, null, null, 'ohri-forms');
             }
             navigate({ to: patientUrl });
           }}
@@ -179,7 +178,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   launchableForm,
   addPatientToListOptions,
   extraAssociatedEncounterTypes,
-  moduleName,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedPatients, setLoadedPatients] = useState(false);
@@ -200,7 +198,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const columnAtLastIndex = 'actions';
   const form = launchableForm && getForm(launchableForm.package, launchableForm.name);
 
-  const constructPatient = (rawPatient) => {
+  const constructPatient = rawPatient => {
     const patientUuid = isReportingCohort ? rawPatient.person.uuid : rawPatient.patient.uuid;
     const dashboard = launchableForm?.targetDashboard ? `/${launchableForm?.targetDashboard}` : '';
     return {
@@ -242,7 +240,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
               encounterType={launchableForm.encounterType || associatedEncounterType}
               key={patientUuid}
               patientUrl={patientWithMeta.patientUrl}
-              moduleName={moduleName}
             />
           ) : (
             <></>
@@ -272,8 +269,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   useEffect(() => {
     if (!isReportingCohort) {
-      getCohort(cohortId, 'full').then((results) => {
-        const patients = results.cohortMembers.map((member) => {
+      getCohort(cohortId, 'full').then(results => {
+        const patients = results.cohortMembers.map(member => {
           let patient = constructPatient(member);
           member['patientUrl'] = patient.url;
           return {
@@ -287,7 +284,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
         setIsLoading(patients.length > 0);
       });
     } else {
-      getReportingCohortMembers(cohortId, queryParams).then((results) => {
+      getReportingCohortMembers(cohortId, queryParams).then(results => {
         const patients = results.map(({ data }) => {
           let patient = constructPatient(data);
           data['patientUrl'] = patient.url;
@@ -307,8 +304,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   useEffect(() => {
     if (loadedPatients && allPatients.length) {
-      Promise.all(allPatients.map((patient) => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
-        (results) => {
+      Promise.all(allPatients.map(patient => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
+        results => {
           results.forEach((encounter, index) => {
             allPatients[index].latestEncounter = encounter;
             if (index == allPatients.length - 1) {
@@ -326,7 +323,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   useEffect(() => {
     const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
     if ((loadedEncounters || !associatedEncounterType) && !loadedHIVStatuses && fetchHivResults) {
-      Promise.all(allPatients.map((patient) => fetchPatientsFinalHIVStatus(patient.uuid))).then((results) => {
+      Promise.all(allPatients.map(patient => fetchPatientsFinalHIVStatus(patient.uuid))).then(results => {
         results.forEach((hivResult, index) => {
           allPatients[index].hivResult = hivResult;
           if (index == allPatients.length - 1) {
@@ -356,7 +353,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   }, [currentPage, pageSize, patientsCount, loadedEncounters]);
 
   const handleSearch = useCallback(
-    (searchTerm) => {
+    searchTerm => {
       setSearchTerm(searchTerm);
       const filtrate = filterPatientsByName(searchTerm, paginatedPatients);
       setFilteredResults(filtrate);
@@ -375,10 +372,10 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const state = useMemo(() => {
     let filteredColumns = [...columns];
     if (excludeColumns) {
-      filteredColumns = columns.filter((c) => !excludeColumns.includes(c.key));
+      filteredColumns = columns.filter(c => !excludeColumns.includes(c.key));
     }
     if (otherColumns) {
-      otherColumns.forEach((column) => {
+      otherColumns.forEach(column => {
         if (column.index) {
           filteredColumns.splice(column.index, 0, column);
         } else {
@@ -387,7 +384,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       });
     }
     // position column designated to be at the last index
-    const index = filteredColumns.findIndex((column) => column.key == columnAtLastIndex);
+    const index = filteredColumns.findIndex(column => column.key == columnAtLastIndex);
     if (index) {
       const column = filteredColumns[index];
       filteredColumns.splice(index, 1);
@@ -400,7 +397,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       isLoading,
       search: {
         placeHolder: t('searchClientList', 'Search client list'),
-        onSearch: (searchTerm) => {
+        onSearch: searchTerm => {
           if (!searchTerm) {
             // clear value
             setSearchTerm('');
@@ -408,7 +405,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
         },
         currentSearchTerm: searchTerm,
         otherSearchProps: {
-          onKeyDown: (e) => {
+          onKeyDown: e => {
             if (e.keyCode == 13) {
               handleSearch(e.target.value);
             }
@@ -437,15 +434,15 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   useEffect(() => {
     if (allPatients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {
-      allPatients.forEach((patient) => {
-        extraAssociatedEncounterTypes.forEach((encType) => {
+      allPatients.forEach(patient => {
+        extraAssociatedEncounterTypes.forEach(encType => {
           extraEncounters.push(fetchPatientLastEncounter(patient.uuid, encType));
         });
       });
 
-      Promise.all(extraEncounters).then((results) => {
+      Promise.all(extraEncounters).then(results => {
         results.forEach((encounter, index) => {
-          const idx = allPatients.findIndex((patient) => patient.uuid === encounter?.patient.uuid);
+          const idx = allPatients.findIndex(patient => patient.uuid === encounter?.patient.uuid);
           if (idx !== -1) {
             allPatients[idx].latestExtraEncounters = allPatients[idx].latestExtraEncounters?.concat(encounter) ?? [
               encounter,

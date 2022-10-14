@@ -1,4 +1,4 @@
-import { Row } from '@carbon/react';
+import { Row } from 'carbon-components-react';
 import React, { useEffect, useState } from 'react';
 import { OHRISummaryTileTablet } from './ohri-summary-tile-tablet.component';
 import styles from './ohri-programme-summary-tiles.scss';

@@ -1,7 +1,7 @@
 import React from 'react';
-import { SideNav, SideNavItems, SideNavLink } from '@carbon/react';
+import { SideNav, SideNavItems, SideNavLink } from 'carbon-components-react/lib/components/UIShell';
 import styles from './ohri-dashboard-side-nav.scss';
-import { ListBulleted, Calendar } from '@carbon/react/icons';
+import { ListBulleted32, Calendar32 } from '@carbon/icons-react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
 
@@ -14,10 +14,10 @@ const OHRIDashboardSideNav = () => {
 
         {/* Remove once we have dashboards */}
         <div>
-          <SideNavLink renderIcon={ListBulleted} href="javascript:void(0)">
+          <SideNavLink renderIcon={ListBulleted32} href="javascript:void(0)">
             {t('patientLists', 'Patient Lists')}
           </SideNavLink>
-          <SideNavLink renderIcon={Calendar} href="javascript:void(0)">
+          <SideNavLink renderIcon={Calendar32} href="javascript:void(0)">
             {t('appointments', 'Appointments')}
           </SideNavLink>
         </div>

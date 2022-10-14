@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
-import { FlexGrid } from '@carbon/react';
+import { Grid } from 'carbon-components-react';
 import styles from './ohri-home.scss';
 import { PatientListWorkspace } from '../../workspace/patient-list-workspace';
 
@@ -31,11 +31,11 @@ export function OHRIHome(HomeProps) {
       <PatientListWorkspace
         isVisible={isWorkSpaceVisible}
         header={workSpaceProps?.header}
-        // children={workSpaceProps?.children}
+        children={workSpaceProps?.children}
         onClose={() => setIsWorkSpaceVisible(false)}
         meta={workSpaceProps?.meta}
       />
-      <FlexGrid className={styles.mainWrapper}>
+      <Grid className={styles.mainWrapper}>
         <ExtensionSlot
           extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeHeaderSlot)}
           state={{ title: HomeProps.dashboardTitle }}
@@ -51,14 +51,13 @@ export function OHRIHome(HomeProps) {
             marginLeft: '-16px',
             marginRight: '-16px',
             marginBottom: '-16px',
-            marginTop: '2rem',
           }}>
           <ExtensionSlot
             extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTabSlot)}
             state={{ launchWorkSpace }}
           />
         </div>
-      </FlexGrid>
+      </Grid>
     </>
   );
 }

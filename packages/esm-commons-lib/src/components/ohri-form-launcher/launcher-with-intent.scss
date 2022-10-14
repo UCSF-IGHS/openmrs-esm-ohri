@@ -1,22 +1,20 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
 @import "../../root.scss";
 
 .launchButtonWrapper {
   width: fit-content;
-  margin: 0 spacing.$spacing-03;
+  margin: 0 $spacing-03;
 }
 
 .toggleButtons {
   width: fit-content;
-  margin: 0 spacing.$spacing-03;
+  margin: 0 $spacing-03;
 }
 
 .actionsButtonText {
-  @include type.type-style("body-compact-01");
+  @include carbon--type-style("body-short-01");
   color: $interactive-01;
 }
 
-:global(.cds--tooltip--definition .cds--tooltip__trigger) {
+:global(.bx--tooltip--definition .bx--tooltip__trigger) {
   border-bottom: none;
 }

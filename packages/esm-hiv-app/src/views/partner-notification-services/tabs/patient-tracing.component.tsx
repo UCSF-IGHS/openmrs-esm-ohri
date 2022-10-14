@@ -7,7 +7,6 @@ import {
   ContactOutcome_UUID,
   PatientTracingEncounterType_UUID,
 } from '../../../constants';
-import { moduleName } from '../../../index';
 
 interface PatientTracingListProps {
   patientUuid: string;
@@ -21,21 +20,21 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
       {
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           return getObsFromEncounter(encounter, ContactDate_UUID, true);
         },
       },
       {
         key: 'contactMethod',
         header: t('contactMethod', 'Contact Method'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           return getObsFromEncounter(encounter, ContactMethod_UUID);
         },
       },
       {
         key: 'contactOutcome',
         header: t('contactOutcome', 'Contact Outcome'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           return getObsFromEncounter(encounter, ContactOutcome_UUID);
         },
       },
@@ -43,7 +42,7 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: (encounter) => {
+        getValue: encounter => {
           const baseActions = [
             {
               form: { name: 'patient_tracing', package: 'hiv' },
@@ -78,10 +77,7 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      launchOptions={{
-        displayText: 'Add',
-        moduleName: moduleName,
-      }}
+      dropdownText="Add"
     />
   );
 };

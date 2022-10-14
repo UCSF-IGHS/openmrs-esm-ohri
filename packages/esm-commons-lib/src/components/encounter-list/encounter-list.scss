@@ -1,6 +1,4 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
-@import "../../root.scss";
+@import "../../root";
 
 .widgetContainer {
   background-color: $ui-background;
@@ -10,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: spacing.$spacing-04 0 spacing.$spacing-04 spacing.$spacing-05;
+  padding: $spacing-04 0 $spacing-04 $spacing-05;
 }
 
 .widgetHeaderContainer > h4:after {
@@ -34,6 +32,6 @@
   //padding-right: 2rem;
 }
 
-.widgetContainer :global(.cds--data-table) thead th button span {
+.widgetContainer :global(.bx--data-table) thead th button span {
   height: unset !important;
 }

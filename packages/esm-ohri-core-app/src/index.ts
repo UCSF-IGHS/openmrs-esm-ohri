@@ -1,5 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
+
 import patientDashboardsConfig from './ohri-esm-and-dashboards-config.json';
 import ohriDashboardsConfig from './ohri-core-config';
 import {
@@ -12,7 +13,7 @@ import { homeDashboardMeta } from './dashboard.meta';
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
-  const moduleName = '@ohri/openmrs-esm-ohri-core-app';
+  const moduleName = 'openmrs-esm-ohri-core-app';
 
   const options = {
     featureName: 'ohri-core',
@@ -31,12 +32,19 @@ function setupOpenMRS() {
         load: getAsyncLifecycle(() => import('./root'), options),
         route: /^dashboard/,
       },
-      {
-        load: getAsyncLifecycle(() => import('./root'), options),
-        route: /^home/,
-      },
     ],
     extensions: [
+      {
+        id: 'redirect-to-ohri-db-ext',
+        slot: 'homepage-widgets-slot',
+        load: getAsyncLifecycle(() => import('./components/redirect-dashboard/redirect-ohri-db.component'), {
+          featureName: 'redirect-to-ohri-db',
+          moduleName,
+        }),
+        meta: {
+          columnSpan: 4,
+        },
+      },
       {
         id: 'home-dashboard-ext',
         slot: 'dashboard-links-slot',

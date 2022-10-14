@@ -10,8 +10,8 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
 import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
-import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
-import { capitalize } from 'lodash-es';
+import { DataTableSkeleton, Pagination, Search } from 'carbon-components-react';
+import { capitalize } from 'lodash';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
 
@@ -20,7 +20,7 @@ interface CD4ResultsListProps {
 }
 
 export const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
-  return patients.filter((patient) => patient.patientSearchName.toLowerCase().includes(searchTerm.toLowerCase()));
+  return patients.filter(patient => patient.patientSearchName.toLowerCase().includes(searchTerm.toLowerCase()));
 };
 
 const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
@@ -59,11 +59,10 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   useEffect(() => {
     let rows = [];
     for (let patient of patients) {
-      const lastCd4Result = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)?.cd4Result;
-      const lastCd4ResultDate = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)?.cd4ResultDate;
-      const lastCd4EncounterUuid = patientToCd4Map.find(
-        (entry) => entry.patientId === patient.resource.id,
-      )?.cd4EncounterUuid;
+      const lastCd4Result = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4Result;
+      const lastCd4ResultDate = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)?.cd4ResultDate;
+      const lastCd4EncounterUuid = patientToCd4Map.find(entry => entry.patientId === patient.resource.id)
+        ?.cd4EncounterUuid;
       const patientActions = (
         <LabresultsFormViewer
           form={{ package: 'hiv', name: 'cd4_lab_results' }}
@@ -93,8 +92,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   }, [patients, patientToCd4Map]);
 
   useEffect(() => {
-    const patientToCd4ResultsPromises = patients.map((patient) => fetchPatientLastCd4Encounters(patient.resource.id));
-    Promise.all(patientToCd4ResultsPromises).then((values) => {
+    const patientToCd4ResultsPromises = patients.map(patient => fetchPatientLastCd4Encounters(patient.resource.id));
+    Promise.all(patientToCd4ResultsPromises).then(values => {
       setPatientToCd4Map(
         values.map((value, index) => ({
           cd4Result: value.result,
@@ -107,7 +106,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   }, [patients]);
 
   const handleSearch = useCallback(
-    (searchTerm) => {
+    searchTerm => {
       setSearchTerm(searchTerm);
       const filtrate = filterPatientsByName(searchTerm, allRows);
       setFilteredResults(filtrate);
@@ -117,7 +116,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   );
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
-  const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
+  const getPatientURL = patientUuid => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
 
   async function fetchPatientLastCd4Encounters(patientUuid: string) {
     let latestCd4Encounter = {

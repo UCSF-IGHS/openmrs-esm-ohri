@@ -1,18 +1,17 @@
 import { defineConfigSchema, getAsyncLifecycle } from '@openmrs/esm-framework';
-import { configSchema } from './config-schema';
 import { backendDependencies } from './openmrs-backend-dependencies';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 function setupOpenMRS() {
-  const moduleName = '@ohri/openmrs-esm-ohri-form-render-app';
+  const moduleName = 'openmrs-esm-ohri-form-render-app';
 
   const options = {
     featureName: 'ohri-form-render',
     moduleName,
   };
 
-  defineConfigSchema(moduleName, configSchema);
+  defineConfigSchema(moduleName, {});
 
   return {
     pages: [

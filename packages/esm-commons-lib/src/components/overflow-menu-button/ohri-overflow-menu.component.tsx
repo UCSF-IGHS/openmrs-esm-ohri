@@ -2,20 +2,27 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './ohri-overflow-menu.scss';
 import { useTranslation } from 'react-i18next';
 import { applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
-import { Button } from '@carbon/react';
+import { Button } from 'carbon-components-react';
 
 interface OverflowMenuProps {
   menuTitle: React.ReactNode;
   overflowItems: Array<any>;
+  overflowIcon?: any;
   launchForm?: (formJson?: any, intent?: string) => void;
   formJson?: any;
 }
 
-export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overflowItems, launchForm, formJson }) => {
+export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({
+  menuTitle,
+  overflowIcon,
+  overflowItems,
+  launchForm,
+  formJson,
+}) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);
-  const toggleShowMenu = useCallback(() => setShowMenu((state) => !state), []);
+  const toggleShowMenu = useCallback(() => setShowMenu(state => !state), []);
 
   useEffect(() => {
     /**
@@ -36,11 +43,11 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
   }, [wrapperRef]);
 
   return (
-    <div className={`cds--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
+    <div className={`bx--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
       {overflowItems.length > 0 ? (
         <>
           <button
-            className={`cds--overflow-menu__trigger ${showMenu && 'cds--overflow-menu--open'}`}
+            className={`bx--overflow-menu__trigger ${showMenu && 'bx--overflow-menu--open'}`}
             aria-haspopup="true"
             aria-expanded={showMenu}
             id="custom-actions-overflow-menu-trigger"
@@ -57,7 +64,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
             {menuTitle}
           </button>
           <div
-            className="cds--overflow-menu-options cds--overflow-menu--flip"
+            className="bx--overflow-menu-options bx--overflow-menu--flip"
             tabIndex={0}
             data-floating-menu-direction="bottom"
             role="menu"
@@ -74,17 +81,17 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
               boxShadow: '0 6px 6px rgb(0 0 0 / 30%)',
               width: '13rem',
             }}>
-            <ul className="cds--overflow-menu-options__content">
-              {overflowItems.map((item) => {
+            <ul className="bx--overflow-menu-options__content">
+              {overflowItems.map(item => {
                 return item.availableIntents.map((intent, index) => {
                   return (
-                    <li className="cds--overflow-menu-options__option" id={'item-' + index} key={index}>
+                    <li className="bx--overflow-menu-options__option" id={'item-' + index} key={index}>
                       <button
                         id={'menuItem-' + index}
-                        className="cds--overflow-menu-options__btn"
+                        className="bx--overflow-menu-options__btn"
                         role="menuitem"
                         title={intent.display}
-                        onClick={(e) => {
+                        onClick={e => {
                           e.preventDefault();
                           const processedForm = applyFormIntent(intent, item.formJson);
                           launchForm(processedForm, intent.display);
@@ -93,7 +100,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
                         style={{
                           maxWidth: '100vw',
                         }}>
-                        <span className="cds--overflow-menu-options__option-content">{intent.display}</span>
+                        <span className="bx--overflow-menu-options__option-content">{intent.display}</span>
                       </button>
                     </li>
                   );
@@ -107,7 +114,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
         <Button
           size="small"
           kind="ghost"
-          onClick={(e) => {
+          onClick={e => {
             e.preventDefault();
             const processedForm = applyFormIntent(overflowItems[0].intent, formJson);
             launchForm(processedForm);
