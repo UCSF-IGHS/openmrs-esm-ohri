@@ -59,7 +59,7 @@ jobs:
 
     needs: build
 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -68,7 +68,7 @@ jobs:
         with:
           node-version: '16'
           registry-url: 'https://registry.npmjs.org'
-      - run: npx lerna bootstrap
+      - run: yarn install --immutable
       - run: npx lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
       - name: setup git config
         run: |
@@ -96,7 +96,7 @@ jobs:
         with:
           node-version: '16'
           registry-url: 'https://registry.npmjs.org'
-      - run: npx lerna bootstrap
+      - run: yarn install --immutable
       - run: npm run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -157,7 +157,7 @@ jobs:
         with:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
-      - run: npx lerna bootstrap
+      - run: yarn install --immutable
       - run: npm run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
