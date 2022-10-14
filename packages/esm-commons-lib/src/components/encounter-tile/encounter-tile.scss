@@ -68,7 +68,7 @@
 }
 .tileValue {
     display: block;
-    font-size: 28px;
+    font-size: 20px;
     line-height: 1.29;
     color: #161616;
 }
@@ -86,8 +86,8 @@
 }
 .tileBox {
     width: 25%;
-    display: 'flex';
-    flex-direction: 'row';
+    display: flex;
+    flex-direction: row;
 }
 .tileBoxColumn {
     width: 100%;
@@ -141,11 +141,11 @@
     letter-spacing: 0.16px;
     color: #525252;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .tileBoxARV {
     display: flex;
-    margin: 1px 21rem 1px 1rem;
+    flex-direction: row;
 }
 .tileBoxColumnARV {
     width: 100%;
