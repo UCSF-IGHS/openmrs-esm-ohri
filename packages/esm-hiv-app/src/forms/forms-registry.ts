@@ -20,6 +20,7 @@ import cd4_lab_results_v_1_0 from './care-and-treatment/cd4-lab-results/1.0.json
 import viral_load_results_v_1_0 from './care-and-treatment/viral-load-results/1.0.json';
 import viral_load_request_v_1_0 from './care-and-treatment/viral-load-request/1.0.json';
 import lab_specimen_collection_v_1_0 from './care-and-treatment/lab-specimen-collection/1.0.json';
+import exress_visit_v_1_0 from './care-and-treatment/express-visit/1.0.json';
 
 export default {
   hiv: {
@@ -82,6 +83,9 @@ export default {
     },
     lab_specimen_collection: {
       '1.0': lab_specimen_collection_v_1_0,
+    },
+    exress_visit: {
+      '1.0': exress_visit_v_1_0,
     },
   },
 };
