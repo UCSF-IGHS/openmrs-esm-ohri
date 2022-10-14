@@ -158,12 +158,12 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
             )}
           </div>
           {tileStyle == 'ARV' ? (
-            <Column className={styles.tabletTileTitle}>
+            <Column className={styles.tabletTileTitleARV}>
               {mockData_Current_ARV.map((column) => (
-                <div className={styles.tileBoxARV}>
-                  <div className={styles.tileBoxColumnARV}>
-                    <span className={styles.tileTitleARV}> {column.field} </span>
-                    <span className={styles.tileValueARV}> {column.value} </span>
+                <div className={styles.tileBox}>
+                  <div className={styles.tileBoxColumn}>
+                    <span className={styles.tileTitle}> {column.field} </span>
+                    <span className={styles.tileValue}> {column.value} </span>
                   </div>
                 </div>
               ))}
@@ -175,7 +175,6 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
                   <div className={styles.tileBoxColumn}>
                     <span className={styles.tileTitle}> {column.field} </span>
                     <span className={styles.tileValue}> {column.value} </span>
-                    <span className={styles.tileTitle}> {column.date} </span>
                   </div>
                 </div>
               ))}
