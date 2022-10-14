@@ -760,7 +760,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"presentingComplaints !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
 							}
@@ -887,7 +886,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"menstruationStatus === '148989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"menstruationStatus !== '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -964,7 +963,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"menstruationStatus === '5989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"menstruationStatus === '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -1047,10 +1046,7 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
-							"hide":{
-							   "hideWhenExpression":"menstruationStatus === '148989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-							}
+							"unspecified":"true"
 						 }
 					  ],
 					  "id":"isBreastFeeding"
@@ -1879,7 +1875,15 @@
 					  ],
 					  "id":"reasonNotOnFP"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"menstruationStatus === '1434AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Current Pregnancy",
@@ -2868,6 +2872,28 @@
 							}
 						 ],
 						 "answers":[
+               {
+                 "concept":"1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                 "label":"Yes",
+                 "conceptMappings":[
+                   {
+                     "type":"SNOMED CT",
+                     "value":"CT: 373066001"
+                   },
+                   {
+                     "type":"PIH",
+                     "value":"1065"
+                   },
+                   {
+                     "type":"CIEL",
+                     "value":"1065"
+                   },
+                   {
+                     "type":"AMPATH",
+                     "value":"1065"
+                   }
+                 ]
+               },
 							{
 							   "concept":"1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 							   "label":"No",
@@ -2903,28 +2929,6 @@
 								  {
 									 "type":"PIH",
 									 "value":"1066"
-								  }
-							   ]
-							},
-							{
-							   "concept":"1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-							   "label":"Yes",
-							   "conceptMappings":[
-								  {
-									 "type":"SNOMED CT",
-									 "value":"CT: 373066001"
-								  },
-								  {
-									 "type":"PIH",
-									 "value":"1065"
-								  },
-								  {
-									 "type":"CIEL",
-									 "value":"1065"
-								  },
-								  {
-									 "type":"AMPATH",
-									 "value":"1065"
 								  }
 							   ]
 							},
@@ -3414,15 +3418,6 @@
 							}
 						 ]
 					  },
-					  "behaviours":[
-						 {
-							"intent":"*",
-							"unspecified":"true",
-							"hide":{
-							   "hideWhenExpression":"tbScreeningOutcome === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || currentTPT === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
-							}
-						 }
-					  ],
 					  "id":"evaluateForTPT"
 				   },
 				   {
@@ -3591,7 +3586,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"tbScreeningOutcome === '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || currentTPT === '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || evaluateForTPT !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
+							   "hideWhenExpression":"evaluateForTPT !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' "
 							}
 						 }
 					  ],
@@ -3784,7 +3779,7 @@
 							"intent":"*",
 							"unspecified":"true",
 							"hide":{
-							   "hideWhenExpression":"tptProphylaxisPlan !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+							   "hideWhenExpression":"tptProphylaxisPlan !== '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
 						 }
 					  ],
@@ -3927,7 +3922,15 @@
 					  ],
 					  "id":"reasonTptStopped"
 				   }
-				]
+				],
+         "behaviours":[
+           {
+             "intent":"*",
+             "hide":{
+               "hideWhenExpression":"tbScreeningOutcome !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+             }
+           }
+         ]
 			 },
 			 {
 				"label":"Treatment of TB",
@@ -4311,7 +4314,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"tbScreeningOutcome === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -4324,7 +4326,7 @@
            {
              "intent":"*",
              "hide":{
-               "hideWhenExpression":"tbScreeningOutcome === '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || onTBRx === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+               "hideWhenExpression":"tbScreeningOutcome !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
              }
            }
          ]
@@ -5197,7 +5199,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"hEENTROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -5303,7 +5304,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"respiratoryROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -5405,7 +5405,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"cardiovascularROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -5511,7 +5510,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"AbdominalROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -5613,7 +5611,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"cnsROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -5715,7 +5712,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"musculoskeletalSROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -5817,7 +5813,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"genitourinaryROS === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -7026,7 +7021,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"nutritionalStatus === '1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalStatus === '1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || nutritionalInterventions !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
 							}
@@ -9188,7 +9182,6 @@
 					  "behaviours":[
 						 {
 							"intent":"*",
-							"unspecified":"true",
 							"hide":{
 							   "hideWhenExpression":"referralsOrdered === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
 							}
