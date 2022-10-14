@@ -78,7 +78,6 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}
-      dropdownText="Add"
       launchOptions={{
         displayText: 'Add',
         moduleName: moduleName,

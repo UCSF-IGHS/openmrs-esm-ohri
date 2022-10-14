@@ -40,8 +40,9 @@ jobs:
       - name: Run tests
         run: yarn run test
 
-      - name: Run lint and typecheck
-        run: yarn turbo run lint typescript --color --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
+      # Temporarily disable typecheck
+      # - name: Run lint and typecheck
+      #   run: yarn turbo run lint typescript --color --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
 
       - name: Run build
         run: yarn turbo run build --color --concurrency=5 --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"

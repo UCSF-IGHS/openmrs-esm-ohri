@@ -8,6 +8,7 @@ import {
   ExpressVisitEncounterType,
   ExpressVisitType,
 } from '../../../constants';
+import { moduleName } from '../../../index';
 
 interface ExpressVisitListProps {
   patientUuid: string;
@@ -21,12 +22,12 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
       {
         key: 'visitDate',
         header: t('ExpressVisitDate', 'Visit Date'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressEncounterDate, true);
         },
         link: {
-          getUrl: encounter => encounter.url,
-          handleNavigate: encounter => {
+          getUrl: (encounter) => encounter.url,
+          handleNavigate: (encounter) => {
             encounter.launchFormActions?.viewEncounter();
           },
         },
@@ -34,28 +35,28 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
       {
         key: 'visitType',
         header: t('ExpressVisitType', 'Visit Type'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressVisitType);
         },
       },
       {
         key: 'screeningOutcome',
         header: t('ExpressTB', 'TB Screening Outcome'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressTBOutcome);
         },
       },
       {
         key: 'appointmentReason',
         header: t('ExpressRefferal', 'Refferal Reason'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressRefferalReason);
         },
       },
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: encounter => {
+        getValue: (encounter) => {
           const baseActions = [
             {
               form: { name: 'exress_visit', package: 'hiv' },
@@ -90,6 +91,9 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
+      launchOptions={{
+        moduleName: moduleName,
+      }}
     />
   );
 };
