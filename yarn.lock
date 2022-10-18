@@ -3538,9 +3538,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct":
+"@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct-app":
   version: 0.0.0-use.local
-  resolution: "@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct"
+  resolution: "@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct-app"
   dependencies:
     "@carbon/react": ^1.13.0
     webpack: ^5.74.0
