@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
 
-interface CacxSummaryListProps {
+interface MnchSummaryListProps {
   patientUuid: string;
 }
 
-const CacxSummaryList: React.FC<CacxSummaryListProps> = ({ patientUuid }) => {
+const MnchSummaryList: React.FC<MnchSummaryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('cacx_summary_header', 'CaCx Summary');
-  const displayText = t('cacx_summary_display', 'CaCx Summary');
+  const headerTitle = t('mnch_summary_header', 'Mnch Summary');
+  const displayText = t('mnch_summary_display', 'Mnch Summary');
 
   return (
     <>
@@ -19,4 +19,4 @@ const CacxSummaryList: React.FC<CacxSummaryListProps> = ({ patientUuid }) => {
   );
 };
 
-export default CacxSummaryList;
+export default MnchSummaryList;
