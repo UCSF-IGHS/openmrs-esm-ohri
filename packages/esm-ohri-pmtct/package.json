@@ -1,0 +1,49 @@
+{
+  "name": "@ohri/openmrs-esm-ohri-pmtct",
+  "version": "1.0.0",
+  "description": "PMTCT microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
+  "browser": "dist/openmrs-esm-ohri-pmtct.js",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
+  "scripts": {
+    "start": "openmrs develop",
+    "serve": "webpack serve --mode=development",
+    "debug": "npm run serve",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode=production --env.analyze=true",
+    "lint": "eslint src --ext tsx",
+    "typescript": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "browserslist": [
+    "extends browserslist-config-openmrs"
+  ],
+  "keywords": [
+    "openmrs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.13.0"
+  },
+  "peerDependencies": {
+    "@openmrs/esm-framework": "4.x",
+    "@openmrs/esm-patient-common-lib": "4.x",
+    "dayjs": "^1.8.16",
+    "react": "^18.2.0",
+    "react-i18next": "^11.18.6",
+    "swr": "^1.1.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.74.0"
+  }
+}
