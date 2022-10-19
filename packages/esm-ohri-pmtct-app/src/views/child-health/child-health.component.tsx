@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import styles from '../common.scss';
 import { useTranslation } from 'react-i18next';
-import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
+import HieOutcomesList from './tabs/hie-outcome.component';
+import HieVisitsList from './tabs/hie-visits.component';
 
-interface ChildHealthListProps {
+interface OverviewListProps {
   patientUuid: string;
 }
 
-const ChildHealthList: React.FC<ChildHealthListProps> = ({ patientUuid }) => {
+const ChildHealthList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('child_health_header', 'Child Health');
-  const displayText = t('child_health_display', 'Child Health');
-
   return (
-    <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
-    </>
+    <div className={styles.tabContainer}>
+      <Tabs>
+        <TabList contained>
+          <Tab>{t('HieVisits', 'HIE Visits')}</Tab>
+          <Tab>{t('HieOutcomes', 'HIE Outcomes')}</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <HieVisitsList patientUuid={patientUuid} />
+          </TabPanel>
+          <TabPanel>
+            <HieOutcomesList patientUuid={patientUuid} />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </div>
   );
 };
 
