@@ -48,10 +48,26 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'mnch-summary-ext',
+        id: 'maternal-summary-ext',
         slot: 'mnch-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/mnch-summary/mnch-summary.component'), {
-          featureName: 'mnch-summary',
+        load: getAsyncLifecycle(() => import('./views/mnch-summary/maternal-summary.component'), {
+          featureName: 'maternal-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'infant-summary-ext',
+        slot: 'mnch-summary-slot',
+        load: getAsyncLifecycle(() => import('./views/mnch-summary/infants-summary.component'), {
+          featureName: 'infant-summary',
+          moduleName,
+        }),
+      },
+      {
+        id: 'family-linkage-ext',
+        slot: 'mnch-summary-slot',
+        load: getAsyncLifecycle(() => import('./views/mnch-summary/family-linkage.component'), {
+          featureName: 'family-linkage',
           moduleName,
         }),
       },
