@@ -1,6 +1,3 @@
-import React, { useState } from 'react';
-import styles from './dashboard.scss';
-
 export const mnchSummary_dashboardMeta = {
   slot: 'mnch-summary-slot',
   columns: 1,

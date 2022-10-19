@@ -36,7 +36,7 @@
   "status": "Status",
   "revise": "Revise",
   "discontinue": "Discontinue",
-  "modify": "Modify", 
+  "modify": "Modify",
   "noCurrentMedicationsDocumented": "No current medications are documented.",
   "noPastMedicationsDocumented": "No past medications are documented.",
 
@@ -62,36 +62,17 @@
   "newOrders": "{count} new order(s)",
   "emptyMedicationOrderBasket": "Your basket is currently empty.",
   "removeFromBasket": "Remove from basket",
-  "quantity": "Quantity", 
+  "quantity": "Quantity",
   "orderActionNew": "New",
   "orderActionRenewed": "Renew",
   "orderActionRevised": "Modify",
   "orderActionDiscontinue": "Discontinue",
-
   "orderForm": "Order Form",
-  "dosageInstructions": "1. Dosage Instructions",
-  "prescriptionDuration": "2. Prescription Duration",
-  "dispensingInformation": "3. Dispensing Information",
-  "editDosageModalHeading": "Edit Dose",
-  "editDoseComboBoxPlaceholder": "Dose",
-  "editDoseComboBoxTitle": "Enter Dose",
-  "editFrequencyModalHeading": "Edit Frequency",
-  "editFrequencyComboBoxPlaceholder": "Frequency",
-  "editFrequencyComboBoxTitle": "Enter Frequency",
-  "editRouteModalHeading": "Edit Route",
-  "editRouteComboBoxPlaceholder": "Route",
-  "editRouteComboBoxTitle": "Enter Route",
-  "patientInstructions": "Patient Instructions",
-  "patientInstructionsPlaceholder": "Additional dosing instructions (e.g. \"Take after eating\")",
-  "prn": "P.R.N.",
-  "takeAsNeeded": "Take As Needed",
-  "prnReason": "P.R.N. Reason",
-  "prnReasonPlaceholder": "Reason to take medicine",
   "startDate": "Start Date",
   "duration": "Duration",
   "durationUnit": "Duration Unit",
   "durationUnitPlaceholder": "Duration Unit",
-  "quantityDispensed": "Quantity Dispensed", 
+  "quantityDispensed": "Quantity Dispensed",
   "pillsDispensed": "Pills dispensed",
   "prescriptionRefills": "Prescription Refills",
   "indication": "Indication",
@@ -101,9 +82,7 @@
 
   "validationFieldRequired": "Required.",
   "validationNoItemSelected": "Please select one of the available items.",
-  
-  "hivPositive": "HIV Positive",
-  "hivNegative": "HIV Negative",
+
   "createdRecord": "Record created",
   "createdRecordDescription": "A new encounter was created",
   "updatedRecord": "Record updated",
@@ -111,12 +90,5 @@
   "filterItemsInMultiselect": "Search...",
   "covidCaseReports": "Covid Care Reports",
   "clinicalVisitEncounters": "clinical visit encounters",
-  "clinicalVisitTitle": "Clinical Visits",
-  "covidAssessments": "Covid Assessment",
-  "covidLabResults": "Lab Results",
-
-  "covidOutcomeActive": "COVID: Active",
-  "covidOutcomeUnknown": "COVID: Unknown Status",
-  "covidOutcomeRecovered": "COVID: Recovered"
-
+  "clinicalVisitTitle": "Clinical Visits"
 }
