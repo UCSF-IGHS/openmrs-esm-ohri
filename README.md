@@ -7,7 +7,7 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 
 ## Overview
 
-This is a Lerna project containing the OHRI packages built on top of OpenMRS Frontend.
+OpenMRS HIV Reference Implementation (OHRI) packages built on top of OpenMRS Frontend.
 
 [🌍DEMO](https://ohri-demo.globalhealthapp.net/openmrs/spa)
 
@@ -75,7 +75,7 @@ yarn start:form-render
 To verify that all of the tests run:
 
 ```sh
-yarn test 
+yarn test
 ```
 
 *Note: Run `npm i` before running tests for the first time.*

@@ -47,7 +47,6 @@ jobs:
       - name: Run build
         run: yarn turbo run build --color --concurrency=5 --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
 
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -69,8 +68,23 @@ jobs:
         with:
           node-version: '16'
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn install --immutable
-      - run: npx lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      - run: yarn lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
+
+      - name: Build
+        run: yarn turbo run build --color --concurrency=5
+
       - name: setup git config
         run: |
            git config user.name "GitHub Actions Bot"
@@ -79,7 +93,7 @@ jobs:
         run: |
            git add .
            git commit -m "Prerelease version" --no-verify
-      - run: npm run ci:prepublish
+      - run: yarn run ci:prepublish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
@@ -98,7 +112,7 @@ jobs:
           node-version: '16'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --immutable
-      - run: npm run ci:publish
+      - run: yarn run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
@@ -159,7 +173,7 @@ jobs:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
       - run: yarn install --immutable
-      - run: npm run ci:publish
+      - run: yarn run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
