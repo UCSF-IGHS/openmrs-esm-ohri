@@ -1,5 +1,5 @@
 import { Tab } from '@carbon/react';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
@@ -14,58 +14,61 @@ interface DeathTabListProps {
   patientUuid: string;
 }
 
-const columnsLab: EncounterListColumn[] = [
-  {
-    key: 'deathDate',
-    header: 'Death Date',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, hivDeathDate_UUID, true);
-    },
-  },
-  {
-    key: 'deathCause',
-    header: 'Cause of Death',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, causeOFDeath_UUID);
-    },
-  },
-  {
-    key: 'specificDeathCause',
-    header: 'Specific cause of Death',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, deathSpecific_UUID);
-    },
-  },
-
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: (encounter) => {
-      const baseActions = [
-        {
-          form: { name: 'death_form', package: 'hiv' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'View Details',
-          mode: 'view',
-        },
-        {
-          form: { name: 'death_form', package: 'hiv' },
-          encounterUuid: encounter.uuid,
-          intent: '*',
-          label: 'Edit Form',
-          mode: 'edit',
-        },
-      ];
-      return baseActions;
-    },
-  },
-];
-
 const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+
+  const columnsLab: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'deathDate',
+        header: t('deathDate', 'Death Date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, hivDeathDate_UUID, true);
+        },
+      },
+      {
+        key: 'deathCause',
+        header: t('deathCause', 'Cause of Death'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, causeOFDeath_UUID);
+        },
+      },
+      {
+        key: 'specificDeathCause',
+        header: t('specificDeathCause', 'Specific cause of Death'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, deathSpecific_UUID);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => {
+          const baseActions = [
+            {
+              form: { name: 'death_form', package: 'hiv' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('viewDetails', 'View Details'),
+              mode: 'view',
+            },
+            {
+              form: { name: 'death_form', package: 'hiv' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: t('editForm', 'Edit Form'),
+              mode: 'edit',
+            },
+          ];
+          return baseActions;
+        },
+      },
+    ],
+    [],
+  );
   const headerTitle = t('DeathTabList', 'Death');
   const displayText = t('DeathTabList', 'Death');
+
   return (
     <EncounterList
       patientUuid={patientUuid}
@@ -75,7 +78,7 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
       description={displayText}
       headerTitle={headerTitle}
       launchOptions={{
-        displayText: 'Add',
+        displayText: t('add', 'Add'),
         moduleName: moduleName,
       }}
     />

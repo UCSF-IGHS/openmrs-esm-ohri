@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { EncounterList, EncounterListColumn, getObsFromEncounter, findObs } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -22,14 +22,6 @@ import { moduleName } from '../../../index';
 interface ArtTherapyTabListProps {
   patientUuid: string;
 }
-
-const artConcepts = new Map([
-  ['1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Start ART'],
-  ['1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Substitute ART Regimen'],
-  ['1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Switch ART Regimen Line'],
-  ['1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'Stop ART'],
-  ['3e69cb60-2943-410f-83d4-b359ae83fefd', 'Restart ART therapy'],
-]);
 
 const getARTDateConcept = (encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string => {
   let artStartDate = findObs(encounter, startDate);
@@ -99,86 +91,101 @@ const getARTReasonConcept = (encounter, startDate, switchDate, substitutionDate,
   return artReaseonConcept;
 };
 
-const columns: EncounterListColumn[] = [
-  {
-    key: 'initiationDate',
-    header: 'Date',
-    getValue: (encounter) => {
-      return getObsFromEncounter(
-        encounter,
-        getARTDateConcept(
-          encounter,
-          artTherapyDateTime_UUID,
-          switchDateUUID,
-          substitutionDateUUID,
-          artStopDateUUID,
-          dateRestartedUUID,
-        ),
-        true,
-      );
-    },
-  },
-  {
-    key: 'therapyPlan',
-    header: 'Therapy Plan',
-    getValue: (encounter) => {
-      const therapyPlanObs = findObs(encounter, therapyPlanConcept);
-      return therapyPlanObs ? artConcepts.get(therapyPlanObs.value.uuid) : '--';
-    },
-  },
-  {
-    key: 'regimen',
-    header: 'Regimen',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, regimenConcept);
-    },
-  },
-  {
-    key: 'regimenInitiated',
-    header: 'Regimen line',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, regimenLine_UUID);
-    },
-  },
-  {
-    key: 'reason',
-    header: 'Reason',
-    getValue: (encounter) => {
-      const reasonConcept = getARTReasonConcept(
-        encounter,
-        artTherapyDateTime_UUID,
-        switchDateUUID,
-        substitutionDateUUID,
-        artStopDateUUID,
-        dateRestartedUUID,
-      );
-      return getObsFromEncounter(encounter, reasonConcept);
-    },
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: (encounter) => [
-      {
-        form: { name: 'art_therapy', package: 'hiv' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Details',
-        mode: 'view',
-      },
-      {
-        form: { name: 'art_therapy', package: 'hiv' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Edit Form',
-        mode: 'edit',
-      },
-    ],
-  },
-];
-
 const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+
+  const artConcepts = useMemo(
+    () =>
+      new Map([
+        ['1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', t('artStart', 'Start ART')],
+        ['1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', t('artSubstitute', 'Substitute ART Regimen')],
+        ['1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', t('artSwitch', 'Switch ART Regimen Line')],
+        ['1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', t('artStop', 'Stop ART')],
+        ['3e69cb60-2943-410f-83d4-b359ae83fefd', t('artRestart', 'Restart ART therapy')],
+      ]),
+    [],
+  );
+
+  const columns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'initiationDate',
+        header: t('initDate', 'Date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(
+            encounter,
+            getARTDateConcept(
+              encounter,
+              artTherapyDateTime_UUID,
+              switchDateUUID,
+              substitutionDateUUID,
+              artStopDateUUID,
+              dateRestartedUUID,
+            ),
+            true,
+          );
+        },
+      },
+      {
+        key: 'therapyPlan',
+        header: t('therapyPlan', 'Therapy Plan'),
+        getValue: (encounter) => {
+          const therapyPlanObs = findObs(encounter, therapyPlanConcept);
+          return therapyPlanObs ? artConcepts.get(therapyPlanObs.value.uuid) : '--';
+        },
+      },
+      {
+        key: 'regimen',
+        header: t('regimen', 'Regimen'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, regimenConcept);
+        },
+      },
+      {
+        key: 'regimenInitiated',
+        header: t('regimenInitiated', 'Regimen line'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, regimenLine_UUID);
+        },
+      },
+      {
+        key: 'reason',
+        header: t('reason', 'Reason'),
+        getValue: (encounter) => {
+          const reasonConcept = getARTReasonConcept(
+            encounter,
+            artTherapyDateTime_UUID,
+            switchDateUUID,
+            substitutionDateUUID,
+            artStopDateUUID,
+            dateRestartedUUID,
+          );
+          return getObsFromEncounter(encounter, reasonConcept);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => [
+          {
+            form: { name: 'art_therapy', package: 'hiv' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View Details'),
+            mode: 'view',
+          },
+          {
+            form: { name: 'art_therapy', package: 'hiv' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('editForm', 'Edit Form'),
+            mode: 'edit',
+          },
+        ],
+      },
+    ],
+    [],
+  );
 
   const headerTitle = t('artTherapy', 'ART Therapy');
   const displayText = t('artTherapy', 'ART Therapy');
@@ -193,7 +200,7 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
       headerTitle={headerTitle}
       dropdownText="Add"
       launchOptions={{
-        displayText: 'Add',
+        displayText: t('add', 'Add'),
         moduleName: moduleName,
       }}
     />
