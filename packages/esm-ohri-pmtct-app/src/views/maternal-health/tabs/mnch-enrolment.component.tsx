@@ -9,8 +9,8 @@ interface MnchEnrolmentListProps {
 const MnchEnrolmentList: React.FC<MnchEnrolmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('mnch_enrollment_header', 'Mnch Enrolment');
-  const displayText = t('mnch_enrollment_display', 'Mnch Enrolment');
+  const headerTitle = t('mnch_enrollment_header', 'MNCH Enrolment');
+  const displayText = t('mnch_enrollment_display', 'MNCH Enrolment');
 
   return (
     <>
