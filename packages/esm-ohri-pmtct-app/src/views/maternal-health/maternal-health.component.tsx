@@ -19,7 +19,7 @@ const MaternalHealthList: React.FC<OverviewListProps> = ({ patientUuid }) => {
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('MnchEnrolment', 'Mnch Enrolment')}</Tab>
+          <Tab>{t('MnchEnrolment', 'MNCH Enrolment')}</Tab>
           <Tab>{t('AntenatalCare', 'Antenatal Care')}</Tab>
           <Tab>{t('LabourDeliver', 'Labour & Delivery')}</Tab>
           <Tab>{t('PostnatalCare', 'Postnatal Care')}</Tab>
