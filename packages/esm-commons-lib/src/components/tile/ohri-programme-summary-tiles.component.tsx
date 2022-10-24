@@ -1,5 +1,5 @@
 import { Row } from '@carbon/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { OHRISummaryTileTablet } from './ohri-summary-tile-tablet.component';
 import styles from './ohri-programme-summary-tiles.scss';
 import { OHRISummaryTile } from './ohri-summary-tile.component';
@@ -12,17 +12,13 @@ export interface SummaryTile {
   onClick: () => void;
 }
 
-interface Props {
-  tiles: Array<SummaryTile>;
-}
-
 export function OHRIProgrammeSummaryTiles(Props) {
   return (
     <>
-      <Row className={styles.desktopView}>
+      <div className={styles.desktopView}>
         {Props.tiles.map((tile, index) => {
           return (
-            <div style={{ width: '321px', marginLeft: '16px' }} key={index}>
+            <div style={{ width: '321px' }} key={index}>
               <OHRISummaryTile
                 title={tile.title}
                 subTitle={tile.subTitle}
@@ -32,7 +28,7 @@ export function OHRIProgrammeSummaryTiles(Props) {
             </div>
           );
         })}
-      </Row>
+      </div>
       <Row className={styles.tileView}>
         <OHRISummaryTileTablet details={Props.tiles} />
       </Row>
