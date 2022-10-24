@@ -36,23 +36,19 @@ export function OHRIHome(HomeProps) {
         meta={workSpaceProps?.meta}
       />
       <FlexGrid className={styles.mainWrapper}>
-        <ExtensionSlot
-          extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeHeaderSlot)}
-          state={{ title: HomeProps.dashboardTitle }}
-        />
-        <ExtensionSlot
-          extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTileSlot)}
-          state={{ launchWorkSpace }}
-        />
-        <div
-          style={{
-            height: '100vh',
-            backgroundColor: '#f4f4f4',
-            marginLeft: '-16px',
-            marginRight: '-16px',
-            marginBottom: '-16px',
-            marginTop: '2rem',
-          }}>
+        <div className={styles.sectionContainer}>
+          <ExtensionSlot
+            extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeHeaderSlot)}
+            state={{ title: HomeProps.dashboardTitle }}
+          />
+        </div>
+        <div className={styles.sectionContainer}>
+          <ExtensionSlot
+            extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTileSlot)}
+            state={{ launchWorkSpace }}
+          />
+        </div>
+        <div className={styles.ohriHomeTabsContainer}>
           <ExtensionSlot
             extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTabSlot)}
             state={{ launchWorkSpace }}

@@ -5,7 +5,7 @@ import { getReportingCohort } from '../../../api/api';
 import { covid19PositiveClients, covidOutcomesCohortUUID, covidVaccinatedClients } from '../../../constants';
 import { Outcomes } from './outcome-list-tile.component';
 
-function CcoivdSummaryTiles({ launchWorkSpace }) {
+function CovidSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(100);
   const [covidVaccinatedClientsCount, setCovidVaccinatedClients] = useState(0);
@@ -55,4 +55,4 @@ function CcoivdSummaryTiles({ launchWorkSpace }) {
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
-export default CcoivdSummaryTiles;
+export default CovidSummaryTiles;

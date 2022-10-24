@@ -1,6 +1,8 @@
-.desktopView{
+.desktopView {
   display: flex;
+  gap: 8px;
 }
+
 .tileView {
   display: none;
 }

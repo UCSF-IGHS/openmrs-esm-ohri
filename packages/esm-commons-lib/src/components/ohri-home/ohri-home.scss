@@ -1,8 +1,22 @@
 @import "../../root.scss";
 
 .mainWrapper {
-    // max-width: 1440px;
-    min-height: 100vh;
-    background-color: #ffffff;
-    padding: 16px !important;
+  min-height: 100vh;
+
+  :global(.cds--tabs--contained) {
+    background-color: #fff !important;
+  }
+
+  :global(.cds--tab-content) > div {
+    border: 0.5px solid #e0e0e0;
+  }
+
+  :global(.cds--tab--list) button {
+    max-width: 16rem !important;
+  }
+}
+
+.sectionContainer {
+  padding: 16px !important;
+  background-color: #fff;
 }
