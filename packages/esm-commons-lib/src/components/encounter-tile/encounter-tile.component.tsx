@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger, no-console */
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { CodeSnippetSkeleton, Tile, Row, Button, Column } from '@carbon/react';
 import { ArrowRight } from '@carbon/react/icons';
@@ -11,10 +12,12 @@ import moment from 'moment';
 export interface EncounterTileColumn {
   key: string;
   header: string;
+  encounterUuid: string;
   getValue: (encounter: any) => string;
   link?: any;
 }
 export interface EncounterTileProps {
+  // mockData: { field: string; value: string; summary?: string }[];
   patientUuid: string;
   encounterUuid: string;
   form?: { package: string; name: string; view?: string };
@@ -79,6 +82,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
 }
 
 export const EncounterTile: React.FC<EncounterTileProps> = ({
+  //mockData,
   patientUuid,
   encounterUuid,
   columns,
@@ -88,11 +92,12 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
   tileStyle,
 }) => {
   const { t } = useTranslation();
-  const [allRows, setAllRows] = useState([]);
+  //const [allRows, setAllRows] = useState([]);
+  const [lastEncounter, setLastEncounter] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
 
-  const loadRows = useCallback(
+  const loadData = useCallback(
     (encounterType) => {
       const query = `encounterType=${encounterType}&patient=${patientUuid}`;
       openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
@@ -102,84 +107,58 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
               new Date(secondEncounter.encounterDatetime).getTime() -
               new Date(firstEncounter.encounterDatetime).getTime(),
           );
-
-          if (filter) {
-            sortedEncounters = sortedEncounters.filter((encounter) => filter(encounter));
-          }
-          setAllRows(sortedEncounters);
-        } else {
-          setAllRows([]);
-        }
+          setLastEncounter(sortedEncounters[0]);
+        } //else {
+        //   setAllRows([]);
+        // }
         setIsLoading(false);
       });
     },
     [patientUuid],
   );
+  console.log({ lastEncounter });
 
   useEffect(() => {
-    loadRows(encounterUuid);
-  }, [counter]);
+    loadData(encounterUuid);
+  }, [counter, encounterUuid]);
 
-  const mockData_HIV_Status = useMemo(
-    () => [
-      { field: t('lastViralLaod', 'Last Viral Load'), value: 2000, date: '12-Jan-2022' },
-      { field: t('lastCD4', 'Last CD4 Count'), value: 132, date: '12-Jan-2022' },
-      { field: t('enrolledInCare', 'Enrolled in care'), value: '10-Jan-2006', date: '' },
-      { field: t('currentWHOStage', 'Current WHO stage'), value: '1', date: '' },
-    ],
-    [],
-  );
-
-  const mockData_Current_ARV = useMemo(
-    () => [
-      { field: t('CurrentARVRegimen', 'Current ARV regimen'), value: 'Lamivudine, Tenofovir, Dolutegravir' },
-      { field: t('drugAllergies', 'Drug allergies'), value: 'NSAIDs, Heparins' },
-      { field: t('arvInitiationDate', 'ARV initiation date'), value: '09-Feb-2006' },
-    ],
-    [],
-  );
+  async function fetchPatientLastEncounter(encounterType: string) {
+    const query = `encounterType=${encounterType}&patient=${patientUuid}`;
+    const encounterResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+    console.log({ encounterResults });
+    if (encounterResults.data.results?.length > 0) {
+      const sortedEncounters = encounterResults.data.results.sort(
+        (firstEncounter, secondEncounter) =>
+          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+      );
+      console.log(sortedEncounters[0]);
+      return sortedEncounters[0];
+    }
+  }
 
   return (
     <>
       {isLoading ? (
         <CodeSnippetSkeleton type="multi" />
-      ) : allRows.length > 0 ? (
+      ) : lastEncounter ? (
         <Tile className={styles.tile}>
           <div className={styles.cardTitle}>
             <h4 className={styles.title}> {headerTitle} </h4>
-            {tileStyle == 'ARV' ? (
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Button size="small" kind="ghost">
-                  Change <ArrowRight size={32} style={{ width: '12px', height: '10px' }} />
-                </Button>
-              </div>
-            ) : (
-              <span> </span>
-            )}
           </div>
-          {tileStyle == 'ARV' ? (
-            <Column className={styles.tabletTileTitleARV}>
-              {mockData_Current_ARV.map((column) => (
-                <div className={styles.tileBox}>
-                  <div className={styles.tileBoxColumn}>
-                    <span className={styles.tileTitle}> {column.field} </span>
-                    <span className={styles.tileValue}> {column.value} </span>
-                  </div>
+
+          <Column className={styles.tabletTileTitle}>
+            {columns.map((column) => (
+              <div className={styles.tileBox}>
+                <div className={styles.tileBoxColumn}>
+                  <span className={styles.tileTitle}> {column.header} </span>
+                  <span className={styles.tileValue}>
+                    {column.getValue(fetchPatientLastEncounter(column.encounterUuid))}
+                  </span>
+                  {/* <span className={styles.tileTitle}> {column.summary} </span> */}
                 </div>
-              ))}
-            </Column>
-          ) : (
-            <Column className={styles.tabletTileTitle}>
-              {mockData_HIV_Status.map((column) => (
-                <div className={styles.tileBox}>
-                  <div className={styles.tileBoxColumn}>
-                    <span className={styles.tileTitle}> {column.field} </span>
-                    <span className={styles.tileValue}> {column.value} </span>
-                  </div>
-                </div>
-              ))}
-            </Column>
-          )}
+              </div>
+            ))}
+          </Column>
         </Tile>
       ) : (
         <EmptyState displayText={description} headerTitle={headerTitle} />

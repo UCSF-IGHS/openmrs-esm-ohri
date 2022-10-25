@@ -30,7 +30,7 @@ export const hivCareAndTreatmentDashboardDMeta = {
 export const serviceSummary_dashboardMeta = {
   slot: 'hts-service-summary-dashboard-slot',
   columns: 1,
-  title: 'HIV C&T Patient Summary',
+  title: 'HIV Patient Summary',
 };
 
 export const labResults_dashboardMeta = {

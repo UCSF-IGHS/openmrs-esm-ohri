@@ -66,6 +66,7 @@ export const htsStrategyUUID = 'f0d85da0-c235-4540-a0d1-63640594f98b';
 export const art_Therapy_EncounterUUID = '74bf4fe6-8fdb-4228-be39-680a93a9cf6d';
 export const artTherapyDateTime_UUID = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const regimenLine_UUID = '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const regimen_UUID = 'dfbe256e-30ba-4033-837a-2e8477f2e7cd';
 export const refusedTreatment_UUID = 'ac4f3fd1-8a2a-4c5e-a335-3f675b82dd78';
 export const therapyPlanConcept = '7557d77c-172b-4673-9335-67a38657dd01';
 export const artStopDateUUID = '162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
