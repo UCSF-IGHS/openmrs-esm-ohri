@@ -1,12 +1,8 @@
-import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   EncounterTile,
   EncounterTileColumn,
-  findObs,
-  getEncounterValues,
-  getObsFromEncounter,
 } from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
 
 import {
@@ -15,10 +11,22 @@ import {
   careAndTreatmentEncounterType,
   Cd4Count_UUID,
   Cd4LabResultDate_UUID,
-  dateOfARTInitiation,
-  enrolmentDate,
-  hivCD4Count_UUID,
+  CD4LabResultsEncounter_UUID,
+  clinicalVisitEncounterType,
+  CommunityDSDModel_UUID,
+  dateOfEncounterConcept,
+  generalTreatmentStatusConcept,
+  hivProgramStatusEncounterType,
+  opportunisticInfectionConcept,
+  populationCategoryConcept,
+  ReasonForViralLoad_UUID,
+  regimenLine_UUID,
+  regimen_UUID,
+  returnVisitDateConcept,
+  ServiceDeliveryEncounterType_UUID,
+  tbScreeningOutcome,
   ViralLoadResultDate_UUID,
+  ViralLoadResultsEncounter_UUID,
   ViralLoadResult_UUID,
 } from '../../../constants';
 interface OverviewListProps {
@@ -28,91 +36,106 @@ interface OverviewListProps {
 const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerHIV = t('hivStatusTitle', 'HIV Status');
-  const displayTextHIV = t('hivStatusDisplay', 'HIV Status');
+  const headerCharacteristics = t('characteristicsTitle', 'Characteristics');
+  const headerHIVMonitoring = t('hivMonitoring', 'HIV Monitoring');
+  const headerLastVisitDetails = t('lastVisitDetails', 'Last Visit Details');
 
-  const headerARvRegiment = t('currentARVTitle', 'Current ARV Regimen');
-  const displayARvRegiment = t('currentARVDisplay', 'Current ARV Regimen');
-
-  const columnsHIV: EncounterTileColumn[] = useMemo(
+  const columnsCharacteristics: EncounterTileColumn[] = useMemo(
     () => [
       {
-        key: 'lastViralLoad',
-        header: t('vlResult', 'Last viral Load'),
-        getValue: (encounter) => {
-          return getEncounterValues(encounter, ViralLoadResultDate_UUID, true);
-        },
-      },
-      //TODO: Refactor to include in within VL above
-      // {
-      //   key: 'vlDate',
-      //   header: t('vlDate', 'Recent VL Date'),
-      //   getValue: encounter => {
-      //     return getObsFromEncounter(encounter, ViralLoadResult_UUID);
-      //   },
-      // },
-      {
-        key: 'lastCD4Count',
-        header: t('lastCD4Count', 'Last CD4 Count'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, Cd4Count_UUID);
-        },
-      },
-      //TODO: Refactor to include in within CD4 above
-      // {
-      //   key: 'cd4ResultDate',
-      //   header: t('cd4ResultDate', 'Recent CD4 Date'),
-      //   getValue: encounter => {
-      //     return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
-      //   },
-      // },
-      {
-        key: 'enrolledInCare',
-        header: 'Enrolled in care',
-        getValue: (latestEncounter) => {
-          return getObsFromEncounter(latestEncounter, enrolmentDate, true);
-        },
+        key: 'artCohort',
+        header: t('artCohort', 'ART Cohort'),
+        encounterUuid: art_Therapy_EncounterUUID,
+        isConceptDate: true,
+        concept: artTherapyDateTime_UUID,
+        isARTDateConcept: true,
       },
       {
-        key: 'currentWHO',
-        header: 'Current WHO stage',
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, dateOfARTInitiation, true);
-        },
+        key: 'currentRegimen',
+        header: t('currentRegimen', 'Current Regimen'),
+        encounterUuid: art_Therapy_EncounterUUID,
+        concept: regimen_UUID,
+        summaryConcept: regimenLine_UUID,
+      },
+      {
+        key: 'dsdModel',
+        header: t('dsdModel', 'DSD Model'),
+        encounterUuid: ServiceDeliveryEncounterType_UUID,
+        concept: '',
+        summaryConcept: CommunityDSDModel_UUID,
+      },
+      {
+        key: 'populationType',
+        header: t('populationType', 'Population Type'),
+        encounterUuid: careAndTreatmentEncounterType,
+        concept: populationCategoryConcept,
       },
     ],
     [],
   );
 
-  const columnsARV: EncounterTileColumn[] = useMemo(
+  const columnsHIVMonitoring: EncounterTileColumn[] = useMemo(
     () => [
       {
-        key: 'regimen',
-        header: t('arvRegimen', 'Current ARV regimen'),
-        getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, ViralLoadResultDate_UUID, true);
-        },
+        key: 'viralLoad',
+        header: t('currentViralLoad', 'Current Viral Load'),
+        encounterUuid: ViralLoadResultsEncounter_UUID,
+        concept: ViralLoadResult_UUID,
+        summaryConcept: ViralLoadResultDate_UUID,
+        isConceptSummaryDate: true,
+      },
+      {
+        key: 'currentVLReason',
+        header: t('currentVLReason', 'Reason For Current VL'),
+        encounterUuid: art_Therapy_EncounterUUID,
+        concept: ReasonForViralLoad_UUID,
+        summaryConcept: ViralLoadResultDate_UUID,
+        isConceptSummaryDate: true,
+        isSummaryDaysCalculation: true,
       },
       {
         key: 'lastCD4Count',
-        header: t('drugAllergies', 'Drug Allergies'),
-        getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, hivCD4Count_UUID);
-        },
+        header: t('lastCD4Count', 'Last CD4 Count'),
+        encounterUuid: CD4LabResultsEncounter_UUID,
+        concept: Cd4Count_UUID,
+        summaryConcept: Cd4LabResultDate_UUID,
+        isConceptSummaryDate: true,
+      },
+    ],
+    [],
+  );
+
+  const columnsLastVisitDetails: EncounterTileColumn[] = useMemo(
+    () => [
+      {
+        key: 'tbScreening',
+        header: t('tbScreening', 'TB Screening'),
+        encounterUuid: clinicalVisitEncounterType,
+        concept: tbScreeningOutcome,
+        summaryConcept: dateOfEncounterConcept,
+        isConceptSummaryDate: true,
       },
       {
-        key: 'eacSession',
-        header: t('EAC', 'EAC Session'),
-        getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, Cd4LabResultDate_UUID, true);
-        },
+        key: 'oIs',
+        header: t('oIs', 'OIs'),
+        encounterUuid: clinicalVisitEncounterType,
+        concept: opportunisticInfectionConcept,
       },
       {
-        key: 'currentARV',
-        header: 'ARV Initiation Date',
-        getValue: (latestEncounter) => {
-          return getObsFromEncounter(latestEncounter, artTherapyDateTime_UUID, true);
-        },
+        key: 'nextAppointmentDate',
+        header: t('nextAppointmentDate', 'Next Appointment Date'),
+        encounterUuid: clinicalVisitEncounterType,
+        concept: returnVisitDateConcept,
+        isConceptDate: true,
+        summaryConcept: returnVisitDateConcept,
+        isSummaryDaysCalculation: true,
+        isConceptSummaryDate: true,
+      },
+      {
+        key: 'programStatus',
+        header: t('programStatus', 'Program Status'),
+        encounterUuid: hivProgramStatusEncounterType,
+        concept: generalTreatmentStatusConcept,
       },
     ],
     [],
@@ -120,24 +143,9 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
 
   return (
     <>
-      <EncounterTile
-        patientUuid={patientUuid}
-        encounterUuid={careAndTreatmentEncounterType}
-        columns={columnsHIV}
-        description={displayTextHIV}
-        headerTitle={headerHIV}
-        tileStyle=""
-      />
-
-      <EncounterTile
-        patientUuid={patientUuid}
-        encounterUuid={art_Therapy_EncounterUUID}
-        columns={columnsARV}
-        description={headerARvRegiment}
-        headerTitle={displayARvRegiment}
-        dropdownText="Change "
-        tileStyle="ARV"
-      />
+      <EncounterTile patientUuid={patientUuid} columns={columnsCharacteristics} headerTitle={headerCharacteristics} />
+      <EncounterTile patientUuid={patientUuid} columns={columnsHIVMonitoring} headerTitle={headerHIVMonitoring} />
+      <EncounterTile patientUuid={patientUuid} columns={columnsLastVisitDetails} headerTitle={headerLastVisitDetails} />
     </>
   );
 };
