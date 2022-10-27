@@ -1,3 +1,5 @@
+import { ParentChild } from '@carbon/react/icons';
+
 export const mnchSummary_dashboardMeta = {
   slot: 'mnch-summary-slot',
   columns: 1,
@@ -32,4 +34,25 @@ export const mchFolderMeta = {
   title: 'Maternal & Child Health',
   slotName: 'mch-slot',
   isExpanded: false,
+};
+
+// Clinical Dashboards
+// export const motherChildHealthFolderDashboardMeta = {
+//   slot: 'ohri-mother-child-health-dashboard-slot',
+//   config: { columns: 1, type: 'grid', icon: ParentChild },
+//   isFolder: true,
+//   title: 'Mother Child Health',
+// };
+
+export const motherChildDashboardMeta = {
+  name: 'mother-child-health',
+  slot: 'mother-child-health-dashboard-slot',
+  config: {
+    columns: 1,
+    type: 'grid',
+    programme: 'pmtct',
+    icon: ParentChild,
+    dashboardTitle: 'Mother Child Health Home Page',
+  },
+  title: 'Maternal & Child Health',
 };
