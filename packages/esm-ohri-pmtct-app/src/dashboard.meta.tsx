@@ -36,14 +36,6 @@ export const mchFolderMeta = {
   isExpanded: false,
 };
 
-// Clinical Dashboards
-// export const motherChildHealthFolderDashboardMeta = {
-//   slot: 'ohri-mother-child-health-dashboard-slot',
-//   config: { columns: 1, type: 'grid', icon: ParentChild },
-//   isFolder: true,
-//   title: 'Mother Child Health',
-// };
-
 export const motherChildDashboardMeta = {
   name: 'mother-child-health',
   slot: 'mother-child-health-dashboard-slot',
@@ -51,7 +43,6 @@ export const motherChildDashboardMeta = {
     columns: 1,
     type: 'grid',
     programme: 'pmtct',
-    icon: ParentChild,
     dashboardTitle: 'Mother Child Health Home Page',
   },
   title: 'Maternal & Child Health',

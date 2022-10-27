@@ -7,7 +7,6 @@ import {
   childHealth_dashboardMeta,
   labs_dashboardMeta,
   medication_dashboardMeta,
-  // motherChildHealthFolderDashboardMeta,
   motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
@@ -138,15 +137,6 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
-      // Clinical Dashboards
-      // {
-      //   id: 'mother-child-health-dashboard-ext',
-      //   slot: 'dashboard-slot',
-      //   load: getSyncLifecycle(createOHRIDashboardLink(motherChildHealthFolderDashboardMeta), options),
-      //   meta: motherChildHealthFolderDashboardMeta,
-      //   online: true,
-      //   offline: true,
-      // },
       {
         id: 'mother-child-health-results-dashboard',
         slot: 'mother-child-health-dashboard-slot',

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Tabs, Tab, TabPanels, TabPanel, TabList } from '@carbon/react';
 import styles from '../summary-tabs/ohri-patient-tabs.scss';
-// import CD4ResultsList from './Tabs/cd4-results.component';
-// import ViralLoadResultsList from './Tabs/viral-load-results.component';
 import { useTranslation } from 'react-i18next';
 import AllClients from './all-clients.component';
 import AntentalList from './antenatal.component';
