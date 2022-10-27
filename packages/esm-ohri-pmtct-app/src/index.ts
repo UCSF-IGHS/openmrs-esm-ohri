@@ -7,10 +7,12 @@ import {
   childHealth_dashboardMeta,
   labs_dashboardMeta,
   medication_dashboardMeta,
+  motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
 import mchForms from './forms/forms-registry';
+import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -134,6 +136,42 @@ function setupOpenMRS() {
           featureName: 'medication',
           moduleName,
         }),
+      },
+      {
+        id: 'mother-child-health-results-dashboard',
+        slot: 'mother-child-health-dashboard-slot',
+        load: getSyncLifecycle(OHRIHome, {
+          featureName: 'mother child health results dashboard',
+          moduleName,
+        }),
+        meta: motherChildDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'pmtct-home-header-slot',
+        slot: 'pmtct-home-header-slot',
+        title: 'Maternal Child Health',
+        load: getSyncLifecycle(OHRIWelcomeSection, {
+          featureName: 'pmtct-home-header',
+          moduleName,
+        }),
+      },
+      {
+        id: 'pmtct-home-tabs-ext',
+        slot: 'pmtct-home-tabs-slot',
+        load: getAsyncLifecycle(() => import('./views/summary-tabs/mother-child-summary-tabs.component'), {
+          featureName: 'pmtct-home-tabs',
+          moduleName,
+        }),
+      },
+      {
+        id: 'maternal-child-health-results-summary',
+        slot: 'dashboard-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options),
+        meta: motherChildDashboardMeta,
+        online: true,
+        offline: true,
       },
     ],
   };
