@@ -23,13 +23,13 @@ function CTSummaryTiles({ launchWorkSpace }) {
       title: t('labourDelivery', 'Labour & Delivery'),
       linkAddress: '#',
       subTitle: t('totalDeliveries', 'Total deliveries'),
-      value: '--',
+      value: 'N/A',
     },
     {
       title: t('children', 'Children'),
       linkAddress: '#',
       subTitle: t('HIVExposedChildrenEnrolledInFollowUpCare', 'HIV Exposed children enrolled in follow up care'),
-      value: 10,
+      value: 'N/A',
     },
   ];
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
