@@ -7,5 +7,5 @@
 .currentNavItem > a {
   background-color: #e0e0e0 !important;
   color: #161616 !important;
-  border-left-color: $brand-color-01 !important;
+  border-left-color: var(--brand-01) !important;
 }
