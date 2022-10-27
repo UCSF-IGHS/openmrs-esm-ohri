@@ -173,6 +173,14 @@ function setupOpenMRS() {
         online: true,
         offline: true,
       },
+      {
+        id: 'pmtct-home-tile-ext',
+        slot: 'pmtct-home-tiles-slot',
+        load: getAsyncLifecycle(() => import('./views/summary-tabs/maternal-child-summary-tiles.component'), {
+          featureName: 'pmtct-home-tiles',
+          moduleName,
+        }),
+      },
     ],
   };
 }
