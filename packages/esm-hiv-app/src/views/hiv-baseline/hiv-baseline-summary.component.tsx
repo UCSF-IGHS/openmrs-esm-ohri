@@ -13,7 +13,7 @@ import {
   dateOfHIVDiagnosisConcept,
   dateOfServiceEnrollmentConcept,
   tbScreeningOutcome,
-} from '../../../constants';
+} from '../../constants';
 
 interface HivBaselineTabListProps {
   patientUuid: string;

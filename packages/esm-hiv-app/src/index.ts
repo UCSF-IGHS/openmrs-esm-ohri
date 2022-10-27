@@ -408,12 +408,15 @@ function setupOpenMRS() {
         }),
       },
       {
-        id: 'multiple-encounters-ext',
+        id: 'hiv-baseline-ext',
         slot: 'patient-chart-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./views/multiple-encounters/multiple-encounter-summary.component'), {
-          featureName: 'multiple-encounters-summary',
+        load: getAsyncLifecycle(() => import('./views/hiv-baseline/hiv-baseline-summary.component'), {
+          featureName: 'hiv-baseline-summary',
           moduleName,
         }),
+        meta: {
+          columnSpan: 4,
+        },
       },
     ],
   };
