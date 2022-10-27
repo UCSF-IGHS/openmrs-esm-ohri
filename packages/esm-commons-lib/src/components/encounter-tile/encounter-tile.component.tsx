@@ -1,40 +1,35 @@
-/* eslint-disable no-debugger, no-console */
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { CodeSnippetSkeleton, Tile, Row, Button, Column } from '@carbon/react';
-import { ArrowRight } from '@carbon/react/icons';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { EmptyState } from '../empty-state/empty-state.component';
+import { CodeSnippetSkeleton, Tile, Column } from '@carbon/react';
+import React, { useEffect, useState } from 'react';
 import styles from './encounter-tile.scss';
-import { encounterRepresentation } from '../../constants';
+import {
+  artStopDateUUID,
+  artTherapyDateTime_UUID,
+  dateRestartedUUID,
+  encounterRepresentation,
+  substitutionDateUUID,
+  switchDateUUID,
+} from '../../constants';
 import moment from 'moment';
+import { findObs, getObsFromEncounter } from '../../index';
 
 export interface EncounterTileColumn {
   key: string;
   header: string;
   encounterUuid: string;
-  getValue: (encounter: any) => string;
-  link?: any;
+  concept: string;
+  isConceptDate?: Boolean;
+  isConceptSummaryDate?: Boolean;
+  isSummaryDaysCalculation?: Boolean;
+  obsValue?: string;
+  summaryConcept?: string;
+  summaryObsValue?: string;
+  isARTDateConcept?: Boolean;
 }
 export interface EncounterTileProps {
-  // mockData: { field: string; value: string; summary?: string }[];
   patientUuid: string;
-  encounterUuid: string;
-  form?: { package: string; name: string; view?: string };
   columns: Array<any>;
   headerTitle: string;
-  description: string;
-  dropdownText?: string;
-  hideFormLauncher?: boolean;
-  forms?: Array<{
-    package: string;
-    name: string;
-    view?: string;
-    excludedIntents?: Array<string>;
-    fixedIntent?: string;
-  }>;
-  filter?: (encounter: any) => boolean;
-  tileStyle: string;
 }
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -42,105 +37,101 @@ export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   else return encounter[param] ? encounter[param] : '--';
 }
 
-export function formatDateTime(dateString: string): any {
-  const format = 'YYYY-MM-DDTHH:mm:ss';
-  if (dateString.includes('.')) {
-    dateString = dateString.split('.')[0];
-  }
-  return moment(dateString, format, true).toDate();
-}
-
-function obsArrayDateComparator(left, right) {
-  return formatDateTime(right.obsDatetime) - formatDateTime(left.obsDatetime);
-}
-
-export function findObs(encounter, obsConcept): Record<string, any> {
-  const allObs = encounter?.obs?.filter((observation) => observation.concept.uuid === obsConcept) || [];
-  return allObs?.length == 1 ? allObs[0] : allObs?.sort(obsArrayDateComparator)[0];
-}
-
-export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
-  const obs = findObs(encounter, obsConcept);
-
-  if (isTrueFalseConcept) {
-    if (obs.value.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
-      return 'Yes';
-    } else {
-      return 'No';
-    }
-  }
-  if (!obs) {
-    return '--';
-  }
-  if (isDate) {
-    return moment(obs.value).format('DD-MMM-YYYY');
-  }
-  if (typeof obs.value === 'object') {
-    return obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
-  }
-  return obs.value;
-}
-
-export const EncounterTile: React.FC<EncounterTileProps> = ({
-  //mockData,
-  patientUuid,
-  encounterUuid,
-  columns,
-  headerTitle,
-  description,
-  filter,
-  tileStyle,
-}) => {
-  const { t } = useTranslation();
-  //const [allRows, setAllRows] = useState([]);
+export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, columns, headerTitle }) => {
   const [lastEncounter, setLastEncounter] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [counter, setCounter] = useState(0);
-
-  const loadData = useCallback(
-    (encounterType) => {
-      const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-      openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-        if (data.results?.length > 0) {
-          let sortedEncounters = data.results.sort(
-            (firstEncounter, secondEncounter) =>
-              new Date(secondEncounter.encounterDatetime).getTime() -
-              new Date(firstEncounter.encounterDatetime).getTime(),
-          );
-          setLastEncounter(sortedEncounters[0]);
-        } //else {
-        //   setAllRows([]);
-        // }
-        setIsLoading(false);
-      });
-    },
-    [patientUuid],
-  );
-  console.log({ lastEncounter });
 
   useEffect(() => {
-    loadData(encounterUuid);
-  }, [counter, encounterUuid]);
+    columns.map((column) => {
+      const lastEncounter = fetchPatientLastEncounter(column.encounterUuid);
+      lastEncounter.then((value) => {
+        if (column.isARTDateConcept) {
+          column.obsValue = getObsFromEncounter(
+            value,
+            getARTDateConcept(
+              value,
+              artTherapyDateTime_UUID,
+              switchDateUUID,
+              substitutionDateUUID,
+              artStopDateUUID,
+              dateRestartedUUID,
+            ),
+            column.isConceptDate,
+          );
+        } else {
+          column.obsValue = getObsFromEncounter(value, column.concept, column.isConceptDate);
+        }
+
+        if (column.summaryConcept) {
+          if (column.isSummaryDaysCalculation) {
+            let summaryDate = getObsFromEncounter(value, column.summaryConcept);
+            if (summaryDate !== '--') {
+              const dateDifference = new Date().getTime() - new Date(summaryDate).getTime();
+              const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
+              column.summaryObsValue = `${totalDays} days`;
+            }
+          } else {
+            column.summaryObsValue = getObsFromEncounter(value, column.summaryConcept, column.isConceptSummaryDate);
+          }
+        }
+      });
+    });
+  }, []);
 
   async function fetchPatientLastEncounter(encounterType: string) {
     const query = `encounterType=${encounterType}&patient=${patientUuid}`;
     const encounterResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
-    console.log({ encounterResults });
     if (encounterResults.data.results?.length > 0) {
       const sortedEncounters = encounterResults.data.results.sort(
         (firstEncounter, secondEncounter) =>
           new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
       );
-      console.log(sortedEncounters[0]);
+      setLastEncounter(sortedEncounters[0]);
+      setIsLoading(false);
       return sortedEncounters[0];
     }
   }
+
+  const getARTDateConcept = (encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string => {
+    let artStartDate = findObs(encounter, startDate);
+    let artSwitchDate = findObs(encounter, switchDate);
+    let artSubstitutionDate = findObs(encounter, substitutionDate);
+    let artStopDate = findObs(encounter, stopDate);
+    let artRestartDate = findObs(encounter, restartDate);
+
+    artStartDate = artStartDate ? artStartDate.value : null;
+    artSubstitutionDate = artSubstitutionDate ? artSubstitutionDate.value : null;
+    artSwitchDate = artSwitchDate ? artSwitchDate.value : null;
+    artStopDate = artStopDate ? artStopDate.value : null;
+    artRestartDate = artRestartDate ? artRestartDate.value : null;
+
+    let latestDateConcept: string = startDate;
+    let latestDate = artStartDate;
+    if (artSubstitutionDate != null) {
+      latestDateConcept = substitutionDate;
+      latestDate = artSubstitutionDate;
+    }
+    if (artSwitchDate != null) {
+      latestDate = artSwitchDate;
+      latestDateConcept = switchDate;
+    }
+    if (artStopDate != null) {
+      latestDate = artStopDate;
+      latestDateConcept = stopDate;
+    }
+    if (artRestartDate != null) {
+      latestDate = artRestartDate;
+      latestDateConcept = restartDate;
+    }
+
+    return latestDateConcept;
+  };
 
   return (
     <>
       {isLoading ? (
         <CodeSnippetSkeleton type="multi" />
-      ) : lastEncounter ? (
+      ) : (
         <Tile className={styles.tile}>
           <div className={styles.cardTitle}>
             <h4 className={styles.title}> {headerTitle} </h4>
@@ -151,17 +142,13 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({
               <div className={styles.tileBox}>
                 <div className={styles.tileBoxColumn}>
                   <span className={styles.tileTitle}> {column.header} </span>
-                  <span className={styles.tileValue}>
-                    {column.getValue(fetchPatientLastEncounter(column.encounterUuid))}
-                  </span>
-                  {/* <span className={styles.tileTitle}> {column.summary} </span> */}
+                  <span className={styles.tileValue}>{column.obsValue}</span>
+                  <span className={styles.tileTitle}> {column.summaryObsValue} </span>
                 </div>
               </div>
             ))}
           </Column>
         </Tile>
-      ) : (
-        <EmptyState displayText={description} headerTitle={headerTitle} />
       )}
     </>
   );

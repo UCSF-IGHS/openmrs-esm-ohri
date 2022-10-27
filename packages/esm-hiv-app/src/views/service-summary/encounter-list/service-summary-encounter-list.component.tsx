@@ -1,12 +1,8 @@
-import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   EncounterTile,
   EncounterTileColumn,
-  findObs,
-  getEncounterValues,
-  getObsFromEncounter,
 } from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
 
 import {
@@ -15,13 +11,22 @@ import {
   careAndTreatmentEncounterType,
   Cd4Count_UUID,
   Cd4LabResultDate_UUID,
-  dateOfARTInitiation,
-  enrolmentDate,
-  hivCD4Count_UUID,
+  CD4LabResultsEncounter_UUID,
+  clinicalVisitEncounterType,
+  CommunityDSDModel_UUID,
+  dateOfEncounterConcept,
+  generalTreatmentStatusConcept,
+  hivProgramStatusEncounterType,
+  opportunisticInfectionConcept,
   populationCategoryConcept,
+  ReasonForViralLoad_UUID,
+  regimenLine_UUID,
   regimen_UUID,
+  returnVisitDateConcept,
   ServiceDeliveryEncounterType_UUID,
+  tbScreeningOutcome,
   ViralLoadResultDate_UUID,
+  ViralLoadResultsEncounter_UUID,
   ViralLoadResult_UUID,
 } from '../../../constants';
 interface OverviewListProps {
@@ -32,10 +37,8 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
   const { t } = useTranslation();
 
   const headerCharacteristics = t('characteristicsTitle', 'Characteristics');
-  const displayCharacteristics = t('characteristicsDisplay', 'Characteristics');
-
-  const headerARvRegiment = t('currentARVTitle', 'Current ARV Regimen');
-  const displayARvRegiment = t('currentARVDisplay', 'Current ARV Regimen');
+  const headerHIVMonitoring = t('hivMonitoring', 'HIV Monitoring');
+  const headerLastVisitDetails = t('lastVisitDetails', 'Last Visit Details');
 
   const columnsCharacteristics: EncounterTileColumn[] = useMemo(
     () => [
@@ -43,131 +46,106 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         key: 'artCohort',
         header: t('artCohort', 'ART Cohort'),
         encounterUuid: art_Therapy_EncounterUUID,
-        getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, artTherapyDateTime_UUID, true);
-        },
+        isConceptDate: true,
+        concept: artTherapyDateTime_UUID,
+        isARTDateConcept: true,
       },
       {
         key: 'currentRegimen',
         header: t('currentRegimen', 'Current Regimen'),
         encounterUuid: art_Therapy_EncounterUUID,
-        getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, regimen_UUID);
-        },
+        concept: regimen_UUID,
+        summaryConcept: regimenLine_UUID,
       },
       {
         key: 'dsdModel',
         header: t('dsdModel', 'DSD Model'),
         encounterUuid: ServiceDeliveryEncounterType_UUID,
-        getValue: ({ latestEncounter }) => {
-          return '';
-        },
+        concept: '',
+        summaryConcept: CommunityDSDModel_UUID,
       },
       {
         key: 'populationType',
         header: t('populationType', 'Population Type'),
-        encounterUuid: art_Therapy_EncounterUUID,
-        getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, populationCategoryConcept);
-        },
+        encounterUuid: careAndTreatmentEncounterType,
+        concept: populationCategoryConcept,
       },
     ],
     [],
   );
 
-  // const columnsARV: EncounterTileColumn[] = useMemo(
-  //   () => [
-  //     {
-  //       key: 'regimen',
-  //       header: t('arvRegimen', 'Current ARV regimen'),
-  //       getValue: ({ latestEncounter }) => {
-  //         return getObsFromEncounter(latestEncounter, ViralLoadResultDate_UUID, true);
-  //       },
-  //     },
-  //     {
-  //       key: 'lastCD4Count',
-  //       header: t('drugAllergies', 'Drug Allergies'),
-  //       getValue: ({ latestEncounter }) => {
-  //         return getObsFromEncounter(latestEncounter, hivCD4Count_UUID);
-  //       },
-  //     },
-  //     {
-  //       key: 'eacSession',
-  //       header: t('EAC', 'EAC Session'),
-  //       getValue: ({ latestEncounter }) => {
-  //         return getObsFromEncounter(latestEncounter, Cd4LabResultDate_UUID, true);
-  //       },
-  //     },
-  //     {
-  //       key: 'currentARV',
-  //       header: 'ARV Initiation Date',
-  //       getValue: (latestEncounter) => {
-  //         return getObsFromEncounter(latestEncounter, artTherapyDateTime_UUID, true);
-  //       },
-  //     },
-  //   ],
-  //   [],
-  // );
-  // const mockData_Characteristics = useMemo(
-  //   () => [
-  //     { field: t('artCohort', 'ART Cohort'), value: '02/2022', summary: '' },
-  //     {
-  //       field: t('currentRegimen', 'Current Regimen'),
-  //       value: 'AZT/3TC/NVP',
-  //       summary: 'Adult second line 3rd line 4th line paka paka',
-  //     },
-  //     { field: t('dsdModel', 'Enrolled in care'), value: '.', summary: 'Express Care(Fast Track Drug Refill)' },
-  //     { field: t('populationType', 'Population Type'), value: 'Key Population', summary: 'AGSW AGYT  JEJEKE' },
-  //   ],
-  //   [],
-  // );
-  // const mockData_HIV_Monitoring = useMemo(
-  //   () => [
-  //     { field: t('currentViralLoad', 'Current Viral Load'), value: 'Not Detected' },
-  //     { field: t('reasonForCurrentVL', 'Reason For Current VL'), value: 'Routine Viral Load' },
-  //     { field: t('lastCD4Count', 'Last CD4 Count'), value: '200' },
-  //   ],
-  //   [],
-  // );
+  const columnsHIVMonitoring: EncounterTileColumn[] = useMemo(
+    () => [
+      {
+        key: 'viralLoad',
+        header: t('currentViralLoad', 'Current Viral Load'),
+        encounterUuid: ViralLoadResultsEncounter_UUID,
+        concept: ViralLoadResult_UUID,
+        summaryConcept: ViralLoadResultDate_UUID,
+        isConceptSummaryDate: true,
+      },
+      {
+        key: 'currentVLReason',
+        header: t('currentVLReason', 'Reason For Current VL'),
+        encounterUuid: art_Therapy_EncounterUUID,
+        concept: ReasonForViralLoad_UUID,
+        summaryConcept: ViralLoadResultDate_UUID,
+        isConceptSummaryDate: true,
+        isSummaryDaysCalculation: true,
+      },
+      {
+        key: 'lastCD4Count',
+        header: t('lastCD4Count', 'Last CD4 Count'),
+        encounterUuid: CD4LabResultsEncounter_UUID,
+        concept: Cd4Count_UUID,
+        summaryConcept: Cd4LabResultDate_UUID,
+        isConceptSummaryDate: true,
+      },
+    ],
+    [],
+  );
 
-  // const mockData_Last_Visit = useMemo(
-  //   () => [
-  //     { field: t('tbScreening', 'TB Screening'), value: 'Negative' },
-  //     { field: t('OIs', 'OIs'), value: 'Current OI' },
-  //     { field: t('nextAppointmentDate', 'Next Appointment Date'), value: '01/12/2022' },
-  //     { field: t('programStatus', 'Program Status'), value: 'Transfer-Out' },
-  //   ],
-  //   [],
-  // );
+  const columnsLastVisitDetails: EncounterTileColumn[] = useMemo(
+    () => [
+      {
+        key: 'tbScreening',
+        header: t('tbScreening', 'TB Screening'),
+        encounterUuid: clinicalVisitEncounterType,
+        concept: tbScreeningOutcome,
+        summaryConcept: dateOfEncounterConcept,
+        isConceptSummaryDate: true,
+      },
+      {
+        key: 'oIs',
+        header: t('oIs', 'OIs'),
+        encounterUuid: clinicalVisitEncounterType,
+        concept: opportunisticInfectionConcept,
+      },
+      {
+        key: 'nextAppointmentDate',
+        header: t('nextAppointmentDate', 'Next Appointment Date'),
+        encounterUuid: clinicalVisitEncounterType,
+        concept: returnVisitDateConcept,
+        isConceptDate: true,
+        summaryConcept: returnVisitDateConcept,
+        isSummaryDaysCalculation: true,
+        isConceptSummaryDate: true,
+      },
+      {
+        key: 'programStatus',
+        header: t('programStatus', 'Program Status'),
+        encounterUuid: hivProgramStatusEncounterType,
+        concept: generalTreatmentStatusConcept,
+      },
+    ],
+    [],
+  );
 
   return (
     <>
-      <EncounterTile
-        encounterUuid={art_Therapy_EncounterUUID}
-        patientUuid={patientUuid}
-        columns={columnsCharacteristics}
-        description={displayCharacteristics}
-        headerTitle={headerCharacteristics}
-        tileStyle=""
-      />
-
-      {/* <EncounterTile
-        mockData={mockData_HIV_Monitoring}
-        patientUuid={patientUuid}
-        columns={columnsARV}
-        description={headerARvRegiment}
-        headerTitle="HIV Monitoring"
-        dropdownText="Change "
-        tileStyle="ARV"
-      />
-      <EncounterTile
-        mockData={mockData_Last_Visit}
-        patientUuid={patientUuid}
-        columns={columnsCharacteristics}
-        description={displayTextHIV}
-        headerTitle="Last Visit Details"
-        tileStyle=""
-      /> */}
+      <EncounterTile patientUuid={patientUuid} columns={columnsCharacteristics} headerTitle={headerCharacteristics} />
+      <EncounterTile patientUuid={patientUuid} columns={columnsHIVMonitoring} headerTitle={headerHIVMonitoring} />
+      <EncounterTile patientUuid={patientUuid} columns={columnsLastVisitDetails} headerTitle={headerLastVisitDetails} />
     </>
   );
 };

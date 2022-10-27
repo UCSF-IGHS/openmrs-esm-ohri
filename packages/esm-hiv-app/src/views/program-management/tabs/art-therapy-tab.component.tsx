@@ -23,7 +23,14 @@ interface ArtTherapyTabListProps {
   patientUuid: string;
 }
 
-const getARTDateConcept = (encounter, startDate, switchDate, substitutionDate, stopDate, restartDate): string => {
+export const getARTDateConcept = (
+  encounter,
+  startDate,
+  switchDate,
+  substitutionDate,
+  stopDate,
+  restartDate,
+): string => {
   let artStartDate = findObs(encounter, startDate);
   let artSwitchDate = findObs(encounter, switchDate);
   let artSubstitutionDate = findObs(encounter, substitutionDate);
