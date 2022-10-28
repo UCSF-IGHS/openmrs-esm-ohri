@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clientsEnrolledToCare } from '../../constants';
 
-function CTSummaryTiles({ launchWorkSpace }) {
+function MaternalChildSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
 
@@ -35,4 +35,4 @@ function CTSummaryTiles({ launchWorkSpace }) {
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
-export default CTSummaryTiles;
+export default MaternalChildSummaryTiles;
