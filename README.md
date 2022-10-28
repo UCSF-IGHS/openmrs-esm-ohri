@@ -19,6 +19,7 @@ OpenMRS HIV Reference Implementation (OHRI) packages built on top of OpenMRS Fro
 - [esm-hiv-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-hiv-app) (HIV App)
 - [esm-covid-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-covid-app) (COVID-19 App)
 - [esm-cervical-cancer-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-cervical-cancer-app) (Cervical Cancer App)
+- [esm-ohri-pmtct-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-ohri-pmtct-app) (PMTCT App)
 
 ## Installation
 
@@ -68,6 +69,9 @@ yarn start:cervical-cancer
 
 # To start form-render esm
 yarn start:form-render
+
+# To start pmtct esm
+yarn start:pmtct
 ```
 
 ## Tests
