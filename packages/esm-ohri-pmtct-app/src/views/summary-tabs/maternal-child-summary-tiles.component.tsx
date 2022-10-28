@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clientsEnrolledToCare } from '../../constants';
 
-function CTSummaryTiles({ launchWorkSpace }) {
+function MaternalChildSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
 
@@ -16,23 +16,23 @@ function CTSummaryTiles({ launchWorkSpace }) {
     {
       title: t('anc', 'ANC'),
       linkAddress: '#',
-      subTitle: t('pregnantWomenAttendingFirstANC', 'Pregnant women attending first ANC'),
+      subTitle: t('pregnantWomenAttendingFirstANC', '# Pregnant women attending first ANC'),
       value: activeClientsCount,
     },
     {
       title: t('labourDelivery', 'Labour & Delivery'),
       linkAddress: '#',
-      subTitle: t('totalDeliveries', 'Total deliveries'),
+      subTitle: t('totalDeliveries', '# Total deliveries'),
       value: 'N/A',
     },
     {
       title: t('children', 'Children'),
       linkAddress: '#',
-      subTitle: t('HIVExposedChildrenEnrolledInFollowUpCare', 'HIV Exposed children enrolled in follow up care'),
+      subTitle: t('HIVExposedChildrenEnrolledInFollowUpCare', '# HIV Exposed children enrolled in follow up care'),
       value: 'N/A',
     },
   ];
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
-export default CTSummaryTiles;
+export default MaternalChildSummaryTiles;
