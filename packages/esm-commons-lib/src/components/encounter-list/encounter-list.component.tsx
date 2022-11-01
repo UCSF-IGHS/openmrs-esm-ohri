@@ -374,7 +374,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     return (
       <Button
         kind="ghost"
-        renderIcon={<Add size={16} />}
+        renderIcon={Add}
         iconDescription="Add "
         onClick={(e) => {
           e.preventDefault();
