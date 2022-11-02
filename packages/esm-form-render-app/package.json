@@ -46,7 +46,7 @@
     "react-i18next": "^11.18.6"
   },
   "devDependencies": {
-    "@ohri/openmrs-ohri-form-engine-lib": "^1.0.0-pre.118",
+    "@ohri/openmrs-ohri-form-engine-lib": "^1.0.1",
     "browserslist-config-openmrs": "^1.0.0",
     "i18next": "^19.4.2",
     "react": "^18.2.0",
