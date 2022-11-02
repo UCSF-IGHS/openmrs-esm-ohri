@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger, no-console */
 import { findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -216,7 +215,6 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
   );
 
   const calculateDateDifferenceInDate = (givenDate: string): string => {
-    console.log(givenDate);
     const dateDifference = new Date().getTime() - new Date(givenDate).getTime();
     const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
     return `${totalDays} days`;
