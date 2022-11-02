@@ -762,163 +762,6 @@
               "id": "lastHIVTestResult"
             },
             {
-              "label": "Population type",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": [
-                  {
-                    "concept": "166430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "General population",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385436007"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Key/Priority Population",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "385436007"
-                      }
-                    ]
-                  }
-                ],
-                "conceptMappings": [
-                  {
-                    "type": "SNOMED-CT",
-                    "value": "363787002"
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true"
-                },
-                {
-                  "intent": "HTS_PRETEST",
-                  "required": "true"
-                },
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true"
-                }
-              ],
-              "id": "populationType"
-            },
-            {
-              "label": "Key populations",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "d3d4ae96-8c8a-43db-a9dc-dac951f5dcb3",
-                "answers": [
-                  {
-                    "concept": "63ea75cb-205f-4e7b-9ede-5f9b8a4dda9f",
-                    "label": "Migrant Workers",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "b282bb08-62a7-42c2-9bea-8751c267d13e",
-                    "label": "Uniformed Forces",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "22b202fc-67de-4af9-8c88-46e22559d4b2",
-                    "label": "Transgender Persons",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "678f3144-302f-493e-ba22-7ec60a84732a",
-                    "label": "Adolescent Girls & Young Women",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "def00c73-f6d5-42fb-bcec-0b192b5be22d",
-                    "label": "Fisher Folk",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "8da9bf92-22f6-40be-b468-1ad08de7d457",
-                    "label": "Prisoners",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dc1058ea-4edd-4780-aeaa-a474f7f3a437",
-                    "label": "Refugees",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "160578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Male who has sex with men",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "266974005"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "160579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Sex worker",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "53713009"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Long distance truck driver",
-                    "conceptMappings": [
-                      {
-                        "type": "SNOMED-CT",
-                        "value": "87447002"
-                      }
-                    ]
-                  },
-                  {
-                    "concept": "365371fd-0106-4a53-abc4-575e3d65d372",
-                    "label": "People With Disability",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "c038bff0-8e33-408c-b51f-7fb6448d2f6c",
-                    "label": "People Who Inject Drugs",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "behaviours": [
-                {
-                  "intent": "HTS_RETROSPECTIVE",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                },
-                {
-                  "intent": "*",
-                  "required": "true",
-                  "unspecified": "true",
-                  "hide": {
-                    "hideWhenExpression": "populationType !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                }
-              ],
-              "id": "patientPopulationType"
-            },
-            {
               "label": "Sexually active",
               "type": "obs",
               "questionOptions": {
@@ -1176,6 +1019,266 @@
                 }
               ],
               "id": "clientSTIHistory"
+            }
+          ]
+        },
+        {
+          "label": "Population Category",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Population Category",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "746737c0-4201-4d7f-b580-816e36dc425a",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "166432"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "166430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "General population",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "166430"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Key population",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "166431"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "167143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Priority population",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "id": "clientPopulationCategory"
+            },
+            {
+              "label": "Key Population Type",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d3d4ae96-8c8a-43db-a9dc-dac951f5dcb3",
+                "answers": [
+                  {
+                    "concept": "157351AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intravenous drug user",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "160578AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Male who has sex with men",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "160578"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "8da9bf92-22f6-40be-b468-1ad08de7d457",
+                    "label": "Prisoners",
+                    "conceptMappings": [
+                      {
+                        "type": "OHTSTemp",
+                        "value": "Prisoners"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "160579AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sex worker",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "160579"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "53713009"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "22b202fc-67de-4af9-8c88-46e22559d4b2",
+                    "label": "Transgender Persons",
+                    "conceptMappings": [
+                      {
+                        "type": "OHTSTemp",
+                        "value": "Transgender"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "clientPopulationCategory !== '166431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "keyPopulationType"
+            },
+            {
+              "label": "Priority Population Type",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2bf14240-b2b2-42b2-8cf3-b5f8a0cb7764",
+                "conceptMappings": [
+                  {
+                    "type": "CIEL",
+                    "value": "167143"
+                  }
+                ],
+                "answers": [
+                  {
+                    "concept": "678f3144-302f-493e-ba22-7ec60a84732a",
+                    "label": "Adolescent Girls & Young Women",
+                    "conceptMappings": [
+                      {
+                        "type": "OHTSTemp",
+                        "value": "AGYW"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "160580AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Client of sex worker",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "def00c73-f6d5-42fb-bcec-0b192b5be22d",
+                    "label": "Fisher Folk",
+                    "conceptMappings": [
+                      {
+                        "type": "OHTSTemp",
+                        "value": "Fisherfolk"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance truck driver",
+                    "conceptMappings": [
+                      {
+                        "type": "CIEL",
+                        "value": "162198"
+                      },
+                      {
+                        "type": "SNOMED-CT",
+                        "value": "87447002"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "63ea75cb-205f-4e7b-9ede-5f9b8a4dda9f",
+                    "label": "Migrant Workers",
+                    "conceptMappings": [
+                      {
+                        "type": "OHTSTemp",
+                        "value": "MigrantWorkers"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "166514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Non-intravenous drug user",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "164100AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b282bb08-62a7-42c2-9bea-8751c267d13e",
+                    "label": "Uniformed Forces",
+                    "conceptMappings": [
+                      {
+                        "type": "OHTSTemp",
+                        "value": "UniformedForces"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other",
+                    "conceptMappings": [
+                      {
+                        "type": "PIH-Malawi",
+                        "value": "6408"
+                      },
+                      {
+                        "type": "SNOMED-MVP",
+                        "value": "56221000105001"
+                      },
+                      {
+                        "type": "CIEL",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "AMPATH",
+                        "value": "5622"
+                      },
+                      {
+                        "type": "org.openmrs.module.mdrtb",
+                        "value": "OTHER"
+                      },
+                      {
+                        "type": "PIH",
+                        "value": "5622"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "behaviours": [
+                {
+                  "intent": "HTS_RETROSPECTIVE",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "false"
+                  }
+                },
+                {
+                  "intent": "*",
+                  "required": "true",
+                  "unspecified": "true",
+                  "hide": {
+                    "hideWhenExpression": "clientPopulationCategory !== '167143AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ],
+              "id": "priorityPopulationType"
             }
           ]
         },
