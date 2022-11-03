@@ -7,6 +7,7 @@ import {
 } from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
 
 import {
+  artStopDateUUID,
   artTherapyDateTime_UUID,
   art_Therapy_EncounterUUID,
   careAndTreatmentEncounterType,
@@ -16,15 +17,20 @@ import {
   clinicalVisitEncounterType,
   CommunityDSDModel_UUID,
   dateOfEncounterConcept,
+  dateRestartedUUID,
   generalTreatmentStatusConcept,
   hivProgramStatusEncounterType,
+  keyPopulationTypeConcept,
   opportunisticInfectionConcept,
   populationCategoryConcept,
+  priorityPopulationTypeConcept,
   ReasonForViralLoad_UUID,
   regimenLine_UUID,
   regimen_UUID,
   returnVisitDateConcept,
   ServiceDeliveryEncounterType_UUID,
+  substitutionDateUUID,
+  switchDateUUID,
   tbScreeningOutcome,
   ViralLoadResultDate_UUID,
   ViralLoadResultsEncounter_UUID,
@@ -48,7 +54,18 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         header: t('artCohort', 'ART Cohort'),
         encounterUuid: art_Therapy_EncounterUUID,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, artTherapyDateTime_UUID, true);
+          return getObsFromEncounter(
+            encounter,
+            getARTDateConcept(
+              encounter,
+              artTherapyDateTime_UUID,
+              switchDateUUID,
+              substitutionDateUUID,
+              artStopDateUUID,
+              dateRestartedUUID,
+            ),
+            true,
+          );
         },
       },
       {
@@ -82,6 +99,15 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         encounterUuid: careAndTreatmentEncounterType,
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, populationCategoryConcept);
+        },
+        hasSummary: true,
+        getSummaryObsValue: (encounter) => {
+          const keyPopulationType = getObsFromEncounter(encounter, keyPopulationTypeConcept);
+          if (keyPopulationType !== '--') {
+            return keyPopulationType;
+          } else {
+            return getObsFromEncounter(encounter, priorityPopulationTypeConcept);
+          }
         },
       },
     ],
