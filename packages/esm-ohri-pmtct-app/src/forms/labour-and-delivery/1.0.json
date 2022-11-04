@@ -2,14 +2,14 @@
   "name": "Labour & Delivery Form",
   "pages": [
     {
-      "label": "",
+      "label": "Labour & Delivery",
       "sections": [
         {
-          "label": "",
+          "label": "Delivery Information",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "",
+              "label": "Was this client booked (Does Client have a pink book?) at ANC? ",
               "type": "obs",
               "id": "client-booked",
               "questionOptions": {
@@ -17,66 +17,61 @@
                 "rendering": "radio",
                 "answers": [
                   {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
                   },
                   {
                     "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
                     "label": "Missing"
-                  },
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
                   }
                 ]
-              }
-            },
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "PTracker Id Capture",
+          "isExpanded": "true",
+          "questions": [
             {
-              "label": "",
+              "label": "PTracker ID",
               "type": "obs",
               "id": "ptrackerid",
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text"
-              }
-            },
-            {
-              "label": "",
-              "type": "obs",
-              "id": "anc-hiv-test",
-              "questionOptions": {
-                "concept": "c5f74c86-62cd-4d22-9260-4238f1e45fe0",
-                "rendering": "radio",
-                "answers": [
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown"
-                  },
-                  {
-                    "concept": "1402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not tested"
-                  },
-                  {
-                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                    "label": "Missing"
-                  },
-                  {
-                    "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
-                    "label": "Previously known positive"
-                  },
-                  {
-                    "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Positive"
-                  },
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
                   }
-                ]
-              }
-            },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "HIV Status At Delivery",
+          "isExpanded": "true",
+          "questions": [
             {
-              "label": "",
+              "label": "HIV Test Status",
               "type": "obs",
               "id": "hiv-test",
               "questionOptions": {
@@ -88,35 +83,8 @@
                     "label": "Tested for HIV during this visit"
                   },
                   {
-                    "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
-                    "label": "Not tested for HIV during this visit"
-                  },
-                  {
-                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                    "label": "Missing"
-                  },
-                  {
                     "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
                     "label": "Previously known positive"
-                  }
-                ]
-              }
-            },
-            {
-              "label": "",
-              "type": "obs",
-              "id": "anc-retest-thirty-six-weeks",
-              "questionOptions": {
-                "concept": "159803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rendering": "radio",
-                "answers": [
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown"
-                  },
-                  {
-                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Positive"
                   },
                   {
                     "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
@@ -125,16 +93,21 @@
                   {
                     "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
                     "label": "Missing"
-                  },
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative"
                   }
                 ]
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
             },
             {
-              "label": "",
+              "label": "HIV Test Result ",
               "type": "obs",
               "id": "hiv-test-result",
               "questionOptions": {
@@ -142,26 +115,36 @@
                 "rendering": "radio",
                 "answers": [
                   {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown"
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
                   },
                   {
                     "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Positive"
                   },
                   {
-                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                    "label": "Missing"
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
                   },
                   {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative"
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                  }
+                }
+              ]
             },
             {
-              "label": "",
+              "label": "ART initiation",
               "type": "obs",
               "id": "art-initiation",
               "questionOptions": {
@@ -169,61 +152,84 @@
                 "rendering": "radio",
                 "answers": [
                   {
-                    "concept": "160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Refused ART"
+                    "concept": "160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Already on ART"
                   },
                   {
                     "concept": "160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Started on ART during Labour and Delivery"
                   },
                   {
-                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                    "label": "Missing"
+                    "concept": "160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refused ART"
                   },
                   {
                     "concept": "1754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Not started due to stockout of ART"
                   },
                   {
-                    "concept": "160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Already on ART"
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                  }
+                }
+              ]
             },
             {
-              "label": "ART Unique Number missing",
+              "label": "ART Unique Number",
               "type": "obs",
+              "id": "art-number",
               "questionOptions": {
-                "concept": "43cb14fe-6f06-4b40-81f0-a712b805a74d",
-                "rendering": "multiCheckbox"
-              }
-            },
-            {
-              "label": "",
-              "type": "obs",
-              "id": "refused_art",
-              "questionOptions": {
-                "concept": "163322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "9d6d1eec-2cd6-4637-a981-4a46b4b8b41f",
                 "rendering": "text"
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
             },
             {
-              "label": "Reason for refusing ART initiation missing",
-              "type": "obs",
-              "questionOptions": {
-                "concept": "0117ec63-6fc8-4b37-99e9-7f6d99652852",
-                "rendering": "multiCheckbox"
-              }
-            },
-            {
-              "label": "",
+              "label": "ART start date",
               "type": "obs",
               "id": "art_start_date",
               "questionOptions": {
                 "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "date"
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "ART start date missing",
@@ -234,7 +240,34 @@
               }
             },
             {
-              "label": "",
+              "label": "Reason for refusing ART initiation",
+              "type": "obs",
+              "id": "refused_art",
+              "questionOptions": {
+                "concept": "163322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "textarea"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Reason for refusing ART initiation missing",
+              "type": "obs",
+              "questionOptions": {
+                "concept": "0117ec63-6fc8-4b37-99e9-7f6d99652852",
+                "rendering": "multiCheckbox"
+              }
+            },
+            {
+              "label": "Viral Load test done? ",
               "type": "obs",
               "id": "recent-viral-load",
               "questionOptions": {
@@ -242,28 +275,57 @@
                 "rendering": "radio",
                 "answers": [
                   {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
                   },
                   {
                     "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
                     "label": "Missing"
-                  },
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
                   }
                 ]
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                  }
+                }
+              ]
             },
             {
-              "label": "",
+              "label": "Viral load test date",
               "type": "obs",
               "id": "viral_load_test_date",
               "questionOptions": {
                 "concept": "163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "date"
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"recent-viral-load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "label": "Viral load test date missing",
@@ -274,7 +336,7 @@
               }
             },
             {
-              "label": "",
+              "label": "Viral load results",
               "type": "obs",
               "id": "viral-load-results",
               "questionOptions": {
@@ -282,36 +344,55 @@
                 "rendering": "radio",
                 "answers": [
                   {
-                    "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Results pending"
+                    "concept": "1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Target Detected"
+                  },
+                  {
+                    "concept": "1306AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Detected"
                   },
                   {
                     "concept": "1304AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Sample Rejected"
                   },
                   {
-                    "concept": "1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Target Detected"
+                    "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Results pending"
                   },
                   {
                     "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
                     "label": "Missing"
-                  },
-                  {
-                    "concept": "1306AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not Detected"
                   }
                 ]
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"recent-viral-load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
             },
             {
-              "label": "",
+              "label": "Viral load (copies/ml)",
               "type": "obs",
               "id": "viral_load_copies",
               "questionOptions": {
                 "concept": "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "number"
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"viral-load-results !== '1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
             },
             {
               "label": "Viral load copies missing",
@@ -322,7 +403,53 @@
               }
             },
             {
-              "label": "",
+              "label": "ANC Re-test HIV Status >= 36 weeks ",
+              "type": "obs",
+              "id": "anc-retest-thirty-six-weeks",
+              "questionOptions": {
+                "concept": "159803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  },
+                  {
+                    "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
+                    "label": "Not tested for HIV during this visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== 'd18fa331-f158-47d0-b344-cf147c7125a4'"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Mother And Infant Status",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Mother's status ",
               "type": "obs",
               "id": "mother-status",
               "questionOptions": {
@@ -334,35 +461,65 @@
                     "label": "Still in Care"
                   },
                   {
-                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                    "label": "Missing"
+                    "concept": "134612AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mother Died (Maternal Death)"
                   },
                   {
                     "concept": "159492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Transferred Out (Still Alive)"
                   },
                   {
-                    "concept": "134612AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Mother Died (Maternal Death)"
-                  },
-                  {
                     "concept": "1692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Discharged (Still Alive)"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
             },
             {
-              "label": "",
+              "label": "Discharge Date",
               "type": "obs",
               "id": "discharge-date",
               "questionOptions": {
                 "concept": "1641AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "date"
-              }
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"mother-status !== '1692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "label": "",
+              "label": "Number of babies born from this pregnancy",
               "type": "obs",
               "id": "birth-count",
               "questionOptions": {
