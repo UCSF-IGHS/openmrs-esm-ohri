@@ -526,6 +526,88 @@
                 "concept": "1568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "number"
               }
+            },
+            {
+              "id": "childrenDetails",
+              "label": "Children Details",
+              "type": "obsGroup",
+              "questionOptions": {
+                "rendering": "repeating",
+                "concept": "8677"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"false",
+                  "unspecified":"false",
+                  "hide":{
+                    "hideWhenExpression":""
+                  },
+                  "validators":[]
+                }
+              ],
+              "questions": [
+                {
+                  "label": "Sex",
+                  "type":"obs",
+                  "questionOptions":{
+                    "rendering":"radio",
+                    "concept":"1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers":[
+                      {
+                        "concept":"1535",
+                        "label":"Female"
+                      },
+                      {
+                        "concept":"1534",
+                        "label":"Male"
+                      }
+                    ]
+                  },
+                  "id":"childSex",
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "unspecified":"true",
+                      "hide":{
+                        "hideWhenExpression":"false"
+                      },
+                      "validators":[]
+                    }
+                  ]
+                },
+                {
+                  "label": "Date of Birth",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "164802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "weeksList": ""
+                  },
+                  "id": "birthDate",
+                  "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "date",
+                          "allowFutureDates": "false"
+                        },
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue > today() || myValue <= '1/1/1890'"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
