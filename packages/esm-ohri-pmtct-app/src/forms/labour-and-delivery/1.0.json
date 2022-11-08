@@ -555,11 +555,11 @@
                     "concept":"1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "answers":[
                       {
-                        "concept":"1535",
+                        "concept":"1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label":"Female"
                       },
                       {
-                        "concept":"1534",
+                        "concept":"1534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label":"Male"
                       }
                     ]
@@ -604,6 +604,205 @@
                           "failsWhenExpression": "myValue > today() || myValue <= '1/1/1890'"
                         }
                       ]
+                    }
+                  ]
+                },
+                {
+                  "label": "Infant Status",
+                  "type":"obs",
+                  "questionOptions":{
+                    "rendering":"radio",
+                    "concept":"159917AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers":[
+                      {
+                        "concept":"151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Infant alive"
+                      },
+                      {
+                        "concept":"154223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Infant Died (Neonatal Death)"
+                      },
+                      {
+                        "concept":"125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Still Birth"
+                      }
+                    ]
+                  },
+                  "id":"infantStatus",
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "unspecified":"true",
+                      "hide":{
+                        "hideWhenExpression":"false"
+                      },
+                      "validators":[]
+                    }
+                  ]
+                },
+                {
+                  "label": "Infant Feeding at discharge",
+                  "type":"obs",
+                  "questionOptions":{
+                    "rendering":"radio",
+                    "concept":"1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers":[
+                      {
+                        "concept":"5526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"EBF=Exclusive Breastfeeding"
+                      },
+                      {
+                        "concept":"1595AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"RF=Replacement feeding"
+                      }
+                    ]
+                  },
+                  "id":"infantFeeding",
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "unspecified":"true",
+                      "hide":{
+                        "hideWhenExpression":"mother-status === '134612AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      },
+                      "validators":[]
+                    }
+                  ]
+                },
+                {
+                  "label": "Type of still birth",
+                  "type":"obs",
+                  "questionOptions":{
+                    "rendering":"radio",
+                    "concept":"125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers":[
+                      {
+                        "concept":"159916AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Fresh"
+                      },
+                      {
+                        "concept":"135436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Macerated"
+                      }
+                    ]
+                  },
+                  "id":"stillBirthType",
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "unspecified":"true",
+                      "hide":{
+                        "hideWhenExpression":"false"
+                      },
+                      "validators":[]
+                    }
+                  ]
+                },
+                {
+                  "label": "Infant Received ARV",
+                  "type":"obs",
+                  "questionOptions":{
+                    "rendering":"radio",
+                    "concept":"1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "answers":[
+                      {
+                        "concept":"83a60fef-31c6-4937-907b-42ced15474e3",
+                        "label":"NVP Prophylaxis daily up to 6 weeks"
+                      },
+                      {
+                        "concept":"99b29c50-fc67-11e8-8eb2-f2801f1b9fd1",
+                        "label":"Infant received NVP + AZT prophylaxis up to 6 weeks"
+                      },
+                      {
+                        "concept":"127750AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Refused ARV Prophylaxis"
+                      },
+                      {
+                        "concept":"1754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label":"Stock-out of ARV Prophylaxis"
+                      }
+                    ]
+                  },
+                  "id":"receivedARV",
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "unspecified":"true",
+                      "hide":{
+                        "hideWhenExpression":"false"
+                      },
+                      "validators":[]
+                    }
+                  ]
+                },
+                {
+                  "label": "Reason for refusing infant ARV prophylaxis",
+                  "type": "obs",
+                  "id": "refused_prophylaxis",
+                  "questionOptions": {
+                    "concept": "163322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "rendering": "textarea"
+                  },
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "unspecified":"true",
+                      "hide":{
+                        "hideWhenExpression":"receivedARV !== '127750AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "label": "Date of Death",
+                  "type": "obs",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "weeksList": ""
+                  },
+                  "id": "deathDate",
+                  "behaviours": [
+                    {
+                      "intent": "*",
+                      "required": "true",
+                      "unspecified": "true",
+                      "hide": {
+                        "hideWhenExpression": "false"
+                      },
+                      "validators": [
+                        {
+                          "type": "date",
+                          "allowFutureDates": "false"
+                        },
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "myValue > today() || myValue <= '1/1/1950'"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "Infant PTracker ID",
+                  "type": "obs",
+                  "id": "infantPtrackerid",
+                  "questionOptions": {
+                    "concept": "164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "rendering": "text"
+                  },
+                  "behaviours":[
+                    {
+                      "intent":"*",
+                      "required":"true",
+                      "hide":{
+                        "hideWhenExpression":"false"
+                      }
                     }
                   ]
                 }
