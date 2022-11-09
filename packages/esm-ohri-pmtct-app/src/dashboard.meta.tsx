@@ -9,7 +9,7 @@ export const mchFolderMeta = {
 export const mnchSummary_dashboardMeta = {
   slot: 'mnch-summary-slot',
   columns: 1,
-  title: 'MNCH Summary',
+  title: 'Maternal, Newborn, and Child Health',
 };
 
 export const maternalHealth_dashboardMeta = {

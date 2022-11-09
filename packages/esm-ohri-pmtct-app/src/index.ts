@@ -12,7 +12,12 @@ import {
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
 import mchForms from './forms/forms-registry';
-import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  createDashboardLinkWithCustomTitle,
+  createOHRIDashboardLink,
+  OHRIHome,
+  OHRIWelcomeSection,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -44,7 +49,13 @@ function setupOpenMRS() {
       {
         id: 'mnch-summary-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(mnchSummary_dashboardMeta), options),
+        load: getSyncLifecycle(
+          createDashboardLinkWithCustomTitle({
+            linkText: 'MNCH Summary',
+            title: 'Maternal, Newborn, and Child Health',
+          }),
+          options,
+        ),
         meta: mnchSummary_dashboardMeta,
         online: true,
         offline: true,
