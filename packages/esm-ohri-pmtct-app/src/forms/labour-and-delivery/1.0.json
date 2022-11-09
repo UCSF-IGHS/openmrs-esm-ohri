@@ -2,7 +2,7 @@
   "name": "Labour & Delivery Form",
   "pages": [
     {
-      "label": "Labour & Delivery",
+      "label": "Mother Details",
       "sections": [
         {
           "label": "Delivery Information",
@@ -526,7 +526,18 @@
                 "concept": "1568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "number"
               }
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Infant Details",
+      "sections": [
+        {
+          "label": "",
+          "isExpanded": "true",
+          "questions": [
             {
               "id": "childrenDetails",
               "label": "Children Details",
