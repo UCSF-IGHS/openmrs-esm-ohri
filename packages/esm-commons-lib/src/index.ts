@@ -39,3 +39,4 @@ export * from './utils/pagination';
 export * from './utils/sidenav-links';
 export * from './workspace/ohri-workspace-utils';
 export * from './workspace/patient-list-workspace';
+export * from './dashboards/createDashboardLink';
