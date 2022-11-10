@@ -16,3 +16,6 @@ export const visitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivTestStatus = '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artLinkage = '6e62bf7e-2107-4d09-b485-6e60cbbb2d08';
 export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+//Infant Postnatal
+export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
