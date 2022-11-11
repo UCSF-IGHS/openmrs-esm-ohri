@@ -1,0 +1,534 @@
+{
+    "name": "Mother - Postanal Form",
+    "pages": [
+      {
+        "label": "Mother - Postanal",
+        "sections": [
+          {
+            "label": "Infant Exposure",
+            "isExpanded": "true",
+            "questions": [
+              {
+                "label": "Infant Exposure Status",
+                "type": "obs",
+                "id": "infant-hiv-exposure-status",
+                "questionOptions": {
+                  "concept": "6027869c-5d7e-4a82-b22f-6d9c57d61a4d",
+                  "rendering": "radio",
+                  "answers": [
+                    {
+                      "concept": "54431b42-dae4-4d19-9034-44ba7489a334",
+                      "label": "Currently Exposed"
+                    },
+                    {
+                      "concept": "8c64a106-3db1-4a78-af11-df6f5a054945",
+                      "label": "Currently Unexposed"
+                    },
+                    {
+                      "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                      "label": "Missing"
+                    }
+                  ]
+                }
+              },
+
+          {
+            "label": "Infant Prophylaxis Status",
+            "type": "obs",
+            "id": "infant-prophylaxis-status",
+            "questionOptions": {
+              "concept": "1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "e2ae63f3-e4c9-4822-bf18-c894928556c8",
+                  "label": "Never received ARV prophylaxis"
+                },
+                {
+                  "concept": "857c5868-bdcd-4f5c-aadd-8b0fa7de8481",
+                  "label": "Received ARV prophylaxis"
+                },
+                {
+                  "concept": "8eb8dee6-5342-4529-ad2f-4fc5a66becd9",
+                  "label": "Stopped ARV prophylaxis according to guideline"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Infant Prophylaxis Adherence",
+            "type": "obs",
+            "id": "infant-prophylaxis-adherence",
+            "questionOptions": {
+              "concept": "1658AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "159406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Fair"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Good"
+                },
+                {
+                  "concept": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Poor"
+                },
+                {
+                  "concept": "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Starting prophylaxis on this visit"
+                }
+              ]
+            }
+          },
+          {
+            "label": "CTX Status",
+            "type": "obs",
+            "id": "infant-ctx-status",
+            "questionOptions": {
+              "concept": "f3de6eb3-5d4a-43ca-8648-74649271238c",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "a1cab110-9652-4891-90e2-c01a5dbca453",
+                  "label": "Never received CTX prophylaxis"
+                },
+                {
+                  "concept": "f3a26c7d-a612-4b71-bd30-a359cae817bc",
+                  "label": "Received CTX prophylaxis"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "3cc14c25-3117-4541-8f8e-705943087385",
+                  "label": "Stopped CTX prophylaxis"
+                }
+              ]
+            }
+          },
+          {
+            "label": "CTX Adherence",
+            "type": "obs",
+            "id": "infant-ctx-adherence",
+            "questionOptions": {
+              "concept": "161652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "159406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Fair"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Good"
+                },
+                {
+                  "concept": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Poor"
+                },
+                {
+                  "concept": "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Starting prophylaxis on this visit"
+                }
+              ]
+            }
+          },
+          {
+            "label": "HIV Test Done",
+            "type": "obs",
+            "id": "infant-hiv-test",
+            "questionOptions": {
+              "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
+                  "label": "Tested for HIV during this visit"
+                },
+                {
+                  "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
+                  "label": "Not tested for HIV during this visit"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Test Type",
+            "type": "obs",
+            "id": "infant-test-type",
+            "questionOptions": {
+              "concept": "ee8c0292-47f8-4c01-8b60-8ba13a560e1a",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "1042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Rapid Test"
+                },
+                {
+                  "concept": "844AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "DNA PCR"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Test result",
+            "type": "obs",
+            "id": "dnapcr-test-result",
+            "questionOptions": {
+              "concept": "164461AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Results Pending"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Positive"
+                },
+                {
+                  "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Negative"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Rapid Test Results",
+            "type": "obs",
+            "id": "rapid-test-result",
+            "questionOptions": {
+              "concept": "164860AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Positive"
+                },
+                {
+                  "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Negative"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Confrimatory Test Done",
+            "type": "obs",
+            "id": "confirmatory-test-done",
+            "questionOptions": {
+              "concept": "8c2b3506-5b77-4916-a5c8-677a37a65007",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "No"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Yes"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Final Test Results",
+            "type": "obs",
+            "id": "final-test-result",
+            "questionOptions": {
+              "concept": "164460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Results Pending"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Positive"
+                },
+                {
+                  "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Negative"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Infant ART Link",
+            "type": "obs",
+            "id": "infant-art-link",
+            "questionOptions": {
+              "concept": "a40d8bc4-56b8-4f28-a1dd-412da5cf20ed",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "No"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Yes"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Infant ART Unique Number missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "43cb14fe-6f06-4b40-81f0-a712b805a74d",
+              "rendering": "multiCheckbox"
+            }
+          },
+          {
+            "label": "Breastfeeding Type",
+            "type": "obs",
+            "id": "breastfeeding",
+            "questionOptions": {
+              "concept": "1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "5526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Exclusive Breastfeeding"
+                },
+                {
+                  "concept": "159854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Complementary Feeding"
+                },
+                {
+                  "concept": "6046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Mixed Feeding"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Other"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Other BreastFeeding Method",
+            "type": "obs",
+            "id": "other_feeding_method",
+            "questionOptions": {
+              "concept": "163719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "Text"
+            }
+          },
+          {
+            "label": "Other feeding method missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "116046eb-ff1b-4421-9348-55b76a40adba",
+              "rendering": "multiCheckbox"
+            }
+          },
+          {
+            "label": "Infant Transfer Status",
+            "type": "obs",
+            "id": "infant-transfer-status",
+            "questionOptions": {
+              "concept": "160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "161636AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Still in Care"
+                },
+                {
+                  "concept": "5240AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Lost to Follow Up"
+                },
+                {
+                  "concept": "160432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Dead"
+                },
+                {
+                  "concept": "164861AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Confirmed HIV negative infant (discharged from PMTCT)"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                },
+                {
+                  "concept": "159492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Transferred Out"
+                },
+                {
+                  "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Transfer In to ART Clinic"
+                }
+              ]
+            }
+          },
+          {
+            "label": "Transfer In from",
+            "type": "obs",
+            "id": "transfer-in-from",
+            "questionOptions": {
+              "concept": "160535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "Text"
+            }
+          },
+          {
+            "label": "Transfer Out to",
+            "type": "obs",
+            "id": "transfer-out-to",
+            "questionOptions": {
+              "concept": "159495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "text"
+            }
+          },
+          {
+            "label": "Transfer In Date",
+            "type": "obs",
+            "id": "transfer_in_date",
+            "questionOptions": {
+              "concept": "160534AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            }
+          },
+          {
+            "label": "Transfer in date missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "b43fbd27-52d1-4e3f-803b-de26c7fe6413",
+              "rendering": "multiCheckbox"
+            }
+          },
+          {
+            "label": "Transfer Out Date",
+            "type": "obs",
+            "id": "transfer_out_date",
+            "questionOptions": {
+              "concept": "160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            }
+          },
+          {
+            "label": "Transfer out date missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "cd0f6cd4-b976-11e7-abc4-cec278b6b50a",
+              "rendering": "multiCheckbox"
+            }
+          },
+          {
+            "label": "Date of Event",
+            "type": "obs",
+            "id": "date_of_event",
+            "questionOptions": {
+              "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            }
+          },
+          {
+            "label": "Date of event missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "d5398272-a0c0-4063-8def-23de4f37d008",
+              "rendering": "multiCheckbox"
+            }
+          },
+          {
+            "label": "Infant Death Date",
+            "type": "obs",
+            "id": "infant_death_date",
+            "questionOptions": {
+              "concept": "1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            }
+          },
+          {
+            "label": "Infant death date missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "38b6933e-b6ec-4213-8784-987920f5e49c",
+              "rendering": "multiCheckbox"
+            }
+          },
+          {
+            "label": "next Visit Date",
+            "type": "obs",
+            "id": "next_visit_date",
+            "questionOptions": {
+              "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            }
+          },
+          {
+            "label": "Next visit date missing",
+            "type": "obs",
+            "questionOptions": {
+              "concept": "86985688-b93c-44a8-80da-106b9fa5bed6",
+              "rendering": "multiCheckbox"
+            }
+          }
+        ]
+    }
+        ]
+      }
+    ],
+    "availableIntents": [
+      {
+        "intent": "*",
+        "display": "Infant - Postanal Form"
+      }
+    ],
+    "processor": "EncounterFormProcessor",
+    "uuid": "xxxx",
+    "referencedForms": [],
+    "encounterType": "026a050c-4588-41ef-bd89-178dd47f4ef9",
+    "allowUnspecifiedAll": true
+  }
