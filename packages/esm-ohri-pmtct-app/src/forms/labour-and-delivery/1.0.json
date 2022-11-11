@@ -232,14 +232,6 @@
               ]
             },
             {
-              "label": "ART start date missing",
-              "type": "obs",
-              "questionOptions": {
-                "concept": "022995dd-079a-47d4-9d76-46a43a49d079",
-                "rendering": "multiCheckbox"
-              }
-            },
-            {
               "label": "Reason for refusing ART initiation",
               "type": "obs",
               "id": "refused_art",
