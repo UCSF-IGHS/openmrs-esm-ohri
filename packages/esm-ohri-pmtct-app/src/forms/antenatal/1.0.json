@@ -1,0 +1,634 @@
+
+{
+  "name": "Antenatal Form",
+  "pages": [
+    {
+      "label": "Antenatal Details",
+      "sections": [
+        {
+          "label": "ANC Visit Type",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Is this your first antenatal visit?",
+              "type": "obs",
+              "id": "antenatal-visit-type",
+              "questionOptions": {
+                "concept": "164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "PTracker ID Capture",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "PTracker ID",
+              "type": "obs",
+              "id": "ptrackerid",
+              "questionOptions": {
+                "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
+                "rendering": "text"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Details of the pregnancy",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "How many times have you been pregnant, including current pregnancy (Gravida)?",
+              "type": "obs",
+              "id": "gravida",
+              "questionOptions": {
+                "concept": "5624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "number"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "How many babies have you delivered before (Para)?",
+              "type": "obs",
+              "id": "para",
+              "questionOptions": {
+                "concept": "1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "number"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Date of last normal menstrual period (LNMP)",
+              "type": "obs",
+              "id": "lmp",
+              "questionOptions": {
+                "concept": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Estimated date of delivery (EDD)",
+              "type": "obs",
+              "id": "edd",
+              "questionOptions": {
+                "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "HIV Testing and ART Initiation",
+          "isExpanded": "true",
+          "questions": [
+
+            {
+              "label": "HIV test status ",
+              "type": "obs",
+              "id": "hiv-test",
+              "questionOptions": {
+                "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
+                    "label": "Tested for HIV during this visit"
+                  },
+                  {
+                    "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
+                    "label": "Previously known positive"
+                  },
+                  {
+                    "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
+                    "label": "Not tested for HIV during this visit"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "HIV test result ",
+              "type": "obs",
+              "id": "hiv-test-result",
+              "questionOptions": {
+                "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "ART initiation ",
+              "type": "obs",
+              "id": "art-initiation",
+              "questionOptions": {
+                "concept": "6e62bf7e-2107-4d09-b485-6e60cbbb2d08",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Already on ART before current pregnancy"
+                  },
+                  {
+                    "concept": "160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Started on ART in ANC current pregnancy"
+                  },
+                  {
+                    "concept": "160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refused ART"
+                  },
+
+                  {
+                    "concept": "1754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not started due to stockout of ART"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Reason for refusing ART initiation",
+              "type": "obs",
+              "id": "refused_art",
+              "questionOptions": {
+                "concept": "163322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "text"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "ART Unique Number",
+              "type": "obs",
+              "id": "art-number",
+              "questionOptions": {
+                "concept": "9d6d1eec-2cd6-4637-a981-4a46b4b8b41f",
+                "rendering": "text"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "ART start date",
+              "type": "obs",
+              "id": "art_start_date",
+              "questionOptions": {
+                "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Viral Load test done? ",
+              "type": "obs",
+              "id": "recent-viral-load",
+              "questionOptions": {
+                "concept": "163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Viral load test date",
+              "type": "obs",
+              "id": "viral_load_test_date",
+              "questionOptions": {
+                "concept": "163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"recent-viral-load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Viral load results",
+              "type": "obs",
+              "id": "viral-load-results",
+              "questionOptions": {
+                "concept": "1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Target Detected"
+                  },
+                  {
+                    "concept": "1306AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not Detected"
+                  },
+                  {
+                    "concept": "1304AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sample Rejected"
+                  },
+                  {
+                    "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Results Pending"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"recent-viral-load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Viral load (copies/ml)",
+              "type": "obs",
+              "id": "viral_load_copies",
+              "questionOptions": {
+                "concept": "856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "number"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"viral-load-results !== '1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Partner HIV test done?",
+              "type": "obs",
+              "id": "partner-testing",
+              "questionOptions": {
+                "concept": "161557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
+                    "label": "Previously known positive"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Partner HIV status",
+              "type": "obs",
+              "id": "partner-hiv-test",
+              "questionOptions": {
+                "concept": "1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"partner-testing !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Date partner tested",
+              "type": "obs",
+              "id": "partner_date_tested",
+              "questionOptions": {
+                "concept": "90bd8fec-3ff1-11e9-b210-d663bd873d93",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"partner-testing !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Follow Up",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Next Visit Date",
+              "type": "obs",
+              "id": "next_visit_date",
+              "questionOptions": {
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"true"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, today())"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Facility of next appointment",
+              "type": "obs",
+              "id": "transfer-out",
+              "questionOptions": {
+                "concept": "efc87cd5-2fd8-411c-ba52-b0d858f541e7",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "163266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "This facility"
+                  },
+                  {
+                    "concept": "52f7fc03-611b-4b62-8498-37beb2fa99ed",
+                    "label": "In Transit"
+                  },
+                  {
+                    "concept": "160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Transfer out"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Transfer to",
+              "type": "obs",
+              "id": "transfer-out-to",
+              "questionOptions": {
+                "concept": "159495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "text"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"transfer-out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "availableIntents":[
+    {
+      "intent":"*",
+      "display":"Antenatal Form"
+    }
+  ],
+  "processor":"EncounterFormProcessor",
+  "uuid":"xxxx",
+  "referencedForms":[],
+  "encounterType":"12de5bc5-352e-4faf-9961-a2125085a75c",
+  "allowUnspecifiedAll":true
+}
+
