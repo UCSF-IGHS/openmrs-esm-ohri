@@ -55,7 +55,8 @@
               "behaviours":[
                 {
                   "intent":"*",
-                  "unspecified":"true",
+                  "required":"true",
+                  "unspecified":"false",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
