@@ -14,9 +14,7 @@
                       "id":"ptrackerid",
                       "questionOptions":{
                          "concept":"6c45421e-2566-47cb-bbb3-07586fffbfe2",
-                         "rendering":"text",
-                         "max": "12",
-						       "min": "0"
+                         "rendering":"text"
                       },
                       "behaviours":[
                         {
@@ -168,10 +166,7 @@
                     "id":"art-number", 
                     "questionOptions":{
                        "concept":"43cb14fe-6f06-4b40-81f0-a712b805a74d",
-                       "rendering":"text",
-                       "max": "123456789101112",
-						     "min": "1",
-                       "showDate":"false"
+                       "rendering":"text"
                     },
                     "behaviours":[
                       {
