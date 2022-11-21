@@ -42,9 +42,7 @@
                 "id": "ptracker_id",
                 "questionOptions": {
                   "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
-                  "rendering": "number",
-                  "max": "999999999999",
-                  "min": "1"
+                  "rendering": "text"
                 },
                 "behaviours":[
                   {
