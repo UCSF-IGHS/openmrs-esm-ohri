@@ -144,10 +144,6 @@
                   "label": "Fair"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Good"
                 },
@@ -158,6 +154,10 @@
                 {
                   "concept": "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Starting prophylaxis on this visit"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -192,12 +192,12 @@
                   "label": "Received CTX prophylaxis"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "3cc14c25-3117-4541-8f8e-705943087385",
                   "label": "Stopped CTX prophylaxis"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -228,10 +228,6 @@
                   "label": "Fair"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Good"
                 },
@@ -242,6 +238,10 @@
                 {
                   "concept": "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Starting prophylaxis on this visit"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -344,16 +344,16 @@
                   "label": "Results Pending"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Positive"
                 },
                 {
                   "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Negative"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -380,16 +380,16 @@
               "rendering": "radio",
               "answers": [
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Positive"
                 },
                 {
                   "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Negative"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -420,12 +420,12 @@
                   "label": "No"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Yes"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -456,16 +456,16 @@
                   "label": "Results Pending"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Positive"
                 },
                 {
                   "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Negative"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -496,12 +496,12 @@
                   "label": "No"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Yes"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -540,12 +540,12 @@
                   "label": "Mixed Feeding"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Other"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -610,16 +610,16 @@
                   "label": "Confirmed HIV negative infant (discharged from PMTCT)"
                 },
                 {
-                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
-                  "label": "Missing"
-                },
-                {
                   "concept": "159492AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Transferred Out"
                 },
                 {
                   "concept": "160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Transfer In to ART Clinic"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
                 }
               ]
             },
@@ -629,7 +629,7 @@
                 "required":"true",
                 "unspecified":"true",
                 "hide":{
-                  "hideWhenExpression":"false"
+                  "hideWhenExpression":"infant-hiv-exposure-status !== '54431b42-dae4-4d19-9034-44ba7489a334'"
                 },
                 "validators":[
                   
@@ -833,6 +833,6 @@
     "processor": "EncounterFormProcessor",
     "uuid": "xxxx",
     "referencedForms": [],
-    "encounterType": "026a050c-4588-41ef-bd89-178dd47f4ef9",
+    "encounterType": "af1f1b24-d2e8-4282-b308-0bf79b365584",
     "allowUnspecifiedAll": true
   }

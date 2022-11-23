@@ -34,7 +34,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'bookedForANC',
         header: t('bookedForANC', 'Booked for ANC'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate);
+          return getObsFromEncounter(encounter, visitDate, true);
         },
       },
       {
