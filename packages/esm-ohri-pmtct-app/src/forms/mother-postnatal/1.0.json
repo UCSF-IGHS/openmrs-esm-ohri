@@ -117,7 +117,7 @@
                       ]
                    },
                    {
-                      "label":"Art Initiation",
+                      "label":"ART Initiation",
                       "type":"obs",
                       "id":"art-initiation",
                       "questionOptions":{
@@ -183,7 +183,7 @@
                     ]
                  },
                    {
-                      "label":"Reason for refusing ART initiation missing",
+                      "label":"Reason why client has refused ART",
                       "type":"obs",
                       "id":"reason-for-refusing-art",
                       "questionOptions":{
@@ -487,6 +487,6 @@
     "processor":"EncounterFormProcessor",
     "uuid":"xxxx",
     "referencedForms":[],
-    "encounterType":"3e3c5e17-7d43-467f-8b10-088b41ddf92f",
+    "encounterType":"269bcc7f-04f8-4ddc-883d-7a3a0d569aad",
     "allowUnspecifiedAll":true
  }
