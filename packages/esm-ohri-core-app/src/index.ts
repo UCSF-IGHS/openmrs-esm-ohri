@@ -7,7 +7,7 @@ import {
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { homeDashboardMeta } from './dashboard.meta';
+import { appointmentsDashboardMeta, homeDashboardMeta, pharmacyDashboardMeta } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -53,6 +53,44 @@ function setupOpenMRS() {
           moduleName,
         }),
         meta: homeDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'appointments-ohri-dashboard-ext',
+        slot: 'dashboard-links-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(appointmentsDashboardMeta), options),
+        meta: appointmentsDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'ohri-appointments-dashboard',
+        slot: 'ohri-appointments-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/appointments/appointments-dashboard.component'), {
+          featureName: 'appointments-dashboard',
+          moduleName,
+        }),
+        meta: appointmentsDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'pharmacy-ohri-dashboard-ext',
+        slot: 'dashboard-links-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(pharmacyDashboardMeta), options),
+        meta: pharmacyDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'ohri-pharmacy-dashboard',
+        slot: 'ohri-pharmacy-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/pharmacy/pharmacy-dashboard.component'), {
+          featureName: 'pharmacy-dashboard',
+          moduleName,
+        }),
+        meta: pharmacyDashboardMeta,
         online: true,
         offline: true,
       },
