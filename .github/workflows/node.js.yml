@@ -159,24 +159,20 @@ jobs:
   dev_nambia:
     runs-on: ubuntu-latest
 
-    needs: dev
+    needs: pre_release
 
     if: ${{ github.ref == 'refs/heads/namibia' }}
 
     steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-      - name: Compute Timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - uses: garygrossgarten/github-action-ssh@release
         name: Run the Update MicroFronEnd Script
         with:
-            # command: cd /usr/share/tomcat/microfrontends/dev && /bin/bash update_microfrontends.sh
+            command: cd /opt/microfrontends && /bin/bash update_microfrontends.sh
             host: ${{ secrets.HISTAC_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
 
-            port: ${{ secrets.HISTAC_PORT }}
+            port: ${{ secrets.HISTAC_NAMIBIA_PORT }}
 
   pre_demo:
     runs-on: ubuntu-latest
