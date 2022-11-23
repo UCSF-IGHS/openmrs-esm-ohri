@@ -9,12 +9,11 @@ interface HieOutcomesListProps {
 const HieOutcomesList: React.FC<HieOutcomesListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('hie_outcomes_header', 'HIE Outcomes');
-  const displayText = t('hie_outcomes_display', 'HIE Outcomes');
+  const headerTitle = t('hieOutcomes', 'HIE Outcomes');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

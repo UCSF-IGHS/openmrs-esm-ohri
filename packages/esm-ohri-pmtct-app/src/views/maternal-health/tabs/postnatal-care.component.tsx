@@ -1,11 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  EmptyStateComingSoon,
-  EncounterList,
-  EncounterListColumn,
-  getObsFromEncounter,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
 import {
   artLinkage,
@@ -22,9 +17,7 @@ interface PostnatalCareListProps {
 
 const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('postnatal_care_header', 'Postnatal Care');
-  const displayText = t('postnatal_care_display', 'Postantal Care');
+  const headerTitle = t('postnatalCare', 'Postnatal Care');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -93,7 +86,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
       encounterUuid={motherPostnatalEncounterType}
       form={{ package: 'maternal_health', name: 'mother_postanatal_form' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: t('add', 'Add'),

@@ -8,13 +8,11 @@ interface CacxAppointmentsListProps {
 
 const CacxAppointmentsList: React.FC<CacxAppointmentsListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('cacx_appointments_header', 'CaCx Appointments');
-  const displayText = t('cacx_appointments_display', 'CaCx Appointments');
+  const headerTitle = t('cacxAppointments', 'CaCx Appointments');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

@@ -8,14 +8,13 @@ interface OverviewListProps {
 
 const DrugOrdersOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('drugOrdersTitle', 'Drug Orders');
-  const displayText = t('drugOrdersDisplay', 'Drug Orders');
+  const headerTitle = t('drugOrders', 'Drug Orders');
 
   const launchHTSForm = (form?: any) => {};
 
   return (
     <>
-      <EmptyState displayText={displayText} headerTitle={headerTitle} launchForm={launchHTSForm} />
+      <EmptyState displayText={headerTitle} headerTitle={headerTitle} launchForm={launchHTSForm} />
     </>
   );
 };

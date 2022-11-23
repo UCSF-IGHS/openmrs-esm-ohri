@@ -3,5 +3,5 @@
 
 set -e  # die on error
 
-yarn pretty-quick --staged
 yarn run verify
+yarn run test

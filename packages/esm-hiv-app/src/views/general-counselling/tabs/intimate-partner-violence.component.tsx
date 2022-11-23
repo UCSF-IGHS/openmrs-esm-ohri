@@ -72,7 +72,7 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
     () => [
       {
         key: 'screeningdate',
-        header: t('screeningdate', 'Screening Date'),
+        header: t('screeningDate', 'Screening Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, IpvScreeningDate_UUID, true);
         },

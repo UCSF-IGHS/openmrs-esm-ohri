@@ -8,13 +8,11 @@ interface LabsListProps {
 
 const LabsList: React.FC<LabsListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('labs_header', 'Labs');
-  const displayText = t('labs_display', 'Labs');
+  const headerTitle = t('labs', 'Labs');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

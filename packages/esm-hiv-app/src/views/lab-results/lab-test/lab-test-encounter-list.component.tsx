@@ -21,6 +21,7 @@ interface LabTestOverviewListProps {
 const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }) => {
   const encounters: Array<string> = [CD4LabResultsEncounter_UUID];
   const { t } = useTranslation();
+  const headerTitle = t('labTests', 'Lab Tests');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -49,14 +50,11 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
     [],
   );
 
-  const headerTitle = t('cd4', 'Lab Tests');
-  const displayText = t('cd4', 'Lab Tests');
-
   return (
     <MultipleEncounterList
       patientUuid={patientUuid}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       encounterTypeUuids={encounters}
     />

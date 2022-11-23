@@ -66,8 +66,7 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
     ],
     [],
   );
-  const headerTitle = t('DeathTabList', 'Death');
-  const displayText = t('DeathTabList', 'Death');
+  const headerTitle = t('death', 'Death');
 
   return (
     <EncounterList
@@ -75,7 +74,7 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
       encounterUuid={deathFormEncounterType_UUID}
       form={{ package: 'hiv', name: 'death_form' }}
       columns={columnsLab}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: t('add', 'Add'),

@@ -28,7 +28,7 @@ function MaternalChildSummaryTiles({ launchWorkSpace }) {
     {
       title: t('children', 'Children'),
       linkAddress: '#',
-      subTitle: t('HIVExposedChildrenEnrolledInFollowUpCare', '# HIV Exposed children enrolled in follow up care'),
+      subTitle: t('hivExposedChildrenEnrolledInFollowUpCare', '# HIV Exposed children enrolled in follow up care'),
       value: 'N/A',
     },
   ];

@@ -17,6 +17,7 @@ interface CD4OverviewListProps {
 
 const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const headerTitle = t('cd4', 'CD4');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -68,16 +69,13 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
     [],
   );
 
-  const headerTitle = t('cd4Title', 'CD4');
-  const displayText = t('cd4Display', 'CD4');
-
   return (
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={CD4LabResultsEncounter_UUID}
       form={{ package: 'hiv', name: 'cd4_lab_results' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',

@@ -86,7 +86,7 @@ const AllClientsList: React.FC<AllClientsListProps> = ({ patientUuid }) => {
           </div>
         </>
       ) : (
-        <EmptyStateComingSoon displayText={t('AllClients', 'All CLients')} headerTitle={headerTitle} />
+        <EmptyStateComingSoon displayText={t('allClients', 'All Clients')} headerTitle={headerTitle} />
       )}
     </>
   );

@@ -67,8 +67,7 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
     [],
   );
 
-  const headerTitle = t('contactTracingTitle', 'Contact Tracing');
-  const displayText = t('contactTracingDisplay', 'Contact Tracing');
+  const headerTitle = t('contactTracing', 'Contact Tracing');
 
   return (
     <EncounterList
@@ -76,7 +75,7 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
       encounterUuid={ContactTracingEncounterType_UUID}
       form={{ package: 'hiv', name: 'contact_tracing' }}
       columns={columnsLab}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',
