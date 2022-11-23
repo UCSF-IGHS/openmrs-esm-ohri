@@ -161,7 +161,7 @@ jobs:
 
     needs: pre_release
 
-    if: ${{ github.ref == 'refs/heads/namibia' }}
+    if: ${{ github.ref == 'refs/heads/dev' }}
 
     steps:
       - uses: garygrossgarten/github-action-ssh@release
