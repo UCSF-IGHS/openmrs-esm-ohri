@@ -71,6 +71,10 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -195,7 +199,7 @@
               ]
             },
             {
-              "label": "HIV Test Status",
+              "label": "HIV Test Status at maternity/delivery",
               "type": "obs",
               "id": "hiv_test",
               "questionOptions": {
@@ -213,6 +217,10 @@
                   {
                     "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
                     "label": "Not tested for HIV during this visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -297,6 +305,10 @@
                         "value":"1067"
                       }
                     ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -384,6 +396,10 @@
                   {
                     "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
                     "label": "Not tested for HIV during this visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -473,6 +489,10 @@
                         "value":"1761"
                       }
                     ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -569,6 +589,10 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -634,6 +658,10 @@
                   {
                     "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Results pending"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -697,6 +725,10 @@
                   {
                     "concept": "1692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Discharged (Still Alive)"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -860,6 +892,10 @@
                       {
                         "concept":"125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label":"Still Birth"
+                      },
+                      {
+                        "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                        "label": "Missing"
                       }
                     ]
                   },
@@ -890,6 +926,10 @@
                       {
                         "concept":"1595AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label":"RF=Replacement feeding"
+                      },
+                      {
+                        "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                        "label": "Missing"
                       }
                     ]
                   },
@@ -920,6 +960,10 @@
                       {
                         "concept":"135436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label":"Macerated"
+                      },
+                      {
+                        "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                        "label": "Missing"
                       }
                     ]
                   },
@@ -958,6 +1002,10 @@
                       {
                         "concept":"1754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "label":"Stock-out of ARV Prophylaxis"
+                      },
+                      {
+                        "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                        "label": "Missing"
                       }
                     ]
                   },
@@ -1057,6 +1105,6 @@
   "processor":"EncounterFormProcessor",
   "uuid":"xxxx",
   "referencedForms":[],
-  "encounterType":"1e5614d6-5306-11e6-beb8-9e71128cae77",
+  "encounterType":"2678423c-0523-4d76-b0da-18177b439eed",
   "allowUnspecifiedAll":true
 }
