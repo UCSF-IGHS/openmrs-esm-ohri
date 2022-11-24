@@ -52,6 +52,10 @@
                   {
                     "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Return ANC Visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -227,6 +231,10 @@
                   {
                     "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
                     "label": "Not tested for HIV during this visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -260,6 +268,10 @@
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Unknown"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -293,6 +305,10 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -376,6 +392,10 @@
                         "value":"1067"
                       }
                     ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -493,6 +513,10 @@
                         "value":"1761"
                       }
                     ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -590,6 +614,10 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -656,6 +684,10 @@
                   {
                     "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Results Pending"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -787,7 +819,7 @@
   "processor":"EncounterFormProcessor",
   "uuid":"xxxx",
   "referencedForms":[],
-  "encounterType":"12de5bc5-352e-4faf-9961-a2125085a75c",
+  "encounterType":"2549af50-75c8-4aeb-87ca-4bb2cef6c69a",
   "allowUnspecifiedAll":true
 }
 
