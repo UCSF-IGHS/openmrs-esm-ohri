@@ -15,9 +15,7 @@ interface AntenatalCareListProps {
 
 const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('antenatal_care_header', 'Antenatal Care');
-  const displayText = t('antenatal_care_display', 'Antenatal Care');
+  const headerTitle = t('antenatalCare', 'Antenatal Care');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -107,7 +105,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
       encounterUuid={antenatalEncounterType}
       form={{ package: 'maternal_health', name: 'antenatal' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: t('add', 'Add'),

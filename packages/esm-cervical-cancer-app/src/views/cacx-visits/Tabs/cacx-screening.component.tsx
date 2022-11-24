@@ -8,13 +8,11 @@ interface CacxScreeningListProps {
 
 const CacxScreeningList: React.FC<CacxScreeningListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('cacx_screening_header', 'CaCx Screening');
-  const displayText = t('cacx_screening_display', 'CaCx Screening');
+  const headerTitle = t('cacxScreening', 'CaCx Screening');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

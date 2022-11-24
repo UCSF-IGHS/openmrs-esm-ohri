@@ -17,9 +17,7 @@ interface LabourDeliveryListProps {
 
 const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('labour_delivery_header', 'Labour and Delivery');
-  const displayText = t('labour_delivery_display', 'Labour and Delivery');
+  const headerTitle = t('labourAndDelivery', 'Labour and Delivery');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -102,7 +100,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
       encounterUuid={labourAndDeliveryEncounterType}
       form={{ package: 'maternal_health', name: 'labour_and_delivery' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: t('add', 'Add'),

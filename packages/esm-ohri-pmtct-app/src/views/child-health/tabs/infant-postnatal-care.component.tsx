@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
@@ -17,9 +17,7 @@ interface InfantPostnatalListProps {
 
 const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('infant_postnatal_care_header', 'Infant Postnatal Care');
-  const displayText = t('infant_postnatal_care_display', 'Infant Postnatal Care');
+  const headerTitle = t('infantPostnatalCare', 'Infant Postnatal Care');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -88,7 +86,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
       encounterUuid={infantPostnatalEncounterType}
       form={{ package: 'child_health', name: 'infant_postnatal' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: t('add', 'Add'),

@@ -8,13 +8,11 @@ interface FamilyLinkageListProps {
 
 const FamilyLinkageList: React.FC<FamilyLinkageListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('family_linkage_header', 'Family Linkage');
-  const displayText = t('family_linkage_display', 'Family Linkage');
+  const headerTitle = t('familyLinkage', 'Family Linkage');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

@@ -10,8 +10,7 @@ interface OverviewListProps {
 
 const ServiceExitOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('serviceExitTitle', 'Service Exit');
-  const displayText = t('serviceExitDisplay', 'Service Exit');
+  const headerTitle = t('serviceExit', 'Service Exit');
   const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const rowCount = 5;
@@ -48,7 +47,7 @@ const ServiceExitOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) =
           </div>
         </>
       ) : (
-        <EmptyState displayText={displayText} headerTitle={headerTitle} launchForm={launchHTSForm} />
+        <EmptyState displayText={headerTitle} headerTitle={headerTitle} launchForm={launchHTSForm} />
       )}
     </>
   );

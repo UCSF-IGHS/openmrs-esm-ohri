@@ -19,7 +19,7 @@ const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) 
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('hivEnrollment', 'HIV Enrolment')}</Tab>
+          <Tab>{t('hivEnrolment', 'HIV Enrolment')}</Tab>
           <Tab>{t('artTherapy', 'ART Therapy')}</Tab>
           <Tab>{t('serviceDeliveryModel', 'Service Delivery Model')}</Tab>
           <Tab>{t('transferOut', 'Transfer - Out')}</Tab>

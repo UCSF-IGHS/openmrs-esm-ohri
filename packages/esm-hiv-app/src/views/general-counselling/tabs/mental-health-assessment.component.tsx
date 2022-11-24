@@ -101,14 +101,14 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
       },
       {
         key: 'appetite',
-        header: t('appetite', 'Poor Appetite'),
+        header: t('poorAppetite', 'Poor Appetite'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PoorAppetiteConcept_UUID);
         },
       },
       {
         key: 'concentration',
-        header: t('concentration', 'Concentration Problems'),
+        header: t('concentrationProblems', 'Concentration Problems'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PoorConcentrationConcept_UUID);
         },

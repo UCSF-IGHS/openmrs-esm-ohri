@@ -8,13 +8,11 @@ interface InfantSummaryListProps {
 
 const InfantSummaryList: React.FC<InfantSummaryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('infant_summary_header', "Infant's Summary");
-  const displayText = t('infant_summary_display', "Infant's Summary");
+  const headerTitle = t('infantSummary', "Infant's Summary");
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

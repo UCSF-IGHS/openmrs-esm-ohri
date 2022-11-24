@@ -8,13 +8,11 @@ interface EnhancedAdherenceCounsellingListProps {
 
 const EnhancedAdherenceCounsellingList: React.FC<EnhancedAdherenceCounsellingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('enhancedAdherenceCounsellingTitle', 'Enhanced Adherence Counselling');
-  const displayText = t('enhancedAdherenceCounsellingDisplay', 'Enhanced Adherence Counselling');
+  const headerTitle = t('enhancedAdherenceCounselling', 'Enhanced Adherence Counselling');
 
   return (
     <>
-      <EmptyState displayText={displayText} headerTitle={headerTitle} />
+      <EmptyState displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

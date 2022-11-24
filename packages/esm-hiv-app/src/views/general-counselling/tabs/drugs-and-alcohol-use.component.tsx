@@ -8,13 +8,11 @@ interface DrugsAndAlcoholUseListProps {
 
 const DrugsAndAlcoholUseList: React.FC<DrugsAndAlcoholUseListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('drugsAndAlcoholUseTitle', 'Drugs and Alcohol Use');
-  const displayText = t('drugsAndAlcoholUseDisplay', 'Drugs and Alcohol Use');
+  const headerTitle = t('drugsAndAlcoholUse', 'Drugs and Alcohol Use');
 
   return (
     <>
-      <EmptyState displayText={displayText} headerTitle={headerTitle} />
+      <EmptyState displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

@@ -16,9 +16,9 @@ const ChildHealthList: React.FC<OverviewListProps> = ({ patientUuid }) => {
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('HieVisits', 'HIE Visits')}</Tab>
-          <Tab>{t('HieOutcomes', 'HIE Outcomes')}</Tab>
-          <Tab>{t('infantPostnatalCare', 'Infant Postnatal Visit')}</Tab>
+          <Tab>{t('hieVisits', 'HIE Visits')}</Tab>
+          <Tab>{t('hieOutcomes', 'HIE Outcomes')}</Tab>
+          <Tab>{t('infantPostnatalVisit', 'Infant Postnatal Visit')}</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>

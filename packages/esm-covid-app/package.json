@@ -14,7 +14,8 @@
     "analyze": "webpack --mode=production --env.analyze=true",
     "lint": "eslint src --ext tsx",
     "typescript": "tsc",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "extract-translations": "i18next 'src/**/*.component.tsx'"
   },
   "browserslist": [
     "extends browserslist-config-openmrs"

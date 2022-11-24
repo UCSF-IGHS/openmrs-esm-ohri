@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
 
@@ -8,13 +8,11 @@ interface MaternalSummaryListProps {
 
 const MaternalSummaryList: React.FC<MaternalSummaryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('maternal_summary_header', 'Maternal Summary');
-  const displayText = t('maternal_summary_display', 'Maternal Summary');
+  const headerTitle = t('maternalSummary', 'Maternal Summary');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };
