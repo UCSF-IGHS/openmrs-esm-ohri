@@ -408,7 +408,7 @@
             ]
           },
           {
-            "label": "Confrimatory Test Done",
+            "label": "Confirmatory Test Done",
             "type": "obs",
             "id": "confirmatory-test-done",
             "questionOptions": {
@@ -511,7 +511,7 @@
                 "required":"true",
                 "unspecified":"true",
                 "hide":{
-                  "hideWhenExpression":"confirmatory-test-done !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && confirmatory-test-done !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' || rapid-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && dnapcr-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression":"confirmatory-test-done !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && confirmatory-test-done !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && confirmatory-test-done !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || rapid-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && dnapcr-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
                 "validators":[
                   
