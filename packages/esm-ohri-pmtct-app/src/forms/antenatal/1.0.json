@@ -553,9 +553,9 @@
             {
               "label": "ART Unique Number",
               "type": "obs",
-              "id": "art-number",
+              "id": "art_number",
               "questionOptions": {
-                "concept": "9d6d1eec-2cd6-4637-a981-4a46b4b8b41f",
+                "concept": "164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "number",
                 "max": "999999999999",
                 "min": "100000000000"
@@ -739,6 +739,7 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   },
@@ -781,6 +782,7 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -799,6 +801,7 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"transfer_out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }

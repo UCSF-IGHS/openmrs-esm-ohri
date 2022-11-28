@@ -22,3 +22,7 @@ export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef
 
 //Antenatal
 export const antenatalEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';
+export const visitDateConcept = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const hivTestResultConcept = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const artNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const followUpDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
