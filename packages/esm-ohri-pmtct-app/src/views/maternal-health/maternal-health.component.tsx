@@ -2,7 +2,6 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import MnchEnrolmentList from './tabs/mnch-enrolment.component';
-
 import { useTranslation } from 'react-i18next';
 import AntenatalCareList from './tabs/antenatal-care.component';
 import LabourDeliveryList from './tabs/labour-delivery.component';
