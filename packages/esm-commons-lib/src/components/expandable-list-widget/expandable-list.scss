@@ -1,0 +1,27 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import "~@openmrs/esm-styleguide/src/vars";
+@import "../../root.scss";
+
+.expandableListContainer {
+  :global(.cds--data-table-container) {
+    margin-top: 1rem !important;
+    border: solid 1px #e0e0e0 !important;
+  }
+
+  :global(.cds--data-table td) {
+    height: unset !important;
+  }
+
+  :global(.cds--data-table--zebra) tbody tr[data-parent-row]:nth-child(4n + 1) td {
+    background-color: $ui-02;
+    border-bottom: 1px solid $ui-03;
+    border-top: 1px solid $ui-03;
+  }
+
+  :global(.cds--data-table--zebra) tbody tr[data-parent-row]:nth-child(4n + 3) td {
+    background-color: $ui-01;
+    border-bottom: 1px solid $ui-03;
+  }
+}
+

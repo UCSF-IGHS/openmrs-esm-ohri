@@ -6,8 +6,8 @@ export const mchFolderMeta = {
   isExpanded: false,
 };
 
-export const mnchSummary_dashboardMeta = {
-  slot: 'mnch-summary-slot',
+export const mchSummary_dashboardMeta = {
+  slot: 'mch-summary-slot',
   columns: 1,
   title: 'Maternal, Newborn, and Child Health Summary',
 };
