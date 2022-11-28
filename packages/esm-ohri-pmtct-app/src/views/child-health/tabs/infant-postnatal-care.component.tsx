@@ -61,14 +61,14 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'labour_and_delivery', package: 'maternal_health' },
+            form: { name: 'infant_postnatal', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'labour_and_delivery', package: 'maternal_health' },
+            form: { name: 'infant_postnatal', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
