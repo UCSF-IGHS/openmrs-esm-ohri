@@ -8,13 +8,11 @@ interface PregnancyOutcomeListProps {
 
 const PregnancyOutcomeList: React.FC<PregnancyOutcomeListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('pregnancy_outcome_header', 'Pregnancy Outcome');
-  const displayText = t('pregnancy_outcome_display', 'Pregnancy Outcome');
+  const headerTitle = t('pregnancyOutcome', 'Pregnancy Outcome');
 
   return (
     <>
-      <EmptyStateComingSoon displayText={displayText} headerTitle={headerTitle} />
+      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
     </>
   );
 };

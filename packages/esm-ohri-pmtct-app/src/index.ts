@@ -1,7 +1,7 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
-  mnchSummary_dashboardMeta,
+  mchSummary_dashboardMeta,
   mchFolderMeta,
   maternalHealth_dashboardMeta,
   childHealth_dashboardMeta,
@@ -47,7 +47,7 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'mnch-summary-dashboard',
+        id: 'mch-summary-dashboard',
         slot: 'mch-slot',
         load: getSyncLifecycle(
           createDashboardLinkWithCustomTitle({
@@ -56,31 +56,15 @@ function setupOpenMRS() {
           }),
           options,
         ),
-        meta: mnchSummary_dashboardMeta,
+        meta: mchSummary_dashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'maternal-summary-ext',
-        slot: 'mnch-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/mnch-summary/maternal-summary.component'), {
-          featureName: 'maternal-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'infant-summary-ext',
-        slot: 'mnch-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/mnch-summary/infants-summary.component'), {
-          featureName: 'infant-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'family-linkage-ext',
-        slot: 'mnch-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/mnch-summary/family-linkage.component'), {
-          featureName: 'family-linkage',
+        id: 'mch-summary-ext',
+        slot: 'mch-summary-slot',
+        load: getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
+          featureName: 'mch-summary',
           moduleName,
         }),
       },

@@ -86,7 +86,7 @@ const AntentalList: React.FC<AntentalListProps> = ({ patientUuid }) => {
           </div>
         </>
       ) : (
-        <EmptyStateComingSoon displayText={t('antental', 'Antenatal')} headerTitle={headerTitle} />
+        <EmptyStateComingSoon displayText={t('antenatal', 'Antenatal')} headerTitle={headerTitle} />
       )}
     </>
   );

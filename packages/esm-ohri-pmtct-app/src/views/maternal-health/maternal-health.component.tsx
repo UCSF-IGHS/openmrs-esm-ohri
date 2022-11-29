@@ -2,7 +2,6 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import MnchEnrolmentList from './tabs/mnch-enrolment.component';
-
 import { useTranslation } from 'react-i18next';
 import AntenatalCareList from './tabs/antenatal-care.component';
 import LabourDeliveryList from './tabs/labour-delivery.component';
@@ -19,11 +18,11 @@ const MaternalHealthList: React.FC<OverviewListProps> = ({ patientUuid }) => {
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('MnchEnrolment', 'MNCH Enrolment')}</Tab>
-          <Tab>{t('AntenatalCare', 'Antenatal Care')}</Tab>
-          <Tab>{t('LabourDeliver', 'Labour & Delivery')}</Tab>
-          <Tab>{t('PostnatalCare', 'Postnatal Care')}</Tab>
-          <Tab>{t('PregnancyOutcome', 'Pregnancy Outcome')}</Tab>
+          <Tab>{t('mnchEnrollment', 'MNCH Enrolment')}</Tab>
+          <Tab>{t('antenatalCare', 'Antenatal Care')}</Tab>
+          <Tab>{t('labourAndDelivery', 'Labour and Delivery')}</Tab>
+          <Tab>{t('postnatalCare', 'Postnatal Care')}</Tab>
+          <Tab>{t('pregnancyOutcome', 'Pregnancy Outcome')}</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>

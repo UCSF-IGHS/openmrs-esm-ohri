@@ -54,8 +54,7 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
     [],
   );
 
-  const headerTitle = t('disclosureTitle', 'Disclosure');
-  const displayText = t('disclosureDisplay', 'Disclosure');
+  const headerTitle = t('disclosure', 'Disclosure');
 
   return (
     <EncounterList
@@ -63,7 +62,7 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
       encounterUuid={PeadsDisclosureEncounterType_UUID}
       form={{ package: 'hiv', name: 'peads_disclosure' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',

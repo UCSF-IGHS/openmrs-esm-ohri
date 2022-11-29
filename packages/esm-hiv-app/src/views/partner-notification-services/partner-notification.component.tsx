@@ -91,8 +91,7 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
     [],
   );
 
-  const headerTitle = t('partnerNotificationTitle', 'Partner Notification');
-  const displayText = t('partnerNotificationDisplay', 'Partner Notification');
+  const headerTitle = t('partnerNotification', 'Partner Notification');
 
   return (
     <EncounterList
@@ -101,7 +100,7 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
       form={{ package: 'hiv', name: 'patner_notification' }}
       columns={columns}
       description={headerTitle}
-      headerTitle={displayText}
+      headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',
         moduleName: moduleName,

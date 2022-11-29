@@ -1,10 +1,6 @@
-import { findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { findObs, getObsFromEncounter, EncounterTile, EncounterTileColumn } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  EncounterTile,
-  EncounterTileColumn,
-} from '../../../../../esm-commons-lib/src/components/encounter-tile/encounter-tile.component';
 
 import {
   artStopDateUUID,

@@ -67,8 +67,7 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
     [],
   );
 
-  const headerTitle = t('patientTracingTitle', 'Patient Tracing');
-  const displayText = t('patientTracingDisplay', 'Patient Tracing');
+  const headerTitle = t('patientTracing', 'Patient Tracing');
 
   return (
     <EncounterList
@@ -76,7 +75,7 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
       encounterUuid={PatientTracingEncounterType_UUID}
       form={{ package: 'hiv', name: 'patient_tracing' }}
       columns={columnsLab}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',

@@ -62,15 +62,14 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
     [],
   );
 
-  const headerTitle = t('hivBaselineTitle', 'HIV Baseline');
-  const displayText = t('hivBaselineHeader', 'HIV Baseline');
+  const headerTitle = t('hivBaseline', 'HIV Baseline');
 
   return (
     <MultipleEncounterList
       patientUuid={patientUuid}
       encounterTypeUuids={encounters}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
     />
   );

@@ -6,7 +6,14 @@ import {
   EncounterListColumn,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { antenatalEncounterType, pTrackerIdConcept } from '../../../constants';
+import {
+  antenatalEncounterType,
+  artNoConcept,
+  followUpDateConcept,
+  hivTestResultConcept,
+  pTrackerIdConcept,
+  visitDateConcept,
+} from '../../../constants';
 import { moduleName } from '../../../index';
 
 interface AntenatalCareListProps {
@@ -15,9 +22,7 @@ interface AntenatalCareListProps {
 
 const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-
-  const headerTitle = t('antenatal_care_header', 'Antenatal Care');
-  const displayText = t('antenatal_care_display', 'Antenatal Care');
+  const headerTitle = t('antenatalCare', 'Antenatal Care');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -32,21 +37,21 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '', true);
+          return getObsFromEncounter(encounter, visitDateConcept, true);
         },
       },
       {
         key: 'hivTestResults',
         header: t('hivTestResults', 'HIV Test Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, hivTestResultConcept);
         },
       },
       {
         key: 'artNo',
         header: t('artNo', 'ART Unique Number'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, artNoConcept);
         },
       },
       {
@@ -74,7 +79,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'followUpDate',
         header: t('followUpDate', 'Next follow-up date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, followUpDateConcept, true);
         },
       },
       {
@@ -107,7 +112,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
       encounterUuid={antenatalEncounterType}
       form={{ package: 'maternal_health', name: 'antenatal' }}
       columns={columns}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: t('add', 'Add'),

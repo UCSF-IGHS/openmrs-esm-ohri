@@ -21,7 +21,7 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
     () => [
       {
         key: 'encounterDate',
-        header: t('encounterDate', 'Visit Date'),
+        header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, cacxEncounterDateConcept, true);
         },
@@ -75,8 +75,7 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
     [],
   );
 
-  const headerTitle = t('cacx_treatment_header', 'CaCx Treatment');
-  const displayText = t('cacx_treatment_display', 'CaCx Treatment');
+  const headerTitle = t('cacxTreatment', 'CaCx Treatment');
 
   return (
     <EncounterList
@@ -84,7 +83,7 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
       encounterUuid={cacxTreatmentEncounterType_UUID}
       form={{ package: 'cacx', name: 'cacx_treatment_form' }}
       columns={columnsLab}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',

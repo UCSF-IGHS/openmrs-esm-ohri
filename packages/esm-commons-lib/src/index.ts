@@ -40,3 +40,7 @@ export * from './utils/sidenav-links';
 export * from './workspace/ohri-workspace-utils';
 export * from './workspace/patient-list-workspace';
 export * from './dashboards/createDashboardLink';
+export * from './types';
+export * from './components/encounter-tile/encounter-tile.component';
+export * from './components/card-summary/card-summary.component';
+export * from './components/expandable-list-widget/expandable-list.component';

@@ -117,7 +117,7 @@
                       ]
                    },
                    {
-                      "label":"Art Initiation",
+                      "label":"ART Initiation",
                       "type":"obs",
                       "id":"art-initiation",
                       "questionOptions":{
@@ -152,7 +152,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                           },
                           "validators":[
                             
@@ -166,7 +166,7 @@
                     "id":"art-number", 
                     "questionOptions":{
                        "concept":"43cb14fe-6f06-4b40-81f0-a712b805a74d",
-                       "rendering":"number"
+                       "rendering":"text"
                     },
                     "behaviours":[
                       {
@@ -174,7 +174,7 @@
                         "required":"true",
                         "unspecified":"true",
                         "hide":{
-                          "hideWhenExpression":"!includes('art-initiation', '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') || art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                          "hideWhenExpression":"false"
                         },
                         "validators":[
                           
@@ -183,42 +183,13 @@
                     ]
                  },
                    {
-                      "label":"ART Unique Number missing",
+                      "label":"Reason why client has refused ART",
                       "type":"obs",
-                      "questionOptions":{
-                         "concept":"43cb14fe-6f06-4b40-81f0-a712b805a74d",
-                         "rendering":"radio",
-                         "answers":[
-                            {
-                               "concept":"160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"No"
-                            },
-                            {
-                               "concept":"160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"Yes"
-                            }
-                         ]
-                      },
-                      "behaviours":[
-                        {
-                          "intent":"*",
-                          "required":"true",
-                          "unspecified":"true",
-                          "hide":{
-                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                          },
-                          "validators":[
-                            
-                          ]
-                        }
-                      ]
-                   },
-                   {
-                      "label":"Reason for refusing ART initiation missing",
-                      "type":"obs",
+                      "id":"reason-for-refusing-art",
                       "questionOptions":{
                          "concept":"0117ec63-6fc8-4b37-99e9-7f6d99652852",
-                         "rendering":"text"
+                         "rendering":"textarea",
+                         "rows":""
                       },
                       "behaviours":[
                         {
@@ -226,7 +197,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('art-initiation','160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                            "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
                             
@@ -248,38 +219,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                          },
-                          "validators":[
-                            
-                          ]
-                        }
-                      ]
-                   },
-                   {
-                      "label":"ART start date missing",
-                      "type":"obs",
-                      "questionOptions":{
-                         "concept":"022995dd-079a-47d4-9d76-46a43a49d079",
-                         "rendering":"radio",
-                         "answers":[
-                            {
-                               "concept":"160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"No"
-                            },
-                            {
-                               "concept":"160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"Yes"
-                            }
-                         ]
-                      },
-                      "behaviours":[
-                        {
-                          "intent":"*",
-                          "required":"true",
-                          "unspecified":"true",
-                          "hide":{
-                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
                             
@@ -315,7 +255,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('hiv-test','8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8')"
+                            "hideWhenExpression":"!includes('hiv-test','8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8') && art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
                             
@@ -330,37 +270,6 @@
                       "questionOptions":{
                          "concept":"163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "rendering":"date"
-                      },
-                      "behaviours":[
-                        {
-                          "intent":"*",
-                          "required":"true",
-                          "unspecified":"true",
-                          "hide":{
-                            "hideWhenExpression":"!includes('recent-viral-load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
-                          },
-                          "validators":[
-                            
-                          ]
-                        }
-                      ]
-                   },
-                   {
-                      "label":"Viral load test date missing",
-                      "type":"obs",
-                      "questionOptions":{
-                         "concept":"c3bc7add-7617-4c2f-9a45-2745da70e220",
-                         "rendering":"radio",
-                         "answers":[
-                            {
-                               "concept":"160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"No"
-                            },
-                            {
-                               "concept":"160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"Yes"
-                            }
-                         ]
                       },
                       "behaviours":[
                         {
@@ -441,37 +350,6 @@
                           ]
                         }
                       ]
-                   },
-                   {
-                      "label":"Viral load copies missing",
-                      "type":"obs",
-                      "questionOptions":{
-                         "concept":"d1fa13df-52ba-4c98-9fc2-5cdf3f1fcd60",
-                         "rendering":"radio",
-                         "answers":[
-                            {
-                               "concept":"160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"No"
-                            },
-                            {
-                               "concept":"160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                               "label":"Yes"
-                            }
-                         ]
-                      },
-                      "behaviours":[
-                        {
-                          "intent":"*",
-                          "required":"true",
-                          "unspecified":"true",
-                          "hide":{
-                            "hideWhenExpression":"viral-load-results !== '1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                          },
-                          "validators":[
-                            
-                          ]
-                        }
-                      ]
                    }
                 ]
              },
@@ -495,8 +373,15 @@
                           "hide":{
                             "hideWhenExpression":"false"
                           },
-                          "validators":[
-                            
+                          "validators":[ 
+                              {
+                                 "type": "date",
+                                 "allowFutureDates": "true"
+                              },
+                              {
+                                 "type": "js_expression",
+                                 "failsWhenExpression": "myValue <= today()"
+                              }
                           ]
                         }
                       ]
@@ -580,7 +465,10 @@
                             "hideWhenExpression":"transfer-out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
-                            
+                           {
+                              "type": "date",
+                              "allowFutureDates": ""
+                           }
                           ]
                         }
                       ]
@@ -599,6 +487,6 @@
     "processor":"EncounterFormProcessor",
     "uuid":"xxxx",
     "referencedForms":[],
-    "encounterType":"3e3c5e17-7d43-467f-8b10-088b41ddf92f",
+    "encounterType":"269bcc7f-04f8-4ddc-883d-7a3a0d569aad",
     "allowUnspecifiedAll":true
  }

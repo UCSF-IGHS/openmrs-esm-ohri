@@ -6,24 +6,56 @@
       "label": "Antenatal Details",
       "sections": [
         {
-          "label": "ANC Visit Type",
+          "label": "ANC Visit",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Is this your first antenatal visit?",
+              "label": "Visit Date",
               "type": "obs",
-              "id": "antenatal-visit-type",
+              "id": "visit_date",
+              "questionOptions": {
+                "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "ANC Visit Type",
+              "type": "obs",
+              "id": "antenatal_visit_type",
               "questionOptions": {
                 "concept": "164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "radio",
                 "answers": [
                   {
                     "concept": "164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
+                    "label": "New ANC Visit"
                   },
                   {
                     "concept": "160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
+                    "label": "Return ANC Visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -55,7 +87,8 @@
               "behaviours":[
                 {
                   "intent":"*",
-                  "unspecified":"true",
+                  "required":"true",
+                  "unspecified":"false",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -82,7 +115,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"false"
+                    "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -101,7 +134,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"false"
+                    "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -120,8 +153,18 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"false"
-                  }
+                    "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1900-01-01') || myValue >= today() || myValue > useFieldValue('visit_date')"
+                    }
+                  ]
                 }
               ]
             },
@@ -139,10 +182,28 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"false"
-                  }
+                    "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || isEmpty('lmp')"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "true"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "myValue < useFieldValue('visit_date')"
+                    }
+                  ]
                 }
               ]
+            }
+          ],
+          "behaviours":[
+            {
+              "intent":"*",
+              "hide":{
+                "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
         },
@@ -154,7 +215,7 @@
             {
               "label": "HIV test status ",
               "type": "obs",
-              "id": "hiv-test",
+              "id": "hiv_test",
               "questionOptions": {
                 "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "radio",
@@ -170,6 +231,10 @@
                   {
                     "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
                     "label": "Not tested for HIV during this visit"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -187,7 +252,7 @@
             {
               "label": "HIV test result ",
               "type": "obs",
-              "id": "hiv-test-result",
+              "id": "hiv_test_result",
               "questionOptions": {
                 "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "radio",
@@ -203,6 +268,10 @@
                   {
                     "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Unknown"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -212,35 +281,242 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv-test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                    "hideWhenExpression":"hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                   }
+                }
+              ]
+            },
+            {
+              "label": "Partner HIV test done?",
+              "type": "obs",
+              "id": "partner_hiv_test_done",
+              "questionOptions": {
+                "concept": "161557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
+                    "label": "Previously known positive"
+                  },
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Partner's HIV test result ",
+              "type": "obs",
+              "id": "partner_hiv_test_result",
+              "questionOptions": {
+                "concept": "1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"138571"
+                      },
+                      {
+                        "type":"AMPATH",
+                        "value":"1169"
+                      },
+                      {
+                        "type":"SNOMED CT",
+                        "value":"165816005"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"664"
+                      },
+                      {
+                        "type":"AMPATH",
+                        "value":"664"
+                      },
+                      {
+                        "type":"SNOMED CT",
+                        "value":"260385009"
+                      },
+                      {
+                        "type":"PIH",
+                        "value":"664"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"1067"
+                      },
+                      {
+                        "type":"AMPATH",
+                        "value":"1067"
+                      },
+                      {
+                        "type":"SNOMED CT",
+                        "value":"261665006"
+                      },
+                      {
+                        "type":"PIH",
+                        "value":"1067"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"partner_hiv_test_done !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Date Partner's HIV test done",
+              "type": "obs",
+              "id": "partner_hiv_test_date",
+              "questionOptions": {
+                "concept": "90bd8fec-3ff1-11e9-b210-d663bd873d93",
+                "rendering": "date"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "unspecified":"true",
+                  "hide":{
+                    "hideWhenExpression":"partner_hiv_test_done !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  },
+                  "validators": [
+                    {
+                      "type":"date",
+                      "allowFutureDates":"false"
+                    },
+                    {
+                      "type":"js_expression",
+                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                    }
+                  ]
                 }
               ]
             },
             {
               "label": "ART initiation ",
               "type": "obs",
-              "id": "art-initiation",
+              "id": "art_initiation",
               "questionOptions": {
                 "concept": "6e62bf7e-2107-4d09-b485-6e60cbbb2d08",
                 "rendering": "radio",
                 "answers": [
                   {
                     "concept": "160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Already on ART before current pregnancy"
+                    "label": "Already on ART before current pregnancy",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"160119"
+                      },
+                      {
+                        "type":"PIH Malawi",
+                        "value":"7010"
+                      },
+                      {
+                        "type":"PIH",
+                        "value":"1257"
+                      }
+                    ]
                   },
                   {
                     "concept": "160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Started on ART in ANC current pregnancy"
+                    "label": "Started on ART in ANC current pregnancy",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"160120"
+                      },
+                      {
+                        "type":"PIH",
+                        "value":"1256"
+                      }
+                    ]
                   },
                   {
                     "concept": "160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Refused ART"
+                    "label": "Refused ART",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"160018"
+                      }
+                    ]
                   },
-
                   {
                     "concept": "1754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Not started due to stockout of ART"
+                    "label": "Not started due to stockout of ART",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"1754"
+                      },
+                      {
+                        "type":"AMPATH",
+                        "value":"664"
+                      },
+                      {
+                        "type":"SNOMED CT",
+                        "value":"182856006"
+                      },
+                      {
+                        "type":"SNOMED MVP",
+                        "value":"17541000105004"
+                      },
+                      {
+                        "type":"PIH",
+                        "value":"1761"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -250,7 +526,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"hiv_test_result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                   }
                 }
               ]
@@ -261,7 +537,7 @@
               "id": "refused_art",
               "questionOptions": {
                 "concept": "163322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rendering": "text"
+                "rendering": "textarea"
               },
               "behaviours":[
                 {
@@ -269,7 +545,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -277,17 +553,19 @@
             {
               "label": "ART Unique Number",
               "type": "obs",
-              "id": "art-number",
+              "id": "art_number",
               "questionOptions": {
-                "concept": "9d6d1eec-2cd6-4637-a981-4a46b4b8b41f",
-                "rendering": "text"
+                "concept": "164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "number",
+                "max": "999999999999",
+                "min": "100000000000"
               },
               "behaviours":[
                 {
                   "intent":"*",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -306,7 +584,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -324,7 +602,7 @@
             {
               "label": "Viral Load test done? ",
               "type": "obs",
-              "id": "recent-viral-load",
+              "id": "recent_viral_load",
               "questionOptions": {
                 "concept": "163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "radio",
@@ -336,6 +614,10 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -345,7 +627,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -364,7 +646,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"recent-viral-load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"recent_viral_load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -382,7 +664,7 @@
             {
               "label": "Viral load results",
               "type": "obs",
-              "id": "viral-load-results",
+              "id": "viral_load_results",
               "questionOptions": {
                 "concept": "1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "radio",
@@ -402,6 +684,10 @@
                   {
                     "concept": "159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Results Pending"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -411,7 +697,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"recent-viral-load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"recent_viral_load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -430,103 +716,8 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"viral-load-results !== '1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"viral_load_results !== '1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
-                }
-              ]
-            },
-            {
-              "label": "Partner HIV test done?",
-              "type": "obs",
-              "id": "partner-testing",
-              "questionOptions": {
-                "concept": "161557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rendering": "radio",
-                "answers": [
-                  {
-                    "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
-                    "label": "Previously known positive"
-                  },
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
-                  }
-                ]
-              },
-              "behaviours":[
-                {
-                  "intent":"*",
-                  "required":"true",
-                  "unspecified":"true",
-                  "hide":{
-                    "hideWhenExpression":"false"
-                  }
-                }
-              ]
-            },
-            {
-              "label": "Partner HIV status",
-              "type": "obs",
-              "id": "partner-hiv-test",
-              "questionOptions": {
-                "concept": "1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rendering": "radio",
-                "answers": [
-                  {
-                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Positive"
-                  },
-                  {
-                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Negative"
-                  },
-                  {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Unknown"
-                  }
-                ]
-              },
-              "behaviours":[
-                {
-                  "intent":"*",
-                  "required":"true",
-                  "unspecified":"true",
-                  "hide":{
-                    "hideWhenExpression":"partner-testing !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  }
-                }
-              ]
-            },
-            {
-              "label": "Date partner tested",
-              "type": "obs",
-              "id": "partner_date_tested",
-              "questionOptions": {
-                "concept": "90bd8fec-3ff1-11e9-b210-d663bd873d93",
-                "rendering": "date"
-              },
-              "behaviours":[
-                {
-                  "intent":"*",
-                  "required":"true",
-                  "unspecified":"true",
-                  "hide":{
-                    "hideWhenExpression":"partner-testing !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                  },
-                  "validators": [
-                    {
-                      "type":"date",
-                      "allowFutureDates":"false"
-                    },
-                    {
-                      "type":"js_expression",
-                      "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
-                    }
-                  ]
                 }
               ]
             }
@@ -548,6 +739,7 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   },
@@ -558,7 +750,7 @@
                     },
                     {
                       "type":"js_expression",
-                      "failsWhenExpression":"isDateBefore(myValue, today())"
+                      "failsWhenExpression":"myValue < useFieldValue('visit_date')"
                     }
                   ]
                 }
@@ -567,7 +759,7 @@
             {
               "label": "Facility of next appointment",
               "type": "obs",
-              "id": "transfer-out",
+              "id": "transfer_out",
               "questionOptions": {
                 "concept": "efc87cd5-2fd8-411c-ba52-b0d858f541e7",
                 "rendering": "radio",
@@ -590,6 +782,7 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -608,8 +801,9 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"transfer-out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"transfer_out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -628,7 +822,7 @@
   "processor":"EncounterFormProcessor",
   "uuid":"xxxx",
   "referencedForms":[],
-  "encounterType":"12de5bc5-352e-4faf-9961-a2125085a75c",
+  "encounterType":"2549af50-75c8-4aeb-87ca-4bb2cef6c69a",
   "allowUnspecifiedAll":true
 }
 

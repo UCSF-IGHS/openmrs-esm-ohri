@@ -56,7 +56,7 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
               form: { name: 'cacx_registration_form', package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
-              label: t('EditForm', 'Edit Form'),
+              label: t('editForm', 'Edit Form'),
               mode: 'edit',
             },
           ];
@@ -67,8 +67,7 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
     [],
   );
 
-  const headerTitle = t('cacx_registration_header', 'CaCx Registration');
-  const displayText = t('cacx_registration_display', 'CaCx Registration');
+  const headerTitle = t('cacxRegistration', 'CaCx Registration');
 
   return (
     <EncounterList
@@ -76,7 +75,7 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
       encounterUuid={cacxRegistrationEncounterType_UUID}
       form={{ package: 'cacx', name: 'cacx_registration_form' }}
       columns={columnsLab}
-      description={displayText}
+      description={headerTitle}
       headerTitle={headerTitle}
       launchOptions={{
         displayText: 'Add',
