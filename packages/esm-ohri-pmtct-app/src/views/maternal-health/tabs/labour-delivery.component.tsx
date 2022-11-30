@@ -8,6 +8,7 @@ import {
   bookedForAncConcept,
   labourAndDeliveryEncounterType,
   pTrackerIdConcept,
+  visitDateConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -32,7 +33,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         key: 'deliveryDate',
         header: t('deliveryDate', 'Delivery Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '', true);
+          return getObsFromEncounter(encounter, visitDateConcept, true);
         },
       },
       {
