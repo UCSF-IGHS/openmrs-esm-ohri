@@ -88,7 +88,7 @@ yarn test
 
 TBD
 
-## Configuration
+## Configuration 
 
 This module is designed to be driven by configuration files. These files define the look and functionality required to drive the OHRI module.
 
