@@ -2,7 +2,7 @@
     "name": "Infant - Postanal Form",
     "pages": [
       {
-        "label": "Infant - Postanal",
+        "label": "Infant - Postnatal",
         "sections": [
           {
             "label": "Infant Exposure",
@@ -798,7 +798,7 @@
             ]
           },
           {
-            "label": "next Visit Date",
+            "label": "Next Visit Date",
             "type": "obs",
             "id": "next_visit_date",
             "questionOptions": {
