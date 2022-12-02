@@ -53,5 +53,7 @@
   "timeline": "Timeline",
   "totalDeliveries": "# Total deliveries",
   "viewDetails": "View details",
-  "visitDate": "Visit Date"
+  "visitDate": "Visit Date",
+  "edd": "EDD",
+  "vlResults": "VL Results"
 }
