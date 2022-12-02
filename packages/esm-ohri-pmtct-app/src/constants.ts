@@ -1,5 +1,6 @@
 export const mnchEncounterType_UUID = '3eb24129-9f7d-4372-a14e-c2cf577e5db1';
 export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
+export const vLResultsConcept = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 //Labour & Delivery
@@ -26,3 +27,4 @@ export const visitDateConcept = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivTestResultConcept = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const followUpDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const eDDConcept = '5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';

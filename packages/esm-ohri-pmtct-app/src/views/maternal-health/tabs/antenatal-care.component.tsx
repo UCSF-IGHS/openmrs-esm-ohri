@@ -4,10 +4,12 @@ import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/o
 import {
   antenatalEncounterType,
   artNoConcept,
+  eDDConcept,
   followUpDateConcept,
   hivTestResultConcept,
   pTrackerIdConcept,
   visitDateConcept,
+  vLResultsConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -57,10 +59,10 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'currentTrimester',
-        header: t('currentTrimester', 'Current Trimester'),
+        key: 'edd',
+        header: t('edd', 'EDD'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, eDDConcept, true);
         },
       },
       {
@@ -75,6 +77,13 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         header: t('followUpDate', 'Next follow-up date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, followUpDateConcept, true);
+        },
+      },
+      {
+        key: 'vlResults',
+        header: t('vlResults', 'VL Results'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, vLResultsConcept);
         },
       },
       {

@@ -20,9 +20,9 @@
   "currentAge": "Current Age",
   "currentARVRegimen": "Current ARV Regimen",
   "currentPregnancy": "Current Pregnancy",
-  "currentTrimester": "Current Trimester",
   "delivery": "Delivery",
   "deliveryDate": "Delivery Date",
+  "edd": "EDD",
   "editForm": "Edit Form",
   "expectedDeliveryDate": "Expected Delivery Date",
   "facility": "Facility",
@@ -53,5 +53,6 @@
   "timeline": "Timeline",
   "totalDeliveries": "# Total deliveries",
   "viewDetails": "View details",
-  "visitDate": "Visit Date"
+  "visitDate": "Visit Date",
+  "vlResults": "VL Results"
 }
