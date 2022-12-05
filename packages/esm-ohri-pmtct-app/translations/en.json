@@ -28,8 +28,6 @@
   "facility": "Facility",
   "family": "Family",
   "followUpDate": "Next follow-up date",
-  "hieOutcomes": "HIE Outcomes",
-  "hieVisits": "HIE Visits",
   "hivExposedChildrenEnrolledInFollowUpCare": "# HIV Exposed children enrolled in follow up care",
   "hivTestResults": "HIV Test Results",
   "infantPostnatalCare": "Infant Postnatal Care",
