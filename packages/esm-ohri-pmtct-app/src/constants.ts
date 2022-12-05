@@ -20,6 +20,13 @@ export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
 export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
+export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ChildPTrackerId = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
+export const ChildPDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const artProphylaxisStatus = '1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const linkedToArt = 'a40d8bc4-56b8-4f28-a1dd-412da5cf20ed';
+export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const outcomeStatus = '160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Antenatal
 export const antenatalEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';
