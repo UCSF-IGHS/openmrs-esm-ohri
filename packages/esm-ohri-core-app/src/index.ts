@@ -7,7 +7,12 @@ import {
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { appointmentsDashboardMeta, homeDashboardMeta, pharmacyDashboardMeta } from './dashboard.meta';
+import {
+  appointmentsDashboardMeta,
+  homeDashboardMeta,
+  outpatientDashboardMeta,
+  pharmacyDashboardMeta,
+} from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -91,6 +96,25 @@ function setupOpenMRS() {
           moduleName,
         }),
         meta: pharmacyDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'outpatient-ohri-dashboard-ext',
+        slot: 'dashboard-links-slot',
+        load: getSyncLifecycle(createOHRIDashboardLink(outpatientDashboardMeta), options),
+        meta: outpatientDashboardMeta,
+        online: true,
+        offline: true,
+      },
+      {
+        id: 'ohri-outpatient-dashboard',
+        slot: 'ohri-outpatient-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/outpatient/outpatient-dashboard.component'), {
+          featureName: 'outpatient-dashboard',
+          moduleName,
+        }),
+        meta: outpatientDashboardMeta,
         online: true,
         offline: true,
       },
