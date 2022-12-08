@@ -5,7 +5,12 @@ import { moduleName } from '../../..';
 import {
   artLinkage,
   hivTestStatus,
+  MotherHivStatus,
+  MotherNextVisitDate,
   motherPostnatalEncounterType,
+  MotherViralLoadDate,
+  MotherViralLoadResult,
+  MothervisitDate,
   pTrackerIdConcept,
   recenctViralLoad,
   visitDate,
@@ -29,31 +34,52 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'bookedForANC',
-        header: t('bookedForANC', 'Booked for ANC'),
+        key: 'visitDate',
+        header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
+          return getObsFromEncounter(encounter, MothervisitDate, true);
         },
       },
       {
-        key: 'ancHivStatus',
-        header: t('ancHivStatus', 'ANC HIV status results'),
+        key: 'age',
+        header: t('MotherPostnatalage', 'Age'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, hivTestStatus);
+          return getObsFromEncounter(encounter, '');
         },
       },
       {
         key: 'artInitiation',
-        header: t('artInitiation', 'ART Initiation'),
+        header: t('artInitiation', 'Current HIV Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artLinkage);
+          return getObsFromEncounter(encounter, MotherHivStatus);
         },
       },
       {
-        key: 'birthCount',
-        header: t('birthCount', 'Birth Count'),
+        key: 'ARTLinkageIfPositive',
+        header: t('ARTLinkageIfPositive', 'ART Linkage If Positive'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, recenctViralLoad);
+          return getObsFromEncounter(encounter, '');
+        },
+      },
+      {
+        key: 'recentViralLoadTestDate',
+        header: t('recentViralLoadTestDate', 'Recent Viral load test date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, MotherViralLoadDate, true);
+        },
+      },
+      {
+        key: 'recentViralLoadResults',
+        header: t('recentViralLoadResults', 'Recent Viral load results'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, MotherViralLoadResult);
+        },
+      },
+      {
+        key: 'nextVisitDate',
+        header: t('nextVisitDate', 'Next visit date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, MotherNextVisitDate, true);
         },
       },
       {
