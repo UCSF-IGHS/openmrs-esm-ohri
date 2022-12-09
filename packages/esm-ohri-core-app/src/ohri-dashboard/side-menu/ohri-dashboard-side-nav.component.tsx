@@ -13,14 +13,17 @@ const OHRIDashboardSideNav = () => {
         <ExtensionSlot extensionSlotName="dashboard-links-slot" />
 
         {/* Remove once we have dashboards */}
-        <div>
+        {/* <div>
           <SideNavLink renderIcon={ListBulleted} href="javascript:void(0)">
             {t('patientLists', 'Patient Lists')}
           </SideNavLink>
           <SideNavLink renderIcon={Calendar} href="javascript:void(0)">
             {t('appointments', 'Appointments')}
           </SideNavLink>
-        </div>
+          <SideNavLink renderIcon={Calendar} href="javascript:void(0)">
+            {t('appointments', 'Appointments')}
+          </SideNavLink>
+        </div> */}
 
         <p className={styles.sideNavTextHeader}>{t('myDashboards', 'My Dashboards')}</p>
 

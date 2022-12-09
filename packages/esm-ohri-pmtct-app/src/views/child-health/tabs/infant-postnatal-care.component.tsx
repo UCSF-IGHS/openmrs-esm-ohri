@@ -5,9 +5,13 @@ import {
   pTrackerIdConcept,
   visitDate,
   hivTestStatus,
-  artLinkage,
-  recenctViralLoad,
   infantPostnatalEncounterType,
+  nextVisitDate,
+  artProphylaxisStatus,
+  linkedToArt,
+  breastfeedingStatus,
+  outcomeStatus,
+  ChildPDateOfBirth,
 } from '../../../constants';
 import { moduleName } from '../../..';
 
@@ -23,37 +27,58 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
     () => [
       {
         key: 'pTrackerId',
-        header: t('pTrackerId', 'PTracker Id'),
+        header: t('pTrackerId', 'Child PTracker ID'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, pTrackerIdConcept);
         },
       },
       {
-        key: 'bookedForANC',
-        header: t('bookedForANC', 'Booked for ANC'),
+        key: 'childDateOfBirth',
+        header: t('childDateOfBirth', 'Child Date of Birth'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
+          return getObsFromEncounter(encounter, ChildPDateOfBirth, true);
         },
       },
       {
-        key: 'ancHivStatus',
-        header: t('ancHivStatus', 'ANC HIV status results'),
+        key: 'mothersName',
+        header: t('mothersName', 'Mothers Name'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, hivTestStatus);
+          return getObsFromEncounter(encounter, '--');
         },
       },
       {
-        key: 'artInitiation',
-        header: t('artInitiation', 'ART Initiation'),
+        key: 'artProphylaxisStatus',
+        header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artLinkage);
+          return getObsFromEncounter(encounter, artProphylaxisStatus);
         },
       },
       {
-        key: 'birthCount',
-        header: t('birthCount', 'Birth Count'),
+        key: 'linkedToArt',
+        header: t('linkedToArt', 'Linked to ART'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, recenctViralLoad);
+          return getObsFromEncounter(encounter, linkedToArt);
+        },
+      },
+      {
+        key: 'breastfeedingStatus',
+        header: t('breastfeedingStatus', 'Breastfeeding status'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, breastfeedingStatus);
+        },
+      },
+      {
+        key: 'outcomeStatus',
+        header: t('outcomeStatus', 'Outcome Status'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, outcomeStatus);
+        },
+      },
+      {
+        key: 'nextVisitDate',
+        header: t('nextVisitDate', 'Next visit date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, nextVisitDate, true);
         },
       },
       {

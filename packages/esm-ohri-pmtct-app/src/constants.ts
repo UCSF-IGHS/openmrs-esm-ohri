@@ -1,5 +1,6 @@
 export const mnchEncounterType_UUID = '3eb24129-9f7d-4372-a14e-c2cf577e5db1';
 export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
+export const vLResultsConcept = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 //Labour & Delivery
@@ -19,6 +20,13 @@ export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
 export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
+export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ChildPTrackerId = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
+export const ChildPDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const artProphylaxisStatus = '1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const linkedToArt = 'a40d8bc4-56b8-4f28-a1dd-412da5cf20ed';
+export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const outcomeStatus = '160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Antenatal
 export const antenatalEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';
@@ -26,3 +34,11 @@ export const visitDateConcept = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivTestResultConcept = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const followUpDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const eDDConcept = '5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+//Mother Postnatal
+export const MothervisitDate = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const MotherHivStatus = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const MotherViralLoadDate = '163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const MotherViralLoadResult = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const MotherNextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
