@@ -75,7 +75,7 @@
     "jest": "^28.1.2",
     "jest-cli": "^28.1.2",
     "jest-environment-jsdom": "^28.1.2",
-    "lerna": "^4.0.0",
+    "lerna": "^6.1.0",
     "lodash": "^4.17.21",
     "openmrs": "4.0.3-pre.401",
     "prettier": "^2.2.1",
