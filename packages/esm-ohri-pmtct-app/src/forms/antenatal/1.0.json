@@ -174,7 +174,10 @@
               "id": "edd",
               "questionOptions": {
                 "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rendering": "date"
+                "rendering": "date",
+                "calculate": {
+                  "calculateExpression": "calcEDD('lmp')"
+                }
               },
               "behaviours":[
                 {
