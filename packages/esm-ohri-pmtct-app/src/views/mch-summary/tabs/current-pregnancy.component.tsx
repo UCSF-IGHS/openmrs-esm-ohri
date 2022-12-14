@@ -5,7 +5,18 @@ import {
   EncounterTileColumn,
   PatientChartProps,
   ExpandableList,
+  getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  antenatalEncounterType,
+  eDDConcept,
+  hivStatusAtDeliveryConcept,
+  hivTestResultConcept,
+  labourAndDeliveryEncounterType,
+  motherStatusConcept,
+  nextVisitDateConcept,
+  visitDate,
+} from '../../../constants';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -19,30 +30,34 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterUuid: '--',
+        encounterUuid: antenatalEncounterType,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, hivTestResultConcept);
+        },
+        hasSummary: true,
+        getSummaryObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, visitDate, true);
         },
       },
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterUuid: '--',
-        hasSummary: false,
+        encounterUuid: antenatalEncounterType,
+        hasSummary: true,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, eDDConcept, true);
+        },
+        getSummaryObsValue: (encounter) => {
+          let edd = getObsFromEncounter(encounter, eDDConcept, true);
+          return edd === '--' ? edd : `In ${calculateDateDifferenceInDate(edd)}`;
         },
       },
       {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
-        encounterUuid: '--',
-        getObsValue: () => {
-          return '--';
-        },
-        hasSummary: false,
-        getSummaryObsValue: (encounter) => {
-          return '--';
+        encounterUuid: labourAndDeliveryEncounterType,
+        getObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, motherStatusConcept);
         },
       },
       {
@@ -85,9 +100,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterUuid: '--',
+        encounterUuid: antenatalEncounterType,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, nextVisitDateConcept, true);
+        },
+        hasSummary: true,
+        getSummaryObsValue: (encounter) => {
+          let nextVisitDate = getObsFromEncounter(encounter, nextVisitDateConcept, true);
+          return nextVisitDate === '--' ? nextVisitDate : `In ${calculateDateDifferenceInDate(nextVisitDate)}`;
         },
       },
       {
@@ -105,6 +125,12 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     ],
     [],
   );
+
+  const calculateDateDifferenceInDate = (givenDate: string): string => {
+    const dateDifference = new Date().getTime() - new Date(givenDate).getTime();
+    const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
+    return `${totalDays} days`;
+  };
 
   const forms = [];
 
