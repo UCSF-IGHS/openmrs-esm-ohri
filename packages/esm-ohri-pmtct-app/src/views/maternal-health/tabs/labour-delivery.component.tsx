@@ -37,13 +37,6 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         },
       },
       {
-        key: 'currentAge',
-        header: t('currentAge', 'Current Age'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
-        },
-      },
-      {
         key: 'bookedForANC',
         header: t('bookedForANC', 'Booked for ANC'),
         getValue: (encounter) => {
