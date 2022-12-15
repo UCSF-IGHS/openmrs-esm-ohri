@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
+  artInitiationConcept,
   artNoConcept,
   eDDConcept,
   followUpDateConcept,
@@ -52,10 +53,10 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'arvLinkage',
-        header: t('arvLinkage', 'ARV linkage (if positive)'),
+        key: 'artLinkage',
+        header: t('artLinkage', 'ART linkage (if positive)'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, artInitiationConcept);
         },
       },
       {
@@ -69,7 +70,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'facility',
         header: t('facility', 'Facility'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return encounter.location.name;
         },
       },
       {
