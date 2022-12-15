@@ -194,7 +194,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < useFieldValue('visit_date')"
+                      "failsWhenExpression": "myValue < useFieldValue('visit_date') || myValue <useFieldValue('lmp') || isDateAfter(myValue, useFieldValue('lmp'), 9, 'months')"
                     }
                   ]
                 }
