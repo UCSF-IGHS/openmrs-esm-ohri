@@ -6,7 +6,6 @@ export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 //Labour & Delivery
 export const labourAndDeliveryEncounterType = '1e5614d6-5306-11e6-beb8-9e71128cae77';
 export const deliveryDateConcept = '';
-export const currentAgeConcept = '';
 export const bookedForAncConcept = '1719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancHivResultConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
 export const hivStatusAtDeliveryConcept = '';
