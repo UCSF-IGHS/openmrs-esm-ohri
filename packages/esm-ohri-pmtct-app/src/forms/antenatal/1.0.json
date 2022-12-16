@@ -174,7 +174,10 @@
               "id": "edd",
               "questionOptions": {
                 "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rendering": "date"
+                "rendering": "date",
+                "calculate": {
+                  "calculateExpression": "calcEDD('lmp')"
+                }
               },
               "behaviours":[
                 {
@@ -191,7 +194,7 @@
                     },
                     {
                       "type": "js_expression",
-                      "failsWhenExpression": "myValue < useFieldValue('visit_date')"
+                      "failsWhenExpression": "myValue < useFieldValue('visit_date') || myValue <useFieldValue('lmp') || isDateAfter(myValue, useFieldValue('lmp'), 280, 'days')"
                     }
                   ]
                 }
