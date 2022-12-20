@@ -3,9 +3,11 @@ export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
 export const vLResultsConcept = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
+
 //Labour & Delivery
-export const labourAndDeliveryEncounterType = '1e5614d6-5306-11e6-beb8-9e71128cae77';
-export const deliveryDateConcept = '';
+export const labourAndDeliveryEncounterType = '2678423c-0523-4d76-b0da-18177b439eed';
+export const infantStatusAtBirthConcept = '159917AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const dateOfDeliveryConcept = '5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const bookedForAncConcept = '1719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancHivResultConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
 export const hivStatusAtDeliveryConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
