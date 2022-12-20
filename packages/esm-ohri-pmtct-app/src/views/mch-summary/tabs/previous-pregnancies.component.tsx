@@ -48,7 +48,6 @@ const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'statusAtBirth',
         header: t('statusAtBirth', 'Status at birth'),
         getValue: (encounter) => {
-          console.log({ encounter });
           return getObsFromEncounter(encounter, infantStatusAtBirthConcept);
         },
       },
