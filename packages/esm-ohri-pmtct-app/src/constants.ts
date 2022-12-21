@@ -8,14 +8,14 @@ export const labourAndDeliveryEncounterType = '1e5614d6-5306-11e6-beb8-9e71128ca
 export const deliveryDateConcept = '';
 export const bookedForAncConcept = '1719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancHivResultConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
-export const hivStatusAtDeliveryConcept = '';
+export const hivStatusAtDeliveryConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
 export const artInitiationConcept = '6e62bf7e-2107-4d09-b485-6e60cbbb2d08';
 export const birthCountConcept = '1568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-export const motherPostnatalEncounterType = '3e3c5e17-7d43-467f-8b10-088b41ddf92f';
-export const visitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const visitDate = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivTestStatus = '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artLinkage = '6e62bf7e-2107-4d09-b485-6e60cbbb2d08';
 export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
 export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
@@ -34,8 +34,12 @@ export const hivTestResultConcept = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const followUpDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const eDDConcept = '5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const nextVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const artStartDate = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ancVisitsConcept = '1425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Mother Postnatal
+export const motherPostnatalEncounterType = '3e3c5e17-7d43-467f-8b10-088b41ddf92f';
 export const MothervisitDate = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherHivStatus = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherViralLoadDate = '163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
