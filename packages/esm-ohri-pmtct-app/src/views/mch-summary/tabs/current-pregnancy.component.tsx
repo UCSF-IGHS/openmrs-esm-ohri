@@ -9,6 +9,8 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
+  artInitiationConcept,
+  artStartDate,
   eDDConcept,
   hivStatusAtDeliveryConcept,
   hivTestResultConcept,
@@ -36,7 +38,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
+          if (getObsFromEncounter(encounter, hivTestResultConcept) === '--') {
+            return '--';
+          } else {
+            return getObsFromEncounter(encounter, visitDate, true);
+          }
         },
       },
       {
@@ -75,20 +81,20 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyColumns: EncounterTileColumn[] = useMemo(
     () => [
       {
-        key: 'currentARVRegimen',
-        header: t('currentARVRegimen', 'Current ARV Regimen'),
-        encounterUuid: '--',
+        key: 'currentARTRegimen',
+        header: t('currentARTRegimen', 'Current ART Regimen'),
+        encounterUuid: antenatalEncounterType,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, artInitiationConcept);
         },
       },
       {
-        key: 'arvStartDate',
-        header: t('arvStartDate', 'ARV Start Date'),
-        encounterUuid: '--',
+        key: 'artStartDate',
+        header: t('artStartDate', 'ART Start Date'),
+        encounterUuid: antenatalEncounterType,
         hasSummary: false,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, artStartDate, true);
         },
       },
     ],

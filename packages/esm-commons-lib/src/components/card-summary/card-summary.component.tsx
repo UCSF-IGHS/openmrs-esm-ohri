@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './card-summary.scss';
 import { SkeletonText, Tile, Column } from '@carbon/react';
+import { encounterRepresentation } from '../../constants';
+import { openmrsFetch } from '@openmrs/esm-framework';
 
 // Defines the props for the component
 export interface CardSummaryProps {
@@ -15,9 +17,11 @@ export interface TileSummaryProps {
   key: string;
   header: string;
   encounterUuid: string;
+  encounterUuids?: string[];
   getObsValue: (encounter: any) => string;
   getSummaryObsValue?: (encounter: any) => string;
   encounter?: any; //todo pirupius we might need to remove this
+  encounters?: any[];
   hasSummary?: boolean;
 }
 
@@ -27,11 +31,40 @@ export const CardSummary: React.FC<CardSummaryProps> = ({
   headerTitle,
   isActionable = false,
 }) => {
+  const [lastEncounter, setLastEncounter] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(false);
+    columns.map((column) => {
+      if (column.encounterUuids) {
+        for (let encounterUuid of column.encounterUuids) {
+          let latestEncounter = fetchPatientLastEncounter(encounterUuid);
+          latestEncounter.then((value) => {
+            column.encounters.push(value);
+          });
+        }
+      } else {
+        const lastEncounter = fetchPatientLastEncounter(column.encounterUuid);
+        lastEncounter.then((value) => {
+          column.encounter = value;
+        });
+      }
+    });
   }, []);
+
+  async function fetchPatientLastEncounter(encounterType: string) {
+    const query = `encounterType=${encounterType}&patient=${patientUuid}`;
+    const encounterResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+    if (encounterResults.data.results?.length > 0) {
+      const sortedEncounters = encounterResults.data.results.sort(
+        (firstEncounter, secondEncounter) =>
+          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
+      );
+      setLastEncounter(sortedEncounters[0]);
+      setIsLoading(false);
+      return sortedEncounters[0];
+    }
+  }
 
   return (
     <>
@@ -48,7 +81,12 @@ export const CardSummary: React.FC<CardSummaryProps> = ({
               <div className={styles.tileBox}>
                 <div className={styles.tileBoxColumn}>
                   <span className={styles.tileTitle}> {column.header} </span>
-                  <span className={styles.tileValue}>{column.getObsValue(column.encounter)}</span>
+                  {column.encounters ? (
+                    <span className={styles.tileValue}>{column.getObsValue(column.encounters)}</span>
+                  ) : (
+                    <span className={styles.tileValue}>{column.getObsValue(column.encounter)}</span>
+                  )}
+
                   {column.hasSummary ? (
                     <span className={styles.tileTitle}> {column.getSummaryObsValue(column.encounter)} </span>
                   ) : (
