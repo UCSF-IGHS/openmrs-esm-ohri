@@ -6,8 +6,10 @@ import {
   PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
+  TileSummaryProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
+  ancVisitsConcept,
   antenatalEncounterType,
   artInitiationConcept,
   artStartDate,
@@ -15,6 +17,7 @@ import {
   hivStatusAtDeliveryConcept,
   hivTestResultConcept,
   labourAndDeliveryEncounterType,
+  motherPostnatalEncounterType,
   motherStatusConcept,
   nextVisitDateConcept,
   visitDate,
@@ -23,18 +26,26 @@ import {
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const currentPregnancyHeader = t('currentPregnancy', 'Current Pregnancy');
-  const arvTherapyHeader = t('arvTherapy', 'ARV Therapy');
+  const arvTherapyHeader = t('artTherapy', 'ART Therapy');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
 
-  const currentPregnancyColumns: EncounterTileColumn[] = useMemo(
+  const currentPregnancyColumns: TileSummaryProps[] = useMemo(
     () => [
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, hivTestResultConcept);
+        encounters: [],
+        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        getObsValue: (encounters) => {
+          let artInitiation;
+          artInitiation = getObsFromEncounter(encounters[0], hivTestResultConcept);
+          if (artInitiation === '--') {
+            artInitiation = getObsFromEncounter(encounters[1], hivTestResultConcept);
+          } else {
+            artInitiation = getObsFromEncounter(encounters[1], hivTestResultConcept);
+          }
+          return artInitiation;
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
@@ -78,23 +89,38 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const arvTherapyColumns: EncounterTileColumn[] = useMemo(
+  const arvTherapyColumns: TileSummaryProps[] = useMemo(
     () => [
       {
-        key: 'currentARTRegimen',
-        header: t('currentARTRegimen', 'Current ART Regimen'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, artInitiationConcept);
+        key: 'artInitiation',
+        header: t('artInitiation', 'ART Initiation'),
+        encounters: [],
+        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        getObsValue: (encounters) => {
+          let artInitiation;
+          artInitiation = getObsFromEncounter(encounters[0], artInitiationConcept);
+          if (artInitiation === '--') {
+            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
+          } else {
+            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
+          }
+          return artInitiation;
         },
       },
       {
         key: 'artStartDate',
         header: t('artStartDate', 'ART Start Date'),
-        encounterUuid: antenatalEncounterType,
-        hasSummary: false,
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, artStartDate, true);
+        encounters: [],
+        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        getObsValue: (encounters) => {
+          let artInitiationDate;
+          artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
+          if (artInitiationDate === '--') {
+            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+          } else {
+            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+          }
+          return artInitiationDate;
         },
       },
     ],
@@ -119,13 +145,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterUuid: '--',
-        getObsValue: () => {
-          return '--';
-        },
-        hasSummary: false,
-        getSummaryObsValue: (encounter) => {
-          return '--';
+        encounterUuid: antenatalEncounterType,
+        getObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, ancVisitsConcept);
         },
       },
     ],

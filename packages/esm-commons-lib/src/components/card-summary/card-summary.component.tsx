@@ -16,7 +16,7 @@ export interface CardSummaryProps {
 export interface TileSummaryProps {
   key: string;
   header: string;
-  encounterUuid: string;
+  encounterUuid?: string;
   encounterUuids?: string[];
   getObsValue: (encounter: any) => string;
   getSummaryObsValue?: (encounter: any) => string;
