@@ -52,7 +52,7 @@
   "pregancyOutcome": "Pregnancy Outcome",
   "pregnantWomenAttendingFirstANC": "# Pregnant women attending first ANC",
   "previousPregnancies": "Previous Pregnancies",
-  "pTrackerId": "PTracker Id",
+  "pTrackerId": "PTracker ID",
   "recentViralLoadResults": "Recent Viral load results",
   "recentViralLoadTestDate": "Recent Viral load test date",
   "sex": "Sex",
@@ -60,5 +60,6 @@
   "totalDeliveries": "# Total deliveries",
   "viewDetails": "View details",
   "visitDate": "Visit Date",
-  "vlResults": "VL Results"
+  "vlResults": "VL Results",
+  "currentHivStatus": "Current HIV Status"
 }
