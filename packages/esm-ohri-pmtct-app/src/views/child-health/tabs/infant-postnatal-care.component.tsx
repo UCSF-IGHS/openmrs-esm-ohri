@@ -11,7 +11,7 @@ import {
   linkedToArt,
   breastfeedingStatus,
   outcomeStatus,
-  ChildPDateOfBirth,
+  childDateOfBirth,
 } from '../../../constants';
 import { moduleName } from '../../..';
 
@@ -36,7 +36,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'childDateOfBirth',
         header: t('childDateOfBirth', 'Child Date of Birth'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, ChildPDateOfBirth, true);
+          return getObsFromEncounter(encounter, childDateOfBirth, true);
         },
       },
       {

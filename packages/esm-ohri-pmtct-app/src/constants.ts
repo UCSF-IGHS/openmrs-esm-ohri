@@ -18,12 +18,13 @@ export const hivTestStatus = '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artLinkage = '6e62bf7e-2107-4d09-b485-6e60cbbb2d08';
 export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ancVisitConcept = '160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
 export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
 export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ChildPTrackerId = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
-export const ChildPDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const childDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artProphylaxisStatus = '1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const linkedToArt = 'a40d8bc4-56b8-4f28-a1dd-412da5cf20ed';
 export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';

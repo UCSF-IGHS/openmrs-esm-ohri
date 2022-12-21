@@ -4,13 +4,15 @@ import {
   EncounterList,
   EncounterListColumn,
   PatientChartProps,
+  getCountableObsFromEncounter,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
 import {
+  childDateOfBirth,
+  ancVisitConcept,
   artProphylaxisStatus,
   birthCountConcept,
-  dateOfDeliveryConcept,
   infantStatusAtBirthConcept,
   labourAndDeliveryEncounterType,
   pTrackerIdConcept,
@@ -33,15 +35,15 @@ const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'ancVisits',
         header: t('ancVisits', 'ANC visits'),
         getValue: (encounter) => {
-          // return getObsFromEncounter(encounter, visitDateConcept, true);
-          return 'TBD';
+          // let obs = getCountableObsFromEncounter(encounter, ancVisitConcept);
+          return '--';
         },
       },
       {
         key: 'deliveryDate',
         header: t('deliveryDate', 'Delivery Date"'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, dateOfDeliveryConcept);
+          return getObsFromEncounter(encounter, childDateOfBirth, true);
         },
       },
       {
