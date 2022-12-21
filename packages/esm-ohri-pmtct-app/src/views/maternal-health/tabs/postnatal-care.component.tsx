@@ -4,6 +4,7 @@ import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/o
 import { moduleName } from '../../..';
 import {
   artLinkage,
+  artUniqueNoConcept,
   hivTestStatus,
   MotherHivStatus,
   MotherNextVisitDate,
@@ -28,7 +29,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
     () => [
       {
         key: 'pTrackerId',
-        header: t('pTrackerId', 'PTracker Id'),
+        header: t('pTrackerId', 'PTracker ID'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, pTrackerIdConcept);
         },
@@ -48,17 +49,10 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'artInitiation',
-        header: t('artInitiation', 'Current HIV Status'),
+        key: 'currentHivStatus',
+        header: t('currentHivStatus', 'Current HIV Status'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, MotherHivStatus);
-        },
-      },
-      {
-        key: 'ARTLinkageIfPositive',
-        header: t('ARTLinkageIfPositive', 'ART Linkage If Positive'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
         },
       },
       {
