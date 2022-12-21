@@ -105,6 +105,20 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
   return obs.value;
 }
 
+export function getCountableObsFromEncounter(patientUuid, encounterUuid, obsConcept) {
+  const obs = openmrsFetch(`/ws/fhir2/R4/Observation?patient=${patientUuid}&code=${obsConcept}`);
+
+  // /Observation?patient=${patientUuid}&code=${obsConcept}&encounter.type=2549af50-75c8-4aeb-87ca-4bb2cef6c69a
+  // console.log('encounter: ', encounter);
+  // console.log('obs: ', obs);
+
+  if (!obs) {
+    return '--';
+  }
+  // return obs.total;
+  return '--';
+}
+
 export const EncounterList: React.FC<EncounterListProps> = ({
   patientUuid,
   encounterUuid,

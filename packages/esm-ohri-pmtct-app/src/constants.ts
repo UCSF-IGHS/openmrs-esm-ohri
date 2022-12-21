@@ -3,9 +3,11 @@ export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
 export const vLResultsConcept = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
+
 //Labour & Delivery
-export const labourAndDeliveryEncounterType = '1e5614d6-5306-11e6-beb8-9e71128cae77';
-export const deliveryDateConcept = '';
+export const labourAndDeliveryEncounterType = '2678423c-0523-4d76-b0da-18177b439eed';
+export const infantStatusAtBirthConcept = '159917AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const dateOfDeliveryConcept = '5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const bookedForAncConcept = '1719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancHivResultConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
 export const hivStatusAtDeliveryConcept = 'c5f74c86-62cd-4d22-9260-4238f1e45fe0';
@@ -16,12 +18,13 @@ export const hivTestStatus = '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artLinkage = '6e62bf7e-2107-4d09-b485-6e60cbbb2d08';
 export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const ancVisitConcept = '160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
 export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
 export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ChildPTrackerId = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
-export const ChildPDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const childDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artProphylaxisStatus = '1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const linkedToArt = 'a40d8bc4-56b8-4f28-a1dd-412da5cf20ed';
 export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
