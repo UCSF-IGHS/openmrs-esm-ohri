@@ -9,6 +9,8 @@ import {
   TileSummaryProps,
   fetchPatientRelationships,
   itemProps,
+  EncounterListColumn,
+  ExpandableListColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ancVisitsConcept,
@@ -215,8 +217,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return `${totalDays} days`;
   };
 
-  const forms = [];
-
   return (
     <div>
       <CardSummary patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
@@ -240,8 +240,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         headers={headers}
         items={parentRelationships}
         isActionable={true}
-        forms={forms}
         isStriped={true}
+        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
+        patientUuid={patientUuid}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: '',
+          displayText: '',
+        }}
       />
     </div>
   );

@@ -7,7 +7,6 @@ import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { encounterRepresentation } from '../../constants';
-import moment from 'moment';
 import { Add } from '@carbon/react/icons';
 import {
   launchForm,
@@ -54,6 +53,7 @@ export interface EncounterListProps {
   };
 }
 
+<<<<<<< HEAD
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
@@ -119,6 +119,8 @@ export function getCountableObsFromEncounter(patientUuid, encounterUuid, obsConc
   return '--';
 }
 
+=======
+>>>>>>> 41c46255 (OHRI-1179 mch child summary)
 export const EncounterList: React.FC<EncounterListProps> = ({
   patientUuid,
   encounterUuid,
