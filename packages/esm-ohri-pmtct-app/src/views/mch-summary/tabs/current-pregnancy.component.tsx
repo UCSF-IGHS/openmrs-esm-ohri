@@ -7,6 +7,8 @@ import {
   ExpandableList,
   getObsFromEncounter,
   TileSummaryProps,
+  fetchPatientRelationships,
+  itemProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ancVisitsConcept,
@@ -14,7 +16,6 @@ import {
   artInitiationConcept,
   artStartDate,
   eDDConcept,
-  hivStatusAtDeliveryConcept,
   hivTestResultConcept,
   labourAndDeliveryEncounterType,
   motherPostnatalEncounterType,
@@ -22,6 +23,7 @@ import {
   nextVisitDateConcept,
   visitDate,
 } from '../../../constants';
+import moment from 'moment';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -29,6 +31,44 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyHeader = t('artTherapy', 'ART Therapy');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
+  const [relatives, setRelatives] = useState([]);
+  const headers = [
+    {
+      header: t('id', 'ID'),
+      key: 'id',
+    },
+    {
+      header: t('name', 'Name'),
+      key: 'name',
+    },
+    {
+      header: t('relationship', 'Relationship'),
+      key: 'relationship',
+    },
+    {
+      header: t('dateOfBirth', 'Date of birth'),
+      key: 'dateOfBirth',
+    },
+    {
+      header: t('hivStatus', 'HIV Status'),
+      key: 'hivStatus',
+    },
+  ];
+
+  useEffect(() => {
+    getParentRelationships();
+  }, []);
+
+  async function getParentRelationships() {
+    let relationships = [];
+    const relationshipsData = await fetchPatientRelationships(patientUuid);
+    if (relationshipsData.length) {
+      relationshipsData.forEach((item) => {
+        relationships.push(item);
+      });
+    }
+    setRelatives(relationships);
+  }
 
   const currentPregnancyColumns: TileSummaryProps[] = useMemo(
     () => [
@@ -154,6 +194,21 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
+  const parentRelationships: itemProps[] = useMemo(() => {
+    let items = [];
+    relatives.forEach((relative) => {
+      let relativeObject: itemProps = {
+        id: '',
+        name: relative.personB.display,
+        relationship: relative.relationshipType.displayBIsToA,
+        dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
+        hivStatus: '',
+      };
+      items.push(relativeObject);
+    });
+    return items;
+  }, [relatives]);
+
   const calculateDateDifferenceInDate = (givenDate: string): string => {
     const dateDifference = new Date().getTime() - new Date(givenDate).getTime();
     const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
@@ -180,7 +235,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         />
       </div>
 
-      <ExpandableList headerTitle={familyHeader} items={[]} isActionable={true} forms={forms} isStriped={true} />
+      <ExpandableList
+        headerTitle={familyHeader}
+        headers={headers}
+        items={parentRelationships}
+        isActionable={true}
+        forms={forms}
+        isStriped={true}
+      />
     </div>
   );
 };

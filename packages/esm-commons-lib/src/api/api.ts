@@ -222,3 +222,11 @@ export function fetchConceptNameByUuid(conceptUuid: string) {
     }
   });
 }
+
+export function fetchPatientRelationships(patientUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}relationship?person=${patientUuid}&v=full`).then(({ data }) => {
+    if (data.results.length) {
+      return data.results;
+    }
+  });
+}
