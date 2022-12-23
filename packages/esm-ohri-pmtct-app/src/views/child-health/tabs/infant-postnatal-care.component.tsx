@@ -1,17 +1,20 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  EncounterList,
+  EncounterListColumn,
+  fetchPatientRelationships,
+  getObsFromEncounter,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   pTrackerIdConcept,
-  visitDate,
-  hivTestStatus,
   infantPostnatalEncounterType,
   nextVisitDate,
   artProphylaxisStatus,
   linkedToArt,
   breastfeedingStatus,
   outcomeStatus,
-  ChildPDateOfBirth,
+  childDateOfBirth,
 } from '../../../constants';
 import { moduleName } from '../../..';
 
@@ -23,8 +26,21 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
   const { t } = useTranslation();
   const headerTitle = t('infantPostnatalCare', 'Infant Postnatal Care');
 
-  const columns: EncounterListColumn[] = useMemo(
-    () => [
+  const [motherName, setMotherName] = useState('--');
+
+  useEffect(() => {
+    fetchMotherName();
+  }, []);
+
+  async function fetchMotherName() {
+    const response = await fetchPatientRelationships(patientUuid);
+    if (response.length) {
+      setMotherName(response[0].personA.display);
+    }
+  }
+
+  const columns: EncounterListColumn[] = useMemo(() => {
+    return [
       {
         key: 'pTrackerId',
         header: t('pTrackerId', 'Child PTracker ID'),
@@ -36,14 +52,14 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'childDateOfBirth',
         header: t('childDateOfBirth', 'Child Date of Birth'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, ChildPDateOfBirth, true);
+          return getObsFromEncounter(encounter, childDateOfBirth, true);
         },
       },
       {
         key: 'mothersName',
         header: t('mothersName', 'Mothers Name'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '--');
+          return motherName;
         },
       },
       {
@@ -101,9 +117,8 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
           },
         ],
       },
-    ],
-    [],
-  );
+    ];
+  }, [motherName]);
 
   return (
     <EncounterList
