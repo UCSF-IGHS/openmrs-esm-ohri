@@ -52,7 +52,7 @@ function setupOpenMRS() {
         load: getSyncLifecycle(
           createDashboardLinkWithCustomTitle({
             linkText: 'MNCH Summary',
-            title: 'Maternal, Newborn, and Child Health Summary',
+            title: 'Maternal Summary',
           }),
           options,
         ),
