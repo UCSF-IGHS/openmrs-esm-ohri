@@ -4,13 +4,11 @@ import {
   EncounterList,
   EncounterListColumn,
   PatientChartProps,
-  getCountableObsFromEncounter,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
 import {
   childDateOfBirth,
-  ancVisitConcept,
   artProphylaxisStatus,
   birthCountConcept,
   infantStatusAtBirthConcept,

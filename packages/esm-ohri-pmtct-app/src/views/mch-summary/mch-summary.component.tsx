@@ -7,10 +7,13 @@ import CurrentPregnancy from './tabs/current-pregnancy.component';
 import PreviousPregnancies from './tabs/previous-pregnancies.component';
 import Timeline from './tabs/timeline.component';
 import HivExposedInfant from './tabs/hiv-exposed-infant.component';
+import { usePatient } from '@openmrs/esm-framework';
+import moment from 'moment';
 
 const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const age = 10;
+  const { patient } = usePatient(patientUuid);
+  const age = moment().diff(patient?.birthDate, 'years');
 
   return (
     <div className={styles.tabContainer}>
