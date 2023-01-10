@@ -139,6 +139,9 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
+
+    needs: working
+
     steps:
       -
         name: Checkout
@@ -160,7 +163,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest      
-              
+
   dev:
     runs-on: ubuntu-latest
 
