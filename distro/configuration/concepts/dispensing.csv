@@ -1,0 +1,10 @@
+uuid,Void/Retire,Fully specified name:en,Description:en,Data class,Data type,Answers,Members,Same as mappings,Short name:en,Fully specified name:es,Short name:es,Fully specified name:fr,Short name:fr,Fully specified name:ht,Short name:ht,Absolute high,Critical high,Normal high,Absolue low,Critical low,Normal low,Units,Display precision,Allow decimals,Complex data handler
+1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Completed,,Finding,N/A,,,HL7-MedicationDispenseStatus:completed,,,,,,,,,,,,,,,,,
+167154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,On Hold,,Misc,N/A,,,HL7-MedicationDispenseStatus:on-hold,,,,,,,,,,,,,,,,,
+165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Cancelled,,Misc,N/A,,,HL7-MedicationDispenseStatus:cancelled,,,,,,,,,,,,,,,,,
+1878550AAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Declined,,Misc,N/A,,,HL7-MedicationDispenseStatus:declined,,,,,,,,,,,,,,,,,
+1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Unknown,,Misc,N/A,,,HL7-MedicationDispenseStatus:unknown,,,,,,,,,,,,,,,,,
+167153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Preparation,,Misc,N/A,,,HL7-MedicationDispenseStatus:preparation,,,,,,,,,,,,,,,,,
+163723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,In progress,,Misc,N/A,,,HL7-MedicationDispenseStatus:in-progress,,,,,,,,,,,,,,,,,
+162983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Entered in Error,,Misc,N/A,,,HL7-MedicationDispenseStatus:entered-in-error,,,,,,,,,,,,,,,,,
+167157AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,Medication dispense status,,ConvSet,N/A,,On hold;Cancelled;Completed;Declined;Unknown;In progress;Entered in Error;Preparation,,,,
