@@ -1,6 +1,6 @@
 import { PostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
-import { openmrsFetch } from '@openmrs/esm-framework';
-import { Patient, PatientIdentifier, Relationship } from './types';
+import { generateIdentifier, savePatients, saveRelationship } from '../../api/api';
+import { Patient, PatientIdentifier } from '../../api/types';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -54,25 +54,25 @@ async function constructPatientObjectFromObsData(obsGroup, encounterLocation: st
             preferred: true,
           },
         ],
-        gender: '',
-        birthdate: '',
+        gender: inferGenderFromObs(findChildObsInTree(obsGroup, infantGender)),
+        birthdate: findChildObsInTree(obsGroup, infantDOB)?.value,
         birthdateEstimated: false,
         dead: false,
         deathDate: null,
         causeOfDeath: '',
       },
     };
-    let infantPtrackerIdObject: PatientIdentifier = null;
-    patient.person.birthdate = findChildObsInTree(obsGroup, infantDOB)?.value;
-    patient.person.gender = inferGenderFromObs(findChildObsInTree(obsGroup, infantGender));
+    // PTracker ID
     const pTrackerId = findChildObsInTree(obsGroup, infantPTrackerId)?.value;
     if (pTrackerId) {
-      infantPtrackerIdObject = {
-        identifier: pTrackerId,
-        location: encounterLocation,
-        identifierType: PtrackerIdentifierType,
-        preferred: false,
-      };
+      patient.identifiers = [
+        {
+          identifier: pTrackerId,
+          location: encounterLocation,
+          identifierType: PtrackerIdentifierType,
+          preferred: false,
+        },
+      ];
     }
     // generate the preferred identifier
     const preferredIdentifier: PatientIdentifier = {
@@ -81,11 +81,15 @@ async function constructPatientObjectFromObsData(obsGroup, encounterLocation: st
       location: encounterLocation,
       preferred: true,
     };
-    patient.identifiers = [preferredIdentifier, infantPtrackerIdObject];
+    patient.identifiers.push(preferredIdentifier);
     return patient;
   }
   return null;
 }
+
+////////////////////////
+// Convinience functions
+////////////////////////
 
 function findObsByConcept(encounter: any, concept: string): Array<any> {
   return encounter?.obs?.filter((observation) => observation.concept.uuid === concept) || [];
@@ -105,40 +109,6 @@ function inferGenderFromObs(obs) {
     '1535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA': 'F',
   };
   return genderMap[getObsValueCoded(obs)];
-}
-
-export function generateIdentifier(source: string) {
-  return openmrsFetch(`/ws/rest/v1/idgen/identifiersource/${source}/identifier`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: {},
-  });
-}
-
-export function savePatient(patient: Patient) {
-  return openmrsFetch(`/ws/rest/v1/patient`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: patient,
-  });
-}
-
-export function savePatients(patients: Array<Patient>) {
-  return Promise.all(patients.map((patient) => savePatient(patient)));
-}
-
-export function saveRelationship(relationship: Relationship) {
-  return openmrsFetch('/ws/rest/v1/relationship', {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: relationship,
-  });
 }
 
 export default MotherToChildLinkageSubmissionAction;
