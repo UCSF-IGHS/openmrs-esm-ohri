@@ -11,6 +11,7 @@ import {
   itemProps,
   EncounterListColumn,
   ExpandableListColumn,
+  fetchPatientIdentifiers,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ancVisitsConcept,
@@ -23,6 +24,7 @@ import {
   motherPostnatalEncounterType,
   motherStatusConcept,
   nextVisitDateConcept,
+  PTrackerIdentifierType,
   visitDate,
 } from '../../../constants';
 import moment from 'moment';
@@ -34,6 +36,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
   const [relatives, setRelatives] = useState([]);
+  const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const headers = [
     {
       header: t('id', 'ID'),
@@ -71,6 +74,37 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     }
     setRelatives(relationships);
   }
+  useEffect(() => {
+    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personB.uuid));
+    Promise.all(relativeToPtrackerPromises).then((values) => {
+      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
+    });
+  }, [relatives]);
+
+  async function getChildPTracker(patientUuid: string) {
+    let pTrackerMap = { patientId: '', pTrackerId: '--git' };
+    const identifiers = await fetchPatientIdentifiers(patientUuid);
+    if (identifiers) {
+      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
+      pTrackerMap.patientId = patientUuid;
+    }
+    return pTrackerMap;
+  }
+
+  const parentRelationships: itemProps[] = useMemo(() => {
+    let items = [];
+    relatives.forEach((relative) => {
+      let relativeObject: itemProps = {
+        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
+        name: relative.personB.display,
+        relationship: relative.relationshipType.displayBIsToA,
+        dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
+        hivStatus: '',
+      };
+      items.push(relativeObject);
+    });
+    return items;
+  }, [relatives, relativeToIdentifierMap]);
 
   const currentPregnancyColumns: TileSummaryProps[] = useMemo(
     () => [
@@ -195,21 +229,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     ],
     [],
   );
-
-  const parentRelationships: itemProps[] = useMemo(() => {
-    let items = [];
-    relatives.forEach((relative) => {
-      let relativeObject: itemProps = {
-        id: '',
-        name: relative.personB.display,
-        relationship: relative.relationshipType.displayBIsToA,
-        dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
-        hivStatus: '',
-      };
-      items.push(relativeObject);
-    });
-    return items;
-  }, [relatives]);
 
   const calculateDateDifferenceInDate = (givenDate: string): string => {
     const dateDifference = new Date().getTime() - new Date(givenDate).getTime();

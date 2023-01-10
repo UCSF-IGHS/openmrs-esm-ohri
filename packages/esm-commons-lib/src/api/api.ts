@@ -219,6 +219,7 @@ export function fetchConceptNameByUuid(conceptUuid: string) {
       const concept = data.results[data.results.length - 1];
       return concept.display;
     }
+    return null;
   });
 }
 
@@ -227,5 +228,15 @@ export function fetchPatientRelationships(patientUuid: string) {
     if (data.results.length) {
       return data.results;
     }
+    return null;
+  });
+}
+
+export function fetchPatientIdentifiers(patientUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}/patient/${patientUuid}/identifier`).then(({ data }) => {
+    if (data.results.length) {
+      return data.results;
+    }
+    return null;
   });
 }
