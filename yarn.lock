@@ -3692,9 +3692,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ohri/openmrs-ohri-form-engine-lib@npm:next":
-  version: 1.0.1-pre.171
-  resolution: "@ohri/openmrs-ohri-form-engine-lib@npm:1.0.1-pre.171"
+"@ohri/openmrs-ohri-form-engine-lib@portal:/Users/sam/openmrs-ohri-form-engine-lib::locator=%40ohri%2Fopenmrs-esm-ohri%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@ohri/openmrs-ohri-form-engine-lib@portal:/Users/sam/openmrs-ohri-form-engine-lib::locator=%40ohri%2Fopenmrs-esm-ohri%40workspace%3A."
   dependencies:
     "@carbon/react": ^1.12.0
     ace-builds: ^1.4.12
@@ -3718,9 +3718,8 @@ __metadata:
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: bf2de2be5dbeb9f87a957746918788c08abc6bf79cb5b8443b7d6f8c20178cbb3f21219c8492439c26b5cbe03a13bdf65c3bb8f548a3c42ec123cd93da329a9e
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@openmrs/esm-api@npm:^4.0.3-pre.401":
   version: 4.0.3-pre.434
