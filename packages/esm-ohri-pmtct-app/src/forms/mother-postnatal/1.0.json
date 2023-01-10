@@ -174,7 +174,7 @@
                         "required":"true",
                         "unspecified":"true",
                         "hide":{
-                          "hideWhenExpression":"false"
+                          "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                         },
                         "validators":[
                           
@@ -255,7 +255,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('hiv-test','8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8') && art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
                             
