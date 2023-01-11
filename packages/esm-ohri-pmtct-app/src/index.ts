@@ -10,8 +10,8 @@ import {
   motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
-import mchForms from './forms/forms-registry';
+import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
+import mchForms from './form-entry/forms/forms-registry';
 import {
   createDashboardLinkWithCustomTitle,
   createOHRIDashboardLink,
@@ -30,11 +30,12 @@ function setupOpenMRS() {
     featureName: 'ohri-pmtct',
     moduleName,
   };
-
   defineConfigSchema(moduleName, {});
-
   addToBaseFormsRegistry(mchForms);
-
+  registerPostSubmissionAction({
+    id: 'MotherToChildLinkageSubmissionAction',
+    load: () => import('./form-entry/post-submission-actions/mother-child-linkage-action'),
+  });
   return {
     pages: [],
     extensions: [
