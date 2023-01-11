@@ -1,6 +1,7 @@
 import { PostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
 import { generateIdentifier, savePatients, saveRelationship } from '../../api/api';
 import { Patient, PatientIdentifier } from '../../api/types';
+import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../../utils/obs-encounter-utils';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -90,18 +91,6 @@ async function constructPatientObjectFromObsData(obsGroup, encounterLocation: st
 ////////////////////////
 // Convinience functions
 ////////////////////////
-
-function findObsByConcept(encounter: any, concept: string): Array<any> {
-  return encounter?.obs?.filter((observation) => observation.concept.uuid === concept) || [];
-}
-
-function findChildObsInTree(parent: any, childConcept: string) {
-  return parent.groupMembers?.find((obs) => obs.concept.uuid == childConcept);
-}
-
-function getObsValueCoded(obs) {
-  return obs?.value?.uuid;
-}
 
 function inferGenderFromObs(obs) {
   const genderMap = {
