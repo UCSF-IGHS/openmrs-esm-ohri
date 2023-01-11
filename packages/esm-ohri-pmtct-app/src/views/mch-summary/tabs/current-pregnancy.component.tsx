@@ -12,6 +12,7 @@ import {
   EncounterListColumn,
   ExpandableListColumn,
   fetchPatientIdentifiers,
+  basePath,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ancVisitsConcept,
@@ -28,6 +29,8 @@ import {
   visitDate,
 } from '../../../constants';
 import moment from 'moment';
+import { Link } from '@carbon/react';
+import { navigate } from '@openmrs/esm-framework';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -94,9 +97,18 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const parentRelationships: itemProps[] = useMemo(() => {
     let items = [];
     relatives.forEach((relative) => {
+      let patientLink = (
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            navigate({ to: `${basePath}${relative.personB.uuid}/chart` });
+          }}>
+          {relative.personB.display}
+        </Link>
+      );
       let relativeObject: itemProps = {
         id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
-        name: relative.personB.display,
+        name: patientLink,
         relationship: relative.relationshipType.displayBIsToA,
         dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
         hivStatus: '',
