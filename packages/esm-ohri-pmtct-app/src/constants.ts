@@ -32,7 +32,7 @@ export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const outcomeStatus = '160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Antenatal
-export const antenatalEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';
+export const antenatalEncounterType = '2549af50-75c8-4aeb-87ca-4bb2cef6c69a';
 export const visitDateConcept = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivTestResultConcept = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
