@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DataTable,
   Table,
@@ -10,6 +10,7 @@ import {
   TableRow,
 } from '@carbon/react';
 import styles from './o-table.scss';
+import { LazyCell } from '../lazy-cell/lazy-cell.component';
 
 interface TableProps {
   tableHeaders: any;
@@ -40,7 +41,9 @@ export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
               {rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.cells.map((cell) => (
-                    <TableCell key={cell.id}>{cell.value?.content ?? cell.value}</TableCell>
+                    <TableCell key={cell.id}>
+                      <LazyCell lazyValue={cell.value?.content ?? cell.value} />
+                    </TableCell>
                   ))}
                 </TableRow>
               ))}

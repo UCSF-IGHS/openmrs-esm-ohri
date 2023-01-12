@@ -3,13 +3,14 @@ import { CodeSnippetSkeleton, Tile, Column } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
 import styles from './encounter-tile.scss';
 import { encounterRepresentation } from '../../constants';
+import { LazyCell } from '../lazy-cell/lazy-cell.component';
 
 export interface EncounterTileColumn {
   key: string;
   header: string;
   encounterUuid: string;
-  getObsValue: (encounter: any) => string;
-  getSummaryObsValue?: (encounter: any) => string;
+  getObsValue: (encounter: any) => string | Promise<string>;
+  getSummaryObsValue?: (encounter: any) => string | Promise<string>;
   encounter?: any;
   hasSummary?: Boolean;
 }
@@ -61,9 +62,13 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, colum
               <div className={styles.tileBox}>
                 <div className={styles.tileBoxColumn}>
                   <span className={styles.tileTitle}> {column.header} </span>
-                  <span className={styles.tileValue}>{column.getObsValue(column.encounter)}</span>
+                  <span className={styles.tileValue}>
+                    <LazyCell lazyValue={column.getObsValue(column.encounter)} />
+                  </span>
                   {column.hasSummary ? (
-                    <span className={styles.tileTitle}> {column.getSummaryObsValue(column.encounter)} </span>
+                    <span className={styles.tileTitle}>
+                      <LazyCell lazyValue={column.getSummaryObsValue(column.encounter)} />
+                    </span>
                   ) : (
                     <span></span>
                   )}
