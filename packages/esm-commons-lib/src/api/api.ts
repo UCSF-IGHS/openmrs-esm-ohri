@@ -240,3 +240,14 @@ export function fetchPatientIdentifiers(patientUuid: string) {
     return null;
   });
 }
+
+export function getTotalANCVisits(patientUuid: string, pTrackerId: string) {
+  return openmrsFetch(
+    `${BASE_WS_API_URL}reportingrest/dataSet/93006b21-67a3-4400-9558-148063e504e2?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
+  ).then(({ data }) => {
+    if (data) {
+      return data;
+    }
+    return null;
+  });
+}
