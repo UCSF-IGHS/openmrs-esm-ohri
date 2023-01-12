@@ -1,5 +1,7 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { Patient, Relationship } from './types';
+import { AncVisitsReport, Patient, Relationship } from './types';
+import { ancVisitsReport } from '../constants';
+import useSWR from 'swr';
 
 export function generateIdentifier(source: string) {
   return openmrsFetch(`/ws/rest/v1/idgen/identifiersource/${source}/identifier`, {
@@ -33,4 +35,11 @@ export function saveRelationship(relationship: Relationship) {
     method: 'POST',
     body: relationship,
   });
+}
+
+// Get ANC visits report count with pTrackerID and patientUuid
+export function ancVisitsReportCount(pTrackerID: string, patientUuid: string) {
+  return openmrsFetch(
+    `/ws/rest/v1/reportingrest/dataSet/${ancVisitsReport}?patient_uuid=${patientUuid}&ptracker_id=${pTrackerID}`,
+  );
 }
