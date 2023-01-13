@@ -50,3 +50,6 @@ export const MotherViralLoadDate = '163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherViralLoadResult = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherNextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artUniqueNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+// ANC Visits Report
+export const ancVisitsReport = '93006b21-67a3-4400-9558-148063e504e2';

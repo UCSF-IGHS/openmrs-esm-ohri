@@ -120,3 +120,13 @@ export interface RelationshipValue {
   initialrelationshipTypeValue?: string;
   uuid?: string;
 }
+
+export interface AncVisitsReport {
+  uuid: string;
+  rows: Array<{ total: number }>;
+  definition: {
+    uuid?: string;
+    name?: string;
+    description?: string;
+  };
+}
