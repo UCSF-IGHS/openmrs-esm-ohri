@@ -41,8 +41,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
   const [relatives, setRelatives] = useState([]);
-  const [ancVisitTotal, setancVisitTotal] = useState(0);
-  const [latestPTrackerId, setLatestPTrackerId] = useState('');
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const headers = [
     {
@@ -66,15 +64,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       key: 'hivStatus',
     },
   ];
-  /* eslint-disable no-debugger, no-console */
   useEffect(() => {
     getParentRelationships();
-  }, []);
-
-  useEffect(() => {
-    getTotalANCVisits(patientUuid, '100200300').then((data) => {
-      console.log(data.rows[0].total);
-    });
   }, []);
 
   async function getParentRelationships() {
@@ -225,7 +216,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const appointmentsColumns: EncounterTileColumn[] = useMemo(
+  const appointmentsColumns: TileSummaryProps[] = useMemo(
     () => [
       {
         key: 'nextAppointmentDate',
@@ -244,13 +235,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
         encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
+        getObsValue: async (encounter) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          getTotalANCVisits(patientUuid, currentPTrackerId).then((data) => {
-            setancVisitTotal(data.rows[0].total);
-          });
-          console.log(currentPTrackerId);
-          return ancVisitTotal.toString();
+          const totalVisits = await getTotalANCVisits(patientUuid, currentPTrackerId);
+          return totalVisits.rows[0].total;
         },
       },
     ],

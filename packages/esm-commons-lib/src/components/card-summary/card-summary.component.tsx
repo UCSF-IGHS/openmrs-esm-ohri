@@ -3,6 +3,7 @@ import styles from './card-summary.scss';
 import { SkeletonText, Tile, Column } from '@carbon/react';
 import { encounterRepresentation } from '../../constants';
 import { openmrsFetch } from '@openmrs/esm-framework';
+import { LazyCell } from '../lazy-cell/lazy-cell.component';
 
 // Defines the props for the component
 export interface CardSummaryProps {
@@ -17,11 +18,9 @@ export interface TileSummaryProps {
   key: string;
   header: string;
   encounterUuid?: string;
-  encounterUuids?: string[];
-  getObsValue: (encounter: any) => string;
-  getSummaryObsValue?: (encounter: any) => string;
+  getObsValue: (encounter: any) => string | Promise<string>;
+  getSummaryObsValue?: (encounter: any) => string | Promise<string>;
   encounter?: any; //todo pirupius we might need to remove this
-  encounters?: any[];
   hasSummary?: boolean;
 }
 
@@ -82,13 +81,19 @@ export const CardSummary: React.FC<CardSummaryProps> = ({
                 <div className={styles.tileBoxColumn}>
                   <span className={styles.tileTitle}> {column.header} </span>
                   {column.encounters ? (
-                    <span className={styles.tileValue}>{column.getObsValue(column.encounters)}</span>
+                    <span className={styles.tileValue}>
+                      <LazyCell lazyValue={column.getObsValue(column.encounters)} />
+                    </span>
                   ) : (
-                    <span className={styles.tileValue}>{column.getObsValue(column.encounter)}</span>
+                    <span className={styles.tileValue}>
+                      <LazyCell lazyValue={column.getObsValue(column.encounter)} />
+                    </span>
                   )}
 
                   {column.hasSummary ? (
-                    <span className={styles.tileTitle}> {column.getSummaryObsValue(column.encounter)} </span>
+                    <span className={styles.tileTitle}>
+                      <LazyCell lazyValue={column.getSummaryObsValue(column.encounter)} />{' '}
+                    </span>
                   ) : (
                     <span></span>
                   )}
