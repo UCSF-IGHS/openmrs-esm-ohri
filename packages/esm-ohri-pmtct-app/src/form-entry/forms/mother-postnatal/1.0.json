@@ -481,7 +481,7 @@
     "availableIntents":[
        {
           "intent":"*",
-          "display":"Mother - Postanal Form"
+          "display":"Mother - Postnatal Form"
        }
     ],
     "processor":"EncounterFormProcessor",

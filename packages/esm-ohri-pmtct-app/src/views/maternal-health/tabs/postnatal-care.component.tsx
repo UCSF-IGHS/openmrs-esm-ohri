@@ -16,6 +16,7 @@ import {
   recenctViralLoad,
   visitDate,
 } from '../../../constants';
+import moment from 'moment';
 
 interface PostnatalCareListProps {
   patientUuid: string;
@@ -81,14 +82,14 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'mother_postanatal_form', package: 'maternal_health' },
+            form: { name: 'mother_postnatal_form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'mother_postanatal_form', package: 'maternal_health' },
+            form: { name: 'mother_postnatal_form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -104,7 +105,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
     <EncounterList
       patientUuid={patientUuid}
       encounterUuid={motherPostnatalEncounterType}
-      form={{ package: 'maternal_health', name: 'mother_postanatal_form' }}
+      form={{ package: 'maternal_health', name: 'mother_postnatal_form' }}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
