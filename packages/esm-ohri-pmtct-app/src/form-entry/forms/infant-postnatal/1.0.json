@@ -863,7 +863,7 @@
     "availableIntents": [
       {
         "intent": "*",
-        "display": "Infant - Postanal Form"
+        "display": "Infant - Postnatal Form"
       }
     ],
     "processor": "EncounterFormProcessor",
