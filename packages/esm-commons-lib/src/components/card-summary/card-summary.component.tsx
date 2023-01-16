@@ -18,6 +18,8 @@ export interface TileSummaryProps {
   key: string;
   header: string;
   encounterUuid?: string;
+  encounterUuids?: string[];
+  encounters?: string[];
   getObsValue: (encounter: any) => string | Promise<string>;
   getSummaryObsValue?: (encounter: any) => string | Promise<string>;
   encounter?: any; //todo pirupius we might need to remove this
