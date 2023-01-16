@@ -13,6 +13,7 @@ import {
   ExpandableListColumn,
   fetchPatientIdentifiers,
   basePath,
+  getTotalANCVisits,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ancVisitsConcept,
@@ -25,6 +26,7 @@ import {
   motherPostnatalEncounterType,
   motherStatusConcept,
   nextVisitDateConcept,
+  pTrackerIdConcept,
   PTrackerIdentifierType,
   visitDate,
 } from '../../../constants';
@@ -62,7 +64,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       key: 'hivStatus',
     },
   ];
-
   useEffect(() => {
     getParentRelationships();
   }, []);
@@ -85,7 +86,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   }, [relatives]);
 
   async function getChildPTracker(patientUuid: string) {
-    let pTrackerMap = { patientId: '', pTrackerId: '--git' };
+    let pTrackerMap = { patientId: '', pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
     if (identifiers) {
       pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
@@ -215,7 +216,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const appointmentsColumns: EncounterTileColumn[] = useMemo(
+  const appointmentsColumns: TileSummaryProps[] = useMemo(
     () => [
       {
         key: 'nextAppointmentDate',
@@ -234,8 +235,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
         encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, ancVisitsConcept);
+        getObsValue: async (encounter) => {
+          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
+          const totalVisits = await getTotalANCVisits(patientUuid, currentPTrackerId);
+          return totalVisits.rows[0].total;
         },
       },
     ],
