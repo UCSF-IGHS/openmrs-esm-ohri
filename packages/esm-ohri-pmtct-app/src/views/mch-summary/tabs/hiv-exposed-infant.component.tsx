@@ -12,12 +12,18 @@ import {
   itemProps,
   fetchPatientRelationships,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { antenatalEncounterType, PTrackerIdentifierType } from '../../../constants';
 import { navigate } from '@openmrs/esm-framework';
 import moment from 'moment';
 // import { Link } from 'react-router-dom';
 import { Link } from '@carbon/react';
 import { fetchPatientIdentifiers } from '../../../api/api';
+import {
+  antenatalEncounterType,
+  breastfeedingStatus,
+  infantPostnatalEncounterType,
+  nextVisitDateConcept,
+  PTrackerIdentifierType,
+} from '../../../constants';
 
 const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -92,8 +98,9 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'breastfeeding',
         header: t('breastfeeding', 'Breastfeeding'),
+        encounterUuid: infantPostnatalEncounterType,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, breastfeedingStatus);
         },
       },
       {
@@ -119,8 +126,9 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        getObsValue: (encounters) => {
-          return '--';
+        encounterUuid: antenatalEncounterType,
+        getObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
       },
     ],
