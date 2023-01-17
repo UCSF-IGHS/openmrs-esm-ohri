@@ -22,7 +22,7 @@ export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitConcept = '160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
-export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
+export const infantPostnatalEncounterType = 'af1f1b24-d2e8-4282-b308-0bf79b365584';
 export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ChildPTrackerId = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 export const childDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -43,7 +43,7 @@ export const artStartDate = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitsConcept = '1425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Mother Postnatal
-export const motherPostnatalEncounterType = '3e3c5e17-7d43-467f-8b10-088b41ddf92f';
+export const motherPostnatalEncounterType = '269bcc7f-04f8-4ddc-883d-7a3a0d569aad';
 export const MothervisitDate = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherHivStatus = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherViralLoadDate = '163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
