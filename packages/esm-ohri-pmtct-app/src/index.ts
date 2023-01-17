@@ -36,6 +36,10 @@ function setupOpenMRS() {
     id: 'MotherToChildLinkageSubmissionAction',
     load: () => import('./form-entry/post-submission-actions/mother-child-linkage-action'),
   });
+  registerPostSubmissionAction({
+    id: 'PTrackerSubmissionAction',
+    load: () => import('./form-entry/post-submission-actions/current-ptracker-action'),
+  });
   return {
     pages: [],
     extensions: [

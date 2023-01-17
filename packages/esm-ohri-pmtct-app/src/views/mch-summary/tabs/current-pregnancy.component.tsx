@@ -11,12 +11,10 @@ import {
   itemProps,
   EncounterListColumn,
   ExpandableListColumn,
-  fetchPatientIdentifiers,
   basePath,
   getTotalANCVisits,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
-  ancVisitsConcept,
   antenatalEncounterType,
   artInitiationConcept,
   artStartDate,
@@ -33,6 +31,7 @@ import {
 import moment from 'moment';
 import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
+import { fetchPatientIdentifiers } from '../../../api/api';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -275,7 +274,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         items={parentRelationships}
         isActionable={true}
         isStriped={true}
-        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
+        encounterUuid={antenatalEncounterType}
         patientUuid={patientUuid}
         launchOptions={{
           hideFormLauncher: true,
