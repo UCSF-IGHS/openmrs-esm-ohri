@@ -3,8 +3,8 @@ import { backendDependencies } from './openmrs-backend-dependencies';
 import {
   mchSummary_dashboardMeta,
   mchFolderMeta,
-  maternalHealth_dashboardMeta,
-  childHealth_dashboardMeta,
+  maternalVisits_dashboardMeta,
+  childVisits_dashboardMeta,
   labs_dashboardMeta,
   medication_dashboardMeta,
   motherChildDashboardMeta,
@@ -72,14 +72,14 @@ function setupOpenMRS() {
       {
         id: 'maternal-Health-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(maternalHealth_dashboardMeta), options),
-        meta: maternalHealth_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(maternalVisits_dashboardMeta), options),
+        meta: maternalVisits_dashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'maternal-health-summary-ext',
-        slot: 'maternal-health-summary-slot',
+        slot: 'maternal-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/maternal-health/maternal-health.component'), {
           featureName: 'maternal-health',
           moduleName,
@@ -88,14 +88,14 @@ function setupOpenMRS() {
       {
         id: 'child-Health-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(childHealth_dashboardMeta), options),
-        meta: childHealth_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(childVisits_dashboardMeta), options),
+        meta: childVisits_dashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'child-health-summary-ext',
-        slot: 'child-health-summary-slot',
+        slot: 'child-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
           featureName: 'child-health',
           moduleName,

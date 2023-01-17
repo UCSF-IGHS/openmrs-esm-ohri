@@ -12,16 +12,16 @@ export const mchSummary_dashboardMeta = {
   title: 'Maternal Summary',
 };
 
-export const maternalHealth_dashboardMeta = {
-  slot: 'maternal-health-summary-slot',
+export const maternalVisits_dashboardMeta = {
+  slot: 'maternal-visits-summary-slot',
   columns: 1,
-  title: 'Maternal Health',
+  title: 'Maternal Visits',
 };
 
-export const childHealth_dashboardMeta = {
-  slot: 'child-health-summary-slot',
+export const childVisits_dashboardMeta = {
+  slot: 'child-visits-summary-slot',
   columns: 1,
-  title: 'Child Health',
+  title: 'Child Visits',
 };
 
 export const medication_dashboardMeta = {
