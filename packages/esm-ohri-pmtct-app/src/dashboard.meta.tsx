@@ -9,7 +9,7 @@ export const mchFolderMeta = {
 export const mchSummary_dashboardMeta = {
   slot: 'mch-summary-slot',
   columns: 1,
-  title: 'Maternal Summary',
+  title: 'Client Summary',
 };
 
 export const maternalVisits_dashboardMeta = {
