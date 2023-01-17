@@ -78,15 +78,15 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'maternal-health-summary-ext',
+        id: 'maternal-visits-summary-ext',
         slot: 'maternal-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/maternal-health/maternal-health.component'), {
-          featureName: 'maternal-health',
+          featureName: 'maternal-visits',
           moduleName,
         }),
       },
       {
-        id: 'child-Health-dashboard',
+        id: 'child-visits-dashboard',
         slot: 'mch-slot',
         load: getSyncLifecycle(createDashboardLink(childVisits_dashboardMeta), options),
         meta: childVisits_dashboardMeta,
@@ -94,10 +94,10 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'child-health-summary-ext',
+        id: 'child-visits-summary-ext',
         slot: 'child-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
-          featureName: 'child-health',
+          featureName: 'child-visits',
           moduleName,
         }),
       },
