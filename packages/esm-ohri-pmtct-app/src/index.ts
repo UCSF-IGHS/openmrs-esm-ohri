@@ -53,7 +53,7 @@ function setupOpenMRS() {
         load: getSyncLifecycle(
           createDashboardLinkWithCustomTitle({
             linkText: 'MNCH Summary',
-            title: 'Maternal Summary',
+            title: 'Client Summary',
           }),
           options,
         ),
