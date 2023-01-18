@@ -46,7 +46,6 @@ export function ancVisitsReportCount(pTrackerID: string, patientUuid: string) {
   );
 }
 
-//fetch current Ptraxker
 export function fetchPatientIdentifiers(patientUuid: string) {
   return openmrsFetch(`${BASE_WS_API_URL}/patient/${patientUuid}/identifier`).then(({ data }) => {
     if (data.results.length) {
@@ -56,7 +55,6 @@ export function fetchPatientIdentifiers(patientUuid: string) {
   });
 }
 
-//Save current PTracker
 export function saveIdentifier(identifier: PatientIdentifier, patientUuid: string) {
   return openmrsFetch(`${BASE_WS_API_URL}patient/${patientUuid}/identifier`, {
     headers: {
