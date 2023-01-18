@@ -245,7 +245,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   );
 
   const calculateDateDifferenceInDate = (givenDate: string): string => {
-    const dateDifference = new Date().getTime() - new Date(givenDate).getTime();
+    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
     const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
     return `${totalDays} days`;
   };
