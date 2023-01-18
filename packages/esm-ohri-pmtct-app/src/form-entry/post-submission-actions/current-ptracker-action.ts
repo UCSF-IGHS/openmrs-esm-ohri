@@ -7,32 +7,33 @@ export const PTrackerSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
+    const patientUuid = patient['id'];
 
     // Don't do post submission if action is view
     if (sessionMode === 'view') {
       return;
     }
-
-    const inComingPTrackerID = encounter.obs.find(
-      (observation) => observation.concept.uuid === pTrackerIdConcept,
-    ).value;
-    const patientUuid = patient['id'];
-
-    const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
-    const exixtingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
-    if (exixtingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
-      return;
-    }
-
-    //add current ptracker to identities
-    const currentPTrackerObject: PatientIdentifier = {
-      identifier: inComingPTrackerID,
-      identifierType: PTrackerIdentifierType,
-      location: encounterLocation,
-      preferred: false,
-    };
-    saveIdentifier(currentPTrackerObject, patientUuid);
+    updatePatientPtracker(encounter, encounterLocation, patientUuid);
   },
 };
+
+export async function updatePatientPtracker(encounter, encounterLocation, patientUuid) {
+  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === pTrackerIdConcept).value;
+
+  const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
+  const exixtingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
+  if (exixtingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
+    return;
+  }
+
+  //add current ptracker to identities
+  const currentPTrackerObject: PatientIdentifier = {
+    identifier: inComingPTrackerID,
+    identifierType: PTrackerIdentifierType,
+    location: encounterLocation,
+    preferred: false,
+  };
+  saveIdentifier(currentPTrackerObject, patientUuid);
+}
 
 export default PTrackerSubmissionAction;

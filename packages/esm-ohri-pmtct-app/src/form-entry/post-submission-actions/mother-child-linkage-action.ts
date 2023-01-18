@@ -9,6 +9,7 @@ import {
 import { Patient, PatientIdentifier } from '../../api/types';
 import { pTrackerIdConcept, PTrackerIdentifierType } from '../../constants';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../../utils/obs-encounter-utils';
+import { updatePatientPtracker } from './current-ptracker-action';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -95,24 +96,6 @@ async function constructPatientObjectFromObsData(obsGroup, encounterLocation: st
     return patient;
   }
   return null;
-}
-async function updatePatientPtracker(encounter, encounterLocation, patientUuid) {
-  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === pTrackerIdConcept).value;
-
-  const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
-  const exixtingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
-  if (exixtingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
-    return;
-  }
-
-  //add current ptracker to identities
-  const currentPTrackerObject: PatientIdentifier = {
-    identifier: inComingPTrackerID,
-    identifierType: PTrackerIdentifierType,
-    location: encounterLocation,
-    preferred: false,
-  };
-  saveIdentifier(currentPTrackerObject, patientUuid);
 }
 
 ////////////////////////
