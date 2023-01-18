@@ -27,12 +27,11 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
-    const patientUuid = patient['id'];
     // only do this the first time the form is entered
     if (sessionMode !== 'enter') {
       return;
     }
-    await updatePatientPtracker(encounter, encounterLocation, patientUuid);
+    await updatePatientPtracker(encounter, encounterLocation, patient.id);
     const infantsToCreate = await Promise.all(
       findObsByConcept(encounter, infantDetailsGroup).map(async (obsGroup) =>
         constructPatientObjectFromObsData(obsGroup, encounterLocation),

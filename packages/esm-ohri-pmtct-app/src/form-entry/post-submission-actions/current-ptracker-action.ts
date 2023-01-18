@@ -7,13 +7,12 @@ export const PTrackerSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
-    const patientUuid = patient['id'];
 
     // Don't do post submission if action is view
     if (sessionMode === 'view') {
       return;
     }
-    updatePatientPtracker(encounter, encounterLocation, patientUuid);
+    updatePatientPtracker(encounter, encounterLocation, patient.id);
   },
 };
 
