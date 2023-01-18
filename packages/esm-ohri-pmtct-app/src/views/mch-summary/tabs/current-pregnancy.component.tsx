@@ -33,8 +33,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyHeader = t('artTherapy', 'ART Therapy');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
+  const previousVisitsHeader = t('previousVisits', 'Previous Visits');
+  const previousInfantVisitsHeader = t('previousVisits', 'Previous Visits Infants');
   const [relatives, setRelatives] = useState([]);
-  const headers = [
+
+  const headersFamily = [
     {
       header: t('id', 'ID'),
       key: 'id',
@@ -54,6 +57,44 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     {
       header: t('hivStatus', 'HIV Status'),
       key: 'hivStatus',
+    },
+  ];
+
+  const headersPreviousVisits = [
+    {
+      header: t('visitDate', 'Visit date'),
+      key: 'visitDate',
+    },
+    {
+      header: t('facility', 'Facility'),
+      key: 'facility',
+    },
+    {
+      header: t('nextFollowUpDate', 'Next Follow-up date'),
+      key: 'nextFollowUpDate',
+    },
+    {
+      header: t('actions', 'Actions'),
+      key: 'actions',
+    },
+  ];
+
+  const headersInfantPreviousVisits = [
+    {
+      header: t('visitDate', 'Visit date'),
+      key: 'visitDate',
+    },
+    {
+      header: t('facility', 'Facility'),
+      key: 'facility',
+    },
+    {
+      header: t('nextFollowUpDate', 'Next Follow-up date'),
+      key: 'nextFollowUpDate',
+    },
+    {
+      header: t('actions', 'Actions'),
+      key: 'actions',
     },
   ];
 
@@ -237,7 +278,37 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
       <ExpandableList
         headerTitle={familyHeader}
-        headers={headers}
+        headers={headersFamily}
+        items={parentRelationships}
+        isActionable={true}
+        isStriped={true}
+        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
+        patientUuid={patientUuid}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: '',
+          displayText: '',
+        }}
+      />
+
+      <ExpandableList
+        headerTitle={previousVisitsHeader}
+        headers={headersPreviousVisits}
+        items={parentRelationships}
+        isActionable={true}
+        isStriped={true}
+        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
+        patientUuid={patientUuid}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: '',
+          displayText: '',
+        }}
+      />
+
+      <ExpandableList
+        headerTitle={previousInfantVisitsHeader}
+        headers={headersInfantPreviousVisits}
         items={parentRelationships}
         isActionable={true}
         isStriped={true}
