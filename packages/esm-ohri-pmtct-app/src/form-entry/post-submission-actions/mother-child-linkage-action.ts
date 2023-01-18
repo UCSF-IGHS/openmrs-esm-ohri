@@ -1,7 +1,15 @@
 import { PostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
-import { generateIdentifier, savePatients, saveRelationship } from '../../api/api';
+import {
+  fetchPatientIdentifiers,
+  generateIdentifier,
+  saveIdentifier,
+  savePatients,
+  saveRelationship,
+} from '../../api/api';
 import { Patient, PatientIdentifier } from '../../api/types';
+import { pTrackerIdConcept, PTrackerIdentifierType } from '../../constants';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../../utils/obs-encounter-utils';
+import { updatePatientPtracker } from './current-ptracker-action';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -23,6 +31,7 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
     if (sessionMode !== 'enter') {
       return;
     }
+    await updatePatientPtracker(encounter, encounterLocation, patient.id);
     const infantsToCreate = await Promise.all(
       findObsByConcept(encounter, infantDetailsGroup).map(async (obsGroup) =>
         constructPatientObjectFromObsData(obsGroup, encounterLocation),

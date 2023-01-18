@@ -11,13 +11,13 @@ import {
   basePath,
   itemProps,
   fetchPatientRelationships,
-  fetchPatientIdentifiers,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { antenatalEncounterType, PTrackerIdentifierType } from '../../../constants';
 import { navigate } from '@openmrs/esm-framework';
 import moment from 'moment';
 // import { Link } from 'react-router-dom';
 import { Link } from '@carbon/react';
+import { fetchPatientIdentifiers } from '../../../api/api';
 
 const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();

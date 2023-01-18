@@ -1,7 +1,9 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { AncVisitsReport, Patient, Relationship } from './types';
+import { AncVisitsReport, Patient, PatientIdentifier, Relationship } from './types';
 import { ancVisitsReport } from '../constants';
 import useSWR from 'swr';
+
+const BASE_WS_API_URL = '/ws/rest/v1/';
 
 export function generateIdentifier(source: string) {
   return openmrsFetch(`/ws/rest/v1/idgen/identifiersource/${source}/identifier`, {
@@ -42,4 +44,23 @@ export function ancVisitsReportCount(pTrackerID: string, patientUuid: string) {
   return openmrsFetch(
     `/ws/rest/v1/reportingrest/dataSet/${ancVisitsReport}?patient_uuid=${patientUuid}&ptracker_id=${pTrackerID}`,
   );
+}
+
+export function fetchPatientIdentifiers(patientUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}/patient/${patientUuid}/identifier`).then(({ data }) => {
+    if (data.results.length) {
+      return data.results;
+    }
+    return null;
+  });
+}
+
+export function saveIdentifier(identifier: PatientIdentifier, patientUuid: string) {
+  return openmrsFetch(`${BASE_WS_API_URL}patient/${patientUuid}/identifier`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: identifier,
+  });
 }

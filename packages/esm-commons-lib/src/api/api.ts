@@ -232,15 +232,6 @@ export function fetchPatientRelationships(patientUuid: string) {
   });
 }
 
-export function fetchPatientIdentifiers(patientUuid: string) {
-  return openmrsFetch(`${BASE_WS_API_URL}/patient/${patientUuid}/identifier`).then(({ data }) => {
-    if (data.results.length) {
-      return data.results;
-    }
-    return null;
-  });
-}
-
 export function getTotalANCVisits(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
     `${BASE_WS_API_URL}reportingrest/dataSet/93006b21-67a3-4400-9558-148063e504e2?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
