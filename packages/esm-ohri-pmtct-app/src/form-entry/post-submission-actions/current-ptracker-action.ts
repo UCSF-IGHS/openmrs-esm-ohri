@@ -31,7 +31,7 @@ export const PTrackerSubmissionAction: PostSubmissionAction = {
       location: encounterLocation,
       preferred: false,
     };
-    const identifierPostResponse = await saveIdentifier(currentPTrackerObject, patientUuid);
+    saveIdentifier(currentPTrackerObject, patientUuid);
   },
 };
 

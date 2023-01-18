@@ -1,6 +1,13 @@
 import { PostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
-import { generateIdentifier, savePatients, saveRelationship } from '../../api/api';
+import {
+  fetchPatientIdentifiers,
+  generateIdentifier,
+  saveIdentifier,
+  savePatients,
+  saveRelationship,
+} from '../../api/api';
 import { Patient, PatientIdentifier } from '../../api/types';
+import { pTrackerIdConcept, PTrackerIdentifierType } from '../../constants';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../../utils/obs-encounter-utils';
 
 // necessary data points about an infact captured at birth
@@ -19,10 +26,12 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
+    const patientUuid = patient['id'];
     // only do this the first time the form is entered
     if (sessionMode !== 'enter') {
       return;
     }
+    await updatePatientPtracker(encounter, encounterLocation, patientUuid);
     const infantsToCreate = await Promise.all(
       findObsByConcept(encounter, infantDetailsGroup).map(async (obsGroup) =>
         constructPatientObjectFromObsData(obsGroup, encounterLocation),
@@ -86,6 +95,24 @@ async function constructPatientObjectFromObsData(obsGroup, encounterLocation: st
     return patient;
   }
   return null;
+}
+async function updatePatientPtracker(encounter, encounterLocation, patientUuid) {
+  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === pTrackerIdConcept).value;
+
+  const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
+  const exixtingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
+  if (exixtingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
+    return;
+  }
+
+  //add current ptracker to identities
+  const currentPTrackerObject: PatientIdentifier = {
+    identifier: inComingPTrackerID,
+    identifierType: PTrackerIdentifierType,
+    location: encounterLocation,
+    preferred: false,
+  };
+  saveIdentifier(currentPTrackerObject, patientUuid);
 }
 
 ////////////////////////
