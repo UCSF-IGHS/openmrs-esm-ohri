@@ -135,23 +135,15 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           }
           return artInitiation;
         },
-        hasSummary: true,
-        getSummaryObsValue: (encounter) => {
-          if (getObsFromEncounter(encounter, hivTestResultConcept) === '--') {
-            return '--';
-          } else {
-            return getObsFromEncounter(encounter, visitDate, true);
-          }
-        },
       },
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
         encounterUuid: antenatalEncounterType,
-        hasSummary: true,
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, eDDConcept, true);
         },
+        hasSummary: true,
         getSummaryObsValue: (encounter) => {
           let edd = getObsFromEncounter(encounter, eDDConcept, true);
           return edd === '--' ? edd : `In ${calculateDateDifferenceInDate(edd)}`;
