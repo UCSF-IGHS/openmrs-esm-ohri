@@ -26,7 +26,6 @@ export function PatientExtensionRenderer({ children, patientExpression }) {
         console.error(err);
       }
     }
-    return () => {};
   }, [patient, patientExpression]);
 
   return <>{shouldRender ? children : null}</>;
