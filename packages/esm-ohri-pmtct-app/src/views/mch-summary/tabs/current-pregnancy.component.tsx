@@ -10,22 +10,26 @@ import {
   fetchPatientRelationships,
   itemProps,
   EncounterListColumn,
-  ExpandableListColumn,
+  EncounterList,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ancVisitsConcept,
   antenatalEncounterType,
-  artInitiationConcept,
   artStartDate,
   eDDConcept,
+  followUpDateConcept,
   hivTestResultConcept,
+  infantPostnatalEncounterType,
   labourAndDeliveryEncounterType,
+  mchVisitType,
   motherPostnatalEncounterType,
   motherStatusConcept,
+  antenatalVisitType,
   nextVisitDateConcept,
   visitDate,
 } from '../../../constants';
 import moment from 'moment';
+import { moduleName } from '../../..';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -33,8 +37,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyHeader = t('artTherapy', 'ART Therapy');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
-  const previousVisitsHeader = t('previousVisits', 'Previous Visits');
-  const previousInfantVisitsHeader = t('previousVisits', 'Previous Visits Infants');
+  const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
 
   const headersFamily = [
@@ -57,44 +60,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     {
       header: t('hivStatus', 'HIV Status'),
       key: 'hivStatus',
-    },
-  ];
-
-  const headersPreviousVisits = [
-    {
-      header: t('visitDate', 'Visit date'),
-      key: 'visitDate',
-    },
-    {
-      header: t('facility', 'Facility'),
-      key: 'facility',
-    },
-    {
-      header: t('nextFollowUpDate', 'Next Follow-up date'),
-      key: 'nextFollowUpDate',
-    },
-    {
-      header: t('actions', 'Actions'),
-      key: 'actions',
-    },
-  ];
-
-  const headersInfantPreviousVisits = [
-    {
-      header: t('visitDate', 'Visit date'),
-      key: 'visitDate',
-    },
-    {
-      header: t('facility', 'Facility'),
-      key: 'facility',
-    },
-    {
-      header: t('nextFollowUpDate', 'Next Follow-up date'),
-      key: 'nextFollowUpDate',
-    },
-    {
-      header: t('actions', 'Actions'),
-      key: 'actions',
     },
   ];
 
@@ -121,14 +86,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiation;
-          artInitiation = getObsFromEncounter(encounters[0], hivTestResultConcept);
-          if (artInitiation === '--') {
-            artInitiation = getObsFromEncounter(encounters[1], hivTestResultConcept);
-          } else {
-            artInitiation = getObsFromEncounter(encounters[1], hivTestResultConcept);
-          }
-          return artInitiation;
+          return getObsFromMultipleEncounters(encounters);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
@@ -172,6 +130,17 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
+  const getObsFromMultipleEncounters = (encounters: any) => {
+    let artInitiationDate;
+    artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
+    if (artInitiationDate === '--') {
+      artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+    } else {
+      artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+    }
+    return artInitiationDate;
+  };
+
   const arvTherapyColumns: TileSummaryProps[] = useMemo(
     () => [
       {
@@ -180,14 +149,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiation;
-          artInitiation = getObsFromEncounter(encounters[0], artInitiationConcept);
-          if (artInitiation === '--') {
-            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
-          } else {
-            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
-          }
-          return artInitiation;
+          return getObsFromMultipleEncounters(encounters);
         },
       },
       {
@@ -196,14 +158,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiationDate;
-          artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
-          if (artInitiationDate === '--') {
-            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-          } else {
-            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-          }
-          return artInitiationDate;
+          return getObsFromMultipleEncounters(encounters);
         },
       },
     ],
@@ -258,6 +213,100 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return `${totalDays} days`;
   };
 
+  const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'visitType',
+        header: t('visitType', 'Visit Type'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, antenatalVisitType);
+        },
+      },
+      {
+        key: 'visitDate',
+        header: t('visitDate', 'Visit date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, visitDate, true);
+        },
+      },
+      {
+        key: 'facility',
+        header: t('facility', 'Facility'),
+        getValue: (encounter) => {
+          return encounter.location.name;
+        },
+      },
+      {
+        key: 'nextFollowUpDate',
+        header: t('nextFollowUpDate', 'Next Follow-up date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, followUpDateConcept, true);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => [
+          {
+            form: { name: 'antenatal', package: 'maternal_health' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View details'),
+            mode: 'view',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const columnsChildPreviousVisit: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'visitType',
+        header: t('visitType', 'Visit Type'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, mchVisitType);
+        },
+      },
+      {
+        key: 'visitDate',
+        header: t('visitDate', 'Visit date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, visitDate, true);
+        },
+      },
+      {
+        key: 'facility',
+        header: t('facility', 'Facility'),
+        getValue: (encounter) => {
+          return encounter.location.name;
+        },
+      },
+      {
+        key: 'nextFollowUpDate',
+        header: t('nextFollowUpDate', 'Next Follow-up date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, followUpDateConcept, true);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => [
+          {
+            form: { name: 'infant_postnatal', package: 'child_health' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View details'),
+            mode: 'view',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
   return (
     <div>
       <CardSummary patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
@@ -291,35 +340,36 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         }}
       />
 
-      <ExpandableList
-        headerTitle={previousVisitsHeader}
-        headers={headersPreviousVisits}
-        items={parentRelationships}
-        isActionable={true}
-        isStriped={true}
-        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
-        patientUuid={patientUuid}
-        launchOptions={{
-          hideFormLauncher: true,
-          moduleName: '',
-          displayText: '',
-        }}
-      />
-
-      <ExpandableList
-        headerTitle={previousInfantVisitsHeader}
-        headers={headersInfantPreviousVisits}
-        items={parentRelationships}
-        isActionable={true}
-        isStriped={true}
-        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
-        patientUuid={patientUuid}
-        launchOptions={{
-          hideFormLauncher: true,
-          moduleName: '',
-          displayText: '',
-        }}
-      />
+      <div style={{ padding: '1rem' }}>
+        <EncounterList
+          patientUuid={patientUuid}
+          encounterUuid={antenatalEncounterType}
+          columns={columnsMotherPreviousVisit}
+          description={previousVisitsTitle}
+          headerTitle={previousVisitsTitle}
+          form={{ package: 'maternal_health', name: 'antenatal' }}
+          launchOptions={{
+            hideFormLauncher: true,
+            moduleName: moduleName,
+            displayText: '',
+          }}
+        />
+      </div>
+      <div style={{ padding: '1rem' }}>
+        <EncounterList
+          patientUuid={patientUuid}
+          encounterUuid={infantPostnatalEncounterType}
+          columns={columnsChildPreviousVisit}
+          description={previousVisitsTitle}
+          headerTitle={previousVisitsTitle}
+          form={{ package: 'child_health', name: 'infant_postnatal' }}
+          launchOptions={{
+            hideFormLauncher: true,
+            moduleName: moduleName,
+            displayText: '',
+          }}
+        />
+      </div>
     </div>
   );
 };
