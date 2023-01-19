@@ -48,7 +48,7 @@ export interface ExpandableListColumn {
 
 export interface itemProps {
   id: string;
-  name: string;
+  name: any;
   relationship: string;
   dateOfBirth: string;
   hivStatus: string;

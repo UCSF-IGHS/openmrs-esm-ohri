@@ -10,10 +10,12 @@ import {
   fetchPatientRelationships,
   itemProps,
   EncounterListColumn,
-  EncounterList,
+  EncounterList, 
+  ExpandableListColumn,
+  basePath,
+  getTotalANCVisits, 
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
-  ancVisitsConcept,
   antenatalEncounterType,
   artStartDate,
   eDDConcept,
@@ -26,10 +28,15 @@ import {
   motherStatusConcept,
   antenatalVisitType,
   nextVisitDateConcept,
+  pTrackerIdConcept,
+  PTrackerIdentifierType,
   visitDate,
 } from '../../../constants';
-import moment from 'moment';
-import { moduleName } from '../../..';
+import moment from 'moment'; 
+import { moduleName } from '../../..'; 
+import { Link } from '@carbon/react';
+import { navigate } from '@openmrs/esm-framework';
+import { fetchPatientIdentifiers } from '../../../api/api'; 
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -39,7 +46,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const familyHeader = t('family', 'Family');
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
-
+  const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
+ 
   const headersFamily = [
     {
       header: t('id', 'ID'),
@@ -62,7 +70,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       key: 'hivStatus',
     },
   ];
-
   useEffect(() => {
     getParentRelationships();
   }, []);
@@ -77,6 +84,46 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     }
     setRelatives(relationships);
   }
+  useEffect(() => {
+    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personB.uuid));
+    Promise.all(relativeToPtrackerPromises).then((values) => {
+      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
+    });
+  }, [relatives]);
+
+  async function getChildPTracker(patientUuid: string) {
+    let pTrackerMap = { patientId: '', pTrackerId: '--' };
+    const identifiers = await fetchPatientIdentifiers(patientUuid);
+    if (identifiers) {
+      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
+      pTrackerMap.patientId = patientUuid;
+    }
+    return pTrackerMap;
+  }
+
+  const parentRelationships: itemProps[] = useMemo(() => {
+    let items = [];
+    relatives.forEach((relative) => {
+      let patientLink = (
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            navigate({ to: `${basePath}${relative.personB.uuid}/chart` });
+          }}>
+          {relative.personB.display}
+        </Link>
+      );
+      let relativeObject: itemProps = {
+        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
+        name: patientLink,
+        relationship: relative.relationshipType.displayBIsToA,
+        dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
+        hivStatus: '',
+      };
+      items.push(relativeObject);
+    });
+    return items;
+  }, [relatives, relativeToIdentifierMap]);
 
   const currentPregnancyColumns: TileSummaryProps[] = useMemo(
     () => [
@@ -88,23 +135,15 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         getObsValue: (encounters) => {
           return getObsFromMultipleEncounters(encounters);
         },
-        hasSummary: true,
-        getSummaryObsValue: (encounter) => {
-          if (getObsFromEncounter(encounter, hivTestResultConcept) === '--') {
-            return '--';
-          } else {
-            return getObsFromEncounter(encounter, visitDate, true);
-          }
-        },
       },
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
         encounterUuid: antenatalEncounterType,
-        hasSummary: true,
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, eDDConcept, true);
         },
+        hasSummary: true,
         getSummaryObsValue: (encounter) => {
           let edd = getObsFromEncounter(encounter, eDDConcept, true);
           return edd === '--' ? edd : `In ${calculateDateDifferenceInDate(edd)}`;
@@ -165,7 +204,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const appointmentsColumns: EncounterTileColumn[] = useMemo(
+  const appointmentsColumns: TileSummaryProps[] = useMemo(
     () => [
       {
         key: 'nextAppointmentDate',
@@ -184,31 +223,18 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
         encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, ancVisitsConcept);
+        getObsValue: async (encounter) => {
+          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
+          const totalVisits = await getTotalANCVisits(patientUuid, currentPTrackerId);
+          return totalVisits.rows[0].total;
         },
       },
     ],
     [],
   );
 
-  const parentRelationships: itemProps[] = useMemo(() => {
-    let items = [];
-    relatives.forEach((relative) => {
-      let relativeObject: itemProps = {
-        id: '',
-        name: relative.personB.display,
-        relationship: relative.relationshipType.displayBIsToA,
-        dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
-        hivStatus: '',
-      };
-      items.push(relativeObject);
-    });
-    return items;
-  }, [relatives]);
-
   const calculateDateDifferenceInDate = (givenDate: string): string => {
-    const dateDifference = new Date().getTime() - new Date(givenDate).getTime();
+    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
     const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
     return `${totalDays} days`;
   };
@@ -331,7 +357,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         items={parentRelationships}
         isActionable={true}
         isStriped={true}
-        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
+        encounterUuid={antenatalEncounterType}
         patientUuid={patientUuid}
         launchOptions={{
           hideFormLauncher: true,

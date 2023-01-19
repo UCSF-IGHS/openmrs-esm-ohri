@@ -1,6 +1,7 @@
 export const mnchEncounterType_UUID = '3eb24129-9f7d-4372-a14e-c2cf577e5db1';
 export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
 export const vLResultsConcept = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const PTrackerIdentifierType = '4da0a3fe-e546-463f-81fa-084f098ff06c';
 
 export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 
@@ -21,7 +22,7 @@ export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitConcept = '160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
-export const infantPostnatalEncounterType = '026a050c-4588-41ef-bd89-178dd47f4ef9';
+export const infantPostnatalEncounterType = 'af1f1b24-d2e8-4282-b308-0bf79b365584';
 export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ChildPTrackerId = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 export const childDateOfBirth = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -31,7 +32,7 @@ export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const outcomeStatus = '160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Antenatal
-export const antenatalEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';
+export const antenatalEncounterType = '2549af50-75c8-4aeb-87ca-4bb2cef6c69a';
 export const visitDateConcept = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const hivTestResultConcept = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
@@ -42,13 +43,16 @@ export const artStartDate = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitsConcept = '1425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Mother Postnatal
-export const motherPostnatalEncounterType = '3e3c5e17-7d43-467f-8b10-088b41ddf92f';
+export const motherPostnatalEncounterType = '269bcc7f-04f8-4ddc-883d-7a3a0d569aad';
 export const MothervisitDate = '163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherHivStatus = '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherViralLoadDate = '163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherViralLoadResult = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherNextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artUniqueNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+// ANC Visits Report
+export const ancVisitsReport = '93006b21-67a3-4400-9558-148063e504e2';
 
 //MCH Summary
 export const antenatalVisitType = '164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';

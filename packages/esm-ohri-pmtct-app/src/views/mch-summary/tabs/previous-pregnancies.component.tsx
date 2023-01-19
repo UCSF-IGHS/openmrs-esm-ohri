@@ -15,6 +15,7 @@ import {
   labourAndDeliveryEncounterType,
   pTrackerIdConcept,
 } from '../../../constants';
+import { ancVisitsReportCount } from '../../../api/api';
 
 const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -33,8 +34,10 @@ const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'ancVisits',
         header: t('ancVisits', 'ANC visits'),
         getValue: (encounter) => {
-          // let obs = getCountableObsFromEncounter(encounter, ancVisitConcept);
-          return '--';
+          let pTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
+          return ancVisitsReportCount(pTrackerId, patientUuid).then((response) => {
+            return response.data.rows[0].total;
+          });
         },
       },
       {

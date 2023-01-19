@@ -3,16 +3,17 @@ import { backendDependencies } from './openmrs-backend-dependencies';
 import {
   mchSummary_dashboardMeta,
   mchFolderMeta,
-  maternalHealth_dashboardMeta,
-  childHealth_dashboardMeta,
+  maternalVisits_dashboardMeta,
+  childVisits_dashboardMeta,
   labs_dashboardMeta,
   medication_dashboardMeta,
   motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
-import mchForms from './forms/forms-registry';
+import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
+import mchForms from './form-entry/forms/forms-registry';
 import {
+  createConditionalDashboardLink,
   createDashboardLinkWithCustomTitle,
   createOHRIDashboardLink,
   OHRIHome,
@@ -30,11 +31,16 @@ function setupOpenMRS() {
     featureName: 'ohri-pmtct',
     moduleName,
   };
-
   defineConfigSchema(moduleName, {});
-
   addToBaseFormsRegistry(mchForms);
-
+  registerPostSubmissionAction({
+    id: 'MotherToChildLinkageSubmissionAction',
+    load: () => import('./form-entry/post-submission-actions/mother-child-linkage-action'),
+  });
+  registerPostSubmissionAction({
+    id: 'PTrackerSubmissionAction',
+    load: () => import('./form-entry/post-submission-actions/current-ptracker-action'),
+  });
   return {
     pages: [],
     extensions: [
@@ -52,7 +58,7 @@ function setupOpenMRS() {
         load: getSyncLifecycle(
           createDashboardLinkWithCustomTitle({
             linkText: 'MNCH Summary',
-            title: 'Maternal Summary',
+            title: 'Client Summary',
           }),
           options,
         ),
@@ -71,32 +77,32 @@ function setupOpenMRS() {
       {
         id: 'maternal-Health-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(maternalHealth_dashboardMeta), options),
-        meta: maternalHealth_dashboardMeta,
+        load: getSyncLifecycle(createConditionalDashboardLink(maternalVisits_dashboardMeta), options),
+        meta: maternalVisits_dashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'maternal-health-summary-ext',
-        slot: 'maternal-health-summary-slot',
+        id: 'maternal-visits-summary-ext',
+        slot: 'maternal-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/maternal-health/maternal-health.component'), {
-          featureName: 'maternal-health',
+          featureName: 'maternal-visits',
           moduleName,
         }),
       },
       {
-        id: 'child-Health-dashboard',
+        id: 'child-visits-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(childHealth_dashboardMeta), options),
-        meta: childHealth_dashboardMeta,
+        load: getSyncLifecycle(createConditionalDashboardLink(childVisits_dashboardMeta), options),
+        meta: childVisits_dashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'child-health-summary-ext',
-        slot: 'child-health-summary-slot',
+        id: 'child-visits-summary-ext',
+        slot: 'child-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
-          featureName: 'child-health',
+          featureName: 'child-visits',
           moduleName,
         }),
       },

@@ -37,24 +37,6 @@
               ]
             },
             {
-              "label": "PTracker ID",
-              "type": "obs",
-              "id": "ptracker_id",
-              "questionOptions": {
-                "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
-                "rendering": "text"
-              },
-              "behaviours":[
-                {
-                  "intent":"*",
-                  "required":"true",
-                  "hide":{
-                    "hideWhenExpression":"false"
-                  }
-                }
-              ]
-            },
-            {
               "label": "Was this client booked (Does Client have a pink book?) at ANC? ",
               "type": "obs",
               "id": "client_booked",
@@ -83,6 +65,24 @@
                   "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "PTracker ID",
+              "type": "obs",
+              "id": "ptracker_id",
+              "questionOptions": {
+                "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
+                "rendering": "text"
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"client_booked == '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -1111,5 +1111,6 @@
   "uuid":"xxxx",
   "referencedForms":[],
   "encounterType":"2678423c-0523-4d76-b0da-18177b439eed",
+  "postSubmissionAction": "MotherToChildLinkageSubmissionAction",
   "allowUnspecifiedAll":true
 }

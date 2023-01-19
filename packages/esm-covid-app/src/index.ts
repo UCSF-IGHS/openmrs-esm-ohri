@@ -27,7 +27,6 @@ function setupOpenMRS() {
 
   defineConfigSchema(moduleName, {});
   addToBaseFormsRegistry(covidForms);
-
   return {
     pages: [],
     extensions: [

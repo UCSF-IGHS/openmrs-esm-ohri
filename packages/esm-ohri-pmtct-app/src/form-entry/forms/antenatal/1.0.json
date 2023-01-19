@@ -83,17 +83,17 @@
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text"
-              },
-              "behaviours":[
-                {
-                  "intent":"*",
-                  "required":"true",
-                  "unspecified":"false",
-                  "hide":{
-                    "hideWhenExpression":"false"
-                  }
-                }
-              ]
+              }
+            }
+          ],
+          "behaviours":[
+            {
+              "intent":"*",
+              "required":"true",
+              "unspecified":"false",
+              "hide":{
+                "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
         },
@@ -826,6 +826,7 @@
   "uuid":"xxxx",
   "referencedForms":[],
   "encounterType":"2549af50-75c8-4aeb-87ca-4bb2cef6c69a",
+  "postSubmissionAction": "PTrackerSubmissionAction",
   "allowUnspecifiedAll":true
 }
 

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CardSummary,
@@ -8,11 +8,77 @@ import {
   TileSummaryProps,
   EncounterListColumn,
   ExpandableListColumn,
+  basePath,
+  itemProps,
+  fetchPatientRelationships,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { antenatalEncounterType } from '../../../constants';
+import { antenatalEncounterType, PTrackerIdentifierType } from '../../../constants';
+import { navigate } from '@openmrs/esm-framework';
+import moment from 'moment';
+// import { Link } from 'react-router-dom';
+import { Link } from '@carbon/react';
+import { fetchPatientIdentifiers } from '../../../api/api';
 
 const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const [relatives, setRelatives] = useState([]);
+  const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
+
+  useEffect(() => {
+    getParentRelationships();
+  }, []);
+
+  async function getParentRelationships() {
+    let relationships = [];
+    const relationshipsData = await fetchPatientRelationships(patientUuid);
+    if (relationshipsData.length) {
+      relationshipsData.forEach((item) => {
+        relationships.push(item);
+      });
+    }
+    setRelatives(relationships);
+  }
+
+  useEffect(() => {
+    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personA.uuid));
+    Promise.all(relativeToPtrackerPromises).then((values) => {
+      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
+    });
+  }, [relatives]);
+
+  async function getChildPTracker(patientUuid: string) {
+    let pTrackerMap = { patientId: '', pTrackerId: '--' };
+    const identifiers = await fetchPatientIdentifiers(patientUuid);
+    if (identifiers) {
+      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
+      pTrackerMap.patientId = patientUuid;
+    }
+    return pTrackerMap;
+  }
+
+  const parentRelationships: itemProps[] = useMemo(() => {
+    let items = [];
+    relatives.forEach((relative) => {
+      let patientLink = (
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            navigate({ to: `${basePath}${relative.personA.uuid}/chart` });
+          }}>
+          {relative.personA.display}
+        </Link>
+      );
+      let relativeObject: itemProps = {
+        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
+        name: patientLink,
+        relationship: relative.relationshipType.displayAIsToB,
+        dateOfBirth: moment(relative.personA.birthdate).format('DD-MMM-YYYY'),
+        hivStatus: '',
+      };
+      items.push(relativeObject);
+    });
+    return items;
+  }, [relatives, relativeToIdentifierMap]);
 
   const infantSummaryColumns: TileSummaryProps[] = useMemo(
     () => [
@@ -192,7 +258,7 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
         patientUuid={patientUuid}
         headerTitle={t('family', 'Family')}
         headers={familyHeaders}
-        items={familyColumns}
+        items={parentRelationships}
         isActionable={true}
         isStriped={true}
         launchOptions={{
