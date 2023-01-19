@@ -39,14 +39,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, MothervisitDate, true);
-        },
-      },
-      {
-        key: 'age',
-        header: t('MotherPostnatalage', 'Age'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, visitDate, true);
         },
       },
       {
