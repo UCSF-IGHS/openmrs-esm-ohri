@@ -13,6 +13,7 @@ import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-
 import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
 import mchForms from './form-entry/forms/forms-registry';
 import {
+  createConditionalDashboardLink,
   createDashboardLinkWithCustomTitle,
   createOHRIDashboardLink,
   OHRIHome,
@@ -76,7 +77,7 @@ function setupOpenMRS() {
       {
         id: 'maternal-Health-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(maternalVisits_dashboardMeta), options),
+        load: getSyncLifecycle(createConditionalDashboardLink(maternalVisits_dashboardMeta), options),
         meta: maternalVisits_dashboardMeta,
         online: true,
         offline: true,
@@ -92,7 +93,7 @@ function setupOpenMRS() {
       {
         id: 'child-visits-dashboard',
         slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(childVisits_dashboardMeta), options),
+        load: getSyncLifecycle(createConditionalDashboardLink(childVisits_dashboardMeta), options),
         meta: childVisits_dashboardMeta,
         online: true,
         offline: true,

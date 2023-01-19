@@ -16,12 +16,14 @@ export const maternalVisits_dashboardMeta = {
   slot: 'maternal-visits-summary-slot',
   columns: 1,
   title: 'Maternal Visits',
+  patientExpression: 'calculateAge(patient.birthDate) > 10',
 };
 
 export const childVisits_dashboardMeta = {
   slot: 'child-visits-summary-slot',
   columns: 1,
   title: 'Child Visits',
+  patientExpression: 'calculateAge(patient.birthDate) <= 10',
 };
 
 export const medication_dashboardMeta = {
