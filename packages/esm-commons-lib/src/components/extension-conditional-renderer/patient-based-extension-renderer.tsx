@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePatient } from '@openmrs/esm-framework';
 
 // @ts-ignore
@@ -19,14 +19,15 @@ export function PatientExtensionRenderer({ children, patientExpression }) {
   const [shouldRender, setShouldRender] = useState(!patientExpression);
 
   useEffect(() => {
-    if (patient && !shouldRender) {
+    if (patient && patientExpression) {
       try {
         setShouldRender(eval(patientExpression));
       } catch (err) {
         console.error(err);
       }
     }
-  }, [patient]);
+    return () => {};
+  }, [patient, patientExpression]);
 
   return <>{shouldRender ? children : null}</>;
 }
