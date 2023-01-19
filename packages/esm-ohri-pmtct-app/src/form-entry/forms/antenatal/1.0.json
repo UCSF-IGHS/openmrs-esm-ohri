@@ -83,17 +83,17 @@
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text"
-              },
-              "behaviours":[
-                {
-                  "intent":"*",
-                  "required":"true",
-                  "unspecified":"false",
-                  "hide":{
-                    "hideWhenExpression":"false"
-                  }
-                }
-              ]
+              }
+            }
+          ],
+          "behaviours":[
+            {
+              "intent":"*",
+              "required":"true",
+              "unspecified":"false",
+              "hide":{
+                "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             }
           ]
         },
