@@ -245,7 +245,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'visitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, antenatalVisitType);
+          return encounter.encounterType.name;
         },
       },
       {
@@ -292,7 +292,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'visitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, mchVisitType);
+          return encounter.encounterType.name;
         },
       },
       {
@@ -332,6 +332,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     ],
     [],
   );
+
+  const infantPostnatalEncounters = (encounter) => {
+    return encounter.encounterType.display !== 'Infant Postnatal';
+  };
 
   return (
     <div>
@@ -379,6 +383,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
             moduleName: moduleName,
             displayText: '',
           }}
+          filter={infantPostnatalEncounters}
         />
       </div>
       <div style={{ padding: '1rem' }}>
