@@ -8,7 +8,7 @@ import {
   getObsFromEncounter,
   TileSummaryProps,
   fetchPatientRelationships,
-  itemProps,
+  familyItemProps,
   EncounterListColumn,
   ExpandableListColumn,
   basePath,
@@ -94,7 +94,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return pTrackerMap;
   }
 
-  const parentRelationships: itemProps[] = useMemo(() => {
+  const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
     relatives.forEach((relative) => {
       let patientLink = (
@@ -106,7 +106,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           {relative.personB.display}
         </Link>
       );
-      let relativeObject: itemProps = {
+      let relativeObject: familyItemProps = {
         id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
         name: patientLink,
         relationship: relative.relationshipType.displayBIsToA,

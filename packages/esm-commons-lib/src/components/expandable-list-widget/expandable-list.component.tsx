@@ -24,7 +24,7 @@ import { encounterRepresentation } from '@ohri/openmrs-ohri-form-engine-lib';
 
 export interface ExpandableListProps {
   patientUuid: string;
-  encounterUuid: string;
+  encounterUuid?: string;
   headerTitle: string;
   headers: Array<any>;
   items: Array<any>;
@@ -46,7 +46,7 @@ export interface ExpandableListColumn {
   link?: any;
 }
 
-export interface itemProps {
+export interface familyItemProps {
   id: string;
   name: any;
   relationship: string;
@@ -66,29 +66,10 @@ export const ExpandableList: React.FC<ExpandableListProps> = ({
   isStriped = false,
 }) => {
   const { t } = useTranslation();
-  // const [tableRows, setTableRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [counter, setCounter] = useState(0);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
-
-  // const headers = useMemo(() => {
-  //   if (columns) {
-  //     return columns.map((column) => {
-  //       return { key: column.key, header: column.header };
-  //     });
-  //   }
-  //   return [];
-  // }, [columns]);
-
-  // const tableRows = useMemo(() => {
-  //   if (columns) {
-  //     return columns.map((column) => {
-  //       return { key: column.key, value: column.value };
-  //     });
-  //   }
-  //   return [];
-  // }, [columns]);
 
   return (
     <div className={styles.expandableListContainer}>
