@@ -55,3 +55,7 @@ export const artUniqueNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // ANC Visits Report
 export const ancVisitsReport = '93006b21-67a3-4400-9558-148063e504e2';
+
+//MCH Summary
+export const antenatalVisitType = '164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const mchVisitType = '140084BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';

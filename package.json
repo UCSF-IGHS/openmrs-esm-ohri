@@ -19,6 +19,7 @@
     "start:cervical-cancer": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
     "start:pmtct": "openmrs develop --backend https://ohri-namibia.globalhealthapp.net --sources packages/esm-ohri-pmtct-app",
     "start:form-render": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-form-render-app",
+    "start:namibia": "openmrs develop --backend https://ohri-namibia.globalhealthapp.net/ --sources 'packages/esm-*-app/'",
     "prettier": "prettier --fix --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "test": "jest --config jest.config.js --verbose false --passWithNoTests",
