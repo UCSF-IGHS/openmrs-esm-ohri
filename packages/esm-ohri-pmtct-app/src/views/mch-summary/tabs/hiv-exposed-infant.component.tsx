@@ -11,7 +11,6 @@ import {
   EncounterList,
   fetchPatientRelationships,
   familyItemProps,
-  fetchPatientIdentifiers,
   basePath,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate } from '@openmrs/esm-framework';
@@ -30,7 +29,7 @@ import {
   testTypeConcept,
 } from '../../../constants';
 import { moduleName } from '../../..';
-import { getFamilyRelationships } from '../../../api/api';
+import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
 
 const HivExposedInfant: React.FC<{
   patientUuid: string;
