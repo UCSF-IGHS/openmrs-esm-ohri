@@ -10,10 +10,10 @@ import {
   fetchPatientRelationships,
   familyItemProps,
   EncounterListColumn,
-  EncounterList, 
+  EncounterList,
   ExpandableListColumn,
   basePath,
-  getTotalANCVisits, 
+  getTotalANCVisits,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
@@ -32,11 +32,11 @@ import {
   PTrackerIdentifierType,
   visitDate,
 } from '../../../constants';
-import moment from 'moment'; 
-import { moduleName } from '../../..'; 
+import moment from 'moment';
+import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
-import { fetchPatientIdentifiers } from '../../../api/api'; 
+import { fetchPatientIdentifiers } from '../../../api/api';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -47,7 +47,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
- 
+
   const headersFamily = [
     {
       header: t('id', 'ID'),
@@ -245,7 +245,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'visitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, antenatalVisitType);
+          return encounter.encounterType.name;
         },
       },
       {
@@ -292,7 +292,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'visitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, mchVisitType);
+          return encounter.encounterType.name;
         },
       },
       {
@@ -332,6 +332,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     ],
     [],
   );
+
+  const infantPostnatalEncounters = (encounter) => {
+    return encounter.encounterType.display !== 'Infant Postnatal';
+  };
 
   return (
     <div>
@@ -379,6 +383,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
             moduleName: moduleName,
             displayText: '',
           }}
+          filter={infantPostnatalEncounters}
         />
       </div>
       <div style={{ padding: '1rem' }}>
