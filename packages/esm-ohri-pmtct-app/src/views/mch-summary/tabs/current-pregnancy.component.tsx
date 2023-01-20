@@ -10,10 +10,10 @@ import {
   fetchPatientRelationships,
   familyItemProps,
   EncounterListColumn,
-  EncounterList, 
+  EncounterList,
   ExpandableListColumn,
   basePath,
-  getTotalANCVisits, 
+  getTotalANCVisits,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
@@ -32,11 +32,11 @@ import {
   PTrackerIdentifierType,
   visitDate,
 } from '../../../constants';
-import moment from 'moment'; 
-import { moduleName } from '../../..'; 
+import moment from 'moment';
+import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
-import { fetchPatientIdentifiers } from '../../../api/api'; 
+import { fetchPatientIdentifiers } from '../../../api/api';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -47,7 +47,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
- 
+
   const headersFamily = [
     {
       header: t('id', 'ID'),
