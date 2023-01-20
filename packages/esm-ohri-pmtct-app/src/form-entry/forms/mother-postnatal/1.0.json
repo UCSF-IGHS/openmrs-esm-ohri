@@ -19,6 +19,7 @@
                     "behaviours":[
                       {
                         "intent":"*",
+                        "required":"true",
                         "unspecified":"true",
                         "hide":{
                           "hideWhenExpression":"false"
@@ -36,7 +37,7 @@
                       }
                     ]
                   },
-                   {
+                  {
                       "label":"PTracker Id",
                       "type":"obs",
                       "id":"ptrackerid",
@@ -183,7 +184,6 @@
                             "hideWhenExpression":"hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                           },
                           "validators":[
-
                           ]
                         }
                       ]
@@ -225,7 +225,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 
