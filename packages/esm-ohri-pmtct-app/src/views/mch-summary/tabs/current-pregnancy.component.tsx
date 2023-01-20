@@ -36,7 +36,7 @@ import moment from 'moment';
 import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
-import { fetchPatientIdentifiers } from '../../../api/api';
+import { fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
 
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -140,8 +140,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
         encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, eDDConcept, true);
+        getObsValue: async (encounter) => {
+          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
+          const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
+          return edd.rows[0].estimated_delivery_date;
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {

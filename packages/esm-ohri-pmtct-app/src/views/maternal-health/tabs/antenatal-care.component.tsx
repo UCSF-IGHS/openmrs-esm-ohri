@@ -13,6 +13,7 @@ import {
   vLResultsConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
+import { getEstimatedDeliveryDate } from '../../../api/api';
 
 interface AntenatalCareListProps {
   patientUuid: string;
@@ -62,8 +63,10 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
       {
         key: 'edd',
         header: t('edd', 'EDD'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, eDDConcept, true);
+        getValue: async (encounter) => {
+          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
+          const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
+          return edd.rows[0].estimated_delivery_date;
         },
       },
       {

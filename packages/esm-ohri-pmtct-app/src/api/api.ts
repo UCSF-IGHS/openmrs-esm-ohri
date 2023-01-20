@@ -66,6 +66,17 @@ export function saveIdentifier(identifier: PatientIdentifier, patientUuid: strin
   });
 }
 
+export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string) {
+  return openmrsFetch(
+    `${BASE_WS_API_URL}reportingrest/dataSet/914878d8-45e4-4785-9a5c-8c6695382a4e?ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`,
+  ).then(({ data }) => {
+    if (data) {
+      return data;
+    }
+    return null;
+  });
+}
+
 // Get family relationships from patient uuid
 export async function getFamilyRelationships(patientUuid: string) {
   return await fetchPatientRelationships(patientUuid);
