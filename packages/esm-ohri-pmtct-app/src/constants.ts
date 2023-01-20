@@ -41,6 +41,8 @@ export const eDDConcept = '5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const nextVisitDateConcept = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artStartDate = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitsConcept = '1425AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const testTypeConcept = 'ee8c0292-47f8-4c01-8b60-8ba13a560e1a';
+export const infantExposureStatus = '6027869c-5d7e-4a82-b22f-6d9c57d61a4d';
 
 //Mother Postnatal
 export const motherPostnatalEncounterType = '269bcc7f-04f8-4ddc-883d-7a3a0d569aad';

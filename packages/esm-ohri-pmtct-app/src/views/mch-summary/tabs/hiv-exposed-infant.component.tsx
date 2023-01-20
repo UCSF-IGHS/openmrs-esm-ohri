@@ -8,18 +8,33 @@ import {
   TileSummaryProps,
   EncounterListColumn,
   ExpandableListColumn,
-  basePath,
-  itemProps,
+  EncounterList,
   fetchPatientRelationships,
+  familyItemProps,
+  basePath,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { antenatalEncounterType, PTrackerIdentifierType } from '../../../constants';
 import { navigate } from '@openmrs/esm-framework';
 import moment from 'moment';
-// import { Link } from 'react-router-dom';
 import { Link } from '@carbon/react';
-import { fetchPatientIdentifiers } from '../../../api/api';
+import {
+  PTrackerIdentifierType,
+  antenatalEncounterType,
+  artProphylaxisStatus,
+  artStartDate,
+  breastfeedingStatus,
+  infantExposureStatus,
+  infantPostnatalEncounterType,
+  nextVisitDateConcept,
+  outcomeStatus,
+  testTypeConcept,
+} from '../../../constants';
+import { moduleName } from '../../..';
+import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
 
-const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
+const HivExposedInfant: React.FC<{
+  patientUuid: string;
+  dateOfBirth: string;
+}> = ({ patientUuid, dateOfBirth }) => {
   const { t } = useTranslation();
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
@@ -46,68 +61,36 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
     });
   }, [relatives]);
 
-  async function getChildPTracker(patientUuid: string) {
-    let pTrackerMap = { patientId: '', pTrackerId: '--' };
-    const identifiers = await fetchPatientIdentifiers(patientUuid);
-    if (identifiers) {
-      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
-      pTrackerMap.patientId = patientUuid;
-    }
-    return pTrackerMap;
-  }
-
-  const parentRelationships: itemProps[] = useMemo(() => {
-    let items = [];
-    relatives.forEach((relative) => {
-      let patientLink = (
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            navigate({ to: `${basePath}${relative.personA.uuid}/chart` });
-          }}>
-          {relative.personA.display}
-        </Link>
-      );
-      let relativeObject: itemProps = {
-        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
-        name: patientLink,
-        relationship: relative.relationshipType.displayAIsToB,
-        dateOfBirth: moment(relative.personA.birthdate).format('DD-MMM-YYYY'),
-        hivStatus: '',
-      };
-      items.push(relativeObject);
-    });
-    return items;
-  }, [relatives, relativeToIdentifierMap]);
-
   const infantSummaryColumns: TileSummaryProps[] = useMemo(
     () => [
       {
-        key: 'onNevirapine',
-        header: t('onNevirapine', 'On Nevirapine'),
-        getObsValue: (encounters) => {
-          return '--';
+        key: 'artProphylaxisStatus',
+        header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
+        encounterUuid: infantPostnatalEncounterType,
+        getObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, artProphylaxisStatus);
         },
       },
       {
         key: 'breastfeeding',
         header: t('breastfeeding', 'Breastfeeding'),
+        encounterUuid: infantPostnatalEncounterType,
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, breastfeedingStatus);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, infantExposureStatus);
         },
       },
       {
         key: 'finalOutcome',
         header: t('finalOutcome', 'Final Outcome'),
         getObsValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, outcomeStatus);
         },
       },
     ],
@@ -119,32 +102,48 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        getObsValue: (encounters) => {
-          return '--';
+        encounterUuid: antenatalEncounterType,
+        getObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
       },
     ],
     [],
   );
 
-  const hivMonitoringHeaders = [
-    {
-      key: 'date',
-      header: t('date', 'Date'),
-    },
-    {
-      key: 'testType',
-      header: t('testType', 'Test Type'),
-    },
-    {
-      key: 'ageAtTimeOfTest',
-      header: t('ageAtTimeOfTest', 'Age at time of test'),
-    },
-    {
-      key: 'hivStatus',
-      header: t('hivStatus', 'HIV Status'),
-    },
-  ];
+  const hivMonitoringColumns: EncounterListColumn[] = useMemo(() => {
+    return [
+      {
+        key: 'date',
+        header: t('date', 'Date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, artStartDate, true);
+        },
+      },
+      {
+        key: 'testType',
+        header: t('testType', 'Test Type'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, testTypeConcept);
+        },
+      },
+      {
+        key: 'ageAtTimeOfTest',
+        header: t('ageAtTimeOfTest', 'Age at time of test'),
+        getValue: (encounter) => {
+          const artDate = getObsFromEncounter(encounter, artStartDate);
+          return moment(artDate).diff(dateOfBirth, 'days');
+        },
+      },
+      {
+        key: 'hivStatus',
+        header: t('hivStatus', 'HIV Status'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, infantExposureStatus);
+        },
+      },
+    ];
+  }, []);
 
   const familyHeaders = [
     {
@@ -169,62 +168,39 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
     },
   ];
 
-  const hivMonitoringColumns: ExpandableListColumn[] = useMemo(
-    () => [
-      {
-        key: 'date',
-        header: t('date', 'Date'),
-        value: '18-Jul-2017',
-      },
-      {
-        key: 'testType',
-        header: t('testType', 'Test Type'),
-        value: 'DNA PCR',
-      },
-      {
-        key: 'ageAtTimeOfTest',
-        header: t('ageAtTimeOfTest', 'Age at time of test'),
-        value: '6 Weeks',
-      },
-      {
-        key: 'hivStatus',
-        header: t('hivStatus', 'HIV Status'),
-        value: 'Negative',
-      },
-    ],
-    [],
-  );
+  async function getChildPTracker(patientUuid: string) {
+    let pTrackerMap = { patientId: '', pTrackerId: '--' };
+    const identifiers = await fetchPatientIdentifiers(patientUuid);
+    if (identifiers) {
+      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
+      pTrackerMap.patientId = patientUuid;
+    }
+    return pTrackerMap;
+  }
 
-  const familyColumns: ExpandableListColumn[] = useMemo(
-    () => [
-      {
-        key: 'id',
-        header: 'ID',
-        value: '12345A220001',
-      },
-      {
-        key: 'name',
-        header: t('name', 'Name'),
-        value: 'Jane Arron',
-      },
-      {
-        key: 'relationship',
-        header: t('relationship', 'Relationship'),
-        value: 'Mother',
-      },
-      {
-        key: 'dateOfBirth',
-        header: t('dateOfBirth', 'Date of birth'),
-        value: '18-Jul-1988',
-      },
-      {
-        key: 'hivStatus',
-        header: t('hivStatus', 'HIV Status'),
-        value: 'Negative',
-      },
-    ],
-    [],
-  );
+  const parentRelationships: familyItemProps[] = useMemo(() => {
+    let items = [];
+    relatives.forEach((relative) => {
+      let patientLink = (
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            navigate({ to: `${basePath}${relative.personA.uuid}/chart` });
+          }}>
+          {relative.personA.display}
+        </Link>
+      );
+      let relativeObject: familyItemProps = {
+        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
+        name: patientLink,
+        relationship: relative.relationshipType.displayAIsToB,
+        dateOfBirth: moment(relative.personA.birthdate).format('DD-MMM-YYYY'),
+        hivStatus: '',
+      };
+      items.push(relativeObject);
+    });
+    return items;
+  }, [relatives, relativeToIdentifierMap]);
 
   return (
     <div>
@@ -239,24 +215,23 @@ const HivExposedInfant: React.FC<PatientChartProps> = ({ patientUuid }) => {
         columns={appointmentColumns}
       />
 
-      <ExpandableList
-        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
+      <EncounterList
         patientUuid={patientUuid}
+        encounterUuid={infantPostnatalEncounterType}
+        form={{ package: 'child_health', name: 'infant_postnatal' }}
+        columns={hivMonitoringColumns}
+        description={t('hivMonitoring', 'HIV Monitoring')}
         headerTitle={t('hivMonitoring', 'HIV Monitoring')}
-        headers={hivMonitoringHeaders}
-        items={hivMonitoringColumns}
-        isActionable={true}
-        isStriped={true}
         launchOptions={{
           hideFormLauncher: true,
-          moduleName: '',
           displayText: '',
+          moduleName: moduleName,
         }}
       />
+
       <ExpandableList
-        encounterUuid={antenatalEncounterType} // This is the wrong encounter type
-        patientUuid={patientUuid}
         headerTitle={t('family', 'Family')}
+        patientUuid={patientUuid}
         headers={familyHeaders}
         items={parentRelationships}
         isActionable={true}

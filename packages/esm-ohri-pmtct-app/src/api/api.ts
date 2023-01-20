@@ -2,6 +2,7 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { AncVisitsReport, Patient, PatientIdentifier, Relationship } from './types';
 import { ancVisitsReport } from '../constants';
 import useSWR from 'swr';
+import { fetchPatientRelationships } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 
@@ -63,4 +64,9 @@ export function saveIdentifier(identifier: PatientIdentifier, patientUuid: strin
     method: 'POST',
     body: identifier,
   });
+}
+
+// Get family relationships from patient uuid
+export async function getFamilyRelationships(patientUuid: string) {
+  return await fetchPatientRelationships(patientUuid);
 }
