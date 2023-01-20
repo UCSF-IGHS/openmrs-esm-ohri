@@ -225,7 +225,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 
