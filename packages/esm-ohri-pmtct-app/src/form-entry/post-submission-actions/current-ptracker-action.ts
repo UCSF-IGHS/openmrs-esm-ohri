@@ -17,8 +17,10 @@ export const PTrackerSubmissionAction: PostSubmissionAction = {
 };
 
 export async function updatePatientPtracker(encounter, encounterLocation, patientUuid) {
-  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === pTrackerIdConcept).value;
-
+  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === pTrackerIdConcept)?.value;
+  if (!inComingPTrackerID) {
+    return;
+  }
   const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
   const exixtingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
   if (exixtingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
