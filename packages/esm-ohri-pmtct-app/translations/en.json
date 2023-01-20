@@ -64,7 +64,7 @@
   "pregancyOutcome": "Pregnancy Outcome",
   "pregnantWomenAttendingFirstANC": "# Pregnant women attending first ANC",
   "previousPregnancies": "Previous Pregnancies",
-  "previousVisits": "Previous Visits Infants",
+  "previousVisitsSummary": "Visits",
   "pTrackerId": "PTracker ID",
   "recentViralLoadResults": "Recent Viral load results",
   "recentViralLoadTestDate": "Recent Viral load test date",
@@ -76,6 +76,6 @@
   "totalDeliveries": "# Total deliveries",
   "viewDetails": "View details",
   "visitDate": "Visit Date",
-  "vlResults": "VL Results",
-  "previousVisitsSummary": "Visits"
+  "visitType": "Visit Type",
+  "vlResults": "VL Results"
 }
