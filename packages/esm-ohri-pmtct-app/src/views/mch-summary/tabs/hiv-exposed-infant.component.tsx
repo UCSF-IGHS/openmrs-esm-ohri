@@ -102,7 +102,6 @@ const HivExposedInfant: React.FC<{
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterUuid: antenatalEncounterType,
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
@@ -209,6 +208,7 @@ const HivExposedInfant: React.FC<{
         headerTitle={t('infantSummary', 'Infants Summary')}
         columns={infantSummaryColumns}
       />
+
       <CardSummary
         patientUuid={patientUuid}
         headerTitle={t('appointments', 'Appointments')}
