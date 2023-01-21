@@ -202,7 +202,7 @@
                         "required":"true",
                         "unspecified":"true",
                         "hide":{
-                          "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                          "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                         },
                         "validators":[
 
@@ -227,9 +227,7 @@
                           "hide":{
                             "hideWhenExpression":"art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
-                          "validators":[
-
-                          ]
+                          "validators":[]
                         }
                       ]
                    },
