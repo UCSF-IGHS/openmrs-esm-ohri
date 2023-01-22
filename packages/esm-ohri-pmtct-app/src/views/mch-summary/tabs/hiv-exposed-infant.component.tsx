@@ -27,6 +27,8 @@ import {
   nextVisitDateConcept,
   outcomeStatus,
   testTypeConcept,
+  followUpDateConcept,
+  visitDate,
 } from '../../../constants';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
@@ -201,6 +203,55 @@ const HivExposedInfant: React.FC<{
     return items;
   }, [relatives, relativeToIdentifierMap]);
 
+  const columnsChildPreviousVisit: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'visitType',
+        header: t('visitType', 'Visit Type'),
+        getValue: (encounter) => {
+          return encounter.encounterType.name;
+        },
+      },
+      {
+        key: 'visitDate',
+        header: t('visitDate', 'Visit date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, visitDate, true);
+        },
+      },
+      {
+        key: 'facility',
+        header: t('facility', 'Facility'),
+        getValue: (encounter) => {
+          return encounter.location.name;
+        },
+      },
+      {
+        key: 'nextFollowUpDate',
+        header: t('nextFollowUpDate', 'Next Follow-up date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, followUpDateConcept, true);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => [
+          {
+            form: { name: 'infant_postnatal', package: 'child_health' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View details'),
+            mode: 'view',
+          },
+        ],
+      },
+    ],
+    [],
+  );
+
+  const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
+
   return (
     <div>
       <CardSummary
@@ -242,6 +293,22 @@ const HivExposedInfant: React.FC<{
           displayText: '',
         }}
       />
+
+      <div style={{ padding: '1rem' }}>
+        <EncounterList
+          patientUuid={patientUuid}
+          encounterUuid={infantPostnatalEncounterType}
+          columns={columnsChildPreviousVisit}
+          description={previousVisitsTitle}
+          headerTitle={previousVisitsTitle}
+          form={{ package: 'child_health', name: 'infant_postnatal' }}
+          launchOptions={{
+            hideFormLauncher: true,
+            moduleName: moduleName,
+            displayText: '',
+          }}
+        />
+      </div>
     </div>
   );
 };

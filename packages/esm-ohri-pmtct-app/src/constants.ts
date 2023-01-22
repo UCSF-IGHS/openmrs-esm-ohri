@@ -57,5 +57,7 @@ export const artUniqueNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitsReport = '93006b21-67a3-4400-9558-148063e504e2';
 
 //MCH Summary
+export const mchEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';
 export const antenatalVisitType = '164181AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const mchVisitType = '140084BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
+export const mchVisitsTypes = ['Antenatal', 'Labor and Delivery', 'Mother Postnatal'];
