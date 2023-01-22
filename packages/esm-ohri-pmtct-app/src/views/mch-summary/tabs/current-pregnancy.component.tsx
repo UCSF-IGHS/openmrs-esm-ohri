@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CardSummary,
-  EncounterTileColumn,
   PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
@@ -11,7 +10,6 @@ import {
   familyItemProps,
   EncounterListColumn,
   EncounterList,
-  ExpandableListColumn,
   basePath,
   getTotalANCVisits,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -20,17 +18,15 @@ import {
   artStartDate,
   eDDConcept,
   followUpDateConcept,
-  hivTestResultConcept,
-  infantPostnatalEncounterType,
   labourAndDeliveryEncounterType,
-  mchVisitType,
   motherPostnatalEncounterType,
   motherStatusConcept,
-  antenatalVisitType,
   nextVisitDateConcept,
   pTrackerIdConcept,
   PTrackerIdentifierType,
   visitDate,
+  mchEncounterType,
+  mchVisitsTypes,
 } from '../../../constants';
 import moment from 'moment';
 import { moduleName } from '../../..';
@@ -143,7 +139,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         getObsValue: async (encounter) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
           const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
-          return edd.rows[0].estimated_delivery_date;
+          return edd ? edd?.rows[0]?.estimated_delivery_date : '---';
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
@@ -276,7 +272,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'antenatal', package: 'maternal_health' },
+            form: selectMCHFomrViewAction(encounter),
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View details'),
@@ -288,55 +284,22 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const columnsChildPreviousVisit: EncounterListColumn[] = useMemo(
-    () => [
-      {
-        key: 'visitType',
-        header: t('visitType', 'Visit Type'),
-        getValue: (encounter) => {
-          return encounter.encounterType.name;
-        },
-      },
-      {
-        key: 'visitDate',
-        header: t('visitDate', 'Visit date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
-        },
-      },
-      {
-        key: 'facility',
-        header: t('facility', 'Facility'),
-        getValue: (encounter) => {
-          return encounter.location.name;
-        },
-      },
-      {
-        key: 'nextFollowUpDate',
-        header: t('nextFollowUpDate', 'Next Follow-up date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, followUpDateConcept, true);
-        },
-      },
-      {
-        key: 'actions',
-        header: t('actions', 'Actions'),
-        getValue: (encounter) => [
-          {
-            form: { name: 'infant_postnatal', package: 'child_health' },
-            encounterUuid: encounter.uuid,
-            intent: '*',
-            label: t('viewDetails', 'View details'),
-            mode: 'view',
-          },
-        ],
-      },
-    ],
-    [],
-  );
+  const filterMaterNalEncounters = (encounter) => {
+    const encounterName = encounter.encounterType.name;
+    const isMaternalEncounter = (maternal) => encounterName.indexOf(maternal) !== -1;
+    const filter = mchVisitsTypes.some(isMaternalEncounter);
+    return filter;
+  };
 
-  const infantPostnatalEncounters = (encounter) => {
-    return encounter.encounterType.display !== 'Infant Postnatal';
+  const selectMCHFomrViewAction = (encounter) => {
+    const encounterType = encounter.encounterType.name;
+    if (encounterType === mchVisitsTypes[0]) {
+      return { name: 'antenatal', package: 'maternal_health' };
+    } else if (encounterType === mchVisitsTypes[1]) {
+      return { name: 'labour_and_delivery', package: 'maternal_health' };
+    } else {
+      return { name: 'mother_postnatal_form', package: 'maternal_health' };
+    }
   };
 
   return (
@@ -375,7 +338,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       <div style={{ padding: '1rem' }}>
         <EncounterList
           patientUuid={patientUuid}
-          encounterUuid={antenatalEncounterType}
+          encounterUuid={mchEncounterType}
           columns={columnsMotherPreviousVisit}
           description={previousVisitsTitle}
           headerTitle={previousVisitsTitle}
@@ -385,22 +348,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
             moduleName: moduleName,
             displayText: '',
           }}
-          filter={infantPostnatalEncounters}
-        />
-      </div>
-      <div style={{ padding: '1rem' }}>
-        <EncounterList
-          patientUuid={patientUuid}
-          encounterUuid={infantPostnatalEncounterType}
-          columns={columnsChildPreviousVisit}
-          description={previousVisitsTitle}
-          headerTitle={previousVisitsTitle}
-          form={{ package: 'child_health', name: 'infant_postnatal' }}
-          launchOptions={{
-            hideFormLauncher: true,
-            moduleName: moduleName,
-            displayText: '',
-          }}
+          filter={filterMaterNalEncounters}
         />
       </div>
     </div>
