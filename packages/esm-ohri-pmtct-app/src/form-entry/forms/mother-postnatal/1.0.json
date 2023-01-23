@@ -8,7 +8,36 @@
                 "label":"PTracker ID Capture",
                 "isExpanded":"true",
                 "questions":[
-                   {
+                  {
+                    "label": "Visit Date",
+                    "type": "obs",
+                    "id": "visit_date",
+                    "questionOptions": {
+                      "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                      "rendering": "date"
+                    },
+                    "behaviours":[
+                      {
+                        "intent":"*",
+                        "required":"true",
+                        "unspecified":"true",
+                        "hide":{
+                          "hideWhenExpression":"false"
+                        },
+                        "validators": [
+                          {
+                            "type":"date",
+                            "allowFutureDates":"false"
+                          },
+                          {
+                            "type":"js_expression",
+                            "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
                       "label":"PTracker Id",
                       "type":"obs",
                       "id":"ptrackerid",
@@ -25,7 +54,7 @@
                             "hideWhenExpression":"false"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -71,7 +100,7 @@
                             "hideWhenExpression":"false"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -111,7 +140,7 @@
                             "hideWhenExpression":"!includes('hiv-test','6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f')"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -155,7 +184,6 @@
                             "hideWhenExpression":"hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                           },
                           "validators":[
-                            
                           ]
                         }
                       ]
@@ -163,7 +191,7 @@
                    {
                     "label":"ART Unique Number",
                     "type":"obs",
-                    "id":"art-number", 
+                    "id":"art-number",
                     "questionOptions":{
                        "concept":"164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                        "rendering":"number"
@@ -174,10 +202,10 @@
                         "required":"true",
                         "unspecified":"true",
                         "hide":{
-                          "hideWhenExpression":"false"
+                          "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                         },
                         "validators":[
-                          
+
                         ]
                       }
                     ]
@@ -197,11 +225,9 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
-                          "validators":[
-                            
-                          ]
+                          "validators":[]
                         }
                       ]
                    },
@@ -222,7 +248,7 @@
                             "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -255,10 +281,10 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('hiv-test','8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8') && art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -280,7 +306,7 @@
                             "hideWhenExpression":"!includes('recent-viral-load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -324,7 +350,7 @@
                             "hideWhenExpression":"!includes('recent-viral-load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -346,7 +372,7 @@
                             "hideWhenExpression":"!includes('viral-load-results','1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -373,7 +399,7 @@
                           "hide":{
                             "hideWhenExpression":"false"
                           },
-                          "validators":[ 
+                          "validators":[
                               {
                                  "type": "date",
                                  "allowFutureDates": "true"
@@ -421,7 +447,7 @@
                             "hideWhenExpression":"false"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -443,7 +469,7 @@
                             "hideWhenExpression":"transfer-out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
-                            
+
                           ]
                         }
                       ]
@@ -481,7 +507,7 @@
     "availableIntents":[
        {
           "intent":"*",
-          "display":"Mother - Postanal Form"
+          "display":"Mother - Postnatal Form"
        }
     ],
     "processor":"EncounterFormProcessor",

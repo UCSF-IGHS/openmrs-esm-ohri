@@ -484,6 +484,42 @@
             ]
           },
           {
+            "label": "Link To ART",
+            "type": "obs",
+            "id": "link-to-art",
+            "questionOptions": {
+              "concept": "a40d8bc4-56b8-4f28-a1dd-412da5cf20ed",
+              "rendering": "radio",
+              "answers": [
+                {
+                  "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "No"
+                },
+                {
+                  "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Yes"
+                },
+                {
+                  "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                  "label": "Missing"
+                }
+              ]
+            },
+            "behaviours":[
+              {
+                "intent":"*",
+                "required":"true",
+                "unspecified":"true",
+                "hide":{
+                  "hideWhenExpression":"confirmatory-test-done !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || rapid-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && dnapcr-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                },
+                "validators":[
+                  
+                ]
+              }
+            ]
+          },
+          {
             "label": "Infant ART Link",
             "type": "obs",
             "id": "infant-art-link",
@@ -827,7 +863,7 @@
     "availableIntents": [
       {
         "intent": "*",
-        "display": "Infant - Postanal Form"
+        "display": "Infant - Postnatal Form"
       }
     ],
     "processor": "EncounterFormProcessor",

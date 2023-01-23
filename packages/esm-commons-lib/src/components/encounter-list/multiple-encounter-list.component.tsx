@@ -6,7 +6,7 @@ import { encounterRepresentation } from '../../constants';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { DataTableSkeleton, Link, Pagination } from '@carbon/react';
 import { OTable } from '../data-table/o-table.component';
-import { getObsFromEncounter } from './encounter-list.component';
+import { getObsFromEncounter } from '../../utils/encounter-list-utils';
 
 export interface MultipleEncounterListColumn {
   key: string;
