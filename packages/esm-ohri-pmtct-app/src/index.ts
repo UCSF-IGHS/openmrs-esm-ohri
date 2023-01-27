@@ -5,8 +5,6 @@ import {
   mchFolderMeta,
   maternalVisits_dashboardMeta,
   childVisits_dashboardMeta,
-  labs_dashboardMeta,
-  medication_dashboardMeta,
   motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
@@ -103,38 +101,6 @@ function setupOpenMRS() {
         slot: 'child-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
           featureName: 'child-visits',
-          moduleName,
-        }),
-      },
-      {
-        id: 'labs-dashboard',
-        slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(labs_dashboardMeta), options),
-        meta: labs_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'labs-summary-ext',
-        slot: 'labs-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/labs/labs.component'), {
-          featureName: 'labs',
-          moduleName,
-        }),
-      },
-      {
-        id: 'mediction-dashboard',
-        slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLink(medication_dashboardMeta), options),
-        meta: medication_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'medication-summary-ext',
-        slot: 'medication-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/medications/medications.components'), {
-          featureName: 'medication',
           moduleName,
         }),
       },

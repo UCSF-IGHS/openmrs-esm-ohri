@@ -26,18 +26,6 @@ export const childVisits_dashboardMeta = {
   patientExpression: 'calculateAge(patient.birthDate) <= 10',
 };
 
-export const medication_dashboardMeta = {
-  slot: 'medication-summary-slot',
-  columns: 1,
-  title: 'Medication',
-};
-
-export const labs_dashboardMeta = {
-  slot: 'labs-summary-slot',
-  columns: 1,
-  title: 'Labs',
-};
-
 // Clinical Dashboard
 export const motherChildDashboardMeta = {
   name: 'mother-child-health',
