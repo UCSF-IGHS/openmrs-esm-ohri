@@ -5,8 +5,6 @@ import {
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
-  covidOutcomeUUID,
-  covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
 
@@ -15,53 +13,6 @@ const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
 
 export function fetchLastVisit(uuid: string) {
   return openmrsFetch(`/ws/fhir2/R4/Encounter?patient=${uuid}&_sort=-date&_count=1`);
-}
-
-export function fetchPatientList(offSet: number = 1, pageSize: number = 10) {
-  return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`);
-}
-
-export function fetchTodayClients() {
-  let date = moment().format('YYYY-MM-DD');
-  return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`).then(({ data }) => {
-    if (data.entry?.length) {
-      return cleanDuplicatePatientReferences(data);
-    }
-    return [];
-  });
-}
-
-export function fetchPatientsFromObservationCodeConcept(
-  codeConcept: string,
-  valueConcept?: string,
-  cutOffDays?: number,
-) {
-  let endDate = moment().format('YYYY-MM-DD');
-  let startDate = moment().subtract(cutOffDays, 'days').format('YYYY-MM-DD');
-
-  return openmrsFetch(
-    `/ws/fhir2/R4/Observation?code=${codeConcept}${valueConcept ? `&value-concept=${valueConcept}` : ''}${
-      cutOffDays ? `&_lastUpdated=ge${startDate}&_lastUpdated=le${endDate}` : ''
-    }`,
-  ).then(({ data }) => {
-    if (data.entry?.length) {
-      return cleanDuplicatePatientReferences(data);
-    }
-    return [];
-  });
-}
-
-function cleanDuplicatePatientReferences(data) {
-  let patientRefs = data.entry.map((enc) => {
-    return enc.resource.subject.reference;
-  });
-  patientRefs = new Set([...patientRefs]);
-  patientRefs = Array.from(patientRefs);
-  return Promise.all(
-    patientRefs.map((ref) => {
-      return openmrsFetch(BASE_FHIR_API_URL + ref);
-    }),
-  );
 }
 
 export function performPatientSearch(query, objectVersion) {
