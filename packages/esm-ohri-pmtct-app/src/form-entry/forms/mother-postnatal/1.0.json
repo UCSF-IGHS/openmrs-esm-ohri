@@ -2,7 +2,7 @@
     "name":"Mother - Postnatal Form",
     "pages":[
        {
-          "label":"Mother - Postnatal",
+          "label":"Visit Details",
           "sections":[
              {
                 "label":"PTracker ID Capture",
@@ -60,7 +60,12 @@
                       ]
                    }
                 ]
-             },
+             }      
+            ]
+            },
+            {
+               "label": "HTS and ART",
+               "sections": [
              {
                 "label":"HIV Testing And ART Initiation",
                 "isExpanded":"true",
@@ -378,9 +383,14 @@
                       ]
                    }
                 ]
-             },
+             }
+            ]
+         },
+         {
+            "label": "Next Appointment",
+            "sections": [
              {
-                "label":"HIV Testing And ART Initiation",
+                "label":"Follow Up",
                 "isExpanded":"true",
                 "questions":[
                    {
