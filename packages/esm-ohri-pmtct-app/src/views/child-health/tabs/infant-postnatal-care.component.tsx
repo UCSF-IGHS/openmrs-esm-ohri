@@ -40,7 +40,6 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
     if (response.length) {
       motherName = response[0].personA.display;
       setMotherName(response[0].personA.display);
-      console.log(response[0].personA.display);
     }
     return motherName;
   }
