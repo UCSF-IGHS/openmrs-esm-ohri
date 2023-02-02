@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  basePath,
   EncounterList,
   EncounterListColumn,
+  familyItemProps,
   fetchPatientRelationships,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -33,10 +35,12 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
   }, []);
 
   async function fetchMotherName() {
+    let motherName = '--';
     const response = await fetchPatientRelationships(patientUuid);
     if (response.length) {
-      setMotherName(response[0].personA.display);
+      motherName = response[0].personA.display;
     }
+    return motherName;
   }
 
   const columns: EncounterListColumn[] = useMemo(() => {
@@ -49,17 +53,10 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         },
       },
       {
-        key: 'childDateOfBirth',
-        header: t('childDateOfBirth', 'Child Date of Birth'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, childDateOfBirth, true);
-        },
-      },
-      {
         key: 'mothersName',
         header: t('mothersName', 'Mothers Name'),
-        getValue: (encounter) => {
-          return motherName;
+        getValue: async (encounter) => {
+          return await fetchMotherName();
         },
       },
       {
