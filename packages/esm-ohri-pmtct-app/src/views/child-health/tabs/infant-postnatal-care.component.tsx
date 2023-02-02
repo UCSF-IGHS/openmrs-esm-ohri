@@ -39,7 +39,6 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
     const response = await fetchPatientRelationships(patientUuid);
     if (response.length) {
       motherName = response[0].personA.display;
-      setMotherName(response[0].personA.display);
     }
     return motherName;
   }
