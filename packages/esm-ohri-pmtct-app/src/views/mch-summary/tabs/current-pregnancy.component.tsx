@@ -27,6 +27,7 @@ import {
   visitDate,
   mchEncounterType,
   mchVisitsTypes,
+  hivStatusAtDeliveryConcept,
 } from '../../../constants';
 import moment from 'moment';
 import { moduleName } from '../../..';
@@ -126,10 +127,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounters: [],
-        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
-        getObsValue: (encounters) => {
-          return getObsFromMultipleEncounters(encounters);
+        encounterUuid: labourAndDeliveryEncounterType,
+        getObsValue: (encounter) => {
+          return getObsFromEncounter(encounter, hivStatusAtDeliveryConcept);
         },
       },
       {
