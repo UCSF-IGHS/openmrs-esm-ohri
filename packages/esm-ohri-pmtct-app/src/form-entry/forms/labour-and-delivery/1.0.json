@@ -795,7 +795,7 @@
       "label": "Infant Details",
       "sections": [
         {
-          "label": "",
+          "label": "Children Details",
           "isExpanded": "true",
           "questions": [
             {

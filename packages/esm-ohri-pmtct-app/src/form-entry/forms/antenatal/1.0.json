@@ -209,7 +209,12 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "HTS and ART",
+      "sections": [
         {
           "label": "HIV Testing and ART Initiation",
           "isExpanded": "true",
@@ -725,7 +730,12 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "label": "Next Appointment",
+      "sections": [
         {
           "label": "Follow Up",
           "isExpanded": "true",
