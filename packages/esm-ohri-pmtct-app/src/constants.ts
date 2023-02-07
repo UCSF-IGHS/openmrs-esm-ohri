@@ -30,6 +30,7 @@ export const artProphylaxisStatus = '1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const linkedToArt = 'a40d8bc4-56b8-4f28-a1dd-412da5cf20ed';
 export const breastfeedingStatus = '1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const outcomeStatus = '160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const infantVisitDate = '159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Antenatal
 export const antenatalEncounterType = '2549af50-75c8-4aeb-87ca-4bb2cef6c69a';
