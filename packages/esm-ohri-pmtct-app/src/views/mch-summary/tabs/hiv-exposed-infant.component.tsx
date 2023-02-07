@@ -29,6 +29,7 @@ import {
   testTypeConcept,
   followUpDateConcept,
   visitDate,
+  infantVisitDate,
 } from '../../../constants';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
@@ -216,7 +217,7 @@ const HivExposedInfant: React.FC<{
         key: 'visitDate',
         header: t('visitDate', 'Visit date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
+          return getObsFromEncounter(encounter, infantVisitDate, true);
         },
       },
       {
