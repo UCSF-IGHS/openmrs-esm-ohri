@@ -99,19 +99,6 @@ const HivExposedInfant: React.FC<{
     [],
   );
 
-  const appointmentColumns: TileSummaryProps[] = useMemo(
-    () => [
-      {
-        key: 'nextAppointmentDate',
-        header: t('nextAppointmentDate', 'Next Appointment Date'),
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, nextVisitDateConcept, true);
-        },
-      },
-    ],
-    [],
-  );
-
   const hivMonitoringColumns: EncounterListColumn[] = useMemo(() => {
     return [
       {
@@ -258,12 +245,6 @@ const HivExposedInfant: React.FC<{
         patientUuid={patientUuid}
         headerTitle={t('infantSummary', 'Infants Summary')}
         columns={infantSummaryColumns}
-      />
-
-      <CardSummary
-        patientUuid={patientUuid}
-        headerTitle={t('appointments', 'Appointments')}
-        columns={appointmentColumns}
       />
 
       <EncounterList
