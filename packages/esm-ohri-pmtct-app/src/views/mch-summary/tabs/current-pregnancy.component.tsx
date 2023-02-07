@@ -305,7 +305,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   return (
     <div>
       <CardSummary patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '15rem' }}>
         <CardSummary
           patientUuid={patientUuid}
           headerTitle={arvTherapyHeader}
