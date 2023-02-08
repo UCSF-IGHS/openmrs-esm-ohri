@@ -1089,7 +1089,7 @@
                       "required":"true",
                       "unspecified": "true",
                       "hide":{
-                        "hideWhenExpression":"false"
+                        "hideWhenExpression":"infantStatus === '125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                       }
                     }
                   ]
