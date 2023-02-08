@@ -62,7 +62,6 @@
                 {
                   "intent":"*",
                   "required": "false",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -193,7 +192,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified": "true",
                   "hide":{
                     "hideWhenExpression":"client_booked !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -230,7 +228,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified": "true",
                   "hide":{
                     "hideWhenExpression":"anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -318,7 +315,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                   }
@@ -409,7 +405,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified": "true",
                   "hide":{
                     "hideWhenExpression":"hiv_test_result !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -502,7 +497,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified": "true",
                   "hide":{
                     "hideWhenExpression":"anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_retest_thirty_six_weeks !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                   }
@@ -604,7 +598,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -623,6 +616,7 @@
                 {
                   "intent":"*",
                   "required":"true",
+                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"recent_viral_load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
@@ -673,7 +667,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified": "true",
                   "hide":{
                     "hideWhenExpression":"recent_viral_load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -740,7 +733,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }

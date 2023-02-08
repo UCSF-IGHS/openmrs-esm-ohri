@@ -63,7 +63,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -250,7 +249,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -287,7 +285,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                   }
@@ -324,7 +321,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
@@ -411,7 +407,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"partner_hiv_test_done !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -532,7 +527,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"hiv_test_result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                   }
@@ -633,7 +627,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -703,7 +696,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"recent_viral_load !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
@@ -788,6 +780,10 @@
                   {
                     "concept": "160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Transfer out"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
                   }
                 ]
               },
@@ -795,7 +791,6 @@
                 {
                   "intent":"*",
                   "required":"true",
-                  "unspecified":"true",
                   "hide":{
                     "hideWhenExpression":"false"
                   }
