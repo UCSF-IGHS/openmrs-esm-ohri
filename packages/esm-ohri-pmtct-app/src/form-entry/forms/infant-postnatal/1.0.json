@@ -805,6 +805,35 @@
             ]
           },
           {
+            "label": "Date Confirmed HIV Negative",
+            "type": "obs",
+            "id": "date_confirmed_hiv_negative",
+            "questionOptions": {
+              "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            },
+            "behaviours":[
+              {
+                "intent":"*",
+                "required":"true",
+                "unspecified":"true",
+                "hide":{
+                  "hideWhenExpression":"infant-transfer-status !== '164861AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                },
+                "validators":[
+                  {
+                    "type":"date",
+                    "allowFutureDates":"false"
+                  },
+                  {
+                    "type":"js_expression",
+                    "failsWhenExpression":"false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "label": "Infant Death Date",
             "type": "obs",
             "id": "infant_death_date",
