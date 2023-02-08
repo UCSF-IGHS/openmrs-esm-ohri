@@ -80,7 +80,6 @@
                   {
                     "intent":"*",
                     "required":"true",
-                    "unspecified":"true",
                     "hide":{
                       "hideWhenExpression":"false"
                     },
@@ -121,7 +120,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-hiv-exposure-status !== '54431b42-dae4-4d19-9034-44ba7489a334'"
                 },
@@ -165,7 +163,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-hiv-exposure-status !== '54431b42-dae4-4d19-9034-44ba7489a334' || infant-prophylaxis-status !== '857c5868-bdcd-4f5c-aadd-8b0fa7de8481'"
                 },
@@ -205,7 +202,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-hiv-exposure-status !== '54431b42-dae4-4d19-9034-44ba7489a334'"
                 },
@@ -249,7 +245,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-ctx-status !== 'f3a26c7d-a612-4b71-bd30-a359cae817bc'"
                 },
@@ -285,7 +280,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"false"
                 },
@@ -321,7 +315,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-hiv-test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                 },
@@ -361,7 +354,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-test-type !== '844AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
@@ -397,7 +389,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-test-type !== '1042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
@@ -433,7 +424,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"rapid-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && dnapcr-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
@@ -473,7 +463,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"confirmatory-test-done !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
@@ -545,7 +534,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"final-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || rapid-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && dnapcr-test-result !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
@@ -589,7 +577,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"false"
                 },
@@ -663,7 +650,6 @@
               {
                 "intent":"*",
                 "required":"true",
-                "unspecified":"true",
                 "hide":{
                   "hideWhenExpression":"infant-hiv-exposure-status !== '54431b42-dae4-4d19-9034-44ba7489a334'"
                 },
