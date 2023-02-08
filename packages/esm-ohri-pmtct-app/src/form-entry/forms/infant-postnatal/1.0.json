@@ -140,12 +140,12 @@
               "rendering": "radio",
               "answers": [
                 {
-                  "concept": "159406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                  "label": "Fair"
-                },
-                {
                   "concept": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Good"
+                },
+                {
+                  "concept": "159406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Fair"
                 },
                 {
                   "concept": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -323,7 +323,7 @@
                 "required":"true",
                 "unspecified":"true",
                 "hide":{
-                  "hideWhenExpression":"false"
+                  "hideWhenExpression":"infant-hiv-test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                 },
                 "validators":[
                   
@@ -674,12 +674,12 @@
             ]
           },
           {
-            "label": "Transfer In from",
+            "label": "Transfer to ART clinic",
             "type": "obs",
             "id": "transfer-in-from",
             "questionOptions": {
               "concept": "160535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "rendering": "text"
+              "rendering": "encounter-location"
             },
             "behaviours":[
               {
@@ -730,7 +730,7 @@
             "id": "transfer-out-to",
             "questionOptions": {
               "concept": "159495AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "rendering": "text"
+              "rendering": "encounter-location"
             },
             "behaviours":[
               {
@@ -789,7 +789,36 @@
                 "required":"true",
                 "unspecified":"true",
                 "hide":{
-                  "hideWhenExpression":"false"
+                  "hideWhenExpression":"infant-transfer-status !== '5240AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                },
+                "validators":[
+                  {
+                    "type":"date",
+                    "allowFutureDates":"false"
+                  },
+                  {
+                    "type":"js_expression",
+                    "failsWhenExpression":"false"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "Date Confirmed HIV Negative",
+            "type": "obs",
+            "id": "date_confirmed_hiv_negative",
+            "questionOptions": {
+              "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "rendering": "date"
+            },
+            "behaviours":[
+              {
+                "intent":"*",
+                "required":"true",
+                "unspecified":"true",
+                "hide":{
+                  "hideWhenExpression":"infant-transfer-status !== '164861AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
                 "validators":[
                   {
@@ -847,7 +876,7 @@
                 "required":"true",
                 "unspecified":"true",
                 "hide":{
-                  "hideWhenExpression":"infant-transfer-status !== '161636AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && infant-transfer-status !== '160563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  "hideWhenExpression":"infant-transfer-status !== '161636AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
                 "validators":[
                   
