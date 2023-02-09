@@ -900,7 +900,6 @@
                     {
                       "intent":"*",
                       "required":"true",
-                      "unspecified":"true",
                       "hide":{
                         "hideWhenExpression":"false"
                       },
@@ -934,7 +933,6 @@
                     {
                       "intent":"*",
                       "required":"true",
-                      "unspecified":"true",
                       "hide":{
                         "hideWhenExpression":"infantStatus !== '151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && infantStatus !== '154223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                       },
@@ -968,7 +966,6 @@
                     {
                       "intent":"*",
                       "required":"true",
-                      "unspecified":"true",
                       "hide":{
                         "hideWhenExpression":"infantStatus !== '125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                       },
@@ -1010,7 +1007,6 @@
                     {
                       "intent":"*",
                       "required":"true",
-                      "unspecified":"true",
                       "hide":{
                         "hideWhenExpression":"infantStatus !== '151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && infantStatus !== '154223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                       },
@@ -1079,7 +1075,6 @@
                     {
                       "intent":"*",
                       "required":"true",
-                      "unspecified": "true",
                       "hide":{
                         "hideWhenExpression":"infantStatus === '125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                       }
