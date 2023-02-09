@@ -220,12 +220,12 @@
               "rendering": "radio",
               "answers": [
                 {
-                  "concept": "159406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                  "label": "Fair"
-                },
-                {
                   "concept": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                   "label": "Good"
+                },
+                {
+                  "concept": "159406AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                  "label": "Fair"
                 },
                 {
                   "concept": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
