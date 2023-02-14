@@ -44,7 +44,6 @@
     "dayjs": "^1.8.16",
     "react": "^18.2.0",
     "react-i18next": "^11.7.0",
-    "swr": "^1.1.2",
     "webpack": "^5.74.0"
   },
   "devDependencies": {
