@@ -28,6 +28,7 @@ import {
   mchEncounterType,
   mchVisitsTypes,
   hivStatusAtDeliveryConcept,
+  artInitiationConcept,
 } from '../../../constants';
 import moment from 'moment';
 import { moduleName } from '../../..';
@@ -167,17 +168,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const getObsFromMultipleEncounters = (encounters: any) => {
-    let artInitiationDate;
-    artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
-    if (artInitiationDate === '--') {
-      artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-    } else {
-      artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-    }
-    return artInitiationDate;
-  };
-
   const arvTherapyColumns: TileSummaryProps[] = useMemo(
     () => [
       {
@@ -186,7 +176,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          return getObsFromMultipleEncounters(encounters);
+          let artInitiation;
+          artInitiation = getObsFromEncounter(encounters[0], artInitiationConcept);
+          if (artInitiation === '--') {
+            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
+          } else {
+            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
+          }
+          return artInitiation;
         },
       },
       {
@@ -195,7 +192,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          return getObsFromMultipleEncounters(encounters);
+          let artInitiationDate;
+          artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
+          if (artInitiationDate === '--') {
+            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+          } else {
+            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+          }
+          return artInitiationDate;
         },
       },
     ],
