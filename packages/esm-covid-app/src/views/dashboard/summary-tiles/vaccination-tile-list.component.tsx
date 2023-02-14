@@ -1,14 +1,18 @@
 import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { fetchPatientsFromObservationCodeConcept, getReportingCohort } from '../../../api/api';
 import { covidVaccinatedClients } from '../../../constants';
 import {
   basePath,
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
 } from '@ohri/openmrs-esm-ohri-commons-lib/src/constants';
-import { filterFHIRPatientsByName, TableEmptyState } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  fetchPatientsFromObservationCodeConcept,
+  filterFHIRPatientsByName,
+  getReportingCohort,
+  TableEmptyState,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 
 export const Vaccinations: React.FC<{}> = () => {
