@@ -350,7 +350,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         />
       </div>
 
-      <ExpandableList
+      {/* <ExpandableList
         patientUuid={patientUuid}
         headerTitle={pregnancyOutcomeHeader}
         headers={headersPregnancyOutcome}
@@ -362,7 +362,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           moduleName: '',
           displayText: '',
         }}
-      />
+      /> */}
 
       <ExpandableList
         patientUuid={patientUuid}
