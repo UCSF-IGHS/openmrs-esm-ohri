@@ -10,7 +10,6 @@ import {
   ExpandableListColumn,
   EncounterList,
   fetchPatientRelationships,
-  familyItemProps,
   basePath,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate } from '@openmrs/esm-framework';
@@ -33,6 +32,7 @@ import {
 } from '../../../constants';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
+import { familyItemProps } from './current-pregnancy.component';
 
 const HivExposedInfant: React.FC<{
   patientUuid: string;

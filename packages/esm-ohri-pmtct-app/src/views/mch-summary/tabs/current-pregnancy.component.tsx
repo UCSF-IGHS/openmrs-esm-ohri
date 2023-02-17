@@ -7,7 +7,6 @@ import {
   getObsFromEncounter,
   TileSummaryProps,
   fetchPatientRelationships,
-  familyItemProps,
   EncounterListColumn,
   EncounterList,
   basePath,
@@ -28,6 +27,7 @@ import {
   mchEncounterType,
   mchVisitsTypes,
   hivStatusAtDeliveryConcept,
+  artInitiationConcept,
 } from '../../../constants';
 import moment from 'moment';
 import { moduleName } from '../../..';
@@ -35,12 +35,25 @@ import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
 import { fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
 
+interface pregnancyOutcomeProps {
+  pTrackerId: string;
+  dateOfBirth: string;
+  infantStatus: string;
+}
+export interface familyItemProps {
+  id: string;
+  name: any;
+  relationship: string;
+  dateOfBirth: string;
+  hivStatus: string;
+}
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const currentPregnancyHeader = t('currentPregnancy', 'Current Pregnancy');
+  const currentPregnancyHeader = t('recentPregnancy', 'Recent Pregnancy');
   const arvTherapyHeader = t('artTherapy', 'ART Therapy');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
+  const pregnancyOutcomeHeader = t('pregnancyOutcome', 'Pregnancy Outcome');
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
@@ -65,6 +78,20 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     {
       header: t('hivStatus', 'HIV Status'),
       key: 'hivStatus',
+    },
+  ];
+  const headersPregnancyOutcome = [
+    {
+      header: t('pTrackerId', 'PTracker ID'),
+      key: 'pTrackerId',
+    },
+    {
+      header: t('dateOfBirth', 'Date of Birth'),
+      key: 'dateOfBirth',
+    },
+    {
+      header: t('infantStatus', 'Infant Status at Birth'),
+      key: 'infantStatus',
     },
   ];
   useEffect(() => {
@@ -144,7 +171,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
           let edd = getObsFromEncounter(encounter, eDDConcept, true);
-          return edd === '--' ? edd : `In ${calculateDateDifferenceInDate(edd)}`;
+          if (edd !== '--') {
+            const days = calculateDateDifferenceInDate(edd);
+            edd = edd > 0 ? `In ${days}` : '';
+          }
+          return edd;
         },
       },
       {
@@ -155,28 +186,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           return getObsFromEncounter(encounter, motherStatusConcept);
         },
       },
-      {
-        key: 'pregancyOutcome',
-        header: t('pregancyOutcome', 'Pregnancy Outcome'),
-        encounterUuid: '--',
-        getObsValue: (encounter) => {
-          return '--';
-        },
-      },
     ],
     [],
   );
-
-  const getObsFromMultipleEncounters = (encounters: any) => {
-    let artInitiationDate;
-    artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
-    if (artInitiationDate === '--') {
-      artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-    } else {
-      artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-    }
-    return artInitiationDate;
-  };
 
   const arvTherapyColumns: TileSummaryProps[] = useMemo(
     () => [
@@ -186,7 +198,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          return getObsFromMultipleEncounters(encounters);
+          let artInitiation;
+          artInitiation = getObsFromEncounter(encounters[0], artInitiationConcept);
+          if (artInitiation === '--') {
+            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
+          } else {
+            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
+          }
+          return artInitiation;
         },
       },
       {
@@ -195,7 +214,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          return getObsFromMultipleEncounters(encounters);
+          let artInitiationDate;
+          artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
+          if (artInitiationDate === '--') {
+            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+          } else {
+            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
+          }
+          return artInitiationDate;
         },
       },
     ],
@@ -214,7 +240,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
           let nextVisitDate = getObsFromEncounter(encounter, nextVisitDateConcept, true);
-          return nextVisitDate === '--' ? nextVisitDate : `In ${calculateDateDifferenceInDate(nextVisitDate)}`;
+          if (nextVisitDate !== '--') {
+            const days = calculateDateDifferenceInDate(nextVisitDate);
+            nextVisitDate = nextVisitDate > 0 ? `In ${days}` : '';
+          }
+          return nextVisitDate;
         },
       },
       {
@@ -234,7 +264,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const calculateDateDifferenceInDate = (givenDate: string): string => {
     const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
     const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
-    return `${totalDays} days`;
+    return `${totalDays} day(s)`;
   };
 
   const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
@@ -320,14 +350,27 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         />
       </div>
 
+      {/* <ExpandableList
+        patientUuid={patientUuid}
+        headerTitle={pregnancyOutcomeHeader}
+        headers={headersPregnancyOutcome}
+        items={parentRelationships}
+        isActionable={true}
+        isStriped={true}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: '',
+          displayText: '',
+        }}
+      /> */}
+
       <ExpandableList
+        patientUuid={patientUuid}
         headerTitle={familyHeader}
         headers={headersFamily}
         items={parentRelationships}
         isActionable={true}
         isStriped={true}
-        encounterUuid={antenatalEncounterType}
-        patientUuid={patientUuid}
         launchOptions={{
           hideFormLauncher: true,
           moduleName: '',
