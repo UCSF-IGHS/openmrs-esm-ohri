@@ -7,7 +7,6 @@ import {
   getObsFromEncounter,
   TileSummaryProps,
   fetchPatientRelationships,
-  familyItemProps,
   EncounterListColumn,
   EncounterList,
   basePath,
@@ -36,12 +35,25 @@ import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
 import { fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
 
+interface pregnancyOutcomeProps {
+  pTrackerId: string;
+  dateOfBirth: string;
+  infantStatus: string;
+}
+export interface familyItemProps {
+  id: string;
+  name: any;
+  relationship: string;
+  dateOfBirth: string;
+  hivStatus: string;
+}
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const currentPregnancyHeader = t('currentPregnancy', 'Current Pregnancy');
+  const currentPregnancyHeader = t('currentPregnancy', 'Recent Pregnancy');
   const arvTherapyHeader = t('artTherapy', 'ART Therapy');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
+  const pregnancyOutcomeHeader = t('pregnancyOutcome', 'Pregnancy Outcome');
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
@@ -66,6 +78,20 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     {
       header: t('hivStatus', 'HIV Status'),
       key: 'hivStatus',
+    },
+  ];
+  const headersPregnancyOutcome = [
+    {
+      header: t('pTrackerId', 'PTracker ID'),
+      key: 'pTrackerId',
+    },
+    {
+      header: t('birthDate', 'Date of Birth'),
+      key: 'birthDate',
+    },
+    {
+      header: t('infantStatus', 'Infant Status at Birth'),
+      key: 'infantStatus',
     },
   ];
   useEffect(() => {
@@ -145,7 +171,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
           let edd = getObsFromEncounter(encounter, eDDConcept, true);
-          return edd === '--' ? edd : `In ${calculateDateDifferenceInDate(edd)}`;
+          if (edd !== '--') {
+            const days = calculateDateDifferenceInDate(edd);
+            edd = edd > 0 ? `In ${days}` : '';
+          }
+          return edd;
         },
       },
       {
@@ -154,14 +184,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounterUuid: labourAndDeliveryEncounterType,
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, motherStatusConcept);
-        },
-      },
-      {
-        key: 'pregancyOutcome',
-        header: t('pregancyOutcome', 'Pregnancy Outcome'),
-        encounterUuid: '--',
-        getObsValue: (encounter) => {
-          return '--';
         },
       },
     ],
@@ -218,7 +240,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
           let nextVisitDate = getObsFromEncounter(encounter, nextVisitDateConcept, true);
-          return nextVisitDate === '--' ? nextVisitDate : `In ${calculateDateDifferenceInDate(nextVisitDate)}`;
+          if (nextVisitDate !== '--') {
+            const days = calculateDateDifferenceInDate(nextVisitDate);
+            nextVisitDate = nextVisitDate > 0 ? `In ${days}` : '';
+          }
+          return nextVisitDate;
         },
       },
       {
@@ -238,7 +264,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const calculateDateDifferenceInDate = (givenDate: string): string => {
     const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
     const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
-    return `${totalDays} days`;
+    return `${totalDays} day(s)`;
   };
 
   const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
@@ -325,13 +351,26 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       </div>
 
       <ExpandableList
+        patientUuid={patientUuid}
+        headerTitle={pregnancyOutcomeHeader}
+        headers={headersPregnancyOutcome}
+        items={parentRelationships}
+        isActionable={true}
+        isStriped={true}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: '',
+          displayText: '',
+        }}
+      />
+
+      <ExpandableList
+        patientUuid={patientUuid}
         headerTitle={familyHeader}
         headers={headersFamily}
         items={parentRelationships}
         isActionable={true}
         isStriped={true}
-        encounterUuid={antenatalEncounterType}
-        patientUuid={patientUuid}
         launchOptions={{
           hideFormLauncher: true,
           moduleName: '',
