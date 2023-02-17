@@ -86,8 +86,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       key: 'pTrackerId',
     },
     {
-      header: t('birthDate', 'Date of Birth'),
-      key: 'birthDate',
+      header: t('dateOfBirth', 'Date of Birth'),
+      key: 'dateOfBirth',
     },
     {
       header: t('infantStatus', 'Infant Status at Birth'),
