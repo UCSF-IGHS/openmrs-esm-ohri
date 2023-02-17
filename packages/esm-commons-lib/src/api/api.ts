@@ -9,6 +9,8 @@ import {
   covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
+import { FhirPatient, FhirPatientResponse } from './types';
+import useSWR from 'swr';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -19,6 +21,19 @@ export function fetchLastVisit(uuid: string) {
 
 export function fetchPatientList(offSet: number = 0, pageSize: number = 10) {
   return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`);
+}
+
+export function usePatients(offSet: number = 0, pageSize: number = 25) {
+  const { data, error } = useSWR<{ data: FhirPatientResponse }, Error>(
+    `/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`,
+    openmrsFetch,
+  );
+
+  return {
+    patients: data?.data.entry || [],
+    error,
+    total: data?.data.total || 0,
+  };
 }
 
 export function fetchTodayClients() {

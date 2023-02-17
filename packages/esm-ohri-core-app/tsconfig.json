@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../esm-commons-lib/src/components/patient-lists/patient-list.component.tsx", "../esm-commons-lib/src/components/patient-lists/patient-list.component.tsx"],
   "exclude": ["src/**/*.test.tsx", "src/**/*.outdated.tsx"]
 }
