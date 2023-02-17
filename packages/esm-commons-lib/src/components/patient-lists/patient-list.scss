@@ -2,6 +2,10 @@
 @use '@carbon/styles/scss/type';
 @import '../../root.scss';
 
+.patientListContainer {
+  padding-bottom: 1rem;
+}
+
 .widgetContainer {
   background-color: $ui-background;
 }

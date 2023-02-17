@@ -9,7 +9,7 @@ import {
 import moment from 'moment';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from '@carbon/react';
-import { AddPatientToListOverflowMenuItem } from '../modals/patient-list/add-patient-to-list-modal.component';
+import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
 import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';

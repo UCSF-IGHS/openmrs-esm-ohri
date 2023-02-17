@@ -15,11 +15,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
-interface PatientListProps {
-  patientUuid: string;
-}
-
-const PatientList: React.FC<PatientListProps> = () => {
+export const PatientList = () => {
   const { t } = useTranslation();
   const [patients, setPatients] = useState([]);
   const [patientsToLastVisitMap, setPatientsToLastVisitMap] = useState([]);
@@ -92,7 +88,7 @@ const PatientList: React.FC<PatientListProps> = () => {
   const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart`;
 
   return (
-    <>
+    <div className={styles.patientListContainer}>
       {isLoading ? (
         <DataTableSkeleton rowCount={rowCount} />
       ) : allRows.length > 0 ? (
@@ -134,8 +130,6 @@ const PatientList: React.FC<PatientListProps> = () => {
           launchForm={addNewPatient}
         />
       )}
-    </>
+    </div>
   );
 };
-
-export default PatientList;

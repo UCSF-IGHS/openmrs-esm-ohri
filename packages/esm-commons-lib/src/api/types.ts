@@ -166,3 +166,43 @@ export interface Concept {
   display: string;
   answers?: Concept[];
 }
+
+export interface FhirPatientResponse {
+  entry: Array<FhirPatient>;
+  total: number;
+  link: Array<{
+    relation: string;
+    url: string;
+  }>;
+}
+
+export interface FhirPatient {
+  fullUrl: string;
+  resource: {
+    resourceType: string;
+    id: string;
+    meta: {
+      lastUpdated: string;
+    };
+    identifier: Array<{
+      id: string;
+      use: string;
+      type: {
+        coding: Array<{
+          code: string;
+        }>;
+        text: string;
+      };
+      value: string;
+    }>;
+    active: boolean;
+    name: Array<{
+      id: string;
+      family: string;
+      given: Array<string>;
+    }>;
+    gender: string;
+    birthDate: string;
+    deceasedBoolean: boolean;
+  };
+}

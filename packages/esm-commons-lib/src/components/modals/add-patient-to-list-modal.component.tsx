@@ -3,7 +3,7 @@ import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, Unordered
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../../api/api';
+import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../api/api';
 
 export const AddPatientToListOverflowMenuItem: React.FC<{
   patientUuid: string;
