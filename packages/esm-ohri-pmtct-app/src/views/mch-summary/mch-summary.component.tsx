@@ -25,7 +25,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           {age > 10 ? (
             <Tabs>
               <TabList contained>
-                <Tab>{t('currentPregnancy', 'Current Pregnancy')}</Tab>
+                <Tab>{t('recentPregnancy', 'Recent Pregnancy')}</Tab>
                 <Tab>{t('previousPregnancies', 'Previous Pregnancies')}</Tab>
                 <Tab>{t('timeline', 'Timeline')}</Tab>
               </TabList>

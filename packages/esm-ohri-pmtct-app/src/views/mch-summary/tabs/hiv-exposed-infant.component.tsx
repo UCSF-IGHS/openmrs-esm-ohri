@@ -10,7 +10,6 @@ import {
   ExpandableListColumn,
   EncounterList,
   fetchPatientRelationships,
-  familyItemProps,
   basePath,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate } from '@openmrs/esm-framework';
@@ -29,9 +28,11 @@ import {
   testTypeConcept,
   followUpDateConcept,
   visitDate,
+  infantVisitDate,
 } from '../../../constants';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
+import { familyItemProps } from './current-pregnancy.component';
 
 const HivExposedInfant: React.FC<{
   patientUuid: string;
@@ -93,19 +94,6 @@ const HivExposedInfant: React.FC<{
         header: t('finalOutcome', 'Final Outcome'),
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, outcomeStatus);
-        },
-      },
-    ],
-    [],
-  );
-
-  const appointmentColumns: TileSummaryProps[] = useMemo(
-    () => [
-      {
-        key: 'nextAppointmentDate',
-        header: t('nextAppointmentDate', 'Next Appointment Date'),
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
       },
     ],
@@ -216,7 +204,7 @@ const HivExposedInfant: React.FC<{
         key: 'visitDate',
         header: t('visitDate', 'Visit date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
+          return getObsFromEncounter(encounter, infantVisitDate, true);
         },
       },
       {
@@ -258,12 +246,6 @@ const HivExposedInfant: React.FC<{
         patientUuid={patientUuid}
         headerTitle={t('infantSummary', 'Infants Summary')}
         columns={infantSummaryColumns}
-      />
-
-      <CardSummary
-        patientUuid={patientUuid}
-        headerTitle={t('appointments', 'Appointments')}
-        columns={appointmentColumns}
       />
 
       <EncounterList

@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-hiv-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "HIV microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-hiv-app.js",
   "main": "src/index.ts",
@@ -44,7 +44,6 @@
     "dayjs": "^1.8.16",
     "react": "^18.2.0",
     "react-i18next": "^11.7.0",
-    "swr": "^1.1.2",
     "webpack": "^5.74.0"
   },
   "devDependencies": {

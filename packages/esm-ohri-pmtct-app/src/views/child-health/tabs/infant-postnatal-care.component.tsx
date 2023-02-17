@@ -4,7 +4,6 @@ import {
   basePath,
   EncounterList,
   EncounterListColumn,
-  familyItemProps,
   fetchPatientRelationships,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
