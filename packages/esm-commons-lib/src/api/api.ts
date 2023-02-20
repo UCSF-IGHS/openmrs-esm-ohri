@@ -9,7 +9,7 @@ import {
   covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
-import { FhirPatient, FhirPatientResponse } from './types';
+import { FhirPatient, FhirPatientResponse, PatientListRow } from './types';
 import useSWR from 'swr';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
@@ -28,6 +28,13 @@ export function usePatients(offSet: number = 0, pageSize: number = 25) {
     `/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`,
     openmrsFetch,
   );
+
+  let patientListRows: PatientListRow[];
+  if (data) {
+    patientListRows = data.data?.map((patient) => {
+      patient.name = patient.name[0].given.join(' ') + ' ' + patient.name[0].family;
+    });
+  }
 
   return {
     patients: data?.data.entry || [],

@@ -206,3 +206,12 @@ export interface FhirPatient {
     deceasedBoolean: boolean;
   };
 }
+
+export interface PatientListRow {
+  name: string;
+  gender: string;
+  birthDate?: string;
+  age?: string;
+  address?: string;
+  lastVisit?: string;
+}
