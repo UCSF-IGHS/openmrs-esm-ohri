@@ -1099,6 +1099,6 @@
   "uuid":"xxxx",
   "referencedForms":[],
   "encounterType":"2678423c-0523-4d76-b0da-18177b439eed",
-  "postSubmissionAction": "MotherToChildLinkageSubmissionAction",
+  "postSubmissionActions": ["MotherToChildLinkageSubmissionAction", "ArtSubmissionAction"],
   "allowUnspecifiedAll":true
 }
