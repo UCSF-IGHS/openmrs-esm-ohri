@@ -21,6 +21,10 @@ export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitConcept = '160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
+export const infantDeliveryGroupingConcept = '1c70c490-cafa-4c95-9fdd-a30b62bb78b8';
+export const infantPTrackerIdConcept = '164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const infantDateOfBirth = '164802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
 //Infant Postnatal
 export const infantPostnatalEncounterType = 'af1f1b24-d2e8-4282-b308-0bf79b365584';
 export const nextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
