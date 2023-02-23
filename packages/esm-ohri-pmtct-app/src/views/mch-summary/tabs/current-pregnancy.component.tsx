@@ -40,12 +40,14 @@ import { navigate } from '@openmrs/esm-framework';
 import { fetchMotherHIVStatus, fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
 
 interface pregnancyOutcomeProps {
-  id: string;
+  id: number;
+  pTrackerId: string;
   dateOfBirth: string;
   infantStatus: string;
 }
 export interface familyItemProps {
-  id: string;
+  id: number;
+  pTrackerId: string;
   name: any;
   relationship: string;
   dateOfBirth: string;
@@ -65,8 +67,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   const headersFamily = [
     {
-      header: t('id', 'ID'),
-      key: 'id',
+      header: t('pTrackerId', 'PTracker ID'),
+      key: 'pTrackerId',
     },
     {
       header: t('name', 'Name'),
@@ -88,7 +90,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const headersPregnancyOutcome = [
     {
       header: t('pTrackerId', 'PTracker ID'),
-      key: 'id',
+      key: 'pTrackerId',
     },
     {
       header: t('dateOfBirth', 'Date of Birth'),
@@ -150,7 +152,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
-    relatives.forEach((relative) => {
+    relatives.forEach((relative, i) => {
       let patientLink = (
         <Link
           onClick={(e) => {
@@ -161,7 +163,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         </Link>
       );
       let relativeObject: familyItemProps = {
-        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
+        id: i,
+        pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
         name: patientLink,
         relationship: relative.relationshipType.displayBIsToA,
         dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
@@ -174,12 +177,13 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   const childrenDetails: pregnancyOutcomeProps[] = useMemo(() => {
     let items = [];
-    pregnancyOutcomes.forEach((child) => {
+    pregnancyOutcomes.forEach((child, i) => {
       let infantStatusObs = child.groupMembers.find((member) => member.concept.uuid === infantStatusAtBirthConcept);
       let childObject: pregnancyOutcomeProps = {
-        id: child.groupMembers.find((member) => member.concept.uuid === infantPTrackerIdConcept).value,
+        id: i,
+        pTrackerId: child.groupMembers.find((member) => member.concept.uuid === infantPTrackerIdConcept)?.value,
         dateOfBirth: moment(
-          child.groupMembers.find((member) => member.concept.uuid === infantDateOfBirth).value,
+          child.groupMembers.find((member) => member.concept.uuid === infantDateOfBirth)?.value,
         ).format('DD-MMM-YYYY'),
         infantStatus:
           infantStatusObs.value?.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
