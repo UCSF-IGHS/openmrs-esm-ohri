@@ -831,7 +831,7 @@
   "uuid":"xxxx",
   "referencedForms":[],
   "encounterType":"2549af50-75c8-4aeb-87ca-4bb2cef6c69a",
-  "postSubmissionAction": "PTrackerSubmissionAction",
+  "postSubmissionActions": ["PTrackerSubmissionAction", "ArtSubmissionAction"],
   "allowUnspecifiedAll":true
 }
 
