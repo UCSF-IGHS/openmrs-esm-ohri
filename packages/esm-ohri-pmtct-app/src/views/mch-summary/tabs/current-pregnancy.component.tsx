@@ -40,13 +40,13 @@ import { navigate } from '@openmrs/esm-framework';
 import { fetchMotherHIVStatus, fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
 
 interface pregnancyOutcomeProps {
-  id: number;
+  id: string;
   pTrackerId: string;
   dateOfBirth: string;
   infantStatus: string;
 }
 export interface familyItemProps {
-  id: number;
+  id: string;
   pTrackerId: string;
   name: any;
   relationship: string;
@@ -152,7 +152,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
-    relatives.forEach((relative, i) => {
+    relatives.forEach((relative) => {
       let patientLink = (
         <Link
           onClick={(e) => {
@@ -163,7 +163,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         </Link>
       );
       let relativeObject: familyItemProps = {
-        id: i,
+        id: relative.uuid,
         pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
         name: patientLink,
         relationship: relative.relationshipType.displayBIsToA,
@@ -177,10 +177,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   const childrenDetails: pregnancyOutcomeProps[] = useMemo(() => {
     let items = [];
-    pregnancyOutcomes.forEach((child, i) => {
+    pregnancyOutcomes.forEach((child) => {
       let infantStatusObs = child.groupMembers.find((member) => member.concept.uuid === infantStatusAtBirthConcept);
       let childObject: pregnancyOutcomeProps = {
-        id: i,
+        id: child.uuid,
         pTrackerId: child.groupMembers.find((member) => member.concept.uuid === infantPTrackerIdConcept)?.value,
         dateOfBirth: moment(
           child.groupMembers.find((member) => member.concept.uuid === infantDateOfBirth)?.value,

@@ -168,7 +168,7 @@ const HivExposedInfant: React.FC<{
   }
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
-    relatives.forEach((relative, i) => {
+    relatives.forEach((relative) => {
       let patientLink = (
         <Link
           onClick={(e) => {
@@ -179,7 +179,7 @@ const HivExposedInfant: React.FC<{
         </Link>
       );
       let relativeObject: familyItemProps = {
-        id: i,
+        id: relative.uuid,
         pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
         name: patientLink,
         relationship: relative.relationshipType.displayAIsToB,
