@@ -46,24 +46,6 @@ const HivExposedInfant: React.FC<{
     getParentRelationships();
   }, []);
 
-  async function getParentRelationships() {
-    let relationships = [];
-    const relationshipsData = await fetchPatientRelationships(patientUuid);
-    if (relationshipsData.length) {
-      relationshipsData.forEach((item) => {
-        relationships.push(item);
-      });
-    }
-    setRelatives(relationships);
-  }
-
-  useEffect(() => {
-    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personA.uuid));
-    Promise.all(relativeToPtrackerPromises).then((values) => {
-      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
-    });
-  }, [relatives]);
-
   const infantSummaryColumns: TileSummaryProps[] = useMemo(
     () => [
       {
@@ -157,6 +139,24 @@ const HivExposedInfant: React.FC<{
     },
   ];
 
+  async function getParentRelationships() {
+    let relationships = [];
+    const relationshipsData = await fetchPatientRelationships(patientUuid);
+    if (relationshipsData.length) {
+      relationshipsData.forEach((item) => {
+        relationships.push(item);
+      });
+    }
+    setRelatives(relationships);
+  }
+
+  useEffect(() => {
+    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personA.uuid));
+    Promise.all(relativeToPtrackerPromises).then((values) => {
+      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
+    });
+  }, [relatives]);
+
   async function getChildPTracker(patientUuid: string) {
     let pTrackerMap = { patientId: '', pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
@@ -166,7 +166,6 @@ const HivExposedInfant: React.FC<{
     }
     return pTrackerMap;
   }
-
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
     relatives.forEach((relative) => {
@@ -180,7 +179,8 @@ const HivExposedInfant: React.FC<{
         </Link>
       );
       let relativeObject: familyItemProps = {
-        id: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
+        id: relative.uuid,
+        pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
         name: patientLink,
         relationship: relative.relationshipType.displayAIsToB,
         dateOfBirth: moment(relative.personA.birthdate).format('DD-MMM-YYYY'),
