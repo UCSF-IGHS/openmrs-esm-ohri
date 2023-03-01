@@ -69,6 +69,43 @@
                 "label":"HIV Testing And ART Initiation",
                 "isExpanded":"true",
                 "questions":[
+                  {
+                     "label": "ANC HIV test status ",
+                     "type": "obs",
+                     "id": "anc_hiv_test",
+                     "questionOptions": {
+                       "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                       "rendering": "fixed",
+                       "calculate": {"calculateExpression": "resolve(api.getLatestObs('2549af50-75c8-4aeb-87ca-4bb2cef6c69a', '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))"}, 
+                       "answers": [
+                         {
+                           "concept": "6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
+                           "label": "Tested for HIV during this visit"
+                         },
+                         {
+                           "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
+                           "label": "Previously known positive"
+                         },
+                         {
+                           "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
+                           "label": "Not tested for HIV during this visit"
+                         },
+                         {
+                           "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                           "label": "Missing"
+                         }
+                       ]
+                     },
+                     "behaviours":[
+                       {
+                         "intent":"*",
+                         "required":"true",
+                         "hide":{
+                           "hideWhenExpression":"false"
+                         }
+                       }
+                     ]
+                   },
                    {
                       "label":"HIV Test Status",
                       "type":"obs",
@@ -104,7 +141,8 @@
                           },
                           "validators":[
 
-                          ]
+                          ],
+                          "value":"anc_hiv_test === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' ? '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8':''"
                         }
                       ]
                    },
