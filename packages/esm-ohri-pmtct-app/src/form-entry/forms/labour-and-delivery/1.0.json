@@ -82,9 +82,31 @@
                   "required":"true",
                   "hide":{
                     "hideWhenExpression":"false"
-                  }
+                  },
+                  "validators":[
+                    {
+                      "type":"js_expression",
+                      "warnsWhenExpression":"myValue == useFieldValue('latest_ptracker_number')",
+                      "message": "Another L&D form exists for the same PTracker number. Do you still want to go ahead and create another form?"
+                    }
+                  ]
                 }
               ]
+            },
+            {
+              "label": "Latest Ptracker number",
+              "type": "obs",
+              "id": "latest_ptracker_number",
+              "questionOptions": {
+                "concept": "",
+                "rendering": "fixed-value",
+                "calculate": {
+                   "calculateExpression": "resolve(api.getLatestObs(patient.id, '6c45421e-2566-47cb-bbb3-07586fffbfe2', '2678423c-0523-4d76-b0da-18177b439eed')).valueString"
+                }
+              },
+              "hide":{
+                "hideWhenExpression":"true"
+              }
             }
           ]
         },
