@@ -3690,8 +3690,8 @@ __metadata:
   linkType: soft
 
 "@ohri/openmrs-ohri-form-engine-lib@npm:next":
-  version: 1.0.1-pre.202
-  resolution: "@ohri/openmrs-ohri-form-engine-lib@npm:1.0.1-pre.202"
+  version: 1.0.1-pre.208
+  resolution: "@ohri/openmrs-ohri-form-engine-lib@npm:1.0.1-pre.208"
   dependencies:
     ace-builds: ^1.4.12
     enzyme: ^3.11.0
@@ -3701,6 +3701,7 @@ __metadata:
     lodash-es: ^4.17.15
     moment: ^2.29.1
     react-anchor-link-smooth-scroll: ^1.0.12
+    react-error-boundary: 3.1.4
     react-markdown: ^7.1.0
     react-scroll: ^1.8.2
     react-test-renderer: ^16.9.0
@@ -3715,7 +3716,7 @@ __metadata:
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: f34c9a46747dc56606cf8ba72943cd98eefaf50b64b077e74d92e5feda0b3fcc9679f91e119f83bfd4723f2b4209efd3fdf32ec598eba3fed10cfe563595c512
+  checksum: b084f1f904d4c28f34d05b7c8147d804d620f599ba7135ae2d220dd0f7bf6cc4e8cd1eba6ff605c04b2103bf61650fb6a796d3501f17b245bea24cb2c553a81e
   languageName: node
   linkType: hard
 
@@ -16438,6 +16439,17 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+  languageName: node
+  linkType: hard
+
+"react-error-boundary@npm:3.1.4":
+  version: 3.1.4
+  resolution: "react-error-boundary@npm:3.1.4"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+  peerDependencies:
+    react: ">=16.13.1"
+  checksum: f36270a5d775a25c8920f854c0d91649ceea417b15b5bc51e270a959b0476647bb79abb4da3be7dd9a4597b029214e8fe43ea914a7f16fa7543c91f784977f1b
   languageName: node
   linkType: hard
 
