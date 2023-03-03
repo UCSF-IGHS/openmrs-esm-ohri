@@ -45,6 +45,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, colum
       setIsLoading(false);
       return sortedEncounters[0];
     }
+    return null;
   }
 
   return (

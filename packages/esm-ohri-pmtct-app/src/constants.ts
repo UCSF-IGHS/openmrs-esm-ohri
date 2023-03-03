@@ -2,6 +2,7 @@ export const mnchEncounterType_UUID = '3eb24129-9f7d-4372-a14e-c2cf577e5db1';
 export const clientsEnrolledToCare = '51bec6f7-df43-426e-a83e-c1ae5501372f';
 export const vLResultsConcept = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const PTrackerIdentifierType = '4da0a3fe-e546-463f-81fa-084f098ff06c';
+export const artUniqueNumberType = '9d6d1eec-2cd6-4637-a981-4a46b4b8b41f';
 
 export const pTrackerIdConcept = '6c45421e-2566-47cb-bbb3-07586fffbfe2';
 
@@ -20,6 +21,10 @@ export const artLinkage = '6e62bf7e-2107-4d09-b485-6e60cbbb2d08';
 export const recenctViralLoad = '163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const motherStatusConcept = '1856AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const ancVisitConcept = '160446AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+export const infantDeliveryGroupingConcept = '1c70c490-cafa-4c95-9fdd-a30b62bb78b8';
+export const infantPTrackerIdConcept = '164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const infantDateOfBirth = '164802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //Infant Postnatal
 export const infantPostnatalEncounterType = 'af1f1b24-d2e8-4282-b308-0bf79b365584';

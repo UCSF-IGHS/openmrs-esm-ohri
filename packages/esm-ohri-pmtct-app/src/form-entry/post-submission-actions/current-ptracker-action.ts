@@ -22,8 +22,8 @@ export async function updatePatientPtracker(encounter, encounterLocation, patien
     return;
   }
   const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
-  const exixtingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
-  if (exixtingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
+  const existingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
+  if (existingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
     return;
   }
 

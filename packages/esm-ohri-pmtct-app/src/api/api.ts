@@ -77,6 +77,17 @@ export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string
   });
 }
 
+export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
+  return openmrsFetch(
+    `${BASE_WS_API_URL}reportingrest/dataSet/d6453c84-4122-467f-8533-83e7d15790dc?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
+  ).then(({ data }) => {
+    if (data) {
+      return data;
+    }
+    return null;
+  });
+}
+
 // Get family relationships from patient uuid
 export async function getFamilyRelationships(patientUuid: string) {
   return await fetchPatientRelationships(patientUuid);

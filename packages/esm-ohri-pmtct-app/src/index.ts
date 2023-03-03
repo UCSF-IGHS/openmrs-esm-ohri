@@ -39,6 +39,11 @@ function setupOpenMRS() {
     id: 'PTrackerSubmissionAction',
     load: () => import('./form-entry/post-submission-actions/current-ptracker-action'),
   });
+  registerPostSubmissionAction({
+    id: 'ArtSubmissionAction',
+    load: () => import('./form-entry/post-submission-actions/art-linkage-action'),
+  });
+
   return {
     pages: [],
     extensions: [
