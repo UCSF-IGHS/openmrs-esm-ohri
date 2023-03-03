@@ -114,10 +114,7 @@
                       "id":"hiv-test",
                       "questionOptions":{
                          "concept":"164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                         "rendering":"radio",
-                         "calculate": {
-                            "calculateExpression":"useFieldValue('anc_hiv_test')"
-                         },
+                         "rendering":"radio",                     
                          "answers":[
                             {
                                "concept":"6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
@@ -146,8 +143,7 @@
                           },
                           "validators":[
 
-                          ],
-                          "value":"anc_hiv_test === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' ? '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8':''"
+                          ]
                         }
                       ]
                    },
