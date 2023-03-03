@@ -121,6 +121,7 @@
               "questionOptions": {
                 "concept": "c5f74c86-62cd-4d22-9260-4238f1e45fe0",
                 "rendering": "radio",
+                "calculate": {"calculateExpression": "resolve(api.getLatestObs('2549af50-75c8-4aeb-87ca-4bb2cef6c69a', '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'))"},
                 "answers": [
                   {
                     "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
