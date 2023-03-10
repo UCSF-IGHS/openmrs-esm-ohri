@@ -56,7 +56,7 @@ export interface familyItemProps {
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const currentPregnancyHeader = t('recentPregnancy', 'Recent Pregnancy');
-  const arvTherapyHeader = t('artTherapy', 'ART Therapy');
+  const arvTherapyHeader = t('art', 'ART');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
   const pregnancyOutcomeHeader = t('pregnancyOutcome', 'Pregnancy Outcome');
