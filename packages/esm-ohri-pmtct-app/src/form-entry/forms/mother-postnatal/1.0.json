@@ -72,7 +72,7 @@
                   {
                      "label": "ANC HIV test status ",
                      "type": "obs",
-                     "id": "anc_hiv_test",
+                     "id": "testStatusAtANC",
                      "questionOptions": {
                        "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                        "rendering": "fixed-value",
@@ -111,7 +111,7 @@
                    {
                      "label": "ANC HIV test result ",
                      "type": "obs",
-                     "id": "anc_hiv_test_result",
+                     "id": "ancHivTestResult",
                      "questionOptions": {
                        "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                        "rendering": "fixed-field",
@@ -178,7 +178,7 @@
                           "intent":"*",
                           "required":"true",
                           "hide":{
-                            "hideWhenExpression":"anc_hiv_test == '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || anc_hiv_test_result == '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"testStatusAtANC == '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || ancHivTestResult == '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 
