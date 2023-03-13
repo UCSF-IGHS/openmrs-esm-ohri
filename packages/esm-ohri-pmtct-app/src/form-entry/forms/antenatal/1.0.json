@@ -94,7 +94,15 @@
                   "unspecified":"false",
                   "hide":{
                     "hideWhenExpression":"false"
-                  }
+                  },
+                  "validators":[
+                    {
+                       "type": "js_expression",
+                       "failsWhenExpression": "!/^[0-9]{5}[A-S]{1}[0-9]{6,8}$$/.test(myValue)",
+                       "message": "Invalid Ptracker number"
+                     }
+
+                   ]
                 }
               ]
             },
