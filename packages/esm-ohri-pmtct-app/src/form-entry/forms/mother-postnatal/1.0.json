@@ -72,7 +72,7 @@
                   {
                      "label": "ANC HIV test status ",
                      "type": "obs",
-                     "id": "anc_hiv_test",
+                     "id": "testStatusAtANC",
                      "questionOptions": {
                        "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                        "rendering": "fixed-value",
@@ -91,6 +91,45 @@
                          {
                            "concept": "d18fa331-f158-47d0-b344-cf147c7125a4",
                            "label": "Not tested for HIV during this visit"
+                         },
+                         {
+                           "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                           "label": "Missing"
+                         }
+                       ]
+                     },
+                     "behaviours":[
+                       {
+                         "intent":"*",
+                         "required":"true",
+                         "hide":{
+                           "hideWhenExpression":"true"
+                         }
+                       }
+                     ]
+                   },
+                   {
+                     "label": "ANC HIV test result ",
+                     "type": "obs",
+                     "id": "ancHivTestResult",
+                     "questionOptions": {
+                       "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                       "rendering": "fixed-field",
+                       "calculate":{
+                         "calculateExpression":"resolve(api.getLatestObs(patient.id, '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '2549af50-75c8-4aeb-87ca-4bb2cef6c69a'))?.valueCodeableConcept?.coding[0]?.code"
+                       },
+                       "answers": [
+                         {
+                           "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                           "label": "Positive"
+                         },
+                         {
+                           "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                           "label": "Negative"
+                         },
+                         {
+                           "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                           "label": "Unknown"
                          },
                          {
                            "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
@@ -139,7 +178,7 @@
                           "intent":"*",
                           "required":"true",
                           "hide":{
-                            "hideWhenExpression":"anc_hiv_test === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                            "hideWhenExpression":"testStatusAtANC == '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || ancHivTestResult == '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 

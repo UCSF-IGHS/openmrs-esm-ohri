@@ -269,7 +269,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"antenatal_visit_type == '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && latest_hiv_test_status === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                    "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && antenatal_visit_type !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && antenatal_visit_type !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && latest_hiv_test_result === '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'|| antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && antenatal_visit_type !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && antenatal_visit_type !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && latest_hiv_test_status === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                   }
                 }
               ]
@@ -345,6 +345,45 @@
                   "required":"true",
                   "hide":{
                     "hideWhenExpression":"hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "Latest HIV test result ",
+              "type": "obs",
+              "id": "latest_hiv_test_result",
+              "questionOptions": {
+                "concept": "159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "fixed-field",
+                "calculate":{
+                  "calculateExpression":"resolve(api.getLatestObs(patient.id, '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '2549af50-75c8-4aeb-87ca-4bb2cef6c69a'))?.valueCodeableConcept?.coding[0]?.code"
+                },
+                "answers": [
+                  {
+                    "concept": "138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":"true"
                   }
                 }
               ]
@@ -660,7 +699,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"antenatal_visit_type === '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && latest_partner_hiv_test_status === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                    "hideWhenExpression":"antenatal_visit_type !== '164180AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && antenatal_visit_type !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && antenatal_visit_type !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351' && latest_partner_hiv_test_status === '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
                   }
                 }
               ]
