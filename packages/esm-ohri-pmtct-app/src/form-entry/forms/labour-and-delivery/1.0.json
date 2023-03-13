@@ -91,6 +91,11 @@
                       "type":"js_expression",
                       "warnsWhenExpression":"myValue == useFieldValue('latest_ptracker_number')",
                       "message": "Another L&D form exists for the same PTracker number. Do you still want to go ahead and create another form?"
+                    },
+                    {
+                      "type": "js_expression",
+                      "failsWhenExpression": "!/^[0-9]{5}[A-S]{1}[0-9]{6,8}$$/.test(myValue)",
+                      "message": "Invalid Ptracker number"
                     }
                   ]
                 }
@@ -1119,7 +1124,14 @@
                       "required":"true",
                       "hide":{
                         "hideWhenExpression":"infantStatus === '125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-                      }
+                      },
+                      "validators": [
+                        {
+                          "type": "js_expression",
+                          "failsWhenExpression": "!/^[0-9]{5}[A-Z]{1}[0-9]{7,8}$$/.test(myValue)",
+                          "message": "Invalid Ptracker number"
+                        }
+                      ]
                     }
                   ]
                 }
