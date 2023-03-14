@@ -123,9 +123,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       patientUuid,
       labourAndDeliveryEncounterType,
     );
-    const latestANCPTracker = getObsFromEncounter(currentPregnancyANCEncounter, pTrackerIdConcept);
-    const latestLnDPTracker = getObsFromEncounter(currentPregnancyLabourAndDeliveryEncounter, pTrackerIdConcept);
-    if (latestANCPTracker === latestLnDPTracker) {
+    if (currentPregnancyLabourAndDeliveryEncounter.encounterDatetime > currentPregnancyANCEncounter.encounterDatetime) {
       setPregnancyOutcomes(
         currentPregnancyLabourAndDeliveryEncounter.obs.filter(
           (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
