@@ -31,7 +31,7 @@ export const PatientList = () => {
     { key: 'name', header: t('name', 'Name'), isSortable: true },
     { key: 'gender', header: t('gender', 'Gender') },
     { key: 'age', header: t('age', 'Age') },
-    { key: 'last_visit', header: t('lastVisit', 'Last Visit') },
+    { key: 'lastVisit', header: t('lastVisit', 'Last Visit') },
     { key: 'actions', header: '' },
   ];
 
@@ -65,7 +65,7 @@ export const PatientList = () => {
         ),
         gender: capitalize(patient.resource.gender),
         age: age(patient.resource.birthDate),
-        last_visit: lastVisit ? moment(lastVisit).format('DD-MMM-YYYY') : '__',
+        lastVisit: lastVisit ? moment(lastVisit).format('DD-MMM-YYYY') : '__',
         actions: patientActions,
       });
     }

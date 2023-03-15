@@ -20,27 +20,7 @@ export function fetchLastVisit(uuid: string) {
 }
 
 export function fetchPatientList(offSet: number = 0, pageSize: number = 10) {
-  return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`);
-}
-
-export function usePatients(offSet: number = 0, pageSize: number = 25) {
-  const { data, error } = useSWR<{ data: FhirPatientResponse }, Error>(
-    `/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`,
-    openmrsFetch,
-  );
-
-  let patientListRows: PatientListRow[];
-  if (data) {
-    patientListRows = data.data?.map((patient) => {
-      patient.name = patient.name[0].given.join(' ') + ' ' + patient.name[0].family;
-    });
-  }
-
-  return {
-    patients: data?.data.entry || [],
-    error,
-    total: data?.data.total || 0,
-  };
+  return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}&_summary=data`);
 }
 
 export function fetchTodayClients() {

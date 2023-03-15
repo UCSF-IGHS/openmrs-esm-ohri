@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DataTable,
-  Link,
   Table,
   TableContainer,
   TableHead,
@@ -9,9 +8,13 @@ import {
   TableHeader,
   TableBody,
   TableCell,
+  Pagination,
+  DataTableSkeleton,
 } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
-import { usePatients } from '../../api/api';
+import { usePatientList } from '../../hooks/usePatientList';
+import { EmptyState } from '@openmrs/esm-patient-common-lib';
+import { navigate } from '@openmrs/esm-framework';
 
 export interface PatientListDataTableProps {
   title: string;
@@ -21,11 +24,19 @@ export interface PatientListDataTableProps {
 
 export const PatientListDataTable: React.FC = () => {
   const { t } = useTranslation();
-  const { patients, error, total } = usePatients();
+  const { patients, error, isLoading, total } = usePatientList();
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
+  const [nextOffSet, setNextOffSet] = useState(0);
+  const [totalPatientCount, setPatientCount] = useState(0);
+
+  useEffect(() => {
+    setPatientCount(total);
+  }, [total]);
 
   const headerData = [
     {
-      key: 'name',
+      key: 'patientLink',
       header: t('name', 'Name'),
     },
     {
@@ -37,96 +48,59 @@ export const PatientListDataTable: React.FC = () => {
       header: t('age', 'Age'),
     },
     {
-      key: 'last_visit',
-      header: t('lastVisit', 'Last Visit'),
-    },
-    {
       key: 'actions',
       header: '',
     },
   ];
 
-  const rowData = [
-    {
-      attached_groups: 'Kevin’s VM Groups',
-      id: 'a',
-      name: 'Load Balancer 3',
-      port: 3000,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <Link disabled>Disabled</Link>,
-    },
-    {
-      attached_groups: 'Maureen’s VM Groups',
-      id: 'b',
-      name: 'Load Balancer 1',
-      port: 443,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <Link>Starting</Link>,
-    },
-    {
-      attached_groups: 'Andrew’s VM Groups',
-      id: 'c',
-      name: 'Load Balancer 2',
-      port: 80,
-      protocol: 'HTTP',
-      rule: 'DNS delegation',
-      status: <Link>Active</Link>,
-    },
-    {
-      attached_groups: 'Marc’s VM Groups',
-      id: 'd',
-      name: 'Load Balancer 6',
-      port: 3000,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <Link disabled>Disabled</Link>,
-    },
-    {
-      attached_groups: 'Mel’s VM Groups',
-      id: 'e',
-      name: 'Load Balancer 4',
-      port: 443,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <Link>Starting</Link>,
-    },
-    {
-      attached_groups: 'Ronja’s VM Groups',
-      id: 'f',
-      name: 'Load Balancer 5',
-      port: 80,
-      protocol: 'HTTP',
-      rule: 'DNS delegation',
-      status: <Link>Active</Link>,
-    },
-  ];
+  const displayTitle = t('patientList', 'Patient List');
+  const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
 
   return (
-    <DataTable rows={rowData} headers={headerData} isSortable>
-      {({ rows, headers, getHeaderProps, getTableProps }) => (
-        <TableContainer title={t('patientList', 'Patient List')}>
-          <Table {...getTableProps()}>
-            <TableHead>
-              <TableRow>
-                {headers.map((header) => (
-                  <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.cells.map((cell) => (
-                    <TableCell key={cell.id}>{cell.value}</TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+    <>
+      {isLoading ? (
+        <DataTableSkeleton rowCount={5} columnCount={4} />
+      ) : patients.length > 0 ? (
+        <DataTable rows={patients} headers={headerData} isSortable>
+          {({ rows, headers, getHeaderProps, getTableProps }) => (
+            <div>
+              <TableContainer title={displayTitle}>
+                <Table {...getTableProps()}>
+                  <TableHead>
+                    <TableRow>
+                      {headers.map((header) => (
+                        <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
+                      ))}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow key={row.id}>
+                        {row.cells.map((cell) => (
+                          <TableCell key={cell.id}>{cell.value}</TableCell>
+                        ))}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <Pagination
+                page={page}
+                pageSize={pageSize}
+                pageSizes={[10, 20, 30, 40, 50]}
+                totalItems={totalPatientCount}
+                onChange={({ page, pageSize }) => {
+                  setPage(page);
+                  setNextOffSet((page - 1) * pageSize);
+                  setPageSize(pageSize);
+                }}
+              />
+            </div>
+          )}
+        </DataTable>
+      ) : (
+        <EmptyState displayText={displayTitle} headerTitle={displayTitle} launchForm={addNewPatient} />
       )}
-    </DataTable>
+    </>
   );
 };

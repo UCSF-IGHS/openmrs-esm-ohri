@@ -208,10 +208,12 @@ export interface FhirPatient {
 }
 
 export interface PatientListRow {
+  id: string;
   name: string;
+  patientLink?: React.ReactNode;
   gender: string;
   birthDate?: string;
   age?: string;
-  address?: string;
   lastVisit?: string;
+  actions?: React.ReactNode;
 }
