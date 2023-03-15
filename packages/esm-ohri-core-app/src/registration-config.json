@@ -1,13 +1,5 @@
 {
     "@openmrs/esm-patient-registration-app": {
-      "Translation overrides": {
-        "en": {
-          "relationshipsSection": "Next of Kin",
-          "relationshipPlaceholder": "Next of Kin",
-          "relationship": "Relationship type",
-          "addRelationshipButtonText": "Add Next of Kin"
-        }
-      },
       "fieldDefinitions": [
         {
           "id": "phone",
