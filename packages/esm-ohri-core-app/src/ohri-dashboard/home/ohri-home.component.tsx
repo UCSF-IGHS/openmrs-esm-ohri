@@ -7,7 +7,7 @@ const OhriHome: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className={styles.ohriHomeContainer}>
-      <PatientList />
+      {/* <PatientList /> */}
       <PatientListDataTable />
     </div>
   );
