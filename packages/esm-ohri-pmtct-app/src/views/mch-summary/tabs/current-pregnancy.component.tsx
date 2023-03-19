@@ -56,7 +56,7 @@ export interface familyItemProps {
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const currentPregnancyHeader = t('recentPregnancy', 'Recent Pregnancy');
-  const arvTherapyHeader = t('artTherapy', 'ART Therapy');
+  const arvTherapyHeader = t('art', 'ART');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
   const pregnancyOutcomeHeader = t('pregnancyOutcome', 'Pregnancy Outcome');
@@ -123,9 +123,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       patientUuid,
       labourAndDeliveryEncounterType,
     );
-    const latestANCPTracker = getObsFromEncounter(currentPregnancyANCEncounter, pTrackerIdConcept);
-    const latestLnDPTracker = getObsFromEncounter(currentPregnancyLabourAndDeliveryEncounter, pTrackerIdConcept);
-    if (latestANCPTracker === latestLnDPTracker) {
+    if (currentPregnancyLabourAndDeliveryEncounter.encounterDatetime > currentPregnancyANCEncounter.encounterDatetime) {
       setPregnancyOutcomes(
         currentPregnancyLabourAndDeliveryEncounter.obs.filter(
           (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,

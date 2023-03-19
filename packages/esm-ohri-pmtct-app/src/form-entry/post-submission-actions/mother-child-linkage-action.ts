@@ -12,7 +12,7 @@ import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../../ut
 import { updatePatientPtracker } from './current-ptracker-action';
 
 // necessary data points about an infact captured at birth
-const infantDetailsGroup = '160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+const infantDetailsGroup = '1c70c490-cafa-4c95-9fdd-a30b62bb78b8';
 const infantGender = '1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const infantDOB = '164802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const infantPTrackerId = '164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
