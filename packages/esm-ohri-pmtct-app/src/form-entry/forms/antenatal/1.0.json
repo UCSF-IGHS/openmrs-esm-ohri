@@ -82,6 +82,7 @@
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text",
+                "usePreviousValueDisabled": "true",
                 "calculate": {
                   "calculateExpression": "antenatal_visit_type == '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? useFieldValue('latest_ptracker_number') : ''"
                 }
