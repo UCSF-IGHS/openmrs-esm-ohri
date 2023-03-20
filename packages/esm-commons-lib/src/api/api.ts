@@ -9,8 +9,6 @@ import {
   covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
-import { FhirPatient, FhirPatientResponse, PatientListRow } from './types';
-import useSWR from 'swr';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
