@@ -26,7 +26,6 @@ export * from './components/patient-chart/ohri-patient-chart-sidenav.meta';
 export * from './components/patient-list-tabs/ohri-patient-list-tabs.component';
 export * from './components/patient-list-cohort/patient-list-cohort.component';
 export * from './components/patient-lists/patient-list.component';
-export * from './components/patient-lists/patient-list-datatable.component';
 export * from './components/tile/ohri-programme-summary-tiles.component';
 export * from './components/tile/ohri-summary-tile-tablet.component';
 export * from './components/tile/ohri-summary-tile.component';

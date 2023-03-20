@@ -6,7 +6,7 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
-  PatientListDataTable,
+  PatientListTable,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   appointmentsDashboardMeta,
@@ -54,7 +54,7 @@ function setupOpenMRS() {
       {
         id: 'ohri-patient-list',
         slot: 'ohri-home-dashboard-slot',
-        load: getSyncLifecycle(PatientListDataTable, {
+        load: getSyncLifecycle(PatientListTable, {
           featureName: 'home',
           moduleName,
         }),
