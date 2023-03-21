@@ -1,13 +1,3 @@
 {
-  "add": "Add",
-  "addedToList": "Currently added to the list(s) below",
-  "age": "Age",
-  "gender": "Gender",
-  "lastVisit": "Last Visit",
-  "myDashboards": "My Dashboards",
-  "name": "Name",
-  "patientList": "patient list",
-  "patientSuccessfullyAdded": "Patient successfully added.",
-  "patientSuccessfullyRemoved": "Patient was successfully removed from all lists",
-  "selectList": "Select the list where to add the client"
+  "myDashboards": "My Dashboards"
 }

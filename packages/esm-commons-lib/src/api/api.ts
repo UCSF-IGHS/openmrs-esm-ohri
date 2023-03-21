@@ -18,7 +18,7 @@ export function fetchLastVisit(uuid: string) {
 }
 
 export function fetchPatientList(offSet: number = 0, pageSize: number = 10) {
-  return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}`);
+  return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}&_summary=data`);
 }
 
 export function fetchTodayClients() {

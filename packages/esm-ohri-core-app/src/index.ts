@@ -7,6 +7,7 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
+  PatientListTable,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   appointmentsDashboardMeta,
@@ -53,9 +54,9 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'ohri-all-patients-list',
+        id: 'ohri-patient-list',
         slot: 'ohri-home-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./components/all-patients-list/patient-list.component'), {
+        load: getSyncLifecycle(PatientListTable, {
           featureName: 'home',
           moduleName,
         }),
@@ -129,14 +130,6 @@ function setupOpenMRS() {
         }),
         online: true,
         offline: true,
-      },
-      {
-        id: 'patient-list-modal',
-        slot: 'patient-actions-slot',
-        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
-          featureName: 'patient-list-modal',
-          moduleName,
-        }),
       },
       {
         id: 'clinical-views-divider',
