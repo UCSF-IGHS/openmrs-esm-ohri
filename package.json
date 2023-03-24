@@ -37,11 +37,6 @@
     "release": "lerna version --no-git-tag-version",
     "ci:bump-form-engine": "yarn up @ohri/openmrs-ohri-form-engine-lib@next"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently 'yarn verify'"
-    }
-  },
   "devDependencies": {
     "@openmrs/esm-framework": "4.1.1-pre.544",
     "@swc/cli": "^0.1.57",
