@@ -39,7 +39,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently 'npm:verify'"
+      "pre-commit": "pretty-quick --staged && concurrently 'yarn verify'"
     }
   },
   "devDependencies": {
