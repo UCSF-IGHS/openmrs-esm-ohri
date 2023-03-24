@@ -3,5 +3,6 @@
 
 set -e # die on error
 
+yarn prettier
 yarn turbo run extract-translations
 yarn pretty-quick --staged
