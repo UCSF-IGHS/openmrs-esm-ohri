@@ -151,25 +151,29 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
     relatives.forEach((relative) => {
-      let patientLink = (
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            navigate({ to: `${basePath}${relative.personB.uuid}/chart` });
-          }}>
-          {relative.personB.display}
-        </Link>
-      );
-      let relativeObject: familyItemProps = {
-        id: relative.uuid,
-        pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
-        name: patientLink,
-        relationship: relative.relationshipType.displayBIsToA,
-        dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
-        hivStatus: '',
-      };
-      items.push(relativeObject);
+      //Ensure a parent is not their own child
+      if (relative.personB.uuid !== patientUuid) {
+        let patientLink = (
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              navigate({ to: `${basePath}${relative.personB.uuid}/chart` });
+            }}>
+            {relative.personB.display}
+          </Link>
+        );
+        let relativeObject: familyItemProps = {
+          id: relative.uuid,
+          pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
+          name: patientLink,
+          relationship: relative.relationshipType.displayBIsToA,
+          dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
+          hivStatus: '',
+        };
+        items.push(relativeObject);
+      }
     });
+
     return items;
   }, [relatives, relativeToIdentifierMap]);
 
