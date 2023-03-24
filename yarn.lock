@@ -3653,6 +3653,7 @@ __metadata:
     browserslist-config-openmrs: ^1.0.0
     clean-webpack-plugin: ^3.0.0
     concurrently: ^6.3.0
+    cross-env: ^7.0.3
     css-loader: ^3.2.0
     eslint: ^7.20.0
     eslint-config-prettier: ^8.2.0
@@ -3666,6 +3667,7 @@ __metadata:
     identity-obj-proxy: ^3.0.0
     jest: ^28.1.2
     jest-cli: ^28.1.2
+    jest-coverage-badges: 1.1.2
     jest-environment-jsdom: ^28.1.2
     lerna: ^4.0.0
     lodash: ^4.17.21
@@ -7538,7 +7540,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
+"cross-env@npm:^7.0.3":
+  version: 7.0.3
+  resolution: "cross-env@npm:7.0.3"
+  dependencies:
+    cross-spawn: ^7.0.1
+  bin:
+    cross-env: src/bin/cross-env.js
+    cross-env-shell: src/bin/cross-env-shell.js
+  checksum: 26f2f3ea2ab32617f57effb70d329c2070d2f5630adc800985d8b30b56e8bf7f5f439dd3a0358b79cee6f930afc23cf8e23515f17ccfb30092c6b62c6b630a79
+  languageName: node
+  linkType: hard
+
+"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
   dependencies:
@@ -12133,7 +12147,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-coverage-badges@npm:^1.0.0":
+"jest-coverage-badges@npm:1.1.2, jest-coverage-badges@npm:^1.0.0":
   version: 1.1.2
   resolution: "jest-coverage-badges@npm:1.1.2"
   dependencies:
