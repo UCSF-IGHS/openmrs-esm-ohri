@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-set -e  # die on error
+set -e # die on error
 
-npx pretty-quick --staged
-yarn run extract-translations
+yarn prettier
+yarn turbo run extract-translations
+yarn pretty-quick --staged

@@ -1,0 +1,15 @@
+{
+  "formRenderMenuLink": "Form Render",
+  "formRenderTestTitle": "Form Render Test",
+  "jsonSchemaHeader": "JSON Schema",
+  "jsonInput": "JSON Input",
+  "finalSchema": "Final Schema",
+  "jsonText": "Enter JSON Text",
+  "formIntent": "Form Intent",
+  "selectForm": "--Select Form Intent",
+  "jsonEditorThe": "JSON Editor Theme",
+  "render": "Render",
+  "generatedForm": "Generated Form",
+  "formRender": "Form Render",
+  "submitForm": "Please submit the form"
+}
