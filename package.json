@@ -38,7 +38,7 @@
     "ci:bump-form-engine": "yarn up @ohri/openmrs-ohri-form-engine-lib@next"
   },
   "devDependencies": {
-    "@openmrs/esm-framework": "4.1.1-pre.544",
+    "@openmrs/esm-framework": "next",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.165",
     "@swc/jest": "^0.2.20",
@@ -76,7 +76,7 @@
     "jest-environment-jsdom": "^28.1.2",
     "lerna": "^4.0.0",
     "lodash": "^4.17.21",
-    "openmrs": "4.1.1-pre.544",
+    "openmrs": "next",
     "prettier": "^2.2.1",
     "pretty-quick": "^2.0.2",
     "react": "^18.2.0",
