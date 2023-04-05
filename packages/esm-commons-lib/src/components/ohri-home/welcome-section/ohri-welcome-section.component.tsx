@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './ohri-welcome-section.scss';
 import { Calendar } from '@carbon/react/icons';
 import { useSession } from '@openmrs/esm-framework';

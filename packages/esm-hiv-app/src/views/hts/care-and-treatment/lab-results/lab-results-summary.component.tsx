@@ -5,11 +5,7 @@ import CD4ResultsList from './Tabs/cd4-results.component';
 import ViralLoadResultsList from './Tabs/viral-load-results.component';
 import { useTranslation } from 'react-i18next';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const LabResultsSummary = () => {
   const { t } = useTranslation();
   return (
     <Tabs type="container" className={styles.tabContainer}>
@@ -19,10 +15,10 @@ const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
       </TabList>
       <TabPanels>
         <TabPanel>
-          <CD4ResultsList patientUuid={patientUuid} />
+          <CD4ResultsList />
         </TabPanel>
         <TabPanel>
-          <ViralLoadResultsList patientUuid={patientUuid} />
+          <ViralLoadResultsList />
         </TabPanel>
       </TabPanels>
     </Tabs>

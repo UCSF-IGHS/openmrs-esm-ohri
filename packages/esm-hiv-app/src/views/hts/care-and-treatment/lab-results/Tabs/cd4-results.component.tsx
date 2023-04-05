@@ -15,15 +15,11 @@ import { capitalize } from 'lodash-es';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
 
-interface CD4ResultsListProps {
-  patientUuid: string;
-}
-
 export const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
   return patients.filter((patient) => patient.patientSearchName.toLowerCase().includes(searchTerm.toLowerCase()));
 };
 
-const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
+const CD4ResultsList = () => {
   const { t } = useTranslation();
   const [patients, setPatients] = useState([]);
   const [patientToCd4Map, setPatientToCd4Map] = useState([]);
