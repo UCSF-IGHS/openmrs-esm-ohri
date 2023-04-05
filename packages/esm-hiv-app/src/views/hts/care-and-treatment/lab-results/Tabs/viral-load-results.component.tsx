@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
@@ -11,7 +10,6 @@ import {
   fetchPatientList,
   encounterRepresentation,
   getObsFromEncounter,
-  fetchLastVisit,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   ViralLoadResultDate_UUID,
@@ -22,11 +20,7 @@ import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { filterPatientsByName } from './cd4-results.component';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
 
-interface ViralLoadResultsListProps {
-  patientUuid: string;
-}
-
-const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
+const ViralLoadResultsList = () => {
   const { t } = useTranslation();
   const [patients, setPatients] = useState([]);
   const [patientToViralLoadMap, setPatientToViralLoadMap] = useState([]);
