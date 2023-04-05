@@ -1,5 +1,4 @@
 {
-  "activeVisit": "Active Visit",
   "covidOutcomeUnknown": "Unknown Covid Statuts",
   "hivPositive": "HIV Positive",
   "emptyStateText": "There are no {displayText.toLowerCase()} to display{displayText.toLowerCase() != 'patients' ? ' for this patient' : ''}",

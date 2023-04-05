@@ -8,7 +8,7 @@ import {
   motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
+import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import mchForms from './form-entry/forms/forms-registry';
 import {
   createConditionalDashboardLink,
