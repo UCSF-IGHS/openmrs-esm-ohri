@@ -7,7 +7,7 @@ import {
   cervicalCancerFolderMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@ohri/openmrs-ohri-form-engine-lib';
+import { addToBaseFormsRegistry } from '@openmrs/openmrs-form-engine-lib';
 import cacxForms from './forms/forms-registry';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');

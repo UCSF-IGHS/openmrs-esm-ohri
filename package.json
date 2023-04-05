@@ -35,7 +35,7 @@
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
     "release": "lerna version --no-git-tag-version",
-    "ci:bump-form-engine": "yarn up @ohri/openmrs-ohri-form-engine-lib@next"
+    "ci:bump-form-engine": "yarn up @openmrs/openmrs-form-engine-lib"
   },
   "devDependencies": {
     "@openmrs/esm-framework": "next",

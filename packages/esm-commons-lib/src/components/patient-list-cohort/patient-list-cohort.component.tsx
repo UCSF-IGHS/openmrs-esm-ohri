@@ -12,7 +12,7 @@ import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from
 import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
 import { basePath } from '../../constants';
 import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
-import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
+import { getForm, applyFormIntent } from '@openmrs/openmrs-form-engine-lib';
 import styles from './patient-list-cohort.scss';
 import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
 import { useTranslation } from 'react-i18next';
