@@ -3,6 +3,6 @@
 
 set -e # die on error
 
-yarn prettier
+# yarn prettier // commented because it causes alot of unncecessary changes that are not related to the commit
 yarn turbo run extract-translations
 yarn pretty-quick --staged
