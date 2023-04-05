@@ -4,7 +4,7 @@ import styles from './form-render.scss';
 import { Run, Maximize } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
-import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@ohri/openmrs-ohri-form-engine-lib';
+import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig } from '@openmrs/esm-framework';
 

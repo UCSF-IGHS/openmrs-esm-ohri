@@ -4,7 +4,7 @@ import styles from '../covid.scss';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import DataTableSkeleton from '@carbon/react';
 import moment from 'moment';
-import { getForm } from '@ohri/openmrs-ohri-form-engine-lib';
+import { getForm } from '@openmrs/openmrs-form-engine-lib';
 import { EmptyState, OHRIFormLauncherWithIntent, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { launchOHRIWorkSpace } from '@ohri/openmrs-esm-ohri-commons-lib/src/workspace/ohri-workspace-utils';
 import { moduleName } from '../index';

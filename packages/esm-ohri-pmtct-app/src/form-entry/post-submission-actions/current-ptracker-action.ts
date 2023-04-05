@@ -1,4 +1,4 @@
-import { PostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
+import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import { fetchPatientIdentifiers, saveIdentifier } from '../../api/api';
 import { Patient, PatientIdentifier } from '../../api/types';
 import { pTrackerIdConcept, PTrackerIdentifierType } from '../../constants';
