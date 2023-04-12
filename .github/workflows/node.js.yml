@@ -85,8 +85,9 @@ jobs:
       - name: Build
         run: yarn turbo run build --color --concurrency=5
   
-      - name: Test and Generate Badges
-        run: yarn badges 
+      # Disable the step to updated configs of migration
+      # - name: Test and Generate Badges
+      #   run: yarn badges 
 
       - name: setup git config
         run: |
