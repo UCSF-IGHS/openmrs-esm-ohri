@@ -406,24 +406,6 @@
                 "rendering": "radio",
                 "answers": [
                   {
-                    "concept": "160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Already on ART before current pregnancy",
-                    "conceptMappings":[
-                      {
-                        "type":"CIEL",
-                        "value":"160119"
-                      },
-                      {
-                        "type":"PIH Malawi",
-                        "value":"7010"
-                      },
-                      {
-                        "type":"PIH",
-                        "value":"1257"
-                      }
-                    ]
-                  },
-                  {
                     "concept": "160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Started on ART in ANC current pregnancy",
                     "conceptMappings":[
@@ -484,7 +466,67 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv_test_result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                    "hideWhenExpression":"hiv_test_result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' || antenatal_visit_type == '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                }
+              ]
+            },
+            {
+              "label": "ART initiation ",
+              "type": "obs",
+              "id": "art_initiationn",
+              "questionOptions": {
+                "concept": "6e62bf7e-2107-4d09-b485-6e60cbbb2d08",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refused ART",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"160018"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "1754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not started due to stockout of ART",
+                    "conceptMappings":[
+                      {
+                        "type":"CIEL",
+                        "value":"1754"
+                      },
+                      {
+                        "type":"AMPATH",
+                        "value":"664"
+                      },
+                      {
+                        "type":"SNOMED CT",
+                        "value":"182856006"
+                      },
+                      {
+                        "type":"SNOMED MVP",
+                        "value":"17541000105004"
+                      },
+                      {
+                        "type":"PIH",
+                        "value":"1761"
+                      }
+                    ]
+                  },
+                  {
+                    "concept": "54b96458-6585-4c4c-a5b1-b3ca7f1be351",
+                    "label": "Missing"
+                  }
+                ]
+              },
+              "behaviours":[
+                {
+                  "intent":"*",
+                  "required":"true",
+                  "hide":{
+                    "hideWhenExpression":" antenatal_visit_type !== '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || hiv_test_result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -870,6 +912,12 @@
         }
       ]
     },
+
+
+
+
+
+
     {
       "label": "Next Appointment",
       "sections": [
