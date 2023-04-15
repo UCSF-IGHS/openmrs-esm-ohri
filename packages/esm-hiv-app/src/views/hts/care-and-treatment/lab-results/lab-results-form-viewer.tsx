@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { getForm, applyFormIntent } from '@ohri/openmrs-ohri-form-engine-lib';
+import { getForm, applyFormIntent } from '@openmrs/openmrs-form-engine-lib';
 import styles from './Tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from '@carbon/react';
 import { changeWorkspaceContext, closeAllWorkspaces, resetWorkspaceStore } from '@openmrs/esm-patient-common-lib';

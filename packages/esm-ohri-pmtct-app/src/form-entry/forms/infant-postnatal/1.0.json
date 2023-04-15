@@ -30,7 +30,8 @@
                       },
                       {
                         "type":"js_expression",
-                        "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()"
+                        "failsWhenExpression":"isDateBefore(myValue, '1980-01-01') || myValue >= today()",
+                        "message": "Next visit date cannot be less than current visit date"
                       }
                     ]
                   }
@@ -867,7 +868,10 @@
                   "hideWhenExpression":"infant-transfer-status !== '161636AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                 },
                 "validators":[
-                  
+                  {
+                    "type": "js_expression",
+                    "failsWhenExpression": "myValue <= useFieldValue('visit_date')"
+                 }
                 ]
               }
             ]

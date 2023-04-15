@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-commons-lib",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Commons library microfrontend of shared assets for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-commons-lib.js",
   "main": "src/index.ts",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@ohri/openmrs-ohri-form-engine-lib": "next",
+    "@openmrs/openmrs-form-engine-lib": "next",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.3",
     "semver": "^7.3.7",
