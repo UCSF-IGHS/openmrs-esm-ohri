@@ -219,3 +219,62 @@ export interface PatientListRow {
   lastVisit?: string;
   actions?: React.ReactNode;
 }
+
+export interface PatientChartMeta {
+  /**
+   * Defines the slot name in slug case e.g. "covid-chart-summary"
+   */
+  slot: string;
+  columns: number;
+  title: string;
+}
+
+// OHRI Dashboard Types
+export interface OhriDashboardMeta {
+  /**
+   * Used to generate the menu title displayed on the sidenav
+   * @example "Covid Cases"
+   */
+  menuTitle: string;
+  slot: string;
+  config: {
+    columns?: number;
+    type: string;
+    /**
+     * Conditionally rendor icon on menu item
+     */
+    icon?: React.Component;
+  };
+  /**
+   * Determines if the dashboard is a folder
+   */
+  isFolder?: boolean;
+}
+
+export interface OhriDashboardLinkMeta {
+  /**
+   * Used to generate route and slot names
+   * @example "covid-cases"
+   */
+  name: string;
+  slot: string;
+  /**
+   * Used to generate the menu title displayed on the sidenav
+   * @example "Covid Cases"
+   */
+  title: string;
+  config: {
+    columns?: number;
+    type?: string;
+    programme: string;
+    /**
+     * Title displayed on the welcome section of the dashboard
+     */
+    dashboardTitle?: string;
+    /**
+     * Conditionally rendor icon on menu item
+     */
+    icon?: React.Component;
+  };
+  isLink?: boolean;
+}

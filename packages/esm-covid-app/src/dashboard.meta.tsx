@@ -1,4 +1,5 @@
 import { Coronavirus } from '@carbon/react/icons';
+import { OhriDashboardLinkMeta, OhriDashboardMeta } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 // Patient Chart Dashboards
 export const covidPatientChartMeta = {
@@ -32,17 +33,16 @@ export const covidVaccinationsDashboardMeta = {
 };
 
 // Clinical Dashboards
-export const covidClinicalViewDashboardMeta = {
+export const covidClinicalViewDashboardMeta: OhriDashboardMeta = {
+  menuTitle: 'COVID',
   slot: 'ohri-covid-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Coronavirus },
   isFolder: true,
-  title: 'COVID',
 };
 
-export const covid19CasesDashboardMeta = {
+export const covid19CasesDashboardMeta: OhriDashboardLinkMeta = {
   name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'COVID-19 Cases', icon: Coronavirus },
   title: 'COVID-19 Cases',
-  dashboardIcon: Coronavirus,
 };
