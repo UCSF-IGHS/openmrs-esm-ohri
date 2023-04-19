@@ -1,4 +1,5 @@
 import { Home, Pills } from '@carbon/react/icons';
+import { OhriDashboardLinkMeta, OhriDashboardMeta } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 // Patient Chart Dashboards
 export const hivPreventionDashboardMeta = {
@@ -92,16 +93,30 @@ export const hivPreventionFolderDashboardMeta = {
   title: 'HIV Prevention',
 };
 
-export const htsDashboardMeta = {
+export const hivFolderDashboardMeta: OhriDashboardMeta = {
+  slot: 'ohri-hiv-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: Home },
+  isFolder: true,
+  menuTitle: 'HIV',
+};
+
+export const htsDashboardMeta: OhriDashboardLinkMeta = {
   name: 'hts',
   slot: 'hts-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'hts', dashboardTitle: 'HTS Home Page' },
   title: 'HIV Testing Services',
 };
 
-export const careAndTreatmentDashboardMeta = {
+export const careAndTreatmentDashboardMeta: OhriDashboardLinkMeta = {
   name: 'care-and-treatment',
   slot: 'ct-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'ct', dashboardTitle: 'C&T Home Page' },
   title: 'Care and Treatment',
+};
+
+export const labResultsDashboardMeta: OhriDashboardLinkMeta = {
+  name: 'lab-results',
+  slot: 'lab-results-dashboard-slot',
+  config: { columns: 1, type: 'grid', programme: 'lab-results', dashboardTitle: 'Lab Results Home Page' },
+  title: 'Lab Results',
 };
