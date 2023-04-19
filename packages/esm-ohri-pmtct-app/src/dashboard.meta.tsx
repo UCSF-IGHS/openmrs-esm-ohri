@@ -30,6 +30,7 @@ export const childVisits_dashboardMeta = {
 export const motherChildDashboardMeta = {
   name: 'mother-child-health',
   slot: 'mother-child-health-dashboard-slot',
+  menuTitle: 'Maternal & Child Health',
   config: {
     columns: 1,
     type: 'grid',
@@ -38,5 +39,4 @@ export const motherChildDashboardMeta = {
     icon: PedestrianChild,
   },
   isLink: true,
-  title: 'Maternal & Child Health',
 };
