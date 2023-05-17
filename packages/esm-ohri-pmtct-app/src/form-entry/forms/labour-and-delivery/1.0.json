@@ -275,7 +275,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351'"
                   }
                 }
               ]
@@ -362,7 +362,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                    "hideWhenExpression":"!includes('hiv_test', '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f')"
                   }
                 }
               ]
