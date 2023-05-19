@@ -83,7 +83,7 @@
                        "rendering": "fixed-value",
                        "calculate": {
                           "calculateExpression": "resolve(api.getLatestObs(patient.id, '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '2549af50-75c8-4aeb-87ca-4bb2cef6c69a'))?.valueCodeableConcept?.coding[0]?.code"
-                        }, 
+                        },
                        "answers": [
                          {
                            "concept": "6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
@@ -158,7 +158,7 @@
                       "id":"hiv-test",
                       "questionOptions":{
                          "concept":"164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                         "rendering":"radio",                     
+                         "rendering":"radio",
                          "answers":[
                             {
                                "concept":"6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
@@ -598,7 +598,7 @@
        }
     ],
     "processor":"EncounterFormProcessor",
-    "uuid":"xxxx",
+    "uuid":"e6b67aa4-6c59-4470-8ad5-b994efeda553",
     "referencedForms":[],
     "encounterType":"269bcc7f-04f8-4ddc-883d-7a3a0d569aad",
     "postSubmissionActions": ["ArtSubmissionAction"],

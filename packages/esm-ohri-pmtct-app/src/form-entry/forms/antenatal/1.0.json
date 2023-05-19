@@ -291,7 +291,7 @@
                 "rendering": "fixed-value",
                 "calculate": {
                    "calculateExpression": "resolve(api.getLatestObs(patient.id, '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '2549af50-75c8-4aeb-87ca-4bb2cef6c69a'))?.valueCodeableConcept?.coding[0]?.code"
-                 }, 
+                 },
                  "answers": [
                   {
                     "concept": "6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
@@ -763,7 +763,7 @@
                 "rendering": "fixed-value",
                 "calculate": {
                    "calculateExpression": "resolve(api.getLatestObs(patient.id, '161557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '2549af50-75c8-4aeb-87ca-4bb2cef6c69a'))?.valueCodeableConcept?.coding[0]?.code"
-                 }, 
+                 },
                  "answers": [
                   {
                     "concept": "8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8",
@@ -1015,7 +1015,7 @@
     }
   ],
   "processor":"EncounterFormProcessor",
-  "uuid":"xxxx",
+  "uuid":"12de5bc5-352e-4faf-9961-a2125085a75c",
   "referencedForms":[],
   "encounterType":"2549af50-75c8-4aeb-87ca-4bb2cef6c69a",
   "postSubmissionActions": ["PTrackerSubmissionAction", "ArtSubmissionAction"],
