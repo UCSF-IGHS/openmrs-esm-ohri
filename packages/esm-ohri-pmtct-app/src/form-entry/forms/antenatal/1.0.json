@@ -77,7 +77,7 @@
             {
               "label": "PTracker ID",
               "type": "obs",
-              "id": "ptrackerid",
+              "id": "PtrackerIdANC",
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text",
@@ -86,7 +86,7 @@
                   "calculateExpression": "antenatal_visit_type == '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? useFieldValue('latest_ptracker_number') : ''"
                 }
               },
-              "readonlyExpression": "antenatal_visit_type == '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && useFieldValue('ptrackerid') == useFieldValue('latest_ptracker_number')",
+              "readonlyExpression": "antenatal_visit_type == '160530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
               "behaviours":[
                 {
                   "intent":"*",
