@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "next",
+    "@openmrs/openmrs-form-engine-lib": "1.0.0-pre.44",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.3",
     "semver": "^7.3.7",
