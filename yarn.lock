@@ -3515,7 +3515,7 @@ __metadata:
   dependencies:
     "@carbon/react": ^1.13.0
     "@openmrs/esm-patient-common-lib": 4.x
-    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.44
+    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.244
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.6
     lodash-es: ^4.17.15
@@ -3578,7 +3578,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ohri/openmrs-esm-ohri-form-render-app@workspace:packages/esm-form-render-app"
   dependencies:
-    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.44
+    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.244
     ace-builds: ^1.4.12
     browserslist-config-openmrs: ^1.0.0
     i18next: ^19.4.2
@@ -3906,9 +3906,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.44":
-  version: 1.0.0-pre.44
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.44"
+"@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.244":
+  version: 1.0.0-pre.244
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.244"
   dependencies:
     ace-builds: ^1.4.12
     enzyme: ^3.11.0
@@ -3916,9 +3916,8 @@ __metadata:
     formik: ^2.2.6
     jest-coverage-badges: ^1.0.0
     lodash-es: ^4.17.15
-    moment: ^2.29.1
     react-anchor-link-smooth-scroll: ^1.0.12
-    react-error-boundary: 3.1.4
+    react-error-boundary: ^4.0.3
     react-markdown: ^7.1.0
     react-scroll: ^1.8.2
     react-test-renderer: ^16.9.0
@@ -3928,11 +3927,10 @@ __metadata:
   peerDependencies:
     "@carbon/react": 1.x
     "@openmrs/esm-framework": 4.x
-    dayjs: ^1.8.16
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: 9c423cea5f0e8b072ae9b9e600fb97d992af0d0136b20971e93b0f4d751671e5dae4bcbd086c893f8bbd18b7bc82c2d904206c7ff30ae2eb45a39504ab74f3ca
+  checksum: 138a7722936dc75898a762e4b76a2c8f9ba00e5c48145e3335e75fb9ddd71e68b356ea95217498002df18bffa358398bdd1a405ac2fb6cb0fadea46a97c5fb0d
   languageName: node
   linkType: hard
 
@@ -16436,14 +16434,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-error-boundary@npm:3.1.4":
-  version: 3.1.4
-  resolution: "react-error-boundary@npm:3.1.4"
+"react-error-boundary@npm:^4.0.3":
+  version: 4.0.4
+  resolution: "react-error-boundary@npm:4.0.4"
   dependencies:
     "@babel/runtime": ^7.12.5
   peerDependencies:
     react: ">=16.13.1"
-  checksum: f36270a5d775a25c8920f854c0d91649ceea417b15b5bc51e270a959b0476647bb79abb4da3be7dd9a4597b029214e8fe43ea914a7f16fa7543c91f784977f1b
+  checksum: 02f04bdf8526f4b2474cb129ece32e5e32fbe81a72a71fdcf056c440aa9f4308b372383f5e817eea76220dcf0901459be2834d6ab8106cd9c36e8ec230df70f9
   languageName: node
   linkType: hard
 
