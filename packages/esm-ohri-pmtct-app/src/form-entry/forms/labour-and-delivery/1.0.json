@@ -452,7 +452,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv_test_result !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"hiv_test !== 'd18fa331-f158-47d0-b344-cf147c7125a4'"
                   }
                 }
               ]
@@ -544,7 +544,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_retest_thirty_six_weeks !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                    "hideWhenExpression":"anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_retest_thirty_six_weeks !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f' || hiv_test_result == '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
