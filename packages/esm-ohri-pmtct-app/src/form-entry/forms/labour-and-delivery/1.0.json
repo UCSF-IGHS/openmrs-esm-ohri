@@ -71,7 +71,7 @@
             {
               "label": "PTracker ID",
               "type": "obs",
-              "id": "ptracker_id",
+              "id": "MotherPtracker_id",
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text",
@@ -1116,7 +1116,10 @@
                   "id": "infantPtrackerid",
                   "questionOptions": {
                     "concept": "164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "rendering": "text"
+                    "rendering": "text",
+                    "calculate": {
+                      "calculateExpression": "MotherPtracker_id !== '6c45421e-2566-47cb-bbb3-07586fffbfe2' ? myValue = useFieldValue('MotherPtracker_id') : ''"
+                    }
                   },
                   "behaviours":[
                     {
