@@ -1118,7 +1118,7 @@
                     "concept": "164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "rendering": "text",
                     "calculate": {
-                      "calculateExpression": "MotherPtracker_id !== '6c45421e-2566-47cb-bbb3-07586fffbfe2' ? myValue = useFieldValue('MotherPtracker_id') : ''"
+                      "calculateExpression": "!isEmpty('MotherPtracker_id') ? myValue = useFieldValue('MotherPtracker_id') : ''"
                     }
                   },
                   "behaviours":[
