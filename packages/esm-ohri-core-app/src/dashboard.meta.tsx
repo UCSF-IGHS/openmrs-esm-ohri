@@ -25,12 +25,12 @@ export const appointmentsDashboardMeta = {
   title: 'Appointments',
 };
 
-export const pharmacyDashboardMeta = {
-  name: 'pharmacy',
-  slot: 'ohri-pharmacy-dashboard-slot',
+export const dispensingDashboardMeta = {
+  name: 'dispensing',
+  slot: 'ohri-dispensing-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Medication },
   isLink: true,
-  title: 'Pharmacy',
+  title: 'Dispensing',
 };
 
 export const outpatientDashboardMeta = {
