@@ -133,6 +133,7 @@
               "id": "gravida",
               "questionOptions": {
                 "concept": "5624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "usePreviousValueDisabled": "true",
                 "rendering": "number"
               },
               "behaviours":[
@@ -152,6 +153,7 @@
               "id": "para",
               "questionOptions": {
                 "concept": "1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "usePreviousValueDisabled": "true",
                 "rendering": "number"
               },
               "behaviours":[
@@ -171,6 +173,7 @@
               "id": "lmp",
               "questionOptions": {
                 "concept": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "usePreviousValueDisabled": "true",
                 "rendering": "date"
               },
               "behaviours":[
