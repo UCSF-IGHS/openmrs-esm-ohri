@@ -155,7 +155,7 @@
                    {
                       "label":"HIV Test Status",
                       "type":"obs",
-                      "id":"hiv-test",
+                      "id":"hiv_test_status_pnc",
                       "questionOptions":{
                          "concept":"164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "rendering":"radio",
@@ -194,7 +194,7 @@
                    {
                       "label":"HIV Test Result",
                       "type":"obs",
-                      "id":"hiv-test-result",
+                      "id":"pnc_hiv_test_result",
                       "questionOptions":{
                          "concept":"159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "rendering":"radio",
@@ -222,18 +222,16 @@
                           "intent":"*",
                           "required":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('hiv-test','6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f')"
+                            "hideWhenExpression":"hiv_test_status_pnc !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
                           },
-                          "validators":[
-
-                          ]
+                          "validators":[]
                         }
                       ]
                    },
                    {
                       "label":"ART Initiation",
                       "type":"obs",
-                      "id":"art-initiation",
+                      "id":"pnc_art_initiation",
                       "questionOptions":{
                          "concept":"6e62bf7e-2107-4d09-b485-6e60cbbb2d08",
                          "rendering":"radio",
@@ -265,7 +263,7 @@
                           "intent":"*",
                           "required":"true",
                           "hide":{
-                            "hideWhenExpression":"hiv-test-result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv-test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8'"
+                            "hideWhenExpression":"hiv_test_status_pnc !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && pnc_hiv_test_result !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
                           ]
@@ -286,7 +284,7 @@
                         "required":"true",
                         "unspecified":"true",
                         "hide":{
-                          "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                          "hideWhenExpression":"pnc_art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && pnc_art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                         },
                         "validators":[
 
@@ -309,7 +307,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"art-initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"pnc_art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[]
                         }
@@ -329,7 +327,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"pnc_art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && pnc_art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 
@@ -340,7 +338,7 @@
                    {
                       "label":"Has the patient had a recent viral load test?",
                       "type":"obs",
-                      "id":"recent-viral-load",
+                      "id":"pnc_recent_viral_load",
                       "questionOptions":{
                          "concept":"163310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "rendering":"radio",
@@ -364,7 +362,7 @@
                           "intent":"*",
                           "required":"true",
                           "hide":{
-                            "hideWhenExpression":"art-initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art-initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"pnc_art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && pnc_art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 
@@ -386,7 +384,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('recent-viral-load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                            "hideWhenExpression":"!includes('pnc_recent_viral_load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                           },
                           "validators":[
 
@@ -397,7 +395,7 @@
                    {
                       "label":"Viral Load Results",
                       "type":"obs",
-                      "id":"viral-load-results",
+                      "id":"pnc_viral_load_results",
                       "questionOptions":{
                          "concept":"1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "rendering":"radio",
@@ -429,7 +427,7 @@
                           "intent":"*",
                           "required":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('recent-viral-load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                            "hideWhenExpression":"!includes('pnc_recent_viral_load','1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                           },
                           "validators":[
 
@@ -451,7 +449,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"!includes('viral-load-results','1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
+                            "hideWhenExpression":"!includes('pnc_viral_load_results','1301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')"
                           },
                           "validators":[
 
@@ -503,7 +501,7 @@
                    {
                       "label":"Facility of next appointment",
                       "type":"obs",
-                      "id":"transfer-out",
+                      "id":"pnc_transfer_out",
                       "questionOptions":{
                          "concept":"efc87cd5-2fd8-411c-ba52-b0d858f541e7",
                          "rendering":"radio",
@@ -554,7 +552,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"transfer-out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"pnc_transfer_out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
 
@@ -576,7 +574,7 @@
                           "required":"true",
                           "unspecified":"true",
                           "hide":{
-                            "hideWhenExpression":"transfer-out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                            "hideWhenExpression":"pnc_transfer_out !== '160036AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                           },
                           "validators":[
                            {

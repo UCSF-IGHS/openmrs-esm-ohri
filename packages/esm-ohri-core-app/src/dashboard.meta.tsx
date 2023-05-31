@@ -33,10 +33,10 @@ export const dispensingDashboardMeta = {
   title: 'Dispensing',
 };
 
-export const outpatientDashboardMeta = {
-  name: 'outpatient',
-  slot: 'ohri-outpatient-dashboard-slot',
+export const serviceQueuesDashboardMeta = {
+  name: 'service-queues',
+  slot: 'ohri-service-queues-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Events },
   isLink: true,
-  title: 'Outpatient/Service Queues',
+  title: 'Service Queues',
 };

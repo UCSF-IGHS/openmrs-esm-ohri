@@ -12,8 +12,8 @@ import {
 import {
   appointmentsDashboardMeta,
   homeDashboardMeta,
-  outpatientDashboardMeta,
   dispensingDashboardMeta,
+  serviceQueuesDashboardMeta,
 } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -103,21 +103,21 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'outpatient-ohri-dashboard-ext',
+        id: 'service-queues-ohri-dashboard-ext',
         slot: 'dashboard-links-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(outpatientDashboardMeta), options),
-        meta: outpatientDashboardMeta,
+        load: getSyncLifecycle(createOHRIDashboardLink(serviceQueuesDashboardMeta), options),
+        meta: serviceQueuesDashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'ohri-outpatient-dashboard',
-        slot: 'ohri-outpatient-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./ohri-dashboard/outpatient/outpatient-dashboard.component'), {
-          featureName: 'outpatient-dashboard',
+        id: 'ohri-service-queues-dashboard',
+        slot: 'ohri-service-queues-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/service-queues/service-queues-dashboard.component'), {
+          featureName: 'service-queues-dashboard',
           moduleName,
         }),
-        meta: outpatientDashboardMeta,
+        meta: serviceQueuesDashboardMeta,
         online: true,
         offline: true,
       },
