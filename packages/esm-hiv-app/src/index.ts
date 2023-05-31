@@ -257,8 +257,8 @@ function setupOpenMRS() {
         slot: 'ohri-hiv-prevention-slot',
         load: getSyncLifecycle(createDashboardLink(preExposureProphylaxis_dashboardMeta), options),
         meta: preExposureProphylaxis_dashboardMeta,
-        online: true,
-        offline: true,
+        online: false,
+        offline: false,
       },
       {
         id: 'pre-exposure-prophylaxis-ext',

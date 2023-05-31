@@ -83,7 +83,7 @@
                        "rendering": "fixed-value",
                        "calculate": {
                           "calculateExpression": "resolve(api.getLatestObs(patient.id, '164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '2549af50-75c8-4aeb-87ca-4bb2cef6c69a'))?.valueCodeableConcept?.coding[0]?.code"
-                        }, 
+                        },
                        "answers": [
                          {
                            "concept": "6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
@@ -158,7 +158,7 @@
                       "id":"hiv-test",
                       "questionOptions":{
                          "concept":"164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                         "rendering":"radio",                     
+                         "rendering":"radio",
                          "answers":[
                             {
                                "concept":"6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f",
@@ -299,7 +299,7 @@
                       "type":"obs",
                       "id":"reason-for-refusing-art",
                       "questionOptions":{
-                         "concept":"0117ec63-6fc8-4b37-99e9-7f6d99652852",
+                         "concept":"163322AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                          "rendering":"textarea",
                          "rows":""
                       },
