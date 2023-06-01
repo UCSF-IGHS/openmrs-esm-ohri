@@ -398,7 +398,7 @@ function setupOpenMRS() {
         meta: appointments_dashboardMeta,
         online: true,
         offline: true,
-      },*/
+      },
       {
         id: 'appointments-summary-ext',
         slot: 'appointments-summary-slot',
@@ -417,7 +417,7 @@ function setupOpenMRS() {
         meta: {
           columnSpan: 4,
         },
-      },
+      },*/
     ],
   };
 }
