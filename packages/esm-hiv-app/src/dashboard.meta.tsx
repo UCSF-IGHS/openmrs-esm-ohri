@@ -11,7 +11,7 @@ export const hts_dashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
   columns: 1,
-  title: 'HIV Testing Services (HTS)',
+  title: 'HIV Testing Services',
 };
 
 export const preExposureProphylaxis_dashboardMeta = {
