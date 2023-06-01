@@ -367,21 +367,21 @@ function setupOpenMRS() {
           },
         ),
       },
-      {
+      /*{
         id: 'lab-results-summary-dashboard',
         slot: 'ohri-hiv-care-and-treatment-slot',
         load: getSyncLifecycle(createDashboardLink(labResults_dashboardMeta), options),
         meta: labResults_dashboardMeta,
-        online: false,
-        offline: false,
+        online: true,
+        offline: true,
       },
       {
         id: 'medications-summary',
         slot: 'ohri-hiv-care-and-treatment-slot',
         load: getSyncLifecycle(createDashboardLink(medications_dashboardMeta), options),
         meta: medications_dashboardMeta,
-        online: false,
-        offline: false,
+        online: true,
+        offline: true,
       },
       {
         id: 'medications-summary-ext',
@@ -396,9 +396,9 @@ function setupOpenMRS() {
         slot: 'ohri-hiv-care-and-treatment-slot',
         load: getSyncLifecycle(createDashboardLink(appointments_dashboardMeta), options),
         meta: appointments_dashboardMeta,
-        online: false,
-        offline: false,
-      },
+        online: true,
+        offline: true,
+      },*/
       {
         id: 'appointments-summary-ext',
         slot: 'appointments-summary-slot',
