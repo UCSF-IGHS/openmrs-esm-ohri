@@ -5,11 +5,8 @@ import {
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
-  covidOutcomeUUID,
-  covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
-import { OpenmrsEncounter } from './types';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -244,14 +241,12 @@ export function getTotalANCVisits(patientUuid: string, pTrackerId: string) {
   });
 }
 
-export async function fetchEncountersByType(patientUuid: string, encounterType: string): Promise<OpenmrsEncounter[]> {
-  const { data: results } = await openmrsFetch(
-    `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`,
-  );
-  return results;
+export function fetchOpenMRSForms(formNames: string[]) {
+  const fetch = (name) => openmrsFetch(`/ws/rest/v1/form?q=${name}&v=full`);
+  return Promise.all(formNames.map((name) => fetch(name)));
 }
 
-export async function fetchDeathStatus(patientUuid: string) {
-  const { data } = await openmrsFetch(`/ws/rest/v1/person/${patientUuid}`);
-  return data.dead;
+export function fetchFormsClobData(valueReferences: string[]) {
+  const fetch = (ref: string) => openmrsFetch(`/ws/rest/v1/clobdata/${ref}`);
+  return Promise.all(valueReferences?.map((ref) => fetch(ref)));
 }

@@ -10,7 +10,7 @@ export function launchEncounterForm(
   action: LaunchAction = 'add',
   title?: string,
   encounterUuid?: string,
-  intent?: string,
+  intent: string = '*',
 ) {
   const defaultTitle = capitalize(action) + ' ' + form.name;
   launchForm(form, action === 'add' ? 'enter' : action, moduleName, title || defaultTitle, encounterUuid, intent);

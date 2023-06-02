@@ -22,10 +22,8 @@ export function useEncounterRows(patientUuid: string, encounterType: string, enc
       response.data.results.sort(
         (a, b) => new Date(b.encounterDatetime).getTime() - new Date(a.encounterDatetime).getTime(),
       );
-      console.log({ response });
-      // filter the encounters
+      // apply filter
       if (encounterFilter) {
-        console.log({ encounterFilter: response.data.results.filter((encounter) => encounterFilter(encounter)) });
         setEncounters(response.data.results.filter((encounter) => encounterFilter(encounter)));
       }
       setEncounters([...response.data.results]);

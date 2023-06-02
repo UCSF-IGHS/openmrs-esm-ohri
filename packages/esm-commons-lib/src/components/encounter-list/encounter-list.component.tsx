@@ -7,11 +7,12 @@ import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
-import { OHRIFormSchema, loadFormJson } from '@openmrs/openmrs-form-engine-lib';
+import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
-import { fetchDeathStatus } from '../../api/api';
+import { useFormsJson } from '../../hooks/useFormsJson';
+import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
 
 export interface EncounterListColumn {
   key: string;
@@ -33,8 +34,8 @@ export interface EncounterListProps {
     isDefault?: boolean;
   }>;
   launchOptions: {
-    hideFormLauncher?: boolean;
     moduleName: string;
+    hideFormLauncher?: boolean;
     displayText?: string;
   };
   filter?: (encounter: any) => boolean;
@@ -53,15 +54,12 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
   const [forms, setForms] = useState<OHRIFormSchema[]>([]);
-  const [isDead, setIsDead] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [isLoadingForms, setIsLoadingForms] = useState(true);
-  const {
-    encounters,
-    isLoading: isLoadingEncounters,
-    isValidating: isValidatingEncounters,
-  } = useEncounterRows(patientUuid, encounterType, filter);
+  const { isDead } = usePatientDeathStatus(patientUuid);
+  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formList.map((form) => form.name));
+  const { encounters, isLoading: isLoadingEncounters } = useEncounterRows(patientUuid, encounterType, filter);
 
   const defaultActions = useMemo(
     () => [
@@ -86,32 +84,27 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   );
 
   useEffect(() => {
-    // load forms
-    Promise.all(
-      formList.map(async (formDescriptor) => {
-        const formJson = await loadFormJson(formDescriptor.name, null, null);
+    if (!isLoadingFormsJson) {
+      const formsWithFilteredIntents = formsJson.map((form) => {
+        const descriptor = formList.find((formDescriptor) => formDescriptor.name === form.name);
         // handle excluded intents
-        if (formDescriptor.excludedIntents?.length) {
-          formJson['availableIntents'] = formJson['availableIntents'].filter(
-            (intentEntry) => !formDescriptor.excludedIntents.includes(intentEntry.intent),
+        if (descriptor?.excludedIntents?.length) {
+          form['availableIntents'] = form['availableIntents'].filter(
+            (intentEntry) => !descriptor.excludedIntents.includes(intentEntry.intent),
           );
         }
         // handle fixed intent
-        if (formDescriptor.fixedIntent) {
-          formJson['availableIntents'] = formJson['availableIntents'].filter(
-            (intentEntry) => intentEntry.intent == formDescriptor.fixedIntent,
+        if (descriptor?.fixedIntent) {
+          form['availableIntents'] = form['availableIntents'].filter(
+            (intentEntry) => intentEntry.intent == descriptor.fixedIntent,
           );
         }
-        return formJson;
-      }),
-    ).then((formsListResponse) => {
-      setForms(formsListResponse);
+        return form;
+      });
       setIsLoadingForms(false);
-    });
-    // fetch death status
-    // TODO: Do we need to do this fetch considering that we are on the patient chart?
-    fetchDeathStatus(patientUuid).then((isDead) => setIsDead(isDead));
-  }, [formList, patientUuid]);
+      setForms(formsWithFilteredIntents);
+    }
+  }, [formsJson, formList, isLoadingFormsJson]);
 
   const headers = useMemo(() => {
     if (columns) {
@@ -243,7 +236,6 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               onChange={({ page, pageSize }) => {
                 setCurrentPage(page);
                 setPageSize(pageSize);
-                // constructPaginatedTableRows(encounters, page, pageSize);
               }}
             />
           </div>
