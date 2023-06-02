@@ -9,6 +9,7 @@ import {
   covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
+import { OpenmrsEncounter } from './types';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -241,4 +242,16 @@ export function getTotalANCVisits(patientUuid: string, pTrackerId: string) {
     }
     return null;
   });
+}
+
+export async function fetchEncountersByType(patientUuid: string, encounterType: string): Promise<OpenmrsEncounter[]> {
+  const { data: results } = await openmrsFetch(
+    `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`,
+  );
+  return results;
+}
+
+export async function fetchDeathStatus(patientUuid: string) {
+  const { data } = await openmrsFetch(`/ws/rest/v1/person/${patientUuid}`);
+  return data.dead;
 }

@@ -150,17 +150,6 @@ export interface Location {
   address6?: string;
 }
 
-export interface HSTEncounter {
-  encounterDatetime: Date;
-  encounterType: string;
-  patient: string;
-  location: string;
-  encounterProviders?: Array<{ encounterRole: string; provider: string }>;
-  obs: Array<any>;
-  form?: string;
-  visit?: string;
-}
-
 export interface Concept {
   uuid: string;
   display: string;

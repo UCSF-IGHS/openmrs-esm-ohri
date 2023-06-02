@@ -8,10 +8,9 @@ interface OverflowMenuProps {
   menuTitle: React.ReactNode;
   overflowItems: Array<any>;
   launchForm?: (formJson?: any, intent?: string) => void;
-  formJson?: any;
 }
 
-export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overflowItems, launchForm, formJson }) => {
+export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overflowItems, launchForm }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);
@@ -37,7 +36,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
 
   return (
     <div className={`cds--overflow-menu ${styles.overflowMenuContainer}`} ref={wrapperRef}>
-      {overflowItems.length > 0 ? (
+      {overflowItems.length > 1 ? (
         <>
           <button
             className={`cds--overflow-menu__trigger ${showMenu && 'cds--overflow-menu--open'}`}
@@ -109,8 +108,8 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
           kind="ghost"
           onClick={(e) => {
             e.preventDefault();
-            const processedForm = applyFormIntent(overflowItems[0].intent, formJson);
-            launchForm(processedForm);
+            // const processedForm = applyFormIntent(overflowItems[0].intent, formJson);
+            launchForm(overflowItems[0].form, overflowItems[0].intent);
           }}
           style={{
             width: 'auto',

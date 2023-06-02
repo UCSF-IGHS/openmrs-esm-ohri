@@ -1,4 +1,4 @@
-import { navigate, openmrsFetch } from '@openmrs/esm-framework';
+import { navigate } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
@@ -6,15 +6,12 @@ import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-laun
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
-import { encounterRepresentation } from '../../constants';
 import { Add } from '@carbon/react/icons';
-import {
-  launchForm,
-  launchFormInEditMode,
-  launchFormInViewMode,
-  launchFormWithCustomTitle,
-} from '../../utils/ohri-forms-commons';
-import { getForm, applyFormIntent, updateExcludeIntentBehaviour } from '@openmrs/openmrs-form-engine-lib';
+import { OHRIFormSchema, loadFormJson } from '@openmrs/openmrs-form-engine-lib';
+import { launchEncounterForm } from './helpers';
+import { useEncounterRows } from '../../hooks/useEncounterRows';
+import { OpenmrsEncounter } from '../../api/types';
+import { fetchDeathStatus } from '../../api/api';
 
 export interface EncounterListColumn {
   key: string;
@@ -25,89 +22,96 @@ export interface EncounterListColumn {
 
 export interface EncounterListProps {
   patientUuid: string;
-  encounterUuid: string;
-  form?: { package: string; name: string; view?: string };
+  encounterType: string;
   columns: Array<any>;
   headerTitle: string;
   description: string;
-  /**
-   * @deprecated Use `launchOptions.displayText`
-   */
-  dropdownText?: string;
-  /**
-   * @deprecated Use `launchOptions.hideFormLauncher`
-   */
-  hideFormLauncher?: boolean;
-  forms?: Array<{
-    package: string;
+  formList?: Array<{
     name: string;
-    view?: string;
     excludedIntents?: Array<string>;
     fixedIntent?: string;
+    isDefault?: boolean;
   }>;
-  filter?: (encounter: any) => boolean;
   launchOptions: {
     hideFormLauncher?: boolean;
     moduleName: string;
     displayText?: string;
   };
+  filter?: (encounter: any) => boolean;
 }
 
 export const EncounterList: React.FC<EncounterListProps> = ({
   patientUuid,
-  encounterUuid,
-  form,
+  encounterType,
   columns,
   headerTitle,
   description,
-  forms,
+  formList,
   filter,
   launchOptions,
-  dropdownText,
-  hideFormLauncher,
 }) => {
   const { t } = useTranslation();
-  const [allRows, setAllRows] = useState([]);
-  const [tableRows, setTableRows] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [counter, setCounter] = useState(0);
-  const [encounterForm, _] = useState(getForm(form.package, form.name));
+  const [paginatedRows, setPaginatedRows] = useState([]);
+  const [forms, setForms] = useState<OHRIFormSchema[]>([]);
   const [isDead, setIsDead] = useState(false);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [isLoadingForms, setIsLoadingForms] = useState(true);
+  const {
+    encounters,
+    isLoading: isLoadingEncounters,
+    isValidating: isValidatingEncounters,
+  } = useEncounterRows(patientUuid, encounterType, filter);
 
-  const launchDisplayText = useMemo(() => {
-    return launchOptions.displayText ?? dropdownText ?? t('new', 'New');
-  }, [launchOptions.displayText, t, dropdownText]);
+  const defaultActions = useMemo(
+    () => [
+      {
+        label: t('viewEncounter', 'View'),
+        form: {
+          name: forms[0]?.name,
+        },
+        mode: 'view',
+        intent: '*',
+      },
+      {
+        label: t('editEncounter', 'Edit'),
+        form: {
+          name: forms[0]?.name,
+        },
+        mode: 'view',
+        intent: '*',
+      },
+    ],
+    [forms, t],
+  );
 
-  const launcherIsMarkedAsHidden = useMemo(() => {
-    return isDead ? true : launchOptions.hideFormLauncher ?? hideFormLauncher ?? false;
-  }, [isDead, launchOptions, hideFormLauncher]);
-
-  const editEncounter = (encounterUuid) => {
-    launchFormInEditMode(
-      applyFormIntent('', encounterForm),
-      launchOptions.moduleName,
-      encounterUuid,
-      forceComponentUpdate,
-    );
-  };
-  const viewEncounter = (encounterUuid) => {
-    launchFormInViewMode(
-      form.view ? getForm(form.package, form.view) : encounterForm,
-      launchOptions.moduleName,
-      encounterUuid,
-      forceComponentUpdate,
-    );
-  };
-
-  const checkDeathStatus = () => {
-    openmrsFetch(`/ws/rest/v1/person/${patientUuid}`).then(({ data }) => {
-      if (data.dead) {
-        setIsDead(true);
-      }
+  useEffect(() => {
+    // load forms
+    Promise.all(
+      formList.map(async (formDescriptor) => {
+        const formJson = await loadFormJson(formDescriptor.name, null, null);
+        // handle excluded intents
+        if (formDescriptor.excludedIntents?.length) {
+          formJson['availableIntents'] = formJson['availableIntents'].filter(
+            (intentEntry) => !formDescriptor.excludedIntents.includes(intentEntry.intent),
+          );
+        }
+        // handle fixed intent
+        if (formDescriptor.fixedIntent) {
+          formJson['availableIntents'] = formJson['availableIntents'].filter(
+            (intentEntry) => intentEntry.intent == formDescriptor.fixedIntent,
+          );
+        }
+        return formJson;
+      }),
+    ).then((formsListResponse) => {
+      setForms(formsListResponse);
+      setIsLoadingForms(false);
     });
-  };
+    // fetch death status
+    // TODO: Do we need to do this fetch considering that we are on the patient chart?
+    fetchDeathStatus(patientUuid).then((isDead) => setIsDead(isDead));
+  }, [formList, patientUuid]);
 
   const headers = useMemo(() => {
     if (columns) {
@@ -118,247 +122,128 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     return [];
   }, [columns]);
 
-  useEffect(() => {
-    checkDeathStatus();
-  });
-
-  const loadRows = useCallback(
-    (encounterType) => {
-      setIsLoading(true);
-      const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-      openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-        if (data.results?.length > 0) {
-          let sortedEncounters = data.results.sort(
-            (firstEncounter, secondEncounter) =>
-              new Date(secondEncounter.encounterDatetime).getTime() -
-              new Date(firstEncounter.encounterDatetime).getTime(),
-          );
-
-          if (filter) {
-            sortedEncounters = sortedEncounters.filter((encounter) => filter(encounter));
-          }
-          setAllRows(sortedEncounters);
-          updateTable(sortedEncounters, 0, pageSize);
-        } else {
-          setAllRows([]);
+  const constructPaginatedTableRows = useCallback(
+    (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
+      const startIndex = (currentPage - 1) * pageSize;
+      const paginatedEncounters = [];
+      for (let i = startIndex; i < startIndex + pageSize; i++) {
+        if (i < encounters.length) {
+          paginatedEncounters.push(encounters[i]);
         }
-        setIsLoading(false);
-      });
-    },
-    [patientUuid],
-  );
-
-  const updateTable = (fullDataset, start, itemCount) => {
-    let currentRows = [];
-
-    for (let i = start; i < start + itemCount; i++) {
-      if (i < fullDataset.length) {
-        currentRows.push(fullDataset[i]);
       }
-    }
-    const rows = currentRows.map((encounter) => {
-      const row = { id: encounter.uuid };
-      encounter['launchFormActions'] = {
-        viewEncounter: () => viewEncounter(encounter.uuid),
-        editEncounter: () => editEncounter(encounter.uuid),
-      };
-      columns.forEach((column) => {
-        let val = column.getValue(encounter);
-        if (column.link) {
-          val = (
-            <Link
-              onClick={(e) => {
-                e.preventDefault();
-                if (column.link.handleNavigate) {
-                  column.link.handleNavigate(encounter);
-                } else {
-                  column.link?.getUrl && navigate({ to: column.link.getUrl() });
-                }
-              }}>
-              {val}
-            </Link>
-          );
-        }
-        row[column.key] = val;
-      });
-
-      if (row['actions']) {
-        const actionItems = row['actions'];
-        row['actions'] = (
+      const rows = paginatedEncounters.map((encounter) => {
+        const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
+        // inject launch actions
+        encounter['launchFormActions'] = {
+          editEncounter: () => launchEncounterForm(forms[0], launchOptions.moduleName, 'edit', null, encounter.uuid),
+          viewEncounter: () => launchEncounterForm(forms[0], launchOptions.moduleName, 'view', null, encounter.uuid),
+        };
+        // process columns
+        columns.forEach((column) => {
+          let val = column.getValue(encounter);
+          if (column.link) {
+            val = (
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (column.link.handleNavigate) {
+                    column.link.handleNavigate(encounter);
+                  } else {
+                    column.link?.getUrl && navigate({ to: column.link.getUrl() });
+                  }
+                }}>
+                {val}
+              </Link>
+            );
+          }
+          tableRow[column.key] = val;
+        });
+        // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
+        const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
+        tableRow['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            {actionItems.map((actionItem, index) => (
+            {actions.map((actionItem, index) => (
               <OverflowMenuItem
                 itemText={actionItem.label}
                 onClick={(e) => {
                   e.preventDefault();
-                  if (actionItem.mode == 'edit') {
-                    launchEncounterForm(
-                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
-                      actionItem.intent,
-                      'edit',
-                      actionItem.encounterUuid,
-                    );
-                  } else if (actionItem.mode == 'enter') {
-                    launchForm(
-                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
-                      launchOptions.moduleName,
-                      forceComponentUpdate,
-                    );
-                  } else {
-                    launchEncounterForm(
-                      applyFormIntent(actionItem.intent, getForm(actionItem.form.package, actionItem.form.name)),
-                      actionItem.intent,
-                      'view',
-                      actionItem.encounterUuid,
-                    );
-                  }
+                  launchEncounterForm(
+                    forms.find((form) => form.name == actionItem?.form?.name),
+                    launchOptions.moduleName,
+                    actionItem.mode == 'enter' ? 'add' : actionItem.mode,
+                    null,
+                    encounter.uuid,
+                    actionItem.intent,
+                  );
                 }}
               />
             ))}
           </OverflowMenu>
         );
-      } else {
-        row['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            <OverflowMenuItem
-              itemText={t('viewEncounter', 'View')}
-              onClick={(e) => {
-                e.preventDefault();
-                launchEncounterForm(
-                  form.view ? getForm(form.package, form.view) : encounterForm,
-                  '*',
-                  'view',
-                  encounter.uuid,
-                );
-              }}
-            />
-            <OverflowMenuItem
-              itemText={t('editEncounter', 'Edit')}
-              onClick={(e) => {
-                e.preventDefault();
-                launchEncounterForm(
-                  form.view ? getForm(form.package, form.view) : encounterForm,
-                  '*',
-                  'edit',
-                  encounter.uuid,
-                );
-              }}
-            />
-          </OverflowMenu>
-        );
-      }
-      return row;
-    });
-    setTableRows(rows);
-  };
-  const forceComponentUpdate = () => setCounter(counter + 1);
-
-  const capitalize = (word) => word[0].toUpperCase() + word.substr(1);
-
-  const launchEncounterForm = (form?: any, intent: string = '*', action: string = 'add', encounterUuid?: any) => {
-    const launcherTitle = `${capitalize(action)} ` + (form?.name || encounterForm?.name);
-
-    if (action === 'view') {
-      launchFormWithCustomTitle(
-        form || encounterForm,
-        launchOptions.moduleName,
-        launcherTitle,
-        'view',
-        encounterUuid,
-        forceComponentUpdate,
-      );
-    } else if (action === 'edit') {
-      launchFormWithCustomTitle(
-        form || encounterForm,
-        launchOptions.moduleName,
-        launcherTitle,
-        'edit',
-        encounterUuid,
-        forceComponentUpdate,
-      );
-    } else {
-      launchFormWithCustomTitle(
-        form || encounterForm,
-        launchOptions.moduleName,
-        launcherTitle,
-        'enter',
-        '',
-        forceComponentUpdate,
-      );
-    }
-  };
-
-  const formLauncher = useMemo(() => {
-    let encounterForms = [];
-    if (forms && forms.length > 1) {
-      encounterForms = forms.map((formV) => {
-        let tempForm = getForm(formV.package, formV.name);
-        const excludedIntents = formV.fixedIntent
-          ? tempForm.availableIntents
-              .filter((candidate) => candidate.intent != formV.fixedIntent)
-              .map((intent) => intent.intent)
-          : formV.excludedIntents;
-        return excludedIntents.length ? updateExcludeIntentBehaviour(excludedIntents, tempForm) : tempForm;
+        return tableRow;
       });
-
-      return (
-        <OHRIFormLauncherWithIntent
-          launchForm={launchEncounterForm}
-          title={launchDisplayText}
-          hideFormLauncher={launcherIsMarkedAsHidden}
-          formsJson={encounterForms}
-        />
-      );
-    } else if (encounterForm.availableIntents && encounterForm.availableIntents.length > 0) {
-      return (
-        <OHRIFormLauncherWithIntent
-          formJson={encounterForm}
-          launchForm={launchEncounterForm}
-          title={launchDisplayText}
-          hideFormLauncher={launcherIsMarkedAsHidden}
-        />
-      );
-    }
-    return (
-      <Button
-        kind="ghost"
-        renderIcon={Add}
-        iconDescription="Add "
-        onClick={(e) => {
-          e.preventDefault();
-          launchEncounterForm();
-        }}>
-        {launchDisplayText}
-      </Button>
-    );
-  }, [encounterForm, launchEncounterForm, launchDisplayText]);
+      setPaginatedRows(rows);
+    },
+    [columns, defaultActions, forms, launchOptions],
+  );
 
   useEffect(() => {
-    loadRows(encounterUuid);
-  }, [counter]);
+    if (encounters?.length) {
+      constructPaginatedTableRows(encounters, currentPage, pageSize);
+    }
+  }, [encounters, pageSize, constructPaginatedTableRows, currentPage]);
+
+  const formLauncher = useMemo(() => {
+    if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
+      // we only have one form with no intents
+      // just return the "Add" button
+      return (
+        <Button
+          kind="ghost"
+          renderIcon={Add}
+          iconDescription="Add "
+          onClick={(e) => {
+            e.preventDefault();
+            launchEncounterForm(forms[0], launchOptions.moduleName);
+          }}>
+          {launchOptions.displayText}
+        </Button>
+      );
+    } else if (forms.length > 1) {
+      return (
+        <OHRIFormLauncherWithIntent
+          formList={forms}
+          launchForm={launchEncounterForm}
+          title={launchOptions.displayText}
+          hideFormLauncher={launchOptions.hideFormLauncher ?? isDead}
+        />
+      );
+    }
+  }, [forms, launchOptions, isDead]);
 
   return (
     <>
-      {isLoading ? (
+      {isLoadingEncounters || isLoadingForms ? (
         <DataTableSkeleton rowCount={5} />
-      ) : allRows.length > 0 ? (
+      ) : encounters.length > 0 ? (
         <>
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              {!launcherIsMarkedAsHidden && <div className={styles.toggleButtons}>{formLauncher}</div>}
+              {!(launchOptions.hideFormLauncher ?? isDead) && (
+                <div className={styles.toggleButtons}>{formLauncher}</div>
+              )}
             </div>
-            <OTable tableHeaders={headers} tableRows={tableRows} />
+            <OTable tableHeaders={headers} tableRows={paginatedRows} />
             <Pagination
-              page={page}
+              page={currentPage}
               pageSize={pageSize}
               pageSizes={[10, 20, 30, 40, 50]}
-              totalItems={allRows.length}
+              totalItems={encounters.length}
               onChange={({ page, pageSize }) => {
-                let startOffset = (page - 1) * pageSize;
-                updateTable(allRows, startOffset, pageSize);
-                setPage(page);
+                setCurrentPage(page);
                 setPageSize(pageSize);
+                // constructPaginatedTableRows(encounters, page, pageSize);
               }}
             />
           </div>
@@ -367,9 +252,9 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <EmptyState
           displayText={description}
           headerTitle={headerTitle}
-          launchForm={launchEncounterForm}
+          launchForm={() => launchEncounterForm(forms[0], launchOptions.moduleName)}
           launchFormComponent={formLauncher}
-          hideFormLauncher={launcherIsMarkedAsHidden}
+          hideFormLauncher={launchOptions.hideFormLauncher ?? isDead}
         />
       )}
     </>

@@ -5,21 +5,20 @@ import { useTranslation } from 'react-i18next';
 import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.component';
 
 export const OHRIFormLauncherWithIntent: React.FC<{
-  formJson?: any;
   launchForm: (formJson?: any, intent?: string) => void;
   title?: string;
   hideFormLauncher?: boolean;
-  formsJson?: Array<any>;
-}> = ({ formJson, launchForm, hideFormLauncher, formsJson, title }) => {
+  formList?: Array<any>;
+}> = ({ launchForm, hideFormLauncher, formList, title }) => {
   const { t } = useTranslation();
   let overFlowItems = [];
-  if (formsJson && formsJson.length > 1) {
-    overFlowItems = formsJson.map((item) => {
-      return { formJson: item, availableIntents: item.availableIntents };
-    });
-  } else {
-    overFlowItems = [{ formJson: formJson, availableIntents: formJson.availableIntents }];
-  }
+  // if (formsJson && formsJson.length > 1) {
+  //   overFlowItems = formsJson.map((item) => {
+  //     return { formJson: item, availableIntents: item.availableIntents };
+  //   });
+  // } else {
+  //   overFlowItems = [{ formJson: formJson, availableIntents: formJson.availableIntents }];
+  // }
 
   return (
     <div style={{ paddingTop: '.3rem' }}>
@@ -31,9 +30,10 @@ export const OHRIFormLauncherWithIntent: React.FC<{
               <Add size={16} style={{ marginLeft: '0.5rem' }} />
             </>
           }
-          overflowItems={overFlowItems}
+          overflowItems={formList.map((item) => {
+            return { formJson: item, availableIntents: item.availableIntents };
+          })}
           launchForm={launchForm}
-          formJson={formJson}
         />
       )}
     </div>
