@@ -26,8 +26,7 @@ import {
   generalCounselling_dashboardMeta,
   adherenceCounselling_dashboardMeta,
   partnerNotificationServices_dashboardMeta,
-  medications_dashboardMeta,
-  appointments_dashboardMeta,
+
 } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -367,57 +366,7 @@ function setupOpenMRS() {
           },
         ),
       },
-      /*{
-        id: 'lab-results-summary-dashboard',
-        slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(labResults_dashboardMeta), options),
-        meta: labResults_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'medications-summary',
-        slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(medications_dashboardMeta), options),
-        meta: medications_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'medications-summary-ext',
-        slot: 'medications-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/medications/medications.component'), {
-          featureName: 'medications-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'appointments-summary',
-        slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(appointments_dashboardMeta), options),
-        meta: appointments_dashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'appointments-summary-ext',
-        slot: 'appointments-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/appointments/appointments.component'), {
-          featureName: 'appointments-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'hiv-baseline-ext',
-        slot: 'patient-chart-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./views/hiv-baseline/hiv-baseline-summary.component'), {
-          featureName: 'hiv-baseline-summary',
-          moduleName,
-        }),
-        meta: {
-          columnSpan: 4,
-        },
-      },*/
+
     ],
   };
 }
