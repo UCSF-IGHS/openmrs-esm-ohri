@@ -30,13 +30,6 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         },
       },
       {
-        key: 'htsFormStrategy',
-        header: t('htsStrategy', 'HTS Strategy'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, htsStrategyUUID);
-        },
-      },
-      {
         key: 'location',
         header: t('location', 'Location'),
         getValue: (encounter) => {
