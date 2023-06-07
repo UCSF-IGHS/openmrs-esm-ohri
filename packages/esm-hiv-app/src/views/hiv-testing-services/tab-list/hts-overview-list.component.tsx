@@ -18,7 +18,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [counter, setCounter] = useState(0);
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const headerTitle = 'HTS Sessions';
+  const headerTitle = 'Pre Test';
 
   const columns: EncounterListColumn[] = useMemo(
     () => [

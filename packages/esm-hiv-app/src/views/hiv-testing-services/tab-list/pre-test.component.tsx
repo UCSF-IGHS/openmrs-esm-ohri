@@ -2,11 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
-  CommunityDSDModel_UUID,
-  EnrollmentDate_UUID,
   PreTestApproachConceptUUID,
   PreTestConceptUUID,
   PreTestEligibleForTestingConceptUUID,
+  PreTestHIVTestDoneConceptUUID,
   PreTestPopulationConceptUUID,
   ServiceDeliveryEncounterType_UUID,
 } from '../../../constants';
@@ -25,7 +24,7 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         key: 'vlDate',
         header: t('PreTestEncDate', 'Encounter Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, EnrollmentDate_UUID, true);
+          return getObsFromEncounter(encounter, PreTestHIVTestDoneConceptUUID, true);
         },
       },
       {
@@ -63,14 +62,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'service_delivery', package: 'hiv' },
+              form: { name: 'hts', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'service_delivery', package: 'hiv' },
+              form: { name: 'hts', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -84,7 +83,7 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
     [],
   );
 
-  const headerTitle = t('htsPreTest', 'HTS Pre-Test');
+  const headerTitle = t('htsPreTest', 'HIV Testing');
 
   return (
     <EncounterList
