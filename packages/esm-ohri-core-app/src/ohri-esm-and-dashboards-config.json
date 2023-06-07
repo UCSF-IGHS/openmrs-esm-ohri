@@ -11,6 +11,12 @@
            "attachments-results-summary-dashboard",
            "drug-orders-summary-dashboard"
         ]
+      },
+      "action-menu-chart-items-slot": {
+        "remove": [
+          "visit-note-nav-button",
+          "clinical-form-action-menu"
+        ]
       }
     },
     "notesConceptUuids": ["161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "437d1e25-e7ab-481c-aabc-01f21c6cdef1"]
