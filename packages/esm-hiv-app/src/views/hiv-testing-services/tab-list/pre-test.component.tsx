@@ -5,17 +5,17 @@ import {
   PreTestApproachConceptUUID,
   PreTestConceptUUID,
   PreTestEligibleForTestingConceptUUID,
+  PreTestEncounterTypeConceptUUID,
   PreTestHIVTestDoneConceptUUID,
   PreTestPopulationConceptUUID,
-  ServiceDeliveryEncounterType_UUID,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
-interface ServiceDeliveryTabListProps {
+interface HIVPreTestTabListProps {
   patientUuid: string;
 }
 
-const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patientUuid }) => {
+const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
   const columns: EncounterListColumn[] = useMemo(
@@ -62,14 +62,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'hts', package: 'hiv' },
+              form: { name: 'hts_who', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'hts', package: 'hiv' },
+              form: { name: 'hts_who', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -83,13 +83,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
     [],
   );
 
-  const headerTitle = t('htsPreTest', 'HIV Testing');
+  const headerTitle = t('htsPreTest', 'Pre Test');
 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={ServiceDeliveryEncounterType_UUID}
-      form={{ package: 'hiv', name: 'hts' }}
+      encounterUuid={PreTestEncounterTypeConceptUUID}
+      form={{ package: 'hiv', name: 'hts_who' }}
+      forms={[{ package: 'hiv', name: 'hts_who', excludedIntents: [] }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
@@ -101,4 +102,4 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   );
 };
 
-export default ServiceDeliveryTabList;
+export default HIVPreTestTabList;

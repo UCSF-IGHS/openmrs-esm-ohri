@@ -182,3 +182,4 @@ export const PreTestApproachConceptUUID = '9641ead9-8821-4898-b633-a8e96c0933cf'
 export const PreTestPopulationConceptUUID = '746737c0-4201-4d7f-b580-816e36dc425a';
 export const PreTestEligibleForTestingConceptUUID = 'cea67984-d790-4185-b7b4-67736810d365';
 export const PreTestHIVTestDoneConceptUUID = '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const PreTestEncounterTypeConceptUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe';
