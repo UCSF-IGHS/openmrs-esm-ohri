@@ -19,7 +19,11 @@
     "extensionSlots": {
       "patient-actions-slot": {
         "remove": [
-          "add-patient-to-patient-list-button"
+          "add-patient-to-patient-list-button",
+          "start-visit-button",
+          "stop-visit-button",
+          "cancel-visit-button",
+          "add-past-visit-button"
         ]
       }
     }
