@@ -1,7 +1,7 @@
 import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
-import { fetchPatientIdentifiers, saveIdentifier } from '../../api/api';
-import { Patient, PatientIdentifier } from '../../api/types';
-import { pTrackerIdConcept, PTrackerIdentifierType } from '../../constants';
+import { fetchPatientIdentifiers, saveIdentifier } from '../api/api';
+import { Patient, PatientIdentifier } from '../api/types';
+import { pTrackerIdConcept, PTrackerIdentifierType } from '../constants';
 
 export const PTrackerSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {

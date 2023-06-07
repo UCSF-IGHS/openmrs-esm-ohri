@@ -5,10 +5,10 @@ import {
   saveIdentifier,
   savePatients,
   saveRelationship,
-} from '../../api/api';
-import { Patient, PatientIdentifier } from '../../api/types';
-import { pTrackerIdConcept, PTrackerIdentifierType } from '../../constants';
-import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../../utils/obs-encounter-utils';
+} from '../api/api';
+import { Patient, PatientIdentifier } from '../api/types';
+import { pTrackerIdConcept, PTrackerIdentifierType } from '../constants';
+import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../utils/obs-encounter-utils';
 import { updatePatientPtracker } from './current-ptracker-action';
 
 // necessary data points about an infact captured at birth

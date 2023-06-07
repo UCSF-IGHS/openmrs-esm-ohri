@@ -7,8 +7,6 @@ import {
   OHRIWelcomeSection,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@openmrs/openmrs-form-engine-lib';
-import hivForms from './forms/forms-registry';
 
 import {
   hivFolderDashboardMeta,
@@ -38,10 +36,8 @@ function setupOpenMRS() {
     featureName: 'ohri-hiv',
     moduleName,
   };
-
   defineConfigSchema(moduleName, {});
 
-  addToBaseFormsRegistry(hivForms);
   return {
     pages: [],
     extensions: [
