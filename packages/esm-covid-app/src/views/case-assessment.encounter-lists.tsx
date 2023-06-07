@@ -110,7 +110,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       encounterType={covid_Assessment_EncounterUUID}
       formList={[
         { name: 'COVID Assessment Form', excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
-        { name: 'COVID Case Form', excludedIntents: [] },
+        { name: 'COVID Case Form' },
       ]}
       columns={columns}
       description={displayText}

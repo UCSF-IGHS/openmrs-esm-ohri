@@ -72,8 +72,8 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={CD4LabResultsEncounter_UUID}
-      form={{ package: 'hiv', name: 'cd4_lab_results' }}
+      encounterType={CD4LabResultsEncounter_UUID}
+      formList={[{ name: 'CD4 Lab Result' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

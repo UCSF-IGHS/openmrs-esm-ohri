@@ -37,6 +37,7 @@ export interface EncounterListProps {
     moduleName: string;
     hideFormLauncher?: boolean;
     displayText?: string;
+    workspaceWindowSize?: 'minimized' | 'maximized';
   };
   filter?: (encounter: any) => boolean;
 }
@@ -60,6 +61,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { isDead } = usePatientDeathStatus(patientUuid);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formList.map((form) => form.name));
   const { encounters, isLoading: isLoadingEncounters } = useEncounterRows(patientUuid, encounterType, filter);
+  const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
     () => [
@@ -128,8 +130,10 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
         // inject launch actions
         encounter['launchFormActions'] = {
-          editEncounter: () => launchEncounterForm(forms[0], launchOptions.moduleName, 'edit', null, encounter.uuid),
-          viewEncounter: () => launchEncounterForm(forms[0], launchOptions.moduleName, 'view', null, encounter.uuid),
+          editEncounter: () =>
+            launchEncounterForm(forms[0], moduleName, 'edit', null, encounter.uuid, null, workspaceWindowSize),
+          viewEncounter: () =>
+            launchEncounterForm(forms[0], moduleName, 'view', null, encounter.uuid, null, workspaceWindowSize),
         };
         // process columns
         columns.forEach((column) => {
@@ -162,11 +166,12 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   e.preventDefault();
                   launchEncounterForm(
                     forms.find((form) => form.name == actionItem?.form?.name),
-                    launchOptions.moduleName,
+                    moduleName,
                     actionItem.mode == 'enter' ? 'add' : actionItem.mode,
                     null,
                     encounter.uuid,
                     actionItem.intent,
+                    workspaceWindowSize,
                   );
                 }}
               />
@@ -177,7 +182,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       });
       setPaginatedRows(rows);
     },
-    [columns, defaultActions, forms, launchOptions],
+    [columns, defaultActions, forms, moduleName, workspaceWindowSize],
   );
 
   useEffect(() => {
@@ -197,22 +202,23 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           iconDescription="Add "
           onClick={(e) => {
             e.preventDefault();
-            launchEncounterForm(forms[0], launchOptions.moduleName);
+            launchEncounterForm(forms[0], moduleName, 'add', null, null, null, workspaceWindowSize);
           }}>
-          {launchOptions.displayText}
+          {displayText}
         </Button>
       );
-    } else if (forms.length > 1) {
+    } else if (forms.length && !(hideFormLauncher ?? isDead)) {
       return (
         <OHRIFormLauncherWithIntent
-          formList={forms}
-          launchForm={launchEncounterForm}
-          title={launchOptions.displayText}
-          hideFormLauncher={launchOptions.hideFormLauncher ?? isDead}
+          formJsonList={forms}
+          launchForm={(formJson, intent) =>
+            launchEncounterForm(formJson, moduleName, 'add', null, null, intent, workspaceWindowSize)
+          }
+          title={displayText}
         />
       );
     }
-  }, [forms, launchOptions, isDead]);
+  }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize]);
 
   return (
     <>
@@ -223,9 +229,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              {!(launchOptions.hideFormLauncher ?? isDead) && (
-                <div className={styles.toggleButtons}>{formLauncher}</div>
-              )}
+              {!(hideFormLauncher ?? isDead) && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={paginatedRows} />
             <Pagination
@@ -244,9 +248,9 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <EmptyState
           displayText={description}
           headerTitle={headerTitle}
-          launchForm={() => launchEncounterForm(forms[0], launchOptions.moduleName)}
+          launchForm={() => launchEncounterForm(forms[0], moduleName, 'add', null, null, null, workspaceWindowSize)}
           launchFormComponent={formLauncher}
-          hideFormLauncher={launchOptions.hideFormLauncher ?? isDead}
+          hideFormLauncher={hideFormLauncher ?? isDead}
         />
       )}
     </>

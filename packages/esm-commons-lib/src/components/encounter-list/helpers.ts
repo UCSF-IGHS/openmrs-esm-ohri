@@ -11,7 +11,17 @@ export function launchEncounterForm(
   title?: string,
   encounterUuid?: string,
   intent: string = '*',
+  workspaceWindowSize?: 'minimized' | 'maximized',
 ) {
   const defaultTitle = capitalize(action) + ' ' + form.name;
-  launchForm(form, action === 'add' ? 'enter' : action, moduleName, title || defaultTitle, encounterUuid, intent);
+  launchForm(
+    form,
+    action === 'add' ? 'enter' : action,
+    moduleName,
+    title || defaultTitle,
+    encounterUuid,
+    intent,
+    null,
+    workspaceWindowSize,
+  );
 }

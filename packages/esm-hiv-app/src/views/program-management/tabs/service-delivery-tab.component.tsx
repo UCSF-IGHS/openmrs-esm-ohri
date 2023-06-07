@@ -72,8 +72,8 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={ServiceDeliveryEncounterType_UUID}
-      form={{ package: 'hiv', name: 'service_delivery' }}
+      encounterType={ServiceDeliveryEncounterType_UUID}
+      formList={[{ name: 'Service Delivery Model Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

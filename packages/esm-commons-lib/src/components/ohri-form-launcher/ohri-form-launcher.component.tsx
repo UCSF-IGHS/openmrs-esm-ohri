@@ -7,35 +7,23 @@ import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.com
 export const OHRIFormLauncherWithIntent: React.FC<{
   launchForm: (formJson?: any, intent?: string) => void;
   title?: string;
-  hideFormLauncher?: boolean;
-  formList?: Array<any>;
-}> = ({ launchForm, hideFormLauncher, formList, title }) => {
+  formJsonList?: Array<any>;
+}> = ({ launchForm, formJsonList, title }) => {
   const { t } = useTranslation();
-  let overFlowItems = [];
-  // if (formsJson && formsJson.length > 1) {
-  //   overFlowItems = formsJson.map((item) => {
-  //     return { formJson: item, availableIntents: item.availableIntents };
-  //   });
-  // } else {
-  //   overFlowItems = [{ formJson: formJson, availableIntents: formJson.availableIntents }];
-  // }
-
   return (
     <div style={{ paddingTop: '.3rem' }}>
-      {!hideFormLauncher && (
-        <OHRIOverflowMenu
-          menuTitle={
-            <>
-              <span className={styles.actionsButtonText}>{title || t('add', 'Add')}</span>{' '}
-              <Add size={16} style={{ marginLeft: '0.5rem' }} />
-            </>
-          }
-          overflowItems={formList.map((item) => {
-            return { formJson: item, availableIntents: item.availableIntents };
-          })}
-          launchForm={launchForm}
-        />
-      )}
+      <OHRIOverflowMenu
+        menuTitle={
+          <>
+            <span className={styles.actionsButtonText}>{title || t('add', 'Add')}</span>{' '}
+            <Add size={16} style={{ marginLeft: '0.5rem' }} />
+          </>
+        }
+        overflowItems={formJsonList.map((item) => {
+          return { formJson: item, availableIntents: item.availableIntents };
+        })}
+        launchForm={launchForm}
+      />
     </div>
   );
 };

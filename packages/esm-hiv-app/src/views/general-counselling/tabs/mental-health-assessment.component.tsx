@@ -143,8 +143,8 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={MentalHealthAssessmentEncounter_UUID}
-      form={{ package: 'hiv', name: 'mental_health_assessment' }}
+      encounterType={MentalHealthAssessmentEncounter_UUID}
+      formList={[{ name: 'Mental Health Assessment Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

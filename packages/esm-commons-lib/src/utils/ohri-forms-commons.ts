@@ -9,10 +9,11 @@ export const launchForm = (
   encounterUuid?: string,
   intent?: string,
   onUpdateParent?: () => void,
+  workspaceWindowSize: 'minimized' | 'maximized' = 'maximized',
 ) => {
   launchOHRIWorkSpace({
     title: title || form?.name,
-    screenSize: 'maximized',
+    screenSize: workspaceWindowSize,
     mode,
     encounterUuid,
     state: { updateParent: onUpdateParent, formJson: form },

@@ -59,8 +59,8 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={PeadsDisclosureEncounterType_UUID}
-      form={{ package: 'hiv', name: 'peads_disclosure' }}
+      encounterType={PeadsDisclosureEncounterType_UUID}
+      formList={[{ name: 'Age Appropriate Disclosure Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

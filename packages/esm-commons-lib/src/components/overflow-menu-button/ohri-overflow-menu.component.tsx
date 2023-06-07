@@ -15,7 +15,6 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);
   const toggleShowMenu = useCallback(() => setShowMenu((state) => !state), []);
-
   useEffect(() => {
     /**
      * Toggle showMenu if clicked on outside of element
@@ -108,8 +107,7 @@ export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overf
           kind="ghost"
           onClick={(e) => {
             e.preventDefault();
-            // const processedForm = applyFormIntent(overflowItems[0].intent, formJson);
-            launchForm(overflowItems[0].form, overflowItems[0].intent);
+            launchForm(overflowItems[0].formJson, overflowItems[0].intent);
           }}
           style={{
             width: 'auto',

@@ -102,8 +102,8 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={careAndTreatmentEncounterType}
-      form={{ package: 'hiv', name: 'service_enrolment' }}
+      encounterType={careAndTreatmentEncounterType}
+      formList={[{ name: 'Service Enrolment Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

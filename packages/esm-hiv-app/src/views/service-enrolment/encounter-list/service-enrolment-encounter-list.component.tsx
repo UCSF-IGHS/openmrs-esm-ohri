@@ -78,8 +78,8 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={careAndTreatmentEncounterType}
-      form={{ package: 'hiv', name: 'service_enrolment' }}
+      encounterType={careAndTreatmentEncounterType}
+      formList={[{ name: 'Service Enrolment Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -86,8 +86,8 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={ExpressVisitEncounterType}
-      form={{ package: 'hiv', name: 'exress_visit' }}
+      encounterType={ExpressVisitEncounterType}
+      formList={[{ name: 'POC Express Visit Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

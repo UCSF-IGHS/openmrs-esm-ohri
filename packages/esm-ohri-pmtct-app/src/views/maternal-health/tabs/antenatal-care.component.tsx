@@ -117,8 +117,9 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={antenatalEncounterType}
-      form={{ package: 'maternal_health', name: 'antenatal' }}
+      encounterType={antenatalEncounterType}
+      // TODO: replace with form name as configured in the backend.
+      formList={[{ name: 'antenatal' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
