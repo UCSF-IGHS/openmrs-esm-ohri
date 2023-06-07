@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 const OHRIDashboardSideNav = () => {
   const { t } = useTranslation();
   return (
-    <SideNav isFixedNav expanded={true} isChildOfHeader={false} aria-label="Side navigation" className={styles.sideNav}>
+    <SideNav isFixedNav expanded isChildOfHeader={false} aria-label="Side navigation" className={styles.sideNav}>
       <SideNavItems>
         <ExtensionSlot name="dashboard-links-slot" />
 
