@@ -164,5 +164,9 @@
   "vlDue": "Due for VL",
   "waitingForPretestCounselling": "Waiting for pre-test counselling",
   "welcome": "Welcome back",
-  "wiatingForHivTest": "Waiting for HIV test"
+  "wiatingForHivTest": "Waiting for HIV test",
+  "setting": "Setting",
+  "approach": "Approach",
+  "eligibleForTesting":"Eliglble for Testing",
+  "encounterDate": "Encounter Date"
 }
