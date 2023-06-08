@@ -21,35 +21,35 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
-        key: 'vlDate',
+        key: 'PreTestEncDate',
         header: t('PreTestEncDate', 'Encounter Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestHIVTestDoneConceptUUID, true);
         },
       },
       {
-        key: 'dsdstatus',
+        key: 'PreTestSetting',
         header: t('PreTestSetting', 'Setting'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestConceptUUID);
         },
       },
       {
-        key: 'dsdModel',
+        key: 'PreTestApproach',
         header: t('PreTestApproach', 'Approach'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestApproachConceptUUID);
         },
       },
       {
-        key: 'dsdModel',
+        key: 'PreTestPltn',
         header: t('PreTestPltn', 'Population Type'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestPopulationConceptUUID);
         },
       },
       {
-        key: 'dsdModel',
+        key: 'PreTestEFT',
         header: t('PreTestEFT', 'Eliglble for Testing'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestEligibleForTestingConceptUUID);
