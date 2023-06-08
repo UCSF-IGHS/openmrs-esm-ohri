@@ -49,7 +49,7 @@ function OHRIPatientTabs() {
             cohortSlotName="waiting-for-hiv-testing-slot"
             addPatientToListOptions={{
               isEnabled: true,
-              excludeCohorts: [],
+              excludeCohorts: ['Post-Test Counselling'],
             }}
             launchableForm={{
               package: formPackage,
