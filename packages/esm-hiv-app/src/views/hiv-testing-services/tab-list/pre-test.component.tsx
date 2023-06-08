@@ -29,28 +29,28 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
       },
       {
         key: 'PreTestSetting',
-        header: t('PreTestSetting', 'Setting'),
+        header: t('setting', 'Setting'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestConceptUUID);
         },
       },
       {
         key: 'PreTestApproach',
-        header: t('PreTestApproach', 'Approach'),
+        header: t('approach', 'Approach'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestApproachConceptUUID);
         },
       },
       {
         key: 'PreTestPltn',
-        header: t('PreTestPltn', 'Population Type'),
+        header: t('populationType', 'Population Type'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestPopulationConceptUUID);
         },
       },
       {
         key: 'PreTestEFT',
-        header: t('PreTestEFT', 'Eliglble for Testing'),
+        header: t('eligibleForTesting', 'Eliglble for Testing'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestEligibleForTestingConceptUUID);
         },
