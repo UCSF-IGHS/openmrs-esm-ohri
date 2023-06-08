@@ -48,7 +48,7 @@ function setupOpenMRS() {
       {
         id: 'hts-patient-encounters-list-ext',
         slot: 'hts-summary-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./views/hts/encounters-list/hts-overview-list.component'), {
+        load: getAsyncLifecycle(() => import('./views/hiv-testing-services/hts-prevention-summary.component'), {
           featureName: 'hts-patient-encounters-list',
           moduleName,
         }),
