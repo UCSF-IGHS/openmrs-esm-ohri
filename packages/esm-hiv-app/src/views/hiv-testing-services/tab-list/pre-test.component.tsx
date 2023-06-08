@@ -22,7 +22,7 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
     () => [
       {
         key: 'PreTestEncDate',
-        header: t('PreTestEncDate', 'Encounter Date'),
+        header: t('encounterDate', 'Encounter Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, PreTestHIVTestDoneConceptUUID, true);
         },
