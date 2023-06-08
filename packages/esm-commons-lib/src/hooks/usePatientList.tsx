@@ -29,7 +29,7 @@ export function usePatientList(offSet: number = 0, pageSize: number = 15) {
 
       const patientActions = (
         <OverflowMenu flipped>
-          <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={[]} />
+          <AddPatientToListOverflowMenuItem patientUuid={patient.resource.id} excludeCohorts={['Post-Test Counselling']} />
         </OverflowMenu>
       );
 
