@@ -20,7 +20,6 @@ function OHRIPatientTabs() {
       <TabList contained>
         <Tab>{t('waitingForPretestCounselling', 'Waiting for pre-test counselling')}</Tab>
         <Tab>{t('wiatingForHivTest', 'Waiting for HIV test')}</Tab>
-        <Tab>{t('waitingForPostTest', 'Waiting for post-test counselling')}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel>
@@ -50,33 +49,13 @@ function OHRIPatientTabs() {
             cohortSlotName="waiting-for-hiv-testing-slot"
             addPatientToListOptions={{
               isEnabled: true,
-              excludeCohorts: [],
+              excludeCohorts: ['Post-Test Counselling'],
             }}
             launchableForm={{
               package: formPackage,
               name: formName,
               intent: 'HTS_HIVTEST',
               actionText: t('startHIVTest', 'Start HIV Test'),
-              editLatestEncounter: true,
-              encounterType: htsRetrospectiveEncounterType,
-              targetDashboard: 'hts-summary',
-            }}
-            moduleName={moduleName}
-          />
-        </TabPanel>
-        <TabPanel>
-          <CohortPatientList
-            cohortId={postTestCounsellingCohort}
-            cohortSlotName="post-test-counseling-slot"
-            addPatientToListOptions={{
-              isEnabled: true,
-              excludeCohorts: [],
-            }}
-            launchableForm={{
-              package: formPackage,
-              name: formName,
-              intent: 'HTS_POSTTEST',
-              actionText: t('startPostTestCounselling', 'Start Post-test counselling'),
               editLatestEncounter: true,
               encounterType: htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',

@@ -71,7 +71,7 @@
             {
               "label": "PTracker ID",
               "type": "obs",
-              "id": "ptracker_id",
+              "id": "MotherPtracker_id",
               "questionOptions": {
                 "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2",
                 "rendering": "text",
@@ -239,7 +239,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"client_booked !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":""
                   }
                 }
               ]
@@ -275,7 +275,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '1402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '54b96458-6585-4c4c-a5b1-b3ca7f1be351'"
                   }
                 }
               ]
@@ -362,7 +362,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                    "hideWhenExpression":"!includes('hiv_test', '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f')"
                   }
                 }
               ]
@@ -452,7 +452,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"hiv_test_result !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_hiv_test_status !== '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"hiv_test !== 'd18fa331-f158-47d0-b344-cf147c7125a4'"
                   }
                 }
               ]
@@ -544,7 +544,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_retest_thirty_six_weeks !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f'"
+                    "hideWhenExpression":"anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && anc_retest_thirty_six_weeks !== '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && hiv_test !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && hiv_test !== '6f041992-f0fd-4ec7-b7b6-c06b0f60bf3f' || hiv_test_result == '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -565,7 +565,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -584,7 +584,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   },
                   "validators": [
                     {
@@ -613,7 +613,7 @@
                   "required":"true",
                   "unspecified":"true",
                   "hide":{
-                    "hideWhenExpression":"art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -645,7 +645,7 @@
                   "intent":"*",
                   "required":"true",
                   "hide":{
-                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression":"art_initiation !== '160119AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' && art_initiation !== '160120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' || anc_hiv_test_status !== '8b8951a8-e8d6-40ca-ad70-89e8f8f71fa8' && anc_hiv_test_status !== '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
                 }
               ]
@@ -1116,7 +1116,10 @@
                   "id": "infantPtrackerid",
                   "questionOptions": {
                     "concept": "164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "rendering": "text"
+                    "rendering": "text",
+                    "calculate": {
+                      "calculateExpression": "!isEmpty('MotherPtracker_id') ? myValue = useFieldValue('MotherPtracker_id') : ''"
+                    }
                   },
                   "behaviours":[
                     {
@@ -1149,7 +1152,7 @@
     }
   ],
   "processor":"EncounterFormProcessor",
-  "uuid":"xxxx",
+  "uuid":"1e5614d6-5306-11e6-beb8-9e71128cae77",
   "referencedForms":[],
   "encounterType":"2678423c-0523-4d76-b0da-18177b439eed",
   "postSubmissionActions": ["MotherToChildLinkageSubmissionAction", "ArtSubmissionAction"],

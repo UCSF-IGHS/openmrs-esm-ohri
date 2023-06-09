@@ -162,8 +162,11 @@
   "visitType": "Visit Type",
   "vlDate": "Date",
   "vlDue": "Due for VL",
-  "waitingForPostTest": "Waiting for post-test counselling",
   "waitingForPretestCounselling": "Waiting for pre-test counselling",
   "welcome": "Welcome back",
-  "wiatingForHivTest": "Waiting for HIV test"
+  "wiatingForHivTest": "Waiting for HIV test",
+  "setting": "Setting",
+  "approach": "Approach",
+  "eligibleForTesting":"Eliglble for Testing",
+  "encounterDate": "Encounter Date"
 }

@@ -1,4 +1,4 @@
-import { Home } from '@carbon/react/icons';
+import { Home, Pills } from '@carbon/react/icons';
 
 // Patient Chart Dashboards
 export const hivPreventionDashboardDMeta = {
@@ -11,7 +11,7 @@ export const hts_dashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
   columns: 1,
-  title: 'HIV Testing Services (HTS)',
+  title: 'HIV Testing Services',
 };
 
 export const preExposureProphylaxis_dashboardMeta = {
@@ -31,12 +31,6 @@ export const serviceSummary_dashboardMeta = {
   slot: 'hts-service-summary-dashboard-slot',
   columns: 1,
   title: 'HIV Patient Summary',
-};
-
-export const labResults_dashboardMeta = {
-  slot: 'hts-lab-results-dashboard-slot',
-  columns: 1,
-  title: 'Labs',
 };
 
 export const programManagement_dashboardMeta = {
@@ -86,7 +80,14 @@ export const hivFolderDashboardMeta = {
   slot: 'ohri-hiv-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home },
   isFolder: true,
-  title: 'HIV',
+  title: 'HIV Care and Treatment',
+};
+
+export const hivPreventionFolderDashboardMeta = {
+  slot: 'ohri-hiv-prevention-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: Pills },
+  isFolder: true,
+  title: 'HIV Prevention',
 };
 
 export const htsDashboardMeta = {
@@ -101,10 +102,4 @@ export const careAndTreatmentDashboardMeta = {
   slot: 'care-and-treatment-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'ct', dashboardTitle: 'C&T Home Page' },
   title: 'Care and Treatment',
-};
-export const labResultsDashboardMeta = {
-  name: 'lab-results',
-  slot: 'lab-results-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'lab-results', dashboardTitle: 'Lab Results Home Page' },
-  title: 'Lab Results',
 };
