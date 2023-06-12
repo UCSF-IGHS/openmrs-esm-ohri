@@ -817,7 +817,7 @@
             {
               "label": "Number of babies born from this pregnancy",
               "type": "obs",
-              "id": "birth-count",
+              "id": "birth_count",
               "questionOptions": {
                 "concept": "1568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rendering": "number",
@@ -842,7 +842,10 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "1c70c490-cafa-4c95-9fdd-a30b62bb78b8"
+                "concept": "1c70c490-cafa-4c95-9fdd-a30b62bb78b8",
+                "repeatOptions":{
+                  "limitExpression": "useFieldValue('birth_count')"
+                }
               },
               "behaviours":[
                 {
