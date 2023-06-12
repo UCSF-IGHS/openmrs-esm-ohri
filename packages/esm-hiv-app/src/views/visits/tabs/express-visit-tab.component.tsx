@@ -20,8 +20,8 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
-        key: 'visitDate',
-        header: t('ExpressVisitDate', 'Visit Date'),
+        key: 'expressVisitDate',
+        header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressEncounterDate, true);
         },
@@ -33,22 +33,22 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
         },
       },
       {
-        key: 'visitType',
-        header: t('ExpressVisitType', 'Visit Type'),
+        key: 'expressVisitType',
+        header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressVisitType);
         },
       },
       {
-        key: 'screeningOutcome',
-        header: t('ExpressTB', 'TB Screening Outcome'),
+        key: 'expressScreeningOutcome',
+        header: t('screeningOutcome', 'TB Screening Outcome'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressTBOutcome);
         },
       },
       {
-        key: 'appointmentReason',
-        header: t('ExpressRefferal', 'Refferal Reason'),
+        key: 'expressRefferalReason',
+        header: t('refferalReason', 'Refferal Reason'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressRefferalReason);
         },
@@ -59,17 +59,17 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'exress_visit', package: 'hiv' },
+              form: { name: 'express_visit', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
-              label: t('ExpressViewDetails', 'View Details'),
+              label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'exress_visit', package: 'hiv' },
+              form: { name: 'express_visit', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
-              label: t('ExpressEditForm', 'Edit Form'),
+              label: t('editForm', 'Edit Form'),
               mode: 'edit',
             },
           ];

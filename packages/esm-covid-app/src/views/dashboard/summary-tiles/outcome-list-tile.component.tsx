@@ -33,7 +33,7 @@ export const Outcomes: React.FC<{}> = () => {
     () => [
       {
         key: 'name',
-        header: t('outcomeName', 'Name'),
+        header: t('name', 'Name'),
         getValue: (patient) => {
           return `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
         },
@@ -42,43 +42,43 @@ export const Outcomes: React.FC<{}> = () => {
         },
       },
       {
-        key: 'gender',
-        header: t('outcomeSex', 'Sex'),
+        key: 'outcomegender',
+        header: t('sex', 'Sex'),
         getValue: (patient) => {
           return capitalize(patient.gender);
         },
       },
       {
-        key: 'age',
-        header: t('outcomeAge', 'Age'),
+        key: 'outcomeage',
+        header: t('age', 'Age'),
         getValue: (patient) => {
           return age(patient.birthDate);
         },
       },
       {
-        key: 'assessmentDate',
-        header: t('outcomeAssessmentDate', 'AssessmentDate Date'),
+        key: 'outcomeAssessmentDate',
+        header: t('AssessmentDate', 'AssessmentDate Date'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidEncounterDateTime_UUID, true);
         },
       },
       {
-        key: 'presentation',
-        header: t('outcomePresentation', 'Presentation'),
+        key: 'outcomePresentation',
+        header: t('presentation', 'Presentation'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidPresentSymptonsConcept_UUID);
         },
       },
       {
         key: 'outcome',
-        header: t('outcomeOutcome', 'Outcome'),
+        header: t('outcome', 'Outcome'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidOutcomeUUID);
         },
       },
       {
         key: 'outcomeDate',
-        header: t('outcomeDate', 'OutcomeDate Date'),
+        header: t('outcomeDate', 'Outcome Date'),
         getValue: ({ latestEncounter }) => {
           return getObsFromEncounter(latestEncounter, covidOutcome);
         },

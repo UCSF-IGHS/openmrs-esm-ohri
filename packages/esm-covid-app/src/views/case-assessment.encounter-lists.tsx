@@ -26,7 +26,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
     () => [
       {
         key: 'encounterDate',
-        header: t('encounterDate', 'Date of Assessment'),
+        header: t('assessmentDate', 'Date of Assessment'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
         },

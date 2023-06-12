@@ -26,21 +26,21 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
-        key: 'testResultDate',
+        key: 'labTestName',
         header: t('testName', 'Test Name'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter[CD4LabResultsEncounter_UUID], Cd4LabResultDate_UUID, true);
         },
       },
       {
-        key: 'CD4Count',
+        key: 'labTestValue',
         header: t('value', 'Value'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, Cd4Count_UUID);
         },
       },
       {
-        key: 'CD4Count',
+        key: 'labTestRefRange',
         header: t('referenceRange', 'Reference Range'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, Cd4LabResultCountPercentage_UUID);
