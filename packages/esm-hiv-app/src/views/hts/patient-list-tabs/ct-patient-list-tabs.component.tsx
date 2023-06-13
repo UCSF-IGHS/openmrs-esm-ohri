@@ -24,7 +24,7 @@ function CTHomePatientTabs() {
       otherColumns: [
         {
           key: 'clientId',
-          header: 'Client ID',
+          header: t('clientId', 'Client ID'),
           getValue: (patient) => {
             return patient.id;
           },
