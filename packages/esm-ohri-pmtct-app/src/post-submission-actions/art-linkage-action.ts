@@ -1,7 +1,7 @@
 import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
-import { artNoConcept, artUniqueNumberType } from '../../constants';
-import { fetchPatientIdentifiers, saveIdentifier } from '../../api/api';
-import { PatientIdentifier } from '../../api/types';
+import { artNoConcept, artUniqueNumberType } from '../constants';
+import { fetchPatientIdentifiers, saveIdentifier } from '../api/api';
+import { PatientIdentifier } from '../api/types';
 
 const ArtSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {

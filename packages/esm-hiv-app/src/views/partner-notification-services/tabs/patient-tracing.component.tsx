@@ -72,8 +72,8 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={PatientTracingEncounterType_UUID}
-      form={{ package: 'hiv', name: 'patient_tracing' }}
+      encounterType={PatientTracingEncounterType_UUID}
+      formList={[{ name: 'Patient Tracing Form' }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

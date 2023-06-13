@@ -7,6 +7,7 @@ export interface WorkspaceContextProps {
   encounterUuid?: string;
   state?: any;
   mode?: SessionMode;
+  intent?: string;
   screenSize?: string;
   collapseSections?: Boolean;
   workspaceName?: string;
@@ -34,13 +35,13 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
       moduleName: props.moduleName,
     }),
   });
-
   launchPatientWorkspace(workspaceName, {
     ...props.state,
     mode: props.mode,
     encounterUuid: props.encounterUuid,
     onCancel: close,
     onSubmit: onFormSubmit,
+    formSessionIntent: props.intent,
   });
 };
 

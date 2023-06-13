@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "1.0.0-pre.244",
+    "@openmrs/openmrs-form-engine-lib": "1.0.0-pre.262",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.3",
     "semver": "^7.3.7",
@@ -50,6 +50,7 @@
     "@openmrs/esm-patient-common-lib": "4.x",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "webpack": "^5.74.0"
+    "webpack": "^5.74.0",
+    "webpack-cli": "^5.1.1"
   }
 }

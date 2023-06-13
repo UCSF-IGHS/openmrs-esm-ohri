@@ -3515,7 +3515,7 @@ __metadata:
   dependencies:
     "@carbon/react": ^1.13.0
     "@openmrs/esm-patient-common-lib": 4.x
-    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.244
+    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.262
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.6
     lodash-es: ^4.17.15
@@ -3523,6 +3523,7 @@ __metadata:
     semver: ^7.3.7
     systemjs-webpack-interop: ^2.3.7
     webpack: ^5.74.0
+    webpack-cli: ^5.1.1
     yup: ^0.29.1
   peerDependencies:
     "@openmrs/esm-framework": 4.x
@@ -3578,7 +3579,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ohri/openmrs-esm-ohri-form-render-app@workspace:packages/esm-form-render-app"
   dependencies:
-    "@openmrs/openmrs-form-engine-lib": 1.0.0-pre.244
+    "@openmrs/openmrs-form-engine-lib": next
     ace-builds: ^1.4.12
     browserslist-config-openmrs: ^1.0.0
     i18next: ^19.4.2
@@ -3906,9 +3907,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.244":
-  version: 1.0.0-pre.244
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.244"
+"@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.262":
+  version: 1.0.0-pre.262
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.262"
   dependencies:
     ace-builds: ^1.4.12
     enzyme: ^3.11.0
@@ -3930,7 +3931,35 @@ __metadata:
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: 138a7722936dc75898a762e4b76a2c8f9ba00e5c48145e3335e75fb9ddd71e68b356ea95217498002df18bffa358398bdd1a405ac2fb6cb0fadea46a97c5fb0d
+  checksum: 592d986808f587f41b5e7a7621b1b2ee9abae691a3aece43eb4f87053d907bef4a730eb204fa1b173185d5116df5629ad20a1e00ea09df182eb3cf0bda6f23f8
+  languageName: node
+  linkType: hard
+
+"@openmrs/openmrs-form-engine-lib@npm:next":
+  version: 1.0.0-pre.266
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.266"
+  dependencies:
+    ace-builds: ^1.4.12
+    enzyme: ^3.11.0
+    enzyme-adapter-react-16: ^1.15.6
+    formik: ^2.2.6
+    jest-coverage-badges: ^1.0.0
+    lodash-es: ^4.17.15
+    react-anchor-link-smooth-scroll: ^1.0.12
+    react-error-boundary: ^4.0.3
+    react-markdown: ^7.1.0
+    react-scroll: ^1.8.2
+    react-test-renderer: ^16.9.0
+    react-waypoint: ^10.3.0
+    semver: ^7.3.5
+    yup: ^0.29.1
+  peerDependencies:
+    "@carbon/react": 1.x
+    "@openmrs/esm-framework": 4.x
+    react: ^18.2.0
+    react-i18next: 11.x
+    rxjs: 6.x
+  checksum: af40fd4e3aa7eadb6d323a12cd38dc5721ee77baf5dab9e9999a8956290a703ba175ef4bd934de52fd319c28d09bd7b9274e22fa892f821013e2af1746c3745d
   languageName: node
   linkType: hard
 
@@ -5240,6 +5269,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@webpack-cli/configtest@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@webpack-cli/configtest@npm:2.1.0"
+  peerDependencies:
+    webpack: 5.x.x
+    webpack-cli: 5.x.x
+  checksum: b875fccd8be9a936924e24986725823347703e3eb72ea884e74669ca20f007704e859855a6a05940d5d3805ce2fc08b183a0f1658d5395b5454b3f5f88293081
+  languageName: node
+  linkType: hard
+
 "@webpack-cli/info@npm:^1.5.0":
   version: 1.5.0
   resolution: "@webpack-cli/info@npm:1.5.0"
@@ -5248,6 +5287,16 @@ __metadata:
   peerDependencies:
     webpack-cli: 4.x.x
   checksum: 7f56fe037cd7d1fd5c7428588519fbf04a0cad33925ee4202ffbafd00f8ec1f2f67d991245e687d50e0f3e23f7b7814273d56cb9f7da4b05eed47c8d815c6296
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/info@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@webpack-cli/info@npm:2.0.1"
+  peerDependencies:
+    webpack: 5.x.x
+    webpack-cli: 5.x.x
+  checksum: b8fba49fee10d297c2affb0b064c9a81e9038d75517c6728fb85f9fb254cae634e5d33e696dac5171e6944ae329d85fddac72f781c7d833f7e9dfe43151ce60d
   languageName: node
   linkType: hard
 
@@ -5260,6 +5309,19 @@ __metadata:
     webpack-dev-server:
       optional: true
   checksum: d475e8effa23eb7ff9a48b14d4de425989fd82f906ce71c210921cc3852327c22873be00c35e181a25a6bd03d424ae2b83e7f3b3f410ac7ee31b128ab4ac7713
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/serve@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@webpack-cli/serve@npm:2.0.4"
+  peerDependencies:
+    webpack: 5.x.x
+    webpack-cli: 5.x.x
+  peerDependenciesMeta:
+    webpack-dev-server:
+      optional: true
+  checksum: 561ea2e6eb551415f0b1675393a8480e1201293fe37eae334cbb1fdc466986668cca76ca1ca327ada9b498eae27cbecef0793e3bb5677288f1a5216cad414efe
   languageName: node
   linkType: hard
 
@@ -7158,6 +7220,13 @@ __metadata:
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
+  languageName: node
+  linkType: hard
+
+"commander@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "commander@npm:10.0.1"
+  checksum: 436901d64a818295803c1996cd856621a74f30b9f9e28a588e726b2b1670665bccd7c1a77007ebf328729f0139838a88a19265858a0fa7a8728c4656796db948
   languageName: node
   linkType: hard
 
@@ -11379,6 +11448,13 @@ __metadata:
   version: 2.2.0
   resolution: "interpret@npm:2.2.0"
   checksum: f51efef7cb8d02da16408ffa3504cd6053014c5aeb7bb8c223727e053e4235bf565e45d67028b0c8740d917c603807aa3c27d7bd2f21bf20b6417e2bb3e5fd6e
+  languageName: node
+  linkType: hard
+
+"interpret@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "interpret@npm:3.1.1"
+  checksum: 35cebcf48c7351130437596d9ab8c8fe131ce4038da4561e6d665f25640e0034702a031cf7e3a5cea60ac7ac548bf17465e0571ede126f3d3a6933152171ac82
   languageName: node
   linkType: hard
 
@@ -16785,6 +16861,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rechoir@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "rechoir@npm:0.8.0"
+  dependencies:
+    resolve: ^1.20.0
+  checksum: ad3caed8afdefbc33fbc30e6d22b86c35b3d51c2005546f4e79bcc03c074df804b3640ad18945e6bef9ed12caedc035655ec1082f64a5e94c849ff939dc0a788
+  languageName: node
+  linkType: hard
+
 "redent@npm:^3.0.0":
   version: 3.0.0
   resolution: "redent@npm:3.0.0"
@@ -19738,6 +19823,38 @@ __metadata:
   bin:
     webpack-cli: bin/cli.js
   checksum: 2ff5355ac348e6b40f2630a203b981728834dca96d6d621be96249764b2d0fc01dd54edfcc37f02214d02935de2cf0eefd6ce689d970d154ef493f01ba922390
+  languageName: node
+  linkType: hard
+
+"webpack-cli@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "webpack-cli@npm:5.1.1"
+  dependencies:
+    "@discoveryjs/json-ext": ^0.5.0
+    "@webpack-cli/configtest": ^2.1.0
+    "@webpack-cli/info": ^2.0.1
+    "@webpack-cli/serve": ^2.0.4
+    colorette: ^2.0.14
+    commander: ^10.0.1
+    cross-spawn: ^7.0.3
+    envinfo: ^7.7.3
+    fastest-levenshtein: ^1.0.12
+    import-local: ^3.0.2
+    interpret: ^3.1.1
+    rechoir: ^0.8.0
+    webpack-merge: ^5.7.3
+  peerDependencies:
+    webpack: 5.x.x
+  peerDependenciesMeta:
+    "@webpack-cli/generators":
+      optional: true
+    webpack-bundle-analyzer:
+      optional: true
+    webpack-dev-server:
+      optional: true
+  bin:
+    webpack-cli: bin/cli.js
+  checksum: 7738e6a84a0098886e1e0c0fd0dab44b7dedfbb0580afbb5ef734c5109dcaee80140bebb5d9f4b40f425029563bb09bcbda8b08d904fa14e60ff632e6dcc8a17
   languageName: node
   linkType: hard
 

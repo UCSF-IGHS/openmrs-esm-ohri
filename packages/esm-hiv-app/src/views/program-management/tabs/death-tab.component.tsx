@@ -1,4 +1,3 @@
-import { Tab } from '@carbon/react';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -71,8 +70,8 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={deathFormEncounterType_UUID}
-      form={{ package: 'hiv', name: 'death_form' }}
+      encounterType={deathFormEncounterType_UUID}
+      formList={[{ name: 'Death Form' }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -96,8 +96,8 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={PatnerNotificationEncounterType_UUID}
-      form={{ package: 'hiv', name: 'patner_notification' }}
+      encounterType={PatnerNotificationEncounterType_UUID}
+      formList={[{ name: 'Partner Notification Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

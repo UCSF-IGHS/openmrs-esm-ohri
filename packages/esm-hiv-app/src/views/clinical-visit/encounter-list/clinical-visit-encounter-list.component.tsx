@@ -74,8 +74,8 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={clinicalVisitEncounterType}
-      form={{ package: 'hiv', name: 'clinical_visit' }}
+      encounterType={clinicalVisitEncounterType}
+      formList={[{ name: 'POC Clinical Visit Form v2' }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle="Clinical Visits"

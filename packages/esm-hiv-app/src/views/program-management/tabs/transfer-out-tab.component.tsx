@@ -89,8 +89,8 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={transferOutEncounterType_UUID}
-      form={{ package: 'hiv', name: 'transfer_out' }}
+      encounterType={transferOutEncounterType_UUID}
+      formList={[{ name: 'Transfer Out Form' }]}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}

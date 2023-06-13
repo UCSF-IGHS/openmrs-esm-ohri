@@ -250,8 +250,9 @@ const HivExposedInfant: React.FC<{
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterUuid={infantPostnatalEncounterType}
-        form={{ package: 'child_health', name: 'infant_postnatal' }}
+        encounterType={infantPostnatalEncounterType}
+        // TODO: replace with form name as configured in the backend.
+        formList={[{ name: 'infant_postnatal' }]}
         columns={hivMonitoringColumns}
         description={t('hivMonitoring', 'HIV Monitoring')}
         headerTitle={t('hivMonitoring', 'HIV Monitoring')}
@@ -279,11 +280,12 @@ const HivExposedInfant: React.FC<{
       <div style={{ padding: '1rem' }}>
         <EncounterList
           patientUuid={patientUuid}
-          encounterUuid={infantPostnatalEncounterType}
+          encounterType={infantPostnatalEncounterType}
           columns={columnsChildPreviousVisit}
           description={previousVisitsTitle}
           headerTitle={previousVisitsTitle}
-          form={{ package: 'child_health', name: 'infant_postnatal' }}
+          // TODO: replace with form name as configured in the backend.
+          formList={[{ name: 'infant_postnatal' }]}
           launchOptions={{
             hideFormLauncher: true,
             moduleName: moduleName,

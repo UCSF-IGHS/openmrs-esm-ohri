@@ -1,3 +1,5 @@
+import { OpenmrsResource } from '@openmrs/esm-framework';
+
 export interface LocationData {
   display: string;
   uuid: string;
@@ -150,13 +152,13 @@ export interface Location {
   address6?: string;
 }
 
-export interface HSTEncounter {
+export interface OpenmrsEncounter extends OpenmrsResource {
   encounterDatetime: Date;
   encounterType: string;
   patient: string;
   location: string;
   encounterProviders?: Array<{ encounterRole: string; provider: string }>;
-  obs: Array<any>;
+  obs: Array<OpenmrsResource>;
   form?: string;
   visit?: string;
 }

@@ -80,8 +80,8 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={cacxTreatmentEncounterType_UUID}
-      form={{ package: 'cacx', name: 'cacx_treatment_form' }}
+      encounterType={cacxTreatmentEncounterType_UUID}
+      formList={[{ name: 'Screening and Cancer Treatment Form' }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

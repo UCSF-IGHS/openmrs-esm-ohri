@@ -5,8 +5,6 @@ import {
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
   encounterRepresentation,
-  covidOutcomeUUID,
-  covid_Assessment_EncounterUUID,
   covidOutcomesCohortUUID,
 } from '../constants';
 
@@ -241,4 +239,14 @@ export function getTotalANCVisits(patientUuid: string, pTrackerId: string) {
     }
     return null;
   });
+}
+
+export function fetchOpenMRSForms(formNames: string[]) {
+  const fetch = (name) => openmrsFetch(`/ws/rest/v1/form?q=${name}&v=full`);
+  return Promise.all(formNames.map((name) => fetch(name)));
+}
+
+export function fetchFormsClobData(valueReferences: string[]) {
+  const fetch = (ref: string) => openmrsFetch(`/ws/rest/v1/clobdata/${ref}`);
+  return Promise.all(valueReferences?.map((ref) => fetch(ref)));
 }

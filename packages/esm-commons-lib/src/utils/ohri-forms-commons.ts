@@ -1,22 +1,29 @@
+import { OHRIFormSchema, SessionMode } from '@openmrs/openmrs-form-engine-lib';
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
 export const launchForm = (
-  form: any,
+  form: OHRIFormSchema,
+  mode: SessionMode = 'enter',
   moduleName: string,
-  onUpdateParent?: () => void,
   title?: string,
-  workspaceName?: string,
+  encounterUuid?: string,
+  intent?: string,
+  onUpdateParent?: () => void,
+  workspaceWindowSize: 'minimized' | 'maximized' = 'maximized',
 ) => {
   launchOHRIWorkSpace({
     title: title || form?.name,
-    screenSize: 'maximized',
-    mode: 'enter',
+    screenSize: workspaceWindowSize,
+    mode,
+    encounterUuid,
     state: { updateParent: onUpdateParent, formJson: form },
     collapseSections: true,
-    workspaceName,
     moduleName,
+    intent,
   });
 };
+
+// @deprecated
 export const launchFormInEditMode = (
   form: any,
   moduleName: string,
@@ -36,6 +43,8 @@ export const launchFormInEditMode = (
     moduleName,
   });
 };
+
+// @deprecated
 export const launchFormInViewMode = (
   form: any,
   moduleName: string,
@@ -56,6 +65,7 @@ export const launchFormInViewMode = (
   });
 };
 
+// @deprecated
 export const launchFormWithCustomTitle = (
   form: any,
   moduleName: string,
@@ -72,6 +82,6 @@ export const launchFormWithCustomTitle = (
       launchFormInViewMode(form, moduleName, encounterUuid, onUpdateParent, title);
       break;
     default:
-      launchForm(form, moduleName, onUpdateParent, title);
+      launchForm(form, 'enter', moduleName, title, null, null, onUpdateParent);
   }
 };

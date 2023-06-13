@@ -72,8 +72,8 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={cacxRegistrationEncounterType_UUID}
-      form={{ package: 'cacx', name: 'cacx_registration_form' }}
+      encounterType={cacxRegistrationEncounterType_UUID}
+      formList={[{ name: 'Cervical Cancer Screening Log' }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

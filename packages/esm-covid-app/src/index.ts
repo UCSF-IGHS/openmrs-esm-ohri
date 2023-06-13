@@ -10,8 +10,6 @@ import {
 } from './dashboard.meta';
 import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@openmrs/openmrs-form-engine-lib';
-import covidForms from './forms/forms-registry';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -26,7 +24,6 @@ function setupOpenMRS() {
   };
 
   defineConfigSchema(moduleName, {});
-  addToBaseFormsRegistry(covidForms);
   return {
     pages: [],
     extensions: [

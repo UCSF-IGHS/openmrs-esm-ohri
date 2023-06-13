@@ -14,57 +14,6 @@ interface IntimatePartnerViolenceListProps {
   patientUuid: string;
 }
 
-const columns: EncounterListColumn[] = [
-  {
-    key: 'screeningdate',
-    header: 'Screening Date',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, IpvScreeningDate_UUID, true);
-    },
-  },
-  {
-    key: 'physicalAbuse',
-    header: 'Physical Abuse',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, PhysicalAbuse_UUID, false, true);
-    },
-  },
-  {
-    key: 'EmotionalAbuse',
-    header: 'Emotional Abuse',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, EmotionalAbuse_UUID, false, true);
-    },
-  },
-  {
-    key: 'sexualAbuse',
-    header: 'Sexual Abuse',
-    getValue: (encounter) => {
-      return getObsFromEncounter(encounter, SexualAbuse_UUID, false, true);
-    },
-  },
-  {
-    key: 'actions',
-    header: 'Actions',
-    getValue: (encounter) => [
-      {
-        form: { name: 'intimate_partner', package: 'hiv' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'View Details',
-        mode: 'view',
-      },
-      {
-        form: { name: 'intimate_partner', package: 'hiv' },
-        encounterUuid: encounter.uuid,
-        intent: '*',
-        label: 'Edit Form',
-        mode: 'edit',
-      },
-    ],
-  },
-];
-
 const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
@@ -126,8 +75,8 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={IntimatePartnerEncounterType_UUID}
-      form={{ package: 'hiv', name: 'intimate_partner' }}
+      encounterType={IntimatePartnerEncounterType_UUID}
+      formList={[{ name: 'Intimate Partner Violence Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

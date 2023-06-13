@@ -430,11 +430,12 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       <div style={{ padding: '1rem' }}>
         <EncounterList
           patientUuid={patientUuid}
-          encounterUuid={mchEncounterType}
+          encounterType={mchEncounterType}
           columns={columnsMotherPreviousVisit}
           description={previousVisitsTitle}
           headerTitle={previousVisitsTitle}
-          form={{ package: 'maternal_health', name: 'antenatal' }}
+          // TODO: replace with form name as configured in the backend.
+          formList={[{ name: 'antenatal' }]}
           launchOptions={{
             hideFormLauncher: true,
             moduleName: moduleName,
