@@ -168,5 +168,6 @@
   "approach": "Approach",
   "eligibleForTesting":"Eliglble for Testing",
   "encounterDate": "Encounter Date",
-  "htsSummaryPage": "This is the hts summary page"
+  "htsSummaryPage": "This is the hts summary page",
+  "appointmentReason": "Appointment Reason"
 }

@@ -44,7 +44,7 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
       },
       {
         key: 'clinicalScreeningOutcome',
-        header: t('screeningOutcome', 'TB Screening Outcome'),
+        header: t('tbScreeningOutcome', 'TB Screening Outcome'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, tbScreeningOutcome);
         },
@@ -58,7 +58,7 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
       },
       {
         key: 'clinicalAppointmentReason',
-        header: 'Appointment Reason',
+        header: t('appointmentReason', 'Appointment Reason'),
         getValue: (encounter) => {
           return '--';
         },

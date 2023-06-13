@@ -41,7 +41,7 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
       },
       {
         key: 'expressScreeningOutcome',
-        header: t('screeningOutcome', 'TB Screening Outcome'),
+        header: t('tbScreeningOutcome', 'TB Screening Outcome'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, ExpressTBOutcome);
         },
