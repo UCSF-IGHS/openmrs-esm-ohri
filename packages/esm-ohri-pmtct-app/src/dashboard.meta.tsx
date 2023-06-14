@@ -1,4 +1,4 @@
-import { ParentChild, PedestrianChild } from '@carbon/react/icons';
+import { PedestrianChild } from '@carbon/react/icons';
 
 export const mchFolderMeta = {
   title: 'Maternal & Child Health',
@@ -9,8 +9,9 @@ export const mchFolderMeta = {
 export const mchSummaryDashboardMeta = {
   slot: 'mch-summary-slot',
   columns: 1,
-  title: 'MCH Summary',
+  title: 'Client Summary',
   path: 'mch-summary',
+  linkText: 'MNCH Summary',
 };
 
 export const maternalVisitsDashboardMeta = {
