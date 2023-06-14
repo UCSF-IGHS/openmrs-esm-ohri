@@ -104,7 +104,7 @@ export const htsDashboardMeta = {
   name: 'hts',
   slot: 'hts-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'hts', dashboardTitle: 'HTS Home Page' },
-  title: 'HTS',
+  title: 'HIV Testing Services',
 };
 
 export const careAndTreatmentDashboardMeta = {
