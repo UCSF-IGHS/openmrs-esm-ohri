@@ -7,18 +7,20 @@ export const hivPreventionDashboardDMeta = {
   isExpanded: false,
 };
 
-export const hts_dashboardMeta = {
+export const htsSummaryDashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
   columns: 1,
   title: 'HIV Testing Services',
+  path: 'hts-summary',
 };
 
-export const preExposureProphylaxis_dashboardMeta = {
+export const preExposureProphylaxisDashboardMeta = {
   name: 'pre-exposure-prophylaxis',
   slot: 'pre-exposure-prophylaxis-dashboard-slot',
   columns: 1,
   title: 'Pre-exposure Prophylaxis',
+  path: 'pre-exposure-prophylaxis',
 };
 
 export const hivCareAndTreatmentDashboardDMeta = {
@@ -27,52 +29,60 @@ export const hivCareAndTreatmentDashboardDMeta = {
   isExpanded: false,
 };
 
-export const serviceSummary_dashboardMeta = {
-  slot: 'hts-service-summary-dashboard-slot',
+export const hivPatientSummaryDashboardMeta = {
+  slot: 'hiv-patient-summary-dashboard-slot',
   columns: 1,
   title: 'HIV Patient Summary',
+  path: 'hiv-patient-summary',
 };
 
-export const programManagement_dashboardMeta = {
+export const programManagementDashboardMeta = {
   slot: 'program-management-summary-slot',
   columns: 1,
   title: 'Program Management',
+  path: 'program-management',
 };
 
-export const visits_dashboardMeta = {
-  slot: 'visits-summary-slot',
+export const clinicalVisitsDashboardMeta = {
+  slot: 'clinical-visits-summary-slot',
   columns: 1,
   title: 'Clinical Visits',
+  path: 'clinical-visits',
 };
 
-export const generalCounselling_dashboardMeta = {
+export const generalCounsellingDashboardMeta = {
   slot: 'general-counselling-summary-slot',
   columns: 1,
   title: 'General Counselling',
+  path: 'general-counselling',
 };
 
-export const adherenceCounselling_dashboardMeta = {
+export const adherenceCounsellingDashboardMeta = {
   slot: 'adherence-counselling-summary-slot',
   columns: 1,
   title: 'Adherence Counselling',
+  path: 'adherence-counselling',
 };
 
-export const partnerNotificationServices_dashboardMeta = {
+export const partnerNotificationServicesDashboardMeta = {
   slot: 'partner-notification-services-slot',
   columns: 1,
   title: 'Partner Notification Services',
+  path: 'partner-notification-services',
 };
 
-export const medications_dashboardMeta = {
+export const medicationsDashboardMeta = {
   slot: 'medications-summary-slot',
   columns: 1,
   title: 'Medications',
+  path: 'medications',
 };
 
-export const appointments_dashboardMeta = {
+export const appointmentsDashboardMeta = {
   slot: 'appointments-summary-slot',
   columns: 1,
   title: 'Appointments Summary',
+  path: 'appointments-summary',
 };
 
 // Clinical Dashboards

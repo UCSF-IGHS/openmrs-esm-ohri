@@ -5,7 +5,6 @@
   "emptyStateText": "There are no {displayText.toLowerCase()} to display{displayText.toLowerCase() != 'patients' ? ' for this patient' : ''}",
   "add": "Add",
   "record": "Record",
-  "new": "New",
   "viewEncounter": "View",
   "editEncounter": "Edit",
   "error": "Error",

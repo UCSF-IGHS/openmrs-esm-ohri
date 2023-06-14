@@ -1,9 +1,9 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
-  CaCxAppointments_dashboardMeta,
-  CaCxSummary_dashboardMeta,
-  CaCxVisits_dashboardMeta,
+  caCxAppointmentsDashboardMeta,
+  caCxSummaryDashboardMeta,
+  caCxVisitsDashboardMeta,
   cervicalCancerFolderMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
@@ -36,8 +36,8 @@ function setupOpenMRS() {
       {
         id: 'cacx-summary-dashboard',
         slot: 'cervical-cancer-slot',
-        load: getSyncLifecycle(createDashboardLink(CaCxSummary_dashboardMeta), options),
-        meta: CaCxSummary_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(caCxSummaryDashboardMeta), options),
+        meta: caCxSummaryDashboardMeta,
         online: true,
         offline: true,
       },
@@ -52,8 +52,8 @@ function setupOpenMRS() {
       {
         id: 'cacx-visits-dashboard',
         slot: 'cervical-cancer-slot',
-        load: getSyncLifecycle(createDashboardLink(CaCxVisits_dashboardMeta), options),
-        meta: CaCxVisits_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(caCxVisitsDashboardMeta), options),
+        meta: caCxVisitsDashboardMeta,
         online: true,
         offline: true,
       },
@@ -68,8 +68,8 @@ function setupOpenMRS() {
       {
         id: 'cacx-appointments-dashboard',
         slot: 'cervical-cancer-slot',
-        load: getSyncLifecycle(createDashboardLink(CaCxAppointments_dashboardMeta), options),
-        meta: CaCxAppointments_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(caCxAppointmentsDashboardMeta), options),
+        meta: caCxAppointmentsDashboardMeta,
         online: true,
         offline: true,
       },
