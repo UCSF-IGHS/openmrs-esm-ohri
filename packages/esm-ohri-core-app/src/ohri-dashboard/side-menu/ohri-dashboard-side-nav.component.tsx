@@ -11,7 +11,7 @@ const OHRIDashboardSideNav = () => {
       <SideNavItems>
         <ExtensionSlot name="dashboard-links-slot" />
 
-        <p className={styles.sideNavTextHeader}>{t('programs', 'Programs')}</p>
+        <p className={styles.sideNavTextHeader}>{t('programmes', 'Programmes')}</p>
 
         <ExtensionSlot name="dashboard-slot" />
       </SideNavItems>
