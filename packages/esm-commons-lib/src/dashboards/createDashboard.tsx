@@ -3,10 +3,15 @@ import React from 'react';
 import PatientExtensionRenderer from '../components/extension-conditional-renderer/patient-based-extension-renderer';
 import { DashboardLinkConfig } from '../types';
 import { DashboardExtension } from './DashboardExtension';
+import { BrowserRouter } from 'react-router-dom';
 
 export const createDashboardLinkWithCustomTitle = (db: DashboardLinkConfig) => {
   return ({ basePath }: { basePath: string }) => {
-    return <DashboardExtension title={db.title} basePath={basePath} linkText={db.linkText} />;
+    return (
+      <BrowserRouter>
+        <DashboardExtension path={db.path} title={db.title} basePath={basePath} linkText={db.linkText} />
+      </BrowserRouter>
+    );
   };
 };
 
@@ -14,7 +19,9 @@ export const createConditionalDashboardLink = (db: DashboardLinkConfig) => {
   return ({ basePath }: { basePath: string }) => {
     return (
       <PatientExtensionRenderer patientExpression={db.patientExpression}>
-        <DashboardExtension title={db.title} basePath={basePath} linkText={db.linkText} />
+        <BrowserRouter>
+          <DashboardExtension path={db.path} title={db.title} basePath={basePath} linkText={db.linkText} />
+        </BrowserRouter>
       </PatientExtensionRenderer>
     );
   };

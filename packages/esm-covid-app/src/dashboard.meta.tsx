@@ -7,22 +7,25 @@ export const covidPatientChartMeta = {
   isExpanded: false,
 };
 
-export const covidAssessments_dashboardMeta = {
+export const covidAssessmentsDashboardMeta = {
   slot: 'covid-assessments-dashboard-slot',
   columns: 1,
   title: 'Covid Assessments',
+  path: 'covid-assessments',
 };
 
-export const covidLabResults_dashboardMeta = {
+export const covidLabTestsDashboardMeta = {
   slot: 'covid-lab-dashboard-slot',
   columns: 1,
   title: 'Lab Test',
+  path: 'covid-lab-tests',
 };
 
-export const covidVaccinations_dashboardMeta = {
+export const covidVaccinationsDashboardMeta = {
   slot: 'covid-vaccinations-dashboard-slot',
   columns: 1,
   title: 'Covid Vaccinations',
+  path: 'covid-vaccinations',
 };
 
 // Clinical Dashboards

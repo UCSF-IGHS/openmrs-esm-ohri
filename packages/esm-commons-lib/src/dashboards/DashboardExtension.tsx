@@ -5,21 +5,22 @@ import { ConfigurableLink } from '@openmrs/esm-framework';
 import styles from './dashboardextension.scss';
 
 export interface DashboardExtensionProps {
+  path: string;
   title: string;
   basePath: string;
   linkText?: string;
 }
 
-export const DashboardExtension = ({ title, basePath, linkText, ...otherProps }: DashboardExtensionProps) => {
+export const DashboardExtension = ({ path, title, basePath, linkText }: DashboardExtensionProps) => {
   const location = window.location ?? { pathname: '' };
   const navLink = useMemo(() => decodeURIComponent(last(location.pathname.split('/'))), [location.pathname]);
-  const activeClassName = linkText === navLink ? 'active-left-nav-link' : 'non-active';
+  const activeClassName = linkText === navLink ? 'active-left-nav-link' : 'non-active'; // add condition if title or linkText
 
   return (
-    <div key={linkText} className={activeClassName}>
+    <div key={path} className={activeClassName}>
       <ConfigurableLink
-        to={`${basePath}/${encodeURIComponent(title)}`}
-        className={'cds--side-nav__link ' + styles.link}>
+        to={`${basePath}/${encodeURIComponent(path)}`}
+        className={`cds--side-nav__link ${path === navLink && 'active-left-nav-link'} ${styles.link}`}>
         {linkText || title}
       </ConfigurableLink>
     </div>

@@ -1,4 +1,4 @@
-import { ParentChild, PedestrianChild } from '@carbon/react/icons';
+import { PedestrianChild } from '@carbon/react/icons';
 
 export const mchFolderMeta = {
   title: 'Maternal & Child Health',
@@ -6,23 +6,27 @@ export const mchFolderMeta = {
   isExpanded: false,
 };
 
-export const mchSummary_dashboardMeta = {
+export const mchSummaryDashboardMeta = {
   slot: 'mch-summary-slot',
   columns: 1,
   title: 'Client Summary',
+  path: 'mch-summary',
+  linkText: 'MNCH Summary',
 };
 
-export const maternalVisits_dashboardMeta = {
+export const maternalVisitsDashboardMeta = {
   slot: 'maternal-visits-summary-slot',
   columns: 1,
   title: 'Maternal Visits',
+  path: 'maternal-visits',
   patientExpression: 'calculateAge(patient.birthDate) > 10',
 };
 
-export const childVisits_dashboardMeta = {
+export const childVisitsDashboardMeta = {
   slot: 'child-visits-summary-slot',
   columns: 1,
   title: 'Child Visits',
+  path: 'child-visits',
   patientExpression: 'calculateAge(patient.birthDate) <= 10',
 };
 
