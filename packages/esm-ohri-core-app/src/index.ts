@@ -138,7 +138,7 @@ function setupOpenMRS() {
         meta: patientChartDivider_dashboardMeta,
         online: true,
         offline: true,
-        order: 100,
+        order: 20,
       },
     ],
   };

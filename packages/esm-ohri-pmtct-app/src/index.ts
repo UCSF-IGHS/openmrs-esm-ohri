@@ -52,6 +52,7 @@ function setupOpenMRS() {
         meta: mchFolderMeta,
         online: true,
         offline: true,
+        order: 25,
       },
       {
         id: 'mch-summary-dashboard',

@@ -213,6 +213,7 @@ function setupOpenMRS() {
         meta: hivPreventionDashboardDMeta,
         online: true,
         offline: true,
+        order: 22,
       },
       {
         id: 'hts-summary-dashboard',
@@ -245,6 +246,7 @@ function setupOpenMRS() {
         meta: hivCareAndTreatmentDashboardDMeta,
         online: true,
         offline: true,
+        order: 21,
       },
       {
         id: 'hts-service-summary-dashboard',

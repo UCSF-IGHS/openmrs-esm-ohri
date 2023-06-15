@@ -32,6 +32,7 @@ function setupOpenMRS() {
         meta: cervicalCancerFolderMeta,
         online: true,
         offline: true,
+        order: 24,
       },
       {
         id: 'cacx-summary-dashboard',
