@@ -85,6 +85,7 @@ function setupOpenMRS() {
         meta: covidPatientChartMeta,
         online: true,
         offline: true,
+        order: 23,
       },
       {
         id: 'covid-assessments-dashboard',
