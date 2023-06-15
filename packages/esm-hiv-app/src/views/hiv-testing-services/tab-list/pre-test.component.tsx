@@ -89,7 +89,7 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
     <EncounterList
       patientUuid={patientUuid}
       encounterType={PreTestEncounterTypeConceptUUID}
-      formList={[{ name: 'HTS Form - WHO', excludedIntents: [] }]}
+      formList={[{ name: 'HTS Pre-Test Counselling', excludedIntents: [] }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
