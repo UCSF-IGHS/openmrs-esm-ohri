@@ -10,7 +10,6 @@ import {
   EncounterListColumn,
   EncounterList,
   basePath,
-  getTotalANCVisits,
   fetchPatientLastEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
@@ -37,7 +36,12 @@ import moment from 'moment';
 import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
-import { fetchMotherHIVStatus, fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
+import {
+  fetchMotherHIVStatus,
+  fetchPatientIdentifiers,
+  getAncVisitCount,
+  getEstimatedDeliveryDate,
+} from '../../../api/api';
 
 interface pregnancyOutcomeProps {
   id: string;
@@ -213,9 +217,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
         encounterUuid: antenatalEncounterType,
         getObsValue: async (encounter) => {
-          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
-          return edd.rows.length ? edd.rows[0].estimated_delivery_date : '---';
+          return getObsFromEncounter(encounter, eDDConcept, true);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
@@ -247,14 +249,23 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiation;
-          artInitiation = getObsFromEncounter(encounters[0], artInitiationConcept);
-          if (artInitiation === '--') {
-            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
-          } else {
-            artInitiation = getObsFromEncounter(encounters[2], artInitiationConcept);
-          }
-          return artInitiation;
+          const pncArtData = {
+            artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[0], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[0], pTrackerIdConcept),
+          };
+          const lndArtData = {
+            artInitiation: getObsFromEncounter(encounters[1], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[1], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[1], pTrackerIdConcept),
+          };
+          const ancArtData = {
+            artInitiation: getObsFromEncounter(encounters[2], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[2], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[2], pTrackerIdConcept),
+          };
+          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
+          return latestArtData['artInitiation'];
         },
       },
       {
@@ -263,14 +274,23 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounters: [],
         encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiationDate;
-          artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
-          if (artInitiationDate === '--') {
-            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-          } else {
-            artInitiationDate = getObsFromEncounter(encounters[2], artStartDate, true);
-          }
-          return artInitiationDate;
+          const pncArtData = {
+            artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[0], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[0], pTrackerIdConcept),
+          };
+          const lndArtData = {
+            artInitiation: getObsFromEncounter(encounters[1], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[1], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[1], pTrackerIdConcept),
+          };
+          const ancArtData = {
+            artInitiation: getObsFromEncounter(encounters[2], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[2], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[2], pTrackerIdConcept),
+          };
+          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
+          return latestArtData['artStartDate'];
         },
       },
     ],
@@ -302,19 +322,13 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounterUuid: antenatalEncounterType,
         getObsValue: async (encounter) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const totalVisits = await getTotalANCVisits(patientUuid, currentPTrackerId);
+          const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
           return totalVisits.rows.length ? totalVisits.rows[0].total : '0';
         },
       },
     ],
     [],
   );
-
-  const calculateDateDifferenceInDate = (givenDate: string): string => {
-    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
-    const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
-    return `${totalDays} day(s)`;
-  };
 
   const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
     () => [
@@ -362,6 +376,28 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     ],
     [],
   );
+
+  const getLatestArtDetails = (pncArtData, lndArtData, ancArtData) => {
+    const allArtData = [pncArtData, lndArtData, ancArtData];
+    const filteredArtData = allArtData.filter((row) => row.artInitiation !== '--');
+    if (filteredArtData.length == 0) {
+      return {
+        artInitiation: '--',
+        artStartDate: '--',
+      };
+    } else if (filteredArtData.length == 1) {
+      return filteredArtData[0];
+    } else {
+      filteredArtData.sort((a, b) => b.pTrackerId.localeCompare(a.pTrackerId));
+      return filteredArtData[0];
+    }
+  };
+
+  const calculateDateDifferenceInDate = (givenDate: string): string => {
+    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
+    const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
+    return `${totalDays} day(s)`;
+  };
 
   const filterMaterNalEncounters = (encounter) => {
     const encounterName = encounter.encounterType.name;
