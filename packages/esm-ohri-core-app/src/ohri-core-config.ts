@@ -12,7 +12,9 @@ export default {
       src: ohriLogoDark,
     },
   },
-  '@openmrs/esm-dispensing-app': {
-    'appName': 'Dispensing'
+  '@openmrs/esm-patient-chart-app': {
+    logo: {
+      src: ohriLogoDark,
+    },
   },
 };
