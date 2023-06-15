@@ -82,7 +82,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={htsRetrospectiveTypeUUID}
-      formList={[{ name: 'HTS Form - Classic', fixedIntent: '*', excludedIntents: [] }]}
+      formList={[{ name: 'HIV Testing', fixedIntent: '*', excludedIntents: [] }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
