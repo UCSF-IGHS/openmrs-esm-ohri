@@ -7,24 +7,23 @@ const ArtSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
-    // Only allow this action in enter mode
+
     if (sessionMode !== 'enter') {
       return;
     }
-    // save Art Number to patient identifiers
+
     let artNumber = encounter.obs.find((observation) => observation.concept.uuid === artNoConcept)?.value;
     if (!artNumber) {
       return;
     }
-
-    // convert art number to string
     if (typeof artNumber !== 'string') {
       artNumber = artNumber.toString();
     }
 
+    //Patient can only have one ART No.
     const patientIdentifiers = await fetchPatientIdentifiers(patient.id);
-    const existingArtNumbers = patientIdentifiers.filter((id) => id.identifierType.uuid === artNoConcept);
-    if (existingArtNumbers.some((artNumber) => artNumber.identifier === artNumber)) {
+    const existingArtNumbers = patientIdentifiers.filter((id) => id.identifierType.uuid === artUniqueNumberType);
+    if (existingArtNumbers.length > 0) {
       return;
     }
 
@@ -38,5 +37,4 @@ const ArtSubmissionAction: PostSubmissionAction = {
     saveIdentifier(currentArtNumberObject, patient.id);
   },
 };
-
 export default ArtSubmissionAction;
