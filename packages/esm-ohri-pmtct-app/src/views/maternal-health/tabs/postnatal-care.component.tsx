@@ -99,7 +99,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
       patientUuid={patientUuid}
       encounterType={motherPostnatalEncounterType}
       // TODO: replace with form name as configured in the backend.
-      formList={[{ name: 'mother_postnatal_form' }]}
+      formList={[{ name: 'Mother - Postnatal Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
