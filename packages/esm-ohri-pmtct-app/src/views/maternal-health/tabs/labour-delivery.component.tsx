@@ -93,7 +93,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
       patientUuid={patientUuid}
       encounterType={labourAndDeliveryEncounterType}
       // TODO: replace with form name as configured in the backend.
-      formList={[{ name: 'labour_and_delivery' }]}
+      formList={[{ name: 'Labour & Delivery Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
