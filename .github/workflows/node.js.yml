@@ -197,8 +197,8 @@ jobs:
       - uses: garygrossgarten/github-action-ssh@release
         name: Run the Update MicroFronEnd Script for Namibia
         with:
-            command: who && which node && cd /opt/microfrontends && /bin/bash update_microfrontends.sh
-            host: ${{ secrets.HISTAC_NAMIBIA_HOST }}
+            command: who && which node && cd /opt/frontend_modules && /bin/bash update_microfrontends.sh
+            host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
             username: ${{ secrets.HISTAC_USERNAME }}
             privateKey: ${{ secrets.HISTAC_KEY}}
 
