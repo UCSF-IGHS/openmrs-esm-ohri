@@ -63,12 +63,8 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
       {
         key: 'edd',
         header: t('edd', 'EDD'),
-        getValue: async (encounter) => {
-          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          // TODO: fix API
-          // const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
-          // return edd.rows.length ? edd.rows[0].estimated_delivery_date : '---';
-          return '---';
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, eDDConcept, true);
         },
       },
       {
