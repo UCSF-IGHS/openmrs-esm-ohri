@@ -98,7 +98,7 @@ div[class*='-esm-login__styles__center'] > img {
   width: 15rem !important;
 }
 
-//Vitals and Biometrics Overrides
+// Vitals and Biometrics Overrides
 
 div[class*='-esm-patient-vitals__vitals-header__default-border'] {
   display: flex !important;
@@ -120,9 +120,15 @@ div[class*='-esm-patient-vitals__vitals-header__warning-background'] {
 }
 
 div[class*='-esm-patient-vitals__vitals-header__warning-icon___GHya2'] {
-display: none !important;
+  display: none !important;
 }
 
 div[class*='-esm-patient-vitals__vitals-header__row'] {
   flex: 1 !important;
-  }
+}
+
+// Patient chart overrides
+
+div[class*='-esm-patient-chart__patient-chart__chartReview'] {
+  max-width: 100% !important;
+}
