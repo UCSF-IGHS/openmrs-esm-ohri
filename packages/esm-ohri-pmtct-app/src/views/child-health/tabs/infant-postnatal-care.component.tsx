@@ -25,7 +25,7 @@ interface InfantPostnatalListProps {
 
 const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('HIVExposedInfant', 'HIV Exposed Infant');
+  const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
 
   const [motherName, setMotherName] = useState('--');
 
