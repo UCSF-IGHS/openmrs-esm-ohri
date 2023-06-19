@@ -69,7 +69,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'lLabour & Delivery Form', package: 'maternal_health' },
+            form: { name: 'Labour & Delivery Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
