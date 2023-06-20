@@ -463,23 +463,21 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         }}
       />
 
-      <div style={{ padding: '1rem' }}>
-        <EncounterList
-          patientUuid={patientUuid}
-          encounterType={mchEncounterType}
-          columns={columnsMotherPreviousVisit}
-          description={previousVisitsTitle}
-          headerTitle={previousVisitsTitle}
-          // TODO: replace with form name as configured in the backend.
-          formList={[{ name: 'antenatal' }]}
-          launchOptions={{
-            hideFormLauncher: true,
-            moduleName: moduleName,
-            displayText: '',
-          }}
-          filter={filterMaterNalEncounters}
-        />
-      </div>
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={mchEncounterType}
+        columns={columnsMotherPreviousVisit}
+        description={previousVisitsTitle}
+        headerTitle={previousVisitsTitle}
+        // TODO: replace with form name as configured in the backend.
+        formList={[{ name: 'antenatal' }]}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: moduleName,
+          displayText: '',
+        }}
+        filter={filterMaterNalEncounters}
+      />
     </div>
   );
 };
