@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  basePath,
   EncounterList,
   EncounterListColumn,
   fetchPatientRelationships,
@@ -15,7 +14,6 @@ import {
   linkedToArt,
   breastfeedingStatus,
   outcomeStatus,
-  childDateOfBirth,
 } from '../../../constants';
 import { moduleName } from '../../..';
 
@@ -26,12 +24,6 @@ interface InfantPostnatalListProps {
 const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
-
-  const [motherName, setMotherName] = useState('--');
-
-  useEffect(() => {
-    fetchMotherName();
-  }, []);
 
   async function fetchMotherName() {
     let motherName = '--';
@@ -55,7 +47,9 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'mothersName',
         header: t('mothersName', 'Mothers Name'),
         getValue: async (encounter) => {
-          return await fetchMotherName();
+          // TODO: Revert after optimizing the encounter-list component
+          // return await fetchMotherName();
+          return '--';
         },
       },
       {
@@ -114,7 +108,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         ],
       },
     ];
-  }, [motherName]);
+  }, []);
 
   return (
     <EncounterList
