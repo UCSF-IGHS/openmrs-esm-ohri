@@ -32,13 +32,13 @@ export const AddPatientToListOverflowMenuItem: React.FC<{
         <button
           className="cds--overflow-menu-options__btn"
           role="menuitem"
-          title={t('addToListModal', 'Add to list')}
+          title={t('addToListModal', 'Start HTS Session')}
           onClick={() => setIsOpen(true)}
           style={{
             maxWidth: '100vw',
           }}>
           <span className="cds--overflow-menu-options__option-content">
-            {displayText || t('addList', 'Add to list')}
+            {displayText || t('addList', 'Start HTS Session')}
           </span>
         </button>
       </li>
