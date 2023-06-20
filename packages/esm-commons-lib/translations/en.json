@@ -2,9 +2,9 @@
   "activeLoadingIndicator": "Active loading indicator",
   "activeVisit": "Active Visit",
   "add": "Add",
-  "addList": "Start HTS Session",
+  "addList": "Add to list",
   "addPatientToListOption": "Add Patient to list",
-  "addToListModal": "Start HTS Session",
+  "addToListModal": "Add to list",
   "age": "Age",
   "covidOutcomeUnknown": "COVID: Unknown Status",
   "editEncounter": "Edit",
@@ -22,5 +22,6 @@
   "patientList": "patient list",
   "record": "Record",
   "searchClientList": "Search client list",
+  "startHTSSession": "Start HTS Session",
   "viewEncounter": "View"
 }
