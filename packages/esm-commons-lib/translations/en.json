@@ -22,5 +22,6 @@
   "patientList": "patient list",
   "record": "Record",
   "searchClientList": "Search client list",
+  "startHTSSession": "Start HTS Session",
   "viewEncounter": "View"
 }
