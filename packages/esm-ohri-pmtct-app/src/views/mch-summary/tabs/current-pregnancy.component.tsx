@@ -469,8 +469,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         columns={columnsMotherPreviousVisit}
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
-        // TODO: replace with form name as configured in the backend.
-        formList={[{ name: 'antenatal' }]}
+        formList={[{ name: 'Antenatal Form' }]}
         launchOptions={{
           hideFormLauncher: true,
           moduleName: moduleName,

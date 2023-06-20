@@ -283,8 +283,7 @@ const HivExposedInfant: React.FC<{
         columns={columnsChildPreviousVisit}
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
-        // TODO: replace with form name as configured in the backend.
-        formList={[{ name: 'infant_postnatal' }]}
+        formList={[{ name: 'Infant - Postanal Form' }]}
         launchOptions={{
           hideFormLauncher: true,
           moduleName: moduleName,
