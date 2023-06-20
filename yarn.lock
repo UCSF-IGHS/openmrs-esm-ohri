@@ -3515,7 +3515,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-commons-lib@workspace:packages/esm-commons-lib"
   dependencies:
     "@carbon/react": ^1.13.0
-    "@ohri/openmrs-ohri-form-engine-lib": next
+    "@ohri/openmrs-ohri-form-engine-lib": ^1.0.1
     "@openmrs/esm-patient-common-lib": 4.x
     enzyme: ^3.11.0
     enzyme-adapter-react-16: ^1.15.6
@@ -3579,7 +3579,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ohri/openmrs-esm-ohri-form-render-app@workspace:packages/esm-form-render-app"
   dependencies:
-    "@ohri/openmrs-ohri-form-engine-lib": next
+    "@ohri/openmrs-ohri-form-engine-lib": ^1.0.1
     ace-builds: ^1.4.12
     browserslist-config-openmrs: ^1.0.0
     i18next: ^19.4.2
@@ -3692,9 +3692,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ohri/openmrs-ohri-form-engine-lib@npm:next":
-  version: 1.0.1-pre.181
-  resolution: "@ohri/openmrs-ohri-form-engine-lib@npm:1.0.1-pre.181"
+"@ohri/openmrs-ohri-form-engine-lib@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@ohri/openmrs-ohri-form-engine-lib@npm:1.0.1"
   dependencies:
     "@carbon/react": ^1.12.0
     ace-builds: ^1.4.12
@@ -3718,7 +3718,7 @@ __metadata:
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: 5faf6f3826dd226bc240d3b2be9ef7905c8bd3fea94a37a86c545e4f5fe54720de0a338f8fc094299bf8e70fcc86f5026b766f9ac9fc6a68054ad109a62e8a81
+  checksum: ca5202276126ba94d5eff29db2def118a50829221eba67da9d13be404c2a4f091b0f980ef1c7ec2c70a7eacaee82f73972be738a8f19ac3c78f1e869fdc70905
   languageName: node
   linkType: hard
 
