@@ -30,8 +30,8 @@ bower_components
 .lock-wscript
 
 # Dependency directories
-node_modules/
-jspm_packages/
+ /
+//Additional jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
@@ -74,3 +74,14 @@ typings/
 .next/**
 build/**
 **/*dist
+
+
+# Additional  config
+lerna-debug.log
+npm-debug.log
+packages/*/lib
+packages/*/dist
+.idea
+packages/*/coverage
+.vscode/
+node_modules
