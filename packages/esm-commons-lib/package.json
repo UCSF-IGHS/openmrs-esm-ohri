@@ -52,5 +52,6 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "webpack": "^5.74.0",
     "webpack-cli": "^5.1.1"
-  }
+  },
+  "gitHead": "7e777bdfb5b5d8991f9e25dc8b486afc1e52bcf7"
 }

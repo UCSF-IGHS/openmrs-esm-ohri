@@ -48,5 +48,6 @@
   },
   "devDependencies": {
     "webpack": "^5.74.0"
-  }
+  },
+  "gitHead": "7e777bdfb5b5d8991f9e25dc8b486afc1e52bcf7"
 }
