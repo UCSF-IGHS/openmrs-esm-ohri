@@ -59,8 +59,13 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const [pageSize, setPageSize] = useState(10);
   const [isLoadingForms, setIsLoadingForms] = useState(true);
   const { isDead } = usePatientDeathStatus(patientUuid);
-  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formList.map((form) => form.name));
-  const { encounters, isLoading: isLoadingEncounters } = useEncounterRows(patientUuid, encounterType, filter);
+  const formNames = useMemo(() => formList.map((form) => form.name), []);
+  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
+  const {
+    encounters,
+    isLoading: isLoadingEncounters,
+    onFormSave,
+  } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
@@ -131,9 +136,27 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         // inject launch actions
         encounter['launchFormActions'] = {
           editEncounter: () =>
-            launchEncounterForm(forms[0], moduleName, 'edit', null, encounter.uuid, null, workspaceWindowSize),
+            launchEncounterForm(
+              forms[0],
+              moduleName,
+              'edit',
+              onFormSave,
+              null,
+              encounter.uuid,
+              null,
+              workspaceWindowSize,
+            ),
           viewEncounter: () =>
-            launchEncounterForm(forms[0], moduleName, 'view', null, encounter.uuid, null, workspaceWindowSize),
+            launchEncounterForm(
+              forms[0],
+              moduleName,
+              'view',
+              onFormSave,
+              null,
+              encounter.uuid,
+              null,
+              workspaceWindowSize,
+            ),
         };
         // process columns
         columns.forEach((column) => {
@@ -168,6 +191,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     forms.find((form) => form.name == actionItem?.form?.name),
                     moduleName,
                     actionItem.mode == 'enter' ? 'add' : actionItem.mode,
+                    onFormSave,
                     null,
                     encounter.uuid,
                     actionItem.intent,
@@ -202,7 +226,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           iconDescription="Add "
           onClick={(e) => {
             e.preventDefault();
-            launchEncounterForm(forms[0], moduleName, 'add', null, null, null, workspaceWindowSize);
+            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, null, workspaceWindowSize);
           }}>
           {displayText}
         </Button>
@@ -212,7 +236,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <OHRIFormLauncherWithIntent
           formJsonList={forms}
           launchForm={(formJson, intent) =>
-            launchEncounterForm(formJson, moduleName, 'add', null, null, intent, workspaceWindowSize)
+            launchEncounterForm(formJson, moduleName, 'add', onFormSave, null, null, intent, workspaceWindowSize)
           }
           title={displayText}
         />
@@ -248,7 +272,9 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <EmptyState
           displayText={description}
           headerTitle={headerTitle}
-          launchForm={() => launchEncounterForm(forms[0], moduleName, 'add', null, null, '*', workspaceWindowSize)}
+          launchForm={() =>
+            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, '*', workspaceWindowSize)
+          }
           launchFormComponent={formLauncher}
           hideFormLauncher={hideFormLauncher ?? isDead}
         />

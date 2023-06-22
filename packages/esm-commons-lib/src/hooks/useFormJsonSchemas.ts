@@ -1,19 +1,16 @@
 import { OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { useEffect, useMemo, useState } from 'react';
+import useSWRImmutable from 'swr';
 import { fetchFormsClobData } from '../api/api';
 
 export function useFormJsonSchemas(openmrsForms: OpenmrsForm[]) {
   const [clobDataReferences, setClobDataReferences] = useState<{ formUuid: string; clobDataValueRef: string }[]>(null);
-  const {
-    data: responses,
-    error,
-    isLoading,
-    isValidating,
-  } = useSWR<any, Error>(
-    clobDataReferences?.map((ref) => ref.clobDataValueRef),
-    fetchFormsClobData,
+  const [formJsonSchemas, setFormJsonSchemas] = useState([]);
+  const schemaValueRef = useMemo(
+    () => clobDataReferences?.map((refMap) => refMap.clobDataValueRef),
+    [clobDataReferences],
   );
+  const { data: responses, error, isLoading } = useSWRImmutable<any, Error>(schemaValueRef, fetchFormsClobData);
 
   useEffect(() => {
     if (openmrsForms?.length) {
@@ -28,11 +25,17 @@ export function useFormJsonSchemas(openmrsForms: OpenmrsForm[]) {
     }
   }, [openmrsForms]);
 
+  useEffect(() => {
+    if (responses?.length) {
+      setFormJsonSchemas(
+        responses.map((response, index) => ({ ...response.data, uuid: clobDataReferences[index].formUuid })),
+      );
+    }
+  }, [responses]);
+
   return {
-    formJsonSchemas:
-      responses?.map((response, index) => ({ ...response.data, uuid: clobDataReferences[index].formUuid })) || [],
+    formJsonSchemas,
     isLoading,
     error,
-    isValidating,
   };
 }

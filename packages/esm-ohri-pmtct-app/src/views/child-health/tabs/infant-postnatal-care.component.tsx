@@ -47,9 +47,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'mothersName',
         header: t('mothersName', 'Mothers Name'),
         getValue: async (encounter) => {
-          // TODO: Revert after optimizing the encounter-list component
-          // return await fetchMotherName();
-          return '--';
+          return await fetchMotherName();
         },
       },
       {
@@ -114,7 +112,6 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
     <EncounterList
       patientUuid={patientUuid}
       encounterType={infantPostnatalEncounterType}
-      // TODO: replace with form name as configured in the backend.
       formList={[{ name: 'Infant - Postanal Form' }]}
       columns={columns}
       description={headerTitle}
