@@ -13,7 +13,6 @@ import {
   vLResultsConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
-import { getEstimatedDeliveryDate } from '../../../api/api';
 
 interface AntenatalCareListProps {
   patientUuid: string;

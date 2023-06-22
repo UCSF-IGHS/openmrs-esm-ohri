@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  CardSummary,
   PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
-  TileSummaryProps,
   EncounterListColumn,
   ExpandableListColumn,
   EncounterList,
   fetchPatientRelationships,
   basePath,
+  GeneralSummaryCard,
+  SummaryCardColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate } from '@openmrs/esm-framework';
 import moment from 'moment';
@@ -46,35 +46,37 @@ const HivExposedInfant: React.FC<{
     getParentRelationships();
   }, []);
 
-  const infantSummaryColumns: TileSummaryProps[] = useMemo(
+  const infantSummaryColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'artProphylaxisStatus',
         header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
-        encounterUuid: infantPostnatalEncounterType,
-        getObsValue: (encounter) => {
+        encounterTypes: [infantPostnatalEncounterType],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, artProphylaxisStatus);
         },
       },
       {
         key: 'breastfeeding',
         header: t('breastfeeding', 'Breastfeeding'),
-        encounterUuid: infantPostnatalEncounterType,
-        getObsValue: (encounter) => {
+        encounterTypes: [infantPostnatalEncounterType],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, breastfeedingStatus);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
-        getObsValue: (encounter) => {
+        encounterTypes: [],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, infantExposureStatus);
         },
       },
       {
         key: 'finalOutcome',
         header: t('finalOutcome', 'Final Outcome'),
-        getObsValue: (encounter) => {
+        encounterTypes: [],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, outcomeStatus);
         },
       },
@@ -242,7 +244,7 @@ const HivExposedInfant: React.FC<{
 
   return (
     <div>
-      <CardSummary
+      <GeneralSummaryCard
         patientUuid={patientUuid}
         headerTitle={t('infantSummary', 'Infants Summary')}
         columns={infantSummaryColumns}
