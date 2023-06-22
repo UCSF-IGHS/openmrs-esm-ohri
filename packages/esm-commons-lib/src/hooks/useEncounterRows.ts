@@ -1,20 +1,20 @@
-import useSWR from 'swr';
+import useSWRImmutable, { mutate } from 'swr';
 import { OpenmrsEncounter } from '../api/types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { encounterRepresentation } from '../constants';
 
 export function useEncounterRows(patientUuid: string, encounterType: string, encounterFilter: (encounter) => boolean) {
   const [encounters, setEncounters] = useState([]);
+  const url = useMemo(
+    () => `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`,
+    [encounterType, patientUuid],
+  );
   const {
     data: response,
     error,
     isLoading,
-    isValidating,
-  } = useSWR<{ data: { results: OpenmrsEncounter[] } }, Error>(
-    `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`,
-    openmrsFetch,
-  );
+  } = useSWRImmutable<{ data: { results: OpenmrsEncounter[] } }, Error>(url, openmrsFetch);
 
   useEffect(() => {
     if (response) {
@@ -25,15 +25,20 @@ export function useEncounterRows(patientUuid: string, encounterType: string, enc
       // apply filter
       if (encounterFilter) {
         setEncounters(response.data.results.filter((encounter) => encounterFilter(encounter)));
+      } else {
+        setEncounters([...response.data.results]);
       }
-      setEncounters([...response.data.results]);
     }
   }, [encounterFilter, response]);
+
+  const onFormSave = useCallback(() => {
+    mutate(url);
+  }, [url]);
 
   return {
     encounters,
     isLoading,
     error,
-    isValidating,
+    onFormSave,
   };
 }

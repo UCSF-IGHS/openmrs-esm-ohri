@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import useSWRImmutable from 'swr';
 import { fetchOpenMRSForms } from '../api/api';
 import { OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
 import { useFormJsonSchemas } from './useFormJsonSchemas';
 
 export function useFormsJson(formNames: string[]) {
   const [openmrsForms, setOpenmrsForms] = useState<OpenmrsForm[]>([]);
-  const { data: responses, isLoading: isLoadingOpenmrsForms } = useSWR<any, Error>(formNames, fetchOpenMRSForms);
+  const { data: responses, isLoading: isLoadingOpenmrsForms } = useSWRImmutable<any, Error>(
+    formNames,
+    fetchOpenMRSForms,
+  );
   const { formJsonSchemas, isLoading: isLoadingFormJsonSchemas } = useFormJsonSchemas(openmrsForms);
 
   useEffect(() => {

@@ -8,6 +8,7 @@ export function launchEncounterForm(
   form: OHRIFormSchema,
   moduleName: string,
   action: LaunchAction = 'add',
+  onFormSave: () => void,
   title?: string,
   encounterUuid?: string,
   intent: string = '*',
@@ -21,7 +22,7 @@ export function launchEncounterForm(
     title || defaultTitle,
     encounterUuid,
     intent,
-    null,
+    onFormSave,
     workspaceWindowSize,
   );
 }
