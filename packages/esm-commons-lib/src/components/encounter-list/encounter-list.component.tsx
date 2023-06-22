@@ -248,7 +248,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <EmptyState
           displayText={description}
           headerTitle={headerTitle}
-          launchForm={() => launchEncounterForm(forms[0], moduleName, 'add', null, null, null, workspaceWindowSize)}
+          launchForm={() => launchEncounterForm(forms[0], moduleName, 'add', null, null, '*', workspaceWindowSize)}
           launchFormComponent={formLauncher}
           hideFormLauncher={hideFormLauncher ?? isDead}
         />
