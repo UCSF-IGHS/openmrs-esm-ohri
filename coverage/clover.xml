@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1687480551767" clover="3.2.0">
-  <project timestamp="1687480551767" name="All files">
+<coverage generated="1687481682075" clover="3.2.0">
+  <project timestamp="1687481682076" name="All files">
     <metrics statements="1899" coveredstatements="0" conditionals="674" coveredconditionals="0" methods="807" coveredmethods="0" elements="3380" coveredelements="0" complexity="0" loc="1899" ncloc="1899" packages="74" files="116" classes="116"/>
     <package name="esm-cervical-cancer-app.src.views.cacx-appointment">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
