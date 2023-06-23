@@ -37,12 +37,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
 
-      - name: Run tests
-        run: yarn test
-
-      - name: Run Coverage
-        run: yarn coverage
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
 
@@ -51,9 +45,12 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      # Temporarily disable typecheck
-      # - name: Run lint and typecheck
-      #   run: yarn turbo run lint typescript --color --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
+      - name: Run Coverage
+        run: yarn coverage
+
+        # Temporarily disable typecheck
+        # - name: Run lint and typecheck
+        #   run: yarn turbo run lint typescript --color --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
 
       - name: Run build
         run: yarn turbo run build --color --concurrency=5 --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
@@ -89,6 +86,9 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
+
+      - name: Run tests
+        run: yarn test
 
       - run: yarn lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
 
