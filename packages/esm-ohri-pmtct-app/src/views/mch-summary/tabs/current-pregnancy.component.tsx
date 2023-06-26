@@ -10,7 +10,7 @@ import {
   basePath,
   fetchPatientLastEncounter,
   SummaryCardColumn,
-  GeneralSummaryCard,
+  SummaryCard,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
@@ -415,14 +415,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   return (
     <div>
-      <GeneralSummaryCard
-        patientUuid={patientUuid}
-        headerTitle={currentPregnancyHeader}
-        columns={currentPregnancyColumns}
-      />
+      <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '15rem' }}>
-        <GeneralSummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyColumns} />
-        <GeneralSummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentsColumns} />
+        <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyColumns} />
+        <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentsColumns} />
       </div>
 
       <ExpandableList

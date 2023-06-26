@@ -5,7 +5,7 @@ import { LazyCell } from '../lazy-cell/lazy-cell.component';
 import { OpenmrsEncounter } from '@openmrs/openmrs-form-engine-lib';
 import { fetchLatestEncountersOfTypes } from './helpers';
 
-export interface GeneralSummaryCardProps {
+export interface SummaryCardProps {
   patientUuid: string;
   columns: Array<SummaryCardColumn>;
   headerTitle: string;
@@ -19,7 +19,7 @@ export interface SummaryCardColumn {
   getObsSummary?: (encounter: OpenmrsEncounter[]) => string | Promise<string>;
 }
 
-export const GeneralSummaryCard: React.FC<GeneralSummaryCardProps> = ({ patientUuid, columns, headerTitle }) => {
+export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, headerTitle }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [columnEncountersMappings, setColumnEncountersMappings] = useState<
     {
@@ -27,6 +27,7 @@ export const GeneralSummaryCard: React.FC<GeneralSummaryCardProps> = ({ patientU
       encounters: OpenmrsEncounter[];
     }[]
   >([]);
+
   useEffect(() => {
     Promise.all(columns.map((column) => fetchLatestEncountersOfTypes(patientUuid, column.encounterTypes))).then(
       (results) => {

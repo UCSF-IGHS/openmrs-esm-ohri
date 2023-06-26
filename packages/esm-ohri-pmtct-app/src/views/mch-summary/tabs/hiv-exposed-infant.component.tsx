@@ -1,15 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
   EncounterListColumn,
-  ExpandableListColumn,
   EncounterList,
   fetchPatientRelationships,
   basePath,
-  GeneralSummaryCard,
+  SummaryCard,
   SummaryCardColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate } from '@openmrs/esm-framework';
@@ -17,21 +15,18 @@ import moment from 'moment';
 import { Link } from '@carbon/react';
 import {
   PTrackerIdentifierType,
-  antenatalEncounterType,
   artProphylaxisStatus,
   artStartDate,
   breastfeedingStatus,
   infantExposureStatus,
   infantPostnatalEncounterType,
-  nextVisitDateConcept,
   outcomeStatus,
   testTypeConcept,
   followUpDateConcept,
-  visitDate,
   infantVisitDate,
 } from '../../../constants';
 import { moduleName } from '../../..';
-import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
+import { fetchPatientIdentifiers } from '../../../api/api';
 import { familyItemProps } from './current-pregnancy.component';
 
 const HivExposedInfant: React.FC<{
@@ -244,7 +239,7 @@ const HivExposedInfant: React.FC<{
 
   return (
     <div>
-      <GeneralSummaryCard
+      <SummaryCard
         patientUuid={patientUuid}
         headerTitle={t('infantSummary', 'Infants Summary')}
         columns={infantSummaryColumns}
