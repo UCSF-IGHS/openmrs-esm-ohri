@@ -14,6 +14,8 @@ import {
 } from '../../../constants';
 import { moduleName } from '../../../index';
 import { getEstimatedDeliveryDate } from '../../../api/api';
+import { useLocation } from 'react-router-dom';
+import { useSession } from '@openmrs/esm-framework';
 
 interface AntenatalCareListProps {
   patientUuid: string;
@@ -70,8 +72,8 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
       {
         key: 'facility',
         header: t('facility', 'Facility'),
-        getValue: (encounter) => {
-          return encounter.location.name;
+        getValue: (patient) => {
+          return patient.location.name;
         },
       },
       {
