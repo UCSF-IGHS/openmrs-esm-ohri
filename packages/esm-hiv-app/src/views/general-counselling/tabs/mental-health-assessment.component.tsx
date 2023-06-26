@@ -60,14 +60,14 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'mental_health_assessment', package: 'hiv' },
+            form: { name: 'Mental Health Assessment Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'View Details',
             mode: 'view',
           },
           {
-            form: { name: 'mental_health_assessment', package: 'hiv' },
+            form: { name: 'Mental Health Assessment Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'Edit Form',

@@ -33,14 +33,14 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'peads_disclosure', package: 'hiv' },
+              form: { name: 'Age Appropriate Disclosure Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'peads_disclosure', package: 'hiv' },
+              form: { name: 'Age Appropriate Disclosure Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',

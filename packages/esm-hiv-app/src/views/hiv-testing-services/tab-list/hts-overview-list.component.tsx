@@ -57,14 +57,14 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { package: 'hiv', name: 'hts' },
+              form: { package: 'hiv', name: 'HIV Testing' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { package: 'hiv', name: 'hts' },
+              form: { package: 'hiv', name: 'HIV Testing' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
