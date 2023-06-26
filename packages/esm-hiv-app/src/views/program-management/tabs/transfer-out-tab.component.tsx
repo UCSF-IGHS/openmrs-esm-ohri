@@ -62,14 +62,14 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'transfer_out', package: 'hiv' },
+              form: { name: 'Transfer Out Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'transfer_out', package: 'hiv' },
+              form: { name: 'Transfer Out Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
