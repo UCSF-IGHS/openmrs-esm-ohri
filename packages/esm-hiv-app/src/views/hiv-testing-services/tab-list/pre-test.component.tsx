@@ -62,14 +62,14 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'hts_who', package: 'hiv' },
+              form: { name: 'HTS Pre-Test Counselling', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'hts_who', package: 'hiv' },
+              form: { name: 'HTS Pre-Test Counselling', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),

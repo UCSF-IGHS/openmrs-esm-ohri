@@ -70,14 +70,14 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'patner_notification', package: 'hiv' },
+              form: { name: 'Partner Notification Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'patner_notification', package: 'hiv' },
+              form: { name: 'Partner Notification Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',

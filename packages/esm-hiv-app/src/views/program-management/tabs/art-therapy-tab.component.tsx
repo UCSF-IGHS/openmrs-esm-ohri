@@ -175,14 +175,14 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'art_therapy', package: 'hiv' },
+            form: { name: 'ART Therapy Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'art_therapy', package: 'hiv' },
+            form: { name: 'ART Therapy Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
