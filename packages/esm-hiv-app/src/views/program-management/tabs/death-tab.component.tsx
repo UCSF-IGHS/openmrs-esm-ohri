@@ -45,14 +45,14 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'death_form', package: 'hiv' },
+              form: { name: 'Death Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'death_form', package: 'hiv' },
+              form: { name: 'Death Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),

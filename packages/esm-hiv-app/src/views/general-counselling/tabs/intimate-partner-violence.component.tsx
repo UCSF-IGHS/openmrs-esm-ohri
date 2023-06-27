@@ -52,14 +52,14 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'intimate_partner', package: 'hiv' },
+            form: { name: 'Intimate Partner Violence Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'View Details',
             mode: 'view',
           },
           {
-            form: { name: 'intimate_partner', package: 'hiv' },
+            form: { name: 'Intimate Partner Violence Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'Edit Form',

@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  CardSummary,
   PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
-  TileSummaryProps,
   fetchPatientRelationships,
   EncounterListColumn,
   EncounterList,
   basePath,
   fetchPatientLastEncounter,
+  SummaryCardColumn,
+  SummaryCard,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
@@ -200,13 +200,13 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return items;
   }, [pregnancyOutcomes]);
 
-  const currentPregnancyColumns: TileSummaryProps[] = useMemo(
+  const currentPregnancyColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterUuid: labourAndDeliveryEncounterType,
-        getObsValue: async (encounter) => {
+        encounterTypes: [labourAndDeliveryEncounterType],
+        getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
           const totalVisits = await fetchMotherHIVStatus(patientUuid, currentPTrackerId);
           return totalVisits.rows.length ? totalVisits.rows[0].mother_hiv_status : '--';
@@ -215,12 +215,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: async (encounter) => {
+        encounterTypes: [antenatalEncounterType],
+        getObsValue: async ([encounter]) => {
           return getObsFromEncounter(encounter, eDDConcept, true);
         },
-        hasSummary: true,
-        getSummaryObsValue: (encounter) => {
+        getObsSummary: ([encounter]) => {
           let edd = getObsFromEncounter(encounter, eDDConcept, true);
           if (edd !== '--') {
             const days = calculateDateDifferenceInDate(edd);
@@ -232,7 +231,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
-        encounterUuid: labourAndDeliveryEncounterType,
+        encounterTypes: [labourAndDeliveryEncounterType],
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, motherStatusConcept);
         },
@@ -241,13 +240,12 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const arvTherapyColumns: TileSummaryProps[] = useMemo(
+  const arvTherapyColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'artInitiation',
         header: t('artInitiation', 'ART Initiation'),
-        encounters: [],
-        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        encounterTypes: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
           const pncArtData = {
             artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
@@ -271,8 +269,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'artStartDate',
         header: t('artStartDate', 'ART Start Date'),
-        encounters: [],
-        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        encounterTypes: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
           const pncArtData = {
             artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
@@ -297,17 +294,16 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const appointmentsColumns: TileSummaryProps[] = useMemo(
+  const appointmentsColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
+        encounterTypes: [antenatalEncounterType],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
-        hasSummary: true,
-        getSummaryObsValue: (encounter) => {
+        getObsSummary: ([encounter]) => {
           let nextVisitDate = getObsFromEncounter(encounter, nextVisitDateConcept, true);
           if (nextVisitDate !== '--') {
             const days = calculateDateDifferenceInDate(nextVisitDate);
@@ -319,8 +315,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: async (encounter) => {
+        encounterTypes: [antenatalEncounterType],
+        getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
           const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
           return totalVisits.rows.length ? totalVisits.rows[0].total : '0';
@@ -419,20 +415,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   return (
     <div>
-      <CardSummary patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
+      <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '15rem' }}>
-        <CardSummary
-          patientUuid={patientUuid}
-          headerTitle={arvTherapyHeader}
-          columns={arvTherapyColumns}
-          isActionable={true}
-        />
-        <CardSummary
-          patientUuid={patientUuid}
-          headerTitle={appointmentsHeader}
-          columns={appointmentsColumns}
-          isActionable={true}
-        />
+        <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyColumns} />
+        <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentsColumns} />
       </div>
 
       <ExpandableList

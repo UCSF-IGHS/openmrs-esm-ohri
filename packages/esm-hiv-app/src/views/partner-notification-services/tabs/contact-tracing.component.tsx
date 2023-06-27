@@ -46,14 +46,14 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'contact_tracing', package: 'hiv' },
+              form: { name: 'Contact Tracing Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'contact_tracing', package: 'hiv' },
+              form: { name: 'Contact Tracing Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
