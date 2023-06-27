@@ -14,8 +14,7 @@ function CTHomePatientTabs() {
       isReportingCohort: true,
       cohortSlotName: 'all-ct-clients-slot',
       launchableForm: {
-        package: 'hiv',
-        name: 'clinical_visit',
+        name: 'Clinical Visit Form',
         actionText: t('startFollowUpVisit', 'Start Follow Up Visit'),
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
         targetDashboard: 'hts-summary',
@@ -53,7 +52,7 @@ function CTHomePatientTabs() {
       cohortSlotName: 'ct-todays-appointments',
       launchableForm: {
         package: 'hiv',
-        name: 'clinical_visit',
+        name: 'POC Clinical Visit Form',
         actionText: t('followUpVisit', 'Start Follow Up Visit'),
         intent: 'CT_CLINICAL_VISIT_FOLLOW_UP',
         targetDashboard: 'hts-summary',
