@@ -226,7 +226,7 @@ jobs:
             proxy_username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
             proxy_port: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}
 
-  ohri_dev_proxy_namibia:
+  ohri_dev_proxy_log:
     runs-on: ubuntu-latest
 
     if: ${{ github.ref == 'refs/heads/dev-ci-cd' }}
@@ -244,18 +244,25 @@ jobs:
             echo "HISTAC_DEV_NAMIBIA_PROXY_HOST: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}"
             echo "HISTAC_DEV_NAMIBIA_PROXY_PORT: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}"
 
-        - name: Run the Update MicroFronEnd Script for Dev Namibia
-          uses: appleboy/ssh-action@v0.1.10
-          with:
-              host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
-              username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
-              key: ${{ secrets.HISTAC_DEV_NAMIBIA_KEY}}
-              port: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}
-              proxy_host: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}
-              proxy_username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
-              proxy_port: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}
-              debug: truen
-              script: who && which node && cd /opt/frontend_modules && /bin/bash update_microfrontends.sh
+  ohri_dev_proxy_namibia:
+    runs-on: ubuntu-latest
+
+    if: ${{ github.ref == 'refs/heads/dev-ci-cd' }}
+
+    steps:
+      steps:
+      - uses: appleboy/ssh-action@v0.1.10
+        name: Run the Update MicroFronEnd Script for Dev Namibia
+        with:
+            host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
+            username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            key: ${{ secrets.HISTAC_DEV_NAMIBIA_KEY}}
+            port: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}
+            proxy_host: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}
+            proxy_username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            proxy_port: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}
+            debug: truen
+            script: who && which node && cd /opt/frontend_modules && /bin/bash update_microfrontends.sh
 
   pre_demo:
     runs-on: ubuntu-latest
