@@ -7,6 +7,7 @@ import { PatientListWorkspace } from '../../workspace/patient-list-workspace';
 interface HomeProps {
   programme?: string;
   dashboardTitle?: string;
+  icon?: React.ReactNode;
 }
 
 export function OHRIHome(HomeProps) {
@@ -39,7 +40,7 @@ export function OHRIHome(HomeProps) {
         <div className={styles.sectionContainer}>
           <ExtensionSlot
             extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeHeaderSlot)}
-            state={{ title: HomeProps.dashboardTitle }}
+            state={{ title: HomeProps.dashboardTitle, icon: HomeProps.icon }}
           />
         </div>
         <div className={styles.sectionContainer}>
