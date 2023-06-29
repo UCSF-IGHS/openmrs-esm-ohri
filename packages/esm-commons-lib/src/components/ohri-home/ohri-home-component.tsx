@@ -4,12 +4,6 @@ import { FlexGrid } from '@carbon/react';
 import styles from './ohri-home.scss';
 import { PatientListWorkspace } from '../../workspace/patient-list-workspace';
 
-interface HomeProps {
-  programme?: string;
-  dashboardTitle?: string;
-  icon?: React.ReactNode;
-}
-
 export function OHRIHome(HomeProps) {
   const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);
   const [workSpaceProps, setWorkSpaceProps] = useState<{
@@ -32,28 +26,21 @@ export function OHRIHome(HomeProps) {
       <PatientListWorkspace
         isVisible={isWorkSpaceVisible}
         header={workSpaceProps?.header}
-        // children={workSpaceProps?.children}
         onClose={() => setIsWorkSpaceVisible(false)}
         meta={workSpaceProps?.meta}
       />
       <FlexGrid className={styles.mainWrapper}>
         <div className={styles.sectionContainer}>
           <ExtensionSlot
-            extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeHeaderSlot)}
-            state={{ title: HomeProps.dashboardTitle, icon: HomeProps.icon }}
+            name={getSlotName(HomeProps.programme, OHRIHomeHeaderSlot)}
+            state={{ title: HomeProps.dashboardTitle, icon: HomeProps._meta.config.icon }}
           />
         </div>
         <div className={styles.sectionContainer}>
-          <ExtensionSlot
-            extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTileSlot)}
-            state={{ launchWorkSpace }}
-          />
+          <ExtensionSlot name={getSlotName(HomeProps.programme, OHRIHomeTileSlot)} state={{ launchWorkSpace }} />
         </div>
         <div className={styles.ohriHomeTabsContainer}>
-          <ExtensionSlot
-            extensionSlotName={getSlotName(HomeProps.programme, OHRIHomeTabSlot)}
-            state={{ launchWorkSpace }}
-          />
+          <ExtensionSlot name={getSlotName(HomeProps.programme, OHRIHomeTabSlot)} state={{ launchWorkSpace }} />
         </div>
       </FlexGrid>
     </>

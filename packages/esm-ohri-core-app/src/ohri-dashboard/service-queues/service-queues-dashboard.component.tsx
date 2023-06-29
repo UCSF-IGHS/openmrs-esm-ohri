@@ -7,7 +7,7 @@ const ServiceQueuesDashboard = () => {
     return () => detach('ohri-dashboard-service-queues-slot', 'service-queues-dashboard');
   }, []);
 
-  return <ExtensionSlot extensionSlotName="ohri-dashboard-service-queues-slot" state={{}} />;
+  return <ExtensionSlot name="ohri-dashboard-service-queues-slot" state={{}} />;
 };
 
 export default ServiceQueuesDashboard;

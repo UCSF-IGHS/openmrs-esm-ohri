@@ -50,9 +50,9 @@ const OHRIDashboard = () => {
           />
         );
       })}
-      {isDesktop(layout) && <ExtensionSlot extensionSlotName="ohri-nav-items-slot" key={layout} />}
+      {isDesktop(layout) && <ExtensionSlot name="ohri-nav-items-slot" key={layout} />}
       <div className={` ${styles.dashboardContent}`}>
-        {currentDashboard && <ExtensionSlot extensionSlotName={currentDashboard.slot} state={state} />}
+        {currentDashboard && <ExtensionSlot name={currentDashboard.slot} state={state} />}
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ interface OHRIWelcomeSectionProps {
 
 export const OHRIWelcomeSection: React.FC<OHRIWelcomeSectionProps> = ({ title, icon }) => {
   const userSession = useSession();
-  console.log('dashboard: ', { title, icon });
   return (
     <div className={styles.welcomeContainer}>
       <div className={styles.welcomeIcon}>{icon}</div>
