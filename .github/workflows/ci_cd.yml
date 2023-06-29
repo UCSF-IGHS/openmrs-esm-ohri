@@ -25,22 +25,22 @@ jobs:
           package-manager: yarn
           test-script: yarn jest
 
-  ohri_dev_proxy_log:
+  ohri_dev_namibia:
     runs-on: ubuntu-latest
 
     if: ${{ github.ref == 'refs/heads/dev-ci-cd' }}
 
     steps:
-        - name: Print SSH Command and Secret Variables
-          run: |
-            echo "SSH Command: ssh -i _key> -p <port> <username>@<host> -o 'ProxyCommand=ssh -W %h:%p -p <proxy_port> <proxy_username>@<proxy_host>'"
-            echo "Secret Variables:"
-            echo "HISTAC_DEV_NAMIBIA_HOST: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}"
-            echo "HISTAC_DEV_NAMIBIA_USERNAME: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}"
-            echo "HISTAC_DEV_NAMIBIA_KEY: ${{ secrets.HISTAC_DEV_NAMIBIA_KEY }}"
-            echo "HISTAC_DEV_NAMIBIA_PORT: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}"
-            echo "HISTAC_DEV_NAMIBIA_PROXY_HOST: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}"
-            echo "HISTAC_DEV_NAMIBIA_PROXY_PORT: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}"
+      - uses: appleboy/ssh-action@v0.1.10
+        name: Run the Update MicroFronEnd Script for Dev Namibia
+        with:
+            host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
+            username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            key: ${{ secrets.HISTAC_DEV_NAMIBIA_KEY}}
+            passphrase: ${{ secrets.HISTAC_DEV_NAMIBIA_PASSPHRASE }}
+            port: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}
+            debug: true
+            script: who && which node && cd /opt/frontend_modules && /bin/bash update_microfrontends.sh"
 
   ohri_dev_proxy_namibia:
     runs-on: ubuntu-latest
