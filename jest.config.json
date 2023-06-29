@@ -12,7 +12,6 @@
     "bail":1,
     "collectCoverage": true,
     "verbose": true,
-    "notify": true,
     "collectCoverageFrom": [
       "**/src/**/*.component.tsx",
       "!**/node_modules/**",

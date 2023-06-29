@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1687481682075" clover="3.2.0">
-  <project timestamp="1687481682076" name="All files">
-    <metrics statements="1899" coveredstatements="0" conditionals="674" coveredconditionals="0" methods="807" coveredmethods="0" elements="3380" coveredelements="0" complexity="0" loc="1899" ncloc="1899" packages="74" files="116" classes="116"/>
+<coverage generated="1688029286407" clover="3.2.0">
+  <project timestamp="1688029286407" name="All files">
+    <metrics statements="1917" coveredstatements="0" conditionals="711" coveredconditionals="0" methods="806" coveredmethods="0" elements="3434" coveredelements="0" complexity="0" loc="1917" ncloc="1917" packages="74" files="116" classes="116"/>
     <package name="esm-cervical-cancer-app.src.views.cacx-appointment">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="cacx-appointments.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-appointment/cacx-appointments.component.tsx">
+      <file name="cacx-appointments.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-appointment/cacx-appointments.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -13,7 +13,7 @@
     </package>
     <package name="esm-cervical-cancer-app.src.views.cacx-summary">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="cacx-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-summary/cacx-summary.component.tsx">
+      <file name="cacx-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-summary/cacx-summary.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -22,7 +22,7 @@
     </package>
     <package name="esm-cervical-cancer-app.src.views.cacx-visits">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="cacx-visits-services.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/cacx-visits-services.component.tsx">
+      <file name="cacx-visits-services.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/cacx-visits-services.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -30,7 +30,7 @@
     </package>
     <package name="esm-cervical-cancer-app.src.views.cacx-visits.Tabs">
       <metrics statements="24" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="0"/>
-      <file name="cacx-registration.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/Tabs/cacx-registration.component.tsx">
+      <file name="cacx-registration.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/Tabs/cacx-registration.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
@@ -43,13 +43,13 @@
         <line num="63" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
       </file>
-      <file name="cacx-screening.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/Tabs/cacx-screening.component.tsx">
+      <file name="cacx-screening.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/Tabs/cacx-screening.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="cacx-treatment.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/Tabs/cacx-treatment.component.tsx">
+      <file name="cacx-treatment.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-cervical-cancer-app/src/views/cacx-visits/Tabs/cacx-treatment.component.tsx">
         <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -66,13 +66,13 @@
     </package>
     <package name="esm-commons-lib.src.components.banner-tags">
       <metrics statements="14" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="active-visit-tag.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/banner-tags/active-visit-tag.component.tsx">
+      <file name="active-visit-tag.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/banner-tags/active-visit-tag.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="patient-covid-outcomes-tag.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/banner-tags/patient-covid-outcomes-tag.component.tsx">
+      <file name="patient-covid-outcomes-tag.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/banner-tags/patient-covid-outcomes-tag.component.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -81,7 +81,7 @@
         <line num="26" count="0" type="stmt"/>
         <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
-      <file name="patient-status-tag.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/banner-tags/patient-status-tag.component.tsx">
+      <file name="patient-status-tag.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/banner-tags/patient-status-tag.component.tsx">
         <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -92,7 +92,7 @@
     </package>
     <package name="esm-commons-lib.src.components.card-summary">
       <metrics statements="23" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="8" coveredmethods="0"/>
-      <file name="card-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/card-summary/card-summary.component.tsx">
+      <file name="card-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/card-summary/card-summary.component.tsx">
         <metrics statements="23" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="29" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
@@ -121,47 +121,46 @@
     </package>
     <package name="esm-commons-lib.src.components.data-table">
       <metrics statements="2" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="o-table.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/data-table/o-table.component.tsx">
+      <file name="o-table.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/data-table/o-table.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-commons-lib.src.components.empty-state">
-      <metrics statements="13" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="8" coveredmethods="0"/>
-      <file name="empty-data-illustration.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-data-illustration.component.tsx">
+      <metrics statements="12" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="empty-data-illustration.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-data-illustration.component.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
       </file>
-      <file name="empty-state-boilerplate.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-state-boilerplate.component.tsx">
+      <file name="empty-state-boilerplate.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-state-boilerplate.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
       </file>
-      <file name="empty-state-comingsoon.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-state-comingsoon.component.tsx">
+      <file name="empty-state-comingsoon.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-state-comingsoon.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
       </file>
-      <file name="empty-state.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-state.component.tsx">
+      <file name="empty-state.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/empty-state.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="15" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
       </file>
-      <file name="table-empty-state.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/table-empty-state.component.tsx">
-        <metrics statements="4" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="table-empty-state.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/empty-state/table-empty-state.component.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-commons-lib.src.components.encounter-list">
-      <metrics statements="143" coveredstatements="0" conditionals="102" coveredconditionals="0" methods="44" coveredmethods="0"/>
-      <file name="encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/encounter-list/encounter-list.component.tsx">
-        <metrics statements="70" coveredstatements="0" conditionals="80" coveredconditionals="0" methods="24" coveredmethods="0"/>
+      <metrics statements="145" coveredstatements="0" conditionals="106" coveredconditionals="0" methods="44" coveredmethods="0"/>
+      <file name="encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/encounter-list/encounter-list.component.tsx">
+        <metrics statements="71" coveredstatements="0" conditionals="82" coveredconditionals="0" methods="24" coveredmethods="0"/>
         <line num="45" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
@@ -229,12 +228,13 @@
         <line num="205" count="0" type="stmt"/>
         <line num="210" count="0" type="cond" truecount="0" falsecount="7"/>
         <line num="215" count="0" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
         <line num="241" count="0" type="stmt"/>
         <line num="242" count="0" type="stmt"/>
         <line num="251" count="0" type="stmt"/>
       </file>
-      <file name="multiple-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/encounter-list/multiple-encounter-list.component.tsx">
-        <metrics statements="73" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="20" coveredmethods="0"/>
+      <file name="multiple-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/encounter-list/multiple-encounter-list.component.tsx">
+        <metrics statements="74" coveredstatements="0" conditionals="24" coveredconditionals="0" methods="20" coveredmethods="0"/>
         <line num="34" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
@@ -304,6 +304,7 @@
         <line num="147" count="0" type="stmt"/>
         <line num="150" count="0" type="stmt"/>
         <line num="151" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
         <line num="171" count="0" type="stmt"/>
         <line num="172" count="0" type="stmt"/>
         <line num="173" count="0" type="stmt"/>
@@ -312,7 +313,7 @@
     </package>
     <package name="esm-commons-lib.src.components.encounter-tile">
       <metrics statements="19" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="7" coveredmethods="0"/>
-      <file name="encounter-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/encounter-tile/encounter-tile.component.tsx">
+      <file name="encounter-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/encounter-tile/encounter-tile.component.tsx">
         <metrics statements="19" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
@@ -337,7 +338,7 @@
     </package>
     <package name="esm-commons-lib.src.components.error-state">
       <metrics statements="3" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="error-state.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/error-state/error-state.component.tsx">
+      <file name="error-state.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/error-state/error-state.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -346,7 +347,7 @@
     </package>
     <package name="esm-commons-lib.src.components.expandable-list-widget">
       <metrics statements="11" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="expandable-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/expandable-list-widget/expandable-list.component.tsx">
+      <file name="expandable-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/expandable-list-widget/expandable-list.component.tsx">
         <metrics statements="11" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="41" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
@@ -363,7 +364,7 @@
     </package>
     <package name="esm-commons-lib.src.components.identifier-generator">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="identifier-generator.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/identifier-generator/identifier-generator.component.tsx">
+      <file name="identifier-generator.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/identifier-generator/identifier-generator.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -371,7 +372,7 @@
     </package>
     <package name="esm-commons-lib.src.components.lazy-cell">
       <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="lazy-cell.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/lazy-cell/lazy-cell.component.tsx">
+      <file name="lazy-cell.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/lazy-cell/lazy-cell.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -381,7 +382,7 @@
     </package>
     <package name="esm-commons-lib.src.components.loading">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="loading.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/loading/loading.component.tsx">
+      <file name="loading.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/loading/loading.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -389,7 +390,7 @@
     </package>
     <package name="esm-commons-lib.src.components.modals">
       <metrics statements="49" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="21" coveredmethods="0"/>
-      <file name="add-patient-to-list-modal.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/modals/add-patient-to-list-modal.component.tsx">
+      <file name="add-patient-to-list-modal.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/modals/add-patient-to-list-modal.component.tsx">
         <metrics statements="49" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="21" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -444,7 +445,7 @@
     </package>
     <package name="esm-commons-lib.src.components.ohri-form-launcher">
       <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="ohri-form-empty-launcher.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/ohri-form-launcher/ohri-form-empty-launcher.component.tsx">
+      <file name="ohri-form-empty-launcher.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/ohri-form-launcher/ohri-form-empty-launcher.component.tsx">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -452,7 +453,7 @@
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
       </file>
-      <file name="ohri-form-launcher.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/ohri-form-launcher/ohri-form-launcher.component.tsx">
+      <file name="ohri-form-launcher.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/ohri-form-launcher/ohri-form-launcher.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -461,7 +462,7 @@
     </package>
     <package name="esm-commons-lib.src.components.ohri-home.welcome-section">
       <metrics statements="2" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="ohri-welcome-section.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/ohri-home/welcome-section/ohri-welcome-section.component.tsx">
+      <file name="ohri-welcome-section.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/ohri-home/welcome-section/ohri-welcome-section.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -469,7 +470,7 @@
     </package>
     <package name="esm-commons-lib.src.components.overflow-menu-button">
       <metrics statements="20" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="10" coveredmethods="0"/>
-      <file name="ohri-overflow-menu.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/overflow-menu-button/ohri-overflow-menu.component.tsx">
+      <file name="ohri-overflow-menu.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/overflow-menu-button/ohri-overflow-menu.component.tsx">
         <metrics statements="20" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -495,15 +496,15 @@
     </package>
     <package name="esm-commons-lib.src.components.patient-banner">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="patient-banner.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-banner/patient-banner.component.tsx">
+      <file name="patient-banner.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-banner/patient-banner.component.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-commons-lib.src.components.patient-list-cohort">
-      <metrics statements="151" coveredstatements="0" conditionals="107" coveredconditionals="0" methods="50" coveredmethods="0"/>
-      <file name="patient-list-cohort.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-list-cohort/patient-list-cohort.component.tsx">
-        <metrics statements="151" coveredstatements="0" conditionals="107" coveredconditionals="0" methods="50" coveredmethods="0"/>
+      <metrics statements="153" coveredstatements="0" conditionals="110" coveredconditionals="0" methods="50" coveredmethods="0"/>
+      <file name="patient-list-cohort.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-list-cohort/patient-list-cohort.component.tsx">
+        <metrics statements="153" coveredstatements="0" conditionals="110" coveredconditionals="0" methods="50" coveredmethods="0"/>
         <line num="54" count="0" type="stmt"/>
         <line num="59" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
@@ -531,6 +532,7 @@
         <line num="139" count="0" type="stmt"/>
         <line num="141" count="0" type="stmt"/>
         <line num="144" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
         <line num="156" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="157" count="0" type="stmt"/>
         <line num="158" count="0" type="stmt"/>
@@ -655,20 +657,21 @@
         <line num="449" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="450" count="0" type="cond" truecount="0" falsecount="8"/>
         <line num="455" count="0" type="stmt"/>
+        <line num="460" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-commons-lib.src.components.patient-list-tabs">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="ohri-patient-list-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-list-tabs/ohri-patient-list-tabs.component.tsx">
+      <file name="ohri-patient-list-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-list-tabs/ohri-patient-list-tabs.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-commons-lib.src.components.patient-lists">
-      <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="0"/>
-      <file name="patient-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-lists/patient-list.component.tsx">
-        <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <metrics statements="20" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="patient-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/patient-lists/patient-list.component.tsx">
+        <metrics statements="20" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
@@ -681,6 +684,7 @@
         <line num="37" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
@@ -692,24 +696,24 @@
     </package>
     <package name="esm-commons-lib.src.components.tile">
       <metrics statements="4" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="ohri-programme-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/tile/ohri-programme-summary-tiles.component.tsx">
+      <file name="ohri-programme-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/tile/ohri-programme-summary-tiles.component.tsx">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       </file>
-      <file name="ohri-summary-tile-tablet.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/tile/ohri-summary-tile-tablet.component.tsx">
+      <file name="ohri-summary-tile-tablet.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/tile/ohri-summary-tile-tablet.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="ohri-summary-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-commons-lib/src/components/tile/ohri-summary-tile.component.tsx">
+      <file name="ohri-summary-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-commons-lib/src/components/tile/ohri-summary-tile.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-covid-app.src.views.dashboard.patient-list-tabs">
-      <metrics statements="18" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="11" coveredmethods="0"/>
-      <file name="covid-patient-list-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/patient-list-tabs/covid-patient-list-tabs.component.tsx">
-        <metrics statements="18" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <metrics statements="18" coveredstatements="0" conditionals="21" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="covid-patient-list-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/patient-list-tabs/covid-patient-list-tabs.component.tsx">
+        <metrics statements="18" coveredstatements="0" conditionals="21" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="30" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
@@ -723,7 +727,7 @@
         <line num="134" count="0" type="stmt"/>
         <line num="135" count="0" type="cond" truecount="0" falsecount="3"/>
         <line num="136" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="138" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="138" count="0" type="cond" truecount="0" falsecount="10"/>
         <line num="140" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="141" count="0" type="stmt"/>
         <line num="145" count="0" type="stmt"/>
@@ -731,8 +735,8 @@
       </file>
     </package>
     <package name="esm-covid-app.src.views.dashboard.summary-tiles">
-      <metrics statements="102" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="46" coveredmethods="0"/>
-      <file name="covid-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/summary-tiles/covid-summary-tiles.component.tsx">
+      <metrics statements="104" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="46" coveredmethods="0"/>
+      <file name="covid-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/summary-tiles/covid-summary-tiles.component.tsx">
         <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -749,8 +753,8 @@
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
       </file>
-      <file name="outcome-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/summary-tiles/outcome-list-tile.component.tsx">
-        <metrics statements="43" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="20" coveredmethods="0"/>
+      <file name="outcome-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/summary-tiles/outcome-list-tile.component.tsx">
+        <metrics statements="44" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="20" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
@@ -794,9 +798,10 @@
         <line num="129" count="0" type="stmt"/>
         <line num="144" count="0" type="stmt"/>
         <line num="145" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
       </file>
-      <file name="vaccination-tile-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/summary-tiles/vaccination-tile-list.component.tsx">
-        <metrics statements="45" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="20" coveredmethods="0"/>
+      <file name="vaccination-tile-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-covid-app/src/views/dashboard/summary-tiles/vaccination-tile-list.component.tsx">
+        <metrics statements="46" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="20" coveredmethods="0"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
@@ -841,12 +846,13 @@
         <line num="120" count="0" type="stmt"/>
         <line num="135" count="0" type="stmt"/>
         <line num="136" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
         <line num="150" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-form-render-app.src">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="form-render-app-menu-link.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-form-render-app/src/form-render-app-menu-link.component.tsx">
+      <file name="form-render-app-menu-link.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-form-render-app/src/form-render-app-menu-link.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -854,7 +860,7 @@
     </package>
     <package name="esm-form-render-app.src.render">
       <metrics statements="78" coveredstatements="0" conditionals="27" coveredconditionals="0" methods="16" coveredmethods="0"/>
-      <file name="forms-render-test.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-form-render-app/src/render/forms-render-test.component.tsx">
+      <file name="forms-render-test.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-form-render-app/src/render/forms-render-test.component.tsx">
         <metrics statements="78" coveredstatements="0" conditionals="27" coveredconditionals="0" methods="16" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -938,7 +944,7 @@
     </package>
     <package name="esm-hiv-app.src.views.adherence-counselling">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="adherence-counselling-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/adherence-counselling/adherence-counselling-summary.component.tsx">
+      <file name="adherence-counselling-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/adherence-counselling/adherence-counselling-summary.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -946,13 +952,13 @@
     </package>
     <package name="esm-hiv-app.src.views.adherence-counselling.tabs">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="adherence-counselling.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/adherence-counselling/tabs/adherence-counselling.component.tsx">
+      <file name="adherence-counselling.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/adherence-counselling/tabs/adherence-counselling.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="enhanced-adherence-counselling.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/adherence-counselling/tabs/enhanced-adherence-counselling.component.tsx">
+      <file name="enhanced-adherence-counselling.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/adherence-counselling/tabs/enhanced-adherence-counselling.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -961,7 +967,7 @@
     </package>
     <package name="esm-hiv-app.src.views.appointments">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="appointments.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/appointments/appointments.component.tsx">
+      <file name="appointments.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/appointments/appointments.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -970,7 +976,7 @@
     </package>
     <package name="esm-hiv-app.src.views.clinical-visit.encounter-list">
       <metrics statements="16" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="12" coveredmethods="0"/>
-      <file name="clinical-visit-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/clinical-visit/encounter-list/clinical-visit-encounter-list.component.tsx">
+      <file name="clinical-visit-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/clinical-visit/encounter-list/clinical-visit-encounter-list.component.tsx">
         <metrics statements="12" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
@@ -985,7 +991,7 @@
         <line num="61" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
       </file>
-      <file name="drug-orders-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/clinical-visit/encounter-list/drug-orders-encounter-list.component.tsx">
+      <file name="drug-orders-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/clinical-visit/encounter-list/drug-orders-encounter-list.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -995,7 +1001,7 @@
     </package>
     <package name="esm-hiv-app.src.views.drug-orders.encounter-list">
       <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="drug-orders-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/drug-orders/encounter-list/drug-orders-encounter-list.component.tsx">
+      <file name="drug-orders-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/drug-orders/encounter-list/drug-orders-encounter-list.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -1005,7 +1011,7 @@
     </package>
     <package name="esm-hiv-app.src.views.general-counselling">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="general-counselling-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/general-counselling-summary.component.tsx">
+      <file name="general-counselling-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/general-counselling-summary.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -1013,7 +1019,7 @@
     </package>
     <package name="esm-hiv-app.src.views.general-counselling.tabs">
       <metrics statements="35" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="21" coveredmethods="0"/>
-      <file name="disclosure.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/disclosure.component.tsx">
+      <file name="disclosure.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/disclosure.component.tsx">
         <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -1025,13 +1031,13 @@
         <line num="50" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
       </file>
-      <file name="drugs-and-alcohol-use.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/drugs-and-alcohol-use.component.tsx">
+      <file name="drugs-and-alcohol-use.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/drugs-and-alcohol-use.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="intimate-partner-violence.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/intimate-partner-violence.component.tsx">
+      <file name="intimate-partner-violence.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/intimate-partner-violence.component.tsx">
         <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -1045,7 +1051,7 @@
         <line num="73" count="0" type="stmt"/>
         <line num="74" count="0" type="stmt"/>
       </file>
-      <file name="mental-health-assessment.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/mental-health-assessment.component.tsx">
+      <file name="mental-health-assessment.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/general-counselling/tabs/mental-health-assessment.component.tsx">
         <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
@@ -1063,7 +1069,7 @@
     </package>
     <package name="esm-hiv-app.src.views.hiv-baseline">
       <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="hiv-baseline-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-baseline/hiv-baseline-summary.component.tsx">
+      <file name="hiv-baseline-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-baseline/hiv-baseline-summary.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -1079,7 +1085,7 @@
     </package>
     <package name="esm-hiv-app.src.views.hiv-testing-services">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="hts-prevention-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-testing-services/hts-prevention-summary.component.tsx">
+      <file name="hts-prevention-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-testing-services/hts-prevention-summary.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -1087,7 +1093,7 @@
     </package>
     <package name="esm-hiv-app.src.views.hiv-testing-services.tab-list">
       <metrics statements="28" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="17" coveredmethods="0"/>
-      <file name="hts-overview-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-testing-services/tab-list/hts-overview-list.component.tsx">
+      <file name="hts-overview-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-testing-services/tab-list/hts-overview-list.component.tsx">
         <metrics statements="16" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -1106,7 +1112,7 @@
         <line num="58" count="0" type="stmt"/>
         <line num="74" count="0" type="stmt"/>
       </file>
-      <file name="pre-test.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-testing-services/tab-list/pre-test.component.tsx">
+      <file name="pre-test.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hiv-testing-services/tab-list/pre-test.component.tsx">
         <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
@@ -1124,7 +1130,7 @@
     </package>
     <package name="esm-hiv-app.src.views.hts.care-and-treatment.home.summary-tiles">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="ct-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/home/summary-tiles/ct-summary-tiles.component.tsx">
+      <file name="ct-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/home/summary-tiles/ct-summary-tiles.component.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -1136,7 +1142,7 @@
     </package>
     <package name="esm-hiv-app.src.views.hts.care-and-treatment.lab-results">
       <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="lab-results-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/lab-results-summary-tiles.component.tsx">
+      <file name="lab-results-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/lab-results-summary-tiles.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -1149,16 +1155,16 @@
         <line num="19" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
       </file>
-      <file name="lab-results-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/lab-results-summary.component.tsx">
+      <file name="lab-results-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/lab-results-summary.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-hiv-app.src.views.hts.care-and-treatment.lab-results.Tabs">
-      <metrics statements="121" coveredstatements="0" conditionals="50" coveredconditionals="0" methods="38" coveredmethods="0"/>
-      <file name="cd4-results.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/Tabs/cd4-results.component.tsx">
-        <metrics statements="60" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="20" coveredmethods="0"/>
+      <metrics statements="123" coveredstatements="0" conditionals="54" coveredconditionals="0" methods="38" coveredmethods="0"/>
+      <file name="cd4-results.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/Tabs/cd4-results.component.tsx">
+        <metrics statements="61" coveredstatements="0" conditionals="27" coveredconditionals="0" methods="20" coveredmethods="0"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
@@ -1214,14 +1220,15 @@
         <line num="138" count="0" type="stmt"/>
         <line num="139" count="0" type="stmt"/>
         <line num="141" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
         <line num="157" count="0" type="stmt"/>
         <line num="169" count="0" type="stmt"/>
         <line num="170" count="0" type="stmt"/>
         <line num="171" count="0" type="stmt"/>
         <line num="172" count="0" type="stmt"/>
       </file>
-      <file name="viral-load-results.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/Tabs/viral-load-results.component.tsx">
-        <metrics statements="61" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="18" coveredmethods="0"/>
+      <file name="viral-load-results.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/care-and-treatment/lab-results/Tabs/viral-load-results.component.tsx">
+        <metrics statements="62" coveredstatements="0" conditionals="27" coveredconditionals="0" methods="18" coveredmethods="0"/>
         <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
@@ -1278,6 +1285,7 @@
         <line num="146" count="0" type="stmt"/>
         <line num="147" count="0" type="stmt"/>
         <line num="149" count="0" type="stmt"/>
+        <line num="152" count="0" type="stmt"/>
         <line num="165" count="0" type="stmt"/>
         <line num="177" count="0" type="stmt"/>
         <line num="178" count="0" type="stmt"/>
@@ -1286,19 +1294,20 @@
       </file>
     </package>
     <package name="esm-hiv-app.src.views.hts.client-linkage">
-      <metrics statements="5" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="client-linkage-form-section.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/client-linkage/client-linkage-form-section.component.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="client-linkage-form-section.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/client-linkage/client-linkage-form-section.component.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-hiv-app.src.views.hts.home.patient-tabs">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="ohri-patient-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/patient-tabs/ohri-patient-tabs.component.tsx">
+      <file name="ohri-patient-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/patient-tabs/ohri-patient-tabs.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
@@ -1306,8 +1315,8 @@
       </file>
     </package>
     <package name="esm-hiv-app.src.views.hts.home.summary-tiles">
-      <metrics statements="151" coveredstatements="0" conditionals="24" coveredconditionals="0" methods="76" coveredmethods="0"/>
-      <file name="hts-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/hts-summary-tiles.component.tsx">
+      <metrics statements="154" coveredstatements="0" conditionals="27" coveredconditionals="0" methods="76" coveredmethods="0"/>
+      <file name="hts-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/hts-summary-tiles.component.tsx">
         <metrics statements="18" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -1328,8 +1337,8 @@
         <line num="90" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
       </file>
-      <file name="linked-to-care-in-last-14-days-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/linked-to-care-in-last-14-days-list-tile.component.tsx">
-        <metrics statements="44" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="21" coveredmethods="0"/>
+      <file name="linked-to-care-in-last-14-days-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/linked-to-care-in-last-14-days-list-tile.component.tsx">
+        <metrics statements="45" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="21" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
@@ -1374,9 +1383,10 @@
         <line num="134" count="0" type="stmt"/>
         <line num="145" count="0" type="stmt"/>
         <line num="146" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
       </file>
-      <file name="positive-in-last-14-days-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/positive-in-last-14-days-list-tile.component.tsx">
-        <metrics statements="44" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="21" coveredmethods="0"/>
+      <file name="positive-in-last-14-days-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/positive-in-last-14-days-list-tile.component.tsx">
+        <metrics statements="45" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="21" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
@@ -1421,9 +1431,10 @@
         <line num="134" count="0" type="stmt"/>
         <line num="145" count="0" type="stmt"/>
         <line num="146" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
       </file>
-      <file name="today-client-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/today-client-list-tile.component.tsx">
-        <metrics statements="45" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="22" coveredmethods="0"/>
+      <file name="today-client-list-tile.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/summary-tiles/today-client-list-tile.component.tsx">
+        <metrics statements="46" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="22" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -1469,11 +1480,12 @@
         <line num="134" count="0" type="stmt"/>
         <line num="145" count="0" type="stmt"/>
         <line num="146" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-hiv-app.src.views.hts.home.welcome-section">
       <metrics statements="4" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="hts-welcome-section.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/welcome-section/hts-welcome-section.component.tsx">
+      <file name="hts-welcome-section.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/home/welcome-section/hts-welcome-section.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -1483,7 +1495,7 @@
     </package>
     <package name="esm-hiv-app.src.views.hts.patient-list-tabs">
       <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-      <file name="ct-patient-list-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/patient-list-tabs/ct-patient-list-tabs.component.tsx">
+      <file name="ct-patient-list-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/hts/patient-list-tabs/ct-patient-list-tabs.component.tsx">
         <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -1497,7 +1509,7 @@
     </package>
     <package name="esm-hiv-app.src.views.lab-results.cd4">
       <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="cd4-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/cd4/cd4-encounter-list.component.tsx">
+      <file name="cd4-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/cd4/cd4-encounter-list.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
@@ -1513,7 +1525,7 @@
     </package>
     <package name="esm-hiv-app.src.views.lab-results.encounter-list">
       <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-      <file name="lab-results-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/encounter-list/lab-results-encounter-list.component.tsx">
+      <file name="lab-results-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/encounter-list/lab-results-encounter-list.component.tsx">
         <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -1531,7 +1543,7 @@
     </package>
     <package name="esm-hiv-app.src.views.lab-results.lab-test">
       <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="lab-test-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/lab-test/lab-test-encounter-list.component.tsx">
+      <file name="lab-test-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/lab-test/lab-test-encounter-list.component.tsx">
         <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
@@ -1546,7 +1558,7 @@
     </package>
     <package name="esm-hiv-app.src.views.lab-results.overview">
       <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="lab-results-overview.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/overview/lab-results-overview.component.tsx">
+      <file name="lab-results-overview.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/lab-results/overview/lab-results-overview.component.tsx">
         <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -1560,7 +1572,7 @@
     </package>
     <package name="esm-hiv-app.src.views.medications">
       <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="medications.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/medications/medications.component.tsx">
+      <file name="medications.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/medications/medications.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -1570,12 +1582,12 @@
     </package>
     <package name="esm-hiv-app.src.views.partner-notification-services">
       <metrics statements="18" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="8" coveredmethods="0"/>
-      <file name="partner-notification-services.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/partner-notification-services.component.tsx">
+      <file name="partner-notification-services.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/partner-notification-services.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
       </file>
-      <file name="partner-notification.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/partner-notification.component.tsx">
+      <file name="partner-notification.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/partner-notification.component.tsx">
         <metrics statements="16" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="14" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
@@ -1597,7 +1609,7 @@
     </package>
     <package name="esm-hiv-app.src.views.partner-notification-services.tabs">
       <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
-      <file name="contact-tracing.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/tabs/contact-tracing.component.tsx">
+      <file name="contact-tracing.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/tabs/contact-tracing.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
@@ -1610,7 +1622,7 @@
         <line num="63" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
       </file>
-      <file name="patient-tracing.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/tabs/patient-tracing.component.tsx">
+      <file name="patient-tracing.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/partner-notification-services/tabs/patient-tracing.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
@@ -1626,7 +1638,7 @@
     </package>
     <package name="esm-hiv-app.src.views.pre-exposure-prophylaxis">
       <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="pre-exposure-prophylaxis.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component.tsx">
+      <file name="pre-exposure-prophylaxis.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -1636,15 +1648,15 @@
     </package>
     <package name="esm-hiv-app.src.views.program-management">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="program-management-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/program-management-summary.component.tsx">
+      <file name="program-management-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/program-management-summary.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-hiv-app.src.views.program-management.tabs">
-      <metrics statements="108" coveredstatements="0" conditionals="56" coveredconditionals="0" methods="39" coveredmethods="0"/>
-      <file name="art-therapy-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/art-therapy-tab.component.tsx">
+      <metrics statements="108" coveredstatements="0" conditionals="58" coveredconditionals="0" methods="39" coveredmethods="0"/>
+      <file name="art-therapy-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/art-therapy-tab.component.tsx">
         <metrics statements="56" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="26" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
@@ -1703,7 +1715,7 @@
         <line num="197" count="0" type="stmt"/>
         <line num="198" count="0" type="stmt"/>
       </file>
-      <file name="death-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/death-tab.component.tsx">
+      <file name="death-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/death-tab.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
@@ -1716,8 +1728,8 @@
         <line num="62" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
       </file>
-      <file name="hiv-enrolment-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/hiv-enrolment-tab.component.tsx">
-        <metrics statements="19" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="0"/>
+      <file name="hiv-enrolment-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/hiv-enrolment-tab.component.tsx">
+        <metrics statements="19" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -1729,7 +1741,7 @@
         <line num="53" count="0" type="cond" truecount="0" falsecount="3"/>
         <line num="54" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="55" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="57" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="10"/>
         <line num="59" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="60" count="0" type="stmt"/>
         <line num="65" count="0" type="stmt"/>
@@ -1738,7 +1750,7 @@
         <line num="99" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
       </file>
-      <file name="service-delivery-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/service-delivery-tab.component.tsx">
+      <file name="service-delivery-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/service-delivery-tab.component.tsx">
         <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
@@ -1751,7 +1763,7 @@
         <line num="63" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
       </file>
-      <file name="transfer-out-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/transfer-out-tab.component.tsx">
+      <file name="transfer-out-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/program-management/tabs/transfer-out-tab.component.tsx">
         <metrics statements="13" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
@@ -1769,9 +1781,9 @@
       </file>
     </package>
     <package name="esm-hiv-app.src.views.service-enrolment">
-      <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <file name="service-exit-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/service-enrolment/service-exit-encounter-list.component.tsx">
-        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="service-exit-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/service-enrolment/service-exit-encounter-list.component.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -1784,11 +1796,12 @@
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-hiv-app.src.views.service-enrolment.encounter-list">
       <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="0"/>
-      <file name="service-enrolment-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/service-enrolment/encounter-list/service-enrolment-encounter-list.component.tsx">
+      <file name="service-enrolment-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/service-enrolment/encounter-list/service-enrolment-encounter-list.component.tsx">
         <metrics statements="11" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -1805,7 +1818,7 @@
     </package>
     <package name="esm-hiv-app.src.views.service-summary.encounter-list">
       <metrics statements="69" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="25" coveredmethods="0"/>
-      <file name="service-summary-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/service-summary/encounter-list/service-summary-encounter-list.component.tsx">
+      <file name="service-summary-encounter-list.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/service-summary/encounter-list/service-summary-encounter-list.component.tsx">
         <metrics statements="69" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="25" coveredmethods="0"/>
         <line num="39" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
@@ -1880,7 +1893,7 @@
     </package>
     <package name="esm-hiv-app.src.views.visits">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="visits-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/visits/visits-summary.component.tsx">
+      <file name="visits-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/visits/visits-summary.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -1888,7 +1901,7 @@
     </package>
     <package name="esm-hiv-app.src.views.visits.tabs">
       <metrics statements="29" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="19" coveredmethods="0"/>
-      <file name="clinical-visit-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/visits/tabs/clinical-visit-tab.component.tsx">
+      <file name="clinical-visit-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/visits/tabs/clinical-visit-tab.component.tsx">
         <metrics statements="15" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -1906,7 +1919,7 @@
         <line num="70" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
       </file>
-      <file name="express-visit-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-hiv-app/src/views/visits/tabs/express-visit-tab.component.tsx">
+      <file name="express-visit-tab.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-hiv-app/src/views/visits/tabs/express-visit-tab.component.tsx">
         <metrics statements="14" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -1926,7 +1939,7 @@
     </package>
     <package name="esm-ohri-core-app.src.ohri-dashboard">
       <metrics statements="29" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="10" coveredmethods="0"/>
-      <file name="ohri-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/ohri-dashboard.component.tsx">
+      <file name="ohri-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/ohri-dashboard.component.tsx">
         <metrics statements="29" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -1961,21 +1974,21 @@
     </package>
     <package name="esm-ohri-core-app.src.ohri-dashboard.appointments">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="appointments-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/appointments/appointments-dashboard.component.tsx">
+      <file name="appointments-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/appointments/appointments-dashboard.component.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-ohri-core-app.src.ohri-dashboard.dispensing">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="dispensing-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/dispensing/dispensing-dashboard.component.tsx">
+      <file name="dispensing-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/dispensing/dispensing-dashboard.component.tsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-ohri-core-app.src.ohri-dashboard.service-queues">
       <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="service-queues-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/service-queues/service-queues-dashboard.component.tsx">
+      <file name="service-queues-dashboard.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/service-queues/service-queues-dashboard.component.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -1985,7 +1998,7 @@
     </package>
     <package name="esm-ohri-core-app.src.ohri-dashboard.side-menu">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="ohri-dashboard-side-nav.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/side-menu/ohri-dashboard-side-nav.component.tsx">
+      <file name="ohri-dashboard-side-nav.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-core-app/src/ohri-dashboard/side-menu/ohri-dashboard-side-nav.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -1993,7 +2006,7 @@
     </package>
     <package name="esm-ohri-pmtct-app.src.views.child-health">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="child-health.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/child-health/child-health.component.tsx">
+      <file name="child-health.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/child-health/child-health.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -2001,7 +2014,7 @@
     </package>
     <package name="esm-ohri-pmtct-app.src.views.child-health.tabs">
       <metrics statements="18" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="11" coveredmethods="0"/>
-      <file name="infant-postnatal-care.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/child-health/tabs/infant-postnatal-care.component.tsx">
+      <file name="infant-postnatal-care.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/child-health/tabs/infant-postnatal-care.component.tsx">
         <metrics statements="18" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
@@ -2025,7 +2038,7 @@
     </package>
     <package name="esm-ohri-pmtct-app.src.views.labs">
       <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="labs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/labs/labs.component.tsx">
+      <file name="labs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/labs/labs.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -2034,7 +2047,7 @@
     </package>
     <package name="esm-ohri-pmtct-app.src.views.maternal-health">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="maternal-health.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/maternal-health.component.tsx">
+      <file name="maternal-health.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/maternal-health.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -2042,7 +2055,7 @@
     </package>
     <package name="esm-ohri-pmtct-app.src.views.maternal-health.tabs">
       <metrics statements="39" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="30" coveredmethods="0"/>
-      <file name="antenatal-care.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/tabs/antenatal-care.component.tsx">
+      <file name="antenatal-care.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/tabs/antenatal-care.component.tsx">
         <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -2060,7 +2073,7 @@
         <line num="88" count="0" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
       </file>
-      <file name="labour-delivery.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/tabs/labour-delivery.component.tsx">
+      <file name="labour-delivery.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/tabs/labour-delivery.component.tsx">
         <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
@@ -2075,7 +2088,7 @@
         <line num="64" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
       </file>
-      <file name="postnatal-care.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/tabs/postnatal-care.component.tsx">
+      <file name="postnatal-care.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/maternal-health/tabs/postnatal-care.component.tsx">
         <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
@@ -2092,20 +2105,21 @@
       </file>
     </package>
     <package name="esm-ohri-pmtct-app.src.views.mch-summary">
-      <metrics statements="5" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="mch-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/mch-summary.component.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="6" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="mch-summary.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/mch-summary.component.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="17" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="19" count="0" type="stmt"/>
       </file>
     </package>
     <package name="esm-ohri-pmtct-app.src.views.mch-summary.tabs">
-      <metrics statements="197" coveredstatements="0" conditionals="50" coveredconditionals="0" methods="89" coveredmethods="0"/>
-      <file name="current-pregnancy.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/current-pregnancy.component.tsx">
-        <metrics statements="125" coveredstatements="0" conditionals="44" coveredconditionals="0" methods="47" coveredmethods="0"/>
+      <metrics statements="197" coveredstatements="0" conditionals="52" coveredconditionals="0" methods="89" coveredmethods="0"/>
+      <file name="current-pregnancy.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/current-pregnancy.component.tsx">
+        <metrics statements="125" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="47" coveredmethods="0"/>
         <line num="60" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
@@ -2160,8 +2174,8 @@
         <line num="187" count="0" type="stmt"/>
         <line num="188" count="0" type="stmt"/>
         <line num="190" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="192" count="0" type="stmt"/>
-        <line num="195" count="0" type="cond" truecount="0" falsecount="10"/>
+        <line num="192" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="195" count="0" type="cond" truecount="0" falsecount="12"/>
         <line num="198" count="0" type="stmt"/>
         <line num="200" count="0" type="stmt"/>
         <line num="203" count="0" type="stmt"/>
@@ -2232,7 +2246,7 @@
         <line num="414" count="0" type="stmt"/>
         <line num="416" count="0" type="stmt"/>
       </file>
-      <file name="hiv-exposed-infant.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/hiv-exposed-infant.component.tsx">
+      <file name="hiv-exposed-infant.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/hiv-exposed-infant.component.tsx">
         <metrics statements="54" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="30" coveredmethods="0"/>
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
@@ -2289,7 +2303,7 @@
         <line num="227" count="0" type="stmt"/>
         <line num="241" count="0" type="stmt"/>
       </file>
-      <file name="previous-pregnancies.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/previous-pregnancies.component.tsx">
+      <file name="previous-pregnancies.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/previous-pregnancies.component.tsx">
         <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
@@ -2307,7 +2321,7 @@
         <line num="75" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
       </file>
-      <file name="timeline.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/timeline.component.tsx">
+      <file name="timeline.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/mch-summary/tabs/timeline.component.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -2315,9 +2329,9 @@
       </file>
     </package>
     <package name="esm-ohri-pmtct-app.src.views.summary-tabs">
-      <metrics statements="136" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="36" coveredmethods="0"/>
-      <file name="all-clients.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/all-clients.component.tsx">
-        <metrics statements="32" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <metrics statements="140" coveredstatements="0" conditionals="24" coveredconditionals="0" methods="36" coveredmethods="0"/>
+      <file name="all-clients.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/all-clients.component.tsx">
+        <metrics statements="33" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -2345,14 +2359,15 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
       </file>
-      <file name="antenatal.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/antenatal.component.tsx">
-        <metrics statements="32" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="antenatal.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/antenatal.component.tsx">
+        <metrics statements="33" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -2380,14 +2395,15 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
       </file>
-      <file name="delivery.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/delivery.component.tsx">
-        <metrics statements="32" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="delivery.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/delivery.component.tsx">
+        <metrics statements="33" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -2415,13 +2431,14 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
       </file>
-      <file name="maternal-child-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/maternal-child-summary-tiles.component.tsx">
+      <file name="maternal-child-summary-tiles.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/maternal-child-summary-tiles.component.tsx">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -2430,13 +2447,13 @@
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
-      <file name="mother-child-summary-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/mother-child-summary-tabs.component.tsx">
+      <file name="mother-child-summary-tabs.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/mother-child-summary-tabs.component.tsx">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
-      <file name="postnatal.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/OPEN_MRS/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/postnatal.component.tsx">
-        <metrics statements="32" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="postnatal.component.tsx" path="/Users/larslemos/Documents/DEVELOPMENT/openmrs-esm-ohri/packages/esm-ohri-pmtct-app/src/views/summary-tabs/postnatal.component.tsx">
+        <metrics statements="33" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -2464,6 +2481,7 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>

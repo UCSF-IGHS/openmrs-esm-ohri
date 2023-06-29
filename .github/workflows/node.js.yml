@@ -218,10 +218,13 @@ jobs:
         with:
             command: who && which node && cd /opt/frontend_modules && /bin/bash update_microfrontends.sh
             host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
-            username: ${{ secrets.HISTAC_USERNAME }}
-            privateKey: ${{ secrets.HISTAC_KEY}}
-
+            username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            privateKey: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME}}
             port: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}
+
+            proxy_host: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}
+            proxy_username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            proxy_port: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}
 
   pre_demo:
     runs-on: ubuntu-latest
