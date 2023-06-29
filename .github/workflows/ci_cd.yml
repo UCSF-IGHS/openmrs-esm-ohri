@@ -31,7 +31,6 @@ jobs:
     if: ${{ github.ref == 'refs/heads/dev-ci-cd' }}
 
     steps:
-      steps:
         - name: Print SSH Command and Secret Variables
           run: |
             echo "SSH Command: ssh -i _key> -p <port> <username>@<host> -o 'ProxyCommand=ssh -W %h:%p -p <proxy_port> <proxy_username>@<proxy_host>'"
@@ -49,7 +48,6 @@ jobs:
     if: ${{ github.ref == 'refs/heads/dev-ci-cd' }}
 
     steps:
-      steps:
       - uses: appleboy/ssh-action@v0.1.10
         name: Run the Update MicroFronEnd Script for Dev Namibia
         with:
