@@ -54,7 +54,9 @@ jobs:
             host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
             username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
             key: ${{ secrets.HISTAC_DEV_NAMIBIA_KEY}}
+            passphrase: ${{ secrets.HISTAC_DEV_NAMIBIA_PASSPHRASE }}
             port: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}
+            proxy_passphrase: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PASSPHRASE }}
             proxy_host: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}
             proxy_username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
             proxy_port: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}
