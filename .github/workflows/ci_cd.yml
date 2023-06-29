@@ -1,0 +1,45 @@
+name: OHRI Coverage
+
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - '*'
+
+  pull_request:
+    branches:
+      - '*'
+    types: [opened, synchronize]
+  release:
+    types:
+      - created
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          package-manager: yarn
+          test-script: yarn jest
+
+  ohri_dev_proxy_namibia:
+    runs-on: ubuntu-latest
+
+    if: ${{ github.ref == 'refs/heads/dev-ci-cd' }}
+
+    steps:
+      - uses: appleboy/ssh-action@v0.1.10
+        name: Run the Update MicroFronEnd Script for Dev Namibia
+        with:
+            host: ${{ secrets.HISTAC_DEV_NAMIBIA_HOST }}
+            username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            key: ${{ secrets.HISTAC_DEV_NAMIBIA_KEY}}
+            port: ${{ secrets.HISTAC_DEV_NAMIBIA_PORT }}
+            proxy_host: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_HOST }}
+            proxy_username: ${{ secrets.HISTAC_DEV_NAMIBIA_USERNAME }}
+            proxy_port: ${{ secrets.HISTAC_DEV_NAMIBIA_PROXY_PORT }}
+            debug: truen
+            script: who && which node && cd /opt/frontend_modules && /bin/bash update_microfrontends.sh
