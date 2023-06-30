@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import styles from '../summary-tabs/ohri-patient-tabs.scss';
 import { useTranslation } from 'react-i18next';
-import { EmptyStateComingSoon, fetchPatientList, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EmptyState, EmptyStateComingSoon, fetchPatientList, OTable } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
 
 interface AllClientsListProps {
@@ -86,7 +86,7 @@ const AllClientsList: React.FC<AllClientsListProps> = ({ patientUuid }) => {
           </div>
         </>
       ) : (
-        <EmptyStateComingSoon displayText={t('allClients', 'All Clients')} headerTitle={headerTitle} />
+        <EmptyState displayText={t('allClients', 'All Clients')} headerTitle={headerTitle} />
       )}
     </>
   );
