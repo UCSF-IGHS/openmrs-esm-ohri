@@ -41,10 +41,10 @@ export const LaunchableFormMenuItem = ({
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
       setIsLoading(true);
-      fetchPatientLastEncounter(patientUuid, encounterType).then((lastHtsEncounter) => {
-        if (lastHtsEncounter) {
+      fetchPatientLastEncounter(patientUuid, encounterType).then((latestEncounter) => {
+        if (latestEncounter) {
           setActionText(continueEncounterActionText);
-          setEncounterUuid(lastHtsEncounter.uuid);
+          setEncounterUuid(latestEncounter.uuid);
         }
         setIsLoading(false);
       });
