@@ -10,7 +10,6 @@ import { moduleName } from '../index';
 import {
   covid_Assessment_EncounterUUID,
   covidTestTypeUUID,
-  covidVaccinationStatusUUID,
   covidSpecimentTestDate_UUID,
   covidOutcomeUUID,
 } from '../constants';

@@ -37,11 +37,10 @@ function CovidHomePatientTabs() {
         isReportingCohort: true,
         cohortSlotName: 'clients-assessed-for-covid-slot',
         launchableForm: {
-          package: 'covid',
-          name: 'covid_assessment',
           editActionText: t('editAssessmentForm', 'Edit case assessment form'),
           editLatestEncounter: true,
           targetDashboard: 'covid-assessments',
+          name: 'COVID Assessment Form',
         },
         associatedEncounterType: covidCaseAssessmentEncType,
         excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
@@ -80,8 +79,7 @@ function CovidHomePatientTabs() {
         isReportingCohort: true,
         cohortSlotName: 'pending-covid-lab-results-slot',
         launchableForm: {
-          package: 'covid',
-          name: 'covid_lab_test',
+          name: 'COVID Lab Test',
           editActionText: 'Enter test result',
           editLatestEncounter: true,
           targetDashboard: 'covid-lab-results',
@@ -111,8 +109,7 @@ function CovidHomePatientTabs() {
         isReportingCohort: true,
         cohortSlotName: 'clients-vaccinated-for-covid-slot',
         launchableForm: {
-          package: 'covid',
-          name: 'covid_vaccination',
+          name: 'COVID Vaccination Form',
           editActionText: 'Edit covid vaccination form',
           editLatestEncounter: true,
           targetDashboard: 'covid_vaccination',
