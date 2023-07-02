@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './form-render.scss';
-import { Run, Maximize } from '@carbon/react/icons';
+import { Run, Maximize, UserData } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig } from '@openmrs/esm-framework';
+import { openmrsFetch } from '@openmrs/esm-framework';
 
 function FormRenderTest() {
   const { t } = useTranslation();
@@ -73,6 +74,43 @@ function FormRenderTest() {
     }
     setIsSchemaLoaded(false);
   };
+
+  const formValidator = () => {
+    if (defaultJson) {
+      const parsedSchema = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
+
+      for (let i = 0; i < parsedSchema.pages.length; i++) {
+        for (let j = 0; j < formInput.pages[i].sections.length; j++) {
+          for (let k = 0; k < parsedSchema.pages[i].sections[j].questions.length; k++) {
+    
+            const questionObject = parsedSchema.pages[i].sections[j].questions[k];
+            handleFormValidation(questionObject);
+            // handleFormValidation(questionObject.questionOptions.concept);
+          }
+        }
+      }
+    } else {
+      console.log('Empty form!');
+    }
+  };
+
+  const handleFormValidation = (conceptObject) => {
+    conceptObject.questionOptions.concept ?
+     openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
+      .then((response) => {
+        console.log(response.data);
+        dataTypeChecker(conceptObject, response)
+      })
+      .catch(error => console.log("Error: ", error))
+      :
+      console.log("The ID is empty: ")
+  };
+
+  const dataTypeChecker = (conceptObject, responseObject) => {
+    if(conceptObject.questionOptions.concept === responseObject.data.uuid){
+    }
+    
+  }
 
   const handleFormSubmission = (e) => {
     setIsSchemaLoaded(false);
@@ -202,6 +240,15 @@ function FormRenderTest() {
                       style={{ marginTop: '1em' }}
                       disabled={!selectedFormIntent}>
                       {t('render', 'Render')}
+                    </Button>
+
+                    <Button
+                      style={{ marginTop: '1em', marginLeft: '10px' }}
+                      renderIcon={UserData}
+                      onClick={formValidator}
+                      // onClick={testFn}
+                    >
+                      Validate Form
                     </Button>
                   </Form>
                 </TabPanel>
