@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "@carbon/react": "1.x",
-    "@openmrs/esm-framework": "4.x",
+    "@openmrs/esm-framework": "5.x",
     "@openmrs/openmrs-form-engine-lib": "1.x",
     "react": "^18.2.0",
     "react-i18next": "^11.18.6"
