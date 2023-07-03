@@ -223,7 +223,7 @@ const HivExposedInfant: React.FC<{
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'infant_postnatal', package: 'child_health' },
+            form: { name: 'Infant - Postanal Form', package: 'child_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View details'),
