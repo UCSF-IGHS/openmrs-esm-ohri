@@ -79,13 +79,12 @@ function FormRenderTest() {
     if (defaultJson) {
       const parsedSchema = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
 
-      for (let i = 0; i < parsedSchema.pages.length; i++) {
-        for (let j = 0; j < formInput.pages[i].sections.length; j++) {
-          for (let k = 0; k < parsedSchema.pages[i].sections[j].questions.length; k++) {
-    
+      for (let i = 0; i < parsedSchema.pages.length; i++) { //pages
+        for (let j = 0; j < formInput.pages[i].sections.length; j++) { //sections
+          for (let k = 0; k < parsedSchema.pages[i].sections[j].questions.length; k++) { //questions
+
             const questionObject = parsedSchema.pages[i].sections[j].questions[k];
             handleFormValidation(questionObject);
-            // handleFormValidation(questionObject.questionOptions.concept);
           }
         }
       }
@@ -95,22 +94,35 @@ function FormRenderTest() {
   };
 
   const handleFormValidation = (conceptObject) => {
-    conceptObject.questionOptions.concept ?
-     openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
-      .then((response) => {
-        console.log(response.data);
-        dataTypeChecker(conceptObject, response)
-      })
-      .catch(error => console.log("Error: ", error))
-      :
-      console.log("The ID is empty: ")
+    conceptObject.questionOptions.concept
+      ? openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
+          .then((response) => {
+            console.log(response.data);
+            dataTypeChecker(conceptObject, response);
+          })
+          .catch((error) => {
+            error.message.includes('404') &&
+              console.log(`❌ Concept UUID ${conceptObject.questionOptions.concept} not found`);
+          })
+      : console.log('❌ Question with no concept UUID: ', conceptObject.id);
   };
 
   const dataTypeChecker = (conceptObject, responseObject) => {
-    if(conceptObject.questionOptions.concept === responseObject.data.uuid){
+    const typeCheckArray = ["Numeric : number", "Coded : radio"];
+
+    if (conceptObject.questionOptions.concept === responseObject.data.uuid) {
+      for (let i = 0; i < typeCheckArray.length; i++) {
+          
+        typeCheckArray[i].includes(responseObject.data.datatype.display) &&
+          typeCheckArray[i].includes(conceptObject.questionOptions.rendering) &&
+          console.log(`✅ Datatype match!`);
+      }
+
+      console.log(
+        `concept datatype: ${responseObject.data.datatype.display},  rendering: ${conceptObject.questionOptions.rendering}`,
+      );
     }
-    
-  }
+  };
 
   const handleFormSubmission = (e) => {
     setIsSchemaLoaded(false);
@@ -253,9 +265,7 @@ function FormRenderTest() {
                     <Button
                       style={{ marginTop: '1em', marginLeft: '10px' }}
                       renderIcon={UserData}
-                      onClick={formValidator}
-                      // onClick={testFn}
-                    >
+                      onClick={formValidator}>
                       Validate Form
                     </Button>
                   </Form>
