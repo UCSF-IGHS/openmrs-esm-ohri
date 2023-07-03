@@ -23,7 +23,7 @@ export const createOHRIDashboardLink = (meta) => {
     if (meta.isFolder) {
       return (
         <SideNavMenu renderIcon={meta.config.icon} title={meta.title}>
-          <ExtensionSlot extensionSlotName={meta.slot} />
+          <ExtensionSlot name={meta.slot} />
         </SideNavMenu>
       );
     } else if (meta.isLink) {

@@ -41,10 +41,7 @@ const LabResultsOverview: React.FC<OverviewListProps> = ({ patientUuid }) => {
           </TabPanel>
           <TabPanel>
             <div className={styles.padding}>
-              <ExtensionSlot
-                extensionSlotName="ohri-lab-test-result-filtered-overview-slot"
-                state={{ patientUuid, filter }}
-              />
+              <ExtensionSlot name="ohri-lab-test-result-filtered-overview-slot" state={{ patientUuid, filter }} />
             </div>
           </TabPanel>
         </TabPanels>
