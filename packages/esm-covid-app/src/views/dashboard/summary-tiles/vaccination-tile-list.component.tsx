@@ -141,7 +141,7 @@ export const Vaccinations: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message={t('noPatientList', 'There are no patients in this list.')} />
       ) : (
-        <ExtensionSlot extensionSlotName="covid-vaccination-table-slot" state={state} key={counter} />
+        <ExtensionSlot name="covid-vaccination-table-slot" state={state} key={counter} />
       )}
     </div>
   );

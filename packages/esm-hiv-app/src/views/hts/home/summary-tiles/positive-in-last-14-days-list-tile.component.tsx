@@ -151,7 +151,7 @@ export const PositiveInLast14Days: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName="positive-in-last-14-days-table-slot" state={state} key={counter} />
+        <ExtensionSlot name="positive-in-last-14-days-table-slot" state={state} key={counter} />
       )}
     </div>
   );

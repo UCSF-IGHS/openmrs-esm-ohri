@@ -328,7 +328,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
           message={t('noPatientSidenav', 'There are no patients in this list.')}
         />
       ) : (
-        <ExtensionSlot extensionSlotName={cohortSlotName} state={state} key={counter} />
+        <ExtensionSlot name={cohortSlotName} state={state} key={counter} />
       )}
     </div>
   );
