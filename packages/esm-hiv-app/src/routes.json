@@ -6,5 +6,189 @@
   "pages": [
   ],
   "extensions": [
+    {
+      "name": "patient-hiv-status-tag",
+      "slot": "patient-banner-tags-slot",
+      "component": "patientHivStatusTag"
+    },
+    {
+      "name": "hts-patient-encounters-list-ext",
+      "slot": "hts-summary-dashboard-slot",
+      "component": "htsPatientEncountersList"
+    },
+    {
+      "name": "hts-service-summary-list-ext",
+      "slot": "hiv-patient-summary-dashboard-slot",
+      "component": "htsServiceSummaryList"
+    },
+    {
+      "name": "hts-home-header-ext",
+      "slot": "hts-home-header-slot",
+      "component": "htsHomeHeader"
+    },
+    {
+      "name": "hts-home-tile-ext",
+      "slot": "hts-home-tile-slot",
+      "component": "htsHomeTiles"
+    },
+    {
+      "name": "hts-home-tabs-ext",
+      "slot": "hts-home-tabs-slot",
+      "component": "htsHomeTabs"
+    },
+    {
+      "name": "ct-home-header-ext",
+      "slot": "ct-home-header-slot",
+      "component": "ctHomeHeader"
+    },
+    {
+      "name": "ct-home-tile-ext",
+      "slot": "ct-home-tile-slot",
+      "component": "ctHomeTiles"
+    },
+    {
+      "name": "ct-home-tabs-ext",
+      "slot": "ct-home-tabs-slot",
+      "component": "ctHomeTabs"
+    },
+    {
+      "name": "hiv-care-and-treatment-dashboard-link",
+      "slot": "dashboard-slot",
+      "component": "hivCareAndTreatmentFolderLink"
+    },
+    {
+      "name": "care-and-treatment-dashboard-ext",
+      "slot": "ohri-hiv-care-and-treatment-dashboard-slot",
+      "component": "hivCareAndTreatmentDashboardLink"
+    },
+    {
+      "name": "ohri-care-and-treatment-dashboard",
+      "slot": "care-and-treatment-dashboard-slot",
+      "component": "hivCareAndTreatmentDashboard",
+      "meta": {
+        "name": "care-and-treatment",
+        "slot": "care-and-treatment-dashboard-slot",
+        "config": { "columns": 1, "type": "grid", "programme": "ct", "dashboardTitle": "C&T Home Page" },
+        "title": "Care and Treatment"
+      }
+    },
+    {
+      "name": "hiv-prevention-dashboard-link",
+      "slot": "dashboard-slot",
+      "component": "hivPreventionFolderLink"
+    },
+    {
+      "name": "ohri-hiv-prevention-dashboard-ext",
+      "slot": "ohri-hiv-prevention-dashboard-slot",
+      "component": "hivPreventionDashboardLink"
+    },
+    {
+      "name": "ohri-hiv-prevention-dashboard",
+      "slot": "hts-dashboard-slot",
+      "component": "hivPreventionDashboard",
+      "meta": {
+        "name": "hts",
+        "slot": "hts-dashboard-slot",
+        "config": { "columns": 1, "type": "grid", "programme": "hts", "dashboardTitle": "HTS Home Page" },
+        "title": "HIV Testing Services"
+      }
+    },
+    {
+      "name": "lab-results-home-header-ext",
+      "slot": "lab-results-home-header-slot",
+      "component": "labResultsHomeHeader"
+    },
+    {
+      "name": "lab-results-home-tile-ext",
+      "slot": "lab-results-home-tile-slot",
+      "component": "labResultsHomeTiles"
+    },
+    {
+      "name": "lab-results-tabs-ext",
+      "slot": "lab-results-home-tabs-slot",
+      "component": "labResultsHomeTabs"
+    },
+    {
+      "name": "ohri-hiv-prevention",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartHIVPreventionDashboard",
+      "order": 22
+    },
+    {
+      "name": "hts-summary-dashboard",
+      "slot": "ohri-hiv-prevention-slot",
+      "component": "htsSummaryDashboardLink"
+    },
+    {
+      "name": "pre-exposure-prophylaxis",
+      "slot": "ohri-hiv-prevention-slot",
+      "component": "preExposureProphylaxisDashboardLink"
+    },
+    {
+      "name": "pre-exposure-prophylaxis-ext",
+      "slot": "pre-exposure-prophylaxis-dashboard-slot",
+      "component": "preExposureProphylaxisDashboard"
+    },
+    {
+      "name": "ohri-hiv-care-and-treatment",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartHIVCareAndTreatmentDashboard",
+      "order": 21
+    },
+    {
+      "name": "hts-service-summary-dashboard",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "htsServiceSummaryDashboardLink"
+    },
+    {
+      "name": "program-management-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "programManagementDashboardLink"
+    },
+    {
+      "name": "program-management-summary-ext",
+      "slot": "program-management-summary-slot",
+      "component": "programManagementDashboard"
+    },
+    {
+      "name": "visits-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "clinicalVisitsDashboardLink"
+    },
+    {
+      "name": "visits-summary-ext",
+      "slot": "clinical-visits-summary-slot",
+      "component": "clinicalVisitsDashboard"
+    },
+    {
+      "name": "general-counselling-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "generalCounsellingDashboardLink"
+    },
+    {
+      "name": "general-counselling-summary-ext",
+      "slot": "general-counselling-summary-slot",
+      "component": "generalCounsellingDashboard"
+    },
+    {
+      "name": "adherence-counselling-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "adherenceCounsellingDashboardLink"
+    },
+    {
+      "name": "adherence-counselling-summary-ext",
+      "slot": "adherence-counselling-summary-slot",
+      "component": "adherenceCounsellingDashboard"
+    },
+    {
+      "name": "partner-notification-services",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "partnerNotificationDashboardLink"
+    },
+    {
+      "name": "partner-notification-services-ext",
+      "slot": "partner-notification-services-slot",
+      "component": "partnerNotificationDashboard"
+    }
   ]
 }
