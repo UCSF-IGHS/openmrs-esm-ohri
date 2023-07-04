@@ -108,15 +108,16 @@ function FormRenderTest() {
   };
 
   const dataTypeChecker = (conceptObject, responseObject) => {
-    const dataTypes = ['Numeric', 'Coded', 'Text', 'Date', 'Datetime', 'Boolean'];
+    const dataTypes = ['Numeric', 'Coded', 'Text', 'Date', 'Datetime', 'Boolean', 'Rule'];
 
     const renderTypes = [
-      ['number', 'text'],
-      ['select', 'checkbox', 'radio', 'content switcher'],
+      ['number'],
+      ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
       ['text', 'textarea'],
       ['date'],
       ['datetime'],
-      ['toggle'],
+      ['toggle', 'select', 'radio', 'content-switcher'],
+      ['repeating', 'group']
     ];
 
     if (conceptObject.questionOptions.concept === responseObject.data.uuid) {
