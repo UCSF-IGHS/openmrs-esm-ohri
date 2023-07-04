@@ -6,5 +6,75 @@
   "pages": [
   ],
   "extensions": [
+    {
+      "name": "covid-home-header-ext",
+      "slot": "ovid-home-header-slot",
+      "component": "covidDashboardHeader"
+    },
+    {
+      "name": "covid-home-tile-ext",
+      "slot": "covid-home-tiles-slot",
+      "component": "covidDashboardTiles"
+    },
+    {
+      "name": "covid-home-tabs-ext",
+      "slot": "covid-home-tabs-slot",
+      "component": "covidDashboardTabs"
+    },
+    {
+      "name": "covid-dashboard-items",
+      "slot": "dashboard-slot",
+      "component": "covidSummaryDashboardLink"
+    },
+    {
+      "name": "maternal-visits-summary-ext",
+      "slot": "maternal-visits-summary-slot",
+      "component": "maternalVisitsDashboard"
+    },
+    {
+      "name": "covid-cases-dashboard-ext",
+      "slot": "ohri-covid-dashboard-slot",
+      "component": "covidCasesDashboardLink"
+    },
+    {
+      "name": "covid-cases-dashboard",
+      "slot": "covid-cases-dashboard-slot",
+      "component": "covidCasesDashboard"
+    },
+    {
+      "name": "ohri-covid",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "covidDashboard"
+    },
+    {
+      "name": "covid-assessments-dashboard",
+      "slot": "ohri-covid-patient-chart-slot",
+      "component": "covidAssessmentDashboardLink"
+    },
+    {
+      "name": "covid-lab-results",
+      "slot": "ohri-covid-patient-chart-slot",
+      "component": "covidLabResultsDashboardLink"
+    },
+    {
+      "name": "covid-vaccinations-dashboard",
+      "slot": "ohri-covid-patient-chart-slot",
+      "component": "covidVaccinationDashboardLink"
+    },
+    {
+      "name": "covid-assessments-ext",
+      "slot": "covid-assessments-dashboard-slot",
+      "component": "covidAssessmentsDashboard"
+    },
+    {
+      "name": "covid-Lab-results-ext",
+      "slot": "covid-lab-dashboard-slot",
+      "component": "covidLabResultsDashboard"
+    },
+    {
+      "name": "ovid-vaccinations-ext",
+      "slot": "covid-vaccinations-dashboard-slot",
+      "component": "covidVaccinationsDashboard"
+    }
   ]
 }
