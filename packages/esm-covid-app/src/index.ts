@@ -1,5 +1,4 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
-import { backendDependencies } from './openmrs-backend-dependencies';
 import {
   covidAssessmentsDashboardMeta,
   covidLabTestsDashboardMeta,
