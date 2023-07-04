@@ -4,11 +4,7 @@
     "webservices.rest": "^2.24.0"
   },
   "pages": [
-    {
-      "component": "root",
-      "route": "login",
-      "online": true,
-      "offline": true
-    }
+  ],
+  "extensions": [
   ]
 }
