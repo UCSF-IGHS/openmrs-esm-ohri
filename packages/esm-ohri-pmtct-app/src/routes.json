@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+  "pages": [
+  ],
+  "extensions": [
+    {
+      "name": "mch",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "mchDashboard",
+      "order": 25
+    },
+    {
+      "name": "mch-summary-dashboard",
+      "slot": "mch-slot",
+      "component": "mchSummaryDashboardLink"
+    },
+    {
+      "name": "mch-summary-ext",
+      "slot": "mch-summary-slot",
+      "component": "mchSummaryDashboard"
+    },
+    {
+      "name": "maternal-visits-dashboard",
+      "slot": "mch-slot",
+      "component": "maternalVisitsDashboardLink"
+    },
+    {
+      "name": "maternal-visits-summary-ext",
+      "slot": "maternal-visits-summary-slot",
+      "component": "maternalVisitsDashboard"
+    },
+    {
+      "name": "child-visits-dashboard",
+      "slot": "mch-slot",
+      "component": "childVisitsDashboardLink"
+    },
+    {
+      "name": "child-visits-summary-ext",
+      "slot": "child-visits-summary-slot",
+      "component": "childVisitsDashboard"
+    },
+    {
+      "name": "maternal-child-health-results-summary",
+      "slot": "dashboard-slot",
+      "component": "maternalChildDashboardLink"
+    },
+    {
+      "name": "mother-child-health-results-dashboard",
+      "slot": "mother-child-health-dashboard-slot",
+      "component": "maternalChildDashboard"
+    },
+    {
+      "name": "pmtct-home-header-slot",
+      "slot": "pmtct-home-header-slot",
+      "component": "pmtctDashboardHeader"
+    },
+    {
+      "name": "pmtct-home-tile-ext",
+      "slot": "pmtct-home-tile-slot",
+      "component": "pmtctDashboardTiles"
+    },
+    {
+      "name": "pmtct-home-tabs-ext",
+      "slot": "pmtct-home-tabs-slot",
+      "component": "pmtctDashboardTabs"
+    }
+  ]
+}
