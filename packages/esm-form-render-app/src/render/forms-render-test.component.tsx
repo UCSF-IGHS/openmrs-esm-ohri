@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './form-render.scss';
-import { Run, Maximize } from '@carbon/react/icons';
+import { Run, Maximize, UserData } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig } from '@openmrs/esm-framework';
+import { openmrsFetch } from '@openmrs/esm-framework';
 
 function FormRenderTest() {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ function FormRenderTest() {
   const [defaultJson, setDefaultJson] = useState(localStorage.getItem('forms-render-test:draft-form'));
   // This is required because of the enforced CORS policy
   const corsProxy = 'ohri-form-render.globalhealthapp.net';
-
+  
   const availableEditorThemes = [
     'monokai',
     'github',
@@ -72,6 +73,64 @@ function FormRenderTest() {
       setInputErrorMessage(err.toString());
     }
     setIsSchemaLoaded(false);
+  };
+
+  const formValidator = () => {
+    if (defaultJson) {
+      const parsedForm = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
+
+      for (let i = 0; i < parsedForm.pages.length; i++) {
+        for (let j = 0; j < parsedForm.pages[i].sections.length; j++) {
+          for (let k = 0; k < parsedForm.pages[i].sections[j].questions.length; k++) {
+            
+            const questionObject = parsedForm.pages[i].sections[j].questions[k];
+            handleFormValidation(questionObject);
+          }
+        }
+      }
+    } else {
+      console.log('Empty form!');
+    }
+  };
+
+  const handleFormValidation = (conceptObject) => {
+    conceptObject.questionOptions.concept
+      ? openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
+          .then((response) => {
+            console.log(response.data);
+            dataTypeChecker(conceptObject, response);
+          })
+          .catch((error) => {
+            error.message.includes('404') &&
+              console.log(`❌ Concept UUID ${conceptObject.questionOptions.concept} not found`);
+          })
+      : console.log('❌ Question with no concept UUID: ', conceptObject.id);
+  };
+
+  const dataTypeChecker = (conceptObject, responseObject) => {
+    const dataTypes = ['Numeric', 'Coded', 'Text', 'Date', 'Datetime', 'Boolean'];
+
+    const renderTypes = [
+      ['number', 'text'],
+      ['select', 'checkbox', 'radio', 'content switcher'],
+      ['text', 'textarea'],
+      ['date'],
+      ['datetime'],
+      ['toggle'],
+    ];
+
+    if (conceptObject.questionOptions.concept === responseObject.data.uuid) {
+
+      dataTypes.forEach((dataType, index) => {
+        responseObject.data.datatype.display === `${dataType}` &&
+        !renderTypes[index].includes(conceptObject.questionOptions.rendering) &&
+          console.log('❌ datatype mismatch');
+      });
+
+      console.log(
+        `datatype:${responseObject.data.datatype.display} rendering:${conceptObject.questionOptions.rendering}`,
+      );
+    }
   };
 
   const handleFormSubmission = (e) => {
@@ -195,11 +254,15 @@ function FormRenderTest() {
                       />
                     </div>
 
+                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={formValidator}>
+                      Validate Form
+                    </Button>
+
                     <Button
                       type="submit"
                       renderIcon={Run}
                       className="form-group"
-                      style={{ marginTop: '1em' }}
+                      style={{ marginTop: '1em', marginLeft: '10px' }}
                       disabled={!selectedFormIntent}>
                       {t('render', 'Render')}
                     </Button>
