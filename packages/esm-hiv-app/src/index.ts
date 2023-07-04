@@ -142,140 +142,82 @@ export const labResultsHomeTabs = getAsyncLifecycle(
   },
 );
 
-// return {
-//   extensions: [
-//     {
-//       id: 'ohri-hiv-prevention',
-//       slot: 'patient-chart-dashboard-slot',
-//       load: getSyncLifecycle(createDashboardGroup(hivPreventionDashboardDMeta), options),
-//       meta: hivPreventionDashboardDMeta,
-//       online: true,
-//       offline: true,
-//       order: 22,
-//     },
-//     {
-//       id: 'hts-summary-dashboard',
-//       slot: 'ohri-hiv-prevention-slot',
-//       load: getSyncLifecycle(createDashboardLink(htsSummaryDashboardMeta), options),
-//       meta: htsSummaryDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'pre-exposure-prophylaxis',
-//       slot: 'ohri-hiv-prevention-slot',
-//       load: getSyncLifecycle(createDashboardLink(preExposureProphylaxisDashboardMeta), options),
-//       meta: preExposureProphylaxisDashboardMeta,
-//       online: false,
-//       offline: false,
-//     },
-//     {
-//       id: 'pre-exposure-prophylaxis-ext',
-//       slot: 'pre-exposure-prophylaxis-dashboard-slot',
-//       load: getAsyncLifecycle(() => import('./views/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component'), {
-//         featureName: 'pre-exposure-prophylaxis',
-//         moduleName,
-//       }),
-//     },
-//     {
-//       id: 'ohri-hiv-care-and-treatment',
-//       slot: 'patient-chart-dashboard-slot',
-//       load: getSyncLifecycle(createDashboardGroup(hivCareAndTreatmentDashboardDMeta), options),
-//       meta: hivCareAndTreatmentDashboardDMeta,
-//       online: true,
-//       offline: true,
-//       order: 21,
-//     },
-//     {
-//       id: 'hts-service-summary-dashboard',
-//       slot: 'ohri-hiv-care-and-treatment-slot',
-//       load: getSyncLifecycle(createDashboardLink(hivPatientSummaryDashboardMeta), options),
-//       meta: hivPatientSummaryDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'program-management-summary',
-//       slot: 'ohri-hiv-care-and-treatment-slot',
-//       load: getSyncLifecycle(createDashboardLink(programManagementDashboardMeta), options),
-//       meta: programManagementDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'program-management-summary-ext',
-//       slot: 'program-management-summary-slot',
-//       load: getAsyncLifecycle(() => import('./views/program-management/program-management-summary.component'), {
-//         featureName: 'program-management-summary',
-//         moduleName,
-//       }),
-//     },
-//     {
-//       id: 'visits-summary',
-//       slot: 'ohri-hiv-care-and-treatment-slot',
-//       load: getSyncLifecycle(createDashboardLink(clinicalVisitsDashboardMeta), options),
-//       meta: clinicalVisitsDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'visits-summary-ext',
-//       slot: 'clinical-visits-summary-slot',
-//       load: getAsyncLifecycle(() => import('./views/visits/visits-summary.component'), {
-//         featureName: 'visits-summary',
-//         moduleName,
-//       }),
-//     },
-//     {
-//       id: 'general-counselling-summary',
-//       slot: 'ohri-hiv-care-and-treatment-slot',
-//       load: getSyncLifecycle(createDashboardLink(generalCounsellingDashboardMeta), options),
-//       meta: generalCounsellingDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'general-counselling-summary-ext',
-//       slot: 'general-counselling-summary-slot',
-//       load: getAsyncLifecycle(() => import('./views/general-counselling/general-counselling-summary.component'), {
-//         featureName: 'general-counselling-summary',
-//         moduleName,
-//       }),
-//     },
-//     {
-//       id: 'adherence-counselling-summary',
-//       slot: 'ohri-hiv-care-and-treatment-slot',
-//       load: getSyncLifecycle(createDashboardLink(adherenceCounsellingDashboardMeta), options),
-//       meta: adherenceCounsellingDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'adherence-counselling-summary-ext',
-//       slot: 'adherence-counselling-summary-slot',
-//       load: getAsyncLifecycle(() => import('./views/adherence-counselling/adherence-counselling-summary.component'), {
-//         featureName: 'adherence-counselling-summary',
-//         moduleName,
-//       }),
-//     },
-//     {
-//       id: 'partner-notification-services',
-//       slot: 'ohri-hiv-care-and-treatment-slot',
-//       load: getSyncLifecycle(createDashboardLink(partnerNotificationServicesDashboardMeta), options),
-//       meta: partnerNotificationServicesDashboardMeta,
-//       online: true,
-//       offline: true,
-//     },
-//     {
-//       id: 'partner-notification-services-ext',
-//       slot: 'partner-notification-services-slot',
-//       load: getAsyncLifecycle(
-//         () => import('./views/partner-notification-services/partner-notification-services.component'),
-//         {
-//           featureName: 'partner-notification-services',
-//           moduleName,
-//         },
-//       ),
-//     },
-//   ],
-// };
+// Patient Chart
+export const patientChartHIVPreventionDashboard = getSyncLifecycle(
+  createDashboardGroup(hivPreventionDashboardDMeta),
+  options,
+);
+export const htsSummaryDashboardLink = getSyncLifecycle(createDashboardLink(htsSummaryDashboardMeta), options);
+export const preExposureProphylaxisDashboardLink = getSyncLifecycle(
+  createDashboardLink(preExposureProphylaxisDashboardMeta),
+  options,
+);
+export const preExposureProphylaxisDashboard = getAsyncLifecycle(
+  () => import('./views/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component'),
+  {
+    featureName: 'pre-exposure-prophylaxis',
+    moduleName,
+  },
+);
+
+export const patientChartHIVCareAndTreatmentDashboard = getSyncLifecycle(
+  createDashboardGroup(hivCareAndTreatmentDashboardDMeta),
+  options,
+);
+export const htsServiceSummaryDashboardLink = getSyncLifecycle(
+  createDashboardLink(hivPatientSummaryDashboardMeta),
+  options,
+);
+export const programManagementDashboardLink = getSyncLifecycle(
+  createDashboardLink(programManagementDashboardMeta),
+  options,
+);
+export const programManagementDashboard = getAsyncLifecycle(
+  () => import('./views/program-management/program-management-summary.component'),
+  {
+    featureName: 'program-management-summary',
+    moduleName,
+  },
+);
+
+export const clinicalVisitsDashboardLink = getSyncLifecycle(createDashboardLink(clinicalVisitsDashboardMeta), options);
+export const clinicalVisitsDashboard = getAsyncLifecycle(() => import('./views/visits/visits-summary.component'), {
+  featureName: 'visits-summary',
+  moduleName,
+});
+
+export const generalCounsellingDashboardLink = getSyncLifecycle(
+  createDashboardLink(generalCounsellingDashboardMeta),
+  options,
+);
+export const generalCounsellingDashboard = getAsyncLifecycle(
+  () => import('./views/general-counselling/general-counselling-summary.component'),
+  {
+    featureName: 'general-counselling-summary',
+    moduleName,
+  },
+);
+
+export const adherenceCounsellingDashboardLink = getSyncLifecycle(
+  createDashboardLink(adherenceCounsellingDashboardMeta),
+  options,
+);
+export const adherenceCounsellingDashboard = getAsyncLifecycle(
+  () => import('./views/adherence-counselling/adherence-counselling-summary.component'),
+  {
+    featureName: 'adherence-counselling-summary',
+    moduleName,
+  },
+);
+
+export const partnerNotificationServicesDashboardLink = getSyncLifecycle(
+  createDashboardLink(partnerNotificationServicesDashboardMeta),
+  options,
+);
+export const partnerNotificationServicesDashboard = getAsyncLifecycle(
+  () => import('./views/partner-notification-services/partner-notification-services.component'),
+  {
+    featureName: 'partner-notification-services',
+    moduleName,
+  },
+);

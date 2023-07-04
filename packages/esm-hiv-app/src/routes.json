@@ -107,7 +107,88 @@
       "name": "lab-results-tabs-ext",
       "slot": "lab-results-home-tabs-slot",
       "component": "labResultsHomeTabs"
+    },
+    {
+      "name": "ohri-hiv-prevention",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartHIVPreventionDashboard",
+      "order": 22
+    },
+    {
+      "name": "hts-summary-dashboard",
+      "slot": "ohri-hiv-prevention-slot",
+      "component": "htsSummaryDashboardLink"
+    },
+    {
+      "name": "pre-exposure-prophylaxis",
+      "slot": "ohri-hiv-prevention-slot",
+      "component": "preExposureProphylaxisDashboardLink"
+    },
+    {
+      "name": "pre-exposure-prophylaxis-ext",
+      "slot": "pre-exposure-prophylaxis-dashboard-slot",
+      "component": "preExposureProphylaxisDashboard"
+    },
+    {
+      "name": "ohri-hiv-care-and-treatment",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartHIVCareAndTreatmentDashboard",
+      "order": 21
+    },
+    {
+      "name": "hts-service-summary-dashboard",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "htsServiceSummaryDashboardLink"
+    },
+    {
+      "name": "program-management-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "programManagementDashboardLink"
+    },
+    {
+      "name": "program-management-summary-ext",
+      "slot": "program-management-summary-slot",
+      "component": "programManagementDashboard"
+    },
+    {
+      "name": "visits-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "clinicalVisitsDashboardLink"
+    },
+    {
+      "name": "visits-summary-ext",
+      "slot": "clinical-visits-summary-slot",
+      "component": "clinicalVisitsDashboard"
+    },
+    {
+      "name": "general-counselling-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "generalCounsellingDashboardLink"
+    },
+    {
+      "name": "general-counselling-summary-ext",
+      "slot": "general-counselling-summary-slot",
+      "component": "generalCounsellingDashboard"
+    },
+    {
+      "name": "adherence-counselling-summary",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "adherenceCounsellingDashboardLink"
+    },
+    {
+      "name": "adherence-counselling-summary-ext",
+      "slot": "adherence-counselling-summary-slot",
+      "component": "adherenceCounsellingDashboard"
+    },
+    {
+      "name": "partner-notification-services",
+      "slot": "ohri-hiv-care-and-treatment-slot",
+      "component": "partnerNotificationDashboardLink"
+    },
+    {
+      "name": "partner-notification-services-ext",
+      "slot": "partner-notification-services-slot",
+      "component": "partnerNotificationDashboard"
     }
-
   ]
 }
