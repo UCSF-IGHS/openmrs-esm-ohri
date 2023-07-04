@@ -28,7 +28,7 @@ function FormRenderTest() {
   const [defaultJson, setDefaultJson] = useState(localStorage.getItem('forms-render-test:draft-form'));
   // This is required because of the enforced CORS policy
   const corsProxy = 'ohri-form-render.globalhealthapp.net';
-
+  
   const availableEditorThemes = [
     'monokai',
     'github',
@@ -77,13 +77,13 @@ function FormRenderTest() {
 
   const formValidator = () => {
     if (defaultJson) {
-      const parsedSchema = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
+      const parsedForm = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
 
-      for (let i = 0; i < parsedSchema.pages.length; i++) { //pages
-        for (let j = 0; j < formInput.pages[i].sections.length; j++) { //sections
-          for (let k = 0; k < parsedSchema.pages[i].sections[j].questions.length; k++) { //questions
-
-            const questionObject = parsedSchema.pages[i].sections[j].questions[k];
+      for (let i = 0; i < parsedForm.pages.length; i++) {
+        for (let j = 0; j < parsedForm.pages[i].sections.length; j++) {
+          for (let k = 0; k < parsedForm.pages[i].sections[j].questions.length; k++) {
+            
+            const questionObject = parsedForm.pages[i].sections[j].questions[k];
             handleFormValidation(questionObject);
           }
         }
@@ -108,18 +108,27 @@ function FormRenderTest() {
   };
 
   const dataTypeChecker = (conceptObject, responseObject) => {
-    const typeCheckArray = ["Numeric : number", "Coded : radio"];
+    const dataTypes = ['Numeric', 'Coded', 'Text', 'Date', 'Datetime', 'Boolean'];
+
+    const renderTypes = [
+      ['number', 'text'],
+      ['select', 'checkbox', 'radio', 'content switcher'],
+      ['text', 'textarea'],
+      ['date'],
+      ['datetime'],
+      ['toggle'],
+    ];
 
     if (conceptObject.questionOptions.concept === responseObject.data.uuid) {
-      for (let i = 0; i < typeCheckArray.length; i++) {
-          
-        typeCheckArray[i].includes(responseObject.data.datatype.display) &&
-          typeCheckArray[i].includes(conceptObject.questionOptions.rendering) &&
-          console.log(`✅ Datatype match!`);
-      }
+
+      dataTypes.forEach((dataType, index) => {
+        responseObject.data.datatype.display === `${dataType}` &&
+        !renderTypes[index].includes(conceptObject.questionOptions.rendering) &&
+          console.log('❌ datatype mismatch');
+      });
 
       console.log(
-        `concept datatype: ${responseObject.data.datatype.display},  rendering: ${conceptObject.questionOptions.rendering}`,
+        `datatype:${responseObject.data.datatype.display} rendering:${conceptObject.questionOptions.rendering}`,
       );
     }
   };
@@ -245,20 +254,17 @@ function FormRenderTest() {
                       />
                     </div>
 
+                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={formValidator}>
+                      Validate Form
+                    </Button>
+
                     <Button
                       type="submit"
                       renderIcon={Run}
                       className="form-group"
-                      style={{ marginTop: '1em' }}
+                      style={{ marginTop: '1em', marginLeft: '10px' }}
                       disabled={!selectedFormIntent}>
                       {t('render', 'Render')}
-                    </Button>
-
-                    <Button
-                      style={{ marginTop: '1em', marginLeft: '10px' }}
-                      renderIcon={UserData}
-                      onClick={formValidator}>
-                      Validate Form
                     </Button>
                   </Form>
                 </TabPanel>
