@@ -45,14 +45,10 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
             <Tabs>
               <TabList contained>
                 <Tab>{t('hivExposedInfant', 'HIV Exposed infant')}</Tab>
-                <Tab>{t('timeline', 'Timeline')}</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
                   <HivExposedInfant patientUuid={patientUuid} dateOfBirth={dob} />
-                </TabPanel>
-                <TabPanel>
-                  <Timeline patientUuid={patientUuid} />
                 </TabPanel>
               </TabPanels>
             </Tabs>
