@@ -12,7 +12,7 @@ import {
   careAndTreatmentDashboardMeta,
   htsDashboardMeta,
   htsSummaryDashboardMeta,
-  hivPreventionDashboardDMeta,
+  hivPreventionDashboardMeta,
   preExposureProphylaxisDashboardMeta,
   hivCareAndTreatmentDashboardDMeta,
   hivPatientSummaryDashboardMeta,
@@ -144,10 +144,11 @@ export const labResultsHomeTabs = getAsyncLifecycle(
 
 // Patient Chart
 export const patientChartHIVPreventionDashboard = getSyncLifecycle(
-  createDashboardGroup(hivPreventionDashboardDMeta),
+  createDashboardGroup(hivPreventionDashboardMeta),
   options,
 );
 export const htsSummaryDashboardLink = getSyncLifecycle(createDashboardLink(htsSummaryDashboardMeta), options);
+
 export const preExposureProphylaxisDashboardLink = getSyncLifecycle(
   createDashboardLink(preExposureProphylaxisDashboardMeta),
   options,

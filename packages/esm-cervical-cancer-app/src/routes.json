@@ -9,13 +9,23 @@
     {
       "name": "cervical-cancer",
       "slot": "patient-chart-dashboard-slot",
-      "component": "cacxDashboard",
-      "order": 25
+      "component": "cacxPatientChartDashboard",
+      "order": 25,
+      "meta": {
+        "path": "Cervical Cancer",
+        "slotName": "cervical-cancer-slot",
+        "isExpanded": false
+      }
     },
     {
       "name": "'cacx-summary-dashboard",
       "slot": "cervical-cancer-slot",
-      "component": "cacxSummaryDashboardLink"
+      "component": "cacxSummaryDashboardLink",
+      "meta": {
+        "path": "CaCx Summary",
+        "slotName": "cacx-summary-slot",
+        "columns": 1
+      }
     },
     {
       "name": "cacx-summary-ext",
@@ -25,22 +35,32 @@
     {
       "name": "cacx-visits-dashboard",
       "slot": "cervical-cancer-slot",
-      "component": "cacxDashboardLink"
+      "component": "cacxVisitsDashboardLink",
+      "meta": {
+        "path": "CaCx Visits",
+        "slotName": "cacx-visits-slot",
+        "columns": 1
+      }
     },
     {
       "name": "cacx-visits-ext",
       "slot": "cacx-visits-slot",
-      "component": "cervicalCancerDashboard"
+      "component": "cacxVisitsDashboard"
     },
     {
       "name": "cacx-appointments-dashboard",
       "slot": "cervical-cancer-slot",
-      "component": "cervicalCancerDashboardLink"
+      "component": "cacxAppointmentsDashboardLink",
+      "meta": {
+        "path": "CaCx Appointments",
+        "slotName": "cacx-appointments-slot",
+        "columns": 1
+      }
     },
     {
       "name": "cacx-appointments-ext",
       "slot": "cacx-appointments-slot",
-      "component": "cacxAppointmentDashboard"
+      "component": "cacxAppointmentsDashboard"
     }
   ]
 }

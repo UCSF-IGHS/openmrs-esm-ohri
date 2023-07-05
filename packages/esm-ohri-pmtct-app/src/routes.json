@@ -15,7 +15,12 @@
     {
       "name": "mch-summary-dashboard",
       "slot": "mch-slot",
-      "component": "mchSummaryDashboardLink"
+      "component": "mchSummaryDashboardLink",
+      "meta": {
+        "path": "MNCH Summary",
+        "slot": "mch-summary-slot",
+        "columns": 1
+      }
     },
     {
       "name": "mch-summary-ext",
@@ -25,7 +30,12 @@
     {
       "name": "maternal-visits-dashboard",
       "slot": "mch-slot",
-      "component": "maternalVisitsDashboardLink"
+      "component": "maternalVisitsDashboardLink",
+      "meta": {
+        "path": "Maternal Visits",
+        "slot": "maternal-visits-summary-slot",
+        "columns": 1
+      }
     },
     {
       "name": "maternal-visits-summary-ext",
@@ -35,7 +45,12 @@
     {
       "name": "child-visits-dashboard",
       "slot": "mch-slot",
-      "component": "childVisitsDashboardLink"
+      "component": "childVisitsDashboardLink",
+      "meta": {
+        "path": "Child Visits",
+        "slot": "child-visits-summary-slot",
+        "columns": 1
+      }
     },
     {
       "name": "child-visits-summary-ext",
@@ -47,15 +62,16 @@
       "slot": "dashboard-slot",
       "component": "maternalChildDashboardLink",
       "meta": {
-        "name": "mother-child-health",
+        "title": "Maternal & Child Health",
+        "path": "Maternal & Child Health",
         "slot": "mother-child-health-dashboard-slot",
         "config": {
           "columns": 1,
+          "type": "grid",
           "programme": "pmtct",
-          "dashboardTitle": "Mother Child Health Home Page"
+          "dashboardTitle": "Mother and Child Health"
         },
-        "isLink": true,
-        "title": "Maternal & Child Health"
+        "isLink": true
       }
     },
     {

@@ -117,7 +117,12 @@
     {
       "name": "hts-summary-dashboard",
       "slot": "ohri-hiv-prevention-slot",
-      "component": "htsSummaryDashboardLink"
+      "component": "htsSummaryDashboardLink",
+      "meta": {
+        "slot": "hts-summary-dashboard-slot",
+        "columns": 1,
+        "path": "HIV Testing Services"
+      }
     },
     {
       "name": "pre-exposure-prophylaxis",

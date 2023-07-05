@@ -1,5 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
-import ohriDashboardsConfig from './ohri-core-config';
+import ohriLogoConfig from './ohri-core-config';
+import ohriConfig from './ohri-esm-and-dashboards-config.json';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
@@ -23,8 +24,9 @@ const options = {
 };
 
 export function startupApp() {
+  provide(ohriLogoConfig);
+  provide(ohriConfig);
   defineConfigSchema(moduleName, {});
-  provide(ohriDashboardsConfig);
 }
 
 export const dashboard = getAsyncLifecycle(() => import('./root'), options);
