@@ -24,7 +24,22 @@
     {
       "name": "covid-dashboard-items",
       "slot": "dashboard-slot",
-      "component": "covidSummaryDashboardLink"
+      "component": "covidSummaryDashboardLink",
+      "meta": {
+        "slot": "ohri-covid-dashboard-slot",
+        "isFolder": true,
+        "title": "COVID"
+      }
+    },
+    {
+      "name": "covid-cases-dashboard-ext",
+      "slot": "ohri-covid-dashboard-slot",
+      "component": "covidCasesDashboardLink",
+      "meta": {
+        "slot": "covid-cases-dashboard-slot",
+        "name": "covid-cases",
+        "title": "COVID-19 Cases"
+      }
     },
     {
       "name": "maternal-visits-summary-ext",
@@ -32,14 +47,15 @@
       "component": "maternalVisitsDashboard"
     },
     {
-      "name": "covid-cases-dashboard-ext",
-      "slot": "ohri-covid-dashboard-slot",
-      "component": "covidCasesDashboardLink"
-    },
-    {
       "name": "covid-cases-dashboard",
       "slot": "covid-cases-dashboard-slot",
-      "component": "covidCasesDashboard"
+      "component": "covidCasesDashboard",
+      "meta": {
+        "name": "covid-cases",
+        "slot": "covid-cases-dashboard-slot",
+        "config": { "columns": 1, "type": "grid", "programme": "covid", "dashboardTitle": "COVID-19 Home Page" },
+        "title": "COVID-19 Cases"
+      }
     },
     {
       "name": "ohri-covid",

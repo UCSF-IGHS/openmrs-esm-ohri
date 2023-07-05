@@ -45,12 +45,33 @@
     {
       "name": "maternal-child-health-results-summary",
       "slot": "dashboard-slot",
-      "component": "maternalChildDashboardLink"
+      "component": "maternalChildDashboardLink",
+      "meta": {
+        "name": "mother-child-health",
+        "slot": "mother-child-health-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "pmtct",
+          "dashboardTitle": "Mother Child Health Home Page"
+        },
+        "isLink": true,
+        "title": "Maternal & Child Health"
+      }
     },
     {
       "name": "mother-child-health-results-dashboard",
       "slot": "mother-child-health-dashboard-slot",
-      "component": "maternalChildDashboard"
+      "component": "maternalChildDashboard",
+      "meta": {
+        "name": "mother-child-health",
+        "slot": "mother-child-health-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "pmtct",
+          "dashboardTitle": "Mother Child Health Home Page"
+        },
+        "title": "Maternal & Child Health"
+      }
     },
     {
       "name": "pmtct-home-header-slot",

@@ -17,7 +17,13 @@
     {
       "name": "home-dashboard-ext",
       "slot": "dashboard-links-slot",
-      "component": "homeDashboard"
+      "component": "homeDashboard",
+      "meta": {
+        "name": "home",
+        "slot": "ohri-home-dashboard-slot",
+        "isLink": true,
+        "title": "Home"
+      }
     },
     {
       "name": "ohri-patient-list",
