@@ -11,10 +11,6 @@ const OHRIDashboard = () => {
   const [currentDashboard, setCurrentDashboard] = useState(null);
   const layout = useLayoutType();
 
-  const folders = useMemo(() => {
-    return Object.values({ ...metaLinks, ...metaFolders });
-  }, [metaLinks, metaFolders]);
-
   useEffect(() => {
     if (view) {
       setCurrentDashboard(dashboards.find((db) => db.name == view));
@@ -30,6 +26,13 @@ const OHRIDashboard = () => {
     return () => detach('nav-menu-slot', 'ohri-nav-items-ext');
   }, [layout]);
 
+  useEffect(() => {
+    const linksWithDashboardMeta = Object.values(metaLinks).filter((link) => Object.keys(link).length);
+    if (linksWithDashboardMeta.length) {
+      setDashboards([...dashboards, ...linksWithDashboardMeta]);
+    }
+  }, [metaLinks]);
+
   const state = useMemo(() => {
     if (currentDashboard) {
       return { programme: currentDashboard?.config?.programme, dashboardTitle: currentDashboard.title };
@@ -39,13 +42,13 @@ const OHRIDashboard = () => {
 
   return (
     <div className={styles.dashboardContainer}>
-      {folders.map((f, index) => {
+      {Object.values(metaFolders).map((f, index) => {
         return (
           <GroupAbleMenuItem
             groupSlot={f.slot}
             dashboards={dashboards}
             setDashboards={setDashboards}
-            updateDashboardState={index == folders.length - 1}
+            updateDashboardState={index == Object.keys(metaFolders).length - 1}
             key={index}
           />
         );
@@ -62,7 +65,7 @@ const GroupAbleMenuItem = ({ groupSlot, dashboards, setDashboards, updateDashboa
   const meta = useExtensionSlotMeta(groupSlot);
   useEffect(() => {
     if (meta && Object.keys(meta).length) {
-      dashboards.push(...Object.values(meta));
+      dashboards.push(...Object.values(meta).filter((entry) => Object.keys(entry).length));
       updateDashboardState && setDashboards([...dashboards]);
     }
   }, [meta]);
