@@ -7,24 +7,9 @@
   ],
   "extensions": [
     {
-      "name": "covid-home-header-ext",
-      "slot": "ovid-home-header-slot",
-      "component": "covidDashboardHeader"
-    },
-    {
-      "name": "covid-home-tile-ext",
-      "slot": "covid-home-tiles-slot",
-      "component": "covidDashboardTiles"
-    },
-    {
-      "name": "covid-home-tabs-ext",
-      "slot": "covid-home-tabs-slot",
-      "component": "covidDashboardTabs"
-    },
-    {
       "name": "covid-dashboard-items",
       "slot": "dashboard-slot",
-      "component": "covidSummaryDashboardLink",
+      "component": "covidClinicalViewDashboardLink",
       "meta": {
         "slot": "ohri-covid-dashboard-slot",
         "isFolder": true,
@@ -42,9 +27,19 @@
       }
     },
     {
-      "name": "maternal-visits-summary-ext",
-      "slot": "maternal-visits-summary-slot",
-      "component": "maternalVisitsDashboard"
+      "name": "covid-home-header-ext",
+      "slot": "ovid-home-header-slot",
+      "component": "covidDashboardHeader"
+    },
+    {
+      "name": "covid-home-tile-ext",
+      "slot": "covid-home-tiles-slot",
+      "component": "covidDashboardTiles"
+    },
+    {
+      "name": "covid-home-tabs-ext",
+      "slot": "covid-home-tabs-slot",
+      "component": "covidDashboardTabs"
     },
     {
       "name": "covid-cases-dashboard",
@@ -60,7 +55,7 @@
     {
       "name": "ohri-covid",
       "slot": "patient-chart-dashboard-slot",
-      "component": "covidDashboard"
+      "component": "covidPatientChartDashboard"
     },
     {
       "name": "covid-assessments-dashboard",

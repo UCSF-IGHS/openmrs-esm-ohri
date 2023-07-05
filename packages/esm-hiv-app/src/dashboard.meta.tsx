@@ -1,7 +1,7 @@
 import { Home, Pills } from '@carbon/react/icons';
 
 // Patient Chart Dashboards
-export const hivPreventionDashboardDMeta = {
+export const hivPreventionDashboardMeta = {
   title: 'HIV Prevention',
   slotName: 'ohri-hiv-prevention-slot',
   isExpanded: false,
@@ -11,8 +11,8 @@ export const htsSummaryDashboardMeta = {
   name: 'hts-summary',
   slot: 'hts-summary-dashboard-slot',
   columns: 1,
+  path: 'HIV Testing Services',
   title: 'HIV Testing Services',
-  path: 'hts-summary',
 };
 
 export const preExposureProphylaxisDashboardMeta = {

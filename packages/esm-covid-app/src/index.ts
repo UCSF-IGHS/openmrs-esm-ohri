@@ -25,11 +25,8 @@ export function startupApp() {
   defineConfigSchema(moduleName, {});
 }
 
-export const covidDashboard = getSyncLifecycle(createDashboardGroup(covidPatientChartMeta), options);
-export const covidSummaryDashboardLink = getSyncLifecycle(
-  createOHRIDashboardLink(covidClinicalViewDashboardMeta),
-  options,
-);
+export const covidPatientChartDashboard = getSyncLifecycle(createDashboardGroup(covidPatientChartMeta), options);
+
 export const covidAssessmentDashboardLink = getSyncLifecycle(
   createDashboardLink(covidAssessmentsDashboardMeta),
   options,
@@ -74,6 +71,12 @@ export const covidVaccinationsDashboard = getAsyncLifecycle(() => import('./view
   featureName: 'covid-vaccinations',
   moduleName,
 });
+
+// OHRI HOME
+export const covidClinicalViewDashboardLink = getSyncLifecycle(
+  createOHRIDashboardLink(covidClinicalViewDashboardMeta),
+  options,
+);
 export const covidCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(covid19CasesDashboardMeta), options);
 export const covidCasesDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'covid cases dashboard',
