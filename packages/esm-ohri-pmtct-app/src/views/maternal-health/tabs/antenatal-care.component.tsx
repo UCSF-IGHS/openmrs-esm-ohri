@@ -46,13 +46,6 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'artNo',
-        header: t('artNo', 'ART Unique Number'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artNoConcept);
-        },
-      },
-      {
         key: 'artLinkage',
         header: t('artLinkage', 'ART linkage (if positive)'),
         getValue: (encounter) => {

@@ -248,8 +248,7 @@ const HivExposedInfant: React.FC<{
       <EncounterList
         patientUuid={patientUuid}
         encounterType={infantPostnatalEncounterType}
-        // TODO: replace with form name as configured in the backend.
-        formList={[{ name: 'infant_postnatal' }]}
+        formList={[{ name: 'Infant - Postanal Form' }]}
         columns={hivMonitoringColumns}
         description={t('hivMonitoring', 'HIV Monitoring')}
         headerTitle={t('hivMonitoring', 'HIV Monitoring')}
