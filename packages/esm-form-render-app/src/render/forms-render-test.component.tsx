@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel, TextInput } from '@carbon/react';
 import styles from './form-render.scss';
 import { Run, Maximize } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
@@ -20,6 +20,7 @@ function FormRenderTest() {
   const [outputErrorMessage, setOutputErrorMessage] = useState<any>('');
   const [isSchemaLoaded, setIsSchemaLoaded] = useState(false);
   const [schemaOutput, setSchemaOutput] = useState('');
+  const [encounterUuid, setEncounterUuid] = useState('');
   const [schemaInput, setSchemaInput] = useState(null);
   const [editorTheme, setEditorTheme] = useState('github');
   const jsonUrl = useMemo(() => new URLSearchParams(window.location.search).get('json'), []);
@@ -55,7 +56,6 @@ function FormRenderTest() {
   };
 
   const updateFormIntentInput = (e) => {
-    // setFormIntentInput(e.selectedItem.intent);
     setSelectedFormIntent(e.selectedItem.intent);
     setIsSchemaLoaded(false);
   };
@@ -172,7 +172,7 @@ function FormRenderTest() {
                       defaultValue={defaultJson}
                     />
 
-                    <div className={styles.renderDropdown}>
+                    <div className={styles.renderField}>
                       <Dropdown
                         titleText={t('formIntent', 'Form Intent')}
                         label={t('selectForm', '--Select Form Intent')}
@@ -183,7 +183,15 @@ function FormRenderTest() {
                       />
                     </div>
 
-                    <div className={styles.renderDropdown}>
+                    <div className={styles.renderField}>
+                      <TextInput
+                        labelText={t('encounterUuid', 'Encounter Uuid')}
+                        placeholder={t('encounterUuidEntry', 'Enter Encounter Uuid')}
+                        onChange={(e) => setEncounterUuid(e.target.value)}
+                      />
+                    </div>
+
+                    <div className={styles.renderField}>
                       <Dropdown
                         titleText={t('jsonEditorThe', 'JSON Editor Theme')}
                         label={editorTheme}
@@ -250,7 +258,12 @@ function FormRenderTest() {
                   <TabPanel className={styles.renderTab}>
                     {isSchemaLoaded ? (
                       <div className={styles.formRenderDisplay}>
-                        <OHRIForm formJson={formInput} patientUUID={patientUuid} mode={'edit'} />
+                        <OHRIForm
+                          formJson={formInput}
+                          patientUUID={patientUuid}
+                          mode={encounterUuid ? 'edit' : 'enter'}
+                          encounterUUID={encounterUuid}
+                        />
                       </div>
                     ) : (
                       <p>{t('submitForm', 'Please submit the form')}</p>
