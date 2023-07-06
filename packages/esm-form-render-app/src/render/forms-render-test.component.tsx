@@ -56,12 +56,8 @@ function FormRenderTest() {
   };
 
   const updateFormIntentInput = (e) => {
-    // setFormIntentInput(e.selectedItem.intent);
     setSelectedFormIntent(e.selectedItem.intent);
     setIsSchemaLoaded(false);
-  };
-  const updateEncounterUuid = (e) => {
-    setEncounterUuid(e.target.value);
   };
 
   const updateFormJsonInput = (json) => {
@@ -176,7 +172,7 @@ function FormRenderTest() {
                       defaultValue={defaultJson}
                     />
 
-                    <div className={styles.renderDropdown}>
+                    <div className={styles.renderField}>
                       <Dropdown
                         titleText={t('formIntent', 'Form Intent')}
                         label={t('selectForm', '--Select Form Intent')}
@@ -187,15 +183,15 @@ function FormRenderTest() {
                       />
                     </div>
 
-                    <div className={styles.renderDropdown}>
+                    <div className={styles.renderField}>
                       <TextInput
                         labelText={t('encounterUuid', 'Encounter Uuid')}
                         placeholder={t('encounterUuidEntry', 'Enter Encounter Uuid')}
-                        onChange={updateEncounterUuid}
+                        onChange={(e) => setEncounterUuid(e.target.value)}
                       />
                     </div>
 
-                    <div className={styles.renderDropdown}>
+                    <div className={styles.renderField}>
                       <Dropdown
                         titleText={t('jsonEditorThe', 'JSON Editor Theme')}
                         label={editorTheme}
@@ -265,7 +261,7 @@ function FormRenderTest() {
                         <OHRIForm
                           formJson={formInput}
                           patientUUID={patientUuid}
-                          mode={'edit'}
+                          mode={encounterUuid ? 'edit' : 'enter'}
                           encounterUUID={encounterUuid}
                         />
                       </div>
