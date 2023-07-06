@@ -8,6 +8,7 @@ import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmr
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig } from '@openmrs/esm-framework';
 import { openmrsFetch } from '@openmrs/esm-framework';
+import { indexOf } from 'lodash';
 
 function FormRenderTest() {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ function FormRenderTest() {
   const [defaultJson, setDefaultJson] = useState(localStorage.getItem('forms-render-test:draft-form'));
   // This is required because of the enforced CORS policy
   const corsProxy = 'ohri-form-render.globalhealthapp.net';
-  
+
   const availableEditorThemes = [
     'monokai',
     'github',
@@ -75,16 +76,15 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
   };
 
-  const formValidator = () => {
+  const handleFormValidation = () => {
     if (defaultJson) {
       const parsedForm = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
 
       for (let i = 0; i < parsedForm.pages.length; i++) {
         for (let j = 0; j < parsedForm.pages[i].sections.length; j++) {
           for (let k = 0; k < parsedForm.pages[i].sections[j].questions.length; k++) {
-            
             const questionObject = parsedForm.pages[i].sections[j].questions[k];
-            handleFormValidation(questionObject);
+            handleQuestionValidation(questionObject);
           }
         }
       }
@@ -93,16 +93,35 @@ function FormRenderTest() {
     }
   };
 
-  const handleFormValidation = (conceptObject) => {
+  const handleQuestionValidation = (conceptObject) => {
     conceptObject.questionOptions.concept
       ? openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
           .then((response) => {
             console.log(response.data);
-            dataTypeChecker(conceptObject, response);
+
+            conceptObject.questionOptions.concept === response.data.uuid
+              ? dataTypeChecker(conceptObject, response)
+              : console.log("❌ response UUID doesn't match concept UUID");
           })
           .catch((error) => {
-            error.message.includes('404') &&
-              console.log(`❌ Concept UUID ${conceptObject.questionOptions.concept} not found`);
+            if (error.message.includes('500')) {
+              console.log('500 server error occurred!');
+            }
+
+            const clientErrors = ['0', '1', '3', '4'];
+
+            clientErrors.forEach((i, index) => {
+              error.message.includes(`40${i}`) &&
+                console.log(
+                  `${error.message.substring(
+                    error.message.indexOf('40'),
+                    error.message.indexOf('40') + 3,
+                  )} error occurred!`,
+                );
+              if (index === 3) {
+                console.log(`❌ Concept UUID ${conceptObject.questionOptions.concept} not found`);
+              }
+            });
           })
       : console.log('❌ Question with no concept UUID: ', conceptObject.id);
   };
@@ -111,27 +130,26 @@ function FormRenderTest() {
     const dataTypes = ['Numeric', 'Coded', 'Text', 'Date', 'Datetime', 'Boolean', 'Rule'];
 
     const renderTypes = [
-      ['number'],
-      ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
-      ['text', 'textarea'],
-      ['date'],
-      ['datetime'],
-      ['toggle', 'select', 'radio', 'content-switcher'],
-      ['repeating', 'group']
+      { datatype: 'Numeric', renderingTypes: ['number'] },
+      { datatype: 'Coded', renderingTypes: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'] },
+      { datatype: 'Text', renderingTypes: ['text', 'textarea'] },
+      { datatype: 'Date', renderingTypes: ['date'] },
+      { datatype: 'Datetime', renderingTypes: ['datetime'] },
+      { datatype: 'Boolean', renderingTypes: ['toggle', 'select', 'radio', 'content-switcher'] },
+      { datatype: 'Rule', renderingTypes: ['repeating', 'group'] },
     ];
 
-    if (conceptObject.questionOptions.concept === responseObject.data.uuid) {
-
-      dataTypes.forEach((dataType, index) => {
-        responseObject.data.datatype.display === `${dataType}` &&
-        !renderTypes[index].includes(conceptObject.questionOptions.rendering) &&
-          console.log('❌ datatype mismatch');
-      });
-
-      console.log(
-        `datatype:${responseObject.data.datatype.display} rendering:${conceptObject.questionOptions.rendering}`,
-      );
-    }
+    dataTypes.forEach((dataType, index) => {
+      responseObject.data.datatype.display === renderTypes[index].datatype &&
+      renderTypes[index].renderingTypes.includes(conceptObject.questionOptions.rendering) &&
+        console.log('✅ datatype rendering match');
+    });
+    
+    dataTypes.forEach((dataType, index) => {
+      responseObject.data.datatype.display === renderTypes[index].datatype &&
+      !renderTypes[index].renderingTypes.includes(conceptObject.questionOptions.rendering) &&
+        console.log('❌ datatype rendering mismatch');
+    });
   };
 
   const handleFormSubmission = (e) => {
@@ -263,7 +281,7 @@ function FormRenderTest() {
                       />
                     </div>
 
-                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={formValidator}>
+                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={handleFormValidation}>
                       Validate Form
                     </Button>
 
