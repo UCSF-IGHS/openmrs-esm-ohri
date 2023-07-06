@@ -20,7 +20,7 @@ export const preExposureProphylaxisDashboardMeta = {
   slot: 'pre-exposure-prophylaxis-dashboard-slot',
   columns: 1,
   title: 'Pre-exposure Prophylaxis',
-  path: 'pre-exposure-prophylaxis',
+  path: 'Pre-exposure Prophylaxis',
 };
 
 export const hivCareAndTreatmentDashboardDMeta = {
@@ -33,42 +33,42 @@ export const hivPatientSummaryDashboardMeta = {
   slot: 'hiv-patient-summary-dashboard-slot',
   columns: 1,
   title: 'HIV Patient Summary',
-  path: 'hiv-patient-summary',
+  path: 'HIV Patient Summary',
 };
 
 export const programManagementDashboardMeta = {
   slot: 'program-management-summary-slot',
   columns: 1,
   title: 'Program Management',
-  path: 'program-management',
+  path: 'Program Management',
 };
 
 export const clinicalVisitsDashboardMeta = {
   slot: 'clinical-visits-summary-slot',
   columns: 1,
   title: 'Clinical Visits',
-  path: 'clinical-visits',
+  path: 'Clinical Visits',
 };
 
 export const generalCounsellingDashboardMeta = {
   slot: 'general-counselling-summary-slot',
   columns: 1,
   title: 'General Counselling',
-  path: 'general-counselling',
+  path: 'General Counselling',
 };
 
 export const adherenceCounsellingDashboardMeta = {
   slot: 'adherence-counselling-summary-slot',
   columns: 1,
   title: 'Adherence Counselling',
-  path: 'adherence-counselling',
+  path: 'Adherence Counselling',
 };
 
 export const partnerNotificationServicesDashboardMeta = {
   slot: 'partner-notification-services-slot',
   columns: 1,
   title: 'Partner Notification Services',
-  path: 'partner-notification-services',
+  path: 'Partner Notification Services',
 };
 
 export const medicationsDashboardMeta = {
@@ -82,7 +82,7 @@ export const appointmentsDashboardMeta = {
   slot: 'appointments-summary-slot',
   columns: 1,
   title: 'Appointments Summary',
-  path: 'appointments-summary',
+  path: 'Appointments Summary',
 };
 
 // Clinical Dashboards

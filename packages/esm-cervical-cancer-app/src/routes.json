@@ -13,7 +13,7 @@
       "order": 25,
       "meta": {
         "path": "Cervical Cancer",
-        "slotName": "cervical-cancer-slot",
+        "slot": "cervical-cancer-slot",
         "isExpanded": false
       }
     },
@@ -23,7 +23,7 @@
       "component": "cacxSummaryDashboardLink",
       "meta": {
         "path": "CaCx Summary",
-        "slotName": "cacx-summary-slot",
+        "slot": "cacx-summary-slot",
         "columns": 1
       }
     },
@@ -38,7 +38,7 @@
       "component": "cacxVisitsDashboardLink",
       "meta": {
         "path": "CaCx Visits",
-        "slotName": "cacx-visits-slot",
+        "slot": "cacx-visits-slot",
         "columns": 1
       }
     },
@@ -53,7 +53,7 @@
       "component": "cacxAppointmentsDashboardLink",
       "meta": {
         "path": "CaCx Appointments",
-        "slotName": "cacx-appointments-slot",
+        "slot": "cacx-appointments-slot",
         "columns": 1
       }
     },
