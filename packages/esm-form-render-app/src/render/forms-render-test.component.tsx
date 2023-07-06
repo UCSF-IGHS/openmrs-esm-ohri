@@ -127,29 +127,27 @@ function FormRenderTest() {
   };
 
   const dataTypeChecker = (conceptObject, responseObject) => {
-    const dataTypes = ['Numeric', 'Coded', 'Text', 'Date', 'Datetime', 'Boolean', 'Rule'];
 
-    const renderTypes = [
-      { datatype: 'Numeric', renderingTypes: ['number'] },
-      { datatype: 'Coded', renderingTypes: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'] },
-      { datatype: 'Text', renderingTypes: ['text', 'textarea'] },
-      { datatype: 'Date', renderingTypes: ['date'] },
-      { datatype: 'Datetime', renderingTypes: ['datetime'] },
-      { datatype: 'Boolean', renderingTypes: ['toggle', 'select', 'radio', 'content-switcher'] },
-      { datatype: 'Rule', renderingTypes: ['repeating', 'group'] },
-    ];
+    const renderTypes =
 
-    dataTypes.forEach((dataType, index) => {
-      responseObject.data.datatype.display === renderTypes[index].datatype &&
-      renderTypes[index].renderingTypes.includes(conceptObject.questionOptions.rendering) &&
-        console.log('✅ datatype rendering match');
-    });
-    
-    dataTypes.forEach((dataType, index) => {
-      responseObject.data.datatype.display === renderTypes[index].datatype &&
-      !renderTypes[index].renderingTypes.includes(conceptObject.questionOptions.rendering) &&
-        console.log('❌ datatype rendering mismatch');
-    });
+      {
+        Numeric: ['number'],
+        Coded: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
+        Text: ['text', 'textarea'],
+        Date: ['date'],
+        Datetime: ['datetime'],
+        Boolean: ['toggle', 'select', 'radio', 'content-switcher'],
+        Rule: ['repeating', 'group'],
+      };
+
+      renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
+      renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
+      console.log('✅ datatype rendering match');
+
+      renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
+      !renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
+      console.log('❌ datatype rendering mismatch');
+
   };
 
   const handleFormSubmission = (e) => {
