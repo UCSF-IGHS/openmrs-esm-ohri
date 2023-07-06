@@ -41,14 +41,6 @@ export function startupApp() {
 
 export const patientHIVStatusTag = getSyncLifecycle(PatientStatusBannerTag, options);
 
-export const htsPatientEncountersList = getAsyncLifecycle(
-  () => import('./views/hiv-testing-services/hts-prevention-summary.component'),
-  {
-    featureName: 'hts-patient-encounters-list',
-    moduleName,
-  },
-);
-
 export const htsServiceSummaryList = getAsyncLifecycle(
   () => import('./views/service-summary/encounter-list/service-summary-encounter-list.component'),
   {
@@ -147,7 +139,15 @@ export const patientChartHIVPreventionDashboard = getSyncLifecycle(
   createDashboardGroup(hivPreventionDashboardMeta),
   options,
 );
+
 export const htsSummaryDashboardLink = getSyncLifecycle(createDashboardLink(htsSummaryDashboardMeta), options);
+export const htsSummaryDashboard = getAsyncLifecycle(
+  () => import('./views/hiv-testing-services/hts-prevention-summary.component'),
+  {
+    featureName: 'hts-patient-encounters-list',
+    moduleName,
+  },
+);
 
 export const preExposureProphylaxisDashboardLink = getSyncLifecycle(
   createDashboardLink(preExposureProphylaxisDashboardMeta),
@@ -165,7 +165,7 @@ export const patientChartHIVCareAndTreatmentDashboard = getSyncLifecycle(
   createDashboardGroup(hivCareAndTreatmentDashboardDMeta),
   options,
 );
-export const htsServiceSummaryDashboardLink = getSyncLifecycle(
+export const hivPatientSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink(hivPatientSummaryDashboardMeta),
   options,
 );

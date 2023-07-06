@@ -19,10 +19,10 @@
       "slot": "dashboard-links-slot",
       "component": "homeDashboard",
       "meta": {
-        "name": "home",
+        "title": "Home",
+        "path": "home",
         "slot": "ohri-home-dashboard-slot",
-        "isLink": true,
-        "title": "Home"
+        "isLink": true
       }
     },
     {

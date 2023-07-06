@@ -75,17 +75,32 @@
     {
       "name": "covid-assessments-ext",
       "slot": "covid-assessments-dashboard-slot",
-      "component": "covidAssessmentsDashboard"
+      "component": "covidAssessmentsDashboard",
+      "meta": {
+        "slot": "covid-assessments-dashboard-slot",
+        "columns": 1,
+        "path": "Covid Assessments"
+      }
     },
     {
-      "name": "covid-Lab-results-ext",
+      "name": "covid-lab-tests-ext",
       "slot": "covid-lab-dashboard-slot",
-      "component": "covidLabResultsDashboard"
+      "component": "covidLabResultsDashboard",
+      "meta": {
+        "slot": "covid-lab-dashboard-slot",
+        "columns": 1,
+        "path": "Lab Test"
+      }
     },
     {
-      "name": "ovid-vaccinations-ext",
+      "name": "covid-vaccinations-ext",
       "slot": "covid-vaccinations-dashboard-slot",
-      "component": "covidVaccinationsDashboard"
+      "component": "covidVaccinationsDashboard",
+      "meta": {
+        "slot": "covid-vaccinations-dashboard-slot",
+        "columns": 1,
+        "path": "Covid Vaccinations"
+      }
     }
   ]
 }
