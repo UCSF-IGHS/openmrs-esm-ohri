@@ -6,9 +6,7 @@ import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
-import { ConfigObject, useConfig } from '@openmrs/esm-framework';
-import { openmrsFetch } from '@openmrs/esm-framework';
-import { indexOf } from 'lodash';
+import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
 
 function FormRenderTest() {
   const { t } = useTranslation();
@@ -127,27 +125,23 @@ function FormRenderTest() {
   };
 
   const dataTypeChecker = (conceptObject, responseObject) => {
+    const renderTypes = {
+      Numeric: ['number'],
+      Coded: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
+      Text: ['text', 'textarea'],
+      Date: ['date'],
+      Datetime: ['datetime'],
+      Boolean: ['toggle', 'select', 'radio', 'content-switcher'],
+      Rule: ['repeating', 'group'],
+    };
 
-    const renderTypes =
-
-      {
-        Numeric: ['number'],
-        Coded: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
-        Text: ['text', 'textarea'],
-        Date: ['date'],
-        Datetime: ['datetime'],
-        Boolean: ['toggle', 'select', 'radio', 'content-switcher'],
-        Rule: ['repeating', 'group'],
-      };
-
-      renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
+    renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
       renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
       console.log('✅ datatype rendering match');
 
-      renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
+    renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
       !renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
       console.log('❌ datatype rendering mismatch');
-
   };
 
   const handleFormSubmission = (e) => {

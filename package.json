@@ -21,7 +21,7 @@
     "start:form-render": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-form-render-app",
     "prettier": "prettier --fix --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
-    "test": "jest --config jest.config.json --verbose false --passWithNoTests",
+    "test": "jest --config jest.config.js --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.js",
     "verify": "turbo run lint && turbo run typescript && yarn test --coverage",
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
