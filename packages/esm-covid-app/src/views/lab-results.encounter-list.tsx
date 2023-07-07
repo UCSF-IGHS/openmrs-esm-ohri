@@ -226,11 +226,10 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           <TabPanel>
             <EncounterList
               patientUuid={patientUuid}
-              encounterUuid={covidLabOrderEncounterType_UUID}
-              form={{ package: 'covid', name: 'covid_lab_order' }}
-              forms={[
-                { package: 'covid', name: 'covid_lab_order', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
-                { package: 'covid', name: 'covid_lab_result', excludedIntents: [] },
+              encounterType={covidLabOrderEncounterType_UUID}
+              formList={[
+                { name: 'COVID Lab Order Form', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
+                { name: 'COVID Lab Result Form', excludedIntents: [] },
               ]}
               columns={columnsLab}
               description={displayText}
@@ -244,8 +243,8 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           <TabPanel>
             <EncounterList
               patientUuid={patientUuid}
-              encounterUuid={covidLabOrderEncounterType_UUID}
-              form={{ package: 'covid', name: 'covid_lab_test' }}
+              encounterType={covidLabOrderEncounterType_UUID}
+              formList={[{ name: 'COVID Lab Test' }]}
               columns={columnsPending}
               description={headerTitlePending}
               headerTitle={displayTextPending}

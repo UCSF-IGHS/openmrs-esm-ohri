@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  basePath,
   EncounterList,
   EncounterListColumn,
   fetchPatientRelationships,
@@ -15,7 +14,6 @@ import {
   linkedToArt,
   breastfeedingStatus,
   outcomeStatus,
-  childDateOfBirth,
 } from '../../../constants';
 import { moduleName } from '../../..';
 
@@ -25,13 +23,7 @@ interface InfantPostnatalListProps {
 
 const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('infantPostnatalCare', 'Infant Postnatal Care');
-
-  const [motherName, setMotherName] = useState('--');
-
-  useEffect(() => {
-    fetchMotherName();
-  }, []);
+  const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
 
   async function fetchMotherName() {
     let motherName = '--';
@@ -98,14 +90,14 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'infant_postnatal', package: 'child_health' },
+            form: { name: 'Infant - Postanal Form', package: 'child_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'infant_postnatal', package: 'child_health' },
+            form: { name: 'Infant - Postanal Form', package: 'child_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -114,13 +106,13 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         ],
       },
     ];
-  }, [motherName]);
+  }, []);
 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={infantPostnatalEncounterType}
-      form={{ package: 'child_health', name: 'infant_postnatal' }}
+      encounterType={infantPostnatalEncounterType}
+      formList={[{ name: 'Infant - Postanal Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

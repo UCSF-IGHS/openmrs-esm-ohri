@@ -1,8 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
-import patientDashboardsConfig from './ohri-esm-and-dashboards-config.json';
 import ohriDashboardsConfig from './ohri-core-config';
-import registrationConfig from './registration-config.json';
 import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
@@ -29,9 +27,7 @@ function setupOpenMRS() {
   defineConfigSchema(moduleName, {});
 
   // Load configurations
-  provide(patientDashboardsConfig);
   provide(ohriDashboardsConfig);
-  provide(registrationConfig);
 
   return {
     pages: [
@@ -138,7 +134,7 @@ function setupOpenMRS() {
         meta: patientChartDivider_dashboardMeta,
         online: true,
         offline: true,
-        order: 100,
+        order: 20,
       },
     ],
   };

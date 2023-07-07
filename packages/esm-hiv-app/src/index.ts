@@ -7,23 +7,21 @@ import {
   OHRIWelcomeSection,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@openmrs/openmrs-form-engine-lib';
-import hivForms from './forms/forms-registry';
 
 import {
   hivFolderDashboardMeta,
   careAndTreatmentDashboardMeta,
   htsDashboardMeta,
-  hts_dashboardMeta,
+  htsSummaryDashboardMeta,
   hivPreventionDashboardDMeta,
-  preExposureProphylaxis_dashboardMeta,
+  preExposureProphylaxisDashboardMeta,
   hivCareAndTreatmentDashboardDMeta,
-  serviceSummary_dashboardMeta,
-  programManagement_dashboardMeta,
-  visits_dashboardMeta,
-  generalCounselling_dashboardMeta,
-  adherenceCounselling_dashboardMeta,
-  partnerNotificationServices_dashboardMeta,
+  hivPatientSummaryDashboardMeta,
+  programManagementDashboardMeta,
+  clinicalVisitsDashboardMeta,
+  generalCounsellingDashboardMeta,
+  adherenceCounsellingDashboardMeta,
+  partnerNotificationServicesDashboardMeta,
   hivPreventionFolderDashboardMeta,
 } from './dashboard.meta';
 
@@ -38,10 +36,8 @@ function setupOpenMRS() {
     featureName: 'ohri-hiv',
     moduleName,
   };
-
   defineConfigSchema(moduleName, {});
 
-  addToBaseFormsRegistry(hivForms);
   return {
     pages: [],
     extensions: [
@@ -58,7 +54,7 @@ function setupOpenMRS() {
       },
       {
         id: 'hts-service-summary-list-ext',
-        slot: 'hts-service-summary-dashboard-slot',
+        slot: 'hiv-patient-summary-dashboard-slot',
         load: getAsyncLifecycle(
           () => import('./views/service-summary/encounter-list/service-summary-encounter-list.component'),
           {
@@ -217,20 +213,21 @@ function setupOpenMRS() {
         meta: hivPreventionDashboardDMeta,
         online: true,
         offline: true,
+        order: 22,
       },
       {
         id: 'hts-summary-dashboard',
         slot: 'ohri-hiv-prevention-slot',
-        load: getSyncLifecycle(createDashboardLink(hts_dashboardMeta), options),
-        meta: hts_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(htsSummaryDashboardMeta), options),
+        meta: htsSummaryDashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'pre-exposure-prophylaxis',
         slot: 'ohri-hiv-prevention-slot',
-        load: getSyncLifecycle(createDashboardLink(preExposureProphylaxis_dashboardMeta), options),
-        meta: preExposureProphylaxis_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(preExposureProphylaxisDashboardMeta), options),
+        meta: preExposureProphylaxisDashboardMeta,
         online: false,
         offline: false,
       },
@@ -249,20 +246,21 @@ function setupOpenMRS() {
         meta: hivCareAndTreatmentDashboardDMeta,
         online: true,
         offline: true,
+        order: 21,
       },
       {
         id: 'hts-service-summary-dashboard',
         slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(serviceSummary_dashboardMeta), options),
-        meta: serviceSummary_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(hivPatientSummaryDashboardMeta), options),
+        meta: hivPatientSummaryDashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'program-management-summary',
         slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(programManagement_dashboardMeta), options),
-        meta: programManagement_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(programManagementDashboardMeta), options),
+        meta: programManagementDashboardMeta,
         online: true,
         offline: true,
       },
@@ -277,14 +275,14 @@ function setupOpenMRS() {
       {
         id: 'visits-summary',
         slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(visits_dashboardMeta), options),
-        meta: visits_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(clinicalVisitsDashboardMeta), options),
+        meta: clinicalVisitsDashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'visits-summary-ext',
-        slot: 'visits-summary-slot',
+        slot: 'clinical-visits-summary-slot',
         load: getAsyncLifecycle(() => import('./views/visits/visits-summary.component'), {
           featureName: 'visits-summary',
           moduleName,
@@ -293,8 +291,8 @@ function setupOpenMRS() {
       {
         id: 'general-counselling-summary',
         slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(generalCounselling_dashboardMeta), options),
-        meta: generalCounselling_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(generalCounsellingDashboardMeta), options),
+        meta: generalCounsellingDashboardMeta,
         online: true,
         offline: true,
       },
@@ -309,8 +307,8 @@ function setupOpenMRS() {
       {
         id: 'adherence-counselling-summary',
         slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(adherenceCounselling_dashboardMeta), options),
-        meta: adherenceCounselling_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(adherenceCounsellingDashboardMeta), options),
+        meta: adherenceCounsellingDashboardMeta,
         online: true,
         offline: true,
       },
@@ -325,8 +323,8 @@ function setupOpenMRS() {
       {
         id: 'partner-notification-services',
         slot: 'ohri-hiv-care-and-treatment-slot',
-        load: getSyncLifecycle(createDashboardLink(partnerNotificationServices_dashboardMeta), options),
-        meta: partnerNotificationServices_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(partnerNotificationServicesDashboardMeta), options),
+        meta: partnerNotificationServicesDashboardMeta,
         online: true,
         offline: true,
       },
@@ -341,7 +339,6 @@ function setupOpenMRS() {
           },
         ),
       },
-
     ],
   };
 }

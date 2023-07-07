@@ -64,7 +64,6 @@
   "ExpressTB": "TB Screening Outcome",
   "ExpressViewDetails": "View Details",
   "expressVisit": "Express Visit",
-  "ExpressVisitDate": "Visit Date",
   "ExpressVisitType": "Visit Type",
   "followUpVisit": "Start Follow Up Visit",
   "highVl": "High VL",
@@ -168,5 +167,7 @@
   "setting": "Setting",
   "approach": "Approach",
   "eligibleForTesting":"Eliglble for Testing",
-  "encounterDate": "Encounter Date"
+  "encounterDate": "Encounter Date",
+  "htsSummaryPage": "This is the hts summary page",
+  "appointmentReason": "Appointment Reason"
 }

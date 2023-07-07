@@ -85,8 +85,8 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={ViralLoadResultsEncounter_UUID}
-      form={{ package: 'hiv', name: 'viral_load_request' }}
+      encounterType={ViralLoadResultsEncounter_UUID}
+      formList={[{ name: 'POC Viral load request' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

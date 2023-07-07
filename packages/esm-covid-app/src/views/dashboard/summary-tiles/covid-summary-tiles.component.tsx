@@ -25,25 +25,25 @@ function CovidSummaryTiles({ launchWorkSpace }) {
   const tiles = useMemo(
     () => [
       {
-        title: t('summaryAssessments', 'Assessments'),
+        title: t('assessments', 'Assessments'),
         linkAddress: '#',
         subTitle: t('testsConducted', 'Completed assessments'),
         value: activeClientsCount,
       },
       {
-        title: t('summaryCases', 'Cases'),
+        title: t('cases', 'Cases'),
         linkAddress: '#',
         subTitle: t('peopleTestedPositive', 'People tested positive'),
         value: covid19PositiveClientsCount,
       },
       {
-        title: t('summaryVaccinations', 'Vaccinations'),
+        title: t('vaccinations', 'Vaccinations'),
         linkAddress: '#',
         subTitle: t('peopleVaccinated', 'People vaccinated'),
         value: covidVaccinatedClientsCount,
       },
       {
-        title: t('summaryOutcomes', 'Outcomes'),
+        title: t('outcomes', 'Outcomes'),
         linkAddress: '#',
         subTitle: t('PeopleWithCovidOutcome', 'People with covid outcome'),
         value: PeopleWithCovidOutcome,

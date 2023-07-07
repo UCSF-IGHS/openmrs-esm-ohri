@@ -75,14 +75,14 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'mother_postnatal_form', package: 'maternal_health' },
+            form: { name: 'Mother - Postnatal Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'mother_postnatal_form', package: 'maternal_health' },
+            form: { name: 'Mother - Postnatal Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -97,8 +97,9 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={motherPostnatalEncounterType}
-      form={{ package: 'maternal_health', name: 'mother_postnatal_form' }}
+      encounterType={motherPostnatalEncounterType}
+      // TODO: replace with form name as configured in the backend.
+      formList={[{ name: 'Mother - Postnatal Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

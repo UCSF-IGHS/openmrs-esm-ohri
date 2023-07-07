@@ -12,4 +12,9 @@ export default {
       src: ohriLogoDark,
     },
   },
+  '@openmrs/esm-patient-chart-app': {
+    logo: {
+      src: ohriLogoDark,
+    },
+  },
 };

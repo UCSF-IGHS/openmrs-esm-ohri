@@ -46,14 +46,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'service_delivery', package: 'hiv' },
+              form: { name: 'Service Delivery Model Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'service_delivery', package: 'hiv' },
+              form: { name: 'Service Delivery Model Form', package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -72,8 +72,8 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={ServiceDeliveryEncounterType_UUID}
-      form={{ package: 'hiv', name: 'service_delivery' }}
+      encounterType={ServiceDeliveryEncounterType_UUID}
+      formList={[{ name: 'Service Delivery Model Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

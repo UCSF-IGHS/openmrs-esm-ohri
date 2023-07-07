@@ -41,14 +41,14 @@ export const Vaccinations: React.FC<{}> = () => {
       },
       {
         key: 'gender',
-        header: t('vaccinationsex', 'Sex'),
+        header: t('sex', 'Sex'),
         getValue: (patient) => {
           return capitalize(patient.gender);
         },
       },
       {
-        key: 'age',
-        header: t('vaccinationAge', 'Age'),
+        key: 'Vaccinationage',
+        header: t('Age', 'Age'),
         getValue: (patient) => {
           return age(patient.birthDate);
         },
@@ -121,7 +121,7 @@ export const Vaccinations: React.FC<{}> = () => {
       patients: searchTerm ? filteredResults : patients,
       columns,
       search: {
-        placeHolder: t('vaccinationSearchList', 'Search client list'),
+        placeHolder: t('searchClientList', 'Search client list'),
         onSearch: handleSearch,
         currentSearchTerm: searchTerm,
       },
@@ -141,7 +141,7 @@ export const Vaccinations: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message={t('noPatientList', 'There are no patients in this list.')} />
       ) : (
-        <ExtensionSlot extensionSlotName="covid-vaccination-table-slot" state={state} key={counter} />
+        <ExtensionSlot name="covid-vaccination-table-slot" state={state} key={counter} />
       )}
     </div>
   );

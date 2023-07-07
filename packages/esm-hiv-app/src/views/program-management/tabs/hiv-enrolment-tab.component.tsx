@@ -77,14 +77,14 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'service_enrolment', package: 'hiv' },
+            form: { name: 'Service Enrolment Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'service_enrolment', package: 'hiv' },
+            form: { name: 'Service Enrolment Form', package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -102,8 +102,8 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={careAndTreatmentEncounterType}
-      form={{ package: 'hiv', name: 'service_enrolment' }}
+      encounterType={careAndTreatmentEncounterType}
+      formList={[{ name: 'Service Enrolment Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

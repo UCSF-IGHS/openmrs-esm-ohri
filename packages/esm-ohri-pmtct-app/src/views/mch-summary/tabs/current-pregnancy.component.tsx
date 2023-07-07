@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  CardSummary,
   PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
-  TileSummaryProps,
   fetchPatientRelationships,
   EncounterListColumn,
   EncounterList,
   basePath,
-  getTotalANCVisits,
   fetchPatientLastEncounter,
+  SummaryCardColumn,
+  SummaryCard,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   antenatalEncounterType,
@@ -37,7 +36,12 @@ import moment from 'moment';
 import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate } from '@openmrs/esm-framework';
-import { fetchMotherHIVStatus, fetchPatientIdentifiers, getEstimatedDeliveryDate } from '../../../api/api';
+import {
+  fetchMotherHIVStatus,
+  fetchPatientIdentifiers,
+  getAncVisitCount,
+  getEstimatedDeliveryDate,
+} from '../../../api/api';
 
 interface pregnancyOutcomeProps {
   id: string;
@@ -196,13 +200,13 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return items;
   }, [pregnancyOutcomes]);
 
-  const currentPregnancyColumns: TileSummaryProps[] = useMemo(
+  const currentPregnancyColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterUuid: labourAndDeliveryEncounterType,
-        getObsValue: async (encounter) => {
+        encounterTypes: [labourAndDeliveryEncounterType],
+        getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
           const totalVisits = await fetchMotherHIVStatus(patientUuid, currentPTrackerId);
           return totalVisits.rows.length ? totalVisits.rows[0].mother_hiv_status : '--';
@@ -211,14 +215,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: async (encounter) => {
-          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
-          return edd.rows.length ? edd.rows[0].estimated_delivery_date : '---';
+        encounterTypes: [antenatalEncounterType],
+        getObsValue: async ([encounter]) => {
+          return getObsFromEncounter(encounter, eDDConcept, true);
         },
-        hasSummary: true,
-        getSummaryObsValue: (encounter) => {
+        getObsSummary: ([encounter]) => {
           let edd = getObsFromEncounter(encounter, eDDConcept, true);
           if (edd !== '--') {
             const days = calculateDateDifferenceInDate(edd);
@@ -230,7 +231,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
-        encounterUuid: labourAndDeliveryEncounterType,
+        encounterTypes: [labourAndDeliveryEncounterType],
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, motherStatusConcept);
         },
@@ -239,55 +240,70 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const arvTherapyColumns: TileSummaryProps[] = useMemo(
+  const arvTherapyColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'artInitiation',
         header: t('artInitiation', 'ART Initiation'),
-        encounters: [],
-        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        encounterTypes: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiation;
-          artInitiation = getObsFromEncounter(encounters[0], artInitiationConcept);
-          if (artInitiation === '--') {
-            artInitiation = getObsFromEncounter(encounters[1], artInitiationConcept);
-          } else {
-            artInitiation = getObsFromEncounter(encounters[2], artInitiationConcept);
-          }
-          return artInitiation;
+          const pncArtData = {
+            artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[0], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[0], pTrackerIdConcept),
+          };
+          const lndArtData = {
+            artInitiation: getObsFromEncounter(encounters[1], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[1], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[1], pTrackerIdConcept),
+          };
+          const ancArtData = {
+            artInitiation: getObsFromEncounter(encounters[2], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[2], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[2], pTrackerIdConcept),
+          };
+          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
+          return latestArtData['artInitiation'];
         },
       },
       {
         key: 'artStartDate',
         header: t('artStartDate', 'ART Start Date'),
-        encounters: [],
-        encounterUuids: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        encounterTypes: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
         getObsValue: (encounters) => {
-          let artInitiationDate;
-          artInitiationDate = getObsFromEncounter(encounters[0], artStartDate, true);
-          if (artInitiationDate === '--') {
-            artInitiationDate = getObsFromEncounter(encounters[1], artStartDate, true);
-          } else {
-            artInitiationDate = getObsFromEncounter(encounters[2], artStartDate, true);
-          }
-          return artInitiationDate;
+          const pncArtData = {
+            artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[0], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[0], pTrackerIdConcept),
+          };
+          const lndArtData = {
+            artInitiation: getObsFromEncounter(encounters[1], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[1], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[1], pTrackerIdConcept),
+          };
+          const ancArtData = {
+            artInitiation: getObsFromEncounter(encounters[2], artInitiationConcept),
+            artStartDate: getObsFromEncounter(encounters[2], artStartDate, true),
+            pTrackerId: getObsFromEncounter(encounters[2], pTrackerIdConcept),
+          };
+          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
+          return latestArtData['artStartDate'];
         },
       },
     ],
     [],
   );
 
-  const appointmentsColumns: TileSummaryProps[] = useMemo(
+  const appointmentsColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: (encounter) => {
+        encounterTypes: [antenatalEncounterType],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
-        hasSummary: true,
-        getSummaryObsValue: (encounter) => {
+        getObsSummary: ([encounter]) => {
           let nextVisitDate = getObsFromEncounter(encounter, nextVisitDateConcept, true);
           if (nextVisitDate !== '--') {
             const days = calculateDateDifferenceInDate(nextVisitDate);
@@ -299,22 +315,16 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterUuid: antenatalEncounterType,
-        getObsValue: async (encounter) => {
+        encounterTypes: [antenatalEncounterType],
+        getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const totalVisits = await getTotalANCVisits(patientUuid, currentPTrackerId);
+          const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
           return totalVisits.rows.length ? totalVisits.rows[0].total : '0';
         },
       },
     ],
     [],
   );
-
-  const calculateDateDifferenceInDate = (givenDate: string): string => {
-    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
-    const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
-    return `${totalDays} day(s)`;
-  };
 
   const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
     () => [
@@ -351,7 +361,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: selectMCHFomrViewAction(encounter),
+            form: selectMCHFormViewAction(encounter),
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View details'),
@@ -363,6 +373,28 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
+  const getLatestArtDetails = (pncArtData, lndArtData, ancArtData) => {
+    const allArtData = [pncArtData, lndArtData, ancArtData];
+    const filteredArtData = allArtData.filter((row) => row.artInitiation !== '--');
+    if (filteredArtData.length == 0) {
+      return {
+        artInitiation: '--',
+        artStartDate: '--',
+      };
+    } else if (filteredArtData.length == 1) {
+      return filteredArtData[0];
+    } else {
+      filteredArtData.sort((a, b) => b.pTrackerId.localeCompare(a.pTrackerId));
+      return filteredArtData[0];
+    }
+  };
+
+  const calculateDateDifferenceInDate = (givenDate: string): string => {
+    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
+    const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
+    return `${totalDays} day(s)`;
+  };
+
   const filterMaterNalEncounters = (encounter) => {
     const encounterName = encounter.encounterType.name;
     const isMaternalEncounter = (maternal) => encounterName.indexOf(maternal) !== -1;
@@ -370,33 +402,23 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return filter;
   };
 
-  const selectMCHFomrViewAction = (encounter) => {
+  const selectMCHFormViewAction = (encounter) => {
     const encounterType = encounter.encounterType.name;
     if (encounterType === mchVisitsTypes[0]) {
-      return { name: 'antenatal', package: 'maternal_health' };
+      return { name: 'Antenatal Form', package: 'maternal_health' };
     } else if (encounterType === mchVisitsTypes[1]) {
-      return { name: 'labour_and_delivery', package: 'maternal_health' };
+      return { name: 'Labour & Delivery Form', package: 'maternal_health' };
     } else {
-      return { name: 'mother_postnatal_form', package: 'maternal_health' };
+      return { name: 'Mother - Postnatal Form', package: 'maternal_health' };
     }
   };
 
   return (
     <div>
-      <CardSummary patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
+      <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '15rem' }}>
-        <CardSummary
-          patientUuid={patientUuid}
-          headerTitle={arvTherapyHeader}
-          columns={arvTherapyColumns}
-          isActionable={true}
-        />
-        <CardSummary
-          patientUuid={patientUuid}
-          headerTitle={appointmentsHeader}
-          columns={appointmentsColumns}
-          isActionable={true}
-        />
+        <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyColumns} />
+        <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentsColumns} />
       </div>
 
       <ExpandableList
@@ -427,22 +449,20 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         }}
       />
 
-      <div style={{ padding: '1rem' }}>
-        <EncounterList
-          patientUuid={patientUuid}
-          encounterUuid={mchEncounterType}
-          columns={columnsMotherPreviousVisit}
-          description={previousVisitsTitle}
-          headerTitle={previousVisitsTitle}
-          form={{ package: 'maternal_health', name: 'antenatal' }}
-          launchOptions={{
-            hideFormLauncher: true,
-            moduleName: moduleName,
-            displayText: '',
-          }}
-          filter={filterMaterNalEncounters}
-        />
-      </div>
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={mchEncounterType}
+        columns={columnsMotherPreviousVisit}
+        description={previousVisitsTitle}
+        headerTitle={previousVisitsTitle}
+        formList={[{ name: 'Antenatal Form' }]}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: moduleName,
+          displayText: '',
+        }}
+        filter={filterMaterNalEncounters}
+      />
     </div>
   );
 };

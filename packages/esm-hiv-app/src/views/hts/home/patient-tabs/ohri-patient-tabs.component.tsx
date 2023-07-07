@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import { Tabs, Tab, Row, Column, TabList, TabPanels, TabPanel } from '@carbon/react';
+import React from 'react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './ohri-patient-tabs.scss';
 import { CohortPatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   htsRetrospectiveEncounterType,
-  postTestCounsellingCohort,
   preTestCounsellingCohort,
   waitingForHIVTestCohort,
 } from '../../../../constants';
@@ -13,8 +12,7 @@ import { moduleName } from '../../../../index';
 
 function OHRIPatientTabs() {
   const { t } = useTranslation();
-  const formPackage = 'hiv';
-  const formName = 'hts';
+  const formName = 'POC OHRI HTS Form';
   return (
     <Tabs type="container" className={styles.tabContainer}>
       <TabList contained>
@@ -32,7 +30,6 @@ function OHRIPatientTabs() {
               excludeCohorts: ['Post-Test Counselling'],
             }}
             launchableForm={{
-              package: formPackage,
               name: formName,
               intent: 'HTS_PRETEST',
               actionText: t('startPretest', 'Start Pre-test'),
@@ -52,7 +49,6 @@ function OHRIPatientTabs() {
               excludeCohorts: ['Post-Test Counselling'],
             }}
             launchableForm={{
-              package: formPackage,
               name: formName,
               intent: 'HTS_HIVTEST',
               actionText: t('startHIVTest', 'Start HIV Test'),

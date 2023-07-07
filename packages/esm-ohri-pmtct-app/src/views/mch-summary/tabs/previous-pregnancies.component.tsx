@@ -15,7 +15,7 @@ import {
   labourAndDeliveryEncounterType,
   pTrackerIdConcept,
 } from '../../../constants';
-import { ancVisitsReportCount } from '../../../api/api';
+import { getAncVisitCount } from '../../../api/api';
 
 const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -35,7 +35,7 @@ const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('ancVisits', 'ANC visits'),
         getValue: (encounter) => {
           let pTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          return ancVisitsReportCount(pTrackerId, patientUuid).then((response) => {
+          return getAncVisitCount(pTrackerId, patientUuid).then((response) => {
             return response.data.rows[0].total;
           });
         },
@@ -80,14 +80,14 @@ const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'labour_and_delivery', package: 'maternal_health' },
+            form: { name: 'Labour & Delivery Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View details'),
             mode: 'view',
           },
           {
-            form: { name: 'labour_and_delivery', package: 'maternal_health' },
+            form: { name: 'Labour & Delivery Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit form'),
@@ -102,8 +102,9 @@ const PreviousPregnancies: React.FC<PatientChartProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={labourAndDeliveryEncounterType}
-      form={{ package: 'maternal_health', name: 'labour_and_delivery' }}
+      encounterType={labourAndDeliveryEncounterType}
+      // TODO: replace with form name as configured in the backend.
+      formList={[{ name: 'Labour & Delivery Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

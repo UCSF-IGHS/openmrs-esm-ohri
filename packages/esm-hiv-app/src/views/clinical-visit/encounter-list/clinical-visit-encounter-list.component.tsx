@@ -21,7 +21,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
-        key: 'visitDate',
+        key: 'clinicalVisitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
@@ -34,28 +34,28 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
         },
       },
       {
-        key: 'visitType',
+        key: 'clinicalVisitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, visitTypeConcept);
         },
       },
       {
-        key: 'regimen',
+        key: 'clinicalRegimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, regimenConcept);
         },
       },
       {
-        key: 'differentiatedCareService',
+        key: 'clinicalDifferentiatedCareService',
         header: t('differentiatedCareService', 'Differentiated Care Service'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, expressCareProgramStatusConcept);
         },
       },
       {
-        key: 'nextAppointmentDate',
+        key: 'clinicalNextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, returnVisitDateConcept, true);
@@ -74,8 +74,8 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={clinicalVisitEncounterType}
-      form={{ package: 'hiv', name: 'clinical_visit' }}
+      encounterType={clinicalVisitEncounterType}
+      formList={[{ name: 'POC Clinical Visit Form v2' }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle="Clinical Visits"

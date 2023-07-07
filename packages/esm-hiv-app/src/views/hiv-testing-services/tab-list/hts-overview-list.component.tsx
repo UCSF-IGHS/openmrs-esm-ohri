@@ -57,14 +57,14 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { package: 'hiv', name: 'hts' },
+              form: { package: 'hiv', name: 'HIV Testing' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { package: 'hiv', name: 'hts' },
+              form: { package: 'hiv', name: 'HIV Testing' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -81,9 +81,8 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={htsRetrospectiveTypeUUID}
-      form={{ package: 'hiv', name: 'hts' }}
-      forms={[{ package: 'hiv', name: 'hts', fixedIntent: '*', excludedIntents: [] }]}
+      encounterType={htsRetrospectiveTypeUUID}
+      formList={[{ name: 'HIV Testing', fixedIntent: '*', excludedIntents: [] }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

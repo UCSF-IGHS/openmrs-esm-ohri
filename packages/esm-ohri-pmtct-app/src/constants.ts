@@ -59,8 +59,10 @@ export const MotherViralLoadResult = '1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const MotherNextVisitDate = '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const artUniqueNoConcept = '164402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
-// ANC Visits Report
-export const ancVisitsReport = '93006b21-67a3-4400-9558-148063e504e2';
+//Reports
+export const ancVisitsReport = '5299521a-7fad-47bb-8280-14c99d04c790';
+export const eddReport = 'aac635c9-0a77-4489-8b0d-866b3ad22f73';
+export const motherHivStatusReport = 'ed50a889-dd5b-4759-861c-b54e3c686fe7';
 
 //MCH Summary
 export const mchEncounterType = '12de5bc5-352e-4faf-9961-a2125085a75c';

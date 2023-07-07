@@ -1,17 +1,15 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { backendDependencies } from './openmrs-backend-dependencies';
 import {
-  covidAssessments_dashboardMeta,
-  covidLabResults_dashboardMeta,
-  covidVaccinations_dashboardMeta,
+  covidAssessmentsDashboardMeta,
+  covidLabTestsDashboardMeta,
+  covidVaccinationsDashboardMeta,
   covidClinicalViewDashboardMeta,
   covid19CasesDashboardMeta,
   covidPatientChartMeta,
 } from './dashboard.meta';
 import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry } from '@openmrs/openmrs-form-engine-lib';
-import covidForms from './forms/forms-registry';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -26,7 +24,6 @@ function setupOpenMRS() {
   };
 
   defineConfigSchema(moduleName, {});
-  addToBaseFormsRegistry(covidForms);
   return {
     pages: [],
     extensions: [
@@ -88,28 +85,29 @@ function setupOpenMRS() {
         meta: covidPatientChartMeta,
         online: true,
         offline: true,
+        order: 23,
       },
       {
         id: 'covid-assessments-dashboard',
         slot: 'ohri-covid-patient-chart-slot',
-        load: getSyncLifecycle(createDashboardLink(covidAssessments_dashboardMeta), options),
-        meta: covidAssessments_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(covidAssessmentsDashboardMeta), options),
+        meta: covidAssessmentsDashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'covid-lab-results',
         slot: 'ohri-covid-patient-chart-slot',
-        load: getSyncLifecycle(createDashboardLink(covidLabResults_dashboardMeta), options),
-        meta: covidLabResults_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(covidLabTestsDashboardMeta), options),
+        meta: covidLabTestsDashboardMeta,
         online: true,
         offline: true,
       },
       {
         id: 'covid-vaccinations-dashboard',
         slot: 'ohri-covid-patient-chart-slot',
-        load: getSyncLifecycle(createDashboardLink(covidVaccinations_dashboardMeta), options),
-        meta: covidVaccinations_dashboardMeta,
+        load: getSyncLifecycle(createDashboardLink(covidVaccinationsDashboardMeta), options),
+        meta: covidVaccinationsDashboardMeta,
         online: true,
         offline: true,
       },

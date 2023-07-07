@@ -13,7 +13,6 @@ import {
   vLResultsConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
-import { getEstimatedDeliveryDate } from '../../../api/api';
 
 interface AntenatalCareListProps {
   patientUuid: string;
@@ -47,13 +46,6 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'artNo',
-        header: t('artNo', 'ART Unique Number'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artNoConcept);
-        },
-      },
-      {
         key: 'artLinkage',
         header: t('artLinkage', 'ART linkage (if positive)'),
         getValue: (encounter) => {
@@ -63,10 +55,8 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
       {
         key: 'edd',
         header: t('edd', 'EDD'),
-        getValue: async (encounter) => {
-          const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const edd = await getEstimatedDeliveryDate(patientUuid, currentPTrackerId);
-          return edd.rows.length ? edd.rows[0].estimated_delivery_date : '---';
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, eDDConcept, true);
         },
       },
       {
@@ -95,14 +85,14 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'antenatal', package: 'maternal_health' },
+            form: { name: 'Antenatal Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'antenatal', package: 'maternal_health' },
+            form: { name: 'Antenatal Form', package: 'maternal_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -117,8 +107,9 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={antenatalEncounterType}
-      form={{ package: 'maternal_health', name: 'antenatal' }}
+      encounterType={antenatalEncounterType}
+      // TODO: replace with form name as configured in the backend.
+      formList={[{ name: 'Antenatal Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

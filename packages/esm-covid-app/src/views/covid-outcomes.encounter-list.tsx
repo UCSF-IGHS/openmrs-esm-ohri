@@ -10,7 +10,6 @@ import { moduleName } from '../index';
 import {
   covid_Assessment_EncounterUUID,
   covidTestTypeUUID,
-  covidVaccinationStatusUUID,
   covidSpecimentTestDate_UUID,
   covidOutcomeUUID,
 } from '../constants';
@@ -73,8 +72,8 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={covid_Assessment_EncounterUUID}
-      form={{ package: 'covid', name: 'covid_outcome' }}
+      encounterType={covid_Assessment_EncounterUUID}
+      formList={[{ name: 'COVID Case Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

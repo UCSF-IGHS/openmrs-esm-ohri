@@ -85,8 +85,8 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterUuid={covidVaccinationEncounterUUID}
-      form={{ package: 'covid', name: 'covid_vaccination' }}
+      encounterType={covidVaccinationEncounterUUID}
+      formList={[{ name: 'COVID Vaccination Form' }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

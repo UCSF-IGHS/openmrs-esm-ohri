@@ -1,37 +1,32 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  CardSummary,
-  PatientChartProps,
   ExpandableList,
   getObsFromEncounter,
-  TileSummaryProps,
   EncounterListColumn,
-  ExpandableListColumn,
   EncounterList,
   fetchPatientRelationships,
   basePath,
+  SummaryCard,
+  SummaryCardColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate } from '@openmrs/esm-framework';
 import moment from 'moment';
 import { Link } from '@carbon/react';
 import {
   PTrackerIdentifierType,
-  antenatalEncounterType,
   artProphylaxisStatus,
   artStartDate,
   breastfeedingStatus,
   infantExposureStatus,
   infantPostnatalEncounterType,
-  nextVisitDateConcept,
   outcomeStatus,
   testTypeConcept,
   followUpDateConcept,
-  visitDate,
   infantVisitDate,
 } from '../../../constants';
 import { moduleName } from '../../..';
-import { fetchPatientIdentifiers, getFamilyRelationships } from '../../../api/api';
+import { fetchPatientIdentifiers } from '../../../api/api';
 import { familyItemProps } from './current-pregnancy.component';
 
 const HivExposedInfant: React.FC<{
@@ -46,35 +41,37 @@ const HivExposedInfant: React.FC<{
     getParentRelationships();
   }, []);
 
-  const infantSummaryColumns: TileSummaryProps[] = useMemo(
+  const infantSummaryColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'artProphylaxisStatus',
         header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
-        encounterUuid: infantPostnatalEncounterType,
-        getObsValue: (encounter) => {
+        encounterTypes: [infantPostnatalEncounterType],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, artProphylaxisStatus);
         },
       },
       {
         key: 'breastfeeding',
         header: t('breastfeeding', 'Breastfeeding'),
-        encounterUuid: infantPostnatalEncounterType,
-        getObsValue: (encounter) => {
+        encounterTypes: [infantPostnatalEncounterType],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, breastfeedingStatus);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
-        getObsValue: (encounter) => {
+        encounterTypes: [],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, infantExposureStatus);
         },
       },
       {
         key: 'finalOutcome',
         header: t('finalOutcome', 'Final Outcome'),
-        getObsValue: (encounter) => {
+        encounterTypes: [],
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, outcomeStatus);
         },
       },
@@ -226,7 +223,7 @@ const HivExposedInfant: React.FC<{
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'infant_postnatal', package: 'child_health' },
+            form: { name: 'Infant - Postanal Form', package: 'child_health' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View details'),
@@ -242,7 +239,7 @@ const HivExposedInfant: React.FC<{
 
   return (
     <div>
-      <CardSummary
+      <SummaryCard
         patientUuid={patientUuid}
         headerTitle={t('infantSummary', 'Infants Summary')}
         columns={infantSummaryColumns}
@@ -250,8 +247,8 @@ const HivExposedInfant: React.FC<{
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterUuid={infantPostnatalEncounterType}
-        form={{ package: 'child_health', name: 'infant_postnatal' }}
+        encounterType={infantPostnatalEncounterType}
+        formList={[{ name: 'Infant - Postanal Form' }]}
         columns={hivMonitoringColumns}
         description={t('hivMonitoring', 'HIV Monitoring')}
         headerTitle={t('hivMonitoring', 'HIV Monitoring')}
@@ -276,21 +273,19 @@ const HivExposedInfant: React.FC<{
         }}
       />
 
-      <div style={{ padding: '1rem' }}>
-        <EncounterList
-          patientUuid={patientUuid}
-          encounterUuid={infantPostnatalEncounterType}
-          columns={columnsChildPreviousVisit}
-          description={previousVisitsTitle}
-          headerTitle={previousVisitsTitle}
-          form={{ package: 'child_health', name: 'infant_postnatal' }}
-          launchOptions={{
-            hideFormLauncher: true,
-            moduleName: moduleName,
-            displayText: '',
-          }}
-        />
-      </div>
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={infantPostnatalEncounterType}
+        columns={columnsChildPreviousVisit}
+        description={previousVisitsTitle}
+        headerTitle={previousVisitsTitle}
+        formList={[{ name: 'Infant - Postanal Form' }]}
+        launchOptions={{
+          hideFormLauncher: true,
+          moduleName: moduleName,
+          displayText: '',
+        }}
+      />
     </div>
   );
 };

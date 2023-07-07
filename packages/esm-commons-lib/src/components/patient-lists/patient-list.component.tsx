@@ -24,14 +24,16 @@ export interface PatientListTableProps {
 
 export const PatientListTable: React.FC = () => {
   const { t } = useTranslation();
-  const { patients, error, isLoading, total } = usePatientList();
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
   const [nextOffSet, setNextOffSet] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const { patients, error, isLoading, total } = usePatientList(nextOffSet, pageSize);
+  const [page, setPage] = useState(1);
   const [totalPatientCount, setPatientCount] = useState(0);
 
   useEffect(() => {
-    setPatientCount(total);
+    // Carbon's pagination component supports a max of 10,000 items
+    // see: https://github.com/carbon-design-system/carbon/issues/6836
+    setPatientCount(total <= 10000 ? total : 10000);
   }, [total]);
 
   const headerData = [

@@ -1,6 +1,6 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { AncVisitsReport, Patient, PatientIdentifier, Relationship } from './types';
-import { ancVisitsReport } from '../constants';
+import { ancVisitsReport, eddReport, motherHivStatusReport } from '../constants';
 import useSWR from 'swr';
 import { fetchPatientRelationships } from '@ohri/openmrs-esm-ohri-commons-lib';
 
@@ -41,10 +41,15 @@ export function saveRelationship(relationship: Relationship) {
 }
 
 // Get ANC visits report count with pTrackerID and patientUuid
-export function ancVisitsReportCount(pTrackerID: string, patientUuid: string) {
+export function getAncVisitCount(pTrackerID: string, patientUuid: string) {
   return openmrsFetch(
-    `/ws/rest/v1/reportingrest/dataSet/${ancVisitsReport}?patient_uuid=${patientUuid}&ptracker_id=${pTrackerID}`,
-  );
+    `${BASE_WS_API_URL}reportingrest/dataSet/${ancVisitsReport}?ptracker_id=${pTrackerID}&patient_uuid=${patientUuid}`,
+  ).then(({ data }) => {
+    if (data) {
+      return data;
+    }
+    return null;
+  });
 }
 
 export function fetchPatientIdentifiers(patientUuid: string) {
@@ -68,7 +73,7 @@ export function saveIdentifier(identifier: PatientIdentifier, patientUuid: strin
 
 export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/914878d8-45e4-4785-9a5c-8c6695382a4e?ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`,
+    `${BASE_WS_API_URL}reportingrest/dataSet/${eddReport}?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -79,7 +84,7 @@ export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string
 
 export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/d6453c84-4122-467f-8533-83e7d15790dc?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
+    `${BASE_WS_API_URL}reportingrest/dataSet/${motherHivStatusReport}?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
   ).then(({ data }) => {
     if (data) {
       return data;
