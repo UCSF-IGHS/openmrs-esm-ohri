@@ -150,7 +150,7 @@ export const Outcomes: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message={t('noPatientList', 'There are no patients in this list.')} />
       ) : (
-        <ExtensionSlot extensionSlotName="outcomes-table-slot" state={state} key={counter} />
+        <ExtensionSlot name="outcomes-table-slot" state={state} key={counter} />
       )}
     </div>
   );

@@ -151,7 +151,7 @@ export const TodaysClientList: React.FC<{}> = () => {
       {!isLoading && !patients.length ? (
         <TableEmptyState tableHeaders={columns} message="There are no patients in this list." />
       ) : (
-        <ExtensionSlot extensionSlotName="today-clients-table-slot" state={state} key={counter} />
+        <ExtensionSlot name="today-clients-table-slot" state={state} key={counter} />
       )}
     </div>
   );
