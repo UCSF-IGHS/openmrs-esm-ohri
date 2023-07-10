@@ -1,7 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import {
   mchSummaryDashboardMeta,
-  mchFolderMeta,
   maternalVisitsDashboardMeta,
   childVisitsDashboardMeta,
   motherChildDashboardMeta,
@@ -43,7 +42,6 @@ export function startupApp() {
   });
 }
 
-export const mchDashboard = getSyncLifecycle(createDashboardGroup(mchFolderMeta), options);
 export const mchSummaryDashboardLink = getSyncLifecycle(
   createDashboardLinkWithCustomTitle(mchSummaryDashboardMeta),
   options,
