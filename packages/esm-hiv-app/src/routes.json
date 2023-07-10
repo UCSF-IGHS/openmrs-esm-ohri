@@ -14,7 +14,12 @@
     {
       "name": "hiv-prevention-dashboard-link",
       "slot": "dashboard-slot",
-      "component": "hivPreventionFolderLink"
+      "component": "hivPreventionFolderLink",
+      "meta": {
+        "slot": "ohri-hiv-prevention-dashboard-slot",
+        "isFolder": true,
+        "title": "HIV Prevention"
+      }
     },
     {
       "name": "ohri-hiv-prevention-dashboard-ext",
@@ -66,7 +71,12 @@
     {
       "name": "hiv-care-and-treatment-dashboard-link",
       "slot": "dashboard-slot",
-      "component": "hivCareAndTreatmentFolderLink"
+      "component": "hivCareAndTreatmentFolderLink",
+      "meta": {
+        "slot": "ohri-hiv-care-and-treatment-dashboard-slot",
+        "isFolder": true,
+        "title": "HIV Care and Treatment"
+      }
     },
     {
       "name": "care-and-treatment-dashboard-ext",
@@ -74,19 +84,30 @@
       "component": "hivCareAndTreatmentDashboardLink",
       "meta": {
         "name": "care-and-treatment",
-        "slot": "care-and-treatment-dashboard-slot",
-        "config": { "columns": 1, "type": "grid", "programme": "ct", "dashboardTitle": "C&T Home Page" },
-        "title": "Care and Treatment"
+        "slot": "ct-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "ct",
+          "dashboardTitle": "C&T Home Page"
+        },
+        "title": "Care and Treatment",
+        "path": "Care and Treatment"
       }
     },
     {
       "name": "ohri-care-and-treatment-dashboard",
-      "slot": "care-and-treatment-dashboard-slot",
+      "slot": "ct-dashboard-slot",
       "component": "hivCareAndTreatmentDashboard",
       "meta": {
         "name": "care-and-treatment",
-        "slot": "care-and-treatment-dashboard-slot",
-        "config": { "columns": 1, "type": "grid", "programme": "ct", "dashboardTitle": "C&T Home Page" },
+        "slot": "ct-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "ct",
+          "dashboardTitle": "C&T Home Page"
+        },
         "title": "Care and Treatment"
       }
     },
