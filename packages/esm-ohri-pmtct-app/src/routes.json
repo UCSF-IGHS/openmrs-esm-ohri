@@ -95,8 +95,8 @@
       "component": "pmtctDashboardHeader"
     },
     {
-      "name": "pmtct-home-tile-ext",
-      "slot": "pmtct-home-tile-slot",
+      "name": "pmtct-home-tiles-ext",
+      "slot": "pmtct-home-tiles-slot",
       "component": "pmtctDashboardTiles"
     },
     {

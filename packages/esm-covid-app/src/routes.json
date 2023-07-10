@@ -21,8 +21,13 @@
       "slot": "ohri-covid-dashboard-slot",
       "component": "covidCasesDashboardLink",
       "meta": {
-        "slot": "covid-cases-dashboard-slot",
         "name": "covid-cases",
+        "slot": "covid-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "covid"
+        },
         "path": "COVID-19"
       }
     },
@@ -33,17 +38,21 @@
       "meta": {
         "name": "covid-cases",
         "slot": "covid-cases-dashboard-slot",
-        "config": { "columns": 1, "type": "grid", "programme": "covid", "dashboardTitle": "COVID-19 Home Page" },
+        "config": {
+          "columns": 1,
+          "programme": "covid",
+          "dashboardTitle": "COVID-19 Home Page"
+        },
         "title": "COVID-19 Cases"
       }
     },
     {
       "name": "covid-home-header-ext",
-      "slot": "ovid-home-header-slot",
+      "slot": "covid-home-header-slot",
       "component": "covidDashboardHeader"
     },
     {
-      "name": "covid-home-tile-ext",
+      "name": "covid-home-tiles-ext",
       "slot": "covid-home-tiles-slot",
       "component": "covidDashboardTiles"
     },

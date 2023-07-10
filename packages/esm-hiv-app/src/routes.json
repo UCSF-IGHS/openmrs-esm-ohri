@@ -23,14 +23,30 @@
       "meta": {
         "name": "hts",
         "slot": "hts-dashboard-slot",
-        "config": { "columns": 1, "type": "grid", "programme": "hts", "dashboardTitle": "HTS Home Page" },
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "hts",
+          "dashboardTitle": "HTS Home Page"
+        },
         "title": "HIV Testing Services"
       }
     },
     {
       "name": "ohri-hiv-prevention-dashboard",
       "slot": "hts-dashboard-slot",
-      "component": "hivPreventionDashboard"
+      "component": "hivPreventionDashboard",
+      "meta": {
+        "name": "hts",
+        "slot": "hts-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "hts",
+          "dashboardTitle": "HTS Home Page"
+        },
+        "title": "HIV Testing Services"
+      }
     },
     {
       "name": "hts-home-header-ext",
@@ -38,8 +54,8 @@
       "component": "htsHomeHeader"
     },
     {
-      "name": "hts-home-tile-ext",
-      "slot": "hts-home-tile-slot",
+      "name": "hts-home-tiles-ext",
+      "slot": "hts-home-tiles-slot",
       "component": "htsHomeTiles"
     },
     {
@@ -66,7 +82,13 @@
     {
       "name": "ohri-care-and-treatment-dashboard",
       "slot": "care-and-treatment-dashboard-slot",
-      "component": "hivCareAndTreatmentDashboard"
+      "component": "hivCareAndTreatmentDashboard",
+      "meta": {
+        "name": "care-and-treatment",
+        "slot": "care-and-treatment-dashboard-slot",
+        "config": { "columns": 1, "type": "grid", "programme": "ct", "dashboardTitle": "C&T Home Page" },
+        "title": "Care and Treatment"
+      }
     },
     {
       "name": "ct-home-header-ext",
@@ -74,8 +96,8 @@
       "component": "ctHomeHeader"
     },
     {
-      "name": "ct-home-tile-ext",
-      "slot": "ct-home-tile-slot",
+      "name": "ct-home-tiles-ext",
+      "slot": "ct-home-tiles-slot",
       "component": "ctHomeTiles"
     },
     {
@@ -89,8 +111,8 @@
       "component": "labResultsHomeHeader"
     },
     {
-      "name": "lab-results-home-tile-ext",
-      "slot": "lab-results-home-tile-slot",
+      "name": "lab-results-home-tiles-ext",
+      "slot": "lab-results-home-tiles-slot",
       "component": "labResultsHomeTiles"
     },
     {
