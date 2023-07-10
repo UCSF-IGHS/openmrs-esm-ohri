@@ -38,7 +38,7 @@
     },
     {
       "name": "child-visits-dashboard",
-      "slot": "mch-slot",
+      "slot": "patient-chart-dashboard-slot",
       "component": "childVisitsDashboardLink",
       "meta": {
         "path": "Child Visits",
