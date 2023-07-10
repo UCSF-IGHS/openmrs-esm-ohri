@@ -20,7 +20,7 @@
       "component": "homeDashboard",
       "meta": {
         "title": "Home",
-        "path": "home",
+        "name": "home",
         "slot": "ohri-home-dashboard-slot",
         "isLink": true
       }

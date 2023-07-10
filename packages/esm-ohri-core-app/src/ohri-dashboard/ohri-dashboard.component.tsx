@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 const OHRIDashboard = () => {
   const { view } = useParams();
   const [dashboards, setDashboards] = useState([]);
-  const metaLinks = useExtensionSlotMeta('dashboard-links-slot');
-  const metaFolders = useExtensionSlotMeta('dashboard-slot');
+  const metaLinks = useExtensionSlotMeta('dashboard-links-slot') as Record<string, any>;
+  const metaFolders = useExtensionSlotMeta('dashboard-slot') as Record<string, any>;
   const [currentDashboard, setCurrentDashboard] = useState(null);
   const layout = useLayoutType();
 
@@ -27,11 +27,15 @@ const OHRIDashboard = () => {
   }, [layout]);
 
   useEffect(() => {
-    const linksWithDashboardMeta = Object.values(metaLinks).filter((link) => Object.keys(link).length);
+    const programSpecificLinks = metaFolders ? Object.values(metaFolders).filter((link) => link.isLink) : [];
+    const linksWithDashboardMeta = [
+      ...Object.values(metaLinks).filter((link) => Object.keys(link).length),
+      ...programSpecificLinks,
+    ];
     if (linksWithDashboardMeta.length) {
       setDashboards([...dashboards, ...linksWithDashboardMeta]);
     }
-  }, [metaLinks]);
+  }, [metaLinks, metaFolders]);
 
   const state = useMemo(() => {
     if (currentDashboard) {
