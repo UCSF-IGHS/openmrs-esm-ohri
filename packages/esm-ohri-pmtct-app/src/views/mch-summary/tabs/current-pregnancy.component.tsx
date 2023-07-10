@@ -361,7 +361,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: selectMCHFomrViewAction(encounter),
+            form: selectMCHFormViewAction(encounter),
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View details'),
@@ -402,14 +402,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     return filter;
   };
 
-  const selectMCHFomrViewAction = (encounter) => {
+  const selectMCHFormViewAction = (encounter) => {
     const encounterType = encounter.encounterType.name;
     if (encounterType === mchVisitsTypes[0]) {
-      return { name: 'antenatal', package: 'maternal_health' };
+      return { name: 'Antenatal Form', package: 'maternal_health' };
     } else if (encounterType === mchVisitsTypes[1]) {
-      return { name: 'labour_and_delivery', package: 'maternal_health' };
+      return { name: 'Labour & Delivery Form', package: 'maternal_health' };
     } else {
-      return { name: 'mother_postnatal_form', package: 'maternal_health' };
+      return { name: 'Mother - Postnatal Form', package: 'maternal_health' };
     }
   };
 
