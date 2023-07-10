@@ -109,7 +109,7 @@ export const htsDashboardMeta = {
 
 export const careAndTreatmentDashboardMeta = {
   name: 'care-and-treatment',
-  slot: 'care-and-treatment-dashboard-slot',
+  slot: 'ct-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'ct', dashboardTitle: 'C&T Home Page' },
   title: 'Care and Treatment',
 };
