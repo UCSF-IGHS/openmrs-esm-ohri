@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+  "pages": [
+  ],
+  "extensions": [
+    {
+      "name": "cervical-cancer",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "cacxPatientChartDashboard",
+      "order": 25,
+      "meta": {
+        "path": "Cervical Cancer",
+        "slot": "cervical-cancer-slot",
+        "isExpanded": false
+      }
+    },
+    {
+      "name": "'cacx-summary-dashboard",
+      "slot": "cervical-cancer-slot",
+      "component": "cacxSummaryDashboardLink",
+      "meta": {
+        "path": "CaCx Summary",
+        "slot": "cacx-summary-slot",
+        "columns": 1
+      }
+    },
+    {
+      "name": "cacx-summary-ext",
+      "slot": "cacx-summary-slot",
+      "component": "cacxSummaryDashboard"
+    },
+    {
+      "name": "cacx-visits-dashboard",
+      "slot": "cervical-cancer-slot",
+      "component": "cacxVisitsDashboardLink",
+      "meta": {
+        "path": "CaCx Visits",
+        "slot": "cacx-visits-slot",
+        "columns": 1
+      }
+    },
+    {
+      "name": "cacx-visits-ext",
+      "slot": "cacx-visits-slot",
+      "component": "cacxVisitsDashboard"
+    },
+    {
+      "name": "cacx-appointments-dashboard",
+      "slot": "cervical-cancer-slot",
+      "component": "cacxAppointmentsDashboardLink",
+      "meta": {
+        "path": "CaCx Appointments",
+        "slot": "cacx-appointments-slot",
+        "columns": 1
+      }
+    },
+    {
+      "name": "cacx-appointments-ext",
+      "slot": "cacx-appointments-slot",
+      "component": "cacxAppointmentsDashboard"
+    }
+  ]
+}

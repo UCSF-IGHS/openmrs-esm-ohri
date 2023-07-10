@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+  "pages": [
+  ],
+  "extensions": [
+    {
+      "name": "covid-dashboard-items",
+      "slot": "dashboard-slot",
+      "component": "covidClinicalViewDashboardLink",
+      "meta": {
+        "slot": "ohri-covid-dashboard-slot",
+        "isFolder": true,
+        "title": "COVID"
+      }
+    },
+    {
+      "name": "covid-cases-dashboard-ext",
+      "slot": "ohri-covid-dashboard-slot",
+      "component": "covidCasesDashboardLink",
+      "meta": {
+        "name": "covid-cases",
+        "slot": "covid-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "covid"
+        },
+        "path": "COVID-19"
+      }
+    },
+    {
+      "name": "covid-cases-dashboard",
+      "slot": "covid-cases-dashboard-slot",
+      "component": "covidCasesDashboard",
+      "meta": {
+        "name": "covid-cases",
+        "slot": "covid-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "covid",
+          "dashboardTitle": "COVID-19 Home Page"
+        },
+        "title": "COVID-19 Cases"
+      }
+    },
+    {
+      "name": "covid-home-header-ext",
+      "slot": "covid-home-header-slot",
+      "component": "covidDashboardHeader"
+    },
+    {
+      "name": "covid-home-tiles-ext",
+      "slot": "covid-home-tiles-slot",
+      "component": "covidDashboardTiles"
+    },
+    {
+      "name": "covid-home-tabs-ext",
+      "slot": "covid-home-tabs-slot",
+      "component": "covidDashboardTabs"
+    },
+    {
+      "name": "ohri-covid",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "covidPatientChartDashboard"
+    },
+    {
+      "name": "covid-assessments-dashboard",
+      "slot": "ohri-covid-patient-chart-slot",
+      "component": "covidAssessmentDashboardLink",
+      "meta": {
+        "slot": "covid-assessments-dashboard-slot",
+        "columns": 1,
+        "path": "Covid Assessments"
+      }
+    },
+    {
+      "name": "covid-assessments-ext",
+      "slot": "covid-assessments-dashboard-slot",
+      "component": "covidAssessmentsDashboard"
+    },
+    {
+      "name": "covid-lab-results",
+      "slot": "ohri-covid-patient-chart-slot",
+      "component": "covidLabResultsDashboardLink",
+      "meta": {
+        "slot": "covid-lab-dashboard-slot",
+        "columns": 1,
+        "path": "Lab Test"
+      }
+    },
+    {
+      "name": "covid-lab-tests-ext",
+      "slot": "covid-lab-dashboard-slot",
+      "component": "covidLabResultsDashboard"
+    },
+    {
+      "name": "covid-vaccinations-dashboard",
+      "slot": "ohri-covid-patient-chart-slot",
+      "component": "covidVaccinationDashboardLink",
+      "meta": {
+        "slot": "covid-vaccinations-dashboard-slot",
+        "columns": 1,
+        "path": "Covid Vaccinations"
+      }
+    },
+    {
+      "name": "covid-vaccinations-ext",
+      "slot": "covid-vaccinations-dashboard-slot",
+      "component": "covidVaccinationsDashboard"
+    }
+  ]
+}
