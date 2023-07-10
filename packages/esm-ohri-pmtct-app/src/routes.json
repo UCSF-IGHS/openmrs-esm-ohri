@@ -7,14 +7,8 @@
   ],
   "extensions": [
     {
-      "name": "mch",
-      "slot": "patient-chart-dashboard-slot",
-      "component": "mchDashboard",
-      "order": 25
-    },
-    {
       "name": "mch-summary-dashboard",
-      "slot": "mch-slot",
+      "slot": "patient-chart-dashboard-slot",
       "component": "mchSummaryDashboardLink",
       "meta": {
         "path": "MNCH Summary",
@@ -29,7 +23,7 @@
     },
     {
       "name": "maternal-visits-dashboard",
-      "slot": "mch-slot",
+      "slot": "patient-chart-dashboard-slot",
       "component": "maternalVisitsDashboardLink",
       "meta": {
         "path": "Maternal Visits",
