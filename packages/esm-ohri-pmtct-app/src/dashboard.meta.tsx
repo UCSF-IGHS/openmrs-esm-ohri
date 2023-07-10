@@ -10,7 +10,7 @@ export const mchSummaryDashboardMeta = {
   slot: 'mch-summary-slot',
   columns: 1,
   title: 'Client Summary',
-  path: 'mch-summary',
+  path: 'MNCH Summary',
   linkText: 'MNCH Summary',
 };
 
@@ -18,7 +18,7 @@ export const maternalVisitsDashboardMeta = {
   slot: 'maternal-visits-summary-slot',
   columns: 1,
   title: 'Maternal Visits',
-  path: 'maternal-visits',
+  path: 'Maternal Visits',
   patientExpression: 'calculateAge(patient.birthDate) > 10',
 };
 
@@ -26,7 +26,7 @@ export const childVisitsDashboardMeta = {
   slot: 'child-visits-summary-slot',
   columns: 1,
   title: 'Child Visits',
-  path: 'child-visits',
+  path: 'Child Visits',
   patientExpression: 'calculateAge(patient.birthDate) <= 10',
 };
 

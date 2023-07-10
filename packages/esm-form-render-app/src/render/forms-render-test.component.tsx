@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel, TextInput } from '@carbon/react';
 import styles from './form-render.scss';
-import { Run, Maximize } from '@carbon/react/icons';
+import { Run, Maximize, UserData } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
-import { ConfigObject, useConfig } from '@openmrs/esm-framework';
+import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
 
 function FormRenderTest() {
   const { t } = useTranslation();
@@ -72,6 +72,76 @@ function FormRenderTest() {
       setInputErrorMessage(err.toString());
     }
     setIsSchemaLoaded(false);
+  };
+
+  const handleFormValidation = () => {
+    if (defaultJson) {
+      const parsedForm = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
+
+      for (let i = 0; i < parsedForm.pages.length; i++) {
+        for (let j = 0; j < parsedForm.pages[i].sections.length; j++) {
+          for (let k = 0; k < parsedForm.pages[i].sections[j].questions.length; k++) {
+            const questionObject = parsedForm.pages[i].sections[j].questions[k];
+            handleQuestionValidation(questionObject);
+          }
+        }
+      }
+    } else {
+      console.log('Empty form!');
+    }
+  };
+
+  const handleQuestionValidation = (conceptObject) => {
+    conceptObject.questionOptions.concept
+      ? openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
+          .then((response) => {
+            console.log(response.data);
+
+            conceptObject.questionOptions.concept === response.data.uuid
+              ? dataTypeChecker(conceptObject, response)
+              : console.log("❌ response UUID doesn't match concept UUID");
+          })
+          .catch((error) => {
+            if (error.message.includes('500')) {
+              console.log('500 server error occurred!');
+            }
+
+            const clientErrors = ['0', '1', '3', '4'];
+
+            clientErrors.forEach((i, index) => {
+              error.message.includes(`40${i}`) &&
+                console.log(
+                  `${error.message.substring(
+                    error.message.indexOf('40'),
+                    error.message.indexOf('40') + 3,
+                  )} error occurred!`,
+                );
+              if (index === 3) {
+                console.log(`❌ Concept UUID ${conceptObject.questionOptions.concept} not found`);
+              }
+            });
+          })
+      : console.log('❌ Question with no concept UUID: ', conceptObject.id);
+  };
+
+  const dataTypeChecker = (conceptObject, responseObject) => {
+    const renderTypes = {
+      Numeric: ['number'],
+      Coded: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
+      Text: ['text', 'textarea'],
+      Date: ['date'],
+      Datetime: ['datetime'],
+      Boolean: ['toggle', 'select', 'radio', 'content-switcher'],
+      Rule: ['repeating', 'group'],
+    };
+
+    renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
+      renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
+      console.log('✅ datatype rendering match');
+
+    renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
+      !renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
+      console.log('❌ datatype rendering mismatch');
   };
 
   const handleFormSubmission = (e) => {
@@ -203,11 +273,15 @@ function FormRenderTest() {
                       />
                     </div>
 
+                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={handleFormValidation}>
+                      Validate Form
+                    </Button>
+
                     <Button
                       type="submit"
                       renderIcon={Run}
                       className="form-group"
-                      style={{ marginTop: '1em' }}
+                      style={{ marginTop: '1em', marginLeft: '10px' }}
                       disabled={!selectedFormIntent}>
                       {t('render', 'Render')}
                     </Button>

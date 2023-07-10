@@ -1,5 +1,4 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
-import { backendDependencies } from './openmrs-backend-dependencies';
 import {
   mchSummaryDashboardMeta,
   mchFolderMeta,
@@ -17,17 +16,18 @@ import {
   OHRIWelcomeSection,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 
-const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
-
-require('./root.scss');
+export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 export const moduleName = '@ohri/openmrs-esm-ohri-pmtct';
 
-function setupOpenMRS() {
-  const options = {
-    featureName: 'ohri-pmtct',
-    moduleName,
-  };
+require('./root.scss');
+
+const options = {
+  featureName: 'ohri-pmtct',
+  moduleName,
+};
+
+export function startupApp() {
   defineConfigSchema(moduleName, {});
   registerPostSubmissionAction({
     id: 'MotherToChildLinkageSubmissionAction',
@@ -41,113 +41,59 @@ function setupOpenMRS() {
     id: 'ArtSubmissionAction',
     load: () => import('./post-submission-actions/art-linkage-action'),
   });
-
-  return {
-    pages: [],
-    extensions: [
-      {
-        id: 'mch',
-        slot: 'patient-chart-dashboard-slot',
-        load: getSyncLifecycle(createDashboardGroup(mchFolderMeta), options),
-        meta: mchFolderMeta,
-        online: true,
-        offline: true,
-        order: 25,
-      },
-      {
-        id: 'mch-summary-dashboard',
-        slot: 'mch-slot',
-        load: getSyncLifecycle(createDashboardLinkWithCustomTitle(mchSummaryDashboardMeta), options),
-        meta: mchSummaryDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'mch-summary-ext',
-        slot: 'mch-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
-          featureName: 'mch-summary',
-          moduleName,
-        }),
-      },
-      {
-        id: 'maternal-Health-dashboard',
-        slot: 'mch-slot',
-        load: getSyncLifecycle(createConditionalDashboardLink(maternalVisitsDashboardMeta), options),
-        meta: maternalVisitsDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'maternal-visits-summary-ext',
-        slot: 'maternal-visits-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/maternal-health/maternal-health.component'), {
-          featureName: 'maternal-visits',
-          moduleName,
-        }),
-      },
-      {
-        id: 'child-visits-dashboard',
-        slot: 'mch-slot',
-        load: getSyncLifecycle(createConditionalDashboardLink(childVisitsDashboardMeta), options),
-        meta: childVisitsDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'child-visits-summary-ext',
-        slot: 'child-visits-summary-slot',
-        load: getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
-          featureName: 'child-visits',
-          moduleName,
-        }),
-      },
-      {
-        id: 'mother-child-health-results-dashboard',
-        slot: 'mother-child-health-dashboard-slot',
-        load: getSyncLifecycle(OHRIHome, {
-          featureName: 'mother child health results dashboard',
-          moduleName,
-        }),
-        meta: motherChildDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'pmtct-home-header-slot',
-        slot: 'pmtct-home-header-slot',
-        title: 'Maternal Child Health',
-        load: getSyncLifecycle(OHRIWelcomeSection, {
-          featureName: 'pmtct-home-header',
-          moduleName,
-        }),
-      },
-      {
-        id: 'pmtct-home-tabs-ext',
-        slot: 'pmtct-home-tabs-slot',
-        load: getAsyncLifecycle(() => import('./views/summary-tabs/mother-child-summary-tabs.component'), {
-          featureName: 'pmtct-home-tabs',
-          moduleName,
-        }),
-      },
-      {
-        id: 'maternal-child-health-results-summary',
-        slot: 'dashboard-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options),
-        meta: motherChildDashboardMeta,
-        online: true,
-        offline: true,
-      },
-      {
-        id: 'pmtct-home-tile-ext',
-        slot: 'pmtct-home-tiles-slot',
-        load: getAsyncLifecycle(() => import('./views/summary-tabs/maternal-child-summary-tiles.component'), {
-          featureName: 'pmtct-home-tiles',
-          moduleName,
-        }),
-      },
-    ],
-  };
 }
 
-export { backendDependencies, importTranslation, setupOpenMRS };
+export const mchDashboard = getSyncLifecycle(createDashboardGroup(mchFolderMeta), options);
+export const mchSummaryDashboardLink = getSyncLifecycle(
+  createDashboardLinkWithCustomTitle(mchSummaryDashboardMeta),
+  options,
+);
+export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
+  featureName: 'mch-summary',
+  moduleName,
+});
+
+export const maternalVisitsDashboardLink = getSyncLifecycle(
+  createConditionalDashboardLink(maternalVisitsDashboardMeta),
+  options,
+);
+export const maternalVisitsDashboard = getAsyncLifecycle(
+  () => import('./views/maternal-health/maternal-health.component'),
+  {
+    featureName: 'maternal-visits',
+    moduleName,
+  },
+);
+
+export const childVisitsDashboardLink = getSyncLifecycle(
+  createConditionalDashboardLink(childVisitsDashboardMeta),
+  options,
+);
+export const childVisitsDashboard = getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
+  featureName: 'child-visits',
+  moduleName,
+});
+
+export const maternalChildDashboardLink = getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options);
+export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
+  featureName: 'mother child health results dashboard',
+  moduleName,
+});
+export const pmtctDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
+  featureName: 'pmtct-home-header',
+  moduleName,
+});
+export const pmtctDashboardTiles = getAsyncLifecycle(
+  () => import('./views/summary-tabs/maternal-child-summary-tiles.component'),
+  {
+    featureName: 'pmtct-home-tiles',
+    moduleName,
+  },
+);
+export const pmtctDashboardTabs = getAsyncLifecycle(
+  () => import('./views/summary-tabs/mother-child-summary-tabs.component'),
+  {
+    featureName: 'pmtct-home-tabs',
+    moduleName,
+  },
+);

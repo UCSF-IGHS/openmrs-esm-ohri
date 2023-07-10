@@ -12,17 +12,16 @@
     "access": "public"
   },
   "scripts": {
-    "start": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources 'packages/esm-*-app/'",
+    "start": "openmrs develop --backend https://ohri-dev-staging.globalhealthapp.net/ --sources 'packages/esm-*-app/'",
     "start:core": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
     "start:covid": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-covid-app",
     "start:hiv": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-hiv-app",
     "start:cervical-cancer": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
     "start:pmtct": "openmrs develop --backend https://ohri-namibia-dev.globalhealthapp.net --sources 'packages/esm-ohri-pmtct-app/'",
     "start:form-render": "openmrs develop --backend https://ohri-demo.globalhealthapp.net --sources packages/esm-form-render-app",
-    "start:namibia": "openmrs develop --backend https://ohri-namibia-dev.globalhealthapp.net --sources 'packages/esm-*-app/'",
     "prettier": "prettier --fix --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
-    "test": "jest --config jest.config.json --verbose false --passWithNoTests",
+    "test": "jest --config jest.config.js --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.js",
     "verify": "turbo run lint && turbo run typescript && yarn test --coverage",
     "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
@@ -34,8 +33,7 @@
     "extract-translations": "lerna run extract-translations -- --config ../../tools/i18next-parser.config.js",
     "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
     "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
-    "release": "lerna version --no-git-tag-version",
-    "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next"
+    "release": "lerna version --no-git-tag-version"
   },
   "devDependencies": {
     "@openmrs/esm-framework": "next",

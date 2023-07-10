@@ -22,6 +22,7 @@ const config = {
     'react-i18next': '<rootDir>/__mocks__/react-i18next.js',
     'lodash-es': 'lodash',
     'react-markdown': '<rootDir>/__mocks__/react-markdown.tsx',
+    '^dexie$': require.resolve('dexie'),
   },
 };
 
