@@ -115,8 +115,8 @@ const HivExposedInfant: React.FC<{
 
   const familyHeaders = [
     {
-      key: 'id',
-      header: 'ID',
+      key: 'pTrackerId',
+      header: t('pTrackerId', 'PTracker ID'),
     },
     {
       key: 'name',
