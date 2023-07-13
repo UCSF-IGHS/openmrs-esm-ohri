@@ -57,13 +57,6 @@ export const generalCounsellingDashboardMeta = {
   path: 'General Counselling',
 };
 
-export const adherenceCounsellingDashboardMeta = {
-  slot: 'adherence-counselling-summary-slot',
-  columns: 1,
-  title: 'Adherence Counselling',
-  path: 'Adherence Counselling',
-};
-
 export const partnerNotificationServicesDashboardMeta = {
   slot: 'partner-notification-services-slot',
   columns: 1,
