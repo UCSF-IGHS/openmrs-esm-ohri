@@ -15,14 +15,6 @@ export const htsSummaryDashboardMeta = {
   title: 'HIV Testing Services',
 };
 
-export const preExposureProphylaxisDashboardMeta = {
-  name: 'pre-exposure-prophylaxis',
-  slot: 'pre-exposure-prophylaxis-dashboard-slot',
-  columns: 1,
-  title: 'Pre-exposure Prophylaxis',
-  path: 'Pre-exposure Prophylaxis',
-};
-
 export const hivCareAndTreatmentDashboardDMeta = {
   title: 'HIV Care and Treatment',
   slotName: 'ohri-hiv-care-and-treatment-slot',
