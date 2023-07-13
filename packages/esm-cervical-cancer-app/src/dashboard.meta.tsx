@@ -17,10 +17,3 @@ export const caCxVisitsDashboardMeta = {
   title: 'CaCx Visits',
   path: 'CaCx Visits',
 };
-
-export const caCxAppointmentsDashboardMeta = {
-  slot: 'cacx-appointments-slot',
-  columns: 1,
-  title: 'CaCx Appointments',
-  path: 'CaCx Appointments',
-};
