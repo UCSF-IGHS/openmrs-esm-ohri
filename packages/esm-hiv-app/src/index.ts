@@ -19,7 +19,6 @@ import {
   programManagementDashboardMeta,
   clinicalVisitsDashboardMeta,
   generalCounsellingDashboardMeta,
-  adherenceCounsellingDashboardMeta,
   partnerNotificationServicesDashboardMeta,
   hivPreventionFolderDashboardMeta,
 } from './dashboard.meta';
@@ -195,18 +194,6 @@ export const generalCounsellingDashboard = getAsyncLifecycle(
   () => import('./views/general-counselling/general-counselling-summary.component'),
   {
     featureName: 'general-counselling-summary',
-    moduleName,
-  },
-);
-
-export const adherenceCounsellingDashboardLink = getSyncLifecycle(
-  createDashboardLink(adherenceCounsellingDashboardMeta),
-  options,
-);
-export const adherenceCounsellingDashboard = getAsyncLifecycle(
-  () => import('./views/adherence-counselling/adherence-counselling-summary.component'),
-  {
-    featureName: 'adherence-counselling-summary',
     moduleName,
   },
 );
