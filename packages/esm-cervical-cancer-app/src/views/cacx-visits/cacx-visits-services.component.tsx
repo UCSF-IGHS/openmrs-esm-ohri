@@ -2,7 +2,6 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import CaCxRegistrationList from './Tabs/cacx-registration.component';
-import CacxScreeningList from './Tabs/cacx-screening.component';
 import CacxTreatmentList from './Tabs/cacx-treatment.component';
 import { useTranslation } from 'react-i18next';
 
