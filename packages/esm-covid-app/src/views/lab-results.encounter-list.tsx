@@ -95,14 +95,14 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'covid_lab_test', package: 'covid' },
+              form: { name: 'COVID Lab Test', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'covid_lab_result', package: 'covid' },
+              form: { name: 'OVID Lab Result Form', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('addEditResult', 'Add/Edit Lab Result'),
@@ -112,7 +112,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           const status = getObsFromEncounter(encounter, covidTestStatusConcept_UUID);
           if (status.includes('Pending')) {
             baseActions.push({
-              form: { name: 'covid_lab_order_cancellation', package: 'covid' },
+              form: { name: 'Lab Order Cancellation', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('cancelLabOrder', 'Cancel Lab Order'),
@@ -121,7 +121,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           }
           if (status.includes('Pending')) {
             baseActions.push({
-              form: { name: 'covid_sample_collection', package: 'covid' },
+              form: { name: 'Sample Collection', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('collectSample', 'Collect Sample'),
@@ -180,21 +180,21 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'covid_lab_test', package: 'covid' },
+            form: { name: 'COVID Lab Test', package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'covid_sample_collection', package: 'covid' },
+            form: { name: 'Sample Collection', package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('collectSample', 'Collect Sample'),
             mode: 'edit',
           },
           {
-            form: { name: 'covid_lab_result', package: 'covid' },
+            form: { name: 'COVID Lab Result Form', package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('addEditResult', 'Add/Edit Lab Result'),
