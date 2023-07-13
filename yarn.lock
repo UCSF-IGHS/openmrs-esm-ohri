@@ -3928,8 +3928,8 @@ __metadata:
   linkType: hard
 
 "@openmrs/openmrs-form-engine-lib@npm:next":
-  version: 1.0.0-pre.277
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.277"
+  version: 1.0.0-pre.287
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.287"
   dependencies:
     ace-builds: ^1.4.12
     enzyme: ^3.11.0
@@ -3938,7 +3938,7 @@ __metadata:
     jest-coverage-badges: ^1.0.0
     lodash-es: ^4.17.15
     react-anchor-link-smooth-scroll: ^1.0.12
-    react-error-boundary: ^4.0.3
+    react-error-boundary: 4.0.10
     react-markdown: ^7.1.0
     react-scroll: ^1.8.2
     react-test-renderer: ^16.9.0
@@ -3951,7 +3951,7 @@ __metadata:
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: 6c577a7f34bed4651c51d6717fa0a38127bb27b1a325ed719e73a580c0c0023bb73dc58ce8a9914779a6bfe277258569a635ce57214908f5ca5cf6f6f0e06ca0
+  checksum: 0a4511a0a9094bdc140b19f4231c01a114171903f7de9d1066f61a50d10afdeccff51b6c938d130d568169958edf9d7e9db88b0421ede95a6d80287ec9e4670e
   languageName: node
   linkType: hard
 
@@ -16573,14 +16573,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-error-boundary@npm:^4.0.3":
-  version: 4.0.4
-  resolution: "react-error-boundary@npm:4.0.4"
+"react-error-boundary@npm:4.0.10":
+  version: 4.0.10
+  resolution: "react-error-boundary@npm:4.0.10"
   dependencies:
     "@babel/runtime": ^7.12.5
   peerDependencies:
     react: ">=16.13.1"
-  checksum: 02f04bdf8526f4b2474cb129ece32e5e32fbe81a72a71fdcf056c440aa9f4308b372383f5e817eea76220dcf0901459be2834d6ab8106cd9c36e8ec230df70f9
+  checksum: 4ad4864d2a5fc2264a24d03e83176e6a70d7adbe3c1edbdc5b0bd452a695104bc59456e23b5aea1b9729220672fe46614221daa8b3bd59327968d4aa7eb8bc71
   languageName: node
   linkType: hard
 
