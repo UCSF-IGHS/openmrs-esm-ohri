@@ -258,21 +258,6 @@
       "name": "hts-summary-dashboard-ext",
       "slot": "hts-summary-dashboard-slot",
       "component": "htsSummaryDashboard"
-    },
-    {
-      "name": "pre-exposure-prophylaxis",
-      "slot": "ohri-hiv-prevention-slot",
-      "component": "preExposureProphylaxisDashboardLink",
-      "meta": {
-        "slot": "pre-exposure-prophylaxis-dashboard-slot",
-        "columns": 1,
-        "path": "Pre-exposure Prophylaxis"
-      }
-    },
-    {
-      "name": "pre-exposure-prophylaxis-ext",
-      "slot": "pre-exposure-prophylaxis-dashboard-slot",
-      "component": "preExposureProphylaxisDashboard"
     }
   ]
 }

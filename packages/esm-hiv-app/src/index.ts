@@ -13,7 +13,6 @@ import {
   htsDashboardMeta,
   htsSummaryDashboardMeta,
   hivPreventionDashboardMeta,
-  preExposureProphylaxisDashboardMeta,
   hivCareAndTreatmentDashboardDMeta,
   hivPatientSummaryDashboardMeta,
   programManagementDashboardMeta,
@@ -145,18 +144,6 @@ export const htsSummaryDashboard = getAsyncLifecycle(
   () => import('./views/hiv-testing-services/hts-prevention-summary.component'),
   {
     featureName: 'hts-patient-encounters-list',
-    moduleName,
-  },
-);
-
-export const preExposureProphylaxisDashboardLink = getSyncLifecycle(
-  createDashboardLink(preExposureProphylaxisDashboardMeta),
-  options,
-);
-export const preExposureProphylaxisDashboard = getAsyncLifecycle(
-  () => import('./views/pre-exposure-prophylaxis/pre-exposure-prophylaxis.component'),
-  {
-    featureName: 'pre-exposure-prophylaxis',
     moduleName,
   },
 );
