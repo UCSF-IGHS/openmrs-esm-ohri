@@ -102,7 +102,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               mode: 'view',
             },
             {
-              form: { name: 'OVID Lab Result Form', package: 'covid' },
+              form: { name: 'COVID Lab Result Form', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('addEditResult', 'Add/Edit Lab Result'),
@@ -121,7 +121,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           }
           if (status.includes('Pending')) {
             baseActions.push({
-              form: { name: 'Sample Collection', package: 'covid' },
+              form: { name: 'COVID Sample Collection', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('collectSample', 'Collect Sample'),
