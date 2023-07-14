@@ -52,7 +52,7 @@ export const generalCounsellingDashboardMeta = {
 export const partnerNotificationServicesDashboardMeta = {
   slot: 'partner-notification-services-slot',
   columns: 1,
-  title: 'Partner Notification Services',
+  title: 'Partner Notification',
   path: 'Partner Notification Services',
 };
 

@@ -16,7 +16,7 @@ const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab className="tab-12rem">{t('cacxRegistration', 'Cacx Registration')}</Tab>
+          <Tab className="tab-12rem">{t('cacxRegistration', 'CaCx Registration')}</Tab>
           <Tab>{t('cacxTreatment', 'CaCx Treatment')}</Tab>
         </TabList>
         <TabPanels>
