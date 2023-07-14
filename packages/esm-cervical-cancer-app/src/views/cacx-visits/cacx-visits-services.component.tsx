@@ -2,7 +2,6 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import CaCxRegistrationList from './Tabs/cacx-registration.component';
-import CacxScreeningList from './Tabs/cacx-screening.component';
 import CacxTreatmentList from './Tabs/cacx-treatment.component';
 import { useTranslation } from 'react-i18next';
 
@@ -18,15 +17,11 @@ const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }
       <Tabs>
         <TabList contained>
           <Tab className="tab-12rem">{t('cacxRegistration', 'Cacx Registration')}</Tab>
-          <Tab>{t('cacxScreening', 'CaCx Screening')}</Tab>
           <Tab>{t('cacxTreatment', 'CaCx Treatment')}</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
             <CaCxRegistrationList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <CacxScreeningList patientUuid={patientUuid} />
           </TabPanel>
           <TabPanel>
             <CacxTreatmentList patientUuid={patientUuid} />
