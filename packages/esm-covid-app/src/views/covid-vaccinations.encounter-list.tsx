@@ -74,7 +74,25 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
       {
         key: 'actions',
         header: t('actions', 'Actions'),
-        getValue: () => {},
+        getValue: (encounter) => {
+          const baseActions = [
+            {
+              form: { name: 'COVID Vaccination Form', package: 'covid' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: 'View Details',
+              mode: 'view',
+            },
+            {
+              form: { name: 'COVID Vaccination Form', package: 'covid' },
+              encounterUuid: encounter.uuid,
+              intent: '*',
+              label: 'Edit Form',
+              mode: 'edit',
+            },
+          ];
+          return baseActions;
+        },
       },
     ],
     [],
