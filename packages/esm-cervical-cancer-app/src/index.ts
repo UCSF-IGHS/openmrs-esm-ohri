@@ -1,10 +1,5 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
-import {
-  caCxAppointmentsDashboardMeta,
-  caCxSummaryDashboardMeta,
-  caCxVisitsDashboardMeta,
-  cervicalCancerFolderMeta,
-} from './dashboard.meta';
+import { caCxSummaryDashboardMeta, caCxVisitsDashboardMeta, cervicalCancerFolderMeta } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -35,18 +30,6 @@ export const cacxVisitsDashboard = getAsyncLifecycle(
   () => import('./views/cacx-visits/cacx-visits-services.component'),
   {
     featureName: 'cacx-visits',
-    moduleName,
-  },
-);
-
-export const cacxAppointmentsDashboardLink = getSyncLifecycle(
-  createDashboardLink(caCxAppointmentsDashboardMeta),
-  options,
-);
-export const cacxAppointmentsDashboard = getAsyncLifecycle(
-  () => import('./views/cacx-appointment/cacx-appointments.component'),
-  {
-    featureName: 'cacx-appointments',
     moduleName,
   },
 );
