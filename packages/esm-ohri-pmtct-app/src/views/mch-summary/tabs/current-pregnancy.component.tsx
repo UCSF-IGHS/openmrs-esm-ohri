@@ -145,8 +145,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   async function getChildPTracker(patientUuid: string) {
     let pTrackerMap = { patientId: '', pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
-    if (identifiers) {
-      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType).identifier;
+    if (identifiers && identifiers.length > 0) {
+    const matchedIdentifier = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType);
+      pTrackerMap.pTrackerId = matchedIdentifier?.identifier ?? pTrackerMap.pTrackerId;
       pTrackerMap.patientId = patientUuid;
     }
     return pTrackerMap;
