@@ -54,14 +54,14 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'cacx_treatment_form', package: 'cacx' },
+              form: { name: 'Screening and Cancer Treatment Form', package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'cacx_treatment_form', package: 'cacx' },
+              form: { name: 'Screening and Cancer Treatment Form', package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
