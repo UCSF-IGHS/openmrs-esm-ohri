@@ -208,8 +208,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounterTypes: [labourAndDeliveryEncounterType],
         getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const totalVisits = await fetchMotherHIVStatus(patientUuid, currentPTrackerId);
-          return totalVisits.rows.length ? totalVisits.rows[0].mother_hiv_status : '--';
+          // const totalVisits = await fetchMotherHIVStatus(patientUuid, currentPTrackerId);
+          // return totalVisits.rows.length ? totalVisits.rows[0].mother_hiv_status : '--';
+          return '--';
         },
       },
       {
@@ -318,8 +319,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounterTypes: [antenatalEncounterType],
         getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
-          const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
-          return totalVisits.rows.length ? totalVisits.rows[0].total : '0';
+          // const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
+          // return totalVisits.rows.length ? totalVisits.rows[0].total : '0';
+          return '--';
         },
       },
     ],
