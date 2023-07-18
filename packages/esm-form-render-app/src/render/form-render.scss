@@ -4,7 +4,6 @@
 @import "../root.scss";
 
 .mainWrapper {
-  // height: 95vh;
   background-color: $ui-background;
   padding: 16px !important;
   margin: auto;
@@ -73,7 +72,7 @@
 }
 
 .formRenderDisplay {
-  height: 75vh;
+  // height: 75vh;
   padding: 0;
   border: 0.01rem dotted #6f6f6f !important;
   margin-top: 0.5rem;
