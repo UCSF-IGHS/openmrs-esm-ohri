@@ -113,7 +113,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   async function getParentRelationships() {
     let relationships = [];
     const relationshipsData = await fetchPatientRelationships(patientUuid);
-    if (relationshipsData.length) {
+    if (relationshipsData?.length) {
       relationshipsData.forEach((item) => {
         relationships.push(item);
       });
@@ -143,12 +143,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   }, [relatives]);
 
   async function getChildPTracker(patientUuid: string) {
-    let pTrackerMap = { patientId: '', pTrackerId: '--' };
+    let pTrackerMap = { patientId: patientUuid, pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
-    if (identifiers && identifiers.length > 0) {
-    const matchedIdentifier = identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType);
-      pTrackerMap.pTrackerId = matchedIdentifier?.identifier ?? pTrackerMap.pTrackerId;
-      pTrackerMap.patientId = patientUuid;
+    if (identifiers?.length) {
+      pTrackerMap.pTrackerId =
+        identifiers.find((id) => id.identifierType.uuid === PTrackerIdentifierType)?.identifier ?? '--';
     }
     return pTrackerMap;
   }
