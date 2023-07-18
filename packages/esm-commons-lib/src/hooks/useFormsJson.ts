@@ -14,9 +14,20 @@ export function useFormsJson(formNames: string[]) {
 
   useEffect(() => {
     if (responses?.length) {
-      setOpenmrsForms(responses.map((response) => response.data.results[0]).filter(Boolean));
+      setOpenmrsForms(
+        responses
+          .map((response, index) => {
+            const match = response.data.results.find((result) => !result.retired && result.name === formNames[index]);
+            if (!match) {
+              console.error('Form not found: ' + formNames[index]);
+              return null;
+            }
+            return match;
+          })
+          .filter(Boolean),
+      );
     }
-  }, [responses]);
+  }, [formNames, responses]);
 
   return {
     formsJson: formJsonSchemas,
