@@ -7,17 +7,17 @@ function MaternalChildSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
 
-  useEffect(() => {
-    getReportingCohort(clientsEnrolledToCare).then((data) => {
-      setActiveClientsCount(data.members.length);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getReportingCohort(clientsEnrolledToCare).then((data) => {
+  //     setActiveClientsCount(data.members.length);
+  //   });
+  // }, []);
   const tiles = [
     {
       title: t('anc', 'ANC'),
       linkAddress: '#',
       subTitle: t('pregnantWomenAttendingFirstANC', '# Pregnant women attending first ANC'),
-      value: activeClientsCount,
+      value: 'N/A',
     },
     {
       title: t('labourDelivery', 'Labour & Delivery'),
