@@ -16,10 +16,16 @@ export function useFormJsonSchemas(openmrsForms: OpenmrsForm[]) {
     if (openmrsForms?.length) {
       setClobDataReferences(
         openmrsForms
-          .map((form) => ({
-            clobDataValueRef: form.resources.find(({ name }) => name === 'JSON schema')?.valueReference,
-            formUuid: form.uuid,
-          }))
+          .map((form) => {
+            const clobDataValueRef = form.resources.find(({ name }) => name === 'JSON schema')?.valueReference;
+            if (!clobDataValueRef) {
+              console.error('JSON Schema resource not found for form: ' + form.name);
+            }
+            return {
+              clobDataValueRef,
+              formUuid: form.uuid,
+            };
+          })
           .filter((clobRef) => clobRef.clobDataValueRef),
       );
     }
