@@ -95,31 +95,14 @@ function FormRenderTest() {
     conceptObject.questionOptions.concept
       ? openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
           .then((response) => {
-            console.log(response.data);
-
             conceptObject.questionOptions.concept === response.data.uuid
               ? dataTypeChecker(conceptObject, response)
               : console.log("❌ response UUID doesn't match concept UUID");
           })
           .catch((error) => {
-            if (error.message.includes('500')) {
-              console.log('500 server error occurred!');
-            }
-
-            const clientErrors = ['0', '1', '3', '4'];
-
-            clientErrors.forEach((i, index) => {
-              error.message.includes(`40${i}`) &&
-                console.log(
-                  `${error.message.substring(
-                    error.message.indexOf('40'),
-                    error.message.indexOf('40') + 3,
-                  )} error occurred!`,
-                );
-              if (index === 3) {
-                console.log(`❌ Concept UUID ${conceptObject.questionOptions.concept} not found`);
-              }
-            });
+            console.log(
+              `❌ Concept UUID ${conceptObject.questionOptions.concept} not found, with questionID: ${conceptObject.id}`,
+            );
           })
       : console.log('❌ Question with no concept UUID: ', conceptObject.id);
   };
@@ -136,12 +119,10 @@ function FormRenderTest() {
     };
 
     renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
-      renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
-      console.log('✅ datatype rendering match');
-
-    renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
       !renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
-      console.log('❌ datatype rendering mismatch');
+      console.log(
+        `❌ ${conceptObject.questionOptions.concept}: datatype "${responseObject.data.datatype.display}" doesn't match control type "${conceptObject.questionOptions.rendering}`,
+      );
   };
 
   const handleFormSubmission = (e) => {
