@@ -75,8 +75,8 @@ function FormRenderTest() {
   };
 
   const handleFormValidation = () => {
-    if (defaultJson) {
-      const parsedForm = typeof defaultJson == 'string' ? JSON.parse(defaultJson) : defaultJson;
+    if (schemaInput) {
+      const parsedForm = typeof schemaInput == 'string' ? JSON.parse(schemaInput) : schemaInput;
 
       for (let i = 0; i < parsedForm.pages.length; i++) {
         for (let j = 0; j < parsedForm.pages[i].sections.length; j++) {
