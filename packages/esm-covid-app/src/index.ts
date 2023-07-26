@@ -28,11 +28,11 @@ export function startupApp() {
 export const covidPatientChartDashboard = getSyncLifecycle(createDashboardGroup(covidPatientChartMeta), options);
 
 export const covidAssessmentDashboardLink = getSyncLifecycle(
-  createDashboardLink(covidAssessmentsDashboardMeta),
+  createDashboardLink({ ...covidAssessmentsDashboardMeta, moduleName }),
   options,
 );
 export const covidVaccinationDashboardLink = getSyncLifecycle(
-  createDashboardLink(covidVaccinationsDashboardMeta),
+  createDashboardLink({ ...covidVaccinationsDashboardMeta, moduleName }),
   options,
 );
 export const covidPatientChartDashboardLink = getSyncLifecycle(createOHRIDashboardLink(covidPatientChartMeta), options);
@@ -40,7 +40,10 @@ export const covidDashboardItemsLink = getSyncLifecycle(
   createOHRIDashboardLink(covidClinicalViewDashboardMeta),
   options,
 );
-export const covidLabResultsDashboardLink = getSyncLifecycle(createDashboardLink(covidLabTestsDashboardMeta), options);
+export const covidLabResultsDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...covidLabTestsDashboardMeta, moduleName }),
+  options,
+);
 export const covidDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
   featureName: 'covid-home-header',
   moduleName,

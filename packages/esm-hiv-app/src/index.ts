@@ -138,7 +138,10 @@ export const patientChartHIVPreventionDashboard = getSyncLifecycle(
   options,
 );
 
-export const htsSummaryDashboardLink = getSyncLifecycle(createDashboardLink(htsSummaryDashboardMeta), options);
+export const htsSummaryDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...htsSummaryDashboardMeta, moduleName }),
+  options,
+);
 export const htsSummaryDashboard = getAsyncLifecycle(
   () => import('./views/hiv-testing-services/hts-prevention-summary.component'),
   {
@@ -152,11 +155,11 @@ export const patientChartHIVCareAndTreatmentDashboard = getSyncLifecycle(
   options,
 );
 export const hivPatientSummaryDashboardLink = getSyncLifecycle(
-  createDashboardLink(hivPatientSummaryDashboardMeta),
+  createDashboardLink({ ...hivPatientSummaryDashboardMeta, moduleName }),
   options,
 );
 export const programManagementDashboardLink = getSyncLifecycle(
-  createDashboardLink(programManagementDashboardMeta),
+  createDashboardLink({ ...programManagementDashboardMeta, moduleName }),
   options,
 );
 export const programManagementDashboard = getAsyncLifecycle(
@@ -167,14 +170,17 @@ export const programManagementDashboard = getAsyncLifecycle(
   },
 );
 
-export const clinicalVisitsDashboardLink = getSyncLifecycle(createDashboardLink(clinicalVisitsDashboardMeta), options);
+export const clinicalVisitsDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...clinicalVisitsDashboardMeta, moduleName }),
+  options,
+);
 export const clinicalVisitsDashboard = getAsyncLifecycle(() => import('./views/visits/visits-summary.component'), {
   featureName: 'visits-summary',
   moduleName,
 });
 
 export const generalCounsellingDashboardLink = getSyncLifecycle(
-  createDashboardLink(generalCounsellingDashboardMeta),
+  createDashboardLink({ ...generalCounsellingDashboardMeta, moduleName }),
   options,
 );
 export const generalCounsellingDashboard = getAsyncLifecycle(
@@ -186,7 +192,7 @@ export const generalCounsellingDashboard = getAsyncLifecycle(
 );
 
 export const partnerNotificationServicesDashboardLink = getSyncLifecycle(
-  createDashboardLink(partnerNotificationServicesDashboardMeta),
+  createDashboardLink({ ...partnerNotificationServicesDashboardMeta, moduleName }),
   options,
 );
 export const partnerNotificationServicesDashboard = getAsyncLifecycle(

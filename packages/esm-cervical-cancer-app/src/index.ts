@@ -19,13 +19,19 @@ export function startupApp() {
 
 export const cacxPatientChartDashboard = getSyncLifecycle(createDashboardGroup(cervicalCancerFolderMeta), options);
 
-export const cacxSummaryDashboardLink = getSyncLifecycle(createDashboardLink(caCxSummaryDashboardMeta), options);
+export const cacxSummaryDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...caCxSummaryDashboardMeta, moduleName }),
+  options,
+);
 export const cacxSummaryDashboard = getAsyncLifecycle(() => import('./views/cacx-summary/cacx-summary.component'), {
   featureName: 'cacx-summary',
   moduleName,
 });
 
-export const cacxVisitsDashboardLink = getSyncLifecycle(createDashboardLink(caCxVisitsDashboardMeta), options);
+export const cacxVisitsDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...caCxVisitsDashboardMeta, moduleName }),
+  options,
+);
 export const cacxVisitsDashboard = getAsyncLifecycle(
   () => import('./views/cacx-visits/cacx-visits-services.component'),
   {
