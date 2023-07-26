@@ -62,7 +62,7 @@ const HivExposedInfant: React.FC<{
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
-        encounterTypes: [],
+        encounterTypes: [infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, infantExposureStatus);
         },
@@ -70,7 +70,7 @@ const HivExposedInfant: React.FC<{
       {
         key: 'finalOutcome',
         header: t('finalOutcome', 'Final Outcome'),
-        encounterTypes: [],
+        encounterTypes: [infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, outcomeStatus);
         },
