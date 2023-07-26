@@ -4,6 +4,7 @@ import {
   maternalVisitsDashboardMeta,
   childVisitsDashboardMeta,
   motherChildDashboardMeta,
+  mchFolderMeta,
 } from './dashboard.meta';
 import { createDashboardGroup } from '@openmrs/esm-patient-common-lib';
 import { registerPostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
@@ -42,6 +43,7 @@ export function startupApp() {
   });
 }
 
+export const mchDashboard = getSyncLifecycle(createDashboardGroup(mchFolderMeta), options);
 export const mchSummaryDashboardLink = getSyncLifecycle(
   createDashboardLinkWithCustomTitle(mchSummaryDashboardMeta),
   options,
