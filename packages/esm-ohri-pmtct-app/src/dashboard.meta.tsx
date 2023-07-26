@@ -1,5 +1,11 @@
 import { PedestrianChild } from '@carbon/react/icons';
 
+export const mchFolderMeta = {
+  title: 'Maternal & Child Health',
+  slotName: 'mch-slot',
+  isExpanded: false,
+};
+
 export const mchSummaryDashboardMeta = {
   slot: 'mch-summary-slot',
   columns: 1,
