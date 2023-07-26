@@ -219,11 +219,11 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const handleSearch = useCallback(
     (searchTerm) => {
       setSearchTerm(searchTerm);
-      const filtrate = filterPatientsByName(searchTerm, paginatedPatients);
+      const filtrate = filterPatientsByName(searchTerm, allPatients);
       setFilteredResults(filtrate);
       return true;
     },
-    [paginatedPatients],
+    [allPatients],
   );
 
   useEffect(() => {
