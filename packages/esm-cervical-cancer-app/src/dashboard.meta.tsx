@@ -8,12 +8,12 @@ export const caCxSummaryDashboardMeta = {
   slot: 'cacx-summary-slot',
   columns: 1,
   title: 'CaCx Summary',
-  path: 'CaCx Summary',
+  path: 'cacx-summary',
 };
 
 export const caCxVisitsDashboardMeta = {
   slot: 'cacx-visits-slot',
   columns: 1,
   title: 'CaCx Visits',
-  path: 'CaCx Visits',
+  path: 'cacx-visits',
 };
