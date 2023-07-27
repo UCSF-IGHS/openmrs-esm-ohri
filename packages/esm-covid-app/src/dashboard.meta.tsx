@@ -11,21 +11,21 @@ export const covidAssessmentsDashboardMeta = {
   slot: 'covid-assessments-dashboard-slot',
   columns: 1,
   title: 'Covid Assessments',
-  path: 'Covid Assessments',
+  path: 'covid-assessments',
 };
 
 export const covidLabTestsDashboardMeta = {
   slot: 'covid-lab-dashboard-slot',
   columns: 1,
   title: 'Lab Test',
-  path: 'Lab Test',
+  path: 'lab-test',
 };
 
 export const covidVaccinationsDashboardMeta = {
   slot: 'covid-vaccinations-dashboard-slot',
   columns: 1,
   title: 'Covid Vaccinations',
-  path: 'Covid Vaccinations',
+  path: 'covid-vaccinations',
 };
 
 // Clinical Dashboards

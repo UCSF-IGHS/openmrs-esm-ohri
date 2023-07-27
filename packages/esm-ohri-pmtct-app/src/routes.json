@@ -17,7 +17,7 @@
       "slot": "mch-slot",
       "component": "mchSummaryDashboardLink",
       "meta": {
-        "path": "MNCH Summary",
+        "path": "mnch-summary",
         "slot": "mch-summary-slot",
         "columns": 1
       }
@@ -32,7 +32,7 @@
       "slot": "mch-slot",
       "component": "maternalVisitsDashboardLink",
       "meta": {
-        "path": "Maternal Visits",
+        "path": "maternal-visits",
         "slot": "maternal-visits-summary-slot",
         "columns": 1
       }
@@ -47,7 +47,7 @@
       "slot": "mch-slot",
       "component": "childVisitsDashboardLink",
       "meta": {
-        "path": "Child Visits",
+        "path": "child-visits",
         "slot": "child-visits-summary-slot",
         "columns": 1
       }

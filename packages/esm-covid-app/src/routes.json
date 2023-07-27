@@ -73,7 +73,7 @@
       "meta": {
         "slot": "covid-assessments-dashboard-slot",
         "columns": 1,
-        "path": "Covid Assessments"
+        "path": "covid-assessments"
       }
     },
     {
@@ -88,7 +88,7 @@
       "meta": {
         "slot": "covid-lab-dashboard-slot",
         "columns": 1,
-        "path": "Lab Test"
+        "path": "lab-test"
       }
     },
     {
@@ -103,7 +103,7 @@
       "meta": {
         "slot": "covid-vaccinations-dashboard-slot",
         "columns": 1,
-        "path": "Covid Vaccinations"
+        "path": "covid-vaccinations"
       }
     },
     {

@@ -155,7 +155,7 @@
       "meta": {
         "slot": "hiv-patient-summary-dashboard-slot",
         "columns": 1,
-        "path": "HIV Patient Summary"
+        "path": "hiv-patient-summary"
       }
     },
     {
@@ -170,7 +170,7 @@
       "meta": {
         "slot": "program-management-summary-slot",
         "columns": 1,
-        "path": "Program Management"
+        "path": "program-management"
       }
     },
     {
@@ -185,7 +185,7 @@
       "meta": {
         "slot": "clinical-visits-summary-slot",
         "columns": 1,
-        "path": "Clinical Visits"
+        "path": "clinical-visits"
       }
     },
     {
@@ -200,7 +200,7 @@
       "meta": {
         "slot": "general-counselling-summary-slot",
         "columns": 1,
-        "path": "General Counselling"
+        "path": "general-counselling"
       }
     },
     {
@@ -215,7 +215,7 @@
       "meta": {
         "slot": "adherence-counselling-summary-slot",
         "columns": 1,
-        "path": "Adherence Counselling"
+        "path": "adherence-counselling"
       }
     },
     {
@@ -230,7 +230,7 @@
       "meta": {
         "slot": "partner-notification-services-slot",
         "columns": 1,
-        "path": "Partner Notification Services"
+        "path": "partner-notification-services"
       }
     },
     {
@@ -251,7 +251,7 @@
       "meta": {
         "slot": "hts-summary-dashboard-slot",
         "columns": 1,
-        "path": "HIV Testing Services"
+        "path": "hiv-testing-services"
       }
     },
     {
