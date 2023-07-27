@@ -121,7 +121,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           }
           if (status.includes('Pending')) {
             baseActions.push({
-              form: { name: 'COVID Sample Collection', package: 'covid' },
+              form: { name: 'Sample Collection', package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('collectSample', 'Collect Sample'),
@@ -230,6 +230,10 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               formList={[
                 { name: 'COVID Lab Order Form', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
                 { name: 'COVID Lab Result Form', excludedIntents: [] },
+                { name: 'COVID Lab Test' },
+                { name: 'Lab Order Cancellation' },
+                { name: 'Sample Collection' },
+                { name: 'COVID Lab Order Form' },
               ]}
               columns={columnsLab}
               description={displayText}
@@ -244,7 +248,14 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
             <EncounterList
               patientUuid={patientUuid}
               encounterType={covidLabOrderEncounterType_UUID}
-              formList={[{ name: 'COVID Lab Test' }]}
+              formList={[
+                { name: 'COVID Lab Test' },
+                { name: 'COVID Lab Test' },
+                { name: 'COVID Lab Result Form' },
+                { name: 'Lab Order Cancellation' },
+                { name: 'Sample Collection' },
+                { name: 'COVID Lab Order Form' },
+              ]}
               columns={columnsPending}
               description={headerTitlePending}
               headerTitle={displayTextPending}
