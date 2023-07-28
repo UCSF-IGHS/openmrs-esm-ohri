@@ -65,14 +65,14 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
             form: { name: 'COVID Case Form', package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
-            label: t('viewAssessment', 'View Assessment'),
+            label: t('viewAssessment', 'View Case'),
             mode: 'view',
           },
           {
             form: { name: 'COVID Assessment Form', package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
-            label: t('viewAssessmentcase', 'View Case'),
+            label: t('viewAssessmentcase', 'View Assessment'),
             mode: 'view',
           },
           {
@@ -90,7 +90,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
             mode: 'edit',
           },
           {
-            form: { name: 'COVID Case Form', package: 'covid' },
+            form: { name: 'COVID Outcome Form', package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('addEditOutcome', 'Add/Edit Outcome'),
@@ -109,8 +109,9 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       patientUuid={patientUuid}
       encounterType={covid_Assessment_EncounterUUID}
       formList={[
-        { name: 'COVID Assessment Form', excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
+        { name: 'COVID Assessment Form', excludedIntents: [] },
         { name: 'COVID Case Form' },
+        { name: 'COVID Outcome Form' },
       ]}
       columns={columns}
       description={displayText}
