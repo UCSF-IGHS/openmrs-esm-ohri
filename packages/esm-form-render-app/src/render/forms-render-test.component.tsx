@@ -83,6 +83,7 @@ function FormRenderTest() {
           for (let k = 0; k < parsedForm.pages[i].sections[j].questions.length; k++) {
             const questionObject = parsedForm.pages[i].sections[j].questions[k];
             handleQuestionValidation(questionObject);
+            handleAnswerValidation(questionObject)
           }
         }
       }
@@ -90,6 +91,21 @@ function FormRenderTest() {
       console.log('Empty form!');
     }
   };
+
+  const handleAnswerValidation = (qnObject) =>{
+
+    const answerArray = qnObject.questionOptions.answers
+
+    answerArray?.length > 0 
+    && answerArray.forEach(answer => {
+        openmrsFetch(`/ws/rest/v1/concept/${answer.concept}`)
+        .then(response =>{
+          // console.log(response.data)
+        })
+        .catch(err => console.log(`❌ answer "${answer.label}" backed by concept "${answer.concept}" not found`))
+    });
+
+  }
 
   const handleQuestionValidation = (conceptObject) => {
     conceptObject.questionOptions.concept
@@ -101,10 +117,10 @@ function FormRenderTest() {
           })
           .catch((error) => {
             console.log(
-              `❌ Concept UUID ${conceptObject.questionOptions.concept} not found, with questionID: ${conceptObject.id}`,
+              `❓ Concept UUID ${conceptObject.questionOptions.concept} not found, with questionID: ${conceptObject.id}`,
             );
           })
-      : console.log('❌ Question with no concept UUID: ', conceptObject.id);
+      : console.log('❓ Question with no concept UUID: ', conceptObject.id);
   };
 
   const dataTypeChecker = (conceptObject, responseObject) => {
@@ -121,7 +137,7 @@ function FormRenderTest() {
     renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
       !renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
       console.log(
-        `❌ ${conceptObject.questionOptions.concept}: datatype "${responseObject.data.datatype.display}" doesn't match control type "${conceptObject.questionOptions.rendering}`,
+        `❓ ${conceptObject.questionOptions.concept}: datatype "${responseObject.data.datatype.display}" doesn't match control type "${conceptObject.questionOptions.rendering}`,
       );
   };
 
