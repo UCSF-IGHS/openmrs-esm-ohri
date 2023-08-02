@@ -100,7 +100,6 @@ function FormRenderTest() {
     && answerArray.forEach(answer => {
         openmrsFetch(`/ws/rest/v1/concept/${answer.concept}`)
         .then(response =>{
-          // console.log(response.data)
         })
         .catch(err => console.log(`❌ answer "${answer.label}" backed by concept "${answer.concept}" not found`))
     });
