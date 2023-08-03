@@ -93,6 +93,18 @@ export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
   });
 }
 
+export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: string, encounterTypeUuid){
+  let params = `patient=${childUuid}&code=${conceptUuid}${
+    encounterTypeUuid ? `&encounter.type=${encounterTypeUuid}` : ''
+  }`;
+  // the latest obs
+  params += '&_sort=-_lastUpdated&_count=1';
+  return openmrsFetch(`/ws/fhir2/R4/Observation?${params}`).then(({ data }) => {
+    return data.entry?.length ? data.entry[0].resource.valueCodeableConcept.coding[0]?.display : null;
+  });
+
+}
+
 // Get family relationships from patient uuid
 export async function getFamilyRelationships(patientUuid: string) {
   return await fetchPatientRelationships(patientUuid);
