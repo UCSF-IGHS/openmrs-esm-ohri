@@ -72,7 +72,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
-  const [infantOutcomes, setInfantOutcomes] = useState('');
+  const [infantOutcomes, setInfantOutcomes] = useState({childUuid: '', finalOutcome: ''});
 
   const headersFamily = [
     {
@@ -156,7 +156,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const getInfantOutcome = async () => {
   relatives.forEach(async (relative) => {
     const finalOutcome = await fetchChildLatestFinalOutcome(relative.personB.uuid, outcomeStatus, infantPostnatalEncounterType);
-    return setInfantOutcomes(finalOutcome);
+    return setInfantOutcomes({finalOutcome: finalOutcome, childUuid: relative.personB.uuid});
   });
 
   }
@@ -214,7 +214,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         infantStatus:
           infantStatusObs.value?.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
           infantStatusObs.value.name.name,
-        finalOutcome: infantOutcomes ?? '--',
+        finalOutcome: infantOutcomes.childUuid === child.uuid ? infantOutcomes.finalOutcome : '--',
       };
       items.push(childObject);
     });
