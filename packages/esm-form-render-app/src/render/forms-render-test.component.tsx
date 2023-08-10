@@ -7,11 +7,12 @@ import 'ace-builds/webpack-resolver';
 import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
+import { handleFormValidation } from '../form-validator';
 
 function FormRenderTest() {
   const { t } = useTranslation();
   const headerTitle = t('formRenderTestTitle', 'Form Render Test');
-  const { patientUuid } = useConfig() as ConfigObject;
+  const { patientUuid, dataTypeToRenderingMap } = useConfig() as ConfigObject;
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
   const [formIntents, setFormIntents] = useState([]);
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
@@ -74,71 +75,12 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
   };
 
-  const handleFormValidation = () => {
-    if (schemaInput) {
-      const parsedForm = typeof schemaInput == 'string' ? JSON.parse(schemaInput) : schemaInput;
-
-      for (let i = 0; i < parsedForm.pages.length; i++) {
-        for (let j = 0; j < parsedForm.pages[i].sections.length; j++) {
-          for (let k = 0; k < parsedForm.pages[i].sections[j].questions.length; k++) {
-            const questionObject = parsedForm.pages[i].sections[j].questions[k];
-            handleQuestionValidation(questionObject);
-            handleAnswerValidation(questionObject)
-          }
-        }
-      }
-    } else {
-      console.log('Empty form!');
-    }
-  };
-
-  const handleAnswerValidation = (qnObject) =>{
-
-    const answerArray = qnObject.questionOptions.answers
-
-    answerArray?.length > 0 
-    && answerArray.forEach(answer => {
-        openmrsFetch(`/ws/rest/v1/concept/${answer.concept}`)
-        .then(response =>{
-        })
-        .catch(err => console.log(`❌ answer "${answer.label}" backed by concept "${answer.concept}" not found`))
-    });
-
+  const formValidation = () =>{
+    handleFormValidation(schemaInput, dataTypeToRenderingMap).then(response =>{
+      const [errorsArray] = response
+      console.log(errorsArray)
+    })
   }
-
-  const handleQuestionValidation = (conceptObject) => {
-    conceptObject.questionOptions.concept
-      ? openmrsFetch(`/ws/rest/v1/concept/${conceptObject.questionOptions.concept}`)
-          .then((response) => {
-            conceptObject.questionOptions.concept === response.data.uuid
-              ? dataTypeChecker(conceptObject, response)
-              : console.log("❌ response UUID doesn't match concept UUID");
-          })
-          .catch((error) => {
-            console.log(
-              `❓ Concept UUID ${conceptObject.questionOptions.concept} not found, with questionID: ${conceptObject.id}`,
-            );
-          })
-      : console.log('❓ Question with no concept UUID: ', conceptObject.id);
-  };
-
-  const dataTypeChecker = (conceptObject, responseObject) => {
-    const renderTypes = {
-      Numeric: ['number'],
-      Coded: ['select', 'checkbox', 'radio', 'toggle', 'content-switcher'],
-      Text: ['text', 'textarea'],
-      Date: ['date'],
-      Datetime: ['datetime'],
-      Boolean: ['toggle', 'select', 'radio', 'content-switcher'],
-      Rule: ['repeating', 'group'],
-    };
-
-    renderTypes.hasOwnProperty(responseObject.data.datatype.display) &&
-      !renderTypes[responseObject.data.datatype.display].includes(conceptObject.questionOptions.rendering) &&
-      console.log(
-        `❓ ${conceptObject.questionOptions.concept}: datatype "${responseObject.data.datatype.display}" doesn't match control type "${conceptObject.questionOptions.rendering}`,
-      );
-  };
 
   const handleFormSubmission = (e) => {
     setIsSchemaLoaded(false);
@@ -269,7 +211,7 @@ function FormRenderTest() {
                       />
                     </div>
 
-                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={handleFormValidation}>
+                    <Button style={{ marginTop: '1em' }} renderIcon={UserData} onClick={formValidation}>
                       Validate Form
                     </Button>
 
