@@ -1,8 +1,15 @@
 export interface DashboardLinkConfig {
   path: string;
   title: string;
-  linkText?: string;
+  moduleName: string;
   patientExpression?: string;
+}
+
+export interface DashboardConfig extends DashboardLinkConfig {
+  slot: string;
+  config: {
+    columns: number;
+  };
 }
 
 export interface PatientChartProps {

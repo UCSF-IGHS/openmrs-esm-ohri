@@ -25,7 +25,10 @@
     {
       "name": "mch-summary-ext",
       "slot": "mch-summary-slot",
-      "component": "mchSummaryDashboard"
+      "component": "mchSummaryDashboard",
+      "meta": {
+        "title" : "Client Summary"
+      }
     },
     {
       "name": "maternal-visits-dashboard",

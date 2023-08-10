@@ -7,11 +7,11 @@ export const mchFolderMeta = {
 };
 
 export const mchSummaryDashboardMeta = {
+  name: 'mch-summary',
   slot: 'mch-summary-slot',
   columns: 1,
-  title: 'Client Summary',
+  title: 'MNCH Summary',
   path: 'mnch-summary',
-  linkText: 'MNCH Summary',
 };
 
 export const maternalVisitsDashboardMeta = {
