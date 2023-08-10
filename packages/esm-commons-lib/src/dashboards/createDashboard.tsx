@@ -5,22 +5,12 @@ import { DashboardLinkConfig } from '../types';
 import { DashboardExtension } from './DashboardExtension';
 import { BrowserRouter } from 'react-router-dom';
 
-export const createDashboardLinkWithCustomTitle = (db: DashboardLinkConfig) => {
-  return ({ basePath }: { basePath: string }) => {
-    return (
-      <BrowserRouter>
-        <DashboardExtension path={db.path} title={db.title} basePath={basePath} linkText={db.linkText} />
-      </BrowserRouter>
-    );
-  };
-};
-
 export const createConditionalDashboardLink = (db: DashboardLinkConfig) => {
   return ({ basePath }: { basePath: string }) => {
     return (
       <PatientExtensionRenderer patientExpression={db.patientExpression}>
         <BrowserRouter>
-          <DashboardExtension path={db.path} title={db.title} basePath={basePath} linkText={db.linkText} />
+          <DashboardExtension basePath={basePath} title={db.title} path={db.path} moduleName={db.moduleName} />
         </BrowserRouter>
       </PatientExtensionRenderer>
     );

@@ -6,11 +6,10 @@ import {
   motherChildDashboardMeta,
   mchFolderMeta,
 } from './dashboard.meta';
-import { createDashboardGroup } from '@openmrs/esm-patient-common-lib';
+import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { registerPostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import {
   createConditionalDashboardLink,
-  createDashboardLinkWithCustomTitle,
   createOHRIDashboardLink,
   OHRIHome,
   OHRIWelcomeSection,
@@ -29,6 +28,7 @@ const options = {
 
 export function startupApp() {
   defineConfigSchema(moduleName, {});
+
   registerPostSubmissionAction({
     id: 'MotherToChildLinkageSubmissionAction',
     load: () => import('./post-submission-actions/mother-child-linkage-action'),
@@ -45,7 +45,7 @@ export function startupApp() {
 
 export const mchDashboard = getSyncLifecycle(createDashboardGroup(mchFolderMeta), options);
 export const mchSummaryDashboardLink = getSyncLifecycle(
-  createDashboardLinkWithCustomTitle(mchSummaryDashboardMeta),
+  createDashboardLink({ ...mchSummaryDashboardMeta, moduleName }),
   options,
 );
 export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
@@ -54,7 +54,7 @@ export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-s
 });
 
 export const maternalVisitsDashboardLink = getSyncLifecycle(
-  createConditionalDashboardLink(maternalVisitsDashboardMeta),
+  createConditionalDashboardLink({ ...maternalVisitsDashboardMeta, moduleName }),
   options,
 );
 export const maternalVisitsDashboard = getAsyncLifecycle(
@@ -66,7 +66,7 @@ export const maternalVisitsDashboard = getAsyncLifecycle(
 );
 
 export const childVisitsDashboardLink = getSyncLifecycle(
-  createConditionalDashboardLink(childVisitsDashboardMeta),
+  createConditionalDashboardLink({ ...childVisitsDashboardMeta, moduleName }),
   options,
 );
 export const childVisitsDashboard = getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {

@@ -2,26 +2,33 @@ import React, { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import last from 'lodash-es/last';
 import { ConfigurableLink } from '@openmrs/esm-framework';
-import styles from './dashboardextension.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface DashboardExtensionProps {
   path: string;
   title: string;
   basePath: string;
+  moduleName?: string;
   linkText?: string;
 }
 
-export const DashboardExtension = ({ path, title, basePath, linkText }: DashboardExtensionProps) => {
-  const location = window.location ?? { pathname: '' };
+export const DashboardExtension = ({
+  path,
+  title,
+  basePath,
+  linkText,
+  moduleName = '@openmrs/esm-patient-chart-app',
+}: DashboardExtensionProps) => {
+  const { t } = useTranslation(moduleName);
+  const location = useLocation();
   const navLink = useMemo(() => decodeURIComponent(last(location.pathname.split('/'))), [location.pathname]);
-  const activeClassName = linkText === navLink ? 'active-left-nav-link' : 'non-active'; // add condition if title or linkText
 
   return (
-    <div key={path} className={activeClassName}>
+    <div key={path}>
       <ConfigurableLink
         to={`${basePath}/${encodeURIComponent(path)}`}
-        className={`cds--side-nav__link ${path === navLink && 'active-left-nav-link'} ${styles.link}`}>
-        {linkText || title}
+        className={`cds--side-nav__link ${path === navLink && 'active-left-nav-link'}`}>
+        {linkText || t(title)}
       </ConfigurableLink>
     </div>
   );
