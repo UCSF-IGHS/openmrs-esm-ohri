@@ -8,6 +8,7 @@ import {
   PoorConcentrationConcept_UUID,
   MentalHealthAssessmentEncounter_UUID,
   screeningDate_UUID,
+  MentalHealthFormName,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -60,14 +61,14 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'Mental Health Assessment Form', package: 'hiv' },
+            form: { name: MentalHealthFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'View Details',
             mode: 'view',
           },
           {
-            form: { name: 'Mental Health Assessment Form', package: 'hiv' },
+            form: { name: MentalHealthFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'Edit Form',
@@ -82,11 +83,16 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
   const headerTitle = t('mentalHealthAssessmentTitle', 'Mental Health Assessment');
   const displayText = t('mentalHealthAssessmentDisplay', 'Mental Health Assessment');
 
+  const mentalHealthFilter = (encounter) => {
+    return encounter?.form?.name === MentalHealthFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={mentalHealthFilter}
       encounterType={MentalHealthAssessmentEncounter_UUID}
-      formList={[{ name: 'Mental Health Assessment Form' }]}
+      formList={[{ name: MentalHealthFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

@@ -16,6 +16,7 @@ import {
   stopReasonUUID,
   substituteReasonUUID,
   switchReasonUUID,
+  ARTTherapyFormName,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -175,14 +176,14 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'ART Therapy Form', package: 'hiv' },
+            form: { name: ARTTherapyFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'ART Therapy Form', package: 'hiv' },
+            form: { name: ARTTherapyFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -197,11 +198,16 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
   const headerTitle = t('artTherapy', 'ART Therapy');
   const displayText = t('artTherapy', 'ART Therapy');
 
+  const artTherapyfilter = (encounter) => {
+    return encounter?.form?.name === ARTTherapyFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={artTherapyfilter}
       encounterType={art_Therapy_EncounterUUID}
-      formList={[{ name: 'ART Therapy Form' }]}
+      formList={[{ name: ARTTherapyFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

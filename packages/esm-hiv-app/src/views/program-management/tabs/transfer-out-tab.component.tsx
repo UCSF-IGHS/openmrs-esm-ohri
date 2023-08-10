@@ -12,6 +12,7 @@ import {
   receivingFacility_UUID,
   TransferOutDate_UUID,
   transferOutEncounterType_UUID,
+  TransferOutFormName,
   verified_UUID,
   visitDate_UUID,
 } from '../../../constants';
@@ -62,14 +63,14 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Transfer Out Form', package: 'hiv' },
+              form: { name: TransferOutFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'Transfer Out Form', package: 'hiv' },
+              form: { name: TransferOutFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -86,11 +87,16 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
   const headerTitle = t('transferOut', 'Transfer Out');
   const displayText = t('transferOut', 'Transfer Out');
 
+  const transferOutFilter = (encounter) => {
+    return encounter?.form?.name === TransferOutFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={transferOutFilter}
       encounterType={transferOutEncounterType_UUID}
-      formList={[{ name: 'Transfer Out Form' }]}
+      formList={[{ name: TransferOutFormName }]}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}

@@ -10,6 +10,7 @@ import {
   re_enrolmentDateConcept,
   otherEntryPoint,
   populationCategoryConcept,
+  ServiceEnrolmentFormName,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -77,14 +78,14 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'Service Enrolment Form', package: 'hiv' },
+            form: { name: ServiceEnrolmentFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'Service Enrolment Form', package: 'hiv' },
+            form: { name: ServiceEnrolmentFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -99,11 +100,16 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
   const headerTitle = t('hivEnrolment', 'HIV Enrolment');
   const displayText = t('hivEnrolment', 'HIV Enrolment');
 
+  const hivEnrolmentFilter = (encounter) => {
+    return encounter?.form?.name === ServiceEnrolmentFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={hivEnrolmentFilter}
       encounterType={careAndTreatmentEncounterType}
-      formList={[{ name: 'Service Enrolment Form' }]}
+      formList={[{ name: ServiceEnrolmentFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

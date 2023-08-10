@@ -6,6 +6,7 @@ import {
   ContactMethod_UUID,
   ContactOutcome_UUID,
   PatientTracingEncounterType_UUID,
+  PatientTracingFormName,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -46,14 +47,14 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Patient Tracing Form', package: 'hiv' },
+              form: { name: PatientTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'Patient Tracing Form', package: 'hiv' },
+              form: { name: PatientTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -69,11 +70,16 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
 
   const headerTitle = t('patientTracing', 'Patient Tracing');
 
+  const patientTracingFilter = (encounter) => {
+    return encounter?.form?.name === PatientTracingFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={patientTracingFilter}
       encounterType={PatientTracingEncounterType_UUID}
-      formList={[{ name: 'Patient Tracing Form' }]}
+      formList={[{ name: PatientTracingFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

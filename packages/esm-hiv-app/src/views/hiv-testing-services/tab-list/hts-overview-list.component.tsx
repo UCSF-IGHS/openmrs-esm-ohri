@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import moment from 'moment';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { htsStrategyUUID } from '../../../constants';
+import { HIVTestingFormName, htsStrategyUUID } from '../../../constants';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../../index';
 
@@ -57,14 +57,14 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { package: 'hiv', name: 'HIV Testing' },
+              form: { package: 'hiv', name: HIVTestingFormName },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { package: 'hiv', name: 'HIV Testing' },
+              form: { package: 'hiv', name: HIVTestingFormName },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -78,11 +78,16 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     [],
   );
 
+  const hivTestingFilter = (encounter) => {
+    return encounter?.form?.name === HIVTestingFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={hivTestingFilter}
       encounterType={htsRetrospectiveTypeUUID}
-      formList={[{ name: 'HIV Testing', fixedIntent: '*', excludedIntents: [] }]}
+      formList={[{ name: HIVTestingFormName, fixedIntent: '*', excludedIntents: [] }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

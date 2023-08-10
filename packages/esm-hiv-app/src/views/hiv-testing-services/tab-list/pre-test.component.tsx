@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
+  HTSPreTestFormName,
   PreTestApproachConceptUUID,
   PreTestConceptUUID,
   PreTestEligibleForTestingConceptUUID,
@@ -62,14 +63,14 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'HTS Pre-Test Counselling', package: 'hiv' },
+              form: { name: HTSPreTestFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'HTS Pre-Test Counselling', package: 'hiv' },
+              form: { name: HTSPreTestFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -85,11 +86,16 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
 
   const headerTitle = t('htsPreTest', 'Pre Test');
 
+  const htsPretestFilter = (encounter) => {
+    return encounter?.form?.name === HTSPreTestFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={htsPretestFilter}
       encounterType={PreTestEncounterTypeConceptUUID}
-      formList={[{ name: 'HTS Pre-Test Counselling', excludedIntents: [] }]}
+      formList={[{ name: HTSPreTestFormName, excludedIntents: [] }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

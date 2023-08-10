@@ -9,6 +9,7 @@ import {
 import {
   ReasonForViralLoad_UUID,
   ViralLoadCopies_UUID,
+  ViralLoadRequestFormName,
   ViralLoadResultDate_UUID,
   ViralLoadResultsEncounter_UUID,
   ViralLoadResult_UUID,
@@ -58,14 +59,14 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'viral_load_request', package: 'hiv' },
+              form: { name: ViralLoadRequestFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'viral_load_request', package: 'hiv' },
+              form: { name: ViralLoadRequestFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit form',
@@ -82,11 +83,16 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
   const headerTitle = t('labResults', 'Viral Load');
   const displayText = t('labResults', 'Viral Load');
 
+  const viralLoadRequestFilter = (encounter) => {
+    return encounter?.form?.name === ViralLoadRequestFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={viralLoadRequestFilter}
       encounterType={ViralLoadResultsEncounter_UUID}
-      formList={[{ name: 'POC Viral load request' }]}
+      formList={[{ name: ViralLoadRequestFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

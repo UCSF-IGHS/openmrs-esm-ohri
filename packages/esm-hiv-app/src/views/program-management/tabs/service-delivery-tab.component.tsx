@@ -6,6 +6,7 @@ import {
   DSDStatus_UUID,
   EnrollmentDate_UUID,
   ServiceDeliveryEncounterType_UUID,
+  ServiceDeliveryFormName,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -46,14 +47,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Service Delivery Model Form', package: 'hiv' },
+              form: { name: ServiceDeliveryFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'Service Delivery Model Form', package: 'hiv' },
+              form: { name: ServiceDeliveryFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -69,11 +70,16 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
 
   const headerTitle = t('serviceDeliveryModel', 'Service Delivery Model');
 
+  const serviceDeliveryFilter = (encounter) => {
+    return encounter?.form?.name === ServiceDeliveryFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={serviceDeliveryFilter}
       encounterType={ServiceDeliveryEncounterType_UUID}
-      formList={[{ name: 'Service Delivery Model Form' }]}
+      formList={[{ name: ServiceDeliveryFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

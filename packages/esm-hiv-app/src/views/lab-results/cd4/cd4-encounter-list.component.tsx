@@ -7,6 +7,7 @@ import {
   Cd4LabResultCountPercentage_UUID,
   Cd4LabResultDate_UUID,
   CD4LabResultsEncounter_UUID,
+  CD4LabResultsFormName,
   hivCD4Result_UUID,
 } from '../../../constants';
 import { moduleName } from '../../../index';
@@ -48,14 +49,14 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'cd4_lab_results', package: 'hiv' },
+              form: { name: CD4LabResultsFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'cd4_lab_results', package: 'hiv' },
+              form: { name: CD4LabResultsFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit form',
@@ -69,11 +70,16 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
     [],
   );
 
+  const cd4LabResultsFilter = (encounter) => {
+    return encounter?.form?.name === CD4LabResultsFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={cd4LabResultsFilter}
       encounterType={CD4LabResultsEncounter_UUID}
-      formList={[{ name: 'CD4 Lab Result' }]}
+      formList={[{ name: CD4LabResultsFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

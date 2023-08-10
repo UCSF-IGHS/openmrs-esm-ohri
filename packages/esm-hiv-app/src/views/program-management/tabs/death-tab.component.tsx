@@ -4,6 +4,7 @@ import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/o
 import {
   causeOFDeath_UUID,
   deathFormEncounterType_UUID,
+  deathFormName,
   deathSpecific_UUID,
   hivDeathDate_UUID,
 } from '../../../constants';
@@ -45,14 +46,14 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Death Form', package: 'hiv' },
+              form: { name: deathFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'Death Form', package: 'hiv' },
+              form: { name: deathFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -67,11 +68,16 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   );
   const headerTitle = t('death', 'Death');
 
+  const deathFilter = (encounter) => {
+    return encounter?.form?.name === deathFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={deathFilter}
       encounterType={deathFormEncounterType_UUID}
-      formList={[{ name: 'Death Form' }]}
+      formList={[{ name: deathFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

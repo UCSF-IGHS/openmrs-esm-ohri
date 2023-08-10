@@ -6,6 +6,7 @@ import {
   ExpressRefferalReason,
   ExpressTBOutcome,
   ExpressVisitEncounterType,
+  ExpressVisitFormName,
   ExpressVisitType,
 } from '../../../constants';
 import { moduleName } from '../../../index';
@@ -59,14 +60,14 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'POC Express Visit Form', package: 'hiv' },
+              form: { name: ExpressVisitFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'POC Express Visit Form', package: 'hiv' },
+              form: { name: ExpressVisitFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -83,9 +84,14 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
   const headerTitle = t('expressVisit', 'Express Visit');
   const displayText = t('expressVisit', 'Express visit encounters');
 
+  const expressFilter = (encounter) => {
+    return encounter?.form?.name === ExpressVisitFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={expressFilter}
       encounterType={ExpressVisitEncounterType}
       formList={[{ name: 'POC Express Visit Form' }]}
       columns={columns}
