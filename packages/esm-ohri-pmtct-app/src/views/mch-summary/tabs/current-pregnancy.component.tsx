@@ -51,7 +51,6 @@ interface pregnancyOutcomeProps {
   pTrackerId: string;
   dateOfBirth: string;
   infantStatus: string;
-  finalOutcome: string;
 }
 export interface familyItemProps {
   id: string;
@@ -60,6 +59,7 @@ export interface familyItemProps {
   relationship: string;
   dateOfBirth: string;
   hivStatus: string;
+  finalOutcome: string;
 }
 const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -72,7 +72,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
-  const [infantOutcomes, setInfantOutcomes] = useState({childUuid: '', finalOutcome: ''});
+  const [infantOutcomes, setInfantOutcomes] = useState([]);
 
   const headersFamily = [
     {
@@ -95,6 +95,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       header: t('hivStatus', 'HIV Status'),
       key: 'hivStatus',
     },
+    {
+      header: t('finalOutcome', 'Final Outcome'),
+      key: 'finalOutcome',
+    },
   ];
   const headersPregnancyOutcome = [
     {
@@ -109,10 +113,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       header: t('infantStatus', 'Infant Status at Birth'),
       key: 'infantStatus',
     },
-    {
-      header: t('finalOutcome', 'Final Outcome'),
-      key: 'finalOutcome',
-    },
+
   ];
   useEffect(() => {
     getParentCurrentLabourAndDeliveryEncounter();
@@ -136,7 +137,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       patientUuid,
       labourAndDeliveryEncounterType,
     );
-    if (currentPregnancyLabourAndDeliveryEncounter.encounterDatetime > currentPregnancyANCEncounter.encounterDatetime) {
+    if (currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime) {
       setPregnancyOutcomes(
         currentPregnancyLabourAndDeliveryEncounter.obs.filter(
           (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
@@ -152,13 +153,16 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     getInfantOutcome();
   }, [relatives]);
 
-  
-  const getInfantOutcome = async () => {
-  relatives.forEach(async (relative) => {
-    const finalOutcome = await fetchChildLatestFinalOutcome(relative.personB.uuid, outcomeStatus, infantPostnatalEncounterType);
-    return setInfantOutcomes({finalOutcome: finalOutcome, childUuid: relative.personB.uuid});
-  });
 
+  const getInfantOutcome = () => {
+    const infantOutcomes = relatives.map(async (relative) =>{
+      const finalOutcome = await fetchChildLatestFinalOutcome(relative.personB.uuid, outcomeStatus, infantPostnatalEncounterType);
+      return {finalOutcome: finalOutcome, childUuid: relative.personB.uuid};
+    }); 
+
+    Promise.all(infantOutcomes).then((values) => {
+      setInfantOutcomes(values.map((value)=>({finalOutcome: value.finalOutcome, childUuid: value.childUuid})));
+    });
   }
 
 
@@ -193,13 +197,14 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           relationship: relative.relationshipType.displayBIsToA,
           dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
           hivStatus: '',
+          finalOutcome: infantOutcomes.find((outcome) => outcome.childUuid === relative.personB.uuid)?.finalOutcome ?? '--',
         };
         items.push(relativeObject);
       }
     });
 
     return items;
-  }, [relatives, relativeToIdentifierMap]);
+  }, [relatives, relativeToIdentifierMap, infantOutcomes]);
 
   const childrenDetails: pregnancyOutcomeProps[] = useMemo(() => {
     let items = [];
@@ -214,7 +219,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         infantStatus:
           infantStatusObs.value?.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
           infantStatusObs.value.name.name,
-        finalOutcome: infantOutcomes.childUuid === child.uuid ? infantOutcomes.finalOutcome : '--',
       };
       items.push(childObject);
     });

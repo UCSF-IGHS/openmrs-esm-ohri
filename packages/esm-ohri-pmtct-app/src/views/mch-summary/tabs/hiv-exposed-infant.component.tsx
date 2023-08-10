@@ -182,6 +182,7 @@ const HivExposedInfant: React.FC<{
         relationship: relative.relationshipType.displayAIsToB,
         dateOfBirth: moment(relative.personA.birthdate).format('DD-MMM-YYYY'),
         hivStatus: '',
+        finalOutcome: '',
       };
       items.push(relativeObject);
     });
