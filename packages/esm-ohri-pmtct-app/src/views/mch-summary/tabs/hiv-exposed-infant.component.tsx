@@ -24,6 +24,7 @@ import {
   testTypeConcept,
   followUpDateConcept,
   infantVisitDate,
+  finalTestResults,
 } from '../../../constants';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers } from '../../../api/api';
@@ -64,7 +65,7 @@ const HivExposedInfant: React.FC<{
         header: t('hivStatus', 'HIV Status'),
         encounterTypes: [infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, infantExposureStatus);
+          return getObsFromEncounter(encounter, finalTestResults);
         },
       },
       {
@@ -107,7 +108,7 @@ const HivExposedInfant: React.FC<{
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, infantExposureStatus);
+          return getObsFromEncounter(encounter, finalTestResults);
         },
       },
     ];
