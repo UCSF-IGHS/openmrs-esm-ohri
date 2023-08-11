@@ -78,14 +78,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     [],
   );
 
-  const hivTestingFilter = (encounter) => {
-    return encounter?.form?.name === HIVTestingFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={hivTestingFilter}
       encounterType={htsRetrospectiveTypeUUID}
       formList={[{ name: HIVTestingFormName, fixedIntent: '*', excludedIntents: [] }]}
       columns={columns}

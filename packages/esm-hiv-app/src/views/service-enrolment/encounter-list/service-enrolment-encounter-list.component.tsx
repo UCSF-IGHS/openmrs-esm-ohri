@@ -76,14 +76,9 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
 
   const headerTitle = t('serviceEnrolment', 'Service Enrolment');
 
-  const serviceEnrolmentFilter = (encounter) => {
-    return encounter?.form?.name === ServiceEnrolmentFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={serviceEnrolmentFilter}
       encounterType={careAndTreatmentEncounterType}
       formList={[{ name: ServiceEnrolmentFormName }]}
       columns={columns}

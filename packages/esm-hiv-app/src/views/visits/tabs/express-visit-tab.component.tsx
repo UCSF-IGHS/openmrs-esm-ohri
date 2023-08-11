@@ -84,14 +84,9 @@ const ExpressVisitList: React.FC<ExpressVisitListProps> = ({ patientUuid }) => {
   const headerTitle = t('expressVisit', 'Express Visit');
   const displayText = t('expressVisit', 'Express visit encounters');
 
-  const expressFilter = (encounter) => {
-    return encounter?.form?.name === ExpressVisitFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={expressFilter}
       encounterType={ExpressVisitEncounterType}
       formList={[{ name: 'POC Express Visit Form' }]}
       columns={columns}

@@ -68,14 +68,9 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   );
   const headerTitle = t('death', 'Death');
 
-  const deathFilter = (encounter) => {
-    return encounter?.form?.name === deathFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={deathFilter}
       encounterType={deathFormEncounterType_UUID}
       formList={[{ name: deathFormName }]}
       columns={columnsLab}

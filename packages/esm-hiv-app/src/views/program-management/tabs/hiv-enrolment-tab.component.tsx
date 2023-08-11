@@ -100,14 +100,9 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
   const headerTitle = t('hivEnrolment', 'HIV Enrolment');
   const displayText = t('hivEnrolment', 'HIV Enrolment');
 
-  const hivEnrolmentFilter = (encounter) => {
-    return encounter?.form?.name === ServiceEnrolmentFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={hivEnrolmentFilter}
       encounterType={careAndTreatmentEncounterType}
       formList={[{ name: ServiceEnrolmentFormName }]}
       columns={columns}

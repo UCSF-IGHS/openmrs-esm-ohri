@@ -70,14 +70,9 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
 
   const headerTitle = t('serviceDeliveryModel', 'Service Delivery Model');
 
-  const serviceDeliveryFilter = (encounter) => {
-    return encounter?.form?.name === ServiceDeliveryFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={serviceDeliveryFilter}
       encounterType={ServiceDeliveryEncounterType_UUID}
       formList={[{ name: ServiceDeliveryFormName }]}
       columns={columns}

@@ -87,14 +87,9 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
   const headerTitle = t('transferOut', 'Transfer Out');
   const displayText = t('transferOut', 'Transfer Out');
 
-  const transferOutFilter = (encounter) => {
-    return encounter?.form?.name === TransferOutFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={transferOutFilter}
       encounterType={transferOutEncounterType_UUID}
       formList={[{ name: TransferOutFormName }]}
       columns={columnsLab}
