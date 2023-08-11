@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   clinicalVisitEncounterType,
+  ClinicalVisitFormName,
   dateOfEncounterConcept,
   returnVisitDateConcept,
   tbScreeningOutcome,
@@ -69,14 +70,14 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'POC Clinical Visit Form v2', package: 'hiv' },
+              form: { name: ClinicalVisitFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'POC Clinical Visit Form v2', package: 'hiv' },
+              form: { name: ClinicalVisitFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -89,12 +90,16 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
     ],
     [],
   );
+  const clinicalFilter = (encounter) => {
+    return encounter?.form?.name === ClinicalVisitFormName;
+  };
 
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={clinicalFilter}
       encounterType={clinicalVisitEncounterType}
-      formList={[{ name: 'POC Clinical Visit Form v2' }]}
+      formList={[{ name: ClinicalVisitFormName }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle={headerTitle}

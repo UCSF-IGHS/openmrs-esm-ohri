@@ -5,6 +5,7 @@ import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from
 import {
   FirstName_UUID,
   IndexHIVStatus_UUID,
+  PartnerNotificationFormName,
   PatnerNotificationContactDate_UUID,
   PatnerNotificationEncounterType_UUID,
   Relationship_UUID,
@@ -70,14 +71,14 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Partner Notification Form', package: 'hiv' },
+              form: { name: PartnerNotificationFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'Partner Notification Form', package: 'hiv' },
+              form: { name: PartnerNotificationFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -93,11 +94,16 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
 
   const headerTitle = t('partnerNotification', 'Partner Notification');
 
+  const partnerNotificationFilter = (encounter) => {
+    return encounter?.form?.name === PartnerNotificationFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={partnerNotificationFilter}
       encounterType={PatnerNotificationEncounterType_UUID}
-      formList={[{ name: 'Partner Notification Form' }]}
+      formList={[{ name: PartnerNotificationFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

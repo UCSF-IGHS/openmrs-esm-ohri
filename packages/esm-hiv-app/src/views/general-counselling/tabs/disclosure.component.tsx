@@ -1,7 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { DisclosureDate_UUID, DisclosureStage_UUID, PeadsDisclosureEncounterType_UUID } from '../../../constants';
+import {
+  DisclosureDate_UUID,
+  DisclosureFormName,
+  DisclosureStage_UUID,
+  PeadsDisclosureEncounterType_UUID,
+} from '../../../constants';
 import { moduleName } from '../../../index';
 
 interface DisclosureListProps {
@@ -33,14 +38,14 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Age Appropriate Disclosure Form', package: 'hiv' },
+              form: { name: DisclosureFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'Age Appropriate Disclosure Form', package: 'hiv' },
+              form: { name: DisclosureFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -56,11 +61,16 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
 
   const headerTitle = t('disclosure', 'Disclosure');
 
+  const disclosureFilter = (encounter) => {
+    return encounter?.form?.name === DisclosureFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={disclosureFilter}
       encounterType={PeadsDisclosureEncounterType_UUID}
-      formList={[{ name: 'Age Appropriate Disclosure Form' }]}
+      formList={[{ name: DisclosureFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

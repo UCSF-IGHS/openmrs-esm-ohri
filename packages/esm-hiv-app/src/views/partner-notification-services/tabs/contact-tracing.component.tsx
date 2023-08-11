@@ -4,6 +4,7 @@ import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/o
 import {
   ContactTracingDate_UUID,
   ContactTracingEncounterType_UUID,
+  ContactTracingFormName,
   ContactTracingMethod_UUID,
   ContactTracingOutcome_UUID,
 } from '../../../constants';
@@ -46,14 +47,14 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Contact Tracing Form', package: 'hiv' },
+              form: { name: ContactTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'Contact Tracing Form', package: 'hiv' },
+              form: { name: ContactTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -69,11 +70,16 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
 
   const headerTitle = t('contactTracing', 'Contact Tracing');
 
+  const contactTracingFilter = (encounter) => {
+    return encounter?.form?.name === ContactTracingFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={contactTracingFilter}
       encounterType={ContactTracingEncounterType_UUID}
-      formList={[{ name: 'Contact Tracing Form' }]}
+      formList={[{ name: ContactTracingFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

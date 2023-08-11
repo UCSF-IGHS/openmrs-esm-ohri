@@ -6,6 +6,7 @@ import {
   patientTypeEnrollmentConcept,
   studyPopulationTypeConcept,
   entryPointConcept,
+  ServiceEnrolmentFormName,
 } from '../../../constants';
 import {
   EncounterList,
@@ -75,11 +76,16 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
 
   const headerTitle = t('serviceEnrolment', 'Service Enrolment');
 
+  const serviceEnrolmentFilter = (encounter) => {
+    return encounter?.form?.name === ServiceEnrolmentFormName;
+  };
+
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={serviceEnrolmentFilter}
       encounterType={careAndTreatmentEncounterType}
-      formList={[{ name: 'Service Enrolment Form' }]}
+      formList={[{ name: ServiceEnrolmentFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

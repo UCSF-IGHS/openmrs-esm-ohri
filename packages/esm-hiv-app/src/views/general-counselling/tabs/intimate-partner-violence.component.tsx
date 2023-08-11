@@ -4,6 +4,7 @@ import { EncounterListColumn, EncounterList, findObs, getObsFromEncounter } from
 import {
   EmotionalAbuse_UUID,
   IntimatePartnerEncounterType_UUID,
+  IntimatePartnerFormName,
   IpvScreeningDate_UUID,
   PhysicalAbuse_UUID,
   SexualAbuse_UUID,
@@ -52,14 +53,14 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'Intimate Partner Violence Form', package: 'hiv' },
+            form: { name: IntimatePartnerFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'View Details',
             mode: 'view',
           },
           {
-            form: { name: 'Intimate Partner Violence Form', package: 'hiv' },
+            form: { name: IntimatePartnerFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'Edit Form',
@@ -72,11 +73,16 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
   );
   const headerTitle = t('intimatePartnerViolenceTitle', 'Intimate Partner Violence');
   const displayText = t('intimatePartnerViolenceDisplay', 'Intimate Partner Violence');
+
+  const intimatePartnerFilter = (encounter) => {
+    return encounter?.form?.name === IntimatePartnerFormName;
+  };
   return (
     <EncounterList
       patientUuid={patientUuid}
+      filter={intimatePartnerFilter}
       encounterType={IntimatePartnerEncounterType_UUID}
-      formList={[{ name: 'Intimate Partner Violence Form' }]}
+      formList={[{ name: IntimatePartnerFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
