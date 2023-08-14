@@ -90,14 +90,10 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
     ],
     [],
   );
-  const clinicalFilter = (encounter) => {
-    return encounter?.form?.name === ClinicalVisitFormName;
-  };
 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={clinicalFilter}
       encounterType={clinicalVisitEncounterType}
       formList={[{ name: ClinicalVisitFormName }]}
       columns={columns}

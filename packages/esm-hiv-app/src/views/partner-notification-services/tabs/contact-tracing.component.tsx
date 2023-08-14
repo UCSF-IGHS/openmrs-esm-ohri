@@ -70,14 +70,9 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
 
   const headerTitle = t('contactTracing', 'Contact Tracing');
 
-  const contactTracingFilter = (encounter) => {
-    return encounter?.form?.name === ContactTracingFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={contactTracingFilter}
       encounterType={ContactTracingEncounterType_UUID}
       formList={[{ name: ContactTracingFormName }]}
       columns={columnsLab}

@@ -198,14 +198,9 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
   const headerTitle = t('artTherapy', 'ART Therapy');
   const displayText = t('artTherapy', 'ART Therapy');
 
-  const artTherapyfilter = (encounter) => {
-    return encounter?.form?.name === ARTTherapyFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={artTherapyfilter}
       encounterType={art_Therapy_EncounterUUID}
       formList={[{ name: ARTTherapyFormName }]}
       columns={columns}

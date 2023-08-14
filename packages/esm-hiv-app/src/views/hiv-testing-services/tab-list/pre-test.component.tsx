@@ -86,14 +86,9 @@ const HIVPreTestTabList: React.FC<HIVPreTestTabListProps> = ({ patientUuid }) =>
 
   const headerTitle = t('htsPreTest', 'Pre Test');
 
-  const htsPretestFilter = (encounter) => {
-    return encounter?.form?.name === HTSPreTestFormName;
-  };
-
   return (
     <EncounterList
       patientUuid={patientUuid}
-      filter={htsPretestFilter}
       encounterType={PreTestEncounterTypeConceptUUID}
       formList={[{ name: HTSPreTestFormName, excludedIntents: [] }]}
       columns={columns}
