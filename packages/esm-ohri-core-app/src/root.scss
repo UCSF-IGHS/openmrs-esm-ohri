@@ -126,9 +126,3 @@ div[class*='-esm-patient-vitals__vitals-header__warning-icon___GHya2'] {
 div[class*='-esm-patient-vitals__vitals-header__row'] {
   flex: 1 !important;
 }
-
-// Patient chart overrides
-
-div[class*='-esm-patient-chart__patient-chart__chartReview'] {
-  max-width: 100% !important;
-}

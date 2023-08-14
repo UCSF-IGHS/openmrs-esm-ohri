@@ -12,6 +12,7 @@ export const mchSummaryDashboardMeta = {
   columns: 1,
   title: 'MNCH Summary',
   path: 'mnch-summary',
+  fullWidth: true,
 };
 
 export const maternalVisitsDashboardMeta = {
@@ -19,6 +20,7 @@ export const maternalVisitsDashboardMeta = {
   columns: 1,
   title: 'Maternal Visits',
   path: 'maternal-visits',
+  fullWidth: true,
   patientExpression: 'calculateAge(patient.birthDate) > 10',
 };
 
@@ -27,6 +29,7 @@ export const childVisitsDashboardMeta = {
   columns: 1,
   title: 'Child Visits',
   path: 'child-visits',
+  fullWidth: true,
   patientExpression: 'calculateAge(patient.birthDate) <= 10',
 };
 

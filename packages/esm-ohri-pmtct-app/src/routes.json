@@ -19,6 +19,7 @@
       "meta": {
         "path": "mnch-summary",
         "slot": "mch-summary-slot",
+        "fullWidth": true,
         "columns": 1
       }
     },
@@ -37,6 +38,7 @@
       "meta": {
         "path": "maternal-visits",
         "slot": "maternal-visits-summary-slot",
+        "fullWidth": true,
         "columns": 1
       }
     },
@@ -52,6 +54,7 @@
       "meta": {
         "path": "child-visits",
         "slot": "child-visits-summary-slot",
+        "fullWidth": true,
         "columns": 1
       }
     },
