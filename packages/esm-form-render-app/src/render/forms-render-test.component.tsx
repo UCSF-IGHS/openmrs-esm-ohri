@@ -75,12 +75,12 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
   };
 
-  const formValidation = () =>{
-    handleFormValidation(schemaInput, dataTypeToRenderingMap).then(response =>{
-      const [errorsArray] = response
-      console.log(errorsArray)
-    })
-  }
+  const formValidation = () => {
+    handleFormValidation(schemaInput, dataTypeToRenderingMap).then((response) => {
+      const [errorsArray] = response;
+      console.log(errorsArray);
+    });
+  };
 
   const handleFormSubmission = (e) => {
     setIsSchemaLoaded(false);
