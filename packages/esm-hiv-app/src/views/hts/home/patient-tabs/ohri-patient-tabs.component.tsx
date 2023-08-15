@@ -4,6 +4,7 @@ import styles from './ohri-patient-tabs.scss';
 import { CohortPatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   htsRetrospectiveEncounterType,
+  postTestCounsellingCohort,
   preTestCounsellingCohort,
   waitingForHIVTestCohort,
 } from '../../../../constants';
@@ -18,6 +19,7 @@ function OHRIPatientTabs() {
       <TabList contained>
         <Tab>{t('waitingForPretestCounselling', 'Waiting for pre-test counselling')}</Tab>
         <Tab>{t('wiatingForHivTest', 'Waiting for HIV test')}</Tab>
+        <Tab>{t('WaitingForPosttestCounselling')}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel>
@@ -46,12 +48,31 @@ function OHRIPatientTabs() {
             cohortSlotName="waiting-for-hiv-testing-slot"
             addPatientToListOptions={{
               isEnabled: true,
-              excludeCohorts: ['Post-Test Counselling'],
+              excludeCohorts: [],
             }}
             launchableForm={{
               name: formName,
               intent: 'HTS_HIVTEST',
               actionText: t('startHIVTest', 'Start HIV Test'),
+              editLatestEncounter: true,
+              encounterType: htsRetrospectiveEncounterType,
+              targetDashboard: 'hts-summary',
+            }}
+            moduleName={moduleName}
+          />
+        </TabPanel>
+        <TabPanel>
+          <CohortPatientList
+            cohortId={postTestCounsellingCohort}
+            cohortSlotName="post-test-counseling-slot"
+            addPatientToListOptions={{
+              isEnabled: true,
+              excludeCohorts: [],
+            }}
+            launchableForm={{
+              name: formName,
+              intent: 'HTS_POSTTEST',
+              actionText: t('startPostTestCounselling', 'Start Post-test counselling'),
               editLatestEncounter: true,
               encounterType: htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
