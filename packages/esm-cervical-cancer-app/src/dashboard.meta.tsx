@@ -9,7 +9,7 @@ export const caCxSummaryDashboardMeta = {
   columns: 1,
   title: 'CaCx Summary',
   path: 'cacx-summary',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const caCxVisitsDashboardMeta = {
@@ -17,5 +17,5 @@ export const caCxVisitsDashboardMeta = {
   columns: 1,
   title: 'CaCx Visits',
   path: 'cacx-visits',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };

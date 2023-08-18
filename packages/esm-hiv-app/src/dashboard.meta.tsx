@@ -12,7 +12,7 @@ export const htsSummaryDashboardMeta = {
   columns: 1,
   title: 'HIV Testing Services',
   path: 'hiv-testing-services',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const hivCareAndTreatmentDashboardDMeta = {
@@ -26,7 +26,7 @@ export const hivPatientSummaryDashboardMeta = {
   columns: 1,
   title: 'HIV Patient Summary',
   path: 'hiv-patient-summary',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const programManagementDashboardMeta = {
@@ -34,7 +34,7 @@ export const programManagementDashboardMeta = {
   columns: 1,
   title: 'Program Management',
   path: 'program-management',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const clinicalVisitsDashboardMeta = {
@@ -42,7 +42,7 @@ export const clinicalVisitsDashboardMeta = {
   columns: 1,
   title: 'Clinical Visits',
   path: 'clinical-visits',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const generalCounsellingDashboardMeta = {
@@ -50,7 +50,7 @@ export const generalCounsellingDashboardMeta = {
   columns: 1,
   title: 'General Counselling',
   path: 'general-counselling',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const partnerNotificationServicesDashboardMeta = {
@@ -58,7 +58,7 @@ export const partnerNotificationServicesDashboardMeta = {
   columns: 1,
   title: 'Partner Notification',
   path: 'partner-notification-services',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const medicationsDashboardMeta = {
@@ -66,7 +66,7 @@ export const medicationsDashboardMeta = {
   columns: 1,
   title: 'Medications',
   path: 'medications',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 export const appointmentsDashboardMeta = {
@@ -74,7 +74,7 @@ export const appointmentsDashboardMeta = {
   columns: 1,
   title: 'Appointments Summary',
   path: 'appointments-summary',
-  fullWidth: true,
+  layoutMode: 'anchored',
 };
 
 // Clinical Dashboards

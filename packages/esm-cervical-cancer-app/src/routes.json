@@ -24,7 +24,7 @@
       "meta": {
         "path": "cacx-summary",
         "slot": "cacx-summary-slot",
-        "fullWidth": true,
+        "layoutMode": "anchored",
         "columns": 1
       }
     },
@@ -40,7 +40,7 @@
       "meta": {
         "path": "cacx-visits",
         "slot": "cacx-visits-slot",
-        "fullWidth": true,
+        "layoutMode": "anchored",
         "columns": 1
       }
     },

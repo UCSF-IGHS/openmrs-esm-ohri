@@ -156,7 +156,7 @@
         "slot": "hiv-patient-summary-dashboard-slot",
         "columns": 1,
         "path": "hiv-patient-summary",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -172,7 +172,7 @@
         "slot": "program-management-summary-slot",
         "columns": 1,
         "path": "program-management",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -188,7 +188,7 @@
         "slot": "clinical-visits-summary-slot",
         "columns": 1,
         "path": "clinical-visits",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -204,7 +204,7 @@
         "slot": "general-counselling-summary-slot",
         "columns": 1,
         "path": "general-counselling",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -220,7 +220,7 @@
         "slot": "adherence-counselling-summary-slot",
         "columns": 1,
         "path": "adherence-counselling",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -236,7 +236,7 @@
         "slot": "partner-notification-services-slot",
         "columns": 1,
         "path": "partner-notification-services",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -258,7 +258,7 @@
         "slot": "hts-summary-dashboard-slot",
         "columns": 1,
         "path": "hiv-testing-services",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {

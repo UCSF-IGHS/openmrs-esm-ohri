@@ -74,7 +74,7 @@
         "slot": "covid-assessments-dashboard-slot",
         "columns": 1,
         "path": "covid-assessments",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -90,7 +90,7 @@
         "slot": "covid-lab-dashboard-slot",
         "columns": 1,
         "path": "lab-test",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
@@ -106,7 +106,7 @@
         "slot": "covid-vaccinations-dashboard-slot",
         "columns": 1,
         "path": "covid-vaccinations",
-        "fullWidth": true
+        "layoutMode": "anchored"
       }
     },
     {
