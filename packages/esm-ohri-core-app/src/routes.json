@@ -66,6 +66,11 @@
       "component": "ohriNavItems"
     },
     {
+      "name": "add-to-list-button",
+      "slot": "patient-actions-slot",
+      "component": "addToListActionButton"
+    },
+    {
       "name": "clinical-views-divider",
       "slot": "patient-chart-dashboard-slot",
       "component": "ohriClinicalViewsDivider",

@@ -69,6 +69,11 @@ export const ohriNavItems = getAsyncLifecycle(
   },
 );
 
+export const addToListActionButton = getAsyncLifecycle(() => import('./ohri-dashboard/add-to-list.component'), {
+  featureName: 'patient-actions-slot-add-to-list-button',
+  moduleName,
+});
+
 export const ohriClinicalViewsDivider = getSyncLifecycle(
   createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta),
   options,
