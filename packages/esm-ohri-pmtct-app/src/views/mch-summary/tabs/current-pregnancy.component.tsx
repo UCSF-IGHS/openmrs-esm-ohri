@@ -69,7 +69,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyHeader = t('art', 'ART');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
-  const pregnancyOutcomeHeader = t('pregnancyStatus', 'Pregnancy Status');
+  const pregnancyOutcomeHeader = t('pregnancyStatusAtBirth', 'Pregnancy Status At Birth');
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
