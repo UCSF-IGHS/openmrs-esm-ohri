@@ -73,7 +73,8 @@
       "meta": {
         "slot": "covid-assessments-dashboard-slot",
         "columns": 1,
-        "path": "covid-assessments"
+        "path": "covid-assessments",
+        "layoutMode": "anchored"
       }
     },
     {
@@ -88,7 +89,8 @@
       "meta": {
         "slot": "covid-lab-dashboard-slot",
         "columns": 1,
-        "path": "lab-test"
+        "path": "lab-test",
+        "layoutMode": "anchored"
       }
     },
     {
@@ -103,7 +105,8 @@
       "meta": {
         "slot": "covid-vaccinations-dashboard-slot",
         "columns": 1,
-        "path": "covid-vaccinations"
+        "path": "covid-vaccinations",
+        "layoutMode": "anchored"
       }
     },
     {
