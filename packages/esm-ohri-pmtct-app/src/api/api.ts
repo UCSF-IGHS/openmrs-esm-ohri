@@ -109,3 +109,25 @@ export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: str
 export async function getFamilyRelationships(patientUuid: string) {
   return await fetchPatientRelationships(patientUuid);
 }
+//  Total number of HIV Exposed Children Enrolled in Follow Up Care
+
+export async function getHivExposedInfants() {
+  try {
+    const response = await openmrsFetch('ws/rest/v1/mamba/report?report_id=hiv_exposed_infants');
+    const data = await response.json();
+
+    if (data && data.results && data.results.length > 0) {
+      const record = data.results[0].record;
+
+      for (const item of record) {
+        if (item.column === 'total_hiv_exposed_infants') {
+          return parseInt(item.value); // Convert value to an integer
+        }
+      }
+    }
+    return 0; // Return 0 if the "hiv_exposed_infants" value is not present/empty
+  } catch (error) {
+    console.error('Error fetching data: ', error);
+    return null; // Return null in case of an error
+  }
+}
