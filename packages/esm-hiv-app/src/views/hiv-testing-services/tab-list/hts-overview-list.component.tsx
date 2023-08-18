@@ -18,7 +18,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const [counter, setCounter] = useState(0);
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const forceComponentUpdate = () => setCounter(counter + 1);
-  const headerTitle = 'HIV Testing';
+  const headerTitle = t('hivTesting', 'HIV Testing');
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -82,7 +82,9 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={htsRetrospectiveTypeUUID}
-      formList={[{ name: HIVTestingFormName, fixedIntent: '*', excludedIntents: [] }]}
+      formList={[
+        { name: HIVTestingFormName, fixedIntent: '*', excludedIntents: ['HTS_PRE_TEST', 'HTS_TEST', 'HTS_POST_TEST'] },
+      ]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
