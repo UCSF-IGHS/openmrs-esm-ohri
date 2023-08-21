@@ -17,7 +17,7 @@
     "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
   },
   "scripts": {
-    "start": "openmrs develop --backend https://ohri-dev-staging.globalhealthapp.net",
+    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net",
     "serve": "webpack serve --mode development",
     "debug": "npm run serve",
     "build": "webpack --mode production",
