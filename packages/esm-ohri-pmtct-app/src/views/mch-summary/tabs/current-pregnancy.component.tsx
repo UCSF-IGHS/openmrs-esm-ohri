@@ -143,7 +143,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       patientUuid,
       labourAndDeliveryEncounterType,
     );
-    if (currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime) {
+    if (currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime || currentPregnancyANCEncounter?.encounterDatetime == null) {
       setPregnancyOutcomes(
         currentPregnancyLabourAndDeliveryEncounter.obs.filter(
           (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
