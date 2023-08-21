@@ -31,7 +31,7 @@ function MaternalChildSummaryTiles({ launchWorkSpace }) {
       title: t('labourDelivery', 'Labour & Delivery'),
       linkAddress: '#',
       subTitle: t('totalDeliveries', '# Total deliveries'),
-      value: totalDeliveries,
+      value: 'N/A'
     },
     {
       title: t('children', 'Children'),
