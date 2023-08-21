@@ -104,11 +104,11 @@ export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: str
   });
 
 }
-
 // Get family relationships from patient uuid
 export async function getFamilyRelationships(patientUuid: string) {
   return await fetchPatientRelationships(patientUuid);
 }
+
 //  Total number of HIV Exposed Children Enrolled in Follow Up Care
 
 export async function getHivExposedInfants() {
@@ -118,7 +118,6 @@ export async function getHivExposedInfants() {
 
     if (data && data.results && data.results.length > 0) {
       const record = data.results[0].record;
-
       for (const item of record) {
         if (item.column === 'total_hiv_exposed_infants') {
           return parseInt(item.value); // Convert value to an integer
@@ -131,3 +130,4 @@ export async function getHivExposedInfants() {
     return null; // Return null in case of an error
   }
 }
+

@@ -33,6 +33,7 @@ import {
   infantStatusAtBirthConcept,
   infantPostnatalEncounterType,
   outcomeStatus,
+  breastfeedingStatus,
 } from '../../../constants';
 import moment from 'moment';
 import { moduleName } from '../../..';
@@ -51,6 +52,7 @@ interface pregnancyOutcomeProps {
   pTrackerId: string;
   dateOfBirth: string;
   infantStatus: string;
+  breastfeeding: string;
 }
 export interface familyItemProps {
   id: string;
@@ -67,7 +69,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyHeader = t('art', 'ART');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
-  const pregnancyOutcomeHeader = t('pregnancyOutcome', 'Pregnancy Outcome');
+  const pregnancyOutcomeHeader = t('pregnancyStatusAtBirth', 'Pregnancy Status At Birth');
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
@@ -112,6 +114,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     {
       header: t('infantStatus', 'Infant Status at Birth'),
       key: 'infantStatus',
+    },
+    {
+      header: t('breastfeeding', 'Breast Feeding'),
+      key: 'breastfeeding',
     },
 
   ];
@@ -219,6 +225,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         infantStatus:
           infantStatusObs.value?.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
           infantStatusObs.value.name.name,
+        breastfeeding: child.groupMembers.find((member) => member.concept.uuid === breastfeedingStatus)?.value?.display,
       };
       items.push(childObject);
     });
