@@ -118,7 +118,7 @@ export async function getTotalPregnantWomen() {
 
     if (data && data.results && data.results.length > 0) {
       const record = data.results[0].record;
-
+      
       for (const item of record) {
         if (item.column === 'total_pregnant_women') {
           return parseInt(item.value); // Convert value to an integer

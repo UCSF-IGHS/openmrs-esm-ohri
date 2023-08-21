@@ -12,6 +12,7 @@ export const covidAssessmentsDashboardMeta = {
   columns: 1,
   title: 'Covid Assessments',
   path: 'covid-assessments',
+  layoutMode: 'anchored',
 };
 
 export const covidLabTestsDashboardMeta = {
@@ -19,6 +20,7 @@ export const covidLabTestsDashboardMeta = {
   columns: 1,
   title: 'Lab Test',
   path: 'lab-test',
+  layoutMode: 'anchored',
 };
 
 export const covidVaccinationsDashboardMeta = {
@@ -26,6 +28,7 @@ export const covidVaccinationsDashboardMeta = {
   columns: 1,
   title: 'Covid Vaccinations',
   path: 'covid-vaccinations',
+  layoutMode: 'anchored',
 };
 
 // Clinical Dashboards
