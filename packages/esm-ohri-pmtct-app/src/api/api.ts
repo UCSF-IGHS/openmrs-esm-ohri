@@ -130,4 +130,3 @@ export async function getHivExposedInfants() {
     return null; // Return null in case of an error
   }
 }
-
