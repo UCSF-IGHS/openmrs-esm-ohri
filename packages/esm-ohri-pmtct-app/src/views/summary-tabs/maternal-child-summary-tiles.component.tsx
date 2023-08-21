@@ -3,22 +3,39 @@ import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { clientsEnrolledToCare } from '../../constants';
 import { getTotalPregnantWomen } from '../../api/api';
+import { getTotalDeliveries } from '../../api/api';
+import { getHivExposedInfants } from '../../api/api';
 
 function MaternalChildSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
   const [totalPregnantWomen, setTotalPregnantWomen] = useState(0);
+  const [totalDeliveries, setTotalDeliveries] = useState(0);
+  const [hivExposedInfants, setHivExposedInfants] = useState(0);
+
 
   // useEffect(() => {
   //   getReportingCohort(clientsEnrolledToCare).then((data) => {
   //     setActiveClientsCount(data.members.length);
   //   });
   // }, []);
-     useEffect(() => {
+   useEffect(() => {
        getTotalPregnantWomen().then(count => {
          setTotalPregnantWomen(count);
        });
      }, []);
+
+   useEffect(() => {
+       getTotalDeliveries().then(count => {
+         setTotalDeliveries(count);
+       });
+     }, []);
+
+   useEffect(() => {
+     getHivExposedInfants().then(count => {
+       setHivExposedInfants(count);
+     });
+   }, []);
 
   const tiles = [
     {
@@ -31,13 +48,13 @@ function MaternalChildSummaryTiles({ launchWorkSpace }) {
       title: t('labourDelivery', 'Labour & Delivery'),
       linkAddress: '#',
       subTitle: t('totalDeliveries', '# Total deliveries'),
-      value: 'N/A'
+      value: totalDeliveries,
     },
     {
       title: t('children', 'Children'),
       linkAddress: '#',
       subTitle: t('hivExposedChildrenEnrolledInFollowUpCare', '# HIV Exposed children enrolled in follow up care'),
-      value: 'N/A',
+      value: hivExposedInfants,
     },
   ];
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
