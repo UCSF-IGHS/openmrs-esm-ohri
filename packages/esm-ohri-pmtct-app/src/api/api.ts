@@ -109,3 +109,26 @@ export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: str
 export async function getFamilyRelationships(patientUuid: string) {
   return await fetchPatientRelationships(patientUuid);
 }
+
+//  Count the number of unique women who delivered from the start of the fiscal year (1 April 2023) up to the current date
+export async function getTotalDeliveries() {
+  try {
+    const response = await openmrsFetch('ws/rest/v1/mamba/report?report_id=total_deliveries');
+    const data = await response.json();
+
+    if (data && data.results && data.results.length > 0) {
+      const record = data.results[0].record;
+
+      for (const item of record) {
+        if (item.column === 'total_deliveries') {
+          return parseInt(item.value); // Convert value to an integer
+        }
+      }
+    }
+    return 0; // Return 0 if the "total_deliveries" value is not present/empty
+  } catch (error) {
+    console.error('Error fetching data: ', error);
+    return null; // Return null in case of an error
+  }
+}
+//  Total number of HIV Exposed Children Enrolled in Follow Up Care
