@@ -2,7 +2,8 @@ import { openmrsFetch } from '@openmrs/esm-framework';
 import { async } from 'rxjs';
 
 export const handleFormValidation = async (schema, configObject) => {
-  const errorsArray = [];
+  const errors = [];
+  const warnings = [];
 
   if (schema) {
     const parsedForm = typeof schema == 'string' ? JSON.parse(schema) : schema;
@@ -13,14 +14,14 @@ export const handleFormValidation = async (schema, configObject) => {
       page.sections?.forEach((section) =>
         section.questions?.forEach((question) => {
           asyncTasks.push(
-            handleQuestionValidation(question, errorsArray, configObject),
-            handleAnswerValidation(question, errorsArray),
+            handleQuestionValidation(question, errors, configObject, warnings),
+            handleAnswerValidation(question, errors, warnings),
           );
           question.type === 'obsGroup' &&
             question.questions?.forEach((obsGrpQuestion) =>
               asyncTasks.push(
-                handleQuestionValidation(obsGrpQuestion, errorsArray, configObject),
-                handleAnswerValidation(question, errorsArray),
+                handleQuestionValidation(obsGrpQuestion, errors, configObject, warnings),
+                handleAnswerValidation(question, errors, warnings),
               ),
             );
         }),
@@ -28,13 +29,13 @@ export const handleFormValidation = async (schema, configObject) => {
     );
     await Promise.all(asyncTasks);
 
-    return [errorsArray];
+    return [errors, warnings];
   }
 };
 
-const handleQuestionValidation = async (conceptObject, array, configObject) => {
+const handleQuestionValidation = async (conceptObject, errorsArray, configObject, warningsArray) => {
   const conceptRepresentation =
-    'custom:(uuid,display,datatype,conceptMappings:(conceptReferenceTerm:(conceptSource:(name),code)))';
+    'custom:(uuid,display,datatype,answers,conceptMappings:(conceptReferenceTerm:(conceptSource:(name),code)))';
 
   const searchRef = conceptObject.questionOptions.concept
     ? conceptObject.questionOptions.concept
@@ -51,9 +52,33 @@ const handleQuestionValidation = async (conceptObject, array, configObject) => {
       const { data } = await openmrsFetch(`/ws/rest/v1/concept?references=${searchRef}&v=${conceptRepresentation}`);
       if (data.results.length) {
         const [resObject] = data.results;
-        dataTypeChecker(conceptObject, resObject, array, configObject);
+
+        resObject.datatype.name === 'Boolean' &&
+          conceptObject.questionOptions.answers.forEach((answer) => {
+            if (
+              answer.concept !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' &&
+              answer.concept !== '488b58ff-64f5-4f8a-8979-fa79940b1594'
+            ) {
+              errorsArray.push({
+                errorMessage: `❌ concept "${conceptObject.questionOptions.concept}" of type "boolean" has a non-boolean answer "${answer.label}"`,
+                field: conceptObject,
+              });
+            }
+          });
+
+        resObject.datatype.name === 'Coded' &&
+          conceptObject.questionOptions.answers.forEach((answer) => {
+            if (!resObject.answers.some((answerObject) => answerObject.uuid === answer.concept)) {
+              warningsArray.push({
+                warningMessage: `⚠️ answer: "${answer.label}" - "${answer.concept}" does not exist in the response answers but exists in the form`,
+                field: conceptObject,
+              });
+            }
+          });
+
+        dataTypeChecker(conceptObject, resObject, errorsArray, configObject);
       } else {
-        array.push({
+        errorsArray.push({
           errorMessage: `❓ Concept "${conceptObject.questionOptions.concept}" not found`,
           field: conceptObject,
         });
@@ -62,7 +87,7 @@ const handleQuestionValidation = async (conceptObject, array, configObject) => {
       console.error(error);
     }
   } else {
-    array.push({
+    errorsArray.push({
       errorMessage: `❓ No UUID`,
       field: conceptObject,
     });
@@ -84,7 +109,7 @@ const dataTypeChecker = (conceptObject, responseObject, array, dataTypeToRenderi
     });
 };
 
-const handleAnswerValidation = (questionObject, array) => {
+const handleAnswerValidation = (questionObject, array, warningsArray) => {
   const answerArray = questionObject.questionOptions.answers;
   const conceptRepresentation =
     'custom:(uuid,display,datatype,conceptMappings:(conceptReferenceTerm:(conceptSource:(name),code)))';

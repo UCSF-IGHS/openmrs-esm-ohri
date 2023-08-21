@@ -77,8 +77,9 @@ function FormRenderTest() {
 
   const formValidation = () => {
     handleFormValidation(schemaInput, dataTypeToRenderingMap).then((response) => {
-      const [errorsArray] = response;
-      console.log(errorsArray);
+      const [errorsArray, warningsArray] = response;
+      console.log('errors:', errorsArray);
+      console.log('warnings:', warningsArray);
     });
   };
 
