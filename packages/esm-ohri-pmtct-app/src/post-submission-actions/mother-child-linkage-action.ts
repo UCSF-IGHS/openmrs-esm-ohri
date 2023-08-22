@@ -37,7 +37,8 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
         constructPatientObjectFromObsData(obsGroup, encounterLocation),
       ),
     );
-    const postResponse = await savePatients(infantsToCreate);
+    const newInfantsToCreate = await Promise.all(infantsToCreate.filter(infant => infant !== null));
+    const postResponse = await savePatients(newInfantsToCreate);
     postResponse.map(({ data }) =>
       saveRelationship({
         relationshipType: MotherToChildRelationshipType,
