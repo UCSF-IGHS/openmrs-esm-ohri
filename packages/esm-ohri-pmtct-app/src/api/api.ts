@@ -131,7 +131,7 @@ export async function getTotalPregnantWomen() {
     return null;
   }
 }
-//  Count the number of unique women who delivered from the start of the fiscal year (1 April 2023) up to the current date
+//  Count the number of unique women who delivered from the start of the fiscal year up to the current date
 export async function getTotalDeliveries() {
   try {
     const response = await openmrsFetch('ws/rest/v1/mamba/report?report_id=total_deliveries');
