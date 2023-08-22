@@ -13,12 +13,6 @@ function MaternalChildSummaryTiles({ launchWorkSpace }) {
   const [totalDeliveries, setTotalDeliveries] = useState(0);
   const [hivExposedInfants, setHivExposedInfants] = useState(0);
 
-
-  // useEffect(() => {
-  //   getReportingCohort(clientsEnrolledToCare).then((data) => {
-  //     setActiveClientsCount(data.members.length);
-  //   });
-  // }, []);
    useEffect(() => {
        getTotalPregnantWomen().then(count => {
          setTotalPregnantWomen(count);
