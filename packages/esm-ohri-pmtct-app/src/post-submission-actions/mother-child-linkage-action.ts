@@ -1,15 +1,9 @@
 import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
-import {
-  fetchPatientIdentifiers,
-  generateIdentifier,
-  saveIdentifier,
-  savePatients,
-  saveRelationship,
-} from '../api/api';
+import { generateIdentifier, savePatients, saveRelationship } from '../api/api';
 import { Patient, PatientIdentifier } from '../api/types';
-import { pTrackerIdConcept, PTrackerIdentifierType } from '../constants';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../utils/obs-encounter-utils';
 import { updatePatientPtracker } from './current-ptracker-action';
+import { getConfig } from '@openmrs/esm-framework';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '1c70c490-cafa-4c95-9fdd-a30b62bb78b8';
@@ -17,7 +11,6 @@ const infantGender = '1587AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const infantDOB = '164802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const infantPTrackerId = '164803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const infantLifeStatus = '159917AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-const preferredIdentifierSource = '691eed12-c0f1-11e2-94be-8c13b969e334';
 const aliveStatus = '151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 const PtrackerIdentifierType = '4da0a3fe-e546-463f-81fa-084f098ff06c';
 const OpenmrsClassicIdentifierType = '05a29f94-c0ed-11e2-94be-8c13b969e334';
@@ -31,13 +24,15 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
     if (sessionMode !== 'enter') {
       return;
     }
+
+    const preferredIdentifierSource = await getPreferredIdentifierSource();
     await updatePatientPtracker(encounter, encounterLocation, patient.id);
     const infantsToCreate = await Promise.all(
       findObsByConcept(encounter, infantDetailsGroup).map(async (obsGroup) =>
-        constructPatientObjectFromObsData(obsGroup, encounterLocation),
+        constructPatientObjectFromObsData(obsGroup, encounterLocation, preferredIdentifierSource),
       ),
     );
-    const newInfantsToCreate = await Promise.all(infantsToCreate.filter(infant => infant !== null));
+    const newInfantsToCreate = await Promise.all(infantsToCreate.filter((infant) => infant !== null));
     const postResponse = await savePatients(newInfantsToCreate);
     postResponse.map(({ data }) =>
       saveRelationship({
@@ -49,7 +44,16 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
   },
 };
 
-async function constructPatientObjectFromObsData(obsGroup, encounterLocation: string): Promise<Patient> {
+async function getPreferredIdentifierSource() {
+  const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
+  return config.identifiers.preferredIdentifierSource;
+}
+
+async function constructPatientObjectFromObsData(
+  obsGroup,
+  encounterLocation: string,
+  preferredIdentifierSource: string,
+): Promise<Patient> {
   // check if infant is alive
   const lifeStatusAtBirth = findChildObsInTree(obsGroup, infantLifeStatus);
   if (getObsValueCoded(lifeStatusAtBirth) == aliveStatus) {

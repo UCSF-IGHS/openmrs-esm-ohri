@@ -16,7 +16,7 @@ import {
   recenctViralLoad,
   visitDate,
 } from '../../../constants';
-import moment from 'moment';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface PostnatalCareListProps {
   patientUuid: string;
@@ -25,6 +25,7 @@ interface PostnatalCareListProps {
 const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('postnatalCare', 'Postnatal Care');
+  const MotherPNCEncounterTypeUUID = useConfig().encounterTypes.motherPostnatal;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -97,8 +98,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={motherPostnatalEncounterType}
-      // TODO: replace with form name as configured in the backend.
+      encounterType={MotherPNCEncounterTypeUUID}
       formList={[{ name: 'Mother - Postnatal Form' }]}
       columns={columns}
       description={headerTitle}

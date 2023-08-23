@@ -8,7 +8,6 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   pTrackerIdConcept,
-  infantPostnatalEncounterType,
   nextVisitDate,
   artProphylaxisStatus,
   linkedToArt,
@@ -16,6 +15,7 @@ import {
   outcomeStatus,
 } from '../../../constants';
 import { moduleName } from '../../..';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface InfantPostnatalListProps {
   patientUuid: string;
@@ -24,6 +24,7 @@ interface InfantPostnatalListProps {
 const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
+  const InfantPNCEncounterTypeUUID = useConfig().encounterTypes.infantPostnatal;
 
   async function fetchMotherName() {
     let motherName = '--';
@@ -111,7 +112,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={infantPostnatalEncounterType}
+      encounterType={InfantPNCEncounterTypeUUID}
       formList={[{ name: 'Infant - Postanal Form' }]}
       columns={columns}
       description={headerTitle}

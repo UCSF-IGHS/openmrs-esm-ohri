@@ -6,11 +6,11 @@ import {
   artInitiationConcept,
   birthCountConcept,
   bookedForAncConcept,
-  labourAndDeliveryEncounterType,
   pTrackerIdConcept,
   visitDateConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface LabourDeliveryListProps {
   patientUuid: string;
@@ -19,6 +19,7 @@ interface LabourDeliveryListProps {
 const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('labourAndDelivery', 'Labour and Delivery');
+  const LNDEncounterTypeUUID = useConfig().encounterTypes.laborAndDelivery;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -91,8 +92,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={labourAndDeliveryEncounterType}
-      // TODO: replace with form name as configured in the backend.
+      encounterType={LNDEncounterTypeUUID}
       formList={[{ name: 'Labour & Delivery Form' }]}
       columns={columns}
       description={headerTitle}
