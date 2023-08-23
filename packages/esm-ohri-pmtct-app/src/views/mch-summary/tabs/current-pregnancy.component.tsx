@@ -69,7 +69,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const arvTherapyHeader = t('art', 'ART');
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
-  const pregnancyOutcomeHeader = t('pregnancyStatusAtBirth', 'Pregnancy Status At Birth');
+  const pregnancyOutcomeHeader = t('infantStatusAtBirth', 'Infant Status At Birth');
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
@@ -145,7 +145,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     );
     if (currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime || currentPregnancyANCEncounter?.encounterDatetime == null) {
       setPregnancyOutcomes(
-        currentPregnancyLabourAndDeliveryEncounter.obs.filter(
+        currentPregnancyLabourAndDeliveryEncounter.obs?.filter(
           (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
         ),
       ); 
