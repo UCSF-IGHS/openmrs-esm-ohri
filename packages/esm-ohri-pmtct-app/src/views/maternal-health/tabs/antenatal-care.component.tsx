@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
-  antenatalEncounterType,
   artInitiationConcept,
   artNoConcept,
   eDDConcept,
@@ -13,6 +12,7 @@ import {
   vLResultsConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface AntenatalCareListProps {
   patientUuid: string;
@@ -21,6 +21,7 @@ interface AntenatalCareListProps {
 const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('antenatalCare', 'Antenatal Care');
+  const ANCEncounterTypeUUID = useConfig().encounterTypes.antenatal;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -107,8 +108,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={antenatalEncounterType}
-      // TODO: replace with form name as configured in the backend.
+      encounterType={ANCEncounterTypeUUID}
       formList={[{ name: 'Antenatal Form' }]}
       columns={columns}
       description={headerTitle}
