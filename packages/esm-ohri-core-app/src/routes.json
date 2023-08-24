@@ -43,7 +43,13 @@
     {
       "name": "dispensing-ohri-dashboard-ext",
       "slot": "dashboard-links-slot",
-      "component": "dispensingLink"
+      "component": "dispensingLink",
+      "meta": {
+        "title": "Dispensing",
+        "name": "dispensing",
+        "slot": "ohri-dispensing-dashboard-slot",
+        "isLink": true
+      }
     },
     {
       "name": "ohri-dispensing-dashboard",
