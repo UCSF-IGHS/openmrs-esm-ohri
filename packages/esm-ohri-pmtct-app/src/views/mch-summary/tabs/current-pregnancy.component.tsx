@@ -13,12 +13,9 @@ import {
   SummaryCard,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
-  antenatalEncounterType,
   artStartDate,
   eDDConcept,
   followUpDateConcept,
-  labourAndDeliveryEncounterType,
-  motherPostnatalEncounterType,
   motherStatusConcept,
   nextVisitDateConcept,
   pTrackerIdConcept,
@@ -31,21 +28,14 @@ import {
   infantDateOfBirth,
   infantPTrackerIdConcept,
   infantStatusAtBirthConcept,
-  infantPostnatalEncounterType,
   outcomeStatus,
   breastfeedingStatus,
 } from '../../../constants';
 import moment from 'moment';
 import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
-import { navigate } from '@openmrs/esm-framework';
-import {
-  fetchMotherHIVStatus,
-  fetchPatientIdentifiers,
-  getAncVisitCount,
-  getEstimatedDeliveryDate,
-  fetchChildLatestFinalOutcome
-} from '../../../api/api';
+import { navigate, useConfig } from '@openmrs/esm-framework';
+import { fetchPatientIdentifiers, fetchChildLatestFinalOutcome } from '../../../api/api';
 
 interface pregnancyOutcomeProps {
   id: string;
@@ -75,6 +65,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
+  const config = useConfig();
 
   const headersFamily = [
     {
@@ -119,7 +110,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       header: t('breastfeeding', 'Breast Feeding'),
       key: 'breastfeeding',
     },
-
   ];
   useEffect(() => {
     getParentCurrentLabourAndDeliveryEncounter();
@@ -138,17 +128,20 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   }
 
   async function getParentCurrentLabourAndDeliveryEncounter() {
-    const currentPregnancyANCEncounter = await fetchPatientLastEncounter(patientUuid, antenatalEncounterType);
+    const currentPregnancyANCEncounter = await fetchPatientLastEncounter(patientUuid, config.encounterTypes.antenatal);
     const currentPregnancyLabourAndDeliveryEncounter = await fetchPatientLastEncounter(
       patientUuid,
-      labourAndDeliveryEncounterType,
+      config.encounterTypes.laborAndDelivery,
     );
-    if (currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime || currentPregnancyANCEncounter?.encounterDatetime == null) {
+    if (
+      currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime ||
+      currentPregnancyANCEncounter?.encounterDatetime == null
+    ) {
       setPregnancyOutcomes(
         currentPregnancyLabourAndDeliveryEncounter.obs?.filter(
           (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
         ),
-      ); 
+      );
     }
   }
   useEffect(() => {
@@ -159,18 +152,20 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     getInfantOutcome();
   }, [relatives]);
 
-
   const getInfantOutcome = () => {
-    const infantOutcomes = relatives.map(async (relative) =>{
-      const finalOutcome = await fetchChildLatestFinalOutcome(relative.personB.uuid, outcomeStatus, infantPostnatalEncounterType);
-      return {finalOutcome: finalOutcome, childUuid: relative.personB.uuid};
-    }); 
+    const infantOutcomes = relatives.map(async (relative) => {
+      const finalOutcome = await fetchChildLatestFinalOutcome(
+        relative.personB.uuid,
+        outcomeStatus,
+        config.encounterTypes.infantPostnatal,
+      );
+      return { finalOutcome: finalOutcome, childUuid: relative.personB.uuid };
+    });
 
     Promise.all(infantOutcomes).then((values) => {
-      setInfantOutcomes(values.map((value)=>({finalOutcome: value.finalOutcome, childUuid: value.childUuid})));
+      setInfantOutcomes(values.map((value) => ({ finalOutcome: value.finalOutcome, childUuid: value.childUuid })));
     });
-  }
-
+  };
 
   async function getChildPTracker(patientUuid: string) {
     let pTrackerMap = { patientId: patientUuid, pTrackerId: '--' };
@@ -203,7 +198,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           relationship: relative.relationshipType.displayBIsToA,
           dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
           hivStatus: '',
-          finalOutcome: infantOutcomes.find((outcome) => outcome.childUuid === relative.personB.uuid)?.finalOutcome ?? '--',
+          finalOutcome:
+            infantOutcomes.find((outcome) => outcome.childUuid === relative.personB.uuid)?.finalOutcome ?? '--',
         };
         items.push(relativeObject);
       }
@@ -237,7 +233,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [labourAndDeliveryEncounterType],
+        encounterTypes: [config.encounterTypes.laborAndDelivery],
         getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
           // const totalVisits = await fetchMotherHIVStatus(patientUuid, currentPTrackerId);
@@ -248,7 +244,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterTypes: [antenatalEncounterType],
+        encounterTypes: [config.encounterTypes.antenatal],
         getObsValue: async ([encounter]) => {
           return getObsFromEncounter(encounter, eDDConcept, true);
         },
@@ -264,7 +260,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
-        encounterTypes: [labourAndDeliveryEncounterType],
+        encounterTypes: [config.encounterTypes.laborAndDelivery],
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, motherStatusConcept);
         },
@@ -278,7 +274,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'artInitiation',
         header: t('artInitiation', 'ART Initiation'),
-        encounterTypes: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        encounterTypes: [
+          config.encounterTypes.motherPostnatal,
+          config.encounterTypes.laborAndDelivery,
+          config.encounterTypes.antenatal,
+        ],
         getObsValue: (encounters) => {
           const pncArtData = {
             artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
@@ -302,7 +302,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'artStartDate',
         header: t('artStartDate', 'ART Start Date'),
-        encounterTypes: [motherPostnatalEncounterType, labourAndDeliveryEncounterType, antenatalEncounterType],
+        encounterTypes: [
+          config.encounterTypes.motherPostnatal,
+          config.encounterTypes.laborAndDelivery,
+          config.encounterTypes.antenatal,
+        ],
         getObsValue: (encounters) => {
           const pncArtData = {
             artInitiation: getObsFromEncounter(encounters[0], artInitiationConcept),
@@ -332,7 +336,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterTypes: [antenatalEncounterType],
+        encounterTypes: [config.encounterTypes.antenatal],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, nextVisitDateConcept, true);
         },
@@ -348,7 +352,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterTypes: [antenatalEncounterType],
+        encounterTypes: [config.encounterTypes.antenatal],
         getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, pTrackerIdConcept);
           // const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
