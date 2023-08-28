@@ -42,7 +42,7 @@ export function startupApp() {
         antenatal: '677d1a80-dbbe-4399-be34-aa7f54f11405',
         laborAndDelivery: '6dc5308d-27c9-4d49-b16f-2c5e3c759757',
         infantPostnatal: 'af1f1b24-d2e8-4282-b308-0bf79b365584',
-        motherPostnatal: '269bcc7f-04f8-4ddc-883d-7a3a0d569aad',
+        motherPostnatal: '3e3c5e17-7d43-467f-8b10-088b41ddf92f',
       },
     },
   });
