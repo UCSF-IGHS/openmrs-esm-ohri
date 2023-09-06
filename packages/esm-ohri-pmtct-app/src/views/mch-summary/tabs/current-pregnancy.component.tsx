@@ -137,11 +137,13 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime ||
       currentPregnancyANCEncounter?.encounterDatetime == null
     ) {
-      setPregnancyOutcomes(
-        currentPregnancyLabourAndDeliveryEncounter.obs?.filter(
-          (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
-        ),
-      );
+      if (currentPregnancyLabourAndDeliveryEncounter !== null) {
+        setPregnancyOutcomes(
+          currentPregnancyLabourAndDeliveryEncounter.obs?.filter(
+            (obs) => obs.concept.uuid === infantDeliveryGroupingConcept,
+          ),
+        );
+      }
     }
   }
   useEffect(() => {
