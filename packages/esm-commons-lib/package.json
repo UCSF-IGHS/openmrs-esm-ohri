@@ -47,7 +47,6 @@
     "react-i18next": "^11.18.6"
   },
   "devDependencies": {
-    "@openmrs/esm-patient-common-lib": "5.x",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "webpack": "^5.74.0",
