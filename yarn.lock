@@ -3921,6 +3921,7 @@ __metadata:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@openmrs/esm-api@npm:^5.1.1-pre.1031":
   version: 5.1.1-pre.1031
   resolution: "@openmrs/esm-api@npm:5.1.1-pre.1031"
@@ -3947,6 +3948,11 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-api@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-api@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-api@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     "@types/fhir": 0.0.31
     lodash-es: ^4.17.21
@@ -3954,10 +3960,11 @@ __metadata:
     "@openmrs/esm-config": 5.x
     "@openmrs/esm-error-handling": 5.x
     "@openmrs/esm-offline": 5.x
-  checksum: cae349b471240726cde6095642a594d8305c21bacd348f2e1ba61f948523784c58488bcbbad2b340113878179c885552549272951f5e8e23dc0a9fa1b59da58f
+  checksum: 8282b5cd883d142586a26f57c9cf2f36302d43a9b1330c16742c6810332099e24a209f6b859287f40bc2f5993bab6569df5a48c29cee52761a57955c86ce5a9b
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-api@npm:^5.1.1-pre.989":
   version: 5.1.1-pre.989
@@ -3987,10 +3994,15 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-app-shell@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-app-shell@npm:5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-app-shell@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     "@carbon/react": ^1.12.0
-    "@openmrs/esm-framework": 5.1.1-pre.997
-    "@openmrs/esm-styleguide": 5.1.1-pre.997
+    "@openmrs/esm-framework": 5.1.1-pre.966
+    "@openmrs/esm-styleguide": 5.1.1-pre.966
     dayjs: ^1.10.4
     dexie: ^3.0.3
     html-webpack-plugin: ^5.5.0
@@ -4014,10 +4026,11 @@ __metadata:
     workbox-strategies: ^6.1.5
     workbox-webpack-plugin: ^6.1.5
     workbox-window: ^6.1.5
-  checksum: b09fc06bcfc31ced9d74dd482e40c04352dfb1f05a11c0de35c3ad936f4557227d48605ae7d2f3c606d3d9bbd050969ca2876ea948e43dc521898fee3f1cabd6
+  checksum: dd2088120346682816c7dc46b5a30034d6769e851b827ac65136399f7a67c8abef6b4b9718c7f7f659e5b7a03eb7d328958937996badeb064c99b81d6e712c17
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-app-shell@npm:5.1.1-pre.989":
   version: 5.1.1-pre.989
@@ -4079,10 +4092,16 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-breadcrumbs@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-breadcrumbs@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-breadcrumbs@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     path-to-regexp: 6.1.0
   peerDependencies:
     "@openmrs/esm-state": 5.x
+<<<<<<< HEAD
 <<<<<<< HEAD
   checksum: 8a542e03c4f5939adc9232263e7b1844dc0e5edc8bc830558e997838950817b098771cd92744dbc5c3188c19720c3f38f8bbcf99ccef348500b617fdfe6962fe
   languageName: node
@@ -4105,25 +4124,35 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-config@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+  checksum: 2fc40c820298d99743dd52ef91fbaa16f2bb5ecb3b540243750c5302c3f2209b40eddf447ba199b91df36ba1c5b592a28f91a30cd14121db46bd1a93a384afc1
+  languageName: node
+  linkType: hard
+
+"@openmrs/esm-config@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-config@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     ramda: ^0.26.1
   peerDependencies:
     "@openmrs/esm-globals": 5.x
     "@openmrs/esm-state": 5.x
     single-spa: 5.x
-  checksum: c98fcea6fccf7f1463d77e6b415ecb5cc2f1a818cdac4f8ce4d803f1528b5365c8bb38d1491ef2ead2a3256897c18c380c597b42dbd4dce0a7fe7a269e820b4b
+  checksum: 7b23b60b2fccd3f8f61af8b5a6f9cc9483d80e9d073f14cef0e04d375de119a441cdae557a6b23e5d08ebe9f373075f1ab2cf3940d2e1b0e759eaa8abe0cb5c7
   languageName: node
   linkType: hard
 
-"@openmrs/esm-dynamic-loading@npm:^5.1.1-pre.997":
-  version: 5.1.1-pre.997
-  resolution: "@openmrs/esm-dynamic-loading@npm:5.1.1-pre.997"
+"@openmrs/esm-dynamic-loading@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-dynamic-loading@npm:5.1.1-pre.966"
   peerDependencies:
     "@openmrs/esm-globals": 5.x
-  checksum: 3b7344c85231e8ad228bd66ddb59b420ad3b876d2fdfa0f0c6ef551b69dcaa568e2ee6593077553f88e895fadbfa319ff13c577953984a3d96f2fe711d66ac09
+  checksum: 3709ce1ea9141f3e6fa06705bbd6ad92beaebb509149a453f02d05c4c884803adfe4cb37c92fc506ff41cc7b13fa805ec24059f6f02124bd4b3b83c1b37e3421
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-config@npm:^5.1.1-pre.989":
   version: 5.1.1-pre.989
@@ -4217,16 +4246,27 @@ __metadata:
 "@openmrs/esm-error-handling@npm:^5.1.1-pre.997":
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-error-handling@npm:5.1.1-pre.997"
+=======
+"@openmrs/esm-error-handling@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-error-handling@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   peerDependencies:
     "@openmrs/esm-globals": 5.x
-  checksum: ed9ff693ad829d03b73cac282fac8623438f15e60195787ae79d2431762275a5552fa200d65e16b4b8df483dd4663e8d8ecc7b04ee6a1fa541cbdb832be0435a
+  checksum: e8ccdeeb7a73fd13654531875f906e9f058a5a52a690ca80750fc9ea983e6486ea83a2704a315509ec4a529afdbd2829de62c305533d62cc7432694e1d5c17d2
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 "@openmrs/esm-extensions@npm:^5.1.1-pre.997":
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-extensions@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-extensions@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-extensions@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     lodash-es: ^4.17.21
   peerDependencies:
@@ -4235,10 +4275,11 @@ __metadata:
     "@openmrs/esm-feature-flags": 5.x
     "@openmrs/esm-state": 5.x
     single-spa: 5.x
-  checksum: db1fd0f0f0fe06b62f166a959161ab6150bbef0e7208ad4e930d91c96d9902f1f80d35118f26c8eb2d40c562e9ebdcc258ed217f9f8c85fd5bb568cda481ce1e
+  checksum: 1ee17bd3185d3d36a7f8399dd8c882441cc2503d80e24a9b11ebfcadbc17c49eb6cd2f3329a88628aeb46950102e7c7f0608ff39f5fee431ab7ba8ae8371d60a
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-extensions@npm:^5.1.1-pre.916":
   version: 5.1.1-pre.916
@@ -4279,12 +4320,18 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-feature-flags@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-feature-flags@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-feature-flags@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     ramda: ^0.26.1
   peerDependencies:
     "@openmrs/esm-globals": 5.x
     "@openmrs/esm-state": 5.x
     single-spa: 5.x
+<<<<<<< HEAD
 <<<<<<< HEAD
   checksum: ef9136716943f076426d2aaabb86af000d15b44f51c32b89e2be656ea8535c3931b82c191398709138eaaa609a3161cf464c48d62aa0899352e1990bf41a7ec0
   languageName: node
@@ -4336,13 +4383,17 @@ __metadata:
     "@openmrs/esm-utils": ^5.1.1-pre.1031
 =======
   checksum: 01b5526c4c381a71f7182b1d35690f0e5ffb6efa9f991c19d7546573072217e76e80d395753deca8cea26b36382857690204d108c062a635119a63d5dc7ccab9
+=======
+  checksum: 92833c9ada71f41eed5e3cb41e524932b25767cabf62b922558027727b0c532620ece8f01db41eee9f4cc91d78f93d87e10295b65b3cbbb01ecf4812251dea02
+>>>>>>> 1a1bec24 (wip)
   languageName: node
   linkType: hard
 
-"@openmrs/esm-framework@npm:5.1.1-pre.997, @openmrs/esm-framework@npm:next":
-  version: 5.1.1-pre.997
-  resolution: "@openmrs/esm-framework@npm:5.1.1-pre.997"
+"@openmrs/esm-framework@npm:5.1.1-pre.966, @openmrs/esm-framework@npm:next":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-framework@npm:5.1.1-pre.966"
   dependencies:
+<<<<<<< HEAD
     "@openmrs/esm-api": ^5.1.1-pre.997
     "@openmrs/esm-breadcrumbs": ^5.1.1-pre.997
     "@openmrs/esm-config": ^5.1.1-pre.997
@@ -4357,6 +4408,21 @@ __metadata:
     "@openmrs/esm-styleguide": ^5.1.1-pre.997
     "@openmrs/esm-utils": ^5.1.1-pre.997
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+    "@openmrs/esm-api": ^5.1.1-pre.966
+    "@openmrs/esm-breadcrumbs": ^5.1.1-pre.966
+    "@openmrs/esm-config": ^5.1.1-pre.966
+    "@openmrs/esm-dynamic-loading": ^5.1.1-pre.966
+    "@openmrs/esm-error-handling": ^5.1.1-pre.966
+    "@openmrs/esm-extensions": ^5.1.1-pre.966
+    "@openmrs/esm-feature-flags": ^5.1.1-pre.966
+    "@openmrs/esm-globals": ^5.1.1-pre.966
+    "@openmrs/esm-offline": ^5.1.1-pre.966
+    "@openmrs/esm-react-utils": ^5.1.1-pre.966
+    "@openmrs/esm-state": ^5.1.1-pre.966
+    "@openmrs/esm-styleguide": ^5.1.1-pre.966
+    "@openmrs/esm-utils": ^5.1.1-pre.966
+>>>>>>> 1a1bec24 (wip)
     dayjs: ^1.10.7
   peerDependencies:
     dayjs: 1.x
@@ -4366,6 +4432,7 @@ __metadata:
     react-i18next: 11.x
     rxjs: 6.x
     single-spa: 5.x
+<<<<<<< HEAD
 <<<<<<< HEAD
   checksum: a0d0ced2ae0b0429caed877c24f9ce470ce40ce37e213f68f5f44208283c3ec1ce1b232a22e75ef6472b8154b2d2661098848779132b95d8c04e54ff1678222a
   languageName: node
@@ -4418,12 +4485,22 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-globals@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
-  peerDependencies:
-    single-spa: 5.x
-  checksum: 534290c2a1f1535871954a147fe30e6c8e437ec7d9fa517bc0950fa5193eea75905c2e7627e0fa76282bd89b57a65bb8fbf41907a54ab0e07fdda27792650b16
+=======
+  checksum: 827a963123a6574d4798964d562ba6c21af9c8f5869dc3249e54ac8e8c3b356fba9eb92fb4e7cdd47ba35e24fcb3f2c3b374244481ce5e1cb51d0d7b28f5ddc2
   languageName: node
   linkType: hard
 
+"@openmrs/esm-globals@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-globals@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
+  peerDependencies:
+    single-spa: 5.x
+  checksum: e9664929c7c671019ae7b38effb23a6865c1ef5bcc55ac5df71cd2ee639b685664b69ddc3b19e05b8b8a419acd13c63d2846fca2ac329a6b49b2fe2cadb77b6c
+  languageName: node
+  linkType: hard
+
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-globals@npm:^5.1.1-pre.916":
   version: 5.1.1-pre.916
@@ -4475,6 +4552,11 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-offline@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-offline@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-offline@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     dexie: ^3.0.3
     lodash-es: ^4.17.21
@@ -4486,6 +4568,7 @@ __metadata:
     "@openmrs/esm-state": 5.x
     "@openmrs/esm-styleguide": 5.x
     rxjs: 6.x
+<<<<<<< HEAD
 <<<<<<< HEAD
   checksum: b4cff02edb5d98169ec74476d26d9f298618776db6378a2f050cb6ec421a12f3b9630fb117527fbe3290c02b0167ea04e1fc1305eac66a2374550e8c2581c6e1
   languageName: node
@@ -4510,6 +4593,9 @@ __metadata:
 =======
   checksum: a04e0c687ddc2b8efe8b9b1808462496e0c3fcfd165980047be2beda66fe9d97a84e59f31fe1db562b316e0fefd412e4e94afdcb537efcc448eb580ec2993105
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+  checksum: 7829f9ea00ef483e7f51e04c5bbf7fbd164c9d7a9a0b2eb8f8f127f7a5ec91d6393f047613acec7e044125bf9d85cb7f12a5f1fd79c00b1bd53c6071c669d592
+>>>>>>> 1a1bec24 (wip)
   languageName: node
   linkType: hard
 
@@ -4528,6 +4614,7 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-react-utils@npm:^5.1.1-pre.1031":
@@ -4564,6 +4651,11 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-react-utils@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-react-utils@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-react-utils@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     lodash-es: ^4.17.21
     single-spa-react: ~5.0.0
@@ -4579,10 +4671,11 @@ __metadata:
     react: 18.x
     react-dom: 18.x
     react-i18next: 11.x
-  checksum: 36e47bb93d1e10412ef1b4822f80f3274e0b902eb25ab275fa5306c6ba157138fc10c55d792781e6865317aaf202a5c4e807cf74eef5a589e7177a25f9a864f8
+  checksum: 275dc77daceaefeb4461807a9b6008b34380bc7d67bc53b6c0c0ab33847ca782c1597ba4b241ab6b86e106cc1d43299d1f1d54690628fd6103c0249f27f5617b
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-react-utils@npm:^5.1.1-pre.989":
   version: 5.1.1-pre.989
@@ -4629,14 +4722,20 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-state@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/esm-state@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-state@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     zustand: ^4.3.6
   peerDependencies:
     "@openmrs/esm-globals": 5.x
-  checksum: c2b6ea008ffed40227b475bea614083e840cec9790d2c6b4d7301b2606152bbdab18d6f0a79b4ea366480e38c2e3666db3de395625e8265db6cfad5f45600c16
+  checksum: 72a1dcd6c51d1c19e200fd6872a5750d5c48d5363e63e6319720f3cb5942751e57d84c9983a2c5c88f056ba74bf5cb275c8faf8233462dee5302c2fd4421255a
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@openmrs/esm-state@npm:^5.1.1-pre.989":
   version: 5.1.1-pre.989
@@ -4710,6 +4809,11 @@ __metadata:
 "@openmrs/esm-styleguide@npm:^5.1.1-pre.916":
   version: 5.1.1-pre.916
   resolution: "@openmrs/esm-styleguide@npm:5.1.1-pre.916"
+=======
+"@openmrs/esm-styleguide@npm:5.1.1-pre.966, @openmrs/esm-styleguide@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-styleguide@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     "@carbon/charts": ^1.6.3
     "@carbon/react": ^1.12.0
@@ -4726,6 +4830,7 @@ __metadata:
     react: 18.x
     react-dom: 18.x
     rxjs: 6.x
+<<<<<<< HEAD
   checksum: ac98992e8df71edf0f329219fa65ef51f0bbf578357c7193df321c84f55a1a786757d70be7593e0c6dbe4ac75b41e10403d509d966b659ea4018f9b2e0f76655
   languageName: node
   linkType: hard
@@ -4742,12 +4847,22 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/esm-utils@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+  checksum: 21cf920901e84ee30d46d666a855f5517720e58cd20593f6bd5873320f75861f8ecc5f3bbbd5229c34dc0c051f362ef0d39130ddd854d4e44e8fa6ee42fdcbc8
+  languageName: node
+  linkType: hard
+
+"@openmrs/esm-utils@npm:^5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/esm-utils@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     semver: 7.3.2
   peerDependencies:
     dayjs: 1.x
     i18next: 19.x
     rxjs: 6.x
+<<<<<<< HEAD
 <<<<<<< HEAD
   checksum: 38ebe62f332486bcc5622b950170281c02c059e1d7422f4556091f2519161fd3beaa3f315038ba2a6ce6aad46d7d89569c6f98c5c1d06e0420b416a078032ec2
   languageName: node
@@ -4780,6 +4895,9 @@ __metadata:
 =======
   checksum: 631d5e785bc0824044e6ec41b37c8466cb9134af9edd10f2ca4f4b89d99ea521f2b32c2d7a99e5bc25e86133d995d5eec10da36f1743588d8660fe0232c0a981
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+  checksum: bf78692a2f8b0e4918b0372e243fe8ac3837b7a888df76b431267e0da0a88e25c4a811be1fefbdcd4150c4f88d914a15138111e58880fbbe7c7ecb33264c30d8
+>>>>>>> 1a1bec24 (wip)
   languageName: node
   linkType: hard
 
@@ -4814,6 +4932,7 @@ __metadata:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@openmrs/webpack-config@npm:5.1.1-pre.1031":
   version: 5.1.1-pre.1031
   resolution: "@openmrs/webpack-config@npm:5.1.1-pre.1031"
@@ -4826,6 +4945,11 @@ __metadata:
   version: 5.1.1-pre.997
   resolution: "@openmrs/webpack-config@npm:5.1.1-pre.997"
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+"@openmrs/webpack-config@npm:5.1.1-pre.966":
+  version: 5.1.1-pre.966
+  resolution: "@openmrs/webpack-config@npm:5.1.1-pre.966"
+>>>>>>> 1a1bec24 (wip)
   dependencies:
     "@swc/core": ^1.3.58
     babel-preset-minify: ^0.5.1
@@ -4843,7 +4967,7 @@ __metadata:
     webpack-stats-plugin: ^1.0.3
   peerDependencies:
     webpack: 5.x
-  checksum: 60c5acf3c9927f0c2d856c9bf01bef07c0b6778b0c30a536152526070e86500d29730fdce7f71b72231346c2bf7f79b01adecf9bfe456e2db0b787b79bc466e0
+  checksum: 1182a763a9a0033450ce4d5ace45a5aa45eefb348c1f1bb1bcc5207f5cd223c6d158b51ac187b23dcd044bcb64d2d65bc9a2ab9d2fee293e5590cf207de51394
   languageName: node
   linkType: hard
 
@@ -17132,6 +17256,7 @@ __metadata:
 "openmrs@npm:next":
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   version: 5.1.1-pre.1031
   resolution: "openmrs@npm:5.1.1-pre.1031"
   dependencies:
@@ -17151,6 +17276,13 @@ __metadata:
     "@openmrs/esm-app-shell": 5.1.1-pre.997
     "@openmrs/webpack-config": 5.1.1-pre.997
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+  version: 5.1.1-pre.966
+  resolution: "openmrs@npm:5.1.1-pre.966"
+  dependencies:
+    "@openmrs/esm-app-shell": 5.1.1-pre.966
+    "@openmrs/webpack-config": 5.1.1-pre.966
+>>>>>>> 1a1bec24 (wip)
     "@pnpm/npm-conf": ^2.1.0
     "@swc/core": ^1.3.58
     autoprefixer: ^10.4.2
@@ -17181,10 +17313,14 @@ __metadata:
     openmrs: dist/cli.js
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   checksum: 025e12e77f57a358792592fada6470062fb50a7c2665411e685bd0d1833a7f76fe31b0e7f221e99f8e619759d659dcaa977fec46a9035cfca1e6c886ee1145d9
 =======
   checksum: 3b87f754f112ce2883b22ec39bf544b1ecefdf8eb294f192b1adccb44b1fe0ada0ee7be30e75aeed47ef948a23e5a8b091666c0116c0ffae0d64845528a6cc5b
 >>>>>>> 8223d59c (OHRI-1350 ohri dashboard sidenav)
+=======
+  checksum: a8744a21c7c40bf4953ad5a2bfe463068f8140e152622de7d7c1763c5fa8c54ddab1872dfc8423a98ea7bade8c8dab6ee687e37ad8b962d4e31847f38dbe7547
+>>>>>>> 1a1bec24 (wip)
   languageName: node
   linkType: hard
 
@@ -17199,9 +17335,12 @@ __metadata:
     type-check: ~0.3.2
     word-wrap: ~1.2.3
   checksum: b8695ddf3d593203e25ab0900e265d860038486c943ff8b774f596a310f8ceebdb30c6832407a8198ba3ec9debe1abe1f51d4aad94843612db3b76d690c61d34
+<<<<<<< HEAD
 =======
   checksum: 9c59de1a4cfb764a49884894dce13e48a81fc2483a2bce568d727392bd3d1c7315f8b5c4fb48824a7aecf6c884a97147062090d7d7ed8569ba7884170e685be0
 >>>>>>> 49f45da7 (Refactor ohri dashboard welcome component to support custom title)
+=======
+>>>>>>> 1a1bec24 (wip)
   languageName: node
   linkType: hard
 

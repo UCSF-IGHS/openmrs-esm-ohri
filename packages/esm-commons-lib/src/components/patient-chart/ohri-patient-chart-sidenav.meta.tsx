@@ -9,10 +9,3 @@ export const createOHRIPatientChartSideNavLink = (meta) => {
   };
   return NavItem;
 };
-
-export const patientChartDivider_dashboardMeta = {
-  name: 'clinical-views-divider',
-  slot: 'patient-chart-sidenav-divider-slot',
-  config: { columns: 1, type: 'grid' },
-  title: 'Clinical Views',
-};

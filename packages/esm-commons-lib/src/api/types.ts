@@ -235,7 +235,7 @@ export interface OhriDashboardMeta {
    * Used to generate the menu title displayed on the sidenav
    * @example "Covid Cases"
    */
-  menuTitle: string;
+  title: string;
   slot: string;
   config: {
     columns?: number;

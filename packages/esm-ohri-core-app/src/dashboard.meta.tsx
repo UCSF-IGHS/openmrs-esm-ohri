@@ -40,3 +40,10 @@ export const serviceQueuesDashboardMeta = {
   isLink: true,
   title: 'Service Queues',
 };
+
+export const patientChartDivider_dashboardMeta = {
+  name: 'clinical-views-divider',
+  slot: 'patient-chart-sidenav-divider-slot',
+  config: { columns: 1, type: 'grid' },
+  title: 'Clinical Views',
+};
