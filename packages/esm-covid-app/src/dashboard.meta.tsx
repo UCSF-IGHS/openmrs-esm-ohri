@@ -34,15 +34,15 @@ export const covidVaccinationsDashboardMeta = {
 
 // Clinical Dashboards
 export const covidClinicalViewDashboardMeta: OhriDashboardMeta = {
-  menuTitle: 'COVID',
   slot: 'ohri-covid-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Coronavirus },
   isFolder: true,
+  title: 'COVID',
 };
 
 export const covid19CasesDashboardMeta: OhriDashboardLinkMeta = {
   name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'covid', icon: Coronavirus },
+  config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'Covid-19 Cases' },
   title: 'COVID-19 Cases',
 };

@@ -97,7 +97,7 @@ export const hivFolderDashboardMeta: OhriDashboardMeta = {
   slot: 'ohri-hiv-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home },
   isFolder: true,
-  menuTitle: 'HIV',
+  title: 'HIV',
 };
 
 export const htsDashboardMeta: OhriDashboardLinkMeta = {

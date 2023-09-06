@@ -1,7 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, provide } from '@openmrs/esm-framework';
 import {
   createOHRIPatientChartSideNavLink,
-  patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
   PatientListTable,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -10,6 +9,7 @@ import {
   homeDashboardMeta,
   dispensingDashboardMeta,
   serviceQueuesDashboardMeta,
+  patientChartDivider_dashboardMeta,
 } from './dashboard.meta';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -36,7 +36,7 @@ export const patientList = getSyncLifecycle(PatientListTable, {
 
 export const appointmentsLink = getSyncLifecycle(createOHRIDashboardLink(appointmentsDashboardMeta), options);
 export const appointmentsDashboard = getAsyncLifecycle(
-  () => import('./ohri-dashboard/appointments/appointments-dashboard.component'),
+  () => import('./appointments/appointments-dashboard.component'),
   {
     featureName: 'appointments-dashboard',
     moduleName,
@@ -44,17 +44,14 @@ export const appointmentsDashboard = getAsyncLifecycle(
 );
 
 export const dispensingLink = getSyncLifecycle(createOHRIDashboardLink(dispensingDashboardMeta), options);
-export const dispensingDashboard = getAsyncLifecycle(
-  () => import('./ohri-dashboard/dispensing/dispensing-dashboard.component'),
-  {
-    featureName: 'dispensing-dashboard',
-    moduleName,
-  },
-);
+export const dispensingDashboard = getAsyncLifecycle(() => import('./dispensing/dispensing-dashboard.component'), {
+  featureName: 'dispensing-dashboard',
+  moduleName,
+});
 
 export const serviceQueuesLink = getSyncLifecycle(createOHRIDashboardLink(serviceQueuesDashboardMeta), options);
 export const serviceQueuesDashboard = getAsyncLifecycle(
-  () => import('./ohri-dashboard/service-queues/service-queues-dashboard.component'),
+  () => import('./service-queues/service-queues-dashboard.component'),
   {
     featureName: 'service-queues-dashboard',
     moduleName,

@@ -37,7 +37,7 @@ export const childVisitsDashboardMeta = {
 export const motherChildDashboardMeta = {
   name: 'mother-child-health',
   slot: 'mother-child-health-dashboard-slot',
-  menuTitle: 'Maternal & Child Health',
+  title: 'Maternal & Child Health',
   config: {
     columns: 1,
     type: 'grid',
