@@ -140,7 +140,7 @@ const HivExposedInfant: React.FC<{
   async function getParentRelationships() {
     let relationships = [];
     const relationshipsData = await fetchPatientRelationships(patientUuid);
-    if (relationshipsData.length) {
+    if (relationshipsData?.length) {
       relationshipsData.forEach((item) => {
         relationships.push(item);
       });
