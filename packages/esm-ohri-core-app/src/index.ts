@@ -11,6 +11,7 @@ import {
   serviceQueuesDashboardMeta,
   patientChartDivider_dashboardMeta,
 } from './dashboard.meta';
+import { createDashboardLink } from './dashboard/create-dashboard-link.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -21,18 +22,32 @@ const options = {
   moduleName,
 };
 
-export function startupApp() {
-  defineConfigSchema(moduleName, {});
-}
+export const root = getAsyncLifecycle(() => import('./root'), options);
 
-export const dashboard = getAsyncLifecycle(() => import('./root'), options);
+export const dashboardNavMenu = getAsyncLifecycle(() => import('./dashboard/side-menu.component'), options);
 
-export const homeDashboard = getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options);
+export const homeWidgetDbLink = getSyncLifecycle(createDashboardLink(homeDashboardMeta), options);
 
+export const homeWidgetDashboard = getAsyncLifecycle(() => import('./home-widgets/home-widgets.component'), options);
+
+export const ohriClinicalViewsDivider = getSyncLifecycle(
+  createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta),
+  options,
+);
+
+// Audit these
 export const patientList = getSyncLifecycle(PatientListTable, {
   featureName: 'home',
   moduleName,
 });
+
+export const ohriNavItems = getAsyncLifecycle(
+  () => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'),
+  {
+    featureName: 'nav-items',
+    moduleName,
+  },
+);
 
 export const appointmentsLink = getSyncLifecycle(createOHRIDashboardLink(appointmentsDashboardMeta), options);
 export const appointmentsDashboard = getAsyncLifecycle(
@@ -58,15 +73,6 @@ export const serviceQueuesDashboard = getAsyncLifecycle(
   },
 );
 
-export const ohriNavItems = getAsyncLifecycle(
-  () => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'),
-  {
-    featureName: 'nav-items',
-    moduleName,
-  },
-);
-
-export const ohriClinicalViewsDivider = getSyncLifecycle(
-  createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta),
-  options,
-);
+export function startupApp() {
+  defineConfigSchema(moduleName, {});
+}

@@ -1,0 +1,31 @@
+@use '@carbon/colors';
+@use '@carbon/styles/scss/spacing';
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  // Full vertical height minus the primary navigation menu height
+  height: calc(100vh - 3rem);
+  margin-left: 16rem;
+  background-color: colors.$white-0;
+
+  /*TO BE REMOVED ONCE WE IMPROVE LEFT SIDE NAVIGATION*/
+  & li {
+    display: flex;
+  }
+
+  & a {
+    width: 100%;
+  }
+}
+
+/*TO BE REMOVED ONCE WE IMPROVE LEFT SIDE NAVIGATION*/
+li::marker {
+  font-size: 0px;
+}
+
+.logoSection {
+  display: flex;
+  justify-content: center;
+}

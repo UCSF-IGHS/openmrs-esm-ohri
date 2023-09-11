@@ -5,15 +5,40 @@
   },
   "pages": [
     {
-      "component": "dashboard",
+      "component": "root",
       "route": "dashboard"
-    },
-    {
-      "component": "dashboard",
-      "route": "home"
     }
   ],
   "extensions": [
+    {
+      "name": "dashboard-nav-menu",
+      "slot": "ohri-left-panel-slot",
+      "component": "dashboardNavMenu",
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "home-widget-db-link",
+      "slot": "ohri-dashboard-slot",
+      "component": "homeWidgetDbLink",
+      "meta": {
+        "name": "Home",
+        "slot": "home-dashboard-slot",
+        "title": ""
+      },
+      "order": 0,
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "home-widget-dashboard",
+      "slot": "home-dashboard-slot",
+      "component": "homeWidgetDashboard",
+      "online": true,
+      "offline": true
+    },
+
+
     {
       "name": "home-dashboard-ext",
       "slot": "dashboard-links-slot",

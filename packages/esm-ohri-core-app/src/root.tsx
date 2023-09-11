@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import OHRIDashboard from './ohri-dashboard/ohri-dashboard.component';
-import HomeDashboard from './dashboard/home.component';
+import HomeDashboard from './dashboard/ohri-dashboard.component';
 import { setLeftNav, unsetLeftNav } from '@openmrs/esm-framework';
 
 const Root: React.FC = () => {
@@ -17,8 +16,8 @@ const Root: React.FC = () => {
       <main className="omrs-main-content">
         <Routes>
           <Route path="/dashboard" element={<HomeDashboard />} />
-          <Route path="/dashboard/:view" element={<HomeDashboard />} />
-          <Route path="/home" element={<Navigate to={'/dashboard/home'} replace />} />
+          <Route path="/dashboard/:view/*" element={<HomeDashboard />} />
+          <Route path="/home" element={<Navigate replace to="/dashboard" />} />
         </Routes>
       </main>
     </BrowserRouter>
