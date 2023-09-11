@@ -7,8 +7,10 @@ import capitalize from 'lodash/capitalize';
 import { OverflowMenu } from '@carbon/react';
 import { AddPatientToListOverflowMenuItem } from '../components/modals/add-patient-to-list-modal.component';
 
-export function usePatientList(offSet: number, pageSize: number) {
-  const url = `/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}&_summary=data`;
+export function usePatientList(offSet: number, pageSize: number, searchTerm?: string) {
+  const url = `/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}${
+    searchTerm ? `&name=${searchTerm}` : ''
+  }&_summary=data`;
   const [paginatedPatientRows, setPaginatedPatientRows] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const { data, error, isLoading } = useSWRImmutable<{ data: FhirPatientResponse }, Error>(url, openmrsFetch);
