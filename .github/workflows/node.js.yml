@@ -128,46 +128,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
-  working:
-      runs-on: ubuntu-latest
-
-      needs: pre_release
-
-      if: ${{ github.ref == 'refs/heads/working' }}
-
-      steps:
-        # Update the Microfrontends to reflect what we have in the Working branch
-        - uses: garygrossgarten/github-action-ssh@release
-          name: Run the Update MicroFronEnd Script
-          with:
-              command: cd /usr/share/tomcat/microfrontends/working && /bin/bash update_microfrontends.sh
-              host: ${{ secrets.HISTAC_HOST }}
-              username: ${{ secrets.HISTAC_USERNAME }}
-              privateKey: ${{ secrets.HISTAC_KEY}}
-              port: ${{ secrets.HISTAC_PORT }}
-
-  ohri_dev:
-    runs-on: ubuntu-latest
-
-    needs: pre_release
-
-    if: ${{ github.ref == 'refs/heads/dev' }}
-
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-      - name: Compute Timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-      - uses: garygrossgarten/github-action-ssh@release
-        name: Run the Update MicroFronEnd Script
-        with:
-            command: cd /usr/share/tomcat/microfrontends/dev && /bin/bash update_microfrontends.sh
-            host: ${{ secrets.HISTAC_HOST }}
-            username: ${{ secrets.HISTAC_USERNAME }}
-            privateKey: ${{ secrets.HISTAC_KEY}}
-
-            port: ${{ secrets.HISTAC_PORT }}
-
   docker_devserver_frontend:
     runs-on: ubuntu-latest
     needs: docker_setup
