@@ -44,14 +44,14 @@
     "@openmrs/esm-framework": "5.x",
     "@openmrs/openmrs-form-engine-lib": "1.x",
     "react": "^18.2.0",
-    "react-i18next": "^11.18.6"
+    "react-i18next": "^13.2.2"
   },
   "devDependencies": {
     "@openmrs/openmrs-form-engine-lib": "next",
     "browserslist-config-openmrs": "^1.0.0",
-    "i18next": "^19.4.2",
+    "i18next": "^23.5.1",
+    "i18next-browser-languagedetector": "^7.1.0",
     "react": "^18.2.0",
-    "react-i18next": "^11.18.6",
     "react-router-dom": "^6.3.0",
     "webpack": "^5.74.0"
   }

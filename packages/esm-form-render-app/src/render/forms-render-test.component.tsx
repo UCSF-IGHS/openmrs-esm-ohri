@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel, TextInput } from '@carbon/react';
 import styles from './form-render.scss';
-import { Run, Maximize, UserData } from '@carbon/react/icons';
+import { Run, Maximize, UserData, Translate } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
 import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
 import { handleFormValidation } from '../form-validator';
+import i18next from './../../translations/i18n';
 
 function FormRenderTest() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation('ohri', { i18n: i18next });
+  const languagesI18n = i18n.languages;
+  console.info(i18n);
+
   const headerTitle = t('formRenderTestTitle', 'Form Render Test');
   const { patientUuid, dataTypeToRenderingMap } = useConfig() as ConfigObject;
   const [formInput, setFormInput] = useState<OHRIFormSchema>();
@@ -110,7 +114,7 @@ function FormRenderTest() {
         const jsonObject = typeof defaultJson === 'string' ? JSON.parse(defaultJson) : defaultJson;
         loadIntentsFromSchema(jsonObject);
         setSchemaInput(jsonObject);
-      } catch (err) {}
+      } catch (err) { }
     }
   }, [defaultJson]);
 
@@ -219,8 +223,16 @@ function FormRenderTest() {
                       style={{ marginTop: '1em', marginLeft: '10px' }}
                       disabled={!selectedFormIntent}>
                       {t('render', 'Render')}
-                    </Button>
+                    </Button>                  
                   </Form>
+                  {
+                      languagesI18n.map((language) => (
+                        <Button type="submit" renderIcon={Translate} style={{ marginTop: '1em', marginLeft: '10px' }}
+                          onClick={() => i18n.changeLanguage(language)} disabled={i18n.resolvedLanguage == language} >
+                          {language}
+                        </Button>
+                      ))
+                    }
                 </TabPanel>
                 <TabPanel>
                   <div className={styles.finalJsonSchema}>
