@@ -1,0 +1,90 @@
+{
+  "@openmrs/esm-patient-chart-app": {
+    "extensionSlots": {
+      "patient-chart-dashboard-slot": {
+        "remove": [
+          "test-results-summary-dashboard",
+          "conditions-summary-dashboard",
+          "results-summary-dashboard",
+          "programs-summary-dashboard",
+          "allergies-summary-dashboard",
+          "attachments-results-summary-dashboard",
+          "drug-orders-summary-dashboard"
+        ]
+      },
+      "action-menu-chart-items-slot": {
+        "remove": [
+          "visit-note-nav-button",
+          "clinical-form-action-menu"
+        ]
+      }
+    },
+    "notesConceptUuids": ["161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "437d1e25-e7ab-481c-aabc-01f21c6cdef1"],
+    "logo": {
+      "src": "ohri_logo_dark.svg"
+    }
+  },
+  "@openmrs/esm-patient-banner-app": {
+    "extensionSlots": {
+      "patient-actions-slot": {
+        "remove": [
+          "add-patient-to-patient-list-button",
+          "start-visit-button",
+          "stop-visit-button",
+          "cancel-visit-button",
+          "add-past-visit-button"
+        ]
+      }
+    }
+  },
+  "@ohri/openmrs-esm-ohri-core-app": {
+    "extensionSlots": {
+      "ohri-dashboard-appointments-slot": {
+        "add": [
+          "clinical-appointments-dashboard"
+        ]
+      },
+      "ohri-dashboard-dispensing-slot": {
+        "add": [
+          "dispensing-dashboard"
+        ]
+      }
+    }
+  },
+  "@openmrs/esm-styleguide": {
+    "Brand color #1": "#1A3054",
+    "Brand color #2": "#131E35",
+    "Brand color #3": "#0078A6"
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "extensionSlots": {
+      "app-menu-slot": {
+        "remove": [
+          "dispensing-link"
+        ]
+      }
+    },
+    "logo": {
+      "src": "ohri_logo_dark.svg"
+    }
+  },
+  "@openmrs/esm-dispensing-app": {
+    "appName": "Dispensing"
+  },
+  "@openmrs/esm-login-app": {
+    "logo": {
+      "src": "ohri_logo_light.svg"
+    }
+  },
+  "@ohri/openmrs-esm-ohri-pmtct": {
+    "identifiers": {
+      "preferredIdentifierSource": "8549f706-7e85-4c1d-9424-217d50a2988b"
+    },
+    "encounterTypes": {
+      "antenatal": "677d1a80-dbbe-4399-be34-aa7f54f11405",
+      "laborAndDelivery": "6dc5308d-27c9-4d49-b16f-2c5e3c759757",
+      "infantPostnatal": "af1f1b24-d2e8-4282-b308-0bf79b365584",
+      "motherPostnatal": "269bcc7f-04f8-4ddc-883d-7a3a0d569aad"
+    }
+  }
+}
