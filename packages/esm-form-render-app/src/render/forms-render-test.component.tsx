@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Dropdown, Form, Tabs, Tab, TabList, TabPanels, TabPanel, TextInput } from '@carbon/react';
 import styles from './form-render.scss';
@@ -9,11 +10,13 @@ import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
 import { handleFormValidation } from '../form-validator';
 import i18next from './../../translations/i18n';
+import translatedForm from '../../translations/formTranslation';
 
 function FormRenderTest() {
   const { t, i18n } = useTranslation('ohri', { i18n: i18next });
   const languagesI18n = i18n.languages;
-  console.info(i18n);
+  // console.info(i18n);
+  console.info(languagesI18n);
 
   const headerTitle = t('formRenderTestTitle', 'Form Render Test');
   const { patientUuid, dataTypeToRenderingMap } = useConfig() as ConfigObject;
@@ -33,6 +36,7 @@ function FormRenderTest() {
   const [defaultJson, setDefaultJson] = useState(localStorage.getItem('forms-render-test:draft-form'));
   // This is required because of the enforced CORS policy
   const corsProxy = 'ohri-form-render.globalhealthapp.net';
+  // debugger;
 
   const availableEditorThemes = [
     'monokai',
@@ -86,6 +90,9 @@ function FormRenderTest() {
   const handleFormSubmission = (e) => {
     setIsSchemaLoaded(false);
     setOutputErrorMessage('');
+
+    // const filterTranslationSchema = 
+
     const filteredSchema = applyFormIntent(selectedFormIntent, loadSubforms(schemaInput));
 
     try {
@@ -114,6 +121,8 @@ function FormRenderTest() {
         const jsonObject = typeof defaultJson === 'string' ? JSON.parse(defaultJson) : defaultJson;
         loadIntentsFromSchema(jsonObject);
         setSchemaInput(jsonObject);
+        debugger;
+        translateLocaleForm(i18n.resolvedLanguage);
       } catch (err) { }
     }
   }, [defaultJson]);
@@ -128,7 +137,7 @@ function FormRenderTest() {
         .then((data) => {
           if (data) {
             setDefaultJson(JSON.stringify(data, null, 2));
-            updateFormJsonInput(data);
+            updateFormJsonInput(data); 
             setKey(key + 1);
           }
         })
@@ -137,6 +146,14 @@ function FormRenderTest() {
         });
     }
   }, [jsonUrl]);
+
+  const translateLocaleForm = (language) => {
+    
+    const formTranslated = translatedForm(language);
+    updateFormJsonInput(formTranslated);
+    setDefaultJson(formTranslated);
+    i18n.changeLanguage(language);
+  }
 
   return (
     <div className={styles.container}>
@@ -223,16 +240,18 @@ function FormRenderTest() {
                       style={{ marginTop: '1em', marginLeft: '10px' }}
                       disabled={!selectedFormIntent}>
                       {t('render', 'Render')}
-                    </Button>                  
+                    </Button>
                   </Form>
-                  {
-                      languagesI18n.map((language) => (
-                        <Button type="submit" renderIcon={Translate} style={{ marginTop: '1em', marginLeft: '10px' }}
-                          onClick={() => i18n.changeLanguage(language)} disabled={i18n.resolvedLanguage == language} >
-                          {language}
-                        </Button>
-                      ))
-                    }
+                  {languagesI18n.map((language) => (
+                    <Button
+                      type="submit"
+                      renderIcon={Translate}
+                      style={{ marginTop: '1em', marginLeft: '10px' }}
+                      onClick={() => translateLocaleForm(language)}
+                      disabled={i18n.resolvedLanguage == language}>
+                      {language}
+                    </Button>
+                  ))}
                 </TabPanel>
                 <TabPanel>
                   <div className={styles.finalJsonSchema}>

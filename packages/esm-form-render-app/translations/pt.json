@@ -1,6 +1,5 @@
-{
-  
-    "finalSchema": "Esquema Final",
+{  
+  "finalSchema": "Esquema Final",
   "formIntent": "Intenção do Formulário",
   "formRender": "Renderização do Formulário",
   "formRenderMenuLink": "Renderização do Formulário",
@@ -13,5 +12,4 @@
   "render": "Renderizar",
   "selectForm": "--Selecione a Intenção do Formulário",
   "submitForm": "Por favor, envie o formulário"
-
 }
