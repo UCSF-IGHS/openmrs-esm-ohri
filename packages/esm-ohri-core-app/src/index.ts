@@ -25,7 +25,7 @@ const options = {
 
 export const root = getAsyncLifecycle(() => import('./root'), options);
 
-export const dashboardNavMenu = getAsyncLifecycle(() => import('./dashboard/side-menu.component'), options);
+export const dashboardNavMenu = getAsyncLifecycle(() => import('./dashboard/side-menu/side-menu.component'), options);
 
 export const homeWidgetDbLink = getSyncLifecycle(createDashboardLink(homeDashboardMeta), options);
 

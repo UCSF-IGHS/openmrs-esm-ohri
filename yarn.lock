@@ -5001,6 +5001,7 @@ __metadata:
 
 "@openmrs/openmrs-form-engine-lib@npm:next":
 <<<<<<< HEAD
+<<<<<<< HEAD
   version: 1.0.0-pre.498
   resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.498"
 =======
@@ -5012,6 +5013,10 @@ __metadata:
   resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.330"
 >>>>>>> 63da4759 (wip)
 >>>>>>> 03fd3b29 (wip)
+=======
+  version: 1.0.0-pre.365
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.365"
+>>>>>>> aefc3e02 (custom sidenav)
   dependencies:
     ace-builds: ^1.4.12
     enzyme: ^3.11.0
@@ -5034,6 +5039,7 @@ __metadata:
     react: 18.x
     react-i18next: 11.x
     rxjs: 6.x
+<<<<<<< HEAD
 <<<<<<< HEAD
   checksum: 08abb7abe2dd337e429950ab85c71378512ed97da4f216801eb1b661df89b88811b1d0ecc9f36c8a5990ec333fbb2653a372265e60194742e02fe0177667f845
   languageName: node
@@ -5061,10 +5067,9 @@ __metadata:
 >>>>>>> 1a1bec24 (wip)
 =======
 <<<<<<< HEAD
-  checksum: 69bff8401ff5b9f40fc0953438c44f381f7956335d2547e2532ff3b8cc9a229cb033056f9d153e38faa582e8739e3599fd4ec78cd39bc938dbcbb50d680b7457
 =======
-  checksum: 86c413fe8b183e8328ddb2c874acf1580102c088745b397ad9ced3612e9f742e8c7f9279d95c9771936310a80f444756cc5a7226590cc4aeb5e50bf134ad1daf
->>>>>>> 63da4759 (wip)
+>>>>>>> aefc3e02 (custom sidenav)
+  checksum: 69bff8401ff5b9f40fc0953438c44f381f7956335d2547e2532ff3b8cc9a229cb033056f9d153e38faa582e8739e3599fd4ec78cd39bc938dbcbb50d680b7457
   languageName: node
   linkType: hard
 
@@ -10667,22 +10672,6 @@ __metadata:
   dependencies:
     character-entities: ^2.0.0
   checksum: f4c71d3b93105f20076052f9cb1523a22a9c796b8296cd35eef1ca54239c78d182c136a848b83ff8da2071e3ae2b1d300bf29d00650a6d6e675438cc31b11d78
-  languageName: node
-  linkType: hard
-
-<<<<<<< HEAD
-"decompress-response@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "decompress-response@npm:6.0.0"
-  dependencies:
-    mimic-response: ^3.1.0
-  checksum: d377cf47e02d805e283866c3f50d3d21578b779731e8c5072d6ce8c13cc31493db1c2f6784da9d1d5250822120cefa44f1deab112d5981015f2e17444b763812
-=======
-"decode-uri-component@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "decode-uri-component@npm:0.2.0"
-  checksum: f3749344ab9305ffcfe4bfe300e2dbb61fc6359e2b736812100a3b1b6db0a5668cba31a05e4b45d4d63dbf1a18dfa354cd3ca5bb3ededddabb8cd293f4404f94
->>>>>>> 63da4759 (wip)
   languageName: node
   linkType: hard
 
@@ -18549,7 +18538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.11.0, qs@npm:^6.9.4":
+"qs@npm:6.11.0":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
   dependencies:
@@ -22296,11 +22285,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-<<<<<<< HEAD
-"webpack@npm:^5.74.0, webpack@npm:^5.88.0, webpack@npm:^5.88.2":
-  version: 5.88.2
-  resolution: "webpack@npm:5.88.2"
-=======
 "webpack@npm:^5.74.0":
   version: 5.75.0
   resolution: "webpack@npm:5.75.0"
@@ -22341,7 +22325,6 @@ __metadata:
 "webpack@npm:^5.88.0":
   version: 5.88.1
   resolution: "webpack@npm:5.88.1"
->>>>>>> 63da4759 (wip)
   dependencies:
     "@types/eslint-scope": ^3.7.3
     "@types/estree": ^1.0.0
@@ -22373,6 +22356,43 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 726e7e05ab2e7c142609a673dd6aa1a711ed97f349418a2a393d650c5ddad172d191257f60e1e37f6b2a77261571c202aabd5ce9240791a686774f0801cf5ec2
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.88.2":
+  version: 5.88.2
+  resolution: "webpack@npm:5.88.2"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^1.0.0
+    "@webassemblyjs/ast": ^1.11.5
+    "@webassemblyjs/wasm-edit": ^1.11.5
+    "@webassemblyjs/wasm-parser": ^1.11.5
+    acorn: ^8.7.1
+    acorn-import-assertions: ^1.9.0
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.15.0
+    es-module-lexer: ^1.2.1
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-even-better-errors: ^2.3.1
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.2.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.3.7
+    watchpack: ^2.4.0
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 79476a782da31a21f6dd38fbbd06b68da93baf6a62f0d08ca99222367f3b8668f5a1f2086b7bb78e23172e31fa6df6fa7ab09b25e827866c4fc4dc2b30443ce2
   languageName: node
   linkType: hard
 
