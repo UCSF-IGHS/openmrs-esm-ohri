@@ -7,6 +7,10 @@
     {
       "component": "root",
       "route": "dashboard"
+    },
+    {
+      "component": "root",
+      "route": "home"
     }
   ],
   "extensions": [

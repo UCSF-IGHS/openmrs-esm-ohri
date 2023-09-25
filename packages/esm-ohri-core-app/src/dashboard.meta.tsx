@@ -2,8 +2,8 @@ import React from 'react';
 import { Home, ListBulleted, Calendar, Medication, Events } from '@carbon/react/icons';
 
 export const homeDashboardMeta = {
-  name: 'home',
-  slot: 'ohri-home-dashboard-slot',
+  name: 'Home',
+  slot: 'home-dashboard-slot',
   config: { columns: 1, type: 'grid', icon: Home },
   isLink: true,
   title: 'Home',
