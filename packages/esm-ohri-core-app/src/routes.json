@@ -61,7 +61,7 @@
     },
     {
       "name": "appointments-ohri-dashboard-ext",
-      "slot": "dashboard-links-slot",
+      "slot": "ohri-dashboard-slot",
       "component": "appointmentsLink"
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "name": "dispensing-ohri-dashboard-ext",
-      "slot": "dashboard-links-slot",
+      "slot": "ohri-dashboard-slot",
       "component": "dispensingLink",
       "meta": {
         "title": "Dispensing",
@@ -87,7 +87,7 @@
     },
     {
       "name": "service-queues-ohri-dashboard-ext",
-      "slot": "dashboard-links-slot",
+      "slot": "ohri-dashboard-slot",
       "component": "serviceQueuesLink"
     },
     {
