@@ -29,9 +29,6 @@ export const dashboardNavMenu = getAsyncLifecycle(() => import('./dashboard/side
 
 export const homeWidgetDbLink = getSyncLifecycle(createDashboardLink(homeDashboardMeta), options);
 
-<<<<<<< HEAD
-export const patientList = getSyncLifecycle(PatientList, {
-=======
 export const homeWidgetDashboard = getAsyncLifecycle(() => import('./home-widgets/home-widgets.component'), options);
 
 export const ohriClinicalViewsDivider = getSyncLifecycle(
@@ -40,8 +37,7 @@ export const ohriClinicalViewsDivider = getSyncLifecycle(
 );
 
 // Audit these
-export const patientList = getSyncLifecycle(PatientListTable, {
->>>>>>> 03fd3b29 (wip)
+export const patientList = getSyncLifecycle(PatientList, {
   featureName: 'home',
   moduleName,
 });
@@ -78,23 +74,7 @@ export const serviceQueuesDashboard = getAsyncLifecycle(
   },
 );
 
-<<<<<<< HEAD
-export const ohriNavItems = getAsyncLifecycle(
-  () => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'),
-  {
-    featureName: 'nav-items',
-    moduleName,
-  },
-);
-
-export const ohriClinicalViewsDivider = getSyncLifecycle(
-  createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta),
-  options,
-);
-
 export const patientTable = getSyncLifecycle(PatientTable, options);
-=======
 export function startupApp() {
   defineConfigSchema(moduleName, {});
 }
->>>>>>> 03fd3b29 (wip)

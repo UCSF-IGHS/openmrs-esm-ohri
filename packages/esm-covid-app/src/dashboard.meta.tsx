@@ -43,10 +43,6 @@ export const covidClinicalViewDashboardMeta: OhriDashboardMeta = {
 export const covid19CasesDashboardMeta: OhriDashboardLinkMeta = {
   name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
-<<<<<<< HEAD
-  config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'COVID-19 Cases', icon: Coronavirus },
-=======
   config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'Covid-19 Cases' },
->>>>>>> 1a1bec24 (wip)
   title: 'COVID-19 Cases',
 };

@@ -13,7 +13,7 @@
     },
     {
       "name": "hiv-prevention-dashboard-link",
-      "slot": "dashboard-slot",
+      "slot": "ohri-dashboard-slot",
       "component": "hivPreventionFolderLink",
       "meta": {
         "slot": "ohri-hiv-prevention-dashboard-slot",
