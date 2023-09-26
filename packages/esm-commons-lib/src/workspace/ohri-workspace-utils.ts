@@ -34,6 +34,9 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
       featureName: 'ohri-forms-workspace-item',
       moduleName: props.moduleName,
     }),
+    canMaximize: true,
+    canHide: true,
+    width: 'wider',
   });
   launchPatientWorkspace(workspaceName, {
     ...props.state,
