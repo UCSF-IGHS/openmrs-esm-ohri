@@ -48,15 +48,15 @@ export function startupApp() {
   });
 
   registerPostSubmissionAction({
-    id: 'MotherToChildLinkageSubmissionAction',
+    name: 'MotherToChildLinkageSubmissionAction',
     load: () => import('./post-submission-actions/mother-child-linkage-action'),
   });
   registerPostSubmissionAction({
-    id: 'PTrackerSubmissionAction',
+    name: 'PTrackerSubmissionAction',
     load: () => import('./post-submission-actions/current-ptracker-action'),
   });
   registerPostSubmissionAction({
-    id: 'ArtSubmissionAction',
+    name: 'ArtSubmissionAction',
     load: () => import('./post-submission-actions/art-linkage-action'),
   });
 }
