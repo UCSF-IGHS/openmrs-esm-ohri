@@ -7,13 +7,14 @@ import {
   mchFolderMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { registerPostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
+import { registerPostSubmissionAction, registerExpressionHelper } from '@openmrs/openmrs-form-engine-lib';
 import {
   createConditionalDashboardLink,
   createOHRIDashboardLink,
   OHRIHome,
   OHRIWelcomeSection,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { generateInfantPTrackerId } from './utils/ptracker-forms-helpers';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -59,6 +60,10 @@ export function startupApp() {
     name: 'ArtSubmissionAction',
     load: () => import('./post-submission-actions/art-linkage-action'),
   });
+  registerExpressionHelper(
+    "customGenerateInfantPTrackerId",
+    generateInfantPTrackerId
+  );
 }
 
 export const mchDashboard = getSyncLifecycle(createDashboardGroup(mchFolderMeta), options);
