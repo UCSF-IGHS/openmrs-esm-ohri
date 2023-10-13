@@ -79,7 +79,9 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       const dashboard = launchableForm?.targetDashboard ? `/${launchableForm?.targetDashboard}` : '';
       return {
         uuid: patientUuid,
-        id: isReportingCohort ? rawPatient.identifiers[0].identifier : rawPatient.patient.identifiers[0].identifier,
+        id: isReportingCohort
+          ? rawPatient?.identifiers[0]?.identifier
+          : rawPatient?.patient?.identifiers[0]?.identifier,
         age: isReportingCohort ? rawPatient.person.age : rawPatient.patient.person.age,
         name: isReportingCohort ? rawPatient.person.display : rawPatient.patient.person.display,
         birthdate: isReportingCohort
