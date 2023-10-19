@@ -21,7 +21,7 @@ export const maternalVisitsDashboardMeta = {
   title: 'Maternal Visits',
   path: 'maternal-visits',
   layoutMode: 'anchored',
-  patientExpression: 'calculateAge(patient.birthDate) > 10',
+  patientExpression: 'calculateAge(patient.birthDate) > 10 && patient.gender === "female"',
 };
 
 export const childVisitsDashboardMeta = {
