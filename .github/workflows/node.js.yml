@@ -136,7 +136,7 @@ jobs:
       - name: Wait for 5 min - Let @esms reflect on NPM registry
         run: sleep 300
       - name: Checkout repository
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v3
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -160,7 +160,7 @@ jobs:
           cache-to: type=inline,ref=user/app:buildcache,mode=max
 
   dev_server_status:
-    if: github.ref == 'refs/heads/dev' 
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     needs: docker_devserver_frontend
 
@@ -168,7 +168,7 @@ jobs:
       - name: Wait for 2 min - Let Images reflect on Docker Hub
         run: sleep 300
       - name: Checkout repository
-        uses: actions/checkout@v3  
+        uses: actions/checkout@v3
 
       - name: Copy files to /home/runner/
         run: |
@@ -185,25 +185,25 @@ jobs:
 
       - name: Check SSH to remote OHRI Dev status
         run: |
-            ssh-keygen -R 172.19.0.16      
-            
+            ssh-keygen -R 172.19.0.16
+
   dev_server_connection_dev:
       runs-on: ubuntu-latest
       needs: docker_devserver_frontend
-      steps:      
-        - name: SSH to remote OHRI Dev server 
-          run: | 
-            ssh -o StrictHostKeyChecking=no -T llemos@172.19.0.16 -p 2216 -J llemos@20.172.182.46 -p 2202
+      steps:
+        - name: SSH to remote OHRI Dev server
+          run: |
+            ssh -o StrictHostKeyChecking=no -T ohri@172.19.0.16 -p 2216 -J ohri@20.172.182.46 -p 2202
             ls -la -t  && \
             cd /opt && \
-            ls -la -t 
-        
+            ls -la -t
+
   dev_deploy:
     runs-on: ubuntu-latest
     needs: docker_devserver_frontend
 
-    if: (github.event_name == 'push' ||  github.event.pull_request.merged) 
-    
+    if: (github.event_name == 'push' ||  github.event.pull_request.merged)
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -219,10 +219,9 @@ jobs:
           ssh -p 2216 \
               -o "UserKnownHostsFile=/dev/null" \
               -o "StrictHostKeyChecking=no" \
-              -o "ProxyCommand=ssh -o StrictHostKeyChecking=no -W %h:%p llemos@20.172.182.46 -p 2202" \
-              llemos@172.19.0.16 "\
+              -o "ProxyCommand=ssh -o StrictHostKeyChecking=no -W %h:%p ohri@20.172.182.46 -p 2202" \
+              ohri@172.19.0.16 "\
               cd /opt && \
               docker compose -f docker-compose-ohri-dev.yml pull && \
               docker compose -f docker-compose-ohri-dev.yml stop && \
               docker compose -f docker-compose-ohri-dev.yml up -d"
-          
