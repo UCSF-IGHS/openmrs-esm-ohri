@@ -212,7 +212,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.8.0
 
         with:
-          ssh-private-key: ${{ secrets.LL_SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.OHRI_SSH_PRIVATE_KEY }}
 
       - name: SSH to remote OHRI Dev server via jump host
         run: |
