@@ -21,7 +21,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={5} />
       ) : (
         <div className={styles.tabContainer}>
-        {age > 10 ? (
+          {age > 10 ? (
             gender === 'female' ? (
             <Tabs>
               <TabList contained>
