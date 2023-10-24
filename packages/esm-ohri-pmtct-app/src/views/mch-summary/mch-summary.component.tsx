@@ -13,6 +13,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { patient, isLoading } = usePatient(patientUuid);
   const dob = patient?.birthDate;
   const age = moment().diff(patient?.birthDate, 'years');
+  const gender = patient?.gender;
 
   return (
     <>
@@ -20,7 +21,8 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         <DataTableSkeleton rowCount={5} />
       ) : (
         <div className={styles.tabContainer}>
-          {age > 10 ? (
+        {age > 10 ? (
+            gender === 'female' ? (
             <Tabs>
               <TabList contained>
                 <Tab>{t('recentPregnancy', 'Recent Pregnancy')}</Tab>
@@ -31,6 +33,9 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
                 </TabPanel>
               </TabPanels>
             </Tabs>
+          ) : (
+          null // Don't render anything for male >10
+           )
           ) : (
             <Tabs>
               <TabList contained>
