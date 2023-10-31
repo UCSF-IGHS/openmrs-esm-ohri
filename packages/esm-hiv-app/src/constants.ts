@@ -44,6 +44,7 @@ export const dateOfHIVDiagnosisConcept = '160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const entryPointConcept = '160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const re_enrolmentDateConcept = '20efadf9-86d3-4498-b3ab-7da4dad9c429';
 export const otherEntryPoint = '161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const HIVEnrolmentFormName = 'HIV Enrolment Form v1.1';
 
 // Clinical visit
 export const ClinicalVisitFormName = 'POC Clinical Visit Form v2';

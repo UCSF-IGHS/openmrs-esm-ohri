@@ -11,6 +11,7 @@ import {
   otherEntryPoint,
   populationCategoryConcept,
   ServiceEnrolmentFormName,
+  HIVEnrolmentFormName,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -104,7 +105,7 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
     <EncounterList
       patientUuid={patientUuid}
       encounterType={careAndTreatmentEncounterType}
-      formList={[{ name: ServiceEnrolmentFormName }]}
+      formList={[{ name: HIVEnrolmentFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
