@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { formatDate, openmrsFetch, parseDate } from '@openmrs/esm-framework';
 import { launchFormWithCustomTitle } from './ohri-forms-commons';
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
@@ -43,7 +43,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return '--';
   }
   if (isDate) {
-    return moment(obs.value).format('DD-MMM-YYYY');
+    return formatDate(parseDate(obs.value),{mode: 'wide'})
   }
   if (typeof obs.value === 'object' && obs.value?.names) {
     return (
