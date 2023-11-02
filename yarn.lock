@@ -4092,8 +4092,8 @@ __metadata:
   linkType: hard
 
 "@openmrs/openmrs-form-engine-lib@npm:next":
-  version: 1.0.0-pre.418
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.418"
+  version: 1.0.0-pre.420
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.420"
   dependencies:
     ace-builds: ^1.4.12
     enzyme: ^3.11.0
@@ -4107,6 +4107,7 @@ __metadata:
     react-scroll: ^1.8.2
     react-test-renderer: ^16.9.0
     react-waypoint: ^10.3.0
+    react-webcam: ^7.1.1
     semver: ^7.3.5
     yup: ^0.29.1
   peerDependencies:
@@ -4115,7 +4116,7 @@ __metadata:
     react: ^18.2.0
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: a03577b967a69a797ad72ace0fdf19aa0ec81ecd5038f027cf4ef286dbdce870cb4b6aef44bbcd61d3cd1f731bebd882d43db21e3cb21e03ff58c3559e8bdbe7
+  checksum: 2260e0d127e1f1e46e7f2a1d42212a51ac1169373fc3fed663fc4e5164d4239bc907e0e7819c3b608b288ec214c38e70999985e9cafe39c3e575ffb3195ee8c0
   languageName: node
   linkType: hard
 
@@ -17774,6 +17775,16 @@ __metadata:
   peerDependencies:
     react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
   checksum: 5a476432cd4a55ae022b33f82610a1addae92912ec88111cf33c17ef473bbbfc2c695714cb3bd60911259c92c5b6349f80033b022bf1e59e1a4be9b198a70a7a
+  languageName: node
+  linkType: hard
+
+"react-webcam@npm:^7.1.1":
+  version: 7.2.0
+  resolution: "react-webcam@npm:7.2.0"
+  peerDependencies:
+    react: ">=16.2.0"
+    react-dom: ">=16.2.0"
+  checksum: 55aecc9e33ea711525f9b68a7c14c9cf4089777b9edd6d9c93813568d701a101f3da09ffd7df04b64eca8c9783a37830522376049589699c6015555ec8d7ccd8
   languageName: node
   linkType: hard
 
