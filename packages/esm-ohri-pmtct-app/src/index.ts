@@ -13,6 +13,7 @@ import {
   createOHRIDashboardLink,
   OHRIHome,
   OHRIWelcomeSection,
+  createConditionalDashboardGroup,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { generateInfantPTrackerId } from './utils/ptracker-forms-helpers';
 
@@ -66,7 +67,7 @@ export function startupApp() {
   );
 }
 
-export const mchDashboard = getSyncLifecycle(createDashboardGroup(mchFolderMeta), options);
+export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);
 export const mchSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...mchSummaryDashboardMeta, moduleName }),
   options,
