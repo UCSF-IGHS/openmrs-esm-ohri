@@ -4,6 +4,7 @@ export const mchFolderMeta = {
   title: 'Maternal & Child Health',
   slotName: 'mch-slot',
   isExpanded: false,
+  patientExpression: 'calculateAge(patient.birthDate) <= 10 || patient.gender === "female"',
 };
 
 export const mchSummaryDashboardMeta = {
