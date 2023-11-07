@@ -7,6 +7,9 @@ import {
   cacxTreatmentConcept,
   cacxTreatmentEncounterType_UUID,
   colopsyResultsConcept,
+  humanPapillomaVirusResultConcept, // Add this import if needed
+  viaProcedureResultConcept, // Add this import if needed
+  papanicolaouSmearResultConcept, // Add this import if needed
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -37,7 +40,18 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
         key: 'colopsyResult',
         header: t('colopsyResult', 'Screening Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, colopsyResultsConcept);
+          // You can combine the results of multiple concepts here
+          const colopsyResult = getObsFromEncounter(encounter, colopsyResultsConcept);
+          const hpvResult = getObsFromEncounter(encounter, humanPapillomaVirusResultConcept); // If needed
+          const viaProcedureResult = getObsFromEncounter(encounter, viaProcedureResultConcept); // If needed
+          const papanicolaouSmearResult = getObsFromEncounter(encounter, papanicolaouSmearResultConcept); // If needed
+
+          // Combine the results as needed
+          const allResults = [colopsyResult, hpvResult, viaProcedureResult, papanicolaouSmearResult]
+            .filter(Boolean)
+            .join(', ');
+
+          return allResults || '--';
         },
       },
       {
