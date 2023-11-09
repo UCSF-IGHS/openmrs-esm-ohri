@@ -1,12 +1,20 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  EncounterList,
+  EncounterListColumn,
+  getMultipleObsFromEncounter,
+  getObsFromEncounter,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   cacxEncounterDateConcept,
   screeningMethodConcept,
   cacxTreatmentConcept,
   cacxTreatmentEncounterType_UUID,
   colopsyResultsConcept,
+  humanPapilomaVirusResultsConcept,
+  papanicolaouSmearResultsConcept,
+  VIAProcedureResultsConcept,
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
@@ -34,10 +42,15 @@ const CacxTreatmentList: React.FC<CacxTreatmentListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'colopsyResult',
-        header: t('colopsyResult', 'Screening Results'),
+        key: 'screeningResult',
+        header: t('screeningResult', 'Screening Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, colopsyResultsConcept);
+          return getMultipleObsFromEncounter(encounter, [
+            colopsyResultsConcept,
+            humanPapilomaVirusResultsConcept,
+            papanicolaouSmearResultsConcept,
+            VIAProcedureResultsConcept,
+          ]);
         },
       },
       {

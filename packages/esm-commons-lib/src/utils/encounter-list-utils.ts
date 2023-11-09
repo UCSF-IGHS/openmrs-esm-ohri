@@ -29,6 +29,18 @@ export function getObsFromEncounters(encounters, obsConcept) {
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
+export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>){
+  let observations = [];
+  obsConcepts.map(concept => {
+    const obs = getObsFromEncounter(encounter, concept);
+    if(obs !== '--'){
+      observations.push(obs);
+    }
+  })
+
+  return observations.length? observations.join(', '): '--'
+}
+
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
   const obs = findObs(encounter, obsConcept);
 
