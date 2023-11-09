@@ -10,3 +10,6 @@ export const cacxEncounterDateConcept = '163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 export const screeningMethodConcept = '53ff5cd0-0f37-4190-87b1-9eb439a15e94';
 export const cacxTreatmentConcept = '3a8bb4b4-7496-415d-a327-57ae3711d4eb';
 export const colopsyResultsConcept = '9096a18e-c009-4f4c-b0ba-0605e0f16578';
+export const humanPapilomaVirusResultsConcept = '159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+export const papanicolaouSmearResultsConcept = '28bab50e-7ff7-4216-81be-3f7ad05c6547';
+export const VIAProcedureResultsConcept = 'cc647244-0826-4d8e-8c5a-d7a371267bf4';
