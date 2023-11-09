@@ -38,7 +38,7 @@ export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string
     }
   })
 
-  return observations.length? observations.join(','): '--'
+  return observations.length? observations.join(', '): '--'
 }
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
