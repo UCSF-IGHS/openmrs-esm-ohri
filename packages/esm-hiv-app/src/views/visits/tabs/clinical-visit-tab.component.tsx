@@ -27,7 +27,21 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         key: 'clinicalVisitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
+          const rawVisitDate = getObsFromEncounter(encounter, dateOfEncounterConcept, true);
+          console.log('Raw Visit Date:', rawVisitDate);
+
+          // Process the rawVisitDate and return a string
+          if (rawVisitDate) {
+            const dateObject = new Date(rawVisitDate);
+            const formattedDate = dateObject.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            });
+            return formattedDate;
+          } else {
+            return '--'; // Default value if there's no date
+          }
         },
         link: {
           getUrl: (encounter) => encounter.url,
@@ -54,39 +68,24 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         key: 'clinicalNextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, returnVisitDateConcept);
+          const rawDate = getObsFromEncounter(encounter, returnVisitDateConcept, true);
+          console.log('Raw Date:', rawDate); // Add this line for debugging
+
+          // Process the rawDate and return a string
+          if (rawDate) {
+            const dateObject = new Date(rawDate);
+            const formattedDate = dateObject.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            });
+            return formattedDate;
+          } else {
+            return '--'; // Default value if there's no date
+          }
         },
       },
-      {
-        key: 'clinicalAppointmentReason',
-        header: t('appointmentReason', 'Appointment Reason'),
-        getValue: (encounter) => {
-          return '--';
-        },
-      },
-      {
-        key: 'actions',
-        header: t('actions', 'Actions'),
-        getValue: (encounter) => {
-          const baseActions = [
-            {
-              form: { name: ClinicalVisitFormName, package: 'hiv' },
-              encounterUuid: encounter.uuid,
-              intent: '*',
-              label: t('viewDetails', 'View Details'),
-              mode: 'view',
-            },
-            {
-              form: { name: ClinicalVisitFormName, package: 'hiv' },
-              encounterUuid: encounter.uuid,
-              intent: '*',
-              label: t('editForm', 'Edit Form'),
-              mode: 'edit',
-            },
-          ];
-          return baseActions;
-        },
-      },
+      // ... (other columns)
     ],
     [],
   );
