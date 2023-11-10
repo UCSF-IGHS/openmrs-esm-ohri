@@ -54,14 +54,7 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         key: 'clinicalNextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, returnVisitDateConcept);
-        },
-      },
-      {
-        key: 'clinicalAppointmentReason',
-        header: t('appointmentReason', 'Appointment Reason'),
-        getValue: (encounter) => {
-          return '--';
+          return getObsFromEncounter(encounter, returnVisitDateConcept, true);
         },
       },
       {
