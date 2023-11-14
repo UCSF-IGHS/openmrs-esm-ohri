@@ -229,9 +229,9 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               encounterType={covidLabOrderEncounterType_UUID}
               formList={[
                 { name: 'COVID Lab Order Form', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
-                { name: 'COVID Lab Result Form', excludedIntents: ['*'] },
+                { name: 'COVID Lab Result Form', excludedIntents: ['COVID_LAB_RESULT_EMBED'] },
                 { name: 'COVID Lab Test', excludedIntents: ['*'] },
-                { name: 'Lab Order Cancellation', excludedIntents: ['*'] },
+                { name: 'Lab Order Cancellation', excludedIntents: ['*', 'COVID_LAB_CANCELLATION_EMBED'] },
                 { name: 'Sample Collection', excludedIntents: ['*', 'COVID_SAMPLE_COLLECTION_EMBED'] },
               ]}
               columns={columnsLab}
