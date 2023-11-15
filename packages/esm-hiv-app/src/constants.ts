@@ -67,6 +67,7 @@ export const HTSPreTestFormName = 'HTS Pre-Test Counselling';
 export const hivTestResultConceptUUID = 'e16b0068-b6a2-46b7-aba9-e3be00a7b4ab';
 export const hivTestDateConceptUUID = '140414BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';
 export const htsStrategyUUID = 'f0d85da0-c235-4540-a0d1-63640594f98b';
+export const dateOfHIVTestingConceptUUID = '164400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 //HIV Art Therapy
 export const ARTTherapyFormName = 'ART Therapy Form';

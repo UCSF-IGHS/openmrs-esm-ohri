@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import moment from 'moment';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { HIVTestingFormName, htsStrategyUUID } from '../../../constants';
+import { HIVTestingFormName, htsStrategyUUID, dateOfHIVTestingConceptUUID } from '../../../constants';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../../index';
 
@@ -26,7 +26,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         key: 'date',
         header: t('hivTestDate', 'Date of HIV Test'),
         getValue: (encounter) => {
-          return moment(encounter.encounterDatetime).format('DD-MMM-YYYY');
+          return getObsFromEncounter(encounter, dateOfHIVTestingConceptUUID, true);
         },
       },
       {
