@@ -5,35 +5,49 @@ export const handleFormValidation = async (schema, configObject) => {
   const errors = [];
   const warnings = [];
 
-  if (schema) {
-    const parsedForm = typeof schema == 'string' ? JSON.parse(schema) : schema;
-
-    const asyncTasks = [];
-
-    parsedForm.pages?.forEach((page) =>
-      page.sections?.forEach((section) =>
-        section.questions?.forEach((question) => {
-          asyncTasks.push(
-            handleQuestionValidation(question, errors, configObject, warnings),
-            handleAnswerValidation(question, errors, warnings),
-          );
-          question.type === 'obsGroup' &&
-            question.questions?.forEach((obsGrpQuestion) =>
-              asyncTasks.push(
-                handleQuestionValidation(obsGrpQuestion, errors, configObject, warnings),
-                handleAnswerValidation(question, errors, warnings),
-              ),
-            );
-        }),
-      ),
-    );
-    await Promise.all(asyncTasks);
-
-    return [errors, warnings];
+  if (!schema) {
+    throw new Error('Invalid argument: "schema" cannot be null or undefined. Please provide a valid object.');
   }
+
+  const parsedForm = typeof schema == 'string' ? JSON.parse(schema) : schema;
+
+  const asyncTasks = [];
+
+  parsedForm.pages?.forEach((page) =>
+    page.sections?.forEach((section) =>
+      section.questions?.forEach((question) => {
+        asyncTasks.push(
+          handleQuestionValidation(question, errors, configObject, warnings),
+          handleAnswerValidation(question, errors, warnings),
+        );
+        question.type === 'obsGroup' &&
+          question.questions?.forEach((obsGrpQuestion) =>
+            asyncTasks.push(
+              handleQuestionValidation(obsGrpQuestion, errors, configObject, warnings),
+              handleAnswerValidation(question, errors, warnings),
+            ),
+          );
+      }),
+    ),
+  );
+  await Promise.all(asyncTasks);
+
+  return [errors, warnings];
 };
 
 const handleQuestionValidation = async (conceptObject, errorsArray, configObject, warningsArray) => {
+  if (!configObject || !Object.keys(configObject)?.length) {
+    throw new Error(
+      'Invalid argument: "configObject" cannot be null, undefined or an empty object. Please provide a valid object.',
+    );
+  }
+
+  if (!conceptObject || !Object.keys(conceptObject)?.length) {
+    throw new Error(
+      'Invalid argument: "conceptObject" cannot be null, undefined or an empty object. Please provide a valid object.',
+    );
+  }
+
   const conceptRepresentation =
     'custom:(uuid,display,datatype,answers,conceptMappings:(conceptReferenceTerm:(conceptSource:(name),code)))';
 
