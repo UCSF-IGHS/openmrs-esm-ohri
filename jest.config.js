@@ -24,6 +24,7 @@ const config = {
     'react-markdown': '<rootDir>/__mocks__/react-markdown.tsx',
     '^dexie$': require.resolve('dexie'),
   },
+  testEnvironment: 'jsdom',
 };
 
 module.exports = config;
