@@ -1,0 +1,44 @@
+.searchOverrides {
+  width: 20% !important;
+}
+
+// style="position: relative; width: 100%; z-index: 0; display: block; overflow-x:auto; white-space:nowrap "
+.simpleCheck {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.table1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+div.table1 > div > div {
+  background-color: #f4f4f4;
+  white-space: nowrap;
+  margin: -16px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+div.table1 > div > div > div:first-child {
+  height: 48px !important;
+}
+
+div.table1 > div > div > div:first-child > div {
+  // width: 250px !important;
+}
+
+div.table1 > div > div > div:nth-child(2) {
+  padding: 0px !important;
+}
+
+div.table1 > div > div > div:first-child > div > input {
+  background-color: #fff !important;
+  height: 32px !important;
+}
+
+div.table1 > div > div > div:first-child > div {
+  // margin-top: 16px;
+}

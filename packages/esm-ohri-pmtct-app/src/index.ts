@@ -61,10 +61,7 @@ export function startupApp() {
     name: 'ArtSubmissionAction',
     load: () => import('./post-submission-actions/art-linkage-action'),
   });
-  registerExpressionHelper(
-    "customGenerateInfantPTrackerId",
-    generateInfantPTrackerId
-  );
+  registerExpressionHelper('customGenerateInfantPTrackerId', generateInfantPTrackerId);
 }
 
 export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);

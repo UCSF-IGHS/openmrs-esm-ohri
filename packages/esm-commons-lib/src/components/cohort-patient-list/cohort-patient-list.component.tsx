@@ -10,7 +10,7 @@ import moment from 'moment';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { DataTableSkeleton } from '@carbon/react';
 import { basePath } from '../../constants';
-import styles from './patient-list-cohort.scss';
+import styles from './cohort-patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { columns, consolidatatePatientMeta, filterPatientsByName, PatientListColumn } from './helpers';
@@ -53,6 +53,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   extraAssociatedEncounterTypes,
   moduleName,
 }) => {
+  console.log('CohortPatientList', cohortSlotName);
+
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedPatients, setHasLoadedPatients] = useState(false);
   const [loadedEncounters, setLoadedEncounters] = useState(false);
@@ -65,13 +67,13 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [filteredResults, setFilteredResults] = useState([]);
   const [loadedExtraEncounters, setLoadedExtraEncounters] = useState(false);
   const [extraEncounters, setExtraEncounters] = useState([]);
-  const forms = useMemo(() => [launchableForm.name], [launchableForm]);
-  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(forms);
   const [paginatedPatients, setPaginatedPatients] = useState([]);
   const [allPatients, setAllPatients] = useState([]);
   const [rawCohortData, setRawCohortData] = useState<{ location?: any; members: any[] }>({ members: [] });
   const [isLoadingCohorts, setIsLoadingCohorts] = useState(true);
   const columnAtLastIndex = 'actions';
+  const forms = useMemo(() => [launchableForm.name], [launchableForm]);
+  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(forms);
 
   const constructPatient = useCallback(
     (rawPatient) => {
@@ -111,6 +113,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
         currentRows.push(fullDataset[i]);
       }
     }
+    console.log('currentRows', currentRows);
     setPaginatedPatients(currentRows);
   };
 
@@ -127,6 +130,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       });
     }
   }, [cohortId, isReportingCohort, queryParams]);
+
+  console.log('rawCohortData', rawCohortData);
 
   useEffect(() => {
     if (!isLoadingCohorts && !isLoadingFormsJson) {
@@ -229,9 +234,9 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   );
 
   useEffect(() => {
-    attach(cohortSlotName, 'patient-table');
+    attach(cohortSlotName, 'list-details-table');
     return () => {
-      detach(cohortSlotName, 'patient-table');
+      detach(cohortSlotName, 'list-details-table');
     };
   });
 
@@ -256,6 +261,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       filteredColumns.splice(index, 1);
       filteredColumns.push(column);
     }
+
+    console.log('filteredColumns', filteredColumns);
 
     return {
       patients: searchTerm ? filteredResults : paginatedPatients,
@@ -293,6 +300,11 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     excludeColumns,
     otherColumns,
   ]);
+
+  console.log('state', state);
+  console.log('searchTerm', searchTerm);
+  console.log('filteredResults', filteredResults);
+  console.log('paginatedPatients', paginatedPatients);
 
   useEffect(() => {
     setCounter(counter + 1);
