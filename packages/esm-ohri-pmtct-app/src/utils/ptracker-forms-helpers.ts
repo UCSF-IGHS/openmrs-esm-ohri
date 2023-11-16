@@ -1,11 +1,24 @@
 export const generateInfantPTrackerId = (
     fieldId: string,
     motherPtrackerId: string
-  ): string | undefined => {
-    if (!fieldId || !motherPtrackerId) return;
-    return fieldId === "infantPtrackerid"
-      ? motherPtrackerId + "1"
-      : fieldId.includes("_")
-      ? motherPtrackerId.concat(fieldId.split("_")[1])
-      : undefined;
+  ): string => {
+    try {
+      if (typeof fieldId !== 'string' || typeof motherPtrackerId !== 'string') {
+        throw new Error('Invalid input types');
+      }
+  
+      if (fieldId === "infantPtrackerid") {
+        return motherPtrackerId + "1";
+      } else if (fieldId.includes("_")) {
+        const position = fieldId.split("_")[1];
+        if (position && !isNaN(Number(position))) {
+          return motherPtrackerId.concat(position);
+        }
+      }
+  
+      return;;
+    } catch (error) {
+      return;; 
+    }
   };
+  

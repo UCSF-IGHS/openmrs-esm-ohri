@@ -97,7 +97,8 @@
   "resolutions": {
     "@carbon/react": "1.17.0",
     "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5"
+    "@types/react-dom": "^18.0.5",
+    "@openmrs/openmrs-form-engine-lib": "portal:/Users/hero/Documents/GitHub/openmrs-form-engine-lib"
   },
   "packageManager": "yarn@3.2.2"
 }
