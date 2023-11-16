@@ -1,12 +1,21 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
+import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { async } from 'rxjs';
 
 export const handleFormValidation = async (schema, configObject) => {
   const errors = [];
   const warnings = [];
 
-  if (!schema) {
-    throw new Error('Invalid argument: "schema" cannot be null or undefined. Please provide a valid object.');
+  if (!schema || !Object.keys(schema)?.length) {
+    throw new Error(
+      'Invalid argument: "schema" cannot be null, undefined or an empty object. Please provide a valid object.',
+    );
+  }
+
+  if (!configObject || !Object.keys(configObject)?.length) {
+    throw new Error(
+      'Invalid argument: "configObject" cannot be null, undefined or an empty object. Please provide a valid object.',
+    );
   }
 
   const parsedForm = typeof schema == 'string' ? JSON.parse(schema) : schema;
