@@ -20,10 +20,10 @@ import {
   TableRow,
   Tile,
 } from '@carbon/react';
-import { ArrowLeft, TrashCan } from '@carbon/react/icons';
+import { TrashCan } from '@carbon/react/icons';
 import { ConfigurableLink, useLayoutType, isDesktop, showToast, useDebounce } from '@openmrs/esm-framework';
 import { EmptyDataIllustration } from '../empty-state/empty-data-illustration.component';
-import styles from './list-details-table.scss';
+import styles from './patient-table.scss';
 
 // FIXME Temporarily included types from Carbon
 type InputPropsBase = Omit<HTMLAttributes<HTMLInputElement>, 'onChange'>;
@@ -119,9 +119,10 @@ interface SearchProps extends InputPropsBase {
   value?: string | number;
 }
 
-interface PatientListTableProps {
+interface PatientTableProps {
   autoFocus?: boolean;
   columns: Array<PatientTableColumn>;
+  patients: Array<any>;
   isFetching?: boolean;
   isLoading: boolean;
   mutateListDetails: () => void;
@@ -135,7 +136,6 @@ interface PatientListTableProps {
     pagesUnknown?: boolean;
     lastPage?: boolean;
   };
-  patients;
   style?: CSSProperties;
 }
 
@@ -148,7 +148,7 @@ interface PatientTableColumn {
   };
 }
 
-const PatientListTable: React.FC<PatientListTableProps> = ({
+export const PatientTable: React.FC<PatientTableProps> = ({
   columns,
   isFetching,
   isLoading,
@@ -161,7 +161,6 @@ const PatientListTable: React.FC<PatientListTableProps> = ({
   const id = useId();
   const layout = useLayoutType();
   const responsiveSize = isDesktop(layout) ? 'sm' : 'lg';
-  const patientListsPath = window.getOpenmrsSpaBase() + 'home/patient-lists';
 
   const [isDeleting, setIsDeleting] = useState(false);
   const [membershipUuid, setMembershipUuid] = useState('');
@@ -187,26 +186,24 @@ const PatientListTable: React.FC<PatientListTableProps> = ({
 
   const tableRows: Array<typeof DataTableRow> = useMemo(
     () =>
-      filteredPatients?.map((patient) => ({
-        id: patient.identifier,
-        identifier: patient.identifier,
-        membershipUuid: patient.membershipUuid,
-        name: columns.find((column) => column.key === 'name')?.link ? (
-          <ConfigurableLink
-            className={styles.link}
-            to={columns.find((column) => column.key === 'name')?.link?.getUrl(patient)}>
-            {patient.name}
-          </ConfigurableLink>
-        ) : (
-          patient.name
-        ),
-        sex: patient.sex,
-        startDate: patient.startDate,
-      })) ?? [],
+      filteredPatients.map((patient, index) => {
+        const row = {
+          id: String(index),
+        };
+        columns.forEach((column) => {
+          const value = column.getValue?.(patient) || patient[column.key];
+          row[column.key] = column.link ? (
+            <ConfigurableLink className={styles.link} to={column.link.getUrl(patient)}>
+              {value}
+            </ConfigurableLink>
+          ) : (
+            value
+          );
+        });
+        return row;
+      }) ?? [],
     [columns, filteredPatients],
   );
-
-  console.log('tableRows', tableRows);
 
   // const handleRemovePatientFromList = useCallback(async () => {
   //   setIsDeleting(true);
@@ -384,5 +381,3 @@ const PatientListTable: React.FC<PatientListTableProps> = ({
     </>
   );
 };
-
-export default PatientListTable;

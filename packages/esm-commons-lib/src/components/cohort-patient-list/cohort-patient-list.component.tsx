@@ -53,8 +53,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   extraAssociatedEncounterTypes,
   moduleName,
 }) => {
-  console.log('CohortPatientList', cohortSlotName);
-
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedPatients, setHasLoadedPatients] = useState(false);
   const [loadedEncounters, setLoadedEncounters] = useState(false);
@@ -113,7 +111,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
         currentRows.push(fullDataset[i]);
       }
     }
-    console.log('currentRows', currentRows);
     setPaginatedPatients(currentRows);
   };
 
@@ -130,8 +127,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       });
     }
   }, [cohortId, isReportingCohort, queryParams]);
-
-  console.log('rawCohortData', rawCohortData);
 
   useEffect(() => {
     if (!isLoadingCohorts && !isLoadingFormsJson) {
@@ -234,9 +229,9 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   );
 
   useEffect(() => {
-    attach(cohortSlotName, 'list-details-table');
+    attach(cohortSlotName, 'patient-table');
     return () => {
-      detach(cohortSlotName, 'list-details-table');
+      detach(cohortSlotName, 'patient-table');
     };
   });
 
@@ -261,8 +256,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       filteredColumns.splice(index, 1);
       filteredColumns.push(column);
     }
-
-    console.log('filteredColumns', filteredColumns);
 
     return {
       patients: searchTerm ? filteredResults : paginatedPatients,
@@ -300,11 +293,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     excludeColumns,
     otherColumns,
   ]);
-
-  console.log('state', state);
-  console.log('searchTerm', searchTerm);
-  console.log('filteredResults', filteredResults);
-  console.log('paginatedPatients', paginatedPatients);
 
   useEffect(() => {
     setCounter(counter + 1);

@@ -76,6 +76,10 @@
       "slot": "patient-chart-dashboard-slot",
       "component": "ohriClinicalViewsDivider",
       "order": 20
+    },
+    {
+      "name": "patient-table",
+      "component": "patientTable"
     }
   ]
 }
