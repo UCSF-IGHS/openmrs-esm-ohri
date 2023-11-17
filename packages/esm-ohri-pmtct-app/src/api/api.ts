@@ -82,6 +82,17 @@ export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string
   });
 }
 
+export function getIdentifierInfo(identifier: string){
+  return openmrsFetch(
+    `${BASE_WS_API_URL}patient?identifier=${identifier}&v=custom:(identifiers:(identifier,identifierType:(uuid,display)),person:(display))`,
+  ).then(({ data }) => {
+    if (data) {
+      return data;
+    }
+    return null;
+  });
+}
+
 export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
     `${BASE_WS_API_URL}reportingrest/dataSet/${motherHivStatusReport}?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,

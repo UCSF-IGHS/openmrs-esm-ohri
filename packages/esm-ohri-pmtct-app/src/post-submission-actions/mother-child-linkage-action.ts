@@ -4,6 +4,7 @@ import { Patient, PatientIdentifier } from '../api/types';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../utils/obs-encounter-utils';
 import { updatePatientPtracker } from './current-ptracker-action';
 import { getConfig } from '@openmrs/esm-framework';
+import { getIdentifierAssignee } from '../utils/pmtct-helpers';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '1c70c490-cafa-4c95-9fdd-a30b62bb78b8';
@@ -21,7 +22,7 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
     // only do this the first time the form is entered
-    if (sessionMode !== 'enter') {
+    if (sessionMode === 'view') {
       return;
     }
 
@@ -29,7 +30,7 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
     await updatePatientPtracker(encounter, encounterLocation, patient.id);
     const infantsToCreate = await Promise.all(
       findObsByConcept(encounter, infantDetailsGroup).map(async (obsGroup) =>
-        constructPatientObjectFromObsData(obsGroup, encounterLocation, preferredIdentifierSource),
+        constructPatientObjectFromObsData(obsGroup, encounterLocation, preferredIdentifierSource, sessionMode),
       ),
     );
     const newInfantsToCreate = await Promise.all(infantsToCreate.filter((infant) => infant !== null));
@@ -53,11 +54,23 @@ async function constructPatientObjectFromObsData(
   obsGroup,
   encounterLocation: string,
   preferredIdentifierSource: string,
+  sessionMode: string,
 ): Promise<Patient> {
   // check if infant is alive
   const lifeStatusAtBirth = findChildObsInTree(obsGroup, infantLifeStatus);
+   // the infant is alive hence eligible for registration
   if (getObsValueCoded(lifeStatusAtBirth) == aliveStatus) {
-    // the infant is alive hence eligible for registration
+
+    const pTrackerId = findChildObsInTree(obsGroup, infantPTrackerId)?.value;
+    const existingpTrackerAssignee = await getIdentifierAssignee(pTrackerId, PtrackerIdentifierType);
+    if(existingpTrackerAssignee){
+      if(sessionMode === 'enter'){
+        throw new Error(`P Tracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee})`);
+      }
+      else{
+        return null;
+      }
+    }
     const patient: Patient = {
       identifiers: [],
       person: {
@@ -77,8 +90,7 @@ async function constructPatientObjectFromObsData(
         causeOfDeath: '',
       },
     };
-    // PTracker ID
-    const pTrackerId = findChildObsInTree(obsGroup, infantPTrackerId)?.value;
+
     if (pTrackerId) {
       patient.identifiers = [
         {
