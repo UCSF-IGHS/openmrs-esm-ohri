@@ -26,9 +26,11 @@
         "config": {
           "columns": 1,
           "type": "grid",
-          "programme": "covid"
+          "programme": "covid",
+          "dashboardTitle": "COVID-19 Cases"
         },
-        "path": "COVID-19"
+        "path": "COVID-19",
+        "title": "COVID-19 Cases"
       }
     },
     {
