@@ -205,33 +205,6 @@ export const PatientTable: React.FC<PatientTableProps> = ({
     [columns, filteredPatients],
   );
 
-  // const handleRemovePatientFromList = useCallback(async () => {
-  //   setIsDeleting(true);
-
-  //   try {
-  //     await removePatientFromList(membershipUuid);
-  //     mutateListMembers();
-  //     mutateListDetails();
-
-  //     showToast({
-  //       critical: true,
-  //       kind: 'success',
-  //       description: t('listUpToDate', 'The list is now up to date'),
-  //       title: t('patientRemovedFromList', 'Patient removed from list'),
-  //     });
-  //   } catch (error) {
-  //     showToast({
-  //       critical: true,
-  //       kind: 'error',
-  //       description: error?.message,
-  //       title: t('errorRemovingPatientFromList', 'Failed to remove patient from list'),
-  //     });
-  //   }
-
-  //   setIsDeleting(false);
-  //   setShowConfirmationModal(false);
-  // }, [membershipUuid, mutateListDetails, mutateListMembers, t]);
-
   if (isLoading) {
     return (
       <div className={styles.skeletonContainer}>
@@ -360,7 +333,6 @@ export const PatientTable: React.FC<PatientTableProps> = ({
             primaryButtonText={t('removeFromList', 'Remove from list')}
             secondaryButtonText={t('cancel', 'Cancel')}
             onRequestClose={() => setShowConfirmationModal(false)}
-            // onRequestSubmit={handleRemovePatientFromList}
             primaryButtonDisabled={isDeleting}
           />
         )}
