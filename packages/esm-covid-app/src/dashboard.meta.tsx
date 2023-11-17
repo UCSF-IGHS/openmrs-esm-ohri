@@ -42,7 +42,7 @@ export const covidClinicalViewDashboardMeta = {
 export const covid19CasesDashboardMeta = {
   name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'covid', icon: Coronavirus },
+  config: { columns: 1, type: 'grid', programme: 'covid', dashboardTitle: 'COVID-19 Cases', icon: Coronavirus },
   title: 'COVID-19 Cases',
   dashboardIcon: Coronavirus,
 };
