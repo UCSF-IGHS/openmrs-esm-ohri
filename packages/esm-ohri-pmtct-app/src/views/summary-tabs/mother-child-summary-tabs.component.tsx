@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, Tab, TabPanels, TabPanel, TabList } from '@carbon/react';
 import styles from '../summary-tabs/ohri-patient-tabs.scss';
 import { useTranslation } from 'react-i18next';
-import { PatientListTable } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { PatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 interface OverviewListProps {
   patientUuid: string;
@@ -17,7 +17,7 @@ const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
       </TabList>
       <TabPanels>
         <TabPanel>
-          <PatientListTable />
+          <PatientList />
         </TabPanel>
       </TabPanels>
     </Tabs>

@@ -1,6 +1,5 @@
 import moment from 'moment';
-import { formatDate, openmrsFetch, parseDate } from '@openmrs/esm-framework';
-import { launchFormWithCustomTitle } from './ohri-forms-commons';
+import { formatDate, parseDate } from '@openmrs/esm-framework';
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
@@ -29,16 +28,16 @@ export function getObsFromEncounters(encounters, obsConcept) {
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
-export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>){
+export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>) {
   let observations = [];
-  obsConcepts.map(concept => {
+  obsConcepts.map((concept) => {
     const obs = getObsFromEncounter(encounter, concept);
-    if(obs !== '--'){
+    if (obs !== '--') {
       observations.push(obs);
     }
-  })
+  });
 
-  return observations.length? observations.join(', '): '--'
+  return observations.length ? observations.join(', ') : '--';
 }
 
 export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isTrueFalseConcept?: Boolean) {
@@ -55,7 +54,7 @@ export function getObsFromEncounter(encounter, obsConcept, isDate?: Boolean, isT
     return '--';
   }
   if (isDate) {
-    return formatDate(parseDate(obs.value),{mode: 'wide'})
+    return formatDate(parseDate(obs.value), { mode: 'wide' });
   }
   if (typeof obs.value === 'object' && obs.value?.names) {
     return (

@@ -23,13 +23,13 @@ import { navigate } from '@openmrs/esm-framework';
 // eslint-disable-next-line no-restricted-imports
 import { debounce } from 'lodash';
 
-export interface PatientListTableProps {
+export interface PatientListProps {
   title: string;
   headerData: Array<{ header: string; key: string }>;
   rowData: Array<{}>;
 }
 
-export const PatientListTable: React.FC = () => {
+export const PatientList: React.FC = () => {
   const { t } = useTranslation();
   const [nextOffSet, setNextOffSet] = useState(0);
   const [pageSize, setPageSize] = useState(10);

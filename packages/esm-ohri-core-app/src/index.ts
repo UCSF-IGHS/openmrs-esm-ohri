@@ -3,7 +3,8 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
-  PatientListTable,
+  PatientList,
+  PatientTable,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   appointmentsDashboardMeta,
@@ -29,7 +30,7 @@ export const dashboard = getAsyncLifecycle(() => import('./root'), options);
 
 export const homeDashboard = getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options);
 
-export const patientList = getSyncLifecycle(PatientListTable, {
+export const patientList = getSyncLifecycle(PatientList, {
   featureName: 'home',
   moduleName,
 });
@@ -73,3 +74,5 @@ export const ohriClinicalViewsDivider = getSyncLifecycle(
   createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta),
   options,
 );
+
+export const patientTable = getSyncLifecycle(PatientTable, options);

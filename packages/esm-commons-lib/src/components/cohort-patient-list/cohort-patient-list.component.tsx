@@ -10,7 +10,7 @@ import moment from 'moment';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { DataTableSkeleton } from '@carbon/react';
 import { basePath } from '../../constants';
-import styles from './patient-list-cohort.scss';
+import styles from './cohort-patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { columns, consolidatatePatientMeta, filterPatientsByName, PatientListColumn } from './helpers';
@@ -65,13 +65,13 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [filteredResults, setFilteredResults] = useState([]);
   const [loadedExtraEncounters, setLoadedExtraEncounters] = useState(false);
   const [extraEncounters, setExtraEncounters] = useState([]);
-  const forms = useMemo(() => [launchableForm.name], [launchableForm]);
-  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(forms);
   const [paginatedPatients, setPaginatedPatients] = useState([]);
   const [allPatients, setAllPatients] = useState([]);
   const [rawCohortData, setRawCohortData] = useState<{ location?: any; members: any[] }>({ members: [] });
   const [isLoadingCohorts, setIsLoadingCohorts] = useState(true);
   const columnAtLastIndex = 'actions';
+  const forms = useMemo(() => [launchableForm.name], [launchableForm]);
+  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(forms);
 
   const constructPatient = useCallback(
     (rawPatient) => {
