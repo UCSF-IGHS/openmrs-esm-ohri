@@ -6,5 +6,89 @@
   "pages": [
   ],
   "extensions": [
+    {
+      "name": "tb-dashboard-link",
+      "slot": "dashboard-slot",
+      "component": "tbFolderLink",
+      "meta": {
+        "slot": "ohri-tb-dashboard-slot",
+        "isFolder": true,
+        "title": "TB Program"
+      }
+    },
+    {
+      "name": "ohri-tb",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartTbDashboard",
+      "order": 21
+    },
+    
+    {
+      "name": "tb-summary-dashboard",
+      "slot": "ohri-tb-slot",
+      "component": "tbPatientSummaryDashboardLink",
+      "meta": {
+        "slot": "tb-patient-summary-dashboard-slot",
+        "columns": 1,
+        "path": "tb-patient-summary",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tb-patient-summary-ext",
+      "slot": "tb-patient-summary-dashboard-slot",
+      "component": "tbPatientSummaryList"
+    },
+
+    {
+      "name": "tb-program-management-summary",
+      "slot": "ohri-tb-slot",
+      "component": "tbProgramManagementDashboardLink",
+      "meta": {
+        "slot": "tb-program-management-summary-slot",
+        "columns": 1,
+        "path": "tb-program-management",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tb-program-management-summary-ext",
+      "slot": "tb-program-management-summary-slot",
+      "component": "tbProgramManagementDashboard"
+    },
+
+    {
+      "name": "tb-treatment-follow-up-summary",
+      "slot": "ohri-tb-slot",
+      "component": "tbTreatmentFollowUpDashboardLink",
+      "meta": {
+        "slot": "tb-treatment-follow-up-summary-slot",
+        "columns": 1,
+        "path": "tb-treatment-follow-up",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tb-treatment-follow-up-summary-ext",
+      "slot": "tb-treatment-follow-up-summary-slot",
+      "component": "tbTreatmentFollowUpDashboard"
+    },
+
+    {
+      "name": "tb-contact-listing-summary",
+      "slot": "ohri-tb-slot",
+      "component": "tbContactListingDashboardLink",
+      "meta": {
+        "slot": "tb-contact-listing-summary-slot",
+        "columns": 1,
+        "path": "tb-contact-listing",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tb-contact-listing-summary-ext",
+      "slot": "tb-contact-listing-summary-slot",
+      "component": "tbContactListingDashboard"
+    }
   ]
 }
