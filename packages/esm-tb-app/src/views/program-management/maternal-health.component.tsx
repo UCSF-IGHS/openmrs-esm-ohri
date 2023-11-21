@@ -4,12 +4,9 @@ import styles from '../common.scss';
 import { useTranslation } from 'react-i18next';
 import MdrTbList from './tabs/mdr-tb.component';
 import TbPatientTracing from './tabs/tb-patient-tracing.component';
+import { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const ProgramManagementSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   return (
     <div className={styles.tabContainer}>

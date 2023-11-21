@@ -1,11 +1,8 @@
-import { EmptyStateComingSoon } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EmptyStateComingSoon, PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-interface OverviewListProps {
-  patientUuid: string;
-}
 
-const TBSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
   const headerRecentTB = t('recentTuberculosis', 'Recent Tuberculosis');
