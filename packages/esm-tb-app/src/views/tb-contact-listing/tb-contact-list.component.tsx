@@ -8,7 +8,7 @@ interface TbContactTracingListProps {
 
 const TbContactTracingList: React.FC<TbContactTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('TbContactListing');
+  const headerTitle = t('TbContactListing', 'TB Contact Listing');
 
   return (
     <>

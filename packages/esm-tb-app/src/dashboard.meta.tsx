@@ -1,9 +1,4 @@
-export const tuberclosisMeta = {
-  title: 'Tuberclosis',
-  slotName: 'tuberclosis-slot',
-};
-
-export const TbDashboardDMeta = {
+export const tbPatientChartMeta = {
   title: 'TB Program',
   slotName: 'ohri-tb-slot',
   isExpanded: false,

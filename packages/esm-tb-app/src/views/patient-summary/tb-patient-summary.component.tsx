@@ -8,9 +8,9 @@ interface OverviewListProps {
 const TBSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerRecentTB = t('recentTuberculosis');
-  const headerPreviousCases = t('previousCases');
-  const headerVisit = t('visits');
+  const headerRecentTB = t('recentTuberculosis', 'Recent Tuberculosis');
+  const headerPreviousCases = t('previousCases', 'Previous Cases');
+  const headerVisit = t('visits', 'Visits');
 
   return (
     <>

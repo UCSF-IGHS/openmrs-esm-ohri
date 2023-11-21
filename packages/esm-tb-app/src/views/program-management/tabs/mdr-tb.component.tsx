@@ -8,7 +8,7 @@ interface MdrTbListProps {
 
 const MdrTbList: React.FC<MdrTbListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('MdrTbEnrolment');
+  const headerTitle = t('MdrTbEnrolment', 'TB/MDR TB Enrolment');
 
   return (
     <>

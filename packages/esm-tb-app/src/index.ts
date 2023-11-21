@@ -1,7 +1,7 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import {
-  TbDashboardDMeta,
+  tbPatientChartMeta,
   tbContactListingDashboardMeta,
   tbPatientSummaryDashboardMeta,
   tbProgramManagementDashboardMeta,
@@ -23,7 +23,7 @@ export function startupApp() {
   defineConfigSchema(moduleName, {});
 }
 
-export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(TbDashboardDMeta), options);
+export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(tbPatientChartMeta), options);
 
 export const tbPatientSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...tbPatientSummaryDashboardMeta, moduleName }),

@@ -20,7 +20,7 @@
       "name": "ohri-tb",
       "slot": "patient-chart-dashboard-slot",
       "component": "patientChartTbDashboard",
-      "order": 21
+      "order": 24
     },
     
     {
