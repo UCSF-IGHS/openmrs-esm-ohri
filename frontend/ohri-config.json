@@ -3,19 +3,7 @@
     "extensionSlots": {
       "patient-chart-dashboard-slot": {
         "remove": [
-          "test-results-summary-dashboard",
-          "conditions-summary-dashboard",
-          "results-summary-dashboard",
-          "programs-summary-dashboard",
-          "allergies-summary-dashboard",
-          "attachments-results-summary-dashboard",
-          "drug-orders-summary-dashboard"
-        ]
-      },
-      "action-menu-chart-items-slot": {
-        "remove": [
-          "visit-note-nav-button",
-          "clinical-form-action-menu"
+          "immunization-summary-dashboard"
         ]
       }
     },

@@ -187,17 +187,6 @@ jobs:
         run: |
             ssh-keygen -R 172.19.0.16
 
-  dev_server_connection_dev:
-      runs-on: ubuntu-latest
-      needs: docker_devserver_frontend
-      steps:
-        - name: SSH to remote OHRI Dev server
-          run: |
-            ssh -o StrictHostKeyChecking=no -T ohri@172.19.0.16 -p 2216 -J ohri@20.172.182.46 -p 2202
-            ls -la -t  && \
-            cd /opt && \
-            ls -la -t
-
   dev_deploy:
     runs-on: ubuntu-latest
     needs: docker_devserver_frontend
