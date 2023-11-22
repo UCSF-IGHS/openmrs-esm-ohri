@@ -1,3 +1,10 @@
 {
-  "tuberclosis": "Tuberclosis"
+  "tuberclosis": "Tuberclosis",
+  "MdrTbEnrolment": "TB/MDR TB Enrolment",
+  "PatientTracing": "Patient Tracing",
+  "TbTreatmentFollowUp": "TB Follow Up",
+  "TbContactListing": "TB Contact Listing",
+  "recentTuberculosis": "Recent Tuberclosis",
+  "previousCases": "Previous Case",
+  "visits": "Visits"
 }
