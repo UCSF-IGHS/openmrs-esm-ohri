@@ -23,7 +23,7 @@ export const tbProgramManagementDashboardMeta = {
 export const tbTreatmentFollowUpDashboardMeta = {
   slot: 'tb-treatment-follow-up-summary-slot',
   columns: 1,
-  title: 'Treatment and follow-up',
+  title: 'Treatment and Follow-up',
   path: 'tb-treatment-follow-up',
   layoutMode: 'anchored',
 };
