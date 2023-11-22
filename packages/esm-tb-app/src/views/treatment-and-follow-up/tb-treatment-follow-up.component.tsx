@@ -4,7 +4,7 @@ import { EmptyStateComingSoon, PatientChartProps } from '@ohri/openmrs-esm-ohri-
 
 const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const headerTitle = t('TbTreatmentFollowUp');
+  const headerTitle = t('TbTreatmentFollowUp', 'TB Follow-up');
 
   return (
     <>
