@@ -31,7 +31,7 @@ export const tbTreatmentFollowUpDashboardMeta = {
 export const tbContactListingDashboardMeta = {
   slot: 'tb-contact-listing-summary-slot',
   columns: 1,
-  title: 'Tb Contact Listing',
+  title: 'TB Contact Listing',
   path: 'tb-contact-listing',
   layoutMode: 'anchored',
 };
