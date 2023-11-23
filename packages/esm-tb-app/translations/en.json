@@ -6,5 +6,10 @@
   "TbContactListing": "TB Contact Listing",
   "recentTuberculosis": "Recent Tuberculosis",
   "previousCases": "Previous Cases",
-  "visits": "Visits"
+  "visits": "Visits",
+  "nameOfContact": "Name of Contact",
+  "relationshipToIndex": "Relationship to Index",
+  "phoneNumber": "Phone Number",
+  "facility": "Facility",
+  "address": "Address"
 }
