@@ -7,7 +7,7 @@ export const tbPatientChartMeta = {
 export const tbPatientSummaryDashboardMeta = {
   slot: 'tb-patient-summary-dashboard-slot',
   columns: 1,
-  title: 'Patient Summary',
+  title: 'TB Patient Summary',
   path: 'tb-patient-summary',
   layoutMode: 'anchored',
 };
