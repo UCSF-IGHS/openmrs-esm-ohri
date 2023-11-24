@@ -11,7 +11,7 @@ const TbHomePatientTabs: React.FC<OverviewListProps> = ({ patientUuid }) => {
   return (
     <Tabs >
       <TabList contained>
-        <Tab>{t('allTBClients', 'All TB Clients')}</Tab>
+        <Tab>{t('allTbClients', 'All TB Clients')}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel>
