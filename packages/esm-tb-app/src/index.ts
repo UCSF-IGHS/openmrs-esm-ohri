@@ -1,4 +1,5 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import {
   tbPatientChartMeta,
@@ -6,6 +7,8 @@ import {
   tbPatientSummaryDashboardMeta,
   tbProgramManagementDashboardMeta,
   tbTreatmentFollowUpDashboardMeta,
+  tbClinicalViewDashboardMeta,
+  tbCasesDashboardMeta,
 } from './dashboard.meta';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -72,3 +75,33 @@ export const tbContactListingDashboard = getAsyncLifecycle(
     moduleName,
   },
 );
+export const tbDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
+  featureName: 'tb-home-header',
+  moduleName,
+});
+
+export const tbDashboardTiles = getAsyncLifecycle(
+  () => import('./views/dashboard/summary-tiles/tb-summary-tiles.component'),
+  {
+    featureName: 'tb-home-tiles',
+    moduleName,
+  },
+);
+export const tbDashboardTabs = getAsyncLifecycle(
+  () => import('./views/dashboard/patient-list-tabs/tb-patient-list-tabs.component'),
+  {
+    featureName: 'tb-home-tabs',
+    moduleName,
+  },
+);
+
+// OHRI HOME
+export const tbClinicalViewDashboardLink = getSyncLifecycle(
+  createOHRIDashboardLink(tbClinicalViewDashboardMeta),
+  options,
+);
+export const tbCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbCasesDashboardMeta), options);
+export const tbCasesDashboard = getSyncLifecycle(OHRIHome, {
+  featureName: 'tb cases dashboard',
+  moduleName,
+});

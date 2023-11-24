@@ -6,5 +6,11 @@
   "TbContactListing": "TB Contact Listing",
   "recentTuberculosis": "Recent Tuberculosis",
   "previousCases": "Previous Cases",
-  "visits": "Visits"
+  "visits": "Visits",
+  "allTbClients": "All TB Clients",
+  "activeDrCases": "Active DR Cases",
+  "activeDsCases": "Active DS Cases",
+  "drugResistant": "Cases with drug resistant TB",
+  "drugSensitive": "Cases with drug sesnsitive TB"
+  
 }
