@@ -7,6 +7,7 @@ import {
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
+import { TbPatientTracingEncounterType, contactDate, contactMethod } from '../../../constants';
 
 const TbPatientTracing: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -17,14 +18,14 @@ const TbPatientTracing: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '', true);
+          return getObsFromEncounter(encounter, contactDate, true);
         },
       },
       {
         key: 'contactMethod',
         header: t('contactMethod', 'Contact Method'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '');
+          return getObsFromEncounter(encounter, contactMethod);
         },
       },
       {
@@ -34,6 +35,26 @@ const TbPatientTracing: React.FC<PatientChartProps> = ({ patientUuid }) => {
           return getObsFromEncounter(encounter, '', true);
         },
       },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => [
+          {
+            form: { name: 'TB Patient Tracing Form' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View Details'),
+            mode: 'view',
+          },
+          {
+            form: { name: 'TB Patient Tracing Form' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('editForm', 'Edit Form'),
+            mode: 'edit',
+          },
+        ],
+      },
     ],
     [],
   );
@@ -41,8 +62,8 @@ const TbPatientTracing: React.FC<PatientChartProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={''}
-      formList={[{ name: '' }]}
+      encounterType={TbPatientTracingEncounterType}
+      formList={[{ name: 'TB Patient Tracing Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
