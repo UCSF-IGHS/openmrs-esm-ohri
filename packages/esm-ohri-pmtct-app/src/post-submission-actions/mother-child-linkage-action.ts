@@ -5,6 +5,7 @@ import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../utils
 import { updatePatientPtracker } from './current-ptracker-action';
 import { getConfig } from '@openmrs/esm-framework';
 import { getIdentifierAssignee } from '../utils/pmtct-helpers';
+import { fetchPatientRelationships } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 // necessary data points about an infact captured at birth
 const infantDetailsGroup = '1c70c490-cafa-4c95-9fdd-a30b62bb78b8';
@@ -30,7 +31,7 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
     await updatePatientPtracker(encounter, encounterLocation, patient.id);
     const infantsToCreate = await Promise.all(
       findObsByConcept(encounter, infantDetailsGroup).map(async (obsGroup) =>
-        constructPatientObjectFromObsData(obsGroup, encounterLocation, preferredIdentifierSource, sessionMode),
+        constructPatientObjectFromObsData(obsGroup, encounterLocation, preferredIdentifierSource, sessionMode, patient),
       ),
     );
     const newInfantsToCreate = await Promise.all(infantsToCreate.filter((infant) => infant !== null));
@@ -55,41 +56,54 @@ async function constructPatientObjectFromObsData(
   encounterLocation: string,
   preferredIdentifierSource: string,
   sessionMode: string,
+  parent: fhir.Patient,
 ): Promise<Patient> {
   // check if infant is alive
   const lifeStatusAtBirth = findChildObsInTree(obsGroup, infantLifeStatus);
   // the infant is alive hence eligible for registration
   if (getObsValueCoded(lifeStatusAtBirth) == aliveStatus) {
     const pTrackerId = findChildObsInTree(obsGroup, infantPTrackerId)?.value;
-    const existingpTrackerAssignee = await getIdentifierAssignee(pTrackerId, PtrackerIdentifierType);
-    if (existingpTrackerAssignee) {
-      if (sessionMode === 'enter') {
-        throw new Error(`P Tracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee})`);
-      } else {
-        return null;
-      }
-    }
-    const patient: Patient = {
-      identifiers: [],
-      person: {
-        names: [
-          {
-            givenName: 'TBD',
-            middleName: 'TBD',
-            familyName: 'TBD',
-            preferred: true,
-          },
-        ],
-        gender: inferGenderFromObs(findChildObsInTree(obsGroup, infantGender)),
-        birthdate: findChildObsInTree(obsGroup, infantDOB)?.value,
-        birthdateEstimated: false,
-        dead: false,
-        deathDate: null,
-        causeOfDeath: '',
-      },
-    };
-
     if (pTrackerId) {
+      const existingpTrackerAssignee = await getIdentifierAssignee(pTrackerId, PtrackerIdentifierType);
+      if (existingpTrackerAssignee) {
+        if (sessionMode === 'enter') {
+          throw new Error(
+            `PTracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee.display})`,
+          );
+        } else {
+          //In edit mode, only throw error if the patient with the existing PTracker is not linked with the current mother
+          const parentRelationships = await fetchPatientRelationships(parent.id);
+          const isAlreadyLinked = parentRelationships.some(
+            (relationship) => relationship.personB.uuid === existingpTrackerAssignee.uuid,
+          );
+          if (!isAlreadyLinked) {
+            throw new Error(
+              `PTracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee.display})`,
+            );
+          }
+          return null;
+        }
+      }
+      const patient: Patient = {
+        identifiers: [],
+        person: {
+          names: [
+            {
+              givenName: 'TBD',
+              middleName: 'TBD',
+              familyName: 'TBD',
+              preferred: true,
+            },
+          ],
+          gender: inferGenderFromObs(findChildObsInTree(obsGroup, infantGender)),
+          birthdate: findChildObsInTree(obsGroup, infantDOB)?.value,
+          birthdateEstimated: false,
+          dead: false,
+          deathDate: null,
+          causeOfDeath: '',
+        },
+      };
+
       patient.identifiers = [
         {
           identifier: pTrackerId,
@@ -98,16 +112,18 @@ async function constructPatientObjectFromObsData(
           preferred: false,
         },
       ];
+      // generate the preferred identifier
+      const preferredIdentifier: PatientIdentifier = {
+        identifier: await (await generateIdentifier(preferredIdentifierSource)).data.identifier,
+        identifierType: OpenmrsClassicIdentifierType,
+        location: encounterLocation,
+        preferred: true,
+      };
+      patient.identifiers.push(preferredIdentifier);
+      return patient;
     }
-    // generate the preferred identifier
-    const preferredIdentifier: PatientIdentifier = {
-      identifier: await (await generateIdentifier(preferredIdentifierSource)).data.identifier,
-      identifierType: OpenmrsClassicIdentifierType,
-      location: encounterLocation,
-      preferred: true,
-    };
-    patient.identifiers.push(preferredIdentifier);
-    return patient;
+  } else {
+    throw new Error('Please provide child PTracker Id');
   }
   return null;
 }

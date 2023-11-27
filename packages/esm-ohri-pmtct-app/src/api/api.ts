@@ -84,7 +84,7 @@ export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string
 
 export function getIdentifierInfo(identifier: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}patient?identifier=${identifier}&v=custom:(identifiers:(identifier,identifierType:(uuid,display)),person:(display))`,
+    `${BASE_WS_API_URL}patient?identifier=${identifier}&v=custom:(identifiers:(identifier,identifierType:(uuid,display)),person:(uuid,display))`,
   ).then(({ data }) => {
     if (data) {
       return data;

@@ -15,12 +15,12 @@ export const getIdentifierAssignee = (identifier: string, identifierType: string
       for (const result of data.results) {
         for (const identifierObj of result.identifiers) {
           if (identifierObj.identifier === identifier && identifierObj.identifierType.uuid === identifierType) {
-            return result.person.display;
+            return result.person;
           }
         }
       }
-      return '';
+      return {};
     }
-    return '';
+    return {};
   });
 };
