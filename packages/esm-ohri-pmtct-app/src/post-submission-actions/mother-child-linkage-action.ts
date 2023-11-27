@@ -21,7 +21,7 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
-    // only do this the first time the form is entered
+    // only do this in enter or edit mode
     if (sessionMode === 'view') {
       return;
     }
@@ -58,16 +58,14 @@ async function constructPatientObjectFromObsData(
 ): Promise<Patient> {
   // check if infant is alive
   const lifeStatusAtBirth = findChildObsInTree(obsGroup, infantLifeStatus);
-   // the infant is alive hence eligible for registration
+  // the infant is alive hence eligible for registration
   if (getObsValueCoded(lifeStatusAtBirth) == aliveStatus) {
-
     const pTrackerId = findChildObsInTree(obsGroup, infantPTrackerId)?.value;
     const existingpTrackerAssignee = await getIdentifierAssignee(pTrackerId, PtrackerIdentifierType);
-    if(existingpTrackerAssignee){
-      if(sessionMode === 'enter'){
+    if (existingpTrackerAssignee) {
+      if (sessionMode === 'enter') {
         throw new Error(`P Tracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee})`);
-      }
-      else{
+      } else {
         return null;
       }
     }

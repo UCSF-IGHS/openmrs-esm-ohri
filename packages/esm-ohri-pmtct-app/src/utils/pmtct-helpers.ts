@@ -9,7 +9,7 @@ export const generateInfantPTrackerId = (fieldId: string, motherPtrackerId: stri
     : undefined;
 };
 
-export const getIdentifierAssignee = async (identifier: string, identifierType: string) => {
+export const getIdentifierAssignee = (identifier: string, identifierType: string) => {
   return getIdentifierInfo(identifier).then((data) => {
     if (data) {
       for (const result of data.results) {

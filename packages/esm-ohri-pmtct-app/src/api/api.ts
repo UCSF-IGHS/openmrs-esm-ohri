@@ -82,7 +82,7 @@ export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string
   });
 }
 
-export function getIdentifierInfo(identifier: string){
+export function getIdentifierInfo(identifier: string) {
   return openmrsFetch(
     `${BASE_WS_API_URL}patient?identifier=${identifier}&v=custom:(identifiers:(identifier,identifierType:(uuid,display)),person:(display))`,
   ).then(({ data }) => {
@@ -104,7 +104,7 @@ export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
   });
 }
 
-export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: string, encounterTypeUuid){
+export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: string, encounterTypeUuid) {
   let params = `patient=${childUuid}&code=${conceptUuid}${
     encounterTypeUuid ? `&encounter.type=${encounterTypeUuid}` : ''
   }`;
@@ -113,7 +113,6 @@ export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: str
   return openmrsFetch(`/ws/fhir2/R4/Observation?${params}`).then(({ data }) => {
     return data.entry?.length ? data.entry[0].resource.valueCodeableConcept.coding[0]?.display : null;
   });
-
 }
 
 // Get family relationships from patient uuid
