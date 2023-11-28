@@ -89,6 +89,62 @@
       "name": "tb-contact-listing-summary-ext",
       "slot": "tb-contact-listing-summary-slot",
       "component": "tbContactListingDashboard"
-    }
+    },
+    {
+      "name": "tb-dashboard-link",
+      "slot": "tb-dashboard-slot",
+      "component": "tbClinicalViewDashboardLink",
+      "meta": {
+        "slot": "tb-clinical-dashboard-slot",
+        "isFolder": true,
+        "title": "Tuberculosis"
+      }
+    },
+    {
+      "name": "tb-cases-dashboard-ext",
+      "slot": "tb-clinical-dashboard-slot",
+      "component": "tbCasesDashboardLink",
+      "meta": {
+        "name": "tb-cases",
+        "slot": "tb-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "tb",
+          "dashboardTitle": "TB Treatment"
+        },
+        "title": "TB Treatment"
+      }
+    },
+    {
+      "name": "tb-cases-dashboard",
+      "slot": "tb-cases-dashboard-slot",
+      "component": "tbCasesDashboard",
+      "meta": {
+        "name": "tb-cases",
+        "slot": "tb-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "tb",
+          "dashboardTitle": "TB Treatment"
+        },
+        "title": "TB Treatment"
+      }
+    },
+    {
+      "name": "tb-home-header-ext",
+      "slot": "tb-home-header-slot",
+      "component": "tbDashboardHeader"
+    },
+    {
+      "name": "tb-home-tiles-ext",
+      "slot": "tb-home-tiles-slot",
+      "component": "tbDashboardTiles"
+    },
+    {
+      "name": "tb-home-tabs-ext",
+      "slot": "tb-home-tabs-slot",
+      "component": "tbDashboardTabs"
+    } 
   ]
 }
