@@ -29,13 +29,6 @@ const TbPatientTracing: React.FC<PatientChartProps> = ({ patientUuid }) => {
         },
       },
       {
-        key: 'contactOutcome',
-        header: t('contactOutcome', 'Contact Outcome'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, '', true);
-        },
-      },
-      {
         key: 'actions',
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
