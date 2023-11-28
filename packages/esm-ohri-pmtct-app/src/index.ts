@@ -15,7 +15,7 @@ import {
   OHRIWelcomeSection,
   createConditionalDashboardGroup,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { generateInfantPTrackerId } from './utils/ptracker-forms-helpers';
+import { generateInfantPTrackerId } from './utils/pmtct-helpers';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
