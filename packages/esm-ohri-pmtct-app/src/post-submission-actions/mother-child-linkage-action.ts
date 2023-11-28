@@ -64,21 +64,21 @@ async function constructPatientObjectFromObsData(
   if (getObsValueCoded(lifeStatusAtBirth) == aliveStatus) {
     const pTrackerId = findChildObsInTree(obsGroup, infantPTrackerId)?.value;
     if (pTrackerId) {
-      const existingpTrackerAssignee = await getIdentifierAssignee(pTrackerId, PtrackerIdentifierType);
-      if (existingpTrackerAssignee) {
+      const existingPTrackerAssignee = await getIdentifierAssignee(pTrackerId, PtrackerIdentifierType);
+      if (Object.keys(existingPTrackerAssignee).length !== 0) {
         if (sessionMode === 'enter') {
           throw new Error(
-            `PTracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee.display})`,
+            `PTracker Id (${pTrackerId}) already assigned to patient (${existingPTrackerAssignee.display})`,
           );
         } else {
           //In edit mode, only throw error if the patient with the existing PTracker is not linked with the current mother
           const parentRelationships = await fetchPatientRelationships(parent.id);
           const isAlreadyLinked = parentRelationships.some(
-            (relationship) => relationship.personB.uuid === existingpTrackerAssignee.uuid,
+            (relationship) => relationship.personB.uuid === existingPTrackerAssignee.uuid,
           );
           if (!isAlreadyLinked) {
             throw new Error(
-              `PTracker Id (${pTrackerId}) already assigned to patient (${existingpTrackerAssignee.display})`,
+              `PTracker Id (${pTrackerId}) already assigned to patient (${existingPTrackerAssignee.display})`,
             );
           }
           return null;
@@ -121,9 +121,9 @@ async function constructPatientObjectFromObsData(
       };
       patient.identifiers.push(preferredIdentifier);
       return patient;
+    } else {
+      throw new Error('Please provide child PTracker Id');
     }
-  } else {
-    throw new Error('Please provide child PTracker Id');
   }
   return null;
 }
