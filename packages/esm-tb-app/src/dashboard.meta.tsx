@@ -1,3 +1,5 @@
+import { PillsAdd } from '@carbon/react/icons';
+
 export const tbPatientChartMeta = {
   title: 'TB Program',
   slotName: 'ohri-tb-slot',
@@ -34,4 +36,19 @@ export const tbContactListingDashboardMeta = {
   title: 'TB Contact Listing',
   path: 'tb-contact-listing',
   layoutMode: 'anchored',
+};
+// Clinical Dashboards
+export const tbClinicalViewDashboardMeta = {
+  slot: 'tb-clinical-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: PillsAdd },
+  isFolder: true,
+  title: 'Tuberculosis',
+};
+
+export const tbCasesDashboardMeta = {
+  name: 'tb-cases',
+  slot: 'tb-cases-dashboard-slot',
+  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment', icon: PillsAdd },
+  title: 'TB Treatment',
+  dashboardIcon: PillsAdd,
 };
