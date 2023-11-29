@@ -1,8 +1,8 @@
 import React from 'react';
 import { Tabs, Tab, TabPanels, TabPanel, TabList } from '@carbon/react';
-import styles from '../lab-results/Tabs/patient-list.scss';
-import CD4ResultsList from './Tabs/cd4-results.component';
-import ViralLoadResultsList from './Tabs/viral-load-results.component';
+import styles from '../lab-results/tabs/patient-list.scss';
+import CD4ResultsList from './tabs/cd4-results.component';
+import ViralLoadResultsList from './tabs/viral-load-results.component';
 import { useTranslation } from 'react-i18next';
 
 interface OverviewListProps {

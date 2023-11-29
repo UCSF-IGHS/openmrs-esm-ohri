@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { missingCd4Cohort, highVlCohort } from '../../../../constants';
-import { getReportingCohort } from '../../../../api/api';
+import { missingCd4Cohort, highVlCohort } from '../../../constants';
+import { getReportingCohort } from '../../../api/api';
 
 function LabResultsSummaryTiles() {
   const { t } = useTranslation();

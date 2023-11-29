@@ -10,6 +10,7 @@ export function useEncounterRows(patientUuid: string, encounterType: string, enc
     () => `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`,
     [encounterType, patientUuid],
   );
+
   const {
     data: response,
     error,

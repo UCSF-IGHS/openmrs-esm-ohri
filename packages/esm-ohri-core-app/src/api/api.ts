@@ -1,10 +1,8 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import moment from 'moment';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
   computedHIV_StatusConcept,
-  encounterRepresentation,
   covidOutcomesCohortUUID,
 } from '../constants';
 
@@ -128,21 +126,6 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
     }
     return '';
-  });
-}
-
-// TODO: The WS/REST Encounter resource doesn't support sorting, figure out a better approach ie. FHIR or Reporting
-//       This implementation has issues, the WS/REST returns paginated results, and what this function does is get the
-//       last item in the payload(paginated results). This doesn't gurrantee that it's the most recent encounter.
-//       We should think of a better approach
-export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
-  const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-  return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
-    if (data.results.length) {
-      return data.results[data.results.length - 1];
-    }
-
-    return null;
   });
 }
 
