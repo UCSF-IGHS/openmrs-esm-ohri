@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
-import CaCxRegistrationList from './Tabs/cacx-registration.component';
-import CacxTreatmentList from './Tabs/cacx-treatment.component';
 import { useTranslation } from 'react-i18next';
+import { CacxTreatment } from './tabs/cacx-treatment.component';
+import { CacxRegistration } from './tabs/cacx-registration.component';
 
 interface OverviewListProps {
   patientUuid: string;
@@ -21,10 +21,10 @@ const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }
         </TabList>
         <TabPanels>
           <TabPanel>
-            <CaCxRegistrationList patientUuid={patientUuid} />
+            <CacxRegistration patientUuid={patientUuid} />
           </TabPanel>
           <TabPanel>
-            <CacxTreatmentList patientUuid={patientUuid} />
+            <CacxTreatment patientUuid={patientUuid} />
           </TabPanel>
         </TabPanels>
       </Tabs>

@@ -1,32 +1,30 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
+
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
-import {
-  EmptyState,
-  encounterRepresentation,
-  fetchPatientList,
-  getObsFromEncounter,
-  OTable,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
-import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../../constants';
 import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
 import { capitalize } from 'lodash-es';
+import {
+  EmptyState,
+  OTable,
+  fetchPatientList,
+  encounterRepresentation,
+  getObsFromEncounter,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { ViralLoadResultDate_UUID, ViralLoadResultsEncounter_UUID, ViralLoadResult_UUID } from '../../../../constants';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
+import { filterPatientsByName } from './cd4-results.component';
 
-interface CD4ResultsListProps {
+interface ViralLoadResultsListProps {
   patientUuid: string;
 }
 
-export const filterPatientsByName = (searchTerm: string, patients: Array<any>) => {
-  return patients.filter((patient) => patient.patientSearchName.toLowerCase().includes(searchTerm.toLowerCase()));
-};
-
-const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
+const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   const { t } = useTranslation();
   const [patients, setPatients] = useState([]);
-  const [patientToCd4Map, setPatientToCd4Map] = useState([]);
+  const [patientToViralLoadMap, setPatientToViralLoadMap] = useState([]);
   const [allRows, setAllRows] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState(null);
@@ -37,13 +35,12 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
   const headerTitle = '';
-
   const tableHeaders = [
     { key: 'name', header: t('patientName', 'Patient Name'), isSortable: true },
     { key: 'gender', header: t('sex', 'Sex') },
     { key: 'age', header: t('age', 'Age') },
-    { key: 'cd4Result', header: t('recentCd4', 'Recent CD4') },
-    { key: 'cd4ResultDate', header: t('recentCd4Date', 'Recent CD4 Date') },
+    { key: 'viralLoadResult', header: t('recentVL', 'Recent VL') },
+    { key: 'viralLoadResultDate', header: t('recentVLDate', 'Recent VL Date') },
     { key: 'actions', header: t('actions', 'Actions') },
   ];
 
@@ -59,16 +56,20 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   useEffect(() => {
     let rows = [];
     for (let patient of patients) {
-      const lastCd4Result = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)?.cd4Result;
-      const lastCd4ResultDate = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)?.cd4ResultDate;
-      const lastCd4EncounterUuid = patientToCd4Map.find(
+      const lastviralLoadResult = patientToViralLoadMap.find(
         (entry) => entry.patientId === patient.resource.id,
-      )?.cd4EncounterUuid;
+      )?.viralLoadResult;
+      const lastviralLoadResultDate = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralLoadResultDate;
+      const lastViralLoadEncounterUuid = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralEncounterUuid;
       const patientActions = (
         <LabresultsFormViewer
-          form={{ package: 'hiv', name: 'cd4_lab_results' }}
+          form={{ package: 'hiv', name: 'viral_load_results' }}
           patientUuid={patient.resource.id}
-          encounterUuid={lastCd4EncounterUuid}
+          encounterUuid={lastViralLoadEncounterUuid}
           patientUrl={getPatientURL(patient.resource.id)}></LabresultsFormViewer>
       );
 
@@ -83,24 +84,26 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         ),
         gender: capitalize(patient.resource.gender),
         age: age(patient.resource.birthDate),
-        cd4Result: lastCd4Result ? lastCd4Result : '--',
-        cd4ResultDate: lastCd4ResultDate ? lastCd4ResultDate : '--',
+        viralLoadResult: lastviralLoadResult ? lastviralLoadResult : '--',
+        viralLoadResultDate: lastviralLoadResultDate ? lastviralLoadResultDate : '--',
         actions: patientActions,
         patientSearchName: `${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}`,
       });
     }
     setAllRows(rows);
-  }, [patients, patientToCd4Map]);
+  }, [patients, patientToViralLoadMap]);
 
   useEffect(() => {
-    const patientToCd4ResultsPromises = patients.map((patient) => fetchPatientLastCd4Encounters(patient.resource.id));
-    Promise.all(patientToCd4ResultsPromises).then((values) => {
-      setPatientToCd4Map(
+    const patientToviralLoadResultsPromises = patients.map((patient) =>
+      fetchPatientLastViralEncounters(patient.resource.id),
+    );
+    Promise.all(patientToviralLoadResultsPromises).then((values) => {
+      setPatientToViralLoadMap(
         values.map((value, index) => ({
-          cd4Result: value.result,
-          cd4ResultDate: value.date,
+          viralLoadResult: value.result,
+          viralLoadResultDate: value.date,
           patientId: patients[index].resource.id,
-          cd4EncounterUuid: value.encounterUuid,
+          viralEncounterUuid: value.encounterUuid,
         })),
       );
     });
@@ -119,13 +122,13 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
 
-  async function fetchPatientLastCd4Encounters(patientUuid: string) {
-    let latestCd4Encounter = {
+  async function fetchPatientLastViralEncounters(patientUuid: string) {
+    let latestViralEncounter = {
       result: '--',
       date: '--',
       encounterUuid: '',
     };
-    const query = `encounterType=${CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
+    const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
     if (viralResults.data.results?.length > 0) {
       const sortedEncounters = viralResults.data.results.sort(
@@ -134,11 +137,11 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       );
       const lastEncounter = sortedEncounters[0];
 
-      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, hivCD4Count_UUID);
-      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
-      latestCd4Encounter.encounterUuid = lastEncounter.uuid;
+      latestViralEncounter.result = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);
+      latestViralEncounter.date = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID, true);
+      latestViralEncounter.encounterUuid = lastEncounter.uuid;
     }
-    return latestCd4Encounter;
+    return latestViralEncounter;
   }
 
   return (
@@ -176,10 +179,10 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
           </div>
         </>
       ) : (
-        <EmptyState displayText={t('cd4Results', 'CD4 Results')} headerTitle={headerTitle} />
+        <EmptyState displayText={t('viralLoadResults', 'Viral Load Results')} headerTitle={headerTitle} />
       )}
     </>
   );
 };
 
-export default CD4ResultsList;
+export default ViralLoadResultsList;

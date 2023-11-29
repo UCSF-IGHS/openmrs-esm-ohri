@@ -74,7 +74,7 @@ export const ctHomeHeader = getSyncLifecycle(OHRIWelcomeSection, {
 });
 
 export const ctHomeTiles = getAsyncLifecycle(
-  () => import('./views/hts/care-and-treatment/home/summary-tiles/ct-summary-tiles.component'),
+  () => import('./views/hts/care-and-treatment/summary-tiles/ct-summary-tiles.component'),
   {
     featureName: 'ct-home-tiles',
     moduleName,
@@ -118,14 +118,14 @@ export const labResultsHomeHeader = getSyncLifecycle(OHRIWelcomeSection, {
   moduleName,
 });
 export const labResultsHomeTiles = getAsyncLifecycle(
-  () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary-tiles.component'),
+  () => import('./views/hts/lab-results/lab-results-summary-tiles.component'),
   {
     featureName: 'lab-results-home-tiles',
     moduleName,
   },
 );
 export const labResultsHomeTabs = getAsyncLifecycle(
-  () => import('./views/hts/care-and-treatment/lab-results/lab-results-summary.component'),
+  () => import('./views/hts/lab-results/lab-results-summary.component'),
   {
     featureName: 'lab-results-tabs',
     moduleName,

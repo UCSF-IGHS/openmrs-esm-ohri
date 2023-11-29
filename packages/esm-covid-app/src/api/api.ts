@@ -1,11 +1,4 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import moment from 'moment';
-import {
-  computedHIV_StatusConcept,
-  encounterRepresentation,
-  finalHIVCodeConcept,
-  finalPositiveHIVValueConcept,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { covidOutcomesCohortUUID } from '../constants';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
