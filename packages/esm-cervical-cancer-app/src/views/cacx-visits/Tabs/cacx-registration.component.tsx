@@ -9,11 +9,11 @@ import {
 } from '../../../constants';
 import { moduleName } from '../../../index';
 
-interface CacxRegistrationListProps {
+interface CacxRegistrationProps {
   patientUuid: string;
 }
 
-const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid }) => {
+export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
   const columnsLab: EncounterListColumn[] = useMemo(
@@ -84,5 +84,3 @@ const CacxRegistrationList: React.FC<CacxRegistrationListProps> = ({ patientUuid
     />
   );
 };
-
-export default CacxRegistrationList;
