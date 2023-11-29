@@ -179,7 +179,6 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
 }
 
 export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
-  console.log('fetchPatientLastEncounter', patientUuid, encounterType);
   const query = `encounterType=${encounterType}&patient=${patientUuid}`;
   return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
     if (data.results.length) {
