@@ -11,6 +11,11 @@
   "activeDrCases": "Active DR Cases",
   "activeDsCases": "Active DS Cases",
   "drugResistant": "Cases with drug resistant TB",
-  "drugSensitive": "Cases with drug sesnsitive TB"
-  
-}
+  "drugSensitive": "Cases with drug sesnsitive TB",
+  "editAssessmentForm": "Edit TB case assessment form",
+  "caseId": "Case ID",
+  "drugSensitivity": "Drug Sensitivity",
+  "typeTB": "Type of TB",
+  "appointmentDate": "Appointment Date",
+  "outcome": "Outcome"
+  }

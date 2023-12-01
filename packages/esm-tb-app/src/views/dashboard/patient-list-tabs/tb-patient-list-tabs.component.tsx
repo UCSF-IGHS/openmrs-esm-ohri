@@ -5,7 +5,7 @@ import {
   drugSensitivity,
   typeOfTb,
   tbOutcome,
-  clientsAssessedForCovid,
+  clientsEnrolledForTb,
 
 } from '../../../constants';
 import { useTranslation } from 'react-i18next';
@@ -23,9 +23,9 @@ function TbHomePatientTabs() {
     () => [
       {
         label: t('allTbClients', 'All TB Clients'),
-        cohortId: clientsAssessedForCovid,
+        cohortId: clientsEnrolledForTb,
         isReportingCohort: true,
-        cohortSlotName: 'clients-assessed-for-covid-slot',
+        cohortSlotName: 'clients-assessed-for-covid-tb',
         launchableForm: {
           editActionText: t('editAssessmentForm', 'Edit TB case assessment form'),
           editLatestEncounter: true,
@@ -47,6 +47,7 @@ function TbHomePatientTabs() {
             key: 'drugSensitivity',
             header: t('drugSensitivity', 'Drug Sensitivity'),
             getValue: ({ latestEncounter }) => {
+              console.log('Value:', latestEncounter);
               return getObsFromEncounter(latestEncounter, drugSensitivity);
             },
           },
