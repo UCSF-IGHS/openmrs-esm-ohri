@@ -23,8 +23,8 @@ const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         },
       },
       {
-        key: 'nameOfContact',
-        header: t('nameOfContact', 'Date Contact Listed'),
+        key: 'dateContactListed',
+        header: t('dateContactListed', 'Date Contact Listed'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, DateContacted, true);
         },
