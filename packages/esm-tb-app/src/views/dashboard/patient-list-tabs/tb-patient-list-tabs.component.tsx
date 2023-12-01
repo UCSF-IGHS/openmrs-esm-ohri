@@ -46,8 +46,7 @@ function TbHomePatientTabs() {
           {
             key: 'drugSensitivity',
             header: t('drugSensitivity', 'Drug Sensitivity'),
-            getValue: ({ latestEncounter }) => {
-              console.log('Value:', latestEncounter);
+            getValue: ({ latestEncounter }) => {              
               return getObsFromEncounter(latestEncounter, drugSensitivity);
             },
           },
