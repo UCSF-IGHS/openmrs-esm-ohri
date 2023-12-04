@@ -10,6 +10,7 @@ import {
   tbClinicalViewDashboardMeta,
   tbCasesDashboardMeta,
 } from './dashboard.meta';
+import { configSchema } from './config-schema';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -23,7 +24,7 @@ const options = {
 };
 
 export function startupApp() {
-  defineConfigSchema(moduleName, {});
+  defineConfigSchema(moduleName, configSchema);
 }
 
 export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(tbPatientChartMeta), options);

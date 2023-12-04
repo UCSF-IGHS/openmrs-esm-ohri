@@ -9,6 +9,7 @@ export interface SummaryCardProps {
   patientUuid: string;
   columns: Array<SummaryCardColumn>;
   headerTitle: string;
+  maxRowItems?: number;
 }
 
 export interface SummaryCardColumn {

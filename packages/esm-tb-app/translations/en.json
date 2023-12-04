@@ -9,10 +9,17 @@
   "visits": "Visits",
   "allTbClients": "All TB Clients",
   "activeDrCases": "Active DR Cases",
+  "caseID": "Case ID",
+  "enrollmentDate": "Enrollment Date",
   "activeDsCases": "Active DS Cases",
+  "type": "Type",
+  "site": "Site",
+  "drugSensitivity": "Drug Sensitivity",
+  "regimen": "Regimen",
+  "hivStatus": "HIV Status",
+  "outcome": "Outcome",
   "drugResistant": "Cases with drug resistant TB",
   "drugSensitive": "Cases with drug sesnsitive TB",
   "location": "Location",
   "dateContactListed": "Date Contact Listed"
-  
 }
