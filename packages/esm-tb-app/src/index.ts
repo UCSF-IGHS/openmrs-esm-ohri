@@ -29,7 +29,8 @@ export function startupApp() {
       _type: Type.Object,
       _description: 'Patient Programs',
       _default: {
-        TBProgram: 'd1b6cd43-8ac7-4cdd-8fb4-fe51635c82b4',
+        drugSensitiveTBProgram: '58005eb2-4560-4ada-b7bb-67a5cffa0a27',
+        drugResistantTBProgram: '00f37871-0578-4ebc-af1d-e4b3ce75310d',
       },
     },
   });

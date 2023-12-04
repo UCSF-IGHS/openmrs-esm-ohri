@@ -21,7 +21,6 @@ const MotherToChildRelationshipType = '8d91a210-c2cc-11de-8d13-0010c6dffd0f';
 export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
     const encounter = encounters[0];
-    console.log(encounter);
     const encounterLocation = encounter.location['uuid'];
     // only do this in enter or edit mode
     if (sessionMode === 'view') {
