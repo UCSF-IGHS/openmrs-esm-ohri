@@ -98,8 +98,7 @@
   "resolutions": {
     "@carbon/react": "1.17.0",
     "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "@openmrs/openmrs-form-engine-lib": "portal:/Users/Kajambiya/Desktop/Work/openmrs-form-engine-lib"
+    "@types/react-dom": "^18.0.5"
   },
   "packageManager": "yarn@3.2.2"
 }
