@@ -1,4 +1,4 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { Type, defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import {
@@ -10,6 +10,7 @@ import {
   tbClinicalViewDashboardMeta,
   tbCasesDashboardMeta,
 } from './dashboard.meta';
+import { registerPostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -23,7 +24,19 @@ const options = {
 };
 
 export function startupApp() {
-  defineConfigSchema(moduleName, {});
+  defineConfigSchema(moduleName, {
+    programs: {
+      _type: Type.Object,
+      _description: 'Patient Programs',
+      _default: {
+        TBProgram: 'd1b6cd43-8ac7-4cdd-8fb4-fe51635c82b4',
+      },
+    },
+  });
+  registerPostSubmissionAction({
+    name: 'TBProgramEnrollmentSubmissionAction',
+    load: () => import('./post-submission-actions/tb-program-enrollment-action'),
+  });
 }
 
 export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(tbPatientChartMeta), options);
