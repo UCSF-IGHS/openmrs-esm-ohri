@@ -61,28 +61,41 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
           <div className={styles.cardTitle}>
             <h4 className={styles.title}> {headerTitle} </h4>
           </div>
-          {maxRowItems &&
+          {maxRowItems ? (
             groupedEncounterMappings.map((group) => (
               <Column className={styles.columnContainer}>
                 {group.map(({ column, encounters }) => (
-                  <div className={styles.tileBox}>
-                    <div className={styles.tileBoxColumn}>
-                      <span className={styles.tileTitle}> {column.header} </span>
-                      <span className={styles.tileValue}>
-                        <LazyCell lazyValue={column.getObsValue(encounters)} />
-                      </span>
-                      {column.getObsSummary && (
-                        <span className={styles.tileTitle}>
-                          <LazyCell lazyValue={column.getObsSummary(encounters)} />
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                  <SummaryItem column={column} encounters={encounters} />
                 ))}
               </Column>
-            ))}
+            ))
+          ) : (
+            <Column className={styles.columnContainer}>
+              {columnEncountersMappings.map(({ column, encounters }) => (
+                <SummaryItem column={column} encounters={encounters} />
+              ))}
+            </Column>
+          )}
         </Tile>
       )}
     </>
   );
 };
+
+function SummaryItem({ column, encounters }) {
+  return (
+    <div className={styles.tileBox}>
+      <div className={styles.tileBoxColumn}>
+        <span className={styles.tileTitle}> {column.header} </span>
+        <span className={styles.tileValue}>
+          <LazyCell lazyValue={column.getObsValue(encounters)} />
+        </span>
+        {column.getObsSummary && (
+          <span className={styles.tileTitle}>
+            <LazyCell lazyValue={column.getObsSummary(encounters)} />
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}

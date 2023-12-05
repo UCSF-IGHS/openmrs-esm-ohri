@@ -78,7 +78,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
       {
         key: 'outcome',
         header: t('outcome', 'Outcome'),
-        encounterTypes: [config.encounterTypes.tbTreatmentAndFollowUp],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: (encounter) => {
           return getObsFromEncounter(encounter, config.obsConcepts.outcome);
         },
