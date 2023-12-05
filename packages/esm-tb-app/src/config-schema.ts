@@ -22,15 +22,16 @@ export const configSchema = {
     _type: Type.Object,
     _description: 'List of observation concept UUIDs related to TB.',
     _default: {
-      caseID: '',
-      enrollmentDate: '',
-      type: '',
+      caseID: '162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      enrollmentDate: '161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      type: '159990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       site: '160040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      drugSensitivity: '',
-      regimen: '',
-      hivStatus: '',
-      outcome: '',
-      testConcept: '163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      drugSensitivity: '164368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      regimen: '16fd7307-0b26-4c8b-afa3-8362baff4042',
+      hivStatus: '159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      outcome: '159786AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      dateContacted: '160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // date of event
+      modeOfContact: '166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // contact method
     },
   },
 };

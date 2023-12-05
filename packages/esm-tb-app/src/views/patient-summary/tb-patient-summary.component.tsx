@@ -24,7 +24,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('caseID', 'Case ID'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
         },
       },
       {
@@ -32,7 +32,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('enrollmentDate', 'Enrollment Date'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept); // TODO this should be a date
+          return getObsFromEncounter(encounter, config.obsConcepts.enrollmentDate, true);
         },
       },
       {
@@ -40,7 +40,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('type', 'Type'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.type);
         },
       },
       {
@@ -48,7 +48,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('site', 'Site'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.site);
         },
       },
       {
@@ -56,7 +56,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('drugSensitivity', 'Drug Sensitivity'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.drugSensitivity);
         },
       },
       {
@@ -64,7 +64,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('regimen', 'Regimen'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.regimen);
         },
       },
       {
@@ -72,15 +72,15 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('hivStatus', 'HIV Status'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivStatus);
         },
       },
       {
         key: 'outcome',
         header: t('outcome', 'Outcome'),
-        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbTreatmentAndFollowUp],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.testConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.outcome);
         },
       },
     ],
@@ -89,7 +89,12 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
 
   return (
     <>
-      <SummaryCard patientUuid={patientUuid} headerTitle={headerRecentTB} columns={recentTuberclosisColumns} maxRowItems={4}/>
+      <SummaryCard
+        patientUuid={patientUuid}
+        headerTitle={headerRecentTB}
+        columns={recentTuberclosisColumns}
+        maxRowItems={4}
+      />
 
       <EmptyStateComingSoon displayText={headerPreviousCases} headerTitle={headerPreviousCases} />
       <EmptyStateComingSoon displayText={headerVisit} headerTitle={headerVisit} />
