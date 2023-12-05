@@ -1,15 +1,93 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyStateComingSoon, PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  EncounterList,
+  EncounterListColumn,
+  PatientChartProps,
+  getObsFromEncounter,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../..';
+import { useConfig } from '@openmrs/esm-framework';
 
 const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
+
   const headerTitle = t('TbTreatmentFollowUp', 'TB Follow-up');
+  const columns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'visitDate',
+        header: t('visitDate', 'Visit Date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.VisitDate, true);
+        },
+      },
+      {
+        key: 'caseId',
+        header: t('caseId', 'Case ID'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.FollowUpCaseId);
+        },
+      },
+      {
+        key: 'monthOfTreatment',
+        header: t('monthOfTreatment', 'Month of Treatment'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.MonthOfTreatment);
+        },
+      },
+      {
+        key: 'adherenceAssessment',
+        header: t('adherenceAssessment', 'Adherence Assessment'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.AdherenceAssessment);
+        },
+      },
+      {
+        key: 'nextAppointment',
+        header: t('nextAppointment', 'Next Appointment'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.NextAppointmentDate, true);
+        },
+      },
+      {
+        key: 'actions',
+        header: t('actions', 'Actions'),
+        getValue: (encounter) => [
+          {
+            form: { name: 'TB Follow-up Form' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('viewDetails', 'View Details'),
+            mode: 'view',
+          },
+          {
+            form: { name: 'TB Follow-up Form' },
+            encounterUuid: encounter.uuid,
+            intent: '*',
+            label: t('editForm', 'Edit Form'),
+            mode: 'edit',
+          },
+        ],
+      },
+    ],
+    [],
+  );
 
   return (
-    <>
-      <EmptyStateComingSoon displayText={headerTitle} headerTitle={headerTitle} />
-    </>
+    <EncounterList
+      patientUuid={patientUuid}
+      encounterType={config.encounterTypes.tbTreatmentAndFollowUp}
+      formList={[{ name: 'TB Follow-up Form' }]}
+      columns={columns}
+      description={headerTitle}
+      headerTitle={headerTitle}
+      launchOptions={{
+        displayText: t('add', 'Add'),
+        moduleName: moduleName,
+      }}
+    />
   );
 };
 

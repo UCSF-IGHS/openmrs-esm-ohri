@@ -21,5 +21,9 @@
   "regimen": "Regimen",
   "site": "Site",
   "type": "Type",
-  "visits": "Visits"
+  "visits": "Visits",
+  "visitDate": "Visit Date",
+  "monthOfTreatment": "Month of Treatment",
+  "adherenceAssessment": "Adherence Assessment",
+  "nextAppointment": "Next Appointment"
 }
