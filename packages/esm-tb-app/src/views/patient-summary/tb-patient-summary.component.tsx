@@ -1,5 +1,7 @@
 import {
   EmptyStateComingSoon,
+  EncounterList,
+  EncounterListColumn,
   PatientChartProps,
   SummaryCard,
   SummaryCardColumn,
@@ -8,6 +10,7 @@ import {
 import { useConfig } from '@openmrs/esm-framework';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { moduleName } from '../..';
 
 const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -87,6 +90,54 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
     [],
   );
 
+  const previousCasesColumns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'caseID',
+        header: t('caseID', 'Case ID'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
+        },
+      },
+      {
+        key: 'enrollmentDate',
+        header: t('enrollmentDate', 'Enrollment Date'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.enrollmentDate, true);
+        },
+      },
+      {
+        key: 'type',
+        header: t('type', 'Type'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.type);
+        },
+      },
+      {
+        key: 'site',
+        header: t('site', 'Site'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.site);
+        },
+      },
+      {
+        key: 'regimen',
+        header: t('regimen', 'Regimen'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.regimen);
+        },
+      },
+      {
+        key: 'outcome',
+        header: t('outcome', 'Outcome'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.outcome);
+        },
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       <SummaryCard
@@ -96,7 +147,19 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         maxRowItems={4}
       />
 
-      <EmptyStateComingSoon displayText={headerPreviousCases} headerTitle={headerPreviousCases} />
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={config.encounterTypes.tbProgramEnrollment}
+        formList={[{ name: 'TB Case Enrollment Form' }]}
+        columns={previousCasesColumns}
+        description={headerPreviousCases}
+        headerTitle={headerPreviousCases}
+        launchOptions={{
+          displayText: t('add', 'Add'),
+          moduleName: moduleName,
+        }}
+      />
+
       <EmptyStateComingSoon displayText={headerVisit} headerTitle={headerVisit} />
     </>
   );
