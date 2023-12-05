@@ -9,6 +9,7 @@ export interface SummaryCardProps {
   patientUuid: string;
   columns: Array<SummaryCardColumn>;
   headerTitle: string;
+  maxRowItems?: number;
 }
 
 export interface SummaryCardColumn {
@@ -19,7 +20,7 @@ export interface SummaryCardColumn {
   getObsSummary?: (encounter: OpenmrsEncounter[]) => string | Promise<string>;
 }
 
-export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, headerTitle }) => {
+export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, headerTitle, maxRowItems }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [columnEncountersMappings, setColumnEncountersMappings] = useState<
     {
@@ -27,6 +28,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
       encounters: OpenmrsEncounter[];
     }[]
   >([]);
+  const [groupedEncounterMappings, setGroupedEncounterMappings] = useState<Array<any>>([]);
 
   useEffect(() => {
     Promise.all(columns.map((column) => fetchLatestEncountersOfTypes(patientUuid, column.encounterTypes))).then(
@@ -38,6 +40,18 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
     );
   }, [columns, patientUuid]);
 
+  useEffect(() => {
+    if (maxRowItems && columnEncountersMappings.length > maxRowItems) {
+      let groups = [];
+
+      for (let i = 0; i < columnEncountersMappings.length; i += maxRowItems) {
+        const row = columnEncountersMappings.slice(i, i + maxRowItems);
+        groups.push(row);
+      }
+      setGroupedEncounterMappings(groups);
+    }
+  }, [columnEncountersMappings, maxRowItems]);
+
   return (
     <>
       {isLoading ? (
@@ -47,25 +61,41 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
           <div className={styles.cardTitle}>
             <h4 className={styles.title}> {headerTitle} </h4>
           </div>
-          <Column className={styles.columnContainer}>
-            {columnEncountersMappings.map(({ column, encounters }) => (
-              <div className={styles.tileBox}>
-                <div className={styles.tileBoxColumn}>
-                  <span className={styles.tileTitle}> {column.header} </span>
-                  <span className={styles.tileValue}>
-                    <LazyCell lazyValue={column.getObsValue(encounters)} />
-                  </span>
-                  {column.getObsSummary && (
-                    <span className={styles.tileTitle}>
-                      <LazyCell lazyValue={column.getObsSummary(encounters)} />
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </Column>
+          {maxRowItems ? (
+            groupedEncounterMappings.map((group) => (
+              <Column className={styles.columnContainer}>
+                {group.map(({ column, encounters }) => (
+                  <SummaryItem column={column} encounters={encounters} />
+                ))}
+              </Column>
+            ))
+          ) : (
+            <Column className={styles.columnContainer}>
+              {columnEncountersMappings.map(({ column, encounters }) => (
+                <SummaryItem column={column} encounters={encounters} />
+              ))}
+            </Column>
+          )}
         </Tile>
       )}
     </>
   );
 };
+
+function SummaryItem({ column, encounters }) {
+  return (
+    <div className={styles.tileBox}>
+      <div className={styles.tileBoxColumn}>
+        <span className={styles.tileTitle}> {column.header} </span>
+        <span className={styles.tileValue}>
+          <LazyCell lazyValue={column.getObsValue(encounters)} />
+        </span>
+        {column.getObsSummary && (
+          <span className={styles.tileTitle}>
+            <LazyCell lazyValue={column.getObsSummary(encounters)} />
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}

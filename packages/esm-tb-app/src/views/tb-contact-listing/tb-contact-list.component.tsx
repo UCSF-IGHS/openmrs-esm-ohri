@@ -7,10 +7,11 @@ import {
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../index';
-import { CaseId, ClientListingEncounterType, DateContacted } from '../../constants';
+import { useConfig } from '@openmrs/esm-framework';
 
 const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
   const headerTitle = t('TbContactListing', 'TB Contact Listing');
 
   const columns: EncounterListColumn[] = useMemo(
@@ -19,14 +20,14 @@ const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'caseID',
         header: t('caseId', 'TB Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, CaseId);
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
         },
       },
       {
         key: 'dateContactListed',
         header: t('dateContactListed', 'Date Contact Listed'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, DateContacted, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.dateContacted, true);
         },
       },
       {
@@ -63,7 +64,7 @@ const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={ClientListingEncounterType}
+      encounterType={config.encounterTypes.tbContactListing}
       formList={[{ name: 'TB Contact Listing' }]}
       columns={columns}
       description={headerTitle}
