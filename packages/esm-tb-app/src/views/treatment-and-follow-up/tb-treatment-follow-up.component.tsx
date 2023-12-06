@@ -20,35 +20,35 @@ const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) =
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.VisitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDate, true);
         },
       },
       {
         key: 'caseId',
         header: t('caseId', 'Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.FollowUpCaseId);
+          return getObsFromEncounter(encounter, config.obsConcepts.followUpCaseId);
         },
       },
       {
         key: 'monthOfTreatment',
         header: t('monthOfTreatment', 'Month of Treatment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.MonthOfTreatment);
+          return getObsFromEncounter(encounter, config.obsConcepts.monthOfTreatment);
         },
       },
       {
         key: 'adherenceAssessment',
         header: t('adherenceAssessment', 'Adherence Assessment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.AdherenceAssessment);
+          return getObsFromEncounter(encounter, config.obsConcepts.adherenceAssessment);
         },
       },
       {
         key: 'nextAppointment',
         header: t('nextAppointment', 'Next Appointment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.NextAppointmentDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.nextAppointmentDate, true);
         },
       },
       {
