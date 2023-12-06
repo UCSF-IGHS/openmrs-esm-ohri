@@ -134,26 +134,6 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
           return getObsFromEncounter(encounter, config.obsConcepts.outcome);
         },
       },
-      {
-        key: 'actions',
-        header: t('actions', 'Actions'),
-        getValue: (encounter) => [
-          {
-            form: { name: 'TB Case Enrollment Form' },
-            encounterUuid: encounter.uuid,
-            intent: '*',
-            label: t('viewDetails', 'View Details'),
-            mode: 'view',
-          },
-          {
-            form: { name: 'TB Case Enrollment Form' },
-            encounterUuid: encounter.uuid,
-            intent: '*',
-            label: t('editForm', 'Edit Form'),
-            mode: 'edit',
-          },
-        ],
-      },
     ],
     [],
   );
@@ -170,12 +150,13 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
       <EncounterList
         patientUuid={patientUuid}
         encounterType={config.encounterTypes.tbProgramEnrollment}
-        formList={[{ name: 'TB Case Enrollment Form' }]}
         columns={previousCasesColumns}
         description={headerPreviousCases}
         headerTitle={headerPreviousCases}
+        formList={[{ name: 'TB Case Enrollment Form' }]}
         launchOptions={{
-          displayText: t('add', 'Add'),
+          hideFormLauncher: true,
+          displayText: '',
           moduleName: moduleName,
         }}
       />
