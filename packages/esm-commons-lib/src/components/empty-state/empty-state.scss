@@ -5,6 +5,7 @@
 .action {
   margin-bottom: spacing.$spacing-03;
 }
+
 .desktopHeading {
   h4 {
     @include type.type-style('heading-compact-02');
@@ -52,6 +53,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .tile {
   text-align: center;
   border: 1px solid $ui-03;
