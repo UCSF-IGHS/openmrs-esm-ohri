@@ -43,10 +43,10 @@ function TbHomePatientTabs() {
             },
           },
           {
-            key: 'typeOfTb',
+            key: 'site',
             header: t('typeOfTb,', 'Type of TB'),
             getValue: ( { latestEncounter } ) => {
-              return getObsFromEncounter(latestEncounter, config.obsConcepts.typeOfTb);
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.site);
             },
           },
           {
@@ -57,10 +57,10 @@ function TbHomePatientTabs() {
             },
           },
           {
-            key: 'tbOutcome',
+            key: 'outcome',
             header: t('outcome', 'Outcome'),
             getValue: ({ latestEncounter }) => {
-              return getObsFromEncounter(latestEncounter, config.obsConcepts.tbOutcome);
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.outcome);
             },
           },
         ],
