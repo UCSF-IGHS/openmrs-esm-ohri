@@ -6,14 +6,6 @@
   "dateContactListed": "Date Contact Listed",
   "drugResistant": "Cases with drug resistant TB",
   "drugSensitive": "Cases with drug sesnsitive TB",
-  "editAssessmentForm": "Edit TB case assessment form",
-  "caseId": "Case ID",
-  "drugSensitivity": "Drug Sensitivity",
-  "typeTB": "Type of TB",
-  "appointmentDate": "Appointment Date",
-  "outcome": "Outcome",
-  "location": "Location",
-  "dateContactListed": "Date Contact Listed"  
   "drugSensitivity": "Drug Sensitivity",
   "enrollmentDate": "Enrollment Date",
   "hivStatus": "HIV Status",
@@ -33,5 +25,7 @@
   "visitDate": "Visit Date",
   "monthOfTreatment": "Month of Treatment",
   "adherenceAssessment": "Adherence Assessment",
-  "nextAppointment": "Next Appointment"
+  "nextAppointment": "Next Appointment",
+  "typeOfTb": "Type of TB",
+  "appointmentDate": "Appointment Date"
 }

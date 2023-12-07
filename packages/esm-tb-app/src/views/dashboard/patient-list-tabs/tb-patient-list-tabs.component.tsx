@@ -1,13 +1,4 @@
 import React, { useMemo } from 'react';
-import {
-  tbCaseEnrollmentEncType,
-  caseId,
-  drugSensitivity,
-  typeOfTb,
-  tbOutcome,
-  clientsEnrolledForTb,
-
-} from '../../../constants';
 import { useTranslation } from 'react-i18next';
 import {
   getObsFromEncounter,
@@ -15,15 +6,17 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import moment from 'moment';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 function TbHomePatientTabs() {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const tabsConfigs = useMemo(
     () => [
       {
         label: t('allTbClients', 'All TB Clients'),
-        cohortId: clientsEnrolledForTb,
+        cohortId: config.cohorts.clientsEnrolledForTb,
         isReportingCohort: true,
         cohortSlotName: 'clients-assessed-for-covid-tb',
         launchableForm: {
@@ -32,14 +25,13 @@ function TbHomePatientTabs() {
           targetDashboard: 'tb-assessments',
           name: 'TB Case Enrollment Form',
         },
-        associatedEncounterType: tbCaseEnrollmentEncType,
         excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
         otherColumns: [
           {
-            key: 'caseId',
-            header: t('caseId', 'Case ID'),
-            getValue: ({ latestEncounter }) => {
-              return getObsFromEncounter(latestEncounter, caseId);
+            key: 'caseID',
+            header: t('caseID', 'Case ID'),
+            getValue: ( { latestEncounter }) => {
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.caseID);
             },
             index: 1,
           },
@@ -47,14 +39,14 @@ function TbHomePatientTabs() {
             key: 'drugSensitivity',
             header: t('drugSensitivity', 'Drug Sensitivity'),
             getValue: ({ latestEncounter }) => {              
-              return getObsFromEncounter(latestEncounter, drugSensitivity);
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.drugSensitivity);
             },
           },
           {
-            key: 'typeTb',
-            header: t('typeTB', 'Type of TB'),
-            getValue: ({ latestEncounter }) => {
-              return getObsFromEncounter(latestEncounter, typeOfTb);
+            key: 'typeOfTb',
+            header: t('typeOfTb,', 'Type of TB'),
+            getValue: ( { latestEncounter } ) => {
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.typeOfTb);
             },
           },
           {
@@ -65,10 +57,10 @@ function TbHomePatientTabs() {
             },
           },
           {
-            key: 'outcome',
+            key: 'tbOutcome',
             header: t('outcome', 'Outcome'),
             getValue: ({ latestEncounter }) => {
-              return getObsFromEncounter(latestEncounter, tbOutcome);
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.tbOutcome);
             },
           },
         ],
