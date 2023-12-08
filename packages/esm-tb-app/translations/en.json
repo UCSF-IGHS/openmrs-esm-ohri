@@ -25,5 +25,7 @@
   "visitDate": "Visit Date",
   "monthOfTreatment": "Month of Treatment",
   "adherenceAssessment": "Adherence Assessment",
-  "nextAppointment": "Next Appointment"
+  "nextAppointment": "Next Appointment",
+  "siteOfTb": "Site of TB",
+  "appointmentDate": "Appointment Date"
 }
