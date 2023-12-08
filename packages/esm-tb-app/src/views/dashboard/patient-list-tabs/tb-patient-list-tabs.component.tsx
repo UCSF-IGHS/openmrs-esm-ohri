@@ -44,7 +44,7 @@ function TbHomePatientTabs() {
           },
           {
             key: 'site',
-            header: t('typeOfTb,', 'Type of TB'),
+            header: t('siteOfTb,', 'Site of TB'),
             getValue: ( { latestEncounter } ) => {
               return getObsFromEncounter(latestEncounter, config.obsConcepts.site);
             },
