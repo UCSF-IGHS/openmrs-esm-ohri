@@ -50,10 +50,10 @@ function TbHomePatientTabs() {
             },
           },
           {
-            key: 'appointmentDate',
+            key: 'nextAppointmentDate',
             header: t('appointmentDate', 'Appointment Date'),
             getValue: ({ latestEncounter }) => {
-              return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
+              return getObsFromEncounter(latestEncounter, config.obsConcepts.nextAppointmentDate, true);
             },
           },
           {
