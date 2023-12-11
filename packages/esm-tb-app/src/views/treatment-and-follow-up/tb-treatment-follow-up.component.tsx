@@ -32,14 +32,14 @@ const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) =
       },
       {
         key: 'monthOfTreatment',
-        header: t('monthOfTreatment', 'Month of Treatment'),
+        header: t('monthOfTreatment', 'Month of Rx'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, config.obsConcepts.monthOfTreatment);
         },
       },
       {
         key: 'adherenceAssessment',
-        header: t('adherenceAssessment', 'Adherence Assessment'),
+        header: t('adherenceAssessment', 'Adherence'),
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, config.obsConcepts.adherenceAssessment);
         },
