@@ -37,6 +37,7 @@ export const configSchema = {
       monthOfTreatment: '1418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       adherenceAssessment: '164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       nextAppointmentDate: '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      ADR: '160646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
