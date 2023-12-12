@@ -37,6 +37,11 @@ export const configSchema = {
       monthOfTreatment: '1418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       adherenceAssessment: '164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       nextAppointmentDate: '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      DateEnrolledToTB: '161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      TreatmentId: '164415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      TreatmentStartDate: '164416AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      Drregimen: '16fd7307-0b26-4c8b-afa3-8362baff4042',
+      DateOfTreatmentOutcome: '159787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
@@ -44,8 +49,8 @@ export const configSchema = {
     _description: 'TB Cohort uuid.',
     _default: {
       clientsEnrolledForTb: '98fd11ba-cb4d-46f7-9b82-40d49949c7ef',
-    }
-  }
+    },
+  },
 };
 
 export interface ConfigObject {
