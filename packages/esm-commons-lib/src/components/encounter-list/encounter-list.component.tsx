@@ -205,6 +205,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   disableEdit == true &&
                   findEncounterLatestDateIndex(encounters) != encounterIndex
                 }
+                // disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>
