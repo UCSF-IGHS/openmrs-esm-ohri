@@ -1,6 +1,7 @@
 import { OHRIFormSchema, SessionMode } from '@openmrs/openmrs-form-engine-lib';
 import { launchForm } from '../../utils/ohri-forms-commons';
 import { capitalize } from 'lodash-es';
+import { OpenmrsEncounter } from '../../api/types';
 
 type LaunchAction = 'add' | 'view' | 'edit';
 
@@ -25,4 +26,26 @@ export function launchEncounterForm(
     onFormSave,
     workspaceWindowSize,
   );
+}
+
+export const findEncounterLatestDateIndex = (encounters: OpenmrsEncounter[]) => {
+
+  if (!encounters || !encounters.length) {
+    return;
+  }
+
+  let latestDateIndex: number = 0;
+
+  for (let i = 1; i < encounters?.length; i++) {
+
+    const currentDate = new Date(encounters[i].encounterDatetime);
+    const latestDate = new Date(encounters[latestDateIndex].encounterDatetime);
+
+    if (currentDate > latestDate) {
+      latestDateIndex = i;
+    }
+  }
+
+  return latestDateIndex;
+
 }

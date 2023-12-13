@@ -8,7 +8,7 @@ import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
 import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
-import { launchEncounterForm } from './helpers';
+import { launchEncounterForm, findEncounterLatestDateIndex } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
@@ -67,7 +67,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     onFormSave,
   } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
-
+  
   const defaultActions = useMemo(
     () => [
       {
@@ -124,16 +124,16 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
-      const startIndex = (currentPage - 1) * pageSize;
+            const startIndex = (currentPage - 1) * pageSize;
       const paginatedEncounters = [];
       for (let i = startIndex; i < startIndex + pageSize; i++) {
         if (i < encounters.length) {
           paginatedEncounters.push(encounters[i]);
         }
       }
-      const rows = paginatedEncounters.map((encounter) => {
+      const rows = paginatedEncounters.map((encounter, encounterIndex: number) => {
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
-        // inject launch actions
+                // inject launch actions
         encounter['launchFormActions'] = {
           editEncounter: () =>
             launchEncounterForm(
@@ -198,6 +198,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
+                disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>
@@ -212,7 +213,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   useEffect(() => {
     if (encounters?.length) {
       constructPaginatedTableRows(encounters, currentPage, pageSize);
-    }
+          }
   }, [encounters, pageSize, constructPaginatedTableRows, currentPage]);
 
   const formLauncher = useMemo(() => {
