@@ -28,7 +28,7 @@ export function launchEncounterForm(
   );
 }
 
-export const findEncounterLatestDateIndex = async (encounters: OpenmrsEncounter[]) => {
+export const findEncounterLatestDateIndex = (encounters: OpenmrsEncounter[]) => {
   if (!encounters || !encounters.length) {
     return;
   }
@@ -43,7 +43,6 @@ export const findEncounterLatestDateIndex = async (encounters: OpenmrsEncounter[
       latestDateIndex = i;
     }
   }
-  const encounterUuid = new Date(encounters[latestDateIndex].uuid);
 
-  return { latestDateIndex, encounterUuid };
+  return latestDateIndex;
 };
