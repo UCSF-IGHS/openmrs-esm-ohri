@@ -4,17 +4,27 @@ import {
   EncounterList,
   EncounterListColumn,
   PatientChartProps,
+  fetchPatientLastEncounter,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
 import { useConfig } from '@openmrs/esm-framework';
-import { usePatientTreatmentOutcome } from '../../../hooks/usePatientTreatmentOutcome';
 
 const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const config = useConfig();
-  const { isEmptyOutcome } = usePatientTreatmentOutcome(patientUuid);
   const headerTitle = t('MdrTbEnrolment', 'TB/MDR TB Enrolment');
+  const [isEmptyOutcome, setIsEmptyOutcome] = useState(true);
+
+  useEffect(() => {
+    fetchPatientLastEncounter(patientUuid, config.encounterTypes.tbProgramEnrollment).then((encounter) => {
+      const result = encounter.obs.filter((ob) => ob.concept.uuid === config.obsConcepts.outcome);
+      if (result.length) {
+        setIsEmptyOutcome(false);
+      }
+    });
+  }, []);
+
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
