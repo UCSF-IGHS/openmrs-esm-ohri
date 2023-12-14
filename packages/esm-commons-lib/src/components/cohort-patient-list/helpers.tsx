@@ -15,6 +15,7 @@ interface PatientMetaConfig {
   launchableFormProps: Record<string, any>;
   moduleName: string;
   addPatientToListOptions: { isEnabled: boolean; excludeCohorts?: Array<string>; displayText: string };
+  viewPatientProgramSummary?: boolean;
 }
 
 export interface PatientListColumn {
@@ -71,8 +72,51 @@ export const LaunchableFormMenuItem = ({
   );
 };
 
+export const ViewSummaryMenuItem = ({
+  patientUuid,
+  ViewSummary,
+  encounterType,
+}) => {
+  const [actionText, setActionText] = useState(ViewSummary.actionText);
+  const [encounterUuid, setEncounterUuid] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const viewSummaryActionText = ViewSummary.actionText || 'View Summary ';
+
+  useEffect(() => {
+    if (ViewSummary.editLatestEncounter && encounterType && !encounterUuid) {
+      setIsLoading(true);
+      fetchPatientLastEncounter(patientUuid, encounterType).then((latestEncounter) => {
+        if (latestEncounter) {
+          setActionText(viewSummaryActionText);
+          setEncounterUuid(latestEncounter.uuid);
+        }
+        setIsLoading(false);
+      });
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return (
+    <>
+      {isLoading ? (
+        <InlineLoading style={{ margin: '0 auto', width: '16px' }} />
+      ) : (
+        <OverflowMenuItem
+          itemText={actionText}
+          onClick={() => {
+            navigate({
+              to: `/openmrs/spa/patient/${patientUuid}/chart/tb-patient-summary`,
+            });
+          }}
+        />
+      )}
+    </>
+  );
+};
+
 export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMetaConfig) {
-  const { isDynamicCohort, location, encounterType, launchableFormProps, moduleName, addPatientToListOptions } = config;
+  const { isDynamicCohort, location, encounterType, launchableFormProps, moduleName, addPatientToListOptions,viewPatientProgramSummary } = config;
   const patientUuid = !isDynamicCohort ? rawPatientMeta.patient.uuid : rawPatientMeta.person.uuid;
   return {
     timeAddedToList: !isDynamicCohort ? moment(rawPatientMeta.startDate).format('LL') : null,
@@ -102,6 +146,16 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
             excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
           />
         )}
+       {viewPatientProgramSummary ? (
+         <ViewSummaryMenuItem
+            patientUuid={patientUuid}
+            ViewSummary={launchableFormProps}            
+            encounterType={launchableFormProps.encounterType || encounterType}
+            key={patientUuid}          
+          />
+        ) : (
+          <></>
+        )}  
       </OverflowMenu>
     ),
   };

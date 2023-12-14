@@ -26,6 +26,7 @@ export function OHRIPatientListTabs({ patientListConfigs, moduleName }) {
                 launchableForm={config.launchableForm}
                 extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
                 moduleName={moduleName}
+                viewPatientProgramSummary={config.viewPatientProgramSummary}
               />
             </TabPanel>
           );

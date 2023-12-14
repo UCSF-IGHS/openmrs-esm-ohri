@@ -27,5 +27,6 @@
   "adherenceAssessment": "Adherence",
   "nextAppointment": "Next Appointment",
   "siteOfTb": "Site of TB",
-  "appointmentDate": "Appointment Date"
+  "appointmentDate": "Appointment Date",
+  "editFollowUpForm": "Edit TB Follow-up Form"
 }
