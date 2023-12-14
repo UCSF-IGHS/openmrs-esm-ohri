@@ -138,6 +138,54 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
     [],
   );
 
+  const tbVisitsColumns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'caseID',
+        header: t('caseID', 'Case ID'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
+        },
+      },
+      {
+        key: 'dateOfVisit',
+        header: t('dateOfVisit', 'Date of Visit'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDate, true);
+        },
+      },
+      {
+        key: 'monthOfVisit',
+        header: t('monthOfVisit', 'Month of Visit'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.monthOfTreatment);
+        },
+      },
+      {
+        key: 'adherence',
+        header: t('adherence', 'Adherence'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.adherenceAssessment);
+        },
+      },
+      {
+        key: 'adverseDrugReaction',
+        header: t('adverseDrugReaction', 'Adverse Drug Reaction'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.ADR);
+        },
+      },
+      {
+        key: 'nextAppointment',
+        header: t('nextAppointment', 'Next Appointment'),
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, config.obsConcepts.nextAppointmentDate, true);
+        },
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       <SummaryCard
@@ -161,7 +209,19 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         }}
       />
 
-      <EmptyStateComingSoon displayText={headerVisit} headerTitle={headerVisit} />
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={config.encounterTypes.tbTreatmentAndFollowUp}
+        columns={tbVisitsColumns}
+        description={headerVisit}
+        headerTitle={headerVisit}
+        formList={[{ name: 'TB Follow-up Form' }]}
+        launchOptions={{
+          hideFormLauncher: true,
+          displayText: '',
+          moduleName: moduleName,
+        }}
+      />
     </>
   );
 };
