@@ -4,7 +4,6 @@ import {
   getObsFromEncounter,
   OHRIPatientListTabs,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import moment from 'moment';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
 
@@ -20,11 +19,12 @@ function TbHomePatientTabs() {
         isReportingCohort: true,
         cohortSlotName: 'clients-assessed-for-covid-tb',
         launchableForm: {
-          editActionText: t('editAssessmentForm', 'Edit TB case assessment form'),
+          editActionText: t('editFollowUpForm', 'Edit TB Follow-up Form'),
           editLatestEncounter: true,
           targetDashboard: 'tb-assessments',
-          name: 'TB Case Enrollment Form',
+          name: 'TB Follow-up Form',
         },
+        associatedEncounterType: config.encounterTypes.tbProgramEnrollment,
         excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
         otherColumns: [
           {
@@ -64,6 +64,7 @@ function TbHomePatientTabs() {
             },
           },
         ],
+        viewPatientProgramSummary:true
       },
     ],
     [],
