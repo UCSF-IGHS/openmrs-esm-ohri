@@ -31,7 +31,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'enrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.DateEnrolledToTB, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.enrollmentDate, true);
         },
       },
       {
@@ -59,7 +59,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.Drregimen);
+          return getObsFromEncounter(encounter, config.obsConcepts.regimen);
         },
       },
       {
