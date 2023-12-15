@@ -18,8 +18,8 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   useEffect(() => {
     fetchPatientLastEncounter(patientUuid, config.encounterTypes.tbProgramEnrollment).then((encounter) => {
-      const result = encounter.obs.filter((ob) => ob.concept.uuid === config.obsConcepts.outcome);
-      if (result.length) {
+      const result = encounter?.obs?.filter((ob) => ob?.concept?.uuid === config.obsConcepts.outcome);
+      if (result?.length) {
         setIsEmptyOutcome(false);
       }
     });
