@@ -1,5 +1,5 @@
 import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getActiveDsCasesCount, getActiveDrCasesCount, } from '../../../api/api';
 
@@ -7,7 +7,7 @@ function TbSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeDSClientsCount, setActiveDSClientsCount] = useState(null);
   const [activeDRClientsCount, setActiveDRClientsCount] = useState(null);
-  
+
   useEffect(() => {
     getActiveDsCasesCount().then((count) => {
       setActiveDSClientsCount(count);
@@ -19,8 +19,8 @@ function TbSummaryTiles({ launchWorkSpace }) {
       setActiveDRClientsCount(count);
     });
   }, []);
-
-  const tiles = [
+  const tiles = useMemo(
+    () => [
       {
         title: t('activeDsCases', 'Active DS Cases'),
         linkAddress: '#',
@@ -33,7 +33,10 @@ function TbSummaryTiles({ launchWorkSpace }) {
         subTitle: t('drugResistant', 'Cases with drug resistant TB'),
         value: activeDRClientsCount,
       }
-    ];
+    ],
+    [activeDSClientsCount, activeDRClientsCount],
+  );
+
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
