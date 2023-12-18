@@ -1,24 +1,30 @@
 import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getActiveDsCasesCount, getActiveDrCasesCount, } from '../../../api/api';
+import { fetchMambaReportData } from '../../../../../../packages/esm-commons-lib/src/api/api';
 
 function TbSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeDSClientsCount, setActiveDSClientsCount] = useState(null);
   const [activeDRClientsCount, setActiveDRClientsCount] = useState(null);
-
+  
   useEffect(() => {
-    getActiveDsCasesCount().then((count) => {
-      setActiveDSClientsCount(count);
-    });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const dsCount = await fetchMambaReportData('total_active_ds_cases');
+        const drCount = await fetchMambaReportData('total_active_dr_cases');
 
-  useEffect(() => {
-    getActiveDrCasesCount().then((count) => {
-      setActiveDRClientsCount(count);
-    });
+        setActiveDSClientsCount(dsCount);
+        setActiveDRClientsCount(drCount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw new Error('Error fetching data. Please try again.');
+      }
+    };
+
+    fetchData();
   }, []);
+  
   const tiles = useMemo(
     () => [
       {

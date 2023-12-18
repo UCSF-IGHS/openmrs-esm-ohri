@@ -239,3 +239,23 @@ export function fetchFormsClobData(valueReferences: string[]) {
   const fetch = (ref: string) => openmrsFetch(`/ws/rest/v1/clobdata/${ref}`);
   return Promise.all(valueReferences?.map((ref) => fetch(ref)));
 }
+
+export async function fetchMambaReportData(reportId: string) {
+  try {
+    const response = await openmrsFetch(`ws/rest/v1/mamba/report?report_id=${reportId}`);
+    const data = await response.json();
+
+    if (data && data.results && data.results.length > 0) {
+      const record = data.results[0].record;
+
+      for (const item of record) {
+        return item.value ? parseInt(item.value, 10) : 0;
+      }
+    }
+
+    return 0;
+  } catch (error) {
+    console.error(`Error fetching data for report_id=${reportId}: `, error);
+    throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
+  }
+}
