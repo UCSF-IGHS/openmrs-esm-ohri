@@ -107,6 +107,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         displayText: t('add', 'Add'),
         moduleName: moduleName,
       }}
+      disableEdit={true}
     />
   );
 };
