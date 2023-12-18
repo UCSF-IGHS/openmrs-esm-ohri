@@ -201,15 +201,10 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
-                // disabled={
-                //   actionItem.label == 'Edit form' &&
-                //   disableEdit == true &&
-                //   findEncounterLatestDateIndex(encounters).then != encounterIndex
-                // }
                 disabled={
-                  disableEdit == true &&
                   actionItem.label == 'Edit form' &&
-                  fetchPatientLastEncounter(patientUuid, encounterType) != encounter.uuid
+                  disableEdit == true &&
+                  findEncounterLatestDateIndex(encounters) != encounterIndex
                 }
               />
             ))}
