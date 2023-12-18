@@ -200,13 +200,13 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
+                // disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
+                // disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
                 disabled={
                   actionItem.label == 'Edit form' &&
                   disableEdit == true &&
                   findEncounterLatestDateIndex(encounters) != encounterIndex
                 }
-                // disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
-                // disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>
