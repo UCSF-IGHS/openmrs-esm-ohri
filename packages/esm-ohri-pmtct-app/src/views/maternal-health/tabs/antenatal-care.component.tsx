@@ -108,6 +108,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         displayText: t('add', 'Add'),
         moduleName: moduleName,
       }}
+      disableEdit={true}
     />
   );
 };

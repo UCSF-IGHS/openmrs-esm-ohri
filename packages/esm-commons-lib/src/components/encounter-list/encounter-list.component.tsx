@@ -40,6 +40,7 @@ export interface EncounterListProps {
     workspaceWindowSize?: 'minimized' | 'maximized';
   };
   filter?: (encounter: any) => boolean;
+  disableEdit?: boolean;
 }
 
 export const EncounterList: React.FC<EncounterListProps> = ({
@@ -51,6 +52,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   formList,
   filter,
   launchOptions,
+  disableEdit,
 }) => {
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
@@ -198,7 +200,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
-                disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
+                disabled={actionItem.label == 'Edit form' && disableEdit == true && findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>

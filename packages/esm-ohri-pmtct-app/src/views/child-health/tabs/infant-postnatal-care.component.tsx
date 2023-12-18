@@ -114,6 +114,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         displayText: t('add', 'Add'),
         moduleName: moduleName,
       }}
+      disableEdit={true}
     />
   );
 };
