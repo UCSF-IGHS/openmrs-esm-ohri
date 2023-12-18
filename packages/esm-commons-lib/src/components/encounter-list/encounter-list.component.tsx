@@ -124,6 +124,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
+      console.log('counters', encounters);
             const startIndex = (currentPage - 1) * pageSize;
       const paginatedEncounters = [];
       for (let i = startIndex; i < startIndex + pageSize; i++) {
@@ -180,7 +181,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         });
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
-        tableRow['actions'] = (
+                tableRow['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
@@ -198,7 +199,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
-                disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
+                disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>
