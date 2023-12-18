@@ -127,7 +127,6 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
       const startIndex = (currentPage - 1) * pageSize;
-      console.log('counters', encounters);
       const paginatedEncounters = [];
       for (let i = startIndex; i < startIndex + pageSize; i++) {
         if (i < encounters.length) {
