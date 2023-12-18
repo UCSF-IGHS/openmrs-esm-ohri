@@ -127,6 +127,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
       const startIndex = (currentPage - 1) * pageSize;
+      console.log('counters', encounters);
       const paginatedEncounters = [];
       for (let i = startIndex; i < startIndex + pageSize; i++) {
         if (i < encounters.length) {
@@ -206,6 +207,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   findEncounterLatestDateIndex(encounters) != encounterIndex
                 }
                 // disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
+                // disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>
