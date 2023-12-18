@@ -94,6 +94,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         displayText: t('add', 'Add'),
         moduleName: moduleName,
       }}
+      disableEdit={true}
     />
   );
 };
