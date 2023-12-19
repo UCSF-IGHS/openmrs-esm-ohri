@@ -1,7 +1,6 @@
-import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles, fetchMambaReportData } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { fetchMambaReportData } from '../../../../../../packages/esm-commons-lib/src/api/api';
 
 function TbSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
