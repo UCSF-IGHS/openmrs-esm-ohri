@@ -69,7 +69,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     onFormSave,
   } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
-  
+
   const defaultActions = useMemo(
     () => [
       {
@@ -126,7 +126,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
-            const startIndex = (currentPage - 1) * pageSize;
+      const startIndex = (currentPage - 1) * pageSize;
       const paginatedEncounters = [];
       for (let i = startIndex; i < startIndex + pageSize; i++) {
         if (i < encounters.length) {
@@ -135,7 +135,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       }
       const rows = paginatedEncounters.map((encounter, encounterIndex: number) => {
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
-                // inject launch actions
+        // inject launch actions
         encounter['launchFormActions'] = {
           editEncounter: () =>
             launchEncounterForm(
@@ -182,7 +182,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         });
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
-                tableRow['actions'] = (
+        tableRow['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
@@ -200,7 +200,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
-                disabled={actionItem.label == 'Edit form' && disableEdit == true && findEncounterLatestDateIndex(encounters) != encounterIndex}
+                disabled={
+                  actionItem.label == 'Edit form' &&
+                  disableEdit == true &&
+                  findEncounterLatestDateIndex(encounters) != encounterIndex
+                }
               />
             ))}
           </OverflowMenu>
@@ -215,7 +219,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   useEffect(() => {
     if (encounters?.length) {
       constructPaginatedTableRows(encounters, currentPage, pageSize);
-          }
+    }
   }, [encounters, pageSize, constructPaginatedTableRows, currentPage]);
 
   const formLauncher = useMemo(() => {
