@@ -14,13 +14,13 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('MdrTbEnrolment', 'TB/MDR TB Enrolment');
-  const [isEmptyOutcome, setIsEmptyOutcome] = useState(true);
+  const [isEmptyOutcome, setIsEmptyOutcome] = useState(false);
 
   useEffect(() => {
     fetchPatientLastEncounter(patientUuid, config.encounterTypes.tbProgramEnrollment).then((encounter) => {
       const result = encounter?.obs?.filter((ob) => ob?.concept?.uuid === config.obsConcepts.outcome);
-      if (result?.length) {
-        setIsEmptyOutcome(false);
+      if (result?.length === 0) {
+        setIsEmptyOutcome(true);
       }
     });
   }, []);
