@@ -7,12 +7,14 @@ function TbSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeDSClientsCount, setActiveDSClientsCount] = useState(null);
   const [activeDRClientsCount, setActiveDRClientsCount] = useState(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const dsCount = await fetchMambaReportData('total_active_ds_cases');
-        const drCount = await fetchMambaReportData('total_active_dr_cases');
+        const [dsCount, drCount] = await Promise.all([
+          fetchMambaReportData('total_active_ds_cases'),
+          fetchMambaReportData('total_active_dr_cases'),
+        ]);
 
         setActiveDSClientsCount(dsCount);
         setActiveDRClientsCount(drCount);
@@ -24,7 +26,7 @@ function TbSummaryTiles({ launchWorkSpace }) {
 
     fetchData();
   }, []);
-  
+
   const tiles = useMemo(
     () => [
       {
