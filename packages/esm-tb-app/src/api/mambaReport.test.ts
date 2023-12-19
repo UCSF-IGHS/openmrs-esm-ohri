@@ -1,4 +1,4 @@
-import { fetchMambaReportData} from '..../../../../../packages/esm-commons-lib/src/api/api'; 
+import { fetchMambaReportData } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { openmrsFetch } from '@openmrs/esm-framework';
 
 // fetchMambaReportData.test.js
