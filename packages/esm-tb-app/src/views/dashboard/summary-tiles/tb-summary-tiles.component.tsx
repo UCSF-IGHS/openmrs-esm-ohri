@@ -1,11 +1,31 @@
-import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles, fetchMambaReportData } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 function TbSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
-  const [activeDSClientsCount, setActiveDSClientsCount] = useState(35);
-  const [activeDRClientsCount, setActiveDRClientsCount] = useState(5);
+  const [activeDSClientsCount, setActiveDSClientsCount] = useState(null);
+  const [activeDRClientsCount, setActiveDRClientsCount] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [dsCount, drCount] = await Promise.all([
+          fetchMambaReportData('total_active_ds_cases'),
+          fetchMambaReportData('total_active_dr_cases'),
+        ]);
+
+        setActiveDSClientsCount(dsCount);
+        setActiveDRClientsCount(drCount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw new Error('Error fetching data. Please try again.');
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const tiles = useMemo(
     () => [
       {
@@ -21,8 +41,9 @@ function TbSummaryTiles({ launchWorkSpace }) {
         value: activeDRClientsCount,
       }
     ],
-    [],
+    [activeDSClientsCount, activeDRClientsCount],
   );
+
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
 
