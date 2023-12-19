@@ -12,6 +12,7 @@ import {
   serviceQueuesDashboardMeta,
   patientChartDivider_dashboardMeta,
 } from './dashboard.meta';
+import { createDashboardLink } from './dashboard/create-dashboard-link.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -22,18 +23,36 @@ const options = {
   moduleName,
 };
 
-export function startupApp() {
-  defineConfigSchema(moduleName, {});
-}
+export const root = getAsyncLifecycle(() => import('./root'), options);
 
-export const dashboard = getAsyncLifecycle(() => import('./root'), options);
+export const dashboardNavMenu = getAsyncLifecycle(() => import('./dashboard/side-menu.component'), options);
 
-export const homeDashboard = getSyncLifecycle(createOHRIDashboardLink(homeDashboardMeta), options);
+export const homeWidgetDbLink = getSyncLifecycle(createDashboardLink(homeDashboardMeta), options);
 
+<<<<<<< HEAD
 export const patientList = getSyncLifecycle(PatientList, {
+=======
+export const homeWidgetDashboard = getAsyncLifecycle(() => import('./home-widgets/home-widgets.component'), options);
+
+export const ohriClinicalViewsDivider = getSyncLifecycle(
+  createOHRIPatientChartSideNavLink(patientChartDivider_dashboardMeta),
+  options,
+);
+
+// Audit these
+export const patientList = getSyncLifecycle(PatientListTable, {
+>>>>>>> 03fd3b29 (wip)
   featureName: 'home',
   moduleName,
 });
+
+export const ohriNavItems = getAsyncLifecycle(
+  () => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'),
+  {
+    featureName: 'nav-items',
+    moduleName,
+  },
+);
 
 export const appointmentsLink = getSyncLifecycle(createOHRIDashboardLink(appointmentsDashboardMeta), options);
 export const appointmentsDashboard = getAsyncLifecycle(
@@ -59,6 +78,7 @@ export const serviceQueuesDashboard = getAsyncLifecycle(
   },
 );
 
+<<<<<<< HEAD
 export const ohriNavItems = getAsyncLifecycle(
   () => import('./ohri-dashboard/side-menu/ohri-dashboard-side-nav.component'),
   {
@@ -73,3 +93,8 @@ export const ohriClinicalViewsDivider = getSyncLifecycle(
 );
 
 export const patientTable = getSyncLifecycle(PatientTable, options);
+=======
+export function startupApp() {
+  defineConfigSchema(moduleName, {});
+}
+>>>>>>> 03fd3b29 (wip)
