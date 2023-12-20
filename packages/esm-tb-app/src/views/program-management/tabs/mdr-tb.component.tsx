@@ -5,6 +5,7 @@ import {
   EncounterListColumn,
   PatientChartProps,
   fetchPatientLastEncounter,
+  findObs,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
@@ -45,21 +46,36 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tbTreatmentId',
         header: t('tbTreatmentId', 'TB Treatement ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.TreatmentId);
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const treatmentId =
+            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
+              ? config.obsConcepts.dSTreatmentId
+              : config.obsConcepts.dRTreatmentId;
+          return getObsFromEncounter(encounter, treatmentId);
         },
       },
       {
         key: 'treatmentStartDate',
         header: t('treatmentStartDate', 'Treatment Start Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.TreatmentStartDate, true);
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const tBTreatmentStartDateConcept =
+            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
+              ? config.obsConcepts.dSTreatmentStartDate
+              : config.obsConcepts.dRTreatmentStartDate;
+          return getObsFromEncounter(encounter, tBTreatmentStartDateConcept, true);
         },
       },
       {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.regimen);
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const regimen =
+            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
+              ? config.obsConcepts.dSregimen
+              : config.obsConcepts.dRregimen;
+          return getObsFromEncounter(encounter, regimen);
         },
       },
       {
