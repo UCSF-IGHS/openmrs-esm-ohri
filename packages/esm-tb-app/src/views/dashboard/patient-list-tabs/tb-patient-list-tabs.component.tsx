@@ -1,9 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  getObsFromEncounter,
-  OHRIPatientListTabs,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { getObsFromEncounter, OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
 
@@ -30,7 +27,7 @@ function TbHomePatientTabs() {
           {
             key: 'caseID',
             header: t('caseID', 'Case ID'),
-            getValue: ( { latestEncounter }) => {
+            getValue: ({ latestEncounter }) => {
               return getObsFromEncounter(latestEncounter, config.obsConcepts.caseID);
             },
             index: 1,
@@ -38,14 +35,14 @@ function TbHomePatientTabs() {
           {
             key: 'drugSensitivity',
             header: t('drugSensitivity', 'Drug Sensitivity'),
-            getValue: ({ latestEncounter }) => {              
+            getValue: ({ latestEncounter }) => {
               return getObsFromEncounter(latestEncounter, config.obsConcepts.drugSensitivity);
             },
           },
           {
             key: 'site',
             header: t('siteOfTb,', 'Site of TB'),
-            getValue: ( { latestEncounter } ) => {
+            getValue: ({ latestEncounter }) => {
               return getObsFromEncounter(latestEncounter, config.obsConcepts.site);
             },
           },
@@ -64,7 +61,7 @@ function TbHomePatientTabs() {
             },
           },
         ],
-        viewPatientProgramSummary:true
+        viewPatientProgramSummary: true,
       },
     ],
     [],

@@ -20,6 +20,7 @@ OpenMRS HIV Reference Implementation (OHRI) packages built on top of OpenMRS Fro
 - [esm-covid-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-covid-app) (COVID-19 App)
 - [esm-cervical-cancer-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-cervical-cancer-app) (Cervical Cancer App)
 - [esm-ohri-pmtct-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-ohri-pmtct-app) (PMTCT App)
+- [esm-ohri-tb-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-tb-app) (TB App)
 
 ## Installation
 
@@ -88,7 +89,7 @@ yarn test
 
 TBD
 
-## Configuration 
+## Configuration
 
 This module is designed to be driven by configuration files. These files define the look and functionality required to drive the OHRI module.
 
