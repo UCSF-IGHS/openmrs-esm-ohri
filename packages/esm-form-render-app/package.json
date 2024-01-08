@@ -7,7 +7,9 @@
   "license": "MIT",
   "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
   "keywords": [
-    "openmrs"
+    "openmrs",
+    "form render",
+    "ohri"
   ],
   "bugs": {
     "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
@@ -43,8 +45,8 @@
   "peerDependencies": {
     "@openmrs/esm-framework": "5.x",
     "@openmrs/openmrs-form-engine-lib": "1.x",
-    "react": "^18.2.0",
-    "react-i18next": "^11.18.6"
+    "react": "18.x",
+    "react-i18next": "11.x"
   },
   "devDependencies": {
     "@openmrs/openmrs-form-engine-lib": "next",

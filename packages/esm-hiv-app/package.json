@@ -21,7 +21,9 @@
     "extends browserslist-config-openmrs"
   ],
   "keywords": [
-    "openmrs"
+    "openmrs",
+    "hiv",
+    "ohri"
   ],
   "publishConfig": {
     "access": "public"
@@ -41,10 +43,10 @@
   "peerDependencies": {
     "@openmrs/esm-framework": "5.x",
     "@openmrs/esm-patient-common-lib": "6.x",
-    "dayjs": "^1.8.16",
-    "react": "^18.2.0",
-    "react-i18next": "^11.7.0",
-    "webpack": "^5.74.0"
+    "dayjs": "1.x",
+    "react": "18.x",
+    "react-i18next": "11.x",
+    "swr": "2.x"
   },
   "devDependencies": {
     "webpack": "^5.74.0"

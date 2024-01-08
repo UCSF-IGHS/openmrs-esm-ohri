@@ -3647,9 +3647,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.18.6
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3672,9 +3673,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.18.6
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3689,10 +3691,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.7.0
-    webpack: ^5.74.0
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3707,10 +3709,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.7.0
-    webpack: ^5.74.0
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3731,8 +3733,8 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/openmrs-form-engine-lib": 1.x
-    react: ^18.2.0
-    react-i18next: ^11.18.6
+    react: 18.x
+    react-i18next: 11.x
   languageName: unknown
   linkType: soft
 
@@ -3747,10 +3749,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.7.0
-    webpack: ^5.74.0
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3763,10 +3765,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.7.0
-    webpack: ^5.74.0
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3779,9 +3781,10 @@ __metadata:
   peerDependencies:
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
-    dayjs: ^1.8.16
-    react: ^18.2.0
-    react-i18next: ^11.18.6
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
   languageName: unknown
   linkType: soft
 
@@ -3837,7 +3840,7 @@ __metadata:
     rxjs: ^6.6.3
     sass: ^1.54.3
     swc-loader: ^0.1.15
-    swr: ^2.1.0
+    swr: ^2.2.4
     systemjs-webpack-interop: ^2.3.7
     turbo: ^1.5.5
     typescript: ^4.6.3
@@ -8298,6 +8301,13 @@ __metadata:
   version: 3.0.0
   resolution: "cli-width@npm:3.0.0"
   checksum: 4c94af3769367a70e11ed69aa6095f1c600c0ff510f3921ab4045af961820d57c0233acfa8b6396037391f31b4c397e1f614d234294f979ff61430a6c166c3f6
+  languageName: node
+  linkType: hard
+
+"client-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "client-only@npm:0.0.1"
+  checksum: 0c16bf660dadb90610553c1d8946a7fdfb81d624adea073b8440b7d795d5b5b08beb3c950c6a2cf16279365a3265158a236876d92bce16423c485c322d7dfaf8
   languageName: node
   linkType: hard
 
@@ -19582,14 +19592,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "swr@npm:2.1.0"
+"swr@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "swr@npm:2.2.4"
   dependencies:
+    client-only: ^0.0.1
     use-sync-external-store: ^1.2.0
   peerDependencies:
     react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: 7de1799f319c7ebfb996cb843279169144b7087215ce7318dd6011590908341ac7d5bca93a197666557c2450b0297d9efbc610fd069b82dc3387130c619965fc
+  checksum: d1398f89fd68af0e0cb6100a5769b1e17c0dbe8a778898643ad28456acda64add43344754c7d919e3f2ca82854adf86ff7d465aba25a2d555bcb669e457138f8
   languageName: node
   linkType: hard
 
