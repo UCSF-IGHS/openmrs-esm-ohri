@@ -1,13 +1,8 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  cacxRegistrationEncounterType_UUID,
-  cervicalCancerScreeningDateConcept,
-  eligibleForScreeningConcept,
-  previouslyScreenedConcept,
-} from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface CacxRegistrationProps {
   patientUuid: string;
@@ -15,6 +10,13 @@ interface CacxRegistrationProps {
 
 export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+
+  const config = useConfig();
+
+  const { cervicalCancerScreeningDateConcept, eligibleForScreeningConcept, previouslyScreenedConcept } =
+    config.obsConcepts;
+
+  const { cacxRegistrationEncounterType_UUID } = config.encounterTypes;
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [

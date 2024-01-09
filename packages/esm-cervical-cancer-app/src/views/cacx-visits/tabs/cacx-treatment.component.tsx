@@ -6,17 +6,8 @@ import {
   getMultipleObsFromEncounter,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  cacxEncounterDateConcept,
-  screeningMethodConcept,
-  cacxTreatmentConcept,
-  cacxTreatmentEncounterType_UUID,
-  colopsyResultsConcept,
-  humanPapilomaVirusResultsConcept,
-  papanicolaouSmearResultsConcept,
-  VIAProcedureResultsConcept,
-} from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface CacxTreatmentProps {
   patientUuid: string;
@@ -24,6 +15,19 @@ interface CacxTreatmentProps {
 
 export const CacxTreatment: React.FC<CacxTreatmentProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
+
+  const {
+    cacxEncounterDateConcept,
+    screeningMethodConcept,
+    cacxTreatmentConcept,
+    colopsyResultsConcept,
+    humanPapilomaVirusResultsConcept,
+    papanicolaouSmearResultsConcept,
+    VIAProcedureResultsConcept,
+  } = config.obsConcepts;
+
+  const { cacxTreatmentEncounterType_UUID } = config.encounterTypes;
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
