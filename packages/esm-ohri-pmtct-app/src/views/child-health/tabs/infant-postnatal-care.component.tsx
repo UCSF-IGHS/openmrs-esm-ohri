@@ -34,7 +34,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'pTrackerId',
         header: t('pTrackerId', 'Child PTracker ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.encounterTypes.pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
         },
       },
       {
@@ -48,35 +48,35 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'artProphylaxisStatus',
         header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.artProphylaxisStatus.artProphylaxisStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.artProphylaxisStatus);
         },
       },
       {
         key: 'linkedToArt',
         header: t('linkedToArt', 'Linked to ART'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.infantpnc.linkedToArt);
+          return getObsFromEncounter(encounter, config.obsConcepts.linkedToArt);
         },
       },
       {
         key: 'breastfeedingStatus',
         header: t('breastfeedingStatus', 'Breastfeeding status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.infantpnc.breastfeedingStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.breastfeedingStatus);
         },
       },
       {
         key: 'outcomeStatus',
         header: t('outcomeStatus', 'Outcome Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.infantpnc.outcomeStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.outcomeStatus);
         },
       },
       {
         key: 'nextVisitDate',
         header: t('nextVisitDate', 'Next visit date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.infantpnc.nextVisitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.nextVisitDate, true);
         },
       },
       {
