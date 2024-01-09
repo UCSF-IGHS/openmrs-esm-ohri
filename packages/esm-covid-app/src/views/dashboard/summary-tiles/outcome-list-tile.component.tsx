@@ -83,7 +83,7 @@ export const Outcomes: React.FC<{}> = () => {
   );
 
   useEffect(() => {
-    fetchPatientCovidOutcome().then((response: Array<any>) => {
+    fetchPatientCovidOutcome(config.cohorts.covidOutcomesCohortUUID).then((response: Array<any>) => {
       setPatients(response.map((pat) => pat.data));
       setTotalPatientCount(response.length);
       setIsLoading(false);

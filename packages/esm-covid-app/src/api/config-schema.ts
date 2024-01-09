@@ -10,7 +10,7 @@ export const configSchema = {
   },
   encounterTypes: {
     _type: Type.Object,
-    _description: 'Encounter type UUIDs for TB.',
+    _description: 'Encounter type UUIDs for Covid.',
     _default: {
       covid_Assessment_EncounterUUID: '253a43d3-c99e-415c-8b78-ee7d4d3c1d54',
       covidLabOrderEncounterType_UUID: 'a77d3e7f-5c8f-4074-a207-77a70e197b0c',
@@ -20,31 +20,30 @@ export const configSchema = {
   },
   obsConcepts: {
     _type: Type.Object,
-    _description: 'List of observation concept UUIDs related to TB.',
+    _description: 'List of observation concept UUIDs related to Covid.',
     _default: {
-      returnVisitDateConcept: '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // Next Appointment Date
-      dateSpecimenCollected: '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // covidSpecimenCollectiDate_UUID, covidSpecimenCollectionDate_UUID
-      covidTestTypeUUID: '069f6dfe-88c1-4a45-a894-0d99549c8718',
+      returnVisitDateConcept: '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      dateSpecimenCollected: '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       covidSpecimenCollectiDate_UUID: '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       covidTypeofTestConcept_UUID: '069f6dfe-88c1-4a45-a894-0d99549c8718',
       covidSpecimenCollectionDate_UUID: '159951AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       covidOutcomeUUID: 'a845f3e6-4432-4de4-9fff-37fa270b1a06',
-      covidTestType: '069f6dfe-88c1-4a45-a894-0d99549c8718', // covidTestTypeUUID, covidTypeofTestConcept_UUID
-      covidOutcome: 'a845f3e6-4432-4de4-9fff-37fa270b1a06', // covidOutcomeUUID, covidTreatementOutConcept_UUID
-      rapidAntigenResultDate: 'af159c77-bc5d-46dd-90d9-bcbffb22267f', // covidRapidTestResultDate_UUID
+      covidTestType: '069f6dfe-88c1-4a45-a894-0d99549c8718',
+      covidOutcome: 'a845f3e6-4432-4de4-9fff-37fa270b1a06',
+      rapidAntigenResultDate: 'af159c77-bc5d-46dd-90d9-bcbffb22267f',
       covidTreatementOutConcept_UUID: 'a845f3e6-4432-4de4-9fff-37fa270b1a06',
       covidRapidTestResultDate_UUID: 'af159c77-bc5d-46dd-90d9-bcbffb22267f',
-      pcrTestResultDate: '4a77ab44-0323-490e-96be-e168c0e5c9de', // covidDiagnorticPcrResultDate_UUID
+      pcrTestResultDate: '4a77ab44-0323-490e-96be-e168c0e5c9de',
       finalCovid19Result: '5da5c21b-969f-41bd-9091-e40d4c707544',
       covidOutcomesCohortUUID: 'afb0d950-48fd-44d7-ae2c-79615cd125f0',
       covidDiagnorticPcrResultDate_UUID: '4a77ab44-0323-490e-96be-e168c0e5c9de',
-      htsRetrospectiveEncounterType: '79c1f50f-f77d-42e2-ad2a-d29304dde2fe', // htsRetrospectiveType
+      htsRetrospectiveEncounterType: '79c1f50f-f77d-42e2-ad2a-d29304dde2fe',
       htsRetrospectiveType: '79c1f50f-f77d-42e2-ad2a-d29304dde2fe',
       pcrTestResult: '3f4ee14b-b4ab-4597-9fe9-406883b63d76',
       covidReasonsForTestingConcep_UUID: 'ae46f4b1-c15d-4bba-ab41-b9157b82b0ce',
       covidDiagnosticPcrResult_UUID: '3f4ee14b-b4ab-4597-9fe9-406883b63d76',
-      covidTestResultUUID: '3f4ee14b-b4ab-4597-9fe9-406883b63d76', // pcrTestResult, covidDiagnosticPcrResult_UUID
-      covidPatientStatusUUID: 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f', // covidPatientStatusConcept_UUID, covidSymptomsPresentation, covidVaccinationStatusConcept_UUID
+      covidTestResultUUID: '3f4ee14b-b4ab-4597-9fe9-406883b63d76',
+      covidPatientStatusUUID: 'de3bc9b7-05b5-41b6-a38d-8d2eec646c4f',
       covidSARS_TestResultConcept_UUID: '89feed9c-1dd9-477a-ab1c-86f5f75f6762',
       covidSARS_TestResult_Name_UUID: '0961651c-d52e-41dd-957a-94b9ce08e4eb',
       covidReasonsForTestingUUID: '5793ad0f-d726-4918-a1b5-f25f4fb2b857',
@@ -78,12 +77,12 @@ export const configSchema = {
   },
   cohorts: {
     _type: Type.Object,
-    _description: 'TB Cohort uuid.',
+    _description: 'Covid Cohort uuid.',
     _default: {
       clientsEnrolledForTb: '98fd11ba-cb4d-46f7-9b82-40d49949c7ef',
       covidOutcomesCohortUUID: 'afb0d950-48fd-44d7-ae2c-79615cd125f0',
       covid19PositiveClients: '1523b1e5-b6d0-44fb-bd9e-c91bfefb4d1c',
-      clientsAssessedForCovid: 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7', // allCovidAssessments
+      clientsAssessedForCovid: 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7',
       covidClientsWithPendingLabResults: '166aa2b1-ce55-4d16-9643-ca9d2e2694ea',
       clientsWithoutCovidOutcomes: 'db6c4a18-28c6-423c-9da0-58d19e364a7f',
       allCovidAssessments: 'ec373b01-4ba3-488e-a322-9dd6a50cfdf7',
