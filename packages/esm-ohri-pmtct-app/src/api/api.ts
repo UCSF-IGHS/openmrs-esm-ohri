@@ -43,7 +43,7 @@ export function saveRelationship(relationship: Relationship) {
 // Get ANC visits report count with pTrackerID and patientUuid
 export function getAncVisitCount(pTrackerID: string, patientUuid: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/${config.reports.ancVisitsReport}?ptracker_id=${pTrackerID}&patient_uuid=${patientUuid}`,
+    `${BASE_WS_API_URL}reportingrest/dataSet/${config.obsConcepts.ancVisitsReport}?ptracker_id=${pTrackerID}&patient_uuid=${patientUuid}`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -73,7 +73,7 @@ export function saveIdentifier(identifier: PatientIdentifier, patientUuid: strin
 
 export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/${config.reports.eddReport}?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
+    `${BASE_WS_API_URL}reportingrest/dataSet/${config.obsConcepts.eddReport}?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -95,7 +95,7 @@ export function getIdentifierInfo(identifier: string) {
 
 export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/${config.reports.motherHivStatusReport}?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
+    `${BASE_WS_API_URL}reportingrest/dataSet/${config.obsConcepts.motherHivStatusReport}?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
   ).then(({ data }) => {
     if (data) {
       return data;
