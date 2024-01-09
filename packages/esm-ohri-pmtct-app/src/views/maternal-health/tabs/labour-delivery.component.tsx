@@ -20,42 +20,42 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         key: 'pTrackerId',
         header: t('pTrackerId', 'PTracker Id'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.encounterTypes.pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
         },
       },
       {
         key: 'deliveryDate',
         header: t('deliveryDate', 'Delivery Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.visitDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDateConcept, true);
         },
       },
       {
         key: 'bookedForANC',
         header: t('bookedForANC', 'Booked for ANC'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.labour.bookedForAncConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.bookedForAncConcept);
         },
       },
       {
         key: 'hivTestResults',
         header: t('hivTestResults', 'HIV Test Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.labour.ancHivResultConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.ancHivResultConcept);
         },
       },
       {
         key: 'artInitiation',
         header: t('artInitiation', 'ART Initiation'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.labour.artInitiationConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.artInitiationConcept);
         },
       },
       {
         key: 'birthCount',
         header: t('birthCount', 'Birth Count'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.labour.birthCountConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.birthCountConcept);
         },
       },
       {
