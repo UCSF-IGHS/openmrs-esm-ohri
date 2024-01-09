@@ -14,7 +14,7 @@ const ArtSubmissionAction: PostSubmissionAction = {
     }
 
     let artNumber = encounter.obs.find(
-      (observation) => observation.concept.uuid === config.antenatal.artNoConcept,
+      (observation) => observation.concept.uuid === config.obsConcepts.artNoConcept,
     )?.value;
     if (!artNumber) {
       return;
@@ -26,7 +26,7 @@ const ArtSubmissionAction: PostSubmissionAction = {
     //Patient can only have one ART No.
     const patientIdentifiers = await fetchPatientIdentifiers(patient.id);
     const existingArtNumbers = patientIdentifiers.filter(
-      (id) => id.identifierType.uuid === config.encounterTypes.artUniqueNumberType,
+      (id) => id.identifierType.uuid === config.obsConcepts.artUniqueNumberType,
     );
     if (existingArtNumbers.length > 0) {
       return;
@@ -35,7 +35,7 @@ const ArtSubmissionAction: PostSubmissionAction = {
     //add current art number to identities
     const currentArtNumberObject: PatientIdentifier = {
       identifier: artNumber,
-      identifierType: config.encounterTypes.artUniqueNumberType,
+      identifierType: config.obsConcepts.artUniqueNumberType,
       location: encounterLocation,
       preferred: false,
     };
