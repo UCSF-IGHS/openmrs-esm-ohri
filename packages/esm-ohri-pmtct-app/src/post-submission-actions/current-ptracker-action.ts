@@ -1,7 +1,7 @@
 import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import { fetchPatientIdentifiers, saveIdentifier } from '../api/api';
 import { Patient, PatientIdentifier } from '../api/types';
-import { pTrackerIdConcept, PTrackerIdentifierType } from '../constants';
+import { getConfig } from '@openmrs/esm-framework';
 
 export const PTrackerSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
@@ -17,12 +17,13 @@ export const PTrackerSubmissionAction: PostSubmissionAction = {
 };
 
 export async function updatePatientPtracker(encounter, encounterLocation, patientUuid) {
-  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === pTrackerIdConcept)?.value;
+  const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
+  const inComingPTrackerID = encounter.obs.find((observation) => observation.concept.uuid === config.encounterTypes.pTrackerIdConcept)?.value;
   if (!inComingPTrackerID) {
     return;
   }
   const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
-  const existingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === PTrackerIdentifierType);
+  const existingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType);
   if (existingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
     return;
   }
@@ -30,7 +31,7 @@ export async function updatePatientPtracker(encounter, encounterLocation, patien
   //add current ptracker to identities
   const currentPTrackerObject: PatientIdentifier = {
     identifier: inComingPTrackerID,
-    identifierType: PTrackerIdentifierType,
+    identifierType: config.PTrackerIdentifierType.PTrackerIdentifierType,
     location: encounterLocation,
     preferred: false,
   };

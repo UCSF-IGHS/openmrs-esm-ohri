@@ -1,14 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  ancHivResultConcept,
-  artInitiationConcept,
-  birthCountConcept,
-  bookedForAncConcept,
-  pTrackerIdConcept,
-  visitDateConcept,
-} from '../../../constants';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
 
@@ -18,6 +10,7 @@ interface LabourDeliveryListProps {
 
 const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
   const headerTitle = t('labourAndDelivery', 'Labour and Delivery');
   const LNDEncounterTypeUUID = useConfig().encounterTypes.laborAndDelivery;
 
@@ -27,42 +20,42 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         key: 'pTrackerId',
         header: t('pTrackerId', 'PTracker Id'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.encounterTypes.pTrackerIdConcept);
         },
       },
       {
         key: 'deliveryDate',
         header: t('deliveryDate', 'Delivery Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDateConcept, true);
+          return getObsFromEncounter(encounter, config.antenatal.visitDateConcept, true);
         },
       },
       {
         key: 'bookedForANC',
         header: t('bookedForANC', 'Booked for ANC'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, bookedForAncConcept);
+          return getObsFromEncounter(encounter, config.labour.bookedForAncConcept);
         },
       },
       {
         key: 'hivTestResults',
         header: t('hivTestResults', 'HIV Test Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, ancHivResultConcept);
+          return getObsFromEncounter(encounter, config.labour.ancHivResultConcept);
         },
       },
       {
         key: 'artInitiation',
         header: t('artInitiation', 'ART Initiation'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artInitiationConcept);
+          return getObsFromEncounter(encounter, config.labour.artInitiationConcept);
         },
       },
       {
         key: 'birthCount',
         header: t('birthCount', 'Birth Count'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, birthCountConcept);
+          return getObsFromEncounter(encounter, config.labour.birthCountConcept);
         },
       },
       {
