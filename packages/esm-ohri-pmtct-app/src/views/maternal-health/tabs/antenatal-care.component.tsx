@@ -20,35 +20,35 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'pTrackerId',
         header: t('pTrackerId', 'PTracker Id'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.encounterTypes.pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
         },
       },
       {
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.visitDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDateConcept, true);
         },
       },
       {
         key: 'hivTestResults',
         header: t('hivTestResults', 'HIV Test Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.hivTestResultConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivTestResultConcept);
         },
       },
       {
         key: 'artLinkage',
         header: t('artLinkage', 'ART linkage (if positive)'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.labour.artInitiationConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.artInitiationConcept);
         },
       },
       {
         key: 'edd',
         header: t('edd', 'EDD'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.eDDConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.eDDConcept, true);
         },
       },
       {
@@ -62,14 +62,14 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'followUpDate',
         header: t('followUpDate', 'Next follow-up date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.followUpDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.followUpDateConcept, true);
         },
       },
       {
         key: 'vlResults',
         header: t('vlResults', 'VL Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.encounterTypes.vLResultsConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.vLResultsConcept);
         },
       },
       {
