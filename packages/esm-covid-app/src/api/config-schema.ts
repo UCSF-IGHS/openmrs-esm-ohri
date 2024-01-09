@@ -1,13 +1,6 @@
 import { Type } from '@openmrs/esm-framework';
 
 export const configSchema = {
-  identifiers: {
-    _type: Type.Object,
-    _description: 'Identifier sources',
-    _default: {
-      preferredIdentifierSource: '8549f706-7e85-4c1d-9424-217d50a2988b',
-    },
-  },
   encounterTypes: {
     _type: Type.Object,
     _description: 'Encounter type UUIDs for Covid.',
