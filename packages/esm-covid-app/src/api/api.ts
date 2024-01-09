@@ -1,11 +1,11 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
-import { covidOutcomesCohortUUID } from '../constants';
+import { openmrsFetch, useConfig } from '@openmrs/esm-framework';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
 
 export function fetchPatientCovidOutcome() {
-  return openmrsFetch(`/ws/rest/v1/reportingrest/cohort/${covidOutcomesCohortUUID}`).then(({ data }) => {
+  const config = useConfig();
+  return openmrsFetch(`/ws/rest/v1/reportingrest/cohort/${config.cohorts.covidOutcomesCohortUUID}`).then(({ data }) => {
     if (data.members?.length) {
       let patientRefs = data.members.map((member) => {
         return member.uuid;
