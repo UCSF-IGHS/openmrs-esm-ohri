@@ -35,33 +35,33 @@ const HivExposedInfant: React.FC<{
       {
         key: 'artProphylaxisStatus',
         header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
-        encounterTypes: [config.infantpnc.infantPostnatalEncounterType],
+        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, config.infantpnc.artProphylaxisStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.artProphylaxisStatus);
         },
       },
       {
         key: 'breastfeeding',
         header: t('breastfeeding', 'Breastfeeding'),
-        encounterTypes: [config.infantpnc.infantPostnatalEncounterType],
+        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, config.infantpnc.breastfeedingStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.breastfeedingStatus);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
-        encounterTypes: [config.infantpnc.infantPostnatalEncounterType],
+        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, config.infantpnc.finalTestResults);
+          return getObsFromEncounter(encounter, config.obsConcepts.finalTestResults);
         },
       },
       {
         key: 'finalOutcome',
         header: t('finalOutcome', 'Final Outcome'),
-        encounterTypes: [config.infantpnc.infantPostnatalEncounterType],
+        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, config.infantpnc.outcomeStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.outcomeStatus);
         },
       },
     ],
@@ -74,21 +74,21 @@ const HivExposedInfant: React.FC<{
         key: 'date',
         header: t('date', 'Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.artStartDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.artStartDate, true);
         },
       },
       {
         key: 'testType',
         header: t('testType', 'Test Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.testTypeConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.testTypeConcept);
         },
       },
       {
         key: 'ageAtTimeOfTest',
         header: t('ageAtTimeOfTest', 'Age at time of test'),
         getValue: (encounter) => {
-          const artDate = getObsFromEncounter(encounter, config.antenatal.artStartDate);
+          const artDate = getObsFromEncounter(encounter, config.obsConcepts.artStartDate);
           return moment(artDate).diff(dateOfBirth, 'days');
         },
       },
@@ -96,7 +96,7 @@ const HivExposedInfant: React.FC<{
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.infantpnc.finalTestResults);
+          return getObsFromEncounter(encounter, config.obsConcepts.finalTestResults);
         },
       },
     ];
@@ -147,7 +147,7 @@ const HivExposedInfant: React.FC<{
     let pTrackerMap = { patientId: '', pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
     if (identifiers) {
-      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType).identifier;
+      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === config.obsConcepts.PTrackerIdentifierType).identifier;
       pTrackerMap.patientId = patientUuid;
     }
     return pTrackerMap;
@@ -191,7 +191,7 @@ const HivExposedInfant: React.FC<{
         key: 'visitDate',
         header: t('visitDate', 'Visit date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.infantpnc.infantVisitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.infantVisitDate, true);
         },
       },
       {
@@ -205,7 +205,7 @@ const HivExposedInfant: React.FC<{
         key: 'nextFollowUpDate',
         header: t('nextFollowUpDate', 'Next Follow-up date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.antenatal.followUpDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.followUpDateConcept, true);
         },
       },
       {
@@ -237,7 +237,7 @@ const HivExposedInfant: React.FC<{
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={config.infantpnc.infantPostnatalEncounterType}
+        encounterType={config.obsConcepts.infantPostnatalEncounterType}
         formList={[{ name: 'Infant - Postanal Form' }]}
         columns={hivMonitoringColumns}
         description={t('hivMonitoring', 'HIV Monitoring')}
@@ -265,7 +265,7 @@ const HivExposedInfant: React.FC<{
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={config.infantpnc.infantPostnatalEncounterType}
+        encounterType={config.obsConcepts.infantPostnatalEncounterType}
         columns={columnsChildPreviousVisit}
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
