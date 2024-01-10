@@ -155,7 +155,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     const identifiers = await fetchPatientIdentifiers(patientUuid);
     if (identifiers?.length) {
       pTrackerMap.pTrackerId =
-        identifiers.find((id) => id.identifierType.uuid === config.obsConcepts.PTrackerIdentifierType)?.identifier ?? '--';
+        identifiers.find((id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType)?.identifier ?? '--';
     }
     return pTrackerMap;
   }
@@ -219,8 +219,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         encounterTypes: [config.encounterTypes.laborAndDelivery],
         getObsValue: async ([encounter]) => {
           const currentPTrackerId = getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
-          // const totalVisits = await fetchMotherHIVStatus(patientUuid, currentPTrackerId);
-          // return totalVisits.rows.length ? totalVisits.rows[0].mother_hiv_status : '--';
           return '--';
         },
       },
@@ -419,15 +417,15 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const filterMaterNalEncounters = (encounter) => {
     const encounterName = encounter.encounterType.name;
     const isMaternalEncounter = (maternal) => encounterName.indexOf(maternal) !== -1;
-    const filter = config.obsConcepts.mchVisitsTypes.some(isMaternalEncounter);
+    const filter = config.encounterTypes.mchVisitsTypes.some(isMaternalEncounter);
     return filter;
   };
 
   const selectMCHFormViewAction = (encounter) => {
     const encounterType = encounter.encounterType.name;
-    if (encounterType === config.obsConcepts.mchVisitsTypes[0]) {
+    if (encounterType === config.encounterTypes.mchVisitsTypes[0]) {
       return { name: 'Antenatal Form', package: 'maternal_health' };
-    } else if (encounterType === config.obsConcepts.mchVisitsTypes[1]) {
+    } else if (encounterType === config.encounterTypes.mchVisitsTypes[1]) {
       return { name: 'Labour & Delivery Form', package: 'maternal_health' };
     } else {
       return { name: 'Mother - Postnatal Form', package: 'maternal_health' };
@@ -472,7 +470,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={config.obsConcepts.mchEncounterType}
+        encounterType={config.encounterTypes.mchEncounterType}
         columns={columnsMotherPreviousVisit}
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
