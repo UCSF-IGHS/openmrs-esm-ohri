@@ -1,16 +1,17 @@
 import React from 'react';
-import { clientsEnrolledToCare, todayzAppointmentsCT } from '../../../constants';
 import { OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 function CTHomePatientTabs() {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const tabsConfigs = [
     {
       label: t('allCTClients', 'All C&T Clients'),
-      cohortId: clientsEnrolledToCare,
+      cohortId: config.cohorts.clientsEnrolledToCare,
       isReportingCohort: true,
       cohortSlotName: 'all-ct-clients-slot',
       launchableForm: {
@@ -47,7 +48,7 @@ function CTHomePatientTabs() {
     },
     {
       label: t('todaysAppointments', "Today's Appointments"),
-      cohortId: todayzAppointmentsCT,
+      cohortId: config.cohorts.todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
       launchableForm: {

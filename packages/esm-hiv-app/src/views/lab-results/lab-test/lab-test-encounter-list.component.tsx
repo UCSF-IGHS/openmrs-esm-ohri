@@ -7,19 +7,15 @@ import {
   getObsFromEncounter,
   MultipleEncounterList,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  Cd4Count_UUID,
-  Cd4LabResultCountPercentage_UUID,
-  Cd4LabResultDate_UUID,
-  CD4LabResultsEncounter_UUID,
-} from '../../../constants';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface LabTestOverviewListProps {
   patientUuid: string;
 }
 
 const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }) => {
-  const encounters: Array<string> = [CD4LabResultsEncounter_UUID];
+  const config = useConfig();
+  const encounters: Array<string> = [config.encounterTypes.CD4LabResultsEncounter_UUID];
   const { t } = useTranslation();
   const headerTitle = t('labTests', 'Lab Tests');
 
@@ -29,21 +25,25 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
         key: 'labTestName',
         header: t('testName', 'Test Name'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter[CD4LabResultsEncounter_UUID], Cd4LabResultDate_UUID, true);
+          return getObsFromEncounter(
+            encounter[config.encounterTypes.CD4LabResultsEncounter_UUID],
+            config.obsConcepts.Cd4LabResultDate_UUID,
+            true,
+          );
         },
       },
       {
         key: 'labTestValue',
         header: t('value', 'Value'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, Cd4Count_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.Cd4Count_UUID);
         },
       },
       {
         key: 'labTestRefRange',
         header: t('referenceRange', 'Reference Range'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, Cd4LabResultCountPercentage_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.Cd4LabResultCountPercentage_UUID);
         },
       },
     ],

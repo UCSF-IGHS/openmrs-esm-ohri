@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { clientsEnrolledToCare } from '../../../../constants';
+import { useConfig } from '@openmrs/esm-framework';
 
 function CTSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
+  const config = useConfig();
 
   useEffect(() => {
-    getReportingCohort(clientsEnrolledToCare).then((data) => {
+    getReportingCohort(config.cohorts.clientsEnrolledToCare).then((data) => {
       setActiveClientsCount(data.members.length);
     });
   }, []);

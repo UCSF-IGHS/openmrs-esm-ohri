@@ -1,7 +1,7 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot, useConfig } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { basePath, finalHIVCodeConcept, finalPositiveHIVValueConcept } from '../../../../constants';
+import { basePath } from '../../../../constants';
 import {
   fetchPatientsFromObservationCodeConcept,
   fetchTodayClients,
@@ -87,15 +87,18 @@ export const PositiveInLast14Days: React.FC<{}> = () => {
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
+  const config = useConfig();
 
   useEffect(() => {
-    fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
-      (response: Array<any>) => {
-        setPatients(response.map((pat) => pat.data));
-        setTotalPatientCount(response.length);
-        setIsLoading(false);
-      },
-    );
+    fetchPatientsFromObservationCodeConcept(
+      config.obsConcepts.finalHIVCodeConcept,
+      config.obsConcepts.finalPositiveHIVValueConcept,
+      14,
+    ).then((response: Array<any>) => {
+      setPatients(response.map((pat) => pat.data));
+      setTotalPatientCount(response.length);
+      setIsLoading(false);
+    });
   }, [pageSize, currentPage]);
 
   useEffect(() => {

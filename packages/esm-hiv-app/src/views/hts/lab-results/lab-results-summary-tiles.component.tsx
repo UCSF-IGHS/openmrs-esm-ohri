@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { missingCd4Cohort, highVlCohort } from '../../../constants';
-import { getReportingCohort } from '../../../api/api';
+import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { useConfig } from '@openmrs/esm-framework';
 
 function LabResultsSummaryTiles() {
   const { t } = useTranslation();
   const [missingCd4Count, setMissingCd4Count] = useState(0);
   const [dueForVlCount, setDueForVlCount] = useState(0);
   const [highVlCount, setHighVlCount] = useState(0);
+  const config = useConfig();
 
   useEffect(() => {
-    getReportingCohort(missingCd4Cohort).then((data) => {
+    getReportingCohort(config.cohorts.missingCd4Cohort).then((data) => {
       setMissingCd4Count(data.members.length);
     });
 
-    getReportingCohort(highVlCohort).then((results) => {
+    getReportingCohort(config.cohorts.highVlCohort).then((results) => {
       setHighVlCount(results.members.length);
     });
   }, []);

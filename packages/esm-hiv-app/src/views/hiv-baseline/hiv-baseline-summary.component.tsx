@@ -5,57 +5,65 @@ import {
   MultipleEncounterList,
   MultipleEncounterListColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  artTherapyDateTime_UUID,
-  art_Therapy_EncounterUUID,
-  careAndTreatmentEncounterType,
-  clinicalVisitEncounterType,
-  dateOfHIVDiagnosisConcept,
-  dateOfServiceEnrollmentConcept,
-  tbScreeningOutcome,
-} from '../../constants';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface HivBaselineTabListProps {
   patientUuid: string;
 }
 
 const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) => {
-  const encounters: Array<string> = [
-    careAndTreatmentEncounterType,
-    art_Therapy_EncounterUUID,
-    clinicalVisitEncounterType,
-  ];
-
   const { t } = useTranslation();
 
+  const config = useConfig();
+
+  const encounters: Array<string> = [
+    config.encounterTypes.careAndTreatmentEncounterType,
+    config.encounterTypes.art_Therapy_EncounterUUID,
+    config.encounterTypes.clinicalVisitEncounterType,
+  ];
   const columns: MultipleEncounterListColumn[] = useMemo(
     () => [
       {
         key: 'hivDiagnosisDate',
         header: t('hivDiagnosisDate', 'HIV Diagnosis Date'),
         getValue: (encounters) => {
-          return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfHIVDiagnosisConcept, true);
+          return getObsFromEncounter(
+            encounters[config.encounterTypes.careAndTreatmentEncounterType],
+            config.obsConcepts.dateOfHIVDiagnosisConcept,
+            true,
+          );
         },
       },
       {
         key: 'enrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
         getValue: (encounters) => {
-          return getObsFromEncounter(encounters[careAndTreatmentEncounterType], dateOfServiceEnrollmentConcept, true);
+          return getObsFromEncounter(
+            encounters[config.encounterTypes.careAndTreatmentEncounterType],
+            config.obsConcepts.dateOfServiceEnrollmentConcept,
+            true,
+          );
         },
       },
       {
         key: 'artStartDate',
         header: t('artStartDate', 'ART Start Date'),
         getValue: (encounters) => {
-          return getObsFromEncounter(encounters[art_Therapy_EncounterUUID], artTherapyDateTime_UUID, true);
+          return getObsFromEncounter(
+            encounters[config.encounterTypes.art_Therapy_EncounterUUID],
+            config.obsConcepts.artTherapyDateTime_UUID,
+            true,
+          );
         },
       },
       {
         key: 'tbScreening',
         header: t('tbScreening', 'Current TB Screening'),
         getValue: (encounters) => {
-          return getObsFromEncounter(encounters[clinicalVisitEncounterType], tbScreeningOutcome);
+          return getObsFromEncounter(
+            encounters[config.encounterTypes.clinicalVisitEncounterType],
+            config.obsConcepts.tbScreeningOutcome,
+          );
         },
       },
     ],

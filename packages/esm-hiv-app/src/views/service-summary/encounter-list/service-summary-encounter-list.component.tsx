@@ -1,43 +1,15 @@
 import { findObs, getObsFromEncounter, EncounterTile, EncounterTileColumn } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { useConfig } from '@openmrs/esm-framework';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  artStopDateUUID,
-  artTherapyDateTime_UUID,
-  art_Therapy_EncounterUUID,
-  careAndTreatmentEncounterType,
-  Cd4Count_UUID,
-  Cd4LabResultDate_UUID,
-  CD4LabResultsEncounter_UUID,
-  clinicalVisitEncounterType,
-  CommunityDSDModel_UUID,
-  dateOfEncounterConcept,
-  dateRestartedUUID,
-  generalTreatmentStatusConcept,
-  hivProgramStatusEncounterType,
-  keyPopulationTypeConcept,
-  opportunisticInfectionConcept,
-  populationCategoryConcept,
-  priorityPopulationTypeConcept,
-  ReasonForViralLoad_UUID,
-  regimenLine_UUID,
-  regimen_UUID,
-  returnVisitDateConcept,
-  ServiceDeliveryEncounterType_UUID,
-  substitutionDateUUID,
-  switchDateUUID,
-  tbScreeningOutcome,
-  ViralLoadResultDate_UUID,
-  ViralLoadResultsEncounter_UUID,
-  ViralLoadResult_UUID,
-} from '../../../constants';
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const headerCharacteristics = t('characteristicsTitle', 'Characteristics');
   const headerHIVMonitoring = t('hivMonitoring', 'HIV Monitoring');
@@ -48,17 +20,17 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'artCohort',
         header: t('artCohort', 'ART Cohort'),
-        encounterUuid: art_Therapy_EncounterUUID,
+        encounterUuid: config.encounterTypes.art_Therapy_EncounterUUID,
         getObsValue: (encounter) => {
           return getObsFromEncounter(
             encounter,
             getARTDateConcept(
               encounter,
-              artTherapyDateTime_UUID,
-              switchDateUUID,
-              substitutionDateUUID,
-              artStopDateUUID,
-              dateRestartedUUID,
+              config.obsConcepts.artTherapyDateTime_UUID,
+              config.obsConcepts.switchDateUUID,
+              config.obsConcepts.substitutionDateUUID,
+              config.obsConcepts.artStopDateUUID,
+              config.obsConcepts.dateRestartedUUID,
             ),
             true,
           );
@@ -67,42 +39,42 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'currentRegimen',
         header: t('currentRegimen', 'Current Regimen'),
-        encounterUuid: art_Therapy_EncounterUUID,
+        encounterUuid: config.encounterTypes.art_Therapy_EncounterUUID,
         hasSummary: true,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, regimen_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.regimen_UUID);
         },
         getSummaryObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, regimenLine_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.regimenLine_UUID);
         },
       },
       {
         key: 'dsdModel',
         header: t('dsdModel', 'DSD Model'),
-        encounterUuid: ServiceDeliveryEncounterType_UUID,
+        encounterUuid: config.encounterTypes.ServiceDeliveryEncounterType_UUID,
         getObsValue: () => {
           return '--';
         },
         hasSummary: true,
-        summaryConcept: CommunityDSDModel_UUID,
+        summaryConcept: config.obsConcepts.CommunityDSDModel_UUID,
         getSummaryObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, CommunityDSDModel_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.CommunityDSDModel_UUID);
         },
       },
       {
         key: 'populationType',
         header: t('populationType', 'Population Type'),
-        encounterUuid: careAndTreatmentEncounterType,
+        encounterUuid: config.encounterTypes.careAndTreatmentEncounterType,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, populationCategoryConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.populationCategoryConcept);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          const keyPopulationType = getObsFromEncounter(encounter, keyPopulationTypeConcept);
+          const keyPopulationType = getObsFromEncounter(encounter, config.obsConcepts.keyPopulationTypeConcept);
           if (keyPopulationType !== '--') {
             return keyPopulationType;
           } else {
-            return getObsFromEncounter(encounter, priorityPopulationTypeConcept);
+            return getObsFromEncounter(encounter, config.obsConcepts.priorityPopulationTypeConcept);
           }
         },
       },
@@ -115,26 +87,26 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'viralLoad',
         header: t('currentViralLoad', 'Current Viral Load'),
-        encounterUuid: ViralLoadResultsEncounter_UUID,
+        encounterUuid: config.encounterTypes.ViralLoadResultsEncounter_UUID,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, ViralLoadResult_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.ViralLoadResult_UUID);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, ViralLoadResultDate_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.ViralLoadResultDate_UUID, true);
         },
       },
       {
         key: 'currentVLReason',
         header: t('currentVLReason', 'Reason For Current VL'),
-        encounterUuid: art_Therapy_EncounterUUID,
-        concept: ReasonForViralLoad_UUID,
+        encounterUuid: config.encounterTypes.art_Therapy_EncounterUUID,
+        concept: config.obsConcepts.ReasonForViralLoad_UUID,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, ReasonForViralLoad_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.ReasonForViralLoad_UUID);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          const viralLoadDate = getObsFromEncounter(encounter, ViralLoadResultDate_UUID, true);
+          const viralLoadDate = getObsFromEncounter(encounter, config.obsConcepts.ViralLoadResultDate_UUID, true);
           if (viralLoadDate !== '--') {
             return calculateDateDifferenceInDate(viralLoadDate);
           }
@@ -144,14 +116,14 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'lastCD4Count',
         header: t('lastCD4Count', 'Last CD4 Count'),
-        encounterUuid: CD4LabResultsEncounter_UUID,
-        concept: Cd4Count_UUID,
+        encounterUuid: config.encounterTypes.CD4LabResultsEncounter_UUID,
+        concept: config.obsConcepts.Cd4Count_UUID,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, Cd4Count_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.Cd4Count_UUID);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, Cd4LabResultDate_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.Cd4LabResultDate_UUID, true);
         },
       },
     ],
@@ -163,35 +135,35 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'tbScreening',
         header: t('tbScreening', 'TB Screening'),
-        encounterUuid: clinicalVisitEncounterType,
-        concept: tbScreeningOutcome,
+        encounterUuid: config.encounterTypes.clinicalVisitEncounterType,
+        concept: config.obsConcepts.tbScreeningOutcome,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, tbScreeningOutcome);
+          return getObsFromEncounter(encounter, config.obsConcepts.tbScreeningOutcome);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.dateOfEncounterConcept, true);
         },
       },
       {
         key: 'oIs',
         header: t('oIs', 'OIs'),
-        encounterUuid: clinicalVisitEncounterType,
+        encounterUuid: config.encounterTypes.clinicalVisitEncounterType,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, opportunisticInfectionConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.opportunisticInfectionConcept);
         },
       },
       {
         key: 'nextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterUuid: clinicalVisitEncounterType,
-        concept: returnVisitDateConcept,
+        encounterUuid: config.encounterTypes.clinicalVisitEncounterType,
+        concept: config.obsConcepts.returnVisitDateConcept,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, returnVisitDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.returnVisitDateConcept, true);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {
-          const nextAppointmentDate = getObsFromEncounter(encounter, returnVisitDateConcept, true);
+          const nextAppointmentDate = getObsFromEncounter(encounter, config.obsConcepts.returnVisitDateConcept, true);
           if (nextAppointmentDate !== '--') {
             return calculateDateDifferenceInDate(nextAppointmentDate);
           }
@@ -201,9 +173,9 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
       {
         key: 'programStatus',
         header: t('programStatus', 'Program Status'),
-        encounterUuid: hivProgramStatusEncounterType,
+        encounterUuid: config.encounterTypes.hivProgramStatusEncounterType,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, generalTreatmentStatusConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.generalTreatmentStatusConcept);
         },
       },
     ],

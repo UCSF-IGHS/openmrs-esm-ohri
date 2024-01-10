@@ -1,14 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterListColumn, getObsFromEncounter, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  CommunityDSDModel_UUID,
-  DSDStatus_UUID,
-  EnrollmentDate_UUID,
-  ServiceDeliveryEncounterType_UUID,
-  ServiceDeliveryFormName,
-} from '../../../constants';
+
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface ServiceDeliveryTabListProps {
   patientUuid: string;
@@ -16,6 +11,7 @@ interface ServiceDeliveryTabListProps {
 
 const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -23,21 +19,21 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         key: 'vlDate',
         header: t('vlDate', 'Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, EnrollmentDate_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.EnrollmentDate_UUID, true);
         },
       },
       {
         key: 'dsdstatus',
         header: t('dsdstatus', 'Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, DSDStatus_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.DSDStatus_UUID);
         },
       },
       {
         key: 'dsdModel',
         header: t('dsdModel', 'SD Model'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, CommunityDSDModel_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.CommunityDSDModel_UUID);
         },
       },
 
@@ -47,14 +43,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: ServiceDeliveryFormName, package: 'hiv' },
+              form: { name: config.formNames.ServiceDeliveryFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: ServiceDeliveryFormName, package: 'hiv' },
+              form: { name: config.formNames.ServiceDeliveryFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -73,8 +69,8 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={ServiceDeliveryEncounterType_UUID}
-      formList={[{ name: ServiceDeliveryFormName }]}
+      encounterType={config.encounterTypes.ServiceDeliveryEncounterType_UUID}
+      formList={[{ name: config.formNames.ServiceDeliveryFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

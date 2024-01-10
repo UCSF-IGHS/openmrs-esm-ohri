@@ -8,8 +8,7 @@ import {
   getObsFromEncounter,
   OTable,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
-import { hivCD4Count_UUID, Cd4LabResultDate_UUID, CD4LabResultsEncounter_UUID } from '../../../../constants';
+import { age, navigate, openmrsFetch, useConfig } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
 import { capitalize } from 'lodash-es';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
@@ -37,6 +36,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
   const headerTitle = '';
+  const config = useConfig();
 
   const tableHeaders = [
     { key: 'name', header: t('patientName', 'Patient Name'), isSortable: true },
@@ -125,7 +125,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       date: '--',
       encounterUuid: '',
     };
-    const query = `encounterType=${CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
+    const query = `encounterType=${config.encounterTypes.CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
     if (viralResults.data.results?.length > 0) {
       const sortedEncounters = viralResults.data.results.sort(
@@ -134,8 +134,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       );
       const lastEncounter = sortedEncounters[0];
 
-      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, hivCD4Count_UUID);
-      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, Cd4LabResultDate_UUID, true);
+      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, config.obsConcepts.hivCD4Count_UUID);
+      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, config.obsConcepts.Cd4LabResultDate_UUID, true);
       latestCd4Encounter.encounterUuid = lastEncounter.uuid;
     }
     return latestCd4Encounter;

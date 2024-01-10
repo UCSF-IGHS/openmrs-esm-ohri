@@ -6,23 +6,20 @@ import {
   fetchPatientsFromObservationCodeConcept,
   fetchTodayClients,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  finalHIVCodeConcept,
-  finalPositiveHIVValueConcept,
-  linkedToCareCodeConcept,
-  linkedToCareYesValueConcept,
-} from '../../../../constants';
+
 import styles from './summary-tile.scss';
 import { TodaysClientList } from './today-client-list-tile.component';
 import { PositiveInLast14Days } from './positive-in-last-14-days-list-tile.component';
 import { LinkedToCareInLast14Days } from './linked-to-care-in-last-14-days-list-tile.component';
 import { useTranslation } from 'react-i18next';
+import { useConfig } from '@openmrs/esm-framework';
 
 function HTSSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [todayPatientCount, setTodayPatientCount] = useState(0);
   const [positiveInLast14Days, setPositiveInLast14Days] = useState(0);
   const [linkedToCareInLast14Days, setLinkedToCareInLast14Days] = useState(0);
+  const config = useConfig();
 
   const tiles = [
     {
@@ -79,19 +76,23 @@ function HTSSummaryTiles({ launchWorkSpace }) {
   }
 
   function getPositiveInLast14days() {
-    return fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(
-      (response) => {
-        setPositiveInLast14Days(response.length);
-      },
-    );
+    return fetchPatientsFromObservationCodeConcept(
+      config.obsConcepts.finalHIVCodeConcept,
+      config.obsConcepts.finalPositiveHIVValueConcept,
+      14,
+    ).then((response) => {
+      setPositiveInLast14Days(response.length);
+    });
   }
 
   function getLinkedToCareInLast14days() {
-    return fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
-      (response) => {
-        setLinkedToCareInLast14Days(response.length);
-      },
-    );
+    return fetchPatientsFromObservationCodeConcept(
+      config.obsConcepts.linkedToCareCodeConcept,
+      config.obsConcepts.linkedToCareYesValueConcept,
+      14,
+    ).then((response) => {
+      setLinkedToCareInLast14Days(response.length);
+    });
   }
 
   return (

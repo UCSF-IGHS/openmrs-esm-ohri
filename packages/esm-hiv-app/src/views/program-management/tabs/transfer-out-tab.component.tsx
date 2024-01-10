@@ -8,15 +8,8 @@ import {
   EncounterList,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 
-import {
-  receivingFacility_UUID,
-  TransferOutDate_UUID,
-  transferOutEncounterType_UUID,
-  TransferOutFormName,
-  verified_UUID,
-  visitDate_UUID,
-} from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface TransferOutTabListProps {
   patientUuid: string;
@@ -24,6 +17,7 @@ interface TransferOutTabListProps {
 
 const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -31,28 +25,28 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDate_UUID, true);
         },
       },
       {
         key: 'reasonsForTesting',
         header: t('reasonsForTesting', 'Receiving Facility'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, receivingFacility_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.receivingFacility_UUID);
         },
       },
       {
         key: 'tranferOutDate',
         header: t('tranferOutDate', 'Transfer-Out Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, TransferOutDate_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.TransferOutDate_UUID, true);
         },
       },
       {
         key: 'verified',
         header: t('verified', 'Verified'),
         getValue: (encounter) => {
-          const obs = findObs(encounter, verified_UUID);
+          const obs = findObs(encounter, config.obsConcepts.verified_UUID);
           return obs?.value?.name?.name === 'FALSE' ? 'No' : obs?.value?.name?.name;
         },
       },
@@ -63,14 +57,14 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: TransferOutFormName, package: 'hiv' },
+              form: { name: config.formNames.TransferOutFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: TransferOutFormName, package: 'hiv' },
+              form: { name: config.formNames.TransferOutFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -90,8 +84,8 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={transferOutEncounterType_UUID}
-      formList={[{ name: TransferOutFormName }]}
+      encounterType={config.encounterTypes.transferOutEncounterType_UUID}
+      formList={[{ name: config.formNames.TransferOutFormName }]}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}

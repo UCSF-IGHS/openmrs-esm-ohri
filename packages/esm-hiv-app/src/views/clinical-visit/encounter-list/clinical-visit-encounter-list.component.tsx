@@ -1,15 +1,9 @@
 import React, { useMemo } from 'react';
-import {
-  clinicalVisitEncounterType,
-  dateOfEncounterConcept,
-  expressCareProgramStatusConcept,
-  regimenConcept,
-  returnVisitDateConcept,
-  visitTypeConcept,
-} from '../../../constants';
+
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface ClinicalVisitWidgetProps {
   patientUuid: string;
@@ -17,6 +11,7 @@ interface ClinicalVisitWidgetProps {
 
 const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -24,7 +19,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
         key: 'clinicalVisitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, dateOfEncounterConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.dateOfEncounterConcept, true);
         },
         link: {
           getUrl: (encounter) => encounter.url,
@@ -37,28 +32,28 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
         key: 'clinicalVisitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitTypeConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitTypeConcept);
         },
       },
       {
         key: 'clinicalRegimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, regimenConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.regimenConcept);
         },
       },
       {
         key: 'clinicalDifferentiatedCareService',
         header: t('differentiatedCareService', 'Differentiated Care Service'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, expressCareProgramStatusConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.expressCareProgramStatusConcept);
         },
       },
       {
         key: 'clinicalNextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, returnVisitDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.returnVisitDateConcept, true);
         },
       },
       {
@@ -74,7 +69,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={clinicalVisitEncounterType}
+      encounterType={config.encounterTypes.clinicalVisitEncounterType}
       formList={[{ name: 'POC Clinical Visit Form v2' }]}
       columns={columns}
       description="clinical visit encounters"
