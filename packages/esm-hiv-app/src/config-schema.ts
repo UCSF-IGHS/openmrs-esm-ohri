@@ -1,16 +1,9 @@
 import { Type } from '@openmrs/esm-framework';
 
 export const configSchema = {
-  identifiers: {
-    _type: Type.Object,
-    _description: 'Identifier sources',
-    _default: {
-      preferredIdentifierSource: '8549f706-7e85-4c1d-9424-217d50a2988b',
-    },
-  },
   encounterTypes: {
     _type: Type.Object,
-    _description: 'Encounter type UUIDs for TB.',
+    _description: 'Encounter type UUIDs for HIV.',
     _default: {
       careAndTreatmentEncounterType: '7e54cd64-f9c3-11eb-8e6a-57478ce139b0',
       clinicalVisitEncounterType: 'cb0a65a7-0587-477e-89b9-cf2fd144f1d4',
@@ -158,7 +151,7 @@ export const configSchema = {
 };
 
 export interface ConfigObject {
-  identifiers: Object;
+  cohorts: Object;
   encounterTypes: Object;
   obsConcepts: Object;
   formNames: Object;
