@@ -35,7 +35,7 @@ const HivExposedInfant: React.FC<{
       {
         key: 'artProphylaxisStatus',
         header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
-        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
+        encounterTypes: [config.encounterTypes.infantPostnatal],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.artProphylaxisStatus);
         },
@@ -43,7 +43,7 @@ const HivExposedInfant: React.FC<{
       {
         key: 'breastfeeding',
         header: t('breastfeeding', 'Breastfeeding'),
-        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
+        encounterTypes: [config.encounterTypes.infantPostnatal],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.breastfeedingStatus);
         },
@@ -51,7 +51,7 @@ const HivExposedInfant: React.FC<{
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
-        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
+        encounterTypes: [config.encounterTypes.infantPostnatal],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.finalTestResults);
         },
@@ -59,7 +59,7 @@ const HivExposedInfant: React.FC<{
       {
         key: 'finalOutcome',
         header: t('finalOutcome', 'Final Outcome'),
-        encounterTypes: [config.obsConcepts.infantPostnatalEncounterType],
+        encounterTypes: [config.encounterTypes.infantPostnatal],
         getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.outcomeStatus);
         },
@@ -147,7 +147,7 @@ const HivExposedInfant: React.FC<{
     let pTrackerMap = { patientId: '', pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
     if (identifiers) {
-      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === config.obsConcepts.PTrackerIdentifierType).identifier;
+      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType).identifier;
       pTrackerMap.patientId = patientUuid;
     }
     return pTrackerMap;
@@ -237,7 +237,7 @@ const HivExposedInfant: React.FC<{
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={config.obsConcepts.infantPostnatalEncounterType}
+        encounterType={config.encounterTypes.infantPostnatal}
         formList={[{ name: 'Infant - Postanal Form' }]}
         columns={hivMonitoringColumns}
         description={t('hivMonitoring', 'HIV Monitoring')}
@@ -265,7 +265,7 @@ const HivExposedInfant: React.FC<{
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={config.obsConcepts.infantPostnatalEncounterType}
+        encounterType={config.encounterTypes.infantPostnatal}
         columns={columnsChildPreviousVisit}
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
