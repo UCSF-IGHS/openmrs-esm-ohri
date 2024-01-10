@@ -23,35 +23,19 @@
     },
     {
       "name": "ohri-hiv-prevention-dashboard-ext",
-      "slot": "ohri-hiv-prevention-dashboard-slot",
+      "slot": "homepage-dashboard-slot",
       "component": "hivPreventionDashboardLink",
       "meta": {
         "name": "hts",
         "slot": "hts-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "hts",
-          "dashboardTitle": "HTS Home Page"
-        },
         "title": "HIV Testing Services"
-      }
+      },
+      "order": 8
     },
     {
       "name": "ohri-hiv-prevention-dashboard",
       "slot": "hts-dashboard-slot",
-      "component": "hivPreventionDashboard",
-      "meta": {
-        "name": "hts",
-        "slot": "hts-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "hts",
-          "dashboardTitle": "HTS Home Page"
-        },
-        "title": "HIV Testing Services"
-      }
+      "component": "hivPreventionDashboard"
     },
     {
       "name": "hts-home-header-ext",
@@ -80,36 +64,19 @@
     },
     {
       "name": "care-and-treatment-dashboard-ext",
-      "slot": "ohri-hiv-care-and-treatment-dashboard-slot",
+      "slot": "homepage-dashboard-slot",
       "component": "hivCareAndTreatmentDashboardLink",
       "meta": {
         "name": "care-and-treatment",
         "slot": "ct-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "ct",
-          "dashboardTitle": "C&T Home Page"
-        },
-        "title": "Care and Treatment",
-        "path": "Care and Treatment"
-      }
+        "title": "Care and Treatment"
+      },
+      "order": 9
     },
     {
       "name": "ohri-care-and-treatment-dashboard",
       "slot": "ct-dashboard-slot",
-      "component": "hivCareAndTreatmentDashboard",
-      "meta": {
-        "name": "care-and-treatment",
-        "slot": "ct-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "ct",
-          "dashboardTitle": "C&T Home Page"
-        },
-        "title": "Care and Treatment"
-      }
+      "component": "hivCareAndTreatmentDashboard"
     },
     {
       "name": "ct-home-header-ext",
