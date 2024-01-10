@@ -103,4 +103,5 @@ export interface ConfigObject {
   encounterTypes: Object;
   obsConcepts: Object;
   formNames: object;
+  cohorts: object;
 }
