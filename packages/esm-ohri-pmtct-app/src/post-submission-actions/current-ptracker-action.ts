@@ -23,7 +23,7 @@ export async function updatePatientPtracker(encounter, encounterLocation, patien
     return;
   }
   const patientIdentifiers = await fetchPatientIdentifiers(patientUuid);
-  const existingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === config.obsConcepts.PTrackerIdentifierType);
+  const existingPTrackers = patientIdentifiers.filter((id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType);
   if (existingPTrackers.some((ptracker) => ptracker.identifier === inComingPTrackerID)) {
     return;
   }
@@ -31,7 +31,7 @@ export async function updatePatientPtracker(encounter, encounterLocation, patien
   //add current ptracker to identities
   const currentPTrackerObject: PatientIdentifier = {
     identifier: inComingPTrackerID,
-    identifierType: config.obsConcepts.PTrackerIdentifierType,
+    identifierType: config.encounterTypes.PTrackerIdentifierType,
     location: encounterLocation,
     preferred: false,
   };
