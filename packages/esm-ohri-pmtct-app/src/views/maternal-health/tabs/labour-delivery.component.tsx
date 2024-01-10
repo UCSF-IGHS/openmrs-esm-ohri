@@ -12,7 +12,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('labourAndDelivery', 'Labour and Delivery');
-  const LNDEncounterTypeUUID = useConfig().encounterTypes.laborAndDelivery;
+  const LNDEncounterTypeUUID = config.encounterTypes.laborAndDelivery;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
