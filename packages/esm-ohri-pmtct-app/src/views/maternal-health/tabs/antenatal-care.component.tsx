@@ -12,7 +12,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('antenatalCare', 'Antenatal Care');
-  const ANCEncounterTypeUUID = useConfig().encounterTypes.antenatal;
+  const ANCEncounterTypeUUID = config.encounterTypes.antenatal;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
