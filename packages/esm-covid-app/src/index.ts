@@ -1,4 +1,9 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import CovidVaccinations from './views/covid-vaccinations.encounter-list';
+import CovidLabResults from './views/lab-results.encounter-list';
+import CovidAssessment from './views/case-assessment.encounter-lists';
+import CovidHomePatientTabs from './views/dashboard/patient-list-tabs/covid-patient-list-tabs.component';
+import CovidSummaryTiles from './views/dashboard/summary-tiles/covid-summary-tiles.component';
 import {
   covidAssessmentsDashboardMeta,
   covidLabTestsDashboardMeta,
@@ -48,29 +53,23 @@ export const covidDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
   featureName: 'covid-home-header',
   moduleName,
 });
-export const covidDashboardTiles = getAsyncLifecycle(
-  () => import('./views/dashboard/summary-tiles/covid-summary-tiles.component'),
-  {
-    featureName: 'covid-home-tiles',
-    moduleName,
-  },
-);
-export const covidDashboardTabs = getAsyncLifecycle(
-  () => import('./views/dashboard/patient-list-tabs/covid-patient-list-tabs.component'),
-  {
-    featureName: 'covid-home-tabs',
-    moduleName,
-  },
-);
-export const covidAssessmentsDashboard = getAsyncLifecycle(() => import('./views/case-assessment.encounter-lists'), {
+export const covidDashboardTiles = getSyncLifecycle(CovidSummaryTiles, {
+  featureName: 'covid-home-tiles',
+  moduleName,
+});
+export const covidDashboardTabs = getSyncLifecycle(CovidHomePatientTabs, {
+  featureName: 'covid-home-tabs',
+  moduleName,
+});
+export const covidAssessmentsDashboard = getSyncLifecycle(CovidAssessment, {
   featureName: 'covid-assessment',
   moduleName,
 });
-export const covidLabResultsDashboard = getAsyncLifecycle(() => import('./views/lab-results.encounter-list'), {
+export const covidLabResultsDashboard = getSyncLifecycle(CovidLabResults, {
   featureName: 'covid-lab-results',
   moduleName,
 });
-export const covidVaccinationsDashboard = getAsyncLifecycle(() => import('./views/covid-vaccinations.encounter-list'), {
+export const covidVaccinationsDashboard = getSyncLifecycle(CovidVaccinations, {
   featureName: 'covid-vaccinations',
   moduleName,
 });
