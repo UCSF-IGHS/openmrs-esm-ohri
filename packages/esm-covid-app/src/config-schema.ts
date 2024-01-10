@@ -85,7 +85,6 @@ export const configSchema = {
 };
 
 export interface ConfigObject {
-  identifiers: Object;
   encounterTypes: Object;
   obsConcepts: Object;
 }
