@@ -1,7 +1,6 @@
 export * from './constants';
 export * from './api/api';
 export * from './api/types';
-export * from './components/banner-tags/active-visit-tag.component';
 export * from './components/banner-tags/patient-covid-outcomes-tag.component';
 export * from './components/banner-tags/patient-status-tag.component';
 export * from './components/banner-tags/patientHivStatus';
