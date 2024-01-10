@@ -71,14 +71,14 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'COVID Vaccination Form', package: 'covid' },
+              form: { name: config.formNames.CovidVaccinationFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'COVID Vaccination Form', package: 'covid' },
+              form: { name: config.formNames.CovidVaccinationFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -98,7 +98,7 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
     <EncounterList
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.covidVaccinationEncounterUUID}
-      formList={[{ name: 'COVID Vaccination Form' }]}
+      formList={[{ name: config.formNames.CovidVaccinationFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

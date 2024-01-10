@@ -82,9 +82,25 @@ export const configSchema = {
       covidVaccinatedClients: 'b5d52da9-10c2-43af-ae23-552acc5e445b',
     },
   },
+  formNames: {
+    _type: Type.Object,
+    _description: 'Covid Form Names.',
+    _default: {
+      CovidCaseFormName: 'COVID Case Form',
+      CovidAssessmentFormName: 'COVID Assessment Form',
+      CovidOutcomeFormName: 'COVID Outcome Form',
+      CovidVaccinationFormName: 'COVID Vaccination Form',
+      CovidLabTestFormName: 'COVID Lab Test',
+      CovidLabResultFormName: 'COVID Lab Result Form',
+      CovidLabCancellationFormName: 'Lab Order Cancellation',
+      CovidSampleCollectionFormName: 'Sample Collection',
+      CovidLabOrderFormName: 'COVID Lab Order Form',
+    },
+  },
 };
 
 export interface ConfigObject {
   encounterTypes: Object;
   obsConcepts: Object;
+  formNames: object;
 }

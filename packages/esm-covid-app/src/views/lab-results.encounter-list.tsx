@@ -90,14 +90,14 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'COVID Lab Test', package: 'covid' },
+              form: { name: config.formNames.CovidLabTestFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'COVID Lab Result Form', package: 'covid' },
+              form: { name: config.formNames.CovidLabResultFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('addEditResult', 'Add/Edit Lab Result'),
@@ -107,7 +107,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           const status = getObsFromEncounter(encounter, config.obsConcepts.covidTestStatusConcept_UUID);
           if (status.includes('Pending')) {
             baseActions.push({
-              form: { name: 'Lab Order Cancellation', package: 'covid' },
+              form: { name: config.formNames.CovidLabCancellationFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('cancelLabOrder', 'Cancel Lab Order'),
@@ -116,7 +116,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
           }
           if (status.includes('Pending')) {
             baseActions.push({
-              form: { name: 'Sample Collection', package: 'covid' },
+              form: { name: config.formNames.CovidSampleCollectionFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('collectSample', 'Collect Sample'),
@@ -175,21 +175,21 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'COVID Lab Test', package: 'covid' },
+            form: { name: config.formNames.CovidLabTestFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: 'Sample Collection', package: 'covid' },
+            form: { name: config.formNames.CovidSampleCollectionFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('collectSample', 'Collect Sample'),
             mode: 'edit',
           },
           {
-            form: { name: 'COVID Lab Result Form', package: 'covid' },
+            form: { name: config.formNames.CovidLabResultFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('addEditResult', 'Add/Edit Lab Result'),
@@ -223,11 +223,17 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               patientUuid={patientUuid}
               encounterType={config.encounterTypes.covidLabOrderEncounterType_UUID}
               formList={[
-                { name: 'COVID Lab Order Form', excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
-                { name: 'COVID Lab Result Form', excludedIntents: ['COVID_LAB_RESULT_EMBED'] },
-                { name: 'COVID Lab Test', excludedIntents: ['*'] },
-                { name: 'Lab Order Cancellation', excludedIntents: ['*', 'COVID_LAB_CANCELLATION_EMBED'] },
-                { name: 'Sample Collection', excludedIntents: ['*', 'COVID_SAMPLE_COLLECTION_EMBED'] },
+                { name: config.formNames.CovidLabOrderFormName, excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
+                { name: config.formNames.CovidLabResultFormName, excludedIntents: ['COVID_LAB_RESULT_EMBED'] },
+                { name: config.formNames.CovidLabTestFormName, excludedIntents: ['*'] },
+                {
+                  name: config.formNames.CovidLabCancellationFormName,
+                  excludedIntents: ['*', 'COVID_LAB_CANCELLATION_EMBED'],
+                },
+                {
+                  name: config.formNames.CovidSampleCollectionFormName,
+                  excludedIntents: ['*', 'COVID_SAMPLE_COLLECTION_EMBED'],
+                },
               ]}
               columns={columnsLab}
               description={displayText}
@@ -243,12 +249,12 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               patientUuid={patientUuid}
               encounterType={config.encounterTypes.covidLabOrderEncounterType_UUID}
               formList={[
-                { name: 'COVID Lab Test' },
-                { name: 'COVID Lab Test' },
-                { name: 'COVID Lab Result Form' },
-                { name: 'Lab Order Cancellation' },
-                { name: 'Sample Collection' },
-                { name: 'COVID Lab Order Form' },
+                { name: config.formNames.CovidLabTestFormName },
+                { name: config.formNames.CovidLabTestFormName },
+                { name: config.formNames.CovidLabResultFormName },
+                { name: config.formNames.CovidLabCancellationFormName },
+                { name: config.formNames.CovidSampleCollectionFormName },
+                { name: config.formNames.CovidLabOrderFormName },
               ]}
               columns={columnsPending}
               description={headerTitlePending}

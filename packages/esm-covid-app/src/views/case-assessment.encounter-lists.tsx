@@ -57,35 +57,35 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'COVID Case Form', package: 'covid' },
+            form: { name: config.formNames.CovidCaseFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewAssessment', 'View Case'),
             mode: 'view',
           },
           {
-            form: { name: 'COVID Assessment Form', package: 'covid' },
+            form: { name: config.formNames.CovidAssessmentFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewAssessmentcase', 'View Assessment'),
             mode: 'view',
           },
           {
-            form: { name: 'COVID Assessment Form', package: 'covid' },
+            form: { name: config.formNames.CovidAssessmentFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editAssessmentForm', 'Edit Assessment'),
             mode: 'edit',
           },
           {
-            form: { name: 'COVID Case Form', package: 'covid' },
+            form: { name: config.formNames.CovidCaseFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editassessmentCase', 'Edit Case'),
             mode: 'edit',
           },
           {
-            form: { name: 'COVID Outcome Form', package: 'covid' },
+            form: { name: config.formNames.CovidOutcomeFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('addEditOutcome', 'Add/Edit Outcome'),
@@ -104,9 +104,9 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.covid_Assessment_EncounterUUID}
       formList={[
-        { name: 'COVID Assessment Form', excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
-        { name: 'COVID Case Form' },
-        { name: 'COVID Outcome Form', excludedIntents: ['COVID_OUTCOME_EMBED', '*'] },
+        { name: config.formNames.CovidAssessmentFormName, excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
+        { name: config.formNames.CovidCaseFormName },
+        { name: config.formNames.CovidOutcomeFormName, excludedIntents: ['COVID_OUTCOME_EMBED', '*'] },
       ]}
       columns={columns}
       description={displayText}
