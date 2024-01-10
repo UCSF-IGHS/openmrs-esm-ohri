@@ -18,6 +18,8 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
 
   const { cacxRegistrationEncounterType_UUID } = config.encounterTypes;
 
+  const { cervicalCancerRegistrationForm } = config.formNames;
+
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
       {
@@ -48,14 +50,14 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Cervical Cancer Registration Form', package: 'cacx' },
+              form: { name: cervicalCancerRegistrationForm, package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'Cervical Cancer Registration Form', package: 'cacx' },
+              form: { name: cervicalCancerRegistrationForm, package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -75,7 +77,7 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={cacxRegistrationEncounterType_UUID}
-      formList={[{ name: 'Cervical Cancer Registration Form' }]}
+      formList={[{ name: cervicalCancerRegistrationForm }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

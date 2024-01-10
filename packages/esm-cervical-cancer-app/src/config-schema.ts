@@ -25,6 +25,14 @@ export const configSchema = {
       VIAProcedureResultsConcept: 'cc647244-0826-4d8e-8c5a-d7a371267bf4',
     },
   },
+  formNames: {
+    _type: Type.Object,
+    _description: 'List of forms related to Cacx.',
+    _default: {
+      screeningAndCancerTreatmentForm: 'Screening and Cancer Treatment Form',
+      cervicalCancerRegistrationForm: 'Cervical Cancer Registration Form',
+    },
+  },
 };
 
 export interface ConfigObject {
