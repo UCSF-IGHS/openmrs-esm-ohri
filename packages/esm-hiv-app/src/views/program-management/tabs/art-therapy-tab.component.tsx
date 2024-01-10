@@ -54,7 +54,7 @@ export const getARTDateConcept = (
 
 const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const artConcepts = useMemo(
     () =>
@@ -84,18 +84,18 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         artReaseonConcept = '';
         break;
       case substitutionDate:
-        artReaseonConcept = config.obsConcepts.substituteReasonUUID;
+        artReaseonConcept = obsConcepts.substituteReasonUUID;
         break;
       case switchDate:
-        artReaseonConcept = config.obsConcepts.switchReasonUUID;
+        artReaseonConcept = obsConcepts.switchReasonUUID;
         break;
       case restartDate:
-        artReaseonConcept = config.obsConcepts.restartReasonUUID;
+        artReaseonConcept = obsConcepts.restartReasonUUID;
         break;
       case stopDate:
-        artReaseonConcept = config.obsConcepts.stopReasonUUID;
+        artReaseonConcept = obsConcepts.stopReasonUUID;
       default:
-        artReaseonConcept = config.obsConcepts.stopReasonUUID;
+        artReaseonConcept = obsConcepts.stopReasonUUID;
     }
 
     return artReaseonConcept;
@@ -111,11 +111,11 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
             encounter,
             getARTDateConcept(
               encounter,
-              config.obsConcepts.artTherapyDateTime_UUID,
-              config.obsConcepts.switchDateUUID,
-              config.obsConcepts.substitutionDateUUID,
-              config.obsConcepts.artStopDateUUID,
-              config.obsConcepts.dateRestartedUUID,
+              obsConcepts.artTherapyDateTime_UUID,
+              obsConcepts.switchDateUUID,
+              obsConcepts.substitutionDateUUID,
+              obsConcepts.artStopDateUUID,
+              obsConcepts.dateRestartedUUID,
             ),
             true,
           );
@@ -125,7 +125,7 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         key: 'therapyPlan',
         header: t('therapyPlan', 'Therapy Plan'),
         getValue: (encounter) => {
-          const therapyPlanObs = findObs(encounter, config.obsConcepts.therapyPlanConcept);
+          const therapyPlanObs = findObs(encounter, obsConcepts.therapyPlanConcept);
           return therapyPlanObs ? artConcepts.get(therapyPlanObs.value.uuid) : '--';
         },
       },
@@ -133,14 +133,14 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.regimenConcept);
+          return getObsFromEncounter(encounter, obsConcepts.regimenConcept);
         },
       },
       {
         key: 'regimenInitiated',
         header: t('regimenInitiated', 'Regimen line'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.regimenLine_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.regimenLine_UUID);
         },
       },
       {
@@ -149,11 +149,11 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         getValue: (encounter) => {
           const reasonConcept = getARTReasonConcept(
             encounter,
-            config.obsConcepts.artTherapyDateTime_UUID,
-            config.obsConcepts.switchDateUUID,
-            config.obsConcepts.substitutionDateUUID,
-            config.obsConcepts.artStopDateUUID,
-            config.obsConcepts.dateRestartedUUID,
+            obsConcepts.artTherapyDateTime_UUID,
+            obsConcepts.switchDateUUID,
+            obsConcepts.substitutionDateUUID,
+            obsConcepts.artStopDateUUID,
+            obsConcepts.dateRestartedUUID,
           );
           return getObsFromEncounter(encounter, reasonConcept);
         },
@@ -163,14 +163,14 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: config.formNames.ARTTherapyFormName, package: 'hiv' },
+            form: { name: formNames.ARTTherapyFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: config.formNames.ARTTherapyFormName, package: 'hiv' },
+            form: { name: formNames.ARTTherapyFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -188,8 +188,8 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.art_Therapy_EncounterUUID}
-      formList={[{ name: config.formNames.ARTTherapyFormName }]}
+      encounterType={encounterTypes.art_Therapy_EncounterUUID}
+      formList={[{ name: formNames.ARTTherapyFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

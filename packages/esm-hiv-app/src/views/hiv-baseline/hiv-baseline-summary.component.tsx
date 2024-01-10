@@ -14,12 +14,12 @@ interface HivBaselineTabListProps {
 const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const config = useConfig();
+  const { obsConcepts, encounterTypes } = useConfig();
 
   const encounters: Array<string> = [
-    config.encounterTypes.careAndTreatmentEncounterType,
-    config.encounterTypes.art_Therapy_EncounterUUID,
-    config.encounterTypes.clinicalVisitEncounterType,
+    encounterTypes.careAndTreatmentEncounterType,
+    encounterTypes.art_Therapy_EncounterUUID,
+    encounterTypes.clinicalVisitEncounterType,
   ];
   const columns: MultipleEncounterListColumn[] = useMemo(
     () => [
@@ -28,8 +28,8 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
         header: t('hivDiagnosisDate', 'HIV Diagnosis Date'),
         getValue: (encounters) => {
           return getObsFromEncounter(
-            encounters[config.encounterTypes.careAndTreatmentEncounterType],
-            config.obsConcepts.dateOfHIVDiagnosisConcept,
+            encounters[encounterTypes.careAndTreatmentEncounterType],
+            obsConcepts.dateOfHIVDiagnosisConcept,
             true,
           );
         },
@@ -39,8 +39,8 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
         header: t('enrollmentDate', 'Enrollment Date'),
         getValue: (encounters) => {
           return getObsFromEncounter(
-            encounters[config.encounterTypes.careAndTreatmentEncounterType],
-            config.obsConcepts.dateOfServiceEnrollmentConcept,
+            encounters[encounterTypes.careAndTreatmentEncounterType],
+            obsConcepts.dateOfServiceEnrollmentConcept,
             true,
           );
         },
@@ -50,8 +50,8 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
         header: t('artStartDate', 'ART Start Date'),
         getValue: (encounters) => {
           return getObsFromEncounter(
-            encounters[config.encounterTypes.art_Therapy_EncounterUUID],
-            config.obsConcepts.artTherapyDateTime_UUID,
+            encounters[encounterTypes.art_Therapy_EncounterUUID],
+            obsConcepts.artTherapyDateTime_UUID,
             true,
           );
         },
@@ -61,8 +61,8 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
         header: t('tbScreening', 'Current TB Screening'),
         getValue: (encounters) => {
           return getObsFromEncounter(
-            encounters[config.encounterTypes.clinicalVisitEncounterType],
-            config.obsConcepts.tbScreeningOutcome,
+            encounters[encounterTypes.clinicalVisitEncounterType],
+            obsConcepts.tbScreeningOutcome,
           );
         },
       },

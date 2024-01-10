@@ -11,7 +11,7 @@ interface PatientTracingListProps {
 
 const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -19,21 +19,21 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.ContactDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.ContactDate_UUID, true);
         },
       },
       {
         key: 'contactMethod',
         header: t('contactMethod', 'Contact Method'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.ContactMethod_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.ContactMethod_UUID);
         },
       },
       {
         key: 'contactOutcome',
         header: t('contactOutcome', 'Contact Outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.ContactOutcome_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.ContactOutcome_UUID);
         },
       },
 
@@ -43,14 +43,14 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: config.formNames.PatientTracingFormName, package: 'hiv' },
+              form: { name: formNames.PatientTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: config.formNames.PatientTracingFormName, package: 'hiv' },
+              form: { name: formNames.PatientTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -69,8 +69,8 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.PatientTracingEncounterType_UUID}
-      formList={[{ name: config.formNames.PatientTracingFormName }]}
+      encounterType={encounterTypes.PatientTracingEncounterType_UUID}
+      formList={[{ name: formNames.PatientTracingFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -87,12 +87,12 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
-  const config = useConfig();
+  const { obsConcepts } = useConfig();
 
   useEffect(() => {
     fetchPatientsFromObservationCodeConcept(
-      config.obsConcepts.linkedToCareCodeConcept,
-      config.obsConcepts.linkedToCareYesValueConcept,
+      obsConcepts.linkedToCareCodeConcept,
+      obsConcepts.linkedToCareYesValueConcept,
       14,
     ).then((response: Array<any>) => {
       setPatients(response.map((pat) => pat.data));

@@ -11,7 +11,7 @@ interface MentalHealthAssessmentListProps {
 
 const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -19,35 +19,35 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
         key: 'screeningDate',
         header: t('screeningDate', 'Screening Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.screeningDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.screeningDate_UUID, true);
         },
       },
       {
         key: 'littleInterest',
         header: t('littleInterest', 'Disinterested in Things'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.LittleInterestConcept_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.LittleInterestConcept_UUID);
         },
       },
       {
         key: 'depressed',
         header: t('depressed', 'Depressed'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.DepressionConcept_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.DepressionConcept_UUID);
         },
       },
       {
         key: 'appetite',
         header: t('poorAppetite', 'Poor Appetite'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.PoorAppetiteConcept_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.PoorAppetiteConcept_UUID);
         },
       },
       {
         key: 'concentration',
         header: t('concentrationProblems', 'Concentration Problems'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.PoorConcentrationConcept_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.PoorConcentrationConcept_UUID);
         },
       },
       {
@@ -55,14 +55,14 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: config.formNames.MentalHealthFormName, package: 'hiv' },
+            form: { name: formNames.MentalHealthFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'View Details',
             mode: 'view',
           },
           {
-            form: { name: config.formNames.MentalHealthFormName, package: 'hiv' },
+            form: { name: formNames.MentalHealthFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'Edit Form',
@@ -78,15 +78,15 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
   const displayText = t('mentalHealthAssessmentDisplay', 'Mental Health Assessment');
 
   const mentalHealthFilter = (encounter) => {
-    return encounter?.form?.name === config.formNames.MentalHealthFormName;
+    return encounter?.form?.name === formNames.MentalHealthFormName;
   };
 
   return (
     <EncounterList
       patientUuid={patientUuid}
       filter={mentalHealthFilter}
-      encounterType={config.encounterTypes.MentalHealthAssessmentEncounter_UUID}
-      formList={[{ name: config.formNames.MentalHealthFormName }]}
+      encounterType={encounterTypes.MentalHealthAssessmentEncounter_UUID}
+      formList={[{ name: formNames.MentalHealthFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

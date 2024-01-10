@@ -36,7 +36,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
   const [totalPatientCount, setPatientCount] = useState(0);
   const [nextOffSet, setNextOffSet] = useState(0);
   const headerTitle = '';
-  const config = useConfig();
+  const { obsConcepts, encounterTypes } = useConfig();
 
   const tableHeaders = [
     { key: 'name', header: t('patientName', 'Patient Name'), isSortable: true },
@@ -125,7 +125,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       date: '--',
       encounterUuid: '',
     };
-    const query = `encounterType=${config.encounterTypes.CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
+    const query = `encounterType=${encounterTypes.CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
     if (viralResults.data.results?.length > 0) {
       const sortedEncounters = viralResults.data.results.sort(
@@ -134,8 +134,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       );
       const lastEncounter = sortedEncounters[0];
 
-      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, config.obsConcepts.hivCD4Count_UUID);
-      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, config.obsConcepts.Cd4LabResultDate_UUID, true);
+      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, obsConcepts.hivCD4Count_UUID);
+      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, obsConcepts.Cd4LabResultDate_UUID, true);
       latestCd4Encounter.encounterUuid = lastEncounter.uuid;
     }
     return latestCd4Encounter;

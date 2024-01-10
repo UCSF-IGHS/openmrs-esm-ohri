@@ -10,7 +10,7 @@ interface DeathTabListProps {
 
 const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -18,21 +18,21 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
         key: 'deathDate',
         header: t('deathDate', 'Death Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.hivDeathDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.hivDeathDate_UUID, true);
         },
       },
       {
         key: 'deathCause',
         header: t('deathCause', 'Cause of Death'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.causeOFDeath_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.causeOFDeath_UUID);
         },
       },
       {
         key: 'specificDeathCause',
         header: t('specificDeathCause', 'Specific cause of Death'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.deathSpecific_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.deathSpecific_UUID);
         },
       },
       {
@@ -41,14 +41,14 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: config.formNames.deathFormName, package: 'hiv' },
+              form: { name: formNames.deathFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: config.formNames.deathFormName, package: 'hiv' },
+              form: { name: formNames.deathFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -66,8 +66,8 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.hivLabResultsEncounterType_UUID}
-      formList={[{ name: config.formNames.deathFormName }]}
+      encounterType={encounterTypes.hivLabResultsEncounterType_UUID}
+      formList={[{ name: formNames.deathFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

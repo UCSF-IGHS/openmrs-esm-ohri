@@ -16,13 +16,13 @@ interface ServiceEnrolmentProps {
 
 const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
         key: 'date',
-        header: t('config.obsConcepts.enrolmentDate', 'Date of service enrollment'),
+        header: t('obsConcepts.enrolmentDate', 'Date of service enrollment'),
         getValue: (encounter) => {
           return getEncounterValues(encounter, 'encounterDatetime', true);
         },
@@ -36,28 +36,28 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
         key: 'patientType',
         header: t('patientType', 'Patient Type at Enrollment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.patientTypeEnrollmentConcept);
+          return getObsFromEncounter(encounter, obsConcepts.patientTypeEnrollmentConcept);
         },
       },
       {
         key: 'dateConfirmedPositive',
         header: t('dateConfirmedPositive', 'Date Confirmed HIV Positive'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.dateOfHIVDiagnosisConcept, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfHIVDiagnosisConcept, true);
         },
       },
       {
         key: 'entryPoint',
         header: t('entryPoint', 'Entry Point'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.entryPointConcept);
+          return getObsFromEncounter(encounter, obsConcepts.entryPointConcept);
         },
       },
       {
         key: 'populationType',
         header: t('populationType', 'Population Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.studyPopulationTypeConcept);
+          return getObsFromEncounter(encounter, obsConcepts.studyPopulationTypeConcept);
         },
       },
       {
@@ -74,8 +74,8 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.careAndTreatmentEncounterType}
-      formList={[{ name: config.formNames.ServiceEnrolmentFormName }]}
+      encounterType={encounterTypes.careAndTreatmentEncounterType}
+      formList={[{ name: formNames.ServiceEnrolmentFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

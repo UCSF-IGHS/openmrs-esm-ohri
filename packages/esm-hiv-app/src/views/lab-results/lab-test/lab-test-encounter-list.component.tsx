@@ -14,8 +14,8 @@ interface LabTestOverviewListProps {
 }
 
 const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }) => {
-  const config = useConfig();
-  const encounters: Array<string> = [config.encounterTypes.CD4LabResultsEncounter_UUID];
+  const { obsConcepts, encounterTypes } = useConfig();
+  const encounters: Array<string> = [encounterTypes.CD4LabResultsEncounter_UUID];
   const { t } = useTranslation();
   const headerTitle = t('labTests', 'Lab Tests');
 
@@ -26,8 +26,8 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
         header: t('testName', 'Test Name'),
         getValue: (encounter) => {
           return getObsFromEncounter(
-            encounter[config.encounterTypes.CD4LabResultsEncounter_UUID],
-            config.obsConcepts.Cd4LabResultDate_UUID,
+            encounter[encounterTypes.CD4LabResultsEncounter_UUID],
+            obsConcepts.Cd4LabResultDate_UUID,
             true,
           );
         },
@@ -36,14 +36,14 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
         key: 'labTestValue',
         header: t('value', 'Value'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.Cd4Count_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.Cd4Count_UUID);
         },
       },
       {
         key: 'labTestRefRange',
         header: t('referenceRange', 'Reference Range'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.Cd4LabResultCountPercentage_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.Cd4LabResultCountPercentage_UUID);
         },
       },
     ],

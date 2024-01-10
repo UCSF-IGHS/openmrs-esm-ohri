@@ -6,12 +6,12 @@ import { useConfig } from '@openmrs/esm-framework';
 
 function CTHomePatientTabs() {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, cohorts } = useConfig();
 
   const tabsConfigs = [
     {
       label: t('allCTClients', 'All C&T Clients'),
-      cohortId: config.cohorts.clientsEnrolledToCare,
+      cohortId: cohorts.clientsEnrolledToCare,
       isReportingCohort: true,
       cohortSlotName: 'all-ct-clients-slot',
       launchableForm: {
@@ -48,7 +48,7 @@ function CTHomePatientTabs() {
     },
     {
       label: t('todaysAppointments', "Today's Appointments"),
-      cohortId: config.cohorts.todayzAppointmentsCT,
+      cohortId: cohorts.todayzAppointmentsCT,
       isReportingCohort: true,
       cohortSlotName: 'ct-todays-appointments',
       launchableForm: {

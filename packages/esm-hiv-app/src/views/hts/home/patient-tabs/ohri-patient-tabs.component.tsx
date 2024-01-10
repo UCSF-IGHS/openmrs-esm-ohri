@@ -8,7 +8,7 @@ import { useConfig } from '@openmrs/esm-framework';
 
 function OHRIPatientTabs() {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { encounterTypes, cohorts } = useConfig();
   const formName = 'POC OHRI HTS Form';
   return (
     <Tabs type="container" className={styles.tabContainer}>
@@ -20,9 +20,9 @@ function OHRIPatientTabs() {
       <TabPanels>
         <TabPanel>
           <CohortPatientList
-            cohortId={config.cohorts.preTestCounsellingCohort}
+            cohortId={cohorts.preTestCounsellingCohort}
             cohortSlotName="pre-test-counseling-slot"
-            associatedEncounterType={config.encounterTypes.htsRetrospectiveEncounterType}
+            associatedEncounterType={encounterTypes.htsRetrospectiveEncounterType}
             addPatientToListOptions={{
               isEnabled: true,
               excludeCohorts: ['Post-Test Counselling'],
@@ -32,7 +32,7 @@ function OHRIPatientTabs() {
               intent: 'HTS_PRETEST',
               actionText: t('startPretest', 'Start Pre-test'),
               editLatestEncounter: true,
-              encounterType: config.encounterTypes.htsRetrospectiveEncounterType,
+              encounterType: encounterTypes.htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
             }}
             moduleName={moduleName}
@@ -40,7 +40,7 @@ function OHRIPatientTabs() {
         </TabPanel>
         <TabPanel>
           <CohortPatientList
-            cohortId={config.cohorts.waitingForHIVTestCohort}
+            cohortId={cohorts.waitingForHIVTestCohort}
             cohortSlotName="waiting-for-hiv-testing-slot"
             addPatientToListOptions={{
               isEnabled: true,
@@ -51,7 +51,7 @@ function OHRIPatientTabs() {
               intent: 'HTS_HIVTEST',
               actionText: t('startHIVTest', 'Start HIV Test'),
               editLatestEncounter: true,
-              encounterType: config.encounterTypes.htsRetrospectiveEncounterType,
+              encounterType: encounterTypes.htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
             }}
             moduleName={moduleName}
@@ -59,7 +59,7 @@ function OHRIPatientTabs() {
         </TabPanel>
         <TabPanel>
           <CohortPatientList
-            cohortId={config.cohorts.postTestCounsellingCohort}
+            cohortId={cohorts.postTestCounsellingCohort}
             cohortSlotName="post-test-counseling-slot"
             addPatientToListOptions={{
               isEnabled: true,
@@ -70,7 +70,7 @@ function OHRIPatientTabs() {
               intent: 'HTS_POSTTEST',
               actionText: t('startPostTestCounselling', 'Start Post-test counselling'),
               editLatestEncounter: true,
-              encounterType: config.encounterTypes.htsRetrospectiveEncounterType,
+              encounterType: encounterTypes.htsRetrospectiveEncounterType,
               targetDashboard: 'hts-summary',
             }}
             moduleName={moduleName}

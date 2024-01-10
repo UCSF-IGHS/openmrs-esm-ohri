@@ -11,7 +11,7 @@ interface ServiceDeliveryTabListProps {
 
 const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -19,21 +19,21 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         key: 'vlDate',
         header: t('vlDate', 'Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.EnrollmentDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.EnrollmentDate_UUID, true);
         },
       },
       {
         key: 'dsdstatus',
         header: t('dsdstatus', 'Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.DSDStatus_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.DSDStatus_UUID);
         },
       },
       {
         key: 'dsdModel',
         header: t('dsdModel', 'SD Model'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.CommunityDSDModel_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.CommunityDSDModel_UUID);
         },
       },
 
@@ -43,14 +43,14 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: config.formNames.ServiceDeliveryFormName, package: 'hiv' },
+              form: { name: formNames.ServiceDeliveryFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: config.formNames.ServiceDeliveryFormName, package: 'hiv' },
+              form: { name: formNames.ServiceDeliveryFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -69,8 +69,8 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.ServiceDeliveryEncounterType_UUID}
-      formList={[{ name: config.formNames.ServiceDeliveryFormName }]}
+      encounterType={encounterTypes.ServiceDeliveryEncounterType_UUID}
+      formList={[{ name: formNames.ServiceDeliveryFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -10,7 +10,7 @@ interface HIVEnrolmentTabListProps {
 
 const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -18,30 +18,30 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
         key: 'date',
         header: t('enrollmentDate', 'Enrollment/Re-enrollment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.re_enrolmentDateConcept, true) !== '--'
-            ? getObsFromEncounter(encounter, config.obsConcepts.re_enrolmentDateConcept, true)
-            : getObsFromEncounter(encounter, config.obsConcepts.dateOfServiceEnrollmentConcept, true);
+          return getObsFromEncounter(encounter, obsConcepts.re_enrolmentDateConcept, true) !== '--'
+            ? getObsFromEncounter(encounter, obsConcepts.re_enrolmentDateConcept, true)
+            : getObsFromEncounter(encounter, obsConcepts.dateOfServiceEnrollmentConcept, true);
         },
       },
       {
         key: 'clientDescription',
         header: t('patientType', 'Patient Type at Enrollment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.patientTypeEnrollmentConcept);
+          return getObsFromEncounter(encounter, obsConcepts.patientTypeEnrollmentConcept);
         },
       },
       {
         key: 'dateConfirmedPositive',
         header: t('dateConfirmedPositive', 'Date Confirmed HIV+'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.dateOfHIVDiagnosisConcept, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfHIVDiagnosisConcept, true);
         },
       },
       {
         key: 'entryPoint',
         header: t('entryPoint', 'Entry Point'),
         getValue: (encounter) => {
-          const obs = findObs(encounter, config.obsConcepts.entryPointConcept);
+          const obs = findObs(encounter, obsConcepts.entryPointConcept);
           if (typeof obs !== undefined && obs) {
             if (typeof obs.value === 'object') {
               if (obs !== undefined) {
@@ -49,19 +49,19 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
                   obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
                   obs.value.name.name;
                 if (EntryPoint === 'Other non-coded') {
-                  return getObsFromEncounter(encounter, config.obsConcepts.otherEntryPoint);
+                  return getObsFromEncounter(encounter, obsConcepts.otherEntryPoint);
                 }
               }
             }
           }
-          return getObsFromEncounter(encounter, config.obsConcepts.entryPointConcept);
+          return getObsFromEncounter(encounter, obsConcepts.entryPointConcept);
         },
       },
       {
         key: 'populationCategory',
         header: t('populationCategory', 'Population Category'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.populationCategoryConcept);
+          return getObsFromEncounter(encounter, obsConcepts.populationCategoryConcept);
         },
       },
       {
@@ -69,14 +69,14 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: config.formNames.ServiceEnrolmentFormName, package: 'hiv' },
+            form: { name: formNames.ServiceEnrolmentFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewDetails', 'View Details'),
             mode: 'view',
           },
           {
-            form: { name: config.formNames.ServiceEnrolmentFormName, package: 'hiv' },
+            form: { name: formNames.ServiceEnrolmentFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editForm', 'Edit Form'),
@@ -94,8 +94,8 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.careAndTreatmentEncounterType}
-      formList={[{ name: config.formNames.ServiceEnrolmentFormName }]}
+      encounterType={encounterTypes.careAndTreatmentEncounterType}
+      formList={[{ name: formNames.ServiceEnrolmentFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

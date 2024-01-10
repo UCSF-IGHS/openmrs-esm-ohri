@@ -43,7 +43,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     { key: 'actions', header: t('actions', 'Actions') },
   ];
 
-  const config = useConfig();
+  const { obsConcepts, encounterTypes } = useConfig();
 
   useEffect(() => {
     setIsLoading(true);
@@ -129,7 +129,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       date: '--',
       encounterUuid: '',
     };
-    const query = `encounterType=${config.encounterTypes.ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
+    const query = `encounterType=${encounterTypes.ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
     if (viralResults.data.results?.length > 0) {
       const sortedEncounters = viralResults.data.results.sort(
@@ -138,8 +138,8 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       );
       const lastEncounter = sortedEncounters[0];
 
-      latestViralEncounter.result = getObsFromEncounter(lastEncounter, config.obsConcepts.ViralLoadResult_UUID);
-      latestViralEncounter.date = getObsFromEncounter(lastEncounter, config.obsConcepts.ViralLoadResultDate_UUID, true);
+      latestViralEncounter.result = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResult_UUID);
+      latestViralEncounter.date = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResultDate_UUID, true);
       latestViralEncounter.encounterUuid = lastEncounter.uuid;
     }
     return latestViralEncounter;

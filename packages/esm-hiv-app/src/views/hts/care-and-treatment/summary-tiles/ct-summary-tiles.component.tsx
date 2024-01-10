@@ -6,10 +6,10 @@ import { useConfig } from '@openmrs/esm-framework';
 function CTSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
-  const config = useConfig();
+  const { cohorts } = useConfig();
 
   useEffect(() => {
-    getReportingCohort(config.cohorts.clientsEnrolledToCare).then((data) => {
+    getReportingCohort(cohorts.clientsEnrolledToCare).then((data) => {
       setActiveClientsCount(data.members.length);
     });
   }, []);

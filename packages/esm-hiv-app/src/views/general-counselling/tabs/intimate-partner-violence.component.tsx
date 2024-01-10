@@ -10,7 +10,7 @@ interface IntimatePartnerViolenceListProps {
 
 const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -18,28 +18,28 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
         key: 'screeningdate',
         header: t('screeningDate', 'Screening Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.IpvScreeningDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.IpvScreeningDate_UUID, true);
         },
       },
       {
         key: 'physicalAbuse',
         header: t('physicalAbuse', 'Physical Abuse'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.PhysicalAbuse_UUID, false, true);
+          return getObsFromEncounter(encounter, obsConcepts.PhysicalAbuse_UUID, false, true);
         },
       },
       {
         key: 'EmotionalAbuse',
         header: t('EmotionalAbuse', 'Emotional Abuse'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.EmotionalAbuse_UUID, false, true);
+          return getObsFromEncounter(encounter, obsConcepts.EmotionalAbuse_UUID, false, true);
         },
       },
       {
         key: 'sexualAbuse',
         header: t('sexualAbuse', 'Sexual Abuse'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.SexualAbuse_UUID, false, true);
+          return getObsFromEncounter(encounter, obsConcepts.SexualAbuse_UUID, false, true);
         },
       },
       {
@@ -47,14 +47,14 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: config.formNames.IntimatePartnerFormName, package: 'hiv' },
+            form: { name: formNames.IntimatePartnerFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'View Details',
             mode: 'view',
           },
           {
-            form: { name: config.formNames.IntimatePartnerFormName, package: 'hiv' },
+            form: { name: formNames.IntimatePartnerFormName, package: 'hiv' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: 'Edit Form',
@@ -69,14 +69,14 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
   const displayText = t('intimatePartnerViolenceDisplay', 'Intimate Partner Violence');
 
   const intimatePartnerFilter = (encounter) => {
-    return encounter?.form?.name === config.formNames.IntimatePartnerFormName;
+    return encounter?.form?.name === formNames.IntimatePartnerFormName;
   };
   return (
     <EncounterList
       patientUuid={patientUuid}
       filter={intimatePartnerFilter}
-      encounterType={config.encounterTypes.IntimatePartnerEncounterType_UUID}
-      formList={[{ name: config.formNames.IntimatePartnerFormName }]}
+      encounterType={encounterTypes.IntimatePartnerEncounterType_UUID}
+      formList={[{ name: formNames.IntimatePartnerFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

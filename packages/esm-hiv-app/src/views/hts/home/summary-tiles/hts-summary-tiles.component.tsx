@@ -19,7 +19,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
   const [todayPatientCount, setTodayPatientCount] = useState(0);
   const [positiveInLast14Days, setPositiveInLast14Days] = useState(0);
   const [linkedToCareInLast14Days, setLinkedToCareInLast14Days] = useState(0);
-  const config = useConfig();
+  const { obsConcepts } = useConfig();
 
   const tiles = [
     {
@@ -77,8 +77,8 @@ function HTSSummaryTiles({ launchWorkSpace }) {
 
   function getPositiveInLast14days() {
     return fetchPatientsFromObservationCodeConcept(
-      config.obsConcepts.finalHIVCodeConcept,
-      config.obsConcepts.finalPositiveHIVValueConcept,
+      obsConcepts.finalHIVCodeConcept,
+      obsConcepts.finalPositiveHIVValueConcept,
       14,
     ).then((response) => {
       setPositiveInLast14Days(response.length);
@@ -87,8 +87,8 @@ function HTSSummaryTiles({ launchWorkSpace }) {
 
   function getLinkedToCareInLast14days() {
     return fetchPatientsFromObservationCodeConcept(
-      config.obsConcepts.linkedToCareCodeConcept,
-      config.obsConcepts.linkedToCareYesValueConcept,
+      obsConcepts.linkedToCareCodeConcept,
+      obsConcepts.linkedToCareYesValueConcept,
       14,
     ).then((response) => {
       setLinkedToCareInLast14Days(response.length);

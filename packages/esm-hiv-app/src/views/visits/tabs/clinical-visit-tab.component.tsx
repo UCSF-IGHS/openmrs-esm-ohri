@@ -10,7 +10,7 @@ interface ClinicalVisitListProps {
 
 const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const headerTitle = t('clinicalVisit', 'Clinical Visit');
   const displayText = t('clinicalVisit', 'Clinical Visit');
@@ -21,7 +21,7 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         key: 'clinicalVisitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.dateOfEncounterConcept, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEncounterConcept, true);
         },
         link: {
           getUrl: (encounter) => encounter.url,
@@ -34,21 +34,21 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         key: 'clinicalVisitType',
         header: t('visitType', 'Visit Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.visitTypeConcept);
+          return getObsFromEncounter(encounter, obsConcepts.visitTypeConcept);
         },
       },
       {
         key: 'clinicalScreeningOutcome',
         header: t('tbScreeningOutcome', 'TB Screening Outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.tbScreeningOutcome);
+          return getObsFromEncounter(encounter, obsConcepts.tbScreeningOutcome);
         },
       },
       {
         key: 'clinicalNextAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.returnVisitDateConcept, true);
+          return getObsFromEncounter(encounter, obsConcepts.returnVisitDateConcept, true);
         },
       },
       {
@@ -57,14 +57,14 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: config.formNames.ClinicalVisitFormName, package: 'hiv' },
+              form: { name: formNames.ClinicalVisitFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: config.formNames.ClinicalVisitFormName, package: 'hiv' },
+              form: { name: formNames.ClinicalVisitFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -81,8 +81,8 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.clinicalVisitEncounterType}
-      formList={[{ name: config.formNames.ClinicalVisitFormName }]}
+      encounterType={encounterTypes.clinicalVisitEncounterType}
+      formList={[{ name: formNames.ClinicalVisitFormName }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle={headerTitle}

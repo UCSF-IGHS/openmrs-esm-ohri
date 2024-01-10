@@ -16,7 +16,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
   const htsRetrospectiveTypeUUID = '79c1f50f-f77d-42e2-ad2a-d29304dde2fe'; // HTS Retrospective
   const forceComponentUpdate = () => setCounter(counter + 1);
   const headerTitle = t('hivTesting', 'HIV Testing');
-  const config = useConfig();
+  const { obsConcepts, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -24,7 +24,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         key: 'date',
         header: t('hivTestDate', 'Date of HIV Test'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.dateOfHIVTestingConceptUUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfHIVTestingConceptUUID, true);
         },
       },
       {
@@ -38,7 +38,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         key: 'hivTestResult',
         header: t('hivTestResult', 'HIV Test result'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.hivTestResultConceptUUID);
+          return getObsFromEncounter(encounter, obsConcepts.hivTestResultConceptUUID);
         },
       },
       {
@@ -55,14 +55,14 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { package: 'hiv', name: config.formNames.HIVTestingFormName },
+              form: { package: 'hiv', name: formNames.HIVTestingFormName },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { package: 'hiv', name: config.formNames.HIVTestingFormName },
+              form: { package: 'hiv', name: formNames.HIVTestingFormName },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -82,7 +82,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
       encounterType={htsRetrospectiveTypeUUID}
       formList={[
         {
-          name: config.formNames.HIVTestingFormName,
+          name: formNames.HIVTestingFormName,
           fixedIntent: '*',
           excludedIntents: ['HTS_PRE_TEST', 'HTS_TEST', 'HTS_POST_TEST'],
         },
