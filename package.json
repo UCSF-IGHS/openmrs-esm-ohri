@@ -75,7 +75,6 @@
     "jest-cli": "^28.1.2",
     "jest-coverage-badges": "1.1.2",
     "jest-environment-jsdom": "^28.1.2",
-    "lerna": "^4.0.0",
     "lodash": "^4.17.21",
     "openmrs": "next",
     "prettier": "^2.2.1",
@@ -100,5 +99,5 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@4.0.2"
 }
