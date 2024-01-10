@@ -17,7 +17,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
-  const InfantPNCEncounterTypeUUID = useConfig().encounterTypes.infantPostnatal;
+  const InfantPNCEncounterTypeUUID = config.encounterTypes.infantPostnatal;
 
   async function fetchMotherName() {
     let motherName = '--';
