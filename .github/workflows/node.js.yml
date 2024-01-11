@@ -1,16 +1,10 @@
-name: OHRI CI - @esm and Docker Image
+name: OHRI CI
 
 on:
   push:
-    tags:
-      - '*'
-    branches:
-      - '*'
-
+    branches: [master, working, dev, pretest]
   pull_request:
-    branches:
-      - '*'
-    types: [opened, synchronize]
+    branches: [master, working, dev, pretest]
   release:
     types:
       - created
@@ -81,8 +75,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Version
-        # run: yarn workspaces foreach --worktree --topological --exclude @ohri/openmrs-esm-ohri version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
-        run: yarn workspaces foreach --topological --exclude @ohri/openmrs-esm-ohri version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
+        run: yarn workspaces foreach --worktree --topological --exclude @ohri/openmrs-esm-ohri version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
 
       - name: Build
         run: yarn turbo run build --color --concurrency=5
