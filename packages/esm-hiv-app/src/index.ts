@@ -1,4 +1,4 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import ServiceSummaryOverviewList from './views/service-summary/encounter-list/service-summary-encounter-list.component';
 import HTSSummaryTiles from './views/hts/home/summary-tiles/hts-summary-tiles.component';
 import OHRIPatientTabs from './views/hts/home/patient-tabs/ohri-patient-tabs.component';
