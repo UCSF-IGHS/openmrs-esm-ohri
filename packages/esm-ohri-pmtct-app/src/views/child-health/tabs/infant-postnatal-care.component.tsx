@@ -6,14 +6,6 @@ import {
   fetchPatientRelationships,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  pTrackerIdConcept,
-  nextVisitDate,
-  artProphylaxisStatus,
-  linkedToArt,
-  breastfeedingStatus,
-  outcomeStatus,
-} from '../../../constants';
 import { moduleName } from '../../..';
 import { useConfig } from '@openmrs/esm-framework';
 
@@ -23,8 +15,9 @@ interface InfantPostnatalListProps {
 
 const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
   const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
-  const InfantPNCEncounterTypeUUID = useConfig().encounterTypes.infantPostnatal;
+  const InfantPNCEncounterTypeUUID = config.encounterTypes.infantPostnatal;
 
   async function fetchMotherName() {
     let motherName = '--';
@@ -41,7 +34,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'pTrackerId',
         header: t('pTrackerId', 'Child PTracker ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
         },
       },
       {
@@ -55,35 +48,35 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
         key: 'artProphylaxisStatus',
         header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artProphylaxisStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.artProphylaxisStatus);
         },
       },
       {
         key: 'linkedToArt',
         header: t('linkedToArt', 'Linked to ART'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, linkedToArt);
+          return getObsFromEncounter(encounter, config.obsConcepts.linkedToArt);
         },
       },
       {
         key: 'breastfeedingStatus',
         header: t('breastfeedingStatus', 'Breastfeeding status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, breastfeedingStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.breastfeedingStatus);
         },
       },
       {
         key: 'outcomeStatus',
         header: t('outcomeStatus', 'Outcome Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, outcomeStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.outcomeStatus);
         },
       },
       {
         key: 'nextVisitDate',
         header: t('nextVisitDate', 'Next visit date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, nextVisitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.nextVisitDate, true);
         },
       },
       {

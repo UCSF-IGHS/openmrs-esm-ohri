@@ -1,10 +1,11 @@
 import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
-import { artNoConcept, artUniqueNumberType } from '../constants';
+import { getConfig } from '@openmrs/esm-framework';
 import { fetchPatientIdentifiers, saveIdentifier } from '../api/api';
 import { PatientIdentifier } from '../api/types';
 
 const ArtSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
+    const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
 
@@ -12,7 +13,9 @@ const ArtSubmissionAction: PostSubmissionAction = {
       return;
     }
 
-    let artNumber = encounter.obs.find((observation) => observation.concept.uuid === artNoConcept)?.value;
+    let artNumber = encounter.obs.find(
+      (observation) => observation.concept.uuid === config.obsConcepts.artNoConcept,
+    )?.value;
     if (!artNumber) {
       return;
     }
@@ -22,7 +25,9 @@ const ArtSubmissionAction: PostSubmissionAction = {
 
     //Patient can only have one ART No.
     const patientIdentifiers = await fetchPatientIdentifiers(patient.id);
-    const existingArtNumbers = patientIdentifiers.filter((id) => id.identifierType.uuid === artUniqueNumberType);
+    const existingArtNumbers = patientIdentifiers.filter(
+      (id) => id.identifierType.uuid === config.encounterTypes.artUniqueNumberType,
+    );
     if (existingArtNumbers.length > 0) {
       return;
     }
@@ -30,7 +35,7 @@ const ArtSubmissionAction: PostSubmissionAction = {
     //add current art number to identities
     const currentArtNumberObject: PatientIdentifier = {
       identifier: artNumber,
-      identifierType: artUniqueNumberType,
+      identifierType: config.encounterTypes.artUniqueNumberType,
       location: encounterLocation,
       preferred: false,
     };

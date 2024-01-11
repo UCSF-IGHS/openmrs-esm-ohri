@@ -1,16 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  artInitiationConcept,
-  artNoConcept,
-  eDDConcept,
-  followUpDateConcept,
-  hivTestResultConcept,
-  pTrackerIdConcept,
-  visitDateConcept,
-  vLResultsConcept,
-} from '../../../constants';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
 
@@ -20,8 +10,9 @@ interface AntenatalCareListProps {
 
 const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
   const headerTitle = t('antenatalCare', 'Antenatal Care');
-  const ANCEncounterTypeUUID = useConfig().encounterTypes.antenatal;
+  const ANCEncounterTypeUUID = config.encounterTypes.antenatal;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -29,35 +20,35 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'pTrackerId',
         header: t('pTrackerId', 'PTracker Id'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
         },
       },
       {
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDateConcept, true);
         },
       },
       {
         key: 'hivTestResults',
         header: t('hivTestResults', 'HIV Test Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, hivTestResultConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivTestResultConcept);
         },
       },
       {
         key: 'artLinkage',
         header: t('artLinkage', 'ART linkage (if positive)'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, artInitiationConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.artInitiationConcept);
         },
       },
       {
         key: 'edd',
         header: t('edd', 'EDD'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, eDDConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.eDDConcept, true);
         },
       },
       {
@@ -71,14 +62,14 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         key: 'followUpDate',
         header: t('followUpDate', 'Next follow-up date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, followUpDateConcept, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.followUpDateConcept, true);
         },
       },
       {
         key: 'vlResults',
         header: t('vlResults', 'VL Results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, vLResultsConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.vLResultsConcept);
         },
       },
       {

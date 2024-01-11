@@ -2,20 +2,6 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
-import {
-  artLinkage,
-  artUniqueNoConcept,
-  hivTestStatus,
-  MotherHivStatus,
-  MotherNextVisitDate,
-  motherPostnatalEncounterType,
-  MotherViralLoadDate,
-  MotherViralLoadResult,
-  MothervisitDate,
-  pTrackerIdConcept,
-  recenctViralLoad,
-  visitDate,
-} from '../../../constants';
 import { useConfig } from '@openmrs/esm-framework';
 
 interface PostnatalCareListProps {
@@ -24,8 +10,9 @@ interface PostnatalCareListProps {
 
 const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
   const headerTitle = t('postnatalCare', 'Postnatal Care');
-  const MotherPNCEncounterTypeUUID = useConfig().encounterTypes.motherPostnatal;
+  const MotherPNCEncounterTypeUUID = config.encounterTypes.motherPostnatal;
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -33,42 +20,42 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         key: 'pTrackerId',
         header: t('pTrackerId', 'PTracker ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, pTrackerIdConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.pTrackerIdConcept);
         },
       },
       {
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, visitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDate, true);
         },
       },
       {
         key: 'currentHivStatus',
         header: t('currentHivStatus', 'Current HIV Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, MotherHivStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.MotherHivStatus);
         },
       },
       {
         key: 'recentViralLoadTestDate',
         header: t('recentViralLoadTestDate', 'Recent Viral load test date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, MotherViralLoadDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.MotherViralLoadDate, true);
         },
       },
       {
         key: 'recentViralLoadResults',
         header: t('recentViralLoadResults', 'Recent Viral load results'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, MotherViralLoadResult);
+          return getObsFromEncounter(encounter, config.obsConcepts.MotherViralLoadResult);
         },
       },
       {
         key: 'nextVisitDate',
         header: t('nextVisitDate', 'Next visit date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, MotherNextVisitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.MotherNextVisitDate, true);
         },
       },
       {
