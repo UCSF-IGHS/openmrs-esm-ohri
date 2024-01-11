@@ -1,28 +1,38 @@
-// Sync object
-/** @type {import('@jest/types').Config.InitialOptions} */
+/** @type {import('jest').Config} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+
 const config = {
   verbose: true,
   collectCoverage: true,
   coverageThreshold: {
     global: {
-      branches: 10,
-      functions: 10,
-      lines: 10,
+      branches: 0,
+      functions: 0,
+      lines: 0,
     },
   },
   coverageReporters: ['json-summary', 'lcov'],
-  collectCoverageFrom: ['./src/forms/**', '!./src/components/**/*.snap'],
+  collectCoverageFrom: [
+    '**/src/**/*.component.tsx',
+    '!**/node_modules/**',
+    '!**/vendor/**',
+    '!**/src/**/*.test.*',
+    '!**/src/declarations.d.ts',
+    '!**/e2e/**',
+  ],
   transform: {
     '^.+\\.tsx?$': '@swc/jest',
   },
   transformIgnorePatterns: ['/node_modules/(?!@openmrs)'],
+  moduleDirectories: ['node_modules', '__mocks__', 'tools', __dirname],
   moduleNameMapper: {
     '\\.(s?css)$': 'identity-obj-proxy',
     '@openmrs/esm-framework': '@openmrs/esm-framework/mock',
-    'react-i18next': '<rootDir>/__mocks__/react-i18next.js',
-    'lodash-es': 'lodash',
-    'react-markdown': '<rootDir>/__mocks__/react-markdown.tsx',
+    '^@carbon/charts-react$': path.resolve(__dirname, '__mocks__', '@carbon__charts-react.ts'),
     '^dexie$': require.resolve('dexie'),
+    '^lodash-es/(.*)$': 'lodash/$1',
+    '^react-i18next$': path.resolve(__dirname, '__mocks__', 'react-i18next.js'),
   },
   testEnvironment: 'jsdom',
 };

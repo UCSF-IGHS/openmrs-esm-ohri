@@ -1,16 +1,10 @@
-name: OHRI CI - @esm and Docker Image
+name: OHRI CI
 
 on:
   push:
-    tags:
-      - '*'
-    branches:
-      - '*'
-
+    branches: [master, working, dev]
   pull_request:
-    branches:
-      - '*'
-    types: [opened, synchronize]
+    branches: [master, working, dev]
   release:
     types:
       - created
@@ -73,8 +67,13 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            **/node_modules
+            **/yarn.lock
+
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -86,13 +85,19 @@ jobs:
       - name: Build
         run: yarn turbo run build --color --concurrency=5
 
-      - run: git config user.email "<>" && git config user.name "GitHub Actions Bot"
-      - run: git add . && git commit -m "Prerelease version" --no-verify
+      - name: setup git config
+        run: |
+           git config user.name "GitHub Actions Bot"
+           git config user.email "<>"
+      - name: commit
+        run: |
+           git add .
+           git commit -m "Prerelease version" --no-verify
 
       - name: Pre-release
         run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:prepublish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
