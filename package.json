@@ -25,16 +25,12 @@
     "test": "jest --config jest.config.js --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.js",
     "verify": "turbo run lint && turbo run typescript && yarn test --coverage",
-    "ci:prepublish": "lerna publish from-package --no-git-reset --yes --dist-tag next",
-    "ci:prerelease": "lerna version prerelease --no-git-tag-version --yes",
-    "ci:publish": "lerna publish from-package --yes",
-    "ci:release": "lerna version --no-git-tag-version",
+    "ci:prepublish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag next",
+    "ci:publish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag latest",
+    "release": "yarn workspaces foreach --all --topological version",
     "coverage": "yarn test --coverage",
     "badges": "yarn coverage && yarn jest-coverage-badges --output './badges' ",
-    "extract-translations": "lerna run extract-translations -- --config ../../tools/i18next-parser.config.js",
-    "ci:publish-next": "lerna publish from-package --no-git-reset --dist-tag next --yes",
-    "ci:publish-next-patch": "lerna version patch && lerna publish from-package --no-git-reset --dist-tag next --yes",
-    "release": "lerna version --no-git-tag-version",
+    "extract-translations": "turbo extract-translations -- --config ../../tools/i18next-parser.config.js",
     "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next"
   },
   "devDependencies": {
@@ -75,7 +71,6 @@
     "jest-cli": "^28.1.2",
     "jest-coverage-badges": "1.1.2",
     "jest-environment-jsdom": "^28.1.2",
-    "lerna": "^4.0.0",
     "lodash": "^4.17.21",
     "openmrs": "next",
     "prettier": "^2.2.1",
@@ -100,5 +95,5 @@
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@4.0.2"
 }

@@ -14,6 +14,7 @@ import {
 } from './dashboard.meta';
 import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { configSchema } from './config-schema';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -27,7 +28,7 @@ const options = {
 };
 
 export function startupApp() {
-  defineConfigSchema(moduleName, {});
+  defineConfigSchema(moduleName, configSchema);
 }
 
 export const covidPatientChartDashboard = getSyncLifecycle(createDashboardGroup(covidPatientChartMeta), options);
