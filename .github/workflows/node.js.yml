@@ -2,9 +2,9 @@ name: OHRI CI
 
 on:
   push:
-    branches: [master, working, dev, pretest]
+    branches: [master, working, dev]
   pull_request:
-    branches: [master, working, dev, pretest]
+    branches: [master, working, dev]
   release:
     types:
       - created
@@ -53,7 +53,7 @@ jobs:
 
     needs: build
 
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/pretest' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
 
     steps:
       - uses: actions/checkout@v4
