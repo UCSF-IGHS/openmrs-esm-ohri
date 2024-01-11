@@ -1,4 +1,9 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle, Type } from '@openmrs/esm-framework';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
+import MaternalSummary from './views/mch-summary/mch-summary.component';
+import MaternalHealthList from './views/maternal-health/maternal-health.component';
+import ChildHealthList from './views/child-health/child-health.component';
+import MaternalChildSummaryTiles from './views/summary-tabs/maternal-child-summary-tiles.component';
+import LabResultsSummary from './views/summary-tabs/mother-child-summary-tabs.component';
 import {
   mchSummaryDashboardMeta,
   maternalVisitsDashboardMeta,
@@ -52,7 +57,8 @@ export const mchSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...mchSummaryDashboardMeta, moduleName }),
   options,
 );
-export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
+
+export const mchSummaryDashboard = getSyncLifecycle(MaternalSummary, {
   featureName: 'mch-summary',
   moduleName,
 });
@@ -61,23 +67,21 @@ export const maternalVisitsDashboardLink = getSyncLifecycle(
   createConditionalDashboardLink({ ...maternalVisitsDashboardMeta, moduleName }),
   options,
 );
-export const maternalVisitsDashboard = getAsyncLifecycle(
-  () => import('./views/maternal-health/maternal-health.component'),
-  {
-    featureName: 'maternal-visits',
-    moduleName,
-  },
-);
+
+export const maternalVisitsDashboard = getSyncLifecycle(MaternalHealthList, {
+  featureName: 'maternal-visits',
+  moduleName,
+});
 
 export const childVisitsDashboardLink = getSyncLifecycle(
   createConditionalDashboardLink({ ...childVisitsDashboardMeta, moduleName }),
   options,
 );
-export const childVisitsDashboard = getAsyncLifecycle(() => import('./views/child-health/child-health.component'), {
-  featureName: 'child-visits',
+
+export const childVisitsDashboard = getSyncLifecycle(ChildHealthList, {
+  featureName: 'maternal-visits',
   moduleName,
 });
-
 export const maternalChildDashboardLink = getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options);
 export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'mother child health results dashboard',
@@ -87,17 +91,13 @@ export const pmtctDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
   featureName: 'pmtct-home-header',
   moduleName,
 });
-export const pmtctDashboardTiles = getAsyncLifecycle(
-  () => import('./views/summary-tabs/maternal-child-summary-tiles.component'),
-  {
-    featureName: 'pmtct-home-tiles',
-    moduleName,
-  },
-);
-export const pmtctDashboardTabs = getAsyncLifecycle(
-  () => import('./views/summary-tabs/mother-child-summary-tabs.component'),
-  {
-    featureName: 'pmtct-home-tabs',
-    moduleName,
-  },
-);
+
+export const pmtctDashboardTiles = getSyncLifecycle(MaternalChildSummaryTiles, {
+  featureName: 'pmtct-home-tiles',
+  moduleName,
+});
+
+export const pmtctDashboardTabs = getSyncLifecycle(LabResultsSummary, {
+  featureName: 'pmtct-home-tabs',
+  moduleName,
+});
