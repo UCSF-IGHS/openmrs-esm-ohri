@@ -85,14 +85,6 @@ jobs:
       - name: Build
         run: yarn turbo run build --color --concurrency=5
 
-      # - run: git config user.email "<>" && git config user.name "GitHub Actions Bot"
-      # - run: git add . && git commit -m "Prerelease version" --no-verify
-
-      # - name: Pre-release
-      #   run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:prepublish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
       - name: setup git config
         run: |
            git config user.name "GitHub Actions Bot"
@@ -101,6 +93,12 @@ jobs:
         run: |
            git add .
            git commit -m "Prerelease version" --no-verify
+
+      - name: Pre-release
+        run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:prepublish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
       - run: yarn run ci:prepublish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
