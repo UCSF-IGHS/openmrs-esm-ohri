@@ -1,13 +1,8 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  cacxRegistrationEncounterType_UUID,
-  cervicalCancerScreeningDateConcept,
-  eligibleForScreeningConcept,
-  previouslyScreenedConcept,
-} from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface CacxRegistrationProps {
   patientUuid: string;
@@ -15,6 +10,15 @@ interface CacxRegistrationProps {
 
 export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+
+  const config = useConfig();
+
+  const { cervicalCancerScreeningDateConcept, eligibleForScreeningConcept, previouslyScreenedConcept } =
+    config.obsConcepts;
+
+  const { cacxRegistrationEncounterType_UUID } = config.encounterTypes;
+
+  const { cervicalCancerRegistrationForm } = config.formNames;
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -46,14 +50,14 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Cervical Cancer Registration Form', package: 'cacx' },
+              form: { name: cervicalCancerRegistrationForm, package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'Cervical Cancer Registration Form', package: 'cacx' },
+              form: { name: cervicalCancerRegistrationForm, package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -73,7 +77,7 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={cacxRegistrationEncounterType_UUID}
-      formList={[{ name: 'Cervical Cancer Registration Form' }]}
+      formList={[{ name: cervicalCancerRegistrationForm }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

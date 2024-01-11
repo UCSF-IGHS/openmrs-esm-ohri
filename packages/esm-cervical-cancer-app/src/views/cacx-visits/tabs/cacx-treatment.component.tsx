@@ -6,17 +6,8 @@ import {
   getMultipleObsFromEncounter,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  cacxEncounterDateConcept,
-  screeningMethodConcept,
-  cacxTreatmentConcept,
-  cacxTreatmentEncounterType_UUID,
-  colopsyResultsConcept,
-  humanPapilomaVirusResultsConcept,
-  papanicolaouSmearResultsConcept,
-  VIAProcedureResultsConcept,
-} from '../../../constants';
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface CacxTreatmentProps {
   patientUuid: string;
@@ -24,6 +15,21 @@ interface CacxTreatmentProps {
 
 export const CacxTreatment: React.FC<CacxTreatmentProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
+
+  const {
+    cacxEncounterDateConcept,
+    screeningMethodConcept,
+    cacxTreatmentConcept,
+    colopsyResultsConcept,
+    humanPapilomaVirusResultsConcept,
+    papanicolaouSmearResultsConcept,
+    VIAProcedureResultsConcept,
+  } = config.obsConcepts;
+
+  const { cacxTreatmentEncounterType_UUID } = config.encounterTypes;
+
+  const { screeningAndCancerTreatmentForm } = config.formNames;
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -67,14 +73,14 @@ export const CacxTreatment: React.FC<CacxTreatmentProps> = ({ patientUuid }) => 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'Screening and Cancer Treatment Form', package: 'cacx' },
+              form: { name: screeningAndCancerTreatmentForm, package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('viewDetails', 'View Details'),
               mode: 'view',
             },
             {
-              form: { name: 'Screening and Cancer Treatment Form', package: 'cacx' },
+              form: { name: screeningAndCancerTreatmentForm, package: 'cacx' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: t('editForm', 'Edit Form'),
@@ -94,7 +100,7 @@ export const CacxTreatment: React.FC<CacxTreatmentProps> = ({ patientUuid }) => 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={cacxTreatmentEncounterType_UUID}
-      formList={[{ name: 'Screening and Cancer Treatment Form' }]}
+      formList={[{ name: screeningAndCancerTreatmentForm }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

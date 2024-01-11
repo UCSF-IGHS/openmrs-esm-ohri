@@ -3,6 +3,7 @@ import { caCxSummaryDashboardMeta, caCxVisitsDashboardMeta, cervicalCancerFolder
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import CacxSummaryList from './views/cacx-summary/cacx-summary.component';
 import CacxVisitServices from './views/cacx-visits/cacx-visits-services.component';
+import { configSchema } from './config-schema';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -16,7 +17,7 @@ const options = {
 };
 
 export function startupApp() {
-  defineConfigSchema(moduleName, {});
+  defineConfigSchema(moduleName, configSchema);
 }
 
 export const cacxPatientChartDashboard = getSyncLifecycle(createDashboardGroup(cervicalCancerFolderMeta), options);
