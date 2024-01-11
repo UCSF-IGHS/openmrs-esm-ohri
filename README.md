@@ -28,6 +28,7 @@ OpenMRS HIV Reference Implementation (OHRI) packages built on top of OpenMRS Fro
 
 * [Node](https://nodejs.org/en/download/)
 * [Git](https://git-scm.com/downloads)
+* [Yarn](https://yarnpkg.com)
 
 ### Setup OHRI Module
 

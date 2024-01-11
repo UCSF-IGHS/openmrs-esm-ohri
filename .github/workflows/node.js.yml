@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Cache dependencies
         id: cache
@@ -62,10 +62,11 @@ jobs:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Cache dependencies
@@ -79,37 +80,40 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
 
-      - run: yarn lerna version "$(node -e "console.log(require('./lerna.json').version)")-pre.${{ github.run_number }}" --no-git-tag-version --yes
+      - name: Version
+        run: yarn workspaces foreach --worktree --topological --exclude @ohri/openmrs-esm-ohri version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
 
-      # Disable the step to updated configs of migration
-      # - name: Test and Generate Badges
-      #   run: yarn badges
+      - name: Build
+        run: yarn turbo run build --color --concurrency=5
 
-      - name: setup git config
-        run: |
-           git config user.name "GitHub Actions Bot"
-           git config user.email "<>"
-      - name: commit
-        run: |
-           git add .
-           git commit -m "Prerelease version" --no-verify
-      - run: yarn run ci:prepublish
+      - run: git config user.email "<>" && git config user.name "GitHub Actions Bot"
+      - run: git add . && git commit -m "Prerelease version" --no-verify
+
+      - name: Pre-release
+        run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:prepublish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: packages
+          path: |
+            packages/**/dist
 
   release:
     runs-on: ubuntu-latest
 
-    needs: pre_release
+    needs: build
 
     if: ${{ github.event_name == 'release' }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Cache dependencies
@@ -123,8 +127,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
 
-      - name: Publish to NPM
-        run: yarn run ci:publish
+      - run: yarn turbo run build --color
+      - run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
