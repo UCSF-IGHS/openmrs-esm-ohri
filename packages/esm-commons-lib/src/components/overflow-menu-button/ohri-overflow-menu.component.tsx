@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import styles from './ohri-overflow-menu.scss';
-import { useTranslation } from 'react-i18next';
 import { applyFormIntent } from '@openmrs/openmrs-form-engine-lib';
 import { Button } from '@carbon/react';
+import styles from './ohri-overflow-menu.scss';
 
 interface OverflowMenuProps {
   menuTitle: React.ReactNode;
@@ -11,7 +10,6 @@ interface OverflowMenuProps {
 }
 
 export const OHRIOverflowMenu: React.FC<OverflowMenuProps> = ({ menuTitle, overflowItems, launchForm }) => {
-  const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const wrapperRef = useRef(null);
   const toggleShowMenu = useCallback(() => setShowMenu((state) => !state), []);
