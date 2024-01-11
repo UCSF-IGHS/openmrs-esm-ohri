@@ -70,15 +70,16 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
       - name: Fetch latest changes
         run: git fetch
 
       - name: Checkout the branch
-        run: git checkout pretest
+        run: git checkout dev
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --immutable
 
       - name: Version
         run: yarn workspaces foreach --worktree --topological --exclude @ohri/openmrs-esm-ohri version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
