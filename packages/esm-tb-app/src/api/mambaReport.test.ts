@@ -1,4 +1,4 @@
-import { fetchMambaReportData} from '..../../../../../packages/esm-commons-lib/src/api/api'; 
+import { fetchMambaReportData } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { openmrsFetch } from '@openmrs/esm-framework';
 
 // fetchMambaReportData.test.js
@@ -17,9 +17,7 @@ describe('fetchMambaReportData', () => {
       data: {
         results: [
           {
-            record: [
-              { value: '0' },
-            ],
+            record: [{ value: '0' }],
           },
         ],
       },
@@ -31,7 +29,7 @@ describe('fetchMambaReportData', () => {
     const result = await fetchMambaReportData(reportId);
 
     expect(openmrsFetch).toHaveBeenCalledWith(`ws/rest/v1/mamba/report?report_id=${reportId}`);
-    expect(mockResponse.json).toHaveBeenCalled(); 
-    expect(result).toEqual(0); 
+    expect(mockResponse.json).toHaveBeenCalled();
+    expect(result).toEqual(0);
   });
 });
