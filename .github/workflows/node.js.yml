@@ -73,6 +73,9 @@ jobs:
       - name: Fetch latest changes
         run: git fetch
 
+      - name: Checkout the branch
+        run: git checkout pretest
+
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
