@@ -15,8 +15,6 @@ describe('ohri summary tiles', () => {
   it('should display props on the UI', () => {
     render(<OHRISummaryTile {...mockProps} />);
 
-    screen.debug();
-
     expect(screen.getByText(/Sample Title/i)).toBeInTheDocument();
     expect(screen.getByText(/Sample Subtitle/i)).toBeInTheDocument();
     expect(screen.getByText(/3077/i)).toBeInTheDocument();
