@@ -2,7 +2,7 @@ import React from 'react';
 import { mockTableHeaders, mockTableRows } from '../../../../../__mocks__/obs-base-table.mock';
 import userEvent from '@testing-library/user-event';
 import { render, screen, act } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { OTable } from './o-table.component';
 
 const testProps = {
