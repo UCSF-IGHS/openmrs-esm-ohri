@@ -7,12 +7,7 @@ import {
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../index';
-import {
-  covid_Assessment_EncounterUUID,
-  covidTestTypeUUID,
-  covidSpecimentTestDate_UUID,
-  covidOutcomeUUID,
-} from '../constants';
+import { useConfig } from '@openmrs/esm-framework';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 
@@ -22,6 +17,7 @@ interface CovidOutcomesWidgetProps {
 
 const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -41,21 +37,21 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
         key: 'testType',
         header: t('testType', 'Test type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidTestTypeUUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidTestTypeUUID);
         },
       },
       {
         key: 'testDate',
         header: t('testDate', 'Test date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidSpecimentTestDate_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidSpecimentTestDate_UUID, true);
         },
       },
       {
         key: 'outcome',
         header: t('outcomeStatus', 'Outcome status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidOutcomeUUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidOutcomeUUID);
         },
       },
       {
@@ -72,8 +68,8 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={covid_Assessment_EncounterUUID}
-      formList={[{ name: 'COVID Case Form' }]}
+      encounterType={config.encounterTypes.covid_Assessment_EncounterUUID}
+      formList={[{ name: config.formNames.CovidCaseFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

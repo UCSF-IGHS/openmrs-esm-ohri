@@ -1,7 +1,6 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot, useConfig } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { covidVaccinatedClients } from '../../../constants';
 import {
   basePath,
   finalHIVCodeConcept,
@@ -26,6 +25,7 @@ export const Vaccinations: React.FC<{}> = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns = useMemo(
     () => [
@@ -72,7 +72,7 @@ export const Vaccinations: React.FC<{}> = () => {
   );
 
   useEffect(() => {
-    getReportingCohort(covidVaccinatedClients).then((data) => {
+    getReportingCohort(config.cohorts.covidVaccinatedClients).then((data) => {
       setCovidVaccinatedClients(data.members.length);
     });
     fetchPatientsFromObservationCodeConcept(finalHIVCodeConcept, finalPositiveHIVValueConcept, 14).then(

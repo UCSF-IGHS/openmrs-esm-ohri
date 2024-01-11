@@ -1,13 +1,7 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot, useConfig } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPatientCovidOutcome } from '../../../api/api';
-import {
-  covidEncounterDateTime_UUID,
-  covidOutcome,
-  covidOutcomeUUID,
-  covidPresentSymptonsConcept_UUID,
-} from '../../../constants';
 
 import {
   getObsFromEncounter,
@@ -28,6 +22,7 @@ export const Outcomes: React.FC<{}> = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns = useMemo(
     () => [
@@ -59,28 +54,28 @@ export const Outcomes: React.FC<{}> = () => {
         key: 'outcomeAssessmentDate',
         header: t('AssessmentDate', 'AssessmentDate Date'),
         getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, covidEncounterDateTime_UUID, true);
+          return getObsFromEncounter(latestEncounter, config.obsConcepts.covidEncounterDateTime_UUID, true);
         },
       },
       {
         key: 'outcomePresentation',
         header: t('presentation', 'Presentation'),
         getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, covidPresentSymptonsConcept_UUID);
+          return getObsFromEncounter(latestEncounter, config.obsConcepts.covidPresentSymptonsConcept_UUID);
         },
       },
       {
         key: 'outcome',
         header: t('outcome', 'Outcome'),
         getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, covidOutcomeUUID);
+          return getObsFromEncounter(latestEncounter, config.obsConcepts.covidOutcomeUUID);
         },
       },
       {
         key: 'outcomeDate',
         header: t('outcomeDate', 'Outcome Date'),
         getValue: ({ latestEncounter }) => {
-          return getObsFromEncounter(latestEncounter, covidOutcome);
+          return getObsFromEncounter(latestEncounter, config.obsConcepts.covidOutcome);
         },
       },
     ],
@@ -88,7 +83,7 @@ export const Outcomes: React.FC<{}> = () => {
   );
 
   useEffect(() => {
-    fetchPatientCovidOutcome().then((response: Array<any>) => {
+    fetchPatientCovidOutcome(config.cohorts.covidOutcomesCohortUUID).then((response: Array<any>) => {
       setPatients(response.map((pat) => pat.data));
       setTotalPatientCount(response.length);
       setIsLoading(false);

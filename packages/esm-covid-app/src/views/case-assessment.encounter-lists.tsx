@@ -2,13 +2,7 @@ import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/o
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../index';
-import {
-  covid_Assessment_EncounterUUID,
-  covidReasonsForTestingConcep_UUID,
-  covidOutcomeUUID,
-  covidEncounterDateTime_UUID,
-  covidSymptomsPresentation,
-} from '../constants';
+import { useConfig } from '@openmrs/esm-framework';
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
   'custom:(uuid,encounterDatetime,location:(uuid,name),' +
@@ -21,6 +15,7 @@ interface CovidAssessmentWidgetProps {
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -28,7 +23,7 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
         key: 'encounterDate',
         header: t('assessmentDate', 'Date of Assessment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidEncounterDateTime_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidEncounterDateTime_UUID, true);
         },
         link: {
           handleNavigate: (encounter) => {
@@ -40,21 +35,21 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
         key: 'reasonsForTesting',
         header: t('reasonsForTesting', 'Reason for testing'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidReasonsForTestingConcep_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidReasonsForTestingConcep_UUID);
         },
       },
       {
         key: 'symptomatic',
         header: t('symptomatic', 'Presentation'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidSymptomsPresentation, false);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidSymptomsPresentation, false);
         },
       },
       {
         key: 'outcome',
         header: t('outcome', 'Outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidOutcomeUUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidOutcomeUUID);
         },
       },
       {
@@ -62,35 +57,35 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
         header: t('actions', 'Actions'),
         getValue: (encounter) => [
           {
-            form: { name: 'COVID Case Form', package: 'covid' },
+            form: { name: config.formNames.CovidCaseFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewAssessment', 'View Case'),
             mode: 'view',
           },
           {
-            form: { name: 'COVID Assessment Form', package: 'covid' },
+            form: { name: config.formNames.CovidAssessmentFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('viewAssessmentcase', 'View Assessment'),
             mode: 'view',
           },
           {
-            form: { name: 'COVID Assessment Form', package: 'covid' },
+            form: { name: config.formNames.CovidAssessmentFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editAssessmentForm', 'Edit Assessment'),
             mode: 'edit',
           },
           {
-            form: { name: 'COVID Case Form', package: 'covid' },
+            form: { name: config.formNames.CovidCaseFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('editassessmentCase', 'Edit Case'),
             mode: 'edit',
           },
           {
-            form: { name: 'COVID Outcome Form', package: 'covid' },
+            form: { name: config.formNames.CovidOutcomeFormName, package: 'covid' },
             encounterUuid: encounter.uuid,
             intent: '*',
             label: t('addEditOutcome', 'Add/Edit Outcome'),
@@ -107,11 +102,11 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={covid_Assessment_EncounterUUID}
+      encounterType={config.encounterTypes.covid_Assessment_EncounterUUID}
       formList={[
-        { name: 'COVID Assessment Form', excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
-        { name: 'COVID Case Form' },
-        { name: 'COVID Outcome Form', excludedIntents: ['COVID_OUTCOME_EMBED', '*'] },
+        { name: config.formNames.CovidAssessmentFormName, excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
+        { name: config.formNames.CovidCaseFormName },
+        { name: config.formNames.CovidOutcomeFormName, excludedIntents: ['COVID_OUTCOME_EMBED', '*'] },
       ]}
       columns={columns}
       description={displayText}

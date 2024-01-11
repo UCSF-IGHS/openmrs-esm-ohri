@@ -1,15 +1,8 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  covidVaccinationEncounterUUID,
-  covidVaccinationAdministeredConcept_UUID,
-  covidVaccineAdministeredConcept_UUID,
-  covidVaccineConcept_UUID,
-  covidVaccinationDose_UUID,
-  covidVaccineSeriesConcept_UUID,
-} from '../constants';
 import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface CovidVaccinationsWidgetProps {
   patientUuid: string;
@@ -19,6 +12,7 @@ export const covidFormSlot = 'hts-encounter-form-slot';
 
 const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -34,28 +28,28 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
         key: 'vaccinationDate',
         header: t('vaccinationDate', 'Vaccination Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidVaccinationAdministeredConcept_UUID, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidVaccinationAdministeredConcept_UUID, true);
         },
       },
       {
         key: 'doseAdministered',
         header: t('vaccineDose', 'Vaccine Dose'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidVaccinationDose_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidVaccinationDose_UUID);
         },
       },
       {
         key: 'vaccineSeries',
         header: t('vaccineSeries', 'Vaccine Series'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, covidVaccineSeriesConcept_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidVaccineSeriesConcept_UUID);
         },
       },
       {
         key: 'covidVaccineType',
         header: t('vaccineAdministered', 'Vaccine Administered'),
         getValue: (encounter) => {
-          const obs = findObs(encounter, covidVaccineAdministeredConcept_UUID);
+          const obs = findObs(encounter, config.obsConcepts.covidVaccineAdministeredConcept_UUID);
           if (typeof obs !== undefined && obs) {
             if (typeof obs.value === 'object') {
               if (obs !== undefined) {
@@ -63,12 +57,12 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
                   obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
                   obs.value.name.name;
                 if (vaccineNAME === 'Other non-coded') {
-                  return getObsFromEncounter(encounter, covidVaccineConcept_UUID);
+                  return getObsFromEncounter(encounter, config.obsConcepts.covidVaccineConcept_UUID);
                 }
               }
             }
           }
-          return getObsFromEncounter(encounter, covidVaccineAdministeredConcept_UUID);
+          return getObsFromEncounter(encounter, config.obsConcepts.covidVaccineAdministeredConcept_UUID);
         },
       },
       {
@@ -77,14 +71,14 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: 'COVID Vaccination Form', package: 'covid' },
+              form: { name: config.formNames.CovidVaccinationFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: 'COVID Vaccination Form', package: 'covid' },
+              form: { name: config.formNames.CovidVaccinationFormName, package: 'covid' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -103,8 +97,8 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={covidVaccinationEncounterUUID}
-      formList={[{ name: 'COVID Vaccination Form' }]}
+      encounterType={config.encounterTypes.covidVaccinationEncounterUUID}
+      formList={[{ name: config.formNames.CovidVaccinationFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
