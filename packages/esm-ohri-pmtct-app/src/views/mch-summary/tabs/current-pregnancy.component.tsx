@@ -140,7 +140,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       const finalOutcome = await fetchChildLatestFinalOutcome(
         relative.personB.uuid,
         config.obsConcepts.outcomeStatus,
-        config.obsConcepts.infantPostnatal,
+        config.encounterTypes.infantPostnatal,
       );
       return { finalOutcome: finalOutcome, childUuid: relative.personB.uuid };
     });
