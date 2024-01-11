@@ -39,4 +39,5 @@ export interface ConfigObject {
   identifiers: Object;
   encounterTypes: Object;
   obsConcepts: Object;
+  formNames: Object;
 }
