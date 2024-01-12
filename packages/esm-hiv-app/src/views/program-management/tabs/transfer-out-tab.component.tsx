@@ -25,7 +25,7 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.visitDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEncounterConcept, true);
         },
       },
       {

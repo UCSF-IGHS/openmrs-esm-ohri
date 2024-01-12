@@ -36,7 +36,7 @@ const LabTestOverviewList: React.FC<LabTestOverviewListProps> = ({ patientUuid }
         key: 'labTestValue',
         header: t('value', 'Value'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.Cd4Count_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.hivCD4Count_UUID);
         },
       },
       {

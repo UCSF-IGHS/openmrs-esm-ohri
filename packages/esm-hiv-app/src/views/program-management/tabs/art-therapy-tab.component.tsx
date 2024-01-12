@@ -90,7 +90,7 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
         artReaseonConcept = obsConcepts.switchReasonUUID;
         break;
       case restartDate:
-        artReaseonConcept = obsConcepts.restartReasonUUID;
+        artReaseonConcept = obsConcepts.freeTextCommentConcept;
         break;
       case stopDate:
         artReaseonConcept = obsConcepts.stopReasonUUID;

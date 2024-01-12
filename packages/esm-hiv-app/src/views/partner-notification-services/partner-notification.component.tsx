@@ -25,7 +25,7 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.PatnerNotificationContactDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEventConcept, true);
         },
       },
       {

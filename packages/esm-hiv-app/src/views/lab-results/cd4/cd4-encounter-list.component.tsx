@@ -26,7 +26,7 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
         key: 'CD4Count',
         header: t('cd4Count', 'CD4 Count'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.Cd4Count_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.hivCD4Count_UUID);
         },
       },
       {

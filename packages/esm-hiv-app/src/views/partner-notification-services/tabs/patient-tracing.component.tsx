@@ -19,14 +19,14 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.ContactDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEventConcept, true);
         },
       },
       {
         key: 'contactMethod',
         header: t('contactMethod', 'Contact Method'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.ContactMethod_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.contactMethodConcept);
         },
       },
       {

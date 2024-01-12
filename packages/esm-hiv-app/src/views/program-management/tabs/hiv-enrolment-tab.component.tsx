@@ -20,7 +20,7 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, obsConcepts.re_enrolmentDateConcept, true) !== '--'
             ? getObsFromEncounter(encounter, obsConcepts.re_enrolmentDateConcept, true)
-            : getObsFromEncounter(encounter, obsConcepts.dateOfServiceEnrollmentConcept, true);
+            : getObsFromEncounter(encounter, obsConcepts.enrolmentDate, true);
         },
       },
       {
@@ -49,7 +49,7 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
                   obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
                   obs.value.name.name;
                 if (EntryPoint === 'Other non-coded') {
-                  return getObsFromEncounter(encounter, obsConcepts.otherEntryPoint);
+                  return getObsFromEncounter(encounter, obsConcepts.freeTextCommentConcept);
                 }
               }
             }

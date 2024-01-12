@@ -91,7 +91,7 @@ export const PositiveInLast14Days: React.FC<{}> = () => {
 
   useEffect(() => {
     fetchPatientsFromObservationCodeConcept(
-      obsConcepts.finalHIVCodeConcept,
+      obsConcepts.hivTestResultConceptUUID,
       obsConcepts.finalPositiveHIVValueConcept,
       14,
     ).then((response: Array<any>) => {

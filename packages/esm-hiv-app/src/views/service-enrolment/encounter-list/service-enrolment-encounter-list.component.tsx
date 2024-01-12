@@ -57,7 +57,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
         key: 'populationType',
         header: t('populationType', 'Population Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.studyPopulationTypeConcept);
+          return getObsFromEncounter(encounter, obsConcepts.keyPopulationTypeConcept);
         },
       },
       {

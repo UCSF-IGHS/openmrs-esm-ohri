@@ -18,7 +18,7 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
         key: 'screeningdate',
         header: t('screeningDate', 'Screening Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.IpvScreeningDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEventConcept, true);
         },
       },
       {

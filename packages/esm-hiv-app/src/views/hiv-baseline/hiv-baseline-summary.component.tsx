@@ -40,7 +40,7 @@ const HivBaselineTabList: React.FC<HivBaselineTabListProps> = ({ patientUuid }) 
         getValue: (encounters) => {
           return getObsFromEncounter(
             encounters[encounterTypes.careAndTreatmentEncounterType],
-            obsConcepts.dateOfServiceEnrollmentConcept,
+            obsConcepts.enrolmentDate,
             true,
           );
         },

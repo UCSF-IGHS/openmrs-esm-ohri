@@ -77,7 +77,7 @@ function HTSSummaryTiles({ launchWorkSpace }) {
 
   function getPositiveInLast14days() {
     return fetchPatientsFromObservationCodeConcept(
-      obsConcepts.finalHIVCodeConcept,
+      obsConcepts.hivTestResultConceptUUID,
       obsConcepts.finalPositiveHIVValueConcept,
       14,
     ).then((response) => {

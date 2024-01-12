@@ -19,7 +19,7 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
         key: 'vlDate',
         header: t('vlDate', 'Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.EnrollmentDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEventConcept, true);
         },
       },
       {

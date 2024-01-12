@@ -42,7 +42,7 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         encounterUuid: encounterTypes.art_Therapy_EncounterUUID,
         hasSummary: true,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.regimen_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.regimenConcept);
         },
         getSummaryObsValue: (encounter) => {
           return getObsFromEncounter(encounter, obsConcepts.regimenLine_UUID);
@@ -117,9 +117,9 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         key: 'lastCD4Count',
         header: t('lastCD4Count', 'Last CD4 Count'),
         encounterUuid: encounterTypes.CD4LabResultsEncounter_UUID,
-        concept: obsConcepts.Cd4Count_UUID,
+        concept: obsConcepts.hivCD4Count_UUID,
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.Cd4Count_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.hivCD4Count_UUID);
         },
         hasSummary: true,
         getSummaryObsValue: (encounter) => {

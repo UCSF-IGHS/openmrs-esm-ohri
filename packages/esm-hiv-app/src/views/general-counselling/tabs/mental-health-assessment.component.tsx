@@ -19,7 +19,7 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
         key: 'screeningDate',
         header: t('screeningDate', 'Screening Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.screeningDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEventConcept, true);
         },
       },
       {
