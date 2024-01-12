@@ -9,11 +9,6 @@ describe('fetchMambaReportData', () => {
     jest.clearAllMocks();
   });
 
-  // dummy test that is always true
-  test('true is true', () => {
-    expect(true).toBe(true);
-  });
-
   // TODO This test keeps failing
   test('fetches report data successfully and parses result', async () => {
     const reportId = 'test-report-id';
