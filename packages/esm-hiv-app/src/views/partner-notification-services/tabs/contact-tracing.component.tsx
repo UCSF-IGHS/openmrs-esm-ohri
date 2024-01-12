@@ -1,14 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-import {
-  ContactTracingDate_UUID,
-  ContactTracingEncounterType_UUID,
-  ContactTracingFormName,
-  ContactTracingMethod_UUID,
-  ContactTracingOutcome_UUID,
-} from '../../../constants';
+
 import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface ContactTracingListProps {
   patientUuid: string;
@@ -16,6 +11,7 @@ interface ContactTracingListProps {
 
 const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -23,21 +19,21 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
         key: 'contactDate',
         header: t('contactDate', 'Contact Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, ContactTracingDate_UUID, true);
+          return getObsFromEncounter(encounter, obsConcepts.ContactTracingDate_UUID, true);
         },
       },
       {
         key: 'contactMethod',
         header: t('contactMethod', 'Contact Method'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, ContactTracingMethod_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.contactMethodConcept);
         },
       },
       {
         key: 'contactOutcome',
         header: t('contactOutcome', 'Contact Outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, ContactTracingOutcome_UUID);
+          return getObsFromEncounter(encounter, obsConcepts.ContactTracingOutcome_UUID);
         },
       },
 
@@ -47,14 +43,14 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
         getValue: (encounter) => {
           const baseActions = [
             {
-              form: { name: ContactTracingFormName, package: 'hiv' },
+              form: { name: formNames.ContactTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'View Details',
               mode: 'view',
             },
             {
-              form: { name: ContactTracingFormName, package: 'hiv' },
+              form: { name: formNames.ContactTracingFormName, package: 'hiv' },
               encounterUuid: encounter.uuid,
               intent: '*',
               label: 'Edit Form',
@@ -73,8 +69,8 @@ const ContactTracingList: React.FC<ContactTracingListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={ContactTracingEncounterType_UUID}
-      formList={[{ name: ContactTracingFormName }]}
+      encounterType={encounterTypes.ContactTracingEncounterType_UUID}
+      formList={[{ name: formNames.ContactTracingFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

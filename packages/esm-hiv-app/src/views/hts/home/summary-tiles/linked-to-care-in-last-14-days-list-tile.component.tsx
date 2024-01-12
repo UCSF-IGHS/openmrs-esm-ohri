@@ -1,4 +1,4 @@
-import { age, attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
+import { age, attach, detach, ExtensionSlot, useConfig } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -7,7 +7,7 @@ import {
   TableEmptyState,
   filterFHIRPatientsByName,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { basePath, linkedToCareCodeConcept, linkedToCareYesValueConcept } from '../../../../constants';
+import { basePath } from '../../../../constants';
 
 export const columns = [
   {
@@ -87,15 +87,18 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
   const [counter, setCounter] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const [filteredResultsCounts, setFilteredResultsCounts] = useState(0);
+  const { obsConcepts } = useConfig();
 
   useEffect(() => {
-    fetchPatientsFromObservationCodeConcept(linkedToCareCodeConcept, linkedToCareYesValueConcept, 14).then(
-      (response: Array<any>) => {
-        setPatients(response.map((pat) => pat.data));
-        setTotalPatientCount(response.length);
-        setIsLoading(false);
-      },
-    );
+    fetchPatientsFromObservationCodeConcept(
+      obsConcepts.linkedToCareCodeConcept,
+      obsConcepts.linkedToCareYesValueConcept,
+      14,
+    ).then((response: Array<any>) => {
+      setPatients(response.map((pat) => pat.data));
+      setTotalPatientCount(response.length);
+      setIsLoading(false);
+    });
   }, [pageSize, currentPage]);
 
   useEffect(() => {

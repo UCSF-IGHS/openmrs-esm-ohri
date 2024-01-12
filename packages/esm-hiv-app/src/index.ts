@@ -34,6 +34,8 @@ import {
   hivPreventionFolderDashboardMeta,
 } from './dashboard.meta';
 
+import { configSchema } from './config-schema';
+
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 require('./root.scss');
@@ -46,7 +48,7 @@ const options = {
 };
 
 export function startupApp() {
-  defineConfigSchema(moduleName, {});
+  defineConfigSchema(moduleName, configSchema);
 }
 
 export const patientHIVStatusTag = getSyncLifecycle(PatientStatusBannerTag, options);

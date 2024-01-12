@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
 import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
-import { age, navigate, openmrsFetch } from '@openmrs/esm-framework';
+import { age, navigate, openmrsFetch, useConfig } from '@openmrs/esm-framework';
 import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
 import { capitalize } from 'lodash-es';
 import {
@@ -12,7 +12,6 @@ import {
   encounterRepresentation,
   getObsFromEncounter,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { ViralLoadResultDate_UUID, ViralLoadResultsEncounter_UUID, ViralLoadResult_UUID } from '../../../../constants';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
 import { filterPatientsByName } from './cd4-results.component';
@@ -43,6 +42,8 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     { key: 'viralLoadResultDate', header: t('recentVLDate', 'Recent VL Date') },
     { key: 'actions', header: t('actions', 'Actions') },
   ];
+
+  const { obsConcepts, encounterTypes } = useConfig();
 
   useEffect(() => {
     setIsLoading(true);
@@ -128,7 +129,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       date: '--',
       encounterUuid: '',
     };
-    const query = `encounterType=${ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
+    const query = `encounterType=${encounterTypes.ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
     const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
     if (viralResults.data.results?.length > 0) {
       const sortedEncounters = viralResults.data.results.sort(
@@ -137,8 +138,8 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       );
       const lastEncounter = sortedEncounters[0];
 
-      latestViralEncounter.result = getObsFromEncounter(lastEncounter, ViralLoadResult_UUID);
-      latestViralEncounter.date = getObsFromEncounter(lastEncounter, ViralLoadResultDate_UUID, true);
+      latestViralEncounter.result = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResult_UUID);
+      latestViralEncounter.date = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResultDate_UUID, true);
       latestViralEncounter.encounterUuid = lastEncounter.uuid;
     }
     return latestViralEncounter;
