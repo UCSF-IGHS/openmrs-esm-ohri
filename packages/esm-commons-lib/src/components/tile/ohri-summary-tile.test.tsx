@@ -1,7 +1,6 @@
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
-import userEvent from '@testing-library/user-event';
-import { act, screen, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { screen, render } from '@testing-library/react';
 import { OHRISummaryTile } from './ohri-summary-tile.component';
 
 const mockProps = {
