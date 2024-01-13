@@ -6,6 +6,7 @@ import {
   SummaryCard,
   SummaryCardColumn,
   getObsFromEncounter,
+  findObs,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
 import React, { useMemo } from 'react';
@@ -42,7 +43,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'type',
         header: t('type', 'Type'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.type);
         },
       },
@@ -50,7 +51,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'site',
         header: t('site', 'Site'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.site);
         },
       },
@@ -58,7 +59,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'drugSensitivity',
         header: t('drugSensitivity', 'Drug Sensitivity'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.drugSensitivity);
         },
       },
@@ -66,15 +67,20 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
-        getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.regimen);
+        getObsValue: ([encounter]) => {
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const regimen =
+            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
+              ? config.obsConcepts.dSregimen
+              : config.obsConcepts.dRregimen;
+          return getObsFromEncounter(encounter, regimen);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.hivStatus);
         },
       },
@@ -82,7 +88,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'outcome',
         header: t('outcome', 'Outcome'),
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, config.obsConcepts.outcome);
         },
       },
@@ -124,7 +130,12 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.regimen);
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const regimen =
+            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
+              ? config.obsConcepts.dSregimen
+              : config.obsConcepts.dRregimen;
+          return getObsFromEncounter(encounter, regimen);
         },
       },
       {
