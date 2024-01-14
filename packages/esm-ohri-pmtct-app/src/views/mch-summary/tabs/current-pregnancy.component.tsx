@@ -12,7 +12,7 @@ import {
   SummaryCardColumn,
   SummaryCard,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate, useConfig } from '@openmrs/esm-framework';
@@ -179,7 +179,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
           pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personB.uuid)?.pTrackerId,
           name: patientLink,
           relationship: relative.relationshipType.displayBIsToA,
-          dateOfBirth: moment(relative.personB.birthdate).format('DD-MMM-YYYY'),
+          dateOfBirth: dayjs(relative.personB.birthdate).format('DD-MMM-YYYY'),
           hivStatus: '',
           finalOutcome:
             infantOutcomes.find((outcome) => outcome.childUuid === relative.personB.uuid)?.finalOutcome ?? '--',
@@ -189,7 +189,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
     });
 
     return items;
-  }, [relatives, relativeToIdentifierMap, infantOutcomes]);
+  }, [relatives, patientUuid, relativeToIdentifierMap, infantOutcomes]);
 
   const childrenDetails: pregnancyOutcomeProps[] = useMemo(() => {
     let items = [];
@@ -201,7 +201,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         id: child.uuid,
         pTrackerId: child.groupMembers.find((member) => member.concept.uuid === obsConcepts.infantPTrackerIdConcept)
           ?.value,
-        dateOfBirth: moment(
+        dateOfBirth: dayjs(
           child.groupMembers.find((member) => member.concept.uuid === obsConcepts.infantDateOfBirth)?.value,
         ).format('DD-MMM-YYYY'),
         infantStatus:

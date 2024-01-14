@@ -6,7 +6,7 @@ import {
   getCohort,
   getReportingCohortMembers,
 } from '../../api/api';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { DataTableSkeleton } from '@carbon/react';
 import { basePath } from '../../constants';
@@ -87,15 +87,15 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
         age: isReportingCohort ? rawPatient.person.age : rawPatient.patient.person.age,
         name: isReportingCohort ? rawPatient.person.display : rawPatient.patient.person.display,
         birthdate: isReportingCohort
-          ? moment(rawPatient.person.birthdate).format('DD-MMM-YYYY')
-          : moment(rawPatient.patient.person.birthdate).format('DD-MMM-YYYY'),
+          ? dayjs(rawPatient?.person?.birthdate).format('DD-MMM-YYYY')
+          : dayjs(rawPatient?.patient?.person?.birthdate).format('DD-MMM-YYYY'),
         gender: isReportingCohort
           ? rawPatient.person.gender == 'M'
             ? 'Male'
             : 'Female'
           : rawPatient.patient.person.gender == 'M'
-          ? 'Male'
-          : 'Female',
+            ? 'Male'
+            : 'Female',
         birthday: isReportingCohort ? rawPatient.person.birthdate : rawPatient.patient.person.birthdate,
         url: `${basePath}${patientUuid}/chart${dashboard}`,
       };
@@ -147,7 +147,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
               ...addPatientToListOptions,
               displayText: t('moveToListSideNav', 'Move to list'),
             },
-            viewPatientProgramSummary
+            viewPatientProgramSummary,
           }),
         };
       });

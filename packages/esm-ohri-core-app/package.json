@@ -36,8 +36,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "lodash-es": "^4.17.15",
-    "moment": "^2.29.1"
+    "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "5.x",

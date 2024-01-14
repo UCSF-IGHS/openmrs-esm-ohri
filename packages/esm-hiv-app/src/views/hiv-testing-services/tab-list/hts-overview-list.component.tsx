@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from 'react';
-
-import moment from 'moment';
-import { EncounterList, EncounterListColumn, findObs, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
