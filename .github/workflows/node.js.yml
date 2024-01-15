@@ -2,9 +2,9 @@ name: OHRI CI
 
 on:
   push:
-    branches: [master, working, dev]
+    branches: [master, working, dev, test-prerelease]
   pull_request:
-    branches: [master, working, dev]
+    branches: [master, working, dev, test-prerelease]
   release:
     types:
       - created
@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Cache dependencies
         id: cache
@@ -53,14 +53,14 @@ jobs:
 
     needs: build
 
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/test-prerelease' }}
 
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Cache dependencies
@@ -118,7 +118,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Cache dependencies
