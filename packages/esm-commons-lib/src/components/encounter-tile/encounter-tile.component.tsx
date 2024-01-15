@@ -1,9 +1,8 @@
 import { CodeSnippetSkeleton, Tile, Column } from '@carbon/react';
 import React from 'react';
-import styles from './encounter-tile.scss';
+import styles from '../../styleguide/tiles.scss';
 import { LazyCell } from '../lazy-cell/lazy-cell.component';
 import { useLastEncounter } from '../../hooks/useLastEncounter';
-import { ErrorState } from '@openmrs/esm-framework';
 
 export interface EncounterTileColumn {
   key: string;
@@ -54,7 +53,7 @@ export const EncounterValuesTile: React.FC<EncounterValuesTileProps> = ({ patien
       <div className={styles.tileBox}>
         <div className={styles.tileBoxColumn}>
           <span className={styles.tileTitle}> {column.header} </span>
-          <p>Error loading...</p>;
+          <span className={styles.tileValue}>--</span>
         </div>
       </div>
     )
