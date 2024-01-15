@@ -10,6 +10,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../..';
 import { useConfig } from '@openmrs/esm-framework';
+import { getTbRegimen, getTbTreatmentId, getTbTreatmentStartDate } from '../../../tb-helper';
 
 const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -47,11 +48,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('tbTreatmentId', 'TB Treatement ID'),
         getValue: (encounter) => {
           const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
-          const treatmentId =
-            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
-              ? config.obsConcepts.dSTreatmentId
-              : config.obsConcepts.dRTreatmentId;
-          return getObsFromEncounter(encounter, treatmentId);
+          return getTbTreatmentId(encounter, tBEnrollmentType);
         },
       },
       {
@@ -59,11 +56,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('treatmentStartDate', 'Treatment Start Date'),
         getValue: (encounter) => {
           const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
-          const tBTreatmentStartDateConcept =
-            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
-              ? config.obsConcepts.dSTreatmentStartDate
-              : config.obsConcepts.dRTreatmentStartDate;
-          return getObsFromEncounter(encounter, tBTreatmentStartDateConcept, true);
+          return getTbTreatmentStartDate(encounter, tBEnrollmentType);
         },
       },
       {
@@ -71,11 +64,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
           const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
-          const regimen =
-            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
-              ? config.obsConcepts.dSregimen
-              : config.obsConcepts.dRregimen;
-          return getObsFromEncounter(encounter, regimen);
+          return getTbRegimen(encounter, tBEnrollmentType);
         },
       },
       {
