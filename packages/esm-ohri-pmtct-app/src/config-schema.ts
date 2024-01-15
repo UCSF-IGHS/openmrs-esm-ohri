@@ -8,6 +8,15 @@ export const configSchema = {
       preferredIdentifierSource: '8549f706-7e85-4c1d-9424-217d50a2988b',
     },
   },
+  formNames: {
+    _type: Type.Object,
+    _description: 'List of forms for PMTCT.',
+    _default: {
+      antenatal: 'Antenatal Form',
+      labourAndDelivery: 'Labour & Delivery Form',
+      motherPostnatal: 'Mother - Postnatal Form',
+    },
+  },
   encounterTypes: {
     _type: Type.Object,
     _description: 'List of PMTCT encounter type UUIDs',
@@ -19,7 +28,6 @@ export const configSchema = {
       PTrackerIdentifierType: '4da0a3fe-e546-463f-81fa-084f098ff06c',
       artUniqueNumberType: '9d6d1eec-2cd6-4637-a981-4a46b4b8b41f',
       mchEncounterType: '12de5bc5-352e-4faf-9961-a2125085a75c',
-      mchVisitsTypes: ['Antenatal', 'Labor and Delivery', 'Mother Postnatal'],
     },
   },
   obsConcepts: {
@@ -83,4 +91,5 @@ export interface ConfigObject {
   identifiers: Object;
   encounterTypes: Object;
   obsConcepts: Object;
+  formNames: Object;
 }
