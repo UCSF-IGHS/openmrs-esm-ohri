@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import useSWRImmutable from 'swr';
 import { FhirPatientResponse } from '../api/types';
 import { ConfigurableLink, openmrsFetch } from '@openmrs/esm-framework';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import capitalize from 'lodash/capitalize';
 import { OverflowMenu } from '@carbon/react';
 import { AddPatientToListOverflowMenuItem } from '../components/modals/add-patient-to-list-modal.component';
@@ -42,7 +42,7 @@ export function usePatientList(offSet: number, pageSize: number, searchTerm?: st
           patientLink: getPatientLink(),
           gender: capitalize(patient.resource.gender),
           birthDate: patient.resource.birthDate,
-          age: moment().diff(patient.resource.birthDate, 'years') + ' years',
+          age: dayjs().diff(dayjs(patient.resource.birthDate), 'year') + ' years',
           actions: patientActions,
         };
       });

@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {
   finalHIVCodeConcept,
   finalPositiveHIVValueConcept,
@@ -20,7 +20,7 @@ export function fetchPatientList(offSet: number = 0, pageSize: number = 10) {
 }
 
 export function fetchTodayClients() {
-  let date = moment().format('YYYY-MM-DD');
+  let date = dayjs().format('YYYY-MM-DD');
   return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`).then(({ data }) => {
     if (data.entry?.length) {
       return cleanDuplicatePatientReferences(data);
@@ -29,13 +29,9 @@ export function fetchTodayClients() {
   });
 }
 
-export function fetchPatientsFromObservationCodeConcept(
-  codeConcept: string,
-  valueConcept?: string,
-  cutOffDays?: number,
-) {
-  let endDate = moment().format('YYYY-MM-DD');
-  let startDate = moment().subtract(cutOffDays, 'days').format('YYYY-MM-DD');
+export function fetchPatientsFromObservationCodeConcept(codeConcept: string, valueConcept: string, cutOffDays: number) {
+  let endDate = dayjs().format('YYYY-MM-DD');
+  let startDate = dayjs().subtract(cutOffDays, 'day').format('YYYY-MM-DD');
 
   return openmrsFetch(
     `/ws/fhir2/R4/Observation?code=${codeConcept}${valueConcept ? `&value-concept=${valueConcept}` : ''}${

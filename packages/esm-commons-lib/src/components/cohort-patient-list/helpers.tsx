@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { OverflowMenu, OverflowMenuItem, InlineLoading, DataTableSkeleton } from '@carbon/react';
+import { OverflowMenu, OverflowMenuItem, InlineLoading } from '@carbon/react';
 import { applyFormIntent } from '@openmrs/openmrs-form-engine-lib';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
 import { fetchPatientLastEncounter } from '../../api/api';
 import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
-import { launchForm, launchFormInEditMode } from '../../utils/ohri-forms-commons';
+import { launchForm } from '../../utils/ohri-forms-commons';
 import { navigate } from '@openmrs/esm-framework';
 
 interface PatientMetaConfig {
@@ -72,11 +74,7 @@ export const LaunchableFormMenuItem = ({
   );
 };
 
-export const ViewSummaryMenuItem = ({
-  patientUuid,
-  ViewSummary,
-  encounterType,
-}) => {
+export const ViewSummaryMenuItem = ({ patientUuid, ViewSummary, encounterType }) => {
   const [actionText, setActionText] = useState(ViewSummary.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -116,11 +114,22 @@ export const ViewSummaryMenuItem = ({
 };
 
 export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMetaConfig) {
-  const { isDynamicCohort, location, encounterType, launchableFormProps, moduleName, addPatientToListOptions,viewPatientProgramSummary } = config;
+  const {
+    isDynamicCohort,
+    location,
+    encounterType,
+    launchableFormProps,
+    moduleName,
+    addPatientToListOptions,
+    viewPatientProgramSummary,
+  } = config;
   const patientUuid = !isDynamicCohort ? rawPatientMeta.patient.uuid : rawPatientMeta.person.uuid;
+  dayjs.extend(localizedFormat);
+  dayjs.extend(relativeTime);
+
   return {
-    timeAddedToList: !isDynamicCohort ? moment(rawPatientMeta.startDate).format('LL') : null,
-    waitingTime: !isDynamicCohort ? moment(rawPatientMeta.startDate).fromNow() : null,
+    timeAddedToList: !isDynamicCohort ? dayjs(rawPatientMeta.startDate).format('LL') : null,
+    waitingTime: !isDynamicCohort ? dayjs(rawPatientMeta.startDate).fromNow() : null,
     location: location && location.name,
     phoneNumber: '0700xxxxxx',
     hivResult: 'None',
@@ -146,16 +155,16 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
             excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
           />
         )}
-       {viewPatientProgramSummary ? (
-         <ViewSummaryMenuItem
+        {viewPatientProgramSummary ? (
+          <ViewSummaryMenuItem
             patientUuid={patientUuid}
-            ViewSummary={launchableFormProps}            
+            ViewSummary={launchableFormProps}
             encounterType={launchableFormProps.encounterType || encounterType}
-            key={patientUuid}          
+            key={patientUuid}
           />
         ) : (
           <></>
-        )}  
+        )}
       </OverflowMenu>
     ),
   };

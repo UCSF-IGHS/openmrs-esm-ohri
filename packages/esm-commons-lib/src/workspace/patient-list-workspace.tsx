@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Header } from '@carbon/react';
 import { ArrowLeft, OverflowMenuVertical } from '@carbon/react/icons';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import styles from './patient-list-workspace.scss';
 
 export const PatientListWorkspace: React.FC<
@@ -87,7 +87,8 @@ const Overflow: React.FC<
             </div>
             <div className={styles.patientListRow}>
               <div className={styles.demographics}>
-                <span>{meta.numberOfClients} Clients</span> &middot; <span>Last Updated {moment().format('l')}</span>
+                <span>{meta.numberOfClients} Clients</span> &middot;{' '}
+                <span>Last Updated {dayjs().format('YYYY-MM-DD')}</span>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ import {
   SummaryCardColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate, useConfig } from '@openmrs/esm-framework';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Link } from '@carbon/react';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers } from '../../../api/api';
@@ -89,7 +89,7 @@ const HivExposedInfant: React.FC<{
         header: t('ageAtTimeOfTest', 'Age at time of test'),
         getValue: (encounter) => {
           const artDate = getObsFromEncounter(encounter, config.obsConcepts.artStartDate);
-          return moment(artDate).diff(dateOfBirth, 'days');
+          return artDate ? dayjs().diff(dayjs(artDate), 'day') : '--';
         },
       },
       {
@@ -147,7 +147,9 @@ const HivExposedInfant: React.FC<{
     let pTrackerMap = { patientId: '', pTrackerId: '--' };
     const identifiers = await fetchPatientIdentifiers(patientUuid);
     if (identifiers) {
-      pTrackerMap.pTrackerId = identifiers.find((id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType).identifier;
+      pTrackerMap.pTrackerId = identifiers.find(
+        (id) => id.identifierType.uuid === config.encounterTypes.PTrackerIdentifierType,
+      ).identifier;
       pTrackerMap.patientId = patientUuid;
     }
     return pTrackerMap;
@@ -169,7 +171,7 @@ const HivExposedInfant: React.FC<{
         pTrackerId: relativeToIdentifierMap.find((entry) => entry.patientId === relative.personA.uuid)?.pTrackerId,
         name: patientLink,
         relationship: relative.relationshipType.displayAIsToB,
-        dateOfBirth: moment(relative.personA.birthdate).format('DD-MMM-YYYY'),
+        dateOfBirth: dayjs(relative.personA.birthdate).format('DD-MMM-YYYY'),
         hivStatus: '',
         finalOutcome: '',
       };

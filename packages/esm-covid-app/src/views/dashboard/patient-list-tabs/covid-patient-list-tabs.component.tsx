@@ -5,11 +5,10 @@ import {
   getObsFromEncounter,
   getObsFromEncounters,
   OHRIPatientListTabs,
-  returnVisitDateConcept,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import moment from 'moment';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
+import dayjs from 'dayjs';
 
 function CovidHomePatientTabs() {
   const { t } = useTranslation();
@@ -35,7 +34,7 @@ function CovidHomePatientTabs() {
             key: 'assessmentDate',
             header: t('assessmentDate', 'Assessment date'),
             getValue: ({ latestEncounter }) => {
-              return latestEncounter && moment(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
+              return latestEncounter && dayjs(latestEncounter.encounterDatetime).format('DD-MMM-YYYY');
             },
             index: 3,
           },

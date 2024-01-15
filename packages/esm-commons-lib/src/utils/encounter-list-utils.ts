@@ -1,8 +1,8 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { formatDate, parseDate } from '@openmrs/esm-framework';
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
-  if (isDate) return moment(encounter[param]).format('DD-MMM-YYYY');
+  if (isDate) return dayjs(encounter[param]).format('DD-MMM-YYYY');
   else return encounter[param] ? encounter[param] : '--';
 }
 
@@ -11,7 +11,7 @@ export function formatDateTime(dateString: string): any {
   if (dateString.includes('.')) {
     dateString = dateString.split('.')[0];
   }
-  return moment(dateString, format, true).toDate();
+  return dayjs(dateString, format, true).toDate();
 }
 
 export function obsArrayDateComparator(left, right) {

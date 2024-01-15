@@ -39,17 +39,17 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
+    "@openmrs/openmrs-form-engine-lib": "next",
     "ace-builds": "^1.4.12",
     "react-ace": "^9.4.4"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "5.x",
-    "@openmrs/openmrs-form-engine-lib": "1.x",
+    "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x"
   },
   "devDependencies": {
-    "@openmrs/openmrs-form-engine-lib": "next",
     "webpack": "^5.88.2"
   }
 }
