@@ -13,6 +13,7 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+import { fetchPatientLastEncounter } from '../../api/api';
 
 export interface EncounterListColumn {
   key: string;
@@ -200,10 +201,15 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
+                // disabled={
+                //   actionItem.label == 'Edit form' &&
+                //   disableEdit == true &&
+                //   findEncounterLatestDateIndex(encounters).then != encounterIndex
+                // }
                 disabled={
-                  actionItem.label == 'Edit form' &&
                   disableEdit == true &&
-                  findEncounterLatestDateIndex(encounters) != encounterIndex
+                  actionItem.label == 'Edit form' &&
+                  fetchPatientLastEncounter(patientUuid, encounterType) != encounter.uuid
                 }
               />
             ))}
