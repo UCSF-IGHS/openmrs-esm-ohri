@@ -12,6 +12,7 @@ import { useConfig } from '@openmrs/esm-framework';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../..';
+import { getTbRegimen } from '../../tb-helper';
 
 const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
@@ -69,11 +70,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
           const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
-          const regimen =
-            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
-              ? config.obsConcepts.dSregimen
-              : config.obsConcepts.dRregimen;
-          return getObsFromEncounter(encounter, regimen);
+          return getTbRegimen(encounter, tBEnrollmentType);
         },
       },
       {
@@ -131,11 +128,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
           const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
-          const regimen =
-            tBEnrollmentType === config.obsConcepts.dsTBEnrollment
-              ? config.obsConcepts.dSregimen
-              : config.obsConcepts.dRregimen;
-          return getObsFromEncounter(encounter, regimen);
+          return getTbRegimen(encounter, tBEnrollmentType);
         },
       },
       {
