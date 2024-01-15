@@ -1,10 +1,9 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { screen, render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import { OHRIProgrammeSummaryTiles } from './ohri-programme-summary-tiles.component';
 import { OHRISummaryTileTablet } from './ohri-summary-tile-tablet.component';
 
-// Mock data for OHRIProgrammeSummaryTiles
 const mockProps = {
   tiles: [
     {
@@ -16,14 +15,6 @@ const mockProps = {
     },
   ],
 };
-
-// Mock data for OHRISummaryTileTablet
-const mockDetails = [
-  {
-    subTitle: 'Sample Subtitle',
-    value: 25,
-  },
-];
 
 describe('OHRIProgrammeSummaryTiles', () => {
   it('should display the summary tiles as expected', () => {
@@ -38,16 +29,34 @@ describe('OHRIProgrammeSummaryTiles', () => {
   });
 });
 
+it('should handle the loading state', () => {
+  const loadingProps = {
+    tiles: [],
+  };
+
+  render(<OHRIProgrammeSummaryTiles {...loadingProps} />);
+  const titleElement = screen.getByText('Programme summary');
+  expect(titleElement).toBeInTheDocument();
+  const subTitleElements = screen.queryAllByText(/People vaccinated/);
+  const valueElements = screen.queryAllByText(/100/);
+
+  expect(subTitleElements.length).toBe(0);
+  expect(valueElements.length).toBe(0);
+});
+
 describe('OHRISummaryTileTablet', () => {
   it('should render the tablet summary tile', () => {
-    render(<OHRISummaryTileTablet details={mockDetails} />);
+    render(<OHRISummaryTileTablet details={[]} {...mockProps} />);
+    const titleElement = screen.getByText('Programme summary');
+    expect(titleElement).toBeInTheDocument();
 
-    // Check if the title is rendered
-    expect(screen.getByText('Programme summary')).toBeInTheDocument();
-
-    mockDetails.forEach((detail) => {
-      expect(screen.getByText(detail.subTitle)).toBeInTheDocument();
-      expect(screen.getByText(detail.value.toString())).toBeInTheDocument();
+    mockProps.tiles.forEach(async (tile) => {
+      await waitFor(() => {
+        const subTitleElement = screen.getByText(tile.subTitle);
+        expect(subTitleElement).toBeInTheDocument();
+        const valueElement = screen.getByText(tile.value.toString());
+        expect(valueElement).toBeInTheDocument();
+      });
     });
   });
 });
