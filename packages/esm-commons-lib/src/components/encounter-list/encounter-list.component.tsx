@@ -202,9 +202,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   );
                 }}
                 disabled={
-                  actionItem.label == 'Edit form' &&
-                  disableEdit == true &&
-                  findEncounterLatestDateIndex(encounters) != encounterIndex
+                  index == 1 && disableEdit == true && findEncounterLatestDateIndex(encounters) != encounterIndex
                 }
                 // disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
                 // disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
