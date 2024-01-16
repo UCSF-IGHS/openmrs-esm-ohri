@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { PatientTable } from './patient-table.component';
 import '@testing-library/jest-dom';
 
@@ -73,5 +74,27 @@ describe('PatientTable', () => {
     // Test whether the empty state message is rendered
     const emptyStateMessage = getByText('There are no patients in this list');
     expect(emptyStateMessage).toBeInTheDocument();
+  });
+
+  it('filters patients based on search term', () => {
+    const { getByText, getByPlaceholderText } = render(
+      <PatientTable
+        columns={mockColumns}
+        isFetching={false}
+        isLoading={false}
+        mutateListDetails={() => {}}
+        mutateListMembers={() => {}}
+        pagination={mockPagination}
+        patients={mockPatients}
+      />,
+    );
+
+    // Search for a specific patient
+    const searchInput = getByPlaceholderText('Search this list');
+    fireEvent.change(searchInput, { target: { value: 'John' } });
+
+    // Check if the filtered patient is displayed
+    const johnDoeName = getByText('John Doe');
+    expect(johnDoeName).toBeInTheDocument();
   });
 });
