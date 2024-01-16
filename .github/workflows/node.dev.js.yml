@@ -2,9 +2,11 @@ name: OHRI CI
 
 on:
   push:
-    branches: [master, working, dev]
+    branches:
+      - dev
   pull_request:
-    branches: [master, working, dev]
+    branches:
+      - dev
   release:
     types:
       - created
