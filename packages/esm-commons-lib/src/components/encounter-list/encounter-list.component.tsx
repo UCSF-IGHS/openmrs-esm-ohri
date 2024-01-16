@@ -1,7 +1,6 @@
-import { navigate } from '@openmrs/esm-framework';
+import { isDesktop, navigate, useLayoutType, usePagination } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
@@ -13,6 +12,7 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+import { EmptyState } from '../../../../esm-commons-lib/src/components/empty-state/empty-state.component';
 
 export interface EncounterListColumn {
   key: string;
@@ -53,13 +53,13 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   launchOptions,
 }) => {
   const { t } = useTranslation();
-  const [paginatedRows, setPaginatedRows] = useState([]);
   const [forms, setForms] = useState<OHRIFormSchema[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
   const [isLoadingForms, setIsLoadingForms] = useState(true);
   const { isDead } = usePatientDeathStatus(patientUuid);
   const formNames = useMemo(() => formList.map((form) => form.name), []);
+  const [pageSize, setPageSize] = useState(10);
+  const pageSizes = [10, 20, 30, 40, 50];
+  const layout = useLayoutType();
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
   const {
     encounters,
@@ -67,6 +67,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     onFormSave,
   } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
+  const { goTo, results, currentPage } = usePagination(encounters, pageSize);
 
   const defaultActions = useMemo(
     () => [
@@ -123,162 +124,155 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   }, [columns]);
 
   const constructPaginatedTableRows = useCallback(
-    (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
-      const startIndex = (currentPage - 1) * pageSize;
-      const paginatedEncounters = [];
-      for (let i = startIndex; i < startIndex + pageSize; i++) {
-        if (i < encounters.length) {
-          paginatedEncounters.push(encounters[i]);
-        }
-      }
-      const rows = paginatedEncounters.map((encounter) => {
+    (encounters: OpenmrsEncounter[]) => {
+      const rows = encounters.map((encounter) => {
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
         // inject launch actions
-        encounter['launchFormActions'] = {
-          editEncounter: () =>
-            launchEncounterForm(
-              forms[0],
-              moduleName,
-              'edit',
-              onFormSave,
-              null,
-              encounter.uuid,
-              null,
-              workspaceWindowSize,
-            ),
-          viewEncounter: () =>
-            launchEncounterForm(
-              forms[0],
-              moduleName,
-              'view',
-              onFormSave,
-              null,
-              encounter.uuid,
-              null,
-              workspaceWindowSize,
-            ),
-        };
+        // encounter['launchFormActions'] = {
+        //   editEncounter: () =>
+        //     launchEncounterForm(
+        //       forms[0],
+        //       moduleName,
+        //       'edit',
+        //       onFormSave,
+        //       null,
+        //       encounter.uuid,
+        //       null,
+        //       workspaceWindowSize,
+        //     ),
+        //   viewEncounter: () =>
+        //     launchEncounterForm(
+        //       forms[0],
+        //       moduleName,
+        //       'view',
+        //       onFormSave,
+        //       null,
+        //       encounter.uuid,
+        //       null,
+        //       workspaceWindowSize,
+        //     ),
+        // };
         // process columns
-        columns.forEach((column) => {
-          let val = column.getValue(encounter);
-          if (column.link) {
-            val = (
-              <Link
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (column.link.handleNavigate) {
-                    column.link.handleNavigate(encounter);
-                  } else {
-                    column.link?.getUrl && navigate({ to: column.link.getUrl() });
-                  }
-                }}>
-                {val}
-              </Link>
-            );
-          }
-          tableRow[column.key] = val;
-        });
+        // columns.forEach((column) => {
+        //   let val = column.getValue(encounter);
+        //   if (column.link) {
+        //     val = (
+        //       <Link
+        //         onClick={(e) => {
+        //           e.preventDefault();
+        //           if (column.link.handleNavigate) {
+        //             column.link.handleNavigate(encounter);
+        //           } else {
+        //             column.link?.getUrl && navigate({ to: column.link.getUrl() });
+        //           }
+        //         }}>
+        //         {val}
+        //       </Link>
+        //     );
+        //   }
+        //   tableRow[column.key] = val;
+        // });
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
-            {actions.map((actionItem, index) => (
-              <OverflowMenuItem
-                itemText={actionItem.label}
-                onClick={(e) => {
-                  e.preventDefault();
-                  launchEncounterForm(
-                    forms.find((form) => form.name == actionItem?.form?.name),
-                    moduleName,
-                    actionItem.mode == 'enter' ? 'add' : actionItem.mode,
-                    onFormSave,
-                    null,
-                    encounter.uuid,
-                    actionItem.intent,
-                    workspaceWindowSize,
-                  );
-                }}
-              />
-            ))}
-          </OverflowMenu>
+          <p>hi</p>
+          // <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          //   {actions.map((actionItem, index) => (
+          //     <OverflowMenuItem
+          //       itemText={actionItem.label}
+          //       onClick={(e) => {
+          //         e.preventDefault();
+          //         launchEncounterForm(
+          //           forms.find((form) => form.name == actionItem?.form?.name),
+          //           moduleName,
+          //           actionItem.mode == 'enter' ? 'add' : actionItem.mode,
+          //           onFormSave,
+          //           null,
+          //           encounter.uuid,
+          //           actionItem.intent,
+          //           workspaceWindowSize,
+          //         );
+          //       }}
+          //     />
+          //   ))}
+          // </OverflowMenu>
         );
         return tableRow;
       });
-      setPaginatedRows(rows);
+      return rows;
     },
     [columns, defaultActions, forms, moduleName, workspaceWindowSize],
   );
 
-  useEffect(() => {
-    if (encounters?.length) {
-      constructPaginatedTableRows(encounters, currentPage, pageSize);
-    }
-  }, [encounters, pageSize, constructPaginatedTableRows, currentPage]);
+  const rows = constructPaginatedTableRows(results);
 
   const formLauncher = useMemo(() => {
     if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
       // we only have one form with no intents
       // just return the "Add" button
-      return (
-        <Button
-          kind="ghost"
-          renderIcon={Add}
-          iconDescription="Add "
-          onClick={(e) => {
-            e.preventDefault();
-            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, null, workspaceWindowSize);
-          }}>
-          {displayText}
-        </Button>
-      );
-    } else if (forms.length && !(hideFormLauncher ?? isDead)) {
-      return (
-        <OHRIFormLauncherWithIntent
-          formJsonList={forms}
-          launchForm={(formJson, intent) =>
-            launchEncounterForm(formJson, moduleName, 'add', onFormSave, null, null, intent, workspaceWindowSize)
-          }
-          title={displayText}
-        />
-      );
+      // return (
+      //   <Button
+      //     kind="ghost"
+      //     renderIcon={Add}
+      //     iconDescription="Add "
+      //     onClick={(e) => {
+      //       e.preventDefault();
+      //       launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, null, workspaceWindowSize);
+      //     }}>
+      //     {displayText}
+      //   </Button>
+      // );
     }
+    //  else if (forms.length && !(hideFormLauncher ?? isDead)) {
+    //   return (
+    //     <OHRIFormLauncherWithIntent
+    //       formJsonList={forms}
+    //       launchForm={(formJson, intent) =>
+    //         launchEncounterForm(formJson, moduleName, 'add', onFormSave, null, null, intent, workspaceWindowSize)
+    //       }
+    //       title={displayText}
+    //     />
+    //   );
+    // }
   }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize]);
 
+  if (isLoadingEncounters || isLoadingForms) {
+    return <DataTableSkeleton rowCount={5} />;
+  }
+
+  if (rows?.length === 0) {
+    <EmptyState
+      displayText={description}
+      headerTitle={headerTitle}
+    />;
+  }
   return (
     <>
-      {isLoadingEncounters || isLoadingForms ? (
-        <DataTableSkeleton rowCount={5} />
-      ) : encounters.length > 0 ? (
-        <>
-          <div className={styles.widgetContainer}>
-            <div className={styles.widgetHeaderContainer}>
-              <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
-              {!(hideFormLauncher ?? isDead) && <div className={styles.toggleButtons}>{formLauncher}</div>}
-            </div>
-            <OTable tableHeaders={headers} tableRows={paginatedRows} />
-            <Pagination
-              page={currentPage}
-              pageSize={pageSize}
-              pageSizes={[10, 20, 30, 40, 50]}
-              totalItems={encounters.length}
-              onChange={({ page, pageSize }) => {
-                setCurrentPage(page);
-                setPageSize(pageSize);
-              }}
-            />
-          </div>
-        </>
-      ) : (
-        <EmptyState
-          displayText={description}
-          headerTitle={headerTitle}
-          launchForm={() =>
-            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, '*', workspaceWindowSize)
-          }
-          launchFormComponent={formLauncher}
-          hideFormLauncher={hideFormLauncher ?? isDead}
+      <div className={styles.widgetContainer}>
+        <div className={styles.widgetHeaderContainer}>
+          <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+          {/* {!(hideFormLauncher ?? isDead) && <div className={styles.toggleButtons}>{formLauncher}</div>} */}
+        </div>
+        <OTable tableHeaders={headers} tableRows={rows} />
+        <Pagination
+          forwardText="Next page"
+          backwardText="Previous page"
+          page={currentPage}
+          pageSize={pageSize}
+          pageSizes={pageSizes}
+          totalItems={rows?.length}
+          className={styles.pagination}
+          size={isDesktop(layout) ? 'sm' : 'lg'}
+          onChange={({ pageSize: newPageSize, page: newPage }) => {
+            if (newPageSize !== pageSize) {
+              setPageSize(newPageSize);
+            }
+            if (newPage !== currentPage) {
+              goTo(newPage);
+            }
+          }}
         />
-      )}
+      </div>
     </>
   );
 };
