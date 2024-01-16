@@ -1,13 +1,10 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { PatientTable } from './patient-table.component';
 import '@testing-library/jest-dom';
 
 describe('PatientTable', () => {
-  const mockPatients = [
-    { name: 'John Doe', age: 35 },
-  ];
+  const mockPatients = [{ name: 'John Doe', age: 35 }];
 
   const mockColumns = [
     { key: 'name', header: 'Name', getValue: (patient) => patient.name },
@@ -32,7 +29,7 @@ describe('PatientTable', () => {
         mutateListMembers={() => {}}
         pagination={mockPagination}
         patients={mockPatients}
-      />
+      />,
     );
 
     // Test whether the specific patient 'John Doe' and age (35) is rendered in the table
@@ -52,7 +49,7 @@ describe('PatientTable', () => {
         mutateListMembers={() => {}}
         pagination={mockPagination}
         patients={[]}
-      />
+      />,
     );
 
     // Test whether the loading skeleton is rendered
@@ -70,7 +67,7 @@ describe('PatientTable', () => {
         mutateListMembers={() => {}}
         pagination={mockPagination}
         patients={[]}
-      />
+      />,
     );
 
     // Test whether the empty state message is rendered
@@ -78,4 +75,3 @@ describe('PatientTable', () => {
     expect(emptyStateMessage).toBeInTheDocument();
   });
 });
-
