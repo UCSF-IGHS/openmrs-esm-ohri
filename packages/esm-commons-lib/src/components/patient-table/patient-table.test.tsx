@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { PatientTable } from './patient-table.component';
