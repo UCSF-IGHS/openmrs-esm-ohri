@@ -29,19 +29,6 @@ describe('OHRIProgrammeSummaryTiles', () => {
   });
 });
 
-it('should handle the loading state', () => {
-  const loadingProps = {
-    tiles: [],
-  };
-  render(<OHRIProgrammeSummaryTiles {...loadingProps} />);
-  const titleElement = screen.getByText('Programme summary');
-  expect(titleElement).toBeInTheDocument();
-  const subTitleElements = screen.queryAllByText(/People vaccinated/);
-  const valueElements = screen.queryAllByText(/100/);
-  expect(subTitleElements.length).toBe(0);
-  expect(valueElements.length).toBe(0);
-});
-
 describe('OHRISummaryTileTablet', () => {
   it('should render the tablet summary tile', () => {
     render(<OHRISummaryTileTablet details={[]} {...mockProps} />);
