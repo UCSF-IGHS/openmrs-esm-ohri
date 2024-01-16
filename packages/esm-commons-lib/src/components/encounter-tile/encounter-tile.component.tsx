@@ -1,9 +1,8 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
 import { CodeSnippetSkeleton, Tile, Column } from '@carbon/react';
-import React, { useEffect, useState } from 'react';
-import styles from './encounter-tile.scss';
-import { encounterRepresentation } from '../../constants';
+import React from 'react';
+import styles from '../../styleguide/tiles.scss';
 import { LazyCell } from '../lazy-cell/lazy-cell.component';
+import { useLastEncounter } from '../../hooks/useLastEncounter';
 
 export interface EncounterTileColumn {
   key: string;
@@ -20,65 +19,61 @@ export interface EncounterTileProps {
   headerTitle: string;
 }
 
+export interface EncounterValuesTileProps {
+  patientUuid: string;
+  column: any;
+}
+
 export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, columns, headerTitle }) => {
-  const [lastEncounter, setLastEncounter] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  return (
+    <>
+      <Tile className={styles.tile}>
+        <div className={styles.cardTitle}>
+          <h4 className={styles.title}> {headerTitle} </h4>
+        </div>
+        <Column className={styles.tabletTileTitle}>
+          {columns.map((column, ind) => (
+            <EncounterValuesTile key={ind} patientUuid={patientUuid} column={column} />
+          ))}
+        </Column>
+      </Tile>
+    </>
+  );
+};
 
-  useEffect(() => {
-    columns.map((column) => {
-      const lastEncounter = fetchPatientLastEncounter(column.encounterUuid);
-      lastEncounter.then((value) => {
-        column.encounter = value;
-      });
-    });
-  }, []);
+export const EncounterValuesTile: React.FC<EncounterValuesTileProps> = ({ patientUuid, column }) => {
+  const { lastEncounter, isLoading, error, isValidating } = useLastEncounter(patientUuid, column.encounterUuid);
 
-  async function fetchPatientLastEncounter(encounterType: string) {
-    const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-    const encounterResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
-    if (encounterResults.data.results?.length > 0) {
-      const sortedEncounters = encounterResults.data.results.sort(
-        (firstEncounter, secondEncounter) =>
-          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
-      );
-      setLastEncounter(sortedEncounters[0]);
-      setIsLoading(false);
-      return sortedEncounters[0];
-    }
-    return null;
+  if (isLoading || isValidating) {
+    return <CodeSnippetSkeleton type="multi" data-testid="skeleton-text" />;
+  }
+
+  if (error || lastEncounter === undefined) {
+    return (
+      <div className={styles.tileBox}>
+        <div className={styles.tileBoxColumn}>
+          <span className={styles.tileTitle}> {column.header} </span>
+          <span className={styles.tileValue}>--</span>
+        </div>
+      </div>
+    )
   }
 
   return (
-    <>
-      {isLoading ? (
-        <CodeSnippetSkeleton type="multi" />
-      ) : (
-        <Tile className={styles.tile}>
-          <div className={styles.cardTitle}>
-            <h4 className={styles.title}> {headerTitle} </h4>
-          </div>
-
-          <Column className={styles.tabletTileTitle}>
-            {columns.map((column) => (
-              <div className={styles.tileBox}>
-                <div className={styles.tileBoxColumn}>
-                  <span className={styles.tileTitle}> {column.header} </span>
-                  <span className={styles.tileValue}>
-                    <LazyCell lazyValue={column.getObsValue(column.encounter)} />
-                  </span>
-                  {column.hasSummary ? (
-                    <span className={styles.tileTitle}>
-                      <LazyCell lazyValue={column.getSummaryObsValue(column.encounter)} />
-                    </span>
-                  ) : (
-                    <span></span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </Column>
-        </Tile>
-      )}
-    </>
+    <div className={styles.tileBox}>
+      <div className={styles.tileBoxColumn}>
+        <span className={styles.tileTitle}> {column.header} </span>
+        <span className={styles.tileValue}>
+          <LazyCell lazyValue={column.getObsValue(lastEncounter)} />
+        </span>
+        {column.hasSummary ? (
+          <span className={styles.tileTitle}>
+            <LazyCell lazyValue={column.getSummaryObsValue(lastEncounter)} />
+          </span>
+        ) : (
+          <span></span>
+        )}
+      </div>
+    </div>
   );
 };

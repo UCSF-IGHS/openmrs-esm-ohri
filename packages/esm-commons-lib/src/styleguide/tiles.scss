@@ -1,7 +1,7 @@
 @use '@carbon/styles/scss/colors';
 @use '@carbon/styles/scss/spacing';
 @use '@carbon/styles/scss/type';
-@import "../../root.scss";
+@import "../root.scss";
 
 .title {
   @extend .productiveHeading03;
@@ -24,8 +24,7 @@
 .tile {
   height: 100%;
   padding: 1px 0 16px 16px;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 0.5rem;
   border: solid 1px #e0e0e0;
   display: flex;
   flex-direction: column;
@@ -36,17 +35,64 @@
 .tileTitle {
   @include type.type-style('label-01');
   display: block;
-  // margin: 15px 65px 24px 0;
-}
-
-.tileValue {
-  @include type.type-style("heading-04");
-  display: block;
-  // margin: 15px 65px 24px 0;
 }
 
 .columnContainer {
   margin: 0px 0px 20px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: 0.16px;
+  color: #525252;
+  display: flex;
+  flex-direction: row;
+}
+
+.tileBoxColumn {
+  width: 100%;
+  display: 'flex';
+  flex-direction: 'row';
+}
+
+.widgetContainer {
+  background-color: $ui-background;
+}
+
+.newServiceEnrolmentBtn {
+  margin-bottom: 0.5em;
+  text-align: right;
+}
+
+.newServiceEnrolmentBtn>button {
+  background-color: $ui-background;
+}
+
+.widgetContainer :global(.cds--data-table) thead th button span {
+  height: unset !important;
+}
+
+.tileSubTitle {
+  height: 16px;
+  font-size: 16px;
+  line-height: 1.33;
+  letter-spacing: 0.32px;
+  color: #525252;
+  display: block;
+}
+
+.tileValue {
+  display: block;
+  font-size: 20px;
+  line-height: 1.29;
+  color: #161616;
+  display: block;
+  margin: 15px 65px 24px 0;
+}
+
+.tabletTileTitle {
+  margin: 0px 0px 10px 20px;
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -65,8 +111,4 @@
   flex: 1;
 }
 
-.tileBoxColumn {
-  width: 100%;
-  display: 'flex';
-  flex-direction: 'row';
-}
+

@@ -10,7 +10,7 @@ export const OHRISummaryTile: React.FC<OHRISummaryTileProps> = ({ title, subTitl
         <div className={styles.tileTitle}>{title}</div>
         <div>
           {onClickView && (
-            <Button size="small" kind="ghost" onClick={onClickView}>
+            <Button size="sm" kind="ghost" onClick={onClickView}>
               View <ArrowRight size={32} style={{ width: '12px', height: '10px' }} />
             </Button>
           )}
