@@ -1,19 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Tag } from '@carbon/react';
-import { useTranslation } from 'react-i18next';
-import styles from './active-visit-tag.scss';
+import React from 'react';
+import { render, act, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { PatientStatusBannerTag } from './patient-status-tag.component';
 import { isPatientHivPositive } from './patientHivStatus';
 
-export function PatientStatusBannerTag({ patientUuid }) {
-  const { t } = useTranslation();
-  const [hivPositive, setHivPositive] = useState(false);
+const mockIsPatientHivPositive = isPatientHivPositive as jest.Mock;
+jest.mock('./patientHivStatus');
 
-  useEffect(() => {
-    isPatientHivPositive(patientUuid).then((result) => setHivPositive(result));
-  }, [hivPositive, patientUuid]);
+describe('PatientStatusBannerTag', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-  //TODO: Improve refresh time
-  // forceRerender();
+  const hivPositiveSampleUuid = '703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
-  return <>{hivPositive && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}</>;
-}
+  describe('PatientStatusBannerTag', () => {
+    it('renders red tag when patient is HIV positive', async () => {
+      mockIsPatientHivPositive.mockResolvedValue(true);
+      await act(async () => {
+        render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+      });
+
+      expect(screen.getByText(/HIV Positive/i)).toBeInTheDocument();
+    });
+  });
+
+  it('does not render red tag when patient is not HIV positive', async () => {
+    await act(async () => {
+      (isPatientHivPositive as jest.Mock).mockResolvedValue(false);
+      render(<PatientStatusBannerTag patientUuid="sampleUuid" />);
+    });
+
+    expect(screen.queryByText('HIV Positive')).not.toBeInTheDocument();
+  });
+});
