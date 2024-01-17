@@ -23,6 +23,7 @@ function TbHomePatientTabs() {
         },
         associatedEncounterType: config.encounterTypes.tbProgramEnrollment,
         excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
+        extraAssociatedEncounterTypes: [config.encounterTypes.tbTreatmentAndFollowUp],
         otherColumns: [
           {
             key: 'caseID',
@@ -49,8 +50,14 @@ function TbHomePatientTabs() {
           {
             key: 'nextAppointmentDate',
             header: t('appointmentDate', 'Appointment Date'),
-            getValue: ({ latestEncounter }) => {
-              return getObsFromEncounter(latestEncounter, config.obsConcepts.nextAppointmentDate, true);
+            getValue:  (patient) => {
+              const patientLatestExtraEncounters = patient.latestExtraEncounters
+              if (patientLatestExtraEncounters && patientLatestExtraEncounters.length) {
+                const latestFollowUpEncounter = patientLatestExtraEncounters[0];
+                return getObsFromEncounter(latestFollowUpEncounter, config.obsConcepts.nextAppointmentDate, true);
+              } else {
+                return '--';
+              }
             },
           },
           {
