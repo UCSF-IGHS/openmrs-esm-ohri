@@ -50,11 +50,15 @@ function TbHomePatientTabs() {
           {
             key: 'nextAppointmentDate',
             header: t('appointmentDate', 'Appointment Date'),
-            getValue:  (patient) => {
-              const patientLatestExtraEncounters = patient.latestExtraEncounters
+            getValue: (patient) => {
+              const patientLatestExtraEncounters = patient.latestExtraEncounters;
               if (patientLatestExtraEncounters && patientLatestExtraEncounters.length) {
-                const latestFollowUpEncounter = patientLatestExtraEncounters[0];
-                return getObsFromEncounter(latestFollowUpEncounter, config.obsConcepts.nextAppointmentDate, true);
+                const latestFollowUpEncounter = patientLatestExtraEncounters.find(
+                  (encounter) => encounter.encounterType.uuid === config.encounterTypes.tbTreatmentAndFollowUp,
+                );
+                return latestFollowUpEncounter
+                  ? getObsFromEncounter(latestFollowUpEncounter, config.obsConcepts.nextAppointmentDate, true)
+                  : '--';
               } else {
                 return '--';
               }
