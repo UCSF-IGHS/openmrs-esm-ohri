@@ -9,9 +9,6 @@ on:
     branches:
       - working
     types: [opened, synchronize]
-  release:
-    types:
-      - created
 
 jobs:
   docker_workingserver_frontend:
