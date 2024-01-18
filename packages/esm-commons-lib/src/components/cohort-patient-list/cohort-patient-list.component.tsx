@@ -286,6 +286,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       autoFocus: true,
     };
   }, [
+    loadedExtraEncounters,
     searchTerm,
     filteredResults,
     paginatedPatients,
