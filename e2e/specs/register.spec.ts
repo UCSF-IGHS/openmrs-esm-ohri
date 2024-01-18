@@ -1,0 +1,30 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://ohri-dev.globalhealthapp.net/openmrs/spa/home');
+  await page.goto('https://ohri-dev.globalhealthapp.net/openmrs/spa/login');
+  await page.getByLabel('Username').fill('admin');
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByLabel('Password').press('CapsLock');
+  await page.getByLabel('Password').fill('A');
+  await page.getByLabel('Password').press('CapsLock');
+  await page.getByLabel('Password').fill('Admin123');
+  await page.getByRole('button', { name: 'Log in' }).click();
+  await page.getByRole('button', { name: 'Add Patient' }).click();
+  await page.getByLabel('First Name').click();
+  await page.getByLabel('First Name').press('CapsLock');
+  await page.getByLabel('First Name').fill('A');
+  await page.getByLabel('First Name').press('CapsLock');
+  await page.getByLabel('First Name').fill('Abel');
+  await page.getByLabel('Family Name').click();
+  await page.getByLabel('Family Name').press('CapsLock');
+  await page.getByLabel('Family Name').fill('D');
+  await page.getByLabel('Family Name').press('CapsLock');
+  await page.getByLabel('Family Name').fill('David');
+  await page.locator('label').filter({ hasText: /^Male$/ }).locator('span').first().click();
+  await page.getByRole('tab', { name: 'No' }).nth(1).click();
+  await page.getByLabel('Estimated age in years').click();
+  await page.getByLabel('Estimated age in years').press('ArrowLeft');
+  await page.getByLabel('Estimated age in years').fill('10');
+  await page.getByRole('button', { name: 'Register Patient' }).click();
+});

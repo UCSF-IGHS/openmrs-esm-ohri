@@ -32,11 +32,13 @@
     "coverage": "yarn test --coverage",
     "badges": "yarn coverage && yarn jest-coverage-badges --output './badges' ",
     "extract-translations": "turbo extract-translations -- --config ../../tools/i18next-parser.config.js",
-    "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next"
+    "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next",
+    "test-e2e": "playwright test"
   },
   "devDependencies": {
     "@openmrs/esm-framework": "next",
     "@openmrs/esm-patient-common-lib": "next",
+    "@playwright/test": "^1.30.0",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.189",
     "@swc/jest": "^0.2.29",
@@ -60,6 +62,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.0.3",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
@@ -95,7 +98,7 @@
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server ": "^4.8.1"
   },
   "resolutions": {
     "@carbon/react": "1.17.0",
