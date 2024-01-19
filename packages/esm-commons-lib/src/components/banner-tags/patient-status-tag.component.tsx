@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Tag } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
-import styles from './active-visit-tag.scss';
 import { isPatientHivPositive } from './patientHivStatus';
 
 export function PatientStatusBannerTag({ patientUuid }) {
