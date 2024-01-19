@@ -79,7 +79,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish to NPM
-        run: yarn run ci:publish
+        run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
