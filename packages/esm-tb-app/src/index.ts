@@ -9,6 +9,8 @@ import {
   tbTreatmentFollowUpDashboardMeta,
   tbClinicalViewDashboardMeta,
   tbCasesDashboardMeta,
+  tptProgramManagementDashboardMeta,
+  tptPatientChartMeta,
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
@@ -17,6 +19,7 @@ import TbTreatmentFollowUpList from './views/treatment-and-follow-up/tb-treatmen
 import TbContactTracingList from './views/tb-contact-listing/tb-contact-list.component';
 import TbSummaryTiles from './views/dashboard/summary-tiles/tb-summary-tiles.component';
 import TbHomePatientTabs from './views/dashboard/patient-list-tabs/tb-patient-list-tabs.component';
+import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -34,6 +37,8 @@ export function startupApp() {
 }
 
 export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(tbPatientChartMeta), options);
+
+export const patientChartTptDashboard = getSyncLifecycle(createDashboardGroup(tptPatientChartMeta), options);
 
 export const tbPatientSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...tbPatientSummaryDashboardMeta, moduleName }),
@@ -81,6 +86,15 @@ export const tbDashboardTiles = getSyncLifecycle(TbSummaryTiles, {
 });
 export const tbDashboardTabs = getSyncLifecycle(TbHomePatientTabs, {
   featureName: 'tb-home-tabs',
+  moduleName,
+});
+
+export const tptProgramManagementDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...tptProgramManagementDashboardMeta, moduleName }),
+  options,
+);
+export const tptProgramManagementDashboard = getSyncLifecycle(tptProgramManagementSummary, {
+  featureName: 'tpt-program-management-summary',
   moduleName,
 });
 

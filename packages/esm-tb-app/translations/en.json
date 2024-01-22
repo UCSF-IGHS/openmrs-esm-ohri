@@ -28,5 +28,7 @@
   "nextAppointment": "Next Appointment",
   "siteOfTb": "Site of TB",
   "appointmentDate": "Appointment Date",
-  "editFollowUpForm": "Edit TB Follow-up Form"
+  "editFollowUpForm": "Edit TB Follow-up Form",
+  "tptEnrolment": "TPT Enrolment", 
+  "tptTreatment": "TPT Treatment"
 }
