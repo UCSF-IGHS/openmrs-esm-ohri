@@ -50,12 +50,28 @@ export const tbCasesDashboardMeta = {
   slot: 'tb-cases-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment' },
   title: 'TB Treatment',
+  
 };
-
 
 export const tbPreventionCasesDashboardMeta = {
   name: 'tb-prevention-cases',
   slot: 'tb-prevention-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'tpt', dashboardTitle: 'TB Prevention' },
   title: 'TB Prevention',
+
+};
+
+export const tptPatientChartMeta = {
+  title: 'TPT Program',
+  slotName: 'ohri-tpt-slot',
+  isExpanded: false,
+};
+
+export const tptProgramManagementDashboardMeta = {
+  slot: 'tpt-program-management-summary-slot',
+  columns: 1,
+  title: 'Program Management',
+  path: 'tpt-program-management',
+  layoutMode: 'anchored',
+
 };

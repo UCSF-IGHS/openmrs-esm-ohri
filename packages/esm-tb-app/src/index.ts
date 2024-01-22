@@ -10,6 +10,9 @@ import {
   tbClinicalViewDashboardMeta,
   tbCasesDashboardMeta,
   tbPreventionCasesDashboardMeta,
+  tptProgramManagementDashboardMeta,
+  tptPatientChartMeta,
+
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
@@ -20,7 +23,7 @@ import TbSummaryTiles from './views/dashboard/summary-tiles/tb-summary-tiles.com
 import TbHomePatientTabs from './views/dashboard/patient-list-tabs/tb-patient-list-tabs.component';
 import TbPreventionSummaryTiles from './views/dashboard/summary-tiles/tb-prevention-patient-list.component';
 import TbPreventionPatientListTabs from './views/dashboard/patient-list-tabs/tb-prevention-patient-list.component';
-
+import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 require('./root.scss');
@@ -37,6 +40,8 @@ export function startupApp() {
 }
 
 export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(tbPatientChartMeta), options);
+
+export const patientChartTptDashboard = getSyncLifecycle(createDashboardGroup(tptPatientChartMeta), options);
 
 export const tbPatientSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...tbPatientSummaryDashboardMeta, moduleName }),
@@ -96,6 +101,15 @@ export const tbPreventionDashboardTabs = getSyncLifecycle(TbPreventionPatientLis
   moduleName,
 });
 
+
+export const tptProgramManagementDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...tptProgramManagementDashboardMeta, moduleName }),
+  options,
+);
+export const tptProgramManagementDashboard = getSyncLifecycle(tptProgramManagementSummary, {
+  featureName: 'tpt-program-management-summary',
+  moduleName,
+});
 
 // OHRI HOME
 export const tbClinicalViewDashboardLink = getSyncLifecycle(
