@@ -52,3 +52,17 @@ export const tbCasesDashboardMeta = {
   title: 'TB Treatment',
   dashboardIcon: PillsAdd,
 };
+
+export const tptPatientChartMeta = {
+  title: 'TPT Program',
+  slotName: 'ohri-tpt-slot',
+  isExpanded: false,
+};
+
+export const tptProgramManagementDashboardMeta = {
+  slot: 'tpt-program-management-summary-slot',
+  columns: 1,
+  title: 'Program Management',
+  path: 'tpt-program-management',
+  layoutMode: 'anchored',
+};
