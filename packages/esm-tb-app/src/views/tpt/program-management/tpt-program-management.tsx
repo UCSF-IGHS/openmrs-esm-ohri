@@ -12,8 +12,8 @@ const TptProgramManagementSummary: React.FC<PatientChartProps> = ({ patientUuid 
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('tptEnrolment')}</Tab>
-          <Tab>{t('tptTreatment')}</Tab>
+          <Tab>{t('tptEnrolment', 'TPT Enrolment')}</Tab>
+          <Tab>{t('tptTreatment', 'TPT Treatment')}</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
