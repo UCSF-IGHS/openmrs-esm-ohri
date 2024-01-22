@@ -9,7 +9,7 @@ interface TptEnrolmentListProps {
 const TptEnrolmentList: React.FC<TptEnrolmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
 
-  const headerTitle = t('tptTreatment');
+  const headerTitle = t('tptEnrolment');
 
   return (
     <>
