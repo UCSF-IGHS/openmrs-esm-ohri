@@ -117,7 +117,7 @@
       }
     },
     {
-      "name": "tb-prevention-cases-dashboard",
+      "name": "tb-cases-dashboard",
       "slot": "tb-cases-dashboard-slot",
       "component": "tbCasesDashboard",
       "meta": {
