@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PillsAdd } from '@carbon/react/icons';
 
 export const tbPatientChartMeta = {
@@ -48,7 +49,14 @@ export const tbClinicalViewDashboardMeta = {
 export const tbCasesDashboardMeta = {
   name: 'tb-cases',
   slot: 'tb-cases-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment', icon: PillsAdd },
+  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment' },
   title: 'TB Treatment',
-  dashboardIcon: PillsAdd,
+};
+
+
+export const tbPreventionCasesDashboardMeta = {
+  name: 'tb-prevention-cases',
+  slot: 'tb-prevention-dashboard-slot',
+  config: { columns: 1, type: 'grid', programme: 'tpt', dashboardTitle: 'TB Prevention' },
+  title: 'TB Prevention',
 };

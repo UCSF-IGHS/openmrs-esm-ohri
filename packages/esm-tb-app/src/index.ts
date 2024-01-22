@@ -9,6 +9,7 @@ import {
   tbTreatmentFollowUpDashboardMeta,
   tbClinicalViewDashboardMeta,
   tbCasesDashboardMeta,
+  tbPreventionCasesDashboardMeta,
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
@@ -17,6 +18,8 @@ import TbTreatmentFollowUpList from './views/treatment-and-follow-up/tb-treatmen
 import TbContactTracingList from './views/tb-contact-listing/tb-contact-list.component';
 import TbSummaryTiles from './views/dashboard/summary-tiles/tb-summary-tiles.component';
 import TbHomePatientTabs from './views/dashboard/patient-list-tabs/tb-patient-list-tabs.component';
+import TbPreventionSummaryTiles from './views/dashboard/summary-tiles/tb-prevention-patient-list.component';
+import TbPreventionPatientListTabs from './views/dashboard/patient-list-tabs/tb-prevention-patient-list.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -83,6 +86,16 @@ export const tbDashboardTabs = getSyncLifecycle(TbHomePatientTabs, {
   featureName: 'tb-home-tabs',
   moduleName,
 });
+export const tbPreventionDashboardTiles = getSyncLifecycle(TbPreventionSummaryTiles, {
+  featureName: 'tb-prevention-home-tiles',
+  moduleName,
+});
+
+export const tbPreventionDashboardTabs = getSyncLifecycle(TbPreventionPatientListTabs, {
+  featureName: 'tb-prevention-home-tabs',
+  moduleName,
+});
+
 
 // OHRI HOME
 export const tbClinicalViewDashboardLink = getSyncLifecycle(
@@ -92,5 +105,14 @@ export const tbClinicalViewDashboardLink = getSyncLifecycle(
 export const tbCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbCasesDashboardMeta), options);
 export const tbCasesDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'tb cases dashboard',
+  moduleName,
+});
+
+export const tbPreventionCasesDashboardLink = getSyncLifecycle(
+  createOHRIDashboardLink(tbPreventionCasesDashboardMeta),
+  options,
+);
+export const tbPreventionCasesDashboard = getSyncLifecycle(OHRIHome, {
+  featureName: 'tb Prevention dashboard',
   moduleName,
 });
