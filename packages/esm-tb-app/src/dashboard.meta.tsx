@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { PillsAdd } from '@carbon/react/icons';
 
 export const tbPatientChartMeta = {
