@@ -30,5 +30,6 @@
   "appointmentDate": "Appointment Date",
   "editFollowUpForm": "Edit TB Follow-up Form",
   "tptEnrolment": "TPT Enrolment", 
-  "tptTreatment": "TPT Treatment"
+  "tptTreatment": "TPT Treatment",
+  "patientSummary": "Patient Summary"
 }

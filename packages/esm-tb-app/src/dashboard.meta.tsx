@@ -59,6 +59,14 @@ export const tptPatientChartMeta = {
   isExpanded: false,
 };
 
+export const tptPatientSummaryMeta = {
+  slot: 'tpt-patient-summary-slot',
+  columns: 1,
+  title: 'Patient Summary',
+  path: 'tpt-patient-summary',
+  layoutMode: 'anchored',
+};
+
 export const tptProgramManagementDashboardMeta = {
   slot: 'tpt-program-management-summary-slot',
   columns: 1,
