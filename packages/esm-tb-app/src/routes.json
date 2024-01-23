@@ -39,7 +39,7 @@
       "component": "patientChartTptDashboard",
       "order": 24
     },
-    
+
     {
       "name": "tb-summary-dashboard",
       "slot": "ohri-tb-slot",
@@ -197,6 +197,52 @@
       "name": "tb-home-tabs-ext",
       "slot": "tb-home-tabs-slot",
       "component": "tbDashboardTabs"
-    } 
+    },
+    {
+      "name": "tpt-cases-dashboard-ext",
+      "slot": "tb-clinical-dashboard-slot",
+      "component": "tptCasesDashboardLink",
+      "meta": {
+        "name": "tb-prevention-cases",
+        "slot": "tpt-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
+      }
+    },
+    {
+      "name": "tpt-cases-dashboard",
+      "slot": "tpt-cases-dashboard-slot",
+      "component": "tbCasesDashboard",
+      "meta": {
+        "name": "tb-prevention-cases",
+        "slot": "tpt-cases-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
+      }
+    },
+    {
+      "name": "tpt-home-header-ext",
+      "slot": "tpt-home-header-slot",
+      "component": "tptDashboardHeader"
+    },
+    {
+      "name": "tpt-home-tiles-ext",
+      "slot": "tpt-home-tiles-slot",
+      "component": "tptDashboardTiles"
+    },
+    {
+      "name": "tpt-home-tabs-ext",
+      "slot": "tpt-home-tabs-slot",
+      "component": "tptDashboardTabs"
+    }
   ]
 }

@@ -12,6 +12,7 @@ import {
   tptProgramManagementDashboardMeta,
   tptPatientChartMeta,
   tptPatientSummaryMeta,
+  tptCasesDashboardMeta,
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
@@ -22,6 +23,8 @@ import TbSummaryTiles from './views/dashboard/summary-tiles/tb-summary-tiles.com
 import TbHomePatientTabs from './views/dashboard/patient-list-tabs/tb-patient-list-tabs.component';
 import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
 import tptPatientSummary from './views/tpt/patient-summary/patient-summary.component';
+import TptPreventionSummaryTiles from './views/dashboard/summary-tiles/tpt-summary-tiles.component';
+import TptPatientListTabs from './views/dashboard/patient-list-tabs/tpt-patient-list-tabs.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -90,7 +93,18 @@ export const tbDashboardTabs = getSyncLifecycle(TbHomePatientTabs, {
   featureName: 'tb-home-tabs',
   moduleName,
 });
-
+export const tptDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
+  featureName: 'tpt-home-header',
+  moduleName,
+});
+export const tptDashboardTiles = getSyncLifecycle(TptPreventionSummaryTiles, {
+  featureName: 'tpt-home-tiles',
+  moduleName,
+});
+export const tptDashboardTabs = getSyncLifecycle(TptPatientListTabs, {
+  featureName: 'tpt-home-tabs',
+  moduleName,
+});
 
 export const tptPatientSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...tptPatientSummaryMeta, moduleName }),
@@ -118,5 +132,10 @@ export const tbClinicalViewDashboardLink = getSyncLifecycle(
 export const tbCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbCasesDashboardMeta), options);
 export const tbCasesDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'tb cases dashboard',
+  moduleName,
+});
+export const tptCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tptCasesDashboardMeta), options);
+export const tptCasesDashboard = getSyncLifecycle(OHRIHome, {
+  featureName: 'tpt cases dashboard',
   moduleName,
 });

@@ -48,9 +48,15 @@ export const tbClinicalViewDashboardMeta = {
 export const tbCasesDashboardMeta = {
   name: 'tb-cases',
   slot: 'tb-cases-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment', icon: PillsAdd },
+  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment' },
   title: 'TB Treatment',
-  dashboardIcon: PillsAdd,
+};
+
+export const tptCasesDashboardMeta = {
+  name: 'tb-prevention-cases',
+  slot: 'tpt-cases-dashboard-slot',
+  config: { columns: 1, type: 'grid', programme: 'tpt', dashboardTitle: 'TB Prevention'},
+  title: 'TB Prevention',
 };
 
 export const tptPatientChartMeta = {
