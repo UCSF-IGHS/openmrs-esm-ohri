@@ -199,12 +199,12 @@
       "component": "tbDashboardTabs"
     },
     {
-      "name": "tpt-cases-dashboard-ext",
+      "name": "tb-prevention-dashboard-ext",
       "slot": "tb-clinical-dashboard-slot",
-      "component": "tptCasesDashboardLink",
+      "component": "tbPreventionDashboardLink",
       "meta": {
-        "name": "tpt-prevention-cases",
-        "slot": "tpt-cases-dashboard-slot",
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
         "config": {
           "columns": 1,
           "type": "grid",
@@ -215,12 +215,12 @@
       }
     },
     {
-      "name": "tpt-cases-dashboard",
-      "slot": "tpt-cases-dashboard-slot",
-      "component": "tbCasesDashboard",
+      "name": "tb-prevention-dashboard",
+      "slot": "tb-prevention-dashboard-slot",
+      "component": "tbPreventionDashboard",
       "meta": {
-        "name": "tpt-prevention-cases",
-        "slot": "tpt-cases-dashboard-slot",
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
         "config": {
           "columns": 1,
           "programme": "tpt",

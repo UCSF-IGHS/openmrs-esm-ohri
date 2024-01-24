@@ -53,8 +53,8 @@ export const tbCasesDashboardMeta = {
 };
 
 export const tbPreventionDashboardMeta = {
-  name: 'tpt-prevention-cases',
-  slot: 'tpt-cases-dashboard-slot',
+  name: 'tb-prevention',
+  slot: 'tb-prevention-dashboard-slot',
   config: { columns: 1, type: 'grid', programme: 'tpt', dashboardTitle: 'TB Prevention'},
   title: 'TB Prevention',
 };

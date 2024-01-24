@@ -134,8 +134,8 @@ export const tbCasesDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'tb cases dashboard',
   moduleName,
 });
-export const tptCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbPreventionDashboardMeta), options);
-export const tptCasesDashboard = getSyncLifecycle(OHRIHome, {
+export const tbPreventionDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbPreventionDashboardMeta), options);
+export const tbPreventionDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'tpt cases dashboard',
   moduleName,
 });
