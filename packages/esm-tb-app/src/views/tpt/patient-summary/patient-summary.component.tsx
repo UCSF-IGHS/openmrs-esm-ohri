@@ -12,7 +12,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../..';
 
-const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
+const TptPatientSummary: React.FC<TptPatientSummaryProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const config = useConfig();
 
