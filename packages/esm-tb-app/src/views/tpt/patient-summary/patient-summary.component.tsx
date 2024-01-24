@@ -16,10 +16,10 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const config = useConfig();
 
-  const headerRecentTB = t('recentTpt', 'Recent TPT Cases');
+  const headerRecentTPT = t('recentTpt', 'Recent TPT Cases');
   const headerPreviousCases = t('previousCases', 'Previous TPT Cases');
 
-  const recentTbTreatmentColumns: SummaryCardColumn[] = useMemo(
+  const recentTbPreventionColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'tptTreatmentId',
@@ -77,8 +77,8 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
     <>
       <SummaryCard
         patientUuid={patientUuid}
-        headerTitle={headerRecentTB}
-        columns={recentTbTreatmentColumns}
+        headerTitle={headerRecentTPT}
+        columns={recentTbPreventionColumns}
         maxRowItems={4}
       />
       <EmptyStateComingSoon displayText={headerPreviousCases} headerTitle={headerPreviousCases}/>
