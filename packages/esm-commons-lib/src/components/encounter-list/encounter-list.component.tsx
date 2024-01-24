@@ -8,11 +8,12 @@ import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
 import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
-import { launchEncounterForm } from './helpers';
+import { launchEncounterForm, findEncounterLatestDateIndex } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+import { fetchPatientLastEncounter } from '../../api/api';
 
 export interface EncounterListColumn {
   key: string;
@@ -40,6 +41,7 @@ export interface EncounterListProps {
     workspaceWindowSize?: 'minimized' | 'maximized';
   };
   filter?: (encounter: any) => boolean;
+  disableEdit?: boolean;
 }
 
 export const EncounterList: React.FC<EncounterListProps> = ({
@@ -51,6 +53,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   formList,
   filter,
   launchOptions,
+  disableEdit,
 }) => {
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
@@ -131,7 +134,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           paginatedEncounters.push(encounters[i]);
         }
       }
-      const rows = paginatedEncounters.map((encounter) => {
+      const rows = paginatedEncounters.map((encounter, encounterIndex: number) => {
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
         // inject launch actions
         encounter['launchFormActions'] = {
@@ -198,6 +201,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                     workspaceWindowSize,
                   );
                 }}
+                disabled={
+                  index == 1 && disableEdit == true && findEncounterLatestDateIndex(encounters) != encounterIndex
+                }
+                // disabled={index == 1 &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
+                // disabled={actionItem.label == 'Edit form' &&  findEncounterLatestDateIndex(encounters) != encounterIndex}
               />
             ))}
           </OverflowMenu>
