@@ -16,7 +16,7 @@ export const configSchema = {
       tbPatientTracing: '98c938e9-fb3e-4982-ae22-0305cbd12f8c',
       tbProgramEnrollment: '9a199b59-b185-485b-b9b3-a9754e65ae57',
       tbTreatmentAndFollowUp: '1881304a-4854-4927-b0b1-a6231d61e43c',
-      tptCaseEnrollment: '	dc6ce80c-83f8-4ace-a638-21df78542551',
+      tptCaseEnrollment: 'dc6ce80c-83f8-4ace-a638-21df78542551',
       tptTreatmentAndFollowUp: '1ac3de3f-8fc2-43a7-addb-e805c393ecae',
     },
   },

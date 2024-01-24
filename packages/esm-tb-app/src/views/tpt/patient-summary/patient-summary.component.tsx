@@ -14,59 +14,59 @@ import { moduleName } from '../../..';
 
 const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { obsConcepts, encounterTypes } = useConfig();
 
-  const headerRecentTPT = t('recentTpt', 'Recent TPT Cases');
-  const headerPreviousCases = t('previousCases', 'Previous TPT Cases');
+  const headerRecentTPT = t('recentTptCases', 'Recent TPT Cases');
+  const headerPreviousCases = t('previousTptCases', 'Previous TPT Cases');
 
   const recentTbPreventionColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'tptTreatmentId',
         header: t('tptTreatmentId', 'TPT Treatment ID'),
-        encounterTypes: [config.encounterTypes.tptCaseEnrollment],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.tptTreatmentId);
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
         },
       },
       {
         key: 'tptEnrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
-        encounterTypes: [config.encounterTypes.tptCaseEnrollment],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.tptEnrollmentDate, true);
+          return getObsFromEncounter(encounter, obsConcepts.tptEnrollmentDate, true);
         },
       },
       {
         key: 'tptIndication',
         header: t('indication', 'Indication'),
-        encounterTypes: [config.encounterTypes.tptCaseEnrollment],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.tptIndication);
+          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
         },
       },
       {
         key: 'tptRegimen',
         header: t('regimen', 'Regimen'),
-        encounterTypes: [config.encounterTypes.tptCaseEnrollment],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.tptRegimen);
+          return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
         },
       },
        {
          key: 'tptAdherence',
          header: t('tptAdherence', 'Adherence'),
-         encounterTypes: [config.encounterTypes.tptTreatmentAndFollowUp],
+         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
          getObsValue: (encounter) => {
-           return getObsFromEncounter(encounter, config.obsConcepts.tptAdherence);
+           return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
          },
        },
       {
         key: 'tptAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterTypes: [config.encounterTypes.tptTreatmentAndFollowUp],
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
         getObsValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.tptAppointmentDate, true);
+          return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
         },
       },
     ],
