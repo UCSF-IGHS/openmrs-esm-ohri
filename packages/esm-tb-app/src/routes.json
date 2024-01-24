@@ -203,7 +203,7 @@
       "slot": "tb-clinical-dashboard-slot",
       "component": "tptCasesDashboardLink",
       "meta": {
-        "name": "tb-prevention-cases",
+        "name": "tpt-prevention-cases",
         "slot": "tpt-cases-dashboard-slot",
         "config": {
           "columns": 1,
@@ -219,7 +219,7 @@
       "slot": "tpt-cases-dashboard-slot",
       "component": "tbCasesDashboard",
       "meta": {
-        "name": "tb-prevention-cases",
+        "name": "tpt-prevention-cases",
         "slot": "tpt-cases-dashboard-slot",
         "config": {
           "columns": 1,
