@@ -16,6 +16,7 @@ export const configSchema = {
       tbPatientTracing: '98c938e9-fb3e-4982-ae22-0305cbd12f8c',
       tbProgramEnrollment: '9a199b59-b185-485b-b9b3-a9754e65ae57',
       tbTreatmentAndFollowUp: '1881304a-4854-4927-b0b1-a6231d61e43c',
+      tptCaseEnrolment: 'dc6ce80c-83f8-4ace-a638-21df78542551',
     },
   },
   obsConcepts: {
@@ -47,6 +48,13 @@ export const configSchema = {
       tBEnrollmentType: '163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       dsTBEnrollment: '160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       dRTBEnrollment: '160052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptCaseEnrollmentDate: '164852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptTreatmentId: '162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptIndication: '162276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptTreatmentStartDate: '162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptRegimen: '1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptOutcome: '1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptOutcomeDate: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
@@ -56,10 +64,19 @@ export const configSchema = {
       clientsEnrolledForTb: '98fd11ba-cb4d-46f7-9b82-40d49949c7ef',
     },
   },
+  formNames: {
+    _type: Type.Object,
+    _description: 'TPT Form Names.',
+    _default: {
+      TptOutcomeFormName: 'TPT outcome form',
+      TptCaseEnrolmentFormName: 'TPT Case Enrolment form',
+    },
+  },
 };
 
 export interface ConfigObject {
   identifiers: Object;
   encounterTypes: Object;
   obsConcepts: Object;
+  formNames: Object;
 }
