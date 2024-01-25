@@ -38,8 +38,7 @@
   "indication":  "Indication",
   "tptAdherence": "Adherence",
   "nextAppointmentDate": "Next Appointment Date",
-  "previousCases":  "Previous TPT Cases",
-  "previousTptCases": "Recent TPT Cases",
-  "previousCases": "Previous Cases"
+  "previousTptCases":  "Previous TPT Cases",
+  "recentTptCases": "Recent TPT Cases",
 
 }
