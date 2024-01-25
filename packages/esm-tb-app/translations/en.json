@@ -29,7 +29,16 @@
   "siteOfTb": "Site of TB",
   "appointmentDate": "Appointment Date",
   "editFollowUpForm": "Edit TB Follow-up Form",
-  "tptEnrolment": "TPT Enrolment", 
+  "tptEnrolment": "TPT Enrolment",
   "tptTreatment": "TPT Treatment",
-  "patientSummary": "Patient Summary"
+  "patientSummary": "Patient Summary",
+  "allTptClients": "All TPT Clients",
+  "currentTptClients": "Clients Currently on TPT",
+  "tptTreatmentId": "TPT Treatment ID",
+  "indication":  "Indication",
+  "tptAdherence": "Adherence",
+  "nextAppointmentDate": "Next Appointment Date",
+  "previousCases":  "Previous TPT Cases",
+  "previousTptCases": "Recent TPT Cases"
+
 }
