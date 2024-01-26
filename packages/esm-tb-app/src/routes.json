@@ -153,6 +153,37 @@
       }
     },
     {
+      "name": "tb-prevention-dashboard-ext",
+      "slot": "tb-clinical-dashboard-slot",
+      "component": "tbPreventionDashboardLink",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
+      }
+    },
+    {
+      "name": "tb-prevention-dashboard",
+      "slot": "tb-prevention-dashboard-slot",
+      "component": "tbPreventionDashboard",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
+      }
+    },
+    {
       "name": "tb-cases-dashboard-ext",
       "slot": "tb-clinical-dashboard-slot",
       "component": "tbCasesDashboardLink",
@@ -197,37 +228,6 @@
       "name": "tb-home-tabs-ext",
       "slot": "tb-home-tabs-slot",
       "component": "tbDashboardTabs"
-    },
-    {
-      "name": "tpt-cases-dashboard-ext",
-      "slot": "tb-clinical-dashboard-slot",
-      "component": "tptCasesDashboardLink",
-      "meta": {
-        "name": "tb-prevention-cases",
-        "slot": "tpt-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "tpt",
-          "dashboardTitle": "TB Prevention"
-        },
-        "title": "TB Prevention"
-      }
-    },
-    {
-      "name": "tpt-cases-dashboard",
-      "slot": "tpt-cases-dashboard-slot",
-      "component": "tbCasesDashboard",
-      "meta": {
-        "name": "tb-prevention-cases",
-        "slot": "tpt-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "programme": "tpt",
-          "dashboardTitle": "TB Prevention"
-        },
-        "title": "TB Prevention"
-      }
     },
     {
       "name": "tpt-home-header-ext",

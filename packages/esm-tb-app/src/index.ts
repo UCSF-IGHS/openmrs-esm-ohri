@@ -12,7 +12,7 @@ import {
   tptProgramManagementDashboardMeta,
   tptPatientChartMeta,
   tptPatientSummaryMeta,
-  tptCasesDashboardMeta,
+  tbPreventionDashboardMeta,
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
@@ -134,8 +134,8 @@ export const tbCasesDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'tb cases dashboard',
   moduleName,
 });
-export const tptCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tptCasesDashboardMeta), options);
-export const tptCasesDashboard = getSyncLifecycle(OHRIHome, {
+export const tbPreventionDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbPreventionDashboardMeta), options);
+export const tbPreventionDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'tpt cases dashboard',
   moduleName,
 });

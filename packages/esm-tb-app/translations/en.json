@@ -34,5 +34,11 @@
   "patientSummary": "Patient Summary",
   "allTptClients": "All TPT Clients",
   "currentTptClients": "Clients Currently on TPT",
-  "editTptFollowUpForm": "Edit TPT Followup & Treatment form"
+  "tptTreatmentId": "TPT Treatment ID",
+  "indication":  "Indication",
+  "tptAdherence": "Adherence",
+  "nextAppointmentDate": "Next Appointment Date",
+  "previousTptCases":  "Previous TPT Cases",
+  "recentTptCases": "Recent TPT Cases"
+
 }
