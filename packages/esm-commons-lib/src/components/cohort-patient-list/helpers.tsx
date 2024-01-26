@@ -117,7 +117,7 @@ export const ViewTptSummaryMenuItem = ({ patientUuid, ViewTptSummary, encounterT
   const [actionText, setActionText] = useState(ViewTptSummary.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const viewTptSummaryActionText = ViewTptSummary.actionText || 'View TPT Summary ';
+  const viewTptSummaryActionText = ViewTptSummary.actionText || 'View Summary ';
 
   useEffect(() => {
     if (ViewTptSummary.editLatestEncounter && encounterType && !encounterUuid) {
@@ -194,16 +194,16 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
             excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
           />
         )}
-               {viewTptPatientProgramSummary ? (
-                 <ViewTptSummaryMenuItem
-                    patientUuid={patientUuid}
-                    ViewTptSummary={launchableFormProps}
-                    encounterType={launchableFormProps.encounterType || encounterType}
-                    key={patientUuid}
-                  />
-                ) : (
-                  <></>
-                )}
+        {viewTptPatientProgramSummary ? (
+          <ViewTptSummaryMenuItem
+            patientUuid={patientUuid}
+            ViewTptSummary={launchableFormProps}
+            encounterType={launchableFormProps.encounterType || encounterType}
+            key={patientUuid}
+          />
+        ) : (
+          <></>
+        )}
         {viewPatientProgramSummary ? (
           <ViewSummaryMenuItem
             patientUuid={patientUuid}
@@ -214,7 +214,6 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
         ) : (
           <></>
         )}
-
       </OverflowMenu>
     ),
   };

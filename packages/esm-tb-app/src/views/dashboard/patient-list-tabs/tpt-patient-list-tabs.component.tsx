@@ -1,9 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  getObsFromEncounter,
-  OHRIPatientListTabs,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { getObsFromEncounter, OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
 
@@ -15,23 +12,23 @@ function TptPatientListTabs() {
     () => [
       {
         label: t('allTptClients', 'All TPT Clients'),
-        cohortId: cohorts.clientsEnrolledForTb,
+        cohortId: cohorts.clientsEnrolledForTpt,
         isReportingCohort: true,
-        cohortSlotName: 'clients-assessed-for-covid-tb',
+        cohortSlotName: 'clients-assessed-for-tpt',
         launchableForm: {
-          editActionText: t('editFollowUpForm', 'Edit TB Follow-up Form'),
+          editActionText: t('editTptFollowUpForm', 'Edit TPT Follow-up form'),
           editLatestEncounter: true,
           targetDashboard: 'tb-assessments',
-          name: 'TB Follow-up Form',
+          name: 'TPT Followup & Treatment form',
         },
-        associatedEncounterType: encounterTypes.tptProgramEnrollment,
+        associatedEncounterType: encounterTypes.tptCaseEnrollment,
         excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
         otherColumns: [
           {
-            key: 'caseID',
-            header: t('caseID', 'Case ID'),
-            getValue: ( { latestEncounter }) => {
-              return getObsFromEncounter(latestEncounter, obsConcepts.caseID);
+            key: 'tptTreatmentId',
+            header: t('tptTreatmentId', 'TPT Treatment ID'),
+            getValue: ({ latestEncounter }) => {
+              return getObsFromEncounter(latestEncounter, obsConcepts.tptTreatmentId);
             },
             index: 1,
           },
@@ -50,7 +47,7 @@ function TptPatientListTabs() {
             },
           },
         ],
-        viewTptPatientProgramSummary:true,
+        viewTptPatientProgramSummary: true,
       },
     ],
     [],
