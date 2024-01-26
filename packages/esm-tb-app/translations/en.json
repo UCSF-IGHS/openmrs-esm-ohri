@@ -33,5 +33,6 @@
   "tptTreatment": "TPT Treatment",
   "patientSummary": "Patient Summary",
   "allTptClients": "All TPT Clients",
-  "currentTptClients": "Clients Currently on TPT"
+  "currentTptClients": "Clients Currently on TPT",
+  "editTptFollowUpForm": "Edit TPT Followup & Treatment form"
 }

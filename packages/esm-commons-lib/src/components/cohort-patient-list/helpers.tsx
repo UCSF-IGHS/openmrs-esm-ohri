@@ -18,6 +18,7 @@ interface PatientMetaConfig {
   moduleName: string;
   addPatientToListOptions: { isEnabled: boolean; excludeCohorts?: Array<string>; displayText: string };
   viewPatientProgramSummary?: boolean;
+  viewTptPatientProgramSummary?: boolean;
 }
 
 export interface PatientListColumn {
@@ -112,7 +113,44 @@ export const ViewSummaryMenuItem = ({ patientUuid, ViewSummary, encounterType })
     </>
   );
 };
+export const ViewTptSummaryMenuItem = ({ patientUuid, ViewTptSummary, encounterType }) => {
+  const [actionText, setActionText] = useState(ViewTptSummary.actionText);
+  const [encounterUuid, setEncounterUuid] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const viewTptSummaryActionText = ViewTptSummary.actionText || 'View TPT Summary ';
 
+  useEffect(() => {
+    if (ViewTptSummary.editLatestEncounter && encounterType && !encounterUuid) {
+      setIsLoading(true);
+      fetchPatientLastEncounter(patientUuid, encounterType).then((latestEncounter) => {
+        if (latestEncounter) {
+          setActionText(viewTptSummaryActionText);
+          setEncounterUuid(latestEncounter.uuid);
+        }
+        setIsLoading(false);
+      });
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return (
+    <>
+      {isLoading ? (
+        <InlineLoading style={{ margin: '0 auto', width: '16px' }} />
+      ) : (
+        <OverflowMenuItem
+          itemText={actionText}
+          onClick={() => {
+            navigate({
+              to: `/openmrs/spa/patient/${patientUuid}/chart/tpt-patient-summary`,
+            });
+          }}
+        />
+      )}
+    </>
+  );
+};
 export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMetaConfig) {
   const {
     isDynamicCohort,
@@ -122,6 +160,7 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
     moduleName,
     addPatientToListOptions,
     viewPatientProgramSummary,
+    viewTptPatientProgramSummary,
   } = config;
   const patientUuid = !isDynamicCohort ? rawPatientMeta.patient.uuid : rawPatientMeta.person.uuid;
   dayjs.extend(localizedFormat);
@@ -155,6 +194,16 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
             excludeCohorts={addPatientToListOptions?.excludeCohorts || []}
           />
         )}
+               {viewTptPatientProgramSummary ? (
+                 <ViewTptSummaryMenuItem
+                    patientUuid={patientUuid}
+                    ViewTptSummary={launchableFormProps}
+                    encounterType={launchableFormProps.encounterType || encounterType}
+                    key={patientUuid}
+                  />
+                ) : (
+                  <></>
+                )}
         {viewPatientProgramSummary ? (
           <ViewSummaryMenuItem
             patientUuid={patientUuid}
@@ -165,6 +214,7 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
         ) : (
           <></>
         )}
+
       </OverflowMenu>
     ),
   };
