@@ -40,5 +40,6 @@
   "nextAppointmentDate": "Next Appointment Date",
   "previousTptCases":  "Previous TPT Cases",
   "recentTptCases": "Recent TPT Cases",
-  "editTptFollowUpForm": "Edit TPT Follow-up form"
+  "editTptFollowUpForm": "Edit TPT Follow-up form",
+  "dateOutcome": "Date of Outcome"
 }
