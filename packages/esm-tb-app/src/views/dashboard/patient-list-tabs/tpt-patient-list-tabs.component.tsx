@@ -1,23 +1,58 @@
-import React from 'react';
-import { Tabs, Tab, TabPanels, TabPanel, TabList } from '@carbon/react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getObsFromEncounter, OHRIPatientListTabs } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../../../index';
+import { useConfig } from '@openmrs/esm-framework';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-const TptPatientListTabs: React.FC<OverviewListProps> = ({ }) => {
+function TptPatientListTabs() {
   const { t } = useTranslation();
-  return (
-    <Tabs>
-      <TabList contained>
-        <Tab>{t('allTptClients', 'All TPT Clients')}</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel></TabPanel>
-      </TabPanels>
-    </Tabs>
+  const { obsConcepts, encounterTypes, cohorts } = useConfig();
+
+  const tabsConfigs = useMemo(
+    () => [
+      {
+        label: t('allTptClients', 'All TPT Clients'),
+        cohortId: cohorts.clientsEnrolledForTpt,
+        isReportingCohort: true,
+        cohortSlotName: 'clients-assessed-for-tpt',
+        launchableForm: {
+          editActionText: t('editTptFollowUpForm', 'Edit TPT Follow-up form'),
+          editLatestEncounter: true,
+          targetDashboard: 'tb-assessments',
+          name: 'TPT Followup & Treatment form',
+        },
+        associatedEncounterType: encounterTypes.tptCaseEnrollment,
+        excludeColumns: ['timeAddedToList', 'waitingTime', 'location', 'phoneNumber', 'hivResult'],
+        otherColumns: [
+          {
+            key: 'tptTreatmentId',
+            header: t('tptTreatmentId', 'TPT Treatment ID'),
+            getValue: ({ latestEncounter }) => {
+              return getObsFromEncounter(latestEncounter, obsConcepts.tptTreatmentId);
+            },
+            index: 1,
+          },
+          {
+            key: 'EnrolmentDate',
+            header: t('EnrolmentDate', 'Enrolment Date'),
+            getValue: ({ latestEncounter }) => {
+              return getObsFromEncounter(latestEncounter, obsConcepts.tptEnrollmentDate, true);
+            },
+          },
+          {
+            key: 'indication',
+            header: t('indication', 'Indication'),
+            getValue: ({ latestEncounter }) => {
+              return getObsFromEncounter(latestEncounter, obsConcepts.tptIndication);
+            },
+          },
+        ],
+        viewTptPatientProgramSummary: true,
+      },
+    ],
+    [],
   );
-};
+  return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
+}
 
 export default TptPatientListTabs;
