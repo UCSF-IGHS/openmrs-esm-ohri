@@ -55,6 +55,10 @@ export const configSchema = {
       tptRegimen: '1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       tptAppointmentDate: '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       tptAdherence: '164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptTreatmentStartDate: '162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptOutcome: '1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptOutcomeDate: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      tptDateOutcome: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
@@ -62,6 +66,15 @@ export const configSchema = {
     _description: 'TB Cohort uuid.',
     _default: {
       clientsEnrolledForTb: '98fd11ba-cb4d-46f7-9b82-40d49949c7ef',
+      clientsEnrolledForTpt: '5f28254f-0a80-4d15-ad91-68c6cf5ea715',
+    },
+  },
+  formNames: {
+    _type: Type.Object,
+    _description: 'TPT Form Names.',
+    _default: {
+      TptOutcomeFormName: 'TPT outcome form',
+      TptCaseEnrolmentFormName: 'TPT Case Enrolment form',
     },
   },
 };
@@ -70,4 +83,5 @@ export interface ConfigObject {
   identifiers: Object;
   encounterTypes: Object;
   obsConcepts: Object;
+  formNames: Object;
 }

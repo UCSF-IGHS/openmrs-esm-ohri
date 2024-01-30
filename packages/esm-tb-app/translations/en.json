@@ -38,7 +38,8 @@
   "indication":  "Indication",
   "tptAdherence": "Adherence",
   "nextAppointmentDate": "Next Appointment Date",
-  "previousCases":  "Previous TPT Cases",
-  "previousTptCases": "Recent TPT Cases"
-
+  "previousTptCases":  "Previous TPT Cases",
+  "recentTptCases": "Recent TPT Cases",
+  "editTptFollowUpForm": "Edit TPT Follow-up form",
+  "dateOutcome": "Date of Outcome"
 }
