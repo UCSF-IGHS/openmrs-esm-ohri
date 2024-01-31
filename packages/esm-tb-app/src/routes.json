@@ -22,7 +22,24 @@
       "component": "patientChartTbDashboard",
       "order": 24
     },
-    
+
+    {
+      "name": "tpt-dashboard-link",
+      "slot": "dashboard-slot",
+      "component": "tptFolderLink",
+      "meta": {
+        "slot": "ohri-tpt-dashboard-slot",
+        "isFolder": true,
+        "title": "TPT Program"
+      }
+    },
+    {
+      "name": "ohri-tpt",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartTptDashboard",
+      "order": 24
+    },
+
     {
       "name": "tb-summary-dashboard",
       "slot": "ohri-tb-slot",
@@ -55,6 +72,41 @@
       "name": "tb-program-management-summary-ext",
       "slot": "tb-program-management-summary-slot",
       "component": "tbProgramManagementDashboard"
+    },
+
+
+    {
+      "name": "tpt-patient-summary",
+      "slot": "ohri-tpt-slot",
+      "component": "tptPatientSummaryDashboardLink",
+      "meta": {
+        "slot": "tpt-patient-summary-slot",
+        "columns": 1,
+        "path": "tpt-patient-summary",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tpt-patient-summary-ext",
+      "slot": "tpt-patient-summary-slot",
+      "component": "tptPatientSummaryDashboard"
+    },
+
+    {
+      "name": "tpt-program-management-summary",
+      "slot": "ohri-tpt-slot",
+      "component": "tptProgramManagementDashboardLink",
+      "meta": {
+        "slot": "tpt-program-management-summary-slot",
+        "columns": 1,
+        "path": "tpt-program-management",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tpt-program-management-summary-ext",
+      "slot": "tpt-program-management-summary-slot",
+      "component": "tptProgramManagementDashboard"
     },
 
     {
@@ -98,6 +150,37 @@
         "slot": "tb-clinical-dashboard-slot",
         "isFolder": true,
         "title": "Tuberculosis"
+      }
+    },
+    {
+      "name": "tb-prevention-dashboard-ext",
+      "slot": "tb-clinical-dashboard-slot",
+      "component": "tbPreventionDashboardLink",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
+      }
+    },
+    {
+      "name": "tb-prevention-dashboard",
+      "slot": "tb-prevention-dashboard-slot",
+      "component": "tbPreventionDashboard",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
       }
     },
     {
@@ -145,6 +228,21 @@
       "name": "tb-home-tabs-ext",
       "slot": "tb-home-tabs-slot",
       "component": "tbDashboardTabs"
-    } 
+    },
+    {
+      "name": "tpt-home-header-ext",
+      "slot": "tpt-home-header-slot",
+      "component": "tptDashboardHeader"
+    },
+    {
+      "name": "tpt-home-tiles-ext",
+      "slot": "tpt-home-tiles-slot",
+      "component": "tptDashboardTiles"
+    },
+    {
+      "name": "tpt-home-tabs-ext",
+      "slot": "tpt-home-tabs-slot",
+      "component": "tptDashboardTabs"
+    }
   ]
 }
