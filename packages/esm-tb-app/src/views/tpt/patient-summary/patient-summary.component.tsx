@@ -128,20 +128,6 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const tptVisitColumns: EncounterListColumn[] = useMemo(
-    () => [
-      {
-        key: 'tptTreatmentId',
-        header: t('tptTreatmentId', 'TPT Treatment ID'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
-        },
-      },
-    ],
-    [],
-  );
-
   return (
     <>
       <SummaryCard
@@ -163,20 +149,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           moduleName: moduleName,
         }}
       />
-
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterType={encounterTypes.tptTreatmentAndFollowUp}
-        columns={tptVisitColumns}
-        description={headerVisit}
-        headerTitle={headerVisit}
-        formList={[{ name: 'TPT Followup & Treatment form' }]}
-        launchOptions={{
-          hideFormLauncher: true,
-          displayText: '',
-          moduleName: moduleName,
-        }}
-      />
+      <EmptyStateComingSoon displayText={headerVisit} headerTitle={headerVisit} />
     </>
   );
 };
