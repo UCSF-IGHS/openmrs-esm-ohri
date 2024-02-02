@@ -42,7 +42,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptIndication',
         header: t('indication', 'Indication'),
         encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptIndication);
         },
       },
@@ -50,7 +50,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptRegimen',
         header: t('regimen', 'Regimen'),
         encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
         },
       },
@@ -58,7 +58,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptAdherence',
         header: t('tptAdherence', 'Adherence'),
         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
         },
       },
@@ -66,7 +66,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
         },
       },
@@ -128,6 +128,60 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
+  const TptVisitsColumns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'caseID',
+        header: t('caseID', 'Case ID'),
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+      {
+        key: 'visitDate',
+        header: t('visitDate', 'Visit Date'),
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptEnrollmentDate, true);
+        },
+      },
+      {
+        key: 'tptIndication',
+        header: t('indication', 'Indication'),
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
+        },
+      },
+      {
+        key: 'regimen',
+        header: t('regimen', 'Regimen'),
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
+        },
+      },
+      {
+        key: 'adherence',
+        header: t('adherence', 'Adherence'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
+        },
+      },
+      {
+        key: 'nextAppointmentDate',
+        header: t('nextAppointmentDate', 'Next Appointment Date'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
+        },
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       <SummaryCard
@@ -149,7 +203,19 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           moduleName: moduleName,
         }}
       />
-      <EmptyStateComingSoon displayText={headerVisit} headerTitle={headerVisit} />
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={encounterTypes.tptCaseEnrollment}
+        columns={TptVisitsColumns}
+        description={headerVisit}
+        headerTitle={headerVisit}
+        formList={[{ name: 'TPT Case Enrolment form' }]}
+        launchOptions={{
+          hideFormLauncher: true,
+          displayText: '',
+          moduleName: moduleName,
+        }}
+      />
     </>
   );
 };
