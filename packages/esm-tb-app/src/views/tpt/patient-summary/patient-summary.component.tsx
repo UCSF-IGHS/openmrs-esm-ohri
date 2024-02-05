@@ -128,6 +128,60 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
+  const tptVisitColumns: EncounterListColumn[] = useMemo(
+    () => [
+      {
+        key: 'caseId',
+        header: t('caseId', 'Case Id'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+      {
+        key: 'visitDate',
+        header: t('visitDate', 'Visit Date'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+      {
+        key: 'indication',
+        header: t('indication', 'Indication'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+      {
+        key: 'regimen',
+        header: t('regimen', 'Regimen'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+      {
+        key: 'tptTreatmentId',
+        header: t('tptTreatmentId', 'Case Id'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+      {
+        key: 'tptTreatmentId',
+        header: t('tptTreatmentId', 'Case Id'),
+        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        getValue: (encounter) => {
+          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+        },
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       <SummaryCard
@@ -149,7 +203,20 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           moduleName: moduleName,
         }}
       />
-      <EmptyStateComingSoon displayText={headerVisit} headerTitle={headerVisit} />
+
+      <EncounterList
+        patientUuid={patientUuid}
+        encounterType={encounterTypes.tptTreatmentAndFollowUp}
+        columns={tptVisitColumns}
+        description={headerVisit}
+        headerTitle={headerVisit}
+        formList={[{ name: 'TPT Followup & Treatment form' }]}
+        launchOptions={{
+          hideFormLauncher: true,
+          displayText: '',
+          moduleName: moduleName,
+        }}
+      />
     </>
   );
 };
