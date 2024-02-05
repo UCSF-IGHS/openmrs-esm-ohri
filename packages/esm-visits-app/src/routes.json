@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "ohri-encounters-summary-dashboard",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "encountersSummaryDashboardLink",
+      "meta": {
+        "slot": "patient-chart-current-visits-dashboard-slot",
+        "columns": 1,
+        "path": "Active Visits"
+      },
+      "order": 5,
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "ohri-past-visits-detail-overview",
+      "slot": "patient-chart-current-visits-dashboard-slot",
+      "component": "currentVisitsOverview",
+      "order": 1,
+      "meta": {
+        "title": "ActiveVisits",
+        "view": "active-visits"
+      },      
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "ohri-past-visits-overview",
+      "component": "pastVisitsOverview",
+      "meta": {
+        "title": "Edit or load a past visit",
+        "view": "visits"
+      }
+    },
+    {
+      "name": "ohri-current-visit-summary",
+      "component": "currentVisitsOverview",
+      "meta": {
+        "columnSpan": 4
+      },
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "ohri-visit-actions",
+      "component": "visitActions",
+      "meta": {
+        "columnSpan": 4
+      },
+      "online": true,
+      "offline": true
+    }
+  ],
+  "pages": [
+    {
+      "component": "root",
+      "routeRegex": "^patient\/.+\/chart",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

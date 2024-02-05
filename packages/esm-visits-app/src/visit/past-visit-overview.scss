@@ -1,0 +1,16 @@
+@import '~@openmrs/esm-styleguide/src/vars';
+
+.button {
+  height: 4rem;
+  display: flex;
+  align-content: flex-start;
+  align-items: baseline;
+  min-width: 50%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 6rem);
+}

@@ -3107,6 +3107,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@openmrs/esm-patient-common-lib@npm:6.x":
+  version: 6.1.0
+  resolution: "@openmrs/esm-patient-common-lib@npm:6.1.0"
+  dependencies:
+    "@carbon/react": "npm:^1.12.0"
+    lodash-es: "npm:^4.17.21"
+    uuid: "npm:^8.3.2"
+  peerDependencies:
+    "@openmrs/esm-framework": 5.x
+    react: 18.x
+    single-spa: 5.x
+  checksum: 7231075b4559b46e0ff3416e984207b355e7ef159f99456b1e0393aa690c461b3bb04d5efaa2d0aeba98f2c8d196d6ff9a618eef88ce27c409a672cddf6561e7
+  languageName: node
+  linkType: hard
+
 "@openmrs/esm-patient-common-lib@npm:next":
   version: 5.0.1-pre.2527
   resolution: "@openmrs/esm-patient-common-lib@npm:5.0.1-pre.2527"
@@ -3204,6 +3219,32 @@ __metadata:
   checksum: f9a78efd3c4e2d78cda218632101de52b4a5f9785143659139abe1aa6a498a5726f2736b482171db70ecabf37e1bc51acd2bd46293e52465d80db4aa0599e4fd
   languageName: node
   linkType: hard
+
+"@openmrs/esm-visits-app@workspace:packages/esm-visits-app":
+  version: 0.0.0-use.local
+  resolution: "@openmrs/esm-visits-app@workspace:packages/esm-visits-app"
+  dependencies:
+    "@carbon/react": "npm:^1.12.0"
+    "@openmrs/esm-patient-common-lib": "npm:6.x"
+    "@types/uuid": "npm:^9.0.4"
+    lodash-es: "npm:^4.17.21"
+    uuid: "npm:^8.3.2"
+    webpack: "npm:^5.88.2"
+  peerDependencies:
+    "@carbon/react": 1.x
+    "@openmrs/esm-framework": 5.x
+    "@openmrs/esm-patient-common-lib": 6.x
+    dayjs: 1.x
+    lodash-es: 4.x
+    react: 18.x
+    react-i18next: 11.x
+    react-router-dom: 6.x
+    rxjs: 6.x
+    single-spa: 5.x
+    single-spa-react: 5.x
+    swr: 2.x
+  languageName: unknown
+  linkType: soft
 
 "@openmrs/openmrs-form-engine-lib@npm:next":
   version: 1.0.0-pre.518
@@ -5205,6 +5246,13 @@ __metadata:
   version: 2.0.6
   resolution: "@types/unist@npm:2.0.6"
   checksum: 25cb860ff10dde48b54622d58b23e66214211a61c84c0f15f88d38b61aa1b53d4d46e42b557924a93178c501c166aa37e28d7f6d994aba13d24685326272d5db
+  languageName: node
+  linkType: hard
+
+"@types/uuid@npm:^9.0.4":
+  version: 9.0.8
+  resolution: "@types/uuid@npm:9.0.8"
+  checksum: b8c60b7ba8250356b5088302583d1704a4e1a13558d143c549c408bf8920535602ffc12394ede77f8a8083511b023704bc66d1345792714002bfa261b17c5275
   languageName: node
   linkType: hard
 

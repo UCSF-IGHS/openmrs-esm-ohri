@@ -1,0 +1,31 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@import '~@openmrs/esm-styleguide/src/vars';
+@import "../root.scss";
+
+.header {
+  .visitInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: spacing.$spacing-05 ;
+  }
+}
+
+.header::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  padding-top: 0.188rem;
+}
+
+// Overriding styles for RTL support
+html[dir='rtl'] {
+  .header {
+      .visitInfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+  }
+}
