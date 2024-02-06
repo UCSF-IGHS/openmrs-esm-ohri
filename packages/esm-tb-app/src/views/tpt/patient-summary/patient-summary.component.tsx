@@ -42,7 +42,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptIndication',
         header: t('indication', 'Indication'),
         encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptIndication);
         },
       },
@@ -50,7 +50,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptRegimen',
         header: t('regimen', 'Regimen'),
         encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
         },
       },
@@ -58,7 +58,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptAdherence',
         header: t('tptAdherence', 'Adherence'),
         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
         },
       },
@@ -66,7 +66,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'tptAppointmentDate',
         header: t('nextAppointmentDate', 'Next Appointment Date'),
         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getObsValue: (encounter) => {
+        getObsValue: ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
         },
       },
@@ -128,12 +128,12 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
     [],
   );
 
-  const tptVisitColumns: EncounterListColumn[] = useMemo(
+  const TptVisitsColumns: EncounterListColumn[] = useMemo(
     () => [
       {
-        key: 'caseId',
-        header: t('caseId', 'Case Id'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        key: 'caseID',
+        header: t('caseID', 'Case ID'),
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getValue: (encounter) => {
           return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
         },
@@ -141,41 +141,41 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+          return getObsFromEncounter(encounter, obsConcepts.tptEnrollmentDate, true);
         },
       },
       {
-        key: 'indication',
+        key: 'tptIndication',
         header: t('indication', 'Indication'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
         },
       },
       {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
+        encounterTypes: [encounterTypes.tptCaseEnrollment],
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+          return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
         },
       },
       {
-        key: 'tptTreatmentId',
-        header: t('tptTreatmentId', 'Case Id'),
+        key: 'adherence',
+        header: t('adherence', 'Adherence'),
         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+          return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
         },
       },
       {
-        key: 'tptTreatmentId',
-        header: t('tptTreatmentId', 'Case Id'),
+        key: 'nextAppointmentDate',
+        header: t('nextAppointmentDate', 'Next Appointment Date'),
         encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
+          return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
         },
       },
     ],
@@ -203,14 +203,13 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           moduleName: moduleName,
         }}
       />
-
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={encounterTypes.tptTreatmentAndFollowUp}
-        columns={tptVisitColumns}
+        encounterType={encounterTypes.tptCaseEnrollment}
+        columns={TptVisitsColumns}
         description={headerVisit}
         headerTitle={headerVisit}
-        formList={[{ name: 'TPT Followup & Treatment form' }]}
+        formList={[{ name: 'TPT Case Enrolment form' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',
