@@ -97,7 +97,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('indication', 'Indication'),
         encounterTypes: [encounterTypes.tptCaseEnrollment],
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.indication);
+          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
         },
       },
       {
@@ -192,7 +192,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
       />
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={encounterTypes.tbProgramEnrollment}
+        encounterType={encounterTypes.tptCaseEnrollment}
         columns={previousTptCasesColumns}
         description={headerPreviousTptCases}
         headerTitle={headerPreviousTptCases}
