@@ -66,7 +66,6 @@ const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
     [],
   );
 
-
   return (
     <EncounterList
       patientUuid={patientUuid}
@@ -78,7 +77,6 @@ const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
       launchOptions={{
         moduleName: moduleName,
         displayText: t('add', 'Add'),
-        workspaceWindowSize: 'minimized',
       }}
     />
   );
