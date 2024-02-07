@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, EncounterListColumn, getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { moduleName } from '../../../..';
 
 interface TptTreatmentListProps {
   patientUuid: string;
@@ -64,7 +65,7 @@ const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
     ],
     [],
   );
-  // eslint-disable-next-line no-empty-pattern
+
 
   return (
     <EncounterList
@@ -75,8 +76,7 @@ const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
       headerTitle={headerTitle}
       columns={columns}
       launchOptions={{
-        moduleName: '',
-        hideFormLauncher: false,
+        moduleName: moduleName,
         displayText: t('add', 'Add'),
         workspaceWindowSize: 'minimized',
       }}
