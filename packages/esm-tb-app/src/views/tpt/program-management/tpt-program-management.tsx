@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../../common.scss';
 import { useTranslation } from 'react-i18next';
-import TptTreatmentList from './tabs/tpt-treatment.component copy';
+import TptTreatmentList from './tabs/tpt-treatment.component';
 import TptEnrolmentList from './tabs/tpt-enrolment.component';
 import { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
 
