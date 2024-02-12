@@ -59,6 +59,7 @@ export const configSchema = {
       tptOutcome: '1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       tptOutcomeDate: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       tptDateOutcome: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      treatmentPlan: '1265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
@@ -75,6 +76,7 @@ export const configSchema = {
     _default: {
       TptOutcomeFormName: 'TPT outcome form',
       TptCaseEnrolmentFormName: 'TPT Case Enrolment form',
+      TptTreatmentFormName: 'TPT Followup & Treatment form',
     },
   },
 };
