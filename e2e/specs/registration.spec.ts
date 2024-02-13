@@ -1,6 +1,13 @@
 import { test, expect } from '@playwright/test';
+
 test('registration', async ({ page }) => {
-  await page.goto('https://ohri-working.globalhealthapp.net/openmrs/spa/login');
+  // Accessing E2E_BASE_URL from environment variables
+  const baseUrl = process.env.E2E_BASE_URL;
+
+  // Navigating to the specified base URL
+  await page.goto(`${baseUrl}/spa/login`);
+
+  // Filling in username and clicking continue
   await page.getByLabel('Username').fill('admin');
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByLabel('Password').press('CapsLock');
