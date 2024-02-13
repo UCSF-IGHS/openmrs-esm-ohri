@@ -36,8 +36,7 @@ const config = {
   },
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
-    "/node_modules/",
-    "/e2e/"  // Ignore the e2e directory containing Playwright tests
+    "/node_modules/"
   ]
 };
 
