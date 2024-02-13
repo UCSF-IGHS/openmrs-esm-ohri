@@ -35,6 +35,10 @@ const config = {
     '^react-i18next$': path.resolve(__dirname, '__mocks__', 'react-i18next.js'),
   },
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/e2e/"  // Ignore the e2e directory containing Playwright tests
+  ]
 };
 
 module.exports = config;
