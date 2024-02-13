@@ -48,25 +48,29 @@ jobs:
         with:
           name: packages
           path: |
-            packages/**/dist
+            packages/**/dist           
 
    run_playwright_tests:
     runs-on: ubuntu-latest
-
     needs: build
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
       - name: Install dependencies
         run: yarn install --immutable
+
       - name: Install Playwright Browsers
         run: npx playwright install chromium --with-deps
+
       - name: Run Playwright tests
-        run: yarn playwright test           
+        run: yarn playwright test      
 
   pre_release:
     runs-on: ubuntu-latest
