@@ -466,9 +466,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
         formList={[
-          { name: formNames.antenatal },
-          { name: formNames.labourAndDelivery },
-          { name: formNames.motherPostnatal },
+          { name: formNames.antenatal, uuid: '' },
+          { name: formNames.labourAndDelivery, uuid: '1e5614d6-5306-11e6-beb8-9e71128cae77' },
+          { name: formNames.motherPostnatal, uuid: 'e6b67aa4-6c59-4470-8ad5-b994efeda553' },
         ]}
         launchOptions={{
           hideFormLauncher: true,

@@ -109,7 +109,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.tbProgramEnrollment}
-      formList={[{ name: 'TB Case Enrollment Form' }]}
+      formList={[{ name: 'TB Case Enrollment Form', uuid: '71080512-07e6-345f-864f-93e892420258' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -100,7 +100,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
     <EncounterList
       patientUuid={patientUuid}
       encounterType={ANCEncounterTypeUUID}
-      formList={[{ name: 'Antenatal Form' }]}
+      formList={[{ name: 'Antenatal Form', uuid: '' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

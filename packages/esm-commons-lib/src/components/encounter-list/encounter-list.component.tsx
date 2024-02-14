@@ -13,6 +13,7 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
 
 export interface EncounterListColumn {
   key: string;
@@ -29,6 +30,7 @@ export interface EncounterListProps {
   description: string;
   formList?: Array<{
     name: string;
+    uuid?: string;
     excludedIntents?: Array<string>;
     fixedIntent?: string;
     isDefault?: boolean;
@@ -90,6 +92,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     [forms, t],
   );
 
+  console.log("---forms", forms)
+  console.log("---forsJson", formsJson, isLoadingFormsJson)
+  console.log("---formlist", formList)
+  console.log("---formNames", formNames)
+
   useEffect(() => {
     if (!isLoadingFormsJson) {
       const formsWithFilteredIntents = formsJson.map((form) => {
@@ -108,6 +115,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         }
         return form;
       });
+      console.log("----formsWithFilteredIntents", formsWithFilteredIntents)
       setIsLoadingForms(false);
       setForms(formsWithFilteredIntents);
     }
@@ -141,10 +149,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'edit',
               onFormSave,
-              null,
+              formNames[0],
               encounter.uuid,
               null,
               workspaceWindowSize,
+              patientUuid,
             ),
           viewEncounter: () =>
             launchEncounterForm(
@@ -152,10 +161,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'view',
               onFormSave,
-              null,
+              formNames[0],
               encounter.uuid,
               null,
               workspaceWindowSize,
+              patientUuid,
             ),
         };
         // process columns
@@ -188,14 +198,15 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                 onClick={(e) => {
                   e.preventDefault();
                   launchEncounterForm(
-                    forms.find((form) => form.name == actionItem?.form?.name),
+                    formList[0],
                     moduleName,
                     actionItem.mode == 'enter' ? 'add' : actionItem.mode,
                     onFormSave,
-                    null,
+                    forms[0]?.name,
                     encounter.uuid,
                     actionItem.intent,
                     workspaceWindowSize,
+                    patientUuid,
                   );
                 }}
               />
@@ -206,7 +217,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       });
       setPaginatedRows(rows);
     },
-    [columns, defaultActions, forms, moduleName, workspaceWindowSize],
+    [columns, defaultActions, forms, moduleName, workspaceWindowSize, patientUuid, onFormSave],
   );
 
   useEffect(() => {
@@ -226,7 +237,17 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           iconDescription="Add "
           onClick={(e) => {
             e.preventDefault();
-            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, null, workspaceWindowSize);
+            launchEncounterForm(
+              forms[0],
+              moduleName,
+              'add',
+              onFormSave,
+              forms[0]?.name,
+              null,
+              null,
+              workspaceWindowSize,
+              patientUuid,
+            );
           }}>
           {displayText}
         </Button>
@@ -236,13 +257,23 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         <OHRIFormLauncherWithIntent
           formJsonList={forms}
           launchForm={(formJson, intent) =>
-            launchEncounterForm(formJson, moduleName, 'add', onFormSave, null, null, intent, workspaceWindowSize)
+            launchEncounterForm(
+              formJson,
+              moduleName,
+              'add',
+              onFormSave,
+              forms[0]?.name,
+              null,
+              intent,
+              workspaceWindowSize,
+              patientUuid,
+            )
           }
           title={displayText}
         />
       );
     }
-  }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize]);
+  }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize, onFormSave, patientUuid]);
 
   return (
     <>
@@ -273,7 +304,17 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           displayText={description}
           headerTitle={headerTitle}
           launchForm={() =>
-            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, '*', workspaceWindowSize)
+            launchEncounterForm(
+              forms[0],
+              moduleName,
+              'add',
+              onFormSave,
+              forms[0]?.name,
+              null,
+              '*',
+              workspaceWindowSize,
+              patientUuid,
+            )
           }
           launchFormComponent={formLauncher}
           hideFormLauncher={hideFormLauncher ?? isDead}

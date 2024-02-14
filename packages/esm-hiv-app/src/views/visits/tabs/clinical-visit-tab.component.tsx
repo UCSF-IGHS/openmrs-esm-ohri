@@ -82,7 +82,7 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.clinicalVisitEncounterType}
-      formList={[{ name: formNames.ClinicalVisitFormName }]}
+      formList={[{ name: formNames.ClinicalVisitFormName, uuid: '' }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle={headerTitle}

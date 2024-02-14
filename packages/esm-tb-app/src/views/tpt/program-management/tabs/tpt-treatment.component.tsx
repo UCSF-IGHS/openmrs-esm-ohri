@@ -70,7 +70,7 @@ const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.tptTreatmentAndFollowUp}
-      formList={[{ name: formNames.TptTreatmentFormName }]}
+      formList={[{ name: formNames.TptTreatmentFormName, uuid: '6212bb87-766e-33d0-b37b-79f019008492' }]}
       description={headerTitle}
       headerTitle={headerTitle}
       columns={columns}

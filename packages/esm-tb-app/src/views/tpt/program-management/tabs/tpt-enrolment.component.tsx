@@ -101,8 +101,8 @@ const TptEnrolmentList: React.FC<TptEnrolmentListProps> = ({ patientUuid }) => {
       patientUuid={patientUuid}
       encounterType={encounterTypes.tptCaseEnrollment}
       formList={[
-        { name: formNames.TptCaseEnrolmentFormName },
-        { name: formNames.TptOutcomeFormName, excludedIntents: ['*'] },
+        { name: formNames.TptCaseEnrolmentFormName, uuid: '71080512-07e6-345f-864f-93e892420258' },
+        { name: formNames.TptOutcomeFormName, excludedIntents: ['*'], uuid: '97fa657f-7627-3f81-829d-826b0d4c7d28' },
       ]}
       columns={columns}
       description={headerTitle}

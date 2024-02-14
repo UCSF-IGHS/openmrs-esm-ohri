@@ -57,7 +57,7 @@ const TbPatientTracing: React.FC<PatientChartProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.tbPatientTracing}
-      formList={[{ name: 'TB Patient Tracing Form' }]}
+      formList={[{ name: 'TB Patient Tracing Form', uuid: 'ac3cbd10-1939-3797-9de6-2a39dfb68441' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

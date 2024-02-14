@@ -79,7 +79,7 @@ const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) =
     <EncounterList
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.tbTreatmentAndFollowUp}
-      formList={[{ name: 'TB Follow-up Form' }]}
+      formList={[{ name: 'TB Follow-up Form', uuid: '6212bb87-766e-33d0-b37b-79f019008492' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

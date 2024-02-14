@@ -196,7 +196,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         columns={previousTptCasesColumns}
         description={headerPreviousTptCases}
         headerTitle={headerPreviousTptCases}
-        formList={[{ name: 'TPT Case Enrolment form' }]}
+        formList={[{ name: 'TPT Case Enrolment form', uuid: '71080512-07e6-345f-864f-93e892420258' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',
@@ -209,7 +209,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         columns={TptVisitsColumns}
         description={headerVisit}
         headerTitle={headerVisit}
-        formList={[{ name: 'TPT Case Enrolment form' }]}
+        formList={[{ name: 'TPT Case Enrolment form', uuid: '71080512-07e6-345f-864f-93e892420258' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',

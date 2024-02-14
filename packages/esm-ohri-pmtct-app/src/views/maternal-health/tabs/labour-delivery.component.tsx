@@ -86,7 +86,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={LNDEncounterTypeUUID}
-      formList={[{ name: 'Labour & Delivery Form' }]}
+      formList={[{ name: 'Labour & Delivery Form', uuid: '1e5614d6-5306-11e6-beb8-9e71128cae77' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

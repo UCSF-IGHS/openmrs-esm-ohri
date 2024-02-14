@@ -106,7 +106,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
     <EncounterList
       patientUuid={patientUuid}
       encounterType={InfantPNCEncounterTypeUUID}
-      formList={[{ name: 'Infant - Postanal Form' }]}
+      formList={[{ name: 'Infant - Postanal Form', uuid: '5022c5d7-ea45-47ce-bd65-1ba1d8ad2467' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

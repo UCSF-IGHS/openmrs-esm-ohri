@@ -205,7 +205,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         columns={previousCasesColumns}
         description={headerPreviousCases}
         headerTitle={headerPreviousCases}
-        formList={[{ name: 'TB Case Enrollment Form' }]}
+        formList={[{ name: 'TB Case Enrollment Form', uuid: '71080512-07e6-345f-864f-93e892420258' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',
@@ -219,7 +219,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         columns={tbVisitsColumns}
         description={headerVisit}
         headerTitle={headerVisit}
-        formList={[{ name: 'TB Follow-up Form' }]}
+        formList={[{ name: 'TB Follow-up Form', uuid: '6212bb87-766e-33d0-b37b-79f019008492' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',
