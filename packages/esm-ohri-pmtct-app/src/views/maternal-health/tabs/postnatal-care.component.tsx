@@ -34,7 +34,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
         key: 'currentHivStatus',
         header: t('currentHivStatus', 'Current HIV Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.MotherHivStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivTestStatus);
         },
       },
       {
