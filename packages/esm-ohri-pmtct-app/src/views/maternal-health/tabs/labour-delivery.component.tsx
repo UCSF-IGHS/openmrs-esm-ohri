@@ -38,10 +38,10 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         },
       },
       {
-        key: 'hivTestResults',
-        header: t('hivTestResults', 'HIV Test Results'),
+        key: 'hivTestStatus',
+        header: t('hivTestStatus', 'HIV Test Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.ancHivResultConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivTestStatus);
         },
       },
       {
