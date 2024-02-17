@@ -98,7 +98,7 @@
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server ": "^4.8.1"
+    "webpack-dev-server": "^4.8.1"
   },
   "resolutions": {
     "@carbon/react": "1.17.0",
