@@ -97,6 +97,21 @@ export const configSchema = {
       CovidLabOrderFormName: 'COVID Lab Order Form',
     },
   },
+  formUuids: {
+    _type: Type.Object,
+    _description: 'Covid Form Uuids.',
+    _default: {
+      covidCaseFormUuid: 'c0fd71bd-37bc-3c8d-b2ff-149c0ff4d6f0',
+      covidAssessmentFormUuid: 'f5fb6bc4-6fc3-3462-a191-2fff0896bab3',
+      covidOutcomeFormUuid: '6515d898-439c-11ec-9103-238295f2dfd7',
+      covidVaccinationFormUuid: '3ae3a031-2e24-357d-81b3-205d5187090a',
+      covidLabTestFormUuid: 'e92fe922-4863-11ec-99cc-1fdd2d4e9d88',
+      covidLabResultFormUuid: 'cf8cd756-baef-38df-b84d-92968b42c113',
+      covidLabCancellationFormUuid: 'd38bc949-c95b-39eb-a2c5-08b82a36409c',
+      covidSampleCollectionFormUuid: '371d19b6-485f-11ec-99cc-1fdd2d4e9d88',
+      covidLabOrderFormUuid: '',
+    },
+  },
 };
 
 export interface ConfigObject {
@@ -104,4 +119,5 @@ export interface ConfigObject {
   obsConcepts: Object;
   formNames: object;
   cohorts: object;
+  formUuids: Object;
 }

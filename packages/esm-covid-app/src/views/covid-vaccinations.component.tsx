@@ -14,6 +14,8 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
   const { t } = useTranslation();
   const config = useConfig();
 
+  const { covidVaccinationFormUuid } = config.formUuids;
+
   const columns: EncounterListColumn[] = useMemo(
     () => [
       //TODO: Add Vaccination Status concept
@@ -98,7 +100,7 @@ const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid
     <EncounterList
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.covidVaccinationEncounterUUID}
-      formList={[{ name: config.formNames.CovidVaccinationFormName }]}
+      formList={[{ name: config.formNames.CovidVaccinationFormName, uuid: covidVaccinationFormUuid }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}
