@@ -11,7 +11,7 @@ interface ClinicalVisitWidgetProps {
 
 const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -70,7 +70,7 @@ const ClinicalVisitWidget: React.FC<ClinicalVisitWidgetProps> = ({ patientUuid }
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.clinicalVisitEncounterType}
-      formList={[{ name: 'POC Clinical Visit Form v2' }]}
+      formList={[{ name: formNames.ClinicalVisitFormName, uuid: formUuids.clinicalVisitFormUuid }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle="Clinical Visits"

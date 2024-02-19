@@ -54,7 +54,7 @@ export const getARTDateConcept = (
 
 const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const artConcepts = useMemo(
     () =>
@@ -189,7 +189,7 @@ const ArtTherapyTabList: React.FC<ArtTherapyTabListProps> = ({ patientUuid }) =>
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.art_Therapy_EncounterUUID}
-      formList={[{ name: formNames.ARTTherapyFormName }]}
+      formList={[{ name: formNames.ARTTherapyFormName, uuid: formUuids.artTherapyFormUuid }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

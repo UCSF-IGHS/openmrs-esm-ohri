@@ -10,7 +10,7 @@ interface ClinicalVisitListProps {
 
 const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const headerTitle = t('clinicalVisit', 'Clinical Visit');
   const displayText = t('clinicalVisit', 'Clinical Visit');
@@ -82,7 +82,7 @@ const ClinicalVisitList: React.FC<ClinicalVisitListProps> = ({ patientUuid }) =>
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.clinicalVisitEncounterType}
-      formList={[{ name: formNames.ClinicalVisitFormName, uuid: '' }]}
+      formList={[{ name: formNames.ClinicalVisitFormName, uuid: formUuids.clinicalVisitFormUuid }]}
       columns={columns}
       description="clinical visit encounters"
       headerTitle={headerTitle}

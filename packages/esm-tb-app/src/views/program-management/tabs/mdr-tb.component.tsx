@@ -14,13 +14,13 @@ import { getTbRegimen, getTbTreatmentId, getTbTreatmentStartDate } from '../../.
 
 const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
   const headerTitle = t('MdrTbEnrolment', 'TB/MDR TB Enrolment');
   const [isEmptyOutcome, setIsEmptyOutcome] = useState(false);
+  const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
 
   useEffect(() => {
-    fetchPatientLastEncounter(patientUuid, config.encounterTypes.tbProgramEnrollment).then((encounter) => {
-      const result = encounter?.obs?.filter((ob) => ob?.concept?.uuid === config.obsConcepts.outcome);
+    fetchPatientLastEncounter(patientUuid, encounterTypes.tbProgramEnrollment).then((encounter) => {
+      const result = encounter?.obs?.filter((ob) => ob?.concept?.uuid === obsConcepts.outcome);
       if (result?.length === 0) {
         setIsEmptyOutcome(true);
       }
@@ -33,21 +33,21 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'enrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.enrollmentDate, true);
+          return getObsFromEncounter(encounter, obsConcepts.enrollmentDate, true);
         },
       },
       {
         key: 'caseID',
         header: t('caseID', 'Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
+          return getObsFromEncounter(encounter, obsConcepts.caseID);
         },
       },
       {
         key: 'tbTreatmentId',
         header: t('tbTreatmentId', 'TB Treatement ID'),
         getValue: (encounter) => {
-          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const tBEnrollmentType = findObs(encounter, obsConcepts.tBEnrollmentType)?.value?.uuid;
           return getTbTreatmentId(encounter, tBEnrollmentType);
         },
       },
@@ -55,7 +55,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'treatmentStartDate',
         header: t('treatmentStartDate', 'Treatment Start Date'),
         getValue: (encounter) => {
-          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const tBEnrollmentType = findObs(encounter, obsConcepts.tBEnrollmentType)?.value?.uuid;
           return getTbTreatmentStartDate(encounter, tBEnrollmentType);
         },
       },
@@ -63,7 +63,7 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const tBEnrollmentType = findObs(encounter, obsConcepts.tBEnrollmentType)?.value?.uuid;
           return getTbRegimen(encounter, tBEnrollmentType);
         },
       },
@@ -71,14 +71,14 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'treatmentOutcome',
         header: t('treatmentOutcome', 'Treatment outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.outcome);
+          return getObsFromEncounter(encounter, obsConcepts.outcome);
         },
       },
       {
         key: 'dateOfTreatmentOutcome',
         header: t('dateOfTreatmentOutcome', 'Date of Treatment Outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.DateOfTreatmentOutcome, true);
+          return getObsFromEncounter(encounter, obsConcepts.DateOfTreatmentOutcome, true);
         },
       },
       {
@@ -108,8 +108,8 @@ const MdrTbList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.tbProgramEnrollment}
-      formList={[{ name: 'TB Case Enrollment Form', uuid: '71080512-07e6-345f-864f-93e892420258' }]}
+      encounterType={encounterTypes.tbProgramEnrollment}
+      formList={[{ name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

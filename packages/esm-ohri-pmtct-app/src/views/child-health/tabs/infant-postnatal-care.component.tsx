@@ -17,7 +17,7 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('hivExposedInfant', 'HIV Exposed Infant');
-  const InfantPNCEncounterTypeUUID = config.encounterTypes.infantPostnatal;
+  const { encounterTypes, formNames, formUuids } = useConfig();
 
   async function fetchMotherName() {
     let motherName = '--';
@@ -105,8 +105,8 @@ const InfantPostnatalList: React.FC<InfantPostnatalListProps> = ({ patientUuid }
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={InfantPNCEncounterTypeUUID}
-      formList={[{ name: 'Infant - Postanal Form', uuid: '5022c5d7-ea45-47ce-bd65-1ba1d8ad2467' }]}
+      encounterType={encounterTypes.infantPostnatal.InfantPNCEncounterTypeUUID}
+      formList={[{ name: formNames.infantPostanalFormName, uuid: formUuids.infantPostanalFormUuid }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -16,7 +16,7 @@ interface ServiceEnrolmentProps {
 
 const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -75,7 +75,7 @@ const ServiceEnrolmentWidget: React.FC<ServiceEnrolmentProps> = ({ patientUuid }
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.careAndTreatmentEncounterType}
-      formList={[{ name: formNames.ServiceEnrolmentFormName }]}
+      formList={[{ name: formNames.ServiceEnrolmentFormName, uuid: formUuids.serviceEnrolmentFormUuid }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

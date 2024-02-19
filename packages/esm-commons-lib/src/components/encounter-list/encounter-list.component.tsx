@@ -92,11 +92,6 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     [forms, t],
   );
 
-  console.log("---forms", forms)
-  console.log("---forsJson", formsJson, isLoadingFormsJson)
-  console.log("---formlist", formList)
-  console.log("---formNames", formNames)
-
   useEffect(() => {
     if (!isLoadingFormsJson) {
       const formsWithFilteredIntents = formsJson.map((form) => {
@@ -115,7 +110,6 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         }
         return form;
       });
-      console.log("----formsWithFilteredIntents", formsWithFilteredIntents)
       setIsLoadingForms(false);
       setForms(formsWithFilteredIntents);
     }

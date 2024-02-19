@@ -109,7 +109,7 @@ export const configSchema = {
       covidLabResultFormUuid: 'cf8cd756-baef-38df-b84d-92968b42c113',
       covidLabCancellationFormUuid: 'd38bc949-c95b-39eb-a2c5-08b82a36409c',
       covidSampleCollectionFormUuid: '371d19b6-485f-11ec-99cc-1fdd2d4e9d88',
-      covidLabOrderFormUuid: '',
+      covidLabOrderFormUuid: 'f5fb6bc4-6fc3-3462-a191-2fff0896bab3',
     },
   },
 };

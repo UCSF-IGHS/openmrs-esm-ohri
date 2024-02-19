@@ -17,7 +17,7 @@ interface TransferOutTabListProps {
 
 const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -89,7 +89,7 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.transferOutEncounterType_UUID}
-      formList={[{ name: formNames.TransferOutFormName }]}
+      formList={[{ name: formNames.TransferOutFormName, uuid: formUuids.transferOutFormUuid }]}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}

@@ -12,7 +12,7 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('postnatalCare', 'Postnatal Care');
-  const MotherPNCEncounterTypeUUID = config.encounterTypes.motherPostnatal;
+  const { encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -85,8 +85,8 @@ const PostnatalCareList: React.FC<PostnatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={MotherPNCEncounterTypeUUID}
-      formList={[{ name: 'Mother - Postnatal Form', uuid: 'e6b67aa4-6c59-4470-8ad5-b994efeda553' }]}
+      encounterType={encounterTypes.motherPostnatal.MotherPNCEncounterTypeUUID}
+      formList={[{ name: formNames.motherPostnatal, uuid: formUuids.motherPostnatal }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
