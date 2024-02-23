@@ -1,4 +1,4 @@
-import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import MaternalSummary from './views/mch-summary/mch-summary.component';
 import MaternalHealthList from './views/maternal-health/maternal-health.component';
 import ChildHealthList from './views/child-health/child-health.component';
@@ -49,7 +49,10 @@ export function startupApp() {
     name: 'ArtSubmissionAction',
     load: () => import('./post-submission-actions/art-linkage-action'),
   });
-  registerExpressionHelper('customGenerateInfantPTrackerId', generateInfantPTrackerId);
+
+  import('./utils/pmtct-helpers').then(({ generateInfantPTrackerId }) => {
+    registerExpressionHelper('customGenerateInfantPTrackerId', generateInfantPTrackerId);
+  });
 }
 
 export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);
@@ -58,7 +61,7 @@ export const mchSummaryDashboardLink = getSyncLifecycle(
   options,
 );
 
-export const mchSummaryDashboard = getSyncLifecycle(MaternalSummary, {
+export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
   featureName: 'mch-summary',
   moduleName,
 });
