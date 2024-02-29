@@ -9,7 +9,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 import { moduleName } from '../../../index';
-import { useConfig } from '@openmrs/esm-framework';
+import { formatDate, parseDate, useConfig } from '@openmrs/esm-framework';
 
 interface TransferOutTabListProps {
   patientUuid: string;
@@ -25,7 +25,11 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.dateOfEncounterConcept, true);
+          const obsVisitDate = getObsFromEncounter(encounter, obsConcepts.dateOfEncounterConcept, true);
+          const encounterDate = encounter.encounterDatetime;
+          return obsVisitDate === '--' && encounterDate
+            ? formatDate(parseDate(encounterDate), { mode: 'wide' })
+            : obsVisitDate;
         },
       },
       {
