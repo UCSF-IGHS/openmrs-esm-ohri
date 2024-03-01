@@ -20,7 +20,7 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
   const workspaceName = props.workspaceName || 'ohri-forms-' + counter++;
 
   const close = () => {
-    return closeWorkspace(workspaceName, true);
+    return closeWorkspace(workspaceName, { ignoreChanges: true });
   };
   const onFormSubmit = () => {
     props.state?.updateParent?.();
