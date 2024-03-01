@@ -13,7 +13,6 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
-import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
 
 export interface EncounterListColumn {
   key: string;
@@ -85,7 +84,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         form: {
           name: forms[0]?.name,
         },
-        mode: 'view',
+        mode: 'edit',
         intent: '*',
       },
     ],
@@ -143,7 +142,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'edit',
               onFormSave,
-              formNames[0],
+              null,
               encounter.uuid,
               null,
               workspaceWindowSize,
@@ -155,7 +154,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'view',
               onFormSave,
-              formNames[0],
+              null,
               encounter.uuid,
               null,
               workspaceWindowSize,
@@ -192,11 +191,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                 onClick={(e) => {
                   e.preventDefault();
                   launchEncounterForm(
-                    formList[0],
+                    forms.find((form) => form.name == actionItem?.form?.name),
                     moduleName,
                     actionItem.mode == 'enter' ? 'add' : actionItem.mode,
                     onFormSave,
-                    forms[0]?.name,
+                    null,
                     encounter.uuid,
                     actionItem.intent,
                     workspaceWindowSize,
@@ -236,7 +235,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'add',
               onFormSave,
-              forms[0]?.name,
+              null,
               null,
               null,
               workspaceWindowSize,
@@ -256,7 +255,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'add',
               onFormSave,
-              forms[0]?.name,
+              null,
               null,
               intent,
               workspaceWindowSize,
@@ -303,7 +302,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               moduleName,
               'add',
               onFormSave,
-              forms[0]?.name,
+              null,
               null,
               '*',
               workspaceWindowSize,

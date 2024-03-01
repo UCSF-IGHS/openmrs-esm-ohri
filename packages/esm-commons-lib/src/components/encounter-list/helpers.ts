@@ -1,9 +1,10 @@
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
+import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
 
-type LaunchAction = 'add' | 'view' | 'edit';
+type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
 
 export function launchEncounterForm(
-  form: any,
+  form: OHRIFormSchema,
   moduleName: string,
   action: LaunchAction = 'add',
   onFormSave: () => void,
@@ -16,9 +17,7 @@ export function launchEncounterForm(
 ) {
   launchPatientWorkspace('patient-form-entry-workspace', {
     workspaceTitle: form.name,
-    workspaceWindowState: 'maximized',
-    mode: action,
-    formSessionIntent: intent,
+    mutateform: mutateform,
     formInfo: {
       encounterUuid,
       formUuid: form.uuid,
@@ -27,7 +26,10 @@ export function launchEncounterForm(
       visitUuid: '',
       visitStartDatetime: '',
       visitStopDatetime: '',
-      mode: 'view',
+      additionalProps: {
+        mode: action === 'add' ? 'enter' : action,
+        formSessionIntent: intent,
+      },
     },
   });
 }

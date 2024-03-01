@@ -148,11 +148,7 @@ const HivExposedInfant: React.FC<{
     const identifiers = await fetchPatientIdentifiers(patientUuid);
     if (identifiers) {
       pTrackerMap.pTrackerId = identifiers.find(
-<<<<<<< HEAD
-        (id) => id.identifierType.uuid === config.identifiersTypes.ptrackerIdentifierType,
-=======
         (id) => id.identifierType.uuid === encounterTypes.PTrackerIdentifierType,
->>>>>>> 20ea5fa4 (Add hiv and tpt form uuids in config)
       ).identifier;
       pTrackerMap.patientId = patientUuid;
     }
