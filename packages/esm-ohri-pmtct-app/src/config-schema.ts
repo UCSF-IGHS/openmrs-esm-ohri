@@ -8,6 +8,14 @@ export const configSchema = {
       preferredIdentifierSource: '8549f706-7e85-4c1d-9424-217d50a2988b',
     },
   },
+  identifiersTypes: {
+    _type: Type.Object,
+    _description: 'Identifier types for PMTCT.',
+    _default: {
+      ptrackerIdentifierType: '4da0a3fe-e546-463f-81fa-084f098ff06c',
+      artUniqueNumberType: '9d6d1eec-2cd6-4637-a981-4a46b4b8b41f',
+    },
+  },
   formNames: {
     _type: Type.Object,
     _description: 'List of forms for PMTCT.',
@@ -25,8 +33,6 @@ export const configSchema = {
       laborAndDelivery: '6dc5308d-27c9-4d49-b16f-2c5e3c759757',
       infantPostnatal: 'af1f1b24-d2e8-4282-b308-0bf79b365584',
       motherPostnatal: '269bcc7f-04f8-4ddc-883d-7a3a0d569aad',
-      PTrackerIdentifierType: '4da0a3fe-e546-463f-81fa-084f098ff06c',
-      artUniqueNumberType: '9d6d1eec-2cd6-4637-a981-4a46b4b8b41f',
       mchEncounterType: '12de5bc5-352e-4faf-9961-a2125085a75c',
     },
   },
@@ -89,6 +95,7 @@ export const configSchema = {
 
 export interface ConfigObject {
   identifiers: Object;
+  identifiersTypes: Object;
   encounterTypes: Object;
   obsConcepts: Object;
   formNames: Object;
