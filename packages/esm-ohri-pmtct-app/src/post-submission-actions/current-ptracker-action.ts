@@ -2,7 +2,6 @@ import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import { fetchPatientIdentifiers, saveIdentifier } from '../api/api';
 import { Patient, PatientIdentifier } from '../api/types';
 import { getConfig } from '@openmrs/esm-framework';
-import { use } from 'i18next';
 
 export const PTrackerSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
