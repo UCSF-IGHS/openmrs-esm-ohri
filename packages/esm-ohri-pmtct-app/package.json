@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "next"
+    "@openmrs/openmrs-form-engine-lib": "1.0.0-pre.544"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "5.x",
