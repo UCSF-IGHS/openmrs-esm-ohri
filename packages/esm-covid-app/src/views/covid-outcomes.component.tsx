@@ -19,6 +19,8 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const config = useConfig();
 
+  const { covidCaseFormUuid } = config.formUuids;
+
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
@@ -69,7 +71,7 @@ const CovidOutcomes: React.FC<CovidOutcomesWidgetProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.covid_Assessment_EncounterUUID}
-      formList={[{ name: config.formNames.CovidCaseFormName }]}
+      formList={[{ name: config.formNames.CovidCaseFormName, uuid: covidCaseFormUuid }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

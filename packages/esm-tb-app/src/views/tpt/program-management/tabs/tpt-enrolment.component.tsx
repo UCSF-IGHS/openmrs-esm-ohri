@@ -10,7 +10,7 @@ interface TptEnrolmentListProps {
 
 const TptEnrolmentList: React.FC<TptEnrolmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const headerTitle = t('tptEnrolment', 'TPT Enrolment');
 
@@ -101,8 +101,8 @@ const TptEnrolmentList: React.FC<TptEnrolmentListProps> = ({ patientUuid }) => {
       patientUuid={patientUuid}
       encounterType={encounterTypes.tptCaseEnrollment}
       formList={[
-        { name: formNames.TptCaseEnrolmentFormName },
-        { name: formNames.TptOutcomeFormName, excludedIntents: ['*'] },
+        { name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid },
+        { name: formNames.TptOutcomeFormName, excludedIntents: ['*'], uuid: formUuids.tptOutcomeFormUuid },
       ]}
       columns={columns}
       description={headerTitle}

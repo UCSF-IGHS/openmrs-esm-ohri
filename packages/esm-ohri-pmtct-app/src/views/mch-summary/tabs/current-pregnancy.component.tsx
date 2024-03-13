@@ -46,7 +46,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
-  const { formNames, encounterTypes, obsConcepts } = useConfig();
+  const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
 
   const headersFamily = [
     {
@@ -466,9 +466,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         description={previousVisitsTitle}
         headerTitle={previousVisitsTitle}
         formList={[
-          { name: formNames.antenatal },
-          { name: formNames.labourAndDelivery },
-          { name: formNames.motherPostnatal },
+          { name: formNames.antenatal, uuid: '' },
+          { name: formNames.labourAndDelivery, uuid: formUuids.labourAndDelivery },
+          { name: formNames.motherPostnatal, uuid: formUuids.motherPostnatal },
         ]}
         launchOptions={{
           hideFormLauncher: true,

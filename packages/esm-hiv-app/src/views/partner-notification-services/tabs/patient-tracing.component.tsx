@@ -11,7 +11,7 @@ interface PatientTracingListProps {
 
 const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -70,7 +70,7 @@ const PatientTracingList: React.FC<PatientTracingListProps> = ({ patientUuid }) 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.PatientTracingEncounterType_UUID}
-      formList={[{ name: formNames.PatientTracingFormName }]}
+      formList={[{ name: formNames.PatientTracingFormName, uuid: formUuids.patientTracingFormUuid }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

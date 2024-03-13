@@ -14,7 +14,7 @@ import { moduleName } from '../../..';
 
 const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes } = useConfig();
+  const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
 
   const headerRecentTPT = t('recentTptCases', 'Recent TPT Cases');
   const headerPreviousTptCases = t('previousTptCases', 'Previous TPT Cases');
@@ -196,7 +196,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         columns={previousTptCasesColumns}
         description={headerPreviousTptCases}
         headerTitle={headerPreviousTptCases}
-        formList={[{ name: 'TPT Case Enrolment form' }]}
+        formList={[{ name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',
@@ -209,7 +209,7 @@ const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         columns={TptVisitsColumns}
         description={headerVisit}
         headerTitle={headerVisit}
-        formList={[{ name: 'TPT Case Enrolment form' }]}
+        formList={[{ name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',

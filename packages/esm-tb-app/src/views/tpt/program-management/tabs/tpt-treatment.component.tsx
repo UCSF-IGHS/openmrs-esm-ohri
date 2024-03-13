@@ -10,7 +10,7 @@ interface TptTreatmentListProps {
 
 const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
   const headerTitle = t('tptTreatment', 'TPT Treatment');
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -70,7 +70,7 @@ const TptTreatmentList: React.FC<TptTreatmentListProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.tptTreatmentAndFollowUp}
-      formList={[{ name: formNames.TptTreatmentFormName }]}
+      formList={[{ name: formNames.TptTreatmentFormName, uuid: formUuids.tptTreatmentFormUuid }]}
       description={headerTitle}
       headerTitle={headerTitle}
       columns={columns}

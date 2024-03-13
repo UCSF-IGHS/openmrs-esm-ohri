@@ -54,12 +54,12 @@ npm run serve
 ### Setup Dev Tools
 
 1. Click `Add new module` in the dev tools window.
-2. Type in the `Module Name:` `@openmrs/esm-ohri-app`.
+2. Type in the `Module Name:` `@openmrs/esm-ohri-core-app`.
 3. Type in the `Override URL:` `8080`.
 4. Go to the browser's development tools (e.g. via `Inspect`).
 5. Go to the `Application` tab.
 6. Go to `Local Storage`.
-7. Find the key: `import-map-override:@openmrs/esm-ohri-app`
+7. Find the key: `import-map-override:@openmrs/esm-ohri-core-app`
 8. Update the corresponding value to: `//localhost:8080/openmrs-esm-ohri.js`.
 9. Click on the padlock/warning message next to the URL in the browser.
 10. Select the `Allow` option from the `Insecure content` dropdown in the browser settings page.

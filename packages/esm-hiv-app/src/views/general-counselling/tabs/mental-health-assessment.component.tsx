@@ -11,7 +11,7 @@ interface MentalHealthAssessmentListProps {
 
 const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -86,7 +86,7 @@ const MentalHealthAssessmentList: React.FC<MentalHealthAssessmentListProps> = ({
       patientUuid={patientUuid}
       filter={mentalHealthFilter}
       encounterType={encounterTypes.MentalHealthAssessmentEncounter_UUID}
-      formList={[{ name: formNames.MentalHealthFormName }]}
+      formList={[{ name: formNames.MentalHealthFormName, uuid: formUuids.mentalHealthFormUuid }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

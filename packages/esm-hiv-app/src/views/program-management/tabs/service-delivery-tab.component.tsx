@@ -11,7 +11,7 @@ interface ServiceDeliveryTabListProps {
 
 const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -70,7 +70,7 @@ const ServiceDeliveryTabList: React.FC<ServiceDeliveryTabListProps> = ({ patient
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.ServiceDeliveryEncounterType_UUID}
-      formList={[{ name: formNames.ServiceDeliveryFormName }]}
+      formList={[{ name: formNames.ServiceDeliveryFormName, uuid: formUuids.serviceDeliveryFormUuid }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
