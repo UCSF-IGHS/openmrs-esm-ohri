@@ -2,7 +2,7 @@ import { OHRIProgrammeSummaryTiles } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-function TptPreventionSummaryTiles({}) {
+function TptPreventionSummaryTiles() {
   const { t } = useTranslation();
   const [activeTptClientsCount] = useState(78);
   const tiles = useMemo(

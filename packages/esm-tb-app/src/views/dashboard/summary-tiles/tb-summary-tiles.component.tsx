@@ -2,7 +2,7 @@ import { OHRIProgrammeSummaryTiles, fetchMambaReportData } from '@ohri/openmrs-e
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-function TbSummaryTiles({ launchWorkSpace }) {
+function TbSummaryTiles() {
   const { t } = useTranslation();
   const [activeDSClientsCount, setActiveDSClientsCount] = useState(null);
   const [activeDRClientsCount, setActiveDRClientsCount] = useState(null);

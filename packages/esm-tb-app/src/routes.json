@@ -73,8 +73,6 @@
       "slot": "tb-program-management-summary-slot",
       "component": "tbProgramManagementDashboard"
     },
-
-
     {
       "name": "tpt-patient-summary",
       "slot": "ohri-tpt-slot",
@@ -152,68 +150,7 @@
         "title": "Tuberculosis"
       }
     },
-    {
-      "name": "tb-prevention-dashboard-ext",
-      "slot": "tb-clinical-dashboard-slot",
-      "component": "tbPreventionDashboardLink",
-      "meta": {
-        "name": "tb-prevention",
-        "slot": "tb-prevention-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "tpt",
-          "dashboardTitle": "TB Prevention"
-        },
-        "title": "TB Prevention"
-      }
-    },
-    {
-      "name": "tb-prevention-dashboard",
-      "slot": "tb-prevention-dashboard-slot",
-      "component": "tbPreventionDashboard",
-      "meta": {
-        "name": "tb-prevention",
-        "slot": "tb-prevention-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "programme": "tpt",
-          "dashboardTitle": "TB Prevention"
-        },
-        "title": "TB Prevention"
-      }
-    },
-    {
-      "name": "tb-cases-dashboard-ext",
-      "slot": "tb-clinical-dashboard-slot",
-      "component": "tbCasesDashboardLink",
-      "meta": {
-        "name": "tb-cases",
-        "slot": "tb-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "tb",
-          "dashboardTitle": "TB Treatment"
-        },
-        "title": "TB Treatment"
-      }
-    },
-    {
-      "name": "tb-cases-dashboard",
-      "slot": "tb-cases-dashboard-slot",
-      "component": "tbCasesDashboard",
-      "meta": {
-        "name": "tb-cases",
-        "slot": "tb-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "programme": "tb",
-          "dashboardTitle": "TB Treatment"
-        },
-        "title": "TB Treatment"
-      }
-    },
+    
     {
       "name": "tb-home-header-ext",
       "slot": "tb-home-header-slot",
@@ -243,6 +180,36 @@
       "name": "tpt-home-tabs-ext",
       "slot": "tpt-home-tabs-slot",
       "component": "tptDashboardTabs"
+    },
+    {
+      "name": "tb-cases-dashboard-ext",
+      "slot": "homepage-dashboard-slot",
+      "component": "tbCasesDashboardLink",
+      "meta": {
+        "name": "tb-cases",
+        "slot": "tb-cases-dashboard-slot",
+        "title": "TB Treatment"
+      }
+    },
+    {
+      "name": "tb-cases-dashboard",
+      "slot": "tb-cases-dashboard-slot",
+      "component": "tbCasesDashboard"
+    },
+    {
+      "name": "tb-prevention-dashboard-ext",
+      "slot": "homepage-dashboard-slot",
+      "component": "tbPreventionDashboardLink",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "title": "TB Prevention"
+      }
+    },
+    {
+      "name": "tb-prevention-dashboard",
+      "slot": "tb-prevention-dashboard-slot",
+      "component": "tbPreventionDashboard"
     }
   ]
 }

@@ -44,18 +44,30 @@ export const tbClinicalViewDashboardMeta = {
   isFolder: true,
   title: 'Tuberculosis',
 };
+
 export const tbPreventionDashboardMeta = {
   name: 'tb-prevention',
   slot: 'tb-prevention-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'tpt', dashboardTitle: 'TB Prevention'},
   title: 'TB Prevention',
+  isFolder: true,
+  folderTitle: 'Tuberculosis',
+  folderIcon: PillsAdd,
+  isHidden: true,
 };
 
 export const tbCasesDashboardMeta = {
   name: 'tb-cases',
   slot: 'tb-cases-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment' },
   title: 'TB Treatment',
+  isFolder: true,
+  childLinks: [
+    {
+      name: 'tb-prevention',
+      title: 'TB Prevention',
+    },
+  ],
+  folderTitle: 'Tuberculosis',
+  folderIcon: PillsAdd,
 };
 
 export const tptPatientChartMeta = {

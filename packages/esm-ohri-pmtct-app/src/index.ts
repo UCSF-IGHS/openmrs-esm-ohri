@@ -11,17 +11,18 @@ import {
   motherChildDashboardMeta,
   mchFolderMeta,
 } from './dashboard.meta';
-import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { registerPostSubmissionAction, registerExpressionHelper } from '@openmrs/openmrs-form-engine-lib';
 import {
   createConditionalDashboardLink,
-  createOHRIDashboardLink,
+  createNewOHRIDashboardLink,
   OHRIHome,
   OHRIWelcomeSection,
   createConditionalDashboardGroup,
+  createDashboardLink,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { generateInfantPTrackerId } from './utils/pmtct-helpers';
 import { configSchema } from './config-schema';
+import rootComponent from './root.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -55,6 +56,13 @@ export function startupApp() {
   });
 }
 
+export const root = getSyncLifecycle(rootComponent, options);
+
+export const maternalChildDashboardLink = getSyncLifecycle(
+  createNewOHRIDashboardLink(motherChildDashboardMeta),
+  options,
+);
+
 export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);
 export const mchSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...mchSummaryDashboardMeta, moduleName }),
@@ -85,7 +93,6 @@ export const childVisitsDashboard = getSyncLifecycle(ChildHealthList, {
   featureName: 'maternal-visits',
   moduleName,
 });
-export const maternalChildDashboardLink = getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options);
 export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'mother child health results dashboard',
   moduleName,
