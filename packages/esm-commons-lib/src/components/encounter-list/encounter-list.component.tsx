@@ -1,5 +1,5 @@
 import { navigate } from '@openmrs/esm-framework';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
@@ -62,11 +62,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { isDead } = usePatientDeathStatus(patientUuid);
   const formNames = useMemo(() => formList.map((form) => form.name), []);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
-  const {
-    encounters,
-    isLoading: isLoadingEncounters,
-    onFormSave,
-  } = useEncounterRows(patientUuid, encounterType, filter);
+  const { encounters, isLoading, onFormSave } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
@@ -163,7 +159,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         };
         // process columns
         columns.forEach((column) => {
-          let val = column.getValue(encounter);
+          let val = column?.getValue(encounter);
           if (column.link) {
             val = (
               <Link
@@ -246,7 +242,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         </Button>
       );
     } else if (forms.length && !(hideFormLauncher ?? isDead)) {
-      return (
+      return () => (
         <OHRIFormLauncherWithIntent
           formJsonList={forms}
           launchForm={(formJson, intent) =>
@@ -266,13 +262,16 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         />
       );
     }
+    return null;
   }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize, onFormSave, patientUuid]);
+
+  if (isLoading === true || isLoadingForms === true || isLoadingFormsJson === true) {
+    return <DataTableSkeleton rowCount={5} />;
+  }
 
   return (
     <>
-      {isLoadingEncounters || isLoadingForms ? (
-        <DataTableSkeleton rowCount={5} />
-      ) : encounters.length > 0 ? (
+      {paginatedRows?.length > 0 || encounters.length > 0 ? (
         <>
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>

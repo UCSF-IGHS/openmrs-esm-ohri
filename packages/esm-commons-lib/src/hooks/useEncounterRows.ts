@@ -6,10 +6,7 @@ import { encounterRepresentation } from '../constants';
 
 export function useEncounterRows(patientUuid: string, encounterType: string, encounterFilter: (encounter) => boolean) {
   const [encounters, setEncounters] = useState([]);
-  const url = useMemo(
-    () => `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`,
-    [encounterType, patientUuid],
-  );
+  const url = `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`;
 
   const {
     data: response,
