@@ -65,7 +65,9 @@ describe('EncounterList', () => {
 
     jest.spyOn(formsJsonHook, 'useFormsJson').mockReturnValue({ formsJson: [], isLoading: true });
 
-    render(<EncounterList {...emptyTestProps} />);
+    act(() => {
+      render(<EncounterList {...emptyTestProps} />);
+    });
     const element = document.querySelector('.cds--skeleton.cds--data-table-container');
     expect(element).not.toBeNull();
   });
@@ -77,7 +79,9 @@ describe('EncounterList', () => {
 
     jest.spyOn(formsJsonHook, 'useFormsJson').mockReturnValue({ formsJson: [], isLoading: false });
 
-    render(<EncounterList {...emptyTestProps} />);
+    act(() => {
+      render(<EncounterList {...emptyTestProps} />);
+    });
     expect(
       screen.getByText('There are no sample description encounter list to display for this patient'),
     ).toBeInTheDocument();
@@ -92,14 +96,12 @@ describe('EncounterList', () => {
     });
     jest.spyOn(formsJsonHook, 'useFormsJson').mockReturnValue({ formsJson: [], isLoading: false });
 
-    renderEncounterList();
+    act(() => {
+      render(<EncounterList {...testProps} />);
+    });
     expect(screen.getByText('Sample header title encounter list')).toBeInTheDocument();
     expect(screen.getByText('Death Date')).toBeInTheDocument();
     expect(screen.getByText('Click to sort rows by Cause of Death header in ascending order')).toBeInTheDocument();
     expect(screen.getByText('Cause of Death')).toBeInTheDocument();
   });
 });
-
-const renderEncounterList = () => {
-  render(<EncounterList {...testProps} />);
-};

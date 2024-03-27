@@ -183,6 +183,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           <OverflowMenu flipped className={styles.flippedOverflowMenu}>
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
+                index={index}
                 itemText={actionItem.label}
                 onClick={(e) => {
                   e.preventDefault();
@@ -276,6 +277,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+              {/* @ts-ignore */}
               {!(hideFormLauncher ?? isDead) && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={paginatedRows} />
