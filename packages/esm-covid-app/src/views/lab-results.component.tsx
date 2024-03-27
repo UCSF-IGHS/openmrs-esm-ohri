@@ -206,16 +206,7 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
         ],
       },
     ],
-    [
-      config.formNames.CovidLabResultFormName,
-      config.formNames.CovidLabTestFormName,
-      config.formNames.CovidSampleCollectionFormName,
-      config.obsConcepts.covidLabOrderDate_UUID,
-      config.obsConcepts.covidTestResultConcept_UUID,
-      config.obsConcepts.covidTestStatusConcept_UUID,
-      config.obsConcepts.covidTypeofTestConcept_UUID,
-      t,
-    ],
+    [],
   );
 
   let pendingLabOrdersFilter = (encounter) => {
