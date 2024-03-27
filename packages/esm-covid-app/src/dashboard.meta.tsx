@@ -45,5 +45,5 @@ export const covid19CasesDashboardMeta = {
   title: 'COVID-19 Cases',
   isFolder: true,
   folderTitle: 'COVID',
-  folderIcon: Coronavirus
+  folderIcon: Coronavirus,
 };

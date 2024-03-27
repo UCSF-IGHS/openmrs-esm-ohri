@@ -84,7 +84,7 @@ export const hivCareAndTreatmentFolderDashboardMeta = {
   title: 'HIV Care and Treatment',
   name: 'care-and-treatment',
   folderTitle: 'Care and Treatment',
-  folderIcon : Home
+  folderIcon: Home,
 };
 
 export const hivPreventionFolderDashboardMeta = {
@@ -93,7 +93,7 @@ export const hivPreventionFolderDashboardMeta = {
   title: 'HIV Testing Services',
   name: 'hts',
   folderTitle: 'HIV Prevention',
-  folderIcon : Pills
+  folderIcon: Pills,
 };
 
 export const htsDashboardMeta = {

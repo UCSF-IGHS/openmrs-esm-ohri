@@ -56,7 +56,7 @@ export const EncounterValuesTile: React.FC<EncounterValuesTileProps> = ({ patien
           <span className={styles.tileValue}>--</span>
         </div>
       </div>
-    )
+    );
   }
 
   return (

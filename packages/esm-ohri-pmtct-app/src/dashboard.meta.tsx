@@ -39,5 +39,5 @@ export const motherChildDashboardMeta = {
   name: 'mother-child-health',
   slot: 'mother-child-health-dashboard-slot',
   title: 'Maternal & Child Health',
-  icon: PedestrianChild
+  icon: PedestrianChild,
 };

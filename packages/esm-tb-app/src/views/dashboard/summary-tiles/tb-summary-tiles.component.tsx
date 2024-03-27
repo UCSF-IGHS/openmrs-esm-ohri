@@ -39,7 +39,7 @@ function TbSummaryTiles() {
         linkAddress: '#',
         subTitle: t('drugResistant', 'Cases with drug resistant TB'),
         value: activeDRClientsCount,
-      }
+      },
     ],
     [activeDSClientsCount, activeDRClientsCount],
   );
