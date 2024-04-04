@@ -1,4 +1,4 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import {
   finalHIVCodeConcept,
@@ -17,6 +17,15 @@ export function fetchLastVisit(uuid: string) {
 
 export function fetchPatientList(offSet: number = 0, pageSize: number = 10) {
   return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}&_summary=data`);
+}
+
+export function getPatientEncounters(patientUUID, encounterUUID) {
+  return openmrsFetch(`${restBaseUrl}encounter?encounterType=${encounterUUID}&patient=${patientUUID}`).then(
+    ({ data }) => {
+      console.log('PATIENT ENCOUNTER===========', data.results);
+      return data.results;
+    },
+  );
 }
 
 export function fetchTodayClients() {

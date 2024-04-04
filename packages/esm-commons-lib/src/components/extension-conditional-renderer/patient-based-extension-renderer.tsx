@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { usePatient } from '@openmrs/esm-framework';
+import { getPatientEncounters } from '../../api/api';
 
 // @ts-ignore
 function calculateAge(dateString: string): number {
@@ -12,6 +13,20 @@ function calculateAge(dateString: string): number {
     age--;
   }
   return age;
+}
+
+function patientHasPreviousEncounter(patientUUID: string, encounterUUID: string): boolean {
+  const [hasPreviousEncounter, setHasPreviousEncounter] = useState(false);
+  useEffect(() => {
+    (async () => {
+      const previousEncounters = await getPatientEncounters(patientUUID, encounterUUID);
+      if (previousEncounters.length) {
+        setHasPreviousEncounter(true);
+      }
+    })();
+  });
+  console.log('HAS ENCOUNTER=======', hasPreviousEncounter);
+  return hasPreviousEncounter;
 }
 
 export function PatientExtensionRenderer({ children, patientExpression }) {
