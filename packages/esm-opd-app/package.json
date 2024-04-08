@@ -1,0 +1,55 @@
+{
+  "name": "@ohri/openmrs-esm-ohri-opd-app",
+  "version": "2.2.0",
+  "description": "opd active visits",
+  "browser": "dist/openmrs-esm-ohri-opd-app.js",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
+  "scripts": {
+    "start": "openmrs develop",
+    "serve": "webpack serve --mode=development",
+    "debug": "npm run serve",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode=production --env.analyze=true",
+    "lint": "eslint src --ext tsx",
+    "typescript": "tsc",
+    "prepublishOnly": "npm run build",
+    "extract-translations": "i18next 'src/**/*.component.tsx'"
+  },
+  "browserslist": [
+    "extends browserslist-config-openmrs"
+  ],
+  "keywords": [
+    "openmrs",
+    "ohri",
+    "opd"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.13.0",
+    "@ohri/esm-patient-chart-app": "7.1.0-1"
+  },
+  "peerDependencies": {
+    "@ohri/esm-patient-chart-app": "7.1.0-1",
+    "@openmrs/esm-framework": "5.x",
+    "@openmrs/esm-patient-common-lib": "6.x",
+    "dayjs": "1.x",
+    "react": "18.x",
+    "react-i18next": "11.x",
+    "swr": "2.x"
+  },
+  "devDependencies": {
+    "@ohri/esm-patient-chart-app": "7.1.0-1",
+    "webpack": "^5.88.2"
+  }
+}
