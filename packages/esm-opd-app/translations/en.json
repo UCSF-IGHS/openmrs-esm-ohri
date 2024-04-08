@@ -1,15 +1,1 @@
-{
-  "actions": "Actions",
-  "cacxAppointments": "CaCx Appointments",
-  "cacxRegistration": "CaCx Registration",
-  "cacxScreening": "CaCx Screening",
-  "cacxSummary": "CaCx Summary",
-  "cacxTreatment": "CaCx Treatment",
-  "colopsyResult": "Screening Results",
-  "editForm": "Edit Form",
-  "eligibleforScreening": "Eligible for CaCx Screening",
-  "previouslyScreened": "Previously Screened for CaCx",
-  "screeningMethod": "Screening Method",
-  "viewDetails": "View details",
-  "visitDate": "Visit Date"
-}
+{}
