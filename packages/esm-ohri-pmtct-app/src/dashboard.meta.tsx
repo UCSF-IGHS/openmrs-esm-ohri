@@ -22,7 +22,7 @@ export const maternalVisitsDashboardMeta = {
   title: 'Maternal Visits',
   path: 'maternal-visits',
   layoutMode: 'anchored',
-  patientExpression: 'calculateAge(patient.birthDate) > 10',
+  patientExpression: 'calculateAge(patient.birthDate) > 10 || encounterTypes.includes("test-enc-uuid")',
 };
 
 export const childVisitsDashboardMeta = {
@@ -31,7 +31,7 @@ export const childVisitsDashboardMeta = {
   title: 'Child Visits',
   path: 'child-visits',
   layoutMode: 'anchored',
-  patientExpression: 'calculateAge(patient.birthDate) <= 10',
+  patientExpression: 'calculateAge(patient.birthDate) <10',
 };
 
 // Clinical Dashboard
