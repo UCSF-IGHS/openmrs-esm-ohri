@@ -18,11 +18,11 @@ import {
   OHRIHome,
   OHRIWelcomeSection,
   createConditionalDashboardGroup,
-  createDashboardLink,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { generateInfantPTrackerId } from './utils/pmtct-helpers';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
