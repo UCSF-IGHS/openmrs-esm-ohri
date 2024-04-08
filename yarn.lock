@@ -2721,6 +2721,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ohri/esm-patient-chart-app@npm:7.1.0-2":
+  version: 7.1.0-2
+  resolution: "@ohri/esm-patient-chart-app@npm:7.1.0-2"
+  dependencies:
+    lodash-es: "npm:^4.17.21"
+    uuid: "npm:^8.3.2"
+  peerDependencies:
+    "@carbon/react": 1.x
+    "@openmrs/esm-framework": 5.x
+    "@openmrs/esm-patient-common-lib": "*"
+    dayjs: 1.x
+    lodash-es: 4.x
+    react: 18.x
+    react-i18next: 11.x
+    react-router-dom: 6.x
+    rxjs: 6.x
+    single-spa: 6.x
+    single-spa-react: 6.x
+    swr: 2.x
+  checksum: 4652f57696856673c720277a93ef65c14afc890a8335729dfa6d4babe3b132db04770f1964a0a88b7331854be65d6266e6c6c8f513a19867903b92dd9c599e60
+  languageName: node
+  linkType: hard
+
 "@ohri/openmrs-esm-ohri-cervical-cancer-app@workspace:packages/esm-cervical-cancer-app":
   version: 0.0.0-use.local
   resolution: "@ohri/openmrs-esm-ohri-cervical-cancer-app@workspace:packages/esm-cervical-cancer-app"
@@ -2819,6 +2842,24 @@ __metadata:
     lodash-es: "npm:^4.17.15"
     webpack: "npm:^5.88.2"
   peerDependencies:
+    "@openmrs/esm-framework": 5.x
+    "@openmrs/esm-patient-common-lib": 6.x
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    swr: 2.x
+  languageName: unknown
+  linkType: soft
+
+"@ohri/openmrs-esm-ohri-opd-app@workspace:packages/esm-opd-app":
+  version: 0.0.0-use.local
+  resolution: "@ohri/openmrs-esm-ohri-opd-app@workspace:packages/esm-opd-app"
+  dependencies:
+    "@carbon/react": "npm:^1.13.0"
+    "@ohri/esm-patient-chart-app": "npm:7.1.0-2"
+    webpack: "npm:^5.88.2"
+  peerDependencies:
+    "@ohri/esm-patient-chart-app": 7.1.0-2
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
     dayjs: 1.x

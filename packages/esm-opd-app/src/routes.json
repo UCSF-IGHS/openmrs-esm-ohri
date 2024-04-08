@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+  "pages": [
+  ],
+  "extensions": [
+    {
+      "name": "opd",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "opdPatientChartDashboard",
+      "order": 25,
+      "meta": {
+        "path": "OPD",
+        "slot": "opd-slot",
+        "isExpanded": false
+      }
+    },
+    {
+      "name": "active-visit-summary-dashboard",
+      "component": "activeVisitDashboardLink",
+      "slot": "opd-slot",
+      "meta": {
+        "slot": "patient-chart-active-visit-dashboard-slot",
+        "columns": 1,
+        "path": "Active Visits"
+      }
+    },
+    {
+      "name": "opd-summary-ext",
+      "slot": "opd-summary-slot",
+      "component": "opdSummaryDashboard"
+    }
+    
+
+  ]
+}
