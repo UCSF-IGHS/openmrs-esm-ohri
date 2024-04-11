@@ -30,7 +30,7 @@ export const configSchema = {
     _type: Type.Object,
     _description: 'List of uuids for PMTCT forms.',
     _default: {
-      antenatal: '',
+      antenatal: '5255a535-2acb-3f44-bd0a-3f80595dece1',
       labourAndDelivery: '1e5614d6-5306-11e6-beb8-9e71128cae77',
       motherPostnatal: 'e6b67aa4-6c59-4470-8ad5-b994efeda553',
       infantPostnatal: '5022c5d7-ea45-47ce-bd65-1ba1d8ad2467',
