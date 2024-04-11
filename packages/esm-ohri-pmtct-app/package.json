@@ -36,8 +36,7 @@
     "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "next"
+    "@carbon/react": "^1.13.0"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "5.x",
