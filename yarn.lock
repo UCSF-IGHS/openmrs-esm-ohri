@@ -2721,9 +2721,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ohri/esm-patient-chart-app@npm:7.1.0-3":
-  version: 7.1.0-3
-  resolution: "@ohri/esm-patient-chart-app@npm:7.1.0-3"
+"@ohri/esm-patient-chart-app@npm:7.1.0-4":
+  version: 7.1.0-4
+  resolution: "@ohri/esm-patient-chart-app@npm:7.1.0-4"
   dependencies:
     lodash-es: "npm:^4.17.21"
     uuid: "npm:^8.3.2"
@@ -2740,7 +2740,7 @@ __metadata:
     single-spa: 6.x
     single-spa-react: 6.x
     swr: 2.x
-  checksum: 6a3bda0fcc12e221b774af1c50612192d9b85e2951fca2a1e8f0e3a319bc027d661aec83933c313d119a59c04d25b449641bc8852c97489db01a43cab0bc990a
+  checksum: 08574e8bf5dcfbe621df23801c2796c05fe6e39c978f88cafd552a11c6585a2e4a73f59eaeaf73b6e8875d4108171c2e3a0f5d65dec0fe378cc6c6323bb968bb
   languageName: node
   linkType: hard
 
@@ -2856,10 +2856,10 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-opd-app@workspace:packages/esm-opd-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@ohri/esm-patient-chart-app": "npm:7.1.0-3"
+    "@ohri/esm-patient-chart-app": "npm:7.1.0-4"
     webpack: "npm:^5.88.2"
   peerDependencies:
-    "@ohri/esm-patient-chart-app": 7.1.0-3
+    "@ohri/esm-patient-chart-app": 7.1.0-4
     "@openmrs/esm-framework": 5.x
     "@openmrs/esm-patient-common-lib": 6.x
     dayjs: 1.x
@@ -2874,7 +2874,6 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:next"
     webpack: "npm:^5.88.2"
   peerDependencies:
     "@openmrs/esm-framework": 5.x
