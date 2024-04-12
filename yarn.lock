@@ -2874,7 +2874,6 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:1.0.0-pre.589"
     webpack: "npm:^5.88.2"
   peerDependencies:
     "@openmrs/esm-framework": 5.x
