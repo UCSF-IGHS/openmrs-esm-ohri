@@ -2765,7 +2765,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-commons-lib@workspace:packages/esm-commons-lib"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:next"
+    "@openmrs/openmrs-form-engine-lib": "npm:1.0.0-pre.589"
     enzyme: "npm:^3.11.0"
     enzyme-adapter-react-16: "npm:^1.15.6"
     fuzzy: "npm:^0.1.3"
@@ -2822,7 +2822,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-form-render-app@workspace:packages/esm-form-render-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:next"
+    "@openmrs/openmrs-form-engine-lib": "npm:1.0.0-pre.589"
     ace-builds: "npm:^1.4.12"
     react-ace: "npm:^9.4.4"
     webpack: "npm:^5.88.2"
@@ -2874,7 +2874,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-pmtct@workspace:packages/esm-ohri-pmtct-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:next"
+    "@openmrs/openmrs-form-engine-lib": "npm:1.0.0-pre.589"
     webpack: "npm:^5.88.2"
   peerDependencies:
     "@openmrs/esm-framework": 5.x
@@ -3249,13 +3249,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openmrs/openmrs-form-engine-lib@npm:next":
-  version: 1.0.0-pre.544
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.544"
+"@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.589":
+  version: 1.0.0-pre.589
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.0.0-pre.589"
   dependencies:
     ace-builds: "npm:^1.4.12"
-    enzyme: "npm:^3.11.0"
-    enzyme-adapter-react-16: "npm:^1.15.6"
     formik: "npm:^2.2.6"
     jest-coverage-badges: "npm:^1.0.0"
     lodash-es: "npm:^4.17.15"
@@ -3274,7 +3272,7 @@ __metadata:
     react: 18.x
     react-i18next: 11.x
     rxjs: 6.x
-  checksum: 47b0c8579c345e5b85ab2e5ca1d6f91cf94f861c023fd1f3fc967dd2865353c0745cb99e1c0256a606a2b83a85ba5905e305ca2772f9c1850513beb0367d6e11
+  checksum: 37bef80c99aa250dd78881b18057fa05d08c0c2e657b33787216cf3d00ef95e23355f3a0f20539bf526afdc5a596e5007713f707fde4fd6e1e01cf7ba6f3f51b
   languageName: node
   linkType: hard
 
