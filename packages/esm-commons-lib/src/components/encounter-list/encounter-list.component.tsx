@@ -65,7 +65,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { encounters, isLoading, onFormSave } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
-    const defaultActions = useMemo(
+  const defaultActions = useMemo(
     () => [
       {
         label: t('viewEncounter', 'View'),
@@ -91,7 +91,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     if (!isLoadingFormsJson) {
       const formsWithFilteredIntents = formsJson.map((form) => {
         const descriptor = formList.find((formDescriptor) => formDescriptor.name === form.name);
-                // handle excluded intents
+        // handle excluded intents
         if (descriptor?.excludedIntents?.length) {
           form['availableIntents'] = form['availableIntents'].filter(
             (intentEntry) => !descriptor.excludedIntents.includes(intentEntry.intent),
@@ -217,10 +217,10 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   }, [encounters, pageSize, constructPaginatedTableRows, currentPage]);
 
   const formLauncher = useMemo(() => {
-        if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
+    if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
       // we only have one form with no intents
       // just return the "Add" button
-      return (
+            return (
         <Button
           kind="ghost"
           renderIcon={Add}
