@@ -20,7 +20,7 @@ export function launchEncounterForm(
     mutateform: mutateform,
     formInfo: {
       encounterUuid,
-      formUuid: form.uuid,
+      formUuid: form.name,
       patientUuid: patientUuid,
       visitTypeUuid: '',
       visitUuid: '',
