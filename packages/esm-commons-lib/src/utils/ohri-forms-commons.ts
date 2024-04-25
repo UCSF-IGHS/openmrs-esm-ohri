@@ -1,8 +1,8 @@
-import { OHRIFormSchema, SessionMode } from '@openmrs/openmrs-form-engine-lib';
+import { FormSchema, SessionMode } from '@openmrs/openmrs-form-engine-lib';
 import { launchOHRIWorkSpace } from '../workspace/ohri-workspace-utils';
 
 export const launchForm = (
-  form: OHRIFormSchema,
+  form: FormSchema,
   mode: SessionMode = 'enter',
   moduleName: string,
   title?: string,
