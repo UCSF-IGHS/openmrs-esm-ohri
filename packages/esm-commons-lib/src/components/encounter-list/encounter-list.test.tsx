@@ -48,7 +48,7 @@ jest.mock('@openmrs/esm-patient-common-lib', () => ({
 }));
 
 jest.mock('@openmrs/openmrs-form-engine-lib', () => ({
-  OHRIForm: jest
+  FormEngine: jest
     .fn()
     .mockImplementation(() => React.createElement('div', { 'data-testid': 'openmrs form' }, 'FORM ENGINE LIB')),
 }));
