@@ -1,3 +1,4 @@
+import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
 import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
 
@@ -33,3 +34,13 @@ export function launchEncounterForm(
     },
   });
 }
+
+export function deleteEncounter(encounterUuid: string, abortController: AbortController) {
+  return openmrsFetch(`${restBaseUrl}/encounter/${encounterUuid}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    signal: abortController.signal,
+  });
+} 

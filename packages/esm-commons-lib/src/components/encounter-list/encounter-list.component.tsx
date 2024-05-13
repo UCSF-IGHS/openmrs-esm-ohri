@@ -1,4 +1,4 @@
-import { navigate } from '@openmrs/esm-framework';
+import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
@@ -8,11 +8,12 @@ import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
 import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
-import { launchEncounterForm } from './helpers';
+import { deleteEncounter, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+import { mutate } from 'swr';
 
 export interface EncounterListColumn {
   key: string;
@@ -83,9 +84,51 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         mode: 'edit',
         intent: '*',
       },
+      {
+        label: t('deleteEncounter', 'Delete'),
+        form: {
+          name: forms[0]?.name,
+        },
+        mode: 'delete',
+        intent: '*',
+      },
     ],
     [forms, t],
   );
+
+  const handleDeleteEncounter = useCallback((encounterUuid, encounterTypeName) => {
+    const close = showModal('delete-encounter-modal', {
+      close: () => close(),
+      encounterTypeName: encounterTypeName || '',
+      onConfirmation: () => {
+        const abortController = new AbortController();
+        deleteEncounter(encounterUuid, abortController)
+          .then(() => {
+            mutate(
+              (key) =>
+                typeof key === "string" && key.startsWith("/ws/rest/v1/encounter"),
+              undefined,
+              { revalidate: true }
+            );
+            showSnackbar({
+              isLowContrast: true,
+              title: t('encounterDeleted', 'Encounter deleted'),
+              subtitle: `Encounter ${t('successfullyDeleted', 'successfully deleted')}`,
+              kind: 'success',
+            });
+          })
+          .catch(() => {
+            showSnackbar({
+              isLowContrast: false,
+              title: t('error', 'Error'),
+              subtitle: `Encounter ${t('failedDeleting', "couldn't be deleted")}`,
+              kind: 'error',
+            });
+          });
+        close();
+      },
+    });
+  }, [])
 
   useEffect(() => {
     if (!isLoadingFormsJson) {
@@ -180,24 +223,26 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid='actions-id'>
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
                 index={index}
                 itemText={actionItem.label}
                 onClick={(e) => {
                   e.preventDefault();
-                  launchEncounterForm(
-                    forms.find((form) => form.name == actionItem?.form?.name),
-                    moduleName,
-                    actionItem.mode == 'enter' ? 'add' : actionItem.mode,
-                    onFormSave,
-                    null,
-                    encounter.uuid,
-                    actionItem.intent,
-                    workspaceWindowSize,
-                    patientUuid,
-                  );
+                  actionItem.mode == 'delete' ?
+                    handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
+                    : launchEncounterForm(
+                        forms.find((form) => form.name == actionItem?.form?.name),
+                        moduleName,
+                        actionItem.mode == 'enter' ? 'add' : actionItem.mode,
+                        onFormSave,
+                        null,
+                        encounter.uuid,
+                        actionItem.intent,
+                        workspaceWindowSize,
+                        patientUuid,
+                    );
                 }}
               />
             ))}
