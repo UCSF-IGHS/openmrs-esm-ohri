@@ -2,12 +2,12 @@ import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
-import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
+import { FormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
-import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { deleteEncounter, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
@@ -56,7 +56,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 }) => {
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
-  const [forms, setForms] = useState<OHRIFormSchema[]>([]);
+  const [forms, setForms] = useState<FormSchema[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [isLoadingForms, setIsLoadingForms] = useState(true);
@@ -265,7 +265,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
       // we only have one form with no intents
       // just return the "Add" button
-      return (
+            return (
         <Button
           kind="ghost"
           renderIcon={Add}
@@ -288,8 +288,8 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         </Button>
       );
     } else if (forms.length && !(hideFormLauncher ?? isDead)) {
-      return () => (
-        <OHRIFormLauncherWithIntent
+      return (
+        <FormLauncherWithIntent
           formJsonList={forms}
           launchForm={(formJson, intent) =>
             launchEncounterForm(

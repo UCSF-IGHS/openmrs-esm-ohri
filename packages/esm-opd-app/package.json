@@ -1,8 +1,8 @@
 {
-  "name": "@ohri/openmrs-esm-ohri-pmtct",
+  "name": "@ohri/openmrs-esm-ohri-opd-app",
   "version": "2.2.0",
-  "description": "PMTCT microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
-  "browser": "dist/ohri-pmtct-app.js",
+  "description": "opd active visits",
+  "browser": "dist/openmrs-esm-ohri-opd-app.js",
   "main": "src/index.ts",
   "license": "MIT",
   "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
@@ -23,7 +23,7 @@
   "keywords": [
     "openmrs",
     "ohri",
-    "maternal child health"
+    "opd"
   ],
   "publishConfig": {
     "access": "public"
@@ -36,9 +36,11 @@
     "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0"
+    "@carbon/react": "^1.13.0",
+    "@ohri/esm-patient-chart-app": "7.1.0-5"
   },
   "peerDependencies": {
+    "@ohri/esm-patient-chart-app": "7.1.0-5",
     "@openmrs/esm-framework": "5.x",
     "@openmrs/esm-patient-common-lib": "6.x",
     "dayjs": "1.x",
@@ -47,6 +49,7 @@
     "swr": "2.x"
   },
   "devDependencies": {
+    "@ohri/esm-patient-chart-app": "7.1.0-5",
     "webpack": "^5.88.2"
   }
 }

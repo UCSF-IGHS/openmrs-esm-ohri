@@ -1,11 +1,11 @@
 import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
-import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
 
 type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
 
 export function launchEncounterForm(
-  form: OHRIFormSchema,
+  form: FormSchema,
   moduleName: string,
   action: LaunchAction = 'add',
   onFormSave: () => void,
@@ -21,7 +21,7 @@ export function launchEncounterForm(
     mutateform: mutateform,
     formInfo: {
       encounterUuid,
-      formUuid: form.uuid,
+      formUuid: form.name,
       patientUuid: patientUuid,
       visitTypeUuid: '',
       visitUuid: '',

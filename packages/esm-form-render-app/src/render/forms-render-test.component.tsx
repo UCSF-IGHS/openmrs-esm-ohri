@@ -4,7 +4,7 @@ import styles from './form-render.scss';
 import { Run, Maximize, UserData } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
-import { applyFormIntent, loadSubforms, OHRIForm, OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { applyFormIntent, loadSubforms, FormEngine, FormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
 import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
 import { handleFormValidation } from '../form-validator';
@@ -13,7 +13,7 @@ function FormRenderTest() {
   const { t } = useTranslation();
   const headerTitle = t('formRenderTestTitle', 'Form Render Test');
   const { patientUuid, dataTypeToRenderingMap } = useConfig() as ConfigObject;
-  const [formInput, setFormInput] = useState<OHRIFormSchema>();
+  const [formInput, setFormInput] = useState<FormSchema>();
   const [formIntents, setFormIntents] = useState([]);
   const [isIntentsDropdownDisabled, setIsIntentsDropdownDisabled] = useState(true);
   const [selectedFormIntent, setSelectedFormIntent] = useState('');
@@ -267,7 +267,7 @@ function FormRenderTest() {
                   <TabPanel className={styles.renderTab}>
                     {isSchemaLoaded ? (
                       <div className={styles.formRenderDisplay}>
-                        <OHRIForm
+                        <FormEngine
                           formJson={formInput}
                           patientUUID={patientUuid}
                           mode={encounterUuid ? 'edit' : 'enter'}
