@@ -11,6 +11,7 @@ import {
   fetchPatientLastEncounter,
   SummaryCardColumn,
   SummaryCard,
+  fetchMambaReportData,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
 import { moduleName } from '../../..';
@@ -47,6 +48,22 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
   const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
+  const [totalAncCount, setTotalAncCount] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [totalAncCount] = await Promise.all([fetchMambaReportData('no_of_anc_visits')]);
+
+        setTotalAncCount(totalAncCount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw new Error('Error fetching data. Please try again.');
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const headersFamily = [
     {
@@ -220,12 +237,32 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [encounterTypes.labourAndDelivery],
-        getObsValue: async ([encounter]) => {
-          const currentPTrackerId = getObsFromEncounter(encounter, obsConcepts.pTrackerIdConcept);
-          return '--';
+        encounterTypes: [encounterTypes.motherPostnatal, encounterTypes.labourAndDelivery, encounterTypes.antenatal],
+        getObsValue: (encounters) => {
+          const pncArtData = {
+            artInitiation: getObsFromEncounter(encounters[0], obsConcepts.artInitiationConcept),
+            motherHIVStatus: getObsFromEncounter(encounters[0], obsConcepts.hivTestResultConcept),
+            pTrackerId: getObsFromEncounter(encounters[0], obsConcepts.pTrackerIdConcept),
+          };
+          const lndArtData = {
+            artInitiation: getObsFromEncounter(encounters[1], obsConcepts.artInitiationConcept),
+            motherHIVStatus: getObsFromEncounter(encounters[1], obsConcepts.hivTestResultConcept),
+            pTrackerId: getObsFromEncounter(encounters[1], obsConcepts.pTrackerIdConcept),
+          };
+          const ancArtData = {
+            artInitiation: getObsFromEncounter(encounters[2], obsConcepts.artInitiationConcept),
+            motherHIVStatus: getObsFromEncounter(encounters[2], obsConcepts.hivTestResultConcept),
+            pTrackerId: getObsFromEncounter(encounters[2], obsConcepts.pTrackerIdConcept),
+          };
+          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
+          if (!latestArtData['motherHIVStatus']) {
+            return '--';
+          }
+
+          return latestArtData['motherHIVStatus'];
         },
       },
+
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
@@ -246,7 +283,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
         encounterTypes: [encounterTypes.labourAndDelivery],
-        getObsValue: (encounter) => {
+        getObsValue: async ([encounter]) => {
           return getObsFromEncounter(encounter, obsConcepts.motherStatusConcept);
         },
       },
@@ -331,14 +368,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('ancVisitsAttended', 'ANC visits attended'),
         encounterTypes: [encounterTypes.antenatal],
         getObsValue: async ([encounter]) => {
-          const currentPTrackerId = getObsFromEncounter(encounter, obsConcepts.pTrackerIdConcept);
-          // const totalVisits = await getAncVisitCount(currentPTrackerId, patientUuid);
-          // return totalVisits.rows.length ? totalVisits.rows[0].total : '0';
-          return '--';
+          return totalAncCount;
         },
       },
     ],
-    [],
+    [totalAncCount],
   );
 
   const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
