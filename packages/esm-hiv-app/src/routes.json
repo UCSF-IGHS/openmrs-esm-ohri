@@ -23,19 +23,35 @@
     },
     {
       "name": "ohri-hiv-prevention-dashboard-ext",
-      "slot": "homepage-dashboard-slot",
+      "slot": "ohri-hiv-prevention-dashboard-slot",
       "component": "hivPreventionDashboardLink",
       "meta": {
         "name": "hts",
         "slot": "hts-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "hts",
+          "dashboardTitle": "HTS Home Page"
+        },
         "title": "HIV Testing Services"
-      },
-      "order": 8
+      }
     },
     {
       "name": "ohri-hiv-prevention-dashboard",
       "slot": "hts-dashboard-slot",
-      "component": "hivPreventionDashboard"
+      "component": "hivPreventionDashboard",
+      "meta": {
+        "name": "hts",
+        "slot": "hts-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "hts",
+          "dashboardTitle": "HTS Home Page"
+        },
+        "title": "HIV Testing Services"
+      }
     },
     {
       "name": "hts-home-header-ext",
@@ -64,19 +80,36 @@
     },
     {
       "name": "care-and-treatment-dashboard-ext",
-      "slot": "homepage-dashboard-slot",
+      "slot": "ohri-hiv-care-and-treatment-dashboard-slot",
       "component": "hivCareAndTreatmentDashboardLink",
       "meta": {
         "name": "care-and-treatment",
         "slot": "ct-dashboard-slot",
-        "title": "Care and Treatment"
-      },
-      "order": 9
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "ct",
+          "dashboardTitle": "C&T Home Page"
+        },
+        "title": "Care and Treatment",
+        "path": "Care and Treatment"
+      }
     },
     {
       "name": "ohri-care-and-treatment-dashboard",
       "slot": "ct-dashboard-slot",
-      "component": "hivCareAndTreatmentDashboard"
+      "component": "hivCareAndTreatmentDashboard",
+      "meta": {
+        "name": "care-and-treatment",
+        "slot": "ct-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "ct",
+          "dashboardTitle": "C&T Home Page"
+        },
+        "title": "Care and Treatment"
+      }
     },
     {
       "name": "ct-home-header-ext",

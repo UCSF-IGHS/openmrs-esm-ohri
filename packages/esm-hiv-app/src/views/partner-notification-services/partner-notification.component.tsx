@@ -17,7 +17,7 @@ interface PartnerNotificationListProps {
 
 const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -97,7 +97,7 @@ const PartnerNotificationList: React.FC<PartnerNotificationListProps> = ({ patie
       patientUuid={patientUuid}
       filter={partnerNotificationFilter}
       encounterType={encounterTypes.PatnerNotificationEncounterType_UUID}
-      formList={[{ name: formNames.PartnerNotificationFormName, uuid: formUuids.partnerNotificationFormUuid }]}
+      formList={[{ name: formNames.PartnerNotificationFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -15,7 +15,7 @@ interface LabResultsOverviewListProps {
 
 const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -86,7 +86,7 @@ const LabResultsOverviewList: React.FC<LabResultsOverviewListProps> = ({ patient
       patientUuid={patientUuid}
       filter={viralLoadRequestFilter}
       encounterType={encounterTypes.ViralLoadResultsEncounter_UUID}
-      formList={[{ name: formNames.ViralLoadRequestFormName, uuid: formUuids.viralLoadRequestFormUuid }]}
+      formList={[{ name: formNames.ViralLoadRequestFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

@@ -80,20 +80,16 @@ export const appointmentsDashboardMeta = {
 // Clinical Dashboards
 export const hivCareAndTreatmentFolderDashboardMeta = {
   slot: 'ohri-hiv-care-and-treatment-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: Home },
   isFolder: true,
   title: 'HIV Care and Treatment',
-  name: 'care-and-treatment',
-  folderTitle: 'Care and Treatment',
-  folderIcon: Home,
 };
 
 export const hivPreventionFolderDashboardMeta = {
   slot: 'ohri-hiv-prevention-dashboard-slot',
+  config: { columns: 1, type: 'grid', icon: Pills },
   isFolder: true,
-  title: 'HIV Testing Services',
-  name: 'hts',
-  folderTitle: 'HIV Prevention',
-  folderIcon: Pills,
+  title: 'HIV Prevention',
 };
 
 export const htsDashboardMeta = {

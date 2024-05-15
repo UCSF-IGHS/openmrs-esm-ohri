@@ -10,7 +10,7 @@ interface IntimatePartnerViolenceListProps {
 
 const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -76,7 +76,7 @@ const IntimatePartnerViolenceList: React.FC<IntimatePartnerViolenceListProps> = 
       patientUuid={patientUuid}
       filter={intimatePartnerFilter}
       encounterType={encounterTypes.IntimatePartnerEncounterType_UUID}
-      formList={[{ name: formNames.IntimatePartnerFormName, uuid: formUuids.intimatePartnerFormUuid }]}
+      formList={[{ name: formNames.IntimatePartnerFormName }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

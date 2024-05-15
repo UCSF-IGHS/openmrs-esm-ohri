@@ -3,8 +3,69 @@
   "backendDependencies": {
     "webservices.rest": "^2.24.0"
   },
-  "pages": [],
+  "pages": [
+    {
+      "component": "dashboard",
+      "route": "dashboard"
+    },
+    {
+      "component": "dashboard",
+      "route": "home"
+    }
+  ],
   "extensions": [
+    {
+      "name": "home-dashboard-ext",
+      "slot": "dashboard-links-slot",
+      "component": "homeDashboard",
+      "meta": {
+        "title": "Home",
+        "name": "home",
+        "slot": "ohri-home-dashboard-slot",
+        "isLink": true
+      }
+    },
+    {
+      "name": "ohri-patient-list",
+      "slot": "ohri-home-dashboard-slot",
+      "component": "patientList"
+    },
+    {
+      "name": "appointments-ohri-dashboard-ext",
+      "slot": "dashboard-links-slot",
+      "component": "appointmentsLink"
+    },
+    {
+      "name": "ohri-appointments-dashboard",
+      "slot": "ohri-appointments-dashboard-slot",
+      "component": "appointmentsDashboard"
+    },
+    {
+      "name": "dispensing-ohri-dashboard-ext",
+      "slot": "dashboard-links-slot",
+      "component": "dispensingLink",
+      "meta": {
+        "title": "Dispensing",
+        "name": "dispensing",
+        "slot": "ohri-dispensing-dashboard-slot",
+        "isLink": true
+      }
+    },
+    {
+      "name": "ohri-dispensing-dashboard",
+      "slot": "ohri-dispensing-dashboard-slot",
+      "component": "dispensingDashboard"
+    },
+    {
+      "name": "service-queues-ohri-dashboard-ext",
+      "slot": "dashboard-links-slot",
+      "component": "serviceQueuesLink"
+    },
+    {
+      "name": "ohri-service-queues-dashboard",
+      "slot": "ohri-service-queues-dashboard-slot",
+      "component": "serviceQueuesDashboard"
+    },
     {
       "name": "ohri-nav-items-ext",
       "slot": "ohri-nav-items-slot",
@@ -19,17 +80,6 @@
     {
       "name": "patient-table",
       "component": "patientTable"
-    },
-    {
-      "name": "ohri-patient-list",
-      "slot": "ohri-home-dashboard-slot",
-      "component": "patientList"
-    },
-    {
-      "component": "programsText",
-      "name": "ohri-home-programs-text",
-      "slot": "homepage-dashboard-slot" ,
-      "order": 4
     }
   ]
 }

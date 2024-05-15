@@ -1,7 +1,7 @@
 import { getAsyncLifecycle } from '@openmrs/esm-framework';
 const htsPages = [];
 
-const moduleName = '@openmrs/esm-ohri-core-app';
+const moduleName = '@openmrs/esm-ohri-app';
 
 export const loadHtsPages = () => {
   return htsPages.map((htsPage) => ({

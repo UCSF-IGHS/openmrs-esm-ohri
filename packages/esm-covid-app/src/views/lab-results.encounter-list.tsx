@@ -27,14 +27,6 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const config = useConfig();
 
-  const {
-    covidLabOrderFormUuid,
-    covidLabResultFormUuid,
-    covidLabTestFormUuid,
-    covidSampleCollectionFormUuid,
-    covidLabCancellationFormUuid,
-  } = config.formUuids;
-
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
       {
@@ -231,26 +223,16 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               patientUuid={patientUuid}
               encounterType={config.encounterTypes.covidLabOrderEncounterType_UUID}
               formList={[
-                {
-                  name: config.formNames.CovidLabOrderFormName,
-                  excludedIntents: ['COVID_LAB_ORDER_EMBED'],
-                  uuid: covidLabOrderFormUuid,
-                },
-                {
-                  name: config.formNames.CovidLabResultFormName,
-                  excludedIntents: ['COVID_LAB_RESULT_EMBED'],
-                  uuid: covidLabResultFormUuid,
-                },
-                { name: config.formNames.CovidLabTestFormName, excludedIntents: ['*'], uuid: covidLabTestFormUuid },
+                { name: config.formNames.CovidLabOrderFormName, excludedIntents: ['COVID_LAB_ORDER_EMBED'] },
+                { name: config.formNames.CovidLabResultFormName, excludedIntents: ['COVID_LAB_RESULT_EMBED'] },
+                { name: config.formNames.CovidLabTestFormName, excludedIntents: ['*'] },
                 {
                   name: config.formNames.CovidLabCancellationFormName,
                   excludedIntents: ['*', 'COVID_LAB_CANCELLATION_EMBED'],
-                  uuid: covidLabCancellationFormUuid,
                 },
                 {
                   name: config.formNames.CovidSampleCollectionFormName,
                   excludedIntents: ['*', 'COVID_SAMPLE_COLLECTION_EMBED'],
-                  uuid: covidSampleCollectionFormUuid,
                 },
               ]}
               columns={columnsLab}
@@ -267,12 +249,12 @@ const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
               patientUuid={patientUuid}
               encounterType={config.encounterTypes.covidLabOrderEncounterType_UUID}
               formList={[
-                { name: config.formNames.CovidLabTestFormName, uuid: covidLabTestFormUuid },
-                { name: config.formNames.CovidLabTestFormName, uuid: covidLabTestFormUuid },
-                { name: config.formNames.CovidLabResultFormName, uuid: covidLabResultFormUuid },
-                { name: config.formNames.CovidLabCancellationFormName, uuid: covidLabCancellationFormUuid },
-                { name: config.formNames.CovidSampleCollectionFormName, uuid: covidSampleCollectionFormUuid },
-                { name: config.formNames.CovidLabOrderFormName, uuid: covidLabOrderFormUuid },
+                { name: config.formNames.CovidLabTestFormName },
+                { name: config.formNames.CovidLabTestFormName },
+                { name: config.formNames.CovidLabResultFormName },
+                { name: config.formNames.CovidLabCancellationFormName },
+                { name: config.formNames.CovidSampleCollectionFormName },
+                { name: config.formNames.CovidLabOrderFormName },
               ]}
               columns={columnsPending}
               description={headerTitlePending}

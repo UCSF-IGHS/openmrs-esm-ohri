@@ -3,24 +3,9 @@
   "backendDependencies": {
     "webservices.rest": "^2.24.0"
   },
-  "pages": [],
+  "pages": [
+  ],
   "extensions": [
-    {
-      "name": "maternal-child-health-results-summary",
-      "slot": "homepage-dashboard-slot",
-      "component": "maternalChildDashboardLink",
-      "meta": {
-        "title": "Maternal & Child Health",
-        "name": "mother-child-health",
-        "slot": "mother-child-health-dashboard-slot"
-      },
-      "order": 6
-    },
-    {
-      "name": "mother-child-health-dashboard",
-      "slot": "mother-child-health-dashboard-slot",
-      "component": "root"
-    },
     {
       "name": "mch",
       "slot": "patient-chart-dashboard-slot",
@@ -77,6 +62,53 @@
       "name": "child-visits-summary-ext",
       "slot": "child-visits-summary-slot",
       "component": "childVisitsDashboard"
+    },
+    {
+      "name": "maternal-child-health-results-summary",
+      "slot": "dashboard-slot",
+      "component": "maternalChildDashboardLink",
+      "meta": {
+        "title": "Maternal & Child Health",
+        "path": "Maternal & Child Health",
+        "slot": "mother-child-health-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "pmtct",
+          "dashboardTitle": "Mother and Child Health"
+        },
+        "isLink": true
+      }
+    },
+    {
+      "name": "mother-child-health-results-dashboard",
+      "slot": "mother-child-health-dashboard-slot",
+      "component": "maternalChildDashboard",
+      "meta": {
+        "name": "mother-child-health",
+        "slot": "mother-child-health-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "pmtct",
+          "dashboardTitle": "Mother Child Health Home Page"
+        },
+        "title": "Maternal & Child Health"
+      }
+    },
+    {
+      "name": "pmtct-home-header-slot",
+      "slot": "pmtct-home-header-slot",
+      "component": "pmtctDashboardHeader"
+    },
+    {
+      "name": "pmtct-home-tiles-ext",
+      "slot": "pmtct-home-tiles-slot",
+      "component": "pmtctDashboardTiles"
+    },
+    {
+      "name": "pmtct-home-tabs-ext",
+      "slot": "pmtct-home-tabs-slot",
+      "component": "pmtctDashboardTabs"
     }
   ]
 }

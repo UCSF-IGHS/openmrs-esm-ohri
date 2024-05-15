@@ -97,20 +97,3 @@ div[class*='-esm-login__styles__center'] > img {
 :global(.cds--overflow-menu) > div {
   width: 15rem !important;
 }
-
-:global(.cds--tab-content) {
-  background-color: #F4F4F4;
-}
-
-:global(.cds--side-nav--expanded .cds--side-nav__items) {
-  padding: 0.125rem !important;
-}
-
-:global(.cds--side-nav__submenu) {
-  height: 1.5rem;
-  
-  &:focus,
-  &:hover {
-    background-color: #e0e0e0;
-  }
-} 

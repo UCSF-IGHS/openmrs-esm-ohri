@@ -1,4 +1,4 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import MaternalSummary from './views/mch-summary/mch-summary.component';
 import MaternalHealthList from './views/maternal-health/maternal-health.component';
 import ChildHealthList from './views/child-health/child-health.component';
@@ -11,18 +11,17 @@ import {
   motherChildDashboardMeta,
   mchFolderMeta,
 } from './dashboard.meta';
+import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { registerPostSubmissionAction, registerExpressionHelper } from '@openmrs/openmrs-form-engine-lib';
 import {
   createConditionalDashboardLink,
-  createNewOHRIDashboardLink,
+  createOHRIDashboardLink,
   OHRIHome,
   OHRIWelcomeSection,
   createConditionalDashboardGroup,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { generateInfantPTrackerId } from './utils/pmtct-helpers';
 import { configSchema } from './config-schema';
-import rootComponent from './root.component';
-import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -50,18 +49,8 @@ export function startupApp() {
     name: 'ArtSubmissionAction',
     load: () => import('./post-submission-actions/art-linkage-action'),
   });
-
-  import('./utils/pmtct-helpers').then(({ generateInfantPTrackerId }) => {
-    registerExpressionHelper('customGenerateInfantPTrackerId', generateInfantPTrackerId);
-  });
+  registerExpressionHelper('customGenerateInfantPTrackerId', generateInfantPTrackerId);
 }
-
-export const root = getSyncLifecycle(rootComponent, options);
-
-export const maternalChildDashboardLink = getSyncLifecycle(
-  createNewOHRIDashboardLink(motherChildDashboardMeta),
-  options,
-);
 
 export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);
 export const mchSummaryDashboardLink = getSyncLifecycle(
@@ -69,7 +58,7 @@ export const mchSummaryDashboardLink = getSyncLifecycle(
   options,
 );
 
-export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
+export const mchSummaryDashboard = getSyncLifecycle(MaternalSummary, {
   featureName: 'mch-summary',
   moduleName,
 });
@@ -93,6 +82,7 @@ export const childVisitsDashboard = getSyncLifecycle(ChildHealthList, {
   featureName: 'maternal-visits',
   moduleName,
 });
+export const maternalChildDashboardLink = getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options);
 export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'mother child health results dashboard',
   moduleName,

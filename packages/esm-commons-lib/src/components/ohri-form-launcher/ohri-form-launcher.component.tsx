@@ -4,7 +4,7 @@ import styles from './launcher-with-intent.scss';
 import { useTranslation } from 'react-i18next';
 import { OHRIOverflowMenu } from '../overflow-menu-button/ohri-overflow-menu.component';
 
-export const FormLauncherWithIntent: React.FC<{
+export const OHRIFormLauncherWithIntent: React.FC<{
   launchForm: (formJson?: any, intent?: string) => void;
   title?: string;
   formJsonList?: Array<any>;

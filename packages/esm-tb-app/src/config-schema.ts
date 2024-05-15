@@ -16,8 +16,6 @@ export const configSchema = {
       tbPatientTracing: '98c938e9-fb3e-4982-ae22-0305cbd12f8c',
       tbProgramEnrollment: '9a199b59-b185-485b-b9b3-a9754e65ae57',
       tbTreatmentAndFollowUp: '1881304a-4854-4927-b0b1-a6231d61e43c',
-      tptCaseEnrollment: 'dc6ce80c-83f8-4ace-a638-21df78542551',
-      tptTreatmentAndFollowUp: '1ac3de3f-8fc2-43a7-addb-e805c393ecae',
     },
   },
   obsConcepts: {
@@ -49,17 +47,6 @@ export const configSchema = {
       tBEnrollmentType: '163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       dsTBEnrollment: '160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       dRTBEnrollment: '160052AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptTreatmentId: '162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptEnrollmentDate: '164852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptIndication: '162276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptRegimen: '1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptAppointmentDate: '5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptAdherence: '164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptTreatmentStartDate: '162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptOutcome: '1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptOutcomeDate: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      tptDateOutcome: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      treatmentPlan: '1265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
@@ -67,31 +54,6 @@ export const configSchema = {
     _description: 'TB Cohort uuid.',
     _default: {
       clientsEnrolledForTb: '98fd11ba-cb4d-46f7-9b82-40d49949c7ef',
-      clientsEnrolledForTpt: '5f28254f-0a80-4d15-ad91-68c6cf5ea715',
-    },
-  },
-  formNames: {
-    _type: Type.Object,
-    _description: 'TPT Form Names.',
-    _default: {
-      TptOutcomeFormName: 'TPT outcome form',
-      TptCaseEnrolmentFormName: 'TPT Case Enrolment form',
-      TptTreatmentFormName: 'TPT Followup & Treatment form',
-      tbfollowUpForm: 'TB Follow-up Form',
-      tbPatientTracingForm: 'TB Patient Tracing Form',
-      tbContactListingForm: 'TB Contact Listing',
-    },
-  },
-  formUuids: {
-    _type: Type.Object,
-    _description: 'TPT Form Uuids.',
-    _default: {
-      tptOutcomeFormUuid: '97fa657f-7627-3f81-829d-826b0d4c7d28',
-      tptCaseEnrolmentFormUuid: '71080512-07e6-345f-864f-93e892420258',
-      tptTreatmentFormUuid: '6212bb87-766e-33d0-b37b-79f019008492',
-      tbFollowUpFormUuid: '79b05c37-0def-4482-a345-c63b99fbd565',
-      tbPatientTracingFormUuid: 'ac3cbd10-1939-3797-9de6-2a39dfb68441',
-      tbContactListingFormUuid: 'cb16d920-62f1-3696-b781-e6a4f5e80de1',
     },
   },
 };
@@ -100,5 +62,4 @@ export interface ConfigObject {
   identifiers: Object;
   encounterTypes: Object;
   obsConcepts: Object;
-  formNames: Object;
 }

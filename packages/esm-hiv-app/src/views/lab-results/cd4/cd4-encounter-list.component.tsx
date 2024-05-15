@@ -11,7 +11,7 @@ interface CD4OverviewListProps {
 const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
   const headerTitle = t('cd4', 'CD4');
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -72,7 +72,7 @@ const CD4OverviewList: React.FC<CD4OverviewListProps> = ({ patientUuid }) => {
       patientUuid={patientUuid}
       filter={cd4LabResultsFilter}
       encounterType={encounterTypes.CD4LabResultsEncounter_UUID}
-      formList={[{ name: formNames.CD4LabResultsFormName, uuid: formUuids.cd4LabResultsFormUuid }]}
+      formList={[{ name: formNames.CD4LabResultsFormName }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

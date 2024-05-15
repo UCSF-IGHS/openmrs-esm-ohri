@@ -24,7 +24,6 @@ interface CohortPatientListProps {
   queryParams?: Array<string>;
   associatedEncounterType?: string;
   viewPatientProgramSummary?: boolean;
-  viewTptPatientProgramSummary?: boolean;
   addPatientToListOptions?: { isEnabled: boolean; excludeCohorts?: Array<string> };
   launchableForm?: {
     name: string;
@@ -55,7 +54,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   extraAssociatedEncounterTypes,
   moduleName,
   viewPatientProgramSummary,
-  viewTptPatientProgramSummary,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasLoadedPatients, setHasLoadedPatients] = useState(false);
@@ -149,7 +147,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
               ...addPatientToListOptions,
               displayText: t('moveToListSideNav', 'Move to list'),
             },
-            viewTptPatientProgramSummary,
             viewPatientProgramSummary,
           }),
         };

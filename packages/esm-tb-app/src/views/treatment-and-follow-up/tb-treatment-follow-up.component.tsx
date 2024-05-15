@@ -11,7 +11,7 @@ import { useConfig } from '@openmrs/esm-framework';
 
 const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const config = useConfig();
 
   const headerTitle = t('TbTreatmentFollowUp', 'TB Follow-up');
   const columns: EncounterListColumn[] = useMemo(
@@ -20,35 +20,35 @@ const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) =
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.visitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDate, true);
         },
       },
       {
         key: 'caseId',
         header: t('caseId', 'Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.followUpCaseId);
+          return getObsFromEncounter(encounter, config.obsConcepts.followUpCaseId);
         },
       },
       {
         key: 'monthOfTreatment',
         header: t('monthOfTreatment', 'Month of Rx'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.monthOfTreatment);
+          return getObsFromEncounter(encounter, config.obsConcepts.monthOfTreatment);
         },
       },
       {
         key: 'adherenceAssessment',
         header: t('adherenceAssessment', 'Adherence'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.adherenceAssessment);
+          return getObsFromEncounter(encounter, config.obsConcepts.adherenceAssessment);
         },
       },
       {
         key: 'nextAppointment',
         header: t('nextAppointment', 'Next Appointment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.nextAppointmentDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.nextAppointmentDate, true);
         },
       },
       {
@@ -78,8 +78,8 @@ const TbTreatmentFollowUpList: React.FC<PatientChartProps> = ({ patientUuid }) =
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={encounterTypes.tbTreatmentAndFollowUp}
-      formList={[{ name: formNames.TptTreatmentFormName, uuid: formUuids.tptTreatmentFormUuid }]}
+      encounterType={config.encounterTypes.tbTreatmentAndFollowUp}
+      formList={[{ name: 'TB Follow-up Form' }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

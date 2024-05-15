@@ -16,77 +16,77 @@ import { getTbRegimen } from '../../tb-helper';
 
 const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   const headerRecentTB = t('recentTuberculosis', 'Recent Tuberculosis');
   const headerPreviousCases = t('previousCases', 'Previous Cases');
   const headerVisit = t('visits', 'Visits');
-  const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
 
   const recentTuberclosisColumns: SummaryCardColumn[] = useMemo(
     () => [
       {
         key: 'caseID',
         header: t('caseID', 'Case ID'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.caseID);
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
         },
       },
       {
         key: 'enrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.enrollmentDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.enrollmentDate, true);
         },
       },
       {
         key: 'type',
         header: t('type', 'Type'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.type);
+          return getObsFromEncounter(encounter, config.obsConcepts.type);
         },
       },
       {
         key: 'site',
         header: t('site', 'Site'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.site);
+          return getObsFromEncounter(encounter, config.obsConcepts.site);
         },
       },
       {
         key: 'drugSensitivity',
         header: t('drugSensitivity', 'Drug Sensitivity'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.drugSensitivity);
+          return getObsFromEncounter(encounter, config.obsConcepts.drugSensitivity);
         },
       },
       {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
-          const tBEnrollmentType = findObs(encounter, obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
           return getTbRegimen(encounter, tBEnrollmentType);
         },
       },
       {
         key: 'hivStatus',
         header: t('hivStatus', 'HIV Status'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.hivStatus);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivStatus);
         },
       },
       {
         key: 'outcome',
         header: t('outcome', 'Outcome'),
-        encounterTypes: [encounterTypes.tbProgramEnrollment],
+        encounterTypes: [config.encounterTypes.tbProgramEnrollment],
         getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.outcome);
+          return getObsFromEncounter(encounter, config.obsConcepts.outcome);
         },
       },
     ],
@@ -99,35 +99,35 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'caseID',
         header: t('caseID', 'Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.caseID);
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
         },
       },
       {
         key: 'enrollmentDate',
         header: t('enrollmentDate', 'Enrollment Date'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.enrollmentDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.enrollmentDate, true);
         },
       },
       {
         key: 'type',
         header: t('type', 'Type'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.type);
+          return getObsFromEncounter(encounter, config.obsConcepts.type);
         },
       },
       {
         key: 'site',
         header: t('site', 'Site'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.site);
+          return getObsFromEncounter(encounter, config.obsConcepts.site);
         },
       },
       {
         key: 'regimen',
         header: t('regimen', 'Regimen'),
         getValue: (encounter) => {
-          const tBEnrollmentType = findObs(encounter, obsConcepts.tBEnrollmentType)?.value?.uuid;
+          const tBEnrollmentType = findObs(encounter, config.obsConcepts.tBEnrollmentType)?.value?.uuid;
           return getTbRegimen(encounter, tBEnrollmentType);
         },
       },
@@ -135,7 +135,7 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'outcome',
         header: t('outcome', 'Outcome'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.outcome);
+          return getObsFromEncounter(encounter, config.obsConcepts.outcome);
         },
       },
     ],
@@ -148,42 +148,42 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
         key: 'caseID',
         header: t('caseID', 'Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.caseID);
+          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
         },
       },
       {
         key: 'dateOfVisit',
         header: t('dateOfVisit', 'Date of Visit'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.visitDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.visitDate, true);
         },
       },
       {
         key: 'monthOfVisit',
         header: t('monthOfVisit', 'Month of Visit'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.monthOfTreatment);
+          return getObsFromEncounter(encounter, config.obsConcepts.monthOfTreatment);
         },
       },
       {
         key: 'adherence',
         header: t('adherence', 'Adherence'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.adherenceAssessment);
+          return getObsFromEncounter(encounter, config.obsConcepts.adherenceAssessment);
         },
       },
       {
         key: 'adverseDrugReaction',
         header: t('adverseDrugReaction', 'Adverse Drug Reaction'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.ADR);
+          return getObsFromEncounter(encounter, config.obsConcepts.ADR);
         },
       },
       {
         key: 'nextAppointment',
         header: t('nextAppointment', 'Next Appointment'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.nextAppointmentDate, true);
+          return getObsFromEncounter(encounter, config.obsConcepts.nextAppointmentDate, true);
         },
       },
     ],
@@ -201,11 +201,11 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={encounterTypes.tbProgramEnrollment}
+        encounterType={config.encounterTypes.tbProgramEnrollment}
         columns={previousCasesColumns}
         description={headerPreviousCases}
         headerTitle={headerPreviousCases}
-        formList={[{ name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid }]}
+        formList={[{ name: 'TB Case Enrollment Form' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',
@@ -215,11 +215,11 @@ const TBSummaryOverviewList: React.FC<PatientChartProps> = ({ patientUuid }) => 
 
       <EncounterList
         patientUuid={patientUuid}
-        encounterType={encounterTypes.tbTreatmentAndFollowUp}
+        encounterType={config.encounterTypes.tbTreatmentAndFollowUp}
         columns={tbVisitsColumns}
         description={headerVisit}
         headerTitle={headerVisit}
-        formList={[{ name: formNames.TptTreatmentFormName, uuid: formUuids.tptTreatmentFormUuid }]}
+        formList={[{ name: 'TB Follow-up Form' }]}
         launchOptions={{
           hideFormLauncher: true,
           displayText: '',

@@ -17,7 +17,7 @@ export function useFormsJson(formNames: string[]) {
       setOpenmrsForms(
         responses
           .map((response, index) => {
-            const match = response?.data?.results.find((result) => !result.retired && result.name === formNames[index]);
+            const match = response.data.results.find((result) => !result.retired && result.name === formNames[index]);
             if (!match) {
               console.error('Form not found: ' + formNames[index]);
               return null;

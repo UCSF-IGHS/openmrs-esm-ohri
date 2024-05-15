@@ -57,12 +57,15 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
   useEffect(() => {
     let rows = [];
     for (let patient of patients) {
-      const lastviralLoadResult = patientToViralLoadMap.find((entry) => entry.patientId === patient.resource.id)
-        ?.viralLoadResult;
-      const lastviralLoadResultDate = patientToViralLoadMap.find((entry) => entry.patientId === patient.resource.id)
-        ?.viralLoadResultDate;
-      const lastViralLoadEncounterUuid = patientToViralLoadMap.find((entry) => entry.patientId === patient.resource.id)
-        ?.viralEncounterUuid;
+      const lastviralLoadResult = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralLoadResult;
+      const lastviralLoadResultDate = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralLoadResultDate;
+      const lastViralLoadEncounterUuid = patientToViralLoadMap.find(
+        (entry) => entry.patientId === patient.resource.id,
+      )?.viralEncounterUuid;
       const patientActions = (
         <LabresultsFormViewer
           form={{ package: 'hiv', name: 'viral_load_results' }}

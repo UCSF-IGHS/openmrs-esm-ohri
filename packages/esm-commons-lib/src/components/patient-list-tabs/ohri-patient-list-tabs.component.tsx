@@ -27,7 +27,6 @@ export function OHRIPatientListTabs({ patientListConfigs, moduleName }) {
                 extraAssociatedEncounterTypes={config.extraAssociatedEncounterTypes}
                 moduleName={moduleName}
                 viewPatientProgramSummary={config.viewPatientProgramSummary}
-                viewTptPatientProgramSummary={config.viewTptPatientProgramSummary}
               />
             </TabPanel>
           );

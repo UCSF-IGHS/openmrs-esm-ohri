@@ -9,7 +9,7 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 import { moduleName } from '../../../index';
-import { formatDate, parseDate, useConfig } from '@openmrs/esm-framework';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface TransferOutTabListProps {
   patientUuid: string;
@@ -17,7 +17,7 @@ interface TransferOutTabListProps {
 
 const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -25,11 +25,7 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
         key: 'visitDate',
         header: t('visitDate', 'Visit Date'),
         getValue: (encounter) => {
-          const obsVisitDate = getObsFromEncounter(encounter, obsConcepts.dateOfEncounterConcept, true);
-          const encounterDate = encounter.encounterDatetime;
-          return obsVisitDate === '--' && encounterDate
-            ? formatDate(parseDate(encounterDate), { mode: 'wide' })
-            : obsVisitDate;
+          return getObsFromEncounter(encounter, obsConcepts.dateOfEncounterConcept, true);
         },
       },
       {
@@ -89,7 +85,7 @@ const TransferOutTabList: React.FC<TransferOutTabListProps> = ({ patientUuid }) 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.transferOutEncounterType_UUID}
-      formList={[{ name: formNames.TransferOutFormName, uuid: formUuids.transferOutFormUuid }]}
+      formList={[{ name: formNames.TransferOutFormName }]}
       columns={columnsLab}
       description={displayText}
       headerTitle={headerTitle}

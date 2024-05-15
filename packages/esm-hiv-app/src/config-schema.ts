@@ -134,29 +134,6 @@ export const configSchema = {
       ExpressVisitFormName: 'POC Express Visit Form',
     },
   },
-  formUuids: {
-    _type: Type.Object,
-    _description: 'HIV Form Uuids',
-    _default: {
-      serviceEnrolmentFormUuid: '8f713e0e-94a0-3c57-9024-69520933802a',
-      clinicalVisitFormUuid: 'b3abc4ce-c5ac-3c40-b8e7-442b163670f1',
-      hivTestingFormUuid: '43ffea77-49dc-3ebd-8d83-c2aedb654030',
-      htsPreTestFormUuid: 'a7645e21-a9f7-3abc-af2e-2f477ee74e69',
-      artTherapyFormUuid: 'f99fadd8-feb7-321c-ab58-7569805668e7',
-      deathFormUuid: '41af2def-841d-38b7-8d2e-df25bdd0b73f',
-      transferOutFormUuid: 'a969288d-6605-361b-b01c-42f6ef25c0f5',
-      patientTracingFormUuid: '71f3febd-dd11-322b-9c18-2a8a07d87af1',
-      intimatePartnerFormUuid: '5c37314f-c558-3720-8780-d123c70f4e23',
-      contactTracingFormUuid: '94a911a8-8da1-3c12-b696-2f3e78c2e87c',
-      serviceDeliveryFormUuid: '1e14f841-b42b-3273-93db-807927ca9a82',
-      disclosureFormUuid: 'cb30cea5-3166-3e88-befb-9141e5f3769d',
-      partnerNotificationFormUuid: '8c48efc5-dd85-3795-9f58-8eb436a4edcc',
-      mentalHealthFormUuid: '2069bd57-d534-3de9-ae24-f1d4e4b2de83',
-      cd4LabResultsFormUuid: 'a66197de-419a-3223-8691-f70d36b1524b',
-      viralLoadRequestFormUuid: '717eed11-55bb-3adb-9be4-3e92efcea2c8',
-      expressVisitFormUuid: 'ea1efef5-33cf-363f-9e59-5d0b6563ec7c',
-    },
-  },
 };
 
 export interface ConfigObject {
@@ -164,5 +141,4 @@ export interface ConfigObject {
   encounterTypes: Object;
   obsConcepts: Object;
   formNames: Object;
-  formUuids: Object;
 }

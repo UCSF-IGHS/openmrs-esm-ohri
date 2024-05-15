@@ -10,7 +10,7 @@ interface DeathTabListProps {
 
 const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
+  const { obsConcepts, encounterTypes, formNames } = useConfig();
 
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
@@ -67,7 +67,7 @@ const DeathTabList: React.FC<DeathTabListProps> = ({ patientUuid }) => {
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.hivLabResultsEncounterType_UUID}
-      formList={[{ name: formNames.deathFormName, uuid: formUuids.deathFormUuid }]}
+      formList={[{ name: formNames.deathFormName }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

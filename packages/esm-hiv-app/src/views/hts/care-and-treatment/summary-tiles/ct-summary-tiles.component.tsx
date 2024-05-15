@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
 
-function CTSummaryTiles() {
+function CTSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const [activeClientsCount, setActiveClientsCount] = useState(0);
   const { cohorts } = useConfig();

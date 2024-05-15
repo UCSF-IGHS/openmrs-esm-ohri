@@ -20,8 +20,6 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
 
   const { cervicalCancerRegistrationForm } = config.formNames;
 
-  const { cervicalCancerRegistrationFormUuid } = config.formUuids;
-
   const columnsLab: EncounterListColumn[] = useMemo(
     () => [
       {
@@ -79,7 +77,7 @@ export const CacxRegistration: React.FC<CacxRegistrationProps> = ({ patientUuid 
     <EncounterList
       patientUuid={patientUuid}
       encounterType={cacxRegistrationEncounterType_UUID}
-      formList={[{ name: cervicalCancerRegistrationForm, uuid: cervicalCancerRegistrationFormUuid }]}
+      formList={[{ name: cervicalCancerRegistrationForm }]}
       columns={columnsLab}
       description={headerTitle}
       headerTitle={headerTitle}

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Outcomes } from './outcome-list-tile.component';
 import { useConfig } from '@openmrs/esm-framework';
 
-function CovidSummaryTiles() {
+function CovidSummaryTiles({ launchWorkSpace }) {
   const { t } = useTranslation();
   const config = useConfig();
   const [activeClientsCount, setActiveClientsCount] = useState(100);

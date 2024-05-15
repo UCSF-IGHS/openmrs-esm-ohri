@@ -45,49 +45,10 @@ export const tbClinicalViewDashboardMeta = {
   title: 'Tuberculosis',
 };
 
-export const tbPreventionDashboardMeta = {
-  name: 'tb-prevention',
-  slot: 'tb-prevention-dashboard-slot',
-  title: 'TB Prevention',
-  isFolder: true,
-  folderTitle: 'Tuberculosis',
-  folderIcon: PillsAdd,
-  isHidden: true,
-};
-
 export const tbCasesDashboardMeta = {
   name: 'tb-cases',
   slot: 'tb-cases-dashboard-slot',
+  config: { columns: 1, type: 'grid', programme: 'tb', dashboardTitle: 'TB Treatment', icon: PillsAdd },
   title: 'TB Treatment',
-  isFolder: true,
-  childLinks: [
-    {
-      name: 'tb-prevention',
-      title: 'TB Prevention',
-    },
-  ],
-  folderTitle: 'Tuberculosis',
-  folderIcon: PillsAdd,
-};
-
-export const tptPatientChartMeta = {
-  title: 'TPT Program',
-  slotName: 'ohri-tpt-slot',
-  isExpanded: false,
-};
-
-export const tptPatientSummaryMeta = {
-  slot: 'tpt-patient-summary-slot',
-  columns: 1,
-  title: 'Patient Summary',
-  path: 'tpt-patient-summary',
-  layoutMode: 'anchored',
-};
-
-export const tptProgramManagementDashboardMeta = {
-  slot: 'tpt-program-management-summary-slot',
-  columns: 1,
-  title: 'Program Management',
-  path: 'tpt-program-management',
-  layoutMode: 'anchored',
+  dashboardIcon: PillsAdd,
 };
