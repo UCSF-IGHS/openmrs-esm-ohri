@@ -12,7 +12,7 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('antenatalCare', 'Antenatal Care');
-  const ANCEncounterTypeUUID = config.encounterTypes.antenatal;
+  const { encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -31,10 +31,10 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
         },
       },
       {
-        key: 'hivTestResults',
-        header: t('hivTestResults', 'HIV Test Results'),
+        key: 'hivTestStatus',
+        header: t('hivTestStatus', 'HIV Test Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.hivTestResultConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivTestStatus);
         },
       },
       {
@@ -99,8 +99,8 @@ const AntenatalCareList: React.FC<AntenatalCareListProps> = ({ patientUuid }) =>
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={ANCEncounterTypeUUID}
-      formList={[{ name: 'Antenatal Form' }]}
+      encounterType={encounterTypes.antenatal.ANCEncounterTypeUUID}
+      formList={[{ name: formNames.antenatal, uuid: formUuids.antenatal }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

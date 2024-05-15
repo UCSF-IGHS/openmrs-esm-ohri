@@ -33,6 +33,14 @@ export const configSchema = {
       cervicalCancerRegistrationForm: 'Cervical Cancer Registration Form',
     },
   },
+  formUuids: {
+    _type: Type.Object,
+    _description: 'List of uuids of forms related to Cacx.',
+    _default: {
+      screeningAndCancerTreatmentFormUuid: '9e3ec2a7-ad26-3f43-9677-82e318996eec',
+      cervicalCancerRegistrationFormUuid: '12f41bfe-6430-3d8c-9edf-2d1b7c904f0f',
+    },
+  },
 };
 
 export interface ConfigObject {
@@ -40,4 +48,5 @@ export interface ConfigObject {
   encounterTypes: Object;
   obsConcepts: Object;
   formNames: Object;
+  formUuids: Object;
 }

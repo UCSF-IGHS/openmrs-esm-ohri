@@ -57,7 +57,7 @@ jobs:
 
     needs: build
 
-    if: ${{ github.event_name == 'release' || github.ref == 'refs/heads/master' }}
+    if: ${{ github.event_name == 'release' }}
 
     steps:
       - uses: actions/checkout@v3

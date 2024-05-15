@@ -16,6 +16,7 @@ import {
   PatientStatusBannerTag,
   OHRIHome,
   OHRIWelcomeSection,
+  createOHRIGroupedLink,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
@@ -33,6 +34,8 @@ import {
   partnerNotificationServicesDashboardMeta,
   hivPreventionFolderDashboardMeta,
 } from './dashboard.meta';
+import htsRootComponent from './hts-root.component';
+import careAndTreatmentRootComponent from './hiv-treatment-root.component';
 
 import { configSchema } from './config-schema';
 
@@ -93,23 +96,20 @@ export const hivCareAndTreatmentFolderLink = getSyncLifecycle(
   options,
 );
 export const hivCareAndTreatmentDashboardLink = getSyncLifecycle(
-  createOHRIDashboardLink(careAndTreatmentDashboardMeta),
+  createOHRIGroupedLink(hivCareAndTreatmentFolderDashboardMeta),
   options,
 );
-export const hivCareAndTreatmentDashboard = getSyncLifecycle(OHRIHome, {
-  featureName: 'care and treatment dashboard',
-  moduleName,
-});
+export const hivCareAndTreatmentDashboard = getSyncLifecycle(careAndTreatmentRootComponent, options);
 
 export const hivPreventionFolderLink = getSyncLifecycle(
   createOHRIDashboardLink(hivPreventionFolderDashboardMeta),
   options,
 );
-export const hivPreventionDashboardLink = getSyncLifecycle(createOHRIDashboardLink(htsDashboardMeta), options);
-export const hivPreventionDashboard = getSyncLifecycle(OHRIHome, {
-  featureName: 'hts dashboard',
-  moduleName,
-});
+export const hivPreventionDashboardLink = getSyncLifecycle(
+  createOHRIGroupedLink(hivPreventionFolderDashboardMeta),
+  options,
+);
+export const hivPreventionDashboard = getSyncLifecycle(htsRootComponent, options);
 
 // Lab Results
 export const labResultsHomeHeader = getSyncLifecycle(OHRIWelcomeSection, {

@@ -17,38 +17,6 @@
       }
     },
     {
-      "name": "covid-cases-dashboard-ext",
-      "slot": "ohri-covid-dashboard-slot",
-      "component": "covidCasesDashboardLink",
-      "meta": {
-        "name": "covid-cases",
-        "slot": "covid-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "covid",
-          "dashboardTitle": "COVID-19 Cases"
-        },
-        "path": "COVID-19",
-        "title": "COVID-19 Cases"
-      }
-    },
-    {
-      "name": "covid-cases-dashboard",
-      "slot": "covid-cases-dashboard-slot",
-      "component": "covidCasesDashboard",
-      "meta": {
-        "name": "covid-cases",
-        "slot": "covid-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "programme": "covid",
-          "dashboardTitle": "COVID-19 Home Page"
-        },
-        "title": "COVID-19 Cases"
-      }
-    },
-    {
       "name": "covid-home-header-ext",
       "slot": "covid-home-header-slot",
       "component": "covidDashboardHeader"
@@ -115,6 +83,22 @@
       "name": "covid-vaccinations-ext",
       "slot": "covid-vaccinations-dashboard-slot",
       "component": "covidVaccinationsDashboard"
+    },
+    {
+      "name": "covid-cases-dashboard-ext",
+      "slot": "homepage-dashboard-slot",
+      "component": "covidCasesDashboardLink",
+      "meta": {
+        "name": "covid-cases",
+        "slot": "covid-cases-dashboard-slot",
+        "title": "TB Treatment"
+      },
+      "order": 5
+    },
+    {
+      "name": "covid-cases-dashboard",
+      "slot": "covid-cases-dashboard-slot",
+      "component": "covidCasesDashboard"
     }
   ]
 }

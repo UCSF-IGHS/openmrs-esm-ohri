@@ -1,5 +1,10 @@
-import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
-import { createOHRIDashboardLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import {
+  createOHRIDashboardLink,
+  OHRIHome,
+  OHRIWelcomeSection,
+  createOHRIGroupedLink,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import {
   tbPatientChartMeta,
@@ -9,6 +14,10 @@ import {
   tbTreatmentFollowUpDashboardMeta,
   tbClinicalViewDashboardMeta,
   tbCasesDashboardMeta,
+  tptProgramManagementDashboardMeta,
+  tptPatientChartMeta,
+  tptPatientSummaryMeta,
+  tbPreventionDashboardMeta,
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
@@ -17,6 +26,12 @@ import TbTreatmentFollowUpList from './views/treatment-and-follow-up/tb-treatmen
 import TbContactTracingList from './views/tb-contact-listing/tb-contact-list.component';
 import TbSummaryTiles from './views/dashboard/summary-tiles/tb-summary-tiles.component';
 import TbHomePatientTabs from './views/dashboard/patient-list-tabs/tb-patient-list-tabs.component';
+import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
+import tptPatientSummary from './views/tpt/patient-summary/patient-summary.component';
+import TptPreventionSummaryTiles from './views/dashboard/summary-tiles/tpt-summary-tiles.component';
+import TptPatientListTabs from './views/dashboard/patient-list-tabs/tpt-patient-list-tabs.component';
+import rootComponent from './root.component';
+import TptHomeComponent from './tpt-home.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -34,6 +49,8 @@ export function startupApp() {
 }
 
 export const patientChartTbDashboard = getSyncLifecycle(createDashboardGroup(tbPatientChartMeta), options);
+
+export const patientChartTptDashboard = getSyncLifecycle(createDashboardGroup(tptPatientChartMeta), options);
 
 export const tbPatientSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...tbPatientSummaryDashboardMeta, moduleName }),
@@ -83,14 +100,44 @@ export const tbDashboardTabs = getSyncLifecycle(TbHomePatientTabs, {
   featureName: 'tb-home-tabs',
   moduleName,
 });
+export const tptDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
+  featureName: 'tpt-home-header',
+  moduleName,
+});
+export const tptDashboardTiles = getSyncLifecycle(TptPreventionSummaryTiles, {
+  featureName: 'tpt-home-tiles',
+  moduleName,
+});
+export const tptDashboardTabs = getSyncLifecycle(TptPatientListTabs, {
+  featureName: 'tpt-home-tabs',
+  moduleName,
+});
+
+export const tptPatientSummaryDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...tptPatientSummaryMeta, moduleName }),
+  options,
+);
+export const tptPatientSummaryDashboard = getSyncLifecycle(tptPatientSummary, {
+  featureName: 'tpt-patient-summary',
+  moduleName,
+});
+
+export const tptProgramManagementDashboardLink = getSyncLifecycle(
+  createDashboardLink({ ...tptProgramManagementDashboardMeta, moduleName }),
+  options,
+);
+export const tptProgramManagementDashboard = getSyncLifecycle(tptProgramManagementSummary, {
+  featureName: 'tpt-program-management-summary',
+  moduleName,
+});
 
 // OHRI HOME
 export const tbClinicalViewDashboardLink = getSyncLifecycle(
   createOHRIDashboardLink(tbClinicalViewDashboardMeta),
   options,
 );
-export const tbCasesDashboardLink = getSyncLifecycle(createOHRIDashboardLink(tbCasesDashboardMeta), options);
-export const tbCasesDashboard = getSyncLifecycle(OHRIHome, {
-  featureName: 'tb cases dashboard',
-  moduleName,
-});
+export const tbCasesDashboardLink = getSyncLifecycle(createOHRIGroupedLink(tbCasesDashboardMeta), options);
+export const tbCasesDashboard = getSyncLifecycle(rootComponent, options);
+
+export const tbPreventionDashboardLink = getSyncLifecycle(createOHRIGroupedLink(tbPreventionDashboardMeta), options);
+export const tbPreventionDashboard = getSyncLifecycle(TptHomeComponent, options);

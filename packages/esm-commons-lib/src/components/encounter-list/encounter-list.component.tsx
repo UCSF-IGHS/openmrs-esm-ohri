@@ -1,18 +1,19 @@
-import { navigate } from '@openmrs/esm-framework';
+import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
-import { OHRIFormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
+import { FormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
-import { OHRIFormSchema } from '@openmrs/openmrs-form-engine-lib';
-import { launchEncounterForm } from './helpers';
+import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { deleteEncounter, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+import { mutate } from 'swr';
 
 export interface EncounterListColumn {
   key: string;
@@ -29,6 +30,7 @@ export interface EncounterListProps {
   description: string;
   formList?: Array<{
     name: string;
+    uuid?: string;
     excludedIntents?: Array<string>;
     fixedIntent?: string;
     isDefault?: boolean;
@@ -54,18 +56,14 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 }) => {
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
-  const [forms, setForms] = useState<OHRIFormSchema[]>([]);
+  const [forms, setForms] = useState<FormSchema[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [isLoadingForms, setIsLoadingForms] = useState(true);
   const { isDead } = usePatientDeathStatus(patientUuid);
   const formNames = useMemo(() => formList.map((form) => form.name), []);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
-  const {
-    encounters,
-    isLoading: isLoadingEncounters,
-    onFormSave,
-  } = useEncounterRows(patientUuid, encounterType, filter);
+  const { encounters, isLoading, onFormSave } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
@@ -83,12 +81,54 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         form: {
           name: forms[0]?.name,
         },
-        mode: 'view',
+        mode: 'edit',
+        intent: '*',
+      },
+      {
+        label: t('deleteEncounter', 'Delete'),
+        form: {
+          name: forms[0]?.name,
+        },
+        mode: 'delete',
         intent: '*',
       },
     ],
     [forms, t],
   );
+
+  const handleDeleteEncounter = useCallback((encounterUuid, encounterTypeName) => {
+    const close = showModal('delete-encounter-modal', {
+      close: () => close(),
+      encounterTypeName: encounterTypeName || '',
+      onConfirmation: () => {
+        const abortController = new AbortController();
+        deleteEncounter(encounterUuid, abortController)
+          .then(() => {
+            mutate(
+              (key) =>
+                typeof key === "string" && key.startsWith("/ws/rest/v1/encounter"),
+              undefined,
+              { revalidate: true }
+            );
+            showSnackbar({
+              isLowContrast: true,
+              title: t('encounterDeleted', 'Encounter deleted'),
+              subtitle: `Encounter ${t('successfullyDeleted', 'successfully deleted')}`,
+              kind: 'success',
+            });
+          })
+          .catch(() => {
+            showSnackbar({
+              isLowContrast: false,
+              title: t('error', 'Error'),
+              subtitle: `Encounter ${t('failedDeleting', "couldn't be deleted")}`,
+              kind: 'error',
+            });
+          });
+        close();
+      },
+    });
+  }, [])
 
   useEffect(() => {
     if (!isLoadingFormsJson) {
@@ -145,6 +185,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               encounter.uuid,
               null,
               workspaceWindowSize,
+              patientUuid,
             ),
           viewEncounter: () =>
             launchEncounterForm(
@@ -156,11 +197,12 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               encounter.uuid,
               null,
               workspaceWindowSize,
+              patientUuid,
             ),
         };
         // process columns
         columns.forEach((column) => {
-          let val = column.getValue(encounter);
+          let val = column?.getValue(encounter);
           if (column.link) {
             val = (
               <Link
@@ -181,22 +223,26 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu}>
+          <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid='actions-id'>
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
+                index={index}
                 itemText={actionItem.label}
                 onClick={(e) => {
                   e.preventDefault();
-                  launchEncounterForm(
-                    forms.find((form) => form.name == actionItem?.form?.name),
-                    moduleName,
-                    actionItem.mode == 'enter' ? 'add' : actionItem.mode,
-                    onFormSave,
-                    null,
-                    encounter.uuid,
-                    actionItem.intent,
-                    workspaceWindowSize,
-                  );
+                  actionItem.mode == 'delete' ?
+                    handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
+                    : launchEncounterForm(
+                        forms.find((form) => form.name == actionItem?.form?.name),
+                        moduleName,
+                        actionItem.mode == 'enter' ? 'add' : actionItem.mode,
+                        onFormSave,
+                        null,
+                        encounter.uuid,
+                        actionItem.intent,
+                        workspaceWindowSize,
+                        patientUuid,
+                    );
                 }}
               />
             ))}
@@ -206,7 +252,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       });
       setPaginatedRows(rows);
     },
-    [columns, defaultActions, forms, moduleName, workspaceWindowSize],
+    [columns, defaultActions, forms, moduleName, workspaceWindowSize, patientUuid, onFormSave],
   );
 
   useEffect(() => {
@@ -219,40 +265,64 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
       // we only have one form with no intents
       // just return the "Add" button
-      return (
+            return (
         <Button
           kind="ghost"
           renderIcon={Add}
           iconDescription="Add "
           onClick={(e) => {
             e.preventDefault();
-            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, null, workspaceWindowSize);
+            launchEncounterForm(
+              forms[0],
+              moduleName,
+              'add',
+              onFormSave,
+              null,
+              '',
+              null,
+              workspaceWindowSize,
+              patientUuid,
+            );
           }}>
           {displayText}
         </Button>
       );
     } else if (forms.length && !(hideFormLauncher ?? isDead)) {
       return (
-        <OHRIFormLauncherWithIntent
+        <FormLauncherWithIntent
           formJsonList={forms}
           launchForm={(formJson, intent) =>
-            launchEncounterForm(formJson, moduleName, 'add', onFormSave, null, null, intent, workspaceWindowSize)
+            launchEncounterForm(
+              formJson,
+              moduleName,
+              'add',
+              onFormSave,
+              null,
+              '',
+              intent,
+              workspaceWindowSize,
+              patientUuid,
+            )
           }
           title={displayText}
         />
       );
     }
-  }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize]);
+    return null;
+  }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize, onFormSave, patientUuid]);
+
+  if (isLoading === true || isLoadingForms === true || isLoadingFormsJson === true) {
+    return <DataTableSkeleton rowCount={5} />;
+  }
 
   return (
     <>
-      {isLoadingEncounters || isLoadingForms ? (
-        <DataTableSkeleton rowCount={5} />
-      ) : encounters.length > 0 ? (
+      {paginatedRows?.length > 0 || encounters.length > 0 ? (
         <>
           <div className={styles.widgetContainer}>
             <div className={styles.widgetHeaderContainer}>
               <h4 className={`${styles.productiveHeading03} ${styles.text02}`}>{headerTitle}</h4>
+              {/* @ts-ignore */}
               {!(hideFormLauncher ?? isDead) && <div className={styles.toggleButtons}>{formLauncher}</div>}
             </div>
             <OTable tableHeaders={headers} tableRows={paginatedRows} />
@@ -273,7 +343,17 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           displayText={description}
           headerTitle={headerTitle}
           launchForm={() =>
-            launchEncounterForm(forms[0], moduleName, 'add', onFormSave, null, null, '*', workspaceWindowSize)
+            launchEncounterForm(
+              forms[0],
+              moduleName,
+              'add',
+              onFormSave,
+              null,
+              '',
+              '*',
+              workspaceWindowSize,
+              patientUuid,
+            )
           }
           launchFormComponent={formLauncher}
           hideFormLauncher={hideFormLauncher ?? isDead}

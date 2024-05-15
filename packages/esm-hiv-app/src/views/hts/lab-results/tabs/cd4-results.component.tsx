@@ -61,9 +61,8 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     for (let patient of patients) {
       const lastCd4Result = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)?.cd4Result;
       const lastCd4ResultDate = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)?.cd4ResultDate;
-      const lastCd4EncounterUuid = patientToCd4Map.find(
-        (entry) => entry.patientId === patient.resource.id,
-      )?.cd4EncounterUuid;
+      const lastCd4EncounterUuid = patientToCd4Map.find((entry) => entry.patientId === patient.resource.id)
+        ?.cd4EncounterUuid;
       const patientActions = (
         <LabresultsFormViewer
           form={{ package: 'hiv', name: 'cd4_lab_results' }}

@@ -4,11 +4,7 @@ import styles from '../summary-tabs/ohri-patient-tabs.scss';
 import { useTranslation } from 'react-i18next';
 import { PatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 
-interface OverviewListProps {
-  patientUuid: string;
-}
-
-const LabResultsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const LabResultsSummary: React.FC = () => {
   const { t } = useTranslation();
   return (
     <Tabs type="container" className={styles.tabContainer}>
