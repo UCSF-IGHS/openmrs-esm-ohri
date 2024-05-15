@@ -237,11 +237,32 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [encounterTypes.antenatal],
-        getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.hivTestResultConcept);
+        encounterTypes: [encounterTypes.motherPostnatal, encounterTypes.labourAndDelivery, encounterTypes.antenatal],
+        getObsValue: (encounters) => {
+          const pncArtData = {
+            artInitiation: getObsFromEncounter(encounters[0], obsConcepts.artInitiationConcept),
+            motherHIVStatus: getObsFromEncounter(encounters[0], obsConcepts.hivTestResultConcept),
+            pTrackerId: getObsFromEncounter(encounters[0], obsConcepts.pTrackerIdConcept),
+          };
+          const lndArtData = {
+            artInitiation: getObsFromEncounter(encounters[1], obsConcepts.artInitiationConcept),
+            motherHIVStatus: getObsFromEncounter(encounters[1], obsConcepts.hivTestResultConcept),
+            pTrackerId: getObsFromEncounter(encounters[1], obsConcepts.pTrackerIdConcept),
+          };
+          const ancArtData = {
+            artInitiation: getObsFromEncounter(encounters[2], obsConcepts.artInitiationConcept),
+            motherHIVStatus: getObsFromEncounter(encounters[2], obsConcepts.hivTestResultConcept),
+            pTrackerId: getObsFromEncounter(encounters[2], obsConcepts.pTrackerIdConcept),
+          };
+          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
+          if (!latestArtData['motherHIVStatus']) {
+            return '--';
+          }
+
+          return latestArtData['motherHIVStatus'];
         },
       },
+
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
