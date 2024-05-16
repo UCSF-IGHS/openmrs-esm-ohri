@@ -59,5 +59,5 @@ const options = {
   moduleName: "@ohri/openmrs-esm-ohri-commons-lib",
 };
 
-// t('ohriForms', "Ohri Forms")
+// t('ohriForms', "OHRI Forms")
 export const ohriFormsWorkspace = getSyncLifecycle(FormEngine, options);
