@@ -1,7 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { closeWorkspace } from '@openmrs/esm-framework';
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
-import { type DefaultPatientWorkspaceProps } from '@openmrs/esm-patient-common-lib';
 import { SessionMode } from '@openmrs/openmrs-form-engine-lib';
 export interface WorkspaceContextProps  {
   title: string;
