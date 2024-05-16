@@ -39,8 +39,8 @@
     "yup": "^0.29.1"
   },
   "peerDependencies": {
-    "@openmrs/esm-framework": "5.x",
-    "@openmrs/esm-patient-common-lib": "6.x",
+    "@openmrs/esm-framework": "*",
+    "@openmrs/esm-patient-common-lib": "*",
     "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x",
