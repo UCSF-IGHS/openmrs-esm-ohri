@@ -43,4 +43,4 @@ export function deleteEncounter(encounterUuid: string, abortController: AbortCon
     },
     signal: abortController.signal,
   });
-} 
+}

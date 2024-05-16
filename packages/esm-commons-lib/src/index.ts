@@ -1,3 +1,6 @@
+import { FormEngine } from '@openmrs/openmrs-form-engine-lib';
+import { getSyncLifecycle } from '@openmrs/esm-framework';
+
 export * from './constants';
 export * from './api/api';
 export * from './api/types';
@@ -49,3 +52,12 @@ export * from './components/expandable-list-widget/expandable-list.component';
 export * from './components/extension-conditional-renderer/patient-based-extension-renderer';
 export * from './components/patient-table/patient-table.component';
 export * from './hooks/useLastEncounter';
+
+// Workspace registration moved to the index.ts and routes.json
+const options = {
+  featureName: 'ohri-forms-workspace-item',
+  moduleName: "@ohri/openmrs-esm-ohri-commons-lib",
+};
+
+// t('ohriForms', "Ohri Forms")
+export const ohriFormsWorkspace = getSyncLifecycle(FormEngine, options);

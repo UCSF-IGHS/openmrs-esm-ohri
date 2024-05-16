@@ -61,7 +61,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const [pageSize, setPageSize] = useState(10);
   const [isLoadingForms, setIsLoadingForms] = useState(true);
   const { isDead } = usePatientDeathStatus(patientUuid);
-  const formNames = useMemo(() => formList.map((form) => form.name), []);
+  const formNames = useMemo(() => formList.map((form) => form.name), [formList]);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
   const { encounters, isLoading, onFormSave } = useEncounterRows(patientUuid, encounterType, filter);
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
@@ -96,39 +96,39 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     [forms, t],
   );
 
-  const handleDeleteEncounter = useCallback((encounterUuid, encounterTypeName) => {
-    const close = showModal('delete-encounter-modal', {
-      close: () => close(),
-      encounterTypeName: encounterTypeName || '',
-      onConfirmation: () => {
-        const abortController = new AbortController();
-        deleteEncounter(encounterUuid, abortController)
-          .then(() => {
-            mutate(
-              (key) =>
-                typeof key === "string" && key.startsWith("/ws/rest/v1/encounter"),
-              undefined,
-              { revalidate: true }
-            );
-            showSnackbar({
-              isLowContrast: true,
-              title: t('encounterDeleted', 'Encounter deleted'),
-              subtitle: `Encounter ${t('successfullyDeleted', 'successfully deleted')}`,
-              kind: 'success',
+  const handleDeleteEncounter = useCallback(
+    (encounterUuid, encounterTypeName) => {
+      const close = showModal('delete-encounter-modal', {
+        close: () => close(),
+        encounterTypeName: encounterTypeName || '',
+        onConfirmation: () => {
+          const abortController = new AbortController();
+          deleteEncounter(encounterUuid, abortController)
+            .then(() => {
+              mutate((key) => typeof key === 'string' && key.startsWith('/ws/rest/v1/encounter'), undefined, {
+                revalidate: true,
+              });
+              showSnackbar({
+                isLowContrast: true,
+                title: t('encounterDeleted', 'Encounter deleted'),
+                subtitle: `Encounter ${t('successfullyDeleted', 'successfully deleted')}`,
+                kind: 'success',
+              });
+            })
+            .catch(() => {
+              showSnackbar({
+                isLowContrast: false,
+                title: t('error', 'Error'),
+                subtitle: `Encounter ${t('failedDeleting', "couldn't be deleted")}`,
+                kind: 'error',
+              });
             });
-          })
-          .catch(() => {
-            showSnackbar({
-              isLowContrast: false,
-              title: t('error', 'Error'),
-              subtitle: `Encounter ${t('failedDeleting', "couldn't be deleted")}`,
-              kind: 'error',
-            });
-          });
-        close();
-      },
-    });
-  }, [])
+          close();
+        },
+      });
+    },
+    [t],
+  );
 
   useEffect(() => {
     if (!isLoadingFormsJson) {
@@ -223,15 +223,15 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid='actions-id'>
+          <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid="actions-id">
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
                 index={index}
                 itemText={actionItem.label}
                 onClick={(e) => {
                   e.preventDefault();
-                  actionItem.mode == 'delete' ?
-                    handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
+                  actionItem.mode == 'delete'
+                    ? handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
                     : launchEncounterForm(
                         forms.find((form) => form.name == actionItem?.form?.name),
                         moduleName,
@@ -242,7 +242,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                         actionItem.intent,
                         workspaceWindowSize,
                         patientUuid,
-                    );
+                      );
                 }}
               />
             ))}
@@ -252,7 +252,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       });
       setPaginatedRows(rows);
     },
-    [columns, defaultActions, forms, moduleName, workspaceWindowSize, patientUuid, onFormSave],
+    [columns, defaultActions, forms, moduleName, workspaceWindowSize, patientUuid, onFormSave, handleDeleteEncounter],
   );
 
   useEffect(() => {
@@ -265,7 +265,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
       // we only have one form with no intents
       // just return the "Add" button
-            return (
+      return (
         <Button
           kind="ghost"
           renderIcon={Add}
