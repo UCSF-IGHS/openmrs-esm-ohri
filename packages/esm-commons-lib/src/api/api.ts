@@ -255,3 +255,24 @@ export async function fetchMambaReportData(reportId: string) {
     throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
   }
 }
+export async function fetchMambaAncData(reportId: string, patientUuid: string) {
+  try {
+    const response = await openmrsFetch(`ws/rest/v1/mamba/report?report_id=${reportId}&person_uuid=${patientUuid}`);
+    const data = await response.json();
+
+    if (data && data.results && data.results.length > 0) {
+      const record = data.results[0].record;
+
+      for (const item of record) {
+        if (item.value !== '') {
+          return item.value;
+        }
+      }
+    }
+
+    return '--';
+  } catch (error) {
+    console.error(`Error fetching data for report_id=${reportId}: `, error);
+    throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
+  }
+}

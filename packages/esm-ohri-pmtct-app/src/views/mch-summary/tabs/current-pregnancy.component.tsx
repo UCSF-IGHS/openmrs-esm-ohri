@@ -11,7 +11,7 @@ import {
   fetchPatientLastEncounter,
   SummaryCardColumn,
   SummaryCard,
-  fetchMambaReportData,
+  fetchMambaAncData,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
 import { moduleName } from '../../..';
@@ -49,13 +49,18 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [infantOutcomes, setInfantOutcomes] = useState([]);
   const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
   const [totalAncCount, setTotalAncCount] = useState(null);
+  const [motherStatus, setMotherStatus] = useState(null);
+  const [deliveryDate, setDeliveryDate] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [totalAncCount] = await Promise.all([fetchMambaReportData('no_of_anc_visits')]);
-
+        const [totalAncCount] = await Promise.all([fetchMambaAncData('no_of_anc_visits', patientUuid)]);
+        const [motherStatus] = await Promise.all([fetchMambaAncData('mother_status', patientUuid)]);
+        const [deliveryDate] = await Promise.all([fetchMambaAncData('estimated_date_of_delivery', patientUuid)]);
         setTotalAncCount(totalAncCount);
+        setMotherStatus(motherStatus);
+        setDeliveryDate(deliveryDate);
       } catch (error) {
         console.error('Error fetching data:', error);
         throw new Error('Error fetching data. Please try again.');
@@ -266,17 +271,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterTypes: [encounterTypes.antenatal],
+        encounterTypes: [encounterTypes.labourAndDelivery],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.eDDConcept, true);
-        },
-        getObsSummary: ([encounter]) => {
-          let edd = getObsFromEncounter(encounter, obsConcepts.eDDConcept, true);
-          if (edd !== '--') {
-            const days = calculateDateDifferenceInDate(edd);
-            edd = edd > 0 ? `In ${days}` : '';
-          }
-          return edd;
+          return deliveryDate;
         },
       },
       {
@@ -284,11 +281,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
         header: t('motherStatus', 'Mother Status'),
         encounterTypes: [encounterTypes.labourAndDelivery],
         getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.motherStatusConcept);
+          return motherStatus;
         },
       },
     ],
-    [],
+    [motherStatus, deliveryDate],
   );
 
   const arvTherapyColumns: SummaryCardColumn[] = useMemo(
