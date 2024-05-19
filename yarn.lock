@@ -2765,7 +2765,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-commons-lib@workspace:packages/esm-commons-lib"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:1.1.0-pre.723"
+    "@openmrs/openmrs-form-engine-lib": "npm:2.0.0-pre.1029"
     enzyme: "npm:^3.11.0"
     enzyme-adapter-react-16: "npm:^1.15.6"
     fuzzy: "npm:^0.1.3"
@@ -2822,7 +2822,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-form-render-app@workspace:packages/esm-form-render-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:1.1.0-pre.723"
+    "@openmrs/openmrs-form-engine-lib": "npm:2.0.0-pre.1029"
     ace-builds: "npm:^1.4.12"
     react-ace: "npm:^9.4.4"
     webpack: "npm:^5.88.2"
@@ -3283,9 +3283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openmrs/openmrs-form-engine-lib@npm:1.1.0-pre.723":
-  version: 1.1.0-pre.723
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.1.0-pre.723"
+"@openmrs/openmrs-form-engine-lib@npm:2.0.0-pre.1029":
+  version: 2.0.0-pre.1029
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:2.0.0-pre.1029"
   dependencies:
     ace-builds: "npm:^1.4.12"
     classnames: "npm:^2.5.1"
@@ -3307,7 +3307,7 @@ __metadata:
     react-i18next: 11.x
     rxjs: 6.x
     swr: 2.x
-  checksum: 015d04dd06626191a084f9fefad0113f2ecbf16f0a8b46fadc4301458785978264c49350ecd9faa4bcfe78c9f723d5241a76b708d3943c53bbea3a5cf1c4cf78
+  checksum: 92afa09ba4240fe3b695b23ff637ed22c4936cd7ca672f2eb07ed84d3b3aaff1e0063d54b7b82e9b80d032eac9d40cdaa8742ed0f1038989d8f440ed05978502
   languageName: node
   linkType: hard
 
