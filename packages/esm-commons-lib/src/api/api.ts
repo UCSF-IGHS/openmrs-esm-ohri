@@ -255,16 +255,38 @@ export async function fetchMambaReportData(reportId: string) {
     throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
   }
 }
-export async function fetchMambaAncData(reportId: string, patientUuid: string) {
+
+export async function fetchData(
+  reportType: 'fetchMambaAncData' | 'MotherHivStatus',
+  reportId?: string,
+  patientUuid?: string,
+  pTrackerId?: string,
+) {
   try {
-    const response = await openmrsFetch(`ws/rest/v1/mamba/report?report_id=${reportId}&person_uuid=${patientUuid}`);
+    let endpoint = '';
+    switch (reportType) {
+      case 'fetchMambaAncData':
+        endpoint = `ws/rest/v1/mamba/report?report_id=${reportId}&person_uuid=${patientUuid}`;
+        break;
+      case 'MotherHivStatus':
+        endpoint = `ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
+        break;
+      default:
+        throw new Error('Invalid report type');
+    }
+
+    const response = await openmrsFetch(endpoint);
     const data = await response.json();
 
     if (data && data.results && data.results.length > 0) {
       const record = data.results[0].record;
 
       for (const item of record) {
-        if (item.value !== '') {
+        if (!isNaN(item.value as any)) {
+          return parseInt(item.value, 10);
+        } else if (isInvalidValue(item.value)) {
+          return '--';
+        } else {
           return item.value;
         }
       }
@@ -275,4 +297,13 @@ export async function fetchMambaAncData(reportId: string, patientUuid: string) {
     console.error(`Error fetching data for report_id=${reportId}: `, error);
     throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
   }
+}
+
+function isInvalidValue(value: any): boolean {
+  if (typeof value === 'string') {
+    return value.trim() === '';
+  } else if (value instanceof Date) {
+    return isNaN(value.getTime());
+  }
+  return false;
 }

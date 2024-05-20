@@ -5,14 +5,29 @@ import styles from '../common.scss';
 import { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
 import CurrentPregnancy from './tabs/current-pregnancy.component';
 import HivExposedInfant from './tabs/hiv-exposed-infant.component';
-import { usePatient } from '@openmrs/esm-framework';
+import { usePatient, useConfig } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 
 const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
+  const { identifiersTypes } = useConfig();
   const { patient, isLoading } = usePatient(patientUuid);
   const dob = patient?.birthDate;
   const age = useMemo(() => dayjs().diff(dayjs(patient?.birthDate), 'year'), [patient?.birthDate]);
+  const [pTrackerId, setPtrackerId] = useState('');
+
+  useEffect(() => {
+    if (patient) {
+      const lastIdentifier = patient.identifier
+        .slice()
+        .reverse()
+        .find((identifier) => identifier.type.id === identifiersTypes.PTrackerIdentifierType);
+
+      if (lastIdentifier) {
+        setPtrackerId(lastIdentifier.value);
+      }
+    }
+  }, [patient]);
 
   return (
     <>
@@ -27,7 +42,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <CurrentPregnancy patientUuid={patientUuid} />
+                  <CurrentPregnancy patientUuid={patientUuid} pTrackerId={pTrackerId} />
                 </TabPanel>
               </TabPanels>
             </Tabs>

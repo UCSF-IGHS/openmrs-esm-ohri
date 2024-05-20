@@ -11,7 +11,7 @@ import {
   fetchPatientLastEncounter,
   SummaryCardColumn,
   SummaryCard,
-  fetchMambaAncData,
+  fetchData,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
 import { moduleName } from '../../..';
@@ -35,7 +35,7 @@ export interface familyItemProps {
   hivStatus: string;
   finalOutcome: string;
 }
-const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
+const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId }) => {
   const { t } = useTranslation();
   const currentPregnancyHeader = t('recentPregnancy', 'Recent Pregnancy');
   const arvTherapyHeader = t('art', 'ART');
@@ -51,24 +51,34 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [totalAncCount, setTotalAncCount] = useState(null);
   const [motherStatus, setMotherStatus] = useState(null);
   const [deliveryDate, setDeliveryDate] = useState(null);
+  const [motherHivStatus, setMotherHivStatus] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataAndSetState = async () => {
       try {
-        const [totalAncCount] = await Promise.all([fetchMambaAncData('no_of_anc_visits', patientUuid)]);
-        const [motherStatus] = await Promise.all([fetchMambaAncData('mother_status', patientUuid)]);
-        const [deliveryDate] = await Promise.all([fetchMambaAncData('estimated_date_of_delivery', patientUuid)]);
+        setLoading(true);
+        const [totalAncCount, motherStatus, deliveryDate, motherHivStatus] = await Promise.all([
+          fetchData('fetchMambaAncData', 'no_of_anc_visits', patientUuid),
+          fetchData('fetchMambaAncData', 'mother_status', patientUuid),
+          fetchData('fetchMambaAncData', 'estimated_date_of_delivery', patientUuid),
+          fetchData('MotherHivStatus', 'mother_hiv_status', patientUuid, pTrackerId),
+        ]);
+
         setTotalAncCount(totalAncCount);
         setMotherStatus(motherStatus);
         setDeliveryDate(deliveryDate);
+        setMotherHivStatus(motherHivStatus);
       } catch (error) {
         console.error('Error fetching data:', error);
         throw new Error('Error fetching data. Please try again.');
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchDataAndSetState();
+  }, [patientUuid, pTrackerId]);
 
   const headersFamily = [
     {
@@ -242,32 +252,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [encounterTypes.motherPostnatal, encounterTypes.labourAndDelivery, encounterTypes.antenatal],
-        getObsValue: (encounters) => {
-          const pncArtData = {
-            artInitiation: getObsFromEncounter(encounters[0], obsConcepts.artInitiationConcept),
-            motherHIVStatus: getObsFromEncounter(encounters[0], obsConcepts.hivTestResultConcept),
-            pTrackerId: getObsFromEncounter(encounters[0], obsConcepts.pTrackerIdConcept),
-          };
-          const lndArtData = {
-            artInitiation: getObsFromEncounter(encounters[1], obsConcepts.artInitiationConcept),
-            motherHIVStatus: getObsFromEncounter(encounters[1], obsConcepts.hivTestResultConcept),
-            pTrackerId: getObsFromEncounter(encounters[1], obsConcepts.pTrackerIdConcept),
-          };
-          const ancArtData = {
-            artInitiation: getObsFromEncounter(encounters[2], obsConcepts.artInitiationConcept),
-            motherHIVStatus: getObsFromEncounter(encounters[2], obsConcepts.hivTestResultConcept),
-            pTrackerId: getObsFromEncounter(encounters[2], obsConcepts.pTrackerIdConcept),
-          };
-          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
-          if (!latestArtData['motherHIVStatus']) {
-            return '--';
-          }
-
-          return latestArtData['motherHIVStatus'];
+        encounterTypes: [encounterTypes.labourAndDelivery],
+        getObsValue: async ([encounter]) => {
+          return motherHivStatus;
         },
       },
-
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
