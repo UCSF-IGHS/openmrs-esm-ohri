@@ -277,8 +277,7 @@ export async function fetchData(
 
     const response = await openmrsFetch(endpoint);
     const data = await response.json();
-
-    if (data && data.results && data.results.length > 0) {
+    if (data && data.results && data.results?.length) {
       const record = data.results[0].record;
 
       for (const item of record) {

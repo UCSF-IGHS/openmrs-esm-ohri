@@ -27,7 +27,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         setPtrackerId(pTrackerIdentifier.value);
       }
     }
-  }, [identifiersTypes.PTrackerIdentifierType, identifiersTypes.ptrackerIdentifierType, patient]);
+  }, [identifiersTypes.ptrackerIdentifierType, patient]);
 
   return (
     <>

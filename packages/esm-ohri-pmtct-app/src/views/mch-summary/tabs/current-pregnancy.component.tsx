@@ -252,29 +252,29 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [encounterTypes.labourAndDelivery],
-        getObsValue: async ([encounter]) => {
+        encounterTypes: [],
+        getObsValue: async () => {
           return motherHivStatus;
         },
       },
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterTypes: [encounterTypes.labourAndDelivery],
-        getObsValue: async ([encounter]) => {
+        encounterTypes: [],
+        getObsValue: async () => {
           return deliveryDate;
         },
       },
       {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
-        encounterTypes: [encounterTypes.labourAndDelivery],
-        getObsValue: async ([encounter]) => {
+        encounterTypes: [],
+        getObsValue: async () => {
           return motherStatus;
         },
       },
     ],
-    [motherStatus, deliveryDate],
+    [t, motherHivStatus, deliveryDate, motherStatus],
   );
 
   const arvTherapyColumns: SummaryCardColumn[] = useMemo(
