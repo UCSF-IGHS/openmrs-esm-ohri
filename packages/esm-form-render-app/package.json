@@ -19,12 +19,12 @@
     "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
   },
   "scripts": {
-    "start": "openmrs develop --backend https://ohri-working.globalhealthapp.net",
+    "start": "openmrs develop --backend https://openmrs-staging.globalhealthapp.net",
     "serve": "webpack serve --mode development",
     "debug": "npm run serve",
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env.analyze=true",
-    "docker": "docker run -p 8080:8080 -p 8081:8081 histacohri/docker-openmrs-esm-ohri:1.0 npx openmrs develop --backend https://ohri-working.globalhealthapp.net",
+    "docker": "docker run -p 8080:8080 -p 8081:8081 histacohri/docker-openmrs-esm-ohri:1.0 npx openmrs develop --backend https://openmrs-staging.globalhealthapp.net",
     "docker:dev": "docker compose up",
     "lint": "eslint src --ext tsx",
     "typescript": "tsc",

@@ -26,12 +26,12 @@ export const mocklastEncounter = {
     links: [
       {
         rel: 'self',
-        uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/96adb28e-e417-43a3-8f7d-682f8af5e912',
+        uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/96adb28e-e417-43a3-8f7d-682f8af5e912',
         resourceAlias: 'encountertype',
       },
       {
         rel: 'full',
-        uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/96adb28e-e417-43a3-8f7d-682f8af5e912?v=full',
+        uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/96adb28e-e417-43a3-8f7d-682f8af5e912?v=full',
         resourceAlias: 'encountertype',
       },
     ],

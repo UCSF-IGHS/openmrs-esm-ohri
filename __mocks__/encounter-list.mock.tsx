@@ -67,12 +67,12 @@ export const mockEncounter = [
       links: [
         {
           rel: 'self',
-          uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/70d2b2f6-860b-438c-994b-c28e863dca34',
+          uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/70d2b2f6-860b-438c-994b-c28e863dca34',
           resourceAlias: 'encountertype',
         },
         {
           rel: 'full',
-          uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/70d2b2f6-860b-438c-994b-c28e863dca34?v=full',
+          uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encountertype/70d2b2f6-860b-438c-994b-c28e863dca34?v=full',
           resourceAlias: 'encountertype',
         },
       ],
@@ -124,7 +124,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/162725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/162725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
               ],
@@ -135,7 +135,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
                   resourceAlias: 'patient',
                 },
               ],
@@ -148,7 +148,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
                   resourceAlias: 'obs',
                 },
               ],
@@ -162,7 +162,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
                   resourceAlias: 'location',
                 },
               ],
@@ -174,7 +174,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
                   resourceAlias: 'encounter',
                 },
               ],
@@ -189,12 +189,12 @@ export const mockEncounter = [
             links: [
               {
                 rel: 'self',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/71abc700-a69a-40c2-8a0b-90e76abe3da2',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/71abc700-a69a-40c2-8a0b-90e76abe3da2',
                 resourceAlias: 'obs',
               },
               {
                 rel: 'full',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/71abc700-a69a-40c2-8a0b-90e76abe3da2?v=full',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/71abc700-a69a-40c2-8a0b-90e76abe3da2?v=full',
                 resourceAlias: 'obs',
               },
             ],
@@ -209,7 +209,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
               ],
@@ -220,7 +220,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
                   resourceAlias: 'patient',
                 },
               ],
@@ -233,7 +233,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
                   resourceAlias: 'obs',
                 },
               ],
@@ -247,7 +247,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
                   resourceAlias: 'location',
                 },
               ],
@@ -259,7 +259,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
                   resourceAlias: 'encounter',
                 },
               ],
@@ -274,12 +274,12 @@ export const mockEncounter = [
             links: [
               {
                 rel: 'self',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/35293a4d-039e-4d49-b192-c0864beac1df',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/35293a4d-039e-4d49-b192-c0864beac1df',
                 resourceAlias: 'obs',
               },
               {
                 rel: 'full',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/35293a4d-039e-4d49-b192-c0864beac1df?v=full',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/35293a4d-039e-4d49-b192-c0864beac1df?v=full',
                 resourceAlias: 'obs',
               },
             ],
@@ -294,7 +294,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/164072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/164072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
               ],
@@ -305,7 +305,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
                   resourceAlias: 'patient',
                 },
               ],
@@ -318,7 +318,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
                   resourceAlias: 'obs',
                 },
               ],
@@ -332,7 +332,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
                   resourceAlias: 'location',
                 },
               ],
@@ -344,7 +344,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
                   resourceAlias: 'encounter',
                 },
               ],
@@ -363,12 +363,12 @@ export const mockEncounter = [
                 links: [
                   {
                     rel: 'self',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/d8c3337b-a1cb-3519-af40-7a016eedb72f',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/d8c3337b-a1cb-3519-af40-7a016eedb72f',
                     resourceAlias: 'name',
                   },
                   {
                     rel: 'full',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/d8c3337b-a1cb-3519-af40-7a016eedb72f?v=full',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/d8c3337b-a1cb-3519-af40-7a016eedb72f?v=full',
                     resourceAlias: 'name',
                   },
                 ],
@@ -380,7 +380,7 @@ export const mockEncounter = [
                 links: [
                   {
                     rel: 'self',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptdatatype/8d4a4c94-c2cc-11de-8d13-0010c6dffd0f',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptdatatype/8d4a4c94-c2cc-11de-8d13-0010c6dffd0f',
                     resourceAlias: 'conceptdatatype',
                   },
                 ],
@@ -391,7 +391,7 @@ export const mockEncounter = [
                 links: [
                   {
                     rel: 'self',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptclass/8d492774-c2cc-11de-8d13-0010c6dffd0f',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptclass/8d492774-c2cc-11de-8d13-0010c6dffd0f',
                     resourceAlias: 'conceptclass',
                   },
                 ],
@@ -406,7 +406,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/d8c3337b-a1cb-3519-af40-7a016eedb72f',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/d8c3337b-a1cb-3519-af40-7a016eedb72f',
                       resourceAlias: 'name',
                     },
                   ],
@@ -419,7 +419,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/description/24f4ab95-c95b-42cc-8839-7014b00987ce',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/description/24f4ab95-c95b-42cc-8839-7014b00987ce',
                       resourceAlias: 'description',
                     },
                   ],
@@ -432,7 +432,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/564715f3-ea35-4e17-b3a7-c6212db334c1',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/564715f3-ea35-4e17-b3a7-c6212db334c1',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -443,7 +443,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/d7e61750-ff8a-4a57-aa99-a78f0d803ce6',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/d7e61750-ff8a-4a57-aa99-a78f0d803ce6',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -454,7 +454,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/a574243a-154e-40d9-825a-7c3e51c0ca6f',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/a574243a-154e-40d9-825a-7c3e51c0ca6f',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -465,7 +465,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/6757c68b-2aa9-4080-a4ae-40b946081177',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/6757c68b-2aa9-4080-a4ae-40b946081177',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -477,12 +477,12 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
                 {
                   rel: 'full',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?v=full',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?v=full',
                   resourceAlias: 'concept',
                 },
               ],
@@ -496,12 +496,12 @@ export const mockEncounter = [
             links: [
               {
                 rel: 'self',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a5cef1b1-9f44-4fa5-9cc8-07ba2e8a3fc4',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a5cef1b1-9f44-4fa5-9cc8-07ba2e8a3fc4',
                 resourceAlias: 'obs',
               },
               {
                 rel: 'full',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a5cef1b1-9f44-4fa5-9cc8-07ba2e8a3fc4?v=full',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a5cef1b1-9f44-4fa5-9cc8-07ba2e8a3fc4?v=full',
                 resourceAlias: 'obs',
               },
             ],
@@ -516,7 +516,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160239AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160239AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
               ],
@@ -527,7 +527,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
                   resourceAlias: 'patient',
                 },
               ],
@@ -540,7 +540,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
                   resourceAlias: 'obs',
                 },
               ],
@@ -554,7 +554,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
                   resourceAlias: 'location',
                 },
               ],
@@ -566,7 +566,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
                   resourceAlias: 'encounter',
                 },
               ],
@@ -585,12 +585,12 @@ export const mockEncounter = [
                 links: [
                   {
                     rel: 'self',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/634a1aa6-73dc-3ab7-a067-293ff62ca1e7',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/634a1aa6-73dc-3ab7-a067-293ff62ca1e7',
                     resourceAlias: 'name',
                   },
                   {
                     rel: 'full',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/634a1aa6-73dc-3ab7-a067-293ff62ca1e7?v=full',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/634a1aa6-73dc-3ab7-a067-293ff62ca1e7?v=full',
                     resourceAlias: 'name',
                   },
                 ],
@@ -602,7 +602,7 @@ export const mockEncounter = [
                 links: [
                   {
                     rel: 'self',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptdatatype/8d4a48b6-c2cc-11de-8d13-0010c6dffd0f',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptdatatype/8d4a48b6-c2cc-11de-8d13-0010c6dffd0f',
                     resourceAlias: 'conceptdatatype',
                   },
                 ],
@@ -613,7 +613,7 @@ export const mockEncounter = [
                 links: [
                   {
                     rel: 'self',
-                    uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptclass/8d491e50-c2cc-11de-8d13-0010c6dffd0f',
+                    uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/conceptclass/8d491e50-c2cc-11de-8d13-0010c6dffd0f',
                     resourceAlias: 'conceptclass',
                   },
                 ],
@@ -628,7 +628,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/634a1aa6-73dc-3ab7-a067-293ff62ca1e7',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/name/634a1aa6-73dc-3ab7-a067-293ff62ca1e7',
                       resourceAlias: 'name',
                     },
                   ],
@@ -642,7 +642,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/20f1cf1f-c948-4fd7-8123-bebe110beb9a',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/20f1cf1f-c948-4fd7-8123-bebe110beb9a',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -653,7 +653,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/58c0fe00-b0e8-4bea-8ed0-86bab365642f',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/58c0fe00-b0e8-4bea-8ed0-86bab365642f',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -664,7 +664,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/fbd918f2-3e31-45ee-8de2-30663bb545b4',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/mapping/fbd918f2-3e31-45ee-8de2-30663bb545b4',
                       resourceAlias: 'mapping',
                     },
                   ],
@@ -677,7 +677,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/975AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/975AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -688,7 +688,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -699,7 +699,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1528AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1528AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -710,7 +710,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -721,7 +721,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -732,7 +732,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160273AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160273AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -743,7 +743,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/159772AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/159772AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -754,7 +754,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/973AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/973AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -765,7 +765,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -776,7 +776,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -787,7 +787,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/970AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/970AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -798,7 +798,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5620AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5620AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -809,7 +809,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1527AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1527AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -820,7 +820,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5617AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5617AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -831,7 +831,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -842,7 +842,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160726AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160726AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -853,7 +853,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/972AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/972AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -864,7 +864,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -875,7 +875,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -886,7 +886,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/974AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/974AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -897,7 +897,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/970AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/970AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -908,7 +908,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -919,7 +919,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/159772AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/159772AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -930,7 +930,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160273AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160273AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -941,7 +941,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/972AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/972AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -952,7 +952,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1528AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1528AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -963,7 +963,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/975AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/975AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -974,7 +974,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/974AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/974AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -985,7 +985,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5620AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5620AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -996,7 +996,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160726AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160726AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1007,7 +1007,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1018,7 +1018,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1029,7 +1029,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1040,7 +1040,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1051,7 +1051,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1062,7 +1062,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1073,7 +1073,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/160730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1084,7 +1084,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5617AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/5617AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1095,7 +1095,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/973AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/973AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1106,7 +1106,7 @@ export const mockEncounter = [
                   links: [
                     {
                       rel: 'self',
-                      uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1527AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                      uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1527AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                       resourceAlias: 'concept',
                     },
                   ],
@@ -1117,12 +1117,12 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
                 {
                   rel: 'full',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?v=full',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA?v=full',
                   resourceAlias: 'concept',
                 },
               ],
@@ -1136,12 +1136,12 @@ export const mockEncounter = [
             links: [
               {
                 rel: 'self',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/d93d637a-f5ae-40f0-981b-7705e96ec833',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/d93d637a-f5ae-40f0-981b-7705e96ec833',
                 resourceAlias: 'obs',
               },
               {
                 rel: 'full',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/d93d637a-f5ae-40f0-981b-7705e96ec833?v=full',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/d93d637a-f5ae-40f0-981b-7705e96ec833?v=full',
                 resourceAlias: 'obs',
               },
             ],
@@ -1156,7 +1156,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/concept/163258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
                   resourceAlias: 'concept',
                 },
               ],
@@ -1167,7 +1167,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/patient/1b2278d5-c9ea-4f00-bfb1-60af48dc838a',
                   resourceAlias: 'patient',
                 },
               ],
@@ -1180,7 +1180,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/37094756-1d74-420c-a63c-fe8418ea3b7d',
                   resourceAlias: 'obs',
                 },
               ],
@@ -1194,7 +1194,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/location/44c3efb0-2583-4c80-a79e-1f756a03c0a1',
                   resourceAlias: 'location',
                 },
               ],
@@ -1206,7 +1206,7 @@ export const mockEncounter = [
               links: [
                 {
                   rel: 'self',
-                  uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
+                  uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/encounter/ee106966-4cd9-4465-8ac2-dfac9e3751d3',
                   resourceAlias: 'encounter',
                 },
               ],
@@ -1221,12 +1221,12 @@ export const mockEncounter = [
             links: [
               {
                 rel: 'self',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a8f75b70-2102-4d91-b946-d075477e153e',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a8f75b70-2102-4d91-b946-d075477e153e',
                 resourceAlias: 'obs',
               },
               {
                 rel: 'full',
-                uri: 'https://ohri-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a8f75b70-2102-4d91-b946-d075477e153e?v=full',
+                uri: 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/obs/a8f75b70-2102-4d91-b946-d075477e153e?v=full',
                 resourceAlias: 'obs',
               },
             ],

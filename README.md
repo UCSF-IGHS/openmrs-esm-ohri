@@ -9,7 +9,7 @@ A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)
 
 OpenMRS HIV Reference Implementation (OHRI) packages built on top of OpenMRS Frontend.
 
-[🌍DEMO](https://ohri-demo.globalhealthapp.net/openmrs/spa)
+[🌍DEMO](https://openmrs-demo.globalhealthapp.net/openmrs/spa)
 
 ### Available Packages
 
@@ -48,7 +48,7 @@ yarn setup
 ```sh
 yarn start
 ```
-This command start each package inside the `packages` directory with the *development* mode connected to the *https://ohri-demo.globalhealthapp.net* backend. This is the actual script:
+This command start each package inside the `packages` directory with the *development* mode connected to the *https://openmrs-demo.globalhealthapp.net* backend. This is the actual script:
 
 If you would like to run individual packages, you can use the following command:
 
