@@ -7,6 +7,7 @@ import {
   encounterRepresentation,
   covidOutcomesCohortUUID,
 } from '../constants';
+import useSWR from 'swr';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
@@ -256,32 +257,20 @@ export async function fetchMambaReportData(reportId: string) {
   }
 }
 
-export async function fetchData(
+export function useDataFetch(
   reportType: 'fetchMambaAncData' | 'MotherHivStatus',
   reportId?: string,
   patientUuid?: string,
   pTrackerId?: string,
 ) {
-  try {
-    let endpoint = '';
-    switch (reportType) {
-      case 'fetchMambaAncData':
-        endpoint = `ws/rest/v1/mamba/report?report_id=${reportId}&person_uuid=${patientUuid}`;
-        break;
-      case 'MotherHivStatus':
-        endpoint = `ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
-        break;
-      default:
-        throw new Error('Invalid report type');
-    }
-
-    const response = await openmrsFetch(endpoint);
+  const fetcher = async (url) => {
+    const response = await openmrsFetch(url);
     const data = await response.json();
-    if (data && data.results && data.results?.length) {
+    if (data && data.results && data.results.length) {
       const record = data.results[0].record;
 
       for (const item of record) {
-        if (!isNaN(item.value as any)) {
+        if (!isNaN(item.value)) {
           return parseInt(item.value, 10);
         } else if (isInvalidValue(item.value)) {
           return '--';
@@ -290,15 +279,34 @@ export async function fetchData(
         }
       }
     }
-
     return '--';
-  } catch (error) {
-    console.error(`Error fetching data for report_id=${reportId}: `, error);
-    throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
+  };
+
+  let endpoint = '';
+  switch (reportType) {
+    case 'fetchMambaAncData':
+      endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&person_uuid=${patientUuid}`;
+      break;
+    case 'MotherHivStatus':
+      endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
+      break;
+    default:
+      throw new Error('Invalid report type');
   }
+
+  const { data, error } = useSWR(endpoint, fetcher, {
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
+  });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+  };
 }
 
-function isInvalidValue(value: any): boolean {
+function isInvalidValue(value) {
   if (typeof value === 'string') {
     return value.trim() === '';
   } else if (value instanceof Date) {

@@ -11,7 +11,7 @@ import {
   fetchPatientLastEncounter,
   SummaryCardColumn,
   SummaryCard,
-  fetchData,
+  useDataFetch,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
 import { moduleName } from '../../..';
@@ -48,37 +48,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
   const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
-  const [totalAncCount, setTotalAncCount] = useState(null);
-  const [motherStatus, setMotherStatus] = useState(null);
-  const [deliveryDate, setDeliveryDate] = useState(null);
-  const [motherHivStatus, setMotherHivStatus] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchDataAndSetState = async () => {
-      try {
-        setLoading(true);
-        const [totalAncCount, motherStatus, deliveryDate, motherHivStatus] = await Promise.all([
-          fetchData('fetchMambaAncData', 'no_of_anc_visits', patientUuid),
-          fetchData('fetchMambaAncData', 'mother_status', patientUuid),
-          fetchData('fetchMambaAncData', 'estimated_date_of_delivery', patientUuid),
-          fetchData('MotherHivStatus', 'mother_hiv_status', patientUuid, pTrackerId),
-        ]);
-
-        setTotalAncCount(totalAncCount);
-        setMotherStatus(motherStatus);
-        setDeliveryDate(deliveryDate);
-        setMotherHivStatus(motherHivStatus);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw new Error('Error fetching data. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDataAndSetState();
-  }, [patientUuid, pTrackerId]);
+  console.log('pTrackerId', pTrackerId);
+  const { data: totalAncCount } = useDataFetch('fetchMambaAncData', 'no_of_anc_visits', patientUuid);
+  const { data: motherStatus } = useDataFetch('fetchMambaAncData', 'mother_status', patientUuid);
+  const { data: deliveryDate } = useDataFetch('fetchMambaAncData', 'estimated_date_of_delivery', patientUuid);
+  const { data: motherHivStatus } = useDataFetch('MotherHivStatus', 'mother_hiv_status', patientUuid, pTrackerId);
 
   const headersFamily = [
     {
