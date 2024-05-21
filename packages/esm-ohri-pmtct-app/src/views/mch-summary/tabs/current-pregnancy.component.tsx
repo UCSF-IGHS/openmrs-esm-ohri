@@ -48,7 +48,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
   const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
-  console.log('pTrackerId', pTrackerId);
   const { data: totalAncCount } = useDataFetch('fetchMambaAncData', 'no_of_anc_visits', patientUuid);
   const { data: motherStatus } = useDataFetch('fetchMambaAncData', 'mother_status', patientUuid);
   const { data: deliveryDate } = useDataFetch('fetchMambaAncData', 'estimated_date_of_delivery', patientUuid);
