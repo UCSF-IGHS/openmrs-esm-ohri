@@ -18,10 +18,8 @@ export * from './components/identifier-generator/identifier-generator.component'
 export * from './components/loading/loading.component';
 export * from './components/modals/add-patient-to-list-modal.component';
 export * from './components/ohri-form-launcher/ohri-form-empty-launcher.component';
-export * from './components/ohri-form-launcher/ohri-form-launcher.component';
 export * from './components/ohri-home/ohri-home-component';
 export * from './components/ohri-home/welcome-section/ohri-welcome-section.component';
-export * from './components/overflow-menu-button/ohri-overflow-menu.component';
 export * from './components/patient-banner/patient-banner.component';
 export * from './components/patient-chart/ohri-patient-chart-sidenav.meta';
 export * from './components/patient-list-tabs/ohri-patient-list-tabs.component';
@@ -56,7 +54,7 @@ export * from './hooks/useLastEncounter';
 // Workspace registration moved to the index.ts and routes.json
 const options = {
   featureName: 'ohri-forms-workspace-item',
-  moduleName: "@ohri/openmrs-esm-ohri-commons-lib",
+  moduleName: '@ohri/openmrs-esm-ohri-commons-lib',
 };
 
 // t('ohriForms', "OHRI Forms")

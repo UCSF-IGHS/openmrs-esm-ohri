@@ -2,10 +2,18 @@ import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
-import { FormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
 import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
-import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
+import {
+  Button,
+  Link,
+  OverflowMenu,
+  OverflowMenuItem,
+  Pagination,
+  DataTableSkeleton,
+  MenuButton,
+  MenuItem,
+} from '@carbon/react';
 import { Add } from '@carbon/react/icons';
 import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { deleteEncounter, launchEncounterForm } from './helpers';
@@ -289,23 +297,31 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       );
     } else if (forms.length && !(hideFormLauncher ?? isDead)) {
       return (
-        <FormLauncherWithIntent
-          formJsonList={forms}
-          launchForm={(formJson, intent) =>
-            launchEncounterForm(
-              formJson,
-              moduleName,
-              'add',
-              onFormSave,
-              null,
-              '',
-              intent,
-              workspaceWindowSize,
-              patientUuid,
-            )
-          }
-          title={displayText}
-        />
+        <MenuButton label={t('add', 'Add')} kind="ghost" menuAlignment="bottom-end">
+          {formsJson
+            .filter((formJson) => formJson.availableIntents.length > 0)
+            .map((filteredItem) =>
+              filteredItem.availableIntents.map((intent, index) => (
+                <MenuItem
+                  key={index}
+                  label={intent.display}
+                  onClick={() =>
+                    launchEncounterForm(
+                      filteredItem,
+                      moduleName,
+                      'add',
+                      onFormSave,
+                      null,
+                      '',
+                      intent,
+                      workspaceWindowSize,
+                      patientUuid,
+                    )
+                  }
+                />
+              )),
+            )}
+        </MenuButton>
       );
     }
     return null;
