@@ -17,21 +17,6 @@
       }
     },
     {
-      "name": "covid-home-header-ext",
-      "slot": "covid-home-header-slot",
-      "component": "covidDashboardHeader"
-    },
-    {
-      "name": "covid-home-tiles-ext",
-      "slot": "covid-home-tiles-slot",
-      "component": "covidDashboardTiles"
-    },
-    {
-      "name": "covid-home-tabs-ext",
-      "slot": "covid-home-tabs-slot",
-      "component": "covidDashboardTabs"
-    },
-    {
       "name": "ohri-covid",
       "slot": "patient-chart-dashboard-slot",
       "component": "covidPatientChartDashboard"

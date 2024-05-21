@@ -150,37 +150,6 @@
         "title": "Tuberculosis"
       }
     },
-    
-    {
-      "name": "tb-home-header-ext",
-      "slot": "tb-home-header-slot",
-      "component": "tbDashboardHeader"
-    },
-    {
-      "name": "tb-home-tiles-ext",
-      "slot": "tb-home-tiles-slot",
-      "component": "tbDashboardTiles"
-    },
-    {
-      "name": "tb-home-tabs-ext",
-      "slot": "tb-home-tabs-slot",
-      "component": "tbDashboardTabs"
-    },
-    {
-      "name": "tpt-home-header-ext",
-      "slot": "tpt-home-header-slot",
-      "component": "tptDashboardHeader"
-    },
-    {
-      "name": "tpt-home-tiles-ext",
-      "slot": "tpt-home-tiles-slot",
-      "component": "tptDashboardTiles"
-    },
-    {
-      "name": "tpt-home-tabs-ext",
-      "slot": "tpt-home-tabs-slot",
-      "component": "tptDashboardTabs"
-    },
     {
       "name": "tb-cases-dashboard-ext",
       "slot": "homepage-dashboard-slot",
