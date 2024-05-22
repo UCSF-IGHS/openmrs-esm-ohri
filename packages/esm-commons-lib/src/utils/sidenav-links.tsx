@@ -10,12 +10,14 @@ export const createDashboardLink = (db) => {
       <SideNavMenu title="HIV" className={styles.noMarker} defaultExpanded={true}>
         <SideNavMenuItem
           className={isActiveLink(db.hts.name) ? styles.currentNavItem : ''}
-          href={`${basePath}/${db.hts.name}`}>
+          href={`${basePath}/${db.hts.name}`}
+        >
           {db.hts.title}
         </SideNavMenuItem>
         <SideNavMenuItem
           className={isActiveLink(db.caretreament.name) ? styles.currentNavItem : ''}
-          href={`${basePath}/${db.caretreament.name}`}>
+          href={`${basePath}/${db.caretreament.name}`}
+        >
           {db.caretreament.title}
         </SideNavMenuItem>
         <SideNavMenuItem>{db.pmtct.title}</SideNavMenuItem>

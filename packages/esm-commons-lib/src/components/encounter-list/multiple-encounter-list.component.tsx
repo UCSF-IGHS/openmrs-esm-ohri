@@ -122,7 +122,8 @@ export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
                   } else {
                     column.link?.getUrl && navigate({ to: column.link.getUrl() });
                   }
-                }}>
+                }}
+              >
                 {val}
               </Link>
             );

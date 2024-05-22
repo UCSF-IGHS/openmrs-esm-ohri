@@ -187,7 +187,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
             onClick={(e) => {
               e.preventDefault();
               navigate({ to: `${basePath}${relative.personB.uuid}/chart` });
-            }}>
+            }}
+          >
             {relative.personB.display}
           </Link>
         );

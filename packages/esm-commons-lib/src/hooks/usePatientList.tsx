@@ -23,7 +23,8 @@ export function usePatientList(offSet: number, pageSize: number, searchTerm?: st
           return (
             <ConfigurableLink
               to={`/openmrs/spa/patient/${patient.resource.id}/chart`}
-              style={{ textDecoration: 'inherit' }}>
+              style={{ textDecoration: 'inherit' }}
+            >
               {patientName}
             </ConfigurableLink>
           );

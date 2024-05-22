@@ -38,21 +38,6 @@
       "component": "hivPreventionDashboard"
     },
     {
-      "name": "hts-home-header-ext",
-      "slot": "hts-home-header-slot",
-      "component": "htsHomeHeader"
-    },
-    {
-      "name": "hts-home-tiles-ext",
-      "slot": "hts-home-tiles-slot",
-      "component": "htsHomeTiles"
-    },
-    {
-      "name": "hts-home-tabs-ext",
-      "slot": "hts-home-tabs-slot",
-      "component": "htsHomeTabs"
-    },
-    {
       "name": "hiv-care-and-treatment-dashboard-link",
       "slot": "dashboard-slot",
       "component": "hivCareAndTreatmentFolderLink",
@@ -78,37 +63,6 @@
       "slot": "ct-dashboard-slot",
       "component": "hivCareAndTreatmentDashboard"
     },
-    {
-      "name": "ct-home-header-ext",
-      "slot": "ct-home-header-slot",
-      "component": "ctHomeHeader"
-    },
-    {
-      "name": "ct-home-tiles-ext",
-      "slot": "ct-home-tiles-slot",
-      "component": "ctHomeTiles"
-    },
-    {
-      "name": "ct-home-tabs-ext",
-      "slot": "ct-home-tabs-slot",
-      "component": "ctHomeTabs"
-    },
-    {
-      "name": "lab-results-home-header-ext",
-      "slot": "lab-results-home-header-slot",
-      "component": "labResultsHomeHeader"
-    },
-    {
-      "name": "lab-results-home-tiles-ext",
-      "slot": "lab-results-home-tiles-slot",
-      "component": "labResultsHomeTiles"
-    },
-    {
-      "name": "lab-results-tabs-ext",
-      "slot": "lab-results-home-tabs-slot",
-      "component": "labResultsHomeTabs"
-    },
-
     {
       "name": "ohri-hiv-care-and-treatment",
       "slot": "patient-chart-dashboard-slot",

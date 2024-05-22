@@ -102,7 +102,6 @@
     "webpack-dev-server": "^4.8.1"
   },
   "resolutions": {
-    "@carbon/react": "1.17.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5"
   },

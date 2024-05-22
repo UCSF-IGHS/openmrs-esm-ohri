@@ -250,7 +250,8 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                             header,
                             isSortable: header.isSortable,
                           })}
-                          className={isDesktop(layout) ? styles.desktopHeader : styles.tabletHeader}>
+                          className={isDesktop(layout) ? styles.desktopHeader : styles.tabletHeader}
+                        >
                           {header.header?.content ?? header.header}
                         </TableHeader>
                       ))}
@@ -264,7 +265,8 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                         <TableRow
                           {...getRowProps({ row })}
                           className={isDesktop(layout) ? styles.desktopRow : styles.tabletRow}
-                          key={row.id}>
+                          key={row.id}
+                        >
                           {row.cells.map((cell) => (
                             <TableCell key={cell.id}>{cell.value?.content ?? cell.value}</TableCell>
                           ))}

@@ -1,9 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
-import MaternalSummary from './views/mch-summary/mch-summary.component';
 import MaternalHealthList from './views/maternal-health/maternal-health.component';
 import ChildHealthList from './views/child-health/child-health.component';
-import MaternalChildSummaryTiles from './views/summary-tabs/maternal-child-summary-tiles.component';
-import LabResultsSummary from './views/summary-tabs/mother-child-summary-tabs.component';
 import {
   mchSummaryDashboardMeta,
   maternalVisitsDashboardMeta,
@@ -16,10 +13,8 @@ import {
   createConditionalDashboardLink,
   createNewOHRIDashboardLink,
   OHRIHome,
-  OHRIWelcomeSection,
   createConditionalDashboardGroup,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { generateInfantPTrackerId } from './utils/pmtct-helpers';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
 import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
@@ -95,19 +90,5 @@ export const childVisitsDashboard = getSyncLifecycle(ChildHealthList, {
 });
 export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'mother child health results dashboard',
-  moduleName,
-});
-export const pmtctDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
-  featureName: 'pmtct-home-header',
-  moduleName,
-});
-
-export const pmtctDashboardTiles = getSyncLifecycle(MaternalChildSummaryTiles, {
-  featureName: 'pmtct-home-tiles',
-  moduleName,
-});
-
-export const pmtctDashboardTabs = getSyncLifecycle(LabResultsSummary, {
-  featureName: 'pmtct-home-tabs',
   moduleName,
 });

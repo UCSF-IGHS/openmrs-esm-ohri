@@ -1,10 +1,5 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
-import {
-  createOHRIDashboardLink,
-  OHRIHome,
-  OHRIWelcomeSection,
-  createOHRIGroupedLink,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
+import { createOHRIDashboardLink, createOHRIGroupedLink } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import {
   tbPatientChartMeta,
@@ -24,12 +19,8 @@ import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.co
 import ProgramManagementSummary from './views/program-management/maternal-health.component';
 import TbTreatmentFollowUpList from './views/treatment-and-follow-up/tb-treatment-follow-up.component';
 import TbContactTracingList from './views/tb-contact-listing/tb-contact-list.component';
-import TbSummaryTiles from './views/dashboard/summary-tiles/tb-summary-tiles.component';
-import TbHomePatientTabs from './views/dashboard/patient-list-tabs/tb-patient-list-tabs.component';
 import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
 import tptPatientSummary from './views/tpt/patient-summary/patient-summary.component';
-import TptPreventionSummaryTiles from './views/dashboard/summary-tiles/tpt-summary-tiles.component';
-import TptPatientListTabs from './views/dashboard/patient-list-tabs/tpt-patient-list-tabs.component';
 import rootComponent from './root.component';
 import TptHomeComponent from './tpt-home.component';
 
@@ -85,31 +76,6 @@ export const tbContactListingDashboardLink = getSyncLifecycle(
 );
 export const tbContactListingDashboard = getSyncLifecycle(TbContactTracingList, {
   featureName: 'tb-contact-listing-summary',
-  moduleName,
-});
-export const tbDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
-  featureName: 'tb-home-header',
-  moduleName,
-});
-
-export const tbDashboardTiles = getSyncLifecycle(TbSummaryTiles, {
-  featureName: 'tb-home-tiles',
-  moduleName,
-});
-export const tbDashboardTabs = getSyncLifecycle(TbHomePatientTabs, {
-  featureName: 'tb-home-tabs',
-  moduleName,
-});
-export const tptDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
-  featureName: 'tpt-home-header',
-  moduleName,
-});
-export const tptDashboardTiles = getSyncLifecycle(TptPreventionSummaryTiles, {
-  featureName: 'tpt-home-tiles',
-  moduleName,
-});
-export const tptDashboardTabs = getSyncLifecycle(TptPatientListTabs, {
-  featureName: 'tpt-home-tabs',
   moduleName,
 });
 

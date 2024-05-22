@@ -1,9 +1,7 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import CovidVaccinations from './views/covid-vaccinations.component';
 import CovidLabResults from './views/lab-results.component';
 import CovidAssessment from './views/case-assessment.component';
-import CovidHomePatientTabs from './views/dashboard/patient-list-tabs/covid-patient-list-tabs.component';
-import CovidSummaryTiles from './views/dashboard/summary-tiles/covid-summary-tiles.component';
 import {
   covidAssessmentsDashboardMeta,
   covidLabTestsDashboardMeta,
@@ -12,7 +10,7 @@ import {
   covid19CasesDashboardMeta,
   covidPatientChartMeta,
 } from './dashboard.meta';
-import { createOHRIDashboardLink, createOHRIGroupedLink, OHRIHome, OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { createOHRIDashboardLink, createOHRIGroupedLink } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
@@ -51,18 +49,7 @@ export const covidLabResultsDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...covidLabTestsDashboardMeta, moduleName }),
   options,
 );
-export const covidDashboardHeader = getSyncLifecycle(OHRIWelcomeSection, {
-  featureName: 'covid-home-header',
-  moduleName,
-});
-export const covidDashboardTiles = getSyncLifecycle(CovidSummaryTiles, {
-  featureName: 'covid-home-tiles',
-  moduleName,
-});
-export const covidDashboardTabs = getSyncLifecycle(CovidHomePatientTabs, {
-  featureName: 'covid-home-tabs',
-  moduleName,
-});
+
 export const covidAssessmentsDashboard = getSyncLifecycle(CovidAssessment, {
   featureName: 'covid-assessment',
   moduleName,

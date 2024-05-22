@@ -153,7 +153,8 @@ function FormRenderTest() {
                     onSubmit={(e) => {
                       e.preventDefault();
                       handleFormSubmission(e);
-                    }}>
+                    }}
+                  >
                     <AceEditor
                       key={key}
                       mode="json"
@@ -217,7 +218,8 @@ function FormRenderTest() {
                       renderIcon={Run}
                       className="form-group"
                       style={{ marginTop: '1em', marginLeft: '10px' }}
-                      disabled={!selectedFormIntent}>
+                      disabled={!selectedFormIntent}
+                    >
                       {t('render', 'Render')}
                     </Button>
                   </Form>
