@@ -31,7 +31,8 @@ function NewDashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: D
         e.preventDefault();
         navigate({ to: `${spaBasePath}/${name}` });
       }}
-      className={navLink.match(name) ? styles.currentNavItem : ''}>
+      className={navLink.match(name) ? styles.currentNavItem : ''}
+    >
       {title}
     </SideNavLink>
   );

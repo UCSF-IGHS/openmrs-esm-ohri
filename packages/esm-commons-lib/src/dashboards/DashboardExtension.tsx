@@ -27,7 +27,8 @@ export const DashboardExtension = ({
     <div key={path}>
       <ConfigurableLink
         to={`${basePath}/${encodeURIComponent(path)}`}
-        className={`cds--side-nav__link ${path === navLink && 'active-left-nav-link'}`}>
+        className={`cds--side-nav__link ${path === navLink && 'active-left-nav-link'}`}
+      >
         {linkText || t(title)}
       </ConfigurableLink>
     </div>

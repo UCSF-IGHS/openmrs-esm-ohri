@@ -162,7 +162,8 @@ const HivExposedInfant: React.FC<{
           onClick={(e) => {
             e.preventDefault();
             navigate({ to: `${basePath}${relative.personA.uuid}/chart` });
-          }}>
+          }}
+        >
           {relative.personA.display}
         </Link>
       );

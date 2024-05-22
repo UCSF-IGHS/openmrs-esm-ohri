@@ -39,7 +39,8 @@ function DashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: Dash
             className={classNames('cds--side-nav__link', {
               'active-left-nav-link': navLink.match(name),
             })}
-            to={`${spaBasePath}/${name}`}>
+            to={`${spaBasePath}/${name}`}
+          >
             {t(title)}
           </ConfigurableLink>
           {Array.isArray(childLinks) &&
@@ -49,7 +50,8 @@ function DashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: Dash
                 className={classNames('cds--side-nav__link', {
                   'active-left-nav-link': navLink.match(childLink.name),
                 })}
-                to={`${spaBasePath}/${childLink.name}`}>
+                to={`${spaBasePath}/${childLink.name}`}
+              >
                 {t(childLink.title)}
               </ConfigurableLink>
             ))}
@@ -63,7 +65,8 @@ function DashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: Dash
           className={classNames('cds--side-nav__link', {
             'active-left-nav-link': navLink.match(name),
           })}
-          to={`${spaBasePath}/${name}`}>
+          to={`${spaBasePath}/${name}`}
+        >
           {t(title)}
         </ConfigurableLink>
       </SideNavItems>

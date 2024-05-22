@@ -31,7 +31,8 @@ export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
                     {...getHeaderProps({
                       header,
                       isSortable: header.isSortable,
-                    })}>
+                    })}
+                  >
                     {header.header?.content ?? header.header}
                   </TableHeader>
                 ))}
