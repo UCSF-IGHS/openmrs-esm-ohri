@@ -226,7 +226,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
         encounterTypes: [],
-        getObsValue: async () => {
+        getObsValue: () => {
           return motherHivStatus;
         },
       },
@@ -234,7 +234,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
         encounterTypes: [],
-        getObsValue: async () => {
+        getObsValue: () => {
           return deliveryDate;
         },
       },
@@ -242,7 +242,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
         encounterTypes: [],
-        getObsValue: async () => {
+        getObsValue: () => {
           return motherStatus;
         },
       },
@@ -325,8 +325,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
       {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterTypes: [encounterTypes.antenatal],
-        getObsValue: async ([encounter]) => {
+        encounterTypes: [],
+        getObsValue: () => {
           return totalAncCount;
         },
       },
