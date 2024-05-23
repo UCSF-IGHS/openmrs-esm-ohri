@@ -18,10 +18,15 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
 
   useEffect(() => {
     if (patient) {
-      const reversedIdentifiers = patient.identifier.slice().reverse();
-      const pTrackerIdentifier = reversedIdentifiers.find((identifier) => {
-        return identifier.type.coding[0].code === identifiersTypes.ptrackerIdentifierType;
-      });
+      const identifiers = patient.identifier;
+      let pTrackerIdentifier;
+
+      for (let i = identifiers.length - 1; i >= 0; i--) {
+        if (identifiers[i].type.coding[0].code === identifiersTypes.ptrackerIdentifierType) {
+          pTrackerIdentifier = identifiers[i];
+          break;
+        }
+      }
 
       if (pTrackerIdentifier) {
         setPtrackerId(pTrackerIdentifier.value);
