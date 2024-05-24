@@ -14,4 +14,5 @@ export interface DashboardConfig extends DashboardLinkConfig {
 
 export interface PatientChartProps {
   patientUuid: string;
+  pTrackerId?: string;
 }

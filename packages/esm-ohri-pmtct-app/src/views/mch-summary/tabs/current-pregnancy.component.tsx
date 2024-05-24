@@ -11,7 +11,7 @@ import {
   fetchPatientLastEncounter,
   SummaryCardColumn,
   SummaryCard,
-  fetchMambaReportData,
+  useDataFetch,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
 import { moduleName } from '../../..';
@@ -35,7 +35,7 @@ export interface familyItemProps {
   hivStatus: string;
   finalOutcome: string;
 }
-const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
+const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId }) => {
   const { t } = useTranslation();
   const currentPregnancyHeader = t('recentPregnancy', 'Recent Pregnancy');
   const arvTherapyHeader = t('art', 'ART');
@@ -48,22 +48,10 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
   const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
-  const [totalAncCount, setTotalAncCount] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [totalAncCount] = await Promise.all([fetchMambaReportData('no_of_anc_visits')]);
-
-        setTotalAncCount(totalAncCount);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw new Error('Error fetching data. Please try again.');
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { data: totalAncCount } = useDataFetch('fetchMambaAncData', 'no_of_anc_visits', patientUuid);
+  const { data: motherStatus } = useDataFetch('fetchMambaAncData', 'mother_status', patientUuid);
+  const { data: deliveryDate } = useDataFetch('fetchMambaAncData', 'estimated_date_of_delivery', patientUuid);
+  const { data: motherHivStatus } = useDataFetch('MotherHivStatus', 'mother_hiv_status', patientUuid, pTrackerId);
 
   const headersFamily = [
     {
@@ -238,58 +226,29 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'motherHIVStatus',
         header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [encounterTypes.motherPostnatal, encounterTypes.labourAndDelivery, encounterTypes.antenatal],
-        getObsValue: (encounters) => {
-          const pncArtData = {
-            artInitiation: getObsFromEncounter(encounters[0], obsConcepts.artInitiationConcept),
-            motherHIVStatus: getObsFromEncounter(encounters[0], obsConcepts.hivTestResultConcept),
-            pTrackerId: getObsFromEncounter(encounters[0], obsConcepts.pTrackerIdConcept),
-          };
-          const lndArtData = {
-            artInitiation: getObsFromEncounter(encounters[1], obsConcepts.artInitiationConcept),
-            motherHIVStatus: getObsFromEncounter(encounters[1], obsConcepts.hivTestResultConcept),
-            pTrackerId: getObsFromEncounter(encounters[1], obsConcepts.pTrackerIdConcept),
-          };
-          const ancArtData = {
-            artInitiation: getObsFromEncounter(encounters[2], obsConcepts.artInitiationConcept),
-            motherHIVStatus: getObsFromEncounter(encounters[2], obsConcepts.hivTestResultConcept),
-            pTrackerId: getObsFromEncounter(encounters[2], obsConcepts.pTrackerIdConcept),
-          };
-          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
-          if (!latestArtData['motherHIVStatus']) {
-            return '--';
-          }
-
-          return latestArtData['motherHIVStatus'];
+        encounterTypes: [],
+        getObsValue: () => {
+          return motherHivStatus;
         },
       },
-
       {
         key: 'expectedDeliveryDate',
         header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterTypes: [encounterTypes.antenatal],
-        getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.eDDConcept, true);
-        },
-        getObsSummary: ([encounter]) => {
-          let edd = getObsFromEncounter(encounter, obsConcepts.eDDConcept, true);
-          if (edd !== '--') {
-            const days = calculateDateDifferenceInDate(edd);
-            edd = edd > 0 ? `In ${days}` : '';
-          }
-          return edd;
+        encounterTypes: [],
+        getObsValue: () => {
+          return deliveryDate;
         },
       },
       {
         key: 'motherStatus',
         header: t('motherStatus', 'Mother Status'),
-        encounterTypes: [encounterTypes.labourAndDelivery],
-        getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.motherStatusConcept);
+        encounterTypes: [],
+        getObsValue: () => {
+          return motherStatus;
         },
       },
     ],
-    [],
+    [t, motherHivStatus, deliveryDate, motherStatus],
   );
 
   const arvTherapyColumns: SummaryCardColumn[] = useMemo(
@@ -367,8 +326,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid }) => {
       {
         key: 'ancVisitsAttended',
         header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterTypes: [encounterTypes.antenatal],
-        getObsValue: async ([encounter]) => {
+        encounterTypes: [],
+        getObsValue: () => {
           return totalAncCount;
         },
       },
