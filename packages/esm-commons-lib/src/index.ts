@@ -40,6 +40,7 @@ export * from './utils/ohri-sidebar';
 export * from './utils/pagination';
 export * from './utils/sidenav-links';
 export * from './utils/encounter-list-utils';
+export * from './utils/encounter-list-builder';
 export * from './workspace/ohri-workspace-utils';
 export * from './workspace/patient-list-workspace';
 export * from './dashboards/createDashboard';
