@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+  "pages": [
+  ],
+  "extensions": [
+    {
+      "name": "patient-hiv-status-tag",
+      "slot": "patient-banner-tags-slot",
+      "component": "patientHivStatusTag"
+    },
+    {
+      "name": "hiv-prevention-dashboard-link",
+      "slot": "dashboard-slot",
+      "component": "hivPreventionFolderLink",
+      "meta": {
+        "slot": "ohri-hiv-prevention-dashboard-slot",
+        "isFolder": true,
+        "title": "HIV Prevention"
+      }
+    },
+    {
+      "name": "ohri-hiv-prevention-dashboard-ext",
+      "slot": "homepage-dashboard-slot",
+      "component": "hivPreventionDashboardLink",
+      "meta": {
+        "name": "hts",
+        "slot": "hts-dashboard-slot",
+        "title": "HIV Testing Services"
+      },
+      "order": 8
+    },
+    {
+      "name": "ohri-hiv-prevention-dashboard",
+      "slot": "hts-dashboard-slot",
+      "component": "hivPreventionDashboard"
+    },
+    {
+      "name": "hts-service-summary-list-ext",
+      "slot": "hiv-patient-summary-dashboard-slot",
+      "component": "htsServiceSummaryList"
+    },
+    {
+      "name": "ohri-hiv-prevention",
+      "slot": "patient-chart-dashboard-slot",
+      "component": "patientChartHIVPreventionDashboard",
+      "order": 22
+    },
+    {
+      "name": "hts-summary-dashboard",
+      "slot": "ohri-hiv-prevention-slot",
+      "component": "htsSummaryDashboardLink",
+      "meta": {
+        "slot": "hts-summary-dashboard-slot",
+        "columns": 1,
+        "path": "hiv-testing-services",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "hts-summary-dashboard-ext",
+      "slot": "hts-summary-dashboard-slot",
+      "component": "htsSummaryDashboard"
+    }
+  ]
+}
