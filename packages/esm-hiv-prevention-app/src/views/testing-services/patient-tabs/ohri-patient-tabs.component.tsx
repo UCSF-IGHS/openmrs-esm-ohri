@@ -3,7 +3,7 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from './ohri-patient-tabs.scss';
 import { CohortPatientList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useTranslation } from 'react-i18next';
-import { moduleName } from '../../../../../esm-hiv-care-treatment-app/src/index';
+import { moduleName } from '../../../index';
 import { useConfig } from '@openmrs/esm-framework';
 
 function OHRIPatientTabs() {

@@ -1,5 +1,3 @@
-import { getObsFromEncounter } from '@ohri/openmrs-esm-ohri-commons-lib';
-
 export const headerTitle = 'HIV Monitoring';
 
 export const patientUuid = 'b280078a-c0ce-443b-9997-3c66c63ec2f8';

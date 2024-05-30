@@ -3,11 +3,10 @@ import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   fetchPatientsFromObservationCodeConcept,
-  fetchTodayClients,
   TableEmptyState,
   filterFHIRPatientsByName,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { basePath } from '../../../../../esm-hiv-care-treatment-app/src/constants';
+import { basePath } from '../../../constants';
 
 export const columns = [
   {

@@ -55,9 +55,9 @@
       }
     },
     {
-      "name": "hts-service-summary-list-ext",
+      "name": "hiv-service-summary-list-ext",
       "slot": "hiv-patient-summary-dashboard-slot",
-      "component": "htsServiceSummaryList"
+      "component": "hivServiceSummaryList"
     },
     {
       "name": "program-management-summary",

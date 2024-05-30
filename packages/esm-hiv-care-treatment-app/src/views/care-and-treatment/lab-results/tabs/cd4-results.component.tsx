@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import {
   EmptyState,
@@ -13,6 +12,8 @@ import { DataTableSkeleton, Pagination, Search } from '@carbon/react';
 import { capitalize } from 'lodash-es';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { LabresultsFormViewer } from '../lab-results-form-viewer';
+
+import styles from './patient-list.scss';
 
 interface CD4ResultsListProps {
   patientUuid: string;

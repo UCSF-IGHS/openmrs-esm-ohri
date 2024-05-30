@@ -1,10 +1,9 @@
 import { age, attach, detach, ExtensionSlot, useConfig } from '@openmrs/esm-framework';
 import { capitalize } from 'lodash-es';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { basePath } from '../../../../../esm-hiv-care-treatment-app/src/constants';
+import { basePath } from '../../../constants';
 import {
   fetchPatientsFromObservationCodeConcept,
-  fetchTodayClients,
   TableEmptyState,
   filterFHIRPatientsByName,
 } from '@ohri/openmrs-esm-ohri-commons-lib';

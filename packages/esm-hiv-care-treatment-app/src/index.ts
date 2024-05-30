@@ -42,11 +42,6 @@ export function startupApp() {
 
 export const patientHIVStatusTag = getSyncLifecycle(PatientStatusBannerTag, options);
 
-export const htsServiceSummaryList = getSyncLifecycle(ServiceSummaryOverviewList, {
-  featureName: 'hts-service-summary-list',
-  moduleName,
-});
-
 export const hivCareAndTreatmentFolderLink = getSyncLifecycle(
   createOHRIDashboardLink(hivCareAndTreatmentFolderDashboardMeta),
   options,
@@ -56,6 +51,13 @@ export const hivCareAndTreatmentDashboardLink = getSyncLifecycle(
   options,
 );
 export const hivCareAndTreatmentDashboard = getSyncLifecycle(careAndTreatmentRootComponent, options);
+
+// Patient chart
+
+export const hivServiceSummaryList = getSyncLifecycle(ServiceSummaryOverviewList, {
+  featureName: 'hiv-service-summary-list',
+  moduleName,
+});
 
 export const patientChartHIVCareAndTreatmentDashboard = getSyncLifecycle(
   createDashboardGroup(hivCareAndTreatmentDashboardDMeta),

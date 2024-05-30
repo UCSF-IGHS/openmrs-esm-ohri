@@ -1,4 +1,4 @@
-import { Home, Pills } from '@carbon/react/icons';
+import { Pills } from '@carbon/react/icons';
 
 // Patient Chart Dashboards
 export const hivPreventionDashboardMeta = {

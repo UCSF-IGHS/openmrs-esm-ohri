@@ -1,7 +1,7 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './hiv-testing-services-home.component';
+import Home from './hts-home.component';
 
 const swrConfiguration = {
   // Maximum number of retries when the backend returns an error
