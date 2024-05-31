@@ -1,4 +1,6 @@
 {
+  "encounterUuid": "Encounter Uuid",
+  "encounterUuidEntry": "Enter Encounter Uuid",
   "finalSchema": "Final Schema",
   "formIntent": "Form Intent",
   "formRender": "Form Render",

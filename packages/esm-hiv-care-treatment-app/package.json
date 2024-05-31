@@ -1,0 +1,55 @@
+{
+  "name": "@ohri/openmrs-esm-ohri-hiv-care-treatment-app",
+  "version": "2.3.1",
+  "description": "HIV Care and Treatment microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
+  "browser": "dist/openmrs-esm-ohri-hiv-care-treatment-app.js",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/UCSF-IGHS/openmrs-esm-ohri#readme",
+  "scripts": {
+    "start": "openmrs develop",
+    "serve": "webpack serve --mode=development",
+    "debug": "npm run serve",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode=production --env.analyze=true",
+    "lint": "eslint src --ext tsx",
+    "typescript": "tsc",
+    "prepublishOnly": "npm run build",
+    "extract-translations": "i18next 'src/**/*.component.tsx'"
+  },
+  "browserslist": [
+    "extends browserslist-config-openmrs"
+  ],
+  "keywords": [
+    "openmrs",
+    "hiv",
+    "care",
+    "treatment",
+    "ohri"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCSF-IGHS/openmrs-esm-ohri.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.13.0",
+    "lodash-es": "^4.17.15"
+  },
+  "peerDependencies": {
+    "@openmrs/esm-framework": "5.x",
+    "@openmrs/esm-patient-common-lib": "6.x",
+    "dayjs": "1.x",
+    "react": "18.x",
+    "react-i18next": "11.x",
+    "swr": "2.x"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2"
+  }
+}

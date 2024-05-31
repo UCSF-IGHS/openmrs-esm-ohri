@@ -16,7 +16,8 @@ OpenMRS HIV Reference Implementation (OHRI) packages built on top of OpenMRS Fro
 - [esm-ohri-core-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-ohri-core-app) (OHRI Core App)
 - [esm-commons-lib](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-commons-lib) (Common Libraries)
 - [esm-form-render-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-form-render-app) (Form Render App)
-- [esm-hiv-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-hiv-app) (HIV App)
+- [esm-hiv-care-treatment-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-hiv-care-treatment-app) (HIV Care And Treatment App)
+- [esm-hiv-prevention-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-hiv-prevention-app) (HIV Prevention App)
 - [esm-covid-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-covid-app) (COVID-19 App)
 - [esm-cervical-cancer-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-cervical-cancer-app) (Cervical Cancer App)
 - [esm-ohri-pmtct-app](https://github.com/UCSF-IGHS/openmrs-esm-ohri/tree/master/packages/esm-ohri-pmtct-app) (PMTCT App)
@@ -63,8 +64,11 @@ yarn start:core
 # To start covid esm
 yarn start:covid
 
-# To start hiv esm
-yarn start:hiv
+# To start hiv care and treatment esm
+yarn start:hct
+
+# To start hiv prevention esm
+yarn start:hp
 
 # To start cervical-cancer esm
 yarn start:cervical-cancer
