@@ -1,25 +1,38 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import clinicalVisitConfigSchema from './clinical-visit-config.json';
+
 import styles from '../common.scss';
-import ClinicalVisitList from './tabs/clinical-visit-tab.component';
-import { useTranslation } from 'react-i18next';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const VisitsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
+  const tabs = getMenuItemTabConfiguration(clinicalVisitConfigSchema);
   return (
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('clinicalVisit', 'Clinical Visit')}</Tab>
+          {tabs.map((tab) => (
+            <Tab key={tab.name}>{tab.name}</Tab>
+          ))}
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <ClinicalVisitList patientUuid={patientUuid} />
-          </TabPanel>
+          {tabs.map((tab) => (
+            <TabPanel>
+              <EncounterList
+                patientUuid={patientUuid}
+                formList={tab.formList}
+                columns={tab.columns}
+                encounterType={tab.encounterType}
+                launchOptions={tab.launchOptions}
+                headerTitle={tab.headerTitle}
+                description={tab.description}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </Tabs>
     </div>

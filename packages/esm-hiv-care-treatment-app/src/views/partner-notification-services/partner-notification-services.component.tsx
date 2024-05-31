@@ -1,30 +1,44 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import partnerNotificationsConfigSchema from './patner-notification-config.json';
+
 import styles from '../common.scss';
-import PartnerNotificationList from './partner-notification.component';
-import ContactTracingList from './tabs/contact-tracing.component';
-import { useTranslation } from 'react-i18next';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const PartnerNotificationServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
+  const tabs = getMenuItemTabConfiguration(partnerNotificationsConfigSchema);
+
+  const tabFilter = (encounter, formName) => {
+    return encounter?.form?.name === formName;
+  };
+
   return (
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab className="tab-12rem">{t('partnerNotification', 'Partner Notification')}</Tab>
-          <Tab>{t('contactTracing', 'Contact Tracing')}</Tab>
+          {tabs.map((tab) => (
+            <Tab key={tab.name}>{tab.name}</Tab>
+          ))}
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <PartnerNotificationList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <ContactTracingList patientUuid={patientUuid} />
-          </TabPanel>
+          {tabs.map((tab) => (
+            <TabPanel>
+              <EncounterList
+                filter={tab.hasFilter ? (encounter) => tabFilter(encounter, tab.formList[0].name) : null}
+                patientUuid={patientUuid}
+                formList={tab.formList}
+                columns={tab.columns}
+                encounterType={tab.encounterType}
+                launchOptions={tab.launchOptions}
+                headerTitle={tab.headerTitle}
+                description={tab.description}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </Tabs>
     </div>

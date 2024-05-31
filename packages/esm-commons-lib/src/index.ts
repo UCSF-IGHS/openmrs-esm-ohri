@@ -50,6 +50,7 @@ export * from './components/expandable-list-widget/expandable-list.component';
 export * from './components/extension-conditional-renderer/patient-based-extension-renderer';
 export * from './components/patient-table/patient-table.component';
 export * from './hooks/useLastEncounter';
+export * from './utils/encounter-list-config-builder';
 
 // Workspace registration moved to the index.ts and routes.json
 const options = {

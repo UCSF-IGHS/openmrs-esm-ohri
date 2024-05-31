@@ -1,0 +1,64 @@
+{
+  "menuId": "clinicalVisits",
+  "tabDefinitions": [
+    {
+      "tabName": "Clinical Visit",
+      "headerTitle": "Clinical Visit",
+      "displayText": "clinical visit encounters",
+      "encounterType": "cb0a65a7-0587-477e-89b9-cf2fd144f1d4",
+      "columns": [
+        {
+          "id": "clinicalVisitDate",
+          "isDate": true,
+          "title": "Visit Date",
+          "concept": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "isLink": true
+        },
+        {
+          "id": "clinicalVisitType",
+          "title": "Visit Type",
+          "concept": "8a9809e9-8a0b-4e0e-b1f6-80b0cbbe361b"
+        },
+        {
+          "id": "clinicalScreeningOutcome",
+          "title": "TB Screening Outcome",
+          "concept": "160108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "clinicalNextAppointmentDate",
+          "title": "Next Appointment Date",
+          "isDate": true,
+          "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "POC Clinical Visit Form v2",
+              "package": "hiv-care-treatment",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "POC Clinical Visit Form v2",
+              "package": "hiv-care-treatment",
+              "label": "Edit Form",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-care-treatment-app"
+      },
+      "formList": [
+        {
+          "name": "POC Clinical Visit Form v2",
+          "uuid": "b3abc4ce-c5ac-3c40-b8e7-442b163670f1"
+        }
+      ]
+    }
+  ]
+}
