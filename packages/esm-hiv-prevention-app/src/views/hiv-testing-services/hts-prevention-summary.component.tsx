@@ -1,26 +1,39 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import htsTestingSchemaConfig from './hts-prevention-schema-config.json';
+
 import styles from '../common.scss';
-import HtsOverviewList from './tab-list/hts-overview-list.component';
-import { useTranslation } from 'react-i18next';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const HTSPreventionSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
+  const tabs = getMenuItemTabConfiguration(htsTestingSchemaConfig);
 
   return (
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab className="tab-12rem">{t('HtsHivTesting', 'HIV Testing')}</Tab>
+          {tabs.map((tab) => (
+            <Tab key={tab.name}>{tab.name}</Tab>
+          ))}
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <HtsOverviewList patientUuid={patientUuid} />
-          </TabPanel>
+          {tabs.map((tab) => (
+            <TabPanel>
+              <EncounterList
+                patientUuid={patientUuid}
+                formList={tab.formList}
+                columns={tab.columns}
+                encounterType={tab.encounterType}
+                launchOptions={tab.launchOptions}
+                headerTitle={tab.headerTitle}
+                description={tab.description}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </Tabs>
     </div>
