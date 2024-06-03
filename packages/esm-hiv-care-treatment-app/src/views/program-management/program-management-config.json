@@ -1,0 +1,362 @@
+{
+  "menuId": "programManagement",
+  "tabDefinitions": [
+    {
+      "tabName": "HIV Enrolment",
+      "headerTitle": "HIV Enrolment",
+      "displayText": "HIV Enrolment",
+      "encounterType": "7e54cd64-f9c3-11eb-8e6a-57478ce139b0",
+      "columns": [
+        {
+          "id": "date",
+          "isDate": true,
+          "title": "Enrollment/Re-enrollment Date",
+          "concept": "20efadf9-86d3-4498-b3ab-7da4dad9c429",
+          "fallbackConcepts": [
+            "160555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          ]
+        },
+        {
+          "id": "clientDescription",
+          "title": "Patient Type at Enrollment",
+          "concept": "83e40f2c-c316-43e6-a12e-20a338100281"
+        },
+        {
+          "id": "dateConfirmedPositive",
+          "isDate": true,
+          "title": "Date Confirmed HIV+",
+          "concept": "160554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "entryPoint",
+          "title": "Entry Point",
+          "concept": "160540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "populationCategory",
+          "title": "Population Category",
+          "concept": "166432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Service Enrolment Form",
+              "package": "hiv-care-treatment",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Service Enrolment Form",
+              "package": "hiv-care-treatment",
+              "label": "Edit Form",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "Service Enrolment Form",
+          "uuid": "8f713e0e-94a0-3c57-9024-69520933802a"
+        }
+      ]
+    },
+    {
+      "tabName": "ART Therapy",
+      "headerTitle": "ART Therapy",
+      "displayText": "ART Therapy",
+      "encounterType": "74bf4fe6-8fdb-4228-be39-680a93a9cf6d",
+      "columns": [
+        {
+          "id": "initiationDate",
+          "isDate": true,
+          "title": "Date",
+          "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "type": "artDate",
+          "fallbackConcepts": [
+            "164516AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "164431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "160738AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          ]
+        },
+        {
+          "id": "therapyPlan",
+          "title": "Therapy Plan",
+          "type": "artTherapy",
+          "concept": "7557d77c-172b-4673-9335-67a38657dd01"
+        },
+        {
+          "id": "regimen",
+          "title": "Regimen",
+          "concept": "dfbe256e-30ba-4033-837a-2e8477f2e7cd"
+        },
+        {
+          "id": "regimenInitiated",
+          "title": "Regimen line",
+          "concept": "164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "reason",
+          "title": "Reason",
+          "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "type": "artReason"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "ART Therapy Form",
+              "package": "hiv",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "ART Therapy Form",
+              "package": "hiv",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "ART Therapy Form",
+          "uuid": "f99fadd8-feb7-321c-ab58-7569805668e7"
+        }
+      ]
+    },
+    {
+      "tabName": "Service Delivery Model",
+      "headerTitle": "Service Delivery Model",
+      "displayText": "Service Delivery Model",
+      "encounterType": "62ee5922-a229-48d3-a1da-875c1ffa9436",
+      "columns": [
+        {
+          "id": "vlDate",
+          "isDate": true,
+          "title": "Date",
+          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "dsdStatus",
+          "title": "Status",
+          "concept": "8742967d-8107-4cbb-a17e-9a8c7f624673"
+        },
+        {
+          "id": "dsdModel",
+          "title": "DSD Model",
+          "concept": "52824cbe-0e4d-4c18-8179-80b5799f34ed"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Service Delivery Model Form",
+              "package": "hiv",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Service Delivery Model Form",
+              "package": "hiv",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "Service Delivery Model Form",
+          "uuid": "1e14f841-b42b-3273-93db-807927ca9a82"
+        }
+      ]
+    },
+    {
+      "tabName": "Transfer Out",
+      "headerTitle": "Transfer Out",
+      "displayText": "Transfer Out",
+      "encounterType": "3044916a-7e5f-478b-9091-803233f27f91",
+      "columns": [
+        {
+          "id": "visitDate",
+          "isDate": true,
+          "title": "Visit Date",
+          "concept": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "reasonsForTesting",
+          "title": "Receiving Facility",
+          "concept": "162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "tranferOutDate",
+          "title": "Transfer-Out Date",
+          "isDate": true,
+          "concept": "160649AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "verified",
+          "title": "Verified",
+          "type": "transferVerified",
+          "concept": "797e0073-1f3f-46b1-8b1a-8cdad134d2b3"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Transfer Out Form",
+              "package": "hiv",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Transfer Out Form",
+              "package": "hiv",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "Transfer Out Form",
+          "uuid": "a969288d-6605-361b-b01c-42f6ef25c0f5"
+        }
+      ]
+    },
+    {
+      "tabName": "Patient Tracing",
+      "headerTitle": "Patient Tracing",
+      "displayText": "Patient Tracing",
+      "encounterType": "0cd5d4cb-204e-419a-9dd7-1e18e939ce4c",
+      "columns": [
+        {
+          "id": "contactDate",
+          "isDate": true,
+          "title": "Contact Date",
+          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "contactMethod",
+          "title": "Contact Method",
+          "concept": "59c023dd-eed2-4b11-8c34-b88e9439db3c"
+        },
+        {
+          "id": "contactOutcome",
+          "title": "Contact Outcome",
+          "concept": "bc45edbd-11e7-4888-ad7d-4ec3dd8cdcf6"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Patient Tracing Form",
+              "package": "hiv",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Patient Tracing Form",
+              "package": "hiv",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "Patient Tracing Form",
+          "uuid": "71f3febd-dd11-322b-9c18-2a8a07d87af1"
+        }
+      ]
+    },
+    {
+      "tabName": "Death",
+      "headerTitle": "Death",
+      "displayText": "Death",
+      "encounterType": "15272be5-ae9c-4278-a303-4b8907eae73b",
+      "columns": [
+        {
+          "id": "deathDate",
+          "isDate": true,
+          "title": "Death Date",
+          "concept": "1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "deathCause",
+          "title": "Cause of Death",
+          "concept": "ef973f1f-557f-4620-acf5-9c4c18bf1eda"
+        },
+        {
+          "id": "specificDeathCause",
+          "title": "Specific cause of Death",
+          "concept": "e329cdf4-4eeb-4821-85ec-80ec4b503de0"
+        },
+        {
+          "id": "regimenInitiated",
+          "title": "Regimen line",
+          "concept": "164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Death Form",
+              "package": "hiv",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Death Form",
+              "package": "hiv",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-care-treatment-app"
+      },
+      "formList": [
+        {
+          "name": "Death Form",
+          "uuid": "41af2def-841d-38b7-8d2e-df25bdd0b73f"
+        }
+      ]
+    }
+  ]
+}

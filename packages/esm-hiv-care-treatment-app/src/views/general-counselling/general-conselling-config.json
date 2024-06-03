@@ -1,0 +1,174 @@
+{
+  "menuId": "generalConselling",
+  "tabDefinitions": [
+    {
+      "tabName": "Mental Health Assessment",
+      "headerTitle": "Mental Health Assessment",
+      "displayText": "Mental Health Assessment",
+      "encounterType": "36db5123-0ad5-41c0-9037-625b46e0ceef",
+      "columns": [
+        {
+          "id": "screeningDate",
+          "isDate": true,
+          "title": "Screening Date",
+          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "littleInterest",
+          "title": "Disinterested in Things",
+          "concept": "167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "depressed",
+          "title": "Depressed",
+          "concept": "167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "appetite",
+          "title": "Poor Appetite",
+          "concept": "167070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "concentration",
+          "title": "Concentration Problems",
+          "concept": "167072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Mental Health Assessment Form",
+              "package": "hiv-care-treatment",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Mental Health Assessment Form",
+              "package": "hiv-care-treatment",
+              "label": "Edit Form",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "Mental Health Assessment Form",
+          "uuid": "2069bd57-d534-3de9-ae24-f1d4e4b2de83"
+        }
+      ]
+    },
+    {
+      "tabName": "Intimate Partner Violence",
+      "headerTitle": "Intimate Partner Violence",
+      "displayText": "Intimate Partner Violence",
+      "encounterType": "881fff34-b4a9-4d11-b2f5-a8a23a9f402b",
+      "columns": [
+        {
+          "id": "screeningDate",
+          "isDate": true,
+          "title": "Screening Date",
+          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "physicalAbuse",
+          "title": "Physical Abuse",
+          "isTrueFalseConcept": true,
+          "concept": "2a228c6a-1575-43d7-9d42-9b68d0629f46"
+        },
+        {
+          "id": "emotionalAbuse",
+          "title": "Emotional Abuse",
+          "isTrueFalseConcept": true,
+          "concept": "bd86f7ee-1d5f-4f5d-aa0f-4680aa6e65cb"
+        },
+        {
+          "id": "sexualAbuse",
+          "title": "Sexual Abuse",
+          "isTrueFalseConcept": true,
+          "concept": "1246AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Intimate Partner Violence Form",
+              "package": "hiv-care-treatment",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Intimate Partner Violence Form",
+              "package": "hiv-care-treatment",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+      },
+      "formList": [
+        {
+          "name": "Intimate Partner Violence Form",
+          "uuid": "f99fadd8-feb7-321c-ab58-7569805668e7"
+        }
+      ]
+    },
+    {
+      "tabName": "Disclosure",
+      "headerTitle": "Disclosure",
+      "displayText": "Disclosure",
+      "encounterType": "390c2f21-c1c4-4246-94ca-a026157cd1db",
+      "columns": [
+        {
+          "id": "disclosureDate",
+          "isDate": true,
+          "title": "Disclosure Date",
+          "concept": "85fbdcc8-8dbc-40a9-b85f-5d1bfe1ab63d"
+        },
+        {
+          "id": "disclosureStage",
+          "title": "Disclosure Stage",
+          "concept": "573f93e2-12f6-483e-aa6e-14e9b76b311a"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "Age Appropriate Disclosure Form",
+              "package": "hiv",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Age Appropriate Disclosure Form",
+              "package": "hiv",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-care-treatment-app"
+      },
+      "formList": [
+        {
+          "name": "Age Appropriate Disclosure Form",
+          "uuid": "cb30cea5-3166-3e88-befb-9141e5f3769d"
+        }
+      ]
+    }
+  ]
+}
