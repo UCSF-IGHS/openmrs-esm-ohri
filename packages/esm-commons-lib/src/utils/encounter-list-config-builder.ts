@@ -34,7 +34,7 @@ interface TabSchema {
   displayText: string;
   encounterType: string;
   columns: Array<ColumnDefinition>;
-  formList: Array<{ name: string; uuid: string }>;
+  formList: Array<{ name: string; uuid: string; fixedIntent?: string; excludedIntents?: Array<string> }>;
   launchOptions: LaunchOptions;
 }
 

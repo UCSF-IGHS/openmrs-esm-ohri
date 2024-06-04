@@ -170,6 +170,14 @@ export function getObsFromEncounter(
     }
   }
 
+  if (type === 'location') {
+    return encounter.location.name;
+  }
+
+  if (type === 'provider') {
+    return encounter.encounterProviders.map((p) => p.provider.name).join(' | ');
+  }
+
   if (!obs && fallBackConcepts?.length) {
     const concept = fallBackConcepts.find((c) => findObs(encounter, c) != null);
     obs = findObs(encounter, concept);
