@@ -1,31 +1,44 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import cacxConfigSchema from './cacx-config.json';
+
 import styles from '../common.scss';
-import { useTranslation } from 'react-i18next';
-import { CacxTreatment } from './tabs/cacx-treatment.component';
-import { CacxRegistration } from './tabs/cacx-registration.component';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
+  const tabs = getMenuItemTabConfiguration(cacxConfigSchema);
+
+  const tabFilter = (encounter, formName) => {
+    return encounter?.form?.name === formName;
+  };
 
   return (
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab className="tab-12rem">{t('cacxRegistration', 'CaCx Registration')}</Tab>
-          <Tab>{t('cacxTreatment', 'CaCx Treatment')}</Tab>
+          {tabs.map((tab) => (
+            <Tab key={tab.name}>{tab.name}</Tab>
+          ))}
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <CacxRegistration patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <CacxTreatment patientUuid={patientUuid} />
-          </TabPanel>
+          {tabs.map((tab) => (
+            <TabPanel>
+              <EncounterList
+                filter={tab.hasFilter ? (encounter) => tabFilter(encounter, tab.formList[0].name) : null}
+                patientUuid={patientUuid}
+                formList={tab.formList}
+                columns={tab.columns}
+                encounterType={tab.encounterType}
+                launchOptions={tab.launchOptions}
+                headerTitle={tab.headerTitle}
+                description={tab.description}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </Tabs>
     </div>
