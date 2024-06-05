@@ -1,0 +1,91 @@
+{
+  "menuId": "caseAssessment",
+  "tabDefinitions": [
+    {
+      "tabName": "COVID Assessment",
+      "headerTitle": "COVID Assessment",
+      "displayText": "COVID Assessment",
+      "encounterType": "253a43d3-c99e-415c-8b78-ee7d4d3c1d54",
+      "columns": [
+        {
+          "id": "encounterDate",
+          "isDate": true,
+          "title": "Date of Assessment",
+          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "isLink": true
+        },
+        {
+          "id": "reasonsForTesting",
+          "title": "Reason for testing",
+          "concept": "ae46f4b1-c15d-4bba-ab41-b9157b82b0ce"
+        },
+        {
+          "id": "symptomatic",
+          "title": "Presentation",
+          "concept": "de3bc9b7-05b5-41b6-a38d-8d2eec646c4f"
+        },
+        {
+          "id": "outcome",
+          "title": "Outcome",
+          "concept": "a845f3e6-4432-4de4-9fff-37fa270b1a06"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "COVID Case Form",
+              "package": "covid",
+              "label": "View Case",
+              "mode": "view"
+            },
+            {
+              "formName": "COVID Assessment Form",
+              "package": "covid",
+              "label": "View Assessment",
+              "mode": "view"
+            },
+            {
+              "formName": "COVID Assessment Form",
+              "package": "covid",
+              "label": "Edit Assessment",
+              "mode": "edit"
+            },
+            {
+              "formName": "COVID Case Form",
+              "package": "covid",
+              "label": "Edit Case",
+              "mode": "edit"
+            },
+            {
+              "formName": "COVID Outcome Form",
+              "package": "covid",
+              "label": "Add/Edit Outcome",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-covid-app"
+      },
+      "formList": [
+        {
+          "name": "COVID Assessment Form",
+          "excludedIntents": ["COVID_LAB_ASSESSMENT_EMBED"],
+          "uuid": "f5fb6bc4-6fc3-3462-a191-2fff0896bab3"
+        },
+        {
+          "name": "COVID Case Form",
+          "uuid": "c0fd71bd-37bc-3c8d-b2ff-149c0ff4d6f0"
+        },
+        {
+          "name": "COVID Outcome Form",
+          "excludedIntents": ["COVID_OUTCOME_EMBED", "*"],
+          "uuid": "6515d898-439c-11ec-9103-238295f2dfd7"
+        }
+      ]
+    }
+  ]
+}

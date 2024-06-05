@@ -1,0 +1,196 @@
+{
+  "menuId": "labTest",
+  "tabDefinitions": [
+    {
+      "tabName": "Lab Tests",
+      "headerTitle": "Lab Tests",
+      "displayText": "Lab Tests",
+      "encounterType": "a77d3e7f-5c8f-4074-a207-77a70e197b0c",
+      "columns": [
+        {
+          "id": "orderDate",
+          "isDate": true,
+          "title": "Date of Order",
+          "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "reasonsForTesting",
+          "title": "Reason for testing",
+          "concept": "ae46f4b1-c15d-4bba-ab41-b9157b82b0ce"
+        },
+        {
+          "id": "testType",
+          "title": "Test Type",
+          "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718"
+        },
+        {
+          "id": "labStatus",
+          "title": "Status",
+          "concept": "6681366c-2174-489a-b951-13a1404935bf",
+          "type": "tag"
+        },
+        {
+          "id": "labTestResult",
+          "title": "Test Result",
+          "concept": "3f4ee14b-b4ab-4597-9fe9-406883b63d76",
+          "fallbackConcepts": ["cbcbb029-f11f-4437-9d53-1d0f0a170433"]
+        },
+        {
+          "id": "testResultDate",
+          "isDate": true,
+          "title": "Date of Test Result",
+          "concept": "163724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "COVID Lab Test",
+              "package": "covid",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "COVID Lab Test",
+              "package": "covid",
+              "label": "Add/Edit Lab Result",
+              "mode": "edit"
+            }
+          ],
+          "conditionalActionOptions": [
+            {
+              "formName": "Lab Order Cancellation",
+              "package": "covid",
+              "label": "Cancel Lab order",
+              "mode": "edit",
+              "dependsOn": "Pending",
+              "dependantConcept": "6681366c-2174-489a-b951-13a1404935bf"
+            },
+            {
+              "formName": "Sample Collection",
+              "package": "covid",
+              "label": "Collect Sample",
+              "mode": "edit",
+              "dependsOn": "Pending",
+              "dependantConcept": "6681366c-2174-489a-b951-13a1404935bf"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-covid-app"
+      },
+      "formList": [
+        {
+          "name": "COVID Lab Order Form",
+          "excludedIntents": ["COVID_LAB_ORDER_EMBED"],
+          "uuid": "f5fb6bc4-6fc3-3462-a191-2fff0896bab3"
+        },
+        {
+          "name": "COVID Lab Result Form",
+          "excludedIntents": ["COVID_LAB_RESULT_EMBED"],
+          "uuid": "cf8cd756-baef-38df-b84d-92968b42c113"
+        },
+        {
+          "name": "COVID Lab Test",
+          "excludedIntents": ["*"],
+          "uuid": "e92fe922-4863-11ec-99cc-1fdd2d4e9d88"
+        },
+        {
+          "name": "Lab Order Cancellation",
+          "excludedIntents": ["*", "COVID_LAB_CANCELLATION_EMBED"],
+          "uuid": "d38bc949-c95b-39eb-a2c5-08b82a36409c"
+        },
+        {
+          "name": "Sample Collection",
+          "excludedIntents": ["*", "COVID_SAMPLE_COLLECTION_EMBED"],
+          "uuid": "371d19b6-485f-11ec-99cc-1fdd2d4e9d88"
+        }
+      ]
+    },
+    {
+      "tabName": "Pending Lab Orders",
+      "headerTitle": "Pending Lab Orders",
+      "displayText": "Pending Lab Orders",
+      "encounterType": "a77d3e7f-5c8f-4074-a207-77a70e197b0c",
+      "columns": [
+        {
+          "id": "orderDate",
+          "isDate": true,
+          "title": "Date of Order",
+          "concept": "162078AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "testType",
+          "title": "Test Type",
+          "concept": "069f6dfe-88c1-4a45-a894-0d99549c8718"
+        },
+        {
+          "id": "fowardLabreference",
+          "title": "Fowarded to Reference Lab",
+          "concept": "161934AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "labStatus",
+          "title": "Status",
+          "concept": "6681366c-2174-489a-b951-13a1404935bf",
+          "type": "tag"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "COVID Lab Test",
+              "package": "covid",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "Sample Collection",
+              "package": "covid",
+              "label": "Collect Sample",
+              "mode": "edit"
+            },
+            {
+              "formName": "COVID Lab Result Form",
+              "package": "covid",
+              "label": "Add/Edit Lab Result",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-covid-app"
+      },
+      "formList": [
+        {
+          "name": "COVID Lab Result Form",
+          "uuid": "e92fe922-4863-11ec-99cc-1fdd2d4e9d88"
+        },
+        {
+          "name": "COVID Lab Result Form",
+          "uuid": "cf8cd756-baef-38df-b84d-92968b42c113"
+        },
+        {
+          "name": "Lab Order Cancellation",
+          "uuid": "d38bc949-c95b-39eb-a2c5-08b82a36409c"
+        },
+        {
+          "name": "Sample Collection",
+          "uuid": "371d19b6-485f-11ec-99cc-1fdd2d4e9d88"
+        },
+        {
+          "name": "COVID Lab Order Form",
+          "uuid": "f5fb6bc4-6fc3-3462-a191-2fff0896bab3"
+        }
+      ],
+      "hasFilter": true
+    }
+  ]
+}

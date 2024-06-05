@@ -10,6 +10,16 @@ interface ActionProps {
   package: string;
   formName: string;
 }
+
+interface ConditionalActionProps {
+  mode: string;
+  label: string;
+  package: string;
+  formName: string;
+  dependsOn: string;
+  dependantConcept: string;
+}
+
 interface ColumnDefinition {
   id: string;
   title: string;
@@ -18,6 +28,7 @@ interface ColumnDefinition {
   multipleConcepts?: Array<string>;
   fallbackConcepts?: Array<string>;
   actionOptions?: Array<ActionProps>;
+  conditionalActionOptions?: Array<ConditionalActionProps>;
   isDate?: boolean;
   isTrueFalseConcept?: boolean;
   type?: string;
@@ -45,21 +56,41 @@ interface FormattedColumn {
   header: string;
   getValue: (encounter: any) => string;
   link?: any;
+  concept?: string;
 }
 
 export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
   const columns: Array<FormattedColumn> = columnsDefinition.map((column: ColumnDefinition) => ({
     key: column.id,
     header: column.title,
+    concept: column.concept,
     getValue: (encounter) => {
       if (column.id === 'actions') {
-        return column.actionOptions.map((action: ActionProps) => ({
+        const conditionalActions = [];
+        const baseActions = column.actionOptions.map((action: ActionProps) => ({
           form: { name: action.formName, package: action.package },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: action.label,
           mode: action.mode,
         }));
+
+        if (column?.conditionalActionOptions?.length) {
+          column?.conditionalActionOptions?.map((action) => {
+            const dependantObsValue = getObsFromEncounter(encounter, action.dependantConcept);
+
+            if (dependantObsValue === action.dependsOn) {
+              return conditionalActions.push({
+                form: { name: action.formName, package: action.package },
+                encounterUuid: encounter.uuid,
+                intent: '*',
+                label: action.label,
+                mode: action.mode,
+              });
+            }
+          });
+        }
+        return [...baseActions, ...conditionalActions];
       } else if (column.useMultipleObs === true) {
         return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
       } else {
