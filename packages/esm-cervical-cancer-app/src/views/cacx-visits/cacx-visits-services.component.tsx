@@ -12,10 +12,6 @@ interface OverviewListProps {
 const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const tabs = getMenuItemTabConfiguration(cacxConfigSchema);
 
-  const tabFilter = (encounter, formName) => {
-    return encounter?.form?.name === formName;
-  };
-
   return (
     <div className={styles.tabContainer}>
       <Tabs>
@@ -28,7 +24,6 @@ const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }
           {tabs.map((tab) => (
             <TabPanel>
               <EncounterList
-                filter={tab.hasFilter ? (encounter) => tabFilter(encounter, tab.formList[0].name) : null}
                 patientUuid={patientUuid}
                 formList={tab.formList}
                 columns={tab.columns}

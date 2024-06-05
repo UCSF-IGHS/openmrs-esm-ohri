@@ -3,7 +3,6 @@
   "tabDefinitions": [
     {
       "tabName": "CaCx Registration",
-      "hasFilter": false,
       "headerTitle": "CaCx Registration",
       "displayText": "CaCx Registration",
       "encounterType": "3eb24129-9f7d-4372-a14e-c2cf577e5db1",
@@ -56,7 +55,6 @@
     },
     {
       "tabName": "CaCx Treatment",
-      "hasFilter": false,
       "headerTitle": "CaCx Treatment",
       "displayText": "CaCx Treatment",
       "encounterType": "60c80941-c3dc-45c6-9b78-c150e0470cbd",
@@ -75,7 +73,8 @@
         {
           "id": "screeningResult",
           "title": "Screening Results",
-          "concept": "36a3e671-9d60-4109-b41f-046f44f4b389"
+          "concept": ["9096a18e-c009-4f4c-b0ba-0605e0f16578", "159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","28bab50e-7ff7-4216-81be-3f7ad05c6547", "cc647244-0826-4d8e-8c5a-d7a371267bf4"],
+          "useMultipleObs": true  
         },
         {
           "id": "cacxTreatment",
@@ -111,6 +110,6 @@
           "uuid": "9e3ec2a7-ad26-3f43-9677-82e318996eec"
         }
       ]
-    }
+    }    
   ]
 }
