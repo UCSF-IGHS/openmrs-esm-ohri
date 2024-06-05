@@ -1,13 +1,4 @@
 {
-  "actions": "Actions",
-  "cacxRegistration": "CaCx Registration",
-  "cacxSummary": "CaCx Summary",
-  "cacxTreatment": "CaCx Treatment",
-  "editForm": "Edit Form",
-  "eligibleforScreening": "Eligible for CaCx Screening",
-  "previouslyScreened": "Previously Screened for CaCx",
-  "screeningMethod": "Screening Method",
-  "screeningResult": "Screening Results",
-  "viewDetails": "View details",
-  "visitDate": "Visit Date"
+  "cacxSummary": "CaCx Summary"
+
 }
