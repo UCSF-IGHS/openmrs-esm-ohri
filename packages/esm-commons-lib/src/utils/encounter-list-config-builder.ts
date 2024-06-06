@@ -14,7 +14,8 @@ interface ColumnDefinition {
   id: string;
   title: string;
   isComplex?: boolean;
-  concept?: string | Array<string>;
+  concept?: string;
+  multipleConcepts?: Array<string>;
   fallbackConcepts?: Array<string>;
   actionOptions?: Array<ActionProps>;
   isDate?: boolean;
@@ -45,6 +46,7 @@ interface FormattedColumn {
   getValue: (encounter: any) => string;
   link?: any;
 }
+
 export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
   const columns: Array<FormattedColumn> = columnsDefinition.map((column: ColumnDefinition) => ({
     key: column.id,
@@ -59,8 +61,7 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
           mode: action.mode,
         }));
       } else if (column.useMultipleObs === true) {
-        let conceptsArray = Array.isArray(column.concept) ? column.concept : [column.concept];
-        return getMultipleObsFromEncounter(encounter, conceptsArray);
+        return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
       } else {
         return getObsFromEncounter(
           encounter,
@@ -69,7 +70,6 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
           column.isTrueFalseConcept,
           column.type,
           column.fallbackConcepts,
-          column.useMultipleObs,
         );
       }
     },

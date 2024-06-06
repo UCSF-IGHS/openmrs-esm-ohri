@@ -28,10 +28,10 @@ export function getObsFromEncounters(encounters, obsConcept) {
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
-export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>, type?: string) {
+export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>) {
   let observations = [];
-  obsConcepts.forEach((concept) => {
-    let obs = getObsFromEncounter(encounter, concept);
+  obsConcepts.map((concept) => {
+    const obs = getObsFromEncounter(encounter, concept);
     if (obs !== '--') {
       observations.push(obs);
     }
@@ -131,12 +131,7 @@ export function getObsFromEncounter(
   isTrueFalseConcept?: Boolean,
   type?: string,
   fallBackConcepts?: Array<string>,
-  useMultipleObs?: Boolean,
 ) {
-  if (useMultipleObs && Array.isArray(obsConcept)) {
-    return getMultipleObsFromEncounter(encounter, obsConcept, type);
-  }
-
   let obs = findObs(encounter, obsConcept);
 
   // if (type === 'artDate') {
