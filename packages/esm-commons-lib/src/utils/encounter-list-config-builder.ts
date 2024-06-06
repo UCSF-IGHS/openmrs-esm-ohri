@@ -105,6 +105,7 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
         );
       }
     },
+    concept: column.concept,
     link: column.isLink
       ? {
           getUrl: (encounter) => encounter.url,

@@ -91,7 +91,7 @@ const artConcepts: { [key: string]: string } = {
 
 export function getARTDateValue(encounter) {
   const artDateConcept = getARTDateConcept(encounter);
-  return getObsFromEncounter(encounter, artDateConcept);
+  return getObsFromEncounter(encounter, artDateConcept, true);
 }
 
 export function getARTReasonValue(encounter) {
