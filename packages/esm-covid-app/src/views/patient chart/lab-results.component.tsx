@@ -7,7 +7,6 @@ import {
   getObsFromEncounter,
   getMenuItemTabConfiguration,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { useTranslation } from 'react-i18next';
 import { useConfig } from '@openmrs/esm-framework';
 import covidLabTestSchemaConfig from './lab-results-schema-config.json';
 
@@ -43,7 +42,7 @@ const renderTag = (encounter, concept) => {
 
 const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const config = useConfig();
-  const { t } = useTranslation();
+
   const tabs = getMenuItemTabConfiguration(covidLabTestSchemaConfig);
 
   function updateStatusTagColumn(tabs, renderTag) {

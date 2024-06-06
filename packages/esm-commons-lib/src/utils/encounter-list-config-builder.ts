@@ -1,4 +1,4 @@
-import { getObsFromEncounter, findObs, getMultipleObsFromEncounter } from './encounter-list-utils';
+import { getObsFromEncounter, getMultipleObsFromEncounter } from './encounter-list-utils';
 
 interface MenuProps {
   menuId: string;
@@ -39,6 +39,7 @@ interface ColumnDefinition {
 interface LaunchOptions {
   displayText: string;
   moduleName: string;
+  hideFormLauncher?: boolean;
 }
 interface TabSchema {
   tabName: string;

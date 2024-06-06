@@ -166,7 +166,8 @@
       ],
       "launchOptions": {
         "displayText": "Add",
-        "moduleName": "@ohri/openmrs-esm-covid-app"
+        "moduleName": "@ohri/openmrs-esm-covid-app",
+        "hideFormLauncher": true
       },
       "formList": [
         {
