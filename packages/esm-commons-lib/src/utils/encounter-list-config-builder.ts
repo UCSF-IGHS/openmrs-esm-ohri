@@ -1,4 +1,4 @@
-import { getObsFromEncounter, findObs } from './encounter-list-utils';
+import { getObsFromEncounter, findObs, getMultipleObsFromEncounter } from './encounter-list-utils';
 
 interface MenuProps {
   menuId: string;
@@ -15,12 +15,14 @@ interface ColumnDefinition {
   title: string;
   isComplex?: boolean;
   concept?: string;
+  multipleConcepts?: Array<string>;
   fallbackConcepts?: Array<string>;
   actionOptions?: Array<ActionProps>;
   isDate?: boolean;
   isTrueFalseConcept?: boolean;
   type?: string;
   isLink?: boolean;
+  useMultipleObs?: boolean;
 }
 
 interface LaunchOptions {
@@ -44,6 +46,7 @@ interface FormattedColumn {
   getValue: (encounter: any) => string;
   link?: any;
 }
+
 export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
   const columns: Array<FormattedColumn> = columnsDefinition.map((column: ColumnDefinition) => ({
     key: column.id,
@@ -57,6 +60,8 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
           label: action.label,
           mode: action.mode,
         }));
+      } else if (column.useMultipleObs === true) {
+        return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
       } else {
         return getObsFromEncounter(
           encounter,
