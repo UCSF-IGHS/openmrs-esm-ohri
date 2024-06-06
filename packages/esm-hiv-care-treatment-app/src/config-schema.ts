@@ -1,4 +1,6 @@
+import _default from '@carbon/react/lib/components/Button/Button';
 import { Type } from '@openmrs/esm-framework';
+import programManagementSchema from './views/program-management/program-management-config.json';
 
 export const configSchema = {
   encounterTypes: {
@@ -157,6 +159,24 @@ export const configSchema = {
       expressVisitFormUuid: 'ea1efef5-33cf-363f-9e59-5d0b6563ec7c',
     },
   },
+  patientChartWorkflowSchemas: {
+    programManagementTabsSchema: {
+      _type: Type.Object,
+      _description: 'program management schema',
+      _default: {
+        key: 'one',
+        value: 'two',
+      },
+    },
+    partenerManagementTabsSchema: {
+      _type: Type.Object,
+      _description: 'partner management schema',
+      _default: {
+        key: 'three',
+        value: 'four',
+      },
+    },
+  },
 };
 
 export interface ConfigObject {
@@ -165,4 +185,5 @@ export interface ConfigObject {
   obsConcepts: Object;
   formNames: Object;
   formUuids: Object;
+  patientChartWorkflowSchemas: Object;
 }

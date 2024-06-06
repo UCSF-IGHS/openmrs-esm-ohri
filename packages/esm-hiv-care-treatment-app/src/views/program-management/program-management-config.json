@@ -216,7 +216,6 @@
         {
           "id": "verified",
           "title": "Verified",
-          "type": "transferVerified",
           "concept": "797e0073-1f3f-46b1-8b1a-8cdad134d2b3"
         },
         {
