@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Tab, TabList, TabPanels, TabPanel, Tag } from '@carbon/react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import programManagementTabConfigSchema from './program-management-config.json';
