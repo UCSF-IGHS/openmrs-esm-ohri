@@ -31,6 +31,7 @@ interface ColumnDefinition {
   title: string;
   isComplex?: boolean;
   concept?: string;
+  secondaryConcept?: string;
   multipleConcepts?: Array<string>;
   fallbackConcepts?: Array<string>;
   actionOptions?: Array<ActionProps>;

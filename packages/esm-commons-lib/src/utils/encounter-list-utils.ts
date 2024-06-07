@@ -62,6 +62,7 @@ export function getObsFromEncounter(
   isTrueFalseConcept?: Boolean,
   type?: string,
   fallbackConcepts?: Array<string>,
+  secondaryConcept?: string,
 ) {
   let obs = findObs(encounter, obsConcept);
 
@@ -79,6 +80,15 @@ export function getObsFromEncounter(
 
   if (type === 'provider') {
     return encounter.encounterProviders.map((p) => p.provider.name).join(' | ');
+  }
+
+  if (secondaryConcept && typeof obs.value === 'object' && obs.value.names) {
+    const primaryValue =
+      obs.value.names.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
+    if (primaryValue === 'Other non-coded') {
+      const secondaryObs = findObs(encounter, secondaryConcept);
+      return secondaryObs ? secondaryObs.value : '--';
+    }
   }
 
   if (!obs && fallbackConcepts?.length >= 1) {
