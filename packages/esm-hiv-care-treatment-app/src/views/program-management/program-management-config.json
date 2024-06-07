@@ -77,12 +77,12 @@
           "id": "initiationDate",
           "isDate": true,
           "title": "Date",
-          "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "type": "artDate",
-          "fallbackConcepts": [
+          "conceptMappings": [
+            "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "164516AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "164431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "162572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "160738AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           ]
         },
@@ -90,7 +90,14 @@
           "id": "therapyPlan",
           "title": "Therapy Plan",
           "type": "artTherapy",
-          "concept": "7557d77c-172b-4673-9335-67a38657dd01"
+          "concept": "7557d77c-172b-4673-9335-67a38657dd01",
+          "valueMappings": {
+            "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Start ART",
+            "1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Substitute ART Regimen",
+            "1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Switch ART Regimen Line",
+            "1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "Stop ART",
+            "3e69cb60-2943-410f-83d4-b359ae83fefd": "Restart ART therapy"
+          }
         },
         {
           "id": "regimen",
@@ -105,7 +112,12 @@
         {
           "id": "reason",
           "title": "Reason",
-          "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "conceptMappings": [
+            "160568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "160562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "163513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          ],
           "type": "artReason"
         },
         {

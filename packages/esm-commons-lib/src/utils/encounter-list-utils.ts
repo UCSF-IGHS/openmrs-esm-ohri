@@ -28,6 +28,21 @@ export function getObsFromEncounters(encounters, obsConcept) {
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
+export function resolveValueUsingMappings(encounter, concept, mappings) {
+  const obs = findObs(encounter, concept);
+  return obs ? mappings[obs.value.uuid] || obs.value : '--';
+}
+
+export function getConceptFromMappings(encounter, concepts) {
+  for (const concept of concepts) {
+    const obs = findObs(encounter, concept);
+    if (obs && obs.value) {
+      return concept;
+    }
+  }
+  return null;
+}
+
 export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>) {
   let observations = [];
   obsConcepts.map((concept) => {
