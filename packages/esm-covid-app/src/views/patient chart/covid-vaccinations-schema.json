@@ -1,0 +1,62 @@
+{
+  "menuId": "covidVaccinations",
+  "tabDefinitions": [
+    {
+      "tabName": "Vaccinations",
+      "headerTitle": "Vaccinations",
+      "displayText": "Vaccinations",
+      "encounterType": "5b37ce7a-c55e-4226-bdc8-5af04025a6de",
+      "columns": [
+        {
+          "id": "vaccinationDate",
+          "isDate": true,
+          "title": "Vaccination Date",
+          "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "doseAdministered",
+          "title": "Vaccine Dose",
+          "concept": "6ec64cb3-e710-4d3e-9db4-38c135966a45"
+        },
+        {
+          "id": "vaccineSeries",
+          "title": "Vaccine Series",
+          "concept": "45b3959d-f897-4e01-b6e5-16ef6ae0a687"
+        },
+        {
+          "id": "covidVaccineType",
+          "title": "Vaccine Administered",
+          "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "COVID Vaccination Form",
+              "package": "covid",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "COVID Vaccination Form",
+              "package": "covid",
+              "label": "Edit Form",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-covid-app"
+      },
+      "formList": [
+        {
+          "name": "COVID Vaccination Form",
+          "uuid": "3ae3a031-2e24-357d-81b3-205d5187090a"
+        }
+      ]
+    }
+  ]
+}
