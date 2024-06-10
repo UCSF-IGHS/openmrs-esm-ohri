@@ -1,27 +1,37 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../../common.scss';
-import { useTranslation } from 'react-i18next';
-import TptTreatmentList from './tabs/tpt-treatment.component';
-import TptEnrolmentList from './tabs/tpt-enrolment.component';
-import { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import tptProgramManagemetConfigSchema from './tpt-program-management-config.json';
+interface OverviewListProps {
+  patientUuid: string;
+}
 
-const TptProgramManagementSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
+const TptProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+  const tabs = getMenuItemTabConfiguration(tptProgramManagemetConfigSchema);
+
   return (
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('tptEnrolment', 'TPT Enrolment')}</Tab>
-          <Tab>{t('tptTreatment', 'TPT Treatment')}</Tab>
+          {tabs.map((tab) => (
+            <Tab key={tab.name}>{tab.name}</Tab>
+          ))}
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <TptEnrolmentList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <TptTreatmentList patientUuid={patientUuid} />
-          </TabPanel>
+          {tabs.map((tab) => (
+            <TabPanel>
+              <EncounterList
+                patientUuid={patientUuid}
+                formList={tab.formList}
+                columns={tab.columns}
+                encounterType={tab.encounterType}
+                launchOptions={tab.launchOptions}
+                headerTitle={tab.headerTitle}
+                description={tab.description}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </Tabs>
     </div>

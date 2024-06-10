@@ -1,27 +1,37 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
-import { useTranslation } from 'react-i18next';
-import MdrTbList from './tabs/mdr-tb.component';
-import TbPatientTracing from './tabs/tb-patient-tracing.component';
-import { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { PatientChartProps, getMenuItemTabConfiguration, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
+import tptProgramManagemetConfigSchema from './tb-program-management-config.json';
+interface OverviewListProps {
+  patientUuid: string;
+}
 
 const ProgramManagementSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
+  const tabs = getMenuItemTabConfiguration(tptProgramManagemetConfigSchema);
+
   return (
     <div className={styles.tabContainer}>
       <Tabs>
         <TabList contained>
-          <Tab>{t('MdrTbEnrolment', 'TB/MDR TB Enrolment')}</Tab>
-          <Tab>{t('PatientTracing', 'Patient Tracing')}</Tab>
+          {tabs.map((tab) => (
+            <Tab key={tab.name}>{tab.name}</Tab>
+          ))}
         </TabList>
         <TabPanels>
-          <TabPanel>
-            <MdrTbList patientUuid={patientUuid} />
-          </TabPanel>
-          <TabPanel>
-            <TbPatientTracing patientUuid={patientUuid} />
-          </TabPanel>
+          {tabs.map((tab) => (
+            <TabPanel>
+              <EncounterList
+                patientUuid={patientUuid}
+                formList={tab.formList}
+                columns={tab.columns}
+                encounterType={tab.encounterType}
+                launchOptions={tab.launchOptions}
+                headerTitle={tab.headerTitle}
+                description={tab.description}
+              />
+            </TabPanel>
+          ))}
         </TabPanels>
       </Tabs>
     </div>

@@ -1,0 +1,69 @@
+{
+    "menuId": "tbFollowup",
+    "tabDefinitions": [
+      {
+        "tabName": "TB Follow-up",
+        "headerTitle": "TB Follow-up",
+        "displayText": "TB Follow-up",
+        "encounterType": "1881304a-4854-4927-b0b1-a6231d61e43c",
+        "columns": [
+          {
+            "id": "visitDate",
+            "isDate": true,
+            "title": "Visit Date",
+            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "id": "caseID",
+            "title": "Case ID",
+            "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "id": "monthOfTreatment",
+            "title": "Month of Rx",
+            "concept": "1418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "id": "adherenceAssessment",
+            "title": "Adherence",
+            "concept": "164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "id": "nextAppointment",
+            "isDate": true,
+            "title": "Next Appointment",
+            "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "id": "actions",
+            "title": "Actions",
+            "actionOptions": [
+              {
+                "formName": "TB Follow-up Form",
+                "package": "tb",
+                "label": "View Details",
+                "mode": "view"
+              },
+              {
+                "formName": "TB Follow-up Form",
+                "package": "tb",
+                "label": "Edit Form",
+                "mode": "edit"
+              }
+            ]
+          }
+        ],
+        "launchOptions": {
+          "displayText": "Add",
+          "moduleName": "@ohri/openmrs-esm-ohri-tb-app"
+        },
+        "formList": [
+          {
+            "name": "TB Follow-up Form",
+            "uuid": "79b05c37-0def-4482-a345-c63b99fbd565"
+          }
+        ]
+      }  
+    ]
+  }
+  
