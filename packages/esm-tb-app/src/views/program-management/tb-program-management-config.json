@@ -21,18 +21,18 @@
           {
             "id": "tbTreatmentId",
             "title": "TB Treatment ID",
-            "concept": "162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "treatmentId"
           },
           {
             "id": "treatmentStartDate",
             "isDate": true,
             "title": "Treatment Start Date",
-            "concept": "1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tBTreatmentStartDateConcept"
           },
           {
             "id": "regimen",
             "title": "Regimen",
-            "concept": "1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "regimen"
           },
           {
             "id": "treatmentOutcome",

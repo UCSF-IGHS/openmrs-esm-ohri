@@ -5,6 +5,7 @@ import {
   getConceptFromMappings,
 } from './encounter-list-utils';
 import { renderTag } from './encounter-list-component-util';
+import { getTbTreatmentId, getTbTreatmentStartDate, getTbRegimen } from '../../../esm-tb-app/src/tb-helper';
 
 interface MenuProps {
   menuId: string;
@@ -65,7 +66,7 @@ interface TabSchema {
 interface FormattedColumn {
   key: string;
   header: string;
-  getValue: (encounter: any) => string;
+  getValue: (encounter: any) => Promise<string>;
   link?: any;
   concept?: string;
 }
@@ -75,7 +76,26 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
     key: column.id,
     header: column.title,
     concept: column.concept,
-    getValue: (encounter) => {
+    getValue: async (encounter) => {
+      if (column.concept) {
+        switch (column.concept) {
+          case 'treatmentId':
+            return await getTbTreatmentId(encounter, 'treatmentId');
+          case 'tBTreatmentStartDateConcept':
+            return await getTbTreatmentStartDate(encounter, 'tBTreatmentStartDateConcept');
+          case 'regimen':
+            return await getTbRegimen(encounter, 'regimen');
+          default:
+            return getObsFromEncounter(
+              encounter,
+              column.concept,
+              column.isDate,
+              column.isTrueFalseConcept,
+              column.type,
+              column.fallbackConcepts,
+            );
+        }
+      }
       if (column.id === 'actions') {
         const conditionalActions = [];
         const baseActions = column.actionOptions.map((action: ActionProps) => ({
