@@ -5,7 +5,7 @@ import { PatientIdentifier } from '../api/types';
 
 const ArtSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
-    const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
+    const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct-app');
     const encounter = encounters[0];
     const encounterLocation = encounter.location['uuid'];
 

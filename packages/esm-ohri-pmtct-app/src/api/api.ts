@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { fetchPatientRelationships } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
-const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
+const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct-app');
 
 export function generateIdentifier(source: string) {
   return openmrsFetch(`/ws/rest/v1/idgen/identifiersource/${source}/identifier`, {

@@ -47,7 +47,7 @@ export const MotherToChildLinkageSubmissionAction: PostSubmissionAction = {
 };
 
 async function getPreferredIdentifierSource() {
-  const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
+  const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct-app');
   return config.identifiers.preferredIdentifierSource;
 }
 
