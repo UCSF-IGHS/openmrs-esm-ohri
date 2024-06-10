@@ -27,7 +27,13 @@
           "id": "labStatus",
           "title": "Status",
           "concept": "6681366c-2174-489a-b951-13a1404935bf",
-          "type": "tag"
+          "type": "tag",
+          "statusColorMappings": {
+            "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "green",
+            "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "green",
+            "165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "purple",
+            "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "blue"
+          }
         },
         {
           "id": "labTestResult",
@@ -137,7 +143,13 @@
           "id": "labStatus",
           "title": "Status",
           "concept": "6681366c-2174-489a-b951-13a1404935bf",
-          "type": "tag"
+          "type": "tag",
+          "statusColorMappings": {
+            "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "green",
+            "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "green",
+            "165170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "purple",
+            "162866AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "blue"
+          }
         },
         {
           "id": "actions",

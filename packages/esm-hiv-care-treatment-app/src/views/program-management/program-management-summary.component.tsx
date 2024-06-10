@@ -10,6 +10,7 @@ interface OverviewListProps {
 
 const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const tabs = getMenuItemTabConfiguration(programManagementTabConfigSchema);
+
   return (
     <div className={styles.tabContainer}>
       <Tabs>

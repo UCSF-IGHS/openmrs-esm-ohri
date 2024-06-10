@@ -28,6 +28,21 @@ export function getObsFromEncounters(encounters, obsConcept) {
   return getObsFromEncounter(filteredEnc, obsConcept);
 }
 
+export function resolveValueUsingMappings(encounter, concept, mappings) {
+  const obs = findObs(encounter, concept);
+  return obs ? mappings[obs.value.uuid] || obs.value : '--';
+}
+
+export function getConceptFromMappings(encounter, concepts) {
+  for (const concept of concepts) {
+    const obs = findObs(encounter, concept);
+    if (obs && obs.value) {
+      return concept;
+    }
+  }
+  return null;
+}
+
 export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string>) {
   let observations = [];
   obsConcepts.map((concept) => {
@@ -47,6 +62,7 @@ export function getObsFromEncounter(
   isTrueFalseConcept?: Boolean,
   type?: string,
   fallbackConcepts?: Array<string>,
+  secondaryConcept?: string,
 ) {
   let obs = findObs(encounter, obsConcept);
 
@@ -64,6 +80,15 @@ export function getObsFromEncounter(
 
   if (type === 'provider') {
     return encounter.encounterProviders.map((p) => p.provider.name).join(' | ');
+  }
+
+  if (secondaryConcept && typeof obs.value === 'object' && obs.value.names) {
+    const primaryValue =
+      obs.value.names.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
+    if (primaryValue === 'Other non-coded') {
+      const secondaryObs = findObs(encounter, secondaryConcept);
+      return secondaryObs ? secondaryObs.value : '--';
+    }
   }
 
   if (!obs && fallbackConcepts?.length >= 1) {

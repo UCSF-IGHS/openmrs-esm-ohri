@@ -28,7 +28,12 @@
           "id": "hivStatus",
           "title": "Status",
           "concept": "1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "type": "hivStatus"
+          "type": "hivStatus",
+          "statusColorMappings": {
+            "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "red",
+            "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "gray",
+            "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "purple"
+          }
         },
         {
           "id": "actions",

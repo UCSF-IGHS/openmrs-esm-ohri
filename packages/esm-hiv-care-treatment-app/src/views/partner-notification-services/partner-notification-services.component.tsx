@@ -1,6 +1,11 @@
 import React from 'react';
-import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
-import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { Tabs, Tab, TabList, TabPanels, TabPanel, Tag } from '@carbon/react';
+import {
+  EncounterList,
+  getMenuItemTabConfiguration,
+  getObsFromEncounter,
+  findObs,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import partnerNotificationsConfigSchema from './patner-notification-config.json';
 
 import styles from '../common.scss';

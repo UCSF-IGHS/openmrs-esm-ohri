@@ -1,4 +1,10 @@
-import { getObsFromEncounter, getMultipleObsFromEncounter } from './encounter-list-utils';
+import {
+  getObsFromEncounter,
+  getMultipleObsFromEncounter,
+  resolveValueUsingMappings,
+  getConceptFromMappings,
+} from './encounter-list-utils';
+import { renderTag } from './encounter-list-component-util';
 
 interface MenuProps {
   menuId: string;
@@ -25,6 +31,7 @@ interface ColumnDefinition {
   title: string;
   isComplex?: boolean;
   concept?: string;
+  secondaryConcept?: string;
   multipleConcepts?: Array<string>;
   fallbackConcepts?: Array<string>;
   actionOptions?: Array<ActionProps>;
@@ -34,6 +41,9 @@ interface ColumnDefinition {
   type?: string;
   isLink?: boolean;
   useMultipleObs?: boolean;
+  valueMappings?: Record<string, string>;
+  conceptMappings?: Array<string>;
+  statusColorMappings?: Record<string, string>;
 }
 
 interface LaunchOptions {
@@ -92,8 +102,22 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
           });
         }
         return [...baseActions, ...conditionalActions];
+      } else if (column.statusColorMappings) {
+        return renderTag(encounter, column.concept, column.statusColorMappings);
       } else if (column.useMultipleObs === true) {
         return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
+      } else if (column.valueMappings) {
+        return resolveValueUsingMappings(encounter, column.concept, column.valueMappings);
+      } else if (column.conceptMappings) {
+        const concept = getConceptFromMappings(encounter, column.conceptMappings);
+        return getObsFromEncounter(
+          encounter,
+          concept,
+          column.isDate,
+          column.isTrueFalseConcept,
+          column.type,
+          column.fallbackConcepts,
+        );
       } else {
         return getObsFromEncounter(
           encounter,
