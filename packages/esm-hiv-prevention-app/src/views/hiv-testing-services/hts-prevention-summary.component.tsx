@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import htsTestingSchemaConfig from './hts-prevention-schema-config.json';
+import { configSchema } from '../../config-schema';
 
 import styles from '../common.scss';
 
@@ -10,7 +11,7 @@ interface OverviewListProps {
 }
 
 const HTSPreventionSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(htsTestingSchemaConfig);
+  const tabs = getMenuItemTabConfiguration(htsTestingSchemaConfig, configSchema);
 
   return (
     <div className={styles.tabContainer}>

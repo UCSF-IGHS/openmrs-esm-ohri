@@ -1,6 +1,7 @@
 import React from 'react';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import caseAssessmentSchemaConfig from './case-assessment-schema-config.json';
+import { configSchema } from '../../config-schema';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
@@ -13,7 +14,7 @@ interface CovidAssessmentWidgetProps {
 }
 
 const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(caseAssessmentSchemaConfig);
+  const tabs = getMenuItemTabConfiguration(caseAssessmentSchemaConfig, configSchema);
 
   return (
     <>

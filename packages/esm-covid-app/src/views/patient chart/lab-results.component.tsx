@@ -4,6 +4,7 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import { EncounterList, getObsFromEncounter, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
 import covidLabTestSchemaConfig from './lab-results-schema-config.json';
+import { configSchema } from '../../config-schema';
 
 export const covidFormSlot = 'hts-encounter-form-slot';
 export const covidEncounterRepresentation =
@@ -18,7 +19,7 @@ interface CovidLabWidgetProps {
 const CovidLabResults: React.FC<CovidLabWidgetProps> = ({ patientUuid }) => {
   const config = useConfig();
 
-  const tabs = getMenuItemTabConfiguration(covidLabTestSchemaConfig);
+  const tabs = getMenuItemTabConfiguration(covidLabTestSchemaConfig, configSchema);
 
   let pendingLabOrdersFilter = (encounter) => {
     return getObsFromEncounter(encounter, config.obsConcepts.covidTestStatusConcept_UUID) === 'Pending';

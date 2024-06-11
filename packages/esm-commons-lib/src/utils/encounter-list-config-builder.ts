@@ -5,6 +5,7 @@ import {
   getConceptFromMappings,
 } from './encounter-list-utils';
 import { renderTag } from './encounter-list-component-util';
+import { extractDefaults, replaceWithConfigDefaults } from './schema-manipulation';
 
 interface ConfigSchema {
   [key: string]: {
@@ -151,47 +152,6 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
 
   return columns;
 };
-
-function extractDefaults(schema) {
-  const result = {};
-
-  function traverse(schema) {
-    for (const key in schema) {
-      if (key === '_default') {
-        Object.assign(result, schema[key]);
-      } else if (typeof schema[key] === 'object' && !Array.isArray(schema[key])) {
-        traverse(schema[key]);
-      }
-    }
-  }
-
-  traverse(schema);
-  return result;
-}
-
-function replaceWithConfigDefaults(obj, configDefaults) {
-  if (Array.isArray(obj)) {
-    return obj.map((item) => {
-      if (typeof item === 'string' && configDefaults.hasOwnProperty(item)) {
-        return configDefaults[item];
-      } else {
-        return replaceWithConfigDefaults(item, configDefaults);
-      }
-    });
-  } else if (typeof obj === 'object' && obj !== null) {
-    const newObj = {};
-    for (const key in obj) {
-      if (typeof obj[key] === 'string' && configDefaults.hasOwnProperty(obj[key])) {
-        newObj[key] = configDefaults[obj[key]];
-      } else {
-        newObj[key] = replaceWithConfigDefaults(obj[key], configDefaults);
-      }
-    }
-    return newObj;
-  } else {
-    return obj;
-  }
-}
 
 export const getMenuItemTabConfiguration = (schemaConfig: MenuProps, configSchema?: ConfigSchema) => {
   // gonna make the configSchema optional for now until we implement it everywher

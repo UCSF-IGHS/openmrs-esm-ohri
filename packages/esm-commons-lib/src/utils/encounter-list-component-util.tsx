@@ -5,6 +5,7 @@ import { getObsFromEncounter, findObs } from './encounter-list-utils';
 export const renderTag = (encounter, concept, statusColorMappings) => {
   const columnStatus = getObsFromEncounter(encounter, concept);
   const columnStatusObs = findObs(encounter, concept);
+
   if (columnStatus == '--') {
     return '--';
   } else {

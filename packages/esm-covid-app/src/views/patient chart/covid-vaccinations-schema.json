@@ -5,42 +5,42 @@
       "tabName": "Vaccinations",
       "headerTitle": "Vaccinations",
       "displayText": "Vaccinations",
-      "encounterType": "5b37ce7a-c55e-4226-bdc8-5af04025a6de",
+      "encounterType": "covidVaccinationEncounterUUID",
       "columns": [
         {
           "id": "vaccinationDate",
           "isDate": true,
           "title": "Vaccination Date",
-          "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "covidVaccinationAdministeredConcept_UUID"
         },
         {
           "id": "doseAdministered",
           "title": "Vaccine Dose",
-          "concept": "6ec64cb3-e710-4d3e-9db4-38c135966a45"
+          "concept": "covidVaccinationDose_UUID"
         },
         {
           "id": "vaccineSeries",
           "title": "Vaccine Series",
-          "concept": "45b3959d-f897-4e01-b6e5-16ef6ae0a687"
+          "concept": "covidVaccineSeriesConcept_UUID"
         },
         {
           "id": "covidVaccineType",
           "title": "Vaccine Administered",
-          "concept": "e41fbe17-4aee-4a44-950b-6676d6e0ede2",
-          "secondaryConcept": "0cc868bd-e9dd-4b59-b278-f923afe22d82"
+          "concept": "covidVaccineAdministeredConcept_UUID",
+          "secondaryConcept": "covidVaccineConcept_UUID"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "COVID Vaccination Form",
+              "formName": "CovidVaccinationFormName",
               "package": "covid",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "COVID Vaccination Form",
+              "formName": "CovidVaccinationFormName",
               "package": "covid",
               "label": "Edit Form",
               "mode": "edit"
@@ -54,8 +54,8 @@
       },
       "formList": [
         {
-          "name": "COVID Vaccination Form",
-          "uuid": "3ae3a031-2e24-357d-81b3-205d5187090a"
+          "name": "CovidVaccinationFormName",
+          "uuid": "covidVaccinationFormUuid"
         }
       ]
     }
