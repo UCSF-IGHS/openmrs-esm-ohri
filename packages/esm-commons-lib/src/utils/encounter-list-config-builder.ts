@@ -3,9 +3,9 @@ import {
   getMultipleObsFromEncounter,
   resolveValueUsingMappings,
   getConceptFromMappings,
+  getConditionalConceptValue,
 } from './encounter-list-utils';
 import { renderTag } from './encounter-list-component-util';
-import { getTbTreatmentId, getTbTreatmentStartDate, getTbRegimen } from '../../../esm-tb-app/src/tb-helper';
 
 interface MenuProps {
   menuId: string;
@@ -45,6 +45,8 @@ interface ColumnDefinition {
   valueMappings?: Record<string, string>;
   conceptMappings?: Array<string>;
   statusColorMappings?: Record<string, string>;
+  isConditionalConcept?: boolean;
+  conditionalConceptMappings?: Record<string, string>;
 }
 
 interface LaunchOptions {
@@ -66,7 +68,7 @@ interface TabSchema {
 interface FormattedColumn {
   key: string;
   header: string;
-  getValue: (encounter: any) => Promise<string>;
+  getValue: (encounter: any) => string;
   link?: any;
   concept?: string;
 }
@@ -76,26 +78,7 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
     key: column.id,
     header: column.title,
     concept: column.concept,
-    getValue: async (encounter) => {
-      if (column.concept) {
-        switch (column.concept) {
-          case 'treatmentId':
-            return await getTbTreatmentId(encounter, 'treatmentId');
-          case 'tBTreatmentStartDateConcept':
-            return await getTbTreatmentStartDate(encounter, 'tBTreatmentStartDateConcept');
-          case 'regimen':
-            return await getTbRegimen(encounter, 'regimen');
-          default:
-            return getObsFromEncounter(
-              encounter,
-              column.concept,
-              column.isDate,
-              column.isTrueFalseConcept,
-              column.type,
-              column.fallbackConcepts,
-            );
-        }
-      }
+    getValue: (encounter) => {
       if (column.id === 'actions') {
         const conditionalActions = [];
         const baseActions = column.actionOptions.map((action: ActionProps) => ({
@@ -124,6 +107,8 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
         return [...baseActions, ...conditionalActions];
       } else if (column.statusColorMappings) {
         return renderTag(encounter, column.concept, column.statusColorMappings);
+      } else if (column.isConditionalConcept) {
+        return getConditionalConceptValue(encounter, column.conditionalConceptMappings);
       } else if (column.useMultipleObs === true) {
         return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
       } else if (column.valueMappings) {

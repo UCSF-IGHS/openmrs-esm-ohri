@@ -14,6 +14,18 @@
             "concept": "161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "id": "treatmentStartDate",
+            "title": "Treatment Start Date",
+            "isDate": true,
+            "isConditionalConcept": true,     
+            "conditionalConceptMappings": {
+              "trueConcept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "nonTrueConcept": "164416AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            }
+          },
+          {
             "id": "caseID",
             "title": "Case ID",
             "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -21,18 +33,26 @@
           {
             "id": "tbTreatmentId",
             "title": "TB Treatment ID",
-            "concept": "treatmentId"
+            "isConditionalConcept": true,
+            "conditionalConceptMappings": {
+              "trueConcept": "161654AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "nonTrueConcept": "164415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            }
+
           },
-          {
-            "id": "treatmentStartDate",
-            "isDate": true,
-            "title": "Treatment Start Date",
-            "concept": "tBTreatmentStartDateConcept"
-          },
+
           {
             "id": "regimen",
             "title": "Regimen",
-            "concept": "regimen"
+            "isConditionalConcept": true,
+            "conditionalConceptMappings": {
+              "trueConcept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
+              "nonTrueConcept": "159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            }
           },
           {
             "id": "treatmentOutcome",
