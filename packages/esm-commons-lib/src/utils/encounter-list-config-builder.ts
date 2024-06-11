@@ -108,7 +108,7 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
       } else if (column.statusColorMappings) {
         return renderTag(encounter, column.concept, column.statusColorMappings);
       } else if (column.isConditionalConcept) {
-        return getConditionalConceptValue(encounter, column.conditionalConceptMappings);
+        return getConditionalConceptValue(encounter, column.conditionalConceptMappings, column.isDate);
       } else if (column.useMultipleObs === true) {
         return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
       } else if (column.valueMappings) {

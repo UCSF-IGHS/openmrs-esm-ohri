@@ -28,13 +28,12 @@
               "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
             }
-
           },
           {
             "id": "treatmentStartDate",
-            "title": "Treatment Start Date",
             "isDate": true,
-            "isConditionalConcept": true,     
+            "title": "Treatment Start Date",
+            "isConditionalConcept": true,              
             "conditionalConceptMappings": {
               "trueConcept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "nonTrueConcept": "164416AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",

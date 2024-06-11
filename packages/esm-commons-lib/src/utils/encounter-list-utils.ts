@@ -33,11 +33,11 @@ export function resolveValueUsingMappings(encounter, concept, mappings) {
   return obs ? mappings[obs.value.uuid] || obs.value : '--';
 }
 
-export function getConditionalConceptValue(encounter: any, conditionalConceptMappings) {
+export function getConditionalConceptValue(encounter: any, conditionalConceptMappings, isDate) {
   const { trueConcept, nonTrueConcept, dependantConcept, conditionalConcept } = conditionalConceptMappings;
   const dependantUuid = findObs(encounter, dependantConcept)?.value?.uuid;
   const finalConcept = dependantUuid === conditionalConcept ? trueConcept : nonTrueConcept;
-  return getObsFromEncounter(encounter, finalConcept);
+  return getObsFromEncounter(encounter, finalConcept, isDate);
 }
 
 export function getConceptFromMappings(encounter, concepts) {
