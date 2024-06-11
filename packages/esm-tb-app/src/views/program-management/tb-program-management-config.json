@@ -14,18 +14,6 @@
             "concept": "161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
-            "id": "treatmentStartDate",
-            "title": "Treatment Start Date",
-            "isDate": true,
-            "isConditionalConcept": true,     
-            "conditionalConceptMappings": {
-              "trueConcept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "nonTrueConcept": "164416AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-            }
-          },
-          {
             "id": "caseID",
             "title": "Case ID",
             "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -42,7 +30,18 @@
             }
 
           },
-
+          {
+            "id": "treatmentStartDate",
+            "title": "Treatment Start Date",
+            "isDate": true,
+            "isConditionalConcept": true,     
+            "conditionalConceptMappings": {
+              "trueConcept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "nonTrueConcept": "164416AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            }
+          },
           {
             "id": "regimen",
             "title": "Regimen",
