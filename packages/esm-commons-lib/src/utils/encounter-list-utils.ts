@@ -31,7 +31,12 @@ export function getObsFromEncounters(encounters, obsConcept) {
 
 export function resolveValueUsingMappings(encounter, concept, mappings) {
   const obs = findObs(encounter, concept);
-  return obs ? mappings[obs.value.uuid] || obs.value : '--';
+  for (const key in mappings) {
+    if (mappings[key] === obs.value.uuid) {
+      return key;
+    }
+  }
+  return '--';
 }
 
 export function getConceptFromMappings(encounter, concepts) {
@@ -77,10 +82,15 @@ export function getObsFromEncounter(
   let obs = findObs(encounter, obsConcept);
 
   if (isTrueFalseConcept) {
-    if (obs?.value?.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
+    if (
+      (obs?.value?.uuid != 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' && obs?.value?.name?.name !== 'Unknown') ||
+      obs?.value?.name?.name === 'FALSE'
+    ) {
+      return 'No';
+    } else if (obs?.value?.uuid == 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3') {
       return 'Yes';
     } else {
-      return 'No';
+      return obs?.value?.name?.name;
     }
   }
 

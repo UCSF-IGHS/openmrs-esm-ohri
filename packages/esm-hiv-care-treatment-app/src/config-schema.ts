@@ -95,6 +95,13 @@ export const configSchema = {
       computedHIV_StatusConcept: 'a5261998-c635-4e27-870c-e837faf6cf9a',
       linkedToCareCodeConcept: 'e8e8fe71-adbb-48e7-b531-589985094d30',
       linkedToCareYesValueConcept: '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      startART: '1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      substituteART: '1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      switchART: '1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      stopART: '1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      restartART: '3e69cb60-2943-410f-83d4-b359ae83fefd',
+      hivGrayStatus: '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      hivPurpleStatus: '1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {

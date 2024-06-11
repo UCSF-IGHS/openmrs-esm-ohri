@@ -7,6 +7,7 @@ import {
   findObs,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import partnerNotificationsConfigSchema from './patner-notification-config.json';
+import { configSchema } from '../../config-schema';
 
 import styles from '../common.scss';
 
@@ -15,7 +16,7 @@ interface OverviewListProps {
 }
 
 const PartnerNotificationServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(partnerNotificationsConfigSchema);
+  const tabs = getMenuItemTabConfiguration(partnerNotificationsConfigSchema, configSchema);
 
   const tabFilter = (encounter, formName) => {
     return encounter?.form?.name === formName;

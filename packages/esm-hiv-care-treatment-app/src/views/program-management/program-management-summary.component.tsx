@@ -3,14 +3,14 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import programManagementTabConfigSchema from './program-management-config.json';
+import { configSchema } from '../../config-schema';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(programManagementTabConfigSchema);
-
+  const tabs = getMenuItemTabConfiguration(programManagementTabConfigSchema, configSchema);
   return (
     <div className={styles.tabContainer}>
       <Tabs>
