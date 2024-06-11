@@ -75,7 +75,17 @@ function TbHomePatientTabs() {
         viewPatientProgramSummary: true,
       },
     ],
-    [],
+    [
+      config.cohorts.clientsEnrolledForTb,
+      config.encounterTypes.tbProgramEnrollment,
+      config.encounterTypes.tbTreatmentAndFollowUp,
+      config.obsConcepts.caseID,
+      config.obsConcepts.drugSensitivity,
+      config.obsConcepts.nextAppointmentDate,
+      config.obsConcepts.outcome,
+      config.obsConcepts.site,
+      t,
+    ],
   );
   return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
 }

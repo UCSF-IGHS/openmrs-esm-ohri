@@ -27,7 +27,7 @@
     "prepare": "husky install",
     "test": "jest --config jest.config.js --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.js",
-    "verify": "turbo run lint typescript test --filter=@ohri/openmrs-esm-ohri-cervical-cancer-app --color --concurrency=5",
+    "verify": "turbo run lint typescript test --color --concurrency=5",
     "postinstall": "husky install",
     "ci:prepublish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag next",
     "ci:publish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag latest",

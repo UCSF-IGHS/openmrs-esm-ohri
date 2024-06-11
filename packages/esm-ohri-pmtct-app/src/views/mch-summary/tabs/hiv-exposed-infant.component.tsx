@@ -3,19 +3,18 @@ import { useTranslation } from 'react-i18next';
 import {
   ExpandableList,
   getObsFromEncounter,
-  EncounterListColumn,
   EncounterList,
   fetchPatientRelationships,
   basePath,
   SummaryCard,
-  SummaryCardColumn,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
+import type { EncounterListColumn, SummaryCardColumn } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate, useConfig } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import { Link } from '@carbon/react';
 import { moduleName } from '../../..';
 import { fetchPatientIdentifiers } from '../../../api/api';
-import { familyItemProps } from './current-pregnancy.component';
+import { type familyItemProps } from './current-pregnancy.component';
 
 const HivExposedInfant: React.FC<{
   patientUuid: string;
@@ -28,7 +27,7 @@ const HivExposedInfant: React.FC<{
 
   useEffect(() => {
     getParentRelationships();
-  }, []);
+  }, [getParentRelationships]);
 
   const infantSummaryColumns: SummaryCardColumn[] = useMemo(
     () => [
@@ -65,7 +64,14 @@ const HivExposedInfant: React.FC<{
         },
       },
     ],
-    [],
+    [
+      encounterTypes.infantPostnatal,
+      obsConcepts.artProphylaxisStatus,
+      obsConcepts.breastfeedingStatus,
+      obsConcepts.finalTestResults,
+      obsConcepts.outcomeStatus,
+      t,
+    ],
   );
 
   const hivMonitoringColumns: EncounterListColumn[] = useMemo(() => {
@@ -100,7 +106,7 @@ const HivExposedInfant: React.FC<{
         },
       },
     ];
-  }, []);
+  }, [obsConcepts.artStartDate, obsConcepts.finalTestResults, obsConcepts.testTypeConcept, t]);
 
   const familyHeaders = [
     {
@@ -225,7 +231,7 @@ const HivExposedInfant: React.FC<{
         ],
       },
     ],
-    [],
+    [obsConcepts.followUpDateConcept, obsConcepts.infantVisitDate, t],
   );
 
   const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');

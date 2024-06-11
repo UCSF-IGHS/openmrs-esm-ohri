@@ -135,7 +135,7 @@ export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
       setAllRows(rows);
       updateTable(rows, 0, pageSize);
     }
-  }, [baseEncounterType, encountersMap, columns]);
+  }, [baseEncounterType, encountersMap, columns, pageSize]);
 
   const updateTable = (fullDataSet, start, itemCount) => {
     let currentRows = [];
@@ -150,7 +150,7 @@ export const MultipleEncounterList: React.FC<MultipleEncounterListProps> = ({
 
   useEffect(() => {
     loadRows(encounterTypeUuids);
-  }, [counter]);
+  }, [counter, encounterTypeUuids, loadRows]);
 
   return (
     <>

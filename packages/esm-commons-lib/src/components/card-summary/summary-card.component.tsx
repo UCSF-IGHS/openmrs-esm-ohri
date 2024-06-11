@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../../styleguide/tiles.scss';
 import { SkeletonText, Tile, Column } from '@carbon/react';
 import { LazyCell } from '../lazy-cell/lazy-cell.component';
-import { OpenmrsEncounter } from '@openmrs/openmrs-form-engine-lib';
+import { type OpenmrsEncounter } from '@openmrs/openmrs-form-engine-lib';
 import { fetchLatestEncountersOfTypes } from './helpers';
 
 export interface SummaryCardProps {

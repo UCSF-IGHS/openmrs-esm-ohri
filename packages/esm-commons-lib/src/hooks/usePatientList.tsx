@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import useSWRImmutable from 'swr';
-import { FhirPatientResponse } from '../api/types';
+import { type FhirPatientResponse } from '../api/types';
 import { ConfigurableLink, openmrsFetch } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import capitalize from 'lodash/capitalize';

@@ -1,7 +1,6 @@
 import { showToast, usePatient } from '@openmrs/esm-framework';
 import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from '@carbon/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../api/api';
 
@@ -79,7 +78,7 @@ export const AddPatientToListModal: React.FC<{
         setIsLoading(false);
       },
     );
-  }, [cohortType]);
+  }, [cohortType, excludeCohorts, patientUuid]);
 
   const availableLists = useMemo(() => {
     const controls = cohorts.map((cohort, index) => (
@@ -150,7 +149,7 @@ export const AddPatientToListModal: React.FC<{
         }
       });
     }
-  }, [selectedList, patientUuid, close, currentMemberships]);
+  }, [selectedList, currentMemberships, t, close, patientUuid]);
   return (
     <>
       <Modal

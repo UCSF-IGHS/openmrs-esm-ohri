@@ -50,7 +50,14 @@ function TptPatientListTabs() {
         viewTptPatientProgramSummary: true,
       },
     ],
-    [],
+    [
+      cohorts.clientsEnrolledForTpt,
+      encounterTypes.tptCaseEnrollment,
+      obsConcepts.tptEnrollmentDate,
+      obsConcepts.tptIndication,
+      obsConcepts.tptTreatmentId,
+      t,
+    ],
   );
   return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
 }

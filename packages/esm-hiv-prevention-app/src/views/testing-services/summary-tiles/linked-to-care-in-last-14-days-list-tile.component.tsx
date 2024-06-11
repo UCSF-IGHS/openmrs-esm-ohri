@@ -98,7 +98,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
       setTotalPatientCount(response.length);
       setIsLoading(false);
     });
-  }, [pageSize, currentPage]);
+  }, [pageSize, currentPage, obsConcepts.linkedToCareCodeConcept, obsConcepts.linkedToCareYesValueConcept]);
 
   useEffect(() => {
     attach('linked-to-care-last-14-days-table-slot', 'patient-table');
@@ -146,7 +146,7 @@ export const LinkedToCareInLast14Days: React.FC<{}> = () => {
 
   useEffect(() => {
     setCounter(counter + 1);
-  }, [state]);
+  }, [counter, state]);
 
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>

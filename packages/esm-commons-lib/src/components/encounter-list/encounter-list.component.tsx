@@ -15,10 +15,10 @@ import {
   MenuItem,
 } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
-import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { type FormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { deleteEncounter, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
-import { OpenmrsEncounter } from '../../api/types';
+import { type OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
 import { mutate } from 'swr';
@@ -327,7 +327,18 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       );
     }
     return null;
-  }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize, onFormSave, patientUuid]);
+  }, [
+    forms,
+    hideFormLauncher,
+    isDead,
+    displayText,
+    moduleName,
+    onFormSave,
+    workspaceWindowSize,
+    patientUuid,
+    t,
+    formsJson,
+  ]);
 
   if (isLoading === true || isLoadingForms === true || isLoadingFormsJson === true) {
     return <DataTableSkeleton rowCount={5} />;

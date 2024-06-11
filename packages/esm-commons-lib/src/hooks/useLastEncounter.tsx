@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { OpenmrsEncounter } from '../api/types';
+import { type OpenmrsEncounter } from '../api/types';
 import { encounterRepresentation } from '../constants';
 import useSWR from 'swr';
 

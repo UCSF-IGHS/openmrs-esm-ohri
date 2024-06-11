@@ -68,7 +68,7 @@ export const Vaccinations: React.FC<{}> = () => {
         },
       },
     ],
-    [],
+    [t],
   );
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export const Vaccinations: React.FC<{}> = () => {
         setIsLoading(false);
       },
     );
-  }, [pageSize, currentPage]);
+  }, [pageSize, currentPage, config.cohorts.covidVaccinatedClients]);
 
   useEffect(() => {
     attach('covid-vaccination-table-slot', 'patient-table');
@@ -129,12 +129,12 @@ export const Vaccinations: React.FC<{}> = () => {
       isLoading,
       autoFocus: true,
     }),
-    [searchTerm, filteredResults, patients, handleSearch, pagination, isLoading],
+    [searchTerm, filteredResults, patients, columns, t, handleSearch, pagination, isLoading],
   );
 
   useEffect(() => {
     setCounter(counter + 1);
-  }, [state]);
+  }, [counter, state]);
 
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>

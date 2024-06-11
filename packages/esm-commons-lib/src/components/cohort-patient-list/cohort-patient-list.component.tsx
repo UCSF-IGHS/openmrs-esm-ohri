@@ -13,7 +13,7 @@ import { basePath } from '../../constants';
 import styles from './cohort-patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { useFormsJson } from '../../hooks/useFormsJson';
-import { columns, consolidatatePatientMeta, filterPatientsByName, PatientListColumn } from './helpers';
+import { columns, consolidatatePatientMeta, filterPatientsByName, type PatientListColumn } from './helpers';
 
 interface CohortPatientListProps {
   cohortId: string;
@@ -172,6 +172,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     launchableForm,
     addPatientToListOptions,
     t,
+    viewTptPatientProgramSummary,
+    viewPatientProgramSummary,
   ]);
 
   useEffect(() => {
@@ -190,7 +192,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       );
     }
     setPatientsCount(allPatients.length);
-  }, [hasLoadedPatients]);
+  }, [allPatients, associatedEncounterType, hasLoadedPatients]);
 
   useEffect(() => {
     const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
@@ -289,7 +291,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       autoFocus: true,
     };
   }, [
-    loadedExtraEncounters,
     searchTerm,
     filteredResults,
     paginatedPatients,
@@ -303,7 +304,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   useEffect(() => {
     setCounter(counter + 1);
-  }, [state]);
+  }, [counter, state]);
 
   useEffect(() => {
     if (allPatients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {

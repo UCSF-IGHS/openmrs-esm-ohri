@@ -114,7 +114,7 @@ function CovidHomePatientTabs() {
             header: t('vaccine', 'Vaccine'),
             getValue: ({ latestEncounter }) => {
               const obs = findObs(latestEncounter, config.obsConcepts.covidVaccineAdministeredConcept_UUID);
-              if (typeof obs !== undefined && obs) {
+              if (typeof obs !== 'undefined' && obs) {
                 if (typeof obs.value === 'object') {
                   const vaccineNAME =
                     obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
@@ -137,7 +137,24 @@ function CovidHomePatientTabs() {
         ],
       },
     ],
-    [],
+    [
+      config.cohorts.clientsAssessedForCovid,
+      config.cohorts.covidClientsWithPendingLabResults,
+      config.obsConcepts.covidCaseAssessmentEncType,
+      config.obsConcepts.covidLabTestEncType,
+      config.obsConcepts.covidOutcome,
+      config.obsConcepts.covidTestType,
+      config.obsConcepts.covidVaccinatedClients,
+      config.obsConcepts.covidVaccinationDose_UUID,
+      config.obsConcepts.covidVaccinationEncType,
+      config.obsConcepts.covidVaccineAdministeredConcept_UUID,
+      config.obsConcepts.covidVaccineConcept_UUID,
+      config.obsConcepts.dateSpecimenCollected,
+      config.obsConcepts.pcrTestResult,
+      config.obsConcepts.rapidTestResult,
+      config.obsConcepts.returnVisitDateConcept,
+      t,
+    ],
   );
   return <OHRIPatientListTabs patientListConfigs={tabsConfigs} moduleName={moduleName} />;
 }

@@ -4,9 +4,11 @@ import styles from './form-render.scss';
 import { Run, Maximize, UserData } from '@carbon/react/icons';
 import AceEditor from 'react-ace';
 import 'ace-builds/webpack-resolver';
-import { applyFormIntent, loadSubforms, FormEngine, FormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { applyFormIntent, loadSubforms, FormEngine } from '@openmrs/openmrs-form-engine-lib';
+import type { FormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { useTranslation } from 'react-i18next';
-import { ConfigObject, useConfig, openmrsFetch } from '@openmrs/esm-framework';
+import type { ConfigObject } from '@openmrs/esm-framework';
+import { useConfig } from '@openmrs/esm-framework';
 import { handleFormValidation } from '../form-validator';
 
 function FormRenderTest() {
@@ -61,19 +63,19 @@ function FormRenderTest() {
     setIsSchemaLoaded(false);
   };
 
-  const updateFormJsonInput = (json) => {
+  const updateFormJsonInput = useCallback((json) => {
     setInputErrorMessage('');
     try {
-      const parsedSchema = typeof json == 'string' ? JSON.parse(json) : json;
+      const parsedSchema = typeof json === 'string' ? JSON.parse(json) : json;
       setSchemaInput(parsedSchema);
       setFormInput(parsedSchema);
       loadIntentsFromSchema(parsedSchema);
-      localStorage.setItem('forms-render-test:draft-form', typeof json == 'string' ? json : JSON.stringify(json));
+      localStorage.setItem('forms-render-test:draft-form', typeof json === 'string' ? json : JSON.stringify(json));
     } catch (err) {
       setInputErrorMessage(err.toString());
     }
     setIsSchemaLoaded(false);
-  };
+  }, []);
 
   const formValidation = () => {
     handleFormValidation(schemaInput, dataTypeToRenderingMap);
@@ -110,9 +112,11 @@ function FormRenderTest() {
         const jsonObject = typeof defaultJson === 'string' ? JSON.parse(defaultJson) : defaultJson;
         loadIntentsFromSchema(jsonObject);
         setSchemaInput(jsonObject);
-      } catch (err) {}
+      } catch (err) {
+        /* empty */
+      }
     }
-  }, [defaultJson]);
+  }, [defaultJson, isIntentsDropdownDisabled]);
 
   useEffect(() => {
     if (jsonUrl) {
@@ -132,7 +136,7 @@ function FormRenderTest() {
           console.error(err);
         });
     }
-  }, [jsonUrl]);
+  }, [jsonUrl, key, updateFormJsonInput]);
 
   return (
     <div className={styles.container}>

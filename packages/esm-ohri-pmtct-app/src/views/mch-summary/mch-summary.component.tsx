@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs, Tab, TabList, TabPanels, TabPanel, DataTableSkeleton } from '@carbon/react';
 import styles from '../common.scss';
-import { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
+import type { PatientChartProps } from '@ohri/openmrs-esm-ohri-commons-lib';
 import CurrentPregnancy from './tabs/current-pregnancy.component';
 import HivExposedInfant from './tabs/hiv-exposed-infant.component';
 import { usePatient, useConfig } from '@openmrs/esm-framework';
