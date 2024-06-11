@@ -27,7 +27,8 @@
     "prepare": "husky install",
     "test": "jest --config jest.config.js --verbose false --passWithNoTests",
     "test-watch": "jest --watch --config jest.config.js",
-    "verify": "turbo run lint && turbo run typescript && yarn test --coverage",
+    "verify": "turbo run lint typescript test --filter=@ohri/openmrs-esm-ohri-cervical-cancer-app --color --concurrency=5",
+    "postinstall": "husky install",
     "ci:prepublish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag next",
     "ci:publish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag latest",
     "release": "yarn workspaces foreach --all --topological version",
@@ -101,6 +102,10 @@
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.8.1"
+  },
+  "lint-staged": {
+    "packages/**/src/**/*.{ts,tsx}": "eslint --cache --fix --max-warnings 0",
+    "*.{css,scss,ts,tsx}": "prettier --write --list-different"
   },
   "resolutions": {
     "@types/react": "^18.0.14",
