@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OHRIProgrammeSummaryTiles, getReportingCohort } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
@@ -10,15 +10,17 @@ function LabResultsSummaryTiles() {
   const [highVlCount, setHighVlCount] = useState(0);
   const { cohorts } = useConfig();
 
+  const memoizedCohorts = useMemo(() => cohorts, [cohorts]);
+
   useEffect(() => {
-    getReportingCohort(cohorts.missingCd4Cohort).then((data) => {
+    getReportingCohort(memoizedCohorts.missingCd4Cohort).then((data) => {
       setMissingCd4Count(data.members.length);
     });
 
-    getReportingCohort(cohorts.highVlCohort).then((results) => {
+    getReportingCohort(memoizedCohorts.highVlCohort).then((results) => {
       setHighVlCount(results.members.length);
     });
-  }, []);
+  }, [memoizedCohorts.missingCd4Cohort, memoizedCohorts.highVlCohort]);
 
   const tiles = [
     {
