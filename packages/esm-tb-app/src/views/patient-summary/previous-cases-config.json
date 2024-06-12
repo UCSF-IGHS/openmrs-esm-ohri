@@ -1,0 +1,61 @@
+{
+  "menuId": "previousCases",
+  "tabDefinitions": [
+    {
+      "tabName": "Previous Cases",
+      "headerTitle": "Previous Cases",
+      "displayText": "Previous Cases",
+      "encounterType": "9a199b59-b185-485b-b9b3-a9754e65ae57",
+      "columns": [
+        {
+          "id": "caseID",
+          "title": "Case ID",
+          "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "enrollmentDate",
+          "isDate": true,
+          "title": "Enrollment Date",
+          "concept": "161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "type",
+          "title": "Type",
+          "concept": "159990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "site",
+          "title": "Site",
+          "concept": "160040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        {
+          "id": "regimen",
+          "title": "Regimen",
+          "isConditionalConcept": true,
+          "conditionalConceptMappings": {
+            "trueConcept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
+            "nonTrueConcept": "159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "id": "outcome",
+          "title": "Outcome",
+          "concept": "159786AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      ],
+      "launchOptions": {
+        "hideFormLauncher": true,
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-tb-app"
+      },
+      "formList": [
+        {
+          "name": "TB Case Enrollment Form",
+          "uuid": "554b2017-e512-3fc8-9c6e-7baf9e69db9d"
+        }
+      ]
+    }
+  ]
+}

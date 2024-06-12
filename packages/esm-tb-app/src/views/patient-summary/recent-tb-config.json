@@ -1,0 +1,77 @@
+{
+  "menuId": "recentTuberculosis",
+  "cardTitle": "Recent Tuberculosis",
+  "columns": [
+    {
+      "id": "caseID",
+      "title": "Case ID",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "enrollmentDate",
+      "isDate": true,
+      "title": "Enrollment Date",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "type",
+      "title": "Type",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "159990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "site",
+      "title": "Site",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "160040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "drugSensitivity",
+      "title": "Drug Sensitivity",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "164368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "regimen",
+      "title": "Regimen",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "isConditionalConcept": true,
+      "conditionalConceptMappings": {
+        "trueConcept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
+        "nonTrueConcept": "159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      }
+    },
+    {
+      "id": "hivStatus",
+      "title": "HIV Status",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    {
+      "id": "outcome",
+      "title": "Outcome",
+      "encounterTypes": [
+        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+      ],
+      "concept": "159786AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  ]
+}

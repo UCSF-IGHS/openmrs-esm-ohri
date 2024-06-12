@@ -16,7 +16,7 @@ import {
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
 import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
-import ProgramManagementSummary from './views/program-management/maternal-health.component';
+import ProgramManagementSummary from './views/program-management/tb-program-management';
 import TbTreatmentFollowUpList from './views/treatment-and-follow-up/tb-treatment-follow-up.component';
 import TbContactTracingList from './views/tb-contact-listing/tb-contact-list.component';
 import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
