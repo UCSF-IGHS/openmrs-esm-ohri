@@ -21,7 +21,7 @@ import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
-export const moduleName = '@ohri/openmrs-esm-ohri-pmtct';
+export const moduleName = '@ohri/openmrs-esm-ohri-pmtct-app';
 
 require('./root.scss');
 

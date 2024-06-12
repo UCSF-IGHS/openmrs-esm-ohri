@@ -17,7 +17,7 @@ export const PTrackerSubmissionAction: PostSubmissionAction = {
 };
 
 export async function updatePatientPtracker(encounter, encounterLocation, patientUuid) {
-  const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct');
+  const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct-app');
   const inComingPTrackerID = encounter.obs.find(
     (observation) => observation.concept.uuid === config.obsConcepts.pTrackerIdConcept,
   )?.value;

@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { formatDate, parseDate } from '@openmrs/esm-framework';
+import { fetchPatientRelationships } from '../api/api';
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return dayjs(encounter[param]).format('DD-MMM-YYYY');
@@ -62,6 +63,15 @@ export function getMultipleObsFromEncounter(encounter, obsConcepts: Array<string
   return observations.length ? observations.join(', ') : '--';
 }
 
+async function fetchMotherName(patientUuid) {
+  let motherName = '--';
+  const response = await fetchPatientRelationships(patientUuid);
+  if (response.length) {
+    motherName = response[0].personA.display;
+  }
+  return motherName;
+}
+
 export function getObsFromEncounter(
   encounter,
   obsConcept,
@@ -89,6 +99,10 @@ export function getObsFromEncounter(
     return encounter.encounterProviders.map((p) => p.provider.name).join(' | ');
   }
 
+  if (type === 'mothersName') {
+    return fetchMotherName(encounter.patient.uuid);
+  }
+
   if (secondaryConcept && typeof obs.value === 'object' && obs.value.names) {
     const primaryValue =
       obs.value.names.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
@@ -98,7 +112,7 @@ export function getObsFromEncounter(
     }
   }
 
-  if (!obs && fallbackConcepts?.length >= 1) {
+  if (!obs && fallbackConcepts?.length) {
     const concept = fallbackConcepts.find((c) => findObs(encounter, c) != null);
     obs = findObs(encounter, concept);
   }
