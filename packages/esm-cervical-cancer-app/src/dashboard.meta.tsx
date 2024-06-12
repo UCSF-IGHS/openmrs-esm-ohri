@@ -2,6 +2,7 @@ export const cervicalCancerFolderMeta = {
   title: 'Cervical Cancer',
   slotName: 'cervical-cancer-slot',
   isExpanded: false,
+  patientExpression: 'calculateAge(patient.birthDate) >= 25 && patient.gender === "female"',
 };
 
 export const caCxSummaryDashboardMeta = {
