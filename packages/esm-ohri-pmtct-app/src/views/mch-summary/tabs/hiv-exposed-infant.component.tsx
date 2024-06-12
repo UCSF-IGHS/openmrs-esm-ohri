@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ExpandableList,
@@ -24,6 +24,17 @@ const HivExposedInfant: React.FC<{
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
+
+  const getParentRelationships = useCallback(async () => {
+    let relationships = [];
+    const relationshipsData = await fetchPatientRelationships(patientUuid);
+    if (relationshipsData?.length) {
+      relationshipsData.forEach((item) => {
+        relationships.push(item);
+      });
+    }
+    setRelatives(relationships);
+  }, [patientUuid]);
 
   useEffect(() => {
     getParentRelationships();
@@ -131,35 +142,28 @@ const HivExposedInfant: React.FC<{
     },
   ];
 
-  async function getParentRelationships() {
-    let relationships = [];
-    const relationshipsData = await fetchPatientRelationships(patientUuid);
-    if (relationshipsData?.length) {
-      relationshipsData.forEach((item) => {
-        relationships.push(item);
-      });
-    }
-    setRelatives(relationships);
-  }
+  const getChildPTracker = useCallback(
+    async (patientUuid) => {
+      let pTrackerMap = { patientId: '', pTrackerId: '--' };
+      const identifiers = await fetchPatientIdentifiers(patientUuid);
+      if (identifiers) {
+        pTrackerMap.pTrackerId = identifiers.find(
+          (id) => id.identifierType.uuid === encounterTypes.PTrackerIdentifierType,
+        ).identifier;
+        pTrackerMap.patientId = patientUuid;
+      }
+      return pTrackerMap;
+    },
+    [encounterTypes.PTrackerIdentifierType],
+  );
 
   useEffect(() => {
     const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personA.uuid));
     Promise.all(relativeToPtrackerPromises).then((values) => {
       setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
     });
-  }, [relatives]);
+  }, [getChildPTracker, relatives]);
 
-  async function getChildPTracker(patientUuid: string) {
-    let pTrackerMap = { patientId: '', pTrackerId: '--' };
-    const identifiers = await fetchPatientIdentifiers(patientUuid);
-    if (identifiers) {
-      pTrackerMap.pTrackerId = identifiers.find(
-        (id) => id.identifierType.uuid === encounterTypes.PTrackerIdentifierType,
-      ).identifier;
-      pTrackerMap.patientId = patientUuid;
-    }
-    return pTrackerMap;
-  }
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
     relatives.forEach((relative) => {

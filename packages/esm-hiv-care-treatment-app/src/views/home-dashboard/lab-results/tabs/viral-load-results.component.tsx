@@ -52,7 +52,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       setPatientCount(data.total);
       setIsLoading(false);
     });
-  }, [page, pageSize]);
+  }, [nextOffSet, page, pageSize]);
 
   useEffect(() => {
     let rows = [];
@@ -92,6 +92,36 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
     setAllRows(rows);
   }, [patients, patientToViralLoadMap]);
 
+  const fetchPatientLastViralEncounters = useCallback(
+    async (patientUuid) => {
+      let latestViralEncounter = {
+        result: '--',
+        date: '--',
+        encounterUuid: '',
+      };
+      const query = `encounterType=${encounterTypes.ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
+      const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+      if (viralResults.data.results?.length > 0) {
+        const sortedEncounters = viralResults.data.results.sort(
+          (firstEncounter, secondEncounter) =>
+            new Date(secondEncounter.encounterDatetime).getTime() -
+            new Date(firstEncounter.encounterDatetime).getTime(),
+        );
+        const lastEncounter = sortedEncounters[0];
+
+        latestViralEncounter.result = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResult_UUID);
+        latestViralEncounter.date = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResultDate_UUID, true);
+        latestViralEncounter.encounterUuid = lastEncounter.uuid;
+      }
+      return latestViralEncounter;
+    },
+    [
+      encounterTypes.ViralLoadResultsEncounter_UUID,
+      obsConcepts.ViralLoadResult_UUID,
+      obsConcepts.ViralLoadResultDate_UUID,
+    ],
+  );
+
   useEffect(() => {
     const patientToviralLoadResultsPromises = patients.map((patient) =>
       fetchPatientLastViralEncounters(patient.resource.id),
@@ -106,7 +136,7 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
         })),
       );
     });
-  }, [patients]);
+  }, [fetchPatientLastViralEncounters, patients]);
 
   const handleSearch = useCallback(
     (searchTerm) => {
@@ -115,34 +145,9 @@ const ViralLoadResultsList: React.FC<ViralLoadResultsListProps> = () => {
       setFilteredResults(filtrate);
       return true;
     },
-    [searchTerm],
+    [allRows],
   );
-
-  const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
-
-  async function fetchPatientLastViralEncounters(patientUuid: string) {
-    let latestViralEncounter = {
-      result: '--',
-      date: '--',
-      encounterUuid: '',
-    };
-    const query = `encounterType=${encounterTypes.ViralLoadResultsEncounter_UUID}&patient=${patientUuid}`;
-    const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
-    if (viralResults.data.results?.length > 0) {
-      const sortedEncounters = viralResults.data.results.sort(
-        (firstEncounter, secondEncounter) =>
-          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
-      );
-      const lastEncounter = sortedEncounters[0];
-
-      latestViralEncounter.result = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResult_UUID);
-      latestViralEncounter.date = getObsFromEncounter(lastEncounter, obsConcepts.ViralLoadResultDate_UUID, true);
-      latestViralEncounter.encounterUuid = lastEncounter.uuid;
-    }
-    return latestViralEncounter;
-  }
-
   return (
     <>
       {isLoading ? (
