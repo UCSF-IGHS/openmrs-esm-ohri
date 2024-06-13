@@ -1,14 +1,13 @@
-export function extractDefaults(schema) {
+export function extractSchemaValues(schema) {
   const result = {};
-
-  function traverse(schema) {
-    for (const key in schema) {
-      if (key === '_default') {
-        Object.assign(result, schema[key]);
-      } else if (typeof schema[key] === 'object' && !Array.isArray(schema[key])) {
-        traverse(schema[key]);
+  function traverse(obj) {
+    Object.entries(obj).forEach(([key, value]) => {
+      if (typeof value === 'object' && !Array.isArray(value)) {
+        traverse(value);
+      } else {
+        result[key] = value;
       }
-    }
+    });
   }
 
   traverse(schema);

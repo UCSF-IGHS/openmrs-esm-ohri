@@ -5,16 +5,10 @@ import {
   getConceptFromMappings,
 } from './encounter-list-utils';
 import { renderTag } from './encounter-list-component-util';
-import { extractDefaults, replaceWithConfigDefaults } from './schema-manipulation';
+import { extractSchemaValues, replaceWithConfigDefaults } from './schema-manipulation';
 
 interface ConfigSchema {
-  [key: string]: {
-    _type: unknown;
-    _description: string;
-    _default: {
-      [key: string]: string;
-    };
-  };
+  [key: string]: { [key: string]: string | Array<string> };
 }
 
 interface MenuProps {
@@ -155,7 +149,7 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
 
 export const getMenuItemTabConfiguration = (schemaConfig: MenuProps, configSchema?: ConfigSchema) => {
   // gonna make the configSchema optional for now until we implement it everywher
-  const configDefaults = extractDefaults(configSchema);
+  const configDefaults = extractSchemaValues(configSchema);
 
   const transformedSchemaConfig = replaceWithConfigDefaults(schemaConfig, configDefaults);
 

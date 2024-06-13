@@ -32,7 +32,7 @@ export function getObsFromEncounters(encounters, obsConcept) {
 export function resolveValueUsingMappings(encounter, concept, mappings) {
   const obs = findObs(encounter, concept);
   for (const key in mappings) {
-    if (mappings[key] === obs.value.uuid) {
+    if (mappings[key] === obs?.value?.uuid) {
       return key;
     }
   }
