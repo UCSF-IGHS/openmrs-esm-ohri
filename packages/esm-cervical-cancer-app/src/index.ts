@@ -1,6 +1,7 @@
-import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import { caCxSummaryDashboardMeta, caCxVisitsDashboardMeta, cervicalCancerFolderMeta } from './dashboard.meta';
-import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { createConditionalDashboardGroup } from '@ohri/openmrs-esm-ohri-commons-lib';
 import CacxSummaryList from './views/cacx-summary/cacx-summary.component';
 import CacxVisitServices from './views/cacx-visits/cacx-visits-services.component';
 import { configSchema } from './config-schema';
@@ -20,7 +21,10 @@ export function startupApp() {
   defineConfigSchema(moduleName, configSchema);
 }
 
-export const cacxPatientChartDashboard = getSyncLifecycle(createDashboardGroup(cervicalCancerFolderMeta), options);
+export const cacxPatientChartDashboard = getSyncLifecycle(
+  createConditionalDashboardGroup(cervicalCancerFolderMeta),
+  options,
+);
 
 export const cacxSummaryDashboardLink = getSyncLifecycle(
   createDashboardLink({ ...caCxSummaryDashboardMeta, moduleName }),
