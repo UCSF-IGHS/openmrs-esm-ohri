@@ -1,13 +1,13 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
-import styles from '../../common.scss';
-import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
-import tptProgramManagemetConfigSchema from './tpt-program-management-config.json';
+import styles from '../common.scss';
+import { PatientChartProps, getMenuItemTabConfiguration, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
+import tptProgramManagemetConfigSchema from './tb-program-management-config.json';
 interface OverviewListProps {
   patientUuid: string;
 }
 
-const TptProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const ProgramManagementSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const tabs = getMenuItemTabConfiguration(tptProgramManagemetConfigSchema);
 
   return (
@@ -38,4 +38,4 @@ const TptProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid 
   );
 };
 
-export default TptProgramManagementSummary;
+export default ProgramManagementSummary;

@@ -3,6 +3,7 @@ import {
   getMultipleObsFromEncounter,
   resolveValueUsingMappings,
   getConceptFromMappings,
+  getConditionalConceptValue,
 } from './encounter-list-utils';
 import { renderTag } from './encounter-list-component-util';
 import { extractSchemaValues, replaceWithConfigDefaults } from './schema-manipulation';
@@ -49,6 +50,8 @@ interface ColumnDefinition {
   valueMappings?: Record<string, string>;
   conceptMappings?: Array<string>;
   statusColorMappings?: Record<string, string>;
+  isConditionalConcept?: boolean;
+  conditionalConceptMappings?: Record<string, string>;
 }
 
 interface LaunchOptions {
@@ -109,6 +112,8 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
         return [...baseActions, ...conditionalActions];
       } else if (column.statusColorMappings) {
         return renderTag(encounter, column.concept, column.statusColorMappings);
+      } else if (column.isConditionalConcept) {
+        return getConditionalConceptValue(encounter, column.conditionalConceptMappings, column.isDate);
       } else if (column.useMultipleObs === true) {
         return getMultipleObsFromEncounter(encounter, column.multipleConcepts);
       } else if (column.valueMappings) {

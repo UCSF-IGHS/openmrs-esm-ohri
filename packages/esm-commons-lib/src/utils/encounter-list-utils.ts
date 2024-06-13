@@ -39,6 +39,13 @@ export function resolveValueUsingMappings(encounter, concept, mappings) {
   return '--';
 }
 
+export function getConditionalConceptValue(encounter: any, conditionalConceptMappings, isDate) {
+  const { trueConcept, nonTrueConcept, dependantConcept, conditionalConcept } = conditionalConceptMappings;
+  const dependantUuid = findObs(encounter, dependantConcept)?.value?.uuid;
+  const finalConcept = dependantUuid === conditionalConcept ? trueConcept : nonTrueConcept;
+  return getObsFromEncounter(encounter, finalConcept, isDate);
+}
+
 export function getConceptFromMappings(encounter, concepts) {
   for (const concept of concepts) {
     const obs = findObs(encounter, concept);
