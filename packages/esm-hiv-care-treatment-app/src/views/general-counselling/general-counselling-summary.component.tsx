@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import generalConsellingConfigSchema from './general-conselling-config.json';
 
@@ -10,7 +11,8 @@ interface OverviewListProps {
 }
 
 const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(generalConsellingConfigSchema);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(generalConsellingConfigSchema, config);
 
   const tabFilter = (encounter, formName) => {
     return encounter?.form?.name === formName;

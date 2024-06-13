@@ -5,60 +5,60 @@
       "tabName": "COVID Assessment",
       "headerTitle": "COVID Assessment",
       "displayText": "COVID Assessment",
-      "encounterType": "253a43d3-c99e-415c-8b78-ee7d4d3c1d54",
+      "encounterType": "covid_Assessment_EncounterUUID",
       "columns": [
         {
           "id": "encounterDate",
           "isDate": true,
           "title": "Date of Assessment",
-          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "concept": "covidEncounterDateTime_UUID",
           "isLink": true
         },
         {
           "id": "reasonsForTesting",
           "title": "Reason for testing",
-          "concept": "ae46f4b1-c15d-4bba-ab41-b9157b82b0ce"
+          "concept": "covidReasonsForTestingConcep_UUID"
         },
         {
           "id": "symptomatic",
           "title": "Presentation",
-          "concept": "de3bc9b7-05b5-41b6-a38d-8d2eec646c4f"
+          "concept": "covidPatientStatusUUID"
         },
         {
           "id": "outcome",
           "title": "Outcome",
-          "concept": "a845f3e6-4432-4de4-9fff-37fa270b1a06"
+          "concept": "covidOutcomeUUID"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "COVID Case Form",
+              "formName": "CovidCaseFormName",
               "package": "covid",
               "label": "View Case",
               "mode": "view"
             },
             {
-              "formName": "COVID Assessment Form",
+              "formName": "CovidAssessmentFormName",
               "package": "covid",
               "label": "View Assessment",
               "mode": "view"
             },
             {
-              "formName": "COVID Assessment Form",
+              "formName": "CovidAssessmentFormName",
               "package": "covid",
               "label": "Edit Assessment",
               "mode": "edit"
             },
             {
-              "formName": "COVID Case Form",
+              "formName": "CovidCaseFormName",
               "package": "covid",
               "label": "Edit Case",
               "mode": "edit"
             },
             {
-              "formName": "COVID Outcome Form",
+              "formName": "CovidOutcomeFormName",
               "package": "covid",
               "label": "Add/Edit Outcome",
               "mode": "edit"
@@ -72,18 +72,18 @@
       },
       "formList": [
         {
-          "name": "COVID Assessment Form",
+          "name": "CovidAssessmentFormName",
           "excludedIntents": ["COVID_LAB_ASSESSMENT_EMBED"],
-          "uuid": "f5fb6bc4-6fc3-3462-a191-2fff0896bab3"
+          "uuid": "covidAssessmentFormUuid"
         },
         {
-          "name": "COVID Case Form",
-          "uuid": "c0fd71bd-37bc-3c8d-b2ff-149c0ff4d6f0"
+          "name": "CovidCaseFormName",
+          "uuid": "covidCaseFormUuid"
         },
         {
-          "name": "COVID Outcome Form",
+          "name": "CovidOutcomeFormName",
           "excludedIntents": ["COVID_OUTCOME_EMBED", "*"],
-          "uuid": "6515d898-439c-11ec-9103-238295f2dfd7"
+          "uuid": "covidOutcomeFormUuid"
         }
       ]
     }

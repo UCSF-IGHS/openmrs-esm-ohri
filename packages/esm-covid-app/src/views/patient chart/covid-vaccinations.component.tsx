@@ -1,7 +1,9 @@
 import React from 'react';
+import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 import covidVaccinationsSchemaConfig from './covid-vaccinations-schema.json';
+import { configSchema } from '../../config-schema';
 
 interface CovidVaccinationsWidgetProps {
   patientUuid: string;
@@ -10,7 +12,8 @@ interface CovidVaccinationsWidgetProps {
 export const covidFormSlot = 'hts-encounter-form-slot';
 
 const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(covidVaccinationsSchemaConfig);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(covidVaccinationsSchemaConfig, config);
 
   return (
     <>

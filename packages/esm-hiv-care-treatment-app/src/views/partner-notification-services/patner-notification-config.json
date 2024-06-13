@@ -6,33 +6,33 @@
       "hasFilter": true,
       "headerTitle": "Partner Notification",
       "displayText": "Partner Notification",
-      "encounterType": "4dd0ee63-805f-43e9-833c-6386ba97fdc1",
+      "encounterType": "PatnerNotificationEncounterType_UUID",
       "columns": [
         {
           "id": "contactDate",
           "isDate": true,
           "title": "Contact Date",
-          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "dateOfEventConcept"
         },
         {
           "id": "name",
           "title": "Name",
-          "concept": "166102AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "FirstName_UUID"
         },
         {
           "id": "relationship",
           "title": "Relationship",
-          "concept": "85d3b4fe-c1a9-4e27-a86b-dcc1e30c8a93"
+          "concept": "Relationship_UUID"
         },
         {
           "id": "hivStatus",
           "title": "Status",
-          "concept": "1436AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "concept": "IndexHIVStatus_UUID",
           "type": "hivStatus",
           "statusColorMappings": {
-            "703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "red",
-            "664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "gray",
-            "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": "purple"
+            "finalPositiveHIVValueConcept": "red",
+            "hivGrayStatus": "gray",
+            "hivPurpleStatus": "purple"
           }
         },
         {
@@ -40,13 +40,13 @@
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Partner Notification Form",
+              "formName": "PartnerNotificationFormName",
               "package": "hiv-care-treatment",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Partner Notification Form",
+              "formName": "PartnerNotificationFormName",
               "package": "hiv-care-treatment",
               "label": "Edit Form",
               "mode": "edit"
@@ -56,12 +56,12 @@
       ],
       "launchOptions": {
         "displayText": "Add",
-        "moduleName": "@ohri/openmrs-esm-ohri-hiv-app"
+        "moduleName": "@ohri/openmrs-esm-ohri-hiv-care-treatment-app"
       },
       "formList": [
         {
-          "name": "Partner Notification Form",
-          "uuid": "8c48efc5-dd85-3795-9f58-8eb436a4edcc"
+          "name": "PartnerNotificationFormName",
+          "uuid": "partnerNotificationFormUuid"
         }
       ]
     },
@@ -70,36 +70,36 @@
       "hasFilter": false,
       "headerTitle": "Contact Tracing",
       "displayText": "Contact Tracing",
-      "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+      "encounterType": "ContactTracingEncounterType_UUID",
       "columns": [
         {
           "id": "contactDate",
           "isDate": true,
           "title": "Contact Date",
-          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "dateOfEventConcept"
         },
         {
           "id": "contactMethod",
           "title": "Contact Method",
-          "concept": "59c023dd-eed2-4b11-8c34-b88e9439db3c"
+          "concept": "contactMethodConcept"
         },
         {
           "id": "contactOutcome",
           "title": "Contact Outcome",
-          "concept": "36a3e671-9d60-4109-b41f-046f44f4b389"
+          "concept": "ContactTracingOutcome_UUID"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Contact Tracing Form",
+              "formName": "ContactTracingFormName",
               "package": "hiv-care-treatment",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Contact Tracing Form",
+              "formName": "ContactTracingFormName",
               "package": "hiv-care-treatment",
               "label": "Edit Forms",
               "mode": "edit"
@@ -113,8 +113,8 @@
       },
       "formList": [
         {
-          "name": "Contact Tracing Form",
-          "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+          "name": "ContactTracingFormName",
+          "uuid": "contactTracingFormUuid"
         }
       ]
     }

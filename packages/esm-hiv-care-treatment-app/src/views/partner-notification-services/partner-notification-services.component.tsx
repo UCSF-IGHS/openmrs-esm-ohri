@@ -1,11 +1,7 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel, Tag } from '@carbon/react';
-import {
-  EncounterList,
-  getMenuItemTabConfiguration,
-  getObsFromEncounter,
-  findObs,
-} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { useConfig } from '@openmrs/esm-framework';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import partnerNotificationsConfigSchema from './patner-notification-config.json';
 
 import styles from '../common.scss';
@@ -15,7 +11,8 @@ interface OverviewListProps {
 }
 
 const PartnerNotificationServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(partnerNotificationsConfigSchema);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(partnerNotificationsConfigSchema, config);
 
   const tabFilter = (encounter, formName) => {
     return encounter?.form?.name === formName;

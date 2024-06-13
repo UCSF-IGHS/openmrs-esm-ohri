@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import clinicalVisitConfigSchema from './clinical-visit-config.json';
 
@@ -10,7 +11,9 @@ interface OverviewListProps {
 }
 
 const VisitsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(clinicalVisitConfigSchema);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(clinicalVisitConfigSchema, config);
+
   return (
     <div className={styles.tabContainer}>
       <Tabs>
