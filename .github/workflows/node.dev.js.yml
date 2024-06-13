@@ -7,9 +7,6 @@ on:
   pull_request:
     branches:
       - dev
-  release:
-    types:
-      - created
 
 jobs:
   build:
