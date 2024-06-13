@@ -22,3 +22,4 @@ export const getSummarryCardProps = (schemaConfig) => {
 
   return columns;
 };
+
