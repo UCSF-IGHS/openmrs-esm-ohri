@@ -31,13 +31,27 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
   const [groupedEncounterMappings, setGroupedEncounterMappings] = useState<Array<any>>([]);
 
   useEffect(() => {
-    Promise.all(columns.map((column) => fetchLatestEncountersOfTypes(patientUuid, column.encounterTypes))).then(
-      (results) => {
-        const filteredResults = results.map((result) => result.filter(Boolean));
-        setColumnEncountersMappings(columns.map((column, index) => ({ column, encounters: filteredResults[index] })));
-        setIsLoading(false);
-      },
-    );
+    Promise.all(
+      columns.map((column) => {
+        const encounterTypes = Array.isArray(column?.encounterTypes)
+          ? column.encounterTypes
+          : column?.encounterTypes
+            ? [column.encounterTypes]
+            : [];
+
+        return fetchLatestEncountersOfTypes(patientUuid, encounterTypes);
+      }),
+    ).then((results) => {
+      const filteredResults = results.map((result) => result.filter(Boolean));
+      setColumnEncountersMappings(
+        columns.map((column, index) => ({
+          column,
+          encounters: filteredResults[index],
+        })),
+      );
+
+      setIsLoading(false);
+    });
   }, [columns, patientUuid]);
 
   useEffect(() => {
@@ -88,7 +102,7 @@ function SummaryItem({ column, encounters }) {
       <div className={styles.tileBoxColumn}>
         <span className={styles.tileTitle}> {column.header} </span>
         <span className={styles.tileValue}>
-          <LazyCell lazyValue={column.getObsValue(encounters)} />
+          {column?.getObsValue ? <LazyCell lazyValue={column?.getObsValue(encounters)} /> : '--'}
         </span>
         {column.getObsSummary && (
           <span className={styles.tileTitle}>

@@ -1,21 +1,26 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  type PatientChartProps,
   ExpandableList,
-  getObsFromEncounter,
   fetchPatientRelationships,
   EncounterList,
   basePath,
   fetchPatientLastEncounter,
+  type SummaryCardColumn,
   SummaryCard,
-  useDataFetch,
+  fetchEtlData,
+  getMenuItemTabConfiguration,
+  getSummaryCardProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import type { PatientChartProps, EncounterListColumn, SummaryCardColumn } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
-import { moduleName } from '../../..';
 import { Link } from '@carbon/react';
 import { navigate, useConfig } from '@openmrs/esm-framework';
 import { fetchPatientIdentifiers, fetchChildLatestFinalOutcome } from '../../../api/api';
+import recentPregnancyConfigSchema from './recent-pregnancy-config.json';
+import appointmentSummaryConfigSchema from './appointments-config.json';
+import arvTherapyColumnsConfigSchema from './arv-therapy-config.json';
+import motherPreviousVisitConfigSchema from './mother-previous-visit.json';
 
 interface pregnancyOutcomeProps {
   id: string;
@@ -40,16 +45,16 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
   const appointmentsHeader = t('appointments', 'Appointments');
   const familyHeader = t('family', 'Family');
   const pregnancyOutcomeHeader = t('infantStatusAtBirth', 'Infant Status At Birth');
-  const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
   const [pregnancyOutcomes, setPregnancyOutcomes] = useState([]);
   const [infantOutcomes, setInfantOutcomes] = useState([]);
-  const { formNames, encounterTypes, obsConcepts, formUuids } = useConfig();
-  const { data: totalAncCount } = useDataFetch('fetchMambaAncData', 'no_of_anc_visits', patientUuid);
-  const { data: motherStatus } = useDataFetch('fetchMambaAncData', 'mother_status', patientUuid);
-  const { data: deliveryDate } = useDataFetch('fetchMambaAncData', 'estimated_date_of_delivery', patientUuid);
-  const { data: motherHivStatus } = useDataFetch('MotherHivStatus', 'mother_hiv_status', patientUuid, pTrackerId);
+  const { encounterTypes, obsConcepts, identifiersTypes } = useConfig();
+  const config = useConfig();
+  const motherPreviousVisitTabs = getMenuItemTabConfiguration(motherPreviousVisitConfigSchema, config);
+  const recentPregnancyTabs = getSummaryCardProps(recentPregnancyConfigSchema, config);
+  const appointmentSummaryTabs = getSummaryCardProps(appointmentSummaryConfigSchema, config);
+  const arvTherapyTabs = getSummaryCardProps(arvTherapyColumnsConfigSchema, config);
 
   const headersFamily = [
     {
@@ -77,42 +82,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
       key: 'finalOutcome',
     },
   ];
-  const getParentCurrentLabourAndDeliveryEncounter = useCallback(async () => {
-    const currentPregnancyANCEncounter = await fetchPatientLastEncounter(patientUuid, encounterTypes.antenatal);
-    const currentPregnancyLabourAndDeliveryEncounter = await fetchPatientLastEncounter(
-      patientUuid,
-      encounterTypes.labourAndDelivery,
-    );
-    if (
-      currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime ||
-      currentPregnancyANCEncounter?.encounterDatetime == null
-    ) {
-      if (currentPregnancyLabourAndDeliveryEncounter !== null) {
-        setPregnancyOutcomes(
-          currentPregnancyLabourAndDeliveryEncounter.obs?.filter(
-            (obs) => obs.concept.uuid === obsConcepts.infantDeliveryGroupingConcept,
-          ),
-        );
-      }
-    }
-  }, [
-    encounterTypes.antenatal,
-    encounterTypes.labourAndDelivery,
-    obsConcepts.infantDeliveryGroupingConcept,
-    patientUuid,
-  ]);
-
-  const getParentRelationships = useCallback(async () => {
-    let relationships = [];
-    const relationshipsData = await fetchPatientRelationships(patientUuid);
-    if (relationshipsData?.length) {
-      relationshipsData.forEach((item) => {
-        relationships.push(item);
-      });
-    }
-    setRelatives(relationships);
-  }, [patientUuid]);
-
   const headersPregnancyOutcome = [
     {
       header: t('pTrackerId', 'PTracker ID'),
@@ -134,44 +103,74 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
   useEffect(() => {
     getParentCurrentLabourAndDeliveryEncounter();
     getParentRelationships();
-  }, [getParentCurrentLabourAndDeliveryEncounter, getParentRelationships]);
+  }, []);
 
-  const getChildPTracker = useCallback(
-    async (patientUuid) => {
-      let pTrackerMap = { patientId: patientUuid, pTrackerId: '--' };
-      const identifiers = await fetchPatientIdentifiers(patientUuid);
-      if (identifiers?.length) {
-        pTrackerMap.pTrackerId =
-          identifiers.find((id) => id.identifierType.uuid === encounterTypes.PTrackerIdentifierType)?.identifier ??
-          '--';
+  async function getParentRelationships() {
+    let relationships = [];
+    const relationshipsData = await fetchPatientRelationships(patientUuid);
+    if (relationshipsData?.length) {
+      relationshipsData.forEach((item) => {
+        relationships.push(item);
+      });
+    }
+    setRelatives(relationships);
+  }
+
+  async function getParentCurrentLabourAndDeliveryEncounter() {
+    const currentPregnancyANCEncounter = await fetchPatientLastEncounter(
+      patientUuid,
+      encounterTypes.antenatalEncounterType,
+    );
+    const currentPregnancyLabourAndDeliveryEncounter = await fetchPatientLastEncounter(
+      patientUuid,
+      encounterTypes.labourAndDeliveryEncounterType,
+    );
+    if (
+      currentPregnancyLabourAndDeliveryEncounter?.encounterDatetime > currentPregnancyANCEncounter?.encounterDatetime ||
+      currentPregnancyANCEncounter?.encounterDatetime == null
+    ) {
+      if (currentPregnancyLabourAndDeliveryEncounter !== null) {
+        setPregnancyOutcomes(
+          currentPregnancyLabourAndDeliveryEncounter.obs?.filter(
+            (obs) => obs.concept.uuid === obsConcepts.infantDeliveryGroupingConcept,
+          ),
+        );
       }
-      return pTrackerMap;
-    },
-    [encounterTypes.PTrackerIdentifierType],
-  );
-
-  const getInfantOutcome = useCallback(() => {
-    const infantOutcomesPromises = relatives.map(async (relative) => {
-      const finalOutcome = await fetchChildLatestFinalOutcome(
-        relative.personB.uuid,
-        obsConcepts.outcomeStatus,
-        encounterTypes.infantPostnatal,
-      );
-      return { finalOutcome: finalOutcome, childUuid: relative.personB.uuid };
-    });
-
-    Promise.all(infantOutcomesPromises).then((values) => {
-      setInfantOutcomes(values.map((value) => ({ finalOutcome: value.finalOutcome, childUuid: value.childUuid })));
-    });
-  }, [encounterTypes.infantPostnatal, obsConcepts.outcomeStatus, relatives]);
-
+    }
+  }
   useEffect(() => {
     const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personB.uuid));
     Promise.all(relativeToPtrackerPromises).then((values) => {
       setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
     });
     getInfantOutcome();
-  }, [getChildPTracker, getInfantOutcome, relatives]);
+  }, [relatives]);
+
+  const getInfantOutcome = () => {
+    const infantOutcomes = relatives.map(async (relative) => {
+      const finalOutcome = await fetchChildLatestFinalOutcome(
+        relative.personB.uuid,
+        obsConcepts.outcomeStatus,
+        encounterTypes.infantPostnatalEncounterType,
+      );
+      return { finalOutcome: finalOutcome, childUuid: relative.personB.uuid };
+    });
+
+    Promise.all(infantOutcomes).then((values) => {
+      setInfantOutcomes(values.map((value) => ({ finalOutcome: value.finalOutcome, childUuid: value.childUuid })));
+    });
+  };
+
+  async function getChildPTracker(patientUuid: string) {
+    let pTrackerMap = { patientId: patientUuid, pTrackerId: '--' };
+    const identifiers = await fetchPatientIdentifiers(patientUuid);
+    if (identifiers?.length) {
+      pTrackerMap.pTrackerId =
+        identifiers.find((id) => id.identifierType.uuid === identifiersTypes.pTrackerIdentifierType)?.identifier ??
+        '--';
+    }
+    return pTrackerMap;
+  }
 
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
@@ -235,217 +234,12 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
     obsConcepts.breastfeedingStatus,
   ]);
 
-  const currentPregnancyColumns: SummaryCardColumn[] = useMemo(
-    () => [
-      {
-        key: 'motherHIVStatus',
-        header: t('motherHIVStatus', 'Mother HIV Status'),
-        encounterTypes: [],
-        getObsValue: () => {
-          return motherHivStatus;
-        },
-      },
-      {
-        key: 'expectedDeliveryDate',
-        header: t('expectedDeliveryDate', 'Expected Delivery Date'),
-        encounterTypes: [],
-        getObsValue: () => {
-          return deliveryDate;
-        },
-      },
-      {
-        key: 'motherStatus',
-        header: t('motherStatus', 'Mother Status'),
-        encounterTypes: [],
-        getObsValue: () => {
-          return motherStatus;
-        },
-      },
-    ],
-    [t, motherHivStatus, deliveryDate, motherStatus],
-  );
-
-  const arvTherapyColumns: SummaryCardColumn[] = useMemo(
-    () => [
-      {
-        key: 'artInitiation',
-        header: t('artInitiation', 'ART Initiation'),
-        encounterTypes: [encounterTypes.motherPostnatal, encounterTypes.labourAndDelivery, encounterTypes.antenatal],
-        getObsValue: (encounters) => {
-          const pncArtData = {
-            artInitiation: getObsFromEncounter(encounters[0], obsConcepts.artInitiationConcept),
-            artStartDate: getObsFromEncounter(encounters[0], obsConcepts.artStartDate, true),
-            pTrackerId: getObsFromEncounter(encounters[0], obsConcepts.pTrackerIdConcept),
-          };
-          const lndArtData = {
-            artInitiation: getObsFromEncounter(encounters[1], obsConcepts.artInitiationConcept),
-            artStartDate: getObsFromEncounter(encounters[1], obsConcepts.artStartDate, true),
-            pTrackerId: getObsFromEncounter(encounters[1], obsConcepts.pTrackerIdConcept),
-          };
-          const ancArtData = {
-            artInitiation: getObsFromEncounter(encounters[2], obsConcepts.artInitiationConcept),
-            artStartDate: getObsFromEncounter(encounters[2], obsConcepts.artStartDate, true),
-            pTrackerId: getObsFromEncounter(encounters[2], obsConcepts.pTrackerIdConcept),
-          };
-          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
-          return latestArtData['artInitiation'];
-        },
-      },
-      {
-        key: 'artStartDate',
-        header: t('artStartDate', 'ART Start Date'),
-        encounterTypes: [encounterTypes.motherPostnatal, encounterTypes.labourAndDelivery, encounterTypes.antenatal],
-        getObsValue: (encounters) => {
-          const pncArtData = {
-            artInitiation: getObsFromEncounter(encounters[0], obsConcepts.artInitiationConcept),
-            artStartDate: getObsFromEncounter(encounters[0], obsConcepts.artStartDate, true),
-            pTrackerId: getObsFromEncounter(encounters[0], obsConcepts.pTrackerIdConcept),
-          };
-          const lndArtData = {
-            artInitiation: getObsFromEncounter(encounters[1], obsConcepts.artInitiationConcept),
-            artStartDate: getObsFromEncounter(encounters[1], obsConcepts.artStartDate, true),
-            pTrackerId: getObsFromEncounter(encounters[1], obsConcepts.pTrackerIdConcept),
-          };
-          const ancArtData = {
-            artInitiation: getObsFromEncounter(encounters[2], obsConcepts.artInitiationConcept),
-            artStartDate: getObsFromEncounter(encounters[2], obsConcepts.artStartDate, true),
-            pTrackerId: getObsFromEncounter(encounters[2], obsConcepts.pTrackerIdConcept),
-          };
-          const latestArtData = getLatestArtDetails(pncArtData, lndArtData, ancArtData);
-          return latestArtData['artStartDate'];
-        },
-      },
-    ],
-    [
-      encounterTypes.antenatal,
-      encounterTypes.labourAndDelivery,
-      encounterTypes.motherPostnatal,
-      obsConcepts.artInitiationConcept,
-      obsConcepts.artStartDate,
-      obsConcepts.pTrackerIdConcept,
-      t,
-    ],
-  );
-
-  const appointmentsColumns: SummaryCardColumn[] = useMemo(
-    () => [
-      {
-        key: 'nextAppointmentDate',
-        header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterTypes: [encounterTypes.antenatal],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.nextVisitDateConcept, true);
-        },
-        getObsSummary: ([encounter]) => {
-          let nextVisitDate = getObsFromEncounter(encounter, obsConcepts.nextVisitDateConcept, true);
-          if (nextVisitDate !== '--') {
-            const days = calculateDateDifferenceInDate(nextVisitDate);
-            nextVisitDate = nextVisitDate > 0 ? `In ${days}` : '';
-          }
-          return nextVisitDate;
-        },
-      },
-      {
-        key: 'ancVisitsAttended',
-        header: t('ancVisitsAttended', 'ANC visits attended'),
-        encounterTypes: [],
-        getObsValue: () => {
-          return totalAncCount;
-        },
-      },
-    ],
-    [encounterTypes.antenatal, obsConcepts.nextVisitDateConcept, t, totalAncCount],
-  );
-
-  const selectMCHFormViewAction = useCallback(
-    (encounter) => {
-      const encounterType = encounter.encounterType.name;
-      if (encounterType === 'Antenatal') {
-        return { name: formNames.antenatal };
-      } else if (encounterType === 'Labor and Delivery') {
-        return { name: formNames.labourAndDelivery };
-      } else {
-        return { name: formNames.motherPostnatal };
-      }
-    },
-    [formNames.antenatal, formNames.labourAndDelivery, formNames.motherPostnatal],
-  );
-
-  const columnsMotherPreviousVisit: EncounterListColumn[] = useMemo(
-    () => [
-      {
-        key: 'visitType',
-        header: t('visitType', 'Visit Type'),
-        getValue: (encounter) => {
-          return encounter.encounterType.name;
-        },
-      },
-      {
-        key: 'visitDate',
-        header: t('visitDate', 'Visit date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.visitDate, true);
-        },
-      },
-      {
-        key: 'facility',
-        header: t('facility', 'Facility'),
-        getValue: (encounter) => {
-          return encounter.location.name;
-        },
-      },
-      {
-        key: 'nextFollowUpDate',
-        header: t('nextFollowUpDate', 'Next Follow-up date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.followUpDateConcept, true);
-        },
-      },
-      {
-        key: 'actions',
-        header: t('actions', 'Actions'),
-        getValue: (encounter) => [
-          {
-            form: selectMCHFormViewAction(encounter),
-            encounterUuid: encounter.uuid,
-            intent: '*',
-            label: t('viewDetails', 'View details'),
-            mode: 'view',
-          },
-        ],
-      },
-    ],
-    [obsConcepts.followUpDateConcept, obsConcepts.visitDate, selectMCHFormViewAction, t],
-  );
-
-  const getLatestArtDetails = (pncArtData, lndArtData, ancArtData) => {
-    const allArtData = [pncArtData, lndArtData, ancArtData];
-    const filteredArtData = allArtData.filter((row) => row.artInitiation !== '--');
-    if (filteredArtData.length == 0) {
-      return {
-        artInitiation: '--',
-        artStartDate: '--',
-      };
-    } else if (filteredArtData.length == 1) {
-      return filteredArtData[0];
-    } else {
-      filteredArtData.sort((a, b) => b.pTrackerId.localeCompare(a.pTrackerId));
-      return filteredArtData[0];
-    }
-  };
-
-  const calculateDateDifferenceInDate = (givenDate: string): string => {
-    const dateDifference = new Date(givenDate).getTime() - new Date().getTime();
-    const totalDays = Math.floor(dateDifference / (1000 * 3600 * 24));
-    return `${totalDays} day(s)`;
-  };
-
   return (
     <div>
-      <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={currentPregnancyColumns} />
+      <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={recentPregnancyTabs} />
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '15rem' }}>
-        <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyColumns} />
-        <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentsColumns} />
+        <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyTabs} />
+        <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentSummaryTabs} />
       </div>
 
       <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
@@ -478,23 +272,17 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         />
       </div>
 
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterType={encounterTypes.mchEncounterType}
-        columns={columnsMotherPreviousVisit}
-        description={previousVisitsTitle}
-        headerTitle={previousVisitsTitle}
-        formList={[
-          { name: formNames.antenatal, uuid: '' },
-          { name: formNames.labourAndDelivery, uuid: formUuids.labourAndDelivery },
-          { name: formNames.motherPostnatal, uuid: formUuids.motherPostnatal },
-        ]}
-        launchOptions={{
-          hideFormLauncher: true,
-          moduleName: moduleName,
-          displayText: '',
-        }}
-      />
+      {motherPreviousVisitTabs.map((tab) => (
+        <EncounterList
+          patientUuid={patientUuid}
+          encounterType={tab.encounterType}
+          columns={tab.columns}
+          description={tab.description}
+          headerTitle={tab.headerTitle}
+          formList={tab.formList}
+          launchOptions={tab.launchOptions}
+        />
+      ))}
     </div>
   );
 };

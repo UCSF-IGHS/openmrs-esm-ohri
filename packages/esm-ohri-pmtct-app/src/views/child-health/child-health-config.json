@@ -5,12 +5,12 @@
         "tabName": "Infant Postnatal Visit",
         "headerTitle": "Infant Postnatal Visit",
         "displayText": "Infant Postnatal Visit",
-        "encounterType": "af1f1b24-d2e8-4282-b308-0bf79b365584",
+        "encounterType": "infantPostnatalEncounterType",
         "columns": [
           {
             "id": "pTrackerId",
             "title": "PTracker Id",
-            "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2"
+            "concept": "pTrackerIdConcept"
           },
           {
             "id": "mothersName",
@@ -20,41 +20,41 @@
           {
             "id": "artProphylaxisStatus",
             "title": "ART Prophylaxis Status",
-            "concept": "1148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "artProphylaxisStatus"
           },
           {
             "id": "linkedToArt",
             "title": "Linked to ART",
-            "concept": "a40d8bc4-56b8-4f28-a1dd-412da5cf20ed"
+            "concept": "linkedToArt"
           },
           {
             "id": "breastfeedingStatus",
             "title": "Breastfeeding status",
-            "concept": "1151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "breastfeedingStatus"
           },
           {
             "id": "outcomeStatus",
             "title": "Outcome Status",
-            "concept": "160433AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "outcomeStatus"
           },
           {
             "id": "nextVisitDate",
             "isDate": true,
             "title": "Next visit date",
-            "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "nextVisitDateConcept"
           },
           {
             "id": "actions",
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "Antenatal Form",
+                "formName": "infantPostnatalFormName",
                 "package": "pmtct",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "Antenatal Form",
+                "formName": "infantPostnatalFormName",
                 "package": "pmtct",
                 "label": "Edit Form",
                 "mode": "edit"
@@ -68,8 +68,8 @@
         },
         "formList": [
           {
-            "name": "Infant - Postanal Form",
-            "uuid": "5022c5d7-ea45-47ce-bd65-1ba1d8ad2467"
+            "name": "infantPostnatalFormName",
+            "uuid": "infantPostnatalFormUuid"
           }
         ]
       }

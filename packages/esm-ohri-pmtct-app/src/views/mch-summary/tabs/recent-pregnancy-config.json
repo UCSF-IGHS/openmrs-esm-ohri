@@ -1,0 +1,24 @@
+{
+  "menuId": "recentPregnancy",
+  "cardTitle": "Recent Pregnancy",
+  "columns": [
+    {
+      "id": "motherHIVStatus",
+      "title": "Mother HIV Status",
+      "encounterTypes": [],
+      "mambaEtlData": "motherHivStatus"
+    },
+    {
+      "id": "expectedDeliveryDate",
+      "title": "Expected Delivery Date",
+      "encounterTypes": [],
+      "mambaEtlData": "deliveryDate"
+    },
+    {
+      "id": "motherStatus",
+      "title": "Mother Status",
+      "encounterTypes": [],
+      "mambaEtlData": "motherStatus"
+    }
+  ]
+}

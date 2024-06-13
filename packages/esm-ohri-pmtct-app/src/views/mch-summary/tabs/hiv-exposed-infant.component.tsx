@@ -2,19 +2,21 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ExpandableList,
-  getObsFromEncounter,
   EncounterList,
   fetchPatientRelationships,
   basePath,
   SummaryCard,
+  getMenuItemTabConfiguration,
+  getSummaryCardProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import type { EncounterListColumn, SummaryCardColumn } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { navigate, useConfig } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import { Link } from '@carbon/react';
-import { moduleName } from '../../..';
-import { fetchPatientIdentifiers } from '../../../api/api';
 import { type familyItemProps } from './current-pregnancy.component';
+import hivExposedInfantSummary from './hiv-exposed-infant-summary-config.json';
+import hivExposedFamilySummary from './hiv-exposed-family-summary-config.json';
+import hivExposedInfantConfigSchema from './infant-summary-config.json';
+import { fetchPatientIdentifiers } from '../../../api/api';
 
 const HivExposedInfant: React.FC<{
   patientUuid: string;
@@ -23,7 +25,11 @@ const HivExposedInfant: React.FC<{
   const { t } = useTranslation();
   const [relatives, setRelatives] = useState([]);
   const [relativeToIdentifierMap, setRelativeToIdentifierMap] = useState([]);
-  const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
+  const { identifiersTypes } = useConfig();
+  const config = useConfig();
+  const hivExposedInfantSummaryTabs = getMenuItemTabConfiguration(hivExposedInfantSummary, config);
+  const hivExposedFamilySummaryTabs = getMenuItemTabConfiguration(hivExposedFamilySummary, config);
+  const infantCardColumns = getSummaryCardProps(hivExposedInfantConfigSchema, config);
 
   const getParentRelationships = useCallback(async () => {
     let relationships = [];
@@ -39,85 +45,6 @@ const HivExposedInfant: React.FC<{
   useEffect(() => {
     getParentRelationships();
   }, [getParentRelationships]);
-
-  const infantSummaryColumns: SummaryCardColumn[] = useMemo(
-    () => [
-      {
-        key: 'artProphylaxisStatus',
-        header: t('artProphylaxisStatus', 'ART Prophylaxis Status'),
-        encounterTypes: [encounterTypes.infantPostnatal],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.artProphylaxisStatus);
-        },
-      },
-      {
-        key: 'breastfeeding',
-        header: t('breastfeeding', 'Breastfeeding'),
-        encounterTypes: [encounterTypes.infantPostnatal],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.breastfeedingStatus);
-        },
-      },
-      {
-        key: 'hivStatus',
-        header: t('hivStatus', 'HIV Status'),
-        encounterTypes: [encounterTypes.infantPostnatal],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.finalTestResults);
-        },
-      },
-      {
-        key: 'finalOutcome',
-        header: t('finalOutcome', 'Final Outcome'),
-        encounterTypes: [encounterTypes.infantPostnatal],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.outcomeStatus);
-        },
-      },
-    ],
-    [
-      encounterTypes.infantPostnatal,
-      obsConcepts.artProphylaxisStatus,
-      obsConcepts.breastfeedingStatus,
-      obsConcepts.finalTestResults,
-      obsConcepts.outcomeStatus,
-      t,
-    ],
-  );
-
-  const hivMonitoringColumns: EncounterListColumn[] = useMemo(() => {
-    return [
-      {
-        key: 'date',
-        header: t('date', 'Date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.artStartDate, true);
-        },
-      },
-      {
-        key: 'testType',
-        header: t('testType', 'Test Type'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.testTypeConcept);
-        },
-      },
-      {
-        key: 'ageAtTimeOfTest',
-        header: t('ageAtTimeOfTest', 'Age at time of test'),
-        getValue: (encounter) => {
-          const artDate = getObsFromEncounter(encounter, obsConcepts.artStartDate);
-          return artDate ? dayjs().diff(dayjs(artDate), 'day') : '--';
-        },
-      },
-      {
-        key: 'hivStatus',
-        header: t('hivStatus', 'HIV Status'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.finalTestResults);
-        },
-      },
-    ];
-  }, [obsConcepts.artStartDate, obsConcepts.finalTestResults, obsConcepts.testTypeConcept, t]);
 
   const familyHeaders = [
     {
@@ -148,13 +75,13 @@ const HivExposedInfant: React.FC<{
       const identifiers = await fetchPatientIdentifiers(patientUuid);
       if (identifiers) {
         pTrackerMap.pTrackerId = identifiers.find(
-          (id) => id.identifierType.uuid === encounterTypes.PTrackerIdentifierType,
-        ).identifier;
+          (id) => id.identifierType.uuid === identifiersTypes?.ptrackerIdentifierType,
+        )?.identifier;
         pTrackerMap.patientId = patientUuid;
       }
       return pTrackerMap;
     },
-    [encounterTypes.PTrackerIdentifierType],
+    [identifiersTypes?.ptrackerIdentifierType],
   );
 
   useEffect(() => {
@@ -191,76 +118,25 @@ const HivExposedInfant: React.FC<{
     return items;
   }, [relatives, relativeToIdentifierMap]);
 
-  const columnsChildPreviousVisit: EncounterListColumn[] = useMemo(
-    () => [
-      {
-        key: 'visitType',
-        header: t('visitType', 'Visit Type'),
-        getValue: (encounter) => {
-          return encounter.encounterType.name;
-        },
-      },
-      {
-        key: 'visitDate',
-        header: t('visitDate', 'Visit date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.infantVisitDate, true);
-        },
-      },
-      {
-        key: 'facility',
-        header: t('facility', 'Facility'),
-        getValue: (encounter) => {
-          return encounter.location.name;
-        },
-      },
-      {
-        key: 'nextFollowUpDate',
-        header: t('nextFollowUpDate', 'Next Follow-up date'),
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.followUpDateConcept, true);
-        },
-      },
-      {
-        key: 'actions',
-        header: t('actions', 'Actions'),
-        getValue: (encounter) => [
-          {
-            form: { name: 'Infant - Postanal Form', package: 'child_health' },
-            encounterUuid: encounter.uuid,
-            intent: '*',
-            label: t('viewDetails', 'View details'),
-            mode: 'view',
-          },
-        ],
-      },
-    ],
-    [obsConcepts.followUpDateConcept, obsConcepts.infantVisitDate, t],
-  );
-
-  const previousVisitsTitle = t('previousVisitsSummary', 'Previous Visits');
-
   return (
     <div>
       <SummaryCard
         patientUuid={patientUuid}
         headerTitle={t('infantSummary', 'Infants Summary')}
-        columns={infantSummaryColumns}
+        columns={infantCardColumns}
       />
 
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterType={encounterTypes.infantPostnatal}
-        formList={[{ name: formNames.infantPostnatal, uuid: formUuids.infantPostnatal }]}
-        columns={hivMonitoringColumns}
-        description={t('hivMonitoring', 'HIV Monitoring')}
-        headerTitle={t('hivMonitoring', 'HIV Monitoring')}
-        launchOptions={{
-          hideFormLauncher: true,
-          displayText: '',
-          moduleName: moduleName,
-        }}
-      />
+      {hivExposedInfantSummaryTabs.map((tab) => (
+        <EncounterList
+          patientUuid={patientUuid}
+          encounterType={tab.encounterType}
+          columns={tab.columns}
+          description={tab.description}
+          headerTitle={tab.headerTitle}
+          formList={tab.formList}
+          launchOptions={tab.launchOptions}
+        />
+      ))}
 
       <ExpandableList
         headerTitle={t('family', 'Family')}
@@ -276,19 +152,17 @@ const HivExposedInfant: React.FC<{
         }}
       />
 
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterType={encounterTypes.infantPostnatal}
-        columns={columnsChildPreviousVisit}
-        description={previousVisitsTitle}
-        headerTitle={previousVisitsTitle}
-        formList={[{ name: formNames.infantPostnatal, uuid: formUuids.infantPostnatal }]}
-        launchOptions={{
-          hideFormLauncher: true,
-          moduleName: moduleName,
-          displayText: '',
-        }}
-      />
+      {hivExposedFamilySummaryTabs.map((tab) => (
+        <EncounterList
+          patientUuid={patientUuid}
+          encounterType={tab.encounterType}
+          columns={tab.columns}
+          description={tab.description}
+          headerTitle={tab.headerTitle}
+          formList={tab.formList}
+          launchOptions={tab.launchOptions}
+        />
+      ))}
     </div>
   );
 };

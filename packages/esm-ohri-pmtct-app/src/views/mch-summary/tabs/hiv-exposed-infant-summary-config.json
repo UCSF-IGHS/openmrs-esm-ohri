@@ -1,0 +1,45 @@
+{
+  "menuId": "hivExposedInfantSummary",
+  "tabDefinitions": [
+    {
+      "tabName": "HIV Monitoring",
+      "headerTitle": "HIV Monitoring",
+      "displayText": "HIV Monitoring",
+      "encounterType": "infantPostnatalEncounterType",
+      "columns": [
+        {
+          "id": "date",
+          "isDate": true,
+          "title": "Date",
+          "concept": "artStartDate"
+        },
+        {
+          "id": "testType",
+          "title": "Test type",
+          "concept": "testTypeConcept"
+        },
+        {
+          "id": "ageAtTimeOfTest",
+          "title": "Age at time of test",
+          "type": "ageAtHivTest"
+        },
+        {
+          "id": "hivStatus",
+          "title": "Hiv Status",
+          "concept": "finalTestResults"
+        }
+      ],
+      "launchOptions": {
+        "hideFormLauncher": true,
+        "displayText": "",
+        "moduleName": "@ohri/openmrs-esm-ohri-pmtct-app"
+      },
+      "formList": [
+        {
+          "name": "infantPostnatalFormName",
+          "uuid": "infantPostnatalFormUuid"
+        }
+      ]
+    }
+  ]
+} 

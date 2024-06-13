@@ -3,13 +3,15 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import maternalHealthTabConfigSchema from './maternal-health-config.json';
+import { useConfig } from '@openmrs/esm-framework';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
 const MaternalHealthSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(maternalHealthTabConfigSchema);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(maternalHealthTabConfigSchema, config);
   return (
     <div className={styles.tabContainer}>
       <Tabs>
