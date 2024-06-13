@@ -1,221 +1,57 @@
 import {
-  EmptyStateComingSoon,
   EncounterList,
-  EncounterListColumn,
-  PatientChartProps,
   SummaryCard,
-  SummaryCardColumn,
-  getObsFromEncounter,
+  getMenuItemTabConfiguration,
+  getSummaryCardProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { useConfig } from '@openmrs/esm-framework';
-import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { moduleName } from '../../..';
+import React from 'react';
+import tptPreviousCasesConfigSchema from './tpt-previous-cases-config.json';
+import tptVisitsConfigSchema from './tpt-visits-config.json';
+import recentTptConfigSchema from './recent-tpt-config.json';
 
-const TptPatientSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
-  const { t } = useTranslation();
-  const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
+interface OverviewListProps {
+  patientUuid: string;
+}
 
-  const headerRecentTPT = t('recentTptCases', 'Recent TPT Cases');
-  const headerPreviousTptCases = t('previousTptCases', 'Previous TPT Cases');
-  const headerVisit = t('visits', 'Visits');
-
-  const recentTbPreventionColumns: SummaryCardColumn[] = useMemo(
-    () => [
-      {
-        key: 'tptTreatmentId',
-        header: t('tptTreatmentId', 'TPT Treatment ID'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
-        },
-      },
-      {
-        key: 'tptEnrollmentDate',
-        header: t('enrollmentDate', 'Enrollment Date'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: async ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptEnrollmentDate, true);
-        },
-      },
-      {
-        key: 'tptIndication',
-        header: t('indication', 'Indication'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
-        },
-      },
-      {
-        key: 'tptRegimen',
-        header: t('regimen', 'Regimen'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
-        },
-      },
-      {
-        key: 'tptAdherence',
-        header: t('tptAdherence', 'Adherence'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
-        },
-      },
-      {
-        key: 'tptAppointmentDate',
-        header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getObsValue: ([encounter]) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
-        },
-      },
-    ],
-    [],
-  );
-
-  const previousTptCasesColumns: EncounterListColumn[] = useMemo(
-    () => [
-      {
-        key: 'tptTreatmentId',
-        header: t('tptTreatmentId', 'TPT Treatment ID'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
-        },
-      },
-      {
-        key: 'tptEnrollmentDate',
-        header: t('enrollmentDate', 'Enrollment Date'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptEnrollmentDate, true);
-        },
-      },
-      {
-        key: 'indication',
-        header: t('indication', 'Indication'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
-        },
-      },
-      {
-        key: 'tptRegimen',
-        header: t('regimen', 'Regimen'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
-        },
-      },
-      {
-        key: 'tptOutcome',
-        header: t('outcome', 'Outcome'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptOutcome);
-        },
-      },
-      {
-        key: 'tptDateOutcome',
-        header: t('dateOutcome', 'Date of Outcome'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptDateOutcome, true);
-        },
-      },
-    ],
-    [],
-  );
-
-  const TptVisitsColumns: EncounterListColumn[] = useMemo(
-    () => [
-      {
-        key: 'caseID',
-        header: t('caseID', 'Case ID'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptTreatmentId);
-        },
-      },
-      {
-        key: 'visitDate',
-        header: t('visitDate', 'Visit Date'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptEnrollmentDate, true);
-        },
-      },
-      {
-        key: 'tptIndication',
-        header: t('indication', 'Indication'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptIndication);
-        },
-      },
-      {
-        key: 'regimen',
-        header: t('regimen', 'Regimen'),
-        encounterTypes: [encounterTypes.tptCaseEnrollment],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptRegimen);
-        },
-      },
-      {
-        key: 'adherence',
-        header: t('adherence', 'Adherence'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptAdherence);
-        },
-      },
-      {
-        key: 'nextAppointmentDate',
-        header: t('nextAppointmentDate', 'Next Appointment Date'),
-        encounterTypes: [encounterTypes.tptTreatmentAndFollowUp],
-        getValue: (encounter) => {
-          return getObsFromEncounter(encounter, obsConcepts.tptAppointmentDate, true);
-        },
-      },
-    ],
-    [],
-  );
+const TptPatientSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+  const previousCaseTabs = getMenuItemTabConfiguration(tptPreviousCasesConfigSchema);
+  const tbVisitsTabs = getMenuItemTabConfiguration(tptVisitsConfigSchema);
+  const summaryCardColumns = getSummaryCardProps(recentTptConfigSchema);
 
   return (
     <>
       <SummaryCard
         patientUuid={patientUuid}
-        headerTitle={headerRecentTPT}
-        columns={recentTbPreventionColumns}
+        headerTitle={'Recent TPT Cases'}
+        columns={summaryCardColumns}
         maxRowItems={4}
       />
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterType={encounterTypes.tptCaseEnrollment}
-        columns={previousTptCasesColumns}
-        description={headerPreviousTptCases}
-        headerTitle={headerPreviousTptCases}
-        formList={[{ name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid }]}
-        launchOptions={{
-          hideFormLauncher: true,
-          displayText: '',
-          moduleName: moduleName,
-        }}
-      />
-      <EncounterList
-        patientUuid={patientUuid}
-        encounterType={encounterTypes.tptCaseEnrollment}
-        columns={TptVisitsColumns}
-        description={headerVisit}
-        headerTitle={headerVisit}
-        formList={[{ name: formNames.TptCaseEnrolmentFormName, uuid: formUuids.tptCaseEnrolmentFormUuid }]}
-        launchOptions={{
-          hideFormLauncher: true,
-          displayText: '',
-          moduleName: moduleName,
-        }}
-      />
+
+      {previousCaseTabs.map((tab) => (
+        <EncounterList
+          key={tab.encounterType}
+          patientUuid={patientUuid}
+          encounterType={tab.encounterType}
+          formList={tab.formList}
+          columns={tab.columns}
+          description={tab.description}
+          headerTitle={tab.headerTitle}
+          launchOptions={tab.launchOptions}
+        />
+      ))}
+
+      {tbVisitsTabs.map((tab) => (
+        <EncounterList
+          key={tab.encounterType}
+          patientUuid={patientUuid}
+          encounterType={tab.encounterType}
+          formList={tab.formList}
+          columns={tab.columns}
+          description={tab.description}
+          headerTitle={tab.headerTitle}
+          launchOptions={tab.launchOptions}
+        />
+      ))}
     </>
   );
 };

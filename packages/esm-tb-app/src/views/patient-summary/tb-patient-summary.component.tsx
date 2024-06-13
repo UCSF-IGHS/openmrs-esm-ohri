@@ -2,7 +2,7 @@ import {
   EncounterList,
   SummaryCard,
   getMenuItemTabConfiguration,
-  getSummarryCardProps,
+  getSummaryCardProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React from 'react';
 import previousCasesConfigSchema from './previous-cases-config.json';
@@ -14,10 +14,9 @@ interface OverviewListProps {
 }
 
 const TBSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
-
   const previousCaseTabs = getMenuItemTabConfiguration(previousCasesConfigSchema);
-  const tbVisistsTabs = getMenuItemTabConfiguration(tbVisitsConfigSchema);
-  const summaryCardColumns = getSummarryCardProps(recentTuberculosisConfigSchema);
+  const tbVisitsTabs = getMenuItemTabConfiguration(tbVisitsConfigSchema);
+  const summaryCardColumns = getSummaryCardProps(recentTuberculosisConfigSchema);
 
   return (
     <>
@@ -41,7 +40,7 @@ const TBSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => 
         />
       ))}
 
-      {tbVisistsTabs.map((tab) => (
+      {tbVisitsTabs.map((tab) => (
         <EncounterList
           key={tab.encounterType}
           patientUuid={patientUuid}
