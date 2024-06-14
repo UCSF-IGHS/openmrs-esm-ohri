@@ -41,7 +41,7 @@
       "encounterTypes": [
         "tbProgramEnrollment"
       ],
-      "concept": "tbProgramEnrollment"
+      "concept": "drugSensitivity"
     },
     {
       "id": "regimen",
