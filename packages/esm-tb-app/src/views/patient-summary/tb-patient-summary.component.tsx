@@ -5,6 +5,7 @@ import {
   getSummaryCardProps,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import React from 'react';
+import { useConfig } from '@openmrs/esm-framework';
 import previousCasesConfigSchema from './previous-cases-config.json';
 import tbVisitsConfigSchema from './visits-config.json';
 import recentTuberculosisConfigSchema from './recent-tb-config.json';
@@ -14,8 +15,9 @@ interface OverviewListProps {
 }
 
 const TBSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const previousCaseTabs = getMenuItemTabConfiguration(previousCasesConfigSchema);
-  const tbVisitsTabs = getMenuItemTabConfiguration(tbVisitsConfigSchema);
+  const config = useConfig();
+  const previousCaseTabs = getMenuItemTabConfiguration(previousCasesConfigSchema, config);
+  const tbVisitsTabs = getMenuItemTabConfiguration(tbVisitsConfigSchema, config);
   const summaryCardColumns = getSummaryCardProps(recentTuberculosisConfigSchema);
 
   return (

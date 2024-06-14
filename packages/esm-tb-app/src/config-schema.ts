@@ -80,6 +80,7 @@ export const configSchema = {
       tbfollowUpForm: 'TB Follow-up Form',
       tbPatientTracingForm: 'TB Patient Tracing Form',
       tbContactListingForm: 'TB Contact Listing',
+      TbCaseEnrolmentFormName: 'TB Case Enrollment Form',
     },
   },
   formUuids: {
@@ -92,6 +93,7 @@ export const configSchema = {
       tbFollowUpFormUuid: '79b05c37-0def-4482-a345-c63b99fbd565',
       tbPatientTracingFormUuid: 'ac3cbd10-1939-3797-9de6-2a39dfb68441',
       tbContactListingFormUuid: 'cb16d920-62f1-3696-b781-e6a4f5e80de1',
+      tbCaseEnrolmentFormUuid: '554b2017-e512-3fc8-9c6e-7baf9e69db9d',
     },
   },
 };

@@ -6,51 +6,51 @@
       "id": "tptTreatmentId",
       "title": "TPT Treatment ID",
       "encounterTypes": [
-        "dc6ce80c-83f8-4ace-a638-21df78542551"
+        "tptCaseEnrollment"
       ],
-      "concept": "162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "tptTreatmentId"
     },
     {
       "id": "tptEnrollmentDate",
       "isDate": true,
       "title": "Enrollment Date",
       "encounterTypes": [
-        "dc6ce80c-83f8-4ace-a638-21df78542551"
+        "tptCaseEnrollment"
       ],
-      "concept": "164852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "tptEnrollmentDate"
     },
     {
       "id": "tptIndication",
       "title": "Indication",
       "encounterTypes": [
-        "dc6ce80c-83f8-4ace-a638-21df78542551"
+        "tptCaseEnrollment"
       ],
-      "concept": "162276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "tptIndication"
     },
     {
       "id": "tptRegimen",
       "title": "Regimen",
       "encounterTypes": [
-        "dc6ce80c-83f8-4ace-a638-21df78542551"
+        "tptCaseEnrollment"
       ],
-      "concept": "1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "tptRegimen"
     },
     {
       "id": "tptAdherence",
       "title": "Adherence",
       "encounterTypes": [
-        "1ac3de3f-8fc2-43a7-addb-e805c393ecae"
+        "tptTreatmentAndFollowUp"
       ],
-      "concept": "164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "adherenceAssessment"
     },
     {
       "id": "tptAppointmentDate",
       "isDate": true,
       "title": "Next Appointment Date",
       "encounterTypes": [
-        "1ac3de3f-8fc2-43a7-addb-e805c393ecae"
+        "tptTreatmentAndFollowUp"
       ],
-      "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "nextAppointmentDate"
     }
   ]
 }

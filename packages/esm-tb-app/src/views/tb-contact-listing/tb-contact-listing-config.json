@@ -5,18 +5,18 @@
         "tabName": "TB Contact Listing",
         "headerTitle": "TB Contact Listing",
         "displayText": "TB Contact Listing",
-        "encounterType": "70d2b2f6-860b-438c-994b-c28e863dca34",
+        "encounterType": "tbContactListing",
         "columns": [
           {
             "id": "caseID",
             "title": "Case ID",
-            "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "caseID"
           },
           {
             "id": "dateContactListed",
             "isDate": true,
             "title": "Date Contact Listed",
-            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "dateContacted"
           },
           {
             "id": "location",
@@ -28,13 +28,13 @@
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "TB Contact Listing",
+                "formName": "tbContactListingForm",
                 "package": "tb",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "TB Contact Listing",
+                "formName": "tbContactListingForm",
                 "package": "tb",
                 "label": "Edit Form",
                 "mode": "edit"
@@ -48,8 +48,8 @@
         },
         "formList": [
           {
-            "name": "TB Contact Listing",
-            "uuid": "cb16d920-62f1-3696-b781-e6a4f5e80de1"
+            "name": "tbContactListingForm",
+            "uuid": "tbContactListingFormUuid"
           }
         ]
       }  

@@ -5,58 +5,58 @@
         "tabName": "TPT Enrolment",
         "headerTitle": "TPT Enrolment",
         "displayText": "TPT Enrolment",
-        "encounterType": "dc6ce80c-83f8-4ace-a638-21df78542551",
+        "encounterType": "tptCaseEnrollment",
         "columns": [
           {
             "id": "enrollmentDate",
             "isDate": true,
             "title": "Enrollment Date",
-            "concept": "164852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptEnrollmentDate"
           },
           {
             "id": "tptTreatmentID",
             "title": "TPT Treatment ID",
-            "concept": "162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptTreatmentId"
           },
           {
             "id": "indication",
             "title": "Indication",
-            "concept": "162276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptIndication"
           },
           {
             "id": "treatmentStartDate",
             "isDate": true,
             "title": "Treatment start Date",
-            "concept": "162320AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptTreatmentStartDate"
           },
           {
             "id": "regimen",
             "title": "Regimen",
-            "concept": "1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptRegimen"
           },
           {
             "id": "tptOutcome",
             "title": "Outcome",
-            "concept": "1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptOutcome"
           },
                     {
             "id": "dateOfOutcome",
             "isDate": true,
             "title": "Date of Outcome",
-            "concept": "163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptOutcomeDate"
           },
           {
             "id": "actions",
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "TPT Case Enrolment form",
+                "formName": "TptCaseEnrolmentFormName",
                 "package": "tpt",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "TPT Case Enrolment form",
+                "formName": "TptCaseEnrolmentFormName",
                 "package": "tpt",
                 "label": "Edit Form",
                 "mode": "edit"
@@ -70,8 +70,8 @@
         },
         "formList": [
           {
-            "name": "TPT Case Enrolment form",
-            "uuid": "1ac3de3f-8fc2-43a7-addb-e805c393ecae"
+            "name": "TptCaseEnrolmentFormName",
+            "uuid": "tptTreatmentAndFollowUp"
           }
         ]
       },
@@ -79,41 +79,41 @@
         "tabName": "TPT Treatment",
         "headerTitle": "TPT Treatment",
         "displayText": "TPT Treatment",
-        "encounterType": "1ac3de3f-8fc2-43a7-addb-e805c393ecae",
+        "encounterType": "tptTreatmentAndFollowUp",
         "columns": [
           {
             "id": "caseId",
             "title": "Case ID",
-            "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "caseID"
           },
           {
             "id": "Adherence",
             "title": "Adherence",
-            "concept": "164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "adherenceAssessment"
           },       
           {
             "id": "treatmentPlan",
             "title": "Treatment Plan",
-            "concept": "1265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "treatmentPlan"
           },
           {
             "id": "nextAppointment",
             "isDate": true,
             "title": "Next Appointment",
-            "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "tptAppointmentDate"
           },
           {
             "id": "actions",
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "TPT Followup & Treatment form",
+                "formName": "TptTreatmentFormName",
                 "package": "tpt",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "TPT Followup & Treatment form",
+                "formName": "TptTreatmentFormName",
                 "package": "tpt",
                 "label": "Edit Forms",
                 "mode": "edit"
@@ -127,8 +127,8 @@
         },
         "formList": [
           {
-            "name": "TPT Followup & Treatment form",
-            "uuid": "6212bb87-766e-33d0-b37b-79f019008492"
+            "name": "TptTreatmentFormName",
+            "uuid": "tptTreatmentFormUuid"
           }
         ]
       }    
