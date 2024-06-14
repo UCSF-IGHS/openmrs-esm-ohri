@@ -2,10 +2,12 @@ export function extractSchemaValues(schema) {
   const result = {};
   function traverse(obj) {
     Object.entries(obj).forEach(([key, value]) => {
-      if (typeof value === 'object' && !Array.isArray(value)) {
-        traverse(value);
-      } else {
-        result[key] = value;
+      if (value !== undefined && value !== null) {
+        if (typeof value === 'object' && !Array.isArray(value)) {
+          traverse(value);
+        } else {
+          result[key] = value;
+        }
       }
     });
   }
