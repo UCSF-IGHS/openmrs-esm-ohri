@@ -136,6 +136,7 @@ export const tbClinicalViewDashboardLink = getSyncLifecycle(
   createOHRIDashboardLink(tbClinicalViewDashboardMeta),
   options,
 );
+
 export const tbCasesDashboardLink = getSyncLifecycle(createOHRIGroupedLink(tbCasesDashboardMeta), options);
 export const tbCasesDashboard = getSyncLifecycle(rootComponent, options);
 
