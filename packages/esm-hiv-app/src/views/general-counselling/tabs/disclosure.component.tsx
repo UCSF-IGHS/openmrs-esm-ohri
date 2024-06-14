@@ -11,7 +11,7 @@ interface DisclosureListProps {
 
 const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -67,7 +67,7 @@ const DisclosureList: React.FC<DisclosureListProps> = ({ patientUuid }) => {
       patientUuid={patientUuid}
       filter={disclosureFilter}
       encounterType={encounterTypes.PeadsDisclosureEncounterType_UUID}
-      formList={[{ name: formNames.DisclosureFormName }]}
+      formList={[{ name: formNames.DisclosureFormName, uuid: formUuids.disclosureFormUuid }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

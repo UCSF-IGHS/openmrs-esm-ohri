@@ -1,11 +1,11 @@
-import { OHRIFormSchema, SessionMode } from '@openmrs/openmrs-form-engine-lib';
-import { launchForm } from '../../utils/ohri-forms-commons';
-import { capitalize } from 'lodash-es';
+import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
+import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
+import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
 
-type LaunchAction = 'add' | 'view' | 'edit';
+type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
 
 export function launchEncounterForm(
-  form: OHRIFormSchema,
+  form: FormSchema,
   moduleName: string,
   action: LaunchAction = 'add',
   onFormSave: () => void,
@@ -13,16 +13,33 @@ export function launchEncounterForm(
   encounterUuid?: string,
   intent: string = '*',
   workspaceWindowSize?: 'minimized' | 'maximized',
+  patientUuid?: string,
 ) {
-  const defaultTitle = capitalize(action) + ' ' + form.name;
-  launchForm(
-    form,
-    action === 'add' ? 'enter' : action,
-    moduleName,
-    title || defaultTitle,
-    encounterUuid,
-    intent,
-    onFormSave,
-    workspaceWindowSize,
-  );
+  launchPatientWorkspace('patient-form-entry-workspace', {
+    workspaceTitle: form.name,
+    mutateForm: onFormSave,
+    formInfo: {
+      encounterUuid,
+      formUuid: form.name,
+      patientUuid: patientUuid,
+      visitTypeUuid: '',
+      visitUuid: '',
+      visitStartDatetime: '',
+      visitStopDatetime: '',
+      additionalProps: {
+        mode: action === 'add' ? 'enter' : action,
+        formSessionIntent: intent,
+      },
+    },
+  });
 }
+
+export function deleteEncounter(encounterUuid: string, abortController: AbortController) {
+  return openmrsFetch(`${restBaseUrl}/encounter/${encounterUuid}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    signal: abortController.signal,
+  });
+} 

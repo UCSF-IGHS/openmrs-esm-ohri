@@ -38,13 +38,6 @@ export const childVisitsDashboardMeta = {
 export const motherChildDashboardMeta = {
   name: 'mother-child-health',
   slot: 'mother-child-health-dashboard-slot',
-  config: {
-    columns: 1,
-    type: 'grid',
-    programme: 'pmtct',
-    dashboardTitle: 'Mother Child Health Home Page',
-    icon: PedestrianChild,
-  },
-  isLink: true,
   title: 'Maternal & Child Health',
+  icon: PedestrianChild,
 };

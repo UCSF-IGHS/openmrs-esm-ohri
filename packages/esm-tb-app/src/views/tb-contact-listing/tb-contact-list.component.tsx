@@ -11,7 +11,7 @@ import { useConfig } from '@openmrs/esm-framework';
 
 const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const config = useConfig();
+  const { formNames, formUuids, encounterTypes, obsConcepts } = useConfig();
   const headerTitle = t('TbContactListing', 'TB Contact Listing');
 
   const columns: EncounterListColumn[] = useMemo(
@@ -20,14 +20,14 @@ const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
         key: 'caseID',
         header: t('caseId', 'TB Case ID'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.caseID);
+          return getObsFromEncounter(encounter, obsConcepts.caseID);
         },
       },
       {
         key: 'dateContactListed',
         header: t('dateContactListed', 'Date Contact Listed'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.dateContacted, true);
+          return getObsFromEncounter(encounter, obsConcepts.dateContacted, true);
         },
       },
       {
@@ -64,8 +64,8 @@ const TbContactTracingList: React.FC<PatientChartProps> = ({ patientUuid }) => {
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={config.encounterTypes.tbContactListing}
-      formList={[{ name: 'TB Contact Listing' }]}
+      encounterType={encounterTypes.tbContactListing}
+      formList={[{ name: formNames.tbContactListingForm, uuid: formUuids.tbContactListingFormUuid }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}

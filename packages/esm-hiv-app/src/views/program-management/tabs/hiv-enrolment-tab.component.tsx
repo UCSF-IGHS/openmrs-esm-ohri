@@ -10,7 +10,7 @@ interface HIVEnrolmentTabListProps {
 
 const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { obsConcepts, encounterTypes, formNames } = useConfig();
+  const { obsConcepts, encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -95,7 +95,7 @@ const HIVEnrolmentTabList: React.FC<HIVEnrolmentTabListProps> = ({ patientUuid }
     <EncounterList
       patientUuid={patientUuid}
       encounterType={encounterTypes.careAndTreatmentEncounterType}
-      formList={[{ name: formNames.ServiceEnrolmentFormName }]}
+      formList={[{ name: formNames.ServiceEnrolmentFormName, uuid: formUuids.serviceEnrolmentFormUuid }]}
       columns={columns}
       description={displayText}
       headerTitle={headerTitle}

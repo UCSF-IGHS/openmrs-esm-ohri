@@ -73,6 +73,39 @@
       "slot": "tb-program-management-summary-slot",
       "component": "tbProgramManagementDashboard"
     },
+    {
+      "name": "tpt-patient-summary",
+      "slot": "ohri-tpt-slot",
+      "component": "tptPatientSummaryDashboardLink",
+      "meta": {
+        "slot": "tpt-patient-summary-slot",
+        "columns": 1,
+        "path": "tpt-patient-summary",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tpt-patient-summary-ext",
+      "slot": "tpt-patient-summary-slot",
+      "component": "tptPatientSummaryDashboard"
+    },
+
+    {
+      "name": "tpt-program-management-summary",
+      "slot": "ohri-tpt-slot",
+      "component": "tptProgramManagementDashboardLink",
+      "meta": {
+        "slot": "tpt-program-management-summary-slot",
+        "columns": 1,
+        "path": "tpt-program-management",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tpt-program-management-summary-ext",
+      "slot": "tpt-program-management-summary-slot",
+      "component": "tptProgramManagementDashboard"
+    },
 
 
     {
@@ -152,6 +185,37 @@
         "title": "Tuberculosis"
       }
     },
+    
+    {
+      "name": "tb-home-header-ext",
+      "slot": "tb-home-header-slot",
+      "component": "tbDashboardHeader"
+    },
+    {
+      "name": "tb-home-tiles-ext",
+      "slot": "tb-home-tiles-slot",
+      "component": "tbDashboardTiles"
+    },
+    {
+      "name": "tb-home-tabs-ext",
+      "slot": "tb-home-tabs-slot",
+      "component": "tbDashboardTabs"
+    },
+    {
+      "name": "tpt-home-header-ext",
+      "slot": "tpt-home-header-slot",
+      "component": "tptDashboardHeader"
+    },
+    {
+      "name": "tpt-home-tiles-ext",
+      "slot": "tpt-home-tiles-slot",
+      "component": "tptDashboardTiles"
+    },
+    {
+      "name": "tpt-home-tabs-ext",
+      "slot": "tpt-home-tabs-slot",
+      "component": "tptDashboardTabs"
+    },
     {
       "name": "tb-prevention-dashboard-ext",
       "slot": "tb-clinical-dashboard-slot",
@@ -185,64 +249,33 @@
     },
     {
       "name": "tb-cases-dashboard-ext",
-      "slot": "tb-clinical-dashboard-slot",
+      "slot": "homepage-dashboard-slot",
       "component": "tbCasesDashboardLink",
       "meta": {
         "name": "tb-cases",
         "slot": "tb-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "type": "grid",
-          "programme": "tb",
-          "dashboardTitle": "TB Treatment"
-        },
         "title": "TB Treatment"
       }
     },
     {
       "name": "tb-cases-dashboard",
       "slot": "tb-cases-dashboard-slot",
-      "component": "tbCasesDashboard",
+      "component": "tbCasesDashboard"
+    },
+    {
+      "name": "tb-prevention-dashboard-ext",
+      "slot": "homepage-dashboard-slot",
+      "component": "tbPreventionDashboardLink",
       "meta": {
-        "name": "tb-cases",
-        "slot": "tb-cases-dashboard-slot",
-        "config": {
-          "columns": 1,
-          "programme": "tb",
-          "dashboardTitle": "TB Treatment"
-        },
-        "title": "TB Treatment"
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "title": "TB Prevention"
       }
     },
     {
-      "name": "tb-home-header-ext",
-      "slot": "tb-home-header-slot",
-      "component": "tbDashboardHeader"
-    },
-    {
-      "name": "tb-home-tiles-ext",
-      "slot": "tb-home-tiles-slot",
-      "component": "tbDashboardTiles"
-    },
-    {
-      "name": "tb-home-tabs-ext",
-      "slot": "tb-home-tabs-slot",
-      "component": "tbDashboardTabs"
-    },
-    {
-      "name": "tpt-home-header-ext",
-      "slot": "tpt-home-header-slot",
-      "component": "tptDashboardHeader"
-    },
-    {
-      "name": "tpt-home-tiles-ext",
-      "slot": "tpt-home-tiles-slot",
-      "component": "tptDashboardTiles"
-    },
-    {
-      "name": "tpt-home-tabs-ext",
-      "slot": "tpt-home-tabs-slot",
-      "component": "tptDashboardTabs"
+      "name": "tb-prevention-dashboard",
+      "slot": "tb-prevention-dashboard-slot",
+      "component": "tbPreventionDashboard"
     }
   ]
 }

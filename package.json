@@ -1,7 +1,7 @@
 {
   "name": "@ohri/openmrs-esm-ohri",
   "private": true,
-  "version": "2.2.0",
+  "version": "2.3.3",
   "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": [
     "packages/*"
@@ -13,14 +13,15 @@
     "access": "public"
   },
   "scripts": {
-    "start": "openmrs develop --backend https://ohri-dev.globalhealthapp.net/ --sources 'packages/esm-*-app/'",
-    "start:core": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
-    "start:covid": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-covid-app",
-    "start:hiv": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-hiv-app",
-    "start:cervical-cancer": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
+    "start": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net/ --sources 'packages/esm-*-app/'",
+    "start:core": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
+    "start:covid": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-covid-app",
+    "start:hiv": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-hiv-app",
+    "start:cervical-cancer": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
     "start:pmtct": "openmrs develop --backend https://ohri-namibia-dev.globalhealthapp.net --sources 'packages/esm-ohri-pmtct-app/'",
-    "start:form-render": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-form-render-app",
-    "start:tb": "openmrs develop --backend https://ohri-dev.globalhealthapp.net --sources packages/esm-tb-app",
+    "start:form-render": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-form-render-app",
+    "start:tb": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-tb-app",
+    "start:opd": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-opd-app",
     "prettier": "prettier --fix --config prettier.config.js --write \"packages/**/*.{ts,tsx}\"",
     "prepare": "husky install",
     "test": "jest --config jest.config.js --verbose false --passWithNoTests",
@@ -32,11 +33,13 @@
     "coverage": "yarn test --coverage",
     "badges": "yarn coverage && yarn jest-coverage-badges --output './badges' ",
     "extract-translations": "turbo extract-translations -- --config ../../tools/i18next-parser.config.js",
-    "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next"
+    "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next",
+    "test-e2e": "playwright test"
   },
   "devDependencies": {
     "@openmrs/esm-framework": "next",
     "@openmrs/esm-patient-common-lib": "next",
+    "@playwright/test": "^1.30.0",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.189",
     "@swc/jest": "^0.2.29",
@@ -60,6 +63,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.0.3",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",

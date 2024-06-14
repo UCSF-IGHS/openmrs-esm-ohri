@@ -1,7 +1,7 @@
 import { getSyncLifecycle } from '@openmrs/esm-framework';
 import { BehaviorSubject } from 'rxjs';
 import { closeWorkspace, launchPatientWorkspace, registerWorkspace } from '@openmrs/esm-patient-common-lib';
-import { OHRIForm, SessionMode } from '@openmrs/openmrs-form-engine-lib';
+import { FormEngine, SessionMode } from '@openmrs/openmrs-form-engine-lib';
 export interface WorkspaceContextProps {
   title: string;
   encounterUuid?: string;
@@ -20,7 +20,7 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
   const workspaceName = props.workspaceName || 'ohri-forms-' + counter++;
 
   const close = () => {
-    return closeWorkspace(workspaceName, true);
+    return closeWorkspace(workspaceName, { ignoreChanges: true });
   };
   const onFormSubmit = () => {
     props.state?.updateParent?.();
@@ -30,7 +30,7 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
     name: workspaceName,
     title: props.title,
     preferredWindowSize: <any>props.screenSize,
-    load: getSyncLifecycle(OHRIForm, {
+    load: getSyncLifecycle(FormEngine, {
       featureName: 'ohri-forms-workspace-item',
       moduleName: props.moduleName,
     }),

@@ -17,6 +17,8 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
   const { t } = useTranslation();
   const config = useConfig();
 
+  const { covidAssessmentFormUuid, covidCaseFormUuid, covidOutcomeFormUuid } = config.formUuids;
+
   const columns: EncounterListColumn[] = useMemo(
     () => [
       {
@@ -104,9 +106,17 @@ const CovidAssessment: React.FC<CovidAssessmentWidgetProps> = ({ patientUuid }) 
       patientUuid={patientUuid}
       encounterType={config.encounterTypes.covid_Assessment_EncounterUUID}
       formList={[
-        { name: config.formNames.CovidAssessmentFormName, excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'] },
-        { name: config.formNames.CovidCaseFormName },
-        { name: config.formNames.CovidOutcomeFormName, excludedIntents: ['COVID_OUTCOME_EMBED', '*'] },
+        {
+          name: config.formNames.CovidAssessmentFormName,
+          excludedIntents: ['COVID_LAB_ASSESSMENT_EMBED'],
+          uuid: covidAssessmentFormUuid,
+        },
+        { name: config.formNames.CovidCaseFormName, uuid: covidCaseFormUuid },
+        {
+          name: config.formNames.CovidOutcomeFormName,
+          excludedIntents: ['COVID_OUTCOME_EMBED', '*'],
+          uuid: covidOutcomeFormUuid,
+        },
       ]}
       columns={columns}
       description={displayText}

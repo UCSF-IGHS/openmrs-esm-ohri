@@ -3,7 +3,7 @@ import { Button } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
 import { useTranslation } from 'react-i18next';
 
-export const OHRIFormLauncherEmpty: React.FC<{
+export const FormLauncherEmpty: React.FC<{
   launchForm: (formJson?: any) => void;
 }> = ({ launchForm }) => {
   const { t } = useTranslation();

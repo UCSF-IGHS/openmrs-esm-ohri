@@ -59,6 +59,7 @@ export const configSchema = {
       tptOutcome: '1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       tptOutcomeDate: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       tptDateOutcome: '163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+      treatmentPlan: '1265AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     },
   },
   cohorts: {
@@ -75,6 +76,22 @@ export const configSchema = {
     _default: {
       TptOutcomeFormName: 'TPT outcome form',
       TptCaseEnrolmentFormName: 'TPT Case Enrolment form',
+      TptTreatmentFormName: 'TPT Followup & Treatment form',
+      tbfollowUpForm: 'TB Follow-up Form',
+      tbPatientTracingForm: 'TB Patient Tracing Form',
+      tbContactListingForm: 'TB Contact Listing',
+    },
+  },
+  formUuids: {
+    _type: Type.Object,
+    _description: 'TPT Form Uuids.',
+    _default: {
+      tptOutcomeFormUuid: '97fa657f-7627-3f81-829d-826b0d4c7d28',
+      tptCaseEnrolmentFormUuid: '71080512-07e6-345f-864f-93e892420258',
+      tptTreatmentFormUuid: '6212bb87-766e-33d0-b37b-79f019008492',
+      tbFollowUpFormUuid: '79b05c37-0def-4482-a345-c63b99fbd565',
+      tbPatientTracingFormUuid: 'ac3cbd10-1939-3797-9de6-2a39dfb68441',
+      tbContactListingFormUuid: 'cb16d920-62f1-3696-b781-e6a4f5e80de1',
     },
   },
 };

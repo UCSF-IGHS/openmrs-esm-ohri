@@ -12,7 +12,7 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
   const { t } = useTranslation();
   const config = useConfig();
   const headerTitle = t('labourAndDelivery', 'Labour and Delivery');
-  const LNDEncounterTypeUUID = config.encounterTypes.laborAndDelivery;
+  const { encounterTypes, formNames, formUuids } = useConfig();
 
   const columns: EncounterListColumn[] = useMemo(
     () => [
@@ -38,10 +38,10 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
         },
       },
       {
-        key: 'hivTestResults',
-        header: t('hivTestResults', 'HIV Test Results'),
+        key: 'hivTestStatus',
+        header: t('hivTestStatus', 'HIV Test Status'),
         getValue: (encounter) => {
-          return getObsFromEncounter(encounter, config.obsConcepts.ancHivResultConcept);
+          return getObsFromEncounter(encounter, config.obsConcepts.hivTestStatus);
         },
       },
       {
@@ -85,8 +85,8 @@ const LabourDeliveryList: React.FC<LabourDeliveryListProps> = ({ patientUuid }) 
   return (
     <EncounterList
       patientUuid={patientUuid}
-      encounterType={LNDEncounterTypeUUID}
-      formList={[{ name: 'Labour & Delivery Form' }]}
+      encounterType={encounterTypes.laborAndDelivery.LNDEncounterTypeUUID}
+      formList={[{ name: formNames.labourAndDelivery, uuid: formUuids.labourAndDelivery }]}
       columns={columns}
       description={headerTitle}
       headerTitle={headerTitle}
