@@ -18,7 +18,7 @@ const TBSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }) => 
   const config = useConfig();
   const previousCaseTabs = getMenuItemTabConfiguration(previousCasesConfigSchema, config);
   const tbVisitsTabs = getMenuItemTabConfiguration(tbVisitsConfigSchema, config);
-  const summaryCardColumns = getSummaryCardProps(recentTuberculosisConfigSchema);
+  const summaryCardColumns = getSummaryCardProps(recentTuberculosisConfigSchema, config);
 
   return (
     <>

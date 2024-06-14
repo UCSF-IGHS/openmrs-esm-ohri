@@ -18,7 +18,7 @@ const TptPatientSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const config = useConfig();
   const previousCaseTabs = getMenuItemTabConfiguration(tptPreviousCasesConfigSchema, config);
   const tbVisitsTabs = getMenuItemTabConfiguration(tptVisitsConfigSchema, config);
-  const summaryCardColumns = getSummaryCardProps(recentTptConfigSchema);
+  const summaryCardColumns = getSummaryCardProps(recentTptConfigSchema, config);
 
   return (
     <>
