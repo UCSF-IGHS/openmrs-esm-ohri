@@ -1,5 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+#not sure if its needed for Mac, but its needed for Windows
+exec < /dev/tty 
+
 set -e # die on error
 yarn verify
