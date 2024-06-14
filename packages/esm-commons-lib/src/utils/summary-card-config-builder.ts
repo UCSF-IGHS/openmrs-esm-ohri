@@ -1,7 +1,10 @@
 import { getObsFromEncounter, getConditionalConceptValue } from './encounter-list-utils';
+import { extractSchemaValues, replaceWithConfigDefaults } from './schema-manipulation';
 
-export const getSummaryCardProps = (schemaConfig) => {
-  const columns = schemaConfig.columns?.map((column) => ({
+export const getSummaryCardProps = (schemaConfig, config = null) => {
+  const configDefaults = extractSchemaValues(config);
+  const transformedSchemaConfig = replaceWithConfigDefaults(schemaConfig, configDefaults);
+  const columns = transformedSchemaConfig.columns?.map((column) => ({
     key: column.id,
     header: column.title,
     concept: column.concept,

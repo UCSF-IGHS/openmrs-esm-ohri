@@ -6,72 +6,72 @@
       "id": "caseID",
       "title": "Case ID",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "caseID"
     },
     {
       "id": "enrollmentDate",
       "isDate": true,
       "title": "Enrollment Date",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "enrollmentDate"
     },
     {
       "id": "type",
       "title": "Type",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "159990AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "type"
     },
     {
       "id": "site",
       "title": "Site",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "160040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "site"
     },
     {
       "id": "drugSensitivity",
       "title": "Drug Sensitivity",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "164368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "drugSensitivity"
     },
     {
       "id": "regimen",
       "title": "Regimen",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
       "isConditionalConcept": true,
       "conditionalConceptMappings": {
-        "trueConcept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
-        "nonTrueConcept": "159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        "trueConcept": "dSregimen",
+        "nonTrueConcept": "dRregimen",
+        "dependantConcept": "tBEnrollmentType",
+        "conditionalConcept": "dsTBEnrollment"
       }
     },
     {
       "id": "hivStatus",
       "title": "HIV Status",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "159576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "hivStatus"
     },
     {
       "id": "outcome",
       "title": "Outcome",
       "encounterTypes": [
-        "9a199b59-b185-485b-b9b3-a9754e65ae57"
+        "tbProgramEnrollment"
       ],
-      "concept": "159786AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "concept": "outcome"
     }
   ]
 }

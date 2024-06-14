@@ -5,28 +5,28 @@
         "tabName": "TB/MDR TB Enrolment",
         "headerTitle": "TB/MDR TB Enrolment",
         "displayText": "TB/MDR TB Enrolment",
-        "encounterType": "9a199b59-b185-485b-b9b3-a9754e65ae57",
+        "encounterType": "tbProgramEnrollment",
         "columns": [
           {
             "id": "enrollmentDate",
             "isDate": true,
             "title": "Enrollment Date",
-            "concept": "161552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "enrollmentDate"
           },
           {
             "id": "caseID",
             "title": "Case ID",
-            "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "caseID"
           },
           {
             "id": "tbTreatmentId",
             "title": "TB Treatment ID",
             "isConditionalConcept": true,
             "conditionalConceptMappings": {
-              "trueConcept": "161654AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "nonTrueConcept": "164415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              "trueConcept": "dSTreatmentId",
+              "nonTrueConcept": "dRTreatmentId",
+              "dependantConcept": "tBEnrollmentType",
+              "conditionalConcept": "dsTBEnrollment"
             }
           },
           {
@@ -35,10 +35,10 @@
             "title": "Treatment Start Date",
             "isConditionalConcept": true,              
             "conditionalConceptMappings": {
-              "trueConcept": "1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "nonTrueConcept": "164416AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              "trueConcept": "dSTreatmentStartDate",
+              "nonTrueConcept": "dRTreatmentStartDate",
+              "dependantConcept": "tBEnrollmentType",
+              "conditionalConcept": "dsTBEnrollment"
             }
           },
           {
@@ -46,35 +46,35 @@
             "title": "Regimen",
             "isConditionalConcept": true,
             "conditionalConceptMappings": {
-              "trueConcept": "16fd7307-0b26-4c8b-afa3-8362baff4042",
-              "nonTrueConcept": "159909AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "dependantConcept": "163775AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "conditionalConcept": "160541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              "trueConcept": "dSregimen",
+              "nonTrueConcept": "dRregimen",
+              "dependantConcept": "tBEnrollmentType",
+              "conditionalConcept": "dsTBEnrollment"
             }
           },
           {
             "id": "treatmentOutcome",
             "title": "Treatment Outcome",
-            "concept": "159786AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "outcome"
           },
           {
             "id": "dateOfTreatmentOutcome",
             "isDate": true,
             "title": "Date of Treatment Outcome",
-            "concept": "159787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "DateOfTreatmentOutcome"
           },
           {
             "id": "actions",
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "TB Case Enrollment Form",
+                "formName": "TbCaseEnrolmentFormName",
                 "package": "tb",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "TB Case Enrollment Form",
+                "formName": "TbCaseEnrolmentFormName",
                 "package": "tb",
                 "label": "Edit Form",
                 "mode": "edit"
@@ -88,8 +88,8 @@
         },
         "formList": [
           {
-            "name": "TB Case Enrollment Form",
-            "uuid": "554b2017-e512-3fc8-9c6e-7baf9e69db9d"
+            "name": "TbCaseEnrolmentFormName",
+            "uuid": "tbCaseEnrolmentFormUuid"
           }
         ]
       },
@@ -97,31 +97,31 @@
         "tabName": "Patient Tracing",
         "headerTitle": "Patient Tracing",
         "displayText": "Patient Tracing",
-        "encounterType": "98c938e9-fb3e-4982-ae22-0305cbd12f8c",
+        "encounterType": "tbPatientTracing",
         "columns": [
           {
             "id": "contactDate",
             "isDate": true,
             "title": "Contact Date",
-            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "dateContacted"
           },
           {
             "id": "contactMethod",
             "title": "Contact Method",
-            "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "modeOfContact"
           },       
           {
             "id": "actions",
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "TB Patient Tracing Form",
+                "formName": "tbPatientTracingForm",
                 "package": "tpt",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "TB Patient Tracing Form",
+                "formName": "tbPatientTracingForm",
                 "package": "tpt",
                 "label": "Edit Forms",
                 "mode": "edit"
@@ -135,8 +135,8 @@
         },
         "formList": [
           {
-            "name": "TB Patient Tracing Form",
-            "uuid": "ac3cbd10-1939-3797-9de6-2a39dfb68441"
+            "name": "tbPatientTracingForm",
+            "uuid": "tbPatientTracingFormUuid"
           }
         ]
       }    

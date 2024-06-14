@@ -5,47 +5,47 @@
         "tabName": "TB Follow-up",
         "headerTitle": "TB Follow-up",
         "displayText": "TB Follow-up",
-        "encounterType": "1881304a-4854-4927-b0b1-a6231d61e43c",
+        "encounterType": "tbTreatmentAndFollowUp",
         "columns": [
           {
             "id": "visitDate",
             "isDate": true,
             "title": "Visit Date",
-            "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "visitDate"
           },
           {
             "id": "caseID",
             "title": "Case ID",
-            "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "followUpCaseId"
           },
           {
             "id": "monthOfTreatment",
             "title": "Month of Rx",
-            "concept": "1418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "monthOfTreatment"
           },
           {
             "id": "adherenceAssessment",
             "title": "Adherence",
-            "concept": "164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "adherenceAssessment"
           },
           {
             "id": "nextAppointment",
             "isDate": true,
             "title": "Next Appointment",
-            "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            "concept": "nextAppointmentDate"
           },
           {
             "id": "actions",
             "title": "Actions",
             "actionOptions": [
               {
-                "formName": "TB Follow-up Form",
+                "formName": "tbfollowUpForm",
                 "package": "tb",
                 "label": "View Details",
                 "mode": "view"
               },
               {
-                "formName": "TB Follow-up Form",
+                "formName": "tbfollowUpForm",
                 "package": "tb",
                 "label": "Edit Form",
                 "mode": "edit"
@@ -59,8 +59,8 @@
         },
         "formList": [
           {
-            "name": "TB Follow-up Form",
-            "uuid": "79b05c37-0def-4482-a345-c63b99fbd565"
+            "name": "tbfollowUpForm",
+            "uuid": "tbFollowUpFormUuid"
           }
         ]
       }  

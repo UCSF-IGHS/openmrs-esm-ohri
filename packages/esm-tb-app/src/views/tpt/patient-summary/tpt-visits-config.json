@@ -5,34 +5,34 @@
       "tabName": "Visits",
       "headerTitle": "Visits",
       "displayText": "Visits",
-      "encounterType": "dc6ce80c-83f8-4ace-a638-21df78542551",
+      "encounterType": "tptCaseEnrollment",
       "columns": [
         {
           "id": "tptTreatmentId",
           "title": "TPT Treatment ID",
-          "concept": "162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptTreatmentId"
         },
         {
           "id": "dateOfVisit",
           "isDate": true,
           "title": "Date of Visit",
-          "concept": "164852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptEnrollmentDate"
         },
         {
           "id": "tptIndication",
           "title": "Indication",
-          "concept": "162276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptIndication"
         },
         {
           "id": "adherence",
           "title": "Adherence",
-          "concept": "164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptAdherence"
         },
         {
           "id": "nextAppointmentDate",
           "isDate": true,
           "title": "Next Appointment Date",
-          "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptAppointmentDate"
         }
       ],
       "launchOptions": {
@@ -42,8 +42,8 @@
       },
       "formList": [
         {
-          "name": "TPT Case Enrolment form",
-          "uuid": "71080512-07e6-345f-864f-93e892420258"
+          "name": "TptCaseEnrolmentFormName",
+          "uuid": "tptCaseEnrolmentFormUuid"
         }
       ]
     }

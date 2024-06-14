@@ -5,39 +5,39 @@
       "tabName": "Previous TPT Cases",
       "headerTitle": "Previous TPT Cases",
       "displayText": "Previous TPT Cases",
-      "encounterType": "dc6ce80c-83f8-4ace-a638-21df78542551",
+      "encounterType": "tptCaseEnrollment",
       "columns": [
         {
           "id": "tptTreatmentId",
           "title": "TPT Treatment ID",
-          "concept": "162727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptTreatmentId"
         },
         {
           "id": "tptEnrollmentDate",
           "isDate": true,
           "title": "Enrollment Date",
-          "concept": "164852AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptEnrollmentDate"
         },
         {
           "id": "indication",
           "title": "Indication",
-          "concept": "162276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptIndication"
         },
         {
           "id": "tptRegimen",
           "title": "Regimen",
-          "concept": "1264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptRegimen"
         },
         {
           "id": "tptOutcome",
           "title": "Outcome",
-          "concept": "1266AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptOutcome"
         },
         {
           "id": "tptDateOutcome",
           "isDate": true,
           "title": "Date of Outcome",
-          "concept": "163284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptOutcomeDate"
         }
       ],
       "launchOptions": {
@@ -47,8 +47,8 @@
       },
       "formList": [
         {
-          "name": "TPT Case Enrolment form",
-          "uuid": "71080512-07e6-345f-864f-93e892420258"
+          "name": "TptCaseEnrolmentFormName",
+          "uuid": "tptCaseEnrolmentFormUuid"
         }
       ]
     }

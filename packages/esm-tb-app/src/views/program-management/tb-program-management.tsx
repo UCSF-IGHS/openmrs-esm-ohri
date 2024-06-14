@@ -1,4 +1,5 @@
 import React from 'react';
+import { useConfig } from '@openmrs/esm-framework';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
 import { PatientChartProps, getMenuItemTabConfiguration, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
@@ -8,7 +9,8 @@ interface OverviewListProps {
 }
 
 const ProgramManagementSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(tptProgramManagemetConfigSchema);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(tptProgramManagemetConfigSchema, config);
 
   return (
     <div className={styles.tabContainer}>

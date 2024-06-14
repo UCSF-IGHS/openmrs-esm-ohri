@@ -5,39 +5,39 @@
       "tabName": "Visits",
       "headerTitle": "Visits",
       "displayText": "Visits",
-      "encounterType": "1881304a-4854-4927-b0b1-a6231d61e43c",
+      "encounterType": "tbTreatmentAndFollowUp",
       "columns": [
         {
           "id": "caseID",
           "title": "Case ID",
-          "concept": "162576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "caseID"
         },
         {
           "id": "dateOfVisit",
           "isDate": true,
           "title": "Date of Visit",
-          "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "visitDate"
         },
         {
           "id": "monthOfVisit",
           "title": "Month of Visit",
-          "concept": "1418AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "monthOfTreatment"
         },
         {
           "id": "adherence",
           "title": "Adherence",
-          "concept": "164075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "adherenceAssessment"
         },
         {
           "id": "adverseDrugReaction",
           "title": "Adverse Drug Reaction",
-          "concept": "160646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "ADR"
         },
         {
           "id": "nextAppointment",
           "isDate": true,
           "title": "Next Appointment",
-          "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "tptAppointmentDate"
         }
       ],
       "launchOptions": {
@@ -47,8 +47,8 @@
       },
       "formList": [
         {
-          "name": "TPT Followup & Treatment form",
-          "uuid": "6212bb87-766e-33d0-b37b-79f019008492"
+          "name": "TptTreatmentFormName",
+          "uuid": "tptTreatmentFormUuid"
         }
       ]
     }
