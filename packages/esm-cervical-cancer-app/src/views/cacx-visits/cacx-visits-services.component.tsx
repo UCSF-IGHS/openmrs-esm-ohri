@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import cacxConfigSchema from './cacx-config.json';
 
@@ -10,7 +11,8 @@ interface OverviewListProps {
 }
 
 const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  const tabs = getMenuItemTabConfiguration(cacxConfigSchema);
+  const config = useConfig();
+  const tabs = getMenuItemTabConfiguration(cacxConfigSchema, config);
 
   return (
     <div className={styles.tabContainer}>

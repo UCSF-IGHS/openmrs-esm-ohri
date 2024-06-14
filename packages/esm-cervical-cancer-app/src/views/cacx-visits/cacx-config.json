@@ -5,36 +5,36 @@
       "tabName": "CaCx Registration",
       "headerTitle": "CaCx Registration",
       "displayText": "CaCx Registration",
-      "encounterType": "3eb24129-9f7d-4372-a14e-c2cf577e5db1",
+      "encounterType": "cacxRegistrationEncounterType_UUID",
       "columns": [
         {
           "id": "screeningDate",
           "isDate": true,
           "title": "Visit Date",
-          "concept": "2f256b46-395b-40f8-b93e-3ea68e5531bc"
+          "concept": "cervicalCancerScreeningDateConcept"
         },
         {
           "id": "previouslyScreened",
           "title": "Previously Screened for CaCx",
-          "concept": "7cf4c96a-3e68-4ca5-9b49-9148adc6263d"
+          "concept": "previouslyScreenedConcept"
         },
         {
           "id": "eligibleforScreening",
           "title": "Eligible for CaCx Screening",
-          "concept": "b77ef6d3-4895-4e88-8b17-fa4aff6eba59"
+          "concept": "eligibleForScreeningConcept"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Cervical Cancer Registration Form",
+              "formName": "cervicalCancerRegistrationForm",
               "package": "cervical-cancer",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Cervical Cancer Registration Form",
+              "formName": "cervicalCancerRegistrationForm",
               "package": "cervical-cancer",
               "label": "Edit Form",
               "mode": "edit"
@@ -48,8 +48,8 @@
       },
       "formList": [
         {
-          "name": "Cervical Cancer Registration Form",
-          "uuid": "12f41bfe-6430-3d8c-9edf-2d1b7c904f0f"
+          "name": "cervicalCancerRegistrationForm",
+          "uuid": "cervicalCancerRegistrationFormUuid"
         }
       ]
     },
@@ -57,42 +57,42 @@
       "tabName": "CaCx Treatment",
       "headerTitle": "CaCx Treatment",
       "displayText": "CaCx Treatment",
-      "encounterType": "60c80941-c3dc-45c6-9b78-c150e0470cbd",
+      "encounterType": "cacxTreatmentEncounterType_UUID",
       "columns": [
         {
           "id": "encounterDate",
           "isDate": true,
           "title": "Visit Date",
-          "concept": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "cacxEncounterDateConcept"
         },
         {
           "id": "screeningMethod",
           "title": "Screening Method",
-          "concept": "53ff5cd0-0f37-4190-87b1-9eb439a15e94"
+          "concept": "screeningMethodConcept"
         },
         {
           "id": "screeningResult",
           "title": "Screening Results",
-          "multipleConcepts": ["9096a18e-c009-4f4c-b0ba-0605e0f16578", "159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","28bab50e-7ff7-4216-81be-3f7ad05c6547", "cc647244-0826-4d8e-8c5a-d7a371267bf4"],
+          "multipleConcepts": ["colopsyResultsConcept", "humanPapilomaVirusResultsConcept","papanicolaouSmearResultsConcept", "VIAProcedureResultsConcept"],
           "useMultipleObs": true
         },        
         {
           "id": "cacxTreatment",
           "title": "CaCx Treatment",
-          "concept": "3a8bb4b4-7496-415d-a327-57ae3711d4eb"
+          "concept": "cacxTreatmentConcept"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Screening and Cancer Treatment Form",
+              "formName": "screeningAndCancerTreatmentForm",
               "package": "cervical-cancer",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Screening and Cancer Treatment Form",
+              "formName": "screeningAndCancerTreatmentForm",
               "package": "cervical-cancer",
               "label": "Edit Forms",
               "mode": "edit"
@@ -106,8 +106,8 @@
       },
       "formList": [
         {
-          "name": "Screening and Cancer Treatment Form",
-          "uuid": "9e3ec2a7-ad26-3f43-9677-82e318996eec"
+          "name": "screeningAndCancerTreatmentForm",
+          "uuid": "screeningAndCancerTreatmentFormUuid"
         }
       ]
     }    
