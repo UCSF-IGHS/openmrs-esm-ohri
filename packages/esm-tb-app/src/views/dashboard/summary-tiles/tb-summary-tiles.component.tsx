@@ -41,7 +41,7 @@ function TbSummaryTiles() {
         value: activeDRClientsCount,
       },
     ],
-    [activeDSClientsCount, activeDRClientsCount],
+    [t, activeDSClientsCount, activeDRClientsCount],
   );
 
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;

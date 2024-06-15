@@ -6,3 +6,6 @@ set -e # die on error
 # yarn prettier // commented because it causes alot of unncecessary changes that are not related to the commit
 # yarn turbo run extract-translations // commented because it creates new translations files that are not related to the commit
 # yarn pretty-quick --staged
+
+npx lint-staged
+

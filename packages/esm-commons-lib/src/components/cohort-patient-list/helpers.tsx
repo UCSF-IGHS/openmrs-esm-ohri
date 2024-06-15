@@ -54,7 +54,7 @@ export const LaunchableFormMenuItem = ({
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [continueEncounterActionText, encounterType, encounterUuid, launchableForm.editLatestEncounter, patientUuid]);
 
   return (
     <>
@@ -95,7 +95,7 @@ export const ViewSummaryMenuItem = ({ patientUuid, ViewSummary, encounterType })
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [ViewSummary.editLatestEncounter, encounterType, encounterUuid, patientUuid, viewSummaryActionText]);
 
   return (
     <>

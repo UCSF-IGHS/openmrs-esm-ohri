@@ -12,7 +12,8 @@ function CTSummaryTiles() {
     getReportingCohort(cohorts.clientsEnrolledToCare).then((data) => {
       setActiveClientsCount(data.members.length);
     });
-  }, []);
+  }, [cohorts.clientsEnrolledToCare]);
+
   const tiles = [
     {
       title: t('activeClients', 'Active Clients'),

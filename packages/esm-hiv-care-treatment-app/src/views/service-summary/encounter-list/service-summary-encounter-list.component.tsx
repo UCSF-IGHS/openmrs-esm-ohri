@@ -1,4 +1,9 @@
-import { findObs, getObsFromEncounter, EncounterTile, EncounterTileColumn } from '@ohri/openmrs-esm-ohri-commons-lib';
+import {
+  findObs,
+  getObsFromEncounter,
+  EncounterTile,
+  type EncounterTileColumn,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -79,7 +84,23 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         },
       },
     ],
-    [],
+    [
+      encounterTypes.ServiceDeliveryEncounterType_UUID,
+      encounterTypes.art_Therapy_EncounterUUID,
+      encounterTypes.careAndTreatmentEncounterType,
+      obsConcepts.CommunityDSDModel_UUID,
+      obsConcepts.artStopDateUUID,
+      obsConcepts.artTherapyDateTime_UUID,
+      obsConcepts.dateRestartedUUID,
+      obsConcepts.keyPopulationTypeConcept,
+      obsConcepts.populationCategoryConcept,
+      obsConcepts.priorityPopulationTypeConcept,
+      obsConcepts.regimenConcept,
+      obsConcepts.regimenLine_UUID,
+      obsConcepts.substitutionDateUUID,
+      obsConcepts.switchDateUUID,
+      t,
+    ],
   );
 
   const columnsHIVMonitoring: EncounterTileColumn[] = useMemo(
@@ -127,7 +148,17 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         },
       },
     ],
-    [],
+    [
+      encounterTypes.CD4LabResultsEncounter_UUID,
+      encounterTypes.ViralLoadResultsEncounter_UUID,
+      encounterTypes.art_Therapy_EncounterUUID,
+      obsConcepts.Cd4LabResultDate_UUID,
+      obsConcepts.ReasonForViralLoad_UUID,
+      obsConcepts.ViralLoadResultDate_UUID,
+      obsConcepts.ViralLoadResult_UUID,
+      obsConcepts.hivCD4Count_UUID,
+      t,
+    ],
   );
 
   const columnsLastVisitDetails: EncounterTileColumn[] = useMemo(
@@ -179,7 +210,16 @@ const ServiceSummaryOverviewList: React.FC<OverviewListProps> = ({ patientUuid }
         },
       },
     ],
-    [],
+    [
+      encounterTypes.clinicalVisitEncounterType,
+      encounterTypes.hivProgramStatusEncounterType,
+      obsConcepts.dateOfEncounterConcept,
+      obsConcepts.generalTreatmentStatusConcept,
+      obsConcepts.opportunisticInfectionConcept,
+      obsConcepts.returnVisitDateConcept,
+      obsConcepts.tbScreeningOutcome,
+      t,
+    ],
   );
 
   const calculateDateDifferenceInDate = (givenDate: string): string => {

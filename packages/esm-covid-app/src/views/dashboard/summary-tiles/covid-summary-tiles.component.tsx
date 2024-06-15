@@ -22,7 +22,11 @@ function CovidSummaryTiles() {
     getReportingCohort(config.cohorts.covidOutcomesCohortUUID).then((data) => {
       setPeopleWithCovidOutcome(data.members.length);
     });
-  }, []);
+  }, [
+    config.cohorts.covid19PositiveClients,
+    config.cohorts.covidOutcomesCohortUUID,
+    config.cohorts.covidVaccinatedClients,
+  ]);
   const tiles = useMemo(
     () => [
       {
@@ -50,7 +54,7 @@ function CovidSummaryTiles() {
         value: PeopleWithCovidOutcome,
       },
     ],
-    [],
+    [PeopleWithCovidOutcome, activeClientsCount, covid19PositiveClientsCount, covidVaccinatedClientsCount, t],
   );
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }

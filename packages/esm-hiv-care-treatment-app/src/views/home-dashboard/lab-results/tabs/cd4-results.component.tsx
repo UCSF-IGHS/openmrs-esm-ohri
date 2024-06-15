@@ -55,7 +55,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       setPatientCount(data.total);
       setIsLoading(false);
     });
-  }, [page, pageSize]);
+  }, [nextOffSet, page, pageSize]);
 
   useEffect(() => {
     let rows = [];
@@ -93,6 +93,32 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
     setAllRows(rows);
   }, [patients, patientToCd4Map]);
 
+  const fetchPatientLastCd4Encounters = useCallback(
+    async (patientUuid) => {
+      let latestCd4Encounter = {
+        result: '--',
+        date: '--',
+        encounterUuid: '',
+      };
+      const query = `encounterType=${encounterTypes.CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
+      const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
+      if (viralResults.data.results?.length > 0) {
+        const sortedEncounters = viralResults.data.results.sort(
+          (firstEncounter, secondEncounter) =>
+            new Date(secondEncounter.encounterDatetime).getTime() -
+            new Date(firstEncounter.encounterDatetime).getTime(),
+        );
+        const lastEncounter = sortedEncounters[0];
+
+        latestCd4Encounter.result = getObsFromEncounter(lastEncounter, obsConcepts.hivCD4Count_UUID);
+        latestCd4Encounter.date = getObsFromEncounter(lastEncounter, obsConcepts.Cd4LabResultDate_UUID, true);
+        latestCd4Encounter.encounterUuid = lastEncounter.uuid;
+      }
+      return latestCd4Encounter;
+    },
+    [encounterTypes.CD4LabResultsEncounter_UUID, obsConcepts.Cd4LabResultDate_UUID, obsConcepts.hivCD4Count_UUID],
+  );
+
   useEffect(() => {
     const patientToCd4ResultsPromises = patients.map((patient) => fetchPatientLastCd4Encounters(patient.resource.id));
     Promise.all(patientToCd4ResultsPromises).then((values) => {
@@ -105,7 +131,7 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
         })),
       );
     });
-  }, [patients]);
+  }, [fetchPatientLastCd4Encounters, patients]);
 
   const handleSearch = useCallback(
     (searchTerm) => {
@@ -114,33 +140,16 @@ const CD4ResultsList: React.FC<CD4ResultsListProps> = ({ patientUuid }) => {
       setFilteredResults(filtrate);
       return true;
     },
-    [searchTerm],
+    [allRows],
   );
 
   const addNewPatient = () => navigate({ to: '${openmrsSpaBase}/patient-registration' });
   const getPatientURL = (patientUuid) => `/openmrs/spa/patient/${patientUuid}/chart/hts-summary`;
-
-  async function fetchPatientLastCd4Encounters(patientUuid: string) {
-    let latestCd4Encounter = {
-      result: '--',
-      date: '--',
-      encounterUuid: '',
-    };
-    const query = `encounterType=${encounterTypes.CD4LabResultsEncounter_UUID}&patient=${patientUuid}`;
-    const viralResults = await openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`);
-    if (viralResults.data.results?.length > 0) {
-      const sortedEncounters = viralResults.data.results.sort(
-        (firstEncounter, secondEncounter) =>
-          new Date(secondEncounter.encounterDatetime).getTime() - new Date(firstEncounter.encounterDatetime).getTime(),
-      );
-      const lastEncounter = sortedEncounters[0];
-
-      latestCd4Encounter.result = getObsFromEncounter(lastEncounter, obsConcepts.hivCD4Count_UUID);
-      latestCd4Encounter.date = getObsFromEncounter(lastEncounter, obsConcepts.Cd4LabResultDate_UUID, true);
-      latestCd4Encounter.encounterUuid = lastEncounter.uuid;
-    }
-    return latestCd4Encounter;
-  }
+  const [latestCd4Encounter, setLatestCd4Encounter] = useState({
+    result: '--',
+    date: '--',
+    encounterUuid: '',
+  });
 
   return (
     <>

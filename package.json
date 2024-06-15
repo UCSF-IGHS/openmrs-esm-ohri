@@ -102,6 +102,10 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.8.1"
   },
+  "lint-staged": {
+    "packages/**/src/**/*.{ts,tsx}": "eslint --cache --fix --max-warnings 0",
+    "*.{css,scss,ts,tsx}": "prettier --write --list-different"
+  },
   "resolutions": {
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5"

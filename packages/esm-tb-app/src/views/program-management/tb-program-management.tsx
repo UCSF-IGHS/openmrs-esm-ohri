@@ -2,7 +2,7 @@ import React from 'react';
 import { useConfig } from '@openmrs/esm-framework';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import styles from '../common.scss';
-import { PatientChartProps, getMenuItemTabConfiguration, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { type PatientChartProps, getMenuItemTabConfiguration, EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
 import tptProgramManagemetConfigSchema from './tb-program-management-config.json';
 interface OverviewListProps {
   patientUuid: string;

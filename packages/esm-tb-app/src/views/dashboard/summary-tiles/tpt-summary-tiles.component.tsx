@@ -14,7 +14,7 @@ function TptPreventionSummaryTiles() {
         value: activeTptClientsCount,
       },
     ],
-    [],
+    [activeTptClientsCount, t],
   );
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }

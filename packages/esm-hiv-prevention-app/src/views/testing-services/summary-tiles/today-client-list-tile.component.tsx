@@ -144,7 +144,7 @@ export const TodaysClientList: React.FC<{}> = () => {
 
   useEffect(() => {
     setCounter(counter + 1);
-  }, [state]);
+  }, [counter, state]);
 
   return (
     <div style={{ width: '100%', marginBottom: '2rem' }}>

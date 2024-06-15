@@ -1,7 +1,7 @@
 import { DashboardGroupExtension } from '@openmrs/esm-patient-common-lib';
 import React from 'react';
 import PatientExtensionRenderer from '../components/extension-conditional-renderer/patient-based-extension-renderer';
-import { DashboardLinkConfig } from '../types';
+import { type DashboardLinkConfig } from '../types';
 import { DashboardExtension } from './DashboardExtension';
 import { BrowserRouter } from 'react-router-dom';
 
