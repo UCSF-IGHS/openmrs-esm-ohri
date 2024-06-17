@@ -1,0 +1,40 @@
+{
+  "menuId": "serviceSummary",
+  "columns": [
+    {
+      "id": "tbScreening",
+      "title": "TB Screening",
+      "encounterType": "clinicalVisitEncounterType",
+      "concept": "tbScreeningOutcome",
+      "hasSummary": true,
+      "summaryConcept": {
+        "primaryConcept": "regimenLine_UUID",
+        "isDate": true
+      }
+    },
+    {
+      "id": "oIs",
+      "title": "OIs",
+      "encounterType": "clinicalVisitEncounterType",
+      "concept": "opportunisticInfectionConcept"
+    },
+    {
+      "id": "nextAppointmentDate",
+      "title": "Next Appointment Date",
+      "hasSummary": true,
+      "encounterType": "clinicalVisitEncounterType",
+      "concept": "returnVisitDateConcept",
+      "summaryConcept": {
+        "primaryConcept": "returnVisitDateConcept",
+        "isDate": true,
+        "hasCalculatedDate": true
+      }
+    },
+    {
+      "id": "programStatus",
+      "title": "Program Status",
+      "encounterType": "hivProgramStatusEncounterType",
+      "concept": "generalTreatmentStatusConcept"
+    }
+  ]
+}
