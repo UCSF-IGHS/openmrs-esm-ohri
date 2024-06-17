@@ -52,6 +52,7 @@ export * from './components/patient-table/patient-table.component';
 export * from './hooks/useLastEncounter';
 export * from './utils/encounter-list-config-builder';
 export * from './utils/summary-card-config-builder';
+export * from './utils/encounter-tile-config-builder';
 // Workspace registration moved to the index.ts and routes.json
 const options = {
   featureName: 'ohri-forms-workspace-item',

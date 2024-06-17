@@ -1,0 +1,50 @@
+{
+  "menuId": "serviceSummary",
+  "columns": [
+    {
+      "id": "artCohort",
+      "title": "ART Cohort",
+      "encounterType": "art_Therapy_EncounterUUID",
+      "concept": "artTherapyDateTime_UUID",
+      "isDate": true,
+      "conceptMappings": [
+        "artTherapyDateTime_UUID",
+        "artStopDateUUID",
+        "switchDateUUID",
+        "substitutionDateUUID",
+        "dateRestartedUUID"
+      ]
+    },
+    {
+      "id": "currentRegimen",
+      "hasSummary": true,
+      "title": "Current Regimen",
+      "encounterType": "art_Therapy_EncounterUUID",
+      "concept": "regimenConcept",
+      "summaryConcept": {
+        "primaryConcept": "regimenLine_UUID"
+      }
+    },
+    {
+      "id": "dsdModel",
+      "title": "DSD Model",
+      "hasSummary": true,
+      "encounterType": "ServiceDeliveryEncounterType_UUID",
+      "concept": "CommunityDSDModel_UUID",
+      "summaryConcept": {
+        "primaryConcept": "CommunityDSDModel_UUID"
+      }
+    },
+    {
+      "id": "populationType",
+      "title": "Population Type",
+      "encounterType": "careAndTreatmentEncounterType",
+      "concept": "populationCategoryConcept",
+      "hasSummary": true,
+      "summaryConcept": {
+        "primaryConcept": "keyPopulationTypeConcept",
+        "secondaryConcept": "priorityPopulationTypeConcept"
+      }
+    }
+  ]
+}
