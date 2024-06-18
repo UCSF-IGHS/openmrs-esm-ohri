@@ -1,0 +1,70 @@
+{
+  "menuId": "careAndTreatment",
+  "tabDefinitions": [
+    {
+      "tabName": "All C&T Clients",
+      "cohortId": "clientsEnrolledToCare",
+      "isReportingCohort": true,
+      "cohortSlotName": "all-ct-clients-slot",
+      "launchableForm": {
+        "package": "hiv-care-treatment",
+        "name": "Clinical Visit Form",
+        "actionText": "Start Follow Up Visit",
+        "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+        "targetDashboard": "hts-summary"
+      },
+      "excludedColumns": ["timeAddedToList", "waitingTime", "location"],
+      "otherColumns": [
+        {
+          "id": "clientId",
+          "title": "Client ID",
+          "type": "patientId",
+          "index": 1
+        },
+        {
+          "id": "lastAppointment",
+          "title": "Last Appointment",
+          "type": "lastDate"
+        },
+        {
+          "id": "appointmentDate",
+          "title": "Appointment Date",
+          "type": "appointmentDate"
+        }
+      ]
+    },
+    {
+      "tabName": "Today's Appointments",
+      "cohortId": "todayzAppointmentsCT",
+      "isReportingCohort": true,
+      "cohortSlotName": "ct-todays-appointments",
+      "launchableForm": {
+        "package": "hiv-care-treatment",
+        "name": "POC Clinical Visit Form",
+        "actionText": "Start Follow Up Visit",
+        "intent": "CT_CLINICAL_VISIT_FOLLOW_UP",
+        "targetDashboard": "hts-summary"
+      },
+      "excludedColumns": ["timeAddedToList", "waitingTime", "location"],
+      "hasQueryParams": true,
+      "otherColumns": [
+        {
+          "id": "clientId",
+          "title": "Client ID",
+          "type": "patientId",
+          "index": 1
+        },
+        {
+          "id": "lastAppointment",
+          "title": "Last Appointment",
+          "type": "lastDate"
+        },
+        {
+          "id": "appointmentDate",
+          "title": "Appointment Date",
+          "type": "appointmentDate"
+        }
+      ]
+    }
+  ]
+}

@@ -2,21 +2,17 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
-import generalConsellingConfigSchema from './general-conselling-config.json';
+import clinicalVisitConfigSchema from './clinical-visit-config.json';
 
-import styles from '../common.scss';
+import styles from '../../common.scss';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
-const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const VisitsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const config = useConfig();
-  const tabs = getMenuItemTabConfiguration(generalConsellingConfigSchema, config);
-
-  const tabFilter = (encounter, formName) => {
-    return encounter?.form?.name === formName;
-  };
+  const tabs = getMenuItemTabConfiguration(clinicalVisitConfigSchema, config);
 
   return (
     <div className={styles.tabContainer}>
@@ -30,7 +26,6 @@ const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid })
           {tabs.map((tab) => (
             <TabPanel>
               <EncounterList
-                filter={(encounter) => tabFilter(encounter, tab.formList[0].name)}
                 patientUuid={patientUuid}
                 formList={tab.formList}
                 columns={tab.columns}
@@ -47,4 +42,4 @@ const GeneralCounsellingSummary: React.FC<OverviewListProps> = ({ patientUuid })
   );
 };
 
-export default GeneralCounsellingSummary;
+export default VisitsSummary;

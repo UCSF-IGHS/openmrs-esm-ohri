@@ -4,7 +4,7 @@ import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import partnerNotificationsConfigSchema from './patner-notification-config.json';
 
-import styles from '../common.scss';
+import styles from '../../common.scss';
 
 interface OverviewListProps {
   patientUuid: string;

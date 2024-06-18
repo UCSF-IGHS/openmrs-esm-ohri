@@ -2,17 +2,17 @@ import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
-import clinicalVisitConfigSchema from './clinical-visit-config.json';
+import programManagementTabConfigSchema from './program-management-config.json';
 
-import styles from '../common.scss';
+import styles from '../../common.scss';
 
 interface OverviewListProps {
   patientUuid: string;
 }
 
-const VisitsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
+const ProgramManagementSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const config = useConfig();
-  const tabs = getMenuItemTabConfiguration(clinicalVisitConfigSchema, config);
+  const tabs = getMenuItemTabConfiguration(programManagementTabConfigSchema, config);
 
   return (
     <div className={styles.tabContainer}>
@@ -42,4 +42,4 @@ const VisitsSummary: React.FC<OverviewListProps> = ({ patientUuid }) => {
   );
 };
 
-export default VisitsSummary;
+export default ProgramManagementSummary;

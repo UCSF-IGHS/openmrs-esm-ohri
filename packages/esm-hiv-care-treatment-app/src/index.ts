@@ -1,9 +1,9 @@
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
-import ServiceSummaryOverviewList from './views/service-summary/encounter-list/service-summary-encounter-list.component';
-import ProgramManagementSummary from './views/program-management/program-management-summary.component';
-import VisitsSummary from './views/visits/visits-summary.component';
-import GeneralCounsellingSummary from './views/general-counselling/general-counselling-summary.component';
-import PartnerNotificationServices from './views/partner-notification-services/partner-notification-services.component';
+import ServiceSummaryOverviewList from './views/patient-chart/service-summary/service-summary-encounter-list.component';
+import ProgramManagementSummary from './views/patient-chart/program-management/program-management-summary.component';
+import VisitsSummary from './views/patient-chart/visits/visits-summary.component';
+import GeneralCounsellingSummary from './views/patient-chart/general-counselling/general-counselling-summary.component';
+import PartnerNotificationServices from './views/patient-chart/partner-notification-services/partner-notification-services.component';
 import {
   createOHRIDashboardLink,
   PatientStatusBannerTag,
