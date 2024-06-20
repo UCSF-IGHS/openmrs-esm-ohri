@@ -1,0 +1,58 @@
+{
+  "menuId": "hivExposedFamilySummary",
+  "tabDefinitions": [
+    {
+      "tabName": "Visits",
+      "headerTitle": "Visits",
+      "displayText": "Visits",
+      "encounterType": "infantPostnatalEncounterType",
+      "columns": [
+        {
+          "id": "visitType",
+          "title": "Visit Type",
+          "type": "visitType"
+        },
+        {
+          "id": "visitDate",
+          "isDate": true,
+          "title": "Visit Date",
+          "concept": "infantVisitDate"
+        },
+        {
+          "id": "facility",
+          "title": "Facility",
+          "type": "location"
+        },
+        {
+          "id": "nextFollowUpDate",
+          "isDate": true,
+          "title": "Next follow-up date",
+          "concept": "followUpDateConcept"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "infantPostnatalFormName",
+              "package": "pmtct",
+              "label": "View Details",
+              "mode": "view"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "hideFormLauncher": true,
+        "displayText": "",
+        "moduleName": "@ohri/openmrs-esm-ohri-pmtct-app"
+      },
+      "formList": [
+        {
+          "name": "infantPostnatalFormName",
+          "uuid": "infantPostnatalFormUuid"
+        }
+      ]
+    }
+  ]
+} 

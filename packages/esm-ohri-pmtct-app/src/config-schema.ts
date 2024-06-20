@@ -20,31 +20,31 @@ export const configSchema = {
     _type: Type.Object,
     _description: 'List of forms for PMTCT.',
     _default: {
-      antenatal: 'Antenatal Form',
-      labourAndDelivery: 'Labour & Delivery Form',
-      motherPostnatal: 'Mother - Postnatal Form',
-      infantPostnatal: 'Infant - Postanal Form',
+      antenatalFormName: 'Antenatal Form',
+      labourAndDeliveryFormName: 'Labour & Delivery Form',
+      motherPostnatalFormName: 'Mother - Postnatal Form',
+      infantPostnatalFormName: 'Infant - Postanal Form',
     },
   },
   formUuids: {
     _type: Type.Object,
     _description: 'List of uuids for PMTCT forms.',
     _default: {
-      antenatal: '5255a535-2acb-3f44-bd0a-3f80595dece1',
-      labourAndDelivery: '1e5614d6-5306-11e6-beb8-9e71128cae77',
-      motherPostnatal: 'e6b67aa4-6c59-4470-8ad5-b994efeda553',
-      infantPostnatal: '5022c5d7-ea45-47ce-bd65-1ba1d8ad2467',
+      antenatalFormUuid: '5255a535-2acb-3f44-bd0a-3f80595dece1',
+      labourAndDeliveryFormUuid: '1e5614d6-5306-11e6-beb8-9e71128cae77',
+      motherPostnatalFormUuid: 'e6b67aa4-6c59-4470-8ad5-b994efeda553',
+      infantPostnatalFormUuid: '120048e5-4122-3c6d-8f77-c79e75b7b3fc',
     },
   },
   encounterTypes: {
     _type: Type.Object,
     _description: 'List of PMTCT encounter type UUIDs',
     _default: {
-      antenatal: '677d1a80-dbbe-4399-be34-aa7f54f11405',
-      laborAndDelivery: '6dc5308d-27c9-4d49-b16f-2c5e3c759757',
-      infantPostnatal: 'af1f1b24-d2e8-4282-b308-0bf79b365584',
-      motherPostnatal: '269bcc7f-04f8-4ddc-883d-7a3a0d569aad',
-      mchEncounterType: '12de5bc5-352e-4faf-9961-a2125085a75c',
+      antenatalEncounterType: '677d1a80-dbbe-4399-be34-aa7f54f11405',
+      laborAndDeliveryEncounterType: '6dc5308d-27c9-4d49-b16f-2c5e3c759757',
+      infantPostnatalEncounterType: 'af1f1b24-d2e8-4282-b308-0bf79b365584',
+      motherPostnatalEncounterType: '269bcc7f-04f8-4ddc-883d-7a3a0d569aad',
+      mchEncounterTypeEncounterType: '12de5bc5-352e-4faf-9961-a2125085a75c',
     },
   },
   obsConcepts: {
@@ -110,4 +110,5 @@ export interface ConfigObject {
   encounterTypes: Object;
   obsConcepts: Object;
   formNames: Object;
+  formUuids: Object;
 }

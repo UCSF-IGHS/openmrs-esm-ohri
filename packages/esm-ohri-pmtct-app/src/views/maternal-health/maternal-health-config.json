@@ -5,34 +5,34 @@
       "tabName": "Antenatal Care",
       "headerTitle": "Antenatal Care",
       "displayText": "Antenatal Care",
-      "encounterType": "677d1a80-dbbe-4399-be34-aa7f54f11405",
+      "encounterType": "antenatalEncounterType",
       "columns": [
         {
           "id": "pTrackerId",
           "title": "PTracker Id",
-          "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2"
+          "concept": "pTrackerIdConcept"
         },
         {
           "id": "visitDate",
           "isDate": true,
           "title": "Visit Date",
-          "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "visitDate"
         },
         {
           "id": "hivTestStatus",
           "title": "HIV Test Status",
-          "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "hivTestStatus"
         },
         {
           "id": "artLinkage",
           "title": "ART linkage (if positive)",
-          "concept": "6e62bf7e-2107-4d09-b485-6e60cbbb2d08"
+          "concept": "artLinkage"
         },
         {
           "id": "edd",
           "isDate": true,
           "title": "EDD",
-          "concept": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "eDDConcept"
         },
         {
           "id": "facility",
@@ -43,25 +43,25 @@
           "id": "followUpDate",
           "isDate": true,
           "title": "Next follow-up date",
-          "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "followUpDateConcept"
         },
         {
           "id": "vlResults",
           "title": "VL Results",
-          "concept": "1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "MotherViralLoadResult"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Antenatal Form",
+              "formName": "antenatalFormName",
               "package": "pmtct",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Antenatal Form",
+              "formName": "antenatalFormName",
               "package": "pmtct",
               "label": "Edit Form",
               "mode": "edit"
@@ -75,8 +75,8 @@
       },
       "formList": [
         {
-          "name": "Antenatal Form",
-          "uuid": "5255a535-2acb-3f44-bd0a-3f80595dece1"
+          "name": "antenatalFormName",
+          "uuid": "antenatalFormUuid"
         }
       ]
     },
@@ -84,52 +84,52 @@
       "tabName": "Labour and Delivery",
       "headerTitle": "Labour and Delivery",
       "displayText": "Labour and Delivery",
-      "encounterType": "6dc5308d-27c9-4d49-b16f-2c5e3c759757",
+      "encounterType": "laborAndDeliveryEncounterType",
       "columns": [
         {
           "id": "pTrackerId",
           "title": "PTracker Id",
-          "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2"
+          "concept": "pTrackerIdConcept"
         },
         {
           "id": "deliveryDate",
           "isDate": true,
           "title": "Delivery Date",
-          "concept": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "dateOfDeliveryConcept"
         },
         {
           "id": "bookedForANC",
           "title": "Booked for ANC",
-          "concept": "1719AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "bookedForAncConcept"
         },
         {
           "id": "hivTestStatus",
           "title": "HIV Test Status",
-          "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "hivTestStatus"
         },
         {
           "id": "artInitiation",
           "isDate": true,
           "title": "ART Initiation",
-          "concept": "159599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "artStartDate"
         },
         {
           "id": "birthCount",
           "title": "Birth Count",
-          "concept": "1568AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "birthCountConcept"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Labour & Delivery Form",
+              "formName": "labourAndDeliveryFormName",
               "package": "pmtct",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Labour & Delivery Form",
+              "formName": "labourAndDeliveryFormName",
               "package": "pmtct",
               "label": "Edit Form",
               "mode": "edit"
@@ -143,8 +143,8 @@
       },
       "formList": [
         {
-          "name": "Labour & Delivery Form",
-          "uuid": "1e5614d6-5306-11e6-beb8-9e71128cae77"
+          "name": "labourAndDeliveryFormName",
+          "uuid": "labourAndDeliveryFormUuid"
         }
       ]
     },
@@ -152,53 +152,53 @@
       "tabName": "Postnatal Care",
       "headerTitle": "Postnatal Care",
       "displayText": "Postnatal Care",
-      "encounterType": "269bcc7f-04f8-4ddc-883d-7a3a0d569aad",
+      "encounterType": "motherPostnatalEncounterType",
       "columns": [
         {
           "id": "pTrackerId",
           "title": "PTracker Id",
-          "concept": "6c45421e-2566-47cb-bbb3-07586fffbfe2"
+          "concept": "pTrackerIdConcept"
         },
         {
           "id": "visitDate",
           "isDate": true,
           "title": "Visit Date",
-          "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "visitDate"
         },
         {
           "id": "currentHivStatus",
           "title": "Current HIV Status",
-          "concept": "164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "hivTestStatus"
         },
         {
           "id": "recentViralLoadTestDate",
           "isDate": true,
           "title": "Recent Viral load test date",
-          "concept": "163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "MotherViralLoadDate"
         },
         {
           "id": "recentViralLoadResults",
           "title": "Recent Viral load results",
-          "concept": "1305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "MotherViralLoadResult"
         },
         {
           "id": "nextVisitDate",
           "isDate": true,
           "title": "Next visit date",
-          "concept": "163260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "concept": "visitDate"
         },
         {
           "id": "actions",
           "title": "Actions",
           "actionOptions": [
             {
-              "formName": "Postnatal Care",
+              "formName": "motherPostnatalFormName",
               "package": "pmtct",
               "label": "View Details",
               "mode": "view"
             },
             {
-              "formName": "Postnatal Care",
+              "formName": "motherPostnatalFormName",
               "package": "pmtct",
               "label": "Edit Form",
               "mode": "edit"
@@ -212,8 +212,8 @@
       },
       "formList": [
         {
-          "name": "Mother - Postnatal Form",
-          "uuid": "e6b67aa4-6c59-4470-8ad5-b994efeda553"
+          "name": "motherPostnatalFormName",
+          "uuid": "motherPostnatalFormUuid"
         }
       ]
     }

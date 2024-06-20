@@ -1,0 +1,38 @@
+{
+  "menuId": "infantSummary",
+  "cardTitle": "Infant's Summary",
+  "columns": [
+    {
+      "id": "artProphylaxisStatus",
+      "title": "Breastfeeding",
+      "encounterTypes": [
+        "infantPostnatalEncounterType"
+      ],
+      "concept": "artProphylaxisStatus"
+    },
+    {
+      "id": "breastfeeding",
+      "title": "Breastfeeding",
+      "encounterTypes": [
+        "infantPostnatalEncounterType"
+      ],
+      "concept": "breastfeedingStatus"
+    },
+    {
+      "id": "hivStatus",
+      "title": "HIV status",
+      "encounterTypes": [
+        "infantPostnatalEncounterType"
+      ],
+      "concept": "finalTestResults"
+    },
+    {
+      "id": "finalOutcome",
+      "title": "Final Outcome",
+      "encounterTypes": [
+        "infantPostnatalEncounterType"
+      ],
+      "concept": "outcomeStatus"
+    }
+  ]
+}

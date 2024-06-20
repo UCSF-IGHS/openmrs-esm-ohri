@@ -28,8 +28,9 @@ interface ConditionalActionProps {
   label: string;
   package: string;
   formName: string;
-  dependsOn: string;
-  dependantConcept: string;
+  dependsOn?: string;
+  dependantConcept?: string;
+  dependantEncounter?: string;
 }
 
 interface ColumnDefinition {
@@ -52,6 +53,12 @@ interface ColumnDefinition {
   statusColorMappings?: Record<string, string>;
   isConditionalConcept?: boolean;
   conditionalConceptMappings?: Record<string, string>;
+  conditionalEncounterMappings?: Record<string, ConditionalEncounterMapping>;
+}
+
+export interface ConditionalEncounterMapping {
+  concept: string;
+  isDate?: boolean;
 }
 
 interface LaunchOptions {
@@ -86,19 +93,30 @@ export const getTabColumns = (columnsDefinition: Array<ColumnDefinition>) => {
     getValue: (encounter) => {
       if (column.id === 'actions') {
         const conditionalActions = [];
-        const baseActions = column.actionOptions.map((action: ActionProps) => ({
+        const baseActions = column.actionOptions?.map((action: ActionProps) => ({
           form: { name: action.formName, package: action.package },
           encounterUuid: encounter.uuid,
           intent: '*',
           label: action.label,
           mode: action.mode,
         }));
-
         if (column?.conditionalActionOptions?.length) {
           column?.conditionalActionOptions?.map((action) => {
             const dependantObsValue = getObsFromEncounter(encounter, action.dependantConcept);
 
             if (dependantObsValue === action.dependsOn) {
+              return conditionalActions.push({
+                form: { name: action.formName, package: action.package },
+                encounterUuid: encounter.uuid,
+                intent: '*',
+                label: action.label,
+                mode: action.mode,
+              });
+            }
+
+            const dependantEncounterValue = encounter.encounterType.uuid;
+
+            if (dependantEncounterValue === action.dependantEncounter) {
               return conditionalActions.push({
                 form: { name: action.formName, package: action.package },
                 encounterUuid: encounter.uuid,

@@ -88,6 +88,10 @@ export function getObsFromEncounter(
 ) {
   let obs = findObs(encounter, obsConcept);
 
+  if (!encounter || !obsConcept) {
+    return '--';
+  }
+
   if (isTrueFalseConcept) {
     if (
       (obs?.value?.uuid != 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3' && obs?.value?.name?.name !== 'Unknown') ||
@@ -113,6 +117,14 @@ export function getObsFromEncounter(
     return fetchMotherName(encounter.patient.uuid);
   }
 
+  if (type === 'visitType') {
+    return encounter.encounterType.name;
+  }
+
+  if (type === 'ageAtHivTest') {
+    return encounter.patient.age;
+  }
+
   if (secondaryConcept && typeof obs.value === 'object' && obs.value.names) {
     const primaryValue =
       obs.value.names.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name || obs.value.name.name;
@@ -132,7 +144,11 @@ export function getObsFromEncounter(
   }
 
   if (isDate) {
-    return formatDate(parseDate(obs.value), { mode: 'wide' });
+    if (typeof obs.value === 'object' && obs.value?.names) {
+      return formatDate(parseDate(obs.obsDatetime), { mode: 'wide' });
+    } else {
+      return formatDate(parseDate(obs.value), { mode: 'wide' });
+    }
   }
 
   if (typeof obs.value === 'object' && obs.value?.names) {

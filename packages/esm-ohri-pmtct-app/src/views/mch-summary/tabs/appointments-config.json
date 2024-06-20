@@ -1,0 +1,24 @@
+{
+  "menuId": "appointment",
+  "cardTitle": "Appointments",
+  "columns": [
+    {
+      "id": "nextAppointmentDate",
+      "isDate": true,
+      "title": "Next appointment date",
+      "encounterTypes": [
+        "antenatalEncounterType"
+      ],
+      "concept": "nextVisitDateConcept",
+      "type": "nextAppointmentDate"
+    },
+    {
+      "id": "ancVisitsAttended",
+      "title": "ANC visits attended",
+      "encounterTypes": [
+        "antenatalEncounterType"
+      ],
+      "mambaEtlData": "ancVisits"
+    }
+  ]
+}

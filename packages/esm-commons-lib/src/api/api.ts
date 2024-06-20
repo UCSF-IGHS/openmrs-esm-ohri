@@ -257,7 +257,7 @@ export async function fetchMambaReportData(reportId: string) {
   }
 }
 
-export function useDataFetch(
+export function fetchEtlData(
   reportType: 'fetchMambaAncData' | 'MotherHivStatus',
   reportId?: string,
   patientUuid?: string,

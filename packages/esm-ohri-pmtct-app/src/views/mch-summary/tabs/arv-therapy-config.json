@@ -1,0 +1,35 @@
+{
+  "menuId": "artSummary",
+  "cardTitle": "ART",
+  "columns": [
+    {
+      "id": "artInitiation",
+      "title": "ART initiation",
+      "encounterTypes": ["motherPostnatalEncounterType", "laborAndDeliveryEncounterType", "antenatalEncounterType"],
+      "concept": "artInitiationConcept",
+      "conditionalEncounterMappings": {
+        "valueOne": { "concept": "pTrackerIdConcept" },
+        "valueTwo": {
+          "concept": "artInitiationConcept",
+          "isDate": true
+        },
+        "valueThree": { "concept": "artStartDate" }
+      }
+    },
+    {
+      "id": "artStartDate",
+      "isDate": true,
+      "title": "ART initiation",
+      "encounterTypes": ["motherPostnatalEncounterType", "laborAndDeliveryEncounterType", "antenatalEncounterType"],
+      "concept": "artInitiationConcept",
+      "conditionalEncounterMappings": {
+        "valueOne": { "concept": "pTrackerIdConcept" },
+        "valueTwo": {
+          "concept": "artInitiationConcept",
+          "isDate": true
+        },
+        "valueThree": { "concept": "artStartDate" }
+      }
+    }
+  ]
+}
