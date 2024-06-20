@@ -3,7 +3,6 @@ import { launchFormWithCustomTitle } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { getForm, applyFormIntent } from '@openmrs/openmrs-form-engine-lib';
 import styles from './tabs/patient-list.scss';
 import { OverflowMenu, OverflowMenuItem } from '@carbon/react';
-import { changeWorkspaceContext, closeAllWorkspaces, resetWorkspaceStore } from '@openmrs/esm-patient-common-lib';
 import { navigate } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
 import { moduleName } from '../../../index';
@@ -47,7 +46,6 @@ export const LabresultsFormViewer: React.FC<LabresultsFormViewerProps> = ({
             itemText={t('viewResult', 'View Result')}
             onClick={(e) => {
               e.preventDefault();
-              changeWorkspaceContext(patientUuid);
               launchEncounterForm(applyFormIntent('*', getForm(form.package, form.name)), '*', 'view', encounterUuid);
               navigate({ to: patientUrl });
             }}
