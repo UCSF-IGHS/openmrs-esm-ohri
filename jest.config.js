@@ -32,13 +32,14 @@ const config = {
     '^@carbon/charts-react$': path.resolve(__dirname, '__mocks__', '@carbon__charts-react.ts'),
     '^dexie$': require.resolve('dexie'),
     '^lodash-es/(.*)$': 'lodash/$1',
+    '^lodash-es$': 'lodash',
     '^react-i18next$': path.resolve(__dirname, '__mocks__', 'react-i18next.js'),
   },
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
-    "/node_modules/",
-      "/e2e/"  // Ignore the e2e directory containing Playwright tests
-    ]
+    '/node_modules/',
+    '/e2e/', // Ignore the e2e directory containing Playwright tests
+  ],
 };
 
 module.exports = config;
