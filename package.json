@@ -1,7 +1,7 @@
 {
   "name": "@ohri/openmrs-esm-ohri",
   "private": true,
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": [
     "packages/*"
