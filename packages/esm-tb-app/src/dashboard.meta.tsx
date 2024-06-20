@@ -44,12 +44,6 @@ export const tbClinicalViewDashboardMeta = {
   isFolder: true,
   title: 'Tuberculosis',
 };
-export const tbPreventionDashboardMeta = {
-  name: 'tb-prevention',
-  slot: 'tb-prevention-dashboard-slot',
-  config: { columns: 1, type: 'grid', programme: 'tpt', dashboardTitle: 'TB Prevention'},
-  title: 'TB Prevention',
-};
 
 export const tbPreventionDashboardMeta = {
   name: 'tb-prevention',

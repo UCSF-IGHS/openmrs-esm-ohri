@@ -1,4 +1,4 @@
-name: OHRI CI - @esm and Docker Image
+name: OHRI CI - @esm and Docker Image Working/QA
 
 on:
   push:
@@ -11,8 +11,88 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      - name: Run tests
+        run: yarn run test
+
+      - name: Run build
+        run: yarn turbo run build --color --concurrency=5 --api="http://127.0.0.1:9080" --token="${{ secrets.TURBO_SERVER_TOKEN }}" --team="${{ github.repository_owner }}"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: packages
+          path: |
+            packages/**/dist
+
+  qa:
+    runs-on: ubuntu-latest
+    needs: build
+
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/working' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      - name: Version
+        run: yarn workspaces foreach --worktree --topological --exclude @ohri/openmrs-esm-ohri version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-qa.${{ github.run_number }}"
+
+      - name: Build
+        run: yarn turbo run build --color --concurrency=5
+
+      - name: qa
+        run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:qa
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: packages
+          path: |
+            packages/**/dist
+
   docker_workingserver_frontend:
     runs-on: ubuntu-latest
+    needs: qa
 
     steps:
       - name: Wait for 5 min - Let @esms reflect on NPM registry
@@ -37,7 +117,7 @@ jobs:
           file: ./frontend/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ohri-working-frontend:next,${{ secrets.DOCKERHUB_USERNAME }}/ohri-working-frontend:ci_${{ github.run_number }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ohri-working-frontend:qa,${{ secrets.DOCKERHUB_USERNAME }}/ohri-working-frontend:ci_${{ github.run_number }}
           cache-from: type=inline,ref=user/app:buildcache
           cache-to: type=inline,ref=user/app:buildcache,mode=max
 
