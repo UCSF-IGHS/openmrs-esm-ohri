@@ -1,8 +1,9 @@
 import React from 'react';
 import { EmptyDataIllustration } from './empty-data-illustration.component';
-import styles from './empty-state.scss';
 import { Trans, useTranslation } from 'react-i18next';
 import { Button, Tile, Link, Layer } from '@carbon/react';
+
+import styles from './empty-state.scss';
 
 interface EmptyStateProps {
   headerTitle: string;

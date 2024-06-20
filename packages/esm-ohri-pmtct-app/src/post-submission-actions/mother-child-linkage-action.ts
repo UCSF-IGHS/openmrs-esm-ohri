@@ -1,6 +1,6 @@
-import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
-import { generateIdentifier, savePatients, saveRelationship } from '../api/api';
-import { Patient, PatientIdentifier } from '../api/types';
+import { type PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
+import { generateIdentifier, savePatients, saveRelationship } from '../api.resource';
+import { type Patient, type PatientIdentifier } from '../types';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../utils/obs-encounter-utils';
 import { updatePatientPtracker } from './current-ptracker-action';
 import { getConfig } from '@openmrs/esm-framework';

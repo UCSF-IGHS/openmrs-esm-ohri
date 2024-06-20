@@ -1,19 +1,20 @@
-import { attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { attach, detach, ExtensionSlot } from '@openmrs/esm-framework';
 import {
   fetchPatientLastEncounter,
   fetchPatientsFinalHIVStatus,
   getCohort,
   getReportingCohortMembers,
-} from '../../api/api';
+} from '../../api.resource';
 import dayjs from 'dayjs';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { DataTableSkeleton } from '@carbon/react';
 import { basePath } from '../../constants';
-import styles from './cohort-patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { columns, consolidatatePatientMeta, filterPatientsByName, type PatientListColumn } from './helpers';
+
+import styles from './cohort-patient-list.scss';
 
 interface CohortPatientListProps {
   cohortId: string;

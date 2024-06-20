@@ -1,6 +1,6 @@
-import { PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
-import { fetchPatientIdentifiers, saveIdentifier } from '../api/api';
-import { Patient, PatientIdentifier } from '../api/types';
+import { type PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
+import { fetchPatientIdentifiers, saveIdentifier } from '../api.resource';
+import { type PatientIdentifier } from '../types';
 import { getConfig } from '@openmrs/esm-framework';
 
 export const PTrackerSubmissionAction: PostSubmissionAction = {

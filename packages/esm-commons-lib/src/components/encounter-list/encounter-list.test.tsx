@@ -2,9 +2,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { EncounterList } from './encounter-list.component';
-import { openmrsFetch, usePagination } from '@openmrs/esm-framework';
 import { mockColumns, mockEncounter, mockEncounterType, mockForms } from '../../../../../__mocks__/encounter-list.mock';
-import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
 import * as encounterRowsHook from '../../hooks/useEncounterRows';
 import * as formsJsonHook from '../../hooks/useFormsJson';
 

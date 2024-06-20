@@ -1,6 +1,6 @@
 import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
-import { FormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { type FormSchema } from '@openmrs/openmrs-form-engine-lib';
 
 type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
 

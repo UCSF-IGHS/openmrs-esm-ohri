@@ -22,7 +22,7 @@ import {
   Tile,
 } from '@carbon/react';
 import { TrashCan } from '@carbon/react/icons';
-import { ConfigurableLink, useLayoutType, isDesktop, showToast, useDebounce } from '@openmrs/esm-framework';
+import { ConfigurableLink, useLayoutType, isDesktop, useDebounce } from '@openmrs/esm-framework';
 import { EmptyDataIllustration } from '../empty-state/empty-data-illustration.component';
 import styles from './patient-table.scss';
 

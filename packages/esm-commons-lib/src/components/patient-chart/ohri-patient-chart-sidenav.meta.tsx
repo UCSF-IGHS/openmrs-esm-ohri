@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { SideNavMenuItem } from '@carbon/react';
-import { ExtensionSlot, navigate } from '@openmrs/esm-framework';
+
 import styles from './ohri-patient-chart-sidenav.scss';
 
 export const createOHRIPatientChartSideNavLink = (meta) => {

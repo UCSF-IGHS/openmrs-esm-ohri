@@ -1,6 +1,6 @@
+import { useCallback, useEffect, useState } from 'react';
 import useSWRImmutable, { mutate } from 'swr';
-import { OpenmrsEncounter } from '../api/types';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { type OpenmrsEncounter } from '../types';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { encounterRepresentation } from '../constants';
 

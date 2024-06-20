@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
-import { fetchPatientLastEncounter } from '../../api/api';
+import { fetchPatientLastEncounter } from '../../api.resource';
 import { launchForm } from '../../utils/ohri-forms-commons';
 import { navigate, WorkspaceWindow } from '@openmrs/esm-framework';
 

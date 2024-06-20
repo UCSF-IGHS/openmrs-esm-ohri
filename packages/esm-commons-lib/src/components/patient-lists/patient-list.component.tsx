@@ -15,14 +15,13 @@ import {
   InlineLoading,
   Tile,
 } from '@carbon/react';
-import styles from './patient-list.scss';
 import { useTranslation } from 'react-i18next';
 import { usePatientList } from '../../hooks/usePatientList';
 import { EmptyState } from '@openmrs/esm-patient-common-lib';
 import { navigate } from '@openmrs/esm-framework';
 // eslint-disable-next-line no-restricted-imports
 import { debounce } from 'lodash';
-
+import styles from './patient-list.scss';
 export interface PatientListProps {
   title: string;
   headerData: Array<{ header: string; key: string }>;

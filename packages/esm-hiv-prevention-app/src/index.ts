@@ -1,5 +1,5 @@
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
-import HTSPreventionSummary from './views/hiv-testing-services/hts-prevention-summary.component';
+import HTSPreventionSummary from './hts/hiv-testing-services/hts-prevention-summary.component';
 import {
   createOHRIDashboardLink,
   PatientStatusBannerTag,

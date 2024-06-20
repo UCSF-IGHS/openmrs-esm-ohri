@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSWRImmutable from 'swr';
-import { fetchOpenMRSForms } from '../api/api';
-import { OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
+import { fetchOpenMRSForms } from '../api.resource';
+import { type OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
 import { useFormJsonSchemas } from './useFormJsonSchemas';
 
 export function useFormsJson(formNames: string[]) {

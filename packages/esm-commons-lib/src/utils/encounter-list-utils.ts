@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { formatDate, parseDate } from '@openmrs/esm-framework';
-import { fetchPatientRelationships } from '../api/api';
+import { fetchPatientRelationships } from '../api.resource';
 
 export function getEncounterValues(encounter, param: string, isDate?: Boolean) {
   if (isDate) return dayjs(encounter[param]).format('DD-MMM-YYYY');

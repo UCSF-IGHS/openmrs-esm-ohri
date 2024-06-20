@@ -1,6 +1,6 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
-import MaternalHealthList from './views/maternal-health/maternal-health.component';
-import ChildHealthList from './views/child-health/child-health.component';
+import MaternalHealthList from './pmtct/maternal-health/maternal-health.component';
+import ChildHealthList from './pmtct/child-health/child-health.component';
 import {
   mchSummaryDashboardMeta,
   maternalVisitsDashboardMeta,
@@ -64,7 +64,7 @@ export const mchSummaryDashboardLink = getSyncLifecycle(
   options,
 );
 
-export const mchSummaryDashboard = getAsyncLifecycle(() => import('./views/mch-summary/mch-summary.component'), {
+export const mchSummaryDashboard = getAsyncLifecycle(() => import('./pmtct/mch-summary/mch-summary.component'), {
   featureName: 'mch-summary',
   moduleName,
 });

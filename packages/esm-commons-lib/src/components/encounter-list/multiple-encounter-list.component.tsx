@@ -1,12 +1,13 @@
 import { openmrsFetch, navigate } from '@openmrs/esm-framework';
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './encounter-list.scss';
 import { encounterRepresentation } from '../../constants';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { DataTableSkeleton, Link, Pagination } from '@carbon/react';
 import { OTable } from '../data-table/o-table.component';
 import { getObsFromEncounter } from '../../utils/encounter-list-utils';
+
+import styles from './encounter-list.scss';
 
 export interface MultipleEncounterListColumn {
   key: string;

@@ -1,0 +1,11 @@
+@use '@carbon/styles/scss/spacing';
+@import "../../root.scss";
+
+
+.tabContainer div[role='tabpanel'] {
+  padding: 0 !important;
+}
+
+.tabContainer li button {
+  width: 100% !important;
+}

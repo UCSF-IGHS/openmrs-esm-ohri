@@ -15,12 +15,12 @@ import {
   tbPreventionDashboardMeta,
 } from './dashboard.meta';
 import { configSchema } from './config-schema';
-import TBSummaryOverviewList from './views/patient-summary/tb-patient-summary.component';
-import ProgramManagementSummary from './views/program-management/tb-program-management';
-import TbTreatmentFollowUpList from './views/treatment-and-follow-up/tb-treatment-follow-up.component';
-import TbContactTracingList from './views/tb-contact-listing/tb-contact-list.component';
-import tptProgramManagementSummary from './views/tpt/program-management/tpt-program-management';
-import tptPatientSummary from './views/tpt/patient-summary/patient-summary.component';
+import TBSummaryOverviewList from './tb/patient-summary/tb-patient-summary.component';
+import ProgramManagementSummary from './tb/program-management/tb-program-management';
+import TbTreatmentFollowUpList from './tb/treatment-and-follow-up/tb-treatment-follow-up.component';
+import TbContactTracingList from './tb/tb-contact-listing/tb-contact-list.component';
+import tptProgramManagementSummary from './tb/tpt/program-management/tpt-program-management';
+import tptPatientSummary from './tb/tpt/patient-summary/patient-summary.component';
 import rootComponent from './root.component';
 import TptHomeComponent from './tpt-home.component';
 
