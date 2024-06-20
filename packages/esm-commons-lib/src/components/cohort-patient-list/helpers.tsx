@@ -6,9 +6,8 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
 import { fetchPatientLastEncounter } from '../../api/api';
-import { changeWorkspaceContext } from '@openmrs/esm-patient-common-lib';
 import { launchForm } from '../../utils/ohri-forms-commons';
-import { navigate } from '@openmrs/esm-framework';
+import { navigate, WorkspaceWindow } from '@openmrs/esm-framework';
 
 interface PatientMetaConfig {
   location: { name: string };
@@ -55,21 +54,23 @@ export const LaunchableFormMenuItem = ({
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [continueEncounterActionText, encounterType, encounterUuid, launchableForm.editLatestEncounter, patientUuid]);
 
   return (
     <>
       {isLoading ? (
         <InlineLoading style={{ margin: '0 auto', width: '16px' }} />
       ) : (
-        <OverflowMenuItem
-          itemText={actionText}
-          onClick={() => {
-            changeWorkspaceContext(patientUuid);
-            launchForm(form, encounterUuid ? 'edit' : 'enter', moduleName, form.name, encounterUuid, null, null);
-            navigate({ to: patientUrl });
-          }}
-        />
+        <>
+          <OverflowMenuItem
+            itemText={actionText}
+            onClick={() => {
+              launchForm(form, encounterUuid ? 'edit' : 'enter', moduleName, form.name, encounterUuid, null, null);
+              navigate({ to: patientUrl });
+            }}
+          />
+          <WorkspaceWindow contextKey={`patient/${patientUuid}`} />
+        </>
       )}
     </>
   );
@@ -94,7 +95,7 @@ export const ViewSummaryMenuItem = ({ patientUuid, ViewSummary, encounterType })
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [ViewSummary.editLatestEncounter, encounterType, encounterUuid, patientUuid, viewSummaryActionText]);
 
   return (
     <>
@@ -132,7 +133,7 @@ export const ViewTptSummaryMenuItem = ({ patientUuid, ViewTptSummary, encounterT
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [ViewTptSummary.editLatestEncounter, encounterType, patientUuid, encounterUuid, viewTptSummaryActionText]);
 
   return (
     <>
