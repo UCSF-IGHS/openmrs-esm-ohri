@@ -104,12 +104,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         const abortController = new AbortController();
         deleteEncounter(encounterUuid, abortController)
           .then(() => {
-            mutate(
-              (key) =>
-                typeof key === "string" && key.startsWith("/ws/rest/v1/encounter"),
-              undefined,
-              { revalidate: true }
-            );
+            onFormSave();
             showSnackbar({
               isLowContrast: true,
               title: t('encounterDeleted', 'Encounter deleted'),
