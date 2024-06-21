@@ -1,8 +1,8 @@
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { showToast, usePatient } from '@openmrs/esm-framework';
 import { ListItem, Modal, RadioButton, RadioButtonGroup, SkeletonText, UnorderedList } from '@carbon/react';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../api/api';
+import { addPatientToCohort, evictCohortMembership, getCohorts, getPatientListsForPatient } from '../../api.resource';
 
 export const AddPatientToListOverflowMenuItem: React.FC<{
   patientUuid: string;

@@ -1,12 +1,12 @@
-import { getIdentifierInfo } from '../api/api';
+import { getIdentifierInfo } from '../api.resource';
 
 export const generateInfantPTrackerId = (fieldId: string, motherPtrackerId: string): string | undefined => {
   if (!fieldId || !motherPtrackerId) return;
   return fieldId === 'infantPtrackerid'
     ? motherPtrackerId + '1'
     : fieldId.includes('_')
-    ? motherPtrackerId.concat((Number(fieldId.split('_')[1]) + 1).toString())
-    : undefined;
+      ? motherPtrackerId.concat((Number(fieldId.split('_')[1]) + 1).toString())
+      : undefined;
 };
 
 export const getIdentifierAssignee = (identifier: string, identifierType: string) => {

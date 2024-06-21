@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { attach, detach, ExtensionSlot, isDesktop, useExtensionSlotMeta, useLayoutType } from '@openmrs/esm-framework';
-import styles from './ohri-dashboard.scss';
 import { useParams } from 'react-router-dom';
+
+import styles from './ohri-dashboard.scss';
 
 const OHRIDashboard = () => {
   const { view } = useParams();

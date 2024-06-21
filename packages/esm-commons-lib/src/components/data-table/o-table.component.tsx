@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   DataTable,
   Table,
@@ -9,8 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from '@carbon/react';
-import styles from './o-table.scss';
 import { LazyCell } from '../lazy-cell/lazy-cell.component';
+
+import styles from './o-table.scss';
 
 interface TableProps {
   tableHeaders: any;

@@ -1,7 +1,7 @@
-import { OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
+import { type OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
 import { useEffect, useMemo, useState } from 'react';
 import useSWRImmutable from 'swr';
-import { fetchFormsClobData } from '../api/api';
+import { fetchFormsClobData } from '../api.resource';
 
 export function useFormJsonSchemas(openmrsForms: OpenmrsForm[]) {
   const [clobDataReferences, setClobDataReferences] = useState<{ formUuid: string; clobDataValueRef: string }[]>(null);
@@ -37,7 +37,7 @@ export function useFormJsonSchemas(openmrsForms: OpenmrsForm[]) {
         responses.map((response, index) => ({ ...response.data, uuid: clobDataReferences[index].formUuid })),
       );
     }
-  }, [responses]);
+  }, [responses, clobDataReferences]);
 
   return {
     formJsonSchemas,

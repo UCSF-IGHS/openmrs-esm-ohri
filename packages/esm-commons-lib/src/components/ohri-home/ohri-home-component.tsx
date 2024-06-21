@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { ExtensionSlot } from '@openmrs/esm-framework';
 import { FlexGrid } from '@carbon/react';
-import styles from './ohri-home.scss';
 import { PatientListWorkspace } from '../../workspace/patient-list-workspace';
+
+import styles from './ohri-home.scss';
 
 export function OHRIHome(HomeProps) {
   const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);

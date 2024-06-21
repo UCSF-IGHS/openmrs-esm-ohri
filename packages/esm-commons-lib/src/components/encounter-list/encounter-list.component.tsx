@@ -1,8 +1,7 @@
-import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
-import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import {
   Button,
@@ -18,10 +17,12 @@ import { Add } from '@carbon/react/icons';
 import { type FormSchema } from '@openmrs/openmrs-form-engine-lib';
 import { deleteEncounter, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
-import { type OpenmrsEncounter } from '../../api/types';
+import { type OpenmrsEncounter } from '../../types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
 import { mutate } from 'swr';
+
+import styles from './encounter-list.scss';
 
 export interface EncounterListColumn {
   key: string;

@@ -1,0 +1,115 @@
+{
+  "menuId": "cervicalCancer",
+  "tabDefinitions": [
+    {
+      "tabName": "CaCx Registration",
+      "headerTitle": "CaCx Registration",
+      "displayText": "CaCx Registration",
+      "encounterType": "cacxRegistrationEncounterType_UUID",
+      "columns": [
+        {
+          "id": "screeningDate",
+          "isDate": true,
+          "title": "Visit Date",
+          "concept": "cervicalCancerScreeningDateConcept"
+        },
+        {
+          "id": "previouslyScreened",
+          "title": "Previously Screened for CaCx",
+          "concept": "previouslyScreenedConcept"
+        },
+        {
+          "id": "eligibleforScreening",
+          "title": "Eligible for CaCx Screening",
+          "concept": "eligibleForScreeningConcept"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "cervicalCancerRegistrationForm",
+              "package": "cervical-cancer",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "cervicalCancerRegistrationForm",
+              "package": "cervical-cancer",
+              "label": "Edit Form",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-cervical-cancer-app"
+      },
+      "formList": [
+        {
+          "name": "cervicalCancerRegistrationForm",
+          "uuid": "cervicalCancerRegistrationFormUuid"
+        }
+      ]
+    },
+    {
+      "tabName": "CaCx Treatment",
+      "headerTitle": "CaCx Treatment",
+      "displayText": "CaCx Treatment",
+      "encounterType": "cacxTreatmentEncounterType_UUID",
+      "columns": [
+        {
+          "id": "encounterDate",
+          "isDate": true,
+          "title": "Visit Date",
+          "concept": "cacxEncounterDateConcept"
+        },
+        {
+          "id": "screeningMethod",
+          "title": "Screening Method",
+          "concept": "screeningMethodConcept"
+        },
+        {
+          "id": "screeningResult",
+          "title": "Screening Results",
+          "multipleConcepts": ["colopsyResultsConcept", "humanPapilomaVirusResultsConcept","papanicolaouSmearResultsConcept", "VIAProcedureResultsConcept"],
+          "useMultipleObs": true
+        },        
+        {
+          "id": "cacxTreatment",
+          "title": "CaCx Treatment",
+          "concept": "cacxTreatmentConcept"
+        },
+        {
+          "id": "actions",
+          "title": "Actions",
+          "actionOptions": [
+            {
+              "formName": "screeningAndCancerTreatmentForm",
+              "package": "cervical-cancer",
+              "label": "View Details",
+              "mode": "view"
+            },
+            {
+              "formName": "screeningAndCancerTreatmentForm",
+              "package": "cervical-cancer",
+              "label": "Edit Forms",
+              "mode": "edit"
+            }
+          ]
+        }
+      ],
+      "launchOptions": {
+        "displayText": "Add",
+        "moduleName": "@ohri/openmrs-esm-ohri-cervical-cancer-app"
+      },
+      "formList": [
+        {
+          "name": "screeningAndCancerTreatmentForm",
+          "uuid": "screeningAndCancerTreatmentFormUuid"
+        }
+      ]
+    }    
+  ]
+}

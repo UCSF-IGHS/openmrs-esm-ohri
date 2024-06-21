@@ -1,5 +1,5 @@
 import isEmpty from 'lodash-es/isEmpty';
-import { fetchEtlData } from '../api/api';
+import { fetchEtlData } from '../api.resource';
 import { getObsFromEncounter, getConditionalConceptValue } from './encounter-list-utils';
 import { extractSchemaValues, replaceWithConfigDefaults } from './schema-manipulation';
 
@@ -46,7 +46,11 @@ export const getSummaryCardProps = (schemaConfig, config = null) => {
       );
     },
     getObsSummary: async (encounters) => {
-      if (column?.conditionalEncounterMappings && Object.keys(column?.conditionalEncounterMappings)?.length > 0 && column.encounterTypes?.length > 0) {
+      if (
+        column?.conditionalEncounterMappings &&
+        Object.keys(column?.conditionalEncounterMappings)?.length > 0 &&
+        column.encounterTypes?.length > 0
+      ) {
         const filteredEncounters = encounters.filter((encounter) =>
           column.encounterTypes.includes(encounter.encounterType.uuid),
         );

@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { fetchPatientsFinalHIVStatus, fetchPatientComputedConcept_HIV_Status } from '../../api/api';
+import { fetchPatientsFinalHIVStatus, fetchPatientComputedConcept_HIV_Status } from '../../api.resource';
 
 const fetchPatientHtsEncounters = (patientUuid: string) => {
   const htsEncounterRepresentation =

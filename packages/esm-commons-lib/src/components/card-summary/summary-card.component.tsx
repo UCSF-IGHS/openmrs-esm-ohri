@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styleguide/tiles.scss';
 import { SkeletonText, Tile, Column } from '@carbon/react';
 import { LazyCell } from '../lazy-cell/lazy-cell.component';
 import { type OpenmrsEncounter } from '@openmrs/openmrs-form-engine-lib';
 import { fetchLatestEncountersOfTypes } from './helpers';
+
+import styles from '../../styleguide/tiles.scss';
 
 export interface SummaryCardProps {
   patientUuid: string;

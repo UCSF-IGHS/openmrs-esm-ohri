@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   DataTable,
   Table,
@@ -8,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from '@carbon/react';
-import React from 'react';
 
 export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: string }>; message: string }> = ({
   tableHeaders,

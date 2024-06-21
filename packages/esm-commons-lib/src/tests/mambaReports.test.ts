@@ -1,4 +1,4 @@
-import { fetchMambaReportData } from '../api/api';
+import { fetchMambaReportData } from '../api.resource';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import '@testing-library/jest-dom';
 

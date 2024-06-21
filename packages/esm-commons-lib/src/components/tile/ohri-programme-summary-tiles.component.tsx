@@ -1,8 +1,9 @@
-import { Row } from '@carbon/react';
 import React from 'react';
+import { Row } from '@carbon/react';
 import { OHRISummaryTileTablet } from './ohri-summary-tile-tablet.component';
-import styles from './ohri-programme-summary-tiles.scss';
 import { OHRISummaryTile } from './ohri-summary-tile.component';
+
+import styles from './ohri-programme-summary-tiles.scss';
 
 export interface SummaryTile {
   title: string;
