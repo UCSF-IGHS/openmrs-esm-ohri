@@ -16,7 +16,7 @@ import { type familyItemProps } from './current-pregnancy.component';
 import hivExposedInfantSummary from './hiv-exposed-infant-summary-config.json';
 import hivExposedFamilySummary from './hiv-exposed-family-summary-config.json';
 import hivExposedInfantConfigSchema from './infant-summary-config.json';
-import { fetchPatientIdentifiers } from '../../../api.resource';
+import { fetchPatientIdentifiers } from '../../../../api.resource';
 
 const HivExposedInfant: React.FC<{
   patientUuid: string;

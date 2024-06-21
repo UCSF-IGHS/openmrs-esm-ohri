@@ -1,7 +1,7 @@
 import { type PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import { getConfig } from '@openmrs/esm-framework';
-import { fetchPatientIdentifiers, saveIdentifier } from '../api.resource';
 import { type PatientIdentifier } from '../types';
+import { fetchPatientIdentifiers, saveIdentifier } from '../api.resource';
 
 const ArtSubmissionAction: PostSubmissionAction = {
   applyAction: async function ({ patient, encounters, sessionMode }) {
