@@ -1,0 +1,100 @@
+{
+  "menuId": "covidHome",
+  "tabDefinitions": [
+    {
+      "tabName": "All COVID-19 Clients",
+      "cohortId": "clientsAssessedForCovid",
+      "isReportingCohort": true,
+      "cohortSlotName": "clients-assessed-for-covid-slot",
+      "launchableForm": {
+        "package": "covid",
+        "name": "COVID Assessment Form",
+        "actionText": "Edit case assessment form",
+        "targetDashboard": "covid-assessments"
+      },
+      "associatedEncounterType": "covid_Assessment_EncounterUUID",
+      "excludeColumns": ["timeAddedToList", "waitingTime", "location", "phoneNumber", "hivResult"],
+      "otherColumns": [
+        {
+          "id": "assessmentDate",
+          "title": "Assessment date",
+          "type": "encounterDate",
+          "index": 1
+        },
+        {
+          "id": "finalAssessment",
+          "title": "Final result",
+          "concept": "rapidTestResult"
+        },
+        {
+          "id": "outcome",
+          "title": "Outcome",
+          "concept": "covidOutcome"
+        }
+      ]
+    },
+    {
+      "tabName": "Pending lab results",
+      "cohortId": "covidClientsWithPendingLabResults",
+      "isReportingCohort": true,
+      "cohortSlotName": "pending-covid-lab-results-slot",
+      "launchableForm": {
+        "package": "covid",
+        "name": "COVID Lab Test",
+        "actionText": "Enter test result",
+        "targetDashboard": "covid-lab-results"
+      },
+      "associatedEncounterType": "covid_Assessment_EncounterUUID",
+      "excludedColumns": ["timeAddedToList", "waitingTime", "location", "phoneNumber", "hivResult"],
+      "otherColumns": [
+        {
+          "id": "testDate",
+          "isDate": true,
+          "title": "Test date",
+          "concept": "dateSpecimenCollected",
+          "index": 1
+        },
+        {
+          "id": "testType",
+          "title": "Test type",
+          "concept": "covidTestType"
+        }
+      ]
+    },
+    {
+      "tabName": "Scheduled Vaccination",
+      "cohortId": "covidVaccinatedClients",
+      "isReportingCohort": true,
+      "cohortSlotName": "clients-vaccinated-for-covid-slot",
+      "launchableForm": {
+        "package": "covid",
+        "name": "COVID Vaccination Form",
+        "actionText": "Edit covid vaccination form",
+        "targetDashboard": "covid_vaccination"
+      },
+      "associatedEncounterType": "covidVaccinationEncounterUUID",
+      "excludedColumns": ["timeAddedToList", "waitingTime", "location", "phoneNumber", "hivResult"],
+      "otherColumns": [
+        {
+          "id": "lastDoseAdministered",
+          "title": "Last dose administered",
+          "concept": "covidVaccinationDose_UUID",
+          "index": 1
+        },
+        {
+          "id": "vaccine",
+          "title": "Vaccine",
+          "type": "vaccination",
+          "concept": "covidVaccineAdministeredConcept_UUID",
+          "fallbackConcepts": ["covidVaccineConcept_UUID"]
+        },
+        {
+          "id": "returnVisitDate",
+          "isDate": true,
+          "title": "Return visit date",
+          "concept": "returnVisitDateConcept"
+        }
+      ]
+    }
+  ]
+  }

@@ -1,4 +1,5 @@
-import { getObsFromEncounter } from './encounter-list-utils';
+import dayjs from 'dayjs';
+import { findObs, getObsFromEncounter } from './encounter-list-utils';
 import { extractSchemaValues, replaceWithConfigDefaults } from './schema-manipulation';
 
 export const getPatientListTabsData = (patientListTabsSchema, config) => {
@@ -12,6 +13,8 @@ export const getPatientListTabsData = (patientListTabsSchema, config) => {
         header: column.title,
         index: column.index || null,
         getValue: (row) => {
+          const { encounter } = row;
+
           if (column.type === 'patientId') {
             return row.id;
           }
@@ -24,7 +27,26 @@ export const getPatientListTabsData = (patientListTabsSchema, config) => {
             return '03/03/2021';
           }
 
-          const { encounter } = row;
+          if (column.type === 'encounterDate') {
+            return encounter && dayjs(encounter.encounterDatetime).format('DD-MMM-YYYY');
+          }
+
+          if (column.type === 'vaccination') {
+            const obs = findObs(encounter, column.concept);
+
+            if (typeof obs !== 'undefined' && obs) {
+              if (typeof obs.value === 'object') {
+                const vaccineNAME =
+                  obs.value.names?.find((conceptName) => conceptName.conceptNameType === 'SHORT')?.name ||
+                  obs.value.name.name;
+                if (vaccineNAME === 'Other non-coded') {
+                  return getObsFromEncounter(encounter, column.fallbackConcepts[0]);
+                }
+              }
+            }
+            return getObsFromEncounter(encounter, column.concept);
+          }
+
           return getObsFromEncounter(encounter, column.concept, column.isDate);
         },
       };
