@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   type PatientChartProps,
@@ -98,12 +98,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
       key: 'breastfeeding',
     },
   ];
-  useEffect(() => {
-    getParentCurrentLabourAndDeliveryEncounter();
-    getParentRelationships();
-  }, []);
 
-  async function getParentRelationships() {
+  const getParentRelationships = useCallback(async () => {
     let relationships = [];
     const relationshipsData = await fetchPatientRelationships(patientUuid);
     if (relationshipsData?.length) {
@@ -112,9 +108,9 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
       });
     }
     setRelatives(relationships);
-  }
+  }, [patientUuid]);
 
-  async function getParentCurrentLabourAndDeliveryEncounter() {
+  const getParentCurrentLabourAndDeliveryEncounter = useCallback(async () => {
     const currentPregnancyANCEncounter = await fetchPatientLastEncounter(
       patientUuid,
       encounterTypes.antenatalEncounterType,
@@ -135,16 +131,13 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         );
       }
     }
-  }
+  }, [patientUuid, encounterTypes, obsConcepts]);
   useEffect(() => {
-    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personB.uuid));
-    Promise.all(relativeToPtrackerPromises).then((values) => {
-      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
-    });
-    getInfantOutcome();
-  }, [relatives]);
+    getParentCurrentLabourAndDeliveryEncounter();
+    getParentRelationships();
+  }, [getParentCurrentLabourAndDeliveryEncounter, getParentRelationships]);
 
-  const getInfantOutcome = () => {
+  const getInfantOutcome = useCallback(() => {
     const infantOutcomes = relatives.map(async (relative) => {
       const finalOutcome = await fetchChildLatestFinalOutcome(
         relative.personB.uuid,
@@ -157,18 +150,29 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
     Promise.all(infantOutcomes).then((values) => {
       setInfantOutcomes(values.map((value) => ({ finalOutcome: value.finalOutcome, childUuid: value.childUuid })));
     });
-  };
+  }, [encounterTypes.infantPostnatalEncounterType, obsConcepts.outcomeStatus, relatives]);
 
-  async function getChildPTracker(patientUuid: string) {
-    let pTrackerMap = { patientId: patientUuid, pTrackerId: '--' };
-    const identifiers = await fetchPatientIdentifiers(patientUuid);
-    if (identifiers?.length) {
-      pTrackerMap.pTrackerId =
-        identifiers.find((id) => id.identifierType.uuid === identifiersTypes.pTrackerIdentifierType)?.identifier ??
-        '--';
-    }
-    return pTrackerMap;
-  }
+  const getChildPTracker = useCallback(
+    async (patientUuid: string) => {
+      let pTrackerMap = { patientId: patientUuid, pTrackerId: '--' };
+      const identifiers = await fetchPatientIdentifiers(patientUuid);
+      if (identifiers?.length) {
+        pTrackerMap.pTrackerId =
+          identifiers.find((id) => id.identifierType.uuid === identifiersTypes.pTrackerIdentifierType)?.identifier ??
+          '--';
+      }
+      return pTrackerMap;
+    },
+    [identifiersTypes.pTrackerIdentifierType],
+  );
+
+  useEffect(() => {
+    const relativeToPtrackerPromises = relatives.map((relative) => getChildPTracker(relative.personB.uuid));
+    Promise.all(relativeToPtrackerPromises).then((values) => {
+      setRelativeToIdentifierMap(values.map((value) => ({ patientId: value.patientId, pTrackerId: value.pTrackerId })));
+    });
+    getInfantOutcome();
+  }, [relatives, getChildPTracker, getInfantOutcome]);
 
   const parentRelationships: familyItemProps[] = useMemo(() => {
     let items = [];
