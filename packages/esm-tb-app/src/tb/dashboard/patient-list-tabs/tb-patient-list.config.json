@@ -1,0 +1,49 @@
+{
+  "menuId": "tbClients",
+  "tabDefinitions": [
+    {
+      "tabName": "All Tb Clients",
+      "cohortId": "clientsEnrolledForTb",
+      "isReportingCohort": true,
+      "cohortSlotName": "clients-assessed-for-covid-tb",
+      "launchableForm": {
+        "package": "tb",
+        "name": "TB Follow-up Form",
+        "actionText": "Edit TB follow-up form",
+        "targetDashboard": "tb-assessments"
+      },
+      "associatedEncounterType": "tbProgramEnrollment",
+      "extraAssociatedEncounterTypes": ["tbTreatmentAndFollowUp"],
+      "excludeColumns": ["timeAddedToList", "waitingTime", "location", "phoneNumber", "hivResult"],
+      "otherColumns": [
+        {
+          "id": "caseID",
+          "title": "Case ID",
+          "concept": "caseID",
+          "index": 1
+        },
+        {
+          "id": "drugSensitivity",
+          "title": "Drug sensitivity",
+          "concept": "drugSensitivity"
+        },
+        {
+          "id": "site",
+          "title": "Site of TB",
+          "concept": "site"
+        },
+        {
+          "id": "nextAppointmentDate",
+          "isDate": true,
+          "title": "Site of TB",
+          "concept": "nextAppointmentDate"
+        },
+        {
+          "id": "outcome",
+          "title": "Outcome",
+          "concept": "outcome"
+        }
+      ]
+    }
+  ]
+}
