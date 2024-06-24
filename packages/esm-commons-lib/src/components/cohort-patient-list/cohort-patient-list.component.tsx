@@ -11,10 +11,11 @@ import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { DataTableSkeleton } from '@carbon/react';
 import { basePath } from '../../constants';
 import { useTranslation } from 'react-i18next';
-import { useFormsJson } from '../../hooks/useFormsJson';
 import { columns, consolidatatePatientMeta, filterPatientsByName, type PatientListColumn } from './helpers';
 
 import styles from './cohort-patient-list.scss';
+import { useCohortData, usePatientsLastEncounters } from '../../hooks/useCohortList';
+import { useFormsJson } from '../../hooks/useFormsJson';
 
 interface CohortPatientListProps {
   cohortId: string;
@@ -58,23 +59,19 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   viewPatientProgramSummary,
   viewTptPatientProgramSummary,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasLoadedPatients, setHasLoadedPatients] = useState(false);
-  const [loadedEncounters, setLoadedEncounters] = useState(false);
-  const [loadedHIVStatuses, setLoadedHIVStatuses] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [patientsCount, setPatientsCount] = useState(0);
-  const [searchTerm, setSearchTerm] = useState(null);
-  const [counter, setCounter] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
-  const [loadedExtraEncounters, setLoadedExtraEncounters] = useState(false);
-  const [extraEncounters, setExtraEncounters] = useState([]);
   const [paginatedPatients, setPaginatedPatients] = useState([]);
   const [allPatients, setAllPatients] = useState([]);
-  const [rawCohortData, setRawCohortData] = useState<{ location?: any; members: any[] }>({ members: [] });
-  const [isLoadingCohorts, setIsLoadingCohorts] = useState(true);
-  const columnAtLastIndex = 'actions';
+  const [patientsCount, setPatientsCount] = useState(0);
+  const [counter, setCounter] = useState(0);
+  const { t } = useTranslation();
+
+  // Fetch cohort data and forms JSON using your existing hooks
+  const { data: cohortData, error: cohortError } = useCohortData(cohortId, isReportingCohort, queryParams);
+
   const forms = useMemo(() => [launchableForm.name], [launchableForm]);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(forms);
 
@@ -97,52 +94,29 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
             ? 'Male'
             : 'Female'
           : rawPatient.patient.person.gender == 'M'
-            ? 'Male'
-            : 'Female',
+          ? 'Male'
+          : 'Female',
         birthday: isReportingCohort ? rawPatient.person.birthdate : rawPatient.patient.person.birthdate,
         url: `${basePath}${patientUuid}/chart${dashboard}`,
       };
     },
-    [isReportingCohort, launchableForm?.targetDashboard],
+    [isReportingCohort, launchableForm?.targetDashboard]
   );
 
-  const { t } = useTranslation();
-
-  const updatePatientTable = (fullDataset, start, itemCount) => {
-    let currentRows = [];
-
-    for (let i = start; i < start + itemCount; i++) {
-      if (i < fullDataset.length) {
-        currentRows.push(fullDataset[i]);
-      }
-    }
-    setPaginatedPatients(currentRows);
-  };
+  const updatePatientTable = useCallback((fullDataset, start, itemCount) => {
+    setPaginatedPatients(fullDataset.slice(start, start + itemCount));
+  }, []);
 
   useEffect(() => {
-    if (!isReportingCohort) {
-      getCohort(cohortId, 'full').then((results) => {
-        setRawCohortData({ members: results.cohortMembers, location: results.location });
-        setIsLoadingCohorts(false);
-      });
-    } else {
-      getReportingCohortMembers(cohortId, queryParams).then((results) => {
-        setRawCohortData({ members: results.map((result) => result.data) });
-        setIsLoadingCohorts(false);
-      });
-    }
-  }, [cohortId, isReportingCohort, queryParams]);
-
-  useEffect(() => {
-    if (!isLoadingCohorts && !isLoadingFormsJson) {
-      const patients = rawCohortData.members.map((member) => {
+    if (cohortData && formsJson) {
+      const patients = cohortData.members.map((member) => {
         const patient = constructPatient(member);
         member['patientUrl'] = patient.url;
         return {
           ...patient,
           ...consolidatatePatientMeta(member, formsJson[0], {
             isDynamicCohort: isReportingCohort,
-            location: rawCohortData.location,
+            location: cohortData.location,
             encounterType: associatedEncounterType,
             moduleName,
             launchableFormProps: launchableForm,
@@ -157,92 +131,30 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       });
       setAllPatients(patients);
       updatePatientTable(patients, 0, pageSize);
-      setHasLoadedPatients(true);
-      setIsLoading(false);
     }
-  }, [
-    rawCohortData,
-    formsJson,
-    isLoadingCohorts,
-    isLoadingFormsJson,
-    pageSize,
-    constructPatient,
-    isReportingCohort,
-    associatedEncounterType,
-    moduleName,
-    launchableForm,
-    addPatientToListOptions,
-    t,
-    viewTptPatientProgramSummary,
-    viewPatientProgramSummary,
-  ]);
+  }, [cohortData, formsJson, pageSize, constructPatient]);
+
+  // Use the custom SWR hook to fetch patient last encounters
+  const { data: patientsWithEncounters, isLoading: isLoadingEncounters, isError: encountersError } = usePatientsLastEncounters(allPatients, associatedEncounterType, excludeColumns);
 
   useEffect(() => {
-    if (hasLoadedPatients && allPatients.length) {
-      Promise.all(allPatients.map((patient) => fetchPatientLastEncounter(patient.uuid, associatedEncounterType))).then(
-        (results) => {
-          results.forEach((encounter, index) => {
-            allPatients[index].latestEncounter = encounter;
-            if (index == allPatients.length - 1) {
-              setAllPatients([...allPatients]);
-              setLoadedEncounters(true);
-              setIsLoading(false);
-            }
-          });
-        },
-      );
+    if (patientsWithEncounters && !isLoadingEncounters) {
+      setAllPatients(patientsWithEncounters);
     }
+  }, [patientsWithEncounters, isLoadingEncounters]);
+
+  useEffect(() => {
     setPatientsCount(allPatients.length);
-  }, [allPatients, associatedEncounterType, hasLoadedPatients]);
-
-  useEffect(() => {
-    const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
-    if ((loadedEncounters || !associatedEncounterType) && !loadedHIVStatuses && fetchHivResults) {
-      Promise.all(allPatients.map((patient) => fetchPatientsFinalHIVStatus(patient.uuid))).then((results) => {
-        results.forEach((hivResult, index) => {
-          allPatients[index].hivResult = hivResult;
-          if (index == allPatients.length - 1) {
-            setAllPatients([...allPatients]);
-            setLoadedHIVStatuses(true);
-          }
-        });
-      });
-    }
-  }, [allPatients, associatedEncounterType, excludeColumns, loadedEncounters, loadedHIVStatuses]);
-
-  const pagination = useMemo(() => {
-    return {
-      usePagination: true,
-      currentPage: currentPage,
-      onChange: ({ pageSize, page }) => {
-        let startOffset = (page - 1) * pageSize;
-        updatePatientTable(allPatients, startOffset, pageSize);
-
-        setCurrentPage(page);
-        setPageSize(pageSize);
-        return null;
-      },
-      pageSize: pageSize,
-      totalItems: patientsCount,
-    };
-  }, [currentPage, pageSize, patientsCount, allPatients]);
+  }, [allPatients]);
 
   const handleSearch = useCallback(
     (searchTerm) => {
       setSearchTerm(searchTerm);
       const filtrate = filterPatientsByName(searchTerm, allPatients);
       setFilteredResults(filtrate);
-      return true;
     },
-    [allPatients],
+    [allPatients]
   );
-
-  useEffect(() => {
-    attach(cohortSlotName, 'patient-table');
-    return () => {
-      detach(cohortSlotName, 'patient-table');
-    };
-  });
 
   const state = useMemo(() => {
     let filteredColumns = [...columns];
@@ -258,8 +170,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
         }
       });
     }
-    // position column designated to be at the last index
-    const index = filteredColumns.findIndex((column) => column.key == columnAtLastIndex);
+    const index = filteredColumns.findIndex((column) => column.key == 'actions');
     if (index) {
       const column = filteredColumns[index];
       filteredColumns.splice(index, 1);
@@ -269,12 +180,11 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     return {
       patients: searchTerm ? filteredResults : paginatedPatients,
       columns: filteredColumns,
-      isLoading,
+      isLoading: !cohortData || !formsJson || isLoadingEncounters,
       search: {
         placeHolder: t('searchClientList', 'Search client list'),
         onSearch: (searchTerm) => {
           if (!searchTerm) {
-            // clear value
             setSearchTerm('');
           }
         },
@@ -288,7 +198,20 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
           autoFocus: true,
         },
       },
-      pagination: pagination,
+      pagination: {
+        usePagination: true,
+        currentPage: currentPage,
+        onChange: ({ pageSize, page }) => {
+          let startOffset = (page - 1) * pageSize;
+          updatePatientTable(allPatients, startOffset, pageSize);
+
+          setCurrentPage(page);
+          setPageSize(pageSize);
+          return null;
+        },
+        pageSize: pageSize,
+        totalItems: patientsCount,
+      },
       autoFocus: true,
     };
   }, [
@@ -296,44 +219,20 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     filteredResults,
     paginatedPatients,
     handleSearch,
-    pagination,
-    isLoading,
+    currentPage,
+    pageSize,
+    patientsCount,
+    cohortData,
+    formsJson,
+    isLoadingEncounters,
     t,
     excludeColumns,
     otherColumns,
   ]);
 
-  useEffect(() => {
-    setCounter(counter + 1);
-  }, [counter, state]);
-
-  useEffect(() => {
-    if (allPatients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {
-      allPatients.forEach((patient) => {
-        extraAssociatedEncounterTypes.forEach((encType) => {
-          extraEncounters.push(fetchPatientLastEncounter(patient.uuid, encType));
-        });
-      });
-
-      Promise.all(extraEncounters).then((results) => {
-        results.forEach((encounter, index) => {
-          const idx = allPatients.findIndex((patient) => patient.uuid === encounter?.patient.uuid);
-          if (idx !== -1) {
-            allPatients[idx].latestExtraEncounters = allPatients[idx].latestExtraEncounters?.concat(encounter) ?? [
-              encounter,
-            ];
-          }
-        });
-        setLoadedExtraEncounters(true);
-      });
-    }
-  }, [allPatients, extraAssociatedEncounterTypes, extraEncounters, loadedExtraEncounters]);
-
   return (
     <div className={styles.table1}>
-      {isLoading ? (
-        <DataTableSkeleton rowCount={5} />
-      ) : !paginatedPatients.length ? (
+      {!paginatedPatients.length ? (
         <TableEmptyState
           tableHeaders={state.columns}
           message={t('noPatientSidenav', 'There are no patients in this list.')}
