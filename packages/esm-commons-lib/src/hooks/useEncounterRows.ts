@@ -4,7 +4,12 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { encounterRepresentation } from '../constants';
 
-export function useEncounterRows(patientUuid: string, encounterType: string, encounterFilter: (encounter) => boolean) {
+export function useEncounterRows(
+  patientUuid: string,
+  encounterType: string,
+  encounterFilter: (encounter) => boolean,
+  afterFormSaveAction: () => void,
+) {
   const [encounters, setEncounters] = useState([]);
   const url = `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`;
 
@@ -32,7 +37,8 @@ export function useEncounterRows(patientUuid: string, encounterType: string, enc
 
   const onFormSave = useCallback(() => {
     mutate();
-  }, [mutate]);
+    afterFormSaveAction && afterFormSaveAction();
+  }, [afterFormSaveAction, mutate]);
 
   return {
     encounters,
