@@ -1,0 +1,38 @@
+{
+  "menuId": "tptClients",
+  "tabDefinitions": [
+    {
+      "tabName": "All Tpt Clients",
+      "cohortId": "clientsEnrolledForTpt",
+      "isReportingCohort": true,
+      "cohortSlotName": "clients-assessed-for-covid-tpt",
+      "launchableForm": {
+        "package": "tpt",
+        "name": "TPT Followup & Treatment form",
+        "actionText": "Edit TPT Follow-up form",
+        "targetDashboard": "tb-assessments"
+      },
+      "associatedEncounterType": "tptCaseEnrollment",
+      "excludeColumns": ["timeAddedToList", "waitingTime", "location", "phoneNumber", "hivResult"],
+      "otherColumns": [
+        {
+          "id": "tptTreatmentId",
+          "title": "TPT Treatment ID",
+          "concept": "tptTreatmentId",
+          "index": 1
+        },
+        {
+          "id": "EnrolmentDate",
+          "isDate": true,
+          "title": "Enrolment date",
+          "concept": "tptEnrollmentDate"
+        },
+        {
+          "id": "indication",
+          "title": "Indication",
+          "concept": "tptIndication"
+        }
+      ]
+    }
+  ]
+}
