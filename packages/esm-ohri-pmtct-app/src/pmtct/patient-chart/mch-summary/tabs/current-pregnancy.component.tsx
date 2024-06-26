@@ -14,11 +14,11 @@ import {
 import dayjs from 'dayjs';
 import { Link } from '@carbon/react';
 import { navigate, useConfig } from '@openmrs/esm-framework';
-import { fetchPatientIdentifiers, fetchChildLatestFinalOutcome } from '../../../api.resource';
 import recentPregnancyConfigSchema from './recent-pregnancy-config.json';
 import appointmentSummaryConfigSchema from './appointments-config.json';
 import arvTherapyColumnsConfigSchema from './arv-therapy-config.json';
 import motherPreviousVisitConfigSchema from './mother-previous-visit.json';
+import { fetchChildLatestFinalOutcome, fetchPatientIdentifiers } from '../../../../api.resource';
 
 interface pregnancyOutcomeProps {
   id: string;

@@ -1,4 +1,4 @@
-import { getIdentifierInfo } from '../api.resource';
+import { getIdentifierInfo } from "../api.resource";
 
 export const generateInfantPTrackerId = (fieldId: string, motherPtrackerId: string): string | undefined => {
   if (!fieldId || !motherPtrackerId) return;

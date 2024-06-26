@@ -1,6 +1,6 @@
 import { openmrsFetch, getConfig } from '@openmrs/esm-framework';
-import { type Patient, type PatientIdentifier, type Relationship } from './types';
 import { fetchPatientRelationships } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { type Patient, type PatientIdentifier, type Relationship } from './types';
 
 const BASE_WS_API_URL = '/ws/rest/v1/';
 const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct-app');

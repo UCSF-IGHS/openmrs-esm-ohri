@@ -32,7 +32,5 @@
       "slot": "opd-summary-slot",
       "component": "opdSummaryDashboard"
     }
-    
-
   ]
 }
