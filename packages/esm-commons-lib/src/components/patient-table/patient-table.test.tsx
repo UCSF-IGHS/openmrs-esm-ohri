@@ -11,23 +11,12 @@ describe('PatientTable', () => {
     { key: 'age', header: 'Age', getValue: (patient) => patient.age },
   ];
 
-  const mockPagination = {
-    usePagination: true,
-    currentPage: 1,
-    onChange: jest.fn(),
-    pageSize: 10,
-    totalItems: 20,
-  };
-
   it('renders patient table correctly with specific columns and patient', () => {
     const { getByText } = render(
       <PatientTable
         columns={mockColumns}
         isFetching={false}
         isLoading={false}
-        mutateListDetails={() => {}}
-        mutateListMembers={() => {}}
-        pagination={mockPagination}
         patients={mockPatients}
       />,
     );
@@ -45,9 +34,6 @@ describe('PatientTable', () => {
         columns={mockColumns}
         isFetching={false}
         isLoading={true}
-        mutateListDetails={() => {}}
-        mutateListMembers={() => {}}
-        pagination={mockPagination}
         patients={[]}
       />,
     );
@@ -63,9 +49,6 @@ describe('PatientTable', () => {
         columns={mockColumns}
         isFetching={false}
         isLoading={false}
-        mutateListDetails={() => {}}
-        mutateListMembers={() => {}}
-        pagination={mockPagination}
         patients={[]}
       />,
     );
@@ -81,9 +64,6 @@ describe('PatientTable', () => {
         columns={mockColumns}
         isFetching={false}
         isLoading={false}
-        mutateListDetails={() => {}}
-        mutateListMembers={() => {}}
-        pagination={mockPagination}
         patients={mockPatients}
       />,
     );

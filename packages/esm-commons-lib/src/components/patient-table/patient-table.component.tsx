@@ -1,6 +1,5 @@
-import React, { useId, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { CSSProperties, HTMLAttributes } from 'react';
-import fuzzy from 'fuzzy';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -11,7 +10,6 @@ import {
   Layer,
   Modal,
   Pagination,
-  Search,
   Table,
   TableBody,
   TableCell,
@@ -21,10 +19,13 @@ import {
   TableRow,
   Tile,
 } from '@carbon/react';
-import { TrashCan } from '@carbon/react/icons';
-import { ConfigurableLink, useLayoutType, isDesktop, useDebounce } from '@openmrs/esm-framework';
+import { AudioConsole, TrashCan } from '@carbon/react/icons';
+import { ConfigurableLink, useLayoutType, isDesktop, usePagination } from '@openmrs/esm-framework';
 import { EmptyDataIllustration } from '../empty-state/empty-data-illustration.component';
 import styles from './patient-table.scss';
+import { TableToolbar } from '@carbon/react';
+import { TableToolbarContent } from '@carbon/react';
+import { TableToolbarSearch } from '@carbon/react';
 
 // FIXME Temporarily included types from Carbon
 type InputPropsBase = Omit<HTMLAttributes<HTMLInputElement>, 'onChange'>;
@@ -126,17 +127,6 @@ interface PatientTableProps {
   patients: Array<any>;
   isFetching?: boolean;
   isLoading: boolean;
-  mutateListDetails: () => void;
-  mutateListMembers: () => void;
-  pagination: {
-    usePagination: boolean;
-    currentPage: number;
-    onChange(props: any): any;
-    pageSize: number;
-    totalItems: number;
-    pagesUnknown?: boolean;
-    lastPage?: boolean;
-  };
   style?: CSSProperties;
 }
 
@@ -153,41 +143,23 @@ export const PatientTable: React.FC<PatientTableProps> = ({
   columns,
   isFetching,
   isLoading,
-  mutateListDetails,
-  mutateListMembers,
-  pagination,
   patients,
 }) => {
   const { t } = useTranslation();
-  const id = useId();
   const layout = useLayoutType();
   const responsiveSize = isDesktop(layout) ? 'sm' : 'lg';
 
   const [isDeleting, setIsDeleting] = useState(false);
   const [membershipUuid, setMembershipUuid] = useState('');
   const [patientName, setPatientName] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchTerm);
-
-  const filteredPatients = useMemo(() => {
-    if (!debouncedSearchTerm) {
-      return patients;
-    }
-
-    return debouncedSearchTerm
-      ? fuzzy
-          .filter(debouncedSearchTerm, patients, {
-            extract: (patient: any) => `${patient.name} ${patient.identifier} ${patient.sex}`,
-          })
-          .sort((r1, r2) => r1.score - r2.score)
-          .map((result) => result.original)
-      : patients;
-  }, [debouncedSearchTerm, patients]);
+  const [currentPageSize, setPageSize] = useState(10);
+  const pageSizes = [10, 20, 50, 100, 250];
+  const { goTo, results, currentPage } = usePagination(patients, currentPageSize);
 
   const tableRows: Array<typeof DataTableRow> = useMemo(
     () =>
-      filteredPatients.map((patient, index) => {
+      results.map((patient, index) => {
         const row = {
           id: String(index),
         };
@@ -203,7 +175,8 @@ export const PatientTable: React.FC<PatientTableProps> = ({
         });
         return row;
       }) ?? [],
-    [columns, filteredPatients],
+
+    [columns, results],
   );
 
   if (isLoading) {
@@ -226,22 +199,27 @@ export const PatientTable: React.FC<PatientTableProps> = ({
         <div className={styles.tableOverride}>
           <div className={styles.searchContainer}>
             <div>{isFetching && <InlineLoading />}</div>
-            <div>
-              <Layer>
-                <Search
-                  className={styles.searchOverrides}
-                  id={`${id}-search`}
-                  labelText=""
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-                  placeholder={t('searchThisList', 'Search this list')}
-                  size={responsiveSize}
-                />
-              </Layer>
-            </div>
           </div>
           <DataTable rows={tableRows} headers={columns} isSortable size={responsiveSize} useZebraStyles>
-            {({ rows, headers, getHeaderProps, getTableProps, getRowProps }) => (
+            {({ rows, headers, getHeaderProps, getTableProps, getRowProps, onInputChange }) => (
               <TableContainer>
+                <TableToolbar
+                  style={{
+                    position: 'static',
+                    height: '3rem',
+                    overflow: 'visible',
+                    backgroundColor: 'color',
+                  }}>
+                  <TableToolbarContent className={styles.toolbarContent}>
+                    <TableToolbarSearch
+                      className={styles.search}
+                      expanded
+                      onChange={onInputChange}
+                      placeholder={t('searchThisList', 'Search this list')}
+                      size="sm"
+                    />
+                  </TableToolbarContent>
+               </TableToolbar>
                 <Table className={styles.table} {...getTableProps()} data-testid="patientsTable">
                   <TableHead>
                     <TableRow>
@@ -295,7 +273,7 @@ export const PatientTable: React.FC<PatientTableProps> = ({
               </TableContainer>
             )}
           </DataTable>
-          {filteredPatients?.length === 0 && (
+          {results?.length === 0 && (
             <div className={styles.filterEmptyState}>
               <Layer level={0}>
                 <Tile className={styles.filterEmptyStateTile}>
@@ -307,20 +285,22 @@ export const PatientTable: React.FC<PatientTableProps> = ({
               </Layer>
             </div>
           )}
-          {pagination.usePagination && (
-            <Pagination
-              backwardText={t('nextPage', 'Next page')}
-              className={styles.paginationOverride}
-              forwardText={t('previousPage', 'Previous page')}
-              isLastPage={pagination.lastPage}
-              onChange={pagination.onChange}
-              page={pagination.currentPage}
-              pageSize={pagination.pageSize}
-              pageSizes={[10, 20, 30, 40, 50]}
-              pagesUnknown={pagination?.pagesUnknown}
-              totalItems={pagination.totalItems}
-            />
-          )}
+          <Pagination
+            forwardText={t('nextPage', 'Next page')}
+            backwardText={t('previousPage', 'Previous page')}
+            page={currentPage}
+            pageSize={currentPageSize}
+            pageSizes={pageSizes}
+            totalItems={patients?.length}
+            onChange={({ pageSize, page }) => {
+              if (pageSize !== currentPageSize) {
+                setPageSize(pageSize);
+              }
+              if (page !== currentPage) {
+                goTo(page);
+              }
+            }}
+          />
         </div>
         {showConfirmationModal && (
           <Modal

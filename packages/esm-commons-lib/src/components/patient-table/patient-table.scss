@@ -2,24 +2,6 @@
 @use '@carbon/styles/scss/type';
 @import '~@openmrs/esm-styleguide/src/vars';
 
-.searchContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-top: spacing.$spacing-05;
-  background-color: #ededed;
-}
-
-.searchContainer > div {
-  align-self: center;
-  justify-self: end;
-}
-
-.searchOverrides {
-  width: 100%;
-  max-width: 250px;
-  border: 0px !important;
-}
-
 div.tableOverride {
   background-color: $ui-01;
 }
@@ -44,19 +26,6 @@ div#table-tool-bar {
 .tabletRow,
 .tabletHeader {
   height: spacing.$spacing-09 !important;
-}
-
-.paginationOverride {
-  background-color: $ui-background;
-  border-top: 1px solid $ui-03 !important;
-  border-bottom: 1px solid $ui-03 !important;
-  overflow-x: hidden;
-}
-
-.paginationOverride > div {
-  background-color: $ui-background;
-  border-bottom: 0px !important;
-  border-top: 0px !important;
 }
 
 .link {
@@ -145,4 +114,17 @@ div#table-tool-bar {
 .filterEmptyStateHelper {
   @include type.type-style('body-compact-01');
   color: $text-02;
+}
+
+.search {
+  max-width: 16rem;
+
+  input {
+    background-color: $ui-02 !important;
+  }
+}
+
+.toolbarContent {
+  height: spacing.$spacing-07;
+  margin-bottom: spacing.$spacing-02;
 }

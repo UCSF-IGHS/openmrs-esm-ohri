@@ -314,3 +314,61 @@ function isInvalidValue(value) {
   }
   return false;
 }
+
+export async function getCohortList(
+  cohortUuid: string,
+  queryParams?: string[],
+  isReportingCohort?: boolean,
+  encounterType?: string,
+) {
+  const params = queryParams ? queryParams.join('&') : '';
+  const cohortMembersUrl = params
+    ? `reportingrest/cohort/${cohortUuid}?${params}`
+    : `reportingrest/cohort/${cohortUuid}`;
+  const cohortUrl = `cohortm/cohort/${cohortUuid}?v=full`;
+
+  const url = isReportingCohort ? cohortMembersUrl : cohortUrl;
+
+  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+
+  if (data?.members) {
+    return Promise.all(
+      data.members.map((member) => {
+        return openmrsFetch(
+          `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${member.uuid}&v=${encounterRepresentation}`,
+        ).then(({ data }) => {
+          if (data.results.length) {
+            const sortedEncounters = data.results.sort(
+              (firstEncounter, secondEncounter) =>
+                new Date(secondEncounter.encounterDatetime).getTime() -
+                new Date(firstEncounter.encounterDatetime).getTime(),
+            );
+
+            return sortedEncounters[0];
+          }
+
+          return null;
+        });
+      }),
+    );
+  } else if (data?.cohortMembers) {
+    return Promise.all(
+      data.cohortMembers.map((member) => {
+        return openmrsFetch(
+          `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${member.patient.uuid}&v=${encounterRepresentation}`,
+        ).then(({ data }) => {
+          if (data.results.length) {
+            const sortedEncounters = data.results
+              .sort(
+                (firstEncounter, secondEncounter) =>
+                  new Date(secondEncounter.encounterDatetime).getTime() -
+                  new Date(firstEncounter.encounterDatetime).getTime(),
+              );
+            return sortedEncounters[0];
+          }
+          return null;
+        });
+      }),
+    );
+  }
+}
