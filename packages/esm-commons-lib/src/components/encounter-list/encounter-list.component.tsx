@@ -13,7 +13,6 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
-import { mutate } from 'swr';
 
 export interface EncounterListColumn {
   key: string;
@@ -42,6 +41,7 @@ export interface EncounterListProps {
     workspaceWindowSize?: 'minimized' | 'maximized';
   };
   filter?: (encounter: any) => boolean;
+  afterFormSaveAction?: () => void;
 }
 
 export const EncounterList: React.FC<EncounterListProps> = ({
@@ -53,6 +53,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   formList,
   filter,
   launchOptions,
+  afterFormSaveAction,
 }) => {
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
@@ -63,7 +64,12 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { isDead } = usePatientDeathStatus(patientUuid);
   const formNames = useMemo(() => formList.map((form) => form.name), []);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
-  const { encounters, isLoading, onFormSave } = useEncounterRows(patientUuid, encounterType, filter);
+  const { encounters, isLoading, onFormSave } = useEncounterRows(
+    patientUuid,
+    encounterType,
+    filter,
+    afterFormSaveAction,
+  );
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
@@ -120,10 +126,14 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               kind: 'error',
             });
           });
+
+        // Update encounters after deletion
+        const updatedEncounters = encounters.filter((enc) => enc.uuid !== encounterUuid);
+        constructPaginatedTableRows(updatedEncounters, currentPage, pageSize);
         close();
       },
     });
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (!isLoadingFormsJson) {
@@ -218,15 +228,15 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
-          <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid='actions-id'>
+          <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid="actions-id">
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
                 index={index}
                 itemText={actionItem.label}
                 onClick={(e) => {
                   e.preventDefault();
-                  actionItem.mode == 'delete' ?
-                    handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
+                  actionItem.mode == 'delete'
+                    ? handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
                     : launchEncounterForm(
                         forms.find((form) => form.name == actionItem?.form?.name),
                         moduleName,
@@ -237,7 +247,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                         actionItem.intent,
                         workspaceWindowSize,
                         patientUuid,
-                    );
+                      );
                 }}
               />
             ))}
@@ -247,7 +257,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       });
       setPaginatedRows(rows);
     },
-    [columns, defaultActions, forms, moduleName, workspaceWindowSize, patientUuid, onFormSave],
+    [columns, defaultActions, forms, moduleName, onFormSave, workspaceWindowSize, patientUuid, handleDeleteEncounter],
   );
 
   useEffect(() => {
@@ -260,7 +270,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
       // we only have one form with no intents
       // just return the "Add" button
-            return (
+      return (
         <Button
           kind="ghost"
           renderIcon={Add}
