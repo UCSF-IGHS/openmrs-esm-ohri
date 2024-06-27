@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-cervical-cancer-app",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Cervical cancer microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-cervical-cancer-app.js",
   "main": "src/index.ts",

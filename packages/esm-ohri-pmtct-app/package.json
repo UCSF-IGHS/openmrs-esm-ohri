@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-pmtct-app",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "PMTCT microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-pmtct-app.js",
   "main": "src/index.ts",
