@@ -1,0 +1,12 @@
+{
+  "activeClients": "Clients actifs",
+  "add": "Ajouter",
+  "characteristicsTitle": "Caractéristiques",
+  "clientLinkage": "Lien client",
+  "hivMonitoring": "Surveillance du VIH",
+  "lastVisitDetails": "Détails de la dernière visite",
+  "missedAppointments": "Rendez-vous manqués",
+  "noDrugsPickedLast90days": "Aucun médicament pris, 90 derniers jours",
+  "patientsInClinicPopulation": "Patients dans la population de la clinique",
+  "suspectedLTFU": "LTFU suspecté"
+}

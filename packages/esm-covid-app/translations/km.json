@@ -1,0 +1,23 @@
+{
+  "age": "អាយុ",
+  "Age": "អាយុ",
+  "AssessmentDate": "កាលបរិច្ឆេទវាយតម្លៃ",
+  "assessments": "ការវាយតម្លៃ",
+  "cases": "ករណី",
+  "name": "ឈ្មោះ",
+  "noPatientList": "មិនមានអ្នកជំងឺណាមួយនៅក្នុងបញ្ជីនេះទេ។",
+  "outcome": "លទ្ធផល",
+  "outcomeDate": "កាលបរិច្ឆេទលទ្ធផល",
+  "outcomes": "លទ្ធផល",
+  "peopleTestedPositive": "មនុស្សដែលបានធ្វើតេស្តវិជ្ជាជីវៈ",
+  "peopleVaccinated": "មនុស្សដែលបានបំពេញការវាយតម្លៃ",
+  "PeopleWithCovidOutcome": "មនុស្សដែលមានលទ្ធផល COVID",
+  "presentation": "បទពិសោធន៍",
+  "searchClientList": "ស្វែងរកបញ្ជីអតិថិជន",
+  "sex": "ភេទ",
+  "testsConducted": "ការវាយតម្លៃដែលបានធ្វើរួចរាល់",
+  "vaccinationLastVaccineAdmin": "វេបសាយចុងក្រោយដែលបានគ្រប់គ្រង",
+  "vaccinationLastVaccineDoseAdmin": "កំពូលទីបួនចុងក្រោយដែលបានគ្រប់គ្រង",
+  "vaccinationName": "ឈ្មោះ",
+  "vaccinations": "ការបំពេញវេបសាយ"
+}
