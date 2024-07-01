@@ -24,12 +24,12 @@
         {
           "id": "finalAssessment",
           "title": "Final result",
-          "concept": "rapidTestResult"
+          "concept": "pcrTestResult"
         },
         {
           "id": "outcome",
           "title": "Outcome",
-          "concept": "covidOutcome"
+          "concept": "covidOutcomeUUID"
         }
       ]
     },

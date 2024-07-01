@@ -163,7 +163,7 @@ export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMe
     viewPatientProgramSummary,
     viewTptPatientProgramSummary,
   } = config;
-  const patientUuid = !isDynamicCohort ? rawPatientMeta.patient.uuid : rawPatientMeta.person.uuid;
+  const patientUuid = !isDynamicCohort ? rawPatientMeta.patient.uuid : rawPatientMeta.patient.person.uuid;
   dayjs.extend(localizedFormat);
   dayjs.extend(relativeTime);
 

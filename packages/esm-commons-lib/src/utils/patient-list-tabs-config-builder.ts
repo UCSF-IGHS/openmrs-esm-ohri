@@ -14,7 +14,6 @@ export const getPatientListTabsData = (patientListTabsSchema, config) => {
         index: column.index || null,
         getValue: (row) => {
           const { encounter } = row;
-
           if (column.type === 'patientId') {
             return row.id;
           }
@@ -46,7 +45,6 @@ export const getPatientListTabsData = (patientListTabsSchema, config) => {
             }
             return getObsFromEncounter(encounter, column.concept);
           }
-
           return getObsFromEncounter(encounter, column.concept, column.isDate);
         },
       };
