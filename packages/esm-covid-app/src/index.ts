@@ -1,7 +1,7 @@
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
-import CovidVaccinations from './covid/patient chart/covid-vaccinations.component';
-import CovidLabResults from './covid/patient chart/lab-results.component';
-import CovidAssessment from './covid/patient chart/case-assessment.component';
+import CovidVaccinations from './covid/patient-chart/covid-vaccinations.component';
+import CovidLabResults from './covid/patient-chart/lab-results.component';
+import CovidAssessment from './covid/patient-chart/case-assessment.component';
 import {
   covidAssessmentsDashboardMeta,
   covidLabTestsDashboardMeta,
