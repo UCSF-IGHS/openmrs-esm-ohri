@@ -172,6 +172,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     launchableForm,
     addPatientToListOptions,
     t,
+    viewPatientProgramSummary,
+    viewTptPatientProgramSummary,
   ]);
 
   useEffect(() => {
@@ -190,7 +192,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       );
     }
     setPatientsCount(allPatients.length);
-  }, [hasLoadedPatients]);
+  }, [hasLoadedPatients, allPatients, associatedEncounterType]);
 
   useEffect(() => {
     const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
@@ -289,7 +291,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       autoFocus: true,
     };
   }, [
-    loadedExtraEncounters,
     searchTerm,
     filteredResults,
     paginatedPatients,
@@ -303,7 +304,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
 
   useEffect(() => {
     setCounter(counter + 1);
-  }, [state]);
+  }, [state, counter]);
 
   useEffect(() => {
     if (allPatients.length && extraAssociatedEncounterTypes && !loadedExtraEncounters) {

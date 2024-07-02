@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "1.1.0-pre.723",
+    "@openmrs/openmrs-form-engine-lib": "2.0.0-pre.1260",
     "ace-builds": "^1.4.12",
     "react-ace": "^9.4.4"
   },
