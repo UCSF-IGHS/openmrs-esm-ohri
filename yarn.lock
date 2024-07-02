@@ -2716,7 +2716,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-commons-lib@workspace:packages/esm-commons-lib"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:1.1.0-pre.723"
+    "@openmrs/openmrs-form-engine-lib": "npm:2.0.0-pre.1260"
     enzyme: "npm:^3.11.0"
     enzyme-adapter-react-16: "npm:^1.15.6"
     fuzzy: "npm:^0.1.3"
@@ -2773,7 +2773,7 @@ __metadata:
   resolution: "@ohri/openmrs-esm-ohri-form-render-app@workspace:packages/esm-form-render-app"
   dependencies:
     "@carbon/react": "npm:^1.13.0"
-    "@openmrs/openmrs-form-engine-lib": "npm:1.1.0-pre.723"
+    "@openmrs/openmrs-form-engine-lib": "npm:2.0.0-pre.1260"
     ace-builds: "npm:^1.4.12"
     react-ace: "npm:^9.4.4"
     webpack: "npm:^5.88.2"
@@ -3236,31 +3236,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openmrs/openmrs-form-engine-lib@npm:1.1.0-pre.723":
-  version: 1.1.0-pre.723
-  resolution: "@openmrs/openmrs-form-engine-lib@npm:1.1.0-pre.723"
+"@openmrs/openmrs-form-engine-lib@npm:2.0.0-pre.1260":
+  version: 2.0.0-pre.1260
+  resolution: "@openmrs/openmrs-form-engine-lib@npm:2.0.0-pre.1260"
   dependencies:
-    ace-builds: "npm:^1.4.12"
+    "@carbon/react": "npm:>1.47.0 <1.50.0"
+    ace-builds: "npm:^1.33.2"
     classnames: "npm:^2.5.1"
     dayjs: "npm:1.x"
-    formik: "npm:^2.2.6"
-    lodash-es: "npm:^4.17.15"
-    react-error-boundary: "npm:^4.0.11"
-    react-markdown: "npm:^7.1.0"
+    formik: "npm:^2.4.6"
+    lodash-es: "npm:^4.17.21"
+    react-error-boundary: "npm:^4.0.13"
+    react-markdown: "npm:^7.1.2"
     react-waypoint: "npm:^10.3.0"
-    react-webcam: "npm:^7.1.1"
-    yup: "npm:^0.29.1"
+    react-webcam: "npm:^7.2.0"
+    yup: "npm:^1.4.0"
   peerDependencies:
-    "@carbon/react": 1.x
     "@openmrs/esm-framework": 5.x
-    "@openmrs/esm-patient-common-lib": 7.x
+    "@openmrs/esm-patient-common-lib": 8.x
     dayjs: 1.x
     i18next: 23.x
     react: 18.x
     react-i18next: 11.x
     rxjs: 6.x
     swr: 2.x
-  checksum: 015d04dd06626191a084f9fefad0113f2ecbf16f0a8b46fadc4301458785978264c49350ecd9faa4bcfe78c9f723d5241a76b708d3943c53bbea3a5cf1c4cf78
+  checksum: 3266f4c4df6254f46017808dc5fec6071c8ab3a7476147285d182cee1679156f037ef058cdea18f55fce1175007c4dbd6997742eaa695419dd555d6d1efa077e
   languageName: node
   linkType: hard
 
@@ -5505,6 +5505,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hoist-non-react-statics@npm:^3.3.1":
+  version: 3.3.5
+  resolution: "@types/hoist-non-react-statics@npm:3.3.5"
+  dependencies:
+    "@types/react": "npm:*"
+    hoist-non-react-statics: "npm:^3.3.0"
+  checksum: b645b062a20cce6ab1245ada8274051d8e2e0b2ee5c6bd58215281d0ec6dae2f26631af4e2e7c8abe238cdcee73fcaededc429eef569e70908f82d0cc0ea31d7
+  languageName: node
+  linkType: hard
+
 "@types/html-minifier-terser@npm:^6.0.0":
   version: 6.1.0
   resolution: "@types/html-minifier-terser@npm:6.1.0"
@@ -6271,6 +6281,13 @@ __metadata:
     mime-types: "npm:~2.1.34"
     negotiator: "npm:0.6.3"
   checksum: 67eaaa90e2917c58418e7a9b89392002d2b1ccd69bcca4799135d0c632f3b082f23f4ae4ddeedbced5aa59bcc7bdf4699c69ebed4593696c922462b7bc5744d6
+  languageName: node
+  linkType: hard
+
+"ace-builds@npm:^1.33.2":
+  version: 1.35.2
+  resolution: "ace-builds@npm:1.35.2"
+  checksum: dca440312d85e85cf3e0cac5ee1ffad2d282b31fbcffbd5b6d72cfdd5037cdb85b43d41ef3e3557ab5d446009233c37a4b26b99f7b1cf1f043210d27a8abf571
   languageName: node
   linkType: hard
 
@@ -10146,20 +10163,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formik@npm:^2.2.6":
-  version: 2.2.9
-  resolution: "formik@npm:2.2.9"
+"formik@npm:^2.4.6":
+  version: 2.4.6
+  resolution: "formik@npm:2.4.6"
   dependencies:
+    "@types/hoist-non-react-statics": "npm:^3.3.1"
     deepmerge: "npm:^2.1.1"
     hoist-non-react-statics: "npm:^3.3.0"
     lodash: "npm:^4.17.21"
     lodash-es: "npm:^4.17.21"
     react-fast-compare: "npm:^2.0.1"
     tiny-warning: "npm:^1.0.2"
-    tslib: "npm:^1.10.0"
+    tslib: "npm:^2.0.0"
   peerDependencies:
     react: ">=16.8.0"
-  checksum: c7b4c6ee9cc8256302c56106fa4ff1a86b48774b26e5cdd4fe5a40d5ae2171ed7a02714cd36fa7fb05d8b86c5471643339a69d6e3f4234a963e70b9208cbee82
+  checksum: 65d6845d913cfceebdbb1e34d498725965e07abd4c17f3ea9eeba77d9fab7d3b0f726fdfcae73f002b660ba56b236abc8d8aa6670a9c7cc0db27afebf6e48f4b
   languageName: node
   linkType: hard
 
@@ -15249,6 +15267,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"property-expr@npm:^2.0.5":
+  version: 2.0.6
+  resolution: "property-expr@npm:2.0.6"
+  checksum: 89977f4bb230736c1876f460dd7ca9328034502fd92e738deb40516d16564b850c0bbc4e052c3df88b5b8cd58e51c93b46a94bea049a3f23f4a022c038864cab
+  languageName: node
+  linkType: hard
+
 "property-information@npm:^6.0.0":
   version: 6.2.0
   resolution: "property-information@npm:6.2.0"
@@ -15552,14 +15577,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-error-boundary@npm:^4.0.11":
-  version: 4.0.12
-  resolution: "react-error-boundary@npm:4.0.12"
+"react-error-boundary@npm:^4.0.13":
+  version: 4.0.13
+  resolution: "react-error-boundary@npm:4.0.13"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
   peerDependencies:
     react: ">=16.13.1"
-  checksum: ba59f885eae3c3786548086c6c2088a9f511080c4052e778017959e9e0b6461892efdcf58fcfc2b3a6bc3e79e17cf842fc8ccdc6d82698c51c2ccab12c8c0b85
+  checksum: 28fdf498a58621e21d93978c61719c52455bc00b778080259c5830fe003736153469ebc84f243d7989567b1196e25648c7592f7c8e47de47fcd7d12b875879b9
   languageName: node
   linkType: hard
 
@@ -15609,7 +15634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-markdown@npm:^7.1.0":
+"react-markdown@npm:^7.1.2":
   version: 7.1.2
   resolution: "react-markdown@npm:7.1.2"
   dependencies:
@@ -15719,7 +15744,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-webcam@npm:^7.1.1":
+"react-webcam@npm:^7.2.0":
   version: 7.2.0
   resolution: "react-webcam@npm:7.2.0"
   peerDependencies:
@@ -17441,6 +17466,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-case@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tiny-case@npm:1.0.3"
+  checksum: 3f7a30c39d5b0e1bc097b0b271bec14eb5b836093db034f35a0de26c14422380b50dc12bfd37498cf35b192f5df06f28a710712c87ead68872a9e37ad6f6049d
+  languageName: node
+  linkType: hard
+
 "tiny-warning@npm:^1.0.2":
   version: 1.0.3
   resolution: "tiny-warning@npm:1.0.3"
@@ -17602,10 +17634,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.9.0":
+"tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: 7dbf34e6f55c6492637adb81b555af5e3b4f9cc6b998fb440dac82d3b42bdc91560a35a5fb75e20e24a076c651438234da6743d139e4feabf0783f3cdfe1dddb
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.0.0":
+  version: 2.6.3
+  resolution: "tslib@npm:2.6.3"
+  checksum: 52109bb681f8133a2e58142f11a50e05476de4f075ca906d13b596ae5f7f12d30c482feb0bff167ae01cfc84c5803e575a307d47938999246f5a49d174fc558c
   languageName: node
   linkType: hard
 
@@ -17737,6 +17776,13 @@ __metadata:
   version: 0.21.3
   resolution: "type-fest@npm:0.21.3"
   checksum: f4254070d9c3d83a6e573bcb95173008d73474ceadbbf620dd32d273940ca18734dff39c2b2480282df9afe5d1675ebed5499a00d791758748ea81f61a38961f
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^2.19.0":
+  version: 2.19.0
+  resolution: "type-fest@npm:2.19.0"
+  checksum: 7bf9e8fdf34f92c8bb364c0af14ca875fac7e0183f2985498b77be129dc1b3b1ad0a6b3281580f19e48c6105c037fb966ad9934520c69c6434d17fd0af4eed78
   languageName: node
   linkType: hard
 
@@ -19416,6 +19462,18 @@ __metadata:
     synchronous-promise: "npm:^2.0.13"
     toposort: "npm:^2.0.2"
   checksum: 78dde0d087cb5dc78c64b0e82c913009260604aa100f500f0b10a703ed263fa65791c4cfcec4feb886d95f74d4312dd2214802e47ba048f120a63d42f171eef6
+  languageName: node
+  linkType: hard
+
+"yup@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "yup@npm:1.4.0"
+  dependencies:
+    property-expr: "npm:^2.0.5"
+    tiny-case: "npm:^1.0.3"
+    toposort: "npm:^2.0.2"
+    type-fest: "npm:^2.19.0"
+  checksum: 3d1277e5e1fff4d8130e525c7361f54874ca848ebd427a0aa66606952e3370b9947d84a1ea0b943f389649e886d26b1349930889727489460d6f2f86c2a26e77
   languageName: node
   linkType: hard
 
