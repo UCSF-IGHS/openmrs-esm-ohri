@@ -1,0 +1,17 @@
+{
+  "encounterUuid": "UUID នៃការវាយតម្លៃ",
+  "encounterUuidEntry": "បញ្ចូល UUID នៃការវាយតម្លៃ",
+  "finalSchema": "ស្លាយចុងក្រោយ",
+  "formIntent": "ចំណាយទំនិញលើតំណភ្ជាប់",
+  "formRender": "ការបង្ហាញទម្រង់",
+  "formRenderMenuLink": "ការបង្ហាញទម្រង់",
+  "formRenderTestTitle": "ការធ្វើតេស្តចង្អុលទម្រង់",
+  "generatedForm": "ទម្រង់ដែលបានបង្កើត",
+  "jsonEditorThe": "ស្លាកបន្ថែម JSON",
+  "jsonInput": "ធ្វើសារ JSON",
+  "jsonSchemaHeader": "ស្លាក JSON",
+  "jsonText": "បញ្ចូលអត្ថបទ JSON",
+  "render": "បង្ហាញ",
+  "selectForm": "--ជ្រើសរើសប្រធានបទទម្រង់",
+  "submitForm": "សូមដាក់ស្នើប្រមាណវត្ត"
+}

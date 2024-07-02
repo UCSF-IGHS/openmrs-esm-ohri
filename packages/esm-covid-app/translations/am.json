@@ -1,0 +1,23 @@
+{
+  "age": "እድሜ",
+  "Age": "እድሜ",
+  "AssessmentDate": "የመታወቂያ ቀን",
+  "assessments": "መታወቂያዎች",
+  "cases": "ማህደሪዎች",
+  "name": "ስም",
+  "noPatientList": "በዚህ ዝርዝር ውስጥ ታካሚዎች የለም.",
+  "outcome": "ውጤት",
+  "outcomeDate": "የውጤት ቀን",
+  "outcomes": "የውጤቶች",
+  "peopleTestedPositive": "ተመላሽ ከሆነ ሰውዬ ተጨማሪ",
+  "peopleVaccinated": "ተመላሽ ለመለዋወጫ ሰውዬ",
+  "PeopleWithCovidOutcome": "ሀላፊዎች ያሉት የ COVID ውጤቶች",
+  "presentation": "ምርመራ",
+  "searchClientList": "የተመለከተው ዝርዝር ፈልግ",
+  "sex": "ጾታ",
+  "testsConducted": "የተዛመዱ መታወቂያዎች",
+  "vaccinationLastVaccineAdmin": "የመለዋወጫ መነሻ ላይ",
+  "vaccinationLastVaccineDoseAdmin": "የመለዋወጫ መነሻ ሳይንስ",
+  "vaccinationName": "ስም",
+  "vaccinations": "መለዋወጥዎች"
+}

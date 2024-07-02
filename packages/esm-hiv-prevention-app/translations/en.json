@@ -6,11 +6,5 @@
   "lastPositive": "Positive in last 14 days",
   "linkedToCare": "Linked to care in last 14 days",
   "positiveInLast14Days": "Clients who tested positive in the last 14 days",
-  "startHIVTest": "Start HIV Test",
-  "startPostTestCounselling": "Start Post-test counselling",
-  "startPretest": "Start Pre-test",
-  "todaysClients": "Today's clients",
-  "WaitingForPosttestCounselling": "Waiting for post-test counselling",
-  "waitingForPretestCounselling": "Waiting for pre-test counselling",
-  "wiatingForHivTest": "Waiting for HIV test"
+  "todaysClients": "Today's clients"
 }

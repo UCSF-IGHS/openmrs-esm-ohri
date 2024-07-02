@@ -1,0 +1,17 @@
+{
+  "encounterUuid": "UUID de l'interaction",
+  "encounterUuidEntry": "Entrer l'UUID de l'interaction",
+  "finalSchema": "Schéma final",
+  "formIntent": "Intention du formulaire",
+  "formRender": "Rendu du formulaire",
+  "formRenderMenuLink": "Rendu du formulaire",
+  "formRenderTestTitle": "Test de rendu du formulaire",
+  "generatedForm": "Formulaire généré",
+  "jsonEditorThe": "Thème de l'éditeur JSON",
+  "jsonInput": "Entrée JSON",
+  "jsonSchemaHeader": "Schéma JSON",
+  "jsonText": "Entrer le texte JSON",
+  "render": "Rendu",
+  "selectForm": "--Sélectionner l'intention du formulaire",
+  "submitForm": "Veuillez soumettre le formulaire"
+}

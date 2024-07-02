@@ -1,0 +1,23 @@
+{
+  "age": "Âge",
+  "Age": "Âge",
+  "AssessmentDate": "Date d'évaluation",
+  "assessments": "Évaluations",
+  "cases": "Cas",
+  "name": "Nom",
+  "noPatientList": "Il n'y a aucun patient dans cette liste.",
+  "outcome": "Résultat",
+  "outcomeDate": "Date du résultat",
+  "outcomes": "Résultats",
+  "peopleTestedPositive": "Personnes testées positives",
+  "peopleVaccinated": "Personnes vaccinées",
+  "PeopleWithCovidOutcome": "Personnes avec un résultat COVID",
+  "presentation": "Présentation",
+  "searchClientList": "Rechercher dans la liste des clients",
+  "sex": "Sexe",
+  "testsConducted": "Évaluations complétées",
+  "vaccinationLastVaccineAdmin": "Dernier vaccin administré",
+  "vaccinationLastVaccineDoseAdmin": "Dernière dose de vaccin administrée",
+  "vaccinationName": "Nom",
+  "vaccinations": "Vaccinations"
+}

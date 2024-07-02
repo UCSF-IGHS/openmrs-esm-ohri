@@ -1,0 +1,10 @@
+{
+  "activeVisits": "Visites actives",
+  "clients": "Clients",
+  "clientsLinkedToCare": "Clients liés aux soins au cours des 14 derniers jours",
+  "last14Days": "Les 14 derniers jours",
+  "lastPositive": "Positif au cours des 14 derniers jours",
+  "linkedToCare": "Liés aux soins au cours des 14 derniers jours",
+  "positiveInLast14Days": "Clients testés positifs au cours des 14 derniers jours",
+  "todaysClients": "Clients d'aujourd'hui"
+}
