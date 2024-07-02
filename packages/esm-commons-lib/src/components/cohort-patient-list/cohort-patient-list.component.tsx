@@ -1,17 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import {
-  fetchPatientsFinalHIVStatus,
-  getCohortList,
-} from '../../api.resource';
 import dayjs from 'dayjs';
+
+import { fetchPatientsFinalHIVStatus, getCohortList } from '../../api.resource';
 import { TableEmptyState } from '../empty-state/table-empty-state.component';
 import { DataTableSkeleton } from '@carbon/react';
 import { basePath } from '../../constants';
 import { useTranslation } from 'react-i18next';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { columns, consolidatatePatientMeta, type PatientListColumn } from './helpers';
-import styles from './cohort-patient-list.scss';
 import { PatientTable } from '../patient-table/patient-table.component';
+
+import styles from './cohort-patient-list.scss';
 
 interface CohortPatientListProps {
   cohortId: string;
@@ -42,7 +41,6 @@ interface CohortPatientListProps {
 
 export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   cohortId,
-  cohortSlotName,
   isReportingCohort,
   otherColumns,
   excludeColumns,
@@ -50,7 +48,6 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   associatedEncounterType,
   launchableForm,
   addPatientToListOptions,
-  extraAssociatedEncounterTypes,
   moduleName,
   viewPatientProgramSummary,
   viewTptPatientProgramSummary,
@@ -60,57 +57,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
   const [allPatients, setAllPatients] = useState([]);
   const columnAtLastIndex = 'actions';
   const forms = useMemo(() => [launchableForm.name], [launchableForm]);
-  const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(forms);
-  
-  useEffect(() => {
-    getCohortList(cohortId, queryParams, isReportingCohort, associatedEncounterType)
-    .then((data) => {
-      if(data) {
-        const mappedPatients = data.filter((patient) => patient !== null)
-        .map((mappedData) => {
-          const patient = constructPatient(mappedData?.patient);
-          patient.url = `${window.spaBase}/patient/${patient?.uuid}/chart/`;
-          return {
-            ...patient,
-            encounter: mappedData,
-            ...consolidatatePatientMeta(mappedData, formsJson[0], {
-              isDynamicCohort: isReportingCohort,
-              location: mappedData.location,
-              encounterType: associatedEncounterType,
-              moduleName,
-              launchableFormProps: launchableForm,
-              addPatientToListOptions: {
-                ...addPatientToListOptions,
-                displayText: t('moveToListSideNav', 'Move to list'),
-              },
-              viewTptPatientProgramSummary,
-              viewPatientProgramSummary,
-            }),
-          };
-        })
-        setAllPatients(mappedPatients);
-        setIsLoading(false);
-      }
-    }).catch((error) => {
-      console.error('Error fetching cohort data:', error);
-      setIsLoading(false);
-    })
-  }, []);
-
-  useEffect(() => {
-    const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
-    if ((!isLoading || !associatedEncounterType) && !loadedHIVStatuses && fetchHivResults) {
-      Promise.all(allPatients.map((patient) => fetchPatientsFinalHIVStatus(patient.uuid))).then((results) => {
-        results.forEach((hivResult, index) => {
-          allPatients[index].hivResult = hivResult;
-          if (index == allPatients.length - 1) {
-            setAllPatients([...allPatients]);
-            setLoadedHIVStatuses(true);
-          }
-        });
-      });
-    }
-  }, [allPatients, associatedEncounterType, excludeColumns, isLoading, loadedHIVStatuses]);
+  const { formsJson } = useFormsJson(forms);
+  const { t } = useTranslation();
 
   const constructPatient = useCallback(
     (rawPatient) => {
@@ -140,7 +88,70 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
     [isReportingCohort, launchableForm?.targetDashboard],
   );
 
-  const { t } = useTranslation();
+  useEffect(() => {
+    getCohortList(cohortId, queryParams, isReportingCohort, associatedEncounterType)
+      .then((data) => {
+        if (data) {
+          const mappedPatients = data
+            .filter((patient) => patient !== null)
+            .map((mappedData) => {
+              const patient = constructPatient(mappedData?.patient);
+              patient.url = `${window.spaBase}/patient/${patient?.uuid}/chart/`;
+              return {
+                ...patient,
+                encounter: mappedData,
+                ...consolidatatePatientMeta(mappedData, formsJson[0], {
+                  isDynamicCohort: isReportingCohort,
+                  location: mappedData.location,
+                  encounterType: associatedEncounterType,
+                  moduleName,
+                  launchableFormProps: launchableForm,
+                  addPatientToListOptions: {
+                    ...addPatientToListOptions,
+                    displayText: t('moveToListSideNav', 'Move to list'),
+                  },
+                  viewTptPatientProgramSummary,
+                  viewPatientProgramSummary,
+                }),
+              };
+            });
+          setAllPatients(mappedPatients);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching cohort data:', error);
+        setIsLoading(false);
+      });
+  }, [
+    addPatientToListOptions,
+    associatedEncounterType,
+    cohortId,
+    constructPatient,
+    formsJson,
+    isReportingCohort,
+    launchableForm,
+    moduleName,
+    queryParams,
+    t,
+    viewPatientProgramSummary,
+    viewTptPatientProgramSummary,
+  ]);
+
+  useEffect(() => {
+    const fetchHivResults = excludeColumns ? !excludeColumns.includes('hivResult') : true;
+    if ((!isLoading || !associatedEncounterType) && !loadedHIVStatuses && fetchHivResults) {
+      Promise.all(allPatients.map((patient) => fetchPatientsFinalHIVStatus(patient.uuid))).then((results) => {
+        results.forEach((hivResult, index) => {
+          allPatients[index].hivResult = hivResult;
+          if (index == allPatients.length - 1) {
+            setAllPatients([...allPatients]);
+            setLoadedHIVStatuses(true);
+          }
+        });
+      });
+    }
+  }, [allPatients, associatedEncounterType, excludeColumns, isLoading, loadedHIVStatuses]);
 
   const finalColumns = useMemo(() => {
     let filteredColumns = [...columns];
@@ -164,12 +175,8 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
       filteredColumns.push(column);
     }
 
-    return filteredColumns
-  }, [
-    excludeColumns,
-    otherColumns,
-    columns,
-  ]);
+    return filteredColumns;
+  }, [excludeColumns, otherColumns]);
 
   return (
     <div className={styles.table1}>
@@ -181,12 +188,7 @@ export const CohortPatientList: React.FC<CohortPatientListProps> = ({
           message={t('noPatientSidenav', 'There are no patients in this list.')}
         />
       ) : (
-        <PatientTable
-          columns={finalColumns}
-          isFetching={isLoading}
-          isLoading={isLoading}
-          patients={allPatients}
-        />
+        <PatientTable columns={finalColumns} isFetching={isLoading} isLoading={isLoading} patients={allPatients} />
       )}
     </div>
   );
