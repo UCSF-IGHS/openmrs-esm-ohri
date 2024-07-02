@@ -7,7 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
 import { fetchPatientLastEncounter } from '../../api/api';
 import { launchForm } from '../../utils/ohri-forms-commons';
-import { navigate, WorkspaceWindow } from '@openmrs/esm-framework';
+import { WorkspaceContainer, navigate } from '@openmrs/esm-framework';
 
 interface PatientMetaConfig {
   location: { name: string };
@@ -69,7 +69,7 @@ export const LaunchableFormMenuItem = ({
               navigate({ to: patientUrl });
             }}
           />
-          <WorkspaceWindow contextKey={`patient/${patientUuid}`} />
+          <WorkspaceContainer showSiderailAndBottomNav contextKey={`patient/${patientUuid}`} />
         </>
       )}
     </>
