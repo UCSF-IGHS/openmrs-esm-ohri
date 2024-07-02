@@ -1,7 +1,6 @@
 import React from 'react';
 import { useConfig } from '@openmrs/esm-framework';
 import { getMenuItemTabConfiguration, TabsComponent } from '@ohri/openmrs-esm-ohri-commons-lib';
-// import TabsComponent from '../../../../esm-commons-lib/src/components/encounter-tabs/encounter-tabs.component';
 import cacxConfigSchema from './cacx-config.json';
 
 interface OverviewListProps {
