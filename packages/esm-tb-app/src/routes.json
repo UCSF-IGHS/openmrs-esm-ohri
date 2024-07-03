@@ -107,6 +107,41 @@
       "component": "tptProgramManagementDashboard"
     },
 
+
+    {
+      "name": "tpt-patient-summary",
+      "slot": "ohri-tpt-slot",
+      "component": "tptPatientSummaryDashboardLink",
+      "meta": {
+        "slot": "tpt-patient-summary-slot",
+        "columns": 1,
+        "path": "tpt-patient-summary",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tpt-patient-summary-ext",
+      "slot": "tpt-patient-summary-slot",
+      "component": "tptPatientSummaryDashboard"
+    },
+
+    {
+      "name": "tpt-program-management-summary",
+      "slot": "ohri-tpt-slot",
+      "component": "tptProgramManagementDashboardLink",
+      "meta": {
+        "slot": "tpt-program-management-summary-slot",
+        "columns": 1,
+        "path": "tpt-program-management",
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "tpt-program-management-summary-ext",
+      "slot": "tpt-program-management-summary-slot",
+      "component": "tptProgramManagementDashboard"
+    },
+
     {
       "name": "tb-treatment-follow-up-summary",
       "slot": "ohri-tb-slot",
@@ -148,6 +183,37 @@
         "slot": "tb-clinical-dashboard-slot",
         "isFolder": true,
         "title": "Tuberculosis"
+      }
+    },
+    {
+      "name": "tb-prevention-dashboard-ext",
+      "slot": "tb-clinical-dashboard-slot",
+      "component": "tbPreventionDashboardLink",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "type": "grid",
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
+      }
+    },
+    {
+      "name": "tb-prevention-dashboard",
+      "slot": "tb-prevention-dashboard-slot",
+      "component": "tbPreventionDashboard",
+      "meta": {
+        "name": "tb-prevention",
+        "slot": "tb-prevention-dashboard-slot",
+        "config": {
+          "columns": 1,
+          "programme": "tpt",
+          "dashboardTitle": "TB Prevention"
+        },
+        "title": "TB Prevention"
       }
     },
     {

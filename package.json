@@ -1,7 +1,7 @@
 {
   "name": "@ohri/openmrs-esm-ohri",
   "private": true,
-  "version": "2.3.1",
+  "version": "2.3.6",
   "description": "OHRI MicroFrontend for OpenMRS SPA",
   "workspaces": [
     "packages/*"
@@ -30,6 +30,7 @@
     "verify": "turbo run lint && turbo run typescript && yarn test --coverage",
     "ci:prepublish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag next",
     "ci:publish": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag latest",
+    "ci:qa": "yarn workspaces foreach --all --topological --exclude @ohri/openmrs-esm-ohri npm publish --access public --tag qa",
     "release": "yarn workspaces foreach --all --topological version",
     "coverage": "yarn test --coverage",
     "badges": "yarn coverage && yarn jest-coverage-badges --output './badges' ",

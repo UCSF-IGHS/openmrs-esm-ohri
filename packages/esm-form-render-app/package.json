@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-form-render-app",
-  "version": "2.3.1",
+  "version": "2.3.6",
   "description": "A Forms Rendering microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-form-render-app.js",
   "main": "src/index.ts",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "2.0.0-pre.1029",
+    "@openmrs/openmrs-form-engine-lib": "2.0.0-pre.1260",
     "ace-builds": "1.34.1",
     "react-ace": "^9.4.4"
   },
