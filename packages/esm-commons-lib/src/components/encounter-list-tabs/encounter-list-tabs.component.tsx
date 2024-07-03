@@ -1,14 +1,18 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
-import { EncounterList } from '@ohri/openmrs-esm-ohri-commons-lib';
-import styles from './common.scss';
+import { useConfig } from '@openmrs/esm-framework';
+import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
+import styles from './encounter-list-tabs.scss';
 
-interface OverviewListProps {
+interface TabsComponentProps {
   patientUuid: string;
-  tabsConfig: any[];
+  configSchema: any;
 }
 
-export const TabsComponent: React.FC<OverviewListProps> = ({ patientUuid, tabsConfig }) => {
+export const TabsComponent: React.FC<TabsComponentProps> = ({ patientUuid, configSchema }) => {
+  const config = useConfig();
+  const tabsConfig = getMenuItemTabConfiguration(configSchema, config);
+
   return (
     <div className={styles.tabContainer}>
       <Tabs>
