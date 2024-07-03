@@ -14,11 +14,10 @@ export function launchEncounterForm(
   intent: string = '*',
   workspaceWindowSize?: 'minimized' | 'maximized',
   patientUuid?: string,
-  mutateform?: () => void,
 ) {
   launchPatientWorkspace('patient-form-entry-workspace', {
     workspaceTitle: form.name,
-    mutateform: mutateform,
+    mutateForm: onFormSave,
     formInfo: {
       encounterUuid,
       formUuid: form.name,
