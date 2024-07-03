@@ -1,8 +1,8 @@
 {
-  "activeDrCases": "Active DR Cases",
-  "activeDsCases": "Active DS Cases",
-  "allTptClients": "All TPT Clients",
-  "currentTptClients": "Clients Currently on TPT",
-  "drugResistant": "Cases with drug resistant TB",
-  "drugSensitive": "Cases with drug sesnsitive TB"
+  "activeDrCases": "Cas DR actifs",
+  "activeDsCases": "Cas DS actifs",
+  "allTptClients": "Tous les clients TPT",
+  "currentTptClients": "Clients actuellement sous TPT",
+  "drugResistant": "Cas de TB résistante aux médicaments",
+  "drugSensitive": "Cas de TB sensible aux médicaments"
 }

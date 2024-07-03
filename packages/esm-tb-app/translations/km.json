@@ -1,8 +1,8 @@
 {
-  "activeDrCases": "Active DR Cases",
-  "activeDsCases": "Active DS Cases",
-  "allTptClients": "All TPT Clients",
-  "currentTptClients": "Clients Currently on TPT",
-  "drugResistant": "Cases with drug resistant TB",
-  "drugSensitive": "Cases with drug sesnsitive TB"
+  "activeDrCases": "ករណី DR សកម្ម",
+  "activeDsCases": "ករណី DS សកម្ម",
+  "allTptClients": "អតិថិជន TPT ទាំងអស់",
+  "currentTptClients": "អតិថិជនដែលកំពុងប្រើ TPT",
+  "drugResistant": "ករណីមានការប្រឆាំងថ្នាំ",
+  "drugSensitive": "ករណីមានប្រតិកម្មថ្នាំ"
 }
