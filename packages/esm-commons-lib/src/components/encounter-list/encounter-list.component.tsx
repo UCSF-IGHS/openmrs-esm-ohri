@@ -20,7 +20,6 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { type OpenmrsEncounter } from '../../types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
-import { mutate } from 'swr';
 
 import styles from './encounter-list.scss';
 
@@ -51,6 +50,7 @@ export interface EncounterListProps {
     workspaceWindowSize?: 'minimized' | 'maximized';
   };
   filter?: (encounter: any) => boolean;
+  afterFormSaveAction?: () => void;
 }
 
 export const EncounterList: React.FC<EncounterListProps> = ({
@@ -62,6 +62,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   formList,
   filter,
   launchOptions,
+  afterFormSaveAction,
 }) => {
   const { t } = useTranslation();
   const [paginatedRows, setPaginatedRows] = useState([]);
@@ -72,7 +73,12 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { isDead } = usePatientDeathStatus(patientUuid);
   const formNames = useMemo(() => formList.map((form) => form.name), [formList]);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
-  const { encounters, isLoading, onFormSave } = useEncounterRows(patientUuid, encounterType, filter);
+  const { encounters, isLoading, onFormSave } = useEncounterRows(
+    patientUuid,
+    encounterType,
+    filter,
+    afterFormSaveAction,
+  );
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
@@ -114,9 +120,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           const abortController = new AbortController();
           deleteEncounter(encounterUuid, abortController)
             .then(() => {
-              mutate((key) => typeof key === 'string' && key.startsWith('/ws/rest/v1/encounter'), undefined, {
-                revalidate: true,
-              });
+              onFormSave();
               showSnackbar({
                 isLowContrast: true,
                 title: t('encounterDeleted', 'Encounter deleted'),
@@ -132,6 +136,10 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                 kind: 'error',
               });
             });
+
+          // Update encounters after deletion
+          const updatedEncounters = encounters.filter((enc) => enc.uuid !== encounterUuid);
+          constructPaginatedTableRows(updatedEncounters, currentPage, pageSize);
           close();
         },
       });
@@ -262,7 +270,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
       });
       setPaginatedRows(rows);
     },
-    [columns, defaultActions, forms, moduleName, workspaceWindowSize, patientUuid, onFormSave, handleDeleteEncounter],
+    [columns, defaultActions, forms, moduleName, onFormSave, workspaceWindowSize, patientUuid, handleDeleteEncounter],
   );
 
   useEffect(() => {

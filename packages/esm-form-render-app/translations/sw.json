@@ -1,0 +1,17 @@
+{
+  "encounterUuid": "UUID ya Tukio",
+  "encounterUuidEntry": "Ingiza UUID ya Tukio",
+  "finalSchema": "Schema ya Mwisho",
+  "formIntent": "Kusudi la Fomu",
+  "formRender": "Utoaji wa Fomu",
+  "formRenderMenuLink": "Utoaji wa Fomu",
+  "formRenderTestTitle": "Jaribio la Utoaji wa Fomu",
+  "generatedForm": "Fomu Iliyozalishwa",
+  "jsonEditorThe": "Mandhari ya Mhariri wa JSON",
+  "jsonInput": "Ingizo la JSON",
+  "jsonSchemaHeader": "Kichwa cha Schema ya JSON",
+  "jsonText": "Ingiza Maandishi ya JSON",
+  "render": "Toa",
+  "selectForm": "--Chagua Kusudi la Fomu",
+  "submitForm": "Tafadhali wasilisha fomu"
+}

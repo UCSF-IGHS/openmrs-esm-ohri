@@ -1,0 +1,17 @@
+{
+  "encounterUuid": "የይለፍ ስም ሳምንት",
+  "encounterUuidEntry": "የይለፍ ስም ሳምንት ያስገቡ",
+  "finalSchema": "የመጨረሻ እይታ",
+  "formIntent": "የተሳሳተ ቅርጸት",
+  "formRender": "የቅርጸት ዕይታ",
+  "formRenderMenuLink": "የቅርጸት ዕይታ",
+  "formRenderTestTitle": "የቅርጸት ዕይታ ማሳያ",
+  "generatedForm": "በማሳወቂያ በኩል ተከተል የቅርጸት",
+  "jsonEditorThe": "JSON ኤዲቨት ጠለል",
+  "jsonInput": "JSON የነጥብ",
+  "jsonSchemaHeader": "JSON እይታ",
+  "jsonText": "JSON ጽሑፍ ያስገቡ",
+  "render": "ማስተላለፍ",
+  "selectForm": "--የተሳሳተ ቅርጸት ይምረጡ",
+  "submitForm": "እባኮ የቅርጸት ይላኩ"
+}
