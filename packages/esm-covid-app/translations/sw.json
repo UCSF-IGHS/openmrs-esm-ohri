@@ -1,0 +1,23 @@
+{
+  "age": "Umri",
+  "Age": "Umri",
+  "AssessmentDate": "Tarehe ya Tathmini",
+  "assessments": "Tathmini",
+  "cases": "Kesi",
+  "name": "Jina",
+  "noPatientList": "Hakuna wagonjwa katika orodha hii.",
+  "outcome": "Matokeo",
+  "outcomeDate": "Tarehe ya Matokeo",
+  "outcomes": "Matokeo",
+  "peopleTestedPositive": "Watu waliojaribiwa na kupatikana kuwa chanya",
+  "peopleVaccinated": "Watu waliochanjwa",
+  "PeopleWithCovidOutcome": "Watu walio na matokeo ya COVID",
+  "presentation": "Uwasilishaji",
+  "searchClientList": "Tafuta orodha ya wateja",
+  "sex": "Jinsia",
+  "testsConducted": "Tathmini zilizokamilishwa",
+  "vaccinationLastVaccineAdmin": "Chanjo ya mwisho iliyoadministrwa",
+  "vaccinationLastVaccineDoseAdmin": "Dozi ya mwisho ya chanjo iliyoadministrwa",
+  "vaccinationName": "Jina la Chanjo",
+  "vaccinations": "Chanjo"
+}

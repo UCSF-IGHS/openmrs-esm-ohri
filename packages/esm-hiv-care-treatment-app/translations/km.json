@@ -1,0 +1,12 @@
+{
+  "activeClients": "អតិថិជនសកម្ម",
+  "add": "បន្ថែម",
+  "characteristicsTitle": "លក្ខណៈសម្បត្តិ",
+  "clientLinkage": "តំណភ្ជាប់អតិថិជន",
+  "hivMonitoring": "ការតាមដាន HIV",
+  "lastVisitDetails": "ព័ត៌មានការចូលទុកចំណូលចុងក្រោយ",
+  "missedAppointments": "ការណែនាំដ៏បានត្រឹមត្រូវ",
+  "noDrugsPickedLast90days": "គ្មានថ្នាំដែលបានជ្រើសរើសសកម្មកន្លងមកគិតជាបន្ទាន់ 90 ថ្ងៃចុងក្រោយ",
+  "patientsInClinicPopulation": "អ្នកជំនាញក្នុងអ្នកជំនាញមូលដ្ឋាន",
+  "suspectedLTFU": "LTFU ដែលបានសម្រាប់"
+}
