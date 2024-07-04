@@ -1,6 +1,6 @@
 import React from 'react';
+import { TabsComponent } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
-import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import tbFollowupConfigSchema from './tb-contact-listing-config.json';
 
 interface OverviewListProps {
@@ -9,23 +9,8 @@ interface OverviewListProps {
 
 const TbContactTracingList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const config = useConfig();
-  const tabs = getMenuItemTabConfiguration(tbFollowupConfigSchema, config);
 
-  return (
-    <>
-      {tabs.map((tab) => (
-        <EncounterList
-          patientUuid={patientUuid}
-          encounterType={tab.encounterType}
-          formList={tab.formList}
-          columns={tab.columns}
-          description={tab.description}
-          headerTitle={tab.headerTitle}
-          launchOptions={tab.launchOptions}
-        />
-      ))}
-    </>
-  );
+  return <TabsComponent patientUuid={patientUuid} configSchema={tbFollowupConfigSchema} config={config} />;
 };
 
 export default TbContactTracingList;
