@@ -1,16 +1,15 @@
 import React from 'react';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
-import { useConfig } from '@openmrs/esm-framework';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import styles from './encounter-list-tabs.scss';
 
 interface TabsComponentProps {
   patientUuid: string;
   configSchema: any;
+  config: any;
 }
 
-export const TabsComponent: React.FC<TabsComponentProps> = ({ patientUuid, configSchema }) => {
-  const config = useConfig();
+export const TabsComponent: React.FC<TabsComponentProps> = ({ patientUuid, configSchema, config }) => {
   const tabsConfig = getMenuItemTabConfiguration(configSchema, config);
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { TabsComponent } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { useConfig } from '@openmrs/esm-framework';
 import cacxConfigSchema from './cacx-config.json';
 
 interface OverviewListProps {
@@ -7,7 +8,9 @@ interface OverviewListProps {
 }
 
 const CaCxCervicalCancerServices: React.FC<OverviewListProps> = ({ patientUuid }) => {
-  return <TabsComponent patientUuid={patientUuid} configSchema={cacxConfigSchema} />;
+  const config = useConfig();
+
+  return <TabsComponent patientUuid={patientUuid} configSchema={cacxConfigSchema} config={config} />;
 };
 
 export default CaCxCervicalCancerServices;
