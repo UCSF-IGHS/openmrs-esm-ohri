@@ -7,8 +7,6 @@ interface CovidVaccinationsWidgetProps {
   patientUuid: string;
 }
 
-export const covidFormSlot = 'hts-encounter-form-slot';
-
 const CovidVaccinations: React.FC<CovidVaccinationsWidgetProps> = ({ patientUuid }) => {
   const config = useConfig();
   const tabs = getMenuItemTabConfiguration(covidVaccinationsSchemaConfig, config);

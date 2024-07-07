@@ -6,6 +6,7 @@
       "headerTitle": "Mental Health Assessment",
       "displayText": "Mental Health Assessment",
       "encounterType": "MentalHealthAssessmentEncounter_UUID",
+      "hasFilter": true,
       "columns": [
         {
           "id": "screeningDate",
@@ -68,6 +69,7 @@
       "headerTitle": "Intimate Partner Violence",
       "displayText": "Intimate Partner Violence",
       "encounterType": "IntimatePartnerEncounterType_UUID",
+      "hasFilter": true,
       "columns": [
         {
           "id": "screeningDate",
@@ -126,6 +128,7 @@
     {
       "tabName": "Disclosure",
       "headerTitle": "Disclosure",
+      "hasFilter": true,
       "displayText": "Disclosure",
       "encounterType": "PeadsDisclosureEncounterType_UUID",
       "columns": [
