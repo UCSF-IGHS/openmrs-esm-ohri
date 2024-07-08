@@ -1,6 +1,6 @@
 import React from 'react';
 import { useConfig } from '@openmrs/esm-framework';
-import { TabsComponent } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { EncounterListTabsComponent } from '@ohri/openmrs-esm-ohri-commons-lib';
 import tbFollowupConfigSchema from './tb-treatment-followup-config.json';
 
 interface OverviewListProps {
@@ -10,7 +10,7 @@ interface OverviewListProps {
 const TbTreatmentFollowUpList: React.FC<OverviewListProps> = ({ patientUuid }) => {
   const config = useConfig();
 
-  return <TabsComponent patientUuid={patientUuid} configSchema={tbFollowupConfigSchema} config={config} />;
+  return <EncounterListTabsComponent patientUuid={patientUuid} configSchema={tbFollowupConfigSchema} config={config} />;
 };
 
 export default TbTreatmentFollowUpList;
