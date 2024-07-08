@@ -3,13 +3,19 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
 import { EncounterList, getMenuItemTabConfiguration } from '@ohri/openmrs-esm-ohri-commons-lib';
 import styles from './encounter-list-tabs.scss';
 
-interface TabsComponentProps {
+interface EncounterListTabsComponentProps {
   patientUuid: string;
   configSchema: any;
   config: any;
+  filter?: (encounter: any, formName?: string) => boolean;
 }
 
-export const TabsComponent: React.FC<TabsComponentProps> = ({ patientUuid, configSchema, config }) => {
+export const EncounterListTabsComponent: React.FC<EncounterListTabsComponentProps> = ({
+  patientUuid,
+  configSchema,
+  config,
+  filter,
+}) => {
   const tabsConfig = getMenuItemTabConfiguration(configSchema, config);
 
   return (
@@ -24,6 +30,7 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({ patientUuid, confi
           {tabsConfig.map((tab) => (
             <TabPanel key={tab.name}>
               <EncounterList
+                filter={tab.hasFilter ? (encounter) => filter(encounter, tab.formList[0].name) : null}
                 patientUuid={patientUuid}
                 formList={tab.formList}
                 columns={tab.columns}
@@ -40,4 +47,4 @@ export const TabsComponent: React.FC<TabsComponentProps> = ({ patientUuid, confi
   );
 };
 
-export default TabsComponent;
+export default EncounterListTabsComponent;
