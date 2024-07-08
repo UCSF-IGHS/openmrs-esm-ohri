@@ -106,42 +106,6 @@
       "slot": "tpt-program-management-summary-slot",
       "component": "tptProgramManagementDashboard"
     },
-
-
-    {
-      "name": "tpt-patient-summary",
-      "slot": "ohri-tpt-slot",
-      "component": "tptPatientSummaryDashboardLink",
-      "meta": {
-        "slot": "tpt-patient-summary-slot",
-        "columns": 1,
-        "path": "tpt-patient-summary",
-        "layoutMode": "anchored"
-      }
-    },
-    {
-      "name": "tpt-patient-summary-ext",
-      "slot": "tpt-patient-summary-slot",
-      "component": "tptPatientSummaryDashboard"
-    },
-
-    {
-      "name": "tpt-program-management-summary",
-      "slot": "ohri-tpt-slot",
-      "component": "tptProgramManagementDashboardLink",
-      "meta": {
-        "slot": "tpt-program-management-summary-slot",
-        "columns": 1,
-        "path": "tpt-program-management",
-        "layoutMode": "anchored"
-      }
-    },
-    {
-      "name": "tpt-program-management-summary-ext",
-      "slot": "tpt-program-management-summary-slot",
-      "component": "tptProgramManagementDashboard"
-    },
-
     {
       "name": "tb-treatment-follow-up-summary",
       "slot": "ohri-tb-slot",
