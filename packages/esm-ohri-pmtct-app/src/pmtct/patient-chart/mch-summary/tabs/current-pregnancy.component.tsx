@@ -4,12 +4,11 @@ import {
   type PatientChartProps,
   ExpandableList,
   fetchPatientRelationships,
-  EncounterList,
   basePath,
   fetchPatientLastEncounter,
   SummaryCard,
-  getMenuItemTabConfiguration,
   getSummaryCardProps,
+  EncounterListTabsComponent,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import dayjs from 'dayjs';
 import { Link } from '@carbon/react';
@@ -49,7 +48,6 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
   const [infantOutcomes, setInfantOutcomes] = useState([]);
   const { encounterTypes, obsConcepts, identifiersTypes } = useConfig();
   const config = useConfig();
-  const motherPreviousVisitTabs = getMenuItemTabConfiguration(motherPreviousVisitConfigSchema, config);
   const recentPregnancyTabs = getSummaryCardProps(recentPregnancyConfigSchema, config);
   const appointmentSummaryTabs = getSummaryCardProps(appointmentSummaryConfigSchema, config);
   const arvTherapyTabs = getSummaryCardProps(arvTherapyColumnsConfigSchema, config);
@@ -274,17 +272,7 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         />
       </div>
 
-      {motherPreviousVisitTabs.map((tab) => (
-        <EncounterList
-          patientUuid={patientUuid}
-          encounterType={tab.encounterType}
-          columns={tab.columns}
-          description={tab.description}
-          headerTitle={tab.headerTitle}
-          formList={tab.formList}
-          launchOptions={tab.launchOptions}
-        />
-      ))}
+      <EncounterListTabsComponent patientUuid={patientUuid} configSchema={motherPreviousVisitConfigSchema} config={config} />
     </div>
   );
 };
