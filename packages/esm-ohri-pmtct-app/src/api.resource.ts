@@ -1,12 +1,11 @@
-import { openmrsFetch, getConfig } from '@openmrs/esm-framework';
+import { openmrsFetch, getConfig, restBaseUrl, fhirBaseUrl } from '@openmrs/esm-framework';
 import { fetchPatientRelationships } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { type Patient, type PatientIdentifier, type Relationship } from './types';
 
-const BASE_WS_API_URL = '/ws/rest/v1/';
 const config = await getConfig('@ohri/openmrs-esm-ohri-pmtct-app');
 
 export function generateIdentifier(source: string) {
-  return openmrsFetch(`/ws/rest/v1/idgen/identifiersource/${source}/identifier`, {
+  return openmrsFetch(`${restBaseUrl}/idgen/identifiersource/${source}/identifier`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -16,7 +15,7 @@ export function generateIdentifier(source: string) {
 }
 
 export function savePatient(patient: Patient) {
-  return openmrsFetch(`/ws/rest/v1/patient`, {
+  return openmrsFetch(`${restBaseUrl}/patient`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -30,7 +29,7 @@ export function savePatients(patients: Array<Patient>) {
 }
 
 export function saveRelationship(relationship: Relationship) {
-  return openmrsFetch('/ws/rest/v1/relationship', {
+  return openmrsFetch(`${restBaseUrl}/relationship`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -42,7 +41,7 @@ export function saveRelationship(relationship: Relationship) {
 // Get ANC visits report count with pTrackerID and patientUuid
 export function getAncVisitCount(pTrackerID: string, patientUuid: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/${config.obsConcepts.ancVisitsReport}?ptracker_id=${pTrackerID}&patient_uuid=${patientUuid}`,
+    `${restBaseUrl}/reportingrest/dataSet/${config.obsConcepts.ancVisitsReport}?ptracker_id=${pTrackerID}&patient_uuid=${patientUuid}`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -52,7 +51,7 @@ export function getAncVisitCount(pTrackerID: string, patientUuid: string) {
 }
 
 export function fetchPatientIdentifiers(patientUuid: string) {
-  return openmrsFetch(`${BASE_WS_API_URL}/patient/${patientUuid}/identifier`).then(({ data }) => {
+  return openmrsFetch(`${restBaseUrl}/patient/${patientUuid}/identifier`).then(({ data }) => {
     if (data.results.length) {
       return data.results;
     }
@@ -61,7 +60,7 @@ export function fetchPatientIdentifiers(patientUuid: string) {
 }
 
 export function saveIdentifier(identifier: PatientIdentifier, patientUuid: string) {
-  return openmrsFetch(`${BASE_WS_API_URL}patient/${patientUuid}/identifier`, {
+  return openmrsFetch(`${restBaseUrl}/patient/${patientUuid}/identifier`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -72,7 +71,7 @@ export function saveIdentifier(identifier: PatientIdentifier, patientUuid: strin
 
 export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/${config.obsConcepts.eddReport}?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
+    `${restBaseUrl}/reportingrest/dataSet/${config.obsConcepts.eddReport}?ptracker_id=${pTrackerId}&patient_uuid=${patientUuid}`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -83,7 +82,7 @@ export function getEstimatedDeliveryDate(patientUuid: string, pTrackerId: string
 
 export function getIdentifierInfo(identifier: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}patient?identifier=${identifier}&v=custom:(identifiers:(identifier,identifierType:(uuid,display)),person:(uuid,display))`,
+    `${restBaseUrl}/patient?identifier=${identifier}&v=custom:(identifiers:(identifier,identifierType:(uuid,display)),person:(uuid,display))`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -94,7 +93,7 @@ export function getIdentifierInfo(identifier: string) {
 
 export function fetchMotherHIVStatus(patientUuid: string, pTrackerId: string) {
   return openmrsFetch(
-    `${BASE_WS_API_URL}reportingrest/dataSet/${config.obsConcepts.motherHivStatusReport}?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
+    `${restBaseUrl}/reportingrest/dataSet/${config.obsConcepts.motherHivStatusReport}?person_uuid=${patientUuid}&ptracker_id=${pTrackerId}`,
   ).then(({ data }) => {
     if (data) {
       return data;
@@ -109,7 +108,7 @@ export function fetchChildLatestFinalOutcome(childUuid: string, conceptUuid: str
   }`;
   // the latest obs
   params += '&_sort=-_lastUpdated&_count=1';
-  return openmrsFetch(`/ws/fhir2/R4/Observation?${params}`).then(({ data }) => {
+  return openmrsFetch(`${fhirBaseUrl}/Observation?${params}`).then(({ data }) => {
     return data.entry?.length ? data.entry[0].resource.valueCodeableConcept.coding[0]?.display : null;
   });
 }

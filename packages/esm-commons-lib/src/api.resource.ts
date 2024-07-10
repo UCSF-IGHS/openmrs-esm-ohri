@@ -1,28 +1,21 @@
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { fhirBaseUrl, openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
-import {
-  finalHIVCodeConcept,
-  finalPositiveHIVValueConcept,
-  computedHIV_StatusConcept,
-  encounterRepresentation,
-  covidOutcomesCohortUUID,
-} from './constants';
+import { encounterRepresentation } from './constants';
 import useSWR from 'swr';
-
-const BASE_WS_API_URL = '/ws/rest/v1/';
-const BASE_FHIR_API_URL = '/ws/fhir2/R4/';
+import { configSchema } from './config-schema';
+import { type ReportDataArray } from './types';
 
 export function fetchLastVisit(uuid: string) {
-  return openmrsFetch(`/ws/fhir2/R4/Encounter?patient=${uuid}&_sort=-date&_count=1`);
+  return openmrsFetch(`${fhirBaseUrl}/Encounter?patient=${uuid}&_sort=-date&_count=1`);
 }
 
 export function fetchPatientList(offSet: number = 0, pageSize: number = 10) {
-  return openmrsFetch(`/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}&_summary=data`);
+  return openmrsFetch(`${fhirBaseUrl}/Patient?_getpagesoffset=${offSet}&_count=${pageSize}&_summary=data`);
 }
 
 export function fetchTodayClients() {
   let date = dayjs().format('YYYY-MM-DD');
-  return openmrsFetch(`/ws/fhir2/R4/Encounter?date=${date}`).then(({ data }) => {
+  return openmrsFetch(`${fhirBaseUrl}/Encounter?date=${date}`).then(({ data }) => {
     if (data.entry?.length) {
       return cleanDuplicatePatientReferences(data);
     }
@@ -35,7 +28,7 @@ export function fetchPatientsFromObservationCodeConcept(codeConcept: string, val
   let startDate = dayjs().subtract(cutOffDays, 'day').format('YYYY-MM-DD');
 
   return openmrsFetch(
-    `/ws/fhir2/R4/Observation?code=${codeConcept}${valueConcept ? `&value-concept=${valueConcept}` : ''}${
+    `${fhirBaseUrl}/Observation?code=${codeConcept}${valueConcept ? `&value-concept=${valueConcept}` : ''}${
       cutOffDays ? `&_lastUpdated=ge${startDate}&_lastUpdated=le${endDate}` : ''
     }`,
   ).then(({ data }) => {
@@ -54,13 +47,13 @@ function cleanDuplicatePatientReferences(data) {
   patientRefs = Array.from(patientRefs);
   return Promise.all(
     patientRefs.map((ref) => {
-      return openmrsFetch(BASE_FHIR_API_URL + ref);
+      return openmrsFetch(fhirBaseUrl + `/` + ref);
     }),
   );
 }
 
 export function performPatientSearch(query, objectVersion) {
-  return openmrsFetch(`${BASE_WS_API_URL}/patient?q=${query}${objectVersion ? `&v=${objectVersion}` : ''}`, {
+  return openmrsFetch(`${restBaseUrl}/patient?q=${query}${objectVersion ? `&v=${objectVersion}` : ''}`, {
     method: 'GET',
   });
 }
@@ -77,27 +70,25 @@ export function getPatients(searchPhrase?: string, offset?: number, pageSize: nu
 }
 
 export async function getCohort(cohortUuid: string, version?: string) {
-  const { data } = await openmrsFetch(
-    BASE_WS_API_URL + `cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`,
-  );
+  const { data } = await openmrsFetch(restBaseUrl + `/cohortm/cohort/${cohortUuid}${version ? `?v=${version}` : ``}`);
   data.cohortMembers = data.cohortMembers.filter((member) => !member.voided);
   return data;
 }
 
 export async function getReportingCohort(cohortUuid: string, queryParams?: string[]) {
   const params = queryParams ? queryParams.join('&') : '';
-  const url = params ? `reportingrest/cohort/${cohortUuid}?${params}` : `reportingrest/cohort/${cohortUuid}`;
-  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+  const url = params ? `/reportingrest/cohort/${cohortUuid}?${params}` : `/reportingrest/cohort/${cohortUuid}`;
+  const { data } = await openmrsFetch(restBaseUrl + url);
   return data;
 }
 
 export async function getReportingCohortMembers(cohortUuid: string, queryParams?: string[]) {
   const params = queryParams ? queryParams.join('&') : '';
-  const url = params ? `reportingrest/cohort/${cohortUuid}?${params}` : `reportingrest/cohort/${cohortUuid}`;
-  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+  const url = params ? `/reportingrest/cohort/${cohortUuid}?${params}` : `/reportingrest/cohort/${cohortUuid}`;
+  const { data } = await openmrsFetch(restBaseUrl + url);
   return Promise.all(
     data.members.map((member) => {
-      return openmrsFetch(BASE_WS_API_URL + `patient/${member.uuid}?v=full`);
+      return openmrsFetch(restBaseUrl + `/patient/${member.uuid}?v=full`);
     }),
   );
 }
@@ -106,8 +97,7 @@ export async function getCohorts(cohortTypeUuid?: string) {
   const {
     data: { results, error },
   } = await openmrsFetch(
-    BASE_WS_API_URL +
-      `cohortm/cohort?v=custom:(uuid,name,voided)${cohortTypeUuid ? `&cohortType=${cohortTypeUuid}` : ''}`,
+    restBaseUrl + `/cohortm/cohort?v=custom:(uuid,name,voided)${cohortTypeUuid ? `&cohortType=${cohortTypeUuid}` : ''}`,
   );
   if (error) {
     throw error;
@@ -116,7 +106,7 @@ export async function getCohorts(cohortTypeUuid?: string) {
 }
 
 export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
-  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember`, {
+  return openmrsFetch(`${restBaseUrl}/cohortm/cohortmember`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -130,13 +120,13 @@ export function addPatientToCohort(patientUuid: string, cohortUuid: string) {
 }
 
 export function evictCohortMembership(membershipUuid: string) {
-  return openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember/${membershipUuid}`, { method: 'DELETE' });
+  return openmrsFetch(`${restBaseUrl}/cohortm/cohortmember/${membershipUuid}`, { method: 'DELETE' });
 }
 
 export async function getPatientListsForPatient(patientUuid: string) {
   const {
     data: { results, error },
-  } = await openmrsFetch(`${BASE_WS_API_URL}cohortm/cohortmember?patient=${patientUuid}&v=full`);
+  } = await openmrsFetch(`${restBaseUrl}/cohortm/cohortmember?patient=${patientUuid}&v=full`);
   if (error) {
     throw error;
   }
@@ -145,7 +135,7 @@ export async function getPatientListsForPatient(patientUuid: string) {
 
 export function fetchPatientsFinalHIVStatus(patientUUID: string) {
   return openmrsFetch(
-    `/ws/fhir2/R4/Observation?code=${finalHIVCodeConcept}&value-concept=${finalPositiveHIVValueConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
+    `${fhirBaseUrl}/Observation?code=${configSchema.obsConcepts._default.finalHIVCodeConcept}&value-concept=${configSchema.obsConcepts._default.finalPositiveHIVValueConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
   ).then(({ data }) => {
     if (data.entry?.length) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
@@ -160,13 +150,13 @@ export function fetchPatientObservationFromEncounter(
   observationCode: string,
 ) {
   return openmrsFetch(
-    `/ws/fhir2/R4/Observation?patient=${patientUUID}&encounter=${encounterUUID}&code=${observationCode}&_sort=-date&_count=1`,
+    `${fhirBaseUrl}/Observation?patient=${patientUUID}&encounter=${encounterUUID}&code=${observationCode}&_sort=-date&_count=1`,
   );
 }
 
 export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
   return openmrsFetch(
-    `/ws/fhir2/R4/Observation?code=${computedHIV_StatusConcept}&value-concept=${computedHIV_StatusConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
+    `${fhirBaseUrl}/Observation?code=${configSchema.obsConcepts._default.computedHIV_StatusConcept}&value-concept=${configSchema.obsConcepts._default.computedHIV_StatusConcept}&patient=${patientUUID}&_sort=-date&_count=1`,
   ).then(({ data }) => {
     if (data.entry?.length) {
       return data.entry[0].resource.valueCodeableConcept.coding[0].display;
@@ -177,7 +167,7 @@ export function fetchPatientComputedConcept_HIV_Status(patientUUID: string) {
 
 export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
   const query = `encounterType=${encounterType}&patient=${patientUuid}`;
-  return openmrsFetch(`/ws/rest/v1/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
+  return openmrsFetch(`${restBaseUrl}/encounter?${query}&v=${encounterRepresentation}`).then(({ data }) => {
     if (data.results.length) {
       const sortedEncounters = data.results.sort(
         (firstEncounter, secondEncounter) =>
@@ -190,26 +180,8 @@ export function fetchPatientLastEncounter(patientUuid: string, encounterType) {
   });
 }
 
-export function fetchPatientCovidOutcome() {
-  return openmrsFetch(`/ws/rest/v1/reportingrest/cohort/${covidOutcomesCohortUUID}`).then(({ data }) => {
-    if (data.members?.length) {
-      let patientRefs = data.members.map((member) => {
-        return member.uuid;
-      });
-      patientRefs = new Set([...patientRefs]);
-      patientRefs = Array.from(patientRefs);
-      return Promise.all(
-        patientRefs.map((ref) => {
-          return openmrsFetch(BASE_FHIR_API_URL + '/Person/' + ref);
-        }),
-      );
-    }
-    return [];
-  });
-}
-
 export function fetchConceptNameByUuid(conceptUuid: string) {
-  return openmrsFetch(`/ws/rest/v1/concept/${conceptUuid}/name?limit=1`).then(({ data }) => {
+  return openmrsFetch(`${restBaseUrl}/concept/${conceptUuid}/name?limit=1`).then(({ data }) => {
     if (data.results.length) {
       const concept = data.results[data.results.length - 1];
       return concept.display;
@@ -219,7 +191,7 @@ export function fetchConceptNameByUuid(conceptUuid: string) {
 }
 
 export function fetchPatientRelationships(patientUuid: string) {
-  return openmrsFetch(`${BASE_WS_API_URL}relationship?person=${patientUuid}&v=full`).then(({ data }) => {
+  return openmrsFetch(`${restBaseUrl}/relationship?person=${patientUuid}&v=full`).then(({ data }) => {
     if (data.results.length) {
       return data.results;
     }
@@ -228,33 +200,13 @@ export function fetchPatientRelationships(patientUuid: string) {
 }
 
 export function fetchOpenMRSForms(formNames: string[]) {
-  const fetch = (name) => openmrsFetch(`/ws/rest/v1/form?q=${name}&v=full`);
+  const fetch = (name) => openmrsFetch(`${restBaseUrl}/form?q=${name}&v=full`);
   return Promise.all(formNames.map((name) => fetch(name)));
 }
 
 export function fetchFormsClobData(valueReferences: string[]) {
-  const fetch = (ref: string) => openmrsFetch(`/ws/rest/v1/clobdata/${ref}`);
+  const fetch = (ref: string) => openmrsFetch(`${restBaseUrl}/clobdata/${ref}`);
   return Promise.all(valueReferences?.map((ref) => fetch(ref)));
-}
-
-export async function fetchMambaReportData(reportId: string) {
-  try {
-    const response = await openmrsFetch(`ws/rest/v1/mamba/report?report_id=${reportId}`);
-    const data = await response.json();
-
-    if (data && data.results && data.results.length > 0) {
-      const record = data.results[0].record;
-
-      for (const item of record) {
-        return item.value ? parseInt(item.value, 10) : 0;
-      }
-    }
-
-    return 0;
-  } catch (error) {
-    console.error(`Error fetching data for report_id=${reportId}: `, error);
-    throw new Error(`Error fetching data for report_id=${reportId}: ${error}`);
-  }
 }
 
 export function fetchEtlData(
@@ -285,10 +237,10 @@ export function fetchEtlData(
   let endpoint = '';
   switch (reportType) {
     case 'fetchMambaAncData':
-      endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
+      endpoint = `${restBaseUrl}/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
       break;
     case 'MotherHivStatus':
-      endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
+      endpoint = `${restBaseUrl}/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
       break;
     default:
       throw new Error('Invalid report type');
@@ -323,19 +275,19 @@ export async function getCohortList(
 ) {
   const params = queryParams ? queryParams.join('&') : '';
   const cohortMembersUrl = params
-    ? `reportingrest/cohort/${cohortUuid}?${params}`
-    : `reportingrest/cohort/${cohortUuid}`;
-  const cohortUrl = `cohortm/cohort/${cohortUuid}?v=full`;
+    ? `/reportingrest/cohort/${cohortUuid}?${params}`
+    : `/reportingrest/cohort/${cohortUuid}`;
+  const cohortUrl = `/cohortm/cohort/${cohortUuid}?v=full`;
 
   const url = isReportingCohort ? cohortMembersUrl : cohortUrl;
 
-  const { data } = await openmrsFetch(BASE_WS_API_URL + url);
+  const { data } = await openmrsFetch(restBaseUrl + url);
 
   if (data?.members) {
     return Promise.all(
       data.members.map((member) => {
         return openmrsFetch(
-          `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${member.uuid}&v=${encounterRepresentation}`,
+          `${restBaseUrl}/encounter?encounterType=${encounterType}&patient=${member.uuid}&v=${encounterRepresentation}`,
         ).then(({ data }) => {
           if (data.results.length) {
             const sortedEncounters = data.results.sort(
@@ -355,15 +307,14 @@ export async function getCohortList(
     return Promise.all(
       data.cohortMembers.map((member) => {
         return openmrsFetch(
-          `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${member.patient.uuid}&v=${encounterRepresentation}`,
+          `${restBaseUrl}/encounter?encounterType=${encounterType}&patient=${member.patient.uuid}&v=${encounterRepresentation}`,
         ).then(({ data }) => {
           if (data.results.length) {
-            const sortedEncounters = data.results
-              .sort(
-                (firstEncounter, secondEncounter) =>
-                  new Date(secondEncounter.encounterDatetime).getTime() -
-                  new Date(firstEncounter.encounterDatetime).getTime(),
-              );
+            const sortedEncounters = data.results.sort(
+              (firstEncounter, secondEncounter) =>
+                new Date(secondEncounter.encounterDatetime).getTime() -
+                new Date(firstEncounter.encounterDatetime).getTime(),
+            );
             return sortedEncounters[0];
           }
           return null;
@@ -371,4 +322,17 @@ export async function getCohortList(
       }),
     );
   }
+}
+
+export function useMambaReportData(reportId: string) {
+  const { data, error, isLoading } = useSWR<{ data: { results: ReportDataArray } }, Error>(
+    `${restBaseUrl}/mamba/report?report_id=${reportId}`,
+    openmrsFetch,
+  );
+
+  return {
+    data: data?.data?.results[0]?.record[0]?.value ?? 0,
+    error,
+    isLoading,
+  };
 }

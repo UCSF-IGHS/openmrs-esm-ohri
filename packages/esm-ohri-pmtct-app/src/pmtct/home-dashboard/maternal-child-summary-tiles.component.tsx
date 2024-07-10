@@ -1,34 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OHRIProgrammeSummaryTiles, fetchMambaReportData } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { OHRIProgrammeSummaryTiles, useMambaReportData } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 function MaternalChildSummaryTiles() {
   const { t } = useTranslation();
 
-  const [totalPregnantWomen, setTotalPregnantWomen] = useState(null);
-  const [totalDeliveries, setTotalDeliveries] = useState(null);
-  const [hivExposedInfants, setHivExposedInfants] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [totalPregnantWomenCount, totalDeliveriesCount, hivExposedInfantsCount] = await Promise.all([
-          fetchMambaReportData('total_pregnant_women'),
-          fetchMambaReportData('total_deliveries'),
-          fetchMambaReportData('total_hiv_exposed_infants'),
-        ]);
-
-        setTotalPregnantWomen(totalPregnantWomenCount);
-        setTotalDeliveries(totalDeliveriesCount);
-        setHivExposedInfants(hivExposedInfantsCount);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw new Error('Error fetching data. Please try again.');
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { data: pregnant_women, isLoading: loadingPregnancies } = useMambaReportData('total_pregnant_women');
+  const { data: deliveries, isLoading: loadingDeliveries } = useMambaReportData('total_deliveries');
+  const { data: hiv_exposed_infants, isLoading: loadingInfants } = useMambaReportData('total_hiv_exposed_infants');
 
   const tiles = useMemo(
     () => [
@@ -36,22 +15,22 @@ function MaternalChildSummaryTiles() {
         title: t('anc', 'ANC'),
         linkAddress: '#',
         subTitle: t('pregnantWomenAttendingFirstANC', '# Pregnant women attending first ANC'),
-        value: totalPregnantWomen,
+        value: loadingPregnancies ? '--' : pregnant_women,
       },
       {
         title: t('labourDelivery', 'Labour & Delivery'),
         linkAddress: '#',
         subTitle: t('totalDeliveries', '# Total deliveries'),
-        value: totalDeliveries,
+        value: loadingDeliveries ? '--' : deliveries,
       },
       {
         title: t('children', 'Children'),
         linkAddress: '#',
         subTitle: t('hivExposedChildrenEnrolledInFollowUpCare', '# HIV Exposed children enrolled in follow up care'),
-        value: hivExposedInfants,
+        value: loadingInfants ? '--' : hiv_exposed_infants,
       },
     ],
-    [t, totalPregnantWomen, totalDeliveries, hivExposedInfants],
+    [t, loadingPregnancies, pregnant_women, loadingDeliveries, deliveries, loadingInfants, hiv_exposed_infants],
   );
   return <OHRIProgrammeSummaryTiles tiles={tiles} />;
 }
