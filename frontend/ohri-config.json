@@ -45,13 +45,6 @@
     "Brand color #3": "#0078A6"
   },
   "@openmrs/esm-primary-navigation-app": {
-    "extensionSlots": {
-      "app-menu-slot": {
-        "remove": [
-          "dispensing-link"
-        ]
-      }
-    },
     "logo": {
       "src": "ohri_logo_dark.svg"
     }
