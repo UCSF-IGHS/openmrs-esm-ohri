@@ -23,7 +23,7 @@ export const configSchema = {
       antenatalFormName: 'Antenatal Form',
       labourAndDeliveryFormName: 'Labour & Delivery Form',
       motherPostnatalFormName: 'Mother - Postnatal Form',
-      infantPostnatalFormName: 'Infant - Postanal Form',
+      infantPostnatalFormName: 'Infant - Postnatal Form',
     },
   },
   formUuids: {
