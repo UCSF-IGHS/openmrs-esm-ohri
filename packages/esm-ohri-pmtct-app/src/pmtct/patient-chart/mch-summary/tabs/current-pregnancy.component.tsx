@@ -272,7 +272,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         />
       </div>
 
-      <EncounterListTabsComponent patientUuid={patientUuid} configSchema={motherPreviousVisitConfigSchema} config={config} />
+      <EncounterListTabsComponent
+        patientUuid={patientUuid}
+        configSchema={motherPreviousVisitConfigSchema}
+        config={config}
+      />
     </div>
   );
 };
