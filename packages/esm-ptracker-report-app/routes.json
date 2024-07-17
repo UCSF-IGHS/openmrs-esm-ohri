@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.openmrs.org/routes.schema.json",
+    "backendDependencies": {
+      "webservices.rest": "^2.24.0"
+    },
+    "pages": [
+      {
+        "component": "PtrackerReport",
+        "route": "ptracker-report"
+      }
+    ],
+    "extensions": [
+      {
+        "name": "ptracker-report-link",
+        "slot": "app-menu-slot",
+        "component": "PtrackerReportLink"
+      }
+    ]
+  }
+  
