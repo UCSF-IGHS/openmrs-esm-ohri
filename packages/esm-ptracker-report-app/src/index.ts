@@ -1,5 +1,5 @@
-import { getAsyncLifecycle } from '@openmrs/esm-framework';
-
+import { getSyncLifecycle } from '@openmrs/esm-framework';
+import ptrackerdashboardPath from './ptracker-report-app-menu-link.component';
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 const moduleName = '@ohri/openmrs-esm-ohri-ptracker-report-app';
@@ -11,6 +11,4 @@ const options = {
 
 export function startupApp() {}
 
-export const PtrackerReport = getAsyncLifecycle(() => import('./root'), options);
-
-export const PtrackerReportLink = getAsyncLifecycle(() => import('./app-menu-navigation.component'), options);
+export const versionTwoNavLink = getSyncLifecycle(ptrackerdashboardPath, options);
