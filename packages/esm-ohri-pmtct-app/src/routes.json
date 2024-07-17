@@ -77,6 +77,13 @@
       "name": "child-visits-summary-ext",
       "slot": "child-visits-summary-slot",
       "component": "childVisitsDashboard"
+    },
+    {
+      "name": "version-two-link",
+      "slot": "app-menu-slot",
+      "component": "ptrackerReportNavLink",
+      "online": true,
+      "offline": true
     }
   ]
 }

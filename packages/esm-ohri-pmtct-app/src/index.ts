@@ -18,6 +18,7 @@ import {
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
 import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import ptrackerdashboardPath from './ptracker-reports/ptracker-report-app-menu-link.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -64,10 +65,13 @@ export const mchSummaryDashboardLink = getSyncLifecycle(
   options,
 );
 
-export const mchSummaryDashboard = getAsyncLifecycle(() => import('./pmtct/patient-chart/mch-summary/mch-summary.component'), {
-  featureName: 'mch-summary',
-  moduleName,
-});
+export const mchSummaryDashboard = getAsyncLifecycle(
+  () => import('./pmtct/patient-chart/mch-summary/mch-summary.component'),
+  {
+    featureName: 'mch-summary',
+    moduleName,
+  },
+);
 
 export const maternalVisitsDashboardLink = getSyncLifecycle(
   createConditionalDashboardLink({ ...maternalVisitsDashboardMeta, moduleName }),
@@ -92,3 +96,5 @@ export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
   featureName: 'mother child health results dashboard',
   moduleName,
 });
+
+export const ptrackerReportNavLink = getSyncLifecycle(ptrackerdashboardPath, options);
