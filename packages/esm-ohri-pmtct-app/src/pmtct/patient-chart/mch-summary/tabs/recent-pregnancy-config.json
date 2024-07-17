@@ -5,19 +5,19 @@
     {
       "id": "motherHIVStatus",
       "title": "Mother HIV Status",
-      "encounterTypes": [],
+      "encounterTypes": ["antenatalEncounterType", "laborAndDeliveryEncounterType", "motherPostnatalEncounterType"],
       "mambaEtlData": "motherHivStatus"
     },
     {
       "id": "expectedDeliveryDate",
       "title": "Expected Delivery Date",
-      "encounterTypes": [],
+      "encounterTypes": ["antenatalEncounterType", "laborAndDeliveryEncounterType", "motherPostnatalEncounterType"],
       "mambaEtlData": "deliveryDate"
     },
     {
       "id": "motherStatus",
       "title": "Mother Status",
-      "encounterTypes": [],
+      "encounterTypes": ["antenatalEncounterType", "laborAndDeliveryEncounterType", "motherPostnatalEncounterType"],
       "mambaEtlData": "motherStatus"
     }
   ]

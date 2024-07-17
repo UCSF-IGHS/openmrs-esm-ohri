@@ -285,7 +285,7 @@ export function fetchEtlData(
   let endpoint = '';
   switch (reportType) {
     case 'fetchMambaAncData':
-      endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&person_uuid=${patientUuid}`;
+      endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
       break;
     case 'MotherHivStatus':
       endpoint = `/ws/rest/v1/mamba/report?report_id=${reportId}&ptracker_id=${pTrackerId}&person_uuid=${patientUuid}`;
