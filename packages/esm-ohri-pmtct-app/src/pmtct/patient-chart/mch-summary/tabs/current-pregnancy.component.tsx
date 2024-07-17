@@ -156,12 +156,12 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
       const identifiers = await fetchPatientIdentifiers(patientUuid);
       if (identifiers?.length) {
         pTrackerMap.pTrackerId =
-          identifiers.find((id) => id.identifierType.uuid === identifiersTypes.pTrackerIdentifierType)?.identifier ??
+          identifiers.find((id) => id.identifierType.uuid === identifiersTypes.ptrackerIdentifierType)?.identifier ??
           '--';
       }
       return pTrackerMap;
     },
-    [identifiersTypes.pTrackerIdentifierType],
+    [identifiersTypes.ptrackerIdentifierType],
   );
 
   useEffect(() => {
