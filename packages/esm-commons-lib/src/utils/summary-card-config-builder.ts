@@ -16,23 +16,32 @@ export const getSummaryCardProps = (schemaConfig, config = null) => {
         return getConditionalConceptValue(encounter, column.conditionalConceptMappings, column.isDate);
       }
 
+      const pTrackerId = encounter?.patient?.identifiers.find(
+        (id) => id?.identifierType?.uuid === config?.identifiersTypes?.ptrackerIdentifierType,
+      )?.identifier;
+
       if (column?.mambaEtlData === 'ancVisits') {
-        const response = fetchEtlData('fetchMambaAncData', 'no_of_anc_visits', encounter?.patient?.uuid);
+        const response = fetchEtlData('fetchMambaAncData', 'no_of_anc_visits', encounter?.patient?.uuid, pTrackerId);
         return response?.data;
       }
 
       if (column?.mambaEtlData === 'motherStatus') {
-        const response = fetchEtlData('fetchMambaAncData', 'mother_status', encounter?.patient?.uuid);
+        const response = fetchEtlData('fetchMambaAncData', 'mother_status', encounter?.patient?.uuid, pTrackerId);
         return response?.data;
       }
 
       if (column?.mambaEtlData === 'deliveryDate') {
-        const response = fetchEtlData('fetchMambaAncData', 'estimated_date_of_delivery', encounter?.patient?.uuid);
+        const response = fetchEtlData(
+          'fetchMambaAncData',
+          'estimated_date_of_delivery',
+          encounter?.patient?.uuid,
+          pTrackerId,
+        );
         return response?.data;
       }
 
       if (column?.mambaEtlData === 'motherHivStatus') {
-        const response = fetchEtlData('fetchMambaAncData', 'mother_hiv_status', encounter?.patient?.uuid);
+        const response = fetchEtlData('fetchMambaAncData', 'mother_hiv_status', encounter?.patient?.uuid, pTrackerId);
         return response?.data;
       }
 
