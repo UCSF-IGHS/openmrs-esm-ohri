@@ -20,5 +20,6 @@
   "pTrackerId": "PTracker ID",
   "recentPregnancy": "Recent Pregnancy",
   "relationship": "Relationship",
-  "totalDeliveries": "# Total deliveries"
+  "totalDeliveries": "# Total deliveries",
+  "ptrackerReports": "PTracker Reports"
 }
