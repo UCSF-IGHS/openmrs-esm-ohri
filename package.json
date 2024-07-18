@@ -19,7 +19,7 @@
     "start:hct": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-hiv-care-treatment-app",
     "start:hp": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-hiv-prevention-app",
     "start:cervical-cancer": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
-    "start:pmtct": "openmrs develop --backend https://ohri-namibia-demo.globalhealthapp.net --sources 'packages/esm-ohri-pmtct-app/'",
+    "start:pmtct": "openmrs develop --backend https://ohri-namibia-dev.globalhealthapp.net --sources 'packages/esm-ohri-pmtct-app/'",
     "start:form-render": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-form-render-app",
     "start:tb": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-tb-app",
     "start:opd": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-opd-app",
