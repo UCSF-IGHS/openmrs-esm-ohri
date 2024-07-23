@@ -17,6 +17,7 @@
     "prepublishOnly": "npm run build",
     "extract-translations": "i18next 'src/**/*.component.tsx'"
   },
+  "proxy": "https://openmrs-dev.globalhealthapp.net",
   "browserslist": [
     "extends browserslist-config-openmrs"
   ],

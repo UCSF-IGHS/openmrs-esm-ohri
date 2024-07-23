@@ -9,11 +9,12 @@ import {
   covidClinicalViewDashboardMeta,
   covid19CasesDashboardMeta,
   covidPatientChartMeta,
+  reportingDemoDashboardMeta,
 } from './dashboard.meta';
 import { createOHRIDashboardLink, createOHRIGroupedLink } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { configSchema } from './config-schema';
-import rootComponent from './root.component';
+import ReportRoot from './root.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -68,5 +69,6 @@ export const covidClinicalViewDashboardLink = getSyncLifecycle(
   createOHRIDashboardLink(covidClinicalViewDashboardMeta),
   options,
 );
-export const covidCasesDashboardLink = getSyncLifecycle(createOHRIGroupedLink(covid19CasesDashboardMeta), options);
-export const covidCasesDashboard = getSyncLifecycle(rootComponent, options);
+
+export const reportingDemoDashboardLink = getSyncLifecycle(createOHRIGroupedLink(reportingDemoDashboardMeta), options);
+export const reportingDemoDashboard = getSyncLifecycle(ReportRoot, options);

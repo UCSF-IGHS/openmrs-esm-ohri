@@ -1,4 +1,4 @@
-import { Coronavirus } from '@carbon/react/icons';
+import { Coronavirus, VisualRecognition } from '@carbon/react/icons';
 
 // Patient Chart Dashboards
 export const covidPatientChartMeta = {
@@ -46,4 +46,14 @@ export const covid19CasesDashboardMeta = {
   isFolder: true,
   folderTitle: 'COVID',
   folderIcon: Coronavirus,
+};
+
+export const reportingDemoDashboardMeta = {
+  name: 'covid-cases',
+  icon: VisualRecognition,
+  slot: 'covid-cases-dashboard-slot',
+  title: 'Reporting Demo',
+  isFolder: false,
+  folderTitle: 'Reporting Demo',
+  folderIcon: VisualRecognition,
 };

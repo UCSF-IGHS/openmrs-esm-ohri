@@ -1,0 +1,75 @@
+@import '~@carbon/styles/scss/colors';
+@import '~@carbon/styles/scss/spacing';
+@import '~@carbon/styles/scss/type/index';
+@import '~@carbon/styles/scss/type';
+$gray-40: #a8a8a8;
+
+.homeContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.fetchButtonContainer {
+  flex-direction: row;
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.datePickerContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.dataTableContainer {
+  margin: 20px;
+  overflow-x: auto;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.dataTableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font: caption;
+  font-size: 0.8rem;
+}
+
+.dataTableContainer table tbody td {
+  border: 1px solid $gray-40;
+  text-align: left;
+  padding: 8px;
+}
+
+.dataTableContainer th {
+  border: 1px solid $white;
+  background-color: var(--brand-03);
+  font-weight: bold;
+  padding: 8px;
+  color: white;
+}
+
+.dataTableContainer thead {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.dataTableContainer td {
+  background-color: #ffffff;
+  white-space: unset;
+}
+
+.dataTableContainer tr:nth-child(even) td {
+  background-color: $gray-20;
+}

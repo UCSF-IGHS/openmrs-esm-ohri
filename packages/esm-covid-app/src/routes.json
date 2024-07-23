@@ -83,7 +83,13 @@
     {
       "name": "covid-cases-dashboard",
       "slot": "covid-cases-dashboard-slot",
-      "component": "covidCasesDashboard"
+      "component": "reportingDemoDashboard"
+    },
+    {
+      "name": "reporting-demo-dashboard",
+      "slot": "homepage-dashboard-slot",
+      "component": "reportingDemoDashboardLink"
     }
+    
   ]
 }
