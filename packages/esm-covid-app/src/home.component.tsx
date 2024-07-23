@@ -13,15 +13,16 @@ import {
   DatePickerInput,
 } from '@carbon/react';
 import { OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { openmrsFetch, useConfig } from '@openmrs/esm-framework';
 import styles from './home.component.scss';
 
 const BASE_WS_API_URL = '/ws/rest/v1/mamba/report';
 
 const HomeComponent = () => {
+  const config = useConfig();
   const [headers, setHeaders] = useState([]);
   const [rows, setRows] = useState([]);
-  const [reportId, setReportId] = useState('mother_hiv_status');
+  const [reportId, setReportId] = useState(config.reportIds.motherHivStatusReport);
   const [ptrackerId, setPtrackerId] = useState('12345A232567');
   const [personUuid, setPersonUuid] = useState('bd49d697-b1de-49b9-95c2-6031fb1375fd');
   const [startDate, setStartDate] = useState('');
@@ -102,10 +103,10 @@ const HomeComponent = () => {
             titleText="Select Report"
             label="Select a report to display"
             items={[
-              { id: 'ecabd559-14f6-4c65-87af-1254dfdf1304', text: 'Covid-19 Report' },
-              { id: '3ffa5a53-fc65-4a1e-a434-46dbcf1c2de2', text: 'HTS Report' },
-              { id: 'mother_hiv_status', text: 'Mother HIV Status Report' },
-              { id: '2f236b1-b0b5-4ecc-9037-681c23fb45bd', text: 'ADX-HIV Report' },
+              { id: config.reportIds.covidReport, text: 'Covid-19 Report' },
+              { id: config.reportIds.htsReport, text: 'HTS Report' },
+              { id: config.reportIds.motherHivStatusReport, text: 'Mother HIV Status Report' },
+              { id: config.reportIds.adxHivReport, text: 'ADX-HIV Report' },
             ]}
             itemToString={(item) => (item ? item.text : '')}
             onChange={({ selectedItem }) => setReportId(selectedItem.id)}

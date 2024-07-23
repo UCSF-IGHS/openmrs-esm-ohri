@@ -109,6 +109,16 @@ export const configSchema = {
       covidLabCancellationFormUuid: 'd38bc949-c95b-39eb-a2c5-08b82a36409c',
       covidSampleCollectionFormUuid: '371d19b6-485f-11ec-99cc-1fdd2d4e9d88',
     },
+    reportIds: {
+      _type: Type.Object,
+      _description: 'Report UUIDs.',
+      _default: {
+        covidReport: 'ecabd559-14f6-4c65-87af-1254dfdf1304',
+        htsReport: '3ffa5a53-fc65-4a1e-a434-46dbcf1c2de2',
+        motherHivStatusReport: 'mother_hiv_status',
+        adxHivReport: '2f236b1-b0b5-4ecc-9037-681c23fb45bd',
+      },
+    },
   },
 };
 
