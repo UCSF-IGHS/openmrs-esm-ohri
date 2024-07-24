@@ -21,6 +21,26 @@
       "slot": "patient-chart-dashboard-slot",
       "component": "covidPatientChartDashboard"
     },
+
+
+    {
+      "name": "covid-dashboard",
+      "slot": "covid-dashboard",
+      "component": "covidCasesDashboardLink",
+      "meta": {
+
+        "name":  "covid-dashboard",
+        "slot": "covid-dashboard-slot",
+        "cofig": {
+          "title": "Covid Dashboard",
+          "columns": 1,
+          "layoutMode": "anchored"
+        },
+        "title": "Covid Dashboard"
+      }
+    },
+
+
     {
       "name": "covid-assessments-dashboard",
       "slot": "ohri-covid-patient-chart-slot",
@@ -76,19 +96,30 @@
       "meta": {
         "name": "covid-cases",
         "slot": "covid-cases-dashboard-slot",
-        "title": "TB Treatment"
+        "title": "Covid Cases"
       },
       "order": 5
     },
     {
       "name": "covid-cases-dashboard",
       "slot": "covid-cases-dashboard-slot",
-      "component": "reportingDemoDashboard"
+      "component": "covidCasesDashboard"
     },
     {
-      "name": "reporting-demo-dashboard",
+      "name": "covid-report-dashboard-ext",
       "slot": "homepage-dashboard-slot",
-      "component": "reportingDemoDashboardLink"
+      "component": "reportingDemoDashboardLink",
+      "meta": {
+        "name": "covid-report",
+        "slot": "covid-reporting-dashboard-slot",
+        "title": "Covid Report"
+      },
+      "order": 5
+    },
+    {
+      "name": "covid-reporting-demo-dashboard",
+      "slot": "covid-reporting-dashboard-slot",
+      "component": "reportingDemoDashboard"
     }
     
   ]

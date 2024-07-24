@@ -1,75 +1,133 @@
-@import '~@carbon/styles/scss/colors';
-@import '~@carbon/styles/scss/spacing';
-@import '~@carbon/styles/scss/type/index';
-@import '~@carbon/styles/scss/type';
-$gray-40: #a8a8a8;
-
+.container {
+  padding: 2rem;
+}
 .homeContainer {
-  height: 100vh;
+  padding: 1rem;
+}
+.dropdownItem {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+}
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.tile {
+  padding: 2rem;
+  text-align: center;
+}
+
+.content {
+  font-size: 1.25rem;
+  color: #5a5a5a;
+}
+
+.explainer {
+  color: #777;
 }
 
 .form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  max-width: 100%;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.datePickerContainer {
+  display: flex;
+  align-items: center; 
+  gap: 16px; 
 }
 
 .fetchButtonContainer {
-  flex-direction: row;
-  margin-top: 1rem;
-  width: 100%;
+  margin-left: 16px;
   display: flex;
-  justify-content: flex-start;
+  align-items: center; 
 }
+
+.datePickerContainer > * {
+  flex: 1; 
+}
+
+.datePickerInput {
+  min-width: 120px;
+}
+
+.button {
+  max-height: 40px;
+  line-height: 40px; 
+  font-size: 14px;
+  padding: 0 16px;
+  margin-top: 1rem;
+  max-width: 120px;
+  align-items: center;
+}
+
 
 .datePickerContainer {
   display: flex;
   gap: 1rem;
 }
 
+.fetchButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .dataTableContainer {
-  margin: 20px;
-  overflow-x: auto;
-  max-height: 80vh;
-  overflow-y: auto;
+  margin-top: 2rem;
+  padding: 1rem;
+  border: solid 1px #e0e0e0;
+  height: 100vh;
 }
 
-.dataTableContainer table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  font: caption;
-  font-size: 0.8rem;
+.dataTableFullContainer {
+  margin-top: 2rem;
+  padding: 1rem;
+  height: 100vh;
 }
 
-.dataTableContainer table tbody td {
-  border: 1px solid $gray-40;
-  text-align: left;
-  padding: 8px;
+.tableContainer {
+  margin-top: 1rem;
 }
 
-.dataTableContainer th {
-  border: 1px solid $white;
-  background-color: var(--brand-03);
-  font-weight: bold;
-  padding: 8px;
-  color: white;
+.toolbarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.dataTableContainer thead {
-  position: sticky;
-  top: 0;
-  z-index: 999;
+.toolbarContent {
+  display: flex;
+  gap: 1rem;
 }
 
-.dataTableContainer td {
-  background-color: #ffffff;
-  white-space: unset;
+.searchbox {
+  flex-grow: 1;
 }
 
-.dataTableContainer tr:nth-child(even) td {
-  background-color: $gray-20;
+.tileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.tileContent {
+  text-align: center;
+}
+
+.content {
+  font-size: 1.25rem;
+  color: #5a5a5a;
+}
+
+.pagination {
+  margin-top: 1rem;
 }

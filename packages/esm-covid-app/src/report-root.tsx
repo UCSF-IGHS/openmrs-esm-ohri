@@ -1,22 +1,22 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CovidHome from './covid-home.component';
+import ReportComponent from './report-home';
 
 const swrConfiguration = {
   // Maximum number of retries when the backend returns an error
   errorRetryCount: 3,
 };
 
-const CovidRoot: React.FC = () => {
-  const covidBasename = window.getOpenmrsSpaBase() + 'home/covid-cases';
+const ReportRoot: React.FC = () => {
+  const reportingBasename = window.getOpenmrsSpaBase() + 'home/covid-report';
 
   return (
     <main>
       <SWRConfig value={swrConfiguration}>
-        <BrowserRouter basename={covidBasename}>
+        <BrowserRouter basename={reportingBasename}>
           <Routes>
-            <Route path="/" element={<CovidHome />} />
+            <Route path="/" element={<ReportComponent />} />
           </Routes>
         </BrowserRouter>
       </SWRConfig>
@@ -24,4 +24,4 @@ const CovidRoot: React.FC = () => {
   );
 };
 
-export default CovidRoot;
+export default ReportRoot;

@@ -39,6 +39,17 @@ export const covidClinicalViewDashboardMeta = {
   title: 'COVID',
 };
 
+export const covidCasesDashboardMeta = {
+  name: 'covid-dashboard',
+  icon: VisualRecognition,
+  slot: 'covid-dashboard-slot',
+  title: 'Covid Test',
+  isFolder: true,
+  folderTitle: 'Covid Test',
+  folderIcon: VisualRecognition,
+  isHidde: true,
+};
+
 export const covid19CasesDashboardMeta = {
   name: 'covid-cases',
   slot: 'covid-cases-dashboard-slot',
@@ -49,11 +60,11 @@ export const covid19CasesDashboardMeta = {
 };
 
 export const reportingDemoDashboardMeta = {
-  name: 'covid-cases',
+  name: 'covid-report',
   icon: VisualRecognition,
-  slot: 'covid-cases-dashboard-slot',
+  slot: 'covid-reporting-dashboard-slot',
   title: 'Reporting Demo',
-  isFolder: false,
+  isFolder: true,
   folderTitle: 'Reporting Demo',
   folderIcon: VisualRecognition,
 };
