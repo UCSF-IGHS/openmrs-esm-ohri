@@ -14,6 +14,7 @@
   },
   "scripts": {
     "start": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources 'packages/esm-*-app/'",
+    "start:commonslib": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources 'packages/esm-commons-lib/'",
     "start:core": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
     "start:covid": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-covid-app",
     "start:hct": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-hiv-care-treatment-app",

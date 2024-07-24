@@ -6,9 +6,19 @@
   "pages": [],
   "extensions": [
     {
-      "name": "patient-status-banner-tag",
-      "slot": "patient-banner-tags-slot",
-      "component": "patientStatusBannerTagExtension"
+      "name": "reports-dashboard-link",
+      "slot": "homepage-dashboard-slot",
+      "component": "reportsDashboardLink",
+      "meta": {
+        "name": "reports",
+        "slot": "reports-dashboard-slot",
+        "title": "Reports Dashboard"
+      }
+    },
+    {
+      "name": "reports-dashboard",
+      "slot": "reports-dashboard-slot",
+      "component": "reportsDashboard"
     }
   ],
   "workspaces": [

@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import classNames from 'classnames';
+import React, { useMemo } from 'react';
 import { BrowserRouter, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { ConfigurableLink, navigate } from '@openmrs/esm-framework';
-import { SideNavLink, SideNavMenu, SideNavMenuItem, Button } from '@carbon/react';
+import { navigate } from '@openmrs/esm-framework';
+import { SideNavLink } from '@carbon/react';
+import ConditionalNavLinkRenderer from '../components/extension-conditional-renderer/side-nav-renderer';
+
 import styles from './sidenav-links.scss';
 
 interface DashboardLinkConfig {
   name: string;
   title: string;
   icon: React.ComponentType<any>;
+  configKey?: string;
 }
 
 function NewDashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: DashboardLinkConfig }) {
@@ -39,7 +40,9 @@ function NewDashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: D
 }
 
 export const createNewOHRIDashboardLink = (dashboardLinkConfig: DashboardLinkConfig) => () => (
-  <BrowserRouter>
-    <NewDashboardExtension dashboardLinkConfig={dashboardLinkConfig} />
-  </BrowserRouter>
+  <ConditionalNavLinkRenderer conditionalConfigKey={dashboardLinkConfig.configKey}>
+    <BrowserRouter>
+      <NewDashboardExtension dashboardLinkConfig={dashboardLinkConfig} />
+    </BrowserRouter>
+  </ConditionalNavLinkRenderer>
 );

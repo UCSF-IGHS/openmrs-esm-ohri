@@ -1,7 +1,9 @@
 import { FormEngine } from '@openmrs/openmrs-form-engine-lib';
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
-import { PatientStatusBannerTag } from './components/banner-tags/patient-status-tag.component';
-import { configSchema } from './config.schema';
+import { createNewOHRIDashboardLink } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { reportsDashboardMeta } from './dashboard.meta';
+import reportsRoot from './components/reports/reports-root.component';
+import { configSchema } from './config-schema';
 
 export * from './constants';
 export * from './api.resource';
@@ -59,18 +61,24 @@ export * from './utils/cohort-list-config-builder';
 export * from './utils/patient-list-tabs-config-builder';
 export * from './components/encounter-list-tabs/encounter-list-tabs.component';
 // Workspace registration moved to the index.ts and routes.json
-const options = {
-  featureName: 'ohri-forms-workspace-item',
-  moduleName: '@ohri/openmrs-esm-ohri-commons-lib',
-};
 
 const moduleName = '@ohri/openmrs-esm-ohri-commons-lib';
+
+const options = {
+  featureName: 'ohri-forms-workspace-item',
+  moduleName,
+};
 
 export function startupApp() {
   defineConfigSchema(moduleName, configSchema);
 }
-
 // t('ohriForms', "OHRI Forms")
 export const ohriFormsWorkspace = getSyncLifecycle(FormEngine, options);
 
-export const patientStatusBannerTagExtension = getSyncLifecycle(PatientStatusBannerTag, options);
+// t('mambaReports', "Mamba Reports")
+export const reportsDashboardLink = getSyncLifecycle(
+  createNewOHRIDashboardLink({ ...reportsDashboardMeta, configKey: 'showReports' }),
+  options,
+);
+
+export const reportsDashboard = getSyncLifecycle(reportsRoot, options);
