@@ -16,15 +16,15 @@ import { OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { openmrsFetch, useConfig } from '@openmrs/esm-framework';
 import styles from './home.component.scss';
 
-const BASE_WS_API_URL = '/ws/rest/v1/mamba/report';
+const BASE_WS_API_URL = 'https://openmrs-dev.globalhealthapp.net/openmrs/ws/rest/v1/mamba/report';
 
 const HomeComponent = () => {
   const config = useConfig();
   const [headers, setHeaders] = useState([]);
   const [rows, setRows] = useState([]);
-  const [reportId, setReportId] = useState(config.reportIds.motherHivStatusReport);
-  const [ptrackerId, setPtrackerId] = useState('12345A232567');
-  const [personUuid, setPersonUuid] = useState('bd49d697-b1de-49b9-95c2-6031fb1375fd');
+  const [reportId, setReportId] = useState('mother_hiv_status');
+  const [ptrackerId, setPtrackerId] = useState('');
+  const [personUuid, setPersonUuid] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
@@ -39,7 +39,7 @@ const HomeComponent = () => {
       const response = await openmrsFetch(url, {
         method: 'GET',
         headers: {
-          Authorization: 'Basic ' + btoa('root:12345678'),
+          Authorization: 'Basic ' + btoa('admin:Admin123'),
         },
         credentials: 'include',
       });
@@ -102,14 +102,13 @@ const HomeComponent = () => {
             id="report-dropdown"
             titleText="Select Report"
             label="Select a report to display"
-            items={[
-              { id: config.reportIds.covidReport, text: 'Covid-19 Report' },
-              { id: config.reportIds.htsReport, text: 'HTS Report' },
-              { id: config.reportIds.motherHivStatusReport, text: 'Mother HIV Status Report' },
-              { id: config.reportIds.adxHivReport, text: 'ADX-HIV Report' },
-            ]}
-            itemToString={(item) => (item ? item.text : '')}
-            onChange={({ selectedItem }) => setReportId(selectedItem.id)}
+            items={config.reports}
+            itemToString={(item) => (item ? item.name : '')}
+            onChange={({ selectedItem }) => {
+              setReportId(selectedItem.reportId || '');
+              setPtrackerId(selectedItem.ptrackerId || '');
+              setPersonUuid(selectedItem.personUuid || '');
+            }}
           />
           <DatePicker
             datePickerType="single"
