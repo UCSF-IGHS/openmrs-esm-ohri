@@ -1,7 +1,7 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ReportsHome from './reports-home.component';
+import ReportComponent from './reports-home.component';
 
 const swrConfiguration = {
   errorRetryCount: 3,
@@ -15,7 +15,7 @@ const RootComponent: React.FC = () => {
       <SWRConfig value={swrConfiguration}>
         <BrowserRouter basename={reportsBasename}>
           <Routes>
-            <Route path="/" element={<ReportsHome />} />
+            <Route path="/" element={<ReportComponent />} />
           </Routes>
         </BrowserRouter>
       </SWRConfig>
