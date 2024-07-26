@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import useSWR from 'swr';
+import React, { useState, useMemo } from 'react';
 import {
   DataTable,
   Table,
@@ -13,20 +12,13 @@ import {
   DataTableSkeleton,
 } from '@carbon/react';
 import { OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { openmrsFetch, useConfig, restBaseUrl } from '@openmrs/esm-framework';
+import { useConfig } from '@openmrs/esm-framework';
 import styles from './home.component.scss';
-import capitalize from 'lodash/capitalize';
 import { EmptyDataIllustration } from '@openmrs/esm-patient-common-lib';
-import ReportFilters from './reportfilters';
+import ReportFilters from './report-filters.component';
 import { useTranslation } from 'react-i18next';
-
-const snakeCaseToCapitalizedWords = (snakeCaseString) =>
-  snakeCaseString
-    .split('_')
-    .map((word) => capitalize(word))
-    .join(' ');
-
-const fetcher = (url) => openmrsFetch(url).then((res) => res.json());
+import { useReportsData } from './reports.resource';
+import { BorderBottom } from '@carbon/react/icons';
 
 const ReportComponent = () => {
   const config = useConfig();
@@ -38,34 +30,41 @@ const ReportComponent = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [reportRequested, setReportRequested] = useState(false);
-
-  const url = useMemo(() => {
-    if (!startDate || !endDate || !reportId) return null;
-    return `${restBaseUrl}/reportingrest/reportdata/${reportId}?startDate=${startDate}&endDate=${endDate}`;
-  }, [reportId, startDate, endDate]);
-
-  const { data, error, mutate } = useSWR(url, fetcher, { revalidateOnFocus: false });
-
-  useEffect(() => {
-    if (error) {
-      console.error('Error fetching report data:', error);
-    }
-  }, [error]);
+  const { data, error, mutate } = useReportsData(startDate, endDate, reportId);
 
   const headers = useMemo(() => {
-    if (!data || !data.dataSets || !data.dataSets.length || !data.dataSets[0].metadata) return [];
-    return data.dataSets[0].metadata.columns.map((column) => ({
-      key: column.name,
-      header: column.label,
+    if (
+      !data ||
+      !data.dataSets ||
+      !data.dataSets.length ||
+      !data.dataSets[0].metadata ||
+      !data.dataSets[0].metadata.columns
+    )
+      return [];
+    return data.dataSets[0].metadata.columns.map((col) => ({
+      key: col.name.trim(), // Ensure key is a string and trimmed
+      header: col.label,
     }));
   }, [data]);
 
   const rows = useMemo(() => {
-    if (!data || !data.dataSets || !data.dataSets.length || !data.dataSets[0].rows) return [];
-    return data.dataSets[0].rows.map((result, idx) => ({
-      id: idx.toString(),
-      ...result,
-    }));
+    if (
+      !data ||
+      !data.dataSets ||
+      !data.dataSets.length ||
+      !data.dataSets[0].rows ||
+      !data.dataSets[0].metadata ||
+      !data.dataSets[0].metadata.columns
+    )
+      return [];
+    return data.dataSets[0].rows.map((row, idx) => {
+      const rowData = {};
+      data.dataSets[0].metadata.columns.forEach((col) => {
+        const key = col.name.trim(); // Ensure key is a string and trimmed
+        rowData[key] = row[key] !== undefined ? row[key] : '-';
+      });
+      return { id: idx.toString(), ...rowData };
+    });
   }, [data]);
 
   const loading = !data && !error && reportRequested;
@@ -106,7 +105,7 @@ const ReportComponent = () => {
             </Tile>
           </Layer>
         </div>
-      ) : rows.length === 0 || !reportRequested ? (
+      ) : rows?.length === 0 || (!reportRequested && data.dataSets[0].metadata?.columns.length > 0) ? (
         <div className={styles.dataTableContainer}>
           <Layer className={styles.layer}>
             <Tile className={styles.tile}>
@@ -120,13 +119,13 @@ const ReportComponent = () => {
         </div>
       ) : (
         <div className={styles.dataTableFullContainer}>
-          <DataTable rows={rows} headers={headers}>
+          {/* <DataTable rows={rows} headers={headers}>
             {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
-              <Table {...getTableProps()}>
+              <Table {...getTableProps()} className={styles.dataTable}>
                 <TableHead>
                   <TableRow>
                     {headers.map((header) => (
-                      <TableHeader {...getHeaderProps({ header })} key={header.key}>
+                      <TableHeader {...getHeaderProps({ header })} key={header.key} className={styles.tableHeader}>
                         {header.header}
                       </TableHeader>
                     ))}
@@ -134,16 +133,38 @@ const ReportComponent = () => {
                 </TableHead>
                 <TableBody>
                   {rows.map((row) => (
-                    <TableRow {...getRowProps({ row })} key={row.id}>
-                      {headers.map((header) => (
-                        <TableCell key={header.key}>{row[header.key] || '-'}</TableCell>
+                    <TableRow key={row.id}>
+                      {row.cells.map((cell) => (
+                        <TableCell key={cell.id} className={styles.tableCell}>
+                          {cell.value}
+                        </TableCell>
                       ))}
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             )}
-          </DataTable>
+          </DataTable> */}
+
+          {data && data?.dataSets && data?.dataSets?.length > 0 && (
+            <Layer>
+              <div className={styles.tableGridLayout}>
+                {Array.from(data.dataSets[0].metadata?.columns, (col: any) => {
+                  return {
+                    label: col.label,
+                    value: data.dataSets[0].rows[0][col.name] ?? '-',
+                  };
+                }).map((r) => (
+                  <div className={styles.dataCell}>
+                    <p className={styles.dataCellHeader}>{r.label}</p>
+                    <p className={styles.dataCellValue}>
+                      <strong>{r.value}</strong>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Layer>
+          )}
         </div>
       )}
     </div>

@@ -1,0 +1,23 @@
+.tableGridLayout {
+display: 'grid';
+grid-template-columns: 'repeat(6, 1fr)';
+gap: '0';
+padding: '0 5px';
+}
+
+.dataCell {
+padding: '0px';
+border-radius: '0px';
+display: 'flex';
+flex-direction: 'column';
+border: '1px solid gray';
+}
+
+.dataCellHeader {
+background-color: '#e0e0e0';
+text-align: 'center'
+}
+
+.dataCellValue {
+text-align: 'center'
+}
