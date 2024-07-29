@@ -19,7 +19,7 @@
     {
       "id": "artStartDate",
       "isDate": true,
-      "title": "ART initiation",
+      "title": "ART Start Date",
       "encounterTypes": ["motherPostnatalEncounterType", "laborAndDeliveryEncounterType", "antenatalEncounterType"],
       "concept": "artInitiationConcept",
       "conditionalEncounterMappings": {

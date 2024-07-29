@@ -110,7 +110,7 @@
         {
           "id": "artInitiation",
           "isDate": true,
-          "title": "ART Initiation",
+          "title": "ART Start Date",
           "concept": "artStartDate"
         },
         {
