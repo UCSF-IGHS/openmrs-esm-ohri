@@ -6,6 +6,21 @@
   "pages": [
   ],
   "extensions": [
+    {
+      "name": "reports-dashboard-link",
+      "slot": "homepage-dashboard-slot",
+      "component": "reportsDashboardLink",
+      "meta": {
+        "name": "reports",
+        "slot": "reports-dashboard-slot",
+        "title": "Reports Dashboard"
+      }
+    },
+    {
+      "name": "reports-dashboard",
+      "slot": "reports-dashboard-slot",
+      "component": "reportsDashboard"
+    }
   ],
   "workspaces": [
     {

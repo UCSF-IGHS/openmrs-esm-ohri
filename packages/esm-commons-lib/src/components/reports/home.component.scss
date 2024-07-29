@@ -1,0 +1,187 @@
+.centeredTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  text-align: center;
+}
+  
+.container {
+  padding: 2rem;
+}
+
+.homeContainer {
+  padding: 1rem;
+  width: 85vw
+}
+  
+.dropdownItem {
+  display: flex;
+  align-items: center;
+}
+  
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+  
+.tile {
+  padding: 2rem;
+  text-align: center;
+}
+
+.content {
+  font-size: 1.25rem;
+  color: #5a5a5a;
+}
+
+.explainer {
+  color: #777;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.datePickerContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.datePickerContainer > * {
+  flex: 1;
+  min-width: 150px;
+}
+  
+.fetchButtonContainer {
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.datePickerInput {
+  min-width: 120px;
+}
+
+.button {
+  max-height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  padding: 0 16px;
+  margin-top: 1rem;
+  max-width: 120px;
+  align-items: center;
+}
+  
+.dataTableContainer {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: solid 1px #e0e0e0;
+  max-height: calc(100vh - 200px);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.dataTableFullContainer {
+  margin-top: 2rem;
+  padding: 1rem;
+  max-height: calc(100vh - 200px);
+  overflow: auto; 
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  // table-layout: fixed;
+}
+
+.tableHeader {
+  white-space: normal; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100px;
+  text-align: center; 
+}
+
+.tableCell {
+  white-space: normal; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+}
+  
+.tableContainer {
+  margin-top: 1rem;
+}
+
+.toolbarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbarContent {
+  display: flex;
+  gap: 1rem;
+}
+  
+.searchbox {
+  flex-grow: 1;
+}
+
+.tileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.tileContent {
+  text-align: center;
+}
+
+.content {
+  font-size: 1.25rem;
+  color: #5a5a5a;
+}
+  
+.pagination {
+  margin-top: 1rem;
+}
+
+.tableGridLayout {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  padding: 0 5px;
+}
+
+.dataCell {
+  padding: 0px;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dataCellHeader {
+  background-color: #e0e0e0;
+  text-align: center;
+}
+
+.dataCellValue {
+  text-align: center;
+}
