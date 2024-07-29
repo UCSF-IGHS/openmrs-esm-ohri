@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import { encounterRepresentation } from '../constants';
 import { type OpenmrsEncounter } from '../types';
 
@@ -12,7 +12,7 @@ export function useEncounterRows(
   afterFormSaveAction: () => void,
 ) {
   const [encounters, setEncounters] = useState([]);
-  const url = `/ws/rest/v1/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`;
+  const url = `${restBaseUrl}/encounter?encounterType=${encounterType}&patient=${patientUuid}&v=${encounterRepresentation}`;
 
   const {
     data: response,

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import useSWRImmutable from 'swr';
 import { type FhirPatientResponse } from '../types';
-import { ConfigurableLink, openmrsFetch } from '@openmrs/esm-framework';
+import { ConfigurableLink, fhirBaseUrl, openmrsFetch } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import capitalize from 'lodash/capitalize';
 import { OverflowMenu } from '@carbon/react';
 import { AddPatientToListOverflowMenuItem } from '../components/modals/add-patient-to-list-modal.component';
 
 export function usePatientList(offSet: number, pageSize: number, searchTerm?: string) {
-  const url = `/ws/fhir2/R4/Patient?_getpagesoffset=${offSet}&_count=${pageSize}${
+  const url = `${fhirBaseUrl}/Patient?_getpagesoffset=${offSet}&_count=${pageSize}${
     searchTerm ? `&name=${searchTerm}` : ''
   }&_summary=data`;
   const [paginatedPatientRows, setPaginatedPatientRows] = useState([]);

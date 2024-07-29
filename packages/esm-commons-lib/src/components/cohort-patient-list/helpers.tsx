@@ -5,9 +5,9 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { AddPatientToListOverflowMenuItem } from '../modals/add-patient-to-list-modal.component';
-import { fetchPatientLastEncounter } from '../../api.resource';
 import { launchForm } from '../../utils/ohri-forms-commons';
 import { navigate, WorkspaceContainer } from '@openmrs/esm-framework';
+import { useLastEncounter } from '../../hooks/useLastEncounter';
 
 interface PatientMetaConfig {
   location: { name: string };
@@ -38,23 +38,25 @@ export const LaunchableFormMenuItem = ({
 }) => {
   const [actionText, setActionText] = useState(launchableForm.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const continueEncounterActionText = launchableForm.actionText || 'Continue encounter ';
+  const { lastEncounter, isLoading } = useLastEncounter(patientUuid, encounterType);
 
   useEffect(() => {
     if (launchableForm.editLatestEncounter && encounterType && !encounterUuid) {
-      setIsLoading(true);
-      fetchPatientLastEncounter(patientUuid, encounterType).then((latestEncounter) => {
-        if (latestEncounter) {
-          setActionText(continueEncounterActionText);
-          setEncounterUuid(latestEncounter.uuid);
-        }
-        setIsLoading(false);
-      });
-    } else {
-      setIsLoading(false);
+      if (!isLoading && lastEncounter) {
+        setActionText(continueEncounterActionText);
+        setEncounterUuid(lastEncounter.uuid);
+      }
     }
-  }, [continueEncounterActionText, encounterType, encounterUuid, launchableForm.editLatestEncounter, patientUuid]);
+  }, [
+    continueEncounterActionText,
+    encounterType,
+    encounterUuid,
+    launchableForm.editLatestEncounter,
+    patientUuid,
+    lastEncounter,
+    isLoading,
+  ]);
 
   return (
     <>
@@ -79,23 +81,25 @@ export const LaunchableFormMenuItem = ({
 export const ViewSummaryMenuItem = ({ patientUuid, ViewSummary, encounterType }) => {
   const [actionText, setActionText] = useState(ViewSummary.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const viewSummaryActionText = ViewSummary.actionText || 'View Summary ';
+  const { lastEncounter, isLoading } = useLastEncounter(patientUuid, encounterType);
 
   useEffect(() => {
     if (ViewSummary.editLatestEncounter && encounterType && !encounterUuid) {
-      setIsLoading(true);
-      fetchPatientLastEncounter(patientUuid, encounterType).then((latestEncounter) => {
-        if (latestEncounter) {
-          setActionText(viewSummaryActionText);
-          setEncounterUuid(latestEncounter.uuid);
-        }
-        setIsLoading(false);
-      });
-    } else {
-      setIsLoading(false);
+      if (!isLoading && lastEncounter) {
+        setActionText(viewSummaryActionText);
+        setEncounterUuid(lastEncounter.uuid);
+      }
     }
-  }, [ViewSummary.editLatestEncounter, encounterType, encounterUuid, patientUuid, viewSummaryActionText]);
+  }, [
+    ViewSummary.editLatestEncounter,
+    encounterType,
+    encounterUuid,
+    isLoading,
+    lastEncounter,
+    patientUuid,
+    viewSummaryActionText,
+  ]);
 
   return (
     <>
@@ -114,26 +118,29 @@ export const ViewSummaryMenuItem = ({ patientUuid, ViewSummary, encounterType })
     </>
   );
 };
+
 export const ViewTptSummaryMenuItem = ({ patientUuid, ViewTptSummary, encounterType }) => {
   const [actionText, setActionText] = useState(ViewTptSummary.actionText);
   const [encounterUuid, setEncounterUuid] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const viewTptSummaryActionText = ViewTptSummary.actionText || 'View Summary ';
+  const { lastEncounter, isLoading } = useLastEncounter(patientUuid, encounterType);
 
   useEffect(() => {
     if (ViewTptSummary.editLatestEncounter && encounterType && !encounterUuid) {
-      setIsLoading(true);
-      fetchPatientLastEncounter(patientUuid, encounterType).then((latestEncounter) => {
-        if (latestEncounter) {
-          setActionText(viewTptSummaryActionText);
-          setEncounterUuid(latestEncounter.uuid);
-        }
-        setIsLoading(false);
-      });
-    } else {
-      setIsLoading(false);
+      if (!isLoading && lastEncounter) {
+        setActionText(viewTptSummaryActionText);
+        setEncounterUuid(lastEncounter.uuid);
+      }
     }
-  }, [ViewTptSummary.editLatestEncounter, encounterType, patientUuid, encounterUuid, viewTptSummaryActionText]);
+  }, [
+    ViewTptSummary.editLatestEncounter,
+    encounterType,
+    patientUuid,
+    encounterUuid,
+    viewTptSummaryActionText,
+    isLoading,
+    lastEncounter,
+  ]);
 
   return (
     <>
@@ -152,6 +159,7 @@ export const ViewTptSummaryMenuItem = ({ patientUuid, ViewTptSummary, encounterT
     </>
   );
 };
+
 export function consolidatatePatientMeta(rawPatientMeta, form, config: PatientMetaConfig) {
   const {
     isDynamicCohort,

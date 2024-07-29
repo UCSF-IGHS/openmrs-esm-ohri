@@ -238,3 +238,15 @@ export interface PatientListRow {
   lastVisit?: string;
   actions?: React.ReactNode;
 }
+
+interface RecordItem {
+  column: string;
+  value: number;
+}
+
+interface DataObject {
+  serialId: number;
+  record: RecordItem[];
+}
+
+export type ReportDataArray = DataObject[];

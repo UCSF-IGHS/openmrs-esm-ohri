@@ -5,7 +5,7 @@ export * from './constants';
 export * from './api.resource';
 export * from './types';
 export * from './components/banner-tags/patient-status-tag.component';
-export * from './components/banner-tags/patientHivStatus';
+export * from './components/banner-tags/usePatientHivStatus';
 export * from './components/data-table/o-table.component';
 export * from './components/empty-state/empty-data-illustration.component';
 export * from './components/empty-state/empty-state-comingsoon.component';
