@@ -6,6 +6,11 @@
   "pages": [],
   "extensions": [
     {
+      "name": "patient-status-banner-tag",
+      "slot": "patient-banner-tags-slot",
+      "component": "patientStatusBannerTagExtension"
+    },
+    {
       "name": "maternal-child-health-results-summary",
       "slot": "homepage-dashboard-slot",
       "component": "maternalChildDashboardLink",

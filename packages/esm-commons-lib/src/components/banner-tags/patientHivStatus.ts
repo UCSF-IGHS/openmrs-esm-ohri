@@ -14,7 +14,8 @@ const usePatientHtsEncounters = (patientUuid: string) => {
         'custom:(uuid,encounterDatetime,location:(uuid,name),' +
         'encounterProviders:(uuid,provider:(uuid,name)),' +
         'obs:(uuid,obsDatetime,concept:(uuid,name:(uuid,name)),value:(uuid,name:(uuid,name))))';
-      const antenatalEncounterType = config.encounterTypes.antenatalEncounterType;
+      const antenatalEncounterType =
+        config.encounterTypes.antenatalEncounterType || '677d1a80-dbbe-4399-be34-aa7f54f11405';
 
       if (!antenatalEncounterType) {
         setIsError(true);
@@ -51,9 +52,10 @@ const usePatientHivStatus = (patientUuid: string) => {
 
   useEffect(() => {
     const fetchHivStatus = async () => {
-      const hivTestResultConceptUUID = config.obsConcepts.hivTestResultConceptUUID;
-      const positiveUUID = config.obsConcepts.positiveUUID;
-      const negativeUUID = config.obsConcepts.negativeUUID;
+      const hivTestResultConceptUUID =
+        config.obsConcepts.hivTestResultConceptUUID || '159427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+      const positiveUUID = config.obsConcepts.positiveUUID || '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+      const negativeUUID = config.obsConcepts.negativeUUID || '664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
       let hivStatus = '';
 
