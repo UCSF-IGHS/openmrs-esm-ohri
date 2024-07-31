@@ -4,6 +4,7 @@ import { LazyCell } from '../lazy-cell/lazy-cell.component';
 import { useLastEncounter } from '../../hooks/useLastEncounter';
 
 import styles from '../../styleguide/tiles.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface EncounterTileColumn {
   key: string;
@@ -43,6 +44,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, colum
 };
 
 export const EncounterValuesTile: React.FC<EncounterValuesTileProps> = ({ patientUuid, column }) => {
+  const { t } = useTranslation();
   const { lastEncounter, isLoading, error, isValidating } = useLastEncounter(patientUuid, column.encounterUuid);
 
   if (isLoading || isValidating) {
@@ -63,7 +65,7 @@ export const EncounterValuesTile: React.FC<EncounterValuesTileProps> = ({ patien
   return (
     <div className={styles.tileBox}>
       <div className={styles.tileBoxColumn}>
-        <span className={styles.tileTitle}> {column.header} </span>
+        <span className={styles.tileTitle}> {t(column.key, column.header)} </span>
         <span className={styles.tileValue}>
           <LazyCell lazyValue={column.getObsValue(lastEncounter)} />
         </span>
