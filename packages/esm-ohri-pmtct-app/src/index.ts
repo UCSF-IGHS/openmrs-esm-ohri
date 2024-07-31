@@ -14,6 +14,7 @@ import {
   createNewOHRIDashboardLink,
   OHRIHome,
   createConditionalDashboardGroup,
+  PatientStatusBannerTag,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
@@ -98,3 +99,5 @@ export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
 });
 
 export const ptrackerReportNavLink = getSyncLifecycle(ptrackerdashboardPath, options);
+
+export const patientStatusBannerTagExtension = getSyncLifecycle(PatientStatusBannerTag, options);

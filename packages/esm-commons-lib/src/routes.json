@@ -3,9 +3,13 @@
   "backendDependencies": {
     "webservices.rest": "^2.24.0"
   },
-  "pages": [
-  ],
+  "pages": [],
   "extensions": [
+    {
+      "name": "patient-status-banner-tag",
+      "slot": "patient-banner-tags-slot",
+      "component": "patientStatusBannerTagExtension"
+    }
   ],
   "workspaces": [
     {

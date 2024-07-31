@@ -1,5 +1,7 @@
 import { FormEngine } from '@openmrs/openmrs-form-engine-lib';
-import { getSyncLifecycle } from '@openmrs/esm-framework';
+import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
+import { PatientStatusBannerTag } from './components/banner-tags/patient-status-tag.component';
+import { configSchema } from './config.schema';
 
 export * from './constants';
 export * from './api.resource';
@@ -62,5 +64,13 @@ const options = {
   moduleName: '@ohri/openmrs-esm-ohri-commons-lib',
 };
 
+const moduleName = '@ohri/openmrs-esm-ohri-commons-lib';
+
+export function startupApp() {
+  defineConfigSchema(moduleName, configSchema);
+}
+
 // t('ohriForms', "OHRI Forms")
 export const ohriFormsWorkspace = getSyncLifecycle(FormEngine, options);
+
+export const patientStatusBannerTagExtension = getSyncLifecycle(PatientStatusBannerTag, options);
