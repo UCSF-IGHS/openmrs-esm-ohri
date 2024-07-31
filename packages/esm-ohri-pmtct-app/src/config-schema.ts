@@ -33,7 +33,7 @@ export const configSchema = {
       antenatalFormUuid: '5255a535-2acb-3f44-bd0a-3f80595dece1',
       labourAndDeliveryFormUuid: '1e5614d6-5306-11e6-beb8-9e71128cae77',
       motherPostnatalFormUuid: 'e6b67aa4-6c59-4470-8ad5-b994efeda553',
-      infantPostnatalFormUuid: '120048e5-4122-3c6d-8f77-c79e75b7b3fc',
+      infantPostnatalFormUuid: '0dd206d0-6744-3684-97fc-7be3079ce4b9',
     },
   },
   encounterTypes: {
