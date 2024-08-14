@@ -69,6 +69,8 @@ const HivExposedInfant: React.FC<{
     },
   ];
 
+  const { showHivExposedInfantSummary } = config;
+
   const getChildPTracker = useCallback(
     async (patientUuid) => {
       let pTrackerMap = { patientId: '', pTrackerId: '--' };
@@ -120,23 +122,27 @@ const HivExposedInfant: React.FC<{
 
   return (
     <div>
-      <SummaryCard
-        patientUuid={patientUuid}
-        headerTitle={t('infantSummary', 'Infants Summary')}
-        columns={infantCardColumns}
-      />
-
-      {hivExposedInfantSummaryTabs.map((tab) => (
-        <EncounterList
+      {showHivExposedInfantSummary && (
+        <SummaryCard
           patientUuid={patientUuid}
-          encounterType={tab.encounterType}
-          columns={tab.columns}
-          description={tab.description}
-          headerTitle={tab.headerTitle}
-          formList={tab.formList}
-          launchOptions={tab.launchOptions}
+          headerTitle={t('infantSummary', 'Infants Summary')}
+          columns={infantCardColumns}
         />
-      ))}
+      )}
+
+      {showHivExposedInfantSummary &&
+        hivExposedInfantSummaryTabs.map((tab) => (
+          <EncounterList
+            key={tab.encounterType}
+            patientUuid={patientUuid}
+            encounterType={tab.encounterType}
+            columns={tab.columns}
+            description={tab.description}
+            headerTitle={tab.headerTitle}
+            formList={tab.formList}
+            launchOptions={tab.launchOptions}
+          />
+        ))}
 
       <ExpandableList
         headerTitle={t('family', 'Family')}
