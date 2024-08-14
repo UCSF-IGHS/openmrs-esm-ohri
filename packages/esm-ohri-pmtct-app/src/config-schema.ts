@@ -47,6 +47,41 @@ export const configSchema = {
       mchEncounterTypeEncounterType: '12de5bc5-352e-4faf-9961-a2125085a75c',
     },
   },
+  showRecentPregnancy: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the Recent Pregnancy Summary widget',
+    _default: true,
+  },
+  showMotherArtTherapy: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the ART Therapy widget on MNCH Summary',
+    _default: true,
+  },
+  showAppointmentsSummary: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the Appointments widget on MNCH Summary',
+    _default: true,
+  },
+  showHivExposedInfantSummary: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the HIV Exposed Infant widget on MNCH Summary',
+    _default: true,
+  },
+  showTotalPregnantWomen: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the Total Pregnant Women tile',
+    _default: true,
+  },
+  showTotalDeliveries: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the Total Deliveries tile',
+    _default: true,
+  },
+  showHivExposedInfants: {
+    _type: Type.Boolean,
+    _description: 'Shows or hides the HIV Exposed Infants tile',
+    _default: true,
+  },
   obsConcepts: {
     _type: Type.Object,
     _description: 'List of observation concept UUIDs related to PMTCT.',
@@ -114,4 +149,11 @@ export interface ConfigObject {
   obsConcepts: Object;
   formNames: Object;
   formUuids: Object;
+  showRecentPregnancy: Boolean;
+  showMotherArtTherapy: Boolean;
+  showAppointmentsSummary: Boolean;
+  showHivExposedInfantSummary: Boolean;
+  showTotalPregnantWomen: Boolean;
+  showTotalDeliveries: Boolean;
+  showHivExposedInfants: Boolean;
 }

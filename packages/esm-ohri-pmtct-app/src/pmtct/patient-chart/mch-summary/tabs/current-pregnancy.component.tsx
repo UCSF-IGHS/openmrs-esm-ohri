@@ -97,6 +97,8 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
     },
   ];
 
+  const { showRecentPregnancy, showMotherArtTherapy, showAppointmentsSummary } = config;
+
   const getParentRelationships = useCallback(async () => {
     let relationships = [];
     const relationshipsData = await fetchPatientRelationships(patientUuid);
@@ -236,10 +238,16 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
 
   return (
     <div>
-      <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={recentPregnancyTabs} />
+      {showRecentPregnancy && (
+        <SummaryCard patientUuid={patientUuid} headerTitle={currentPregnancyHeader} columns={recentPregnancyTabs} />
+      )}
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem', height: '15rem' }}>
-        <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyTabs} />
-        <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentSummaryTabs} />
+        {showMotherArtTherapy && (
+          <SummaryCard patientUuid={patientUuid} headerTitle={arvTherapyHeader} columns={arvTherapyTabs} />
+        )}
+        {showAppointmentsSummary && (
+          <SummaryCard patientUuid={patientUuid} headerTitle={appointmentsHeader} columns={appointmentSummaryTabs} />
+        )}
       </div>
 
       <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
@@ -272,7 +280,11 @@ const CurrentPregnancy: React.FC<PatientChartProps> = ({ patientUuid, pTrackerId
         />
       </div>
 
-      <EncounterListTabsComponent patientUuid={patientUuid} configSchema={motherPreviousVisitConfigSchema} config={config} />
+      <EncounterListTabsComponent
+        patientUuid={patientUuid}
+        configSchema={motherPreviousVisitConfigSchema}
+        config={config}
+      />
     </div>
   );
 };

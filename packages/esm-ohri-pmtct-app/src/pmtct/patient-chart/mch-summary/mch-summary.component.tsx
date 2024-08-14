@@ -6,12 +6,11 @@ import CurrentPregnancy from './tabs/current-pregnancy.component';
 import HivExposedInfant from './tabs/hiv-exposed-infant.component';
 import { usePatient, useConfig } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
-
 import styles from '../common.scss';
 
 const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
   const { t } = useTranslation();
-  const { identifiersTypes } = useConfig();
+  const { identifiersTypes, showRecentPregnancy, showHivExposedInfantSummary } = useConfig();
   const { patient, isLoading } = usePatient(patientUuid);
   const dob = patient?.birthDate;
   const age = useMemo(() => dayjs().diff(dayjs(patient?.birthDate), 'year'), [patient?.birthDate]);
@@ -39,7 +38,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           {age > 10 ? (
             <Tabs>
               <TabList contained>
-                <Tab>{t('recentPregnancy', 'Recent Pregnancy')}</Tab>
+                {showRecentPregnancy && <Tab>{t('recentPregnancy', 'Recent Pregnancy')}</Tab>}
               </TabList>
               <TabPanels>
                 <TabPanel>
@@ -50,7 +49,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
           ) : (
             <Tabs>
               <TabList contained>
-                <Tab>{t('hivExposedInfant', 'HIV Exposed Infant')}</Tab>
+                {showHivExposedInfantSummary && <Tab>{t('hivExposedInfant', 'HIV Exposed Infant')}</Tab>}
               </TabList>
               <TabPanels>
                 <TabPanel>
