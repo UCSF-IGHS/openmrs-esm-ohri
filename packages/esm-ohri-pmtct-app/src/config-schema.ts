@@ -50,37 +50,37 @@ export const configSchema = {
   showRecentPregnancy: {
     _type: Type.Boolean,
     _description: 'Shows or hides the Recent Pregnancy Summary widget',
-    _default: true,
+    _default: false,
   },
   showMotherArtTherapy: {
     _type: Type.Boolean,
     _description: 'Shows or hides the ART Therapy widget on MNCH Summary',
-    _default: true,
+    _default: false,
   },
   showAppointmentsSummary: {
     _type: Type.Boolean,
     _description: 'Shows or hides the Appointments widget on MNCH Summary',
-    _default: true,
+    _default: false,
   },
   showHivExposedInfantSummary: {
     _type: Type.Boolean,
     _description: 'Shows or hides the HIV Exposed Infant widget on MNCH Summary',
-    _default: true,
+    _default: false,
   },
   showTotalPregnantWomen: {
     _type: Type.Boolean,
     _description: 'Shows or hides the Total Pregnant Women tile',
-    _default: true,
+    _default: false,
   },
   showTotalDeliveries: {
     _type: Type.Boolean,
     _description: 'Shows or hides the Total Deliveries tile',
-    _default: true,
+    _default: false,
   },
   showHivExposedInfants: {
     _type: Type.Boolean,
     _description: 'Shows or hides the HIV Exposed Infants tile',
-    _default: true,
+    _default: false,
   },
   obsConcepts: {
     _type: Type.Object,
