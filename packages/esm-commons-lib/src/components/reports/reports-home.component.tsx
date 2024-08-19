@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import useSWR from 'swr';
 import {
   DataTable,
   Table,
@@ -13,61 +14,180 @@ import {
 } from '@carbon/react';
 import { OHRIWelcomeSection } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { useConfig } from '@openmrs/esm-framework';
-import styles from './home.component.scss';
 import { EmptyDataIllustration } from '@openmrs/esm-patient-common-lib';
 import ReportFilters from './report-filters.component';
 import { useTranslation } from 'react-i18next';
-import { useReportsData } from './reports.resource';
-import { BorderBottom } from '@carbon/react/icons';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import styles from './home.component.scss';
+import { fetchReportData, constructReportUrl, snakeCaseToCapitalizedWords } from './reports.resource';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const ReportComponent = () => {
   const config = useConfig();
   const { t } = useTranslation();
+
   const [reportId, setReportId] = useState('');
-  const [uuid, setUuid] = useState('');
-  const [ptrackerId, setPtrackerId] = useState('');
-  const [personUuid, setPersonUuid] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [parameterValues, setParameterValues] = useState({});
   const [reportRequested, setReportRequested] = useState(false);
-  const { data, error, mutate } = useReportsData(startDate, endDate, reportId);
+  const [reportName, setReportName] = useState('Report Data');
+  const [selectedColumns, setSelectedColumns] = useState([]);
+  const [availableColumns, setAvailableColumns] = useState([]);
+
+  const url = useMemo(() => {
+    if (!reportId) return null;
+    return constructReportUrl(reportId, parameterValues);
+  }, [reportId, parameterValues]);
+
+  const { data, error, mutate } = useSWR(url, fetchReportData, { revalidateOnFocus: false });
+
+  useEffect(() => {
+    if (error) {
+      console.error('Error fetching report data:', error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data?.results?.length) {
+      const columns = data.results[0].record.map((item) => ({
+        key: item.column,
+        label: snakeCaseToCapitalizedWords(item.column),
+      }));
+      setAvailableColumns(columns);
+      setSelectedColumns(columns);
+    }
+  }, [data]);
 
   const headers = useMemo(() => {
-    if (
-      !data ||
-      !data.dataSets ||
-      !data.dataSets.length ||
-      !data.dataSets[0].metadata ||
-      !data.dataSets[0].metadata.columns
-    )
-      return [];
-    return data.dataSets[0].metadata.columns.map((col) => ({
-      key: col.name.trim(), // Ensure key is a string and trimmed
+    if (!selectedColumns.length) return [];
+    return selectedColumns.map((col) => ({
+      key: col.key,
       header: col.label,
     }));
-  }, [data]);
+  }, [selectedColumns]);
+
+  const formatValue = useCallback((value, column) => {
+    if (value === null || value === undefined) return '-';
+
+    if (column === 'encounter_date' && Array.isArray(value)) {
+      return new Date(...(value as [number, number, number, number, number, number])).toLocaleString();
+    }
+
+    if (typeof value === 'number' && (column.includes('date') || column.includes('birthdate'))) {
+      return new Date(value).toLocaleString();
+    }
+
+    if (value === 'TRUE' || value === 'FALSE') {
+      return value === 'TRUE' ? 'Yes' : 'No';
+    }
+
+    return value.toString();
+  }, []);
 
   const rows = useMemo(() => {
-    if (
-      !data ||
-      !data.dataSets ||
-      !data.dataSets.length ||
-      !data.dataSets[0].rows ||
-      !data.dataSets[0].metadata ||
-      !data.dataSets[0].metadata.columns
-    )
-      return [];
-    return data.dataSets[0].rows.map((row, idx) => {
-      const rowData = {};
-      data.dataSets[0].metadata.columns.forEach((col) => {
-        const key = col.name.trim(); // Ensure key is a string and trimmed
-        rowData[key] = row[key] !== undefined ? row[key] : '-';
+    if (!data?.results?.length) return [];
+    return data.results.map((result) => {
+      const row = {};
+      result.record.forEach((item) => {
+        if (selectedColumns.some((col) => col.key === item.column)) {
+          row[item.column] = formatValue(item.value, item.column);
+        }
       });
-      return { id: idx.toString(), ...rowData };
+      return { id: result.serialId.toString(), ...row };
     });
-  }, [data]);
+  }, [data, selectedColumns, formatValue]);
 
   const loading = !data && !error && reportRequested;
+
+  const handleDownloadPDF = () => {
+    const docDefinition = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      pageMargins: [20, 20, 20, 20],
+      content: [
+        { text: reportName, style: 'header' },
+        {
+          table: {
+            headerRows: 1,
+            widths: Array(headers.length).fill('*'),
+            body: [
+              headers.map((header) => ({ text: header.header || '', style: 'tableHeader' })),
+              ...rows.map((row) =>
+                headers.map((header) => ({
+                  text: row[header.key] || '-',
+                  style: 'tableCell',
+                })),
+              ),
+            ],
+          },
+          layout: {
+            fillColor: (rowIndex) => (rowIndex % 2 === 0 ? '#f2f2f2' : null),
+            hLineColor: () => '#cccccc',
+            vLineColor: () => '#cccccc',
+          },
+        },
+      ],
+      styles: {
+        header: {
+          fontSize: 22,
+          bold: true,
+          margin: [0, 0, 0, 20],
+        },
+        tableHeader: {
+          bold: true,
+          fontSize: 10,
+          color: 'black',
+        },
+        tableCell: {
+          fontSize: 8,
+          color: 'black',
+        },
+      },
+      defaultStyle: {
+        font: 'Roboto',
+      },
+      fonts: {
+        Helvetica: {
+          normal: 'Roboto',
+          bold: 'Roboto-Bold',
+          italics: 'Roboto-Italic',
+          bolditalics: 'Roboto-BoldOblique',
+        },
+      },
+    };
+
+    pdfMake.createPdf(docDefinition).download(`${reportName}.pdf`);
+  };
+
+  const handleDownloadCSV = () => {
+    if (!data?.results?.length) return;
+
+    const csvContent = [
+      headers.map((header) => header.header).join(','),
+      ...rows.map((row) => headers.map((header) => row[header.key] || '-').join(',')),
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `${reportName}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  const handleDownload = () => {
+    if (headers.length > 10) {
+      handleDownloadCSV();
+    } else {
+      handleDownloadPDF();
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,98 +195,100 @@ const ReportComponent = () => {
     mutate();
   };
 
+  const resetStates = () => {
+    setReportId('');
+    setParameterValues({});
+    setReportRequested(false);
+    setReportName('Report Data');
+    setSelectedColumns([]);
+    setAvailableColumns([]);
+  };
+
   return (
     <div className={styles.homeContainer}>
-      <OHRIWelcomeSection title={t('reportingDemo', 'Reporting demo')} />
-      <ReportFilters
-        config={config}
-        reportId={reportId}
-        setReportId={setReportId}
-        ptrackerId={ptrackerId}
-        setPtrackerId={setPtrackerId}
-        personUuid={personUuid}
-        setPersonUuid={setPersonUuid}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-        handleSubmit={handleSubmit}
-        setReportRequested={setReportRequested}
-        uuid={uuid}
-      />
-      {loading ? (
-        <DataTableSkeleton columnCount={headers.length} rowCount={rows.length} />
-      ) : error ? (
-        <div className={styles.dataTableContainer}>
-          <Layer className={styles.layer}>
-            <Tile className={styles.tile}>
-              <p className={styles.content}>{t('errorLoadingData', 'Error loading data')}</p>
-              <p className={styles.explainer}>{t('pleaseTryAgain', 'Please try again later')}</p>
-            </Tile>
-          </Layer>
-        </div>
-      ) : rows?.length === 0 || (!reportRequested && data.dataSets[0].metadata?.columns.length > 0) ? (
-        <div className={styles.dataTableContainer}>
-          <Layer className={styles.layer}>
-            <Tile className={styles.tile}>
-              <EmptyDataIllustration />
-              <p className={styles.content}>{t('noDataToDisplay', 'No data to display')}</p>
-              <p className={styles.explainer}>
-                {t('useReportsAboveToBuild', 'Use the report filters above to build your reports')}
-              </p>
-            </Tile>
-          </Layer>
-        </div>
-      ) : (
-        <div className={styles.dataTableFullContainer}>
-          {/* <DataTable rows={rows} headers={headers}>
-            {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
-              <Table {...getTableProps()} className={styles.dataTable}>
-                <TableHead>
-                  <TableRow>
-                    {headers.map((header) => (
-                      <TableHeader {...getHeaderProps({ header })} key={header.key} className={styles.tableHeader}>
-                        {header.header}
-                      </TableHeader>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.id}>
-                      {row.cells.map((cell) => (
-                        <TableCell key={cell.id} className={styles.tableCell}>
-                          {cell.value}
-                        </TableCell>
+      <div>
+        <OHRIWelcomeSection title={t('reportingDemo', 'Reporting Dashboard')} />
+        <ReportFilters
+          config={config}
+          reportId={reportId}
+          setReportId={setReportId}
+          parameterValues={parameterValues}
+          setParameterValues={setParameterValues}
+          handleSubmit={handleSubmit}
+          setReportRequested={setReportRequested}
+          setReportName={setReportName}
+          availableColumns={availableColumns}
+          selectedColumns={selectedColumns}
+          setSelectedColumns={setSelectedColumns}
+          handleDownloadPDF={handleDownloadPDF}
+          handleDownloadCSV={handleDownloadCSV}
+          mutate={mutate}
+          resetStates={resetStates}
+        />
+      </div>
+
+      <div className={styles.contentWrapper}>
+        {loading ? (
+          <DataTableSkeleton columnCount={headers.length} rowCount={rows.length} />
+        ) : error ? (
+          <div className={styles.dataTableContainer}>
+            <Layer className={styles.layer}>
+              <Tile className={styles.tile}>
+                <p className={styles.content}>{t('errorLoadingData', 'Error loading data')}</p>
+                <p className={styles.explainer}>{t('pleaseTryAgain', 'Please try again later')}</p>
+              </Tile>
+            </Layer>
+          </div>
+        ) : rows.length === 0 || !reportRequested ? (
+          <div className={styles.dataTableContainer}>
+            <Layer className={styles.layer}>
+              <Tile className={styles.tile}>
+                <EmptyDataIllustration />
+                <p className={styles.content}>{t('noDataToDisplay', 'No data to display')}</p>
+                <p className={styles.explainer}>
+                  {t('useReportsAboveToBuild', 'Use the report filters above to build your reports')}
+                </p>
+              </Tile>
+            </Layer>
+          </div>
+        ) : (
+          <div className={styles.dataTableFullContainer}>
+            <DataTable
+              rows={rows}
+              headers={headers}
+              isSortable
+              useZebraStyles
+              overflowMenuOnHover
+              experimentalAutoAlign
+              locale={navigator.language}
+              useStaticWidth={false}
+            >
+              {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
+                <Table {...getTableProps()}>
+                  <TableHead>
+                    <TableRow>
+                      {headers.map((header) => (
+                        <TableHeader {...getHeaderProps({ header })} key={header.key}>
+                          {header.header}
+                        </TableHeader>
                       ))}
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            )}
-          </DataTable> */}
-
-          {data && data?.dataSets && data?.dataSets?.length > 0 && (
-            <Layer>
-              <div className={styles.tableGridLayout}>
-                {Array.from(data.dataSets[0].metadata?.columns, (col: any) => {
-                  return {
-                    label: col.label,
-                    value: data.dataSets[0].rows[0][col.name] ?? '-',
-                  };
-                }).map((r) => (
-                  <div className={styles.dataCell}>
-                    <p className={styles.dataCellHeader}>{r.label}</p>
-                    <p className={styles.dataCellValue}>
-                      <strong>{r.value}</strong>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </Layer>
-          )}
-        </div>
-      )}
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <TableRow {...getRowProps({ row })} key={row.id}>
+                        {row.cells.map((cell) => (
+                          <TableCell key={cell.id}>{cell.value || '-'}</TableCell>
+                        ))}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </DataTable>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

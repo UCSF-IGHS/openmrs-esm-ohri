@@ -1,12 +1,29 @@
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
-import useSWR from 'swr';
+import { openmrsFetch } from '@openmrs/esm-framework';
+import capitalize from 'lodash/capitalize';
 
-const fetcher = (url) => openmrsFetch(url).then((res) => res.json());
+const BASE_WS_API_URL = '/ws/rest/v1/';
 
-export function useReportsData(startDate: string, endDate: string, reportId: string) {
-  const url = `${restBaseUrl}/reportingrest/reportdata/${reportId}?startDate=${startDate}&endDate=${endDate}`;
+export const snakeCaseToCapitalizedWords = (snakeCaseString) => snakeCaseString.split('_').map(capitalize).join(' ');
 
-  const { data, error, mutate, isLoading } = useSWR(url, fetcher, { revalidateOnFocus: false });
+export const fetchReportData = async (url) => {
+  const response = await openmrsFetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-  return { data, error, mutate, isLoading };
-}
+  if (!response.ok) {
+    throw new Error('Failed to fetch');
+  }
+
+  return response.json();
+};
+
+export const constructReportUrl = (reportId, parameterValues) => {
+  const params = new URLSearchParams({
+    report_id: reportId,
+    ...parameterValues,
+  });
+  return `${BASE_WS_API_URL}mamba/report?${params.toString()}`;
+};
