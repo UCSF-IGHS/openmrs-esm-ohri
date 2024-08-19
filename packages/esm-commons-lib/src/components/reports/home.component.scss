@@ -1,145 +1,167 @@
-.centeredTextContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  text-align: center;
-}
-  
 .container {
   padding: 2rem;
+  width: auto;
 }
 
 .homeContainer {
   padding: 1rem;
-  width: 85vw
+  width: 85vw;
+  height: auto;
 }
-  
-.dropdownItem {
+
+.form {
+  width: 100%;
+}
+
+.inputWrapper {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: auto;
+  height: auto;
 }
-  
+
+.inputItem {
+  flex: 1 1 200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+.inputItem > .bx--dropdown,
+.inputItem > .bx--text-input {
+  width: auto;
+}
+
+.multiSelectMessage {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.dropdownWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownLabel {
+  margin-bottom: 0.5rem;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+.inputWrapper, .inputItem {
+  box-sizing: border-box;
+}
+
+.buttonContainer {
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  white-space: nowrap;
+  justify-content: flex-start;
+}
+
+.parameterInput {
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.columnSelectMessage {
+  padding-top: 1rem;
+  padding-right: 5rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+  gap: 8px;
+  width: 100%;
+}
+
+.parametersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dataTableContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  padding-right: 1rem;
+  border: solid 1px #e0e0e0;
+  max-height: calc(100vh - 200px);
+  width: 85vw;
+  height: 100vh;
+}
+
 .layer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
 }
-  
+
 .tile {
-  padding: 2rem;
-  text-align: center;
-}
-
-.content {
-  font-size: 1.25rem;
-  color: #5a5a5a;
-}
-
-.explainer {
-  color: #777;
-}
-
-.form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.formContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.datePickerContainer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.datePickerContainer > * {
-  flex: 1;
-  min-width: 150px;
-}
-  
-.fetchButtonContainer {
-  margin-left: 16px;
-  display: flex;
-  align-items: center;
-}
-
-.datePickerInput {
-  min-width: 120px;
-}
-
-.button {
-  max-height: 40px;
-  line-height: 40px;
-  font-size: 14px;
-  padding: 0 16px;
-  margin-top: 1rem;
-  max-width: 120px;
-  align-items: center;
-}
-  
-.dataTableContainer {
-  margin-top: 2rem;
-  padding: 1rem;
-  border: solid 1px #e0e0e0;
-  max-height: calc(100vh - 200px);
-  height: 100vh;
-  display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center; 
+  padding: 2rem;
+
 }
 
 .dataTableFullContainer {
   margin-top: 2rem;
   padding: 1rem;
-  max-height: calc(100vh - 200px);
-  overflow: auto; 
-}
+  overflow: auto;
 
-.dataTable {
-  width: 100%;
-  border-collapse: collapse;
-  // table-layout: fixed;
+}
+.contentWrapper {
+  position: relative;
+  margin-top: 2rem;
+}
+.tableHeader,
+.tableCell {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .tableHeader {
-  white-space: normal; 
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   max-width: 100px;
-  text-align: center; 
+  text-align: center;
 }
 
-.tableCell {
-  white-space: normal; 
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
-}
-  
-.tableContainer {
-  margin-top: 1rem;
-}
-
-.toolbarWrapper {
+.dataCell {
+  padding: 0;
+  border-radius: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  border: 1px solid gray;
 }
 
-.toolbarContent {
-  display: flex;
-  gap: 1rem;
+.dataCellHeader {
+  background-color: #e0e0e0;
+  text-align: center;
 }
-  
-.searchbox {
-  flex-grow: 1;
+
+.dataCellValue {
+  text-align: center;
 }
 
 .tileContainer {
@@ -153,35 +175,6 @@
   text-align: center;
 }
 
-.content {
-  font-size: 1.25rem;
-  color: #5a5a5a;
-}
-  
 .pagination {
   margin-top: 1rem;
-}
-
-.tableGridLayout {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0;
-  padding: 0 5px;
-}
-
-.dataCell {
-  padding: 0px;
-  border-radius: 0px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid gray;
-}
-
-.dataCellHeader {
-  background-color: #e0e0e0;
-  text-align: center;
-}
-
-.dataCellValue {
-  text-align: center;
 }

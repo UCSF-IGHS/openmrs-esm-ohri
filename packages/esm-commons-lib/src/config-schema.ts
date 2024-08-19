@@ -10,15 +10,69 @@ export const configSchema = {
     _type: Type.Array,
     _description: 'Reports and their associated UUIDs.',
     _default: [
-      { name: 'Covid-19 Report', uuid: 'ecabd559-14f6-4c65-87af-1254dfdf1304' },
-      { name: 'HTS Report', uuid: '3ffa5a53-fc65-4a1e-a434-46dbcf1c2de2' },
-      { name: 'ADX-HIV Report', uuid: '12f236b1-b0b5-4ecc-9037-681c23fb45bd' },
-      { name: 'Mamba HTS Line List', uuid: '6a6ae4ce-8427-45a6-9835-bbd6ade7a670' },
       {
         name: 'Mother HIV Status Report',
         uuid: 'mother_hiv_status',
-        ptrackerId: '12345A232567',
-        personUuid: 'bd49d697-b1de-49b9-95c2-6031fb1375fd',
+        parameters: [
+          {
+            name: 'ptrackerId',
+            type: 'text',
+            label: 'PTracker ID',
+            defaultValue: '',
+          },
+          {
+            name: 'personUuid',
+            type: 'text',
+            label: 'Person UUID',
+            defaultValue: '',
+          },
+        ],
+      },
+      {
+        name: 'Mamba HTS Report',
+        uuid: 'hts_linelist',
+        parameters: [
+          {
+            name: 'startDate',
+            type: 'date',
+            label: 'Start Date',
+            defaultValue: '',
+          },
+          {
+            name: 'EndDate',
+            type: 'date',
+            label: 'End Date',
+            defaultValue: '',
+          },
+        ],
+      },
+      {
+        name: 'Insurance Billing report',
+        uuid: 'insurance_bill',
+        parameters: [
+          {
+            name: 'startDate',
+            type: 'date',
+            label: 'Start Date',
+            defaultValue: '',
+          },
+          {
+            name: 'EndDate',
+            type: 'date',
+            label: 'End Date',
+            defaultValue: '',
+          },
+          {
+            name: 'insurance',
+            type: 'dropdown',
+            label: 'Insurance',
+            defaultValue: '',
+            dropdownOptions: [
+              { value: '3', label: 'Mutuelle' },
+              { value: '4', label: 'ARAMA' },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -26,4 +80,15 @@ export const configSchema = {
 
 export interface ConfigObject {
   showReports: boolean;
+  reports: Array<{
+    name: string;
+    uuid: string;
+    parameters: Array<{
+      name: string;
+      type: string;
+      label: string;
+      defaultValue: string;
+      dropdownOptions?: Array<{ value: string; label: string }>;
+    }>;
+  }>;
 }
