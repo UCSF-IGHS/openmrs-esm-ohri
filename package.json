@@ -36,7 +36,7 @@
     "coverage": "yarn test --coverage",
     "badges": "yarn coverage && yarn jest-coverage-badges --output './badges' ",
     "extract-translations": "turbo extract-translations -- --config ../../tools/i18next-parser.config.js",
-    "ci:bump-form-engine-lib": "yarn up @openmrs/openmrs-form-engine-lib@next",
+    "ci:bump-form-engine-lib": "yarn up @openmrs/esm-form-engine-lib@next",
     "test-e2e": "playwright test"
   },
   "devDependencies": {
