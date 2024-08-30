@@ -42,7 +42,7 @@
         {
           "id": "followUpDate",
           "isDate": true,
-          "title": "Next follow-up date",
+          "title": "Next Visit date",
           "concept": "followUpDateConcept"
         },
         {
@@ -94,8 +94,8 @@
         {
           "id": "deliveryDate",
           "isDate": true,
-          "title": "Delivery Date",
-          "concept": "dateOfDeliveryConcept"
+          "title": "Visit Date",
+          "concept": "visitDate"
         },
         {
           "id": "bookedForANC",
@@ -185,7 +185,7 @@
           "id": "nextVisitDate",
           "isDate": true,
           "title": "Next visit date",
-          "concept": "visitDate"
+          "concept": "nextVisitDate"
         },
         {
           "id": "actions",
