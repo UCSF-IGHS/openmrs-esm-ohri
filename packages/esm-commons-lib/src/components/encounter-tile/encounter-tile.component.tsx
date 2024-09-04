@@ -27,18 +27,16 @@ export interface EncounterValuesTileProps {
 
 export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, columns, headerTitle }) => {
   return (
-    <>
-      <Tile className={styles.tile}>
-        <div className={styles.cardTitle}>
-          <h4 className={styles.title}> {headerTitle} </h4>
-        </div>
-        <Column className={styles.tabletTileTitle}>
-          {columns.map((column, ind) => (
-            <EncounterValuesTile key={ind} patientUuid={patientUuid} column={column} />
-          ))}
-        </Column>
-      </Tile>
-    </>
+    <Tile className={styles.tile}>
+      <div className={styles.cardTitle}>
+        <h4 className={styles.title}> {headerTitle} </h4>
+      </div>
+      <Column className={styles.tabletTileTitle}>
+        {columns.map((column, ind) => (
+          <EncounterValuesTile key={ind} patientUuid={patientUuid} column={column} />
+        ))}
+      </Column>
+    </Tile>
   );
 };
 
