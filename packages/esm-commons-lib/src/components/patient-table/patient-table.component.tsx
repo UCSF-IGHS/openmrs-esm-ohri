@@ -139,12 +139,7 @@ interface PatientTableColumn {
   };
 }
 
-export const PatientTable: React.FC<PatientTableProps> = ({
-  columns,
-  isFetching,
-  isLoading,
-  patients,
-}) => {
+export const PatientTable: React.FC<PatientTableProps> = ({ columns, isFetching, isLoading, patients }) => {
   const { t } = useTranslation();
   const layout = useLayoutType();
   const responsiveSize = isDesktop(layout) ? 'sm' : 'lg';
@@ -209,7 +204,8 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                     height: '3rem',
                     overflow: 'visible',
                     backgroundColor: 'color',
-                  }}>
+                  }}
+                >
                   <TableToolbarContent className={styles.toolbarContent}>
                     <TableToolbarSearch
                       className={styles.search}
@@ -219,7 +215,7 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                       size="sm"
                     />
                   </TableToolbarContent>
-               </TableToolbar>
+                </TableToolbar>
                 <Table className={styles.table} {...getTableProps()} data-testid="patientsTable">
                   <TableHead>
                     <TableRow>
