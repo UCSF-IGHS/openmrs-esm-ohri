@@ -72,26 +72,28 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
       {isLoading ? (
         <SkeletonText paragraph={true} />
       ) : (
-        <Tile className={styles.tile}>
-          <div className={styles.cardTitle}>
-            <h4 className={styles.title}> {headerTitle} </h4>
-          </div>
-          {maxRowItems ? (
-            groupedEncounterMappings.map((group) => (
+        <div className={styles.tilesContainer}>
+          <Tile className={styles.tile}>
+            <div className={styles.cardTitle}>
+              <h4 className={styles.title}> {headerTitle} </h4>
+            </div>
+            {maxRowItems ? (
+              groupedEncounterMappings.map((group) => (
+                <Column className={styles.columnContainer}>
+                  {group.map(({ column, encounters }) => (
+                    <SummaryItem column={column} encounters={encounters} />
+                  ))}
+                </Column>
+              ))
+            ) : (
               <Column className={styles.columnContainer}>
-                {group.map(({ column, encounters }) => (
+                {columnEncountersMappings.map(({ column, encounters }) => (
                   <SummaryItem column={column} encounters={encounters} />
                 ))}
               </Column>
-            ))
-          ) : (
-            <Column className={styles.columnContainer}>
-              {columnEncountersMappings.map(({ column, encounters }) => (
-                <SummaryItem column={column} encounters={encounters} />
-              ))}
-            </Column>
-          )}
-        </Tile>
+            )}
+          </Tile>
+        </div>
       )}
     </>
   );

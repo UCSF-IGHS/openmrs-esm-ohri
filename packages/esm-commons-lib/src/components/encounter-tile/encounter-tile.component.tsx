@@ -27,7 +27,7 @@ export interface EncounterValuesTileProps {
 
 export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, columns, headerTitle }) => {
   return (
-    <>
+    <div className={styles.tilesContainer}>
       <Tile className={styles.tile}>
         <div className={styles.cardTitle}>
           <h4 className={styles.title}> {headerTitle} </h4>
@@ -38,7 +38,7 @@ export const EncounterTile: React.FC<EncounterTileProps> = ({ patientUuid, colum
           ))}
         </Column>
       </Tile>
-    </>
+    </div>
   );
 };
 
