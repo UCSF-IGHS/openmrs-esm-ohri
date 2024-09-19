@@ -154,7 +154,7 @@ export interface Location {
 
 export interface OpenmrsEncounter extends OpenmrsResource {
   encounterDatetime: Date;
-  encounterType: string;
+  encounterType: { name: string; uuid: string };
   patient: string;
   location: string;
   encounterProviders?: Array<{ encounterRole: string; provider: string }>;

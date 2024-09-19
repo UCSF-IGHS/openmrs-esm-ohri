@@ -29,7 +29,7 @@ const HtsOverviewList: React.FC<HtsOverviewListProps> = ({ patientUuid }) => {
         key: 'location',
         header: t('location', 'Location'),
         getValue: (encounter) => {
-          return encounter.location.name;
+          return encounter?.location?.name;
         },
       },
       {
