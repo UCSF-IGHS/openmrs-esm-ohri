@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { OpenmrsEncounter } from '../api/types';
 import { useCallback, useEffect, useState } from 'react';
-import { openmrsFetch, OpenmrsResource } from '@openmrs/esm-framework';
+import { openmrsFetch } from '@openmrs/esm-framework';
 import { encounterRepresentation } from '../constants';
 
 interface EncounterResponse {
