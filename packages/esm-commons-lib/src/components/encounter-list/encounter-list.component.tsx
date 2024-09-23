@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { FormLauncherWithIntent } from '../ohri-form-launcher/ohri-form-launcher.component';
-import styles from './encounter-list.scss';
 import { OTable } from '../data-table/o-table.component';
 import { Button, Link, OverflowMenu, OverflowMenuItem, Pagination, DataTableSkeleton } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
@@ -13,6 +12,8 @@ import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { OpenmrsEncounter } from '../../api/types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
+
+import styles from './encounter-list.scss';
 
 export interface EncounterListColumn {
   key: string;
@@ -64,12 +65,15 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const { isDead } = usePatientDeathStatus(patientUuid);
   const formNames = useMemo(() => formList.map((form) => form.name), []);
   const { formsJson, isLoading: isLoadingFormsJson } = useFormsJson(formNames);
-  const { encounters, isLoading, onFormSave } = useEncounterRows(
+  const { encounters, total, isLoading, onFormSave } = useEncounterRows(
     patientUuid,
     encounterType,
     filter,
     afterFormSaveAction,
+    pageSize,
+    currentPage,
   );
+
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
 
   const defaultActions = useMemo(
@@ -102,38 +106,41 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     [forms, t],
   );
 
-  const handleDeleteEncounter = useCallback((encounterUuid, encounterTypeName) => {
-    const close = showModal('delete-encounter-modal', {
-      close: () => close(),
-      encounterTypeName: encounterTypeName || '',
-      onConfirmation: () => {
-        const abortController = new AbortController();
-        deleteEncounter(encounterUuid, abortController)
-          .then(() => {
-            onFormSave();
-            showSnackbar({
-              isLowContrast: true,
-              title: t('encounterDeleted', 'Encounter deleted'),
-              subtitle: `Encounter ${t('successfullyDeleted', 'successfully deleted')}`,
-              kind: 'success',
+  const handleDeleteEncounter = useCallback(
+    (encounterUuid, encounterTypeName) => {
+      const close = showModal('delete-encounter-modal', {
+        close: () => close(),
+        encounterTypeName: encounterTypeName || '',
+        onConfirmation: () => {
+          const abortController = new AbortController();
+          deleteEncounter(encounterUuid, abortController)
+            .then(() => {
+              onFormSave();
+              showSnackbar({
+                isLowContrast: true,
+                title: t('encounterDeleted', 'Encounter deleted'),
+                subtitle: `Encounter ${t('successfullyDeleted', 'successfully deleted')}`,
+                kind: 'success',
+              });
+            })
+            .catch(() => {
+              showSnackbar({
+                isLowContrast: false,
+                title: t('error', 'Error'),
+                subtitle: `Encounter ${t('failedDeleting', "couldn't be deleted")}`,
+                kind: 'error',
+              });
             });
-          })
-          .catch(() => {
-            showSnackbar({
-              isLowContrast: false,
-              title: t('error', 'Error'),
-              subtitle: `Encounter ${t('failedDeleting', "couldn't be deleted")}`,
-              kind: 'error',
-            });
-          });
 
-        // Update encounters after deletion
-        const updatedEncounters = encounters.filter((enc) => enc.uuid !== encounterUuid);
-        constructPaginatedTableRows(updatedEncounters, currentPage, pageSize);
-        close();
-      },
-    });
-  }, []);
+          // Update encounters after deletion
+          const updatedEncounters = encounters.filter((enc) => enc.uuid !== encounterUuid);
+          constructTableRows(updatedEncounters);
+          close();
+        },
+      });
+    },
+    [t, onFormSave, encounters],
+  );
 
   useEffect(() => {
     if (!isLoadingFormsJson) {
@@ -167,18 +174,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     return [];
   }, [columns]);
 
-  const constructPaginatedTableRows = useCallback(
-    (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
-      const startIndex = (currentPage - 1) * pageSize;
-      const paginatedEncounters = [];
-      for (let i = startIndex; i < startIndex + pageSize; i++) {
-        if (i < encounters.length) {
-          paginatedEncounters.push(encounters[i]);
-        }
-      }
-      const rows = paginatedEncounters.map((encounter) => {
+  const constructTableRows = useCallback(
+    (encounters: OpenmrsEncounter[]) => {
+      const rows = encounters.map((encounter) => {
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
-        // inject launch actions
+
         encounter['launchFormActions'] = {
           editEncounter: () =>
             launchEncounterForm(
@@ -205,7 +205,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               patientUuid,
             ),
         };
-        // process columns
+
         columns.forEach((column) => {
           let val = column?.getValue(encounter);
           if (column.link) {
@@ -225,7 +225,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           }
           tableRow[column.key] = val;
         });
-        // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
+
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid="actions-id">
@@ -262,9 +262,9 @@ export const EncounterList: React.FC<EncounterListProps> = ({
 
   useEffect(() => {
     if (encounters?.length) {
-      constructPaginatedTableRows(encounters, currentPage, pageSize);
+      constructTableRows(encounters);
     }
-  }, [encounters, pageSize, constructPaginatedTableRows, currentPage]);
+  }, [encounters, pageSize, constructTableRows, currentPage]);
 
   const formLauncher = useMemo(() => {
     if (forms.length == 1 && !forms[0]['availableIntents']?.length) {
@@ -317,7 +317,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   }, [forms, hideFormLauncher, isDead, displayText, moduleName, workspaceWindowSize, onFormSave, patientUuid]);
 
   if (isLoading === true || isLoadingForms === true || isLoadingFormsJson === true) {
-    return <DataTableSkeleton rowCount={5} />;
+    return <DataTableSkeleton rowCount={10} />;
   }
 
   return (
@@ -335,7 +335,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               page={currentPage}
               pageSize={pageSize}
               pageSizes={[10, 20, 30, 40, 50]}
-              totalItems={encounters.length}
+              totalItems={total}
               onChange={({ page, pageSize }) => {
                 setCurrentPage(page);
                 setPageSize(pageSize);

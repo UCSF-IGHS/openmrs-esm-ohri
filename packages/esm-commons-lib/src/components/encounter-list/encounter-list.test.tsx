@@ -61,7 +61,7 @@ describe('EncounterList', () => {
   test('renders an loading state if data is loading', () => {
     jest
       .spyOn(encounterRowsHook, 'useEncounterRows')
-      .mockReturnValue({ encounters: [], isLoading: true, error: null, onFormSave: () => {} });
+      .mockReturnValue({ encounters: [], total: 0, isLoading: true, error: null, onFormSave: () => {} });
 
     jest.spyOn(formsJsonHook, 'useFormsJson').mockReturnValue({ formsJson: [], isLoading: true });
 
@@ -75,7 +75,7 @@ describe('EncounterList', () => {
   test('renders an empty state if data is null', () => {
     jest
       .spyOn(encounterRowsHook, 'useEncounterRows')
-      .mockReturnValue({ encounters: [], isLoading: false, error: null, onFormSave: () => {} });
+      .mockReturnValue({ encounters: [], total: 0, isLoading: false, error: null, onFormSave: () => {} });
 
     jest.spyOn(formsJsonHook, 'useFormsJson').mockReturnValue({ formsJson: [], isLoading: false });
 
@@ -90,6 +90,7 @@ describe('EncounterList', () => {
   test('should render the encounter list component', () => {
     jest.spyOn(encounterRowsHook, 'useEncounterRows').mockReturnValue({
       encounters: mockEncounter,
+      total: 1,
       isLoading: false,
       error: null,
       onFormSave: () => {},
