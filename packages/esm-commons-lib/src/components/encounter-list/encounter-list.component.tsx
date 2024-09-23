@@ -178,7 +178,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     (encounters: OpenmrsEncounter[]) => {
       const rows = encounters.map((encounter) => {
         const tableRow: { id: string; actions: any } = { id: encounter.uuid, actions: null };
-        // inject launch actions
+
         encounter['launchFormActions'] = {
           editEncounter: () =>
             launchEncounterForm(
@@ -205,7 +205,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               patientUuid,
             ),
         };
-        // process columns
+
         columns.forEach((column) => {
           let val = column?.getValue(encounter);
           if (column.link) {
@@ -225,7 +225,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           }
           tableRow[column.key] = val;
         });
-        // If custom config is available, generate actions accordingly; otherwise, fallback to the default actions.
+
         const actions = tableRow.actions?.length ? tableRow.actions : defaultActions;
         tableRow['actions'] = (
           <OverflowMenu flipped className={styles.flippedOverflowMenu} data-testid="actions-id">
