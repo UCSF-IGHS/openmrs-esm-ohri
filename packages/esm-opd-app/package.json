@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-opd-app",
-  "version": "2.3.7",
+  "version": "2.3.8",
   "description": "opd active visits",
   "browser": "dist/openmrs-esm-ohri-opd-app.js",
   "main": "src/index.ts",
