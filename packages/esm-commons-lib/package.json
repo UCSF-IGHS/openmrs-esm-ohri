@@ -1,6 +1,6 @@
 {
   "name": "@ohri/openmrs-esm-ohri-commons-lib",
-  "version": "2.3.8",
+  "version": "2.3.9",
   "description": "Commons library microfrontend of shared assets for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/ohri-commons-lib.js",
   "main": "src/index.ts",
