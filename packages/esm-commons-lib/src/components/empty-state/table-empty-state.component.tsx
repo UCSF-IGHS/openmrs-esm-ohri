@@ -9,11 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from '@carbon/react';
+import { useTranslation } from 'react-i18next';
 
 export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; header: string }>; message: string }> = ({
   tableHeaders,
   message,
 }) => {
+  const { t } = useTranslation();
   return (
     <div style={{ marginLeft: '-16px' }}>
       <DataTable rows={[]} headers={tableHeaders} isSortable={true} size="short" useZebraStyles={true}>
@@ -29,14 +31,14 @@ export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; head
                         isSortable: header.isSortable,
                       })}
                     >
-                      {header.header?.content ?? header.header}
+                      {t(header.header?.content ?? header.header)}
                     </TableHeader>
                   ))}
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell colSpan={tableHeaders.length}>{message}</TableCell>
+                  <TableCell colSpan={tableHeaders.length}>{t(message)}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

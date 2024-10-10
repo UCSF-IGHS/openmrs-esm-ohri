@@ -34,7 +34,7 @@ function DashboardExtension({ dashboardLinkConfig }: { dashboardLinkConfig: Dash
   if (isFolder) {
     return (
       <SideNavItems>
-        <SideNavMenu title={folderTitle} renderIcon={folderIcon}>
+        <SideNavMenu title={t(folderTitle)} renderIcon={folderIcon}>
           <ConfigurableLink
             className={classNames('cds--side-nav__link', {
               'active-left-nav-link': navLink.match(name),
