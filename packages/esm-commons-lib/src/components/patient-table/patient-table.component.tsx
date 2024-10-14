@@ -231,7 +231,7 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                           })}
                           className={isDesktop(layout) ? styles.desktopHeader : styles.tabletHeader}
                         >
-                          {header.header?.content ?? header.header}
+                          {t(header.header?.content ?? header.header)}
                         </TableHeader>
                       ))}
                     </TableRow>

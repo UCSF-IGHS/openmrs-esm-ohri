@@ -24,7 +24,7 @@ function CTSummaryTiles() {
     {
       title: t('missedAppointments', 'Missed appointments'),
       linkAddress: '#',
-      subTitle: '0-30 days',
+      subTitle: t('zeroToThirtyDays', '0-30 days'),
       value: 50,
     },
     {

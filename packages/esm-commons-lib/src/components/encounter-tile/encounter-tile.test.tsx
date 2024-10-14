@@ -17,18 +17,11 @@ const tileTestProps = {
   headerTitle: 'Test header title',
 };
 
-jest.mock('@openmrs/esm-framework', () => {
-  const originalModule = jest.requireActual('@openmrs/esm-framework');
-  return {
-    ...originalModule,
-    openmrsFetch: jest.fn(),
-  };
-});
+const mockOpenmrsFetch = openmrsFetch as jest.Mock;
+mockOpenmrsFetch.mockImplementation(jest.fn());
 
 const mockUseLastEncounter = useLastEncounter as jest.Mock;
 jest.mock('../../hooks/useLastEncounter');
-
-const mockOpenmrsFetch = openmrsFetch as jest.Mock;
 
 describe('Encounter tile component', () => {
   beforeEach(() => {
