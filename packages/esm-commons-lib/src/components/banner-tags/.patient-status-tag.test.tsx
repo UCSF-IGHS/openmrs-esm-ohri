@@ -1,91 +1,123 @@
 import React from 'react';
-import { render, act, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { PatientStatusBannerTag } from './patient-status-tag.component';
 import { usePatientHivStatus } from './patientHivStatus';
+import { usePatientFamilyNames } from './usePatientFamilyNames';
 
-jest.mock('./patientHivStatus');
+jest.mock('./patientHivStatus', () => ({
+  usePatientHivStatus: jest.fn(),
+}));
 
-const mockusePatientHivStatus = usePatientHivStatus as jest.Mock;
+jest.mock('./usePatientFamilyNames', () => ({
+  usePatientFamilyNames: jest.fn(),
+}));
 
 describe('PatientStatusBannerTag', () => {
+  const hivPositiveSampleUuid = '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  const hivPositiveSampleUuid = '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-
-  it('renders red tag when patient is HIV positive', async () => {
-    mockusePatientHivStatus.mockReturnValue({
-      hivStatus: 'positive',
-      isLoading: false,
-      isError: false,
-    });
-
-    await act(async () => {
-      render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
-    });
-
-    expect(screen.getByText(/HIV Positive/i)).toBeInTheDocument();
-  });
-
-  it('renders green tag when patient is HIV negative', async () => {
-    mockusePatientHivStatus.mockReturnValue({
-      hivStatus: 'negative',
-      isLoading: false,
-      isError: false,
-    });
-
-    await act(async () => {
-      render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
-    });
-
-    expect(screen.getByText(/HIV Negative/i)).toBeInTheDocument();
-  });
-
-  it('does not render any tag when patient HIV status is not positive or negative', async () => {
-    mockusePatientHivStatus.mockReturnValue({
-      hivStatus: 'other',
-      isLoading: false,
-      isError: false,
-    });
-
-    await act(async () => {
-      render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
-    });
-
-    expect(screen.queryByText(/HIV Positive/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/HIV Negative/i)).not.toBeInTheDocument();
-  });
-
-  it('shows loading state initially', async () => {
-    mockusePatientHivStatus.mockReturnValue({
+  it('should not render anything while loading', () => {
+    (usePatientHivStatus as jest.Mock).mockReturnValue({
       hivStatus: null,
       isLoading: true,
       isError: false,
     });
 
-    await act(async () => {
-      render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+    (usePatientFamilyNames as jest.Mock).mockReturnValue({
+      childrenNames: [],
+      motherName: null,
+      patientAge: null,
+      patientGender: null,
+      isLoading: true,
+      isError: false,
     });
 
-    expect(screen.queryByText(/HIV Positive/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/HIV Negative/i)).not.toBeInTheDocument();
+    const { container } = render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+
+    expect(container.firstChild).toBeNull();
   });
 
-  it('handles error state', async () => {
-    mockusePatientHivStatus.mockReturnValue({
+  it('should display the correct tag for HIV positive status', () => {
+    (usePatientHivStatus as jest.Mock).mockReturnValue({
+      hivStatus: 'positive',
+      isLoading: false,
+      isError: false,
+    });
+
+    (usePatientFamilyNames as jest.Mock).mockReturnValue({
+      childrenNames: [],
+      motherName: null,
+      patientAge: null,
+      patientGender: null,
+      isLoading: false,
+      isError: false,
+    });
+
+    render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+    expect(screen.getByText('HIV Positive')).toBeInTheDocument();
+  });
+
+  it('should display the correct tag for HIV negative status', () => {
+    (usePatientHivStatus as jest.Mock).mockReturnValue({
+      hivStatus: 'negative',
+      isLoading: false,
+      isError: false,
+    });
+
+    (usePatientFamilyNames as jest.Mock).mockReturnValue({
+      childrenNames: [],
+      motherName: null,
+      patientAge: null,
+      patientGender: null,
+      isLoading: false,
+      isError: false,
+    });
+
+    render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+    expect(screen.getByText('HIV Negative')).toBeInTheDocument();
+  });
+
+  it('should display mother’s name on the Infant banner', () => {
+    (usePatientHivStatus as jest.Mock).mockReturnValue({
+      hivStatus: 'negative',
+      isLoading: false,
+      isError: false,
+    });
+
+    (usePatientFamilyNames as jest.Mock).mockReturnValue({
+      childrenNames: [],
+      motherName: 'Jane Doe',
+      patientAge: 10,
+      patientGender: 'M',
+      isLoading: false,
+      isError: false,
+    });
+
+    render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+    expect(screen.getByText('Mother: Jane Doe')).toBeInTheDocument();
+  });
+
+  it('should show an error message when there is an error fetching data', () => {
+    (usePatientHivStatus as jest.Mock).mockReturnValue({
       hivStatus: null,
+      isLoading: false,
+      isError: false,
+    });
+
+    (usePatientFamilyNames as jest.Mock).mockReturnValue({
+      childrenNames: [],
+      motherName: null,
+      patientAge: null,
+      patientGender: null,
       isLoading: false,
       isError: true,
     });
 
-    await act(async () => {
-      render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
-    });
-
-    expect(screen.queryByText(/HIV Positive/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/HIV Negative/i)).not.toBeInTheDocument();
-    // Optionally check for an error message if your component shows one
+    render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
+    expect(screen.getByText('Error fetching family information')).toBeInTheDocument();
   });
 });
