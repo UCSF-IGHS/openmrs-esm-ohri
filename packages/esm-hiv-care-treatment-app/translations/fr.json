@@ -8,5 +8,6 @@
   "missedAppointments": "Rendez-vous manqués",
   "noDrugsPickedLast90days": "Aucun médicament pris, 90 derniers jours",
   "patientsInClinicPopulation": "Patients dans la population de la clinique",
-  "suspectedLTFU": "LTFU suspecté"
+  "suspectedLTFU": "LTFU suspecté",
+  "zeroToThirtyDays": "0-30 jours"
 }

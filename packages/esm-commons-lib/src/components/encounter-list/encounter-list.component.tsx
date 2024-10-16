@@ -245,7 +245,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
             {actions.map((actionItem, index) => (
               <OverflowMenuItem
                 index={index}
-                itemText={actionItem.label}
+                itemText={t(actionItem.label)}
                 onClick={(e) => {
                   e.preventDefault();
                   actionItem.mode == 'delete'
