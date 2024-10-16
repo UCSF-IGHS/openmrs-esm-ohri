@@ -25,11 +25,11 @@ export function PatientStatusBannerTag({ patientUuid }) {
       {hivStatus === 'negative' && <Tag type="green">{t('hivNegative', 'HIV Negative')}</Tag>}
 
       {/* Mother Name Display (if patient is under 10) */}
-      {patientAge !== null && patientAge <= 10 && motherName && <Tag type="purple">Mother: {motherName}</Tag>}
+      {patientAge !== null && patientAge <= 14 && motherName && <Tag type="purple">Mother: {motherName}</Tag>}
 
       {/* Children Names Display (if patient is female and over 10) */}
-      {patientAge !== null && patientAge > 10 && patientGender === 'F' && childrenNames.length > 0 && (
-        <Tag type="purple">Children: {childrenNames.join(', ')}</Tag>
+      {patientAge !== null && patientAge > 14 && patientGender === 'F' && childrenNames.length > 0 && (
+        <Tag type="purple">Children: {childrenNames.join('     ||     ')}</Tag>
       )}
     </>
   );
