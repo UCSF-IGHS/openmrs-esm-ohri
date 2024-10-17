@@ -5,6 +5,7 @@ import { type OpenmrsEncounter } from '@openmrs/openmrs-form-engine-lib';
 import { fetchLatestEncountersOfTypes } from './helpers';
 
 import styles from '../../styleguide/tiles.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface SummaryCardProps {
   patientUuid: string;
@@ -23,6 +24,7 @@ export interface SummaryCardColumn {
 
 export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, headerTitle, maxRowItems }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
   const [columnEncountersMappings, setColumnEncountersMappings] = useState<
     {
       column: SummaryCardColumn;
@@ -98,10 +100,12 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ patientUuid, columns, 
 };
 
 function SummaryItem({ column, encounters }) {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.tileBox}>
       <div className={styles.tileBoxColumn}>
-        <span className={styles.tileTitle}> {column.header} </span>
+        <span className={styles.tileTitle}> {t(column.key, column.header)} </span>
         <span className={styles.tileValue}>
           {column?.getObsValue ? <LazyCell lazyValue={column?.getObsValue(encounters)} /> : '--'}
         </span>
