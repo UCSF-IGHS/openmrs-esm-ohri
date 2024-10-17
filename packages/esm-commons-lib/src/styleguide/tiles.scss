@@ -21,8 +21,11 @@
   border-bottom: 0.375rem solid $brand-teal-01;
 }
 
+.tilesContainer {
+  height: fit-content;
+}
+
 .tile {
-  height: 100%;
   padding: 1px 0 16px 16px;
   margin: 0.5rem;
   border: solid 1px #e0e0e0;
