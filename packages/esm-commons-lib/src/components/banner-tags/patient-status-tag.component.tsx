@@ -12,8 +12,8 @@ export function PatientStatusBannerTag({ patientUuid }) {
 
   const { patientOutcome } = usePatientOutcome(patientUuid);
 
-  const greenOutcomes = ['Still in Care', 'Confirmed HIV negative infant (discharged from PMTCT)', 'Missing'];
-  const redOutcomes = ['Confirmed HIV Positive', 'Lost to Follow Up', 'Dead', 'Transferred Out'];
+  const greenOutcomes = ['Still in Care', 'HIV negative infant discharged from PMTCT'];
+  const redOutcomes = ['Confirmed HIV positive', 'Lost to follow up', 'Dead', 'Transferred out'];
 
   let outcomeTagColor = '';
   if (greenOutcomes.includes(patientOutcome)) {
