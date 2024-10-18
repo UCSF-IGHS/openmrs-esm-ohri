@@ -82,7 +82,7 @@ describe('PatientStatusBannerTag', () => {
     });
 
     (usePatientOutcome as jest.Mock).mockReturnValue({
-      patientOutcome: 'Confirmed HIV negative infant (discharged from PMTCT)',
+      patientOutcome: 'HIV negative infant discharged from PMTCT',
     });
 
     (usePatientFamilyNames as jest.Mock).mockReturnValue({
@@ -96,7 +96,7 @@ describe('PatientStatusBannerTag', () => {
 
     render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
     expect(screen.getByText('HIV Negative')).toBeInTheDocument();
-    expect(screen.getByText('Confirmed HIV negative infant (discharged from PMTCT)')).toBeInTheDocument();
+    expect(screen.getByText('HIV negative infant discharged from PMTCT')).toBeInTheDocument();
   });
 
   it('should display mother’s name on the Infant banner', () => {
