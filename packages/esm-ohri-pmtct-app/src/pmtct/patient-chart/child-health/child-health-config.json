@@ -8,16 +8,6 @@
       "encounterType": "infantPostnatalEncounterType",
       "columns": [
         {
-          "id": "pTrackerId",
-          "title": "PTracker Id",
-          "concept": "pTrackerIdConcept"
-        },
-        {
-          "id": "mothersName",
-          "title": "Mothers Name",
-          "type": "mothersName"
-        },
-        {
           "id": "artProphylaxisStatus",
           "title": "ART Prophylaxis Status",
           "concept": "artProphylaxisStatus"
