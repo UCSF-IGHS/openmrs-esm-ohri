@@ -3,10 +3,15 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { PatientStatusBannerTag } from './patient-status-tag.component';
 import { usePatientHivStatus } from './patientHivStatus';
+import { usePatientOutcome } from './useInfantFinalOutcome';
 import { usePatientFamilyNames } from './usePatientFamilyNames';
 
 jest.mock('./patientHivStatus', () => ({
   usePatientHivStatus: jest.fn(),
+}));
+
+jest.mock('./useInfantFinalOutcome', () => ({
+  usePatientOutcome: jest.fn(),
 }));
 
 jest.mock('./usePatientFamilyNames', () => ({
@@ -27,6 +32,10 @@ describe('PatientStatusBannerTag', () => {
       isError: false,
     });
 
+    (usePatientOutcome as jest.Mock).mockReturnValue({
+      patientOutcome: null,
+    });
+
     (usePatientFamilyNames as jest.Mock).mockReturnValue({
       childrenNames: [],
       motherName: null,
@@ -37,7 +46,6 @@ describe('PatientStatusBannerTag', () => {
     });
 
     const { container } = render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
-
     expect(container.firstChild).toBeNull();
   });
 
@@ -46,6 +54,10 @@ describe('PatientStatusBannerTag', () => {
       hivStatus: 'positive',
       isLoading: false,
       isError: false,
+    });
+
+    (usePatientOutcome as jest.Mock).mockReturnValue({
+      patientOutcome: 'Still in Care',
     });
 
     (usePatientFamilyNames as jest.Mock).mockReturnValue({
@@ -59,6 +71,7 @@ describe('PatientStatusBannerTag', () => {
 
     render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
     expect(screen.getByText('HIV Positive')).toBeInTheDocument();
+    expect(screen.getByText('Still in Care')).toBeInTheDocument();
   });
 
   it('should display the correct tag for HIV negative status', () => {
@@ -66,6 +79,10 @@ describe('PatientStatusBannerTag', () => {
       hivStatus: 'negative',
       isLoading: false,
       isError: false,
+    });
+
+    (usePatientOutcome as jest.Mock).mockReturnValue({
+      patientOutcome: 'Confirmed HIV negative infant (discharged from PMTCT)',
     });
 
     (usePatientFamilyNames as jest.Mock).mockReturnValue({
@@ -79,6 +96,7 @@ describe('PatientStatusBannerTag', () => {
 
     render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
     expect(screen.getByText('HIV Negative')).toBeInTheDocument();
+    expect(screen.getByText('Confirmed HIV negative infant (discharged from PMTCT)')).toBeInTheDocument();
   });
 
   it('should display mother’s name on the Infant banner', () => {
@@ -86,6 +104,10 @@ describe('PatientStatusBannerTag', () => {
       hivStatus: 'negative',
       isLoading: false,
       isError: false,
+    });
+
+    (usePatientOutcome as jest.Mock).mockReturnValue({
+      patientOutcome: 'Still in Care',
     });
 
     (usePatientFamilyNames as jest.Mock).mockReturnValue({
@@ -106,6 +128,10 @@ describe('PatientStatusBannerTag', () => {
       hivStatus: null,
       isLoading: false,
       isError: false,
+    });
+
+    (usePatientOutcome as jest.Mock).mockReturnValue({
+      patientOutcome: null,
     });
 
     (usePatientFamilyNames as jest.Mock).mockReturnValue({
