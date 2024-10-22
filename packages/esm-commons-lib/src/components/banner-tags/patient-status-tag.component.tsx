@@ -22,8 +22,7 @@ export function PatientStatusBannerTag({ patientUuid }) {
     outcomeTagColor = 'red';
   }
 
-  const { childrenNames, motherName, patientAge, patientGender, isLoading, isError } =
-    usePatientFamilyNames(patientUuid);
+  const { childrenNames, motherName, patientGender, isLoading, isError } = usePatientFamilyNames(patientUuid);
 
   if (isLoading) {
     return null;
@@ -32,6 +31,7 @@ export function PatientStatusBannerTag({ patientUuid }) {
   if (isError) {
     return <div>Error fetching family information</div>;
   }
+
   return (
     <>
       {hivStatus === 'positive' && <Tag type="red">{t('hivPositive', 'HIV Positive')}</Tag>}
@@ -39,9 +39,9 @@ export function PatientStatusBannerTag({ patientUuid }) {
 
       {patientOutcome && outcomeTagColor && <Tag type={outcomeTagColor}>{patientOutcome}</Tag>}
 
-      {patientAge !== null && patientAge <= 14 && motherName && <Tag type="purple">Mother: {motherName}</Tag>}
+      {motherName && <Tag type="purple">Mother: {motherName}</Tag>}
 
-      {patientAge !== null && patientAge > 14 && patientGender === 'F' && childrenNames.length > 0 && (
+      {patientGender === 'F' && childrenNames.length > 0 && (
         <Tag type="purple">Children: {childrenNames.join('     ||     ')}</Tag>
       )}
     </>

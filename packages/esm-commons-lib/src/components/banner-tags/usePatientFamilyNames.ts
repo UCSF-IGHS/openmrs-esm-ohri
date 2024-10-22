@@ -11,7 +11,6 @@ export const usePatientFamilyNames = (patientUuid: string) => {
 
   const fetchFamilyData = useCallback(async () => {
     try {
-      // Fetch patient demographics (age and gender)
       const response = await fetch(`/openmrs/ws/rest/v1/patient/${patientUuid}?v=full`);
       const patient = await response.json();
       setPatientAge(patient.person.age);
@@ -36,11 +35,12 @@ export const usePatientFamilyNames = (patientUuid: string) => {
 
       const motherRelationship = relationships.find(
         (relationship) =>
-          relationship.relationshipType?.displayAIsToB === 'Mother' ||
-          relationship.relationshipType?.displayBIsToA === 'Child',
+          (relationship.relationshipType?.displayAIsToB === 'Mother' ||
+            relationship.relationshipType?.displayBIsToA === 'Child') &&
+          relationship.personA?.uuid !== patientUuid,
       );
 
-      setMotherName(motherRelationship?.personA?.display || 'Mother not found');
+      setMotherName(motherRelationship?.personA?.display || null);
 
       setIsLoading(false);
     } catch (error) {
