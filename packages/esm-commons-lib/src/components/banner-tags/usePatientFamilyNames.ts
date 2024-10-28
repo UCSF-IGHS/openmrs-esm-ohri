@@ -36,7 +36,6 @@ export const usePatientFamilyNames = (patientUuid: string) => {
 
       setChildrenNames(childRelationships);
 
-      // Find the mother relationship
       const motherRelationship = relationships.find(
         (relationship) =>
           (relationship.relationshipType?.displayAIsToB === 'Mother' ||
