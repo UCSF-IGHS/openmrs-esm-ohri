@@ -101,3 +101,8 @@ export const maternalChildDashboard = getSyncLifecycle(OHRIHome, {
 export const ptrackerReportNavLink = getSyncLifecycle(ptrackerdashboardPath, options);
 
 export const patientStatusBannerTagExtension = getSyncLifecycle(PatientStatusBannerTag, options);
+
+export const pmtctBannerTagExtension = getAsyncLifecycle(
+  () => import('./pmtct/patient-chart/banner-tags/banner-tags.component'),
+  options,
+)

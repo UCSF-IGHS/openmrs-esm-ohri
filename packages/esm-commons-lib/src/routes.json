@@ -5,11 +5,6 @@
   },
   "pages": [],
   "extensions": [
-    {
-      "name": "patient-status-banner-tag",
-      "slot": "patient-banner-tags-slot",
-      "component": "patientStatusBannerTagExtension"
-    }
   ],
   "workspaces": [
     {
