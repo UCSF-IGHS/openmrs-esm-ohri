@@ -10,6 +10,7 @@ jest.mock('./patientHivStatus', () => ({
 
 describe('PatientStatusBannerTag', () => {
   const hivPositiveSampleUuid = '138571AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+  const patientUuid = '22ab3fdb-1510-4675-85aa-f180064de450';
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -46,5 +47,31 @@ describe('PatientStatusBannerTag', () => {
 
     render(<PatientStatusBannerTag patientUuid={hivPositiveSampleUuid} />);
     expect(screen.getByText('HIV Negative')).toBeInTheDocument();
+  });
+
+  it('should display the correct outcome tag', () => {
+    render(<PatientStatusBannerTag patientUuid="patientUuid" mappedOutcome="Dead" outcomeTagColor="red" />);
+    expect(screen.getByText('Dead')).toBeInTheDocument();
+  });
+
+  it('should display the mother tag', () => {
+    render(<PatientStatusBannerTag patientUuid="patientUuid" motherName="Jane Doe" />);
+    expect(screen.getByText('Mother: Jane Doe')).toBeInTheDocument();
+  });
+
+  it('should not display children tag if childrenNames is empty', () => {
+    render(<PatientStatusBannerTag patientUuid={patientUuid} patientGender="F" childrenNames={[]} />);
+    expect(screen.queryByText('Children:')).toBeNull();
+  });
+
+  it('should display children tag for female patients', () => {
+    render(
+      <PatientStatusBannerTag
+        patientUuid={patientUuid}
+        patientGender="F"
+        childrenNames={['Mark obadi', 'Grace Obadi']}
+      />,
+    );
+    expect(screen.getByText('Children: Mark obadi || Grace Obadi')).toBeInTheDocument();
   });
 });
