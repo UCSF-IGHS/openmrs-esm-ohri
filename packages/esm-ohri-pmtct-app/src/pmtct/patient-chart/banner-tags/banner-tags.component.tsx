@@ -27,7 +27,7 @@ const MotherChildTag: React.FC<MotherChildTagProps> = ({ patientUuid }) => {
     'Still in Care': 'green',
     'HIV negative infant discharged from PMTCT': 'green',
     'Lost to followup': 'red',
-    Dead: 'red',
+    'Dead': 'red',
     'Transferred out': 'red',
     'Transfer in': 'red',
     'Confirmed HIV positive': 'red',
