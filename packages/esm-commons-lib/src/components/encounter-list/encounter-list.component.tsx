@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { navigate, showModal, showSnackbar } from '@openmrs/esm-framework';
+import { navigate, showModal, showSnackbar, useVisit } from '@openmrs/esm-framework';
 import { useTranslation } from 'react-i18next';
 import { EmptyState } from '../empty-state/empty-state.component';
 import { OTable } from '../data-table/o-table.component';
@@ -15,13 +15,14 @@ import {
 } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
 import { type FormSchema } from '@openmrs/openmrs-form-engine-lib';
-import { deleteEncounter, launchEncounterForm } from './helpers';
+import { deleteEncounter, type LaunchAction, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { type OpenmrsEncounter } from '../../types';
 import { useFormsJson } from '../../hooks/useFormsJson';
 import { usePatientDeathStatus } from '../../hooks/usePatientDeathStatus';
 
 import styles from './encounter-list.scss';
+import { launchStartVisitPrompt, useVisitOrOfflineVisit } from '@openmrs/esm-patient-common-lib';
 
 export interface EncounterListColumn {
   key: string;
@@ -80,6 +81,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     afterFormSaveAction,
   );
   const { moduleName, workspaceWindowSize, displayText, hideFormLauncher } = launchOptions;
+  const { currentVisit } = useVisitOrOfflineVisit(patientUuid);
 
   const defaultActions = useMemo(
     () => [
@@ -179,6 +181,41 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     return [];
   }, [columns]);
 
+  const launchEncounterFormHandler = useCallback(
+    (
+      form: FormSchema,
+      moduleName: string,
+      action: LaunchAction = 'add',
+      onFormSave: () => void,
+      title?: string,
+      encounterUuid?: string,
+      intent: string = '*',
+      workspaceWindowSize?: 'minimized' | 'maximized',
+      patientUuid?: string,
+    ) => {
+      if (!currentVisit) {
+        launchStartVisitPrompt();
+      } else {
+        launchEncounterForm(
+          form,
+          moduleName,
+          action,
+          onFormSave,
+          title,
+          encounterUuid,
+          intent,
+          workspaceWindowSize,
+          patientUuid,
+          currentVisit?.visitType?.uuid,
+          currentVisit?.uuid,
+          currentVisit?.startDatetime,
+          currentVisit?.stopDatetime,
+        );
+      }
+    },
+    [currentVisit],
+  );
+
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
       const startIndex = (currentPage - 1) * pageSize;
@@ -193,7 +230,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
         // inject launch actions
         encounter['launchFormActions'] = {
           editEncounter: () =>
-            launchEncounterForm(
+            launchEncounterFormHandler(
               forms[0],
               moduleName,
               'edit',
@@ -205,7 +242,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
               patientUuid,
             ),
           viewEncounter: () =>
-            launchEncounterForm(
+            launchEncounterFormHandler(
               forms[0],
               moduleName,
               'view',
@@ -250,7 +287,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   e.preventDefault();
                   actionItem.mode == 'delete'
                     ? handleDeleteEncounter(encounter.uuid, encounter.encounterType.name)
-                    : launchEncounterForm(
+                    : launchEncounterFormHandler(
                         forms.find((form) => form.name == actionItem?.form?.name),
                         moduleName,
                         actionItem.mode == 'enter' ? 'add' : actionItem.mode,
@@ -290,7 +327,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           iconDescription="Add "
           onClick={(e) => {
             e.preventDefault();
-            launchEncounterForm(
+            launchEncounterFormHandler(
               forms[0],
               moduleName,
               'add',
@@ -317,7 +354,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
                   key={index}
                   label={intent.display}
                   onClick={() =>
-                    launchEncounterForm(
+                    launchEncounterFormHandler(
                       filteredItem,
                       moduleName,
                       'add',
@@ -347,6 +384,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
     patientUuid,
     t,
     formsJson,
+    launchEncounterFormHandler,
   ]);
 
   if (isLoading === true || isLoadingForms === true || isLoadingFormsJson === true) {
@@ -381,7 +419,7 @@ export const EncounterList: React.FC<EncounterListProps> = ({
           displayText={description}
           headerTitle={headerTitle}
           launchForm={() =>
-            launchEncounterForm(
+            launchEncounterFormHandler(
               forms[0],
               moduleName,
               'add',

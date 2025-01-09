@@ -2,7 +2,7 @@ import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
 import { type FormSchema } from '@openmrs/openmrs-form-engine-lib';
 
-type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
+export type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
 
 export function launchEncounterForm(
   form: FormSchema,
@@ -14,6 +14,10 @@ export function launchEncounterForm(
   intent: string = '*',
   workspaceWindowSize?: 'minimized' | 'maximized',
   patientUuid?: string,
+  visitTypeUuid?: string,
+  visitUuid?: string,
+  visitStartDatetime?: string,
+  visitStopDatetime?: string,
 ) {
   launchPatientWorkspace('patient-form-entry-workspace', {
     workspaceTitle: form.name,
@@ -22,10 +26,10 @@ export function launchEncounterForm(
       encounterUuid,
       formUuid: form.name,
       patientUuid: patientUuid,
-      visitTypeUuid: '',
-      visitUuid: '',
-      visitStartDatetime: '',
-      visitStopDatetime: '',
+      visitTypeUuid: visitTypeUuid ?? '',
+      visitUuid: visitUuid ?? '',
+      visitStartDatetime: visitStartDatetime ?? '',
+      visitStopDatetime: visitStopDatetime ?? '',
       additionalProps: {
         mode: action === 'add' ? 'enter' : action,
         formSessionIntent: intent,
