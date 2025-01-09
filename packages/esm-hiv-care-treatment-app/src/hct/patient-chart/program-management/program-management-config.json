@@ -12,7 +12,9 @@
           "isDate": true,
           "title": "Enrollment/Re-enrollment Date",
           "concept": "re_enrolmentDateConcept",
-          "fallbackConcepts": ["enrolmentDate"]
+          "fallbackConcepts": [
+            "enrolmentDate"
+          ]
         },
         {
           "id": "clientDescription",
@@ -96,7 +98,6 @@
             "Stop ART": "stopART",
             "Restart ART therapy": "restartART"
           }
-
         },
         {
           "id": "regimen",
@@ -317,7 +318,7 @@
       "tabName": "Death",
       "headerTitle": "Death",
       "displayText": "Death",
-      "encounterType": "hivLabResultsEncounterType_UUID",
+      "encounterType": "deathFormEncounterType_UUID",
       "columns": [
         {
           "id": "deathDate",
