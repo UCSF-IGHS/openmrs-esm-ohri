@@ -14,7 +14,7 @@ import {
   MenuItem,
 } from '@carbon/react';
 import { Add } from '@carbon/react/icons';
-import { type FormSchema } from '@openmrs/openmrs-form-engine-lib';
+import { type FormSchema } from '@openmrs/esm-form-engine-lib';
 import { deleteEncounter, launchEncounterForm } from './helpers';
 import { useEncounterRows } from '../../hooks/useEncounterRows';
 import { type OpenmrsEncounter } from '../../types';

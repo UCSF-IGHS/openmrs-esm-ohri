@@ -1,4 +1,4 @@
-import { type PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
+import { type PostSubmissionAction } from '@openmrs/esm-form-engine-lib';
 import { generateIdentifier, savePatients, saveRelationship } from '../api.resource';
 import { type Patient, type PatientIdentifier } from '../types';
 import { findObsByConcept, findChildObsInTree, getObsValueCoded } from '../utils/obs-encounter-utils';

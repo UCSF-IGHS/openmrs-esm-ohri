@@ -1,4 +1,4 @@
-import { type PostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
+import { type PostSubmissionAction } from '@openmrs/esm-form-engine-lib';
 import { getConfig } from '@openmrs/esm-framework';
 import { type PatientIdentifier } from '../types';
 import { fetchPatientIdentifiers, saveIdentifier } from '../api.resource';

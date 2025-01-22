@@ -1,4 +1,4 @@
-import { FormEngine } from '@openmrs/openmrs-form-engine-lib';
+import { FormEngine } from '@openmrs/esm-form-engine-lib';
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import { configSchema } from './config.schema';
 import { PatientStatusBannerTag } from './components/banner-tags/patient-status-tag.component';

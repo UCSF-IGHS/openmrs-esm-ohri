@@ -1,4 +1,4 @@
-import { type OpenmrsForm } from '@openmrs/openmrs-form-engine-lib';
+import { type OpenmrsForm } from '@openmrs/esm-form-engine-lib';
 import { useEffect, useMemo, useState } from 'react';
 import useSWRImmutable from 'swr';
 import { fetchFormsClobData } from '../api.resource';
