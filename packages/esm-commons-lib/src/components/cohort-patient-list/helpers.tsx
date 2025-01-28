@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { OverflowMenu, OverflowMenuItem, InlineLoading } from '@carbon/react';
-import { applyFormIntent } from '@openmrs/openmrs-form-engine-lib';
+import { applyFormIntent } from '@openmrs/esm-form-engine-lib';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';

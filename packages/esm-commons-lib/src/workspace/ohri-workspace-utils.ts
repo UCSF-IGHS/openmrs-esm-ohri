@@ -1,9 +1,9 @@
 import { BehaviorSubject } from 'rxjs';
 import { closeWorkspace } from '@openmrs/esm-framework';
 import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
-import { SessionMode } from '@openmrs/openmrs-form-engine-lib';
+import { SessionMode } from '@openmrs/esm-form-engine-lib';
 
-export interface WorkspaceContextProps  {
+export interface WorkspaceContextProps {
   title: string;
   encounterUuid?: string;
   state?: any;
@@ -27,8 +27,6 @@ export const launchOHRIWorkSpace = (props: WorkspaceContextProps) => {
     props.state?.updateParent?.();
     close();
   };
-
-
 
   launchPatientWorkspace(workspaceName, {
     ...props.state,

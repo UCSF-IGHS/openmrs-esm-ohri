@@ -8,7 +8,7 @@ import {
   motherChildDashboardMeta,
   mchFolderMeta,
 } from './dashboard.meta';
-import { registerPostSubmissionAction, registerExpressionHelper } from '@openmrs/openmrs-form-engine-lib';
+import { registerPostSubmissionAction, registerExpressionHelper } from '@openmrs/esm-form-engine-lib';
 import {
   createConditionalDashboardLink,
   createNewOHRIDashboardLink,
@@ -105,4 +105,4 @@ export const patientStatusBannerTagExtension = getSyncLifecycle(PatientStatusBan
 export const pmtctBannerTagExtension = getAsyncLifecycle(
   () => import('./pmtct/patient-chart/banner-tags/banner-tags.component'),
   options,
-)
+);

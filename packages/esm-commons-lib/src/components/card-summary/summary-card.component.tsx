@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SkeletonText, Tile, Column } from '@carbon/react';
 import { LazyCell } from '../lazy-cell/lazy-cell.component';
-import { type OpenmrsEncounter } from '@openmrs/openmrs-form-engine-lib';
+import { type OpenmrsEncounter } from '@openmrs/esm-form-engine-lib';
 import { fetchLatestEncountersOfTypes } from './helpers';
 
 import styles from '../../styleguide/tiles.scss';
