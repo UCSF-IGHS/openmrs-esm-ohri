@@ -37,7 +37,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
         <div className={styles.tabContainer}>
           {age > 10 ? (
             <Tabs>
-              <TabList contained>
+              <TabList contained aria-label="">
                 {showRecentPregnancy && <Tab>{t('recentPregnancy', 'Recent Pregnancy')}</Tab>}
               </TabList>
               <TabPanels>
@@ -48,7 +48,7 @@ const MaternalSummary: React.FC<PatientChartProps> = ({ patientUuid }) => {
             </Tabs>
           ) : (
             <Tabs>
-              <TabList contained>
+              <TabList contained aria-label="">
                 {showHivExposedInfantSummary && <Tab>{t('hivExposedInfant', 'HIV Exposed Infant')}</Tab>}
               </TabList>
               <TabPanels>

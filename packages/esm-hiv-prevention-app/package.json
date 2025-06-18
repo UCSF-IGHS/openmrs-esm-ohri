@@ -37,7 +37,7 @@
     "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0",
+    "@carbon/react": "^1.83.0",
     "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
@@ -49,6 +49,6 @@
     "swr": "2.x"
   },
   "devDependencies": {
-    "webpack": "^5.88.2"
+    "webpack": "^5.99.9"
   }
 }

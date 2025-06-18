@@ -20,7 +20,7 @@ const ClientLinkage = () => {
             <div className={styles.toggleButtons}>
               <Button
                 kind="ghost"
-                renderIcon={<Add size={16} />}
+                renderIcon={(props) => <Add size={16} {...props} />}
                 iconDescription="New"
                 onClick={(e) => {
                   e.preventDefault();

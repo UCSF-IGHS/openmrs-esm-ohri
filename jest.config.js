@@ -23,9 +23,9 @@ const config = {
     '!**/e2e/**',
   ],
   transform: {
-    '^.+\\.(j|t)sx?$': '@swc/jest',
+    '^.+\\.m?[jt]sx?$': ['@swc/jest'],
   },
-  transformIgnorePatterns: ['/node_modules/(?!@openmrs)'],
+  transformIgnorePatterns: ['/node_modules/(?!@openmrs|.+\\.pnp\\.[^\\/]+$)'],
   moduleDirectories: ['node_modules', '__mocks__', 'tools', __dirname],
   moduleNameMapper: {
     '\\.(s?css)$': 'identity-obj-proxy',

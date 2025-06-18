@@ -8,8 +8,6 @@ import { configSchema } from './config-schema';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
-require('./root.scss');
-
 export const moduleName = '@ohri/openmrs-esm-ohri-cervical-cancer-app';
 
 const options = {

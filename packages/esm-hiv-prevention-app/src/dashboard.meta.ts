@@ -13,6 +13,7 @@ export const htsSummaryDashboardMeta = {
   title: 'HIV Testing Services',
   path: 'hiv-testing-services',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const hivPreventionFolderDashboardMeta = {

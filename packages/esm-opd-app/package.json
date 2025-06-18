@@ -36,7 +36,7 @@
     "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0",
+    "@carbon/react": "^1.83.0",
     "@ohri/esm-patient-chart-app": "7.1.0-5"
   },
   "peerDependencies": {
@@ -50,6 +50,6 @@
   },
   "devDependencies": {
     "@ohri/esm-patient-chart-app": "7.1.0-5",
-    "webpack": "^5.88.2"
+    "webpack": "^5.99.9"
   }
 }

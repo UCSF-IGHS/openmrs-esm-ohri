@@ -147,7 +147,7 @@ function FormRenderTest() {
             <h4>{t('jsonSchemaHeader', 'JSON Schema')}</h4>
             <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{inputErrorMessage}</h5>
             <Tabs>
-              <TabList contained>
+              <TabList contained aria-label="">
                 <Tab>{t('jsonInput', 'JSON Input')}</Tab>
                 <Tab>{t('finalSchema', 'Final Schema')}</Tab>
               </TabList>
@@ -185,6 +185,7 @@ function FormRenderTest() {
                     <div className={styles.renderField}>
                       <Dropdown
                         titleText={t('formIntent', 'Form Intent')}
+                        id="formIntent"
                         label={t('selectForm', '--Select Form Intent')}
                         items={formIntents}
                         itemToString={(item) => item.display}
@@ -195,6 +196,7 @@ function FormRenderTest() {
 
                     <div className={styles.renderField}>
                       <TextInput
+                        id="encounterUuid"
                         labelText={t('encounterUuid', 'Encounter Uuid')}
                         placeholder={t('encounterUuidEntry', 'Enter Encounter Uuid')}
                         onChange={(e) => setEncounterUuid(e.target.value)}
@@ -204,6 +206,7 @@ function FormRenderTest() {
                     <div className={styles.renderField}>
                       <Dropdown
                         titleText={t('jsonEditorThe', 'JSON Editor Theme')}
+                        id="jsonEditorTheme"
                         label={editorTheme}
                         items={availableEditorThemes}
                         itemToString={(item) => item}
@@ -266,7 +269,7 @@ function FormRenderTest() {
             <div className={styles.formRenderContent}>
               <h5 style={{ color: 'orange', marginBottom: '1rem' }}>{outputErrorMessage}</h5>
               <Tabs>
-                <TabList contained>
+                <TabList contained aria-label="">
                   <Tab>{t('formRender', 'Form Render')}</Tab>
                 </TabList>
                 <TabPanels>

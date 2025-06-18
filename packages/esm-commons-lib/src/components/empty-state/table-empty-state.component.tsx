@@ -18,7 +18,7 @@ export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; head
   const { t } = useTranslation();
   return (
     <div style={{ marginLeft: '-16px' }}>
-      <DataTable rows={[]} headers={tableHeaders} isSortable={true} size="short" useZebraStyles={true}>
+      <DataTable rows={[]} headers={tableHeaders} isSortable={true} size="sm" useZebraStyles={true}>
         {({ headers, getHeaderProps, getTableProps }) => (
           <TableContainer>
             <Table {...getTableProps()}>
@@ -28,10 +28,10 @@ export const TableEmptyState: React.FC<{ tableHeaders: Array<{ key: string; head
                     <TableHeader
                       {...getHeaderProps({
                         header,
-                        isSortable: header.isSortable,
+                        isSortable: header?.['isSortable'],
                       })}
                     >
-                      {t(header.header?.content ?? header.header)}
+                      {t(header.header?.['content'] ?? header.header)}
                     </TableHeader>
                   ))}
                 </TableRow>

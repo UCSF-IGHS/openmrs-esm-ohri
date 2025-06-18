@@ -38,7 +38,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0",
+    "@carbon/react": "^1.83.0",
     "@openmrs/esm-form-engine-lib": "next",
     "ace-builds": "1.34.1",
     "react-ace": "^9.4.4"
@@ -50,6 +50,6 @@
     "react-i18next": "11.x"
   },
   "devDependencies": {
-    "webpack": "^5.88.2"
+    "webpack": "^5.99.9"
   }
 }

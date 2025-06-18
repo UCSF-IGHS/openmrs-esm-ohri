@@ -13,6 +13,7 @@ export const hivPatientSummaryDashboardMeta = {
   title: 'HIV Patient Summary',
   path: 'hiv-patient-summary',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const programManagementDashboardMeta = {
@@ -21,6 +22,7 @@ export const programManagementDashboardMeta = {
   title: 'Program Management',
   path: 'program-management',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const clinicalVisitsDashboardMeta = {
@@ -29,6 +31,7 @@ export const clinicalVisitsDashboardMeta = {
   title: 'Clinical Visits',
   path: 'clinical-visits',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const generalCounsellingDashboardMeta = {
@@ -37,6 +40,7 @@ export const generalCounsellingDashboardMeta = {
   title: 'General Counselling',
   path: 'general-counselling',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const partnerNotificationServicesDashboardMeta = {
@@ -45,6 +49,7 @@ export const partnerNotificationServicesDashboardMeta = {
   title: 'Partner Notification',
   path: 'partner-notification-services',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 // Clinical Dashboards

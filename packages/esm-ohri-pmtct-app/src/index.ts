@@ -25,8 +25,6 @@ export const importTranslation = require.context('../translations', false, /.jso
 
 export const moduleName = '@ohri/openmrs-esm-ohri-pmtct-app';
 
-require('./root.scss');
-
 const options = {
   featureName: 'ohri-pmtct',
   moduleName,

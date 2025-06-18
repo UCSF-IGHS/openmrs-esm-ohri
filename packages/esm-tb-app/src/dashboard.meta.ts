@@ -12,6 +12,7 @@ export const tbPatientSummaryDashboardMeta = {
   title: 'TB Patient Summary',
   path: 'tb-patient-summary',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const tbProgramManagementDashboardMeta = {
@@ -20,6 +21,7 @@ export const tbProgramManagementDashboardMeta = {
   title: 'Program Management',
   path: 'tb-program-management',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const tbTreatmentFollowUpDashboardMeta = {
@@ -28,6 +30,7 @@ export const tbTreatmentFollowUpDashboardMeta = {
   title: 'Treatment and Follow-up',
   path: 'tb-treatment-follow-up',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const tbContactListingDashboardMeta = {
@@ -36,6 +39,7 @@ export const tbContactListingDashboardMeta = {
   title: 'TB Contact Listing',
   path: 'tb-contact-listing',
   layoutMode: 'anchored',
+  icon: '',
 };
 // Clinical Dashboards
 export const tbClinicalViewDashboardMeta = {
@@ -82,6 +86,7 @@ export const tptPatientSummaryMeta = {
   title: 'Patient Summary',
   path: 'tpt-patient-summary',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const tptProgramManagementDashboardMeta = {
@@ -90,4 +95,5 @@ export const tptProgramManagementDashboardMeta = {
   title: 'Program Management',
   path: 'tpt-program-management',
   layoutMode: 'anchored',
+  icon: '',
 };

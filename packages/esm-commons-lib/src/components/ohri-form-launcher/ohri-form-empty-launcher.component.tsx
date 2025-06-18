@@ -11,7 +11,7 @@ export const FormLauncherEmpty: React.FC<{
     <div style={{ paddingTop: '.1rem', paddingRight: '.9rem', width: '6rem' }}>
       <Button
         kind="ghost"
-        renderIcon={<Add size={16} />}
+        renderIcon={(props) => <Add size={16} {...props} />}
         onClick={(e) => {
           e.preventDefault();
           launchForm();

@@ -89,7 +89,6 @@ export const PatientList: React.FC = () => {
                   labelText="Search"
                   placeholder="Search Patient List"
                   size="sm"
-                  light
                   onChange={(event) => onSearchQueryChange(event.target.value)}
                   onClear={handleClear}
                 />

@@ -14,6 +14,7 @@ export const mchSummaryDashboardMeta = {
   title: 'MNCH Summary',
   path: 'mnch-summary',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const maternalVisitsDashboardMeta = {

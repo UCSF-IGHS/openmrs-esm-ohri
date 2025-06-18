@@ -1,5 +1,5 @@
-@use '@carbon/styles/scss/spacing';
-@import '../../root.scss';
+@use '@carbon/layout';
+
 
 .tabContainer div[role='tabpanel'] {
   padding: 0 !important;

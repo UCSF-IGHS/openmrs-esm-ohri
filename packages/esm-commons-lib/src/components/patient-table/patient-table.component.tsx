@@ -139,12 +139,7 @@ interface PatientTableColumn {
   };
 }
 
-export const PatientTable: React.FC<PatientTableProps> = ({
-  columns,
-  isFetching,
-  isLoading,
-  patients,
-}) => {
+export const PatientTable: React.FC<PatientTableProps> = ({ columns, isFetching, isLoading, patients }) => {
   const { t } = useTranslation();
   const layout = useLayoutType();
   const responsiveSize = isDesktop(layout) ? 'sm' : 'lg';
@@ -157,7 +152,7 @@ export const PatientTable: React.FC<PatientTableProps> = ({
   const pageSizes = [10, 20, 50, 100, 250];
   const { goTo, results, currentPage } = usePagination(patients, currentPageSize);
 
-  const tableRows: Array<typeof DataTableRow> = useMemo(
+  const tableRows: Array<any> = useMemo(
     () =>
       results.map((patient, index) => {
         const row = {
@@ -209,7 +204,8 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                     height: '3rem',
                     overflow: 'visible',
                     backgroundColor: 'color',
-                  }}>
+                  }}
+                >
                   <TableToolbarContent className={styles.toolbarContent}>
                     <TableToolbarSearch
                       className={styles.search}
@@ -219,7 +215,7 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                       size="sm"
                     />
                   </TableToolbarContent>
-               </TableToolbar>
+                </TableToolbar>
                 <Table className={styles.table} {...getTableProps()} data-testid="patientsTable">
                   <TableHead>
                     <TableRow>
@@ -227,11 +223,11 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                         <TableHeader
                           {...getHeaderProps({
                             header,
-                            isSortable: header.isSortable,
+                            isSortable: header?.['isSortable'],
                           })}
                           className={isDesktop(layout) ? styles.desktopHeader : styles.tabletHeader}
                         >
-                          {t(header.header?.content ?? header.header)}
+                          {t(header.header?.['content'] ?? header.header)}
                         </TableHeader>
                       ))}
                     </TableRow>
@@ -254,7 +250,7 @@ export const PatientTable: React.FC<PatientTableProps> = ({
                               className={styles.removeButton}
                               kind="ghost"
                               hasIconOnly
-                              renderIcon={TrashCan}
+                              renderIcon={(props) => <TrashCan size={16} {...props} />}
                               iconDescription={t('removeFromList', 'Remove from list')}
                               size={responsiveSize}
                               tooltipPosition="left"

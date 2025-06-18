@@ -26,8 +26,6 @@ import TptHomeComponent from './tpt-home.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
-require('./root.scss');
-
 export const moduleName = '@ohri/openmrs-esm-ohri-tb-app';
 
 const options = {

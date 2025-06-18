@@ -1,15 +1,16 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
-@import "../../root.scss";
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
 
 .errorMessage {
   @include type.type-style("heading-compact-02");
   margin-top: 2.25rem;
-  margin-bottom: spacing.$spacing-03;
+  margin-bottom: layout.$spacing-03;
 }
 
 .errorCopy {
-  margin-bottom: spacing.$spacing-03;
+  margin-bottom: layout.$spacing-03;
   @include type.type-style("body-01");
   color: $text-02;
 }
@@ -17,7 +18,7 @@
 .heading {
   text-align: left;
   text-transform: capitalize;
-  margin-bottom: spacing.$spacing-05;
+  margin-bottom: layout.$spacing-05;
   @include type.type-style("heading-03");
   color: $text-02;
 }

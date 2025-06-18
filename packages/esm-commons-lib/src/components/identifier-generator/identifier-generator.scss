@@ -1,6 +1,6 @@
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
-@import "../../root.scss";
+@use '@carbon/layout';
+@use '@carbon/type';
+
 
 .rotate {
     animation: rotation 2s infinite linear;

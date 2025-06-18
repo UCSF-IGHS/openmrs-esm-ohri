@@ -1,5 +1,4 @@
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
-import { launchPatientWorkspace } from '@openmrs/esm-patient-common-lib';
+import { openmrsFetch, restBaseUrl, launchWorkspace } from '@openmrs/esm-framework';
 import { type FormSchema } from '@openmrs/esm-form-engine-lib';
 
 type LaunchAction = 'add' | 'view' | 'edit' | 'embedded-view';
@@ -15,7 +14,7 @@ export function launchEncounterForm(
   workspaceWindowSize?: 'minimized' | 'maximized',
   patientUuid?: string,
 ) {
-  launchPatientWorkspace('patient-form-entry-workspace', {
+  launchWorkspace('patient-form-entry-workspace', {
     workspaceTitle: form.name,
     mutateForm: onFormSave,
     formInfo: {
