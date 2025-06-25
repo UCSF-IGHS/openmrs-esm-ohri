@@ -13,13 +13,13 @@
     "access": "public"
   },
   "scripts": {
-    "start": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources 'packages/esm-*-app/'",
+    "start": "openmrs develop --backend https://dev3.openmrs.org --sources 'packages/esm-*-app/'",
     "start:core": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-ohri-core-app",
     "start:covid": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-covid-app",
     "start:hct": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-hiv-care-treatment-app",
     "start:hp": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-hiv-prevention-app",
     "start:cervical-cancer": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-cervical-cancer-app",
-    "start:pmtct": "openmrs develop --backend https://ohri-namibia-demo.globalhealthapp.net --sources 'packages/esm-ohri-pmtct-app/'",
+    "start:pmtct": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources 'packages/esm-ohri-pmtct-app/'",
     "start:form-render": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-form-render-app",
     "start:tb": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-tb-app",
     "start:opd": "openmrs develop --backend https://openmrs-dev.globalhealthapp.net --sources packages/esm-opd-app",
@@ -38,8 +38,14 @@
     "ci:bump-form-engine-lib": "yarn up @openmrs/esm-form-engine-lib@next",
     "test-e2e": "playwright test"
   },
+  "peerDependencies": {
+    "@openmrs/esm-framework": "*",
+    "dayjs": "1.x",
+    "react": "18.x",
+    "react-i18next": "11.x"
+  },
   "devDependencies": {
-    "@openmrs/esm-framework": "next",
+    "@openmrs/esm-framework": "^6.3.1-pre.3106",
     "@openmrs/esm-patient-common-lib": "next",
     "@playwright/test": "^1.50.0",
     "@swc/cli": "^0.1.62",
@@ -83,7 +89,7 @@
     "jest-coverage-badges": "1.1.2",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
-    "openmrs": "next",
+    "openmrs": "^6.3.1-pre.3106",
     "prettier": "^3.1.1",
     "pretty-quick": "^3.1.0",
     "react": "^18.2.0",
@@ -93,6 +99,7 @@
     "sass": "^1.54.3",
     "sass-loader": "^10.1.0",
     "semver": "^7.3.4",
+    "single-spa": "^5.9.3",
     "swc-loader": "^0.2.3",
     "swr": "2.2.5",
     "systemjs-webpack-interop": "^2.3.7",
@@ -109,7 +116,8 @@
   },
   "resolutions": {
     "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5"
+    "@types/react-dom": "^18.0.5",
+    "webpack": "5.99.9"
   },
   "packageManager": "yarn@4.0.2"
 }

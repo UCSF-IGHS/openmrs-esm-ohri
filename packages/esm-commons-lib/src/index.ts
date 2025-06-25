@@ -46,6 +46,7 @@ export * from './utils/encounter-list-utils';
 export * from './workspace/ohri-workspace-utils';
 export * from './workspace/patient-list-workspace';
 export * from './dashboards/createDashboard';
+export * from './dashboards/nav-group/createDashboardGroup';
 export * from './types';
 export * from './components/encounter-tile/encounter-tile.component';
 export * from './components/card-summary/summary-card.component';

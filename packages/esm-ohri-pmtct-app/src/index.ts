@@ -18,8 +18,10 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
-import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
+
+// import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import ptrackerdashboardPath from './ptracker-reports/ptracker-report-app-menu-link.component';
+import { createDashboardLink } from './createDashboardLink.component';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -59,10 +61,7 @@ export const maternalChildDashboardLink = getSyncLifecycle(
 );
 
 export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);
-export const mchSummaryDashboardLink = getSyncLifecycle(
-  createDashboardLink({ ...mchSummaryDashboardMeta, moduleName }),
-  options,
-);
+export const mchSummaryDashboardLink = getSyncLifecycle(createDashboardLink(mchSummaryDashboardMeta), options);
 
 export const mchSummaryDashboard = getAsyncLifecycle(
   () => import('./pmtct/patient-chart/mch-summary/mch-summary.component'),

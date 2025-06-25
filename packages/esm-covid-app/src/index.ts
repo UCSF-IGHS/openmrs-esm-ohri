@@ -10,8 +10,12 @@ import {
   covid19CasesDashboardMeta,
   covidPatientChartMeta,
 } from './dashboard.meta';
-import { createOHRIDashboardLink, createOHRIGroupedLink } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import {
+  createDashboardGroup,
+  createOHRIDashboardLink,
+  createOHRIGroupedLink,
+} from '@ohri/openmrs-esm-ohri-commons-lib';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
 

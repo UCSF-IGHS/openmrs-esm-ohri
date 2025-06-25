@@ -8,8 +8,9 @@ import {
   createOHRIDashboardLink,
   PatientStatusBannerTag,
   createOHRIGroupedLink,
+  createDashboardGroup,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
 import {
   hivCareAndTreatmentFolderDashboardMeta,

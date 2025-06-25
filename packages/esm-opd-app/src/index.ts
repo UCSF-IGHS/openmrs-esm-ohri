@@ -1,6 +1,6 @@
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import { opdFolderMeta, activeVisitDashboardMeta } from './dashboard.meta';
-import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { configSchema } from './config-schema';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -25,3 +25,10 @@ export const activeVisitDashboardLink = getSyncLifecycle(
   }),
   { featureName: 'active-visit', moduleName },
 );
+function createDashboardGroup(opdFolderMeta: {
+  title: string;
+  slotName: string;
+  isExpanded: boolean;
+}): import('react').ComponentType<unknown> {
+  throw new Error('Function not implemented.');
+}

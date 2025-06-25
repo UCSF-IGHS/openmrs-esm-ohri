@@ -39,14 +39,17 @@
     "@carbon/react": "^1.83.0"
   },
   "peerDependencies": {
-    "@openmrs/esm-framework": "5.x",
-    "@openmrs/esm-patient-common-lib": "6.x",
+    "@openmrs/esm-framework": "6.x",
+    "@openmrs/esm-patient-common-lib": "10.x",
     "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x",
     "swr": "2.x"
   },
   "devDependencies": {
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "sass": "^1.54.3",
     "webpack": "^5.99.9"
   }
 }

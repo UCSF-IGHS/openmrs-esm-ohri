@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardGroupExtension } from '@openmrs/esm-patient-common-lib';
+// import { DashboardGroupExtension } from '@openmrs/esm-patient-common-lib';
 import PatientExtensionRenderer from '../components/extension-conditional-renderer/patient-based-extension-renderer';
 import { type DashboardLinkConfig } from '../types';
 import { DashboardExtension } from './DashboardExtension';
@@ -31,7 +31,8 @@ export const createConditionalDashboardGroup = ({
   const DashboardGroup = ({ basePath }: { basePath: string }) => {
     return (
       <PatientExtensionRenderer patientExpression={patientExpression}>
-        <DashboardGroupExtension title={title} slotName={slotName} basePath={basePath} isExpanded={isExpanded} />
+        {/* <DashboardGroupExtension title={title} slotName={slotName} basePath={basePath} isExpanded={isExpanded} /> */}
+        <DashboardExtension title={title} basePath={basePath} path={basePath} />
       </PatientExtensionRenderer>
     );
   };

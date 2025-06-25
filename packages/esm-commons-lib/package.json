@@ -39,8 +39,8 @@
     "yup": "^1.4.0"
   },
   "peerDependencies": {
-    "@openmrs/esm-framework": "*",
-    "@openmrs/esm-patient-common-lib": "*",
+    "@openmrs/esm-framework": "6.x",
+    "@openmrs/esm-patient-common-lib": "10.x",
     "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x",
@@ -49,6 +49,10 @@
   "devDependencies": {
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
+    "i18next": "^21.10.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "sass": "^1.54.3",
     "webpack": "^5.99.9"
   }
 }

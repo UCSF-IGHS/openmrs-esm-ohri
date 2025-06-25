@@ -41,8 +41,8 @@
   },
   "peerDependencies": {
     "@ohri/esm-patient-chart-app": "7.1.0-5",
-    "@openmrs/esm-framework": "5.x",
-    "@openmrs/esm-patient-common-lib": "6.x",
+    "@openmrs/esm-framework": "6.x",
+    "@openmrs/esm-patient-common-lib": "10.x",
     "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x",
@@ -50,6 +50,13 @@
   },
   "devDependencies": {
     "@ohri/esm-patient-chart-app": "7.1.0-5",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "react-router-dom": "^6.21.2",
+    "rxjs": "^6.6.3",
+    "sass": "^1.54.3",
+    "single-spa": "^5.9.3",
+    "single-spa-react": "^4.6.1",
     "webpack": "^5.99.9"
   }
 }
