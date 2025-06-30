@@ -4,15 +4,9 @@ import {
   createOHRIDashboardLink,
   PatientStatusBannerTag,
   createOHRIGroupedLink,
-  createDashboardGroup,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
-import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
-import {
-  htsSummaryDashboardMeta,
-  hivPreventionDashboardMeta,
-  hivPreventionFolderDashboardMeta,
-} from './dashboard.meta';
+import { hivPreventionFolderDashboardMeta } from './dashboard.meta';
 import htsRootComponent from './hts-root.component';
 
 import { configSchema } from './config-schema';
@@ -43,15 +37,6 @@ export const hivPreventionDashboardLink = getSyncLifecycle(
 export const hivPreventionDashboard = getSyncLifecycle(htsRootComponent, options);
 
 // Patient Chart
-export const patientChartHIVPreventionDashboard = getSyncLifecycle(
-  createDashboardGroup(hivPreventionDashboardMeta),
-  options,
-);
-
-export const htsSummaryDashboardLink = getSyncLifecycle(
-  createDashboardLink({ ...htsSummaryDashboardMeta, moduleName }),
-  options,
-);
 
 export const htsSummaryDashboard = getSyncLifecycle(HTSPreventionSummary, {
   featureName: 'hts-patient-encounters-list',
