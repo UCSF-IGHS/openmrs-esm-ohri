@@ -28,56 +28,17 @@
       "component": "root"
     },
     {
-      "name": "mch",
-      "slot": "patient-chart-dashboard-slot",
-      "component": "mchDashboard",
-      "order": 25
-    },
-    {
-      "name": "mch-summary-dashboard",
-      "slot": "mch-slot",
-      "component": "mchSummaryDashboardLink",
-      "meta": {
-        "path": "mnch-summary",
-        "slot": "mch-summary-slot",
-        "layoutMode": "anchored",
-        "columns": 1
-      }
-    },
-    {
       "name": "mch-summary-ext",
       "slot": "mch-summary-slot",
       "component": "mchSummaryDashboard",
       "meta": {
-        "title" : "Client Summary"
-      }
-    },
-    {
-      "name": "maternal-visits-dashboard",
-      "slot": "mch-slot",
-      "component": "maternalVisitsDashboardLink",
-      "meta": {
-        "path": "maternal-visits",
-        "slot": "maternal-visits-summary-slot",
-        "layoutMode": "anchored",
-        "columns": 1
+        "title": "Client Summary"
       }
     },
     {
       "name": "maternal-visits-summary-ext",
       "slot": "maternal-visits-summary-slot",
       "component": "maternalVisitsDashboard"
-    },
-    {
-      "name": "child-visits-dashboard",
-      "slot": "mch-slot",
-      "component": "childVisitsDashboardLink",
-      "meta": {
-        "path": "child-visits",
-        "slot": "child-visits-summary-slot",
-        "layoutMode": "anchored",
-        "columns": 1
-      }
     },
     {
       "name": "child-visits-summary-ext",
