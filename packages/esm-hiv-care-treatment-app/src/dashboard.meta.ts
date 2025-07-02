@@ -7,44 +7,40 @@ export const hivCareAndTreatmentDashboardDMeta = {
   isExpanded: false,
 };
 
-export const hivPatientSummaryDashboardMeta = {
-  slot: 'hiv-patient-summary-dashboard-slot',
-  columns: 1,
-  title: 'HIV Patient Summary',
-  path: 'hiv-patient-summary',
-  layoutMode: 'anchored',
-};
-
 export const programManagementDashboardMeta = {
   slot: 'program-management-summary-slot',
   columns: 1,
   title: 'Program Management',
-  path: 'program-management',
+  path: 'hiv-program-management',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const clinicalVisitsDashboardMeta = {
   slot: 'clinical-visits-summary-slot',
   columns: 1,
   title: 'Clinical Visits',
-  path: 'clinical-visits',
+  path: 'hiv-clinical-visits',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const generalCounsellingDashboardMeta = {
   slot: 'general-counselling-summary-slot',
   columns: 1,
   title: 'General Counselling',
-  path: 'general-counselling',
+  path: 'hiv-general-counselling',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const partnerNotificationServicesDashboardMeta = {
   slot: 'partner-notification-services-slot',
   columns: 1,
   title: 'Partner Notification',
-  path: 'partner-notification-services',
+  path: 'hiv-partner-notification',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 // Clinical Dashboards

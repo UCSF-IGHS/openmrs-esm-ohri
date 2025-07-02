@@ -3,9 +3,23 @@ import { Tag } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 import { usePatientHivStatus } from './patientHivStatus';
 
+export type TagType =
+  | 'red'
+  | 'magenta'
+  | 'purple'
+  | 'blue'
+  | 'cyan'
+  | 'teal'
+  | 'green'
+  | 'gray'
+  | 'cool-gray'
+  | 'warm-gray'
+  | 'high-contrast'
+  | 'outline';
+
 interface PatientStatusBannerTagProps {
   patientUuid: string;
-  outcomeTagColor?: string;
+  outcomeTagColor?: TagType;
   mappedOutcome?: string;
   motherName?: string;
   childrenNames?: string[];

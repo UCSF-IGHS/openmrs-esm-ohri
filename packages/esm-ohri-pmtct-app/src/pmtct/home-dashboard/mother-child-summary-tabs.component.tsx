@@ -7,8 +7,8 @@ import styles from './ohri-patient-tabs.scss';
 const MotherChildSummary: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Tabs type="container" className={styles.tabContainer}>
-      <TabList contained>
+    <Tabs>
+      <TabList contained aria-label="">
         <Tab>{t('allClients', 'All Clients')}</Tab>
       </TabList>
       <TabPanels>

@@ -3,8 +3,9 @@ import { type OpenmrsResource } from '@openmrs/esm-framework';
 export interface DashboardLinkConfig {
   path: string;
   title: string;
-  moduleName: string;
+  moduleName?: string;
   patientExpression?: string;
+  basePath?: string;
 }
 
 export interface DashboardConfig extends DashboardLinkConfig {

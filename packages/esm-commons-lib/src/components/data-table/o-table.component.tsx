@@ -22,7 +22,7 @@ export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
   return (
     <TableContainer>
       <DataTable rows={tableRows} headers={tableHeaders} isSortable={true} size="md">
-        {({ rows, headers, getHeaderProps, getTableProps }) => (
+        {({ rows, headers, getHeaderProps, getTableProps, getRowProps }) => (
           <Table {...getTableProps()}>
             <TableHead>
               <TableRow>
@@ -31,17 +31,16 @@ export const OTable: React.FC<TableProps> = ({ tableHeaders, tableRows }) => {
                     className={`${styles.productiveHeading01} ${styles.text02}`}
                     {...getHeaderProps({
                       header,
-                      isSortable: header.isSortable,
                     })}
                   >
-                    {header.header?.content ?? header.header}
+                    {header.header}
                   </TableHeader>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} {...getRowProps({ row })}>
                   {row.cells.map((cell) => (
                     <TableCell key={cell.id}>
                       <LazyCell lazyValue={cell.value?.content ?? cell.value} />

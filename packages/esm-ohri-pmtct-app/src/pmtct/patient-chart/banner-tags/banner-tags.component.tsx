@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { usePatientOutcome } from './useInfantFinalOutcome';
 import { usePatientFamilyNames } from './usePatientFamilyNames';
-import { PatientStatusBannerTag } from '@ohri/openmrs-esm-ohri-commons-lib';
+import { PatientStatusBannerTag, TagType } from '@ohri/openmrs-esm-ohri-commons-lib';
 
 interface MotherChildTagProps {
   patientUuid: string;
@@ -23,11 +23,11 @@ const MotherChildTag: React.FC<MotherChildTagProps> = ({ patientUuid }) => {
     return null;
   }
 
-  const outcomeColorMapping: { [key: string]: string } = {
+  const outcomeColorMapping: { [key: string]: TagType } = {
     'Still in Care': 'green',
     'HIV negative infant discharged from PMTCT': 'green',
     'Lost to followup': 'red',
-    'Dead': 'red',
+    Dead: 'red',
     'Transferred out': 'red',
     'Transfer in': 'red',
     'Confirmed HIV positive': 'red',

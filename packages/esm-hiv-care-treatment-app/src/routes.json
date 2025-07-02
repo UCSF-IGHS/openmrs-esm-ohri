@@ -38,37 +38,9 @@
       "component": "hivCareAndTreatmentDashboard"
     },
     {
-      "name": "ohri-hiv-care-and-treatment",
-      "slot": "patient-chart-dashboard-slot",
-      "component": "patientChartHIVCareAndTreatmentDashboard",
-      "order": 21
-    },
-    {
-      "name": "hts-service-summary-dashboard",
-      "slot": "ohri-hiv-care-and-treatment-slot",
-      "component": "hivPatientSummaryDashboardLink",
-      "meta": {
-        "slot": "hiv-patient-summary-dashboard-slot",
-        "columns": 1,
-        "path": "hiv-patient-summary",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "hiv-service-summary-list-ext",
       "slot": "hiv-patient-summary-dashboard-slot",
       "component": "hivServiceSummaryList"
-    },
-    {
-      "name": "program-management-summary",
-      "slot": "ohri-hiv-care-and-treatment-slot",
-      "component": "programManagementDashboardLink",
-      "meta": {
-        "slot": "program-management-summary-slot",
-        "columns": 1,
-        "path": "program-management",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "program-management-summary-ext",
@@ -76,31 +48,9 @@
       "component": "programManagementDashboard"
     },
     {
-      "name": "visits-summary",
-      "slot": "ohri-hiv-care-and-treatment-slot",
-      "component": "clinicalVisitsDashboardLink",
-      "meta": {
-        "slot": "clinical-visits-summary-slot",
-        "columns": 1,
-        "path": "clinical-visits",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "visits-summary-ext",
       "slot": "clinical-visits-summary-slot",
       "component": "clinicalVisitsDashboard"
-    },
-    {
-      "name": "general-counselling-summary",
-      "slot": "ohri-hiv-care-and-treatment-slot",
-      "component": "generalCounsellingDashboardLink",
-      "meta": {
-        "slot": "general-counselling-summary-slot",
-        "columns": 1,
-        "path": "general-counselling",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "general-counselling-summary-ext",
@@ -108,31 +58,9 @@
       "component": "generalCounsellingDashboard"
     },
     {
-      "name": "adherence-counselling-summary",
-      "slot": "ohri-hiv-care-and-treatment-slot",
-      "component": "adherenceCounsellingDashboardLink",
-      "meta": {
-        "slot": "adherence-counselling-summary-slot",
-        "columns": 1,
-        "path": "adherence-counselling",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "adherence-counselling-summary-ext",
       "slot": "adherence-counselling-summary-slot",
       "component": "adherenceCounsellingDashboard"
-    },
-    {
-      "name": "partner-notification-services",
-      "slot": "ohri-hiv-care-and-treatment-slot",
-      "component": "partnerNotificationServicesDashboardLink",
-      "meta": {
-        "slot": "partner-notification-services-slot",
-        "columns": 1,
-        "path": "partner-notification-services",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "partner-notification-services-ext",

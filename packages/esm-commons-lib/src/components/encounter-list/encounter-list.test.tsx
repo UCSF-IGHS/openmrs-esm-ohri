@@ -41,8 +41,8 @@ const testProps = {
 jest.mock('../../hooks/useEncounterRows');
 jest.mock('../../hooks/useFormsJson');
 
-jest.mock('@openmrs/esm-patient-common-lib', () => ({
-  launchPatientWorkspace: jest.fn(),
+jest.mock('@openmrs/esm-framework', () => ({
+  launchWorkspace: jest.fn(),
 }));
 
 jest.mock('@openmrs/esm-form-engine-lib', () => ({

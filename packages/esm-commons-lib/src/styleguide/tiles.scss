@@ -1,7 +1,10 @@
-@use '@carbon/styles/scss/colors';
-@use '@carbon/styles/scss/spacing';
-@use '@carbon/styles/scss/type';
-@import "../root.scss";
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.productiveHeading03 {
+  @include type.type-style('heading-03');
+}
 
 .title {
   @extend .productiveHeading03;
@@ -10,7 +13,7 @@
 .cardTitle {
   display: flex;
   justify-content: space-between;
-  padding: spacing.$spacing-04 0 spacing.$spacing-04 spacing.$spacing-05;
+  padding: layout.$spacing-04 0 layout.$spacing-04 layout.$spacing-05;
 }
 
 .cardTitle>h4:after {

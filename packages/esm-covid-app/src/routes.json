@@ -22,47 +22,14 @@
       "component": "covidPatientChartDashboard"
     },
     {
-      "name": "covid-assessments-dashboard",
-      "slot": "ohri-covid-patient-chart-slot",
-      "component": "covidAssessmentDashboardLink",
-      "meta": {
-        "slot": "covid-assessments-dashboard-slot",
-        "columns": 1,
-        "path": "covid-assessments",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "covid-assessments-ext",
       "slot": "covid-assessments-dashboard-slot",
       "component": "covidAssessmentsDashboard"
     },
     {
-      "name": "covid-lab-results",
-      "slot": "ohri-covid-patient-chart-slot",
-      "component": "covidLabResultsDashboardLink",
-      "meta": {
-        "slot": "covid-lab-dashboard-slot",
-        "columns": 1,
-        "path": "lab-test",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "covid-lab-tests-ext",
       "slot": "covid-lab-dashboard-slot",
       "component": "covidLabResultsDashboard"
-    },
-    {
-      "name": "covid-vaccinations-dashboard",
-      "slot": "ohri-covid-patient-chart-slot",
-      "component": "covidVaccinationDashboardLink",
-      "meta": {
-        "slot": "covid-vaccinations-dashboard-slot",
-        "columns": 1,
-        "path": "covid-vaccinations",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "covid-vaccinations-ext",
@@ -76,7 +43,7 @@
       "meta": {
         "name": "covid-cases",
         "slot": "covid-cases-dashboard-slot",
-        "title": "TB Treatment"
+        "title": "COVID Cases"
       },
       "order": 5
     },

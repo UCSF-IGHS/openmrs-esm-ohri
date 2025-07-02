@@ -11,6 +11,7 @@ export const caCxSummaryDashboardMeta = {
   title: 'CaCx Summary',
   path: 'cacx-summary',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const caCxVisitsDashboardMeta = {
@@ -19,4 +20,5 @@ export const caCxVisitsDashboardMeta = {
   title: 'CaCx Visits',
   path: 'cacx-visits',
   layoutMode: 'anchored',
+  icon: '',
 };

@@ -7,16 +7,17 @@ export const cervicalCancerFolderMeta = {
 
 export const caCxSummaryDashboardMeta = {
   slot: 'cacx-summary-slot',
-  columns: 1,
   title: 'CaCx Summary',
   path: 'cacx-summary',
   layoutMode: 'anchored',
+  icon: 'omrs-icon-shopping-cart',
+  hideDashboardTitle: true,
 };
 
 export const caCxVisitsDashboardMeta = {
   slot: 'cacx-visits-slot',
-  columns: 1,
   title: 'CaCx Visits',
   path: 'cacx-visits',
-  layoutMode: 'anchored',
+  icon: 'omrs-icon-shopping-cart',
+  hideDashboardTitle: true,
 };

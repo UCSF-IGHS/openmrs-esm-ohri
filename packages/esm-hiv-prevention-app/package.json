@@ -37,18 +37,21 @@
     "url": "https://github.com/UCSF-IGHS/openmrs-esm-ohri/issues"
   },
   "dependencies": {
-    "@carbon/react": "^1.13.0",
+    "@carbon/react": "^1.83.0",
     "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
-    "@openmrs/esm-framework": "5.x",
-    "@openmrs/esm-patient-common-lib": "6.x",
+    "@openmrs/esm-framework": "6.x",
+    "@openmrs/esm-patient-common-lib": "10.x",
     "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x",
     "swr": "2.x"
   },
   "devDependencies": {
-    "webpack": "^5.88.2"
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "sass": "^1.54.3",
+    "webpack": "^5.99.9"
   }
 }

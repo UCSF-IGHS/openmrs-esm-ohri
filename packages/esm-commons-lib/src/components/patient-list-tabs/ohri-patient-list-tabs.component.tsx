@@ -8,12 +8,12 @@ import styles from './ohri-patient-list-tabs.scss';
 export function OHRIPatientListTabs({ patientListConfigs, moduleName }) {
   const { t } = useTranslation();
   const [activeTabIndex, setActiveTabIndex] = useState(0); // State to track active tab index
-  const handleTabChange = ({selectedIndex}) => {
+  const handleTabChange = ({ selectedIndex }) => {
     setActiveTabIndex(selectedIndex);
   };
   return (
-    <Tabs type="container" className={styles.tabContainer} onChange={handleTabChange}>
-      <TabList contained>
+    <Tabs onChange={handleTabChange}>
+      <TabList contained aria-label="">
         {patientListConfigs.map((config, index) => {
           return (
             <Tab key={index} id={config.cohortId}>

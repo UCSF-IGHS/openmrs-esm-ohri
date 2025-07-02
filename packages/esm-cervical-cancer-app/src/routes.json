@@ -5,44 +5,11 @@
   },
   "pages": [
   ],
-  "extensions": [
-    {
-      "name": "cervical-cancer",
-      "slot": "patient-chart-dashboard-slot",
-      "component": "cacxPatientChartDashboard",
-      "order": 25,
-      "meta": {
-        "path": "Cervical Cancer",
-        "slot": "cervical-cancer-slot",
-        "isExpanded": false
-      }
-    },
-    {
-      "name": "'cacx-summary-dashboard",
-      "slot": "cervical-cancer-slot",
-      "component": "cacxSummaryDashboardLink",
-      "meta": {
-        "path": "cacx-summary",
-        "slot": "cacx-summary-slot",
-        "layoutMode": "anchored",
-        "columns": 1
-      }
-    },
+  "extensions": [    
     {
       "name": "cacx-summary-ext",
       "slot": "cacx-summary-slot",
       "component": "cacxSummaryDashboard"
-    },
-    {
-      "name": "cacx-visits-dashboard",
-      "slot": "cervical-cancer-slot",
-      "component": "cacxVisitsDashboardLink",
-      "meta": {
-        "path": "cacx-visits",
-        "slot": "cacx-visits-slot",
-        "layoutMode": "anchored",
-        "columns": 1
-      }
     },
     {
       "name": "cacx-visits-ext",

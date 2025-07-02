@@ -21,7 +21,7 @@ export const EncounterListTabsComponent: React.FC<EncounterListTabsComponentProp
   return (
     <div className={styles.tabContainer}>
       <Tabs>
-        <TabList contained>
+        <TabList aria-label="" contained>
           {tabsConfig.map((tab) => (
             <Tab key={tab.name}>{tab.name}</Tab>
           ))}

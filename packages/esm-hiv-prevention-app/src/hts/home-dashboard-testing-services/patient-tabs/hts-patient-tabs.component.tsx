@@ -12,8 +12,8 @@ function OHRIPatientTabs() {
   const tabs = getCohortListTabsData(htsCohortTabsSchema, config);
 
   return (
-    <Tabs type="container" className={styles.tabContainer}>
-      <TabList contained>
+    <Tabs>
+      <TabList contained aria-label="">
         {tabs.map((tab) => (
           <Tab>{tab.name}</Tab>
         ))}

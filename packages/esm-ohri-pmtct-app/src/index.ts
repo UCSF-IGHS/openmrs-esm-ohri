@@ -18,14 +18,13 @@ import {
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { configSchema } from './config-schema';
 import rootComponent from './root.component';
-import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
+
 import ptrackerdashboardPath from './ptracker-reports/ptracker-report-app-menu-link.component';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
 export const moduleName = '@ohri/openmrs-esm-ohri-pmtct-app';
-
-require('./root.scss');
 
 const options = {
   featureName: 'ohri-pmtct',
@@ -55,14 +54,27 @@ export function startupApp() {
 
 export const root = getSyncLifecycle(rootComponent, options);
 
+// homepage
 export const maternalChildDashboardLink = getSyncLifecycle(
   createNewOHRIDashboardLink(motherChildDashboardMeta),
   options,
 );
 
-export const mchDashboard = getSyncLifecycle(createConditionalDashboardGroup(mchFolderMeta), options);
-export const mchSummaryDashboardLink = getSyncLifecycle(
-  createDashboardLink({ ...mchSummaryDashboardMeta, moduleName }),
+// patient chart
+export const mchDashboard = getSyncLifecycle(
+  createConditionalDashboardGroup({
+    ...mchFolderMeta,
+    moduleName: options.moduleName,
+  }),
+  options,
+);
+export const mchSummaryDashboardLink = getSyncLifecycle(createDashboardLink(mchSummaryDashboardMeta), options);
+export const maternalVisitsDashboardLink = getSyncLifecycle(
+  createConditionalDashboardLink({ ...maternalVisitsDashboardMeta, moduleName }),
+  options,
+);
+export const childVisitsDashboardLink = getSyncLifecycle(
+  createConditionalDashboardLink({ ...childVisitsDashboardMeta, moduleName }),
   options,
 );
 
@@ -74,20 +86,10 @@ export const mchSummaryDashboard = getAsyncLifecycle(
   },
 );
 
-export const maternalVisitsDashboardLink = getSyncLifecycle(
-  createConditionalDashboardLink({ ...maternalVisitsDashboardMeta, moduleName }),
-  options,
-);
-
 export const maternalVisitsDashboard = getSyncLifecycle(MaternalHealthList, {
   featureName: 'maternal-visits',
   moduleName,
 });
-
-export const childVisitsDashboardLink = getSyncLifecycle(
-  createConditionalDashboardLink({ ...childVisitsDashboardMeta, moduleName }),
-  options,
-);
 
 export const childVisitsDashboard = getSyncLifecycle(ChildHealthList, {
   featureName: 'maternal-visits',

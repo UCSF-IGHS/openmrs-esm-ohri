@@ -1,18 +1,12 @@
 import { Pills } from '@carbon/react/icons';
 
-// Patient Chart Dashboards
-export const hivPreventionDashboardMeta = {
-  title: 'HIV Prevention',
-  slotName: 'ohri-hiv-prevention-slot',
-  isExpanded: false,
-};
-
 export const htsSummaryDashboardMeta = {
   slot: 'hts-summary-dashboard-slot',
   columns: 1,
   title: 'HIV Testing Services',
   path: 'hiv-testing-services',
   layoutMode: 'anchored',
+  icon: '',
 };
 
 export const hivPreventionFolderDashboardMeta = {

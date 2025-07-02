@@ -39,34 +39,10 @@
       "component": "patientChartTptDashboard",
       "order": 24
     },
-
-    {
-      "name": "tb-summary-dashboard",
-      "slot": "ohri-tb-slot",
-      "component": "tbPatientSummaryDashboardLink",
-      "meta": {
-        "slot": "tb-patient-summary-dashboard-slot",
-        "columns": 1,
-        "path": "tb-patient-summary",
-        "layoutMode": "anchored"
-      }
-    },
     {
       "name": "tb-patient-summary-ext",
       "slot": "tb-patient-summary-dashboard-slot",
       "component": "tbPatientSummaryList"
-    },
-
-    {
-      "name": "tb-program-management-summary",
-      "slot": "ohri-tb-slot",
-      "component": "tbProgramManagementDashboardLink",
-      "meta": {
-        "slot": "tb-program-management-summary-slot",
-        "columns": 1,
-        "path": "tb-program-management",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "tb-program-management-summary-ext",
@@ -74,32 +50,9 @@
       "component": "tbProgramManagementDashboard"
     },
     {
-      "name": "tpt-patient-summary",
-      "slot": "ohri-tpt-slot",
-      "component": "tptPatientSummaryDashboardLink",
-      "meta": {
-        "slot": "tpt-patient-summary-slot",
-        "columns": 1,
-        "path": "tpt-patient-summary",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "tpt-patient-summary-ext",
       "slot": "tpt-patient-summary-slot",
       "component": "tptPatientSummaryDashboard"
-    },
-
-    {
-      "name": "tpt-program-management-summary",
-      "slot": "ohri-tpt-slot",
-      "component": "tptProgramManagementDashboardLink",
-      "meta": {
-        "slot": "tpt-program-management-summary-slot",
-        "columns": 1,
-        "path": "tpt-program-management",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "tpt-program-management-summary-ext",
@@ -107,32 +60,9 @@
       "component": "tptProgramManagementDashboard"
     },
     {
-      "name": "tb-treatment-follow-up-summary",
-      "slot": "ohri-tb-slot",
-      "component": "tbTreatmentFollowUpDashboardLink",
-      "meta": {
-        "slot": "tb-treatment-follow-up-summary-slot",
-        "columns": 1,
-        "path": "tb-treatment-follow-up",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "tb-treatment-follow-up-summary-ext",
       "slot": "tb-treatment-follow-up-summary-slot",
       "component": "tbTreatmentFollowUpDashboard"
-    },
-
-    {
-      "name": "tb-contact-listing-summary",
-      "slot": "ohri-tb-slot",
-      "component": "tbContactListingDashboardLink",
-      "meta": {
-        "slot": "tb-contact-listing-summary-slot",
-        "columns": 1,
-        "path": "tb-contact-listing",
-        "layoutMode": "anchored"
-      }
     },
     {
       "name": "tb-contact-listing-summary-ext",

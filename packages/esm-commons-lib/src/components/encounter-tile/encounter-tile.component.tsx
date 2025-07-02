@@ -46,7 +46,7 @@ export const EncounterValuesTile: React.FC<EncounterValuesTileProps> = ({ patien
   const { lastEncounter, isLoading, error, isValidating } = useLastEncounter(patientUuid, column.encounterUuid);
 
   if (isLoading || isValidating) {
-    return <CodeSnippetSkeleton type="multi" data-testid="skeleton-text" />;
+    return <CodeSnippetSkeleton type="multi" data-testid="skeleton-text" className="skeleton" />;
   }
 
   if (error || lastEncounter === undefined) {

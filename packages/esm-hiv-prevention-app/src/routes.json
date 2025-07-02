@@ -43,23 +43,6 @@
       "component": "htsServiceSummaryList"
     },
     {
-      "name": "ohri-hiv-prevention",
-      "slot": "patient-chart-dashboard-slot",
-      "component": "patientChartHIVPreventionDashboard",
-      "order": 22
-    },
-    {
-      "name": "hts-summary-dashboard",
-      "slot": "ohri-hiv-prevention-slot",
-      "component": "htsSummaryDashboardLink",
-      "meta": {
-        "slot": "hts-summary-dashboard-slot",
-        "columns": 1,
-        "path": "hiv-testing-services",
-        "layoutMode": "anchored"
-      }
-    },
-    {
       "name": "hts-summary-dashboard-ext",
       "slot": "hts-summary-dashboard-slot",
       "component": "htsSummaryDashboard"
