@@ -1,24 +1,29 @@
+import { config } from 'rxjs';
+
 export const cervicalCancerFolderMeta = {
   title: 'Cervical Cancer',
-  slotName: 'cervical-cancer-slot',
+  slotName: 'cervical-cancer-patient-chart-slot',
   isExpanded: false,
-  patientExpression: 'calculateAge(patient.birthDate) >= 25 && patient.gender === "female"',
+  showWhenExpression: 'patient.age >= 25 && patient.gender === "female"',
 };
 
-export const caCxSummaryDashboardMeta = {
-  slot: 'cacx-summary-slot',
+export const cacxSummaryDashboardMeta = {
+  slot: 'patient-chart-cacx-summary-dashboard-slot',
   columns: 1,
   title: 'CaCx Summary',
   path: 'cacx-summary',
-  layoutMode: 'anchored',
+  moduleName: '@ohri/openmrs-esm-ohri-cervical-cancer-app',
+  config: {},
   icon: '',
 };
 
-export const caCxVisitsDashboardMeta = {
-  slot: 'cacx-visits-slot',
+export const cacxVisitDashboardMeta = {
+  slot: 'patient-chart-cacx-visits-dashboard-slot',
   columns: 1,
   title: 'CaCx Visits',
   path: 'cacx-visits',
+  moduleName: '@ohri/openmrs-esm-ohri-cervical-cancer-app',
+  config: {},
   layoutMode: 'anchored',
   icon: '',
 };

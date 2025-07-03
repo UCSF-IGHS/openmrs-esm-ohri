@@ -10,10 +10,9 @@ import {
 } from './dashboard.meta';
 import { registerPostSubmissionAction, registerExpressionHelper } from '@openmrs/esm-form-engine-lib';
 import {
-  createConditionalDashboardLink,
   createNewOHRIDashboardLink,
   OHRIHome,
-  createConditionalDashboardGroup,
+  createDashboardGroup,
   PatientStatusBannerTag,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import { configSchema } from './config-schema';
@@ -62,21 +61,20 @@ export const maternalChildDashboardLink = getSyncLifecycle(
 
 // patient chart
 export const mchDashboard = getSyncLifecycle(
-  createConditionalDashboardGroup({
+  createDashboardGroup({
     ...mchFolderMeta,
-    moduleName: options.moduleName,
   }),
   options,
 );
 export const mchSummaryDashboardLink = getSyncLifecycle(createDashboardLink(mchSummaryDashboardMeta), options);
-export const maternalVisitsDashboardLink = getSyncLifecycle(
-  createConditionalDashboardLink({ ...maternalVisitsDashboardMeta, moduleName }),
-  options,
-);
-export const childVisitsDashboardLink = getSyncLifecycle(
-  createConditionalDashboardLink({ ...childVisitsDashboardMeta, moduleName }),
-  options,
-);
+// export const maternalVisitsDashboardLink = getSyncLifecycle(
+//   createDashboardGroup({ ...maternalVisitsDashboardMeta, moduleName }),
+//   options,
+// );
+// export const childVisitsDashboardLink = getSyncLifecycle(
+//   createDashboardGroup({ ...childVisitsDashboardMeta, moduleName }),
+//   options,
+// );
 
 export const mchSummaryDashboard = getAsyncLifecycle(
   () => import('./pmtct/patient-chart/mch-summary/mch-summary.component'),

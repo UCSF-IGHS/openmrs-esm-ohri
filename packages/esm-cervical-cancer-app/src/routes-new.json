@@ -1,0 +1,50 @@
+{
+    "$schema": "https://json.openmrs.org/routes.schema.json",
+    "backendDependencies": {
+      "webservices.rest": "^2.24.0"
+    },
+    "pages": [
+    ],
+    "extensions": [ 
+      {
+        "name": "cervical-cancer-dashboard-group-link",
+        "slot": "clinical-view-section",
+        "component": "cervicalCancerSideNavGroup"
+      },
+      {
+        "name": "cervical-cancer-summary-dashboard-link",
+        "component": "cacxSummaryLink",
+        "slot": "cervical-cancer-patient-chart-slot",
+        "meta": {
+          "columns": 1,
+          "columnSpan": 1,
+          "slot": "cacx-summary-slot",
+          "path": "cervical-cancer-summary",
+          "layoutMode": "anchored"
+        }
+      },
+      {
+        "name": "cacx-summary-ext",
+        "slot": "cacx-summary-slot",
+        "component": "cacxSummaryList"
+      },
+      {
+        "name": "cervical-cancer-visits-dashboard-link",
+        "component": "cacxVisitsLink",
+        "slot": "cervical-cancer-patient-chart-slot",
+        "meta": {
+          "columns": 1,
+          "columnSpan": 1,
+          "slot": "cacx-visits-slot",
+          "path": "cervical-cancer-visits",
+          "layoutMode": "anchored"
+        }
+      },
+      {
+        "name": "cacx-visits-ext",
+        "slot": "cacx-visits-slot",
+        "component": "cacxVisitsDashboard"
+      }
+    ]
+  }
+  

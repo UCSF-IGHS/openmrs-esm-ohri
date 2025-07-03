@@ -2,6 +2,7 @@ import { FormEngine } from '@openmrs/esm-form-engine-lib';
 import { defineConfigSchema, getSyncLifecycle } from '@openmrs/esm-framework';
 import { configSchema } from './config.schema';
 import { PatientStatusBannerTag } from './components/banner-tags/patient-status-tag.component';
+import { ClinicalViewSection } from './dashboards/nav-group/clinical-view-section.component';
 
 export * from './constants';
 export * from './api.resource';
@@ -32,6 +33,7 @@ export * from './components/tile/ohri-summary-tile-tablet.component';
 export * from './components/tile/ohri-summary-tile.component';
 export * from './components/banner-tags/patient-status-tag.component';
 export * from './utils/compare';
+export * from './dashboards/nav-group/createDashboardGroup';
 export * from './utils/createOHRIDashboardLink';
 export * from './utils/createNewOHRIDashboardLink';
 export * from './utils/createOHRIGroupedLink';
@@ -45,7 +47,6 @@ export * from './utils/sidenav-links';
 export * from './utils/encounter-list-utils';
 export * from './workspace/ohri-workspace-utils';
 export * from './workspace/patient-list-workspace';
-export * from './dashboards/createDashboard';
 export * from './types';
 export * from './components/encounter-tile/encounter-tile.component';
 export * from './components/card-summary/summary-card.component';
@@ -73,3 +74,5 @@ export function startupApp() {
 
 // t('ohriForms', "OHRI Forms")
 export const ohriFormsWorkspace = getSyncLifecycle(FormEngine, options);
+
+export const clinicalViewPatientDashboard = getSyncLifecycle(ClinicalViewSection, options);
