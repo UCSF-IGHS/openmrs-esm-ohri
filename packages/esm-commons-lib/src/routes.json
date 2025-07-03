@@ -5,6 +5,11 @@
   },
   "pages": [],
   "extensions": [
+    {
+      "name": "clinical-view-section",
+      "component": "clinicalViewPatientDashboard",
+      "slot": "patient-chart-dashboard-slot"
+    }
   ],
   "workspaces": [
     {
