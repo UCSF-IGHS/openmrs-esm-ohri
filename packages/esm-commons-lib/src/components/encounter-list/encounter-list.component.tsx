@@ -173,11 +173,11 @@ export const EncounterList: React.FC<EncounterListProps> = ({
   const headers = useMemo(() => {
     if (columns) {
       return columns.map((column) => {
-        return { key: column.key, header: column.header };
+        return { key: column.key, header: t(column.key, column.header) };
       });
     }
     return [];
-  }, [columns]);
+  }, [columns, t]);
 
   const constructPaginatedTableRows = useCallback(
     (encounters: OpenmrsEncounter[], currentPage: number, pageSize: number) => {
