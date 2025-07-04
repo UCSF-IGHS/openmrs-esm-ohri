@@ -6,6 +6,12 @@
   @include type.type-style('heading-03');
 }
 
+@media (min-width: 1200px) {
+  :global(.-esm-patient-chart__dashboard-view__extensionWrapper___Jd2UR) {
+    height: fit-content;
+  }
+}
+
 .title {
   @extend .productiveHeading03;
 }
@@ -25,7 +31,6 @@
 }
 
 .tile {
-  height: 100%;
   padding: 1px 0 16px 16px;
   margin: 0.5rem;
   border: solid 1px #e0e0e0;
