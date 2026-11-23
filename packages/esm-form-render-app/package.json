@@ -52,7 +52,7 @@
     "react-router-dom": "6.x"
   },
   "devDependencies": {
-    "i18next": "^21.10.0",
+    "i18next": "^26.3.4",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "sass": "^1.54.3",
